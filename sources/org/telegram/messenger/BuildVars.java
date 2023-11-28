@@ -11,12 +11,13 @@ public class BuildVars {
     public static String BUILD_VERSION_STRING = null;
     public static boolean CHECK_UPDATES = true;
     public static boolean DEBUG_PRIVATE_VERSION = false;
-    public static boolean DEBUG_VERSION = false;
+    public static boolean DEBUG_VERSION = true;
+    public static boolean DISABLE_STORY_REPOSTING = false;
     public static String GOOGLE_AUTH_CLIENT_ID = null;
     public static String HUAWEI_APP_ID = null;
     public static String HUAWEI_STORE_URL = null;
     public static boolean IS_BILLING_UNAVAILABLE = false;
-    public static boolean LOGS_ENABLED = false;
+    public static boolean LOGS_ENABLED = true;
     public static boolean NO_SCOPED_STORAGE = false;
     public static String PLAYSTORE_APP_URL = null;
     public static String SAFETYNET_KEY = null;
@@ -26,10 +27,11 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION = 4085;
-        BUILD_VERSION_STRING = "10.2.8";
+        BUILD_VERSION = 4132;
+        BUILD_VERSION_STRING = "10.3.0";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
+        DISABLE_STORY_REPOSTING = true;
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
         PLAYSTORE_APP_URL = "https://play.google.com/store/apps/details?id=org.telegram.messenger";
         HUAWEI_STORE_URL = "https://appgallery.huawei.com/app/C101184875";

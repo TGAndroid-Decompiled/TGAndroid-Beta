@@ -15,6 +15,7 @@ import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
@@ -24,7 +25,6 @@ import android.widget.TextView;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -87,7 +87,7 @@ public class LimitPreviewView extends LinearLayout {
             setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
             this.limitIcon = new CounterView(context);
             setIconValue(i2, false);
-            this.limitIcon.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
+            this.limitIcon.setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(14.0f));
             addView(this.limitIcon, LayoutHelper.createLinear(-2, -2, 0.0f, 3));
         }
         final FrameLayout frameLayout = new FrameLayout(context);
@@ -247,7 +247,8 @@ public class LimitPreviewView extends LinearLayout {
 
     public void setIconValue(int i, boolean z) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").setSpan(new RelativeSizeSpan(0.8f), 1, 2, 0);
         spannableStringBuilder.append((CharSequence) Integer.toString(i));
         this.limitIcon.setText(spannableStringBuilder, z);
         this.limitIcon.requestLayout();
@@ -427,7 +428,7 @@ public class LimitPreviewView extends LinearLayout {
                 spannableStringBuilder2.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
                 this.limitIcon.setText(spannableStringBuilder2, false);
             }
-            this.premiumCount.setText(BuildConfig.APP_CENTER_HASH);
+            this.premiumCount.setText("");
         }
     }
 
@@ -659,7 +660,7 @@ public class LimitPreviewView extends LinearLayout {
                     }
                     int i3 = 1;
                     while (i3 <= charAt) {
-                        animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                        animatedLayout.staticLayouts.add(new StaticLayout("" + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                         i3++;
                     }
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
@@ -715,8 +716,8 @@ public class LimitPreviewView extends LinearLayout {
                         i = 0;
                     }
                     i++;
-                    animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + charAt, this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-                    animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + this.text.charAt(length), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    animatedLayout.staticLayouts.add(new StaticLayout("" + charAt, this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    animatedLayout.staticLayouts.add(new StaticLayout("" + this.text.charAt(length), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), length, length + 1, 0);
                 }
                 length--;

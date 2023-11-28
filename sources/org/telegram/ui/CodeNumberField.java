@@ -25,7 +25,6 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
@@ -309,7 +308,7 @@ public class CodeNumberField extends EditTextBoldCursor {
                     ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
                     int i = -1;
                     try {
-                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? BuildConfig.APP_CENTER_HASH : itemAt.getText().toString());
+                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? "" : itemAt.getText().toString());
                     } catch (Exception unused) {
                     }
                     if (i > 0) {

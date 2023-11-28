@@ -18,8 +18,8 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -41,6 +41,7 @@ import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
+import org.telegram.tgnet.TLRPC$TL_peerColor;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
@@ -50,6 +51,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_storyViews;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -141,9 +143,14 @@ public class StoriesUtilities {
             predictiveUnreadState = getPredictiveUnreadState(storiesController, j);
             i = predictiveUnreadState;
         }
-        int i4 = avatarStoryParams.currentState;
-        if (i4 != i) {
-            if (i4 == 3) {
+        int i4 = avatarStoryParams.forceState;
+        if (i4 != 0) {
+            predictiveUnreadState = i4;
+            i = predictiveUnreadState;
+        }
+        int i5 = avatarStoryParams.currentState;
+        if (i5 != i) {
+            if (i5 == 3) {
                 z2 = true;
             }
             if (i == 3) {
@@ -151,7 +158,7 @@ public class StoriesUtilities {
                 avatarStoryParams.progressToProgressSegments = 0.0f;
             }
             if (z2) {
-                avatarStoryParams.prevState = i4;
+                avatarStoryParams.prevState = i5;
                 avatarStoryParams.currentState = i;
                 avatarStoryParams.progressToSate = 0.0f;
             } else {
@@ -215,13 +222,13 @@ public class StoriesUtilities {
             rectF2.inset(dp3, dp3);
             drawCircleInternal(canvas, imageReceiver.getParentView(), avatarStoryParams, gradientTools.paint);
         }
-        int i5 = avatarStoryParams.prevState;
-        if ((i5 != 2 || avatarStoryParams.progressToSate == 1.0f) && avatarStoryParams.currentState != 2) {
+        int i6 = avatarStoryParams.prevState;
+        if ((i6 != 2 || avatarStoryParams.progressToSate == 1.0f) && avatarStoryParams.currentState != 2) {
             i3 = i2;
             f = 1.0f;
             f2 = 0.08f;
         } else {
-            boolean z4 = i5 == 2 && avatarStoryParams.progressToSate != 1.0f;
+            boolean z4 = i6 == 2 && avatarStoryParams.progressToSate != 1.0f;
             if (avatarStoryParams.isStoryCell) {
                 checkStoryCellGrayPaint(avatarStoryParams.isArchive, avatarStoryParams.resourcesProvider);
                 paint4 = storyCellGreyPaint[avatarStoryParams.isArchive ? 1 : 0];
@@ -499,12 +506,6 @@ public class StoriesUtilities {
     public static Paint getUnreadCirclePaint(ImageReceiver imageReceiver, boolean z) {
         checkStoriesGradientTools(z);
         storiesGradientTools[z ? 1 : 0].setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return storiesGradientTools[z ? 1 : 0].paint;
-    }
-
-    public static Paint getUnreadCirclePaint(RectF rectF, boolean z) {
-        checkStoriesGradientTools(z);
-        storiesGradientTools[z ? 1 : 0].setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
         return storiesGradientTools[z ? 1 : 0].paint;
     }
 
@@ -841,12 +842,12 @@ public class StoriesUtilities {
         }
         TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
         if (tLRPC$MessageMedia != null && tLRPC$MessageMedia.document != null) {
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, BuildConfig.APP_CENTER_HASH, false);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, "", false);
             if (pathToAttach != null && pathToAttach.exists()) {
                 runnable.run();
                 return null;
             }
-            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, BuildConfig.APP_CENTER_HASH, true);
+            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, "", true);
             if (pathToAttach2 != null) {
                 try {
                     if (pathToAttach2.getName().lastIndexOf(".") > 0) {
@@ -862,7 +863,7 @@ public class StoriesUtilities {
         } else {
             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
             if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), BuildConfig.APP_CENTER_HASH, false);
+                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), "", false);
                 if (pathToAttach3 != null && pathToAttach3.exists()) {
                     runnable.run();
                     return null;
@@ -953,6 +954,7 @@ public class StoriesUtilities {
         public boolean drawInside;
         public boolean drawSegments;
         public boolean forceAnimateProgressToSegments;
+        public int forceState;
         float globalAngle;
         public int globalState;
         boolean inc;
@@ -1231,6 +1233,90 @@ public class StoriesUtilities {
 
         void cancel() {
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, false);
+        }
+    }
+
+    public static class StoryGradientTools {
+        private final AnimatedColor animatedColor1;
+        private final AnimatedColor animatedColor2;
+        private int color1;
+        private int color2;
+        public final int currentAccount;
+        private final Runnable invalidate;
+        private final boolean isDialogCell;
+        private final GradientTools tools;
+
+        public StoryGradientTools(final View view, boolean z) {
+            this(new Runnable() {
+                @Override
+                public final void run() {
+                    view.invalidate();
+                }
+            }, z);
+            Objects.requireNonNull(view);
+        }
+
+        public StoryGradientTools(Runnable runnable, boolean z) {
+            this.currentAccount = UserConfig.selectedAccount;
+            this.invalidate = runnable;
+            this.isDialogCell = z;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            this.animatedColor1 = new AnimatedColor(runnable, 350L, cubicBezierInterpolator);
+            this.animatedColor2 = new AnimatedColor(runnable, 350L, cubicBezierInterpolator);
+            GradientTools gradientTools = new GradientTools();
+            this.tools = gradientTools;
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            resetColors(false);
+            gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            gradientTools.paint.setStyle(Paint.Style.STROKE);
+            gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+
+        public void setUser(TLRPC$User tLRPC$User, boolean z) {
+            TLRPC$TL_peerColor tLRPC$TL_peerColor;
+            setColorId((tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.profile_color) == null) ? -1 : tLRPC$TL_peerColor.color, z);
+        }
+
+        public void setChat(TLRPC$Chat tLRPC$Chat, boolean z) {
+            setColorId(-1, z);
+        }
+
+        public void setColorId(int i, boolean z) {
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).profilePeerColors;
+            MessagesController.PeerColor color = peerColors == null ? null : peerColors.getColor(i);
+            if (color != null) {
+                setColors(color.getStoryColor1(Theme.isCurrentThemeDark()), color.getStoryColor2(Theme.isCurrentThemeDark()), z);
+            } else {
+                resetColors(z);
+            }
+        }
+
+        private void resetColors(boolean z) {
+            if (this.isDialogCell) {
+                setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2), z);
+            } else {
+                setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2), z);
+            }
+        }
+
+        private void setColors(int i, int i2, boolean z) {
+            this.color1 = i;
+            this.color2 = i2;
+            if (!z) {
+                this.animatedColor1.set(i, true);
+                this.animatedColor2.set(i2, true);
+            }
+            Runnable runnable = this.invalidate;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        public Paint getPaint(RectF rectF) {
+            this.tools.setColors(this.animatedColor1.set(this.color1), this.animatedColor2.set(this.color2));
+            this.tools.setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            return this.tools.paint;
         }
     }
 }

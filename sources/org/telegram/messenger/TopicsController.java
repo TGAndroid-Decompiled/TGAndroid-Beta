@@ -27,6 +27,7 @@ import org.telegram.tgnet.TLRPC$TL_channels_editForumTopic;
 import org.telegram.tgnet.TLRPC$TL_channels_getForumTopics;
 import org.telegram.tgnet.TLRPC$TL_channels_getForumTopicsByID;
 import org.telegram.tgnet.TLRPC$TL_channels_reorderPinnedForumTopics;
+import org.telegram.tgnet.TLRPC$TL_channels_toggleViewForumAsMessages;
 import org.telegram.tgnet.TLRPC$TL_channels_updatePinnedForumTopic;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
@@ -408,7 +409,7 @@ public class TopicsController extends BaseController {
         if (i == 0) {
             i = tLRPC$MessageReplyHeader.reply_to_msg_id;
         }
-        return (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, i)) == null) ? BuildConfig.APP_CENTER_HASH : findTopic.title;
+        return (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, i)) == null) ? "" : findTopic.title;
     }
 
     public CharSequence getTopicIconName(TLRPC$Chat tLRPC$Chat, MessageObject messageObject, TextPaint textPaint) {
@@ -616,6 +617,13 @@ public class TopicsController extends BaseController {
                 TopicsController.lambda$toggleShowTopic$14(tLObject, tLRPC$TL_error);
             }
         });
+    }
+
+    public void toggleViewForumAsMessages(long j, boolean z) {
+        TLRPC$TL_channels_toggleViewForumAsMessages tLRPC$TL_channels_toggleViewForumAsMessages = new TLRPC$TL_channels_toggleViewForumAsMessages();
+        tLRPC$TL_channels_toggleViewForumAsMessages.channel_id = getMessagesController().getInputChannel(j);
+        tLRPC$TL_channels_toggleViewForumAsMessages.enabled = z;
+        getConnectionsManager().sendRequest(tLRPC$TL_channels_toggleViewForumAsMessages, null);
     }
 
     public void pinTopic(final long j, int i, boolean z, final BaseFragment baseFragment) {

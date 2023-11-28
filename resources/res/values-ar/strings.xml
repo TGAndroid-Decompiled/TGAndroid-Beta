@@ -3597,7 +3597,6 @@
     <string name="ShuffleList">تشغيل عشوائي</string>
     <string name="SignUp">تسجيل</string>
     <string name="SinglePhotosHelp">إرسال الوسائط في رسائل متفرقة</string>
-    <string name="SlideToCancel">اسحب للإلغاء</string>
     <string name="SlideUpToLock">اسحب للأعلى لتثبيت التسجيل</string>
     <string name="SlowModeHint">الوضع البطيء نشط. يمكنك إرسال\nرسالتك التالية بعد %1$s</string>
     <string name="Slowmode">الوضع البطيء</string>

@@ -6,8 +6,11 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -33,7 +36,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -102,6 +104,8 @@ import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
 public class DialogCell extends BaseCell implements StoriesListPlaceProvider.AvatarOverlaysView {
+    private int[] adaptiveEmojiColor;
+    private ColorFilter[] adaptiveEmojiColorFilter;
     private int animateFromStatusDrawableParams;
     private int animateToStatusDrawableParams;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
@@ -1233,7 +1237,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    public void onDraw(android.graphics.Canvas r40) {
+    public void onDraw(android.graphics.Canvas r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1826,19 +1830,19 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
+            return UserObject.getFirstName(user).replace("\n", "");
         }
         MessageObject messageObject3 = this.message;
         if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
             if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
+                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
             } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                 if (UserObject.isDeleted(tLRPC$User)) {
                     return LocaleController.getString("HiddenName", R.string.HiddenName);
                 }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
             } else {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
             }
         }
         return str2;
@@ -1883,7 +1887,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         } else if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
             CharSequence charSequence6 = charSequence3.toString();
             if (!this.needEmoji) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             } else if (captionMessage.isVideo()) {
                 str2 = "📹 ";
             } else if (captionMessage.isVoice()) {
@@ -2247,5 +2251,18 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         public static int lambda$formatTopicsNames$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             return -tLRPC$TL_forumTopic.top_message;
         }
+    }
+
+    private ColorFilter getAdaptiveEmojiColorFilter(int i, int i2) {
+        if (this.adaptiveEmojiColorFilter == null) {
+            this.adaptiveEmojiColor = new int[4];
+            this.adaptiveEmojiColorFilter = new ColorFilter[4];
+        }
+        if (i2 != this.adaptiveEmojiColor[i] || this.adaptiveEmojiColorFilter[i] == null) {
+            ColorFilter[] colorFilterArr = this.adaptiveEmojiColorFilter;
+            this.adaptiveEmojiColor[i] = i2;
+            colorFilterArr[i] = new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN);
+        }
+        return this.adaptiveEmojiColorFilter[i];
     }
 }

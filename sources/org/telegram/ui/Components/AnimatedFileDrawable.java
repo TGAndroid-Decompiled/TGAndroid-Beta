@@ -127,7 +127,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
 
     private static native int getFrameAtTime(long j, long j2, Bitmap bitmap, int[] iArr, int i);
 
-    public static native int getVideoFrame(long j, Bitmap bitmap, int[] iArr, int i, boolean z, float f, float f2);
+    public static native int getVideoFrame(long j, Bitmap bitmap, int[] iArr, int i, boolean z, float f, float f2, boolean z2);
 
     private static native void getVideoInfo(int i, String str, int[] iArr);
 
@@ -532,7 +532,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
                         }
                         if (AnimatedFileDrawable.this.backgroundBitmap != null) {
                             AnimatedFileDrawable.this.lastFrameDecodeTime = System.currentTimeMillis();
-                            if (AnimatedFileDrawable.getVideoFrame(AnimatedFileDrawable.this.nativePtr, AnimatedFileDrawable.this.backgroundBitmap, AnimatedFileDrawable.this.metaData, AnimatedFileDrawable.this.backgroundBitmap.getRowBytes(), false, AnimatedFileDrawable.this.startTime, AnimatedFileDrawable.this.endTime) == 0) {
+                            if (AnimatedFileDrawable.getVideoFrame(AnimatedFileDrawable.this.nativePtr, AnimatedFileDrawable.this.backgroundBitmap, AnimatedFileDrawable.this.metaData, AnimatedFileDrawable.this.backgroundBitmap.getRowBytes(), false, AnimatedFileDrawable.this.startTime, AnimatedFileDrawable.this.endTime, true) == 0) {
                                 AndroidUtilities.runOnUIThread(AnimatedFileDrawable.this.uiRunnableNoFrame);
                                 return;
                             }
@@ -633,7 +633,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         if (z) {
             videoFrame = getFrameAtTime(this.nativePtr, j, createBitmap, this.metaData, createBitmap.getRowBytes());
         } else {
-            videoFrame = getVideoFrame(this.nativePtr, createBitmap, this.metaData, createBitmap.getRowBytes(), true, 0.0f, 0.0f);
+            videoFrame = getVideoFrame(this.nativePtr, createBitmap, this.metaData, createBitmap.getRowBytes(), true, 0.0f, 0.0f, true);
         }
         if (videoFrame != 0) {
             return createBitmap;
@@ -860,6 +860,10 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
         int i = this.nextRenderingBitmapTime;
         return i != 0 ? i : this.renderingBitmapTime;
+    }
+
+    public int getProgressMs() {
+        return this.metaData[3];
     }
 
     public int getDurationMs() {
@@ -1141,7 +1145,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         return this.isRecycled || this.decoderTryCount >= 15;
     }
 
-    public Bitmap getNextFrame() {
+    public Bitmap getNextFrame(boolean z) {
         if (this.nativePtr == 0) {
             return this.backgroundBitmap;
         }
@@ -1156,7 +1160,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
         long j = this.nativePtr;
         Bitmap bitmap = this.backgroundBitmap;
-        getVideoFrame(j, bitmap, this.metaData, bitmap.getRowBytes(), false, this.startTime, this.endTime);
+        getVideoFrame(j, bitmap, this.metaData, bitmap.getRowBytes(), false, this.startTime, this.endTime, z);
         return this.backgroundBitmap;
     }
 
@@ -1196,7 +1200,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
         long j = this.cacheGenerateNativePtr;
         Bitmap bitmap2 = this.generatingCacheBitmap;
-        getVideoFrame(j, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime);
+        getVideoFrame(j, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
         long j2 = this.cacheGenerateTimestamp;
         if (j2 != 0) {
             int[] iArr2 = this.metaData;
@@ -1236,7 +1240,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             return createBitmap;
         }
         Bitmap bitmap2 = this.generatingCacheBitmap;
-        getVideoFrame(createDecoder, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime);
+        getVideoFrame(createDecoder, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
         destroyDecoder(createDecoder);
         createBitmap.eraseColor(0);
         canvas.save();

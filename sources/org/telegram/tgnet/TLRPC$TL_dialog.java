@@ -6,6 +6,7 @@ public class TLRPC$TL_dialog extends TLRPC$Dialog {
         this.flags = readInt32;
         this.pinned = (readInt32 & 4) != 0;
         this.unread_mark = (readInt32 & 8) != 0;
+        this.view_forum_as_messages = (readInt32 & 64) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.top_message = abstractSerializedData.readInt32(z);
         this.read_inbox_max_id = abstractSerializedData.readInt32(z);
@@ -35,7 +36,9 @@ public class TLRPC$TL_dialog extends TLRPC$Dialog {
         this.flags = i;
         int i2 = this.unread_mark ? i | 8 : i & (-9);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.view_forum_as_messages ? i2 | 64 : i2 & (-65);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.top_message);
         abstractSerializedData.writeInt32(this.read_inbox_max_id);

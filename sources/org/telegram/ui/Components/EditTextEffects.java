@@ -199,7 +199,7 @@ public class EditTextEffects extends EditText {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        updateAnimatedEmoji(false);
+        updateAnimatedEmoji(true);
         invalidateQuotes(false);
     }
 
@@ -290,8 +290,9 @@ public class EditTextEffects extends EditText {
 
     public static boolean allowHackingTextCanvas() {
         String str;
+        String str2;
         if (allowHackingTextCanvasCache == null) {
-            allowHackingTextCanvasCache = Boolean.valueOf(Build.VERSION.SDK_INT > 20 && ((str = Build.MANUFACTURER) == null || !(str.equalsIgnoreCase("HONOR") || str.equalsIgnoreCase("HUAWEI"))));
+            allowHackingTextCanvasCache = Boolean.valueOf(Build.VERSION.SDK_INT > 20 && ((str = Build.MANUFACTURER) == null || !(str.toLowerCase().contains("honor") || str.toLowerCase().contains("huawei") || str.toLowerCase().contains("alps"))) && ((str2 = Build.MODEL) == null || !str2.toLowerCase().contains("mediapad")));
         }
         return allowHackingTextCanvasCache.booleanValue();
     }
@@ -300,19 +301,17 @@ public class EditTextEffects extends EditText {
     public void onDraw(Canvas canvas) {
         canvas.save();
         if (this.clipToPadding && getScrollY() != 0) {
-            canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + getExtendedPaddingBottom()) - this.offsetY);
+            canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY);
         }
         this.path.rewind();
         for (SpoilerEffect spoilerEffect : this.spoilers) {
             android.graphics.Rect bounds = spoilerEffect.getBounds();
             this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
         }
-        canvas.translate(0.0f, getExtendedPaddingTop());
         canvas.clipPath(this.path, Region.Op.DIFFERENCE);
-        canvas.translate(0.0f, -getExtendedPaddingTop());
         invalidateQuotes(false);
         for (int i = 0; i < this.quoteBlocks.size(); i++) {
-            this.quoteBlocks.get(i).draw(canvas, getExtendedPaddingTop(), getWidth(), this.quoteColor, 1.0f);
+            this.quoteBlocks.get(i).draw(canvas, 0.0f, getWidth(), this.quoteColor, 1.0f);
         }
         updateAnimatedEmoji(false);
         if (this.wrapCanvasToFixClipping) {
@@ -327,21 +326,18 @@ public class EditTextEffects extends EditText {
         }
         if (this.drawAnimatedEmojiDrawables && this.animatedEmojiDrawables != null) {
             canvas.save();
-            canvas.translate(getPaddingLeft(), getExtendedPaddingTop());
+            canvas.translate(getPaddingLeft(), 0.0f);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, getLayout(), this.animatedEmojiDrawables, 0.0f, this.spoilers, computeVerticalScrollOffset() - AndroidUtilities.dp(6.0f), computeVerticalScrollOffset() + computeVerticalScrollExtent(), 0.0f, 1.0f, this.animatedEmojiColorFilter);
             canvas.restore();
         }
         canvas.restore();
         canvas.save();
-        canvas.translate(0.0f, getExtendedPaddingTop());
         canvas.clipPath(this.path);
         this.path.rewind();
-        canvas.translate(0.0f, -getExtendedPaddingTop());
         if (!this.spoilers.isEmpty()) {
             this.spoilers.get(0).getRipplePath(this.path);
         }
         canvas.clipPath(this.path);
-        canvas.translate(0.0f, getExtendedPaddingTop());
         canvas.translate(0.0f, -getPaddingTop());
         if (this.wrapCanvasToFixClipping) {
             if (this.wrappedCanvas == null) {
@@ -354,9 +350,8 @@ public class EditTextEffects extends EditText {
             super.onDraw(canvas);
         }
         canvas.restore();
-        this.rect.set(0, (int) ((getScrollY() - getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getMeasuredHeight() + getScrollY()) + getExtendedPaddingBottom()) - this.offsetY));
+        this.rect.set(0, (int) ((getScrollY() - super.getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY));
         canvas.save();
-        canvas.translate(0.0f, getExtendedPaddingTop());
         canvas.clipRect(this.rect);
         for (SpoilerEffect spoilerEffect2 : this.spoilers) {
             android.graphics.Rect bounds2 = spoilerEffect2.getBounds();

@@ -33,7 +33,8 @@ public class BackupImageView extends View {
         this.height = -1;
         ImageReceiver createImageReciever = createImageReciever();
         this.imageReceiver = createImageReciever;
-        createImageReciever.setAllowLoadingOnAttachedOnly(true);
+        createImageReciever.setCrossfadeByScale(0.0f);
+        this.imageReceiver.setAllowLoadingOnAttachedOnly(true);
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
@@ -110,15 +111,15 @@ public class BackupImageView extends View {
     }
 
     public void setImage(SecureDocument secureDocument, String str) {
-        setImage(ImageLocation.getForSecureDocument(secureDocument), str, null, null, null, null, null, 0, null);
+        setImage(ImageLocation.getForSecureDocument(secureDocument), str, (ImageLocation) null, (String) null, (Drawable) null, (Bitmap) null, (String) null, 0, (Object) null);
     }
 
     public void setImage(ImageLocation imageLocation, String str, String str2, Drawable drawable, Object obj) {
-        setImage(imageLocation, str, null, null, drawable, null, str2, 0, obj);
+        setImage(imageLocation, str, (ImageLocation) null, (String) null, drawable, (Bitmap) null, str2, 0, obj);
     }
 
     public void setImage(ImageLocation imageLocation, String str, Drawable drawable, Object obj) {
-        setImage(imageLocation, str, null, null, drawable, null, null, 0, obj);
+        setImage(imageLocation, str, (ImageLocation) null, (String) null, drawable, (Bitmap) null, (String) null, 0, obj);
     }
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Object obj) {
@@ -127,7 +128,7 @@ public class BackupImageView extends View {
     }
 
     public void setImage(ImageLocation imageLocation, String str, Drawable drawable, int i, Object obj) {
-        setImage(imageLocation, str, null, null, drawable, null, null, i, obj);
+        setImage(imageLocation, str, (ImageLocation) null, (String) null, drawable, (Bitmap) null, (String) null, i, obj);
     }
 
     public void clearImage() {
@@ -159,15 +160,15 @@ public class BackupImageView extends View {
     }
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, int i, Object obj) {
-        setImage(imageLocation, str, imageLocation2, str2, null, null, null, i, obj);
+        setImage(imageLocation, str, imageLocation2, str2, (Drawable) null, (Bitmap) null, (String) null, i, obj);
     }
 
     public void setImage(String str, String str2, Drawable drawable) {
-        setImage(ImageLocation.getForPath(str), str2, null, null, drawable, null, null, 0, null);
+        setImage(ImageLocation.getForPath(str), str2, (ImageLocation) null, (String) null, drawable, (Bitmap) null, (String) null, 0, (Object) null);
     }
 
     public void setImage(String str, String str2, String str3, String str4) {
-        setImage(ImageLocation.getForPath(str), str2, ImageLocation.getForPath(str3), str4, null, null, null, 0, null);
+        setImage(ImageLocation.getForPath(str), str2, ImageLocation.getForPath(str3), str4, (Drawable) null, (Bitmap) null, (String) null, 0, (Object) null);
     }
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Bitmap bitmap, String str3, int i, Object obj) {
@@ -181,6 +182,11 @@ public class BackupImageView extends View {
             bitmapDrawable = drawable;
         }
         backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmapDrawable, i, str3, obj, 0);
+        onNewImageSet();
+    }
+
+    public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, String str3, long j, int i, Object obj) {
+        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, drawable, j, str3, obj, i);
         onNewImageSet();
     }
 

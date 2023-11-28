@@ -53,7 +53,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
@@ -718,6 +717,13 @@ public class QrActivity extends BaseFragment {
         }
 
         @Override
+        public boolean isDark() {
+            boolean isCurrentThemeDark;
+            isCurrentThemeDark = Theme.isCurrentThemeDark();
+            return isCurrentThemeDark;
+        }
+
+        @Override
         public void setAnimatedColor(int i, int i2) {
             Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
         }
@@ -815,7 +821,7 @@ public class QrActivity extends BaseFragment {
             this.timerTextDrawable.getPaint().setShader(bitmapShader2);
             this.timerTextDrawable.setGravity(17);
             this.timerTextDrawable.setTextSize(AndroidUtilities.dp(35.0f));
-            this.timerTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
+            this.timerTextDrawable.setText("");
             this.crossfadeFromPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             this.crossfadeFromPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             this.crossfadeToPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
@@ -833,7 +839,7 @@ public class QrActivity extends BaseFragment {
                     this.shareUsernameLayoutPaint.setTextSize(AndroidUtilities.dp(25.0f));
                     String str = this.username;
                     if (str == null) {
-                        str = BuildConfig.APP_CENTER_HASH;
+                        str = "";
                     }
                     this.shareUsernameLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji((CharSequence) str, this.shareUsernameLayoutPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false), this.shareUsernameLayoutPaint, getWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, getWidth() - AndroidUtilities.dp(60.0f), 1);
                     return;
@@ -969,9 +975,7 @@ public class QrActivity extends BaseFragment {
                     this.loadingMatrix.setAutoRepeat(1);
                     this.loadingMatrix.start();
                 }
-                int i = this.linkExpires;
-                String str = BuildConfig.APP_CENTER_HASH;
-                if (i == 0 || System.currentTimeMillis() / 1000 >= this.linkExpires) {
+                if (this.linkExpires == 0 || System.currentTimeMillis() / 1000 >= this.linkExpires) {
                     if (this.linkExpires != 0) {
                         this.link = null;
                         final int width = getWidth();
@@ -982,7 +986,7 @@ public class QrActivity extends BaseFragment {
                                 QrActivity.QrView.this.lambda$new$2(width, height);
                             }
                         });
-                        this.timerTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
+                        this.timerTextDrawable.setText("");
                     }
                     MessagesController.getInstance(UserConfig.selectedAccount).requestContactToken(this.linkExpires == 0 ? 750L : 1750L, new Utilities.Callback() {
                         @Override
@@ -991,21 +995,18 @@ public class QrActivity extends BaseFragment {
                         }
                     });
                 }
-                int i2 = this.linkExpires;
-                if (i2 > 0 && this.link != null) {
-                    long max = Math.max(0L, (i2 - (System.currentTimeMillis() / 1000)) - 1);
-                    int i3 = (int) (max % 60);
+                int i = this.linkExpires;
+                if (i > 0 && this.link != null) {
+                    long max = Math.max(0L, (i - (System.currentTimeMillis() / 1000)) - 1);
+                    int i2 = (int) (max % 60);
                     int min = Math.min(99, (int) (max / 60));
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.timerTextDrawable;
                     StringBuilder sb = new StringBuilder();
-                    sb.append(min < 10 ? "0" : BuildConfig.APP_CENTER_HASH);
+                    sb.append(min < 10 ? "0" : "");
                     sb.append(min);
                     sb.append(":");
-                    if (i3 < 10) {
-                        str = "0";
-                    }
-                    sb.append(str);
-                    sb.append(i3);
+                    sb.append(i2 < 10 ? "0" : "");
+                    sb.append(i2);
                     animatedTextDrawable.setText(sb.toString(), true, false);
                 }
                 if (isAttachedToWindow()) {
@@ -1240,7 +1241,7 @@ public class QrActivity extends BaseFragment {
             int themedColor = baseFragment.getThemedColor(i);
             int dp = AndroidUtilities.dp(28.0f);
             int i2 = R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, dp, dp, false, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, dp, dp, false, null);
             this.darkThemeDrawable = rLottieDrawable;
             this.forceDark = Theme.getActiveTheme().isDark() ^ true;
             setForceDark(Theme.getActiveTheme().isDark(), false);

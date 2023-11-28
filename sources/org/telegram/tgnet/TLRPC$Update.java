@@ -236,6 +236,9 @@ public abstract class TLRPC$Update extends TLObject {
             case -1398708869:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateMessagePoll();
                 break;
+            case -1371598819:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updatePeerWallpaper();
+                break;
             case -1304443240:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelAvailableMessages();
                 break;
@@ -347,6 +350,9 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 125178264:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChatParticipants();
+                break;
+            case 129403168:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelViewForumAsMessages();
                 break;
             case 192428418:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateGroupCallConnection();

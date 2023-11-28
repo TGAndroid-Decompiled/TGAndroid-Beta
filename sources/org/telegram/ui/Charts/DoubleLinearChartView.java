@@ -7,14 +7,15 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.Iterator;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.data.DoubleLinearChartData;
 import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
 public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, LineViewData> {
-    public DoubleLinearChartView(Context context) {
-        super(context);
+    public DoubleLinearChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context, resourcesProvider);
     }
 
     @Override
@@ -243,7 +244,7 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
 
     @Override
     public LineViewData createLineViewData(ChartData.Line line) {
-        return new LineViewData(line);
+        return new LineViewData(line, this.resourcesProvider);
     }
 
     @Override

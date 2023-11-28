@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 public abstract class TLRPC$WallPaper extends TLObject {
     public long access_hash;
     public boolean creator;
@@ -13,6 +14,7 @@ public abstract class TLRPC$WallPaper extends TLObject {
     public TLRPC$WallPaperSettings settings;
     public String slug;
     public Bitmap stripedThumb;
+    public Drawable thumbDrawable;
     public String uploadingImage;
 
     public static TLRPC$WallPaper TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {

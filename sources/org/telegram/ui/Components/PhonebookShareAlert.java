@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -94,7 +93,7 @@ public class PhonebookShareAlert extends BottomSheet {
             }
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setTextSize(AndroidUtilities.dp(30.0f));
-            avatarDrawable.setInfo(phonebookShareAlert.currentUser);
+            avatarDrawable.setInfo(((BottomSheet) phonebookShareAlert).currentAccount, phonebookShareAlert.currentUser);
             BackupImageView backupImageView = new BackupImageView(context);
             backupImageView.setRoundRadius(AndroidUtilities.dp(40.0f));
             backupImageView.setForUserOrChat(phonebookShareAlert.currentUser, avatarDrawable);
@@ -694,8 +693,8 @@ public class PhonebookShareAlert extends BottomSheet {
             this.currentUser.restriction_reason.clear();
             TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
             tLRPC$TL_restrictionReason.text = sb.toString();
-            tLRPC$TL_restrictionReason.reason = BuildConfig.APP_CENTER_HASH;
-            tLRPC$TL_restrictionReason.platform = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_restrictionReason.reason = "";
+            tLRPC$TL_restrictionReason.platform = "";
             this.currentUser.restriction_reason.add(tLRPC$TL_restrictionReason);
         }
         BaseFragment baseFragment = this.parentFragment;

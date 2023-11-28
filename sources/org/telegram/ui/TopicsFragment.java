@@ -49,10 +49,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -74,6 +74,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$ChatParticipants;
 import org.telegram.tgnet.TLRPC$ChatPhoto;
+import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_account_getNotifyExceptions;
 import org.telegram.tgnet.TLRPC$TL_chatPhotoEmpty;
@@ -177,6 +178,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private boolean disableActionBarScrolling;
     private View emptyView;
     HashSet<Integer> excludeTopics;
+    private boolean finishDialogRightSlidingPreviewOnTransitionEnd;
     private RLottieImageView floatingButton;
     FrameLayout floatingButtonContainer;
     private float floatingButtonHideProgress;
@@ -330,6 +332,32 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + j, false);
     }
 
+    public static BaseFragment getTopicsOrChat(BaseFragment baseFragment, Bundle bundle) {
+        return getTopicsOrChat(baseFragment.getMessagesController(), baseFragment.getMessagesStorage(), bundle);
+    }
+
+    public static BaseFragment getTopicsOrChat(LaunchActivity launchActivity, Bundle bundle) {
+        return getTopicsOrChat(MessagesController.getInstance(launchActivity.currentAccount), MessagesStorage.getInstance(launchActivity.currentAccount), bundle);
+    }
+
+    private static BaseFragment getTopicsOrChat(MessagesController messagesController, MessagesStorage messagesStorage, Bundle bundle) {
+        long j = bundle.getLong("chat_id");
+        if (j != 0) {
+            TLRPC$Dialog dialog = messagesController.getDialog(-j);
+            if (dialog != null && dialog.view_forum_as_messages) {
+                return new ChatActivity(bundle);
+            }
+            TLRPC$ChatFull chatFull = messagesController.getChatFull(j);
+            if (chatFull == null) {
+                chatFull = messagesStorage.loadChatInfo(j, true, new CountDownLatch(1), false, false);
+            }
+            if (chatFull != null && chatFull.view_forum_as_messages) {
+                return new ChatActivity(bundle);
+            }
+        }
+        return new TopicsFragment(bundle);
+    }
+
     public static void prepareToSwitchAnimation(org.telegram.ui.ChatActivity r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.prepareToSwitchAnimation(org.telegram.ui.ChatActivity):void");
     }
@@ -463,7 +491,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 @Override
                 public void onSearchExpand() {
                     TopicsFragment.this.animateToSearchView(true);
-                    TopicsFragment.this.searchContainer.setSearchString(BuildConfig.APP_CENTER_HASH);
+                    TopicsFragment.this.searchContainer.setSearchString("");
                     TopicsFragment.this.searchContainer.setAlpha(0.0f);
                     TopicsFragment.this.searchContainer.emptyView.showProgress(true, false);
                 }
@@ -876,7 +904,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int i2 = 0;
             switch (i) {
                 case 1:
-                    TopicsFragment.this.switchToChat(false);
+                    TopicsFragment.this.getMessagesController().getTopicsController().toggleViewForumAsMessages(TopicsFragment.this.chatId, true);
+                    TopicsFragment.this.finishDialogRightSlidingPreviewOnTransitionEnd = true;
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", TopicsFragment.this.chatId);
+                    ChatActivity chatActivity = new ChatActivity(bundle);
+                    chatActivity.setSwitchFromTopics(true);
+                    TopicsFragment.this.presentFragment(chatActivity);
                     break;
                 case 2:
                     TLRPC$ChatFull chatFull = TopicsFragment.this.getMessagesController().getChatFull(TopicsFragment.this.chatId);
@@ -1408,7 +1442,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.parentAvatarImageView = new BackupImageView(getContext());
             this.parentAvatarDrawable = new AvatarDrawable();
             this.parentAvatarImageView.setRoundRadius(AndroidUtilities.dp(16.0f));
-            this.parentAvatarDrawable.setInfo(getCurrentChat());
+            this.parentAvatarDrawable.setInfo(this.currentAccount, getCurrentChat());
             this.parentAvatarImageView.setForUserOrChat(getCurrentChat(), this.parentAvatarDrawable);
         }
         this.parentDialogsActivity.getSearchItem().setSearchPaddingStart(52);
@@ -3832,6 +3866,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     @Override
     public void onTransitionAnimationEnd(boolean z, boolean z2) {
+        RightSlidingDialogContainer rightSlidingDialogContainer;
         View view;
         super.onTransitionAnimationEnd(z, z2);
         if (z && (view = this.blurredView) != null) {
@@ -3841,12 +3876,22 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.blurredView.setBackground(null);
         }
         this.notificationsLocker.unlock();
-        if (!z && this.opnendForSelect && this.removeFragmentOnTransitionEnd) {
+        if (z) {
+            return;
+        }
+        if (this.opnendForSelect && this.removeFragmentOnTransitionEnd) {
             removeSelfFromStack();
             DialogsActivity dialogsActivity = this.dialogsActivity;
             if (dialogsActivity != null) {
                 dialogsActivity.removeSelfFromStack();
             }
+        } else if (this.finishDialogRightSlidingPreviewOnTransitionEnd) {
+            removeSelfFromStack();
+            DialogsActivity dialogsActivity2 = this.parentDialogsActivity;
+            if (dialogsActivity2 == null || (rightSlidingDialogContainer = dialogsActivity2.rightSlidingDialogContainer) == null || !rightSlidingDialogContainer.hasFragment()) {
+                return;
+            }
+            this.parentDialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
         }
     }
 

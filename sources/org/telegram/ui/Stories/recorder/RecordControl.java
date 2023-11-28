@@ -32,6 +32,8 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Stories.recorder.FlashViews;
 public class RecordControl extends View implements FlashViews.Invertable {
+    public float amplitude;
+    public final AnimatedFloat animatedAmplitude;
     private final Paint buttonPaint;
     private final Paint buttonPaintWhite;
     private Path circlePath;
@@ -162,6 +164,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.flipDrawableRotateT = new AnimatedFloat(this, 0L, 310L, cubicBezierInterpolator);
         this.dualT = new AnimatedFloat(this, 0L, 330L, cubicBezierInterpolator);
+        this.animatedAmplitude = new AnimatedFloat(this, 0L, 200L, CubicBezierInterpolator.DEFAULT);
         this.startModeIsVideoT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.overrideStartModeIsVideoT = -1.0f;
         this.startModeIsVideo = true;
@@ -294,6 +297,14 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.hintLinePaintBlack.setColor(ColorUtils.blendARGB(402653184, 805306368, f));
         this.flipDrawableWhite.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
         this.unlockDrawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
+    }
+
+    public void setAmplitude(float f, boolean z) {
+        this.amplitude = f;
+        if (z) {
+            return;
+        }
+        this.animatedAmplitude.set(f, true);
     }
 
     @Override

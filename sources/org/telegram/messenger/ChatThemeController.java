@@ -26,9 +26,12 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageActionSetChatWallPaper;
 import org.telegram.tgnet.TLRPC$TL_messages_setChatTheme;
 import org.telegram.tgnet.TLRPC$TL_messages_setChatWallPaper;
+import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$TL_updateNewMessage;
+import org.telegram.tgnet.TLRPC$TL_updatePeerWallpaper;
 import org.telegram.tgnet.TLRPC$TL_wallPaper;
+import org.telegram.tgnet.TLRPC$TL_wallPaperNoFile;
 import org.telegram.tgnet.TLRPC$TL_wallPaperSettings;
 import org.telegram.tgnet.TLRPC$Theme;
 import org.telegram.tgnet.TLRPC$Updates;
@@ -48,7 +51,7 @@ public class ChatThemeController extends BaseController {
     private final HashMap<Long, Bitmap> themeIdWallpaperThumbMap;
     private volatile long themesHash;
 
-    public static void lambda$clearWallpaper$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$clearWallpaper$9(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
     public void clearWallpaperImages() {
@@ -149,7 +152,7 @@ public class ChatThemeController extends BaseController {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         ArrayList arrayList = new ArrayList(i);
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
             try {
                 TLRPC$TL_theme TLdeserialize = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 if (TLdeserialize != null) {
@@ -246,7 +249,7 @@ public class ChatThemeController extends BaseController {
         if (z) {
             TLRPC$TL_messages_setChatTheme tLRPC$TL_messages_setChatTheme = new TLRPC$TL_messages_setChatTheme();
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             tLRPC$TL_messages_setChatTheme.emoticon = str;
             tLRPC$TL_messages_setChatTheme.peer = getMessagesController().getInputPeer(j);
@@ -415,9 +418,39 @@ public class ChatThemeController extends BaseController {
         getSharedPreferences().edit().clear().apply();
     }
 
+    public void processUpdate(TLRPC$TL_updatePeerWallpaper tLRPC$TL_updatePeerWallpaper) {
+        final TLRPC$UserFull userFull;
+        if (!(tLRPC$TL_updatePeerWallpaper.peer instanceof TLRPC$TL_peerUser) || (userFull = getMessagesController().getUserFull(tLRPC$TL_updatePeerWallpaper.peer.user_id)) == null || wallpaperEquals(userFull.wallpaper, tLRPC$TL_updatePeerWallpaper.wallpaper)) {
+            return;
+        }
+        final long j = userFull.id;
+        userFull.wallpaper_overridden = tLRPC$TL_updatePeerWallpaper.wallpaper_overridden;
+        userFull.wallpaper = tLRPC$TL_updatePeerWallpaper.wallpaper;
+        userFull.flags |= ConnectionsManager.FileTypePhoto;
+        getMessagesStorage().updateUserInfo(userFull, false);
+        saveChatWallpaper(j, null);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatThemeController.this.lambda$processUpdate$8(j, userFull);
+            }
+        });
+    }
+
+    public void lambda$processUpdate$8(long j, TLRPC$UserFull tLRPC$UserFull) {
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), tLRPC$UserFull);
+    }
+
+    public static boolean wallpaperEquals(TLRPC$WallPaper tLRPC$WallPaper, TLRPC$WallPaper tLRPC$WallPaper2) {
+        if ((tLRPC$WallPaper == null || (tLRPC$WallPaper instanceof TLRPC$TL_wallPaperNoFile)) && (tLRPC$WallPaper2 == null || (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaperNoFile))) {
+            return true;
+        }
+        return (tLRPC$WallPaper instanceof TLRPC$TL_wallPaper) && (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaper) && tLRPC$WallPaper.id == tLRPC$WallPaper2.id;
+    }
+
     public void clearWallpaper(long j, boolean z) {
         TLRPC$TL_messages_setChatWallPaper tLRPC$TL_messages_setChatWallPaper = new TLRPC$TL_messages_setChatWallPaper();
-        if (j > 0) {
+        if (j >= 0) {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)));
             TLRPC$UserFull userFull = getMessagesController().getUserFull(j);
             if (userFull != null) {
@@ -435,7 +468,7 @@ public class ChatThemeController extends BaseController {
         getConnectionsManager().sendRequest(tLRPC$TL_messages_setChatWallPaper, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatThemeController.lambda$clearWallpaper$8(tLObject, tLRPC$TL_error);
+                ChatThemeController.lambda$clearWallpaper$9(tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -448,6 +481,7 @@ public class ChatThemeController extends BaseController {
         } else {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         }
+        tLRPC$TL_messages_setChatWallPaper.for_both = overrideWallpaperInfo.forBoth;
         final boolean z = false;
         if (messageObject != null && (messageObject.messageOwner.action instanceof TLRPC$TL_messageActionSetChatWallPaper)) {
             tLRPC$TL_messages_setChatWallPaper.flags |= 2;
@@ -517,21 +551,21 @@ public class ChatThemeController extends BaseController {
         return ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_setChatWallPaper, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatThemeController.this.lambda$setWallpaperToUser$10(j, z, str, runnable, tLObject, tLRPC$TL_error);
+                ChatThemeController.this.lambda$setWallpaperToUser$11(j, z, str, runnable, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$setWallpaperToUser$10(final long j, final boolean z, final String str, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$setWallpaperToUser$11(final long j, final boolean z, final String str, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatThemeController.this.lambda$setWallpaperToUser$9(tLObject, j, z, str, runnable);
+                ChatThemeController.this.lambda$setWallpaperToUser$10(tLObject, j, z, str, runnable);
             }
         });
     }
 
-    public void lambda$setWallpaperToUser$9(TLObject tLObject, long j, boolean z, String str, Runnable runnable) {
+    public void lambda$setWallpaperToUser$10(TLObject tLObject, long j, boolean z, String str, Runnable runnable) {
         String str2;
         if (tLObject instanceof TLRPC$Updates) {
             TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;

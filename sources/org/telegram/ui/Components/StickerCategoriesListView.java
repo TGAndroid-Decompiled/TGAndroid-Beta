@@ -73,9 +73,9 @@ public class StickerCategoriesListView extends RecyclerListView {
     private Utilities.Callback<Integer> onScrollIntoOccupiedWidth;
     private View paddingView;
     private int paddingWidth;
-    private RectF rect1;
-    private RectF rect2;
-    private RectF rect3;
+    private final RectF rect1;
+    private final RectF rect2;
+    private final RectF rect3;
     private Drawable rightBoundDrawable;
     private boolean scrolledFully;
     private boolean scrolledIntoOccupiedWidth;

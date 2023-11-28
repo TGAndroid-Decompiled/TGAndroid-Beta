@@ -14,9 +14,11 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.ManageChatUserCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.ReactedUserHolderView;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
+import org.telegram.ui.Cells.StatisticPostInfoCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BlurredRecyclerView;
@@ -225,6 +227,28 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.params = profileSearchCell.avatarStoryParams;
                     transitionViewHolder.avatarImage = profileSearchCell.avatarImage;
                     transitionViewHolder.clipParent = (View) profileSearchCell.getParent();
+                    transitionViewHolder.alpha = 1.0f;
+                    updateClip(transitionViewHolder);
+                    return true;
+                }
+            } else if (childAt instanceof StatisticPostInfoCell) {
+                StatisticPostInfoCell statisticPostInfoCell = (StatisticPostInfoCell) childAt;
+                if (statisticPostInfoCell.getPostInfo().getId() == i2) {
+                    transitionViewHolder.view = statisticPostInfoCell.getImageView();
+                    transitionViewHolder.params = statisticPostInfoCell.getStoryAvatarParams();
+                    transitionViewHolder.storyImage = statisticPostInfoCell.getImageView().getImageReceiver();
+                    transitionViewHolder.clipParent = (View) statisticPostInfoCell.getParent();
+                    transitionViewHolder.alpha = 1.0f;
+                    updateClip(transitionViewHolder);
+                    return true;
+                }
+            } else if (childAt instanceof ManageChatUserCell) {
+                ManageChatUserCell manageChatUserCell = (ManageChatUserCell) childAt;
+                if (manageChatUserCell.getStoryItem() != null && manageChatUserCell.getStoryItem().dialogId == j && manageChatUserCell.getStoryItem().messageId == i) {
+                    transitionViewHolder.view = manageChatUserCell.getAvatarImageView();
+                    transitionViewHolder.params = manageChatUserCell.getStoryAvatarParams();
+                    transitionViewHolder.avatarImage = manageChatUserCell.getAvatarImageView().getImageReceiver();
+                    transitionViewHolder.clipParent = (View) manageChatUserCell.getParent();
                     transitionViewHolder.alpha = 1.0f;
                     updateClip(transitionViewHolder);
                     return true;

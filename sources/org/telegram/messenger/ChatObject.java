@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -57,6 +58,7 @@ import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
 import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
 import org.telegram.tgnet.TLRPC$TL_peerChannel;
 import org.telegram.tgnet.TLRPC$TL_peerChat;
+import org.telegram.tgnet.TLRPC$TL_peerColor;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_phone_editGroupCallTitle;
 import org.telegram.tgnet.TLRPC$TL_phone_getGroupCall;
@@ -107,6 +109,18 @@ public class ChatObject {
     public static final int VIDEO_FRAME_HAS_FRAME = 2;
     public static final int VIDEO_FRAME_NO_FRAME = 0;
     public static final int VIDEO_FRAME_REQUESTING = 1;
+
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC$Chat tLRPC$Chat) {
+        return null;
+    }
+
+    public static int getProfileColorId(TLRPC$Chat tLRPC$Chat) {
+        return tLRPC$Chat == null ? 0 : -1;
+    }
+
+    public static long getProfileEmojiId(TLRPC$Chat tLRPC$Chat) {
+        return -1L;
+    }
 
     private static boolean isAdminAction(int i) {
         return i == 0 || i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || i == 12 || i == 13 || i == 15;
@@ -393,7 +407,7 @@ public class ChatObject {
             TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo = new TLRPC$TL_groupCallParticipantVideo();
             tLRPC$TL_groupCallParticipant.video = tLRPC$TL_groupCallParticipantVideo;
             tLRPC$TL_groupCallParticipantVideo.paused = true;
-            tLRPC$TL_groupCallParticipantVideo.endpoint = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_groupCallParticipantVideo.endpoint = "";
             this.videoNotAvailableParticipant = new VideoParticipant(tLRPC$TL_groupCallParticipant, false, false);
         }
 
@@ -556,7 +570,7 @@ public class ChatObject {
             tLRPC$TL_phone_getGroupParticipants.call = getInputGroupCall();
             String str = this.nextLoadOffset;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             tLRPC$TL_phone_getGroupParticipants.offset = str;
             tLRPC$TL_phone_getGroupParticipants.limit = 20;
@@ -700,7 +714,7 @@ public class ChatObject {
                     tLRPC$TL_phone_getGroupParticipants.ids.add(tLRPC$TL_inputPeerChannel);
                 }
             }
-            tLRPC$TL_phone_getGroupParticipants.offset = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_phone_getGroupParticipants.offset = "";
             tLRPC$TL_phone_getGroupParticipants.limit = 100;
             this.currentAccount.getConnectionsManager().sendRequest(tLRPC$TL_phone_getGroupParticipants, new RequestDelegate() {
                 @Override
@@ -1123,7 +1137,7 @@ public class ChatObject {
                 ArrayList<TLRPC$TL_groupCallParticipant> arrayList = tLRPC$TL_phone_groupCall.participants;
                 String str = tLRPC$TL_phone_groupCall.participants_next_offset;
                 TLRPC$GroupCall tLRPC$GroupCall = tLRPC$TL_phone_groupCall.call;
-                onParticipantsLoad(arrayList, true, BuildConfig.APP_CENTER_HASH, str, tLRPC$GroupCall.version, tLRPC$GroupCall.participants_count);
+                onParticipantsLoad(arrayList, true, "", str, tLRPC$GroupCall.version, tLRPC$GroupCall.participants_count);
             }
         }
 
@@ -1134,7 +1148,7 @@ public class ChatObject {
             this.loadingGroupCall = true;
             TLRPC$TL_phone_getGroupParticipants tLRPC$TL_phone_getGroupParticipants = new TLRPC$TL_phone_getGroupParticipants();
             tLRPC$TL_phone_getGroupParticipants.call = getInputGroupCall();
-            tLRPC$TL_phone_getGroupParticipants.offset = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_phone_getGroupParticipants.offset = "";
             tLRPC$TL_phone_getGroupParticipants.limit = 1;
             this.currentAccount.getConnectionsManager().sendRequest(tLRPC$TL_phone_getGroupParticipants, new RequestDelegate() {
                 @Override
@@ -1888,7 +1902,7 @@ public class ChatObject {
     }
 
     public static String getBannedRightsString(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
-        return ((((((((((((((((((((BuildConfig.APP_CENTER_HASH + (tLRPC$TL_chatBannedRights.view_messages ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_messages ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_media ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_stickers ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_gifs ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_games ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_inline ? 1 : 0)) + (tLRPC$TL_chatBannedRights.embed_links ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_polls ? 1 : 0)) + (tLRPC$TL_chatBannedRights.invite_users ? 1 : 0)) + (tLRPC$TL_chatBannedRights.change_info ? 1 : 0)) + (tLRPC$TL_chatBannedRights.pin_messages ? 1 : 0)) + (tLRPC$TL_chatBannedRights.manage_topics ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_photos ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_videos ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_roundvideos ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_voices ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_audios ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_docs ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_plain ? 1 : 0)) + tLRPC$TL_chatBannedRights.until_date;
+        return (((((((((((((((((((("" + (tLRPC$TL_chatBannedRights.view_messages ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_messages ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_media ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_stickers ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_gifs ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_games ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_inline ? 1 : 0)) + (tLRPC$TL_chatBannedRights.embed_links ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_polls ? 1 : 0)) + (tLRPC$TL_chatBannedRights.invite_users ? 1 : 0)) + (tLRPC$TL_chatBannedRights.change_info ? 1 : 0)) + (tLRPC$TL_chatBannedRights.pin_messages ? 1 : 0)) + (tLRPC$TL_chatBannedRights.manage_topics ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_photos ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_videos ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_roundvideos ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_voices ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_audios ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_docs ? 1 : 0)) + (tLRPC$TL_chatBannedRights.send_plain ? 1 : 0)) + tLRPC$TL_chatBannedRights.until_date;
     }
 
     public static boolean hasPhoto(TLRPC$Chat tLRPC$Chat) {
@@ -2003,7 +2017,7 @@ public class ChatObject {
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachVoiceRestrictedForever", R.string.AttachVoiceRestrictedForever, new Object[0]) : LocaleController.formatString("AttachVoiceRestricted", R.string.AttachVoiceRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         } else {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
@@ -2047,5 +2061,21 @@ public class ChatObject {
                 call.updateVisibleParticipants();
             }
         }
+    }
+
+    public static int getColorId(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            return 0;
+        }
+        TLRPC$TL_peerColor tLRPC$TL_peerColor = tLRPC$Chat.color;
+        return (tLRPC$TL_peerColor == null || (tLRPC$TL_peerColor.flags & 1) == 0) ? (int) (tLRPC$Chat.id % 7) : tLRPC$TL_peerColor.color;
+    }
+
+    public static long getEmojiId(TLRPC$Chat tLRPC$Chat) {
+        TLRPC$TL_peerColor tLRPC$TL_peerColor;
+        if (tLRPC$Chat == null || (tLRPC$TL_peerColor = tLRPC$Chat.color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return tLRPC$TL_peerColor.background_emoji_id;
     }
 }

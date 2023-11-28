@@ -586,7 +586,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         boolean z2 = LocaleController.isRTL;
         frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 21 : 76, 11.0f, z2 ? 76 : 21, 0.0f));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 57.0f, 24.0f, 9.0f));
-        avatarDrawable.setInfo(tLRPC$Chat);
+        avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
         backupImageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
         builder.setPositiveButton(LocaleController.getString("DiscussionLinkGroup", R.string.DiscussionLinkGroup), new DialogInterface.OnClickListener() {
             @Override

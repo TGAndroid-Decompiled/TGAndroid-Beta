@@ -107,7 +107,7 @@ public class AccountSelectCell extends FrameLayout {
     public void setAccount(int i, boolean z) {
         this.accountNumber = i;
         TLRPC$User currentUser = UserConfig.getInstance(i).getCurrentUser();
-        this.avatarDrawable.setInfo(currentUser);
+        this.avatarDrawable.setInfo(i, currentUser);
         this.textView.setText(ContactsController.formatName(currentUser.first_name, currentUser.last_name));
         this.imageView.getImageReceiver().setCurrentAccount(i);
         this.imageView.setForUserOrChat(currentUser, this.avatarDrawable);

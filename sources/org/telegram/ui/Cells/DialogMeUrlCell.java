@@ -8,7 +8,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -114,7 +113,7 @@ public class DialogMeUrlCell extends BaseCell {
                 this.nameLeft = AndroidUtilities.dp(14.0f);
             }
             str = chat.title;
-            this.avatarDrawable.setInfo(chat);
+            this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.avatarImage.setForUserOrChat(chat, this.avatarDrawable, this.recentMeUrl);
         } else if (tLRPC$RecentMeUrl instanceof TLRPC$TL_recentMeUrlUser) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.recentMeUrl.user_id));
@@ -137,7 +136,7 @@ public class DialogMeUrlCell extends BaseCell {
                 this.drawVerified = user.verified;
             }
             str = UserObject.getUserName(user);
-            this.avatarDrawable.setInfo(user);
+            this.avatarDrawable.setInfo(this.currentAccount, user);
             this.avatarImage.setForUserOrChat(user, this.avatarDrawable, this.recentMeUrl);
         } else if (tLRPC$RecentMeUrl instanceof TLRPC$TL_recentMeUrlStickerSet) {
             if (!LocaleController.isRTL) {
@@ -157,7 +156,7 @@ public class DialogMeUrlCell extends BaseCell {
             TLRPC$ChatInvite tLRPC$ChatInvite = this.recentMeUrl.chat_invite;
             TLRPC$Chat tLRPC$Chat = tLRPC$ChatInvite.chat;
             if (tLRPC$Chat != null) {
-                this.avatarDrawable.setInfo(tLRPC$Chat);
+                this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
                 TLRPC$RecentMeUrl tLRPC$RecentMeUrl2 = this.recentMeUrl;
                 TLRPC$Chat tLRPC$Chat2 = tLRPC$RecentMeUrl2.chat_invite.chat;
                 String str2 = tLRPC$Chat2.title;
@@ -187,7 +186,7 @@ public class DialogMeUrlCell extends BaseCell {
             str = "Url";
         } else {
             this.avatarImage.setImage(null, null, this.avatarDrawable, null, tLRPC$RecentMeUrl, 0);
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         String str4 = MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + this.recentMeUrl.url;
         if (TextUtils.isEmpty(str)) {

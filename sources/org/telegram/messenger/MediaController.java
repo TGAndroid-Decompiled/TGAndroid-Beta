@@ -99,9 +99,9 @@ import org.telegram.ui.PhotoViewer;
 import org.webrtc.MediaStreamTrack;
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
     private static final int AUDIO_FOCUSED = 2;
+    public static final String AUDIO_MIME_TYPE = "audio/mp4a-latm";
     private static final int AUDIO_NO_FOCUS_CAN_DUCK = 1;
     private static final int AUDIO_NO_FOCUS_NO_DUCK = 0;
-    public static final String AUIDO_MIME_TYPE = "audio/mp4a-latm";
     private static volatile MediaController Instance = null;
     public static final int VIDEO_BITRATE_1080 = 6800000;
     public static final int VIDEO_BITRATE_360 = 750000;
@@ -4180,7 +4180,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public static String getFileName(Uri uri) {
         if (uri == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         try {
             if (uri.getScheme().equals("content")) {
@@ -4200,7 +4200,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return r2;
         } catch (Exception e2) {
             FileLog.e(e2);
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

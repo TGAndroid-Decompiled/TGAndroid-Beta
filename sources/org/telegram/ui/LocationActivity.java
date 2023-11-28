@@ -1719,7 +1719,6 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private Bitmap createUserBitmap(LiveLocation liveLocation) {
         TLRPC$FileLocation tLRPC$FileLocation;
         TLRPC$ChatPhoto tLRPC$ChatPhoto;
-        Bitmap createBitmap;
         TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
         Bitmap bitmap = null;
         try {
@@ -1730,60 +1729,60 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 TLRPC$Chat tLRPC$Chat = liveLocation.chat;
                 tLRPC$FileLocation = (tLRPC$Chat == null || (tLRPC$ChatPhoto = tLRPC$Chat.photo) == null) ? null : tLRPC$ChatPhoto.photo_small;
             }
-            createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(62.0f), AndroidUtilities.dp(85.0f), Bitmap.Config.ARGB_8888);
-        } catch (Throwable th) {
-            th = th;
-        }
-        try {
-            createBitmap.eraseColor(0);
-            Canvas canvas = new Canvas(createBitmap);
-            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.map_pin_photo);
-            drawable.setBounds(0, 0, AndroidUtilities.dp(62.0f), AndroidUtilities.dp(85.0f));
-            drawable.draw(canvas);
-            Paint paint = new Paint(1);
-            RectF rectF = new RectF();
-            canvas.save();
-            if (tLRPC$FileLocation != null) {
-                Bitmap decodeFile = BitmapFactory.decodeFile(getFileLoader().getPathToAttach(tLRPC$FileLocation, true).toString());
-                if (decodeFile != null) {
-                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
-                    Matrix matrix = new Matrix();
-                    float dp = AndroidUtilities.dp(50.0f) / decodeFile.getWidth();
-                    matrix.postTranslate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-                    matrix.postScale(dp, dp);
-                    paint.setShader(bitmapShader);
-                    bitmapShader.setLocalMatrix(matrix);
-                    rectF.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f), paint);
-                }
-            } else {
-                AvatarDrawable avatarDrawable = new AvatarDrawable();
-                TLRPC$User tLRPC$User2 = liveLocation.user;
-                if (tLRPC$User2 != null) {
-                    avatarDrawable.setInfo(tLRPC$User2);
-                } else {
-                    TLRPC$Chat tLRPC$Chat2 = liveLocation.chat;
-                    if (tLRPC$Chat2 != null) {
-                        avatarDrawable.setInfo(tLRPC$Chat2);
-                    }
-                }
-                canvas.translate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-                avatarDrawable.setBounds(0, 0, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
-                avatarDrawable.draw(canvas);
-            }
-            canvas.restore();
+            Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(62.0f), AndroidUtilities.dp(85.0f), Bitmap.Config.ARGB_8888);
             try {
-                canvas.setBitmap(null);
-                return createBitmap;
-            } catch (Exception unused) {
-                return createBitmap;
+                createBitmap.eraseColor(0);
+                Canvas canvas = new Canvas(createBitmap);
+                Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.map_pin_photo);
+                drawable.setBounds(0, 0, AndroidUtilities.dp(62.0f), AndroidUtilities.dp(85.0f));
+                drawable.draw(canvas);
+                Paint paint = new Paint(1);
+                RectF rectF = new RectF();
+                canvas.save();
+                if (tLRPC$FileLocation != null) {
+                    Bitmap decodeFile = BitmapFactory.decodeFile(getFileLoader().getPathToAttach(tLRPC$FileLocation, true).toString());
+                    if (decodeFile != null) {
+                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
+                        Matrix matrix = new Matrix();
+                        float dp = AndroidUtilities.dp(50.0f) / decodeFile.getWidth();
+                        matrix.postTranslate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
+                        matrix.postScale(dp, dp);
+                        paint.setShader(bitmapShader);
+                        bitmapShader.setLocalMatrix(matrix);
+                        rectF.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f), paint);
+                    }
+                } else {
+                    AvatarDrawable avatarDrawable = new AvatarDrawable();
+                    TLRPC$User tLRPC$User2 = liveLocation.user;
+                    if (tLRPC$User2 != null) {
+                        avatarDrawable.setInfo(this.currentAccount, tLRPC$User2);
+                    } else {
+                        TLRPC$Chat tLRPC$Chat2 = liveLocation.chat;
+                        if (tLRPC$Chat2 != null) {
+                            avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat2);
+                        }
+                    }
+                    canvas.translate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
+                    avatarDrawable.setBounds(0, 0, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+                    avatarDrawable.draw(canvas);
+                }
+                canvas.restore();
+                try {
+                    canvas.setBitmap(null);
+                    return createBitmap;
+                } catch (Exception unused) {
+                    return createBitmap;
+                }
+            } catch (Throwable th) {
+                th = th;
+                bitmap = createBitmap;
+                FileLog.e(th);
+                return bitmap;
             }
         } catch (Throwable th2) {
             th = th2;
-            bitmap = createBitmap;
-            FileLog.e(th);
-            return bitmap;
         }
     }
 

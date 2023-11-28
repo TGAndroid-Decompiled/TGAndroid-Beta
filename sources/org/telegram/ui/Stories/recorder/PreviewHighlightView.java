@@ -75,7 +75,7 @@ public class PreviewHighlightView extends FrameLayout {
         };
         this.top = frameLayout;
         PeerStoriesView.PeerHeaderView peerHeaderView = new PeerStoriesView.PeerHeaderView(getContext(), null);
-        peerHeaderView.backupImageView.getAvatarDrawable().setInfo(currentUser);
+        peerHeaderView.backupImageView.getAvatarDrawable().setInfo(i, currentUser);
         BackupImageView backupImageView = peerHeaderView.backupImageView;
         backupImageView.setForUserOrChat(currentUser, backupImageView.getAvatarDrawable());
         peerHeaderView.titleView.setText(Emoji.replaceEmoji(UserObject.getUserName(currentUser), peerHeaderView.titleView.getPaint().getFontMetricsInt(), false));
@@ -120,7 +120,7 @@ public class PreviewHighlightView extends FrameLayout {
     }
 
     public void updateCaption(CharSequence charSequence) {
-        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(new SpannableString(charSequence)), false, false);
+        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(new SpannableString(charSequence)), null, false, false);
     }
 
     public void show(boolean z, boolean z2, View view) {

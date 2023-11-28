@@ -23,9 +23,14 @@ public class LineViewData {
     public float[] linesPathBottom;
     public int linesPathBottomSize;
     public final Paint paint;
+    private Theme.ResourcesProvider resourcesProvider;
     public final Paint selectionPaint;
 
     public LineViewData(ChartData.Line line) {
+        this(line, null);
+    }
+
+    public LineViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
         Paint paint = new Paint(1);
         this.bottomLinePaint = paint;
         Paint paint2 = new Paint(1);
@@ -37,6 +42,7 @@ public class LineViewData {
         this.chartPathPicker = new Path();
         this.enabled = true;
         this.alpha = 1.0f;
+        this.resourcesProvider = resourcesProvider;
         this.line = line;
         paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
         paint2.setStyle(Paint.Style.STROKE);
@@ -59,9 +65,9 @@ public class LineViewData {
     public void updateColors() {
         int i = this.line.colorKey;
         if (i >= 0 && Theme.hasThemeKey(i)) {
-            this.lineColor = Theme.getColor(this.line.colorKey);
+            this.lineColor = Theme.getColor(this.line.colorKey, this.resourcesProvider);
         } else {
-            this.lineColor = (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) > 0.5d ? 1 : (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) == 0.5d ? 0 : -1)) < 0 ? this.line.colorDark : this.line.color;
+            this.lineColor = (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) > 0.5d ? 1 : (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) == 0.5d ? 0 : -1)) < 0 ? this.line.colorDark : this.line.color;
         }
         this.paint.setColor(this.lineColor);
         this.bottomLinePaint.setColor(this.lineColor);

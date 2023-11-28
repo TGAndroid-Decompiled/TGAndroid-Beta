@@ -409,7 +409,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             private boolean firstLayout = true;
 
             @Override
-            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+            public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                 super.onLayout(z, i3, i4, i5, i6);
                 if (this.firstLayout) {
                     this.firstLayout = false;

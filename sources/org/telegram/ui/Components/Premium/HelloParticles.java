@@ -13,7 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public class HelloParticles {
-    private static String[] hellos = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
+    private static final String[] hellos = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
 
     public static class Drawable {
         private float bitmapScale;
@@ -26,7 +26,6 @@ public class HelloParticles {
         public RectF screenRect = new RectF();
         private Paint paint = new Paint();
         ArrayList<Particle> particles = new ArrayList<>();
-        public float speedScale = 1.0f;
         private final float dt = 1000.0f / AndroidUtilities.screenRefreshRate;
 
         public Drawable(int i) {
@@ -101,16 +100,13 @@ public class HelloParticles {
             }
 
             public void draw(Canvas canvas, int i, long j) {
-                if (!Drawable.this.paused) {
-                    AndroidUtilities.dp(4.0f);
-                    float unused = Drawable.this.dt;
-                    Drawable drawable = Drawable.this;
-                    float f = drawable.speedScale;
-                    float f2 = this.inProgress;
-                    if (f2 != 1.0f) {
-                        float f3 = f2 + (drawable.dt / ((float) this.duration));
-                        this.inProgress = f3;
-                        if (f3 > 1.0f) {
+                Drawable drawable = Drawable.this;
+                if (!drawable.paused) {
+                    float f = this.inProgress;
+                    if (f != 1.0f) {
+                        float f2 = f + (drawable.dt / ((float) this.duration));
+                        this.inProgress = f2;
+                        if (f2 > 1.0f) {
                             this.inProgress = 1.0f;
                         }
                     }
@@ -118,9 +114,9 @@ public class HelloParticles {
                 if (this.bitmap != null) {
                     canvas.save();
                     float pow = 1.0f - (((float) Math.pow(this.inProgress - 0.5f, 2.0d)) * 4.0f);
-                    float f4 = (this.scale / Drawable.this.bitmapScale) * ((0.4f * pow) + 0.7f);
+                    float f3 = (this.scale / Drawable.this.bitmapScale) * ((0.4f * pow) + 0.7f);
                     canvas.translate(this.x - (this.w / 2.0f), this.y - (this.h / 2.0f));
-                    canvas.scale(f4, f4, this.w / 2.0f, this.h / 2.0f);
+                    canvas.scale(f3, f3, this.w / 2.0f, this.h / 2.0f);
                     Drawable.this.paint.setAlpha((int) (this.alpha * pow));
                     canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, Drawable.this.paint);
                     canvas.restore();

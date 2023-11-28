@@ -505,19 +505,24 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     }
 
     public int getBackgroundTranslationY() {
-        if (this.backgroundDrawable instanceof MotionBackgroundDrawable) {
+        Drawable drawable = this.backgroundDrawable;
+        if (drawable instanceof MotionBackgroundDrawable) {
             if (this.animationInProgress) {
                 return (int) this.emojiOffset;
             }
             int i = this.emojiHeight;
             return i != 0 ? i : this.backgroundTranslationY;
+        } else if (drawable instanceof ChatBackgroundDrawable) {
+            return this.backgroundTranslationY;
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     public int getBackgroundSizeY() {
+        int i;
         Drawable drawable = this.backgroundDrawable;
-        int i = 0;
+        int i2 = 0;
         if (drawable instanceof MotionBackgroundDrawable) {
             if (!((MotionBackgroundDrawable) drawable).hasPattern()) {
                 if (this.animationInProgress) {
@@ -528,11 +533,14 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                         i = this.backgroundTranslationY;
                     }
                 }
+                i2 = i;
             } else if (this.backgroundTranslationY == 0) {
-                i = -this.keyboardHeight;
+                i2 = -this.keyboardHeight;
             }
+        } else if (drawable instanceof ChatBackgroundDrawable) {
+            i2 = this.backgroundTranslationY;
         }
-        return getMeasuredHeight() - i;
+        return getMeasuredHeight() - i2;
     }
 
     public int getHeightWithKeyboard() {

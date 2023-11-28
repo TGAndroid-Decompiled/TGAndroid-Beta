@@ -66,7 +66,7 @@ public class MessageTopicButton {
         this.resourcesProvider = resourcesProvider;
     }
 
-    public int set(org.telegram.ui.Cells.ChatMessageCell r29, org.telegram.messenger.MessageObject r30, org.telegram.tgnet.TLRPC$TL_forumTopic r31, int r32) {
+    public int set(org.telegram.ui.Cells.ChatMessageCell r28, org.telegram.messenger.MessageObject r29, org.telegram.tgnet.TLRPC$TL_forumTopic r30, int r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Forum.MessageTopicButton.set(org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$TL_forumTopic, int):int");
     }
 

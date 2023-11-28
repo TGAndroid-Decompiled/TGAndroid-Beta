@@ -22,6 +22,9 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         this.out = (readInt32 & 65536) != 0;
         this.id = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
+        if ((this.flags & 131072) != 0) {
+            this.fwd_from = TL_stories$StoryFwdHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
         this.expire_date = abstractSerializedData.readInt32(z);
         if ((this.flags & 1) != 0) {
             this.caption = abstractSerializedData.readString(z);
@@ -88,7 +91,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1153718222);
+        abstractSerializedData.writeInt32(-1352440415);
         int i = this.pinned ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.isPublic ? i | 128 : i & (-129);
@@ -110,6 +113,9 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         abstractSerializedData.writeInt32(i9);
         abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeInt32(this.date);
+        if ((this.flags & 131072) != 0) {
+            this.fwd_from.serializeToStream(abstractSerializedData);
+        }
         abstractSerializedData.writeInt32(this.expire_date);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.caption);

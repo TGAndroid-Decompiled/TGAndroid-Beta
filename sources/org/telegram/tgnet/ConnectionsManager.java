@@ -44,7 +44,6 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BaseController;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
@@ -299,7 +298,7 @@ public class ConnectionsManager extends BaseController {
             str = "SDK " + Build.VERSION.SDK_INT;
             str2 = "App version unknown";
             str3 = "Android unknown";
-            str4 = BuildConfig.APP_CENTER_HASH;
+            str4 = "";
             str5 = "en";
         }
         String str8 = str5.trim().length() == 0 ? "en" : str5;
@@ -316,7 +315,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(BuildVars.BUILD_VERSION, 166, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(BuildVars.BUILD_VERSION, 167, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -563,10 +562,10 @@ public class ConnectionsManager extends BaseController {
         String str10;
         String str11;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-        String string2 = sharedPreferences.getString("proxy_user", BuildConfig.APP_CENTER_HASH);
-        String string3 = sharedPreferences.getString("proxy_pass", BuildConfig.APP_CENTER_HASH);
-        String string4 = sharedPreferences.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+        String string = sharedPreferences.getString("proxy_ip", "");
+        String string2 = sharedPreferences.getString("proxy_user", "");
+        String string3 = sharedPreferences.getString("proxy_pass", "");
+        String string4 = sharedPreferences.getString("proxy_secret", "");
         int i5 = sharedPreferences.getInt("proxy_port", 1080);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && !TextUtils.isEmpty(string)) {
             native_setProxySettings(this.currentAccount, string, i5, string2, string3, string4);
@@ -574,15 +573,15 @@ public class ConnectionsManager extends BaseController {
         try {
             str10 = ApplicationLoader.applicationContext.getPackageManager().getInstallerPackageName(ApplicationLoader.applicationContext.getPackageName());
         } catch (Throwable unused) {
-            str10 = BuildConfig.APP_CENTER_HASH;
+            str10 = "";
         }
-        String str12 = str10 == null ? BuildConfig.APP_CENTER_HASH : str10;
+        String str12 = str10 == null ? "" : str10;
         try {
             str11 = ApplicationLoader.applicationContext.getPackageName();
         } catch (Throwable unused2) {
-            str11 = BuildConfig.APP_CENTER_HASH;
+            str11 = "";
         }
-        native_init(this.currentAccount, i, i2, i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str12, str11 == null ? BuildConfig.APP_CENTER_HASH : str11, i4, j, z, z2, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), SharedConfig.measureDevicePerformanceClass());
+        native_init(this.currentAccount, i, i2, i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str12, str11 == null ? "" : str11, i4, j, z, z2, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), SharedConfig.measureDevicePerformanceClass());
         checkConnection();
     }
 
@@ -641,7 +640,7 @@ public class ConnectionsManager extends BaseController {
         if (TextUtils.isEmpty(str)) {
             return 0L;
         }
-        return native_checkProxy(this.currentAccount, str == null ? BuildConfig.APP_CENTER_HASH : str, i, str2 == null ? BuildConfig.APP_CENTER_HASH : str2, str3 == null ? BuildConfig.APP_CENTER_HASH : str3, str4 == null ? BuildConfig.APP_CENTER_HASH : str4, requestTimeDelegate);
+        return native_checkProxy(this.currentAccount, str == null ? "" : str, i, str2 == null ? "" : str2, str3 == null ? "" : str3, str4 == null ? "" : str4, requestTimeDelegate);
     }
 
     public void setAppPaused(boolean z, boolean z2) {
@@ -880,7 +879,7 @@ public class ConnectionsManager extends BaseController {
                 resolvingHostnameTasks.put(str, resolveHostByNameTask);
             } catch (Throwable th) {
                 FileLog.e(th);
-                native_onHostNameResolved(str, j, BuildConfig.APP_CENTER_HASH);
+                native_onHostNameResolved(str, j, "");
                 return;
             }
         }
@@ -923,22 +922,22 @@ public class ConnectionsManager extends BaseController {
 
     public static void setProxySettings(boolean z, String str, int i, String str2, String str3, String str4) {
         if (str == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         if (str2 == null) {
-            str2 = BuildConfig.APP_CENTER_HASH;
+            str2 = "";
         }
         if (str3 == null) {
-            str3 = BuildConfig.APP_CENTER_HASH;
+            str3 = "";
         }
         if (str4 == null) {
-            str4 = BuildConfig.APP_CENTER_HASH;
+            str4 = "";
         }
         for (int i2 = 0; i2 < 4; i2++) {
             if (z && !TextUtils.isEmpty(str)) {
                 native_setProxySettings(i2, str, i, str2, str3, str4);
             } else {
-                native_setProxySettings(i2, BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                native_setProxySettings(i2, "", 1080, "", "", "");
             }
             AccountInstance accountInstance = AccountInstance.getInstance(i2);
             if (accountInstance.getUserConfig().isClientActivated()) {
@@ -1077,7 +1076,7 @@ public class ConnectionsManager extends BaseController {
             } else {
                 int size2 = this.addresses.size();
                 while (i < size2) {
-                    ConnectionsManager.native_onHostNameResolved(this.currentHostName, this.addresses.get(i).longValue(), BuildConfig.APP_CENTER_HASH);
+                    ConnectionsManager.native_onHostNameResolved(this.currentHostName, this.addresses.get(i).longValue(), "");
                     i++;
                 }
             }
@@ -1141,7 +1140,7 @@ public class ConnectionsManager extends BaseController {
                         });
                         StringBuilder sb2 = new StringBuilder();
                         for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                            sb2.append(((String) arrayList.get(i4)).replace("\"", BuildConfig.APP_CENTER_HASH));
+                            sb2.append(((String) arrayList.get(i4)).replace("\"", ""));
                         }
                         byte[] decode = Base64.decode(sb2.toString(), 0);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
@@ -1295,7 +1294,7 @@ public class ConnectionsManager extends BaseController {
                 });
                 StringBuilder sb2 = new StringBuilder();
                 for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    sb2.append(((String) arrayList.get(i3)).replace("\"", BuildConfig.APP_CENTER_HASH));
+                    sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
                 }
                 byte[] decode = Base64.decode(sb2.toString(), 0);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
@@ -1444,7 +1443,7 @@ public class ConnectionsManager extends BaseController {
                         });
                         StringBuilder sb2 = new StringBuilder();
                         for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                            sb2.append(((String) arrayList.get(i3)).replace("\"", BuildConfig.APP_CENTER_HASH));
+                            sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
                         }
                         byte[] decode = Base64.decode(sb2.toString(), 0);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);

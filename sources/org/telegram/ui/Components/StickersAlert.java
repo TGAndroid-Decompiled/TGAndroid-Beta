@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -42,7 +43,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -1231,7 +1231,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 if (importingSticker.validated) {
                     TextView textView = this.stickerEmojiTextView;
                     textView.setText(Emoji.replaceEmoji((CharSequence) importingSticker.emoji, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(30.0f), false));
-                    this.stickerImageView.setImage(ImageLocation.getForPath(this.selectedStickerPath.path), null, null, null, null, null, this.selectedStickerPath.animated ? "tgs" : null, 0, null);
+                    this.stickerImageView.setImage(ImageLocation.getForPath(this.selectedStickerPath.path), (String) null, (ImageLocation) null, (String) null, (Drawable) null, (Bitmap) null, this.selectedStickerPath.animated ? "tgs" : null, 0, (Object) null);
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.stickerPreviewLayout.getLayoutParams();
                     layoutParams.topMargin = this.scrollOffsetY;
                     this.stickerPreviewLayout.setLayoutParams(layoutParams);
@@ -1549,7 +1549,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     this.premiumButtonView.setVisibility(0);
                     this.pickerBottomLayout.setBackground(null);
                     setButton(null, null, -1);
-                    this.premiumButtonView.setButton(LocaleController.getString("UnlockPremiumEmoji", R.string.UnlockPremiumEmoji), new View.OnClickListener() {
+                    this.premiumButtonView.setButton(LocaleController.getString(R.string.UnlockPremiumEmoji), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
                             StickersAlert.this.lambda$updateFields$14(view);
@@ -1593,7 +1593,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 }
                 if (!mediaDataController.areStickersLoaded(i)) {
                     mediaDataController.checkStickers(i);
-                    setButton(null, BuildConfig.APP_CENTER_HASH, -1, -1, -1);
+                    setButton(null, "", -1, -1, -1);
                     return;
                 }
             }
@@ -1950,7 +1950,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         textView2.setVisibility(0);
         editTextBoldCursor.setPadding(textView2.getMeasuredWidth(), AndroidUtilities.dp(4.0f), 0, 0);
         if (!z) {
-            editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH);
+            editTextBoldCursor.setText("");
         }
         iArr[0] = 2;
     }

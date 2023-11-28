@@ -27,6 +27,10 @@ public class NotificationsCheckCell extends FrameLayout {
     private TextView textView;
     private TextView valueTextView;
 
+    protected int processColor(int i) {
+        return i;
+    }
+
     public NotificationsCheckCell(Context context) {
         this(context, 21, 70, false, null);
     }
@@ -99,7 +103,12 @@ public class NotificationsCheckCell extends FrameLayout {
             f4 = z ? 64 : i;
         }
         addView(textView4, LayoutHelper.createFrame(-2, -2.0f, i4, f3, f6, f4, 0.0f));
-        Switch r3 = new Switch(context, resourcesProvider);
+        Switch r3 = new Switch(context, resourcesProvider) {
+            @Override
+            protected int processColor(int i5) {
+                return NotificationsCheckCell.this.processColor(i5);
+            }
+        };
         this.checkBox = r3;
         int i5 = Theme.key_switchTrack;
         int i6 = Theme.key_switchTrackChecked;
@@ -107,6 +116,10 @@ public class NotificationsCheckCell extends FrameLayout {
         r3.setColors(i5, i6, i7, i7);
         addView(this.checkBox, LayoutHelper.createFrame(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         this.checkBox.setFocusable(false);
+    }
+
+    public Switch getCheckBox() {
+        return this.checkBox;
     }
 
     @Override

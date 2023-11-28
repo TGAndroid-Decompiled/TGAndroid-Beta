@@ -51,11 +51,11 @@ public class LinkCell extends FrameLayout {
         });
         ImageView imageView = new ImageView(getContext());
         this.imageView = imageView;
-        imageView.setImageResource(R.drawable.msg_copy);
+        imageView.setImageResource(R.drawable.menu_copy_s);
         this.imageView.setColorFilter(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         this.imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         this.imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), 76)));
-        addView(this.imageView, LayoutHelper.createFrame(40, 40.0f, 21, 15.0f, 0.0f, 15.0f, 0.0f));
+        addView(this.imageView, LayoutHelper.createFrame(40, 40.0f, 21, 15.0f, 0.0f, 17.0f, 0.0f));
         this.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

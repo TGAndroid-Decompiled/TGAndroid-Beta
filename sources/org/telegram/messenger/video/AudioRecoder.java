@@ -45,11 +45,11 @@ public class AudioRecoder {
                 this.sampleRate = arrayList.get(i).getSampleRate();
             }
         }
-        MediaCodec createEncoderByType = MediaCodec.createEncoderByType(MediaController.AUIDO_MIME_TYPE);
+        MediaCodec createEncoderByType = MediaCodec.createEncoderByType(MediaController.AUDIO_MIME_TYPE);
         this.encoder = createEncoderByType;
-        MediaFormat createAudioFormat = MediaFormat.createAudioFormat(MediaController.AUIDO_MIME_TYPE, this.sampleRate, this.channelCount);
+        MediaFormat createAudioFormat = MediaFormat.createAudioFormat(MediaController.AUDIO_MIME_TYPE, this.sampleRate, this.channelCount);
         this.format = createAudioFormat;
-        createAudioFormat.setInteger("bitrate", 65536);
+        createAudioFormat.setInteger("bitrate", 128000);
         createEncoderByType.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
         createEncoderByType.start();
         this.encoderInputBuffers = createEncoderByType.getInputBuffers();

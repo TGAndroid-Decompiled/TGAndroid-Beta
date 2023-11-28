@@ -30,7 +30,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -95,7 +94,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 ProxySettingsActivity.this.updatePasteCell();
             }
         };
-        this.currentProxyInfo = new SharedConfig.ProxyInfo(BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+        this.currentProxyInfo = new SharedConfig.ProxyInfo("", 1080, "", "", "");
         this.addingNewProxy = true;
     }
 
@@ -150,13 +149,13 @@ public class ProxySettingsActivity extends BaseFragment {
                     ProxySettingsActivity.this.currentProxyInfo.address = ProxySettingsActivity.this.inputFields[0].getText().toString();
                     ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt((CharSequence) ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
                     if (ProxySettingsActivity.this.currentType == 0) {
-                        ProxySettingsActivity.this.currentProxyInfo.secret = BuildConfig.APP_CENTER_HASH;
+                        ProxySettingsActivity.this.currentProxyInfo.secret = "";
                         ProxySettingsActivity.this.currentProxyInfo.username = ProxySettingsActivity.this.inputFields[2].getText().toString();
                         ProxySettingsActivity.this.currentProxyInfo.password = ProxySettingsActivity.this.inputFields[3].getText().toString();
                     } else {
                         ProxySettingsActivity.this.currentProxyInfo.secret = ProxySettingsActivity.this.inputFields[4].getText().toString();
-                        ProxySettingsActivity.this.currentProxyInfo.username = BuildConfig.APP_CENTER_HASH;
-                        ProxySettingsActivity.this.currentProxyInfo.password = BuildConfig.APP_CENTER_HASH;
+                        ProxySettingsActivity.this.currentProxyInfo.username = "";
+                        ProxySettingsActivity.this.currentProxyInfo.password = "";
                     }
                     SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                     SharedPreferences.Editor edit = globalMainSettings.edit();
@@ -328,7 +327,7 @@ public class ProxySettingsActivity extends BaseFragment {
             } else if (i2 == 1) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyPort", R.string.UseProxyPort));
                 EditTextBoldCursor editTextBoldCursor2 = this.inputFields[i2];
-                editTextBoldCursor2.setText(BuildConfig.APP_CENTER_HASH + this.currentProxyInfo.port);
+                editTextBoldCursor2.setText("" + this.currentProxyInfo.port);
             } else if (i2 == 2) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyUsername", R.string.UseProxyUsername));
                 this.inputFields[i2].setText(this.currentProxyInfo.username);

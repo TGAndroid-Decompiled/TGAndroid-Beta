@@ -17,7 +17,6 @@ import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -149,6 +148,11 @@ public class ChatBackgroundDrawable extends Drawable {
     }
 
     public static Drawable createThumb(TLRPC$WallPaper tLRPC$WallPaper) {
+        Drawable bitmapDrawable;
+        Drawable drawable = tLRPC$WallPaper.thumbDrawable;
+        if (drawable != null) {
+            return drawable;
+        }
         if (tLRPC$WallPaper.stripedThumb != null) {
             return new BitmapDrawable(tLRPC$WallPaper.stripedThumb);
         }
@@ -156,33 +160,34 @@ public class ChatBackgroundDrawable extends Drawable {
             return new ColorDrawable(-16777216);
         }
         if (tLRPC$WallPaper.document != null) {
-            BitmapDrawable bitmapDrawable = null;
+            bitmapDrawable = null;
             while (r2 < tLRPC$WallPaper.document.thumbs.size()) {
                 if (tLRPC$WallPaper.document.thumbs.get(r2) instanceof TLRPC$TL_photoStrippedSize) {
                     bitmapDrawable = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(tLRPC$WallPaper.document.thumbs.get(r2).bytes, "b"));
                 }
                 r2++;
             }
-            return bitmapDrawable;
+        } else {
+            TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
+            if (tLRPC$WallPaperSettings.intensity < 0) {
+                bitmapDrawable = bitmapDrawableOf(new ColorDrawable(-16777216));
+            } else if (tLRPC$WallPaperSettings.second_background_color == 0) {
+                bitmapDrawable = bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.background_color, 255)));
+            } else if (tLRPC$WallPaperSettings.third_background_color == 0) {
+                bitmapDrawable = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(tLRPC$WallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255)}));
+            } else {
+                int alphaComponent = ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255);
+                int alphaComponent2 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255);
+                int alphaComponent3 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.third_background_color, 255);
+                int i = tLRPC$WallPaper.settings.fourth_background_color;
+                r2 = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
+                MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
+                motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, r2);
+                bitmapDrawable = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
+            }
         }
-        TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
-        if (tLRPC$WallPaperSettings.intensity < 0) {
-            return bitmapDrawableOf(new ColorDrawable(-16777216));
-        }
-        if (tLRPC$WallPaperSettings.second_background_color == 0) {
-            return bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.background_color, 255)));
-        }
-        if (tLRPC$WallPaperSettings.third_background_color == 0) {
-            return bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(tLRPC$WallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255)}));
-        }
-        int alphaComponent = ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255);
-        int alphaComponent2 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255);
-        int alphaComponent3 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.third_background_color, 255);
-        int i = tLRPC$WallPaper.settings.fourth_background_color;
-        r2 = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
-        MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
-        motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, r2);
-        return new BitmapDrawable(motionBackgroundDrawable.getBitmap());
+        tLRPC$WallPaper.thumbDrawable = bitmapDrawable;
+        return bitmapDrawable;
     }
 
     private static Drawable bitmapDrawableOf(Drawable drawable) {
@@ -218,6 +223,13 @@ public class ChatBackgroundDrawable extends Drawable {
                 canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (f * 255.0f)));
             }
         }
+    }
+
+    public float getDimAmount() {
+        if (this.motionBackgroundDrawable == null) {
+            return this.dimAmount;
+        }
+        return 0.0f;
     }
 
     @Override
@@ -260,21 +272,24 @@ public class ChatBackgroundDrawable extends Drawable {
         }
     }
 
-    public Drawable getDrawable() {
+    public Drawable getDrawable(boolean z) {
         MotionBackgroundDrawable motionBackgroundDrawable = this.motionBackgroundDrawable;
         if (motionBackgroundDrawable != null) {
             return motionBackgroundDrawable;
         }
-        if (this.imageReceiver.getStaticThumb() != null) {
+        if (z && this.imageReceiver.getStaticThumb() != null) {
             return this.imageReceiver.getStaticThumb();
         }
         if (this.imageReceiver.getThumb() != null) {
             return this.imageReceiver.getThumb();
         }
-        return this.imageReceiver.getDrawable();
+        if (this.imageReceiver.getDrawable() != null) {
+            return this.imageReceiver.getDrawable();
+        }
+        return this.imageReceiver.getStaticThumb();
     }
 
     public static String hash(TLRPC$WallPaperSettings tLRPC$WallPaperSettings) {
-        return tLRPC$WallPaperSettings == null ? BuildConfig.APP_CENTER_HASH : String.valueOf(Objects.hash(Boolean.valueOf(tLRPC$WallPaperSettings.blur), Boolean.valueOf(tLRPC$WallPaperSettings.motion), Integer.valueOf(tLRPC$WallPaperSettings.intensity), Integer.valueOf(tLRPC$WallPaperSettings.background_color), Integer.valueOf(tLRPC$WallPaperSettings.second_background_color), Integer.valueOf(tLRPC$WallPaperSettings.third_background_color), Integer.valueOf(tLRPC$WallPaperSettings.fourth_background_color)));
+        return tLRPC$WallPaperSettings == null ? "" : String.valueOf(Objects.hash(Boolean.valueOf(tLRPC$WallPaperSettings.blur), Boolean.valueOf(tLRPC$WallPaperSettings.motion), Integer.valueOf(tLRPC$WallPaperSettings.intensity), Integer.valueOf(tLRPC$WallPaperSettings.background_color), Integer.valueOf(tLRPC$WallPaperSettings.second_background_color), Integer.valueOf(tLRPC$WallPaperSettings.third_background_color), Integer.valueOf(tLRPC$WallPaperSettings.fourth_background_color)));
     }
 }

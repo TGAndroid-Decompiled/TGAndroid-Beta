@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -150,7 +149,7 @@ public class DataUsage2Activity extends BaseFragment {
             if (i != 0) {
                 if (i != 1) {
                     if (i != 2) {
-                        return i != 3 ? BuildConfig.APP_CENTER_HASH : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
+                        return i != 3 ? "" : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
                     }
                     return LocaleController.getString("NetworkUsageWiFiTab", R.string.NetworkUsageWiFiTab);
                 }
@@ -991,6 +990,6 @@ public class DataUsage2Activity extends BaseFragment {
 
     @Override
     public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return motionEvent.getY() <= ((float) (ActionBar.getCurrentActionBarHeight() + AndroidUtilities.dp(48.0f))) || this.pager.getCurrentPosition() == 0;
+        return (motionEvent != null && motionEvent.getY() <= ((float) (ActionBar.getCurrentActionBarHeight() + AndroidUtilities.dp(48.0f)))) || this.pager.getCurrentPosition() == 0;
     }
 }

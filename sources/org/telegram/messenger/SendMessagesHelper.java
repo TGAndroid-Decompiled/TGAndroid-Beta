@@ -313,6 +313,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     tLRPC$TL_inputReplyToMessage.quote_entities = new ArrayList<>(tLRPC$TL_inputReplyToMessage.quote_entities);
                     tLRPC$TL_inputReplyToMessage.flags |= 8;
                 }
+                tLRPC$TL_inputReplyToMessage.flags |= 16;
+                tLRPC$TL_inputReplyToMessage.quote_offset = replyQuote.start;
             }
         }
         if (replyQuote != null && (messageObject = replyQuote.message) != null) {
@@ -346,6 +348,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             if ((i2 & 128) != 0) {
                 tLRPC$TL_inputReplyToMessage.flags |= 8;
                 tLRPC$TL_inputReplyToMessage.quote_entities = tLRPC$TL_messageReplyHeader.quote_entities;
+            }
+            if ((i2 & 1024) != 0) {
+                tLRPC$TL_inputReplyToMessage.flags |= 16;
+                tLRPC$TL_inputReplyToMessage.quote_offset = tLRPC$TL_messageReplyHeader.quote_offset;
             }
         }
         return tLRPC$TL_inputReplyToMessage;
@@ -629,7 +635,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     tLRPC$InputDocument.file_reference = tLRPC$Document.file_reference;
                     String str = importingSticker.emoji;
                     if (str == null) {
-                        str = BuildConfig.APP_CENTER_HASH;
+                        str = "";
                     }
                     tLRPC$TL_inputStickerSetItem.emoji = str;
                     importingSticker.mimeType = tLRPC$Document.mime_type;
@@ -2006,7 +2012,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_document_layer822.dc_id = tLRPC$Document.dc_id;
             tLRPC$TL_document_layer822.attributes = new ArrayList<>(tLRPC$Document.attributes);
             if (tLRPC$TL_document_layer822.mime_type == null) {
-                tLRPC$TL_document_layer822.mime_type = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_document_layer822.mime_type = "";
             }
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 10);
             if ((closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoStrippedSize)) {
@@ -2081,7 +2087,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if ("video/mp4".equals(tLRPC$Document.mime_type)) {
             str = ".mp4";
         } else {
-            str = "video/x-matroska".equals(tLRPC$Document.mime_type) ? ".mkv" : BuildConfig.APP_CENTER_HASH;
+            str = "video/x-matroska".equals(tLRPC$Document.mime_type) ? ".mkv" : "";
         }
         File directory = FileLoader.getDirectory(3);
         File file = new File(directory, key + str);
@@ -2232,16 +2238,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$MessageMedia.serializeToStream(serializedData);
         }
         String str = tLRPC$Message.message;
-        String str2 = BuildConfig.APP_CENTER_HASH;
         if (str == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         serializedData.writeString(str);
-        String str3 = tLRPC$Message.attachPath;
-        if (str3 != null) {
-            str2 = str3;
-        }
-        serializedData.writeString(str2);
+        String str2 = tLRPC$Message.attachPath;
+        serializedData.writeString(str2 != null ? str2 : "");
         int size = tLRPC$Message.entities.size();
         serializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
@@ -2843,7 +2845,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_messages_sendMedia.silent = notificationsSettings3.getBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + tLRPC$InputPeer.user_id, false);
         }
         tLRPC$TL_messages_sendMedia.random_id = j != 0 ? j : getNextRandomId();
-        tLRPC$TL_messages_sendMedia.message = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_messages_sendMedia.message = "";
         tLRPC$TL_messages_sendMedia.media = tLRPC$TL_inputMediaGame;
         long sendAsPeerId = ChatObject.getSendAsPeerId(getMessagesController().getChat(Long.valueOf(tLRPC$InputPeer.chat_id)), getMessagesController().getChatFull(tLRPC$InputPeer.chat_id));
         if (sendAsPeerId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
@@ -2893,7 +2895,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r79) {
+    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r82) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(org.telegram.messenger.SendMessagesHelper$SendMessageParams):void");
     }
 
@@ -4730,7 +4732,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_messageMediaVenue.venue_id = str2;
             tLRPC$TL_messageMediaVenue.venue_type = str2;
             if (str2 == null) {
-                tLRPC$TL_messageMediaVenue.venue_type = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_messageMediaVenue.venue_type = "";
             }
             accountInstance.getSendMessagesHelper().sendMessage(SendMessageParams.of(tLRPC$TL_messageMediaVenue, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i));
         } else if (tLRPC$BotInlineMessage instanceof TLRPC$TL_botInlineMessageMediaGeo) {
@@ -4761,8 +4763,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_user.last_name = tLRPC$BotInlineMessage6.last_name;
             TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
             tLRPC$TL_restrictionReason.text = tLRPC$BotInlineResult.send_message.vcard;
-            tLRPC$TL_restrictionReason.platform = BuildConfig.APP_CENTER_HASH;
-            tLRPC$TL_restrictionReason.reason = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_restrictionReason.platform = "";
+            tLRPC$TL_restrictionReason.reason = "";
             tLRPC$TL_user.restriction_reason.add(tLRPC$TL_restrictionReason);
             accountInstance.getSendMessagesHelper().sendMessage(SendMessageParams.of(tLRPC$TL_user, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i));
         } else if (tLRPC$BotInlineMessage instanceof TLRPC$TL_botInlineMessageMediaInvoice) {
@@ -4782,7 +4784,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             tLRPC$TL_messageMediaInvoice.currency = tLRPC$TL_botInlineMessageMediaInvoice.currency;
             tLRPC$TL_messageMediaInvoice.total_amount = tLRPC$TL_botInlineMessageMediaInvoice.total_amount;
-            tLRPC$TL_messageMediaInvoice.start_param = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_messageMediaInvoice.start_param = "";
             accountInstance.getSendMessagesHelper().sendMessage(SendMessageParams.of(tLRPC$TL_messageMediaInvoice, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i));
         } else if (tLRPC$BotInlineMessage instanceof TLRPC$TL_botInlineMessageMediaWebPage) {
             TLRPC$TL_webPagePending tLRPC$TL_webPagePending3 = new TLRPC$TL_webPagePending();

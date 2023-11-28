@@ -37,6 +37,7 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
@@ -410,7 +411,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             stickerTabView.setRoundImage();
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-            avatarDrawable.setInfo(tLRPC$Chat);
+            avatarDrawable.setInfo(UserConfig.selectedAccount, tLRPC$Chat);
             BackupImageView backupImageView = stickerTabView.imageView;
             backupImageView.setLayerNum(this.imageReceiversPlayingNum);
             backupImageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);

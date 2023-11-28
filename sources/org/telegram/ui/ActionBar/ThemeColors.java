@@ -1306,7 +1306,7 @@ public class ThemeColors {
         sparseArray.put(Theme.key_voipgroup_overlayAlertGradientUnmuted, "voipgroup_overlayAlertGradientUnmuted");
         sparseArray.put(Theme.key_voipgroup_overlayAlertGradientUnmuted2, "voipgroup_overlayAlertGradientUnmuted2");
         sparseArray.put(Theme.key_voipgroup_overlayAlertMutedByAdmin, "voipgroup_overlayAlertMutedByAdmin");
-        sparseArray.put(Theme.key_voipgroup_overlayAlertMutedByAdmin2, "kvoipgroup_overlayAlertMutedByAdmin2");
+        sparseArray.put(Theme.key_voipgroup_overlayAlertMutedByAdmin2, "voipgroup_overlayAlertMutedByAdmin2");
         sparseArray.put(Theme.key_voipgroup_mutedByAdminGradient, "voipgroup_mutedByAdminGradient");
         sparseArray.put(Theme.key_voipgroup_mutedByAdminGradient2, "voipgroup_mutedByAdminGradient2");
         sparseArray.put(Theme.key_voipgroup_mutedByAdminGradient3, "voipgroup_mutedByAdminGradient3");

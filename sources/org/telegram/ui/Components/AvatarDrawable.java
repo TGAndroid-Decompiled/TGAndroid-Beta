@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -45,6 +46,7 @@ public class AvatarDrawable extends Drawable {
     private TextPaint namePaint;
     private boolean needApplyColorAccent;
     private Theme.ResourcesProvider resourcesProvider;
+    private boolean rotate45Background;
     private int roundRadius;
     private float scaleSize;
     private StringBuilder stringBuilder;
@@ -84,6 +86,7 @@ public class AvatarDrawable extends Drawable {
         this.stringBuilder = new StringBuilder(5);
         this.roundRadius = -1;
         this.drawAvatarBackground = true;
+        this.rotate45Background = false;
         this.alpha = 255;
         this.resourcesProvider = resourcesProvider;
         TextPaint textPaint = new TextPaint(1);
@@ -168,8 +171,12 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(TLRPC$User tLRPC$User) {
+        setInfo(UserConfig.selectedAccount, tLRPC$User);
+    }
+
+    public void setInfo(int i, TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
-            setInfo(tLRPC$User.id, tLRPC$User.first_name, tLRPC$User.last_name, null, (tLRPC$User.flags2 & 128) != 0 ? Integer.valueOf(tLRPC$User.color) : null);
+            setInfo(tLRPC$User.id, tLRPC$User.first_name, tLRPC$User.last_name, null, tLRPC$User.color != null ? Integer.valueOf(UserObject.getColorId(tLRPC$User)) : null, UserObject.getPeerColorForAvatar(i, tLRPC$User));
             this.drawDeleted = UserObject.isDeleted(tLRPC$User);
         }
     }
@@ -184,6 +191,16 @@ public class AvatarDrawable extends Drawable {
         }
     }
 
+    public void setInfo(int i, TLObject tLObject) {
+        if (tLObject instanceof TLRPC$User) {
+            setInfo(i, (TLRPC$User) tLObject);
+        } else if (tLObject instanceof TLRPC$Chat) {
+            setInfo(i, (TLRPC$Chat) tLObject);
+        } else if (tLObject instanceof TLRPC$ChatInvite) {
+            setInfo(i, (TLRPC$ChatInvite) tLObject);
+        }
+    }
+
     public void setScaleSize(float f) {
         this.scaleSize = f;
     }
@@ -191,6 +208,7 @@ public class AvatarDrawable extends Drawable {
     public void setAvatarType(int i) {
         this.avatarType = i;
         boolean z = false;
+        this.rotate45Background = false;
         if (i == 13) {
             this.hasGradient = false;
             int color = Theme.getColor(Theme.key_chats_actionBackground);
@@ -205,6 +223,11 @@ public class AvatarDrawable extends Drawable {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.key_avatar_backgroundSaved);
             this.color2 = getThemedColor(Theme.key_avatar_background2Saved);
+        } else if (i == 20) {
+            this.rotate45Background = true;
+            this.hasGradient = true;
+            this.color = getThemedColor(Theme.key_stories_circle1);
+            this.color2 = getThemedColor(Theme.key_stories_circle2);
         } else if (i == 3) {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(5L)]);
@@ -247,7 +270,7 @@ public class AvatarDrawable extends Drawable {
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(4L)]);
         }
         int i2 = this.avatarType;
-        if (i2 != 2 && i2 != 1 && i2 != 12 && i2 != 14) {
+        if (i2 != 2 && i2 != 1 && i2 != 20 && i2 != 12 && i2 != 14) {
             z = true;
         }
         this.needApplyColorAccent = z;
@@ -262,16 +285,24 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(TLRPC$Chat tLRPC$Chat) {
+        setInfo(UserConfig.selectedAccount, tLRPC$Chat);
+    }
+
+    public void setInfo(int i, TLRPC$Chat tLRPC$Chat) {
         if (tLRPC$Chat != null) {
-            setInfo(tLRPC$Chat.id, tLRPC$Chat.title, null, null, (tLRPC$Chat.flags2 & 64) != 0 ? Integer.valueOf(tLRPC$Chat.color) : null);
+            setInfo(tLRPC$Chat.id, tLRPC$Chat.title, null, null, tLRPC$Chat.color != null ? Integer.valueOf(ChatObject.getColorId(tLRPC$Chat)) : null, ChatObject.getPeerColorForAvatar(i, tLRPC$Chat));
         }
     }
 
     public void setInfo(TLRPC$ChatInvite tLRPC$ChatInvite) {
+        setInfo(UserConfig.selectedAccount, tLRPC$ChatInvite);
+    }
+
+    public void setInfo(int i, TLRPC$ChatInvite tLRPC$ChatInvite) {
         if (tLRPC$ChatInvite != null) {
             String str = tLRPC$ChatInvite.title;
             TLRPC$Chat tLRPC$Chat = tLRPC$ChatInvite.chat;
-            setInfo(0L, str, null, null, (tLRPC$Chat == null || (tLRPC$Chat.flags2 & 64) == 0) ? null : Integer.valueOf(tLRPC$Chat.color));
+            setInfo(0L, str, null, null, (tLRPC$Chat == null || tLRPC$Chat.color == null) ? null : Integer.valueOf(ChatObject.getColorId(tLRPC$Chat)), ChatObject.getPeerColorForAvatar(i, tLRPC$ChatInvite.chat));
         }
     }
 
@@ -294,7 +325,7 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long j, String str, String str2) {
-        setInfo(j, str, str2, null, null);
+        setInfo(j, str, str2, null, null, null);
     }
 
     public int getColor() {
@@ -314,14 +345,17 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long j, String str, String str2, String str3) {
-        setInfo(j, str, str2, str3, null);
+        setInfo(j, str, str2, str3, null, null);
     }
 
-    public void setInfo(long j, String str, String str2, String str3, Integer num) {
+    public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor) {
         MessagesController.PeerColors peerColors;
         this.hasGradient = true;
         this.invalidateTextLayout = true;
-        if (num != null) {
+        if (peerColor != null) {
+            this.color = peerColor.getAvatarColor1();
+            this.color2 = peerColor.getAvatarColor2();
+        } else if (num != null) {
             if (num.intValue() >= 14) {
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 if (messagesController != null && (peerColors = messagesController.peerColors) != null && peerColors.getColor(num.intValue()) != null) {
@@ -409,15 +443,23 @@ public class AvatarDrawable extends Drawable {
         canvas.save();
         canvas.translate(bounds.left, bounds.top);
         if (this.drawAvatarBackground) {
+            if (this.rotate45Background) {
+                canvas.save();
+                float f = width / 2.0f;
+                canvas.rotate(-45.0f, f, f);
+            }
             if (this.roundRadius > 0) {
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f = width;
-                rectF.set(0.0f, 0.0f, f, f);
+                float f2 = width;
+                rectF.set(0.0f, 0.0f, f2, f2);
                 int i = this.roundRadius;
                 canvas.drawRoundRect(rectF, i, i, Theme.avatar_backgroundPaint);
             } else {
-                float f2 = width / 2.0f;
-                canvas.drawCircle(f2, f2, f2, Theme.avatar_backgroundPaint);
+                float f3 = width / 2.0f;
+                canvas.drawCircle(f3, f3, f3, Theme.avatar_backgroundPaint);
+            }
+            if (this.rotate45Background) {
+                canvas.restore();
             }
         }
         int i2 = this.avatarType;
@@ -426,8 +468,8 @@ public class AvatarDrawable extends Drawable {
                 Paint paint = Theme.avatar_backgroundPaint;
                 int i3 = Theme.key_avatar_backgroundArchived;
                 paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i3), this.alpha));
-                float f3 = width / 2.0f;
-                canvas.drawCircle(f3, f3, this.archivedAvatarProgress * f3, Theme.avatar_backgroundPaint);
+                float f4 = width / 2.0f;
+                canvas.drawCircle(f4, f4, this.archivedAvatarProgress * f4, Theme.avatar_backgroundPaint);
                 if (Theme.dialogs_archiveAvatarDrawableRecolored) {
                     Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
                     Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1.**", Theme.getNonAnimatedColor(i3));
@@ -481,6 +523,8 @@ public class AvatarDrawable extends Drawable {
                 drawable = Theme.avatarDrawables[15];
             } else if (i2 == 18) {
                 drawable = Theme.avatarDrawables[16];
+            } else if (i2 == 20) {
+                drawable = Theme.avatarDrawables[17];
             } else {
                 drawable = Theme.avatarDrawables[9];
             }
@@ -539,11 +583,11 @@ public class AvatarDrawable extends Drawable {
                 }
             }
             if (this.textLayout != null) {
-                float f4 = width;
-                float dp2 = f4 / AndroidUtilities.dp(50.0f);
-                float f5 = f4 / 2.0f;
-                canvas.scale(dp2, dp2, f5, f5);
-                canvas.translate(((f4 - this.textWidth) / 2.0f) - this.textLeft, (f4 - this.textHeight) / 2.0f);
+                float f5 = width;
+                float dp2 = f5 / AndroidUtilities.dp(50.0f);
+                float f6 = f5 / 2.0f;
+                canvas.scale(dp2, dp2, f6, f6);
+                canvas.translate(((f5 - this.textWidth) / 2.0f) - this.textLeft, (f5 - this.textHeight) / 2.0f);
                 this.textLayout.draw(canvas);
             }
         }

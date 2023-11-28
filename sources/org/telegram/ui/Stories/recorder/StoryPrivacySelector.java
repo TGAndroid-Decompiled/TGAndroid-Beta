@@ -334,6 +334,9 @@ public class StoryPrivacySelector extends View {
     }
 
     public static void applySaved(int i, StoryEntry storyEntry) {
+        if (storyEntry == null) {
+            return;
+        }
         storyEntry.privacy = getSaved(i);
         storyEntry.privacyRules.clear();
         storyEntry.privacyRules.addAll(storyEntry.privacy.rules);

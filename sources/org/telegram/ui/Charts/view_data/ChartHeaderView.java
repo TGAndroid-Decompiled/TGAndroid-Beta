@@ -21,7 +21,7 @@ public class ChartHeaderView extends FrameLayout {
     public TextView back;
     private TextView dates;
     private TextView datesTmp;
-    SimpleDateFormat formatter;
+    private Theme.ResourcesProvider resourcesProvider;
     private boolean showDate;
     int textMargin;
     private TextView title;
@@ -29,9 +29,14 @@ public class ChartHeaderView extends FrameLayout {
     private Drawable zoomIcon;
 
     public ChartHeaderView(Context context) {
+        this(context, null);
+    }
+
+    public ChartHeaderView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.showDate = true;
-        this.formatter = new SimpleDateFormat("d MMM yyyy");
+        new SimpleDateFormat("d MMM yyyy");
+        this.resourcesProvider = resourcesProvider;
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(14.0f);
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -67,7 +72,7 @@ public class ChartHeaderView extends FrameLayout {
         this.back.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
         this.back.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         this.back.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f));
-        this.back.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(Theme.key_featuredStickers_removeButtonText)));
+        this.back.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(Theme.key_featuredStickers_removeButtonText, resourcesProvider)));
         this.datesTmp.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
@@ -87,13 +92,13 @@ public class ChartHeaderView extends FrameLayout {
     public void recolor() {
         TextView textView = this.title;
         int i = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i));
-        this.dates.setTextColor(Theme.getColor(i));
-        this.datesTmp.setTextColor(Theme.getColor(i));
+        textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.dates.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.datesTmp.setTextColor(Theme.getColor(i, this.resourcesProvider));
         TextView textView2 = this.back;
         int i2 = Theme.key_statisticChartBackZoomColor;
-        textView2.setTextColor(Theme.getColor(i2));
-        this.zoomIcon.setColorFilter(Theme.getColor(i2), PorterDuff.Mode.SRC_IN);
+        textView2.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+        this.zoomIcon.setColorFilter(Theme.getColor(i2, this.resourcesProvider), PorterDuff.Mode.SRC_IN);
     }
 
     public void setDates(long j, long j2) {
@@ -107,9 +112,9 @@ public class ChartHeaderView extends FrameLayout {
             j2 += 604800000;
         }
         if (j2 - j >= 86400000) {
-            format = this.formatter.format(new Date(j)) + " — " + this.formatter.format(new Date(j2));
+            format = LocaleController.getInstance().formatterYear.format(new Date(j)) + " — " + LocaleController.getInstance().formatterYear.format(new Date(j2));
         } else {
-            format = this.formatter.format(new Date(j));
+            format = LocaleController.getInstance().formatterYear.format(new Date(j));
         }
         this.dates.setText(format);
         this.dates.setVisibility(0);

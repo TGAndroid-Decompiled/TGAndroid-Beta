@@ -119,7 +119,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         this.giftCode = tLRPC$TL_payments_checkedGiftCode;
         this.slug = str;
         setApplyTopPadding(false);
-        setApplyBottomPadding(true);
+        setApplyBottomPadding(false);
         fixNavigationBar();
         updateTitle();
         this.adapter.init(baseFragment, tLRPC$TL_payments_checkedGiftCode, str);

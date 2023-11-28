@@ -20,7 +20,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -44,6 +43,7 @@ import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
@@ -108,6 +108,7 @@ public class StoryEntry extends IStoryPart {
     public boolean isEdit;
     public boolean isEditSaved;
     public boolean isError;
+    public boolean isRepost;
     public boolean isVideo;
     public float left;
     public ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
@@ -118,6 +119,16 @@ public class StoryEntry extends IStoryPart {
     public File paintFile;
     public TLRPC$InputPeer peer;
     public StoryPrivacyBottomSheet.StoryPrivacy privacy;
+    public String repostCaption;
+    public TLRPC$MessageMedia repostMedia;
+    public TLRPC$Peer repostPeer;
+    public CharSequence repostPeerName;
+    public int repostStoryId;
+    public File round;
+    public long roundDuration;
+    public float roundLeft;
+    public long roundOffset;
+    public String roundThumb;
     public int scheduleDate;
     public ArrayList<Long> shareUserIds;
     public boolean silent;
@@ -130,11 +141,14 @@ public class StoryEntry extends IStoryPart {
     public double fileDuration = -1.0d;
     public float audioRight = 1.0f;
     public float audioVolume = 1.0f;
+    public float videoVolume = 1.0f;
     public float right = 1.0f;
     public int resultWidth = 720;
     public int resultHeight = 1280;
     public int partsMaxId = 1;
     public final ArrayList<Part> parts = new ArrayList<>();
+    public float roundRight = 1.0f;
+    public float roundVolume = 1.0f;
     public boolean captionEntitiesAllowed = true;
     public final ArrayList<TLRPC$InputPrivacyRule> privacyRules = new ArrayList<>();
     public boolean pinned = true;
@@ -170,7 +184,7 @@ public class StoryEntry extends IStoryPart {
             abstractSerializedData.writeInt32(this.width);
             abstractSerializedData.writeInt32(this.height);
             File file = this.file;
-            abstractSerializedData.writeString(file == null ? BuildConfig.APP_CENTER_HASH : file.getAbsolutePath());
+            abstractSerializedData.writeString(file == null ? "" : file.getAbsolutePath());
             abstractSerializedData.writeBool(this.fileDeletable);
             abstractSerializedData.writeInt32(this.orientantion);
             abstractSerializedData.writeInt32(this.invert);
@@ -184,7 +198,7 @@ public class StoryEntry extends IStoryPart {
 
     public boolean wouldBeVideo() {
         ArrayList<VideoEditedInfo.EmojiEntity> arrayList;
-        if (!this.isVideo && this.audioPath == null) {
+        if (!this.isVideo && this.audioPath == null && this.round == null) {
             ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = this.mediaEntities;
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 for (int i = 0; i < this.mediaEntities.size(); i++) {
@@ -555,6 +569,18 @@ public class StoryEntry extends IStoryPart {
                 }
                 next.file = null;
             }
+            File file3 = this.round;
+            if (file3 != null && (!this.isEdit || this.editedMedia)) {
+                file3.delete();
+                this.round = null;
+            }
+            if (this.roundThumb != null && (!this.isEdit || this.editedMedia)) {
+                try {
+                    new File(this.roundThumb).delete();
+                } catch (Exception unused) {
+                }
+                this.roundThumb = null;
+            }
         }
         Bitmap bitmap2 = this.thumbPathBitmap;
         if (bitmap2 != null) {
@@ -562,6 +588,67 @@ public class StoryEntry extends IStoryPart {
             this.thumbPathBitmap = null;
         }
         cancelCheckStickers();
+    }
+
+    public static StoryEntry repostStoryItem(File file, TL_stories$StoryItem tL_stories$StoryItem) {
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.isRepost = true;
+        storyEntry.repostMedia = tL_stories$StoryItem.media;
+        storyEntry.repostPeer = MessagesController.getInstance(storyEntry.currentAccount).getPeer(tL_stories$StoryItem.dialogId);
+        storyEntry.repostStoryId = tL_stories$StoryItem.id;
+        storyEntry.repostCaption = tL_stories$StoryItem.caption;
+        storyEntry.file = file;
+        storyEntry.fileDeletable = false;
+        storyEntry.width = 720;
+        storyEntry.height = 1280;
+        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+            storyEntry.isVideo = false;
+            if (file != null) {
+                storyEntry.decodeBounds(file.getAbsolutePath());
+            }
+        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+            storyEntry.isVideo = true;
+            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
+            if (tLRPC$Document != null && tLRPC$Document.attributes != null) {
+                int i = 0;
+                while (true) {
+                    if (i >= tL_stories$StoryItem.media.document.attributes.size()) {
+                        break;
+                    }
+                    TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tL_stories$StoryItem.media.document.attributes.get(i);
+                    if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
+                        storyEntry.width = tLRPC$DocumentAttribute.w;
+                        storyEntry.height = tLRPC$DocumentAttribute.h;
+                        storyEntry.fileDuration = tLRPC$DocumentAttribute.duration;
+                        break;
+                    }
+                    i++;
+                }
+            }
+            TLRPC$Document tLRPC$Document2 = tL_stories$StoryItem.media.document;
+            if (tLRPC$Document2 != null) {
+                String str = tL_stories$StoryItem.firstFramePath;
+                if (str != null) {
+                    storyEntry.thumbPath = str;
+                } else if (tLRPC$Document2.thumbs != null) {
+                    for (int i2 = 0; i2 < tL_stories$StoryItem.media.document.thumbs.size(); i2++) {
+                        TLRPC$PhotoSize tLRPC$PhotoSize = tL_stories$StoryItem.media.document.thumbs.get(i2);
+                        if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
+                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, null);
+                        } else {
+                            File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(tLRPC$PhotoSize, true);
+                            if (pathToAttach != null && pathToAttach.exists()) {
+                                storyEntry.thumbPath = pathToAttach.getAbsolutePath();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        storyEntry.setupMatrix();
+        storyEntry.checkStickers(tL_stories$StoryItem);
+        return storyEntry;
     }
 
     public static StoryEntry fromStoryItem(File file, TL_stories$StoryItem tL_stories$StoryItem) {
@@ -915,16 +1002,21 @@ public class StoryEntry extends IStoryPart {
                 videoEditedInfo.originalPath = str;
             }
             videoEditedInfo.isPhoto = true;
-            if (this.audioPath != null) {
-                long j4 = (this.audioRight - this.audioLeft) * ((float) this.audioDuration);
+            if (this.round != null) {
+                long j4 = (this.roundRight - this.roundLeft) * ((float) this.roundDuration);
                 this.duration = j4;
                 videoEditedInfo.originalDuration = j4;
                 videoEditedInfo.estimatedDuration = j4;
-            } else {
-                long j5 = this.averageDuration;
+            } else if (this.audioPath != null) {
+                long j5 = (this.audioRight - this.audioLeft) * ((float) this.audioDuration);
                 this.duration = j5;
                 videoEditedInfo.originalDuration = j5;
                 videoEditedInfo.estimatedDuration = j5;
+            } else {
+                long j6 = this.averageDuration;
+                this.duration = j6;
+                videoEditedInfo.originalDuration = j6;
+                videoEditedInfo.estimatedDuration = j6;
             }
             videoEditedInfo.startTime = -1L;
             videoEditedInfo.endTime = -1L;
@@ -947,20 +1039,35 @@ public class StoryEntry extends IStoryPart {
         videoEditedInfo.hdrInfo = this.hdrInfo;
         videoEditedInfo.parts = this.parts;
         videoEditedInfo.mixedSoundInfos.clear();
-        String str2 = this.audioPath;
-        if (str2 != null) {
-            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
-            mixedSoundInfo.volume = this.audioVolume;
-            float f = this.audioLeft;
-            long j6 = this.audioDuration;
-            mixedSoundInfo.audioOffset = ((float) j6) * f * 1000;
+        File file4 = this.round;
+        if (file4 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(file4.getAbsolutePath());
+            mixedSoundInfo.volume = this.roundVolume;
+            float f = this.roundLeft;
+            long j7 = this.roundDuration;
+            mixedSoundInfo.audioOffset = ((float) j7) * f * 1000;
             if (this.isVideo) {
-                mixedSoundInfo.startTime = (((float) this.audioOffset) - (this.left * ((float) this.duration))) * 1000;
+                mixedSoundInfo.startTime = (((float) this.roundOffset) - (this.left * ((float) this.duration))) * 1000;
             } else {
                 mixedSoundInfo.startTime = 0L;
             }
-            mixedSoundInfo.duration = (this.audioRight - f) * ((float) j6) * 1000;
+            mixedSoundInfo.duration = (this.roundRight - f) * ((float) j7) * 1000;
             videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo);
+        }
+        String str2 = this.audioPath;
+        if (str2 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
+            mixedSoundInfo2.volume = this.audioVolume;
+            float f2 = this.audioLeft;
+            long j8 = this.audioDuration;
+            mixedSoundInfo2.audioOffset = ((float) j8) * f2 * 1000;
+            if (this.isVideo) {
+                mixedSoundInfo2.startTime = (((float) this.audioOffset) - (this.left * ((float) this.duration))) * 1000;
+            } else {
+                mixedSoundInfo2.startTime = 0L;
+            }
+            mixedSoundInfo2.duration = (this.audioRight - f2) * ((float) j8) * 1000;
+            videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo2);
         }
         callback.run(videoEditedInfo);
     }
@@ -1265,6 +1372,14 @@ public class StoryEntry extends IStoryPart {
         storyEntry.thumbBitmap = this.thumbBitmap;
         storyEntry.fromCamera = this.fromCamera;
         storyEntry.thumbPathBitmap = this.thumbPathBitmap;
+        storyEntry.isRepost = this.isRepost;
+        storyEntry.round = this.round;
+        storyEntry.roundLeft = this.roundLeft;
+        storyEntry.roundRight = this.roundRight;
+        storyEntry.roundDuration = this.roundDuration;
+        storyEntry.roundThumb = this.roundThumb;
+        storyEntry.roundOffset = this.roundOffset;
+        storyEntry.roundVolume = this.roundVolume;
         return storyEntry;
     }
 }

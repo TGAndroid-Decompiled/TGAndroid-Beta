@@ -171,6 +171,10 @@ public class EntityView extends FrameLayout {
         return 0.0f;
     }
 
+    public boolean trashCenter() {
+        return false;
+    }
+
     public void lambda$new$0() {
         this.recognizedLongPress = true;
         if (this.delegate != null) {
@@ -1019,10 +1023,15 @@ public class EntityView extends FrameLayout {
         canvas.scale(scale, scale, getWidth() / 2.0f, getHeight() / 2.0f);
         if (getParent() instanceof View) {
             View view = (View) getParent();
-            float width = (view.getWidth() / 2.0f) - getX();
-            float height = (view.getHeight() - AndroidUtilities.dp(76.0f)) - getY();
-            float f = this.trashScale;
-            canvas.scale(f, f, width, height);
+            if (trashCenter()) {
+                float f = this.trashScale;
+                canvas.scale(f, f, getWidth() / 2.0f, getHeight() / 2.0f);
+            } else {
+                float width = (view.getWidth() / 2.0f) - getX();
+                float height = (view.getHeight() - AndroidUtilities.dp(76.0f)) - getY();
+                float f2 = this.trashScale;
+                canvas.scale(f2, f2, width, height);
+            }
         }
         super.dispatchDraw(canvas);
         canvas.restore();

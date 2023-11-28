@@ -52,7 +52,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -1048,7 +1047,7 @@ public class AlertsCreator {
         final CheckBoxCell[] checkBoxCellArr = {new CheckBoxCell(chatActivity.getParentActivity(), 1, resourcesProvider)};
         checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
         checkBoxCellArr[0].setTag(0);
-        checkBoxCellArr[0].setText(LocaleController.getString("DeleteReportSpam", R.string.DeleteReportSpam), BuildConfig.APP_CENTER_HASH, true, false);
+        checkBoxCellArr[0].setText(LocaleController.getString("DeleteReportSpam", R.string.DeleteReportSpam), "", true, false);
         checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
         linearLayout.addView(checkBoxCellArr[0], LayoutHelper.createLinear(-1, -2));
         checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
@@ -1536,11 +1535,11 @@ public class AlertsCreator {
                 backupImageView.setImage((ImageLocation) null, (String) null, avatarDrawable, tLRPC$User);
             } else {
                 avatarDrawable.setScaleSize(1.0f);
-                avatarDrawable.setInfo(tLRPC$User);
+                avatarDrawable.setInfo(currentAccount, tLRPC$User);
                 backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
             }
         } else {
-            avatarDrawable.setInfo(tLRPC$Chat);
+            avatarDrawable.setInfo(currentAccount, tLRPC$Chat);
             backupImageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
         }
         textView.setText(AndroidUtilities.replaceTags(str2));
@@ -1601,7 +1600,7 @@ public class AlertsCreator {
             backupImageView.setImage((ImageLocation) null, (String) null, avatarDrawable, tLRPC$User);
         } else {
             avatarDrawable.setScaleSize(1.0f);
-            avatarDrawable.setInfo(tLRPC$User);
+            avatarDrawable.setInfo(baseFragment.getCurrentAccount(), tLRPC$User);
             backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
         }
         builder.setPositiveButton(LocaleController.getString(R.string.Start), new DialogInterface.OnClickListener() {
@@ -1707,7 +1706,7 @@ public class AlertsCreator {
             checkBoxCellArr[0] = new CheckBoxCell(context, 1, baseFragment.getResourceProvider());
             checkBoxCellArr[0].allowMultiline();
             checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
-            checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), BuildConfig.APP_CENTER_HASH, true, false);
+            checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
             CheckBoxCell checkBoxCell = checkBoxCellArr[0];
             if (LocaleController.isRTL) {
                 f = 16.0f;
@@ -1732,7 +1731,7 @@ public class AlertsCreator {
             backupImageView.setImage((ImageLocation) null, (String) null, avatarDrawable, tLRPC$User);
         } else {
             avatarDrawable.setScaleSize(1.0f);
-            avatarDrawable.setInfo(tLRPC$User);
+            avatarDrawable.setInfo(baseFragment.getCurrentAccount(), tLRPC$User);
             backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
         }
         builder.setPositiveButton(LocaleController.getString(R.string.Start), new DialogInterface.OnClickListener() {
@@ -1882,9 +1881,9 @@ public class AlertsCreator {
             checkBoxCellArr[0] = new CheckBoxCell(parentActivity, 1, resourcesProvider);
             checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
             if (tLRPC$Chat != null) {
-                checkBoxCellArr[0].setText(LocaleController.getString("DeleteMessagesOptionAlsoChat", R.string.DeleteMessagesOptionAlsoChat), BuildConfig.APP_CENTER_HASH, false, false);
+                checkBoxCellArr[0].setText(LocaleController.getString("DeleteMessagesOptionAlsoChat", R.string.DeleteMessagesOptionAlsoChat), "", false, false);
             } else {
-                checkBoxCellArr[0].setText(LocaleController.formatString("DeleteMessagesOptionAlso", R.string.DeleteMessagesOptionAlso, UserObject.getFirstName(tLRPC$User)), BuildConfig.APP_CENTER_HASH, false, false);
+                checkBoxCellArr[0].setText(LocaleController.formatString("DeleteMessagesOptionAlso", R.string.DeleteMessagesOptionAlso, UserObject.getFirstName(tLRPC$User)), "", false, false);
             }
             CheckBoxCell checkBoxCell = checkBoxCellArr[0];
             if (LocaleController.isRTL) {
@@ -1962,7 +1961,7 @@ public class AlertsCreator {
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));
         avatarDrawable.setScaleSize(1.0f);
-        avatarDrawable.setInfo(tLRPC$User);
+        avatarDrawable.setInfo(baseFragment.getCurrentAccount(), tLRPC$User);
         BackupImageView backupImageView = new BackupImageView(parentActivity);
         backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
@@ -2104,16 +2103,12 @@ public class AlertsCreator {
     }
 
     public static void lambda$createChangeBioAlert$39(long j, int i, EditText editText, DialogInterface dialogInterface, int i2) {
-        String str = BuildConfig.APP_CENTER_HASH;
         if (j > 0) {
             TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(UserConfig.getInstance(i).getClientUserId());
             String trim = editText.getText().toString().replace("\n", " ").replaceAll(" +", " ").trim();
             if (userFull != null) {
-                String str2 = userFull.about;
-                if (str2 != null) {
-                    str = str2;
-                }
-                if (str.equals(trim)) {
+                String str = userFull.about;
+                if ((str != null ? str : "").equals(trim)) {
                     AndroidUtilities.hideKeyboard(editText);
                     dialogInterface.dismiss();
                     return;
@@ -2136,11 +2131,8 @@ public class AlertsCreator {
             TLRPC$ChatFull chatFull = MessagesController.getInstance(i).getChatFull(j2);
             String obj = editText.getText().toString();
             if (chatFull != null) {
-                String str3 = chatFull.about;
-                if (str3 != null) {
-                    str = str3;
-                }
-                if (str.equals(obj)) {
+                String str2 = chatFull.about;
+                if ((str2 != null ? str2 : "").equals(obj)) {
                     AndroidUtilities.hideKeyboard(editText);
                     dialogInterface.dismiss();
                     return;
@@ -2286,10 +2278,10 @@ public class AlertsCreator {
             String str = user.first_name;
             String str2 = user.last_name;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             if (str2 == null) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             }
             if (str.equals(obj) && str2.equals(obj2)) {
                 dialogInterface.dismiss();
@@ -2375,7 +2367,7 @@ public class AlertsCreator {
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setText(LocaleController.getString("IUnderstand", R.string.IUnderstand));
         textView2.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 0, 16, 12, 16, 8));
         builder.setCustomView(linearLayout);
         final BottomSheet show = builder.show();
@@ -2508,7 +2500,7 @@ public class AlertsCreator {
                 checkBoxCellArr[i3] = new CheckBoxCell(parentActivity, 1);
                 checkBoxCellArr[i3].setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 if (i3 == 0) {
-                    checkBoxCellArr[i3].setText(LocaleController.getString("ReportSpamTitle", R.string.ReportSpamTitle), BuildConfig.APP_CENTER_HASH, true, false);
+                    checkBoxCellArr[i3].setText(LocaleController.getString("ReportSpamTitle", R.string.ReportSpamTitle), "", true, false);
                 } else {
                     CheckBoxCell checkBoxCell = checkBoxCellArr[i3];
                     if (i == 1) {
@@ -2518,7 +2510,7 @@ public class AlertsCreator {
                         i2 = R.string.DeleteTheseChatsBothSides;
                         str = "DeleteTheseChatsBothSides";
                     }
-                    checkBoxCell.setText(LocaleController.getString(str, i2), BuildConfig.APP_CENTER_HASH, true, false);
+                    checkBoxCell.setText(LocaleController.getString(str, i2), "", true, false);
                 }
                 checkBoxCellArr[i3].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 linearLayout.addView(checkBoxCellArr[i3], LayoutHelper.createLinear(-1, 48));
@@ -3291,7 +3283,7 @@ public class AlertsCreator {
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("SetTimeLimit", R.string.SetTimeLimit));
         LinearLayout linearLayout4 = linearLayout;
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3504,7 +3496,7 @@ public class AlertsCreator {
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("SetEmojiStatusUntilButton", R.string.SetEmojiStatusUntilButton));
         LinearLayout linearLayout4 = linearLayout;
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3660,7 +3652,7 @@ public class AlertsCreator {
         animatedTextView.setTextColor(scheduleDatePickerColors.buttonTextColor);
         animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        animatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        animatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         linearLayout.addView(animatedTextView, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         animatedTextView.setText(LocaleController.getString("DisableAutoDeleteTimer", R.string.DisableAutoDeleteTimer));
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -3835,7 +3827,7 @@ public class AlertsCreator {
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
@@ -3989,7 +3981,7 @@ public class AlertsCreator {
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         textView2.setOnClickListener(new View.OnClickListener() {
@@ -4211,7 +4203,7 @@ public class AlertsCreator {
     }
 
     public static String lambda$createCalendarPickerDialog$94(int i) {
-        return BuildConfig.APP_CENTER_HASH + i;
+        return "" + i;
     }
 
     public static void lambda$createCalendarPickerDialog$95(LinearLayout linearLayout, long j, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {
@@ -4445,7 +4437,7 @@ public class AlertsCreator {
                 r8 = new TL_stories$TL_stories_report();
                 r8.id.add(Integer.valueOf(i2));
                 r8.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
-                r8.message = BuildConfig.APP_CENTER_HASH;
+                r8.message = "";
                 if (i4 == 0) {
                     r8.reason = new TLRPC$TL_inputReportReasonSpam();
                 } else if (i4 == 6) {
@@ -4466,7 +4458,7 @@ public class AlertsCreator {
                     ?? tLRPC$TL_messages_report = new TLRPC$TL_messages_report();
                     tLRPC$TL_messages_report.peer = inputPeer;
                     tLRPC$TL_messages_report.id.add(Integer.valueOf(i));
-                    tLRPC$TL_messages_report.message = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_messages_report.message = "";
                     tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                     if (i4 == 0) {
                         tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonSpam();
@@ -4490,7 +4482,7 @@ public class AlertsCreator {
                 } else {
                     TLRPC$TL_account_reportPeer tLRPC$TL_account_reportPeer2 = new TLRPC$TL_account_reportPeer();
                     tLRPC$TL_account_reportPeer2.peer = inputPeer;
-                    tLRPC$TL_account_reportPeer2.message = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_account_reportPeer2.message = "";
                     tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
                     if (i4 == 0) {
                         tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonSpam();
@@ -5734,7 +5726,7 @@ public class AlertsCreator {
             if (i == 19) {
                 return LocaleController.formatTTLString(86400);
             }
-            return i == 20 ? LocaleController.formatTTLString(604800) : BuildConfig.APP_CENTER_HASH;
+            return i == 20 ? LocaleController.formatTTLString(604800) : "";
         }
         return LocaleController.formatTTLString(i);
     }
@@ -5801,7 +5793,7 @@ public class AlertsCreator {
         accountSelectDelegate.didSelectAccount(((AccountSelectCell) view).getAccountNumber());
     }
 
-    public static void createDeleteMessagesAlert(final org.telegram.ui.ActionBar.BaseFragment r43, final org.telegram.tgnet.TLRPC$User r44, final org.telegram.tgnet.TLRPC$Chat r45, final org.telegram.tgnet.TLRPC$EncryptedChat r46, final org.telegram.tgnet.TLRPC$ChatFull r47, final long r48, final org.telegram.messenger.MessageObject r50, final android.util.SparseArray<org.telegram.messenger.MessageObject>[] r51, final org.telegram.messenger.MessageObject.GroupedMessages r52, final boolean r53, int r54, final java.lang.Runnable r55, final java.lang.Runnable r56, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r57) {
+    public static void createDeleteMessagesAlert(final org.telegram.ui.ActionBar.BaseFragment r47, final org.telegram.tgnet.TLRPC$User r48, final org.telegram.tgnet.TLRPC$Chat r49, final org.telegram.tgnet.TLRPC$EncryptedChat r50, final org.telegram.tgnet.TLRPC$ChatFull r51, final long r52, final org.telegram.messenger.MessageObject r54, final android.util.SparseArray<org.telegram.messenger.MessageObject>[] r55, final org.telegram.messenger.MessageObject.GroupedMessages r56, final boolean r57, int r58, final java.lang.Runnable r59, final java.lang.Runnable r60, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r61) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createDeleteMessagesAlert(org.telegram.ui.ActionBar.BaseFragment, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$ChatFull, long, org.telegram.messenger.MessageObject, android.util.SparseArray[], org.telegram.messenger.MessageObject$GroupedMessages, boolean, int, java.lang.Runnable, java.lang.Runnable, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

@@ -24,7 +24,7 @@ public class TextDetailCell extends FrameLayout {
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
     private final TextView textView;
-    private final LinkSpanDrawable.LinksTextView valueTextView;
+    public final LinkSpanDrawable.LinksTextView valueTextView;
 
     public TextDetailCell(Context context) {
         this(context, null);

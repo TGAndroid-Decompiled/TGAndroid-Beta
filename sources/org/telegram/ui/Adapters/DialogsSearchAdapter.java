@@ -20,7 +20,6 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -94,6 +93,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     private boolean messagesSearchEndReached;
     private int needMessagesSearch;
     private int nextSearchRate;
+    private final Theme.ResourcesProvider resourcesProvider;
     private SearchAdapterHelper searchAdapterHelper;
     private Runnable searchRunnable;
     private Runnable searchRunnable2;
@@ -171,16 +171,18 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         private final int currentAccount;
         private boolean drawChecked;
         private final Context mContext;
+        private Theme.ResourcesProvider resourcesProvider;
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             return true;
         }
 
-        public CategoryAdapterRecycler(Context context, int i, boolean z) {
+        public CategoryAdapterRecycler(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
             this.drawChecked = z;
             this.mContext = context;
             this.currentAccount = i;
+            this.resourcesProvider = resourcesProvider;
         }
 
         public void setIndex(int i) {
@@ -189,7 +191,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            HintDialogCell hintDialogCell = new HintDialogCell(this.mContext, this.drawChecked);
+            HintDialogCell hintDialogCell = new HintDialogCell(this.mContext, this.drawChecked, this.resourcesProvider);
             hintDialogCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));
             return new RecyclerListView.Holder(hintDialogCell);
         }
@@ -227,7 +229,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             if (tLRPC$User != null) {
                 str = UserObject.getFirstName(tLRPC$User);
             } else {
-                str = tLRPC$Chat != null ? tLRPC$Chat.title : BuildConfig.APP_CENTER_HASH;
+                str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
             }
             hintDialogCell.setDialog(j, true, str);
         }
@@ -263,9 +265,10 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
     }
 
-    public DialogsSearchAdapter(Context context, DialogsActivity dialogsActivity, int i, int i2, DefaultItemAnimator defaultItemAnimator, boolean z) {
+    public DialogsSearchAdapter(Context context, DialogsActivity dialogsActivity, int i, int i2, DefaultItemAnimator defaultItemAnimator, boolean z, Theme.ResourcesProvider resourcesProvider) {
         this.itemAnimator = defaultItemAnimator;
         this.dialogsActivity = dialogsActivity;
+        this.resourcesProvider = resourcesProvider;
         SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(false) {
             @Override
             protected boolean filter(TLObject tLObject) {
@@ -1545,7 +1548,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 };
                 linearLayoutManager.setOrientation(0);
                 recyclerListView2.setLayoutManager(linearLayoutManager);
-                recyclerListView2.setAdapter(new CategoryAdapterRecycler(this.mContext, this.currentAccount, false));
+                recyclerListView2.setAdapter(new CategoryAdapterRecycler(this.mContext, this.currentAccount, false, this.resourcesProvider));
                 recyclerListView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
                     public final void onItemClick(View view, int i2) {

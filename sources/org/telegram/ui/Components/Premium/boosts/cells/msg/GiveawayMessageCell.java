@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -178,24 +178,25 @@ public class GiveawayMessageCell {
     }
 
     public void setButtonPressed(boolean z) {
+        Drawable drawable;
         MessageObject messageObject = this.messageObject;
-        if (messageObject == null || !messageObject.isGiveaway()) {
+        if (messageObject == null || !messageObject.isGiveaway() || (drawable = this.selectorDrawable) == null) {
             return;
         }
         if (z) {
-            this.selectorDrawable.setCallback(new Drawable.Callback() {
+            drawable.setCallback(new Drawable.Callback() {
                 @Override
-                public void invalidateDrawable(Drawable drawable) {
+                public void invalidateDrawable(Drawable drawable2) {
                     GiveawayMessageCell.this.parentView.invalidate();
                 }
 
                 @Override
-                public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+                public void scheduleDrawable(Drawable drawable2, Runnable runnable, long j) {
                     GiveawayMessageCell.this.parentView.invalidate();
                 }
 
                 @Override
-                public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                public void unscheduleDrawable(Drawable drawable2, Runnable runnable) {
                     GiveawayMessageCell.this.parentView.invalidate();
                 }
             });
@@ -203,7 +204,7 @@ public class GiveawayMessageCell {
             this.parentView.invalidate();
             return;
         }
-        this.selectorDrawable.setState(StateSet.NOTHING);
+        drawable.setState(StateSet.NOTHING);
         this.parentView.invalidate();
     }
 
@@ -274,7 +275,7 @@ public class GiveawayMessageCell {
                 Iterator<String> it = tLRPC$TL_messageMediaGiveaway.countries_iso2.iterator();
                 while (it.hasNext()) {
                     String next = it.next();
-                    String displayCountry = new Locale(BuildConfig.APP_CENTER_HASH, next).getDisplayCountry(Locale.getDefault());
+                    String displayCountry = new Locale("", next).getDisplayCountry(Locale.getDefault());
                     String languageFlag = LocaleController.getLanguageFlag(next);
                     SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
                     if (languageFlag != null) {
@@ -351,22 +352,22 @@ public class GiveawayMessageCell {
                 } else {
                     this.chats[i11] = null;
                     this.avatarVisible[i11] = false;
-                    this.chatTitles[i11] = BuildConfig.APP_CENTER_HASH;
+                    this.chatTitles[i11] = "";
                     this.needNewRow[i11] = false;
                     this.chatTitleWidths[i11] = AndroidUtilities.dp(20.0f);
-                    this.avatarDrawables[i11].setInfo(longValue, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                    this.avatarDrawables[i11].setInfo(longValue, "", "");
                 }
             }
         }
     }
 
     private int getChatColor(TLRPC$Chat tLRPC$Chat, Theme.ResourcesProvider resourcesProvider) {
-        int i = (tLRPC$Chat.flags2 & 64) != 0 ? tLRPC$Chat.color : (int) (tLRPC$Chat.id % 7);
-        if (i < 7) {
-            return Theme.getColor(Theme.keys_avatar_nameInMessage[i], resourcesProvider);
+        int colorId = ChatObject.getColorId(tLRPC$Chat);
+        if (colorId < 7) {
+            return Theme.getColor(Theme.keys_avatar_nameInMessage[colorId], resourcesProvider);
         }
         MessagesController.PeerColors peerColors = MessagesController.getInstance(UserConfig.selectedAccount).peerColors;
-        MessagesController.PeerColor color = peerColors == null ? null : peerColors.getColor(i);
+        MessagesController.PeerColor color = peerColors == null ? null : peerColors.getColor(colorId);
         if (color != null) {
             return color.getColor1();
         }

@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import androidx.core.graphics.ColorUtils;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -164,7 +165,7 @@ public class TableCell extends FrameLayout {
                     canvas.clipPath(TableCell.this.roundPath);
                 }
                 super.dispatchDraw(canvas);
-                TableCell.this.linePaint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
+                TableCell.this.linePaint.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_divider, resourcesProvider), -1, 0.1f));
                 TableCell.this.linePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 float height = getHeight() / (TableCell.this.tableRow4.getVisibility() == 0 ? 5.0f : 4.0f);
                 for (int i = 1; i <= 4; i++) {

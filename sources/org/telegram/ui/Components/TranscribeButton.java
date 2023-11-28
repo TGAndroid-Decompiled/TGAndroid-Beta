@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -21,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -31,6 +32,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -47,19 +49,26 @@ public class TranscribeButton {
     private static HashMap<Long, MessageObject> transcribeOperationsById;
     private static ArrayList<Integer> videoTranscriptionsOpen;
     private float a;
+    private final AnimatedFloat animatedDrawLock;
     private float b;
     private float backgroundBack;
     private int backgroundColor;
     private Paint backgroundPaint;
     private Path boundsPath;
+    private Paint clipLockPaint;
     private int color;
     private int diameter;
+    private boolean drawLock;
     private int iconColor;
     private RLottieDrawable inIconDrawable;
     private int inIconDrawableAlpha;
     private boolean isOpen;
     private boolean loading;
-    private AnimatedFloat loadingFloat;
+    private final AnimatedFloat loadingFloat;
+    private Path lockHandlePath;
+    private float lockHandlePathDensity;
+    private Paint lockPaint;
+    private Paint lockStrokePaint;
     private RLottieDrawable outIconDrawable;
     private int outIconDrawableAlpha;
     private ChatMessageCell parent;
@@ -123,7 +132,9 @@ public class TranscribeButton {
             z = true;
         }
         this.premium = z;
-        this.loadingFloat = new AnimatedFloat(chatMessageCell, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.loadingFloat = new AnimatedFloat(chatMessageCell, 250L, cubicBezierInterpolator);
+        this.animatedDrawLock = new AnimatedFloat(chatMessageCell, 250L, cubicBezierInterpolator);
     }
 
     public void lambda$new$0() {
@@ -142,11 +153,23 @@ public class TranscribeButton {
         this.outIconDrawable.setCurrentFrame(0);
     }
 
+    public void setLock(boolean z, boolean z2) {
+        ChatMessageCell chatMessageCell;
+        if (this.drawLock != z && (chatMessageCell = this.parent) != null) {
+            chatMessageCell.invalidate();
+        }
+        this.drawLock = z;
+        if (z2) {
+            return;
+        }
+        this.animatedDrawLock.set(z, true);
+    }
+
     public void setLoading(boolean z, boolean z2) {
         this.loading = z;
         this.seekBar.setLoading(z);
         if (!z2) {
-            this.loadingFloat.set(this.loading ? 1.0f : 0.0f, true);
+            this.loadingFloat.set(this.loading, true);
         } else if (this.loadingFloat.get() <= 0.0f) {
             this.start = SystemClock.elapsedRealtime();
         }
@@ -214,12 +237,16 @@ public class TranscribeButton {
 
     public void onTap() {
         boolean z;
+        ChatMessageCell chatMessageCell = this.parent;
+        if (chatMessageCell == null) {
+            return;
+        }
         this.clickedToOpen = false;
         boolean z2 = this.shouldBeOpen;
         boolean z3 = !z2;
         if (!z2) {
             z = !this.loading;
-            if (this.premium && this.parent.getMessageObject().isSent()) {
+            if ((this.premium || canTranscribeTrial(chatMessageCell.getMessageObject())) && this.parent.getMessageObject().isSent()) {
                 setLoading(true, true);
             }
         } else {
@@ -237,16 +264,25 @@ public class TranscribeButton {
         this.pressed = false;
         if (z) {
             if (!this.premium && z3) {
-                if (this.parent.getDelegate() != null) {
-                    this.parent.getDelegate().needShowPremiumBulletin(0);
+                if (canTranscribeTrial(this.parent.getMessageObject()) || (this.parent.getMessageObject() != null && this.parent.getMessageObject().messageOwner != null && !TextUtils.isEmpty(this.parent.getMessageObject().messageOwner.voiceTranscription))) {
+                    transcribePressed(this.parent.getMessageObject(), z3, this.parent.getDelegate());
+                    return;
+                } else if (this.parent.getDelegate() != null) {
+                    if (MessagesController.getInstance(this.parent.currentAccount).transcribeAudioTrialWeeklyNumber > 0) {
+                        this.parent.getDelegate().needShowPremiumBulletin(3);
+                        return;
+                    } else {
+                        this.parent.getDelegate().needShowPremiumBulletin(0);
+                        return;
+                    }
+                } else {
                     return;
                 }
-                return;
             }
             if (z3) {
                 this.clickedToOpen = true;
             }
-            transcribePressed(this.parent.getMessageObject(), z3);
+            transcribePressed(this.parent.getMessageObject(), z3, this.parent.getDelegate());
         }
     }
 
@@ -426,6 +462,7 @@ public class TranscribeButton {
         }
         canvas.save();
         canvas.translate(this.bounds.centerX() + AndroidUtilities.dp(-13.0f), this.bounds.centerY() + AndroidUtilities.dp(-13.0f));
+        canvas.saveLayerAlpha(0.0f, 0.0f, AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), 255, 31);
         if (this.isOpen) {
             this.inIconDrawable.setAlpha((int) (this.inIconDrawableAlpha * f));
             this.inIconDrawable.draw(canvas);
@@ -433,6 +470,54 @@ public class TranscribeButton {
             this.outIconDrawable.setAlpha((int) (this.outIconDrawableAlpha * f));
             this.outIconDrawable.draw(canvas);
         }
+        drawLock(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    private void drawLock(Canvas canvas) {
+        float f = this.animatedDrawLock.set((!this.drawLock || this.isOpen || this.loading) ? false : true);
+        if (f <= 0.0f) {
+            return;
+        }
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
+        if (this.clipLockPaint == null) {
+            Paint paint = new Paint(1);
+            this.clipLockPaint = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, -AndroidUtilities.dp(0.4f), AndroidUtilities.dp(6.666f), AndroidUtilities.dp(8.733f));
+        canvas.scale(f, f, rectF.centerX(), rectF.centerY());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.clipLockPaint);
+        if (this.lockPaint == null) {
+            this.lockPaint = new Paint(1);
+        }
+        this.lockPaint.setColor(this.iconColor);
+        int i = (int) (f * 255.0f);
+        this.lockPaint.setAlpha(i);
+        rectF.set(0.0f, AndroidUtilities.dp(3.33f), AndroidUtilities.dp(6.666f), AndroidUtilities.dp(8.33f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), this.lockPaint);
+        if (this.lockHandlePath == null || Math.abs(this.lockHandlePathDensity - AndroidUtilities.density) > 0.1f) {
+            this.lockHandlePathDensity = AndroidUtilities.density;
+            Path path = new Path();
+            this.lockHandlePath = path;
+            path.moveTo(AndroidUtilities.dp(1.66f), AndroidUtilities.dp(3.33f));
+            this.lockHandlePath.lineTo(AndroidUtilities.dp(1.66f), AndroidUtilities.dp(2.0f));
+            rectF.set(AndroidUtilities.dp(1.66f), AndroidUtilities.dp(0.33f), AndroidUtilities.dp(4.99f), AndroidUtilities.dp(3.6599998f));
+            this.lockHandlePath.arcTo(rectF, -180.0f, 180.0f, false);
+            this.lockHandlePath.lineTo(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.33f));
+        }
+        if (this.lockStrokePaint == null) {
+            Paint paint2 = new Paint(1);
+            this.lockStrokePaint = paint2;
+            paint2.setStyle(Paint.Style.STROKE);
+        }
+        this.lockStrokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.lockStrokePaint.setColor(this.iconColor);
+        this.lockStrokePaint.setAlpha(i);
+        canvas.drawPath(this.lockHandlePath, this.lockStrokePaint);
         canvas.restore();
     }
 
@@ -615,7 +700,7 @@ public class TranscribeButton {
         return (hashMap2 != null && (hashMap2.containsValue(messageObject) || transcribeOperationsByDialogPosition.containsKey(Integer.valueOf(reqInfoHash(messageObject))))) || !((hashMap = transcribeOperationsById) == null || messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !hashMap.containsKey(Long.valueOf(tLRPC$Message.voiceTranscriptionId)));
     }
 
-    private static void transcribePressed(final MessageObject messageObject, boolean z) {
+    private static void transcribePressed(final MessageObject messageObject, boolean z, final ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate) {
         if (messageObject == null || messageObject.messageOwner == null || !messageObject.isSent()) {
             return;
         }
@@ -651,9 +736,9 @@ public class TranscribeButton {
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_transcribeAudio, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    TranscribeButton.lambda$transcribePressed$4(MessageObject.this, elapsedRealtime, i, peerDialogId, i2, tLObject, tLRPC$TL_error);
+                    TranscribeButton.lambda$transcribePressed$6(i, chatMessageCellDelegate, messageObject, elapsedRealtime, peerDialogId, i2, tLObject, tLRPC$TL_error);
                 }
-            });
+            }, !UserConfig.getInstance(i).isPremium() ? 1024 : 0);
             return;
         }
         HashMap<Integer, MessageObject> hashMap = transcribeOperationsByDialogPosition;
@@ -665,7 +750,7 @@ public class TranscribeButton {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranscribeButton.lambda$transcribePressed$5(i, messageObject);
+                TranscribeButton.lambda$transcribePressed$7(i, messageObject);
             }
         });
     }
@@ -677,20 +762,30 @@ public class TranscribeButton {
         notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, messageObject, null, null, bool, bool);
     }
 
-    public static void lambda$transcribePressed$4(final MessageObject messageObject, long j, int i, long j2, int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        final long j3;
+    public static void lambda$transcribePressed$6(final int i, final ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, final MessageObject messageObject, long j, long j2, int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        long j3;
         boolean z;
-        boolean z2 = tLObject instanceof TLRPC$TL_messages_transcribedAudio;
-        final String str = BuildConfig.APP_CENTER_HASH;
-        if (z2) {
-            TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio = (TLRPC$TL_messages_transcribedAudio) tLObject;
-            String str2 = tLRPC$TL_messages_transcribedAudio.text;
+        String str;
+        final String str2 = "";
+        if (tLObject instanceof TLRPC$TL_messages_transcribedAudio) {
+            final TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio = (TLRPC$TL_messages_transcribedAudio) tLObject;
+            String str3 = tLRPC$TL_messages_transcribedAudio.text;
             long j4 = tLRPC$TL_messages_transcribedAudio.transcription_id;
             z = !tLRPC$TL_messages_transcribedAudio.pending;
-            if (!TextUtils.isEmpty(str2)) {
-                str = str2;
+            if (!TextUtils.isEmpty(str3)) {
+                str2 = str3;
             } else if (!z) {
-                str = null;
+                str2 = null;
+            }
+            if ((tLRPC$TL_messages_transcribedAudio.flags & 2) != 0) {
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(tLRPC$TL_messages_transcribedAudio.trial_remains_num);
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(tLRPC$TL_messages_transcribedAudio.trial_remains_until_date);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        TranscribeButton.lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate.this, tLRPC$TL_messages_transcribedAudio);
+                    }
+                });
             }
             if (transcribeOperationsById == null) {
                 transcribeOperationsById = new HashMap<>();
@@ -698,6 +793,16 @@ public class TranscribeButton {
             transcribeOperationsById.put(Long.valueOf(j4), messageObject);
             messageObject.messageOwner.voiceTranscriptionId = j4;
             j3 = j4;
+        } else if (tLRPC$TL_error != null && (str = tLRPC$TL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
+            MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(0);
+            MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(ConnectionsManager.getInstance(i).getCurrentTime() + Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue());
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    TranscribeButton.lambda$transcribePressed$4(ChatMessageCell.ChatMessageCellDelegate.this, i);
+                }
+            });
+            return;
         } else {
             j3 = 0;
             z = true;
@@ -708,20 +813,34 @@ public class TranscribeButton {
         tLRPC$Message.voiceTranscriptionOpen = true;
         tLRPC$Message.voiceTranscriptionFinal = z;
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("Transcription request sent, received final=" + z + " id=" + j3 + " text=" + str);
+            FileLog.d("Transcription request sent, received final=" + z + " id=" + j3 + " text=" + str2);
         }
-        MessagesStorage.getInstance(i).updateMessageVoiceTranscription(j2, i2, str, messageObject.messageOwner);
+        final long j5 = j3;
+        MessagesStorage.getInstance(i).updateMessageVoiceTranscription(j2, i2, str2, messageObject.messageOwner);
         if (z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TranscribeButton.finishTranscription(MessageObject.this, j3, str);
+                    TranscribeButton.finishTranscription(MessageObject.this, j5, str2);
                 }
             }, Math.max(0L, 350 - elapsedRealtime));
         }
     }
 
-    public static void lambda$transcribePressed$5(int i, MessageObject messageObject) {
+    public static void lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio) {
+        if (chatMessageCellDelegate != null) {
+            chatMessageCellDelegate.needShowPremiumBulletin(tLRPC$TL_messages_transcribedAudio.trial_remains_num > 0 ? 1 : 2);
+        }
+    }
+
+    public static void lambda$transcribePressed$4(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, int i) {
+        if (chatMessageCellDelegate != null) {
+            chatMessageCellDelegate.needShowPremiumBulletin(3);
+        }
+        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
+    }
+
+    public static void lambda$transcribePressed$7(int i, MessageObject messageObject) {
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject, null, null, Boolean.FALSE, null);
     }
 
@@ -745,7 +864,7 @@ public class TranscribeButton {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.lambda$finishTranscription$6(MessageObject.this, j, str);
+                        TranscribeButton.lambda$finishTranscription$8(MessageObject.this, j, str);
                     }
                 });
                 return true;
@@ -755,7 +874,7 @@ public class TranscribeButton {
         return false;
     }
 
-    public static void lambda$finishTranscription$6(MessageObject messageObject, long j, String str) {
+    public static void lambda$finishTranscription$8(MessageObject messageObject, long j, String str) {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
         int i = NotificationCenter.voiceTranscriptionUpdate;
         Boolean bool = Boolean.TRUE;
@@ -777,13 +896,47 @@ public class TranscribeButton {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TranscribeButton.lambda$showOffTranscribe$7(MessageObject.this);
+                    TranscribeButton.lambda$showOffTranscribe$9(MessageObject.this);
                 }
             });
         }
     }
 
-    public static void lambda$showOffTranscribe$7(MessageObject messageObject) {
+    public static void lambda$showOffTranscribe$9(MessageObject messageObject) {
         NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+    }
+
+    public static boolean canTranscribeTrial(MessageObject messageObject) {
+        if (messageObject == null || messageObject.messageOwner == null) {
+            return false;
+        }
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(messageObject.currentAccount);
+        MessagesController messagesController = MessagesController.getInstance(messageObject.currentAccount);
+        if (messagesController.transcribeAudioTrialWeeklyNumber <= 0 || messageObject.getDuration() > messagesController.transcribeAudioTrialDurationMax) {
+            return false;
+        }
+        return messagesController.transcribeAudioTrialCooldownUntil == 0 || connectionsManager.getCurrentTime() > messagesController.transcribeAudioTrialCooldownUntil || messagesController.transcribeAudioTrialCurrentNumber > 0;
+    }
+
+    public static int getTranscribeTrialCount(int i) {
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i);
+        MessagesController messagesController = MessagesController.getInstance(i);
+        if (messagesController.transcribeAudioTrialWeeklyNumber <= 0) {
+            return 0;
+        }
+        if (messagesController.transcribeAudioTrialCooldownUntil == 0 || connectionsManager.getCurrentTime() > messagesController.transcribeAudioTrialCooldownUntil) {
+            return messagesController.transcribeAudioTrialWeeklyNumber;
+        }
+        return messagesController.transcribeAudioTrialCurrentNumber;
+    }
+
+    public static boolean showTranscribeLock(MessageObject messageObject) {
+        TLRPC$Message tLRPC$Message;
+        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !TextUtils.isEmpty(tLRPC$Message.voiceTranscription)) {
+            return false;
+        }
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(messageObject.currentAccount);
+        MessagesController messagesController = MessagesController.getInstance(messageObject.currentAccount);
+        return !UserConfig.getInstance(messageObject.currentAccount).isPremium() && messagesController.transcribeAudioTrialCooldownUntil != 0 && connectionsManager.getCurrentTime() <= messagesController.transcribeAudioTrialCooldownUntil && messagesController.transcribeAudioTrialCurrentNumber <= 0;
     }
 }

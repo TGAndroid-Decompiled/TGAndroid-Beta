@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.SegmentTree;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.data.StackBarChartData;
@@ -25,15 +26,15 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
         return 0.1f;
     }
 
-    public StackBarChartView(Context context) {
-        super(context);
+    public StackBarChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context, resourcesProvider);
         this.superDraw = true;
         this.useAlphaSignature = true;
     }
 
     @Override
     public StackBarViewData createLineViewData(ChartData.Line line) {
-        return new StackBarViewData(line);
+        return new StackBarViewData(line, this.resourcesProvider);
     }
 
     @Override

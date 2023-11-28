@@ -63,7 +63,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -354,7 +353,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.circlePaint = paint3;
             paint3.setColor(2130706432);
             int i = R.raw.fire_on;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             this.drawable = rLottieDrawable;
             rLottieDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             this.drawable.setMasterParent(this);
@@ -1348,7 +1347,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.secretHint.setIconMargin(2);
         this.secretHint.setIconTranslate(0.0f, 0.0f);
         int i = R.raw.fire_on;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
         rLottieDrawable.start();
         this.secretHint.setIcon(rLottieDrawable);
         this.secretHint.show();
@@ -1536,7 +1535,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 this.videoHeight = closestPhotoSizeWithSize.h;
             }
         }
-        setCurrentCaption(messageObject, BuildConfig.APP_CENTER_HASH, false, false);
+        setCurrentCaption(messageObject, "", false, false);
         setCurrentCaption(messageObject, messageObject.caption, false, true);
         toggleActionBar(true, false);
         showPlayButton(false, false);

@@ -43,7 +43,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -729,7 +728,7 @@ public class EmbedBottomSheet extends BottomSheet {
                             try {
                                 Uri parse = Uri.parse(EmbedBottomSheet.this.openUrl);
                                 if (EmbedBottomSheet.this.seekTimeOverride > 0) {
-                                    str5 = BuildConfig.APP_CENTER_HASH + EmbedBottomSheet.this.seekTimeOverride;
+                                    str5 = "" + EmbedBottomSheet.this.seekTimeOverride;
                                 }
                                 if (str5 == null && (str5 = parse.getQueryParameter("t")) == null) {
                                     str5 = parse.getQueryParameter("time_continue");

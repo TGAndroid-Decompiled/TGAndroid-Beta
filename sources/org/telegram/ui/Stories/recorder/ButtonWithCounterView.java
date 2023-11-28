@@ -17,7 +17,6 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -37,6 +36,7 @@ public class ButtonWithCounterView extends FrameLayout {
     private boolean enabled;
     private ValueAnimator enabledAnimator;
     private float enabledT;
+    private final boolean filled;
     private int globalAlpha;
     private int lastCount;
     private boolean loading;
@@ -47,6 +47,10 @@ public class ButtonWithCounterView extends FrameLayout {
     private Theme.ResourcesProvider resourcesProvider;
     private final View rippleView;
     private boolean showZero;
+    public final AnimatedTextView.AnimatedTextDrawable subText;
+    private float subTextT;
+    private boolean subTextVisible;
+    private ValueAnimator subTextVisibleAnimator;
     public final AnimatedTextView.AnimatedTextDrawable text;
     private Runnable tick;
     private int timerSeconds;
@@ -67,11 +71,13 @@ public class ButtonWithCounterView extends FrameLayout {
         this.countAlphaAnimated = new AnimatedFloat(350L, cubicBezierInterpolator);
         this.countFilled = true;
         this.timerSeconds = 0;
+        this.subTextT = 0.0f;
         this.loadingT = 0.0f;
         this.countScale = 1.0f;
         this.enabledT = 1.0f;
         this.enabled = true;
         this.globalAlpha = 255;
+        this.filled = z;
         this.resourcesProvider = resourcesProvider;
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);
         View view = new View(context);
@@ -95,16 +101,30 @@ public class ButtonWithCounterView extends FrameLayout {
         }
         animatedTextDrawable.setTextColor(Theme.getColor(z ? i : Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable.setGravity(1);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
-        this.countText = animatedTextDrawable2;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
+        this.subText = animatedTextDrawable2;
         animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable2.setCallback(this);
         animatedTextDrawable2.setTextSize(AndroidUtilities.dp(12.0f));
-        animatedTextDrawable2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        animatedTextDrawable2.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
-        animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH);
+        animatedTextDrawable2.setTextColor(Theme.getColor(z ? i : Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable2.setGravity(1);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
+        this.countText = animatedTextDrawable3;
+        animatedTextDrawable3.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
+        animatedTextDrawable3.setCallback(this);
+        animatedTextDrawable3.setTextSize(AndroidUtilities.dp(12.0f));
+        animatedTextDrawable3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable3.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+        animatedTextDrawable3.setText("");
+        animatedTextDrawable3.setGravity(1);
         setWillNotDraw(false);
+    }
+
+    public void updateColors() {
+        this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
+        this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
+        this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
+        this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
     }
 
     public void setCounterColor(int i) {
@@ -168,6 +188,72 @@ public class ButtonWithCounterView extends FrameLayout {
         invalidate();
     }
 
+    private void cleanSubTextVisibleAnimator() {
+        ValueAnimator valueAnimator = this.subTextVisibleAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.subTextVisibleAnimator = null;
+        }
+    }
+
+    public void setSubText(CharSequence charSequence, boolean z) {
+        boolean z2 = charSequence != null;
+        if (z) {
+            this.subText.cancelAnimation();
+        }
+        setContentDescription(charSequence);
+        invalidate();
+        if (this.subTextVisible && !z2) {
+            cleanSubTextVisibleAnimator();
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.subTextT, 0.0f);
+            this.subTextVisibleAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    ButtonWithCounterView.this.lambda$setSubText$1(valueAnimator);
+                }
+            });
+            this.subTextVisibleAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    ButtonWithCounterView.this.subTextVisible = false;
+                    ButtonWithCounterView.this.subText.setText(null, false);
+                }
+            });
+            this.subTextVisibleAnimator.setDuration(200L);
+            this.subTextVisibleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.subTextVisibleAnimator.start();
+        } else {
+            this.subText.setText(charSequence, z);
+        }
+        if (this.subTextVisible || !z2) {
+            return;
+        }
+        this.subTextVisible = true;
+        cleanSubTextVisibleAnimator();
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.subTextT, 1.0f);
+        this.subTextVisibleAnimator = ofFloat2;
+        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                ButtonWithCounterView.this.lambda$setSubText$2(valueAnimator);
+            }
+        });
+        this.subTextVisibleAnimator.setDuration(200L);
+        this.subTextVisibleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.subTextVisibleAnimator.start();
+    }
+
+    public void lambda$setSubText$1(ValueAnimator valueAnimator) {
+        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$setSubText$2(ValueAnimator valueAnimator) {
+        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
     public void setLoading(final boolean z) {
         if (this.loading != z) {
             ValueAnimator valueAnimator = this.loadingAnimator;
@@ -184,7 +270,7 @@ public class ButtonWithCounterView extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setLoading$1(valueAnimator2);
+                    ButtonWithCounterView.this.lambda$setLoading$3(valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -200,7 +286,7 @@ public class ButtonWithCounterView extends FrameLayout {
         }
     }
 
-    public void lambda$setLoading$1(ValueAnimator valueAnimator) {
+    public void lambda$setLoading$3(ValueAnimator valueAnimator) {
         this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -220,7 +306,7 @@ public class ButtonWithCounterView extends FrameLayout {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ButtonWithCounterView.this.lambda$animateCount$2(valueAnimator2);
+                ButtonWithCounterView.this.lambda$animateCount$4(valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -235,7 +321,7 @@ public class ButtonWithCounterView extends FrameLayout {
         this.countAnimator.start();
     }
 
-    public void lambda$animateCount$2(ValueAnimator valueAnimator) {
+    public void lambda$animateCount$4(ValueAnimator valueAnimator) {
         this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
         invalidate();
     }
@@ -262,7 +348,7 @@ public class ButtonWithCounterView extends FrameLayout {
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z);
+        animatedTextDrawable.setText("" + i, z);
         invalidate();
     }
 
@@ -283,27 +369,27 @@ public class ButtonWithCounterView extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setEnabled$3(valueAnimator2);
+                    ButtonWithCounterView.this.lambda$setEnabled$5(valueAnimator2);
                 }
             });
             this.enabledAnimator.start();
         }
     }
 
-    public void lambda$setEnabled$3(ValueAnimator valueAnimator) {
+    public void lambda$setEnabled$5(ValueAnimator valueAnimator) {
         this.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        return this.text == drawable || this.countText == drawable || super.verifyDrawable(drawable);
+        return this.text == drawable || this.subText == drawable || this.countText == drawable || super.verifyDrawable(drawable);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
+        boolean z;
         this.rippleView.draw(canvas);
-        boolean z = false;
         if (this.loadingT > 0.0f) {
             if (this.loadingDrawable == null) {
                 this.loadingDrawable = new CircularProgressDrawable(this.text.getTextColor());
@@ -321,6 +407,8 @@ public class ButtonWithCounterView extends FrameLayout {
                 canvas.translate(0.0f, (int) (this.loadingT * AndroidUtilities.dp(-24.0f)));
                 canvas.scale(1.0f, 1.0f - (this.loadingT * 0.4f));
                 z = true;
+            } else {
+                z = false;
             }
             float currentWidth = this.text.getCurrentWidth();
             float f2 = this.countAlphaAnimated.set(this.countAlpha);
@@ -328,9 +416,22 @@ public class ButtonWithCounterView extends FrameLayout {
             float dp3 = currentWidth + dp2 + ((AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth()) * f2);
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((int) (((getMeasuredWidth() - dp3) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp3) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+            rect.offset(0, (int) ((-AndroidUtilities.dp(7.0f)) * this.subTextT));
             this.text.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             this.text.setBounds(rect);
             this.text.draw(canvas);
+            if (this.subTextVisible) {
+                dp3 = this.subText.getCurrentWidth();
+                rect.set((int) (((getMeasuredWidth() - dp3) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp3) + getWidth()) / 2.0f) + dp3), (int) (((getMeasuredHeight() + this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+                rect.offset(0, AndroidUtilities.dp(11.0f));
+                canvas.save();
+                float lerp = AndroidUtilities.lerp(0.1f, 1.0f, this.subTextT);
+                canvas.scale(lerp, lerp, rect.centerX(), rect.bottom);
+                this.subText.setAlpha((int) ((1.0f - this.loadingT) * 200.0f * this.subTextT * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
+                this.subText.setBounds(rect);
+                this.subText.draw(canvas);
+                canvas.restore();
+            }
             rect.set((int) (((getMeasuredWidth() - dp3) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp3) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);

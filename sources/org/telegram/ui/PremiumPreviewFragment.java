@@ -50,7 +50,6 @@ import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.GenericProvider;
@@ -198,6 +197,10 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return "stories__priority_order";
             case 21:
                 return "stories__caption";
+            case 22:
+                return "wallpapers";
+            case 23:
+                return "peer_colors";
             default:
                 return null;
         }
@@ -267,121 +270,135 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
                 c = 65535;
                 break;
+            case -1761847571:
+                if (str.equals("peer_colors")) {
+                    c = 5;
+                    break;
+                }
+                c = 65535;
+                break;
             case -1755514268:
                 if (str.equals("voice_to_text")) {
-                    c = 5;
+                    c = 6;
+                    break;
+                }
+                c = 65535;
+                break;
+            case -1529105743:
+                if (str.equals("wallpapers")) {
+                    c = 7;
                     break;
                 }
                 c = 65535;
                 break;
             case -1425144150:
                 if (str.equals("animated_emoji")) {
-                    c = 6;
+                    c = '\b';
                     break;
                 }
                 c = 65535;
                 break;
             case -1225497630:
                 if (str.equals("translations")) {
-                    c = 7;
+                    c = '\t';
                     break;
                 }
                 c = 65535;
                 break;
             case -1040323278:
                 if (str.equals("no_ads")) {
-                    c = '\b';
+                    c = '\n';
                     break;
                 }
                 c = 65535;
                 break;
             case -1023650261:
                 if (str.equals("more_upload")) {
-                    c = '\t';
+                    c = 11;
                     break;
                 }
                 c = 65535;
                 break;
             case -969043445:
                 if (str.equals("emoji_status")) {
-                    c = '\n';
+                    c = '\f';
                     break;
                 }
                 c = 65535;
                 break;
             case -730864243:
                 if (str.equals("profile_badge")) {
-                    c = 11;
+                    c = '\r';
                     break;
                 }
                 c = 65535;
                 break;
             case -448825858:
                 if (str.equals("faster_download")) {
-                    c = '\f';
+                    c = 14;
                     break;
                 }
                 c = 65535;
                 break;
             case -165039170:
                 if (str.equals("premium_stickers")) {
-                    c = '\r';
+                    c = 15;
                     break;
                 }
                 c = 65535;
                 break;
             case -96210874:
                 if (str.equals("double_limits")) {
-                    c = 14;
+                    c = 16;
                     break;
                 }
                 c = 65535;
                 break;
             case 234735554:
                 if (str.equals("stories__expiration_durations")) {
-                    c = 15;
+                    c = 17;
                     break;
                 }
                 c = 65535;
                 break;
             case 388416338:
                 if (str.equals("stories__stealth_mode")) {
-                    c = 16;
+                    c = 18;
                     break;
                 }
                 c = 65535;
                 break;
             case 705083174:
                 if (str.equals("stories__priority_order")) {
-                    c = 17;
+                    c = 19;
                     break;
                 }
                 c = 65535;
                 break;
             case 1080006662:
                 if (str.equals("stories__links_and_formatting")) {
-                    c = 18;
+                    c = 20;
                     break;
                 }
                 c = 65535;
                 break;
             case 1219849581:
                 if (str.equals("advanced_chat_management")) {
-                    c = 19;
+                    c = 21;
                     break;
                 }
                 c = 65535;
                 break;
             case 1438966047:
                 if (str.equals("stories__permanent_views_history")) {
-                    c = 20;
+                    c = 22;
                     break;
                 }
                 c = 65535;
                 break;
             case 1832801148:
                 if (str.equals("app_icons")) {
-                    c = 21;
+                    c = 23;
                     break;
                 }
                 c = 65535;
@@ -402,38 +419,42 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             case 4:
                 return 14;
             case 5:
-                return 8;
+                return 23;
             case 6:
-                return 11;
+                return 8;
             case 7:
-                return 13;
+                return 22;
             case '\b':
-                return 3;
+                return 11;
             case '\t':
-                return 1;
+                return 13;
             case '\n':
-                return 12;
+                return 3;
             case 11:
-                return 6;
+                return 1;
             case '\f':
-                return 2;
+                return 12;
             case '\r':
-                return 5;
+                return 6;
             case 14:
-                return 0;
+                return 2;
             case 15:
-                return 17;
+                return 5;
             case 16:
-                return 15;
+                return 0;
             case 17:
-                return 20;
+                return 17;
             case 18:
-                return 19;
+                return 15;
             case 19:
-                return 9;
+                return 20;
             case 20:
-                return 16;
+                return 19;
             case 21:
+                return 9;
+            case 22:
+                return 16;
+            case 23:
                 return 10;
             default:
                 return -1;
@@ -775,23 +796,25 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         final MessagesController messagesController = MessagesController.getInstance(i);
         int i2 = 0;
         arrayList.add(new PremiumFeatureData(0, R.drawable.msg_premium_limits, LocaleController.getString("PremiumPreviewLimits", R.string.PremiumPreviewLimits), LocaleController.formatString("PremiumPreviewLimitsDescription", R.string.PremiumPreviewLimitsDescription, Integer.valueOf(messagesController.channelsLimitPremium), Integer.valueOf(messagesController.dialogFiltersLimitPremium), Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium), Integer.valueOf(messagesController.publicLinksLimitPremium), 4)));
-        arrayList.add(new PremiumFeatureData(14, R.drawable.msg_filled_stories, applyNewSpan(LocaleController.getString("PremiumPreviewStories", R.string.PremiumPreviewStories)), LocaleController.formatString("PremiumPreviewStoriesDescription", R.string.PremiumPreviewStoriesDescription, new Object[0])));
+        arrayList.add(new PremiumFeatureData(14, R.drawable.msg_filled_stories, LocaleController.getString("PremiumPreviewStories", R.string.PremiumPreviewStories), LocaleController.formatString("PremiumPreviewStoriesDescription", R.string.PremiumPreviewStoriesDescription, new Object[0])));
         arrayList.add(new PremiumFeatureData(1, R.drawable.msg_premium_uploads, LocaleController.getString("PremiumPreviewUploads", R.string.PremiumPreviewUploads), LocaleController.getString("PremiumPreviewUploadsDescription", R.string.PremiumPreviewUploadsDescription)));
         arrayList.add(new PremiumFeatureData(2, R.drawable.msg_premium_speed, LocaleController.getString("PremiumPreviewDownloadSpeed", R.string.PremiumPreviewDownloadSpeed), LocaleController.getString("PremiumPreviewDownloadSpeedDescription", R.string.PremiumPreviewDownloadSpeedDescription)));
         arrayList.add(new PremiumFeatureData(8, R.drawable.msg_premium_voice, LocaleController.getString("PremiumPreviewVoiceToText", R.string.PremiumPreviewVoiceToText), LocaleController.getString("PremiumPreviewVoiceToTextDescription", R.string.PremiumPreviewVoiceToTextDescription)));
         arrayList.add(new PremiumFeatureData(3, R.drawable.msg_premium_ads, LocaleController.getString("PremiumPreviewNoAds", R.string.PremiumPreviewNoAds), LocaleController.getString("PremiumPreviewNoAdsDescription", R.string.PremiumPreviewNoAdsDescription)));
-        arrayList.add(new PremiumFeatureData(4, R.drawable.msg_premium_reactions, LocaleController.getString("PremiumPreviewReactions2", R.string.PremiumPreviewReactions2), LocaleController.getString("PremiumPreviewReactions2Description", R.string.PremiumPreviewReactions2Description)));
-        arrayList.add(new PremiumFeatureData(5, R.drawable.msg_premium_stickers, LocaleController.getString("PremiumPreviewStickers", R.string.PremiumPreviewStickers), LocaleController.getString("PremiumPreviewStickersDescription", R.string.PremiumPreviewStickersDescription)));
-        arrayList.add(new PremiumFeatureData(11, R.drawable.msg_premium_emoji, LocaleController.getString("PremiumPreviewEmoji", R.string.PremiumPreviewEmoji), LocaleController.getString("PremiumPreviewEmojiDescription", R.string.PremiumPreviewEmojiDescription)));
-        arrayList.add(new PremiumFeatureData(9, R.drawable.msg_premium_tools, LocaleController.getString("PremiumPreviewAdvancedChatManagement", R.string.PremiumPreviewAdvancedChatManagement), LocaleController.getString("PremiumPreviewAdvancedChatManagementDescription", R.string.PremiumPreviewAdvancedChatManagementDescription)));
-        arrayList.add(new PremiumFeatureData(6, R.drawable.msg_premium_badge, LocaleController.getString("PremiumPreviewProfileBadge", R.string.PremiumPreviewProfileBadge), LocaleController.getString("PremiumPreviewProfileBadgeDescription", R.string.PremiumPreviewProfileBadgeDescription)));
-        arrayList.add(new PremiumFeatureData(7, R.drawable.msg_premium_avatar, LocaleController.getString("PremiumPreviewAnimatedProfiles", R.string.PremiumPreviewAnimatedProfiles), LocaleController.getString("PremiumPreviewAnimatedProfilesDescription", R.string.PremiumPreviewAnimatedProfilesDescription)));
-        arrayList.add(new PremiumFeatureData(10, R.drawable.msg_premium_icons, LocaleController.getString("PremiumPreviewAppIcon", R.string.PremiumPreviewAppIcon), LocaleController.getString("PremiumPreviewAppIconDescription", R.string.PremiumPreviewAppIconDescription)));
-        arrayList.add(new PremiumFeatureData(12, R.drawable.msg_premium_status, LocaleController.getString("PremiumPreviewEmojiStatus", R.string.PremiumPreviewEmojiStatus), LocaleController.getString("PremiumPreviewEmojiStatusDescription", R.string.PremiumPreviewEmojiStatusDescription)));
-        arrayList.add(new PremiumFeatureData(13, R.drawable.msg_premium_translate, LocaleController.getString("PremiumPreviewTranslations", R.string.PremiumPreviewTranslations), LocaleController.getString("PremiumPreviewTranslationsDescription", R.string.PremiumPreviewTranslationsDescription)));
+        arrayList.add(new PremiumFeatureData(4, R.drawable.msg_premium_reactions, LocaleController.getString(R.string.PremiumPreviewReactions2), LocaleController.getString(R.string.PremiumPreviewReactions2Description)));
+        arrayList.add(new PremiumFeatureData(5, R.drawable.msg_premium_stickers, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.PremiumPreviewStickersDescription)));
+        arrayList.add(new PremiumFeatureData(11, R.drawable.msg_premium_emoji, LocaleController.getString(R.string.PremiumPreviewEmoji), LocaleController.getString(R.string.PremiumPreviewEmojiDescription)));
+        arrayList.add(new PremiumFeatureData(9, R.drawable.msg_premium_tools, LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement), LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagementDescription)));
+        arrayList.add(new PremiumFeatureData(6, R.drawable.msg_premium_badge, LocaleController.getString(R.string.PremiumPreviewProfileBadge), LocaleController.getString(R.string.PremiumPreviewProfileBadgeDescription)));
+        arrayList.add(new PremiumFeatureData(7, R.drawable.msg_premium_avatar, LocaleController.getString(R.string.PremiumPreviewAnimatedProfiles), LocaleController.getString(R.string.PremiumPreviewAnimatedProfilesDescription)));
+        arrayList.add(new PremiumFeatureData(10, R.drawable.msg_premium_icons, LocaleController.getString(R.string.PremiumPreviewAppIcon), LocaleController.getString(R.string.PremiumPreviewAppIconDescription)));
+        arrayList.add(new PremiumFeatureData(12, R.drawable.premium_status, LocaleController.getString(R.string.PremiumPreviewEmojiStatus), LocaleController.getString(R.string.PremiumPreviewEmojiStatusDescription)));
+        arrayList.add(new PremiumFeatureData(13, R.drawable.msg_premium_translate, LocaleController.getString(R.string.PremiumPreviewTranslations), LocaleController.getString(R.string.PremiumPreviewTranslationsDescription)));
+        arrayList.add(new PremiumFeatureData(22, R.drawable.premium_wallpaper, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewWallpaper)), LocaleController.getString(R.string.PremiumPreviewWallpaperDescription)));
+        arrayList.add(new PremiumFeatureData(23, R.drawable.premium_colors, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewProfileColor)), LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
         if (messagesController.premiumFeaturesTypesToPosition.size() > 0) {
             while (i2 < arrayList.size()) {
-                if (messagesController.premiumFeaturesTypesToPosition.get(arrayList.get(i2).type, -1) == -1) {
+                if (messagesController.premiumFeaturesTypesToPosition.get(arrayList.get(i2).type, -1) == -1 && !BuildVars.DEBUG_PRIVATE_VERSION) {
                     arrayList.remove(i2);
                     i2--;
                 }
@@ -1869,21 +1892,21 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency(), 6);
         }
 
         public String getFormattedPricePerYear() {
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
         }
 
         public String getFormattedPricePerMonth() {
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public long getPrice() {
@@ -1906,11 +1929,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return this.subscriptionOption.currency;
             }
             if (this.googlePlayProductDetails == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             checkOfferDetails();
             ProductDetails.SubscriptionOfferDetails subscriptionOfferDetails = this.offerDetails;
-            return subscriptionOfferDetails == null ? BuildConfig.APP_CENTER_HASH : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList().get(0).getPriceCurrencyCode();
+            return subscriptionOfferDetails == null ? "" : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList().get(0).getPriceCurrencyCode();
         }
 
         private void checkOfferDetails() {

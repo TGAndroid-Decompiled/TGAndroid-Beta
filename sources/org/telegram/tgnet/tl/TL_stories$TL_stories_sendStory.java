@@ -11,6 +11,9 @@ import org.telegram.tgnet.TLRPC$Updates;
 public class TL_stories$TL_stories_sendStory extends TLObject {
     public String caption;
     public int flags;
+    public TLRPC$InputPeer fwd_from_id;
+    public int fwd_from_story;
+    public boolean fwd_modified;
     public TLRPC$InputMedia media;
     public boolean noforwards;
     public TLRPC$InputPeer peer;
@@ -28,20 +31,22 @@ public class TL_stories$TL_stories_sendStory extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1128843708);
+        abstractSerializedData.writeInt32(-454661813);
         int i = this.pinned ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         int i2 = this.noforwards ? i | 16 : i & (-17);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.fwd_modified ? i2 | 128 : i2 & (-129);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         this.peer.serializeToStream(abstractSerializedData);
         this.media.serializeToStream(abstractSerializedData);
         if ((this.flags & 32) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.media_areas.size();
             abstractSerializedData.writeInt32(size);
-            for (int i3 = 0; i3 < size; i3++) {
-                this.media_areas.get(i3).serializeToStream(abstractSerializedData);
+            for (int i4 = 0; i4 < size; i4++) {
+                this.media_areas.get(i4).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1) != 0) {
@@ -51,19 +56,25 @@ public class TL_stories$TL_stories_sendStory extends TLObject {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.entities.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i4 = 0; i4 < size2; i4++) {
-                this.entities.get(i4).serializeToStream(abstractSerializedData);
+            for (int i5 = 0; i5 < size2; i5++) {
+                this.entities.get(i5).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.privacy_rules.size();
         abstractSerializedData.writeInt32(size3);
-        for (int i5 = 0; i5 < size3; i5++) {
-            this.privacy_rules.get(i5).serializeToStream(abstractSerializedData);
+        for (int i6 = 0; i6 < size3; i6++) {
+            this.privacy_rules.get(i6).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt64(this.random_id);
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeInt32(this.period);
+        }
+        if ((this.flags & 64) != 0) {
+            this.fwd_from_id.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 64) != 0) {
+            abstractSerializedData.writeInt32(this.fwd_from_story);
         }
     }
 }

@@ -91,17 +91,14 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         if ((this.flags2 & 16) != 0) {
             this.stories_max_id = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags2 & 64) != 0) {
-            this.color = abstractSerializedData.readInt32(z);
-        }
-        if ((this.flags2 & 32) != 0) {
-            this.background_emoji_id = abstractSerializedData.readInt64(z);
+        if ((this.flags2 & 128) != 0) {
+            this.color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(427944574);
+        abstractSerializedData.writeInt32(-1903702824);
         int i = this.creator ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.left ? i | 4 : i & (-5);
@@ -191,11 +188,8 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         if ((this.flags2 & 16) != 0) {
             abstractSerializedData.writeInt32(this.stories_max_id);
         }
-        if ((this.flags2 & 64) != 0) {
-            abstractSerializedData.writeInt32(this.color);
-        }
-        if ((this.flags2 & 32) != 0) {
-            abstractSerializedData.writeInt64(this.background_emoji_id);
+        if ((this.flags2 & 128) != 0) {
+            this.color.serializeToStream(abstractSerializedData);
         }
     }
 }

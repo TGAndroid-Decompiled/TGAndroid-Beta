@@ -17,7 +17,8 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
         this.translations_disabled = (8388608 & readInt32) != 0;
         this.stories_pinned_available = (67108864 & readInt32) != 0;
-        this.blocked_my_stories_from = (readInt32 & 134217728) != 0;
+        this.blocked_my_stories_from = (134217728 & readInt32) != 0;
+        this.wallpaper_overridden = (readInt32 & 268435456) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
@@ -106,7 +107,9 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.flags = i9;
         int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
         this.flags = i10;
-        abstractSerializedData.writeInt32(i10);
+        int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+        this.flags = i11;
+        abstractSerializedData.writeInt32(i11);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
@@ -151,8 +154,8 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             abstractSerializedData.writeInt32(481674261);
             int size = this.premium_gifts.size();
             abstractSerializedData.writeInt32(size);
-            for (int i11 = 0; i11 < size; i11++) {
-                this.premium_gifts.get(i11).serializeToStream(abstractSerializedData);
+            for (int i12 = 0; i12 < size; i12++) {
+                this.premium_gifts.get(i12).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {

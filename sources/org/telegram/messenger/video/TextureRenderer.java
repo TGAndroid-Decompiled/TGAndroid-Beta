@@ -8,12 +8,14 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLES30;
 import android.opengl.GLUtils;
 import android.os.Build;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import java.io.File;
@@ -35,6 +37,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BlurringShader;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextEffects;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
@@ -91,6 +94,9 @@ public class TextureRenderer {
     private FloatBuffer[] partsVerticesBuffer;
     Path path;
     private FloatBuffer renderTextureBuffer;
+    private Bitmap roundBitmap;
+    private Canvas roundCanvas;
+    private Path roundClipPath;
     private int simpleInputTexCoordHandle;
     private int simplePositionHandle;
     private int simpleShaderProgram;
@@ -111,6 +117,8 @@ public class TextureRenderer {
     private float[] mMVPMatrix = new float[16];
     private float[] mSTMatrix = new float[16];
     private float[] mSTMatrixIdentity = new float[16];
+    private final Rect roundSrc = new Rect();
+    private final RectF roundDst = new RectF();
     private boolean firstFrame = true;
 
     public TextureRenderer(org.telegram.messenger.MediaController.SavedFilterState r26, java.lang.String r27, java.lang.String r28, java.lang.String r29, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r30, org.telegram.messenger.MediaController.CropState r31, int r32, int r33, int r34, int r35, int r36, float r37, boolean r38, java.lang.Integer r39, java.lang.Integer r40, org.telegram.ui.Stories.recorder.StoryEntry.HDRInfo r41, java.util.ArrayList<org.telegram.ui.Stories.recorder.StoryEntry.Part> r42) {
@@ -138,7 +146,7 @@ public class TextureRenderer {
         GLES20.glDrawArrays(5, 0, 4);
     }
 
-    public void drawFrame(SurfaceTexture surfaceTexture) {
+    public void drawFrame(SurfaceTexture surfaceTexture, long j) {
         int i;
         float[] fArr;
         int i2;
@@ -298,70 +306,139 @@ public class TextureRenderer {
         if (this.stickerTexture != null) {
             int size = this.mediaEntities.size();
             for (int i17 = 0; i17 < size; i17++) {
-                drawEntity(this.mediaEntities.get(i17), this.mediaEntities.get(i17).color);
+                drawEntity(this.mediaEntities.get(i17), this.mediaEntities.get(i17).color, j);
             }
         }
         GLES20.glFinish();
     }
 
-    private void drawEntity(VideoEditedInfo.MediaEntity mediaEntity, int i) {
+    private void drawEntity(VideoEditedInfo.MediaEntity mediaEntity, int i, long j) {
         VideoEditedInfo.MediaEntity mediaEntity2;
+        Bitmap bitmap;
+        long j2;
+        long j3;
+        long clamp;
         int i2;
         int i3;
-        long j = mediaEntity.ptr;
-        boolean z = true;
-        if (j != 0) {
-            Bitmap bitmap = mediaEntity.bitmap;
-            if (bitmap == null || (i2 = mediaEntity.W) <= 0 || (i3 = mediaEntity.H) <= 0) {
+        TextureRenderer textureRenderer = this;
+        long j4 = mediaEntity.ptr;
+        if (j4 != 0) {
+            Bitmap bitmap2 = mediaEntity.bitmap;
+            if (bitmap2 == null || (i2 = mediaEntity.W) <= 0 || (i3 = mediaEntity.H) <= 0) {
                 return;
             }
-            RLottieDrawable.getFrame(j, (int) mediaEntity.currentFrame, bitmap, i2, i3, bitmap.getRowBytes(), true);
-            applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
-            GLES20.glBindTexture(3553, this.stickerTexture[0]);
+            RLottieDrawable.getFrame(j4, (int) mediaEntity.currentFrame, bitmap2, i2, i3, bitmap2.getRowBytes(), true);
+            textureRenderer.applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
+            GLES20.glBindTexture(3553, textureRenderer.stickerTexture[0]);
             GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
             float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
             mediaEntity.currentFrame = f;
             if (f >= mediaEntity.metadata[0]) {
                 mediaEntity.currentFrame = 0.0f;
             }
-            drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+            drawTexture(false, textureRenderer.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
         } else if (mediaEntity.animatedFileDrawable != null) {
             float f2 = mediaEntity.currentFrame;
             int i4 = (int) f2;
-            float f3 = f2 + mediaEntity.framesPerDraw;
-            mediaEntity.currentFrame = f3;
-            for (int i5 = (int) f3; i4 != i5; i5--) {
-                mediaEntity.animatedFileDrawable.getNextFrame();
+            float f3 = 1.0f;
+            if (mediaEntity.type == 5) {
+                if (textureRenderer.isPhoto) {
+                    j3 = mediaEntity.roundDuration;
+                    j2 = 0;
+                } else {
+                    j2 = mediaEntity.roundOffset;
+                    j3 = (mediaEntity.roundRight - mediaEntity.roundLeft) + j2;
+                }
+                long j5 = j / 1000000;
+                if (j5 < j2) {
+                    f3 = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(1.0f - (((float) (j2 - j5)) / 400.0f), 1.0f, 0.0f));
+                } else if (j5 > j3) {
+                    f3 = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(1.0f - (((float) (j5 - j3)) / 400.0f), 1.0f, 0.0f));
+                }
+                textureRenderer = this;
+                if (f3 > 0.0f) {
+                    if (textureRenderer.isPhoto) {
+                        clamp = Utilities.clamp(j5, mediaEntity.roundDuration, 0L);
+                    } else {
+                        clamp = Utilities.clamp((j5 - mediaEntity.roundOffset) + mediaEntity.roundLeft, mediaEntity.roundDuration, 0L);
+                    }
+                    while (!mediaEntity.looped && mediaEntity.animatedFileDrawable.getProgressMs() < Math.min(clamp, mediaEntity.animatedFileDrawable.getDurationMs())) {
+                        int progressMs = mediaEntity.animatedFileDrawable.getProgressMs();
+                        mediaEntity.animatedFileDrawable.getNextFrame(false);
+                        Log.i("lolkek", "next frame " + progressMs + " -> " + mediaEntity.animatedFileDrawable.getProgressMs() + " (duration = " + mediaEntity.animatedFileDrawable.getDurationMs() + ", mspf = " + (1000.0f / mediaEntity.animatedFileDrawable.getFps()) + "ms)");
+                        if (mediaEntity.animatedFileDrawable.getProgressMs() <= progressMs && (mediaEntity.animatedFileDrawable.getProgressMs() != 0 || progressMs != 0)) {
+                            mediaEntity.looped = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                float f4 = f2 + mediaEntity.framesPerDraw;
+                mediaEntity.currentFrame = f4;
+                for (int i5 = (int) f4; i4 != i5; i5--) {
+                    mediaEntity.animatedFileDrawable.getNextFrame(true);
+                }
             }
             Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
             if (backgroundBitmap != null) {
-                if (this.stickerCanvas == null && this.stickerBitmap != null) {
-                    this.stickerCanvas = new Canvas(this.stickerBitmap);
-                    if (this.stickerBitmap.getHeight() != backgroundBitmap.getHeight() || this.stickerBitmap.getWidth() != backgroundBitmap.getWidth()) {
-                        this.stickerCanvas.scale(this.stickerBitmap.getWidth() / backgroundBitmap.getWidth(), this.stickerBitmap.getHeight() / backgroundBitmap.getHeight());
+                if (mediaEntity.type == 5) {
+                    if (textureRenderer.roundBitmap == null) {
+                        int min = Math.min(backgroundBitmap.getWidth(), backgroundBitmap.getHeight());
+                        textureRenderer.roundBitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
+                        textureRenderer.roundCanvas = new Canvas(textureRenderer.roundBitmap);
                     }
+                    Bitmap bitmap3 = textureRenderer.roundBitmap;
+                    if (bitmap3 != null) {
+                        bitmap3.eraseColor(0);
+                        textureRenderer.roundCanvas.save();
+                        if (textureRenderer.roundClipPath == null) {
+                            textureRenderer.roundClipPath = new Path();
+                        }
+                        textureRenderer.roundClipPath.rewind();
+                        textureRenderer.roundClipPath.addCircle(textureRenderer.roundBitmap.getWidth() / 2.0f, textureRenderer.roundBitmap.getHeight() / 2.0f, (textureRenderer.roundBitmap.getWidth() / 2.0f) * f3, Path.Direction.CW);
+                        textureRenderer.roundCanvas.clipPath(textureRenderer.roundClipPath);
+                        if (backgroundBitmap.getWidth() >= backgroundBitmap.getHeight()) {
+                            textureRenderer.roundSrc.set((backgroundBitmap.getWidth() - backgroundBitmap.getHeight()) / 2, 0, backgroundBitmap.getWidth() - ((backgroundBitmap.getWidth() - backgroundBitmap.getHeight()) / 2), backgroundBitmap.getHeight());
+                        } else {
+                            textureRenderer.roundSrc.set(0, (backgroundBitmap.getHeight() - backgroundBitmap.getWidth()) / 2, backgroundBitmap.getWidth(), backgroundBitmap.getHeight() - ((backgroundBitmap.getHeight() - backgroundBitmap.getWidth()) / 2));
+                        }
+                        textureRenderer.roundDst.set(0.0f, 0.0f, textureRenderer.roundBitmap.getWidth(), textureRenderer.roundBitmap.getHeight());
+                        textureRenderer.roundCanvas.drawBitmap(backgroundBitmap, textureRenderer.roundSrc, textureRenderer.roundDst, (Paint) null);
+                        textureRenderer.roundCanvas.restore();
+                    }
+                    bitmap = textureRenderer.roundBitmap;
+                } else {
+                    if (textureRenderer.stickerCanvas == null && textureRenderer.stickerBitmap != null) {
+                        textureRenderer.stickerCanvas = new Canvas(textureRenderer.stickerBitmap);
+                        if (textureRenderer.stickerBitmap.getHeight() != backgroundBitmap.getHeight() || textureRenderer.stickerBitmap.getWidth() != backgroundBitmap.getWidth()) {
+                            textureRenderer.stickerCanvas.scale(textureRenderer.stickerBitmap.getWidth() / backgroundBitmap.getWidth(), textureRenderer.stickerBitmap.getHeight() / backgroundBitmap.getHeight());
+                        }
+                    }
+                    Bitmap bitmap4 = textureRenderer.stickerBitmap;
+                    if (bitmap4 != null) {
+                        bitmap4.eraseColor(0);
+                        textureRenderer.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
+                        textureRenderer.applyRoundRadius(mediaEntity, textureRenderer.stickerBitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
+                    }
+                    bitmap = textureRenderer.stickerBitmap;
                 }
-                Bitmap bitmap2 = this.stickerBitmap;
-                if (bitmap2 != null) {
-                    bitmap2.eraseColor(0);
-                    this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
-                    applyRoundRadius(mediaEntity, this.stickerBitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
-                    GLES20.glBindTexture(3553, this.stickerTexture[0]);
-                    GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                if (bitmap != null) {
+                    GLES20.glBindTexture(3553, textureRenderer.stickerTexture[0]);
+                    GLUtils.texImage2D(3553, 0, bitmap, 0);
+                    drawTexture(false, textureRenderer.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 }
             }
         } else {
             if (mediaEntity.bitmap != null) {
-                GLES20.glBindTexture(3553, this.stickerTexture[0]);
+                GLES20.glBindTexture(3553, textureRenderer.stickerTexture[0]);
                 GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                int i6 = this.stickerTexture[0];
-                float f4 = mediaEntity.x;
-                float f5 = mediaEntity.additionalWidth;
-                float f6 = f4 - (f5 / 2.0f);
-                float f7 = mediaEntity.y;
-                float f8 = mediaEntity.additionalHeight;
-                drawTexture(false, i6, f6, f7 - (f8 / 2.0f), mediaEntity.width + f5, f8 + mediaEntity.height, mediaEntity.rotation, (mediaEntity.type != 2 || (mediaEntity.subType & 2) == 0) ? false : false);
+                int i6 = textureRenderer.stickerTexture[0];
+                float f5 = mediaEntity.x;
+                float f6 = mediaEntity.additionalWidth;
+                float f7 = f5 - (f6 / 2.0f);
+                float f8 = mediaEntity.y;
+                float f9 = mediaEntity.additionalHeight;
+                drawTexture(false, i6, f7, f8 - (f9 / 2.0f), mediaEntity.width + f6, f9 + mediaEntity.height, mediaEntity.rotation, mediaEntity.type == 2 && (mediaEntity.subType & 2) != 0);
             }
             ArrayList<VideoEditedInfo.EmojiEntity> arrayList = mediaEntity.entities;
             if (arrayList == null || arrayList.isEmpty()) {
@@ -370,7 +447,7 @@ public class TextureRenderer {
             for (int i7 = 0; i7 < mediaEntity.entities.size(); i7++) {
                 VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i7);
                 if (emojiEntity != null && (mediaEntity2 = emojiEntity.entity) != null) {
-                    drawEntity(mediaEntity2, mediaEntity.color);
+                    textureRenderer.drawEntity(mediaEntity2, mediaEntity.color, j);
                 }
             }
         }
@@ -535,10 +612,14 @@ public class TextureRenderer {
             mediaEntity.ptr = RLottieDrawable.create(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, iArr, false, null, false, 0);
             mediaEntity.framesPerDraw = mediaEntity.metadata[1] / this.videoFps;
         } else if ((b & 4) != 0) {
+            mediaEntity.looped = false;
             mediaEntity.animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, null);
             mediaEntity.framesPerDraw = animatedFileDrawable.getFps() / this.videoFps;
-            mediaEntity.currentFrame = 0.0f;
-            mediaEntity.animatedFileDrawable.getNextFrame();
+            mediaEntity.currentFrame = 1.0f;
+            mediaEntity.animatedFileDrawable.getNextFrame(true);
+            if (mediaEntity.type == 5) {
+                mediaEntity.firstSeek = true;
+            }
         } else {
             if (Build.VERSION.SDK_INT >= 19) {
                 BitmapFactory.Options options = new BitmapFactory.Options();

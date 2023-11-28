@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -202,8 +201,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, false, false);
         TLRPC$Chat chat;
         this.filterId = -1;
-        this.title = BuildConfig.APP_CENTER_HASH;
-        this.escapedTitle = BuildConfig.APP_CENTER_HASH;
+        this.title = "";
+        this.escapedTitle = "";
         this.alreadyJoined = new ArrayList<>();
         this.selectedPeers = new ArrayList<>();
         this.reqId = -1;
@@ -255,8 +254,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, false, false);
         int i2 = 0;
         this.filterId = -1;
-        this.title = BuildConfig.APP_CENTER_HASH;
-        this.escapedTitle = BuildConfig.APP_CENTER_HASH;
+        this.title = "";
+        this.escapedTitle = "";
         this.alreadyJoined = new ArrayList<>();
         ArrayList<Long> arrayList = new ArrayList<>();
         this.selectedPeers = arrayList;
@@ -286,8 +285,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, false, false);
         int i = 0;
         this.filterId = -1;
-        this.title = BuildConfig.APP_CENTER_HASH;
-        this.escapedTitle = BuildConfig.APP_CENTER_HASH;
+        this.title = "";
+        this.escapedTitle = "";
         this.alreadyJoined = new ArrayList<>();
         ArrayList<Long> arrayList = new ArrayList<>();
         this.selectedPeers = arrayList;
@@ -817,7 +816,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.countText.setTextSize(AndroidUtilities.dp(12.0f));
             this.countText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.countText.setTextColor(Theme.getColor(i));
-            this.countText.setText(BuildConfig.APP_CENTER_HASH);
+            this.countText.setText("");
             this.countText.setGravity(1);
             setWillNotDraw(false);
         }
@@ -913,7 +912,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.lastCount = i;
             this.countAlpha = i != 0 ? 1.0f : 0.0f;
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-            animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z);
+            animatedTextDrawable.setText("" + i, z);
             invalidate();
         }
 
@@ -1019,7 +1018,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             if (this.lastCount > 0) {
                 str = ", " + LocaleController.formatPluralString("Chats", this.lastCount, new Object[0]);
             } else {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             sb.append(str);
             accessibilityNodeInfo.setContentDescription(sb.toString());
@@ -1414,7 +1413,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 if (i > 0) {
                     str = "+" + i;
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 animatedTextDrawable.setText(str, z);
                 invalidate();
@@ -1443,7 +1442,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             });
             return;
         }
-        this.headerCell.setAction(BuildConfig.APP_CENTER_HASH, null);
+        this.headerCell.setAction("", null);
     }
 
     public void lambda$updateHeaderCell$20(boolean z) {
@@ -1455,7 +1454,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         StringBuilder sb = new StringBuilder();
         sb.append(LocaleController.formatPluralString("FilterInviteHeaderChats", this.selectedPeers.size(), new Object[0]));
         if (!z || this.headerCell == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         } else {
             str = ", " + ((Object) this.headerCell.actionTextView.getText());
         }

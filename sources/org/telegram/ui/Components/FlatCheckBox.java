@@ -39,10 +39,10 @@ public class FlatCheckBox extends View {
         this.fillPaint = new Paint(1);
         this.outLinePaint = new Paint(1);
         this.checkPaint = new Paint(1);
-        this.HEIGHT = AndroidUtilities.dp(36.0f);
+        this.HEIGHT = AndroidUtilities.dp(37.0f);
         this.INNER_PADDING = AndroidUtilities.dp(22.0f);
         this.TRANSLETE_TEXT = AndroidUtilities.dp(8.0f);
-        this.P = AndroidUtilities.dp(2.0f);
+        this.P = AndroidUtilities.dp(2.5f);
         this.rectF = new RectF();
         this.progress = 0.0f;
         this.lastW = 0;
@@ -121,7 +121,7 @@ public class FlatCheckBox extends View {
         setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.P * 2), this.HEIGHT + AndroidUtilities.dp(4.0f));
         if (getMeasuredWidth() != this.lastW) {
             this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.rectF.inset(this.P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.dp(2.0f));
+            this.rectF.inset(this.P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.P + (this.outLinePaint.getStrokeWidth() / 2.0f));
         }
     }
 

@@ -169,9 +169,9 @@ public class HeaderCell extends FrameLayout {
             final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) "**");
-            spannableStringBuilder2.append(Emoji.replaceEmoji((CharSequence) UserObject.getUserName(user), this.subtitleView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleView.getPaint().getFontMetricsInt(), false));
             spannableStringBuilder2.append((CharSequence) "**");
-            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(substring.toString().replace("**%1$s**", spannableStringBuilder2), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(substring.toString().replace("**%1$s**", spannableStringBuilder2), Theme.key_chat_messageLinkIn, 2, new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(user);

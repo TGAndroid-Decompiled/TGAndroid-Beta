@@ -405,6 +405,13 @@ public interface INavigationLayout {
         }
 
         @Override
+        public boolean isDark() {
+            boolean isCurrentThemeDark;
+            isCurrentThemeDark = Theme.isCurrentThemeDark();
+            return isCurrentThemeDark;
+        }
+
+        @Override
         public void setAnimatedColor(int i, int i2) {
             Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
         }

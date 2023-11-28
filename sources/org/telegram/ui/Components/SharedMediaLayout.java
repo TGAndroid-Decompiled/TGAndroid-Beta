@@ -15,7 +15,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -53,7 +55,6 @@ import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
@@ -69,6 +70,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
@@ -146,16 +148,19 @@ import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.UserListPoller;
 import org.telegram.ui.Stories.ViewsForPeerStoriesRequester;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TopicsFragment;
 public class SharedMediaLayout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private ActionBar actionBar;
@@ -184,6 +189,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     private ArrayList<SharedPhotoVideoCell> cellCache;
     private int changeColumnsTab;
     private boolean changeTypeAnimation;
+    private ChannelRecommendationsAdapter channelRecommendationsAdapter;
     private ChatUsersAdapter chatUsersAdapter;
     private ImageView closeButton;
     private CommonGroupsAdapter commonGroupsAdapter;
@@ -244,7 +250,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     private PhotoViewer.PhotoViewerProvider provider;
     android.graphics.Rect rect;
     private Theme.ResourcesProvider resourcesProvider;
-    private ScrollSlidingTextTabStripInner scrollSlidingTextTabStrip;
+    public ScrollSlidingTextTabStripInner scrollSlidingTextTabStrip;
     private boolean scrolling;
     public boolean scrollingByUser;
     private ActionBarMenuItem searchItem;
@@ -302,7 +308,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         void mediaCountUpdated();
     }
 
-    public static boolean lambda$new$8(View view, MotionEvent motionEvent) {
+    public static boolean lambda$new$7(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -357,7 +363,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     protected void onTabScroll(boolean z) {
     }
 
-    static int access$5308(SharedMediaLayout sharedMediaLayout) {
+    protected int processColor(int i) {
+        return i;
+    }
+
+    static int access$5208(SharedMediaLayout sharedMediaLayout) {
         int i = sharedMediaLayout.animationSupportingSortedCellsOffset;
         sharedMediaLayout.animationSupportingSortedCellsOffset = i + 1;
         return i;
@@ -814,7 +824,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             return i;
         }
 
-        static int access$8110(SharedMediaData sharedMediaData) {
+        static int access$8410(SharedMediaData sharedMediaData) {
             int i = sharedMediaData.endLoadingStubs;
             sharedMediaData.endLoadingStubs = i - 1;
             return i;
@@ -949,16 +959,15 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return this.profileActivity.getConnectionsManager().getConnectionState() == 3;
     }
 
-    public SharedMediaLayout(Context context, long j, SharedMediaPreloader sharedMediaPreloader, int i, ArrayList<Integer> arrayList, TLRPC$ChatFull tLRPC$ChatFull, TLRPC$UserFull tLRPC$UserFull, boolean z, BaseFragment baseFragment, Delegate delegate, int i2, Theme.ResourcesProvider resourcesProvider) {
+    public SharedMediaLayout(Context context, long j, SharedMediaPreloader sharedMediaPreloader, int i, ArrayList<Integer> arrayList, TLRPC$ChatFull tLRPC$ChatFull, TLRPC$UserFull tLRPC$UserFull, int i2, BaseFragment baseFragment, Delegate delegate, int i3, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        int i3;
         int i4;
         int i5;
+        int i6;
         RecyclerListView.Holder holder;
         TLRPC$ChatFull tLRPC$ChatFull2;
         TLRPC$ChatFull tLRPC$ChatFull3 = tLRPC$ChatFull;
         this.rect = new android.graphics.Rect();
-        int i6 = 2;
         this.mediaPages = new MediaPage[2];
         this.cellCache = new ArrayList<>(10);
         this.cache = new ArrayList<>(10);
@@ -987,8 +996,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.sharedMediaData = new SharedMediaData[6];
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.messageAlphaEnter = new SparseArray<>();
-        this.sharedLinkCellDelegate = new AnonymousClass34();
-        this.viewType = i2;
+        this.sharedLinkCellDelegate = new AnonymousClass36();
+        this.viewType = i3;
         this.resourcesProvider = resourcesProvider;
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.globalGradientView = flickerLoadingView;
@@ -1007,10 +1016,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         iArr[5] = lastMediaCount[5];
         iArr[6] = i7 == 0 ? i : 0;
         this.hasMedia = iArr;
-        if ((tLRPC$UserFull != null && tLRPC$UserFull.stories_pinned_available) || ((tLRPC$ChatFull3 != null && tLRPC$ChatFull3.stories_pinned_available) || isStoriesView())) {
+        if (i2 == 10) {
+            this.initialTab = i2;
+        } else if ((tLRPC$UserFull != null && tLRPC$UserFull.stories_pinned_available) || ((tLRPC$ChatFull3 != null && tLRPC$ChatFull3.stories_pinned_available) || isStoriesView())) {
             this.initialTab = getInitialTab();
-        } else if (z && this.topicId == 0) {
-            this.initialTab = 7;
+        } else if (i2 != -1 && this.topicId == 0) {
+            this.initialTab = i2;
         } else {
             int i8 = 0;
             while (true) {
@@ -1061,8 +1072,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.messagePlayingDidStart);
         this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.storiesListUpdated);
         this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.storiesUpdated);
+        this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.channelRecommendationsLoaded);
         for (int i10 = 0; i10 < 10; i10++) {
-            if (this.initialTab == 4) {
+            if (i2 == 4) {
                 SharedAudioCell sharedAudioCell = new SharedAudioCell(context) {
                     @Override
                     public boolean needPlayMessage(MessageObject messageObject) {
@@ -1088,9 +1100,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.pinnedHeaderShadowDrawable = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundGrayShadow), PorterDuff.Mode.MULTIPLY));
         ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner = this.scrollSlidingTextTabStrip;
-        if (scrollSlidingTextTabStripInner != null) {
-            this.initialTab = scrollSlidingTextTabStripInner.getCurrentTabId();
-        }
+        int currentTabId = scrollSlidingTextTabStripInner != null ? scrollSlidingTextTabStripInner.getCurrentTabId() : i2;
         this.scrollSlidingTextTabStrip = createScrollingTextTabStrip(context);
         for (int i11 = 1; i11 >= 0; i11--) {
             this.selectedFiles[i11].clear();
@@ -1227,11 +1237,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.actionModeLayout.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 18, 0, 0, 0));
         this.actionModeViews.add(this.selectedMessagesCountTextView);
         if (DialogObject.isEncryptedDialog(this.dialog_id)) {
-            i3 = i15;
-            i4 = i13;
+            i4 = i15;
+            i5 = i13;
+            i6 = currentTabId;
         } else {
-            i3 = i15;
-            i4 = i13;
+            i4 = i15;
+            i6 = currentTabId;
             ActionBarMenuItem actionBarMenuItem2 = new ActionBarMenuItem(context, (ActionBarMenu) null, getThemedColor(i15), getThemedColor(i13), false);
             this.gotoItem = actionBarMenuItem2;
             actionBarMenuItem2.setIcon(R.drawable.msg_message);
@@ -1245,7 +1256,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     SharedMediaLayout.this.lambda$new$3(view);
                 }
             });
-            ActionBarMenuItem actionBarMenuItem3 = new ActionBarMenuItem(context, (ActionBarMenu) null, getThemedColor(i3), getThemedColor(i4), false);
+            i5 = i13;
+            ActionBarMenuItem actionBarMenuItem3 = new ActionBarMenuItem(context, (ActionBarMenu) null, getThemedColor(i4), getThemedColor(i5), false);
             this.forwardItem = actionBarMenuItem3;
             actionBarMenuItem3.setIcon(R.drawable.msg_forward);
             this.forwardItem.setContentDescription(LocaleController.getString("Forward", R.string.Forward));
@@ -1260,7 +1272,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             });
             updateForwardItem();
         }
-        ActionBarMenuItem actionBarMenuItem4 = new ActionBarMenuItem(context, (ActionBarMenu) null, getThemedColor(i3), getThemedColor(i4), false);
+        ActionBarMenuItem actionBarMenuItem4 = new ActionBarMenuItem(context, (ActionBarMenu) null, getThemedColor(i4), getThemedColor(i5), false);
         this.deleteItem = actionBarMenuItem4;
         actionBarMenuItem4.setIcon(R.drawable.msg_delete);
         this.deleteItem.setContentDescription(LocaleController.getString("Delete", R.string.Delete));
@@ -1294,11 +1306,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.linksSearchAdapter = new MediaSearchAdapter(context, 3);
         this.groupUsersSearchAdapter = new GroupUsersSearchAdapter(context);
         this.commonGroupsAdapter = new CommonGroupsAdapter(context);
+        this.channelRecommendationsAdapter = new ChannelRecommendationsAdapter(context);
         ChatUsersAdapter chatUsersAdapter = new ChatUsersAdapter(context);
         this.chatUsersAdapter = chatUsersAdapter;
         if (this.topicId == 0) {
             chatUsersAdapter.sortedUsers = arrayList;
-            this.chatUsersAdapter.chatInfo = z ? tLRPC$ChatFull3 : null;
+            this.chatUsersAdapter.chatInfo = i6 != 7 ? null : tLRPC$ChatFull3;
         }
         this.storiesAdapter = new StoriesAdapter(context, false) {
             @Override
@@ -1334,18 +1347,18 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.animationSupportingArchivedStoriesAdapter = new StoriesAdapter(context, true);
         this.linksAdapter = new SharedLinksAdapter(context);
         setWillNotDraw(false);
-        int i16 = -1;
-        int i17 = 0;
+        int i16 = 0;
+        int i17 = -1;
         int i18 = 0;
         while (true) {
             MediaPage[] mediaPageArr = this.mediaPages;
-            if (i17 >= mediaPageArr.length) {
+            if (i16 >= mediaPageArr.length) {
                 break;
             }
-            if (i17 == 0 && mediaPageArr[i17] != null && mediaPageArr[i17].layoutManager != null) {
-                i16 = this.mediaPages[i17].layoutManager.findFirstVisibleItemPosition();
-                if (i16 == this.mediaPages[i17].layoutManager.getItemCount() - 1 || (holder = (RecyclerListView.Holder) this.mediaPages[i17].listView.findViewHolderForAdapterPosition(i16)) == null) {
-                    i16 = -1;
+            if (i16 == 0 && mediaPageArr[i16] != null && mediaPageArr[i16].layoutManager != null) {
+                i17 = this.mediaPages[i16].layoutManager.findFirstVisibleItemPosition();
+                if (i17 == this.mediaPages[i16].layoutManager.getItemCount() - 1 || (holder = (RecyclerListView.Holder) this.mediaPages[i16].listView.findViewHolderForAdapterPosition(i17)) == null) {
+                    i17 = -1;
                 } else {
                     i18 = holder.itemView.getTop();
                 }
@@ -1358,7 +1371,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         int i19 = 0;
                         if (SharedMediaLayout.this.mediaPages[0] == this) {
                             float abs = Math.abs(SharedMediaLayout.this.mediaPages[0].getTranslationX()) / SharedMediaLayout.this.mediaPages[0].getMeasuredWidth();
-                            SharedMediaLayout.this.scrollSlidingTextTabStrip.selectTabWithId(SharedMediaLayout.this.mediaPages[1].selectedType, abs);
+                            SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
+                            sharedMediaLayout.scrollSlidingTextTabStrip.selectTabWithId(sharedMediaLayout.mediaPages[1].selectedType, abs);
                             if (SharedMediaLayout.this.canShowSearchItem()) {
                                 if (SharedMediaLayout.this.searchItemState == 2) {
                                     SharedMediaLayout.this.searchItem.setAlpha(1.0f - abs);
@@ -1367,8 +1381,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                                 }
                                 float photoVideoOptionsAlpha = SharedMediaLayout.this.getPhotoVideoOptionsAlpha(abs);
                                 SharedMediaLayout.this.photoVideoOptionsItem.setAlpha(photoVideoOptionsAlpha);
-                                SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
-                                sharedMediaLayout.photoVideoOptionsItem.setVisibility((photoVideoOptionsAlpha == 0.0f || !sharedMediaLayout.canShowSearchItem() || SharedMediaLayout.this.isArchivedOnlyStoriesView()) ? 4 : 4);
+                                SharedMediaLayout sharedMediaLayout2 = SharedMediaLayout.this;
+                                sharedMediaLayout2.photoVideoOptionsItem.setVisibility((photoVideoOptionsAlpha == 0.0f || !sharedMediaLayout2.canShowSearchItem() || SharedMediaLayout.this.isArchivedOnlyStoriesView()) ? 4 : 4);
                             } else {
                                 SharedMediaLayout.this.searchItem.setAlpha(0.0f);
                             }
@@ -1378,12 +1392,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 }
             };
             addView(mediaPage, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, isStoriesView() ? 0.0f : 48.0f, 0.0f, 0.0f));
-            if (i17 == 1) {
+            if (i16 == 1) {
                 mediaPage.setTranslationX(AndroidUtilities.displaySize.x);
             }
             MediaPage[] mediaPageArr2 = this.mediaPages;
-            mediaPageArr2[i17] = mediaPage;
-            final ExtendedGridLayoutManager extendedGridLayoutManager = mediaPageArr2[i17].layoutManager = new ExtendedGridLayoutManager(context, 100) {
+            mediaPageArr2[i16] = mediaPage;
+            final ExtendedGridLayoutManager extendedGridLayoutManager = mediaPageArr2[i16].layoutManager = new ExtendedGridLayoutManager(context, 100) {
                 private Size size = new Size();
 
                 @Override
@@ -1477,26 +1491,46 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     }
                 }
             });
-            this.mediaPages[i17].listView = new InternalListView(context) {
+            this.mediaPages[i16].listView = new InternalListView(context) {
                 private StaticLayout archivedHintLayout;
                 private float archivedHintLayoutLeft;
                 private float archivedHintLayoutWidth;
                 private TextPaint archivedHintPaint;
+                float lastY;
                 UserListPoller poller;
+                float startY;
                 final HashSet<SharedPhotoVideoCell2> excludeDrawViews = new HashSet<>();
                 final ArrayList<SharedPhotoVideoCell2> drawingViews = new ArrayList<>();
                 final ArrayList<SharedPhotoVideoCell2> drawingViews2 = new ArrayList<>();
                 final ArrayList<SharedPhotoVideoCell2> drawingViews3 = new ArrayList<>();
 
                 @Override
-                public void onLayout(boolean z2, int i19, int i20, int i21, int i22) {
-                    super.onLayout(z2, i19, i20, i21, i22);
+                public void onLayout(boolean z, int i19, int i20, int i21, int i22) {
+                    super.onLayout(z, i19, i20, i21, i22);
                     SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
                     MediaPage mediaPage2 = mediaPage;
                     sharedMediaLayout.checkLoadMoreScroll(mediaPage2, mediaPage2.listView, extendedGridLayoutManager);
                     if (mediaPage.selectedType == 0) {
                         PhotoViewer.getInstance().checkCurrentImageVisibility();
                     }
+                }
+
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (SharedMediaLayout.this.profileActivity != null && SharedMediaLayout.this.profileActivity.isInPreviewMode()) {
+                        this.lastY = motionEvent.getY();
+                        if (motionEvent.getAction() == 1) {
+                            SharedMediaLayout.this.profileActivity.finishPreviewFragment();
+                        } else if (motionEvent.getAction() == 2) {
+                            float f = this.startY - this.lastY;
+                            SharedMediaLayout.this.profileActivity.movePreviewFragment(f);
+                            if (f < 0.0f) {
+                                this.startY = this.lastY;
+                            }
+                        }
+                        return true;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
                 }
 
                 @Override
@@ -1513,18 +1547,18 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     return super.drawChild(canvas, view, j2);
                 }
             };
-            this.mediaPages[i17].listView.setFastScrollEnabled(1);
-            this.mediaPages[i17].listView.setScrollingTouchSlop(1);
-            this.mediaPages[i17].listView.setPinnedSectionOffsetY(-AndroidUtilities.dp(2.0f));
-            this.mediaPages[i17].listView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-            this.mediaPages[i17].listView.setItemAnimator(null);
-            this.mediaPages[i17].listView.setClipToPadding(false);
-            this.mediaPages[i17].listView.setSectionsType(i6);
-            this.mediaPages[i17].listView.setLayoutManager(extendedGridLayoutManager);
+            this.mediaPages[i16].listView.setFastScrollEnabled(1);
+            this.mediaPages[i16].listView.setScrollingTouchSlop(1);
+            this.mediaPages[i16].listView.setPinnedSectionOffsetY(-AndroidUtilities.dp(2.0f));
+            this.mediaPages[i16].listView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
+            this.mediaPages[i16].listView.setItemAnimator(null);
+            this.mediaPages[i16].listView.setClipToPadding(false);
+            this.mediaPages[i16].listView.setSectionsType(2);
+            this.mediaPages[i16].listView.setLayoutManager(extendedGridLayoutManager);
             MediaPage[] mediaPageArr3 = this.mediaPages;
-            mediaPageArr3[i17].addView(mediaPageArr3[i17].listView, LayoutHelper.createFrame(-1, -1.0f));
-            this.mediaPages[i17].animationSupportingListView = new InternalListView(context);
-            this.mediaPages[i17].animationSupportingListView.setLayoutManager(this.mediaPages[i17].animationSupportingLayoutManager = new GridLayoutManager(context, 3) {
+            mediaPageArr3[i16].addView(mediaPageArr3[i16].listView, LayoutHelper.createFrame(-1, -1.0f));
+            this.mediaPages[i16].animationSupportingListView = new InternalListView(context);
+            this.mediaPages[i16].animationSupportingListView.setLayoutManager(this.mediaPages[i16].animationSupportingLayoutManager = new GridLayoutManager(context, 3) {
                 @Override
                 public boolean supportsPredictiveItemAnimations() {
                     return false;
@@ -1539,9 +1573,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 }
             });
             MediaPage[] mediaPageArr4 = this.mediaPages;
-            mediaPageArr4[i17].addView(mediaPageArr4[i17].animationSupportingListView, LayoutHelper.createFrame(-1, -1.0f));
-            this.mediaPages[i17].animationSupportingListView.setVisibility(8);
-            this.mediaPages[i17].animationSupportingListView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+            mediaPageArr4[i16].addView(mediaPageArr4[i16].animationSupportingListView, LayoutHelper.createFrame(-1, -1.0f));
+            this.mediaPages[i16].animationSupportingListView.setVisibility(8);
+            this.mediaPages[i16].animationSupportingListView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
                 @Override
                 public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     if (view instanceof SharedPhotoVideoCell2) {
@@ -1563,7 +1597,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     rect.right = 0;
                 }
             });
-            this.mediaPages[i17].listView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            this.mediaPages[i16].listView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
                 public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     if (mediaPage.listView.getAdapter() == SharedMediaLayout.this.gifAdapter) {
@@ -1595,7 +1629,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     }
                 }
             });
-            this.mediaPages[i17].listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
+            this.mediaPages[i16].listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
                 @Override
                 public boolean hasDoubleTap(View view, int i19) {
                     return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i19);
@@ -1611,7 +1645,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     SharedMediaLayout.this.lambda$new$6(mediaPage, view, i19, f, f2);
                 }
             });
-            this.mediaPages[i17].listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            this.mediaPages[i16].listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int i19) {
                     SharedMediaLayout.this.scrolling = i19 != 0;
@@ -1634,28 +1668,110 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     SharedMediaLayout.this.invalidateBlur();
                 }
             });
-            this.mediaPages[i17].listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+            this.mediaPages[i16].listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
-                public final boolean onItemClick(View view, int i19) {
-                    boolean lambda$new$7;
-                    lambda$new$7 = SharedMediaLayout.this.lambda$new$7(mediaPage, view, i19);
-                    return lambda$new$7;
+                public boolean onItemClick(View view, int i19, float f, float f2) {
+                    int i20;
+                    int i21 = 0;
+                    if (SharedMediaLayout.this.photoVideoChangeColumnsAnimation) {
+                        return false;
+                    }
+                    if (SharedMediaLayout.this.isActionModeShowed) {
+                        mediaPage.listView.clickItem(view, i19);
+                        return true;
+                    } else if (mediaPage.selectedType != 7 || !(view instanceof UserCell)) {
+                        if (mediaPage.selectedType == 1 && (view instanceof SharedDocumentCell)) {
+                            return SharedMediaLayout.this.onItemLongClick(((SharedDocumentCell) view).getMessage(), view, 0);
+                        }
+                        if (mediaPage.selectedType == 3 && (view instanceof SharedLinkCell)) {
+                            return SharedMediaLayout.this.onItemLongClick(((SharedLinkCell) view).getMessage(), view, 0);
+                        }
+                        if ((mediaPage.selectedType == 2 || mediaPage.selectedType == 4) && (view instanceof SharedAudioCell)) {
+                            return SharedMediaLayout.this.onItemLongClick(((SharedAudioCell) view).getMessage(), view, 0);
+                        }
+                        if (mediaPage.selectedType == 5 && (view instanceof ContextLinkCell)) {
+                            return SharedMediaLayout.this.onItemLongClick((MessageObject) ((ContextLinkCell) view).getParentObject(), view, 0);
+                        }
+                        if ((mediaPage.selectedType != 0 && mediaPage.selectedType != 9 && (mediaPage.selectedType != 8 || !SharedMediaLayout.this.isStoriesView())) || !(view instanceof SharedPhotoVideoCell2)) {
+                            if (mediaPage.selectedType == 10) {
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", ((TLRPC$Chat) SharedMediaLayout.this.channelRecommendationsAdapter.chats.get(i19)).id);
+                                ChatActivity chatActivity = new ChatActivity(bundle);
+                                if (SharedMediaLayout.this.profileActivity instanceof ProfileActivity) {
+                                    ((ProfileActivity) SharedMediaLayout.this.profileActivity).prepareBlurBitmap();
+                                }
+                                SharedMediaLayout.this.profileActivity.presentFragmentAsPreview(chatActivity);
+                                return true;
+                            }
+                        } else {
+                            MessageObject messageObject = ((SharedPhotoVideoCell2) view).getMessageObject();
+                            if (messageObject != null) {
+                                return SharedMediaLayout.this.onItemLongClick(messageObject, view, mediaPage.selectedType);
+                            }
+                        }
+                        return false;
+                    } else {
+                        if (SharedMediaLayout.this.chatUsersAdapter.sortedUsers.isEmpty()) {
+                            i20 = i19;
+                        } else if (i19 >= SharedMediaLayout.this.chatUsersAdapter.sortedUsers.size()) {
+                            return false;
+                        } else {
+                            i20 = ((Integer) SharedMediaLayout.this.chatUsersAdapter.sortedUsers.get(i19)).intValue();
+                        }
+                        if (i20 < 0 || i20 >= SharedMediaLayout.this.chatUsersAdapter.chatInfo.participants.participants.size()) {
+                            return false;
+                        }
+                        TLRPC$ChatParticipant tLRPC$ChatParticipant = SharedMediaLayout.this.chatUsersAdapter.chatInfo.participants.participants.get(i20);
+                        RecyclerListView recyclerListView = (RecyclerListView) view.getParent();
+                        while (true) {
+                            if (i21 >= recyclerListView.getChildCount()) {
+                                break;
+                            }
+                            View childAt = recyclerListView.getChildAt(i21);
+                            if (recyclerListView.getChildAdapterPosition(childAt) == i19) {
+                                view = childAt;
+                                break;
+                            }
+                            i21++;
+                        }
+                        return SharedMediaLayout.this.onMemberClick(tLRPC$ChatParticipant, true, view);
+                    }
+                }
+
+                @Override
+                public void onMove(float f, float f2) {
+                    if (SharedMediaLayout.this.profileActivity != null) {
+                        android.graphics.Point point = AndroidUtilities.displaySize;
+                        if (point.x > point.y) {
+                            SharedMediaLayout.this.profileActivity.movePreviewFragment(f2);
+                        }
+                    }
+                }
+
+                @Override
+                public void onLongClickRelease() {
+                    if (SharedMediaLayout.this.profileActivity != null) {
+                        android.graphics.Point point = AndroidUtilities.displaySize;
+                        if (point.x > point.y) {
+                            SharedMediaLayout.this.profileActivity.finishPreviewFragment();
+                        }
+                    }
                 }
             });
-            if (i17 == 0 && i16 != -1) {
-                extendedGridLayoutManager.scrollToPositionWithOffset(i16, i18);
+            if (i16 == 0 && i17 != -1) {
+                extendedGridLayoutManager.scrollToPositionWithOffset(i17, i18);
             }
-            final InternalListView internalListView = this.mediaPages[i17].listView;
-            this.mediaPages[i17].animatingImageView = new ClippingImageView(this, context) {
+            final InternalListView internalListView = this.mediaPages[i16].listView;
+            this.mediaPages[i16].animatingImageView = new ClippingImageView(this, context) {
                 @Override
                 public void invalidate() {
                     super.invalidate();
                     internalListView.invalidate();
                 }
             };
-            this.mediaPages[i17].animatingImageView.setVisibility(8);
-            this.mediaPages[i17].listView.addOverlayView(this.mediaPages[i17].animatingImageView, LayoutHelper.createFrame(-1, -1.0f));
-            this.mediaPages[i17].progressView = new FlickerLoadingView(context) {
+            this.mediaPages[i16].animatingImageView.setVisibility(8);
+            this.mediaPages[i16].listView.addOverlayView(this.mediaPages[i16].animatingImageView, LayoutHelper.createFrame(-1, -1.0f));
+            this.mediaPages[i16].progressView = new FlickerLoadingView(context) {
                 @Override
                 public int getColumnsCount() {
                     return SharedMediaLayout.this.mediaColumnsCount[(mediaPage.selectedType == 8 || mediaPage.selectedType == 9) ? (char) 1 : (char) 0];
@@ -1695,34 +1811,33 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     super.onDraw(canvas);
                 }
             };
-            this.mediaPages[i17].progressView.showDate(false);
-            if (i17 != 0) {
-                this.mediaPages[i17].setVisibility(8);
+            this.mediaPages[i16].progressView.showDate(false);
+            if (i16 != 0) {
+                this.mediaPages[i16].setVisibility(8);
             }
             MediaPage[] mediaPageArr5 = this.mediaPages;
-            mediaPageArr5[i17].emptyView = new StickerEmptyView(context, mediaPageArr5[i17].progressView, 1);
-            this.mediaPages[i17].emptyView.setVisibility(8);
-            this.mediaPages[i17].emptyView.setAnimateLayoutChange(true);
+            mediaPageArr5[i16].emptyView = new StickerEmptyView(context, mediaPageArr5[i16].progressView, 1);
+            this.mediaPages[i16].emptyView.setVisibility(8);
+            this.mediaPages[i16].emptyView.setAnimateLayoutChange(true);
             MediaPage[] mediaPageArr6 = this.mediaPages;
-            mediaPageArr6[i17].addView(mediaPageArr6[i17].emptyView, LayoutHelper.createFrame(-1, -1.0f));
-            this.mediaPages[i17].emptyView.setOnTouchListener(new View.OnTouchListener() {
+            mediaPageArr6[i16].addView(mediaPageArr6[i16].emptyView, LayoutHelper.createFrame(-1, -1.0f));
+            this.mediaPages[i16].emptyView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    boolean lambda$new$8;
-                    lambda$new$8 = SharedMediaLayout.lambda$new$8(view, motionEvent);
-                    return lambda$new$8;
+                    boolean lambda$new$7;
+                    lambda$new$7 = SharedMediaLayout.lambda$new$7(view, motionEvent);
+                    return lambda$new$7;
                 }
             });
-            this.mediaPages[i17].emptyView.showProgress(true, false);
-            this.mediaPages[i17].emptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
-            this.mediaPages[i17].emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
-            this.mediaPages[i17].emptyView.addView(this.mediaPages[i17].progressView, LayoutHelper.createFrame(-1, -1.0f));
-            this.mediaPages[i17].listView.setEmptyView(this.mediaPages[i17].emptyView);
-            this.mediaPages[i17].listView.setAnimateEmptyView(true, 0);
+            this.mediaPages[i16].emptyView.showProgress(true, false);
+            this.mediaPages[i16].emptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
+            this.mediaPages[i16].emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+            this.mediaPages[i16].emptyView.addView(this.mediaPages[i16].progressView, LayoutHelper.createFrame(-1, -1.0f));
+            this.mediaPages[i16].listView.setEmptyView(this.mediaPages[i16].emptyView);
+            this.mediaPages[i16].listView.setAnimateEmptyView(true, 0);
             MediaPage[] mediaPageArr7 = this.mediaPages;
-            mediaPageArr7[i17].scrollHelper = new RecyclerAnimationScrollHelper(mediaPageArr7[i17].listView, this.mediaPages[i17].layoutManager);
-            i17++;
-            i6 = 2;
+            mediaPageArr7[i16].scrollHelper = new RecyclerAnimationScrollHelper(mediaPageArr7[i16].listView, this.mediaPages[i16].layoutManager);
+            i16++;
         }
         ChatActionCell chatActionCell = new ChatActionCell(context);
         this.floatingDateView = chatActionCell;
@@ -1731,26 +1846,23 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.floatingDateView.setOverrideColor(Theme.key_chat_mediaTimeBackground, Theme.key_chat_mediaTimeText);
         this.floatingDateView.setTranslationY(-AndroidUtilities.dp(48.0f));
         addView(this.floatingDateView, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 52.0f, 0.0f, 0.0f));
-        if (isStoriesView()) {
-            i5 = -1;
-        } else {
+        if (!isStoriesView()) {
             FragmentContextView fragmentContextView = new FragmentContextView(context, baseFragment, this, false, resourcesProvider);
             this.fragmentContextView = fragmentContextView;
             addView(fragmentContextView, LayoutHelper.createFrame(-1, 38.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
             this.fragmentContextView.setDelegate(new FragmentContextView.FragmentContextViewDelegate() {
                 @Override
-                public final void onAnimation(boolean z2, boolean z3) {
-                    SharedMediaLayout.this.lambda$new$9(z2, z3);
+                public final void onAnimation(boolean z, boolean z2) {
+                    SharedMediaLayout.this.lambda$new$8(z, z2);
                 }
             });
-            i5 = -1;
             addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 48, 51));
             addView(this.actionModeLayout, LayoutHelper.createFrame(-1, 48, 51));
         }
         View view = new View(context);
         this.shadowLine = view;
         view.setBackgroundColor(getThemedColor(Theme.key_divider));
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(i5, 1);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, 1);
         layoutParams.topMargin = isStoriesView() ? 0 : AndroidUtilities.dp(48.0f) - 1;
         addView(this.shadowLine, layoutParams);
         updateTabs(false);
@@ -2006,7 +2118,6 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     public void lambda$new$6(MediaPage mediaPage, View view, int i, float f, float f2) {
-        MessageObject messageObject;
         long j;
         if (mediaPage.selectedType != 7) {
             if (mediaPage.selectedType != 6 || !(view instanceof ProfileSearchCell)) {
@@ -2017,7 +2128,17 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             return;
                         } else if (mediaPage.selectedType != 5 || !(view instanceof ContextLinkCell)) {
                             if (mediaPage.selectedType != 0 || !(view instanceof SharedPhotoVideoCell2)) {
-                                if ((mediaPage.selectedType == 8 || mediaPage.selectedType == 9) && (view instanceof SharedPhotoVideoCell2) && (messageObject = ((SharedPhotoVideoCell2) view).getMessageObject()) != null) {
+                                if ((mediaPage.selectedType != 8 && mediaPage.selectedType != 9) || !(view instanceof SharedPhotoVideoCell2)) {
+                                    if (mediaPage.selectedType != 10 || !(view instanceof ProfileSearchCell) || i < 0 || i >= this.channelRecommendationsAdapter.chats.size()) {
+                                        return;
+                                    }
+                                    Bundle bundle = new Bundle();
+                                    bundle.putLong("chat_id", ((TLRPC$Chat) this.channelRecommendationsAdapter.chats.get(i)).id);
+                                    this.profileActivity.presentFragment(new ChatActivity(bundle));
+                                    return;
+                                }
+                                MessageObject messageObject = ((SharedPhotoVideoCell2) view).getMessageObject();
+                                if (messageObject != null) {
                                     onItemClick(i, view, messageObject, 0, mediaPage.selectedType);
                                     return;
                                 }
@@ -2046,10 +2167,15 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 return;
             }
             TLRPC$Chat chat = ((ProfileSearchCell) view).getChat();
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", chat.id);
-            if (this.profileActivity.getMessagesController().checkCanOpenChat(bundle, this.profileActivity)) {
-                this.profileActivity.presentFragment(new ChatActivity(bundle));
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("chat_id", chat.id);
+            if (this.profileActivity.getMessagesController().checkCanOpenChat(bundle2, this.profileActivity)) {
+                if (chat.forum) {
+                    BaseFragment baseFragment = this.profileActivity;
+                    baseFragment.presentFragment(TopicsFragment.getTopicsOrChat(baseFragment, bundle2));
+                    return;
+                }
+                this.profileActivity.presentFragment(new ChatActivity(bundle2));
             }
         } else if (!(view instanceof UserCell)) {
             RecyclerView.Adapter adapter = mediaPage.listView.getAdapter();
@@ -2066,9 +2192,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 if (j == 0 || j == this.profileActivity.getUserConfig().getClientUserId()) {
                     return;
                 }
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", j);
-                this.profileActivity.presentFragment(new ProfileActivity(bundle2));
+                Bundle bundle3 = new Bundle();
+                bundle3.putLong("user_id", j);
+                this.profileActivity.presentFragment(new ProfileActivity(bundle3));
             }
         } else {
             if (!this.chatUsersAdapter.sortedUsers.isEmpty()) {
@@ -2082,62 +2208,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public boolean lambda$new$7(MediaPage mediaPage, View view, int i) {
-        MessageObject messageObject;
-        int i2;
-        int i3 = 0;
-        if (this.photoVideoChangeColumnsAnimation) {
-            return false;
-        }
-        if (this.isActionModeShowed) {
-            mediaPage.listView.clickItem(view, i);
-            return true;
-        } else if (mediaPage.selectedType != 7 || !(view instanceof UserCell)) {
-            if (mediaPage.selectedType != 1 || !(view instanceof SharedDocumentCell)) {
-                if (mediaPage.selectedType != 3 || !(view instanceof SharedLinkCell)) {
-                    if ((mediaPage.selectedType != 2 && mediaPage.selectedType != 4) || !(view instanceof SharedAudioCell)) {
-                        if (mediaPage.selectedType != 5 || !(view instanceof ContextLinkCell)) {
-                            if ((mediaPage.selectedType == 0 || mediaPage.selectedType == 9 || (mediaPage.selectedType == 8 && isStoriesView())) && (view instanceof SharedPhotoVideoCell2) && (messageObject = ((SharedPhotoVideoCell2) view).getMessageObject()) != null) {
-                                return onItemLongClick(messageObject, view, mediaPage.selectedType);
-                            }
-                            return false;
-                        }
-                        return onItemLongClick((MessageObject) ((ContextLinkCell) view).getParentObject(), view, 0);
-                    }
-                    return onItemLongClick(((SharedAudioCell) view).getMessage(), view, 0);
-                }
-                return onItemLongClick(((SharedLinkCell) view).getMessage(), view, 0);
-            }
-            return onItemLongClick(((SharedDocumentCell) view).getMessage(), view, 0);
-        } else {
-            if (this.chatUsersAdapter.sortedUsers.isEmpty()) {
-                i2 = i;
-            } else if (i >= this.chatUsersAdapter.sortedUsers.size()) {
-                return false;
-            } else {
-                i2 = ((Integer) this.chatUsersAdapter.sortedUsers.get(i)).intValue();
-            }
-            if (i2 < 0 || i2 >= this.chatUsersAdapter.chatInfo.participants.participants.size()) {
-                return false;
-            }
-            TLRPC$ChatParticipant tLRPC$ChatParticipant = this.chatUsersAdapter.chatInfo.participants.participants.get(i2);
-            RecyclerListView recyclerListView = (RecyclerListView) view.getParent();
-            while (true) {
-                if (i3 >= recyclerListView.getChildCount()) {
-                    break;
-                }
-                View childAt = recyclerListView.getChildAt(i3);
-                if (recyclerListView.getChildAdapterPosition(childAt) == i) {
-                    view = childAt;
-                    break;
-                }
-                i3++;
-            }
-            return onMemberClick(tLRPC$ChatParticipant, true, view);
-        }
-    }
-
-    public void lambda$new$9(boolean z, boolean z2) {
+    public void lambda$new$8(boolean z, boolean z2) {
         if (z) {
             return;
         }
@@ -2643,7 +2714,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     private ScrollSlidingTextTabStripInner createScrollingTextTabStrip(Context context) {
-        ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner = new ScrollSlidingTextTabStripInner(context, this.resourcesProvider);
+        ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner = new ScrollSlidingTextTabStripInner(context, this.resourcesProvider) {
+            @Override
+            protected int processColor(int i) {
+                return SharedMediaLayout.this.processColor(i);
+            }
+        };
         int i = this.initialTab;
         if (i != -1) {
             scrollSlidingTextTabStripInner.setInitialTabId(i);
@@ -2804,7 +2880,6 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     public void checkLoadMoreScroll(MediaPage mediaPage, final RecyclerListView recyclerListView, LinearLayoutManager linearLayoutManager) {
         int i;
         int i2;
-        int i3;
         RecyclerView.ViewHolder findViewHolderForAdapterPosition;
         if (this.photoVideoChangeColumnsAnimation || this.jumpToRunnable != null) {
             return;
@@ -2819,23 +2894,23 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             int abs = findFirstVisibleItemPosition == -1 ? 0 : Math.abs(linearLayoutManager.findLastVisibleItemPosition() - findFirstVisibleItemPosition) + 1;
             int itemCount = recyclerListView.getAdapter().getItemCount();
             if (mediaPage.selectedType == 0 || mediaPage.selectedType == 1 || mediaPage.selectedType == 2 || mediaPage.selectedType == 4) {
-                final int i4 = mediaPage.selectedType;
-                int startOffset = this.sharedMediaData[i4].getStartOffset() + this.sharedMediaData[i4].messages.size();
+                final int i3 = mediaPage.selectedType;
+                int startOffset = this.sharedMediaData[i3].getStartOffset() + this.sharedMediaData[i3].messages.size();
                 SharedMediaData[] sharedMediaDataArr = this.sharedMediaData;
-                if (sharedMediaDataArr[i4].fastScrollDataLoaded && sharedMediaDataArr[i4].fastScrollPeriods.size() > 2 && mediaPage.selectedType == 0 && this.sharedMediaData[i4].messages.size() != 0) {
-                    float f = i4 == 0 ? this.mediaColumnsCount[0] : 1;
+                if (sharedMediaDataArr[i3].fastScrollDataLoaded && sharedMediaDataArr[i3].fastScrollPeriods.size() > 2 && mediaPage.selectedType == 0 && this.sharedMediaData[i3].messages.size() != 0) {
+                    float f = i3 == 0 ? this.mediaColumnsCount[0] : 1;
                     int measuredHeight = (int) ((recyclerListView.getMeasuredHeight() / (recyclerListView.getMeasuredWidth() / f)) * f * 1.5f);
                     if (measuredHeight < 100) {
                         measuredHeight = 100;
                     }
-                    if (measuredHeight < this.sharedMediaData[i4].fastScrollPeriods.get(1).startOffset) {
-                        measuredHeight = this.sharedMediaData[i4].fastScrollPeriods.get(1).startOffset;
+                    if (measuredHeight < this.sharedMediaData[i3].fastScrollPeriods.get(1).startOffset) {
+                        measuredHeight = this.sharedMediaData[i3].fastScrollPeriods.get(1).startOffset;
                     }
-                    if ((findFirstVisibleItemPosition > startOffset && findFirstVisibleItemPosition - startOffset > measuredHeight) || ((i = findFirstVisibleItemPosition + abs) < this.sharedMediaData[i4].startOffset && this.sharedMediaData[0].startOffset - i > measuredHeight)) {
+                    if ((findFirstVisibleItemPosition > startOffset && findFirstVisibleItemPosition - startOffset > measuredHeight) || ((i = findFirstVisibleItemPosition + abs) < this.sharedMediaData[i3].startOffset && this.sharedMediaData[0].startOffset - i > measuredHeight)) {
                         Runnable runnable = new Runnable() {
                             @Override
                             public final void run() {
-                                SharedMediaLayout.this.lambda$checkLoadMoreScroll$10(i4, recyclerListView);
+                                SharedMediaLayout.this.lambda$checkLoadMoreScroll$9(i3, recyclerListView);
                             }
                         };
                         this.jumpToRunnable = runnable;
@@ -2851,61 +2926,65 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             if (mediaPage.selectedType != 8) {
                 if (mediaPage.selectedType != 9) {
                     if (mediaPage.selectedType != 6) {
-                        if (mediaPage.selectedType == 0) {
-                            i2 = 3;
-                        } else {
-                            i2 = mediaPage.selectedType == 5 ? 10 : 6;
-                        }
-                        if ((abs + findFirstVisibleItemPosition > itemCount - i2 || this.sharedMediaData[mediaPage.selectedType].loadingAfterFastScroll) && !this.sharedMediaData[mediaPage.selectedType].loading) {
-                            if (mediaPage.selectedType != 0) {
-                                if (mediaPage.selectedType == 1) {
-                                    i3 = 1;
-                                } else if (mediaPage.selectedType == 2) {
-                                    i3 = 2;
-                                } else if (mediaPage.selectedType == 4) {
-                                    i3 = 4;
+                        int i4 = 10;
+                        if (mediaPage.selectedType != 10) {
+                            if (mediaPage.selectedType == 0) {
+                                i4 = 3;
+                            } else if (mediaPage.selectedType != 5) {
+                                i4 = 6;
+                            }
+                            if ((abs + findFirstVisibleItemPosition > itemCount - i4 || this.sharedMediaData[mediaPage.selectedType].loadingAfterFastScroll) && !this.sharedMediaData[mediaPage.selectedType].loading) {
+                                if (mediaPage.selectedType != 0) {
+                                    if (mediaPage.selectedType == 1) {
+                                        i2 = 1;
+                                    } else if (mediaPage.selectedType == 2) {
+                                        i2 = 2;
+                                    } else if (mediaPage.selectedType == 4) {
+                                        i2 = 4;
+                                    } else {
+                                        i2 = mediaPage.selectedType == 5 ? 5 : 3;
+                                    }
                                 } else {
-                                    i3 = mediaPage.selectedType == 5 ? 5 : 3;
+                                    SharedMediaData[] sharedMediaDataArr2 = this.sharedMediaData;
+                                    if (sharedMediaDataArr2[0].filterType == 1) {
+                                        i2 = 6;
+                                    } else {
+                                        i2 = sharedMediaDataArr2[0].filterType == 2 ? 7 : 0;
+                                    }
                                 }
-                            } else {
-                                SharedMediaData[] sharedMediaDataArr2 = this.sharedMediaData;
-                                if (sharedMediaDataArr2[0].filterType == 1) {
-                                    i3 = 6;
-                                } else {
-                                    i3 = sharedMediaDataArr2[0].filterType == 2 ? 7 : 0;
+                                if (!this.sharedMediaData[mediaPage.selectedType].endReached[0]) {
+                                    this.sharedMediaData[mediaPage.selectedType].loading = true;
+                                    this.profileActivity.getMediaDataController().loadMedia(this.dialog_id, 50, this.sharedMediaData[mediaPage.selectedType].max_id[0], 0, i2, this.topicId, 1, this.profileActivity.getClassGuid(), this.sharedMediaData[mediaPage.selectedType].requestIndex);
+                                } else if (this.mergeDialogId != 0 && !this.sharedMediaData[mediaPage.selectedType].endReached[1]) {
+                                    this.sharedMediaData[mediaPage.selectedType].loading = true;
+                                    this.profileActivity.getMediaDataController().loadMedia(this.mergeDialogId, 50, this.sharedMediaData[mediaPage.selectedType].max_id[1], 0, i2, this.topicId, 1, this.profileActivity.getClassGuid(), this.sharedMediaData[mediaPage.selectedType].requestIndex);
                                 }
                             }
-                            if (!this.sharedMediaData[mediaPage.selectedType].endReached[0]) {
-                                this.sharedMediaData[mediaPage.selectedType].loading = true;
-                                this.profileActivity.getMediaDataController().loadMedia(this.dialog_id, 50, this.sharedMediaData[mediaPage.selectedType].max_id[0], 0, i3, this.topicId, 1, this.profileActivity.getClassGuid(), this.sharedMediaData[mediaPage.selectedType].requestIndex);
-                            } else if (this.mergeDialogId != 0 && !this.sharedMediaData[mediaPage.selectedType].endReached[1]) {
-                                this.sharedMediaData[mediaPage.selectedType].loading = true;
-                                this.profileActivity.getMediaDataController().loadMedia(this.mergeDialogId, 50, this.sharedMediaData[mediaPage.selectedType].max_id[1], 0, i3, this.topicId, 1, this.profileActivity.getClassGuid(), this.sharedMediaData[mediaPage.selectedType].requestIndex);
+                            int i5 = this.sharedMediaData[mediaPage.selectedType].startOffset;
+                            if (mediaPage.selectedType == 0) {
+                                i5 = this.photoVideoAdapter.getPositionForIndex(0);
                             }
-                        }
-                        int i5 = this.sharedMediaData[mediaPage.selectedType].startOffset;
-                        if (mediaPage.selectedType == 0) {
-                            i5 = this.photoVideoAdapter.getPositionForIndex(0);
-                        }
-                        if (findFirstVisibleItemPosition - i5 < i2 + 1 && !this.sharedMediaData[mediaPage.selectedType].loading && !this.sharedMediaData[mediaPage.selectedType].startReached && !this.sharedMediaData[mediaPage.selectedType].loadingAfterFastScroll) {
-                            loadFromStart(mediaPage.selectedType);
-                        }
-                        if (this.mediaPages[0].listView == recyclerListView) {
-                            if ((this.mediaPages[0].selectedType == 0 || this.mediaPages[0].selectedType == 5) && findFirstVisibleItemPosition != -1 && (findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition)) != null && findViewHolderForAdapterPosition.getItemViewType() == 0) {
-                                View view = findViewHolderForAdapterPosition.itemView;
-                                if (view instanceof SharedPhotoVideoCell) {
-                                    MessageObject messageObject = ((SharedPhotoVideoCell) view).getMessageObject(0);
-                                    if (messageObject != null) {
-                                        this.floatingDateView.setCustomDate(messageObject.messageOwner.date, false, true);
+                            if (findFirstVisibleItemPosition - i5 < i4 + 1 && !this.sharedMediaData[mediaPage.selectedType].loading && !this.sharedMediaData[mediaPage.selectedType].startReached && !this.sharedMediaData[mediaPage.selectedType].loadingAfterFastScroll) {
+                                loadFromStart(mediaPage.selectedType);
+                            }
+                            if (this.mediaPages[0].listView == recyclerListView) {
+                                if ((this.mediaPages[0].selectedType == 0 || this.mediaPages[0].selectedType == 5) && findFirstVisibleItemPosition != -1 && (findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition)) != null && findViewHolderForAdapterPosition.getItemViewType() == 0) {
+                                    View view = findViewHolderForAdapterPosition.itemView;
+                                    if (view instanceof SharedPhotoVideoCell) {
+                                        MessageObject messageObject = ((SharedPhotoVideoCell) view).getMessageObject(0);
+                                        if (messageObject != null) {
+                                            this.floatingDateView.setCustomDate(messageObject.messageOwner.date, false, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (view instanceof ContextLinkCell) {
+                                        this.floatingDateView.setCustomDate(((ContextLinkCell) view).getDate(), false, true);
+                                        return;
+                                    } else {
                                         return;
                                     }
-                                    return;
-                                } else if (view instanceof ContextLinkCell) {
-                                    this.floatingDateView.setCustomDate(((ContextLinkCell) view).getDate(), false, true);
-                                    return;
-                                } else {
-                                    return;
                                 }
+                                return;
                             }
                             return;
                         }
@@ -2933,7 +3012,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$checkLoadMoreScroll$10(int i, RecyclerListView recyclerListView) {
+    public void lambda$checkLoadMoreScroll$9(int i, RecyclerListView recyclerListView) {
         findPeriodAndJumpToDate(i, recyclerListView, false);
         this.jumpToRunnable = null;
     }
@@ -3006,6 +3085,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingDidStart);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesListUpdated);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesUpdated);
+        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
         StoriesAdapter storiesAdapter = this.storiesAdapter;
         if (storiesAdapter != null && storiesAdapter.storiesList != null) {
             storiesAdapter.destroy();
@@ -3090,24 +3170,15 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             ConnectionsManager.getInstance(this.profileActivity.getCurrentAccount()).bindRequestToGuid(ConnectionsManager.getInstance(this.profileActivity.getCurrentAccount()).sendRequest(tLRPC$TL_messages_getSearchResultsPositions, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SharedMediaLayout.this.lambda$loadFastScrollData$14(i3, i2, tLObject, tLRPC$TL_error);
+                    SharedMediaLayout.this.lambda$loadFastScrollData$13(i3, i2, tLObject, tLRPC$TL_error);
                 }
             }), this.profileActivity.getClassGuid());
             i++;
         }
     }
 
-    public void lambda$loadFastScrollData$14(final int i, final int i2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFastScrollData$13(final int i, final int i2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SharedMediaLayout.this.lambda$loadFastScrollData$13(tLRPC$TL_error, i, i2, tLObject);
-            }
-        });
-    }
-
-    public void lambda$loadFastScrollData$13(final TLRPC$TL_error tLRPC$TL_error, final int i, final int i2, final TLObject tLObject) {
-        NotificationCenter.getInstance(this.profileActivity.getCurrentAccount()).doOnIdle(new Runnable() {
             @Override
             public final void run() {
                 SharedMediaLayout.this.lambda$loadFastScrollData$12(tLRPC$TL_error, i, i2, tLObject);
@@ -3115,7 +3186,16 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         });
     }
 
-    public void lambda$loadFastScrollData$12(TLRPC$TL_error tLRPC$TL_error, int i, int i2, TLObject tLObject) {
+    public void lambda$loadFastScrollData$12(final TLRPC$TL_error tLRPC$TL_error, final int i, final int i2, final TLObject tLObject) {
+        NotificationCenter.getInstance(this.profileActivity.getCurrentAccount()).doOnIdle(new Runnable() {
+            @Override
+            public final void run() {
+                SharedMediaLayout.this.lambda$loadFastScrollData$11(tLRPC$TL_error, i, i2, tLObject);
+            }
+        });
+    }
+
+    public void lambda$loadFastScrollData$11(TLRPC$TL_error tLRPC$TL_error, int i, int i2, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             return;
         }
@@ -3136,9 +3216,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         Collections.sort(this.sharedMediaData[i2].fastScrollPeriods, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$loadFastScrollData$11;
-                lambda$loadFastScrollData$11 = SharedMediaLayout.lambda$loadFastScrollData$11((SharedMediaLayout.Period) obj, (SharedMediaLayout.Period) obj2);
-                return lambda$loadFastScrollData$11;
+                int lambda$loadFastScrollData$10;
+                lambda$loadFastScrollData$10 = SharedMediaLayout.lambda$loadFastScrollData$10((SharedMediaLayout.Period) obj, (SharedMediaLayout.Period) obj2);
+                return lambda$loadFastScrollData$10;
             }
         });
         this.sharedMediaData[i2].setTotalCount(tLRPC$TL_messages_searchResultsPositions.count);
@@ -3161,7 +3241,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.photoVideoAdapter.notifyDataSetChanged();
     }
 
-    public static int lambda$loadFastScrollData$11(Period period, Period period2) {
+    public static int lambda$loadFastScrollData$10(Period period, Period period2) {
         return period2.date - period.date;
     }
 
@@ -3184,7 +3264,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    SharedMediaLayout.lambda$showFastScrollHint$15(SharedMediaLayout.MediaPage.this, sharedMediaFastScrollTooltip);
+                    SharedMediaLayout.lambda$showFastScrollHint$14(SharedMediaLayout.MediaPage.this, sharedMediaFastScrollTooltip);
                 }
             };
             mediaPage.fastScrollHideHintRunnable = runnable2;
@@ -3198,7 +3278,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public static void lambda$showFastScrollHint$15(MediaPage mediaPage, final SharedMediaFastScrollTooltip sharedMediaFastScrollTooltip) {
+    public static void lambda$showFastScrollHint$14(MediaPage mediaPage, final SharedMediaFastScrollTooltip sharedMediaFastScrollTooltip) {
         mediaPage.fastScrollHintView = null;
         mediaPage.fastScrollHideHintRunnable = null;
         sharedMediaFastScrollTooltip.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(220L).setListener(new AnimatorListenerAdapter() {
@@ -3240,7 +3320,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             AlertsCreator.createDeleteMessagesAlert(this.profileActivity, tLRPC$User, chat, tLRPC$EncryptedChat, null, this.mergeDialogId, null, this.selectedFiles, null, false, 1, new Runnable() {
                 @Override
                 public final void run() {
-                    SharedMediaLayout.this.lambda$onActionBarItemClick$16();
+                    SharedMediaLayout.this.lambda$onActionBarItemClick$15();
                 }
             }, null, this.resourcesProvider);
             return;
@@ -3275,9 +3355,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-                    boolean lambda$onActionBarItemClick$17;
-                    lambda$onActionBarItemClick$17 = SharedMediaLayout.this.lambda$onActionBarItemClick$17(dialogsActivity2, arrayList, charSequence, z, topicsFragment);
-                    return lambda$onActionBarItemClick$17;
+                    boolean lambda$onActionBarItemClick$16;
+                    lambda$onActionBarItemClick$16 = SharedMediaLayout.this.lambda$onActionBarItemClick$16(dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                    return lambda$onActionBarItemClick$16;
                 }
             });
             this.profileActivity.presentFragment(dialogsActivity);
@@ -3311,13 +3391,13 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$onActionBarItemClick$16() {
+    public void lambda$onActionBarItemClick$15() {
         showActionMode(false);
         this.actionBar.closeSearchField();
         this.cantDeleteMessagesCount = 0;
     }
 
-    public boolean lambda$onActionBarItemClick$17(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$onActionBarItemClick$16(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i = 1;
         while (true) {
@@ -3637,7 +3717,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    SharedMediaLayout.this.lambda$stopScroll$18(valueAnimator);
+                    SharedMediaLayout.this.lambda$stopScroll$17(valueAnimator);
                 }
             });
             if (this.backAnimation) {
@@ -3693,7 +3773,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             SharedMediaLayout.this.searchItem.setVisibility(SharedMediaLayout.this.isStoriesView() ? 8 : 4);
                         }
                         SharedMediaLayout.this.searchItemState = 0;
-                        SharedMediaLayout.this.scrollSlidingTextTabStrip.selectTabWithId(SharedMediaLayout.this.mediaPages[0].selectedType, 1.0f);
+                        SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
+                        sharedMediaLayout.scrollSlidingTextTabStrip.selectTabWithId(sharedMediaLayout.mediaPages[0].selectedType, 1.0f);
                         SharedMediaLayout.this.onSelectedTabChanged();
                         SharedMediaLayout.this.startStopVisibleGifs();
                     }
@@ -3721,7 +3802,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$stopScroll$18(ValueAnimator valueAnimator) {
+    public void lambda$stopScroll$17(ValueAnimator valueAnimator) {
         onTabProgress(getTabProgress());
     }
 
@@ -3902,16 +3983,16 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         if (view != null) {
             recyclerListView.removeView(view);
         }
-        getViewTreeObserver().addOnPreDrawListener(new AnonymousClass31(recyclerListView, sparseBooleanArray, view, i));
+        getViewTreeObserver().addOnPreDrawListener(new AnonymousClass33(recyclerListView, sparseBooleanArray, view, i));
     }
 
-    public class AnonymousClass31 implements ViewTreeObserver.OnPreDrawListener {
+    public class AnonymousClass33 implements ViewTreeObserver.OnPreDrawListener {
         final SparseBooleanArray val$addedMesages;
         final RecyclerListView val$finalListView;
         final View val$finalProgressView;
         final int val$oldItemCount;
 
-        AnonymousClass31(RecyclerListView recyclerListView, SparseBooleanArray sparseBooleanArray, View view, int i) {
+        AnonymousClass33(RecyclerListView recyclerListView, SparseBooleanArray sparseBooleanArray, View view, int i) {
             this.val$finalListView = recyclerListView;
             this.val$addedMesages = sparseBooleanArray;
             this.val$finalProgressView = view;
@@ -3935,14 +4016,14 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    SharedMediaLayout.AnonymousClass31.this.lambda$onPreDraw$0(messageId, recyclerListView, valueAnimator);
+                                    SharedMediaLayout.AnonymousClass33.this.lambda$onPreDraw$0(messageId, recyclerListView, valueAnimator);
                                 }
                             });
                             ofFloat.addListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
                                     SharedMediaLayout.this.messageAlphaEnter.remove(messageId);
-                                    AnonymousClass31.this.val$finalListView.invalidate();
+                                    AnonymousClass33.this.val$finalListView.invalidate();
                                 }
                             });
                             ofFloat.setStartDelay((int) ((Math.min(this.val$finalListView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / this.val$finalListView.getMeasuredHeight()) * 100.0f));
@@ -3975,10 +4056,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             ofFloat3.addListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
-                                    AnonymousClass31.this.val$finalProgressView.setAlpha(1.0f);
-                                    layoutManager.stopIgnoringView(AnonymousClass31.this.val$finalProgressView);
-                                    AnonymousClass31 anonymousClass31 = AnonymousClass31.this;
-                                    anonymousClass31.val$finalListView.removeView(anonymousClass31.val$finalProgressView);
+                                    AnonymousClass33.this.val$finalProgressView.setAlpha(1.0f);
+                                    layoutManager.stopIgnoringView(AnonymousClass33.this.val$finalProgressView);
+                                    AnonymousClass33 anonymousClass33 = AnonymousClass33.this;
+                                    anonymousClass33.val$finalListView.removeView(anonymousClass33.val$finalProgressView);
                                 }
                             });
                             ofFloat3.start();
@@ -4205,7 +4286,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.switchToCurrentSelectedMode(boolean):void");
     }
 
-    private boolean onItemLongClick(MessageObject messageObject, View view, int i) {
+    public boolean onItemLongClick(MessageObject messageObject, View view, int i) {
         if (this.isActionModeShowed || this.profileActivity.getParentActivity() == null || messageObject == null) {
             return false;
         }
@@ -4381,14 +4462,14 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             this.profileActivity.getOrCreateStoryViewer().open(getContext(), messageObject.getId(), storiesList, StoriesListPlaceProvider.of(this.mediaPages[i2].listView).with(new StoriesListPlaceProvider.LoadNextInterface() {
                 @Override
                 public final void loadNext(boolean z) {
-                    SharedMediaLayout.lambda$onItemClick$19(StoriesController.StoriesList.this, z);
+                    SharedMediaLayout.lambda$onItemClick$18(StoriesController.StoriesList.this, z);
                 }
             }));
         }
         updateForwardItem();
     }
 
-    public static void lambda$onItemClick$19(StoriesController.StoriesList storiesList, boolean z) {
+    public static void lambda$onItemClick$18(StoriesController.StoriesList storiesList, boolean z) {
         if (z) {
             storiesList.load(false, 30);
         }
@@ -4430,8 +4511,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public class AnonymousClass34 implements SharedLinkCell.SharedLinkCellDelegate {
-        AnonymousClass34() {
+    public class AnonymousClass36 implements SharedLinkCell.SharedLinkCellDelegate {
+        AnonymousClass36() {
         }
 
         @Override
@@ -4455,7 +4536,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             builder.setItems(new CharSequence[]{LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    SharedMediaLayout.AnonymousClass34.this.lambda$onLinkPress$0(str, dialogInterface, i);
+                    SharedMediaLayout.AnonymousClass36.this.lambda$onLinkPress$0(str, dialogInterface, i);
                 }
             });
             SharedMediaLayout.this.profileActivity.showDialog(builder.create());
@@ -4743,11 +4824,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -4842,7 +4923,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             emptyStubView.emptyTextView.setText(LocaleController.getString("NoGroupsInCommon", R.string.NoGroupsInCommon));
         } else if (i == 7) {
             emptyStubView.emptyImageView.setImageDrawable(null);
-            emptyStubView.emptyTextView.setText(BuildConfig.APP_CENTER_HASH);
+            emptyStubView.emptyTextView.setText("");
         }
         return emptyStubView;
     }
@@ -5000,11 +5081,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -5592,6 +5673,158 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 photoImage.setAllowStartAnimation(false);
                 photoImage.stopAnimation();
             }
+        }
+    }
+
+    public class ChannelRecommendationsAdapter extends RecyclerListView.SelectionAdapter {
+        private final ArrayList<TLRPC$Chat> chats = new ArrayList<>();
+        private final Context mContext;
+        private int more;
+
+        public ChannelRecommendationsAdapter(Context context) {
+            this.mContext = context;
+            update();
+        }
+
+        public void update() {
+            TLRPC$Chat chat;
+            if (SharedMediaLayout.this.profileActivity == null || !DialogObject.isChatDialog(SharedMediaLayout.this.dialog_id) || (chat = MessagesController.getInstance(SharedMediaLayout.this.profileActivity.getCurrentAccount()).getChat(Long.valueOf(-SharedMediaLayout.this.dialog_id))) == null || !ChatObject.isChannelAndNotMegaGroup(chat)) {
+                return;
+            }
+            MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(SharedMediaLayout.this.profileActivity.getCurrentAccount()).getChannelRecommendations(chat.id);
+            this.chats.clear();
+            if (channelRecommendations != null) {
+                this.chats.addAll(channelRecommendations.chats);
+                this.more = UserConfig.getInstance(SharedMediaLayout.this.profileActivity.getCurrentAccount()).isPremium() ? 0 : channelRecommendations.more;
+            } else {
+                this.more = 0;
+            }
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() == 0;
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.chats.size();
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View profileSearchCell;
+            if (i == 1) {
+                profileSearchCell = new MoreRecommendationsCell(SharedMediaLayout.this.profileActivity == null ? UserConfig.selectedAccount : SharedMediaLayout.this.profileActivity.getCurrentAccount(), this.mContext, SharedMediaLayout.this.resourcesProvider, new Runnable() {
+                    @Override
+                    public final void run() {
+                        SharedMediaLayout.ChannelRecommendationsAdapter.this.lambda$onCreateViewHolder$0();
+                    }
+                });
+            } else {
+                profileSearchCell = new ProfileSearchCell(this.mContext, SharedMediaLayout.this.resourcesProvider);
+            }
+            profileSearchCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(profileSearchCell);
+        }
+
+        public void lambda$onCreateViewHolder$0() {
+            if (SharedMediaLayout.this.profileActivity != null) {
+                SharedMediaLayout.this.profileActivity.presentFragment(new PremiumPreviewFragment("similar_channels"));
+            }
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ProfileSearchCell profileSearchCell;
+            if (viewHolder.getItemViewType() == 0) {
+                profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
+            } else {
+                profileSearchCell = viewHolder.getItemViewType() == 1 ? ((MoreRecommendationsCell) viewHolder.itemView).channelCell : null;
+            }
+            if (profileSearchCell != null) {
+                profileSearchCell.setData(this.chats.get(i), null, null, null, false, false);
+                profileSearchCell.useSeparator = i != this.chats.size() - 1;
+            }
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            return (this.more <= 0 || i != getItemCount() - 1) ? 0 : 1;
+        }
+    }
+
+    private static class MoreRecommendationsCell extends FrameLayout {
+        private final ButtonWithCounterView button;
+        public final ProfileSearchCell channelCell;
+        private final View gradientView;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private final LinkSpanDrawable.LinksTextView textView;
+
+        public MoreRecommendationsCell(int i, Context context, Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
+            super(context);
+            this.resourcesProvider = resourcesProvider;
+            ProfileSearchCell profileSearchCell = new ProfileSearchCell(context, resourcesProvider);
+            this.channelCell = profileSearchCell;
+            addView(profileSearchCell, LayoutHelper.createFrame(-1, -2.0f));
+            View view = new View(context);
+            this.gradientView = view;
+            GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
+            int i2 = Theme.key_windowBackgroundWhite;
+            view.setBackground(new GradientDrawable(orientation, new int[]{Theme.multAlpha(Theme.getColor(i2, resourcesProvider), 0.4f), Theme.getColor(i2, resourcesProvider)}));
+            addView(view, LayoutHelper.createFrame(-1, 60.0f));
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+            this.button = buttonWithCounterView;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.MoreSimilarButton));
+            spannableStringBuilder.append((CharSequence) " ");
+            SpannableString spannableString = new SpannableString("l");
+            spannableString.setSpan(new ColoredImageSpan(R.drawable.msg_mini_lock2), 0, 1, 33);
+            spannableStringBuilder.append((CharSequence) spannableString);
+            buttonWithCounterView.setText(spannableStringBuilder, false);
+            addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 48, 14.0f, 38.0f, 14.0f, 0.0f));
+            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    SharedMediaLayout.MoreRecommendationsCell.lambda$new$0(runnable, view2);
+                }
+            });
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+            this.textView = linksTextView;
+            linksTextView.setTextSize(1, 13.0f);
+            linksTextView.setTextAlignment(4);
+            linksTextView.setGravity(17);
+            linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider));
+            linksTextView.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
+            SpannableStringBuilder premiumText = AndroidUtilities.premiumText(LocaleController.getString(R.string.MoreSimilarText), new Runnable() {
+                @Override
+                public final void run() {
+                    SharedMediaLayout.MoreRecommendationsCell.lambda$new$1(runnable);
+                }
+            });
+            SpannableString spannableString2 = new SpannableString("" + MessagesController.getInstance(i).recommendedChannelsLimitPremium);
+            spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString2.length(), 33);
+            linksTextView.setText(AndroidUtilities.replaceCharSequence("%s", premiumText, spannableString2));
+            addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));
+        }
+
+        public static void lambda$new$0(Runnable runnable, View view) {
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        public static void lambda$new$1(Runnable runnable) {
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(145.0f), 1073741824));
         }
     }
 
@@ -6331,7 +6564,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
                 @Override
                 public final void didSetColor() {
-                    SharedMediaLayout.this.lambda$getThemeDescriptions$20(i7);
+                    SharedMediaLayout.this.lambda$getThemeDescriptions$19(i7);
                 }
 
                 @Override
@@ -6443,7 +6676,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$20(int i) {
+    public void lambda$getThemeDescriptions$19(int i) {
         if (this.mediaPages[i].listView != null) {
             int childCount = this.mediaPages[i].listView.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {

@@ -21,7 +21,7 @@ public class AutoDeletePopupWrapper {
     Callback callback;
     private final ActionBarMenuSubItem disableItem;
     long lastDismissTime;
-    TextView textView;
+    public TextView textView;
     public ActionBarPopupWindow.ActionBarPopupWindowLayout windowLayout;
 
     public interface Callback {
@@ -165,23 +165,23 @@ public class AutoDeletePopupWrapper {
         }
     }
 
-    public void allowExtenededHint() {
+    public void allowExtendedHint(int i) {
         if (this.textView == null) {
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) LocaleController.getString("AutoDeletePopupDescription", R.string.AutoDeletePopupDescription));
         spannableStringBuilder.append((CharSequence) "\n\n");
-        spannableStringBuilder.append(AndroidUtilities.replaceSingleTag(LocaleController.getString("AutoDeletePopupDescription2", R.string.AutoDeletePopupDescription2), new Runnable() {
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleLink(LocaleController.getString(R.string.AutoDeletePopupDescription2), i, new Runnable() {
             @Override
             public final void run() {
-                AutoDeletePopupWrapper.this.lambda$allowExtenededHint$8();
+                AutoDeletePopupWrapper.this.lambda$allowExtendedHint$8();
             }
         }));
         this.textView.setText(spannableStringBuilder);
     }
 
-    public void lambda$allowExtenededHint$8() {
+    public void lambda$allowExtendedHint$8() {
         this.callback.showGlobalAutoDeleteScreen();
     }
 }

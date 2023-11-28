@@ -12,6 +12,13 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
     public void appendColors() {
     }
 
+    @Override
+    public boolean isDark() {
+        boolean isCurrentThemeDark;
+        isCurrentThemeDark = Theme.isCurrentThemeDark();
+        return isCurrentThemeDark;
+    }
+
     public WrappedResourceProvider(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         appendColors();

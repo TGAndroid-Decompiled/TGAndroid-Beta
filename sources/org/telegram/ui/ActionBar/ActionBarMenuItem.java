@@ -46,7 +46,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -1039,7 +1038,7 @@ public class ActionBarMenuItem extends FrameLayout {
         this.searchContainerAnimator.start();
         setVisibility(8);
         clearSearchFilters();
-        this.searchField.setText(BuildConfig.APP_CENTER_HASH);
+        this.searchField.setText("");
         this.searchField.requestFocus();
         if (z) {
             AndroidUtilities.showKeyboard(this.searchField);
@@ -1669,7 +1668,7 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public void lambda$checkCreateSearchField$13(View view) {
         if (this.searchField.length() != 0) {
-            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchField.setText("");
         } else if (hasRemovableFilters()) {
             this.searchField.hideActionMode();
             for (int i = 0; i < this.currentSearchFilters.size(); i++) {
@@ -1845,7 +1844,7 @@ public class ActionBarMenuItem extends FrameLayout {
         if (editTextBoldCursor == null) {
             return;
         }
-        editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH);
+        editTextBoldCursor.setText("");
     }
 
     public ActionBarMenuItem setActionBarMenuItemSearchListener(ActionBarMenuItemSearchListener actionBarMenuItemSearchListener) {
@@ -1981,6 +1980,14 @@ public class ActionBarMenuItem extends FrameLayout {
             return;
         }
         findViewWithTag.setVisibility(8);
+    }
+
+    public boolean hasSubItem(int i) {
+        if (findLazyItem(i) != null) {
+            return true;
+        }
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.popupLayout;
+        return (actionBarPopupWindowLayout == null || actionBarPopupWindowLayout.findViewWithTag(Integer.valueOf(i)) == null) ? false : true;
     }
 
     public void checkHideMenuItem() {

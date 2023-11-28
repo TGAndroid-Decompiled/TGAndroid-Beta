@@ -256,6 +256,11 @@ public class Bulletin {
         return this;
     }
 
+    public Bulletin setTag(int i) {
+        this.tag = i;
+        return this;
+    }
+
     public Bulletin show() {
         return show(false);
     }
@@ -2124,10 +2129,5 @@ public class Bulletin {
                 BulletinWindow.this.getWindow().setAttributes(BulletinWindow.this.params);
             }
         }
-    }
-
-    public Bulletin setTag(int i) {
-        this.tag = i;
-        return this;
     }
 }

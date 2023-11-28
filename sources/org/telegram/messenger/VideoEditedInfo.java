@@ -100,11 +100,12 @@ public class VideoEditedInfo {
     }
 
     public static class MediaEntity {
-        public static final int TYPE_LOCATION = 3;
-        public static final int TYPE_PHOTO = 2;
+        public static final byte TYPE_LOCATION = 3;
+        public static final byte TYPE_PHOTO = 2;
         public static final byte TYPE_REACTION = 4;
-        public static final int TYPE_STICKER = 0;
-        public static final int TYPE_TEXT = 1;
+        public static final byte TYPE_ROUND = 5;
+        public static final byte TYPE_STICKER = 0;
+        public static final byte TYPE_TEXT = 1;
         public int H;
         public int W;
         public float additionalHeight;
@@ -117,17 +118,23 @@ public class VideoEditedInfo {
         public float density;
         public TLRPC$Document document;
         public ArrayList<EmojiEntity> entities;
+        public boolean firstSeek;
         public int fontSize;
         public float framesPerDraw;
         public float height;
+        public boolean looped;
         public TL_stories$MediaArea mediaArea;
         public TLRPC$MessageMedia mediaGeo;
         public int[] metadata;
         public Object parentObject;
         public long ptr;
         public float rotation;
+        public long roundDuration;
+        public long roundLeft;
+        public long roundOffset;
         public float roundRadius;
         public Canvas roundRadiusCanvas;
+        public long roundRight;
         public float scale;
         public byte subType;
         public String text;
@@ -148,12 +155,12 @@ public class VideoEditedInfo {
         public float y;
 
         public MediaEntity() {
-            this.text = BuildConfig.APP_CENTER_HASH;
+            this.text = "";
             this.entities = new ArrayList<>();
         }
 
         public MediaEntity(AbstractSerializedData abstractSerializedData, boolean z) {
-            this.text = BuildConfig.APP_CENTER_HASH;
+            this.text = "";
             this.entities = new ArrayList<>();
             this.type = abstractSerializedData.readByte(false);
             this.subType = abstractSerializedData.readByte(false);
@@ -206,6 +213,12 @@ public class VideoEditedInfo {
             if (this.type == 4) {
                 this.mediaArea = TL_stories$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(false), false);
             }
+            if (this.type == 5) {
+                this.roundOffset = abstractSerializedData.readInt64(false);
+                this.roundLeft = abstractSerializedData.readInt64(false);
+                this.roundRight = abstractSerializedData.readInt64(false);
+                this.roundDuration = abstractSerializedData.readInt64(false);
+            }
         }
 
         public void serializeTo(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -231,7 +244,7 @@ public class VideoEditedInfo {
             if (paintTypeface == null) {
                 key = this.textTypefaceKey;
                 if (key == null) {
-                    key = BuildConfig.APP_CENTER_HASH;
+                    key = "";
                 }
             } else {
                 key = paintTypeface.getKey();
@@ -255,13 +268,13 @@ public class VideoEditedInfo {
                 this.mediaArea.serializeToStream(abstractSerializedData);
                 TLRPC$MessageMedia tLRPC$MessageMedia = this.mediaGeo;
                 if (tLRPC$MessageMedia.provider == null) {
-                    tLRPC$MessageMedia.provider = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$MessageMedia.provider = "";
                 }
                 if (tLRPC$MessageMedia.venue_id == null) {
-                    tLRPC$MessageMedia.venue_id = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$MessageMedia.venue_id = "";
                 }
                 if (tLRPC$MessageMedia.venue_type == null) {
-                    tLRPC$MessageMedia.venue_type = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$MessageMedia.venue_type = "";
                 }
                 tLRPC$MessageMedia.serializeToStream(abstractSerializedData);
                 TLRPC$MessageMedia tLRPC$MessageMedia2 = this.mediaGeo;
@@ -274,6 +287,12 @@ public class VideoEditedInfo {
             }
             if (this.type == 4) {
                 this.mediaArea.serializeToStream(abstractSerializedData);
+            }
+            if (this.type == 5) {
+                abstractSerializedData.writeInt64(this.roundOffset);
+                abstractSerializedData.writeInt64(this.roundLeft);
+                abstractSerializedData.writeInt64(this.roundRight);
+                abstractSerializedData.writeInt64(this.roundDuration);
             }
         }
 
@@ -323,6 +342,10 @@ public class VideoEditedInfo {
             mediaEntity.W = this.W;
             mediaEntity.H = this.H;
             mediaEntity.visibleReaction = this.visibleReaction;
+            mediaEntity.roundOffset = this.roundOffset;
+            mediaEntity.roundDuration = this.roundDuration;
+            mediaEntity.roundLeft = this.roundLeft;
+            mediaEntity.roundRight = this.roundRight;
             return mediaEntity;
         }
     }
@@ -333,7 +356,7 @@ public class VideoEditedInfo {
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && this.blurPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            bytesToHex = BuildConfig.APP_CENTER_HASH;
+            bytesToHex = "";
         } else {
             int i = this.filterState != null ? 170 : 10;
             String str = this.paintPath;

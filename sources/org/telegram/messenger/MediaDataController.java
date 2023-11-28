@@ -705,7 +705,7 @@ public class MediaDataController extends BaseController {
         if (this.isLoadingReactions || Math.abs((System.currentTimeMillis() / 1000) - this.reactionsUpdateDate) < 3600) {
             return;
         }
-        loadReactions(true, false);
+        loadReactions(true, null);
     }
 
     public void checkMenuBots(boolean z) {
@@ -1080,7 +1080,7 @@ public class MediaDataController extends BaseController {
         return this.reactionsList;
     }
 
-    public void loadReactions(boolean z, boolean z2) {
+    public void loadReactions(boolean z, Integer num) {
         this.isLoadingReactions = true;
         if (z) {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
@@ -1092,7 +1092,7 @@ public class MediaDataController extends BaseController {
             return;
         }
         TLRPC$TL_messages_getAvailableReactions tLRPC$TL_messages_getAvailableReactions = new TLRPC$TL_messages_getAvailableReactions();
-        tLRPC$TL_messages_getAvailableReactions.hash = z2 ? 0 : this.reactionsUpdateHash;
+        tLRPC$TL_messages_getAvailableReactions.hash = num != null ? num.intValue() : this.reactionsUpdateHash;
         getConnectionsManager().sendRequest(tLRPC$TL_messages_getAvailableReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1156,7 +1156,7 @@ public class MediaDataController extends BaseController {
         if (!z) {
             putReactionsToCache(list, i, i2);
         } else if (Math.abs((System.currentTimeMillis() / 1000) - i2) >= 3600) {
-            loadReactions(false, true);
+            loadReactions(false, Integer.valueOf(i));
         }
     }
 
@@ -2029,9 +2029,9 @@ public class MediaDataController extends BaseController {
             executeFast.requery();
             executeFast.bindString(1, "s_" + tLRPC$TL_messages_stickerSet.set.id);
             executeFast.bindInteger(2, 6);
-            executeFast.bindString(3, BuildConfig.APP_CENTER_HASH);
-            executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
-            executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
+            executeFast.bindString(3, "");
+            executeFast.bindString(4, "");
+            executeFast.bindString(5, "");
             executeFast.bindInteger(6, 0);
             executeFast.bindInteger(7, 0);
             executeFast.bindInteger(8, 0);
@@ -2059,7 +2059,7 @@ public class MediaDataController extends BaseController {
         if (charSequence == null) {
             return null;
         }
-        String replace = charSequence.toString().replace("️", BuildConfig.APP_CENTER_HASH);
+        String replace = charSequence.toString().replace("️", "");
         ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = getStickerSets(4);
         int size = stickerSets.size();
         for (int i = 0; i < size; i++) {
@@ -2135,7 +2135,7 @@ public class MediaDataController extends BaseController {
 
     public String getEmojiForSticker(long j) {
         String str = this.stickersByEmoji.get(j);
-        return str != null ? str : BuildConfig.APP_CENTER_HASH;
+        return str != null ? str : "";
     }
 
     public static boolean canShowAttachMenuBotForTarget(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
@@ -2405,11 +2405,11 @@ public class MediaDataController extends BaseController {
             while (i7 < size && i7 != i3) {
                 TLRPC$Document tLRPC$Document = (TLRPC$Document) arrayList.get(i7);
                 executeFast.requery();
-                executeFast.bindString(1, BuildConfig.APP_CENTER_HASH + tLRPC$Document.id);
+                executeFast.bindString(1, "" + tLRPC$Document.id);
                 executeFast.bindInteger(i4, i6);
-                executeFast.bindString(i5, BuildConfig.APP_CENTER_HASH);
-                executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
-                executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(i5, "");
+                executeFast.bindString(4, "");
+                executeFast.bindString(5, "");
                 executeFast.bindInteger(6, 0);
                 executeFast.bindInteger(7, 0);
                 executeFast.bindInteger(8, 0);
@@ -2527,7 +2527,7 @@ public class MediaDataController extends BaseController {
         }
         for (int i3 = 0; i3 < tLRPC$TL_messages_stickerSet.packs.size(); i3++) {
             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i3);
-            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", BuildConfig.APP_CENTER_HASH);
+            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", "");
             tLRPC$TL_stickerPack.emoticon = replace;
             ArrayList<TLRPC$Document> arrayList = this.allStickers.get(replace);
             if (arrayList == null) {
@@ -3848,7 +3848,7 @@ public class MediaDataController extends BaseController {
                         while (i7 < tLRPC$TL_messages_stickerSet.packs.size()) {
                             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i7);
                             if (tLRPC$TL_stickerPack != null && (str = tLRPC$TL_stickerPack.emoticon) != null) {
-                                String replace = str.replace("️", BuildConfig.APP_CENTER_HASH);
+                                String replace = str.replace("️", "");
                                 tLRPC$TL_stickerPack.emoticon = replace;
                                 ArrayList arrayList4 = (ArrayList) hashMap2.get(replace);
                                 if (arrayList4 == null) {
@@ -5914,7 +5914,7 @@ public class MediaDataController extends BaseController {
         tLRPC$TL_messages_search.peer = getMessagesController().getInputPeer(j);
         tLRPC$TL_messages_search.limit = 40;
         tLRPC$TL_messages_search.offset_id = i;
-        tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_messages_search.q = "";
         tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterPinned();
         getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
             @Override
@@ -6872,7 +6872,7 @@ public class MediaDataController extends BaseController {
                             int i7 = (charAt == ' ' || charAt == '\n') ? 1 : 0;
                             int i8 = i + 3;
                             int indexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i8);
-                            String substring = (indexOf2 < 0 || indexOf2 - i8 <= 0) ? BuildConfig.APP_CENTER_HASH : charSequenceArr[0].toString().substring(i8, indexOf2);
+                            String substring = (indexOf2 < 0 || indexOf2 - i8 <= 0) ? "" : charSequenceArr[0].toString().substring(i8, indexOf2);
                             CharSequence substring2 = substring(charSequenceArr[0], 0, i - i7);
                             int length = i8 + substring.length() + (!substring.isEmpty());
                             if (length < 0 || length >= charSequenceArr[0].length() || length > indexOf) {
@@ -6912,10 +6912,7 @@ public class MediaDataController extends BaseController {
                                     TLRPC$MessageEntity tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityPre();
                                     tLRPC$TL_messageEntityPre.offset = (i7 ^ 1) + i;
                                     tLRPC$TL_messageEntityPre.length = (((indexOf - i) - 3) - (substring.length() + (!substring.isEmpty()))) + (i7 ^ 1);
-                                    if (TextUtils.isEmpty(substring) || substring.trim().length() == 0) {
-                                        substring = BuildConfig.APP_CENTER_HASH;
-                                    }
-                                    tLRPC$TL_messageEntityPre.language = substring;
+                                    tLRPC$TL_messageEntityPre.language = (TextUtils.isEmpty(substring) || substring.trim().length() == 0) ? "" : "";
                                     arrayList.add(tLRPC$TL_messageEntityPre);
                                     i2 -= 6;
                                 }
@@ -7273,14 +7270,10 @@ public class MediaDataController extends BaseController {
 
     public Pair<Integer, TLRPC$DraftMessage> getOneThreadDraft(long j) {
         SparseArray<TLRPC$DraftMessage> sparseArray = this.drafts.get(j);
-        if (sparseArray != null && sparseArray.size() > 0) {
-            for (int i = 0; i < sparseArray.size(); i++) {
-                if (sparseArray.keyAt(i) != 0) {
-                    return new Pair<>(Integer.valueOf(sparseArray.keyAt(i)), sparseArray.valueAt(i));
-                }
-            }
+        if (sparseArray == null || sparseArray.size() <= 0) {
+            return null;
         }
-        return null;
+        return new Pair<>(Integer.valueOf(sparseArray.keyAt(0)), sparseArray.valueAt(0));
     }
 
     public TLRPC$Message getDraftMessage(long j, int i) {
@@ -7306,7 +7299,7 @@ public class MediaDataController extends BaseController {
         }
         TLRPC$DraftMessage tLRPC$DraftMessage = tLRPC$TL_draftMessage;
         tLRPC$DraftMessage.date = (int) (System.currentTimeMillis() / 1000);
-        tLRPC$DraftMessage.message = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
+        tLRPC$DraftMessage.message = charSequence == null ? "" : charSequence.toString();
         tLRPC$DraftMessage.no_webpage = z;
         if (tLRPC$Message2 != null) {
             TLRPC$TL_inputReplyToMessage tLRPC$TL_inputReplyToMessage = new TLRPC$TL_inputReplyToMessage();
@@ -7317,7 +7310,10 @@ public class MediaDataController extends BaseController {
                 tLRPC$TL_inputReplyToMessage.quote_text = replyQuote.getText();
                 TLRPC$InputReplyTo tLRPC$InputReplyTo2 = tLRPC$DraftMessage.reply_to;
                 if (tLRPC$InputReplyTo2.quote_text != null) {
-                    tLRPC$InputReplyTo2.flags |= 4;
+                    int i2 = tLRPC$InputReplyTo2.flags | 4;
+                    tLRPC$InputReplyTo2.flags = i2;
+                    tLRPC$InputReplyTo2.flags = i2 | 16;
+                    tLRPC$InputReplyTo2.quote_offset = replyQuote.start;
                 }
                 tLRPC$InputReplyTo2.quote_entities = replyQuote.getEntities();
                 ArrayList<TLRPC$MessageEntity> arrayList2 = tLRPC$DraftMessage.reply_to.quote_entities;
@@ -7470,7 +7466,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (i == 0) {
-                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
             } else {
                 this.draftPreferences.edit().remove("t_" + j + "_" + i).remove("rt_" + j + "_" + i).commit();
             }
@@ -7489,7 +7485,7 @@ public class MediaDataController extends BaseController {
                 SerializedData serializedData = new SerializedData(tLRPC$DraftMessage.getObjectSize());
                 tLRPC$DraftMessage.serializeToStream(serializedData);
                 if (i == 0) {
-                    str2 = BuildConfig.APP_CENTER_HASH + j;
+                    str2 = "" + j;
                 } else {
                     str2 = "t_" + j + "_" + i;
                 }
@@ -7663,7 +7659,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (i == 0) {
-                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
                 getMessagesController().sortDialogs(null);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
                 return;
@@ -8571,7 +8567,7 @@ public class MediaDataController extends BaseController {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme(this.currentAccount)));
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
             try {
                 EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(this.currentAccount, TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 if (createPreviewFullTheme.items.size() >= 4) {
@@ -8931,7 +8927,7 @@ public class MediaDataController extends BaseController {
         ArrayList<TLRPC$Reaction> arrayList = new ArrayList<>(i);
         if (i > 0) {
             for (int i2 = 0; i2 < i; i2++) {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, BuildConfig.APP_CENTER_HASH)));
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, "")));
                 try {
                     arrayList.add(TLRPC$Reaction.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 } catch (Throwable th) {

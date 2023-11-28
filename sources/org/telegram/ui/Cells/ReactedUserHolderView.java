@@ -171,7 +171,7 @@ public class ReactedUserHolderView extends FrameLayout {
             return;
         }
         this.statusBadgeComponent.updateDrawable(tLRPC$User, tLRPC$Chat, Theme.getColor(this.style == STYLE_STORY ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_chats_verifiedBackground, this.resourcesProvider), false);
-        this.avatarDrawable.setInfo((TLObject) tLRPC$User2);
+        this.avatarDrawable.setInfo(this.currentAccount, (TLObject) tLRPC$User2);
         if (tLRPC$User != null) {
             this.dialogId = tLRPC$User.id;
             this.titleView.setText(UserObject.getUserName(tLRPC$User));

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -174,6 +175,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     protected void onDualCameraSuccess() {
+    }
+
+    protected void receivedAmplitude(double d) {
+    }
+
+    protected boolean square() {
+        return false;
     }
 
     public void setRecordFile(File file) {
@@ -766,8 +774,76 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         checkPreviewMatrix();
     }
 
-    private void updateCameraInfoSize(int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.updateCameraInfoSize(int):void");
+    private void updateCameraInfoSize(int i) {
+        Size size;
+        ArrayList<CameraInfo> cameras = CameraController.getInstance().getCameras();
+        if (cameras == null) {
+            return;
+        }
+        int i2 = 0;
+        while (true) {
+            if (i2 >= cameras.size()) {
+                break;
+            }
+            CameraInfo cameraInfo = cameras.get(i2);
+            boolean z = cameraInfo.frontCamera != 0;
+            boolean z2 = this.isFrontface;
+            if (i == 1) {
+                z2 = !z2;
+            }
+            if (z == z2) {
+                this.info[i] = cameraInfo;
+                break;
+            }
+            i2++;
+        }
+        if (this.info[i] == null) {
+            return;
+        }
+        Point point = AndroidUtilities.displaySize;
+        Point point2 = AndroidUtilities.displaySize;
+        float max = Math.max(point.x, point.y) / Math.min(point2.x, point2.y);
+        int i3 = 960;
+        int i4 = 720;
+        int i5 = 1280;
+        if (square()) {
+            size = new Size(1, 1);
+            r5 = 720;
+            i3 = 720;
+            i5 = 720;
+        } else {
+            if (this.initialFrontface) {
+                size = new Size(16, 9);
+                r5 = 1280;
+            } else {
+                if (Math.abs(max - 1.3333334f) < 0.1f) {
+                    size = new Size(4, 3);
+                    if (SharedConfig.getDevicePerformanceClass() == 0) {
+                        r5 = 1280;
+                    } else {
+                        i4 = 1440;
+                    }
+                } else {
+                    size = new Size(16, 9);
+                    if (SharedConfig.getDevicePerformanceClass() == 0) {
+                        r5 = 1280;
+                        i3 = 720;
+                    } else {
+                        boolean z3 = this.isStory;
+                        r5 = z3 ? 1280 : 1920;
+                        i4 = z3 ? 720 : 1080;
+                    }
+                }
+                i4 = 960;
+            }
+            i3 = 720;
+        }
+        this.previewSize[i] = CameraController.chooseOptimalSize(this.info[i].getPreviewSizes(), i5, i3, size, this.isStory);
+        this.pictureSize[i] = CameraController.chooseOptimalSize(this.info[i].getPictureSizes(), r5, i4, size, false);
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("camera preview " + this.previewSize[0]);
+        }
+        requestLayout();
     }
 
     @Override
@@ -1944,16 +2020,22 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.lastCameraId = 0;
             this.buffers = new ArrayBlockingQueue<>(10);
             this.keyframeThumbs = new ArrayList<>();
-            this.recorderRunnable = new Runnable() {
-                {
-                    VideoRecorder.this = this;
-                }
+            this.recorderRunnable = new AnonymousClass1();
+        }
 
-                @Override
-                public void run() {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.AnonymousClass1.run():void");
-                }
-            };
+        public class AnonymousClass1 implements Runnable {
+            AnonymousClass1() {
+                VideoRecorder.this = r1;
+            }
+
+            @Override
+            public void run() {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.AnonymousClass1.run():void");
+            }
+
+            public void lambda$run$0(double d) {
+                CameraView.this.receivedAmplitude(d);
+            }
         }
 
         public void startRecording(File file, android.opengl.EGLContext eGLContext) {

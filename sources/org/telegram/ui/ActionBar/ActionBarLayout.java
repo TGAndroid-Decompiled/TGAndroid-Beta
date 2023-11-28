@@ -299,9 +299,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         private Paint backgroundPaint;
         private int fragmentPanTranslationOffset;
         private boolean isKeyboardVisible;
+        float lastY;
         private float pressX;
         private float pressY;
         private Rect rect;
+        float startY;
         private boolean wasPortrait;
 
         public LayoutContainer(Context context) {
@@ -463,6 +465,26 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         public void processMenuButtonsTouch(MotionEvent motionEvent) {
+            if (motionEvent.getAction() == 0) {
+                this.startY = motionEvent.getY();
+            }
+            if (ActionBarLayout.this.isInPreviewMode() && ActionBarLayout.this.previewMenu == null) {
+                this.lastY = motionEvent.getY();
+                if (motionEvent.getAction() == 1) {
+                    ActionBarLayout.this.finishPreviewFragment();
+                    return;
+                } else if (motionEvent.getAction() == 2) {
+                    float f = this.startY - this.lastY;
+                    ActionBarLayout.this.movePreviewFragment(f);
+                    if (f < 0.0f) {
+                        this.startY = this.lastY;
+                        return;
+                    }
+                    return;
+                } else {
+                    return;
+                }
+            }
             if (motionEvent.getAction() == 0) {
                 this.pressX = motionEvent.getX();
                 this.pressY = motionEvent.getY();
@@ -2200,7 +2222,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             int size4 = arrayList2.size();
             for (int i5 = 0; i5 < size4; i5++) {
                 ThemeDescription themeDescription2 = this.presentingFragmentDescriptions.get(i5);
-                themeDescription2.setColor(Theme.getColor(themeDescription2.getCurrentKey()), false, false);
+                themeDescription2.setColor(Theme.getColor(themeDescription2.getCurrentKey(), themeDescription2.resourcesProvider), false, false);
             }
         }
         INavigationLayout.ThemeAnimationSettings.onAnimationProgress onanimationprogress = this.animationProgressListener;

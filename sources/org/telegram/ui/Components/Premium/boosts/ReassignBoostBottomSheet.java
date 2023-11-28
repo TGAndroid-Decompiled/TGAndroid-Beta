@@ -22,7 +22,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -388,10 +387,13 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             super(context);
             this.addedChats = new ArrayList();
             setOrientation(1);
+            setClipChildren(false);
             FrameLayout frameLayout = new FrameLayout(getContext());
             this.avatarsContainer = frameLayout;
+            frameLayout.setClipChildren(false);
             FrameLayout frameLayout2 = new FrameLayout(getContext());
             this.avatarsWrapper = frameLayout2;
+            frameLayout2.setClipChildren(false);
             frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 70.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             ArrowView arrowView = new ArrowView(context);
             this.arrowView = arrowView;
@@ -420,7 +422,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             TextView textView = this.description;
             int boostsPerSentGift = BoostRepository.boostsPerSentGift();
             Object[] objArr = new Object[1];
-            objArr[0] = tLRPC$Chat == null ? BuildConfig.APP_CENTER_HASH : tLRPC$Chat.title;
+            objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPlural", boostsPerSentGift, objArr)));
         }
 
@@ -530,7 +532,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             if (this.addedChats.isEmpty() || this.addedChats.size() == 1) {
                 this.avatarsContainer.animate().setInterpolator(cubicBezierInterpolator).translationX(0.0f).setDuration(200).start();
             } else {
-                this.avatarsContainer.animate().setInterpolator(cubicBezierInterpolator).translationX(AndroidUtilities.dp(11.0f) * (this.addedChats.size() - 1)).setDuration(200).start();
+                this.avatarsContainer.animate().setInterpolator(cubicBezierInterpolator).translationX(AndroidUtilities.dp(13.0f) * (this.addedChats.size() - 1)).setDuration(200).start();
             }
             this.toAvatar.animate().cancel();
             this.avatarsWrapper.animate().cancel();

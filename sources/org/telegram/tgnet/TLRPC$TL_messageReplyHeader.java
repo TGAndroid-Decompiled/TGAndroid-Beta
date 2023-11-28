@@ -44,11 +44,14 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
                 this.quote_entities.add(TLdeserialize);
             }
         }
+        if ((this.flags & 1024) != 0) {
+            this.quote_offset = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1860946621);
+        abstractSerializedData.writeInt32(-1346631205);
         int i = this.reply_to_scheduled ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         int i2 = this.forum_topic ? i | 8 : i & (-9);
@@ -81,6 +84,9 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
             for (int i4 = 0; i4 < size; i4++) {
                 this.quote_entities.get(i4).serializeToStream(abstractSerializedData);
             }
+        }
+        if ((this.flags & 1024) != 0) {
+            abstractSerializedData.writeInt32(this.quote_offset);
         }
     }
 }

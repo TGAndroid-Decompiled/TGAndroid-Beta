@@ -62,6 +62,10 @@ public class Switch extends View {
         void onCheckedChanged(Switch r1, boolean z);
     }
 
+    protected int processColor(int i) {
+        return i;
+    }
+
     public Switch(Context context) {
         this(context, null);
     }
@@ -172,7 +176,7 @@ public class Switch extends View {
         }
         boolean z2 = this.isChecked;
         if ((z2 && this.colorSet != 2) || (!z2 && this.colorSet != 1)) {
-            this.rippleDrawable.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{Theme.getColor(z2 ? Theme.key_switchTrackBlueSelectorChecked : Theme.key_switchTrackBlueSelector, this.resourcesProvider)}));
+            this.rippleDrawable.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{processColor(Theme.getColor(z2 ? Theme.key_switchTrackBlueSelectorChecked : Theme.key_switchTrackBlueSelector, this.resourcesProvider))}));
             this.colorSet = this.isChecked ? 2 : 1;
         }
         if (i >= 28 && z) {

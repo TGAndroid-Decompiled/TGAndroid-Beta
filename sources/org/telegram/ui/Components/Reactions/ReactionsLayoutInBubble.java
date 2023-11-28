@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -215,44 +214,41 @@ public class ReactionsLayoutInBubble {
             f3 = (f3 * f) + (this.fromX * f5);
             f4 = (f4 * f) + (this.fromY * f5);
         }
-        canvas.save();
-        canvas.translate(f3, f4);
+        float f6 = f3;
+        float f7 = f4;
         for (int i = 0; i < this.reactionButtons.size(); i++) {
             ReactionButton reactionButton = this.reactionButtons.get(i);
             if (!reactionButton.reaction.equals(this.scrimViewReaction) && (str == null || reactionButton.reaction.equals(str))) {
                 canvas.save();
                 int i2 = reactionButton.x;
-                float f6 = i2;
+                float f8 = i2;
                 int i3 = reactionButton.y;
-                float f7 = i3;
+                float f9 = i3;
                 if (f != 1.0f && reactionButton.animationType == 3) {
-                    float f8 = 1.0f - f;
-                    f6 = (reactionButton.animateFromX * f8) + (i2 * f);
-                    f7 = (i3 * f) + (reactionButton.animateFromY * f8);
+                    float f10 = 1.0f - f;
+                    f8 = (reactionButton.animateFromX * f10) + (i2 * f);
+                    f9 = (i3 * f) + (reactionButton.animateFromY * f10);
                 }
-                canvas.translate(f6, f7);
                 if (f == 1.0f || reactionButton.animationType != 1) {
                     f2 = 1.0f;
                 } else {
-                    float f9 = (f * 0.5f) + 0.5f;
-                    canvas.scale(f9, f9, reactionButton.width / 2.0f, reactionButton.height / 2.0f);
+                    float f11 = (f * 0.5f) + 0.5f;
+                    canvas.scale(f11, f11, f6 + f8 + (reactionButton.width / 2.0f), f7 + f9 + (reactionButton.height / 2.0f));
                     f2 = f;
                 }
-                reactionButton.draw(canvas, reactionButton.animationType == 3 ? f : 1.0f, f2, str != null);
+                reactionButton.draw(canvas, f8 + f6, f7 + f9, reactionButton.animationType == 3 ? f : 1.0f, f2, str != null);
                 canvas.restore();
             }
         }
         for (int i4 = 0; i4 < this.outButtons.size(); i4++) {
             ReactionButton reactionButton2 = this.outButtons.get(i4);
+            float f12 = 1.0f - f;
+            float f13 = (f12 * 0.5f) + 0.5f;
             canvas.save();
-            canvas.translate(reactionButton2.x, reactionButton2.y);
-            float f10 = 1.0f - f;
-            float f11 = (f10 * 0.5f) + 0.5f;
-            canvas.scale(f11, f11, reactionButton2.width / 2.0f, reactionButton2.height / 2.0f);
-            this.outButtons.get(i4).draw(canvas, 1.0f, f10, false);
+            canvas.scale(f13, f13, reactionButton2.x + f6 + (reactionButton2.width / 2.0f), reactionButton2.y + f7 + (reactionButton2.height / 2.0f));
+            this.outButtons.get(i4).draw(canvas, reactionButton2.x + f6, f7 + reactionButton2.y, 1.0f, f12, false);
             canvas.restore();
         }
-        canvas.restore();
     }
 
     public void recordDrawingState() {
@@ -489,18 +485,18 @@ public class ReactionsLayoutInBubble {
             this.counterDrawable.gravity = 3;
         }
 
-        public void draw(Canvas canvas, float f, float f2, boolean z) {
+        public void draw(Canvas canvas, float f, float f2, float f3, float f4, boolean z) {
             int dp;
-            int i;
+            int dp2;
             Theme.MessageDrawable currentBackgroundDrawable;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
             ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
             if (this.isSmall && imageReceiver != null) {
-                imageReceiver.setAlpha(f2);
-                this.drawingImageRect.set(0, 0, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
+                imageReceiver.setAlpha(f4);
+                this.drawingImageRect.set((int) f, (int) f2, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
                 imageReceiver.setImageCoords(this.drawingImageRect);
                 imageReceiver.setRoundRadius(0);
-                drawImage(canvas, f2);
+                drawImage(canvas, f4);
                 return;
             }
             if (this.choosen) {
@@ -516,71 +512,71 @@ public class ReactionsLayoutInBubble {
                 this.serviceTextColor = Theme.getColor(Theme.key_chat_serviceText, ReactionsLayoutInBubble.this.resourcesProvider);
                 this.serviceBackgroundColor = 0;
             }
-            updateColors(f);
+            updateColors(f3);
             ReactionsLayoutInBubble.textPaint.setColor(this.lastDrawnTextColor);
             ReactionsLayoutInBubble.paint.setColor(this.lastDrawnBackgroundColor);
-            if (f2 != 1.0f) {
-                ReactionsLayoutInBubble.textPaint.setAlpha((int) (ReactionsLayoutInBubble.textPaint.getAlpha() * f2));
-                ReactionsLayoutInBubble.paint.setAlpha((int) (ReactionsLayoutInBubble.paint.getAlpha() * f2));
+            if (f4 != 1.0f) {
+                ReactionsLayoutInBubble.textPaint.setAlpha((int) (ReactionsLayoutInBubble.textPaint.getAlpha() * f4));
+                ReactionsLayoutInBubble.paint.setAlpha((int) (ReactionsLayoutInBubble.paint.getAlpha() * f4));
             }
             if (imageReceiver != null) {
-                imageReceiver.setAlpha(f2);
+                imageReceiver.setAlpha(f4);
             }
-            int i2 = this.width;
-            if (f != 1.0f && this.animationType == 3) {
-                i2 = (int) ((i2 * f) + (this.animateFromWidth * (1.0f - f)));
+            int i = this.width;
+            if (f3 != 1.0f && this.animationType == 3) {
+                i = (int) ((i * f3) + (this.animateFromWidth * (1.0f - f3)));
             }
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, i2, this.height);
-            float f3 = this.height / 2.0f;
+            rectF.set(f, f2, i + f, this.height + f2);
+            float f5 = this.height / 2.0f;
             ReactionsLayoutInBubble reactionsLayoutInBubble = ReactionsLayoutInBubble.this;
             if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
                 Paint themedPaint = reactionsLayoutInBubble.getThemedPaint("paintChatActionBackground");
-                Paint paint = Theme.chat_actionBackgroundGradientDarkenPaint;
+                Paint themedPaint2 = ReactionsLayoutInBubble.this.getThemedPaint("paintChatActionBackgroundDarken");
                 int alpha = themedPaint.getAlpha();
-                int alpha2 = paint.getAlpha();
-                themedPaint.setAlpha((int) (alpha * f2 * ReactionsLayoutInBubble.this.drawServiceShaderBackground));
-                paint.setAlpha((int) (alpha2 * f2 * ReactionsLayoutInBubble.this.drawServiceShaderBackground));
-                canvas.drawRoundRect(rectF, f3, f3, themedPaint);
+                int alpha2 = themedPaint2.getAlpha();
+                themedPaint.setAlpha((int) (alpha * f4 * ReactionsLayoutInBubble.this.drawServiceShaderBackground));
+                themedPaint2.setAlpha((int) (alpha2 * f4 * ReactionsLayoutInBubble.this.drawServiceShaderBackground));
+                canvas.drawRoundRect(rectF, f5, f5, themedPaint);
                 if (ReactionsLayoutInBubble.this.hasGradientService()) {
-                    canvas.drawRoundRect(rectF, f3, f3, paint);
+                    canvas.drawRoundRect(rectF, f5, f5, themedPaint2);
                 }
                 themedPaint.setAlpha(alpha);
-                paint.setAlpha(alpha2);
+                themedPaint2.setAlpha(alpha2);
             }
             ReactionsLayoutInBubble reactionsLayoutInBubble2 = ReactionsLayoutInBubble.this;
             if (reactionsLayoutInBubble2.drawServiceShaderBackground < 1.0f && z && (currentBackgroundDrawable = reactionsLayoutInBubble2.parentView.getCurrentBackgroundDrawable(false)) != null) {
-                canvas.drawRoundRect(rectF, f3, f3, currentBackgroundDrawable.getPaint());
+                canvas.drawRoundRect(rectF, f5, f5, currentBackgroundDrawable.getPaint());
             }
-            canvas.drawRoundRect(rectF, f3, f3, ReactionsLayoutInBubble.paint);
+            canvas.drawRoundRect(rectF, f5, f5, ReactionsLayoutInBubble.paint);
             if (imageReceiver != null) {
                 if (this.animatedEmojiDrawable != null) {
-                    i = AndroidUtilities.dp(24.0f);
-                    dp = AndroidUtilities.dp(6.0f);
+                    dp = AndroidUtilities.dp(24.0f);
+                    dp2 = AndroidUtilities.dp(6.0f);
                     imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
                 } else {
-                    int dp2 = AndroidUtilities.dp(20.0f);
-                    dp = AndroidUtilities.dp(8.0f);
+                    dp = AndroidUtilities.dp(20.0f);
+                    dp2 = AndroidUtilities.dp(8.0f);
                     imageReceiver.setRoundRadius(0);
-                    i = dp2;
                 }
-                int i3 = (int) ((this.height - i) / 2.0f);
-                this.drawingImageRect.set(dp, i3, dp + i, i + i3);
+                int i2 = ((int) f) + dp2;
+                int i3 = ((int) f2) + ((int) ((this.height - dp) / 2.0f));
+                this.drawingImageRect.set(i2, i3, i2 + dp, dp + i3);
                 imageReceiver.setImageCoords(this.drawingImageRect);
-                drawImage(canvas, f2);
+                drawImage(canvas, f4);
             }
             CounterView.CounterDrawable counterDrawable = this.counterDrawable;
             if (counterDrawable != null && (this.count != 0 || counterDrawable.countChangeProgress != 1.0f)) {
                 canvas.save();
-                canvas.translate(AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(2.0f), 0.0f);
+                canvas.translate(AndroidUtilities.dp(8.0f) + f + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(2.0f), f2);
                 this.counterDrawable.draw(canvas);
                 canvas.restore();
             }
             if (this.avatarsDrawable != null) {
                 canvas.save();
-                canvas.translate(AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(2.0f), 0.0f);
-                this.avatarsDrawable.setAlpha(f2);
-                this.avatarsDrawable.setTransitionProgress(f);
+                canvas.translate(f + AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(2.0f), f2);
+                this.avatarsDrawable.setAlpha(f4);
+                this.avatarsDrawable.setTransitionProgress(f3);
                 this.avatarsDrawable.onDraw(canvas);
                 canvas.restore();
             }
@@ -891,7 +887,7 @@ public class ReactionsLayoutInBubble {
 
         public static VisibleReaction fromEmojicon(String str) {
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             VisibleReaction visibleReaction = new VisibleReaction();
             if (str.startsWith("animated_")) {

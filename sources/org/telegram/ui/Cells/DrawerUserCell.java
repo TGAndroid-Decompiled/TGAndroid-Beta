@@ -122,7 +122,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         if (currentUser == null) {
             return;
         }
-        this.avatarDrawable.setInfo(currentUser);
+        this.avatarDrawable.setInfo(i, currentUser);
         CharSequence formatName = ContactsController.formatName(currentUser.first_name, currentUser.last_name);
         try {
             formatName = Emoji.replaceEmoji(formatName, this.textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);

@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -436,9 +435,9 @@ public class GroupCallUserCell extends FrameLayout {
         this.fullAboutTextView.setVisibility(8);
         addView(this.fullAboutTextView, LayoutHelper.createFrame(-1, 60.0f, (LocaleController.isRTL ? 5 : 3) | 48, 14.0f, 32.0f, 14.0f, 0.0f));
         int i2 = R.raw.voice_outlined2;
-        this.muteDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         int i3 = R.raw.hand_1;
-        this.shakeHandDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.shakeHandDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -524,10 +523,9 @@ public class GroupCallUserCell extends FrameLayout {
         this.participant = tLRPC$TL_groupCallParticipant;
         long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
         if (peerId > 0) {
-            TLRPC$User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(peerId));
-            this.currentUser = user;
+            this.currentUser = this.accountInstance.getMessagesController().getUser(Long.valueOf(peerId));
             this.currentChat = null;
-            this.avatarDrawable.setInfo(user);
+            this.avatarDrawable.setInfo(this.accountInstance.getCurrentAccount(), this.currentUser);
             this.nameTextView.setText(UserObject.getUserName(this.currentUser));
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User != null && tLRPC$User.verified) {
@@ -582,10 +580,9 @@ public class GroupCallUserCell extends FrameLayout {
                 this.avatarImageView.setImage(forUser, "50_50", this.avatarDrawable, this.currentUser);
             }
         } else {
-            TLRPC$Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-peerId));
-            this.currentChat = chat;
+            this.currentChat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-peerId));
             this.currentUser = null;
-            this.avatarDrawable.setInfo(chat);
+            this.avatarDrawable.setInfo(this.accountInstance.getCurrentAccount(), this.currentChat);
             TLRPC$Chat tLRPC$Chat = this.currentChat;
             if (tLRPC$Chat != null) {
                 this.nameTextView.setText(tLRPC$Chat.title);

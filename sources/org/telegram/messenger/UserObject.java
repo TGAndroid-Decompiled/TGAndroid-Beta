@@ -2,10 +2,12 @@ package org.telegram.messenger;
 
 import android.text.TextUtils;
 import org.telegram.PhoneFormat.PhoneFormat;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$TL_emojiStatus;
 import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
+import org.telegram.tgnet.TLRPC$TL_peerColor;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 import org.telegram.tgnet.TLRPC$TL_userContact_old2;
 import org.telegram.tgnet.TLRPC$TL_userDeleted_old2;
@@ -155,5 +157,48 @@ public class UserObject {
             }
         }
         return null;
+    }
+
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC$User tLRPC$User) {
+        TLRPC$TL_peerColor tLRPC$TL_peerColor;
+        if (tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.profile_color) == null || tLRPC$TL_peerColor.color < 0 || MessagesController.getInstance(i).profilePeerColors == null) {
+            return null;
+        }
+        return MessagesController.getInstance(i).profilePeerColors.getColor(tLRPC$User.profile_color.color);
+    }
+
+    public static int getColorId(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null) {
+            return 0;
+        }
+        TLRPC$TL_peerColor tLRPC$TL_peerColor = tLRPC$User.color;
+        return (tLRPC$TL_peerColor == null || (tLRPC$TL_peerColor.flags & 1) == 0) ? (int) (tLRPC$User.id % 7) : tLRPC$TL_peerColor.color;
+    }
+
+    public static long getEmojiId(TLRPC$User tLRPC$User) {
+        TLRPC$TL_peerColor tLRPC$TL_peerColor;
+        if (tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return tLRPC$TL_peerColor.background_emoji_id;
+    }
+
+    public static int getProfileColorId(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null) {
+            return 0;
+        }
+        TLRPC$TL_peerColor tLRPC$TL_peerColor = tLRPC$User.profile_color;
+        if (tLRPC$TL_peerColor == null || (tLRPC$TL_peerColor.flags & 1) == 0) {
+            return -1;
+        }
+        return tLRPC$TL_peerColor.color;
+    }
+
+    public static long getProfileEmojiId(TLRPC$User tLRPC$User) {
+        TLRPC$TL_peerColor tLRPC$TL_peerColor;
+        if (tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.profile_color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return tLRPC$TL_peerColor.background_emoji_id;
     }
 }

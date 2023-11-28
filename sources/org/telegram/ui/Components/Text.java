@@ -13,33 +13,40 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 public class Text {
+    private boolean doNotSave;
     private LinearGradient ellipsizeGradient;
     private Matrix ellipsizeMatrix;
     private Paint ellipsizePaint;
     private int ellipsizeWidth;
+    private boolean hackClipBounds;
     private StaticLayout layout;
     private float left;
     private final TextPaint paint;
     private float width;
 
-    public Text(CharSequence charSequence, int i) {
-        this(charSequence, i, null);
+    public Text(CharSequence charSequence, float f) {
+        this(charSequence, f, null);
     }
 
-    public Text(CharSequence charSequence, int i, Typeface typeface) {
+    public Text(CharSequence charSequence, float f, Typeface typeface) {
         TextPaint textPaint = new TextPaint(1);
         this.paint = textPaint;
         this.ellipsizeWidth = -1;
-        textPaint.setTextSize(AndroidUtilities.dp(i));
+        textPaint.setTextSize(AndroidUtilities.dp(f));
         textPaint.setTypeface(typeface);
         setText(charSequence);
     }
 
     public void setText(CharSequence charSequence) {
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.paint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.layout = staticLayout;
         this.width = staticLayout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;
         this.left = this.layout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
+    }
+
+    public Text hackClipBounds() {
+        this.hackClipBounds = true;
+        return this;
     }
 
     public float getTextSize() {
@@ -60,38 +67,52 @@ public class Text {
             return;
         }
         this.paint.setColor(i);
+        int alpha = this.paint.getAlpha();
         if (f3 != 1.0f) {
-            TextPaint textPaint = this.paint;
-            textPaint.setAlpha((int) (textPaint.getAlpha() * f3));
+            this.paint.setAlpha((int) (alpha * f3));
         }
-        canvas.save();
+        if (!this.doNotSave) {
+            canvas.save();
+        }
         canvas.translate(f - this.left, f2 - (this.layout.getHeight() / 2.0f));
         draw(canvas);
-        canvas.restore();
+        if (!this.doNotSave) {
+            canvas.restore();
+        }
+        this.paint.setAlpha(alpha);
     }
 
     public void draw(Canvas canvas, float f, float f2) {
         if (this.layout == null) {
             return;
         }
-        canvas.save();
+        if (!this.doNotSave) {
+            canvas.save();
+        }
         canvas.translate(f - this.left, f2 - (this.layout.getHeight() / 2.0f));
         draw(canvas);
+        if (this.doNotSave) {
+            return;
+        }
         canvas.restore();
     }
 
     public void draw(Canvas canvas) {
+        int i;
+        int i2;
         StaticLayout staticLayout = this.layout;
         if (staticLayout == null) {
             return;
         }
-        int i = this.ellipsizeWidth;
-        if (i >= 0 && this.width > i) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, i, staticLayout.getHeight(), 255, 31);
+        if (!this.doNotSave && (i2 = this.ellipsizeWidth) >= 0 && this.width > i2) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, i2, staticLayout.getHeight(), 255, 31);
         }
-        this.layout.draw(canvas);
-        int i2 = this.ellipsizeWidth;
-        if (i2 < 0 || this.width <= i2) {
+        if (this.hackClipBounds) {
+            canvas.drawText(this.layout.getText().toString(), 0.0f, -this.paint.getFontMetricsInt().ascent, this.paint);
+        } else {
+            this.layout.draw(canvas);
+        }
+        if (this.doNotSave || (i = this.ellipsizeWidth) < 0 || this.width <= i) {
             return;
         }
         if (this.ellipsizeGradient == null) {
@@ -111,6 +132,10 @@ public class Text {
         canvas.restore();
     }
 
+    public Paint.FontMetricsInt getFontMetricsInt() {
+        return this.paint.getFontMetricsInt();
+    }
+
     public float getWidth() {
         int i = this.ellipsizeWidth;
         return i >= 0 ? Math.min(i, this.width) : this.width;
@@ -118,5 +143,10 @@ public class Text {
 
     public float getCurrentWidth() {
         return this.width;
+    }
+
+    public CharSequence getText() {
+        StaticLayout staticLayout = this.layout;
+        return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
     }
 }

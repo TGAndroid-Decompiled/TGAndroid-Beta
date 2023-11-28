@@ -58,6 +58,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
     public int ttl_period;
     public int unread_count;
     public int unread_important_count;
+    public boolean view_forum_as_messages;
     public ArrayList<TLRPC$BotInfo> bot_info = new ArrayList<>();
     public ArrayList<String> pending_suggestions = new ArrayList<>();
     public ArrayList<Long> recent_requesters = new ArrayList<>();

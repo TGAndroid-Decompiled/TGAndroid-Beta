@@ -420,7 +420,7 @@ public class MessageSeenView extends FrameLayout {
             this.object = tLObject;
             updateStatus(false);
             if (tLObject != null) {
-                this.avatarDrawable.setInfo(tLObject);
+                this.avatarDrawable.setInfo(this.currentAccount, tLObject);
                 this.avatarImageView.setImage(ImageLocation.getForUserOrChat(tLObject, 1), "50_50", this.avatarDrawable, tLObject);
                 this.nameView.setText(ContactsController.formatName(tLObject));
             }

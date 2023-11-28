@@ -26,7 +26,6 @@ import java.util.Iterator;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -522,7 +521,7 @@ public class BlurringShader {
         public void setFallbackBlur(Bitmap bitmap, int i) {
             ThumbBlurer thumbBlurer = this.thumbBlurer;
             StringBuilder sb = new StringBuilder();
-            sb.append(BuildConfig.APP_CENTER_HASH);
+            sb.append("");
             int i2 = this.i;
             this.i = i2 + 1;
             sb.append(i2);
@@ -716,10 +715,8 @@ public class BlurringShader {
             } else if (i == 2) {
                 this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 this.oldPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.8f);
-                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
-                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 2.5f);
-                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.8f);
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.4f);
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.3f);
             } else if (i == 1) {
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.7f);
@@ -735,7 +732,15 @@ public class BlurringShader {
                 AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.35f);
             } else if (i == 7) {
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.5f);
-                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.85f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.95f);
+            } else if (i == 8) {
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.15f);
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.47f);
+            } else if (i == 9) {
+                this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                this.oldPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.4f);
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
             }
             this.paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             this.oldPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));

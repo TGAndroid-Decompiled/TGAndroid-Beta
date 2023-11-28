@@ -9,7 +9,6 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.webrtc.EglBase;
 import org.webrtc.EncodedImage;
@@ -232,7 +231,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
 
     @Override
     public VideoCodecStatus release() {
-        Logging.d(TAG, BuildConfig.BUILD_TYPE);
+        Logging.d(TAG, "release");
         VideoCodecStatus releaseInternal = releaseInternal();
         if (this.surface != null) {
             releaseSurface();

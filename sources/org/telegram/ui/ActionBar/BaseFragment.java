@@ -64,7 +64,7 @@ public abstract class BaseFragment {
     protected INavigationLayout parentLayout;
     private PreviewDelegate previewDelegate;
     private boolean removingFromStack;
-    private Theme.ResourcesProvider resourceProvider;
+    protected Theme.ResourcesProvider resourceProvider;
     public StoryViewer storyViewer;
     protected Dialog visibleDialog;
     protected int currentAccount = UserConfig.selectedAccount;
@@ -74,6 +74,7 @@ public abstract class BaseFragment {
 
     public static class BottomSheetParams {
         public boolean allowNestedScroll;
+        public boolean occupyNavigationBar;
         public Runnable onDismiss;
         public Runnable onOpenAnimationFinished;
         public Runnable onPreFinished;
@@ -140,6 +141,9 @@ public abstract class BaseFragment {
     }
 
     public void onBecomeFullyHidden() {
+    }
+
+    public void onBottomSheetCreated() {
     }
 
     public void onConfigurationChanged(Configuration configuration) {
@@ -817,12 +821,13 @@ public abstract class BaseFragment {
         iNavigationLayoutArr[0].setIsSheet(true);
         LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
         baseFragment.onTransitionAnimationStart(true, false);
-        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), iNavigationLayoutArr, baseFragment, bottomSheetParams, bottomSheetArr)};
+        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, bottomSheetArr)};
         if (bottomSheetParams != null) {
             bottomSheetArr[0].setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
             bottomSheetArr[0].transitionFromRight(bottomSheetParams.transitionFromLeft);
         }
         baseFragment.setParentDialog(bottomSheetArr[0]);
+        bottomSheetArr[0].setOpenNoDelay(true);
         bottomSheetArr[0].show();
         return iNavigationLayoutArr;
     }
@@ -842,13 +847,15 @@ public abstract class BaseFragment {
             return false;
         }
 
-        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, Theme.ResourcesProvider resourcesProvider, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, final BottomSheetParams bottomSheetParams, BottomSheet[] bottomSheetArr) {
+        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, Theme.ResourcesProvider resourcesProvider, final BottomSheetParams bottomSheetParams, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, BottomSheet[] bottomSheetArr) {
             super(context, z, resourcesProvider);
+            this.val$params = bottomSheetParams;
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$fragment = baseFragment2;
-            this.val$params = bottomSheetParams;
             this.val$bottomSheet = bottomSheetArr;
-            this.drawNavigationBar = true;
+            boolean z2 = bottomSheetParams != null && bottomSheetParams.occupyNavigationBar;
+            this.occupyNavigationBar = z2;
+            this.drawNavigationBar = true ^ z2;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             iNavigationLayoutArr[0].addFragmentToStack(baseFragment2);
             iNavigationLayoutArr[0].showLastFragment();
@@ -879,17 +886,21 @@ public abstract class BaseFragment {
         protected void onCreate(Bundle bundle) {
             super.onCreate(bundle);
             this.val$actionBarLayout[0].setWindow(this.val$bottomSheet[0].getWindow());
-            fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
+            BottomSheetParams bottomSheetParams = this.val$params;
+            if (bottomSheetParams == null || !bottomSheetParams.occupyNavigationBar) {
+                fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
+            }
             AndroidUtilities.setLightStatusBar(getWindow(), this.val$fragment.isLightStatusBar());
+            this.val$fragment.onBottomSheetCreated();
         }
 
         @Override
-        protected boolean canSwipeToBack() {
+        protected boolean canSwipeToBack(MotionEvent motionEvent) {
             BottomSheetParams bottomSheetParams = this.val$params;
             if (bottomSheetParams != null && bottomSheetParams.transitionFromLeft) {
                 INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
                 if (iNavigationLayoutArr[0] != null && iNavigationLayoutArr[0].getFragmentStack().size() <= 1) {
-                    return true;
+                    return this.val$actionBarLayout[0].getFragmentStack().size() != 1 || this.val$actionBarLayout[0].getFragmentStack().get(0).isSwipeBackEnabled(motionEvent);
                 }
             }
             return false;
@@ -950,7 +961,7 @@ public abstract class BaseFragment {
     }
 
     public int getNavigationBarColor() {
-        int color = Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider);
+        int color = Theme.getColor(Theme.key_windowBackgroundGray, getResourceProvider());
         StoryViewer storyViewer = this.storyViewer;
         return (storyViewer == null || !storyViewer.attachedToParent()) ? color : this.storyViewer.getNavigationBarColor(color);
     }

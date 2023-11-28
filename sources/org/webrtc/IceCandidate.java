@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.util.Arrays;
-import org.telegram.messenger.BuildConfig;
 import org.webrtc.PeerConnection;
 public class IceCandidate {
     public final PeerConnection.AdapterType adapterType;
@@ -14,7 +13,7 @@ public class IceCandidate {
         this.sdpMid = str;
         this.sdpMLineIndex = i;
         this.sdp = str2;
-        this.serverUrl = BuildConfig.APP_CENTER_HASH;
+        this.serverUrl = "";
         this.adapterType = PeerConnection.AdapterType.UNKNOWN;
     }
 

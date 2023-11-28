@@ -2,6 +2,7 @@ package org.telegram.ui.Stories;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.LayoutTransition;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
@@ -45,6 +46,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.ChatListItemAnimator;
+import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.net.IDN;
 import java.net.URLDecoder;
@@ -54,13 +56,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -75,6 +78,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.NotificationsSettingsFacade;
@@ -91,6 +95,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
@@ -98,6 +103,7 @@ import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$Reaction;
@@ -130,6 +136,7 @@ import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
@@ -180,13 +187,16 @@ import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.URLSpanUserMention;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.MessageStatisticActivity;
 import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.SelfStoriesPreviewView;
 import org.telegram.ui.Stories.StoriesController;
+import org.telegram.ui.Stories.StoryCaptionView;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.DraftsController;
@@ -196,6 +206,7 @@ import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.WrappedResourceProvider;
 public class PeerStoriesView extends SizeNotifierFrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static final float SHARE_BUTTON_OFFSET;
     private static int activeCount;
     private boolean BIG_SCREEN;
     private boolean allowDrawSurface;
@@ -208,6 +219,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     private boolean attachedToWindow;
     private final AvatarDrawable avatarDrawable;
     private final BitmapShaderTools bitmapShaderTools;
+    private final LinearLayout bottomActionsLinearLayout;
     private Runnable cancellableViews;
     private ValueAnimator changeBoundAnimator;
     ChatActivityEnterView chatActivityEnterView;
@@ -311,6 +323,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     private Runnable reactionsTooltipRunnable;
     private int realKeyboardHeight;
     private TextView replyDisabledTextView;
+    private ImageView repostButton;
+    private FrameLayout repostButtonContainer;
+    private AnimatedTextView.AnimatedTextDrawable repostCounter;
+    private AnimatedFloat repostCounterProgress;
+    private boolean repostCounterVisible;
     private final Theme.ResourcesProvider resourcesProvider;
     private final ImageReceiver rightPreloadImageReceiver;
     private int selectedPosition;
@@ -422,6 +439,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         return j2;
     }
 
+    static {
+        SHARE_BUTTON_OFFSET = (BuildVars.DISABLE_STORY_REPOSTING ? 0 : 46) + 46;
+    }
+
     public PeerStoriesView(final Context context, final StoryViewer storyViewer, final SharedResources sharedResources, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.allowDrawSurface = true;
@@ -441,13 +462,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.updateStealthModeTimer = new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$new$24();
+                PeerStoriesView.this.lambda$new$30();
             }
         };
         this.showTapToSoundHint = new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$new$27();
+                PeerStoriesView.this.lambda$new$34();
             }
         };
         this.uriesToPrepare = new ArrayList<>();
@@ -588,27 +609,101 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         });
         ScaleStateListAnimator.apply(imageView);
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        this.likeButtonContainer = frameLayout;
-        frameLayout.setOnClickListener(new View.OnClickListener() {
+        if (!BuildVars.DISABLE_STORY_REPOSTING) {
+            ImageView imageView2 = new ImageView(context);
+            this.repostButton = imageView2;
+            imageView2.setImageDrawable(sharedResources.repostDrawable);
+            this.repostButton.setPadding(dp, dp, dp, dp);
+            FrameLayout frameLayout = new FrameLayout(getContext()) {
+                @Override
+                protected void dispatchDraw(Canvas canvas) {
+                    super.dispatchDraw(canvas);
+                    PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                    if (!peerStoriesView.isChannel || peerStoriesView.repostCounter == null) {
+                        return;
+                    }
+                    canvas.save();
+                    canvas.translate((getMeasuredWidth() - PeerStoriesView.this.repostCounter.getCurrentWidth()) - AndroidUtilities.dp(6.0f), 0.0f);
+                    float f = PeerStoriesView.this.repostCounterProgress.set(PeerStoriesView.this.repostCounterVisible ? 1.0f : 0.0f);
+                    canvas.scale(f, f, PeerStoriesView.this.repostCounter.getCurrentWidth() / 2.0f, AndroidUtilities.dp(20.0f));
+                    PeerStoriesView.this.repostCounter.setAlpha(255);
+                    PeerStoriesView.this.repostCounter.draw(canvas);
+                    canvas.restore();
+                }
+
+                @Override
+                protected boolean verifyDrawable(Drawable drawable) {
+                    return drawable == PeerStoriesView.this.repostCounter || super.verifyDrawable(drawable);
+                }
+            };
+            this.repostButtonContainer = frameLayout;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.repostCounter;
+            if (animatedTextDrawable != null) {
+                animatedTextDrawable.setCallback(frameLayout);
+            }
+            this.repostButtonContainer.setWillNotDraw(false);
+            this.repostButtonContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    PeerStoriesView.this.lambda$new$2(view);
+                }
+            });
+        }
+        FrameLayout frameLayout2 = new FrameLayout(getContext()) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                if (!peerStoriesView.isChannel || peerStoriesView.reactionsCounter == null) {
+                    return;
+                }
+                canvas.save();
+                canvas.translate((getMeasuredWidth() - PeerStoriesView.this.reactionsCounter.getCurrentWidth()) - AndroidUtilities.dp(6.0f), 0.0f);
+                float f = PeerStoriesView.this.reactionsCounterProgress.set(PeerStoriesView.this.reactionsCounterVisible ? 1.0f : 0.0f);
+                canvas.scale(f, f, PeerStoriesView.this.reactionsCounter.getCurrentWidth() / 2.0f, AndroidUtilities.dp(20.0f));
+                PeerStoriesView.this.reactionsCounter.setAlpha(255);
+                PeerStoriesView.this.reactionsCounter.draw(canvas);
+                canvas.restore();
+            }
+
+            @Override
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == PeerStoriesView.this.reactionsCounter || super.verifyDrawable(drawable);
+            }
+        };
+        this.likeButtonContainer = frameLayout2;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.reactionsCounter;
+        if (animatedTextDrawable2 != null) {
+            animatedTextDrawable2.setCallback(frameLayout2);
+        }
+        frameLayout2.setWillNotDraw(false);
+        frameLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$new$3(view);
+                PeerStoriesView.this.lambda$new$4(view);
             }
         });
-        frameLayout.setOnLongClickListener(new View.OnLongClickListener() {
+        frameLayout2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                boolean lambda$new$4;
-                lambda$new$4 = PeerStoriesView.this.lambda$new$4(storyViewer, view);
-                return lambda$new$4;
+                boolean lambda$new$5;
+                lambda$new$5 = PeerStoriesView.this.lambda$new$5(storyViewer, view);
+                return lambda$new$5;
             }
         });
         StoriesLikeButton storiesLikeButton = new StoriesLikeButton(context, sharedResources);
         this.storiesLikeButton = storiesLikeButton;
         storiesLikeButton.setPadding(dp, dp, dp, dp);
-        frameLayout.addView(this.storiesLikeButton, LayoutHelper.createFrame(40, 40, 3));
-        ScaleStateListAnimator.apply(frameLayout, 0.3f, 5.0f);
+        frameLayout2.addView(this.storiesLikeButton, LayoutHelper.createFrame(40, 40, 3));
+        FrameLayout frameLayout3 = this.repostButtonContainer;
+        if (frameLayout3 != null) {
+            frameLayout3.addView(this.repostButton, LayoutHelper.createFrame(40, 40, 3));
+        }
+        ScaleStateListAnimator.apply(frameLayout2, 0.3f, 5.0f);
+        FrameLayout frameLayout4 = this.repostButtonContainer;
+        if (frameLayout4 != null) {
+            ScaleStateListAnimator.apply(frameLayout4, 0.3f, 5.0f);
+        }
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setParentView(this.storyContainer);
         if (Build.VERSION.SDK_INT >= 21) {
@@ -623,58 +718,75 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         peerHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$new$5(storyViewer, view);
+                PeerStoriesView.this.lambda$new$6(storyViewer, view);
             }
         });
         this.storyContainer.addView(this.headerView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 17.0f, 0.0f, 0.0f));
-        addView(imageView, LayoutHelper.createFrame(40, 40.0f, 5, 10.0f, 10.0f, 50.0f, 10.0f));
-        addView(frameLayout, LayoutHelper.createFrame(40, 40.0f, 5, 10.0f, 10.0f, 10.0f, 10.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.optionsIconView = imageView2;
-        imageView2.setImageDrawable(sharedResources.optionsDrawable);
-        imageView2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        imageView2.setBackground(Theme.createSelectorDrawable(-1));
-        this.storyContainer.addView(imageView2, LayoutHelper.createFrame(40, 40.0f, 53, 2.0f, 15.0f, 2.0f, 0.0f));
-        imageView2.setOnClickListener(new View.OnClickListener() {
+        LayoutTransition layoutTransition = new LayoutTransition();
+        layoutTransition.setDuration(150L);
+        layoutTransition.disableTransitionType(2);
+        layoutTransition.enableTransitionType(4);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.bottomActionsLinearLayout = linearLayout;
+        linearLayout.setOrientation(0);
+        linearLayout.setLayoutTransition(layoutTransition);
+        linearLayout.addView(imageView, LayoutHelper.createLinear(40, 40, 5));
+        FrameLayout frameLayout5 = this.repostButtonContainer;
+        if (frameLayout5 != null) {
+            linearLayout.addView(frameLayout5, LayoutHelper.createLinear(40, 40, 5));
+        }
+        linearLayout.addView(frameLayout2, LayoutHelper.createLinear(40, 40, 5));
+        addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f, 5, 0.0f, 0.0f, 4.0f, 0.0f));
+        ImageView imageView3 = new ImageView(context);
+        this.optionsIconView = imageView3;
+        imageView3.setImageDrawable(sharedResources.optionsDrawable);
+        imageView3.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        imageView3.setBackground(Theme.createSelectorDrawable(-1));
+        this.storyContainer.addView(imageView3, LayoutHelper.createFrame(40, 40.0f, 53, 2.0f, 15.0f, 2.0f, 0.0f));
+        imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$new$6(resourcesProvider, context, storyViewer, sharedResources, view);
+                PeerStoriesView.this.lambda$new$7(resourcesProvider, storyViewer, context, sharedResources, view);
             }
         });
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.muteIconContainer = frameLayout2;
-        this.storyContainer.addView(frameLayout2, LayoutHelper.createFrame(40, 40.0f, 53, 2.0f, 15.0f, 42.0f, 0.0f));
+        FrameLayout frameLayout6 = new FrameLayout(context);
+        this.muteIconContainer = frameLayout6;
+        this.storyContainer.addView(frameLayout6, LayoutHelper.createFrame(40, 40.0f, 53, 2.0f, 15.0f, 42.0f, 0.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteIconView = rLottieImageView;
         rLottieImageView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-        frameLayout2.addView(rLottieImageView);
-        ImageView imageView3 = new ImageView(context);
-        this.noSoundIconView = imageView3;
-        imageView3.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-        imageView3.setImageDrawable(sharedResources.noSoundDrawable);
-        frameLayout2.addView(imageView3);
-        imageView3.setVisibility(8);
+        frameLayout6.addView(rLottieImageView);
+        ImageView imageView4 = new ImageView(context);
+        this.noSoundIconView = imageView4;
+        imageView4.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
+        imageView4.setImageDrawable(sharedResources.noSoundDrawable);
+        frameLayout6.addView(imageView4);
+        imageView4.setVisibility(8);
         StoryPrivacyButton storyPrivacyButton = new StoryPrivacyButton(context);
         this.privacyButton = storyPrivacyButton;
         storyPrivacyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$new$8(view);
+                PeerStoriesView.this.lambda$new$9(view);
             }
         });
         this.storyContainer.addView(storyPrivacyButton, LayoutHelper.createFrame(60, 40.0f, 53, 2.0f, 15.0f, 42.0f, 0.0f));
-        frameLayout2.setOnClickListener(new View.OnClickListener() {
+        frameLayout6.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$new$9(storyViewer, view);
+                PeerStoriesView.this.lambda$new$10(storyViewer, view);
             }
         });
         this.storyLines = new StoryLinesDrawable(this, sharedResources);
         this.storyContainer.addView(anonymousClass5, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 64.0f, 0.0f, 0.0f));
-        frameLayout2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
-        imageView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+        frameLayout6.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+        imageView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
         imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
-        frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+        frameLayout2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+        FrameLayout frameLayout7 = this.repostButtonContainer;
+        if (frameLayout7 != null) {
+            frameLayout7.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+        }
         View overlayView = anonymousClass5.textSelectionHelper.getOverlayView(context);
         if (overlayView != null) {
             AndroidUtilities.removeFromParent(overlayView);
@@ -769,7 +881,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
                 @Override
                 public boolean clipWithGradient(int i) {
-                    return i == 1 || i == 2;
+                    return i == 1 || i == 2 || i == 3;
                 }
 
                 @Override
@@ -955,6 +1067,48 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
+        public void onReplyClick(final StoryCaptionView.Reply reply) {
+            if (reply == null) {
+                return;
+            }
+            if (reply.peerId != null && reply.storyId != null) {
+                StoriesController storiesController = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController();
+                long longValue = reply.peerId.longValue();
+                int intValue = reply.storyId.intValue();
+                final StoryViewer storyViewer = this.val$storyViewer;
+                final Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
+                storiesController.resolveStoryLink(longValue, intValue, new Consumer() {
+                    @Override
+                    public final void accept(Object obj) {
+                        PeerStoriesView.AnonymousClass5.this.lambda$onReplyClick$3(storyViewer, reply, resourcesProvider, (TL_stories$StoryItem) obj);
+                    }
+                });
+                return;
+            }
+            BulletinFactory.of(PeerStoriesView.this.storyContainer, this.val$resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
+        }
+
+        public void lambda$onReplyClick$3(final StoryViewer storyViewer, StoryCaptionView.Reply reply, Theme.ResourcesProvider resourcesProvider, TL_stories$StoryItem tL_stories$StoryItem) {
+            if (tL_stories$StoryItem != null) {
+                BaseFragment lastFragment = LaunchActivity.getLastFragment();
+                if (lastFragment == null || lastFragment.getOrCreateOverlayStoryViewer().isShowing) {
+                    return;
+                }
+                storyViewer.setOverlayVisible(true);
+                tL_stories$StoryItem.dialogId = reply.peerId.longValue();
+                lastFragment.getOrCreateOverlayStoryViewer().open(getContext(), tL_stories$StoryItem, (StoryViewer.PlaceProvider) null);
+                lastFragment.getOrCreateOverlayStoryViewer().setOnCloseListener(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryViewer.this.setOverlayVisible(false);
+                    }
+                });
+                return;
+            }
+            BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.story_bomb2, LocaleController.getString(R.string.StoryNotFound)).setTag(3).show(true);
+        }
+
+        @Override
         public void onEmojiClick(AnimatedEmojiSpan animatedEmojiSpan) {
             if (animatedEmojiSpan != null) {
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
@@ -974,7 +1128,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 Bulletin createContainsEmojiBulletin = of.createContainsEmojiBulletin(tLRPC$Document, 2, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        PeerStoriesView.AnonymousClass5.this.lambda$onEmojiClick$2(storyViewer, resourcesProvider, (TLRPC$InputStickerSet) obj);
+                        PeerStoriesView.AnonymousClass5.this.lambda$onEmojiClick$4(storyViewer, resourcesProvider, (TLRPC$InputStickerSet) obj);
                     }
                 });
                 if (createContainsEmojiBulletin == null) {
@@ -985,7 +1139,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onEmojiClick$2(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TLRPC$InputStickerSet tLRPC$InputStickerSet) {
+        public void lambda$onEmojiClick$4(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TLRPC$InputStickerSet tLRPC$InputStickerSet) {
             ArrayList arrayList = new ArrayList(1);
             arrayList.add(tLRPC$InputStickerSet);
             EmojiPacksAlert emojiPacksAlert = new EmojiPacksAlert(storyViewer.fragment, getContext(), resourcesProvider, arrayList);
@@ -1015,13 +1169,17 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         shareStory(true);
     }
 
-    public void lambda$new$3(View view) {
+    public void lambda$new$2(View view) {
+        tryToOpenRepostStory();
+    }
+
+    public void lambda$new$4(View view) {
         TL_stories$StoryItem tL_stories$StoryItem = this.currentStory.storyItem;
         if (tL_stories$StoryItem != null && tL_stories$StoryItem.sent_reaction == null) {
             applyMessageToChat(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.this.lambda$new$2();
+                    PeerStoriesView.this.lambda$new$3();
                 }
             });
         } else {
@@ -1029,11 +1187,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    public void lambda$new$2() {
+    public void lambda$new$3() {
         likeStory(null);
     }
 
-    public boolean lambda$new$4(StoryViewer storyViewer, View view) {
+    public boolean lambda$new$5(StoryViewer storyViewer, View view) {
         Runnable runnable = this.reactionsTooltipRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -1050,7 +1208,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         return true;
     }
 
-    public void lambda$new$5(StoryViewer storyViewer, View view) {
+    public void lambda$new$6(StoryViewer storyViewer, View view) {
         long j = UserConfig.getInstance(this.currentAccount).clientUserId;
         long j2 = this.dialogId;
         if (j == j2) {
@@ -1065,7 +1223,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, Context context, StoryViewer storyViewer, SharedResources sharedResources, View view) {
+    public void lambda$new$7(Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, Context context, SharedResources sharedResources, View view) {
         this.delegate.setPopupIsVisible(true);
         this.editStoryItem = null;
         boolean[] zArr = {false};
@@ -1074,12 +1232,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             MessagesController.getInstance(this.currentAccount).getStoriesController().loadSendAs();
             MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().load();
         }
-        AnonymousClass6 anonymousClass6 = new AnonymousClass6(getContext(), resourcesProvider, this.isSelf, resourcesProvider, context, storyViewer, sharedResources, zArr);
-        this.popupMenu = anonymousClass6;
-        anonymousClass6.show(this.optionsIconView, 0, (-ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(6.0f));
+        AnonymousClass8 anonymousClass8 = new AnonymousClass8(getContext(), resourcesProvider, this.isSelf, resourcesProvider, storyViewer, context, sharedResources, zArr);
+        this.popupMenu = anonymousClass8;
+        anonymousClass8.show(this.optionsIconView, 0, (-ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(6.0f));
     }
 
-    public class AnonymousClass6 extends CustomPopupMenu {
+    public class AnonymousClass8 extends CustomPopupMenu {
         private boolean edit;
         final Context val$context;
         final boolean[] val$popupStillVisible;
@@ -1087,21 +1245,66 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         final SharedResources val$sharedResources;
         final StoryViewer val$storyViewer;
 
-        AnonymousClass6(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, Theme.ResourcesProvider resourcesProvider2, Context context2, StoryViewer storyViewer, SharedResources sharedResources, boolean[] zArr) {
+        AnonymousClass8(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, Theme.ResourcesProvider resourcesProvider2, StoryViewer storyViewer, Context context2, SharedResources sharedResources, boolean[] zArr) {
             super(context, resourcesProvider, z);
             this.val$resourcesProvider = resourcesProvider2;
-            this.val$context = context2;
             this.val$storyViewer = storyViewer;
+            this.val$context = context2;
             this.val$sharedResources = sharedResources;
             this.val$popupStillVisible = zArr;
         }
 
-        @Override
-        protected void onCreate(org.telegram.ui.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout r31) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.AnonymousClass6.onCreate(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout):void");
+        private void addViewStatistics(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, final TL_stories$StoryItem tL_stories$StoryItem) {
+            final TLRPC$Chat chat;
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            if (!peerStoriesView.isChannel || (chat = MessagesController.getInstance(peerStoriesView.currentAccount).getChat(Long.valueOf(-PeerStoriesView.this.dialogId))) == null) {
+                return;
+            }
+            TLRPC$ChatFull chatFull = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChatFull(chat.id);
+            if (chatFull == null) {
+                chatFull = MessagesStorage.getInstance(PeerStoriesView.this.currentAccount).loadChatInfo(chat.id, true, new CountDownLatch(1), false, false);
+            }
+            if (chatFull == null || !chatFull.can_view_stats) {
+                return;
+            }
+            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_stats, LocaleController.getString("ViewStatistics", R.string.ViewStatistics), false, this.val$resourcesProvider);
+            final StoryViewer storyViewer = this.val$storyViewer;
+            addItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$addViewStatistics$0(tL_stories$StoryItem, storyViewer, chat, view);
+                }
+            });
         }
 
-        public void lambda$onCreate$0(View view) {
+        public void lambda$addViewStatistics$0(TL_stories$StoryItem tL_stories$StoryItem, StoryViewer storyViewer, TLRPC$Chat tLRPC$Chat, View view) {
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+            tL_stories$StoryItem.dialogId = PeerStoriesView.this.dialogId;
+            tL_stories$StoryItem.messageId = tL_stories$StoryItem.id;
+            MessageObject messageObject = new MessageObject(PeerStoriesView.this.currentAccount, tL_stories$StoryItem);
+            messageObject.generateThumbs(false);
+            storyViewer.presentFragment(new MessageStatisticActivity(this, messageObject, tLRPC$Chat.id, false) {
+                @Override
+                public boolean isLightStatusBar() {
+                    return false;
+                }
+
+                @Override
+                public Theme.ResourcesProvider getResourceProvider() {
+                    return new DarkThemeResourceProvider();
+                }
+            });
+        }
+
+        @Override
+        protected void onCreate(org.telegram.ui.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout r31) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.AnonymousClass8.onCreate(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout):void");
+        }
+
+        public void lambda$onCreate$1(View view) {
             StoriesController.UploadingStory uploadingStory = PeerStoriesView.this.currentStory.uploadingStory;
             if (uploadingStory != null) {
                 uploadingStory.cancel();
@@ -1113,7 +1316,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$1(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories$StoryItem tL_stories$StoryItem, View view) {
+        public void lambda$onCreate$2(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories$StoryItem tL_stories$StoryItem, View view) {
             PeerStoriesView.this.editPrivacy(storyPrivacy, tL_stories$StoryItem);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1121,7 +1324,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$7(Theme.ResourcesProvider resourcesProvider, Context context, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+        public void lambda$onCreate$8(Theme.ResourcesProvider resourcesProvider, Context context, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
             if (view.getAlpha() < 1.0f) {
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 AndroidUtilities.shakeViewSpring(view, peerStoriesView.shiftDp = -peerStoriesView.shiftDp);
@@ -1140,7 +1343,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass6.this.lambda$onCreate$6(findActivity, storyViewer, sharedResources);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$7(findActivity, storyViewer, sharedResources);
                 }
             };
             if (PeerStoriesView.this.delegate.releasePlayer(runnable)) {
@@ -1149,7 +1352,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             runnable.run();
         }
 
-        public void lambda$onCreate$6(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
+        public void lambda$onCreate$7(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1167,24 +1370,24 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             storyRecorder.setOnFullyOpenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass6.this.lambda$onCreate$2();
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$3();
                 }
             });
-            storyRecorder.setOnPrepareCloseListener(new Utilities.Callback3() {
+            storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
                 @Override
-                public final void run(Object obj, Object obj2, Object obj3) {
-                    PeerStoriesView.AnonymousClass6.this.lambda$onCreate$5(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3);
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$6(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
                 }
             });
         }
 
-        public void lambda$onCreate$2() {
+        public void lambda$onCreate$3() {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.editOpened = true;
             peerStoriesView.setActive(false);
         }
 
-        public void lambda$onCreate$5(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool) {
+        public void lambda$onCreate$6(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
             final long currentTimeMillis = System.currentTimeMillis();
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
@@ -1197,7 +1400,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 peerStoriesView2.onImageReceiverThumbLoaded = new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass6.lambda$onCreate$3(runnable);
+                        PeerStoriesView.AnonymousClass8.lambda$onCreate$4(runnable);
                     }
                 };
                 if (bool.booleanValue()) {
@@ -1211,7 +1414,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             videoPlayerHolder.setOnReadyListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass6.lambda$onCreate$4(runnable, currentTimeMillis);
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$5(runnable, currentTimeMillis);
                 }
             });
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
@@ -1226,23 +1429,23 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public static void lambda$onCreate$3(Runnable runnable) {
+        public static void lambda$onCreate$4(Runnable runnable) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable);
         }
 
-        public static void lambda$onCreate$4(Runnable runnable, long j) {
+        public static void lambda$onCreate$5(Runnable runnable, long j) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
         }
 
-        public void lambda$onCreate$9(final TL_stories$StoryItem tL_stories$StoryItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
+        public void lambda$onCreate$10(final TL_stories$StoryItem tL_stories$StoryItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
             ArrayList<TL_stories$StoryItem> arrayList = new ArrayList<>();
             arrayList.add(tL_stories$StoryItem);
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().updateStoriesPinned(PeerStoriesView.this.dialogId, arrayList, z, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass6.this.lambda$onCreate$8(tL_stories$StoryItem, z, resourcesProvider, (Boolean) obj);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$9(tL_stories$StoryItem, z, resourcesProvider, (Boolean) obj);
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1251,7 +1454,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$8(TL_stories$StoryItem tL_stories$StoryItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
+        public void lambda$onCreate$9(TL_stories$StoryItem tL_stories$StoryItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
             int i;
             String str;
             if (bool.booleanValue()) {
@@ -1281,7 +1484,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
         }
 
-        public void lambda$onCreate$10(View view) {
+        public void lambda$onCreate$11(View view) {
             PeerStoriesView.this.saveToGallery();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1289,17 +1492,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$11(View view) {
-            AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
-            PeerStoriesView.this.onLickCopied();
-            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
-            if (customPopupMenu != null) {
-                customPopupMenu.dismiss();
-            }
-        }
-
         public void lambda$onCreate$12(View view) {
-            PeerStoriesView.this.shareStory(false);
+            AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
+            PeerStoriesView.this.onLinkCopied();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -1307,6 +1502,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         public void lambda$onCreate$13(View view) {
+            PeerStoriesView.this.shareStory(false);
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+        }
+
+        public void lambda$onCreate$14(View view) {
             PeerStoriesView.this.deleteStory();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1314,7 +1517,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$14(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
+        public void lambda$onCreate$15(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0);
@@ -1325,20 +1528,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$15(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
+        public void lambda$onCreate$16(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, str2))).setTag(2).show();
-            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
-            if (customPopupMenu != null) {
-                customPopupMenu.dismiss();
-            }
-        }
-
-        public void lambda$onCreate$16(View view) {
-            PeerStoriesView peerStoriesView = PeerStoriesView.this;
-            peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -1355,6 +1549,15 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         public void lambda$onCreate$18(View view) {
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+        }
+
+        public void lambda$onCreate$19(View view) {
             PeerStoriesView.this.saveToGallery();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1362,34 +1565,26 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$20(ActionBarMenuSubItem actionBarMenuSubItem, final StoryViewer storyViewer, View view) {
+        public void lambda$onCreate$21(ActionBarMenuSubItem actionBarMenuSubItem, final StoryViewer storyViewer, View view) {
             actionBarMenuSubItem.performHapticFeedback(3);
             BulletinFactory global = BulletinFactory.global();
             if (global != null) {
                 global.createSimpleBulletin(R.raw.ic_save_to_gallery, AndroidUtilities.replaceSingleTag(LocaleController.getString("SaveStoryToGalleryPremiumHint", R.string.SaveStoryToGalleryPremiumHint), new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass6.this.lambda$onCreate$19(storyViewer);
+                        PeerStoriesView.AnonymousClass8.this.lambda$onCreate$20(storyViewer);
                     }
                 })).show();
             }
         }
 
-        public void lambda$onCreate$19(StoryViewer storyViewer) {
+        public void lambda$onCreate$20(StoryViewer storyViewer) {
             PeerStoriesView.this.delegate.showDialog(new PremiumFeatureBottomSheet(storyViewer.fragment, 14, false));
         }
 
-        public void lambda$onCreate$21(View view) {
-            AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
-            PeerStoriesView.this.onLickCopied();
-            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
-            if (customPopupMenu != null) {
-                customPopupMenu.dismiss();
-            }
-        }
-
         public void lambda$onCreate$22(View view) {
-            PeerStoriesView.this.shareStory(false);
+            AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
+            PeerStoriesView.this.onLinkCopied();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -1397,6 +1592,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         public void lambda$onCreate$23(View view) {
+            PeerStoriesView.this.shareStory(false);
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+        }
+
+        public void lambda$onCreate$24(View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = false;
             StoriesStorage storiesStorage = MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getStoriesStorage();
@@ -1410,7 +1613,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$26(View view) {
+        public void lambda$onCreate$27(View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = true;
             peerStoriesView.cancelTextSelection();
@@ -1425,13 +1628,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass6.this.lambda$onCreate$24();
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$25();
                 }
             };
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getTranslateController().translateStory(PeerStoriesView.this.currentStory.storyItem, new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass6.lambda$onCreate$25(runnable, currentTimeMillis);
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$26(runnable, currentTimeMillis);
                 }
             });
             PeerStoriesView.this.updatePosition();
@@ -1444,7 +1647,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$24() {
+        public void lambda$onCreate$25() {
             Delegate delegate = PeerStoriesView.this.delegate;
             if (delegate != null) {
                 delegate.setTranslating(false);
@@ -1455,11 +1658,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             peerStoriesView.storyCaptionView.expand(true);
         }
 
-        public static void lambda$onCreate$25(Runnable runnable, long j) {
+        public static void lambda$onCreate$26(Runnable runnable, long j) {
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 500 - (System.currentTimeMillis() - j)));
         }
 
-        public void lambda$onCreate$27(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
+        public void lambda$onCreate$28(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
             AlertsCreator.createReportAlert(PeerStoriesView.this.getContext(), PeerStoriesView.this.dialogId, 0, PeerStoriesView.this.currentStory.storyItem.id, storyViewer.fragment, resourcesProvider, null);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1467,7 +1670,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
 
-        public void lambda$onCreate$28(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
+        public void lambda$onCreate$29(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
             Delegate delegate;
             EmojiPacksAlert alert = storyContainsEmojiButton.getAlert();
             if (alert == null || (delegate = PeerStoriesView.this.delegate) == null) {
@@ -1483,7 +1686,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass6.this.lambda$onDismissed$29();
+                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$30();
                     }
                 });
             }
@@ -1492,20 +1695,20 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             peerStoriesView.editStoryItem = null;
         }
 
-        public void lambda$onDismissed$29() {
+        public void lambda$onDismissed$30() {
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
         }
     }
 
-    public void lambda$new$8(android.view.View r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.lambda$new$8(android.view.View):void");
+    public void lambda$new$9(android.view.View r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.lambda$new$9(android.view.View):void");
     }
 
-    public void lambda$new$7() {
+    public void lambda$new$8() {
         this.delegate.setIsHintVisible(false);
     }
 
-    public void lambda$new$9(StoryViewer storyViewer, View view) {
+    public void lambda$new$10(StoryViewer storyViewer, View view) {
         if (this.currentStory.hasSound()) {
             storyViewer.toggleSilentMode();
             if (storyViewer.soundEnabled()) {
@@ -1522,7 +1725,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_stories_stealth2, LocaleController.getString(R.string.StealthModeButton), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PeerStoriesView.this.lambda$createStealthModeItem$10(view);
+                    PeerStoriesView.this.lambda$createStealthModeItem$11(view);
                 }
             });
             return;
@@ -1538,13 +1741,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$createStealthModeItem$11(view);
+                PeerStoriesView.this.lambda$createStealthModeItem$12(view);
             }
         });
         addItem.setIcon(combinedDrawable);
     }
 
-    public void lambda$createStealthModeItem$10(View view) {
+    public void lambda$createStealthModeItem$11(View view) {
         if (this.stealthModeIsActive) {
             StealthModeAlert.showStealthModeEnabledBulletin();
         } else {
@@ -1556,7 +1759,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    public void lambda$createStealthModeItem$11(View view) {
+    public void lambda$createStealthModeItem$12(View view) {
         this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), this.resourcesProvider));
         CustomPopupMenu customPopupMenu = this.popupMenu;
         if (customPopupMenu != null) {
@@ -1583,7 +1786,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PeerStoriesView.this.lambda$showLikesReaction$12(valueAnimator);
+                    PeerStoriesView.this.lambda$showLikesReaction$13(valueAnimator);
                 }
             });
             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -1615,7 +1818,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }).start();
     }
 
-    public void lambda$showLikesReaction$12(ValueAnimator valueAnimator) {
+    public void lambda$showLikesReaction$13(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.likesReactionShowProgress = floatValue;
         this.likesReactionLayout.setTransitionProgress(floatValue);
@@ -1806,34 +2009,34 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$toggleArchiveForStory$15(messagesController, j, z2, str2, tLRPC$Chat);
+                PeerStoriesView.this.lambda$toggleArchiveForStory$16(messagesController, j, z2, str2, tLRPC$Chat);
             }
         }, 200L);
     }
 
-    public void lambda$toggleArchiveForStory$15(final MessagesController messagesController, final long j, final boolean z, String str, TLObject tLObject) {
+    public void lambda$toggleArchiveForStory$16(final MessagesController messagesController, final long j, final boolean z, String str, TLObject tLObject) {
         messagesController.getStoriesController().toggleHidden(j, z, false, true);
         BulletinFactory.UndoObject undoObject = new BulletinFactory.UndoObject();
         undoObject.onUndo = new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.lambda$toggleArchiveForStory$13(MessagesController.this, j, z);
+                PeerStoriesView.lambda$toggleArchiveForStory$14(MessagesController.this, j, z);
             }
         };
         undoObject.onAction = new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.lambda$toggleArchiveForStory$14(MessagesController.this, j, z);
+                PeerStoriesView.lambda$toggleArchiveForStory$15(MessagesController.this, j, z);
             }
         };
         BulletinFactory.of(this.storyContainer, this.resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), !z ? AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, ContactsController.formatName(str, null, 10))) : AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10))), null, undoObject).setTag(2).show();
     }
 
-    public static void lambda$toggleArchiveForStory$13(MessagesController messagesController, long j, boolean z) {
+    public static void lambda$toggleArchiveForStory$14(MessagesController messagesController, long j, boolean z) {
         messagesController.getStoriesController().toggleHidden(j, !z, false, true);
     }
 
-    public static void lambda$toggleArchiveForStory$14(MessagesController messagesController, long j, boolean z) {
+    public static void lambda$toggleArchiveForStory$15(MessagesController messagesController, long j, boolean z) {
         messagesController.getStoriesController().toggleHidden(j, z, true, true);
     }
 
@@ -1846,7 +2049,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         storyFailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$createFailView$16(view);
+                PeerStoriesView.this.lambda$createFailView$17(view);
             }
         });
         this.failView.setAlpha(0.0f);
@@ -1854,7 +2057,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         addView(this.failView, LayoutHelper.createFrame(-1, -2.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    public void lambda$createFailView$16(View view) {
+    public void lambda$createFailView$17(View view) {
         StoriesController.UploadingStory uploadingStory;
         StoryItemHolder storyItemHolder = this.currentStory;
         if (storyItemHolder == null || (uploadingStory = storyItemHolder.uploadingStory) == null) {
@@ -1865,17 +2068,17 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     private void createEnterView() {
-        AnonymousClass13 anonymousClass13 = new AnonymousClass13(AndroidUtilities.findActivity(getContext()), this, null, true, new WrappedResourceProvider(this, this.resourcesProvider) {
+        AnonymousClass15 anonymousClass15 = new AnonymousClass15(AndroidUtilities.findActivity(getContext()), this, null, true, new WrappedResourceProvider(this, this.resourcesProvider) {
             @Override
             public void appendColors() {
                 this.sparseIntArray.put(Theme.key_chat_emojiPanelBackground, ColorUtils.setAlphaComponent(-1, 30));
             }
         });
-        this.chatActivityEnterView = anonymousClass13;
-        anonymousClass13.getEditField().useAnimatedTextDrawable();
+        this.chatActivityEnterView = anonymousClass15;
+        anonymousClass15.getEditField().useAnimatedTextDrawable();
         this.chatActivityEnterView.setOverrideKeyboardAnimation(true);
         this.chatActivityEnterView.setClipChildren(false);
-        this.chatActivityEnterView.setDelegate(new AnonymousClass14());
+        this.chatActivityEnterView.setDelegate(new AnonymousClass16());
         setDelegate(this.chatActivityEnterView);
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         chatActivityEnterView.shouldDrawBackground = false;
@@ -1893,13 +2096,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.reactionsContainerIndex = getChildCount();
     }
 
-    public class AnonymousClass13 extends ChatActivityEnterView {
+    public class AnonymousClass15 extends ChatActivityEnterView {
         private int chatActivityEnterViewAnimateFromTop;
         private Animator messageEditTextAnimator;
         int messageEditTextPredrawHeigth;
         int messageEditTextPredrawScrollY;
 
-        AnonymousClass13(Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass15(Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(activity, sizeNotifierFrameLayout, chatActivity, z, resourcesProvider);
         }
 
@@ -1935,20 +2138,20 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 PeerStoriesView.this.changeBoundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PeerStoriesView.AnonymousClass13.this.lambda$checkAnimation$0(valueAnimator);
+                        PeerStoriesView.AnonymousClass15.this.lambda$checkAnimation$0(valueAnimator);
                     }
                 });
                 PeerStoriesView.this.changeBoundAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         PeerStoriesView.this.invalidate();
-                        ((ChatActivityEnterView) AnonymousClass13.this).animatedTop = 0;
-                        AnonymousClass13 anonymousClass13 = AnonymousClass13.this;
+                        ((ChatActivityEnterView) AnonymousClass15.this).animatedTop = 0;
+                        AnonymousClass15 anonymousClass15 = AnonymousClass15.this;
                         PeerStoriesView.this.forceUpdateOffsets = true;
-                        if (((ChatActivityEnterView) anonymousClass13).topView != null && ((ChatActivityEnterView) AnonymousClass13.this).topView.getVisibility() == 0) {
-                            ((ChatActivityEnterView) AnonymousClass13.this).topView.setTranslationY(((ChatActivityEnterView) AnonymousClass13.this).animatedTop + ((1.0f - ((ChatActivityEnterView) AnonymousClass13.this).topViewEnterProgress) * ((ChatActivityEnterView) AnonymousClass13.this).topView.getLayoutParams().height));
-                            if (((ChatActivityEnterView) AnonymousClass13.this).topLineView != null) {
-                                ((ChatActivityEnterView) AnonymousClass13.this).topLineView.setTranslationY(((ChatActivityEnterView) AnonymousClass13.this).animatedTop);
+                        if (((ChatActivityEnterView) anonymousClass15).topView != null && ((ChatActivityEnterView) AnonymousClass15.this).topView.getVisibility() == 0) {
+                            ((ChatActivityEnterView) AnonymousClass15.this).topView.setTranslationY(((ChatActivityEnterView) AnonymousClass15.this).animatedTop + ((1.0f - ((ChatActivityEnterView) AnonymousClass15.this).topViewEnterProgress) * ((ChatActivityEnterView) AnonymousClass15.this).topView.getLayoutParams().height));
+                            if (((ChatActivityEnterView) AnonymousClass15.this).topLineView != null) {
+                                ((ChatActivityEnterView) AnonymousClass15.this).topLineView.setTranslationY(((ChatActivityEnterView) AnonymousClass15.this).animatedTop);
                             }
                         }
                         PeerStoriesView.this.changeBoundAnimator = null;
@@ -1966,7 +2169,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PeerStoriesView.AnonymousClass13.this.lambda$checkAnimation$1(valueAnimator);
+                        PeerStoriesView.AnonymousClass15.this.lambda$checkAnimation$1(valueAnimator);
                     }
                 });
                 Animator animator = this.messageEditTextAnimator;
@@ -2036,7 +2239,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    public class AnonymousClass14 implements ChatActivityEnterView.ChatActivityEnterViewDelegate {
+    public class AnonymousClass16 implements ChatActivityEnterView.ChatActivityEnterViewDelegate {
         @Override
         public void bottomPanelTranslationYChanged(float f) {
             ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$bottomPanelTranslationYChanged(this, f);
@@ -2168,7 +2371,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$scrollToSendingMessage(this);
         }
 
-        AnonymousClass14() {
+        AnonymousClass16() {
         }
 
         @Override
@@ -2179,7 +2382,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass14.this.lambda$onMessageSend$0();
+                        PeerStoriesView.AnonymousClass16.this.lambda$onMessageSend$0();
                     }
                 }, 200L);
             }
@@ -2274,7 +2477,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
                 SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tLRPC$TL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj);
                 PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tLRPC$TL_document);
-                PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
+                PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                 PeerStoriesView.this.afterMessageSend();
             }
 
@@ -2298,11 +2501,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 long contextBotId = PeerStoriesView.this.mentionContainer.getAdapter().getContextBotId();
                 HashMap hashMap = new HashMap();
                 hashMap.put("id", tLRPC$BotInlineResult.id);
-                hashMap.put("query_id", BuildConfig.APP_CENTER_HASH + tLRPC$BotInlineResult.query_id);
-                hashMap.put("bot", BuildConfig.APP_CENTER_HASH + contextBotId);
+                hashMap.put("query_id", "" + tLRPC$BotInlineResult.query_id);
+                hashMap.put("bot", "" + contextBotId);
                 hashMap.put("bot_name", PeerStoriesView.this.mentionContainer.getAdapter().getContextBotName());
                 SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, z, i);
-                PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
+                PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                 PeerStoriesView.this.afterMessageSend();
                 MediaDataController.getInstance(PeerStoriesView.this.currentAccount).increaseInlineRaiting(contextBotId);
             }
@@ -2350,7 +2553,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             MediaController.saveFile(path.toString(), getContext(), isVideo ? 1 : 0, null, null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.this.lambda$saveToGallery$19(isVideo, (Uri) obj);
+                    PeerStoriesView.this.lambda$saveToGallery$20(isVideo, (Uri) obj);
                 }
             });
             return;
@@ -2358,7 +2561,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         showDownloadAlert();
     }
 
-    public void lambda$saveToGallery$19(boolean z, Uri uri) {
+    public void lambda$saveToGallery$20(boolean z, Uri uri) {
         BulletinFactory.createSaveToGalleryBulletin(this.storyContainer, z, this.resourcesProvider).show();
     }
 
@@ -2425,6 +2628,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
+                public boolean selectItemOnClicking() {
+                    return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
+                }
+
+                @Override
                 public void didPressedButton(int i, boolean z, boolean z2, int i2, boolean z3) {
                     String str;
                     if (PeerStoriesView.this.storyViewer.isShowing) {
@@ -2485,7 +2693,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                                 i4 = 0;
                                 i3 = 4;
                             }
-                            PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
+                            PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                             PeerStoriesView.this.afterMessageSend();
                         } else if (PeerStoriesView.this.chatAttachAlert != null) {
                             PeerStoriesView.this.chatAttachAlert.dismissWithButtonClick(i);
@@ -2562,6 +2770,24 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
+    public void tryToOpenRepostStory() {
+        File path = this.currentStory.getPath();
+        if (path != null && path.exists()) {
+            ShareAlert shareAlert = this.shareAlert;
+            if (shareAlert != null) {
+                shareAlert.dismiss();
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.this.openRepostStory();
+                }
+            }, 120L);
+            return;
+        }
+        showDownloadAlert();
+    }
+
     public void shareStory(boolean z) {
         StoryItemHolder storyItemHolder = this.currentStory;
         if (storyItemHolder.storyItem == null || this.storyViewer.fragment == null) {
@@ -2569,10 +2795,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
         String createLink = storyItemHolder.createLink();
         if (z) {
-            ShareAlert shareAlert = new ShareAlert(this.storyViewer.fragment.getContext(), null, createLink, false, createLink, false, new WrappedResourceProvider(this, this.resourcesProvider) {
+            ShareAlert shareAlert = new ShareAlert(this.storyViewer.fragment.getContext(), null, null, createLink, null, false, createLink, null, false, false, !BuildVars.DISABLE_STORY_REPOSTING && MessagesController.getInstance(this.currentAccount).storiesEnabled(), new WrappedResourceProvider(this, this.resourcesProvider) {
                 @Override
                 public void appendColors() {
                     this.sparseIntArray.put(Theme.key_chat_emojiPanelBackground, ColorUtils.blendARGB(-16777216, -1, 0.2f));
+                    this.sparseIntArray.put(Theme.key_chat_messagePanelIcons, ColorUtils.blendARGB(-16777216, -1, 0.5f));
                 }
             }) {
                 @Override
@@ -2582,14 +2809,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
                     if (of != null) {
                         if (longSparseArray.size() == 1) {
                             long keyAt = longSparseArray.keyAt(0);
-                            if (keyAt == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                            if (keyAt == Long.MAX_VALUE) {
+                                PeerStoriesView.this.tryToOpenRepostStory();
+                            } else if (keyAt == UserConfig.getInstance(this.currentAccount).clientUserId) {
                                 of.createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.formatString("StorySharedToSavedMessages", R.string.StorySharedToSavedMessages, new Object[0])), 5000).hideAfterBottomSheet(false).show();
                             } else if (keyAt < 0) {
                                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-keyAt));
@@ -2609,6 +2838,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
             };
             this.shareAlert = shareAlert;
+            shareAlert.forceDarkThemeForHint = true;
             TL_stories$StoryItem tL_stories$StoryItem = this.currentStory.storyItem;
             tL_stories$StoryItem.dialogId = this.dialogId;
             shareAlert.setStoryToShare(tL_stories$StoryItem);
@@ -2620,7 +2850,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
                 @Override
                 public boolean didCopy() {
-                    PeerStoriesView.this.onLickCopied();
+                    PeerStoriesView.this.onLinkCopied();
                     return true;
                 }
             });
@@ -2633,7 +2863,128 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         LaunchActivity.instance.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("StickersShare", R.string.StickersShare)), 500);
     }
 
-    public void onLickCopied() {
+    public void openRepostStory() {
+        final Activity findActivity = AndroidUtilities.findActivity(getContext());
+        if (findActivity == null) {
+            return;
+        }
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                PeerStoriesView.this.lambda$openRepostStory$25(findActivity);
+            }
+        };
+        if (this.delegate.releasePlayer(runnable)) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(runnable, 80L);
+    }
+
+    public void lambda$openRepostStory$25(Activity activity) {
+        StoryViewer.VideoPlayerHolder videoPlayerHolder;
+        final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
+        VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
+        storyRecorder.openForward(StoryRecorder.SourceView.fromStoryViewer(this.storyViewer), StoryEntry.repostStoryItem(this.currentStory.getPath(), this.currentStory.storyItem), (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) ? 0L : videoPlayerHolder.currentPosition, true);
+        storyRecorder.setOnFullyOpenListener(new Runnable() {
+            @Override
+            public final void run() {
+                PeerStoriesView.this.lambda$openRepostStory$21();
+            }
+        });
+        storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                PeerStoriesView.this.lambda$openRepostStory$24(storyRecorder, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+            }
+        });
+    }
+
+    public void lambda$openRepostStory$21() {
+        this.editOpened = true;
+        setActive(false);
+    }
+
+    public void lambda$openRepostStory$24(StoryRecorder storyRecorder, Long l, final Runnable runnable, Boolean bool, Long l2) {
+        INavigationLayout parentLayout;
+        if (bool.booleanValue()) {
+            BaseFragment baseFragment = this.storyViewer.fragment;
+            if (baseFragment != null && (parentLayout = baseFragment.getParentLayout()) != null) {
+                List<BaseFragment> fragmentStack = parentLayout.getFragmentStack();
+                ArrayList arrayList = new ArrayList();
+                int size = fragmentStack.size() - 1;
+                while (true) {
+                    if (size < 0) {
+                        break;
+                    }
+                    BaseFragment baseFragment2 = fragmentStack.get(size);
+                    if (baseFragment2 instanceof DialogsActivity) {
+                        DialogStoriesCell dialogStoriesCell = ((DialogsActivity) baseFragment2).dialogStoriesCell;
+                        r2 = dialogStoriesCell != null ? dialogStoriesCell.findStoryCell(l2.longValue()) : null;
+                        for (int i = 0; i < arrayList.size(); i++) {
+                            parentLayout.removeFragmentFromStack((BaseFragment) arrayList.get(i));
+                        }
+                    } else {
+                        arrayList.add(baseFragment2);
+                        size--;
+                    }
+                }
+            }
+            storyRecorder.replaceSourceView(StoryRecorder.SourceView.fromStoryCell(r2));
+            this.storyViewer.instantClose();
+            AndroidUtilities.runOnUIThread(runnable, 400L);
+            return;
+        }
+        final long currentTimeMillis = System.currentTimeMillis();
+        VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
+        if (videoPlayerSharedScope != null && videoPlayerSharedScope.player == null) {
+            this.delegate.setPopupIsVisible(false);
+            setActive(true);
+            this.editOpened = false;
+            this.onImageReceiverThumbLoaded = new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.lambda$openRepostStory$22(runnable);
+                }
+            };
+            if (bool.booleanValue()) {
+                updatePosition();
+            }
+            AndroidUtilities.runOnUIThread(runnable, 400L);
+            return;
+        }
+        StoryViewer.VideoPlayerHolder videoPlayerHolder = videoPlayerSharedScope.player;
+        videoPlayerHolder.firstFrameRendered = false;
+        videoPlayerSharedScope.firstFrameRendered = false;
+        videoPlayerHolder.setOnReadyListener(new Runnable() {
+            @Override
+            public final void run() {
+                PeerStoriesView.lambda$openRepostStory$23(runnable, currentTimeMillis);
+            }
+        });
+        this.delegate.setPopupIsVisible(false);
+        RLottieImageView rLottieImageView = this.muteIconView;
+        if (rLottieImageView != null) {
+            rLottieImageView.setAnimation(this.sharedResources.muteDrawable);
+        }
+        setActive(((this.videoDuration <= 0 || l.longValue() <= this.videoDuration - 1400) ? l : 0L).longValue(), true);
+        this.editOpened = false;
+        AndroidUtilities.runOnUIThread(runnable, 400L);
+        if (bool.booleanValue()) {
+            updatePosition();
+        }
+    }
+
+    public static void lambda$openRepostStory$22(Runnable runnable) {
+        AndroidUtilities.cancelRunOnUIThread(runnable);
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    public static void lambda$openRepostStory$23(Runnable runnable, long j) {
+        AndroidUtilities.cancelRunOnUIThread(runnable);
+        AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
+    }
+
+    public void onLinkCopied() {
         if (this.currentStory.storyItem == null) {
             return;
         }
@@ -2677,7 +3028,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         if (j >= 0) {
             this.isSelf = j == UserConfig.getInstance(this.currentAccount).getClientUserId();
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
-            this.avatarDrawable.setInfo(user);
+            this.avatarDrawable.setInfo(this.currentAccount, user);
             this.headerView.backupImageView.getImageReceiver().setForUserOrChat(user, this.avatarDrawable);
             if (this.isSelf) {
                 this.headerView.titleView.setText(LocaleController.getString("SelfStoryTitle", R.string.SelfStoryTitle));
@@ -2703,7 +3054,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.isSelf = false;
             this.isChannel = true;
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-            this.avatarDrawable.setInfo(chat);
+            this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.headerView.backupImageView.getImageReceiver().setForUserOrChat(chat, this.avatarDrawable);
             this.headerView.titleView.setText(chat.title);
             if (chat.verified) {
@@ -2734,16 +3085,20 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 chatActivityEnterView.setVisibility(8);
             }
             if (this.reactionsCounter == null) {
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable() {
-                    @Override
-                    public void invalidateSelf() {
-                        PeerStoriesView.this.invalidate();
-                    }
-                };
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
                 this.reactionsCounter = animatedTextDrawable;
-                animatedTextDrawable.setTextColor(this.resourcesProvider.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                animatedTextDrawable.setCallback(this.likeButtonContainer);
+                this.reactionsCounter.setTextColor(this.resourcesProvider.getColor(Theme.key_windowBackgroundWhiteBlackText));
                 this.reactionsCounter.setTextSize(AndroidUtilities.dp(14.0f));
-                this.reactionsCounterProgress = new AnimatedFloat(this);
+                this.reactionsCounterProgress = new AnimatedFloat(this.likeButtonContainer);
+            }
+            if (this.repostButtonContainer != null && this.repostCounter == null) {
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable();
+                this.repostCounter = animatedTextDrawable2;
+                animatedTextDrawable2.setCallback(this.repostButtonContainer);
+                this.repostCounter.setTextColor(this.resourcesProvider.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                this.repostCounter.setTextSize(AndroidUtilities.dp(14.0f));
+                this.repostCounterProgress = new AnimatedFloat(this.repostButtonContainer);
             }
             if (i == -1) {
                 updateSelectedPosition();
@@ -2849,7 +3204,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.this.lambda$createUnsupportedContainer$20(view);
+                PeerStoriesView.this.lambda$createUnsupportedContainer$26(view);
             }
         });
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
@@ -2859,7 +3214,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.unsupportedContainer = frameLayout;
     }
 
-    public void lambda$createUnsupportedContainer$20(View view) {
+    public void lambda$createUnsupportedContainer$26(View view) {
         if (ApplicationLoader.isStandaloneBuild()) {
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null) {
@@ -2993,7 +3348,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         };
         this.selfView = frameLayout;
         frameLayout.setClickable(true);
-        addView(this.selfView, LayoutHelper.createFrame(-1, 48.0f, 48, 0.0f, 0.0f, 96.0f, 0.0f));
+        addView(this.selfView, LayoutHelper.createFrame(-1, 48.0f, 48, 0.0f, 0.0f, 136.0f, 0.0f));
         View view = new View(getContext()) {
             LoadingDrawable loadingDrawable = new LoadingDrawable();
             AnimatedFloat animatedFloat = new AnimatedFloat(250, CubicBezierInterpolator.DEFAULT);
@@ -3024,7 +3379,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PeerStoriesView.this.lambda$createSelfPeerView$21(view2);
+                PeerStoriesView.this.lambda$createSelfPeerView$27(view2);
             }
         });
         this.selfView.addView(this.selfAvatarsContainer, LayoutHelper.createFrame(-1, 32.0f, 0, 9.0f, 11.0f, 0.0f, 0.0f));
@@ -3043,7 +3398,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         imageView.setBackground(Theme.createCircleSelectorDrawable(ColorUtils.setAlphaComponent(-1, 120), -AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f)));
     }
 
-    public void lambda$createSelfPeerView$21(View view) {
+    public void lambda$createSelfPeerView$27(View view) {
         showUserViewsDialog();
     }
 
@@ -3054,7 +3409,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                PeerStoriesView.this.lambda$deleteStory$22(dialogInterface, i);
+                PeerStoriesView.this.lambda$deleteStory$28(dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
@@ -3068,7 +3423,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         create.redPositive();
     }
 
-    public void lambda$deleteStory$22(DialogInterface dialogInterface, int i) {
+    public void lambda$deleteStory$28(DialogInterface dialogInterface, int i) {
         this.currentStory.cancelOrDelete();
         updateStoryItems();
         if (this.isActive && this.count == 0) {
@@ -3098,24 +3453,18 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     @Override
     public void dispatchDraw(Canvas canvas) {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2;
         updateViewOffsets();
-        if (this.isChannel && (animatedTextDrawable = this.reactionsCounter) != null) {
+        if (this.isChannel && (animatedTextDrawable2 = this.reactionsCounter) != null) {
+            animatedTextDrawable2.setBounds(0, 0, getMeasuredWidth(), AndroidUtilities.dp(40.0f));
+        }
+        if (this.isChannel && (animatedTextDrawable = this.repostCounter) != null) {
             animatedTextDrawable.setBounds(0, 0, getMeasuredWidth(), AndroidUtilities.dp(40.0f));
         }
         super.dispatchDraw(canvas);
-        if (this.isChannel && this.reactionsCounter != null) {
-            canvas.save();
-            canvas.translate((getMeasuredWidth() - this.reactionsCounter.getCurrentWidth()) - AndroidUtilities.dp(12.0f), this.likeButtonContainer.getY());
-            r2 = this.reactionsCounterProgress.set(this.reactionsCounterVisible ? 1.0f : 0.0f);
-            canvas.scale(r2, r2, this.reactionsCounter.getCurrentWidth() / 2.0f, AndroidUtilities.dp(20.0f));
-            this.reactionsCounter.setAlpha((int) (this.likeButtonContainer.getAlpha() * 255.0f));
-            this.reactionsCounter.draw(canvas);
-            canvas.restore();
-        }
-        updateButtonsOffsets(r2);
         if (this.movingReaction) {
-            float x = this.likeButtonContainer.getX() + (this.likeButtonContainer.getMeasuredWidth() / 2.0f);
-            float y = this.likeButtonContainer.getY() + (this.likeButtonContainer.getMeasuredHeight() / 2.0f);
+            float x = this.bottomActionsLinearLayout.getX() + this.likeButtonContainer.getX() + (this.likeButtonContainer.getMeasuredWidth() / 2.0f);
+            float y = this.bottomActionsLinearLayout.getY() + this.likeButtonContainer.getY() + (this.likeButtonContainer.getMeasuredHeight() / 2.0f);
             int dp = AndroidUtilities.dp(24.0f);
             float f = dp / 2.0f;
             float lerp = AndroidUtilities.lerp(this.movingReactionFromX, x - f, CubicBezierInterpolator.EASE_OUT.getInterpolation(this.movingReactionProgress));
@@ -3135,8 +3484,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
         if (this.drawReactionEffect) {
-            float x2 = this.likeButtonContainer.getX() + (this.likeButtonContainer.getMeasuredWidth() / 2.0f);
-            float y2 = this.likeButtonContainer.getY() + (this.likeButtonContainer.getMeasuredHeight() / 2.0f);
+            float x2 = this.bottomActionsLinearLayout.getX() + this.likeButtonContainer.getX() + (this.likeButtonContainer.getMeasuredWidth() / 2.0f);
+            float y2 = this.bottomActionsLinearLayout.getY() + this.likeButtonContainer.getY() + (this.likeButtonContainer.getMeasuredHeight() / 2.0f);
             int dp2 = AndroidUtilities.dp(120.0f);
             if (!this.drawAnimatedEmojiAsMovingReaction) {
                 float f4 = dp2;
@@ -3165,20 +3514,6 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             chatActivityEnterView.drawRecordedPannel(canvas);
-        }
-    }
-
-    private void updateButtonsOffsets(float f) {
-        if (this.isChannel) {
-            float dp = ((-this.reactionsCounter.getCurrentWidth()) - AndroidUtilities.dp(4.0f)) * f;
-            this.shareButton.setTranslationX(dp);
-            this.likeButtonContainer.setTranslationX(dp);
-        } else if (this.isSelf) {
-            this.shareButton.setTranslationX(AndroidUtilities.dp(40.0f));
-            this.likeButtonContainer.setTranslationX(0.0f);
-        } else {
-            this.shareButton.setTranslationX(0.0f);
-            this.likeButtonContainer.setTranslationX(0.0f);
         }
     }
 
@@ -3326,7 +3661,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    public void lambda$new$24() {
+    public void lambda$new$30() {
         checkStealthMode(true);
     }
 
@@ -3345,7 +3680,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     int i4 = R.string.StealthModeActiveHintShort;
                     Locale locale = Locale.US;
                     if (((int) this.chatActivityEnterView.getEditField().getPaint().measureText(LocaleController.formatString("StealthModeActiveHint", i4, String.format(locale, "%02d:%02d", 99, 99)))) * 1.2f >= this.chatActivityEnterView.getEditField().getMeasuredWidth()) {
-                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHintShort", i4, BuildConfig.APP_CENTER_HASH), String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), z);
+                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHintShort", i4, ""), String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), z);
                     } else {
                         this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHint", R.string.StealthModeActiveHint, String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3))), z);
                     }
@@ -3366,11 +3701,27 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePosition(boolean):void");
     }
 
-    public void lambda$updatePosition$25() {
+    public void lambda$updatePosition$31(View view) {
+        TLRPC$Peer tLRPC$Peer = this.currentStory.storyItem.fwd_from.from;
+        if (tLRPC$Peer != null) {
+            long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
+            Bundle bundle = new Bundle();
+            if (peerDialogId >= 0) {
+                bundle.putLong("user_id", peerDialogId);
+            } else {
+                bundle.putLong("chat_id", -peerDialogId);
+            }
+            this.storyViewer.presentFragment(new ProfileActivity(bundle));
+            return;
+        }
+        BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
+    }
+
+    public void lambda$updatePosition$32() {
         this.failView.setVisibility(8);
     }
 
-    public void lambda$updatePosition$26() {
+    public void lambda$updatePosition$33() {
         if (this.storyViewer.isShown()) {
             this.reactionsTooltipRunnable = null;
             if (this.reactionsLongpressTooltip == null) {
@@ -3387,7 +3738,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    public void lambda$new$27() {
+    public void lambda$new$34() {
         showNoSoundHint(false);
         MessagesController.getGlobalMainSettings().edit().putInt("taptostorysoundhint", MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) + 1).apply();
     }
@@ -3473,6 +3824,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public void updateUserViews(boolean z) {
+        int i;
         StoryItemHolder storyItemHolder = this.currentStory;
         TL_stories$StoryItem tL_stories$StoryItem = storyItemHolder.storyItem;
         if (tL_stories$StoryItem == null) {
@@ -3481,7 +3833,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         boolean z2 = this.isChannel;
         if (z2 || this.isSelf) {
             if (tL_stories$StoryItem == null) {
-                this.selfStatusView.setText(BuildConfig.APP_CENTER_HASH);
+                this.selfStatusView.setText("");
                 this.selfAvatarsContainer.setVisibility(8);
                 this.selfAvatarsView.setVisibility(8);
             } else if (z2) {
@@ -3492,15 +3844,26 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 if (tL_stories$StoryViews.views_count <= 0) {
                     tL_stories$StoryViews.views_count = 1;
                 }
-                int i = tL_stories$StoryViews.reactions_count;
-                if (i > 0) {
-                    this.reactionsCounter.setText(Integer.toString(i), z && this.reactionsCounterVisible);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.repostCounter;
+                if (animatedTextDrawable != null && (i = tL_stories$StoryViews.forwards_count) > 0) {
+                    animatedTextDrawable.setText(Integer.toString(i), z && this.repostCounterVisible);
+                    this.repostCounterVisible = true;
+                } else {
+                    this.repostCounterVisible = false;
+                }
+                int i2 = tL_stories$StoryItem.views.reactions_count;
+                if (i2 > 0) {
+                    this.reactionsCounter.setText(Integer.toString(i2), z && this.reactionsCounterVisible);
                     this.reactionsCounterVisible = true;
                 } else {
                     this.reactionsCounterVisible = false;
                 }
                 if (!z) {
                     this.reactionsCounterProgress.set(this.reactionsCounterVisible ? 1.0f : 0.0f, true);
+                    AnimatedFloat animatedFloat = this.repostCounterProgress;
+                    if (animatedFloat != null) {
+                        animatedFloat.set(this.repostCounterVisible ? 1.0f : 0.0f, true);
+                    }
                 }
                 if (tL_stories$StoryItem.views.views_count > 0) {
                     this.selfStatusView.setText(this.storyViewer.storiesList == null ? LocaleController.getString("NobodyViews", R.string.NobodyViews) : LocaleController.getString("NobodyViewsArchived", R.string.NobodyViewsArchived));
@@ -3511,14 +3874,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.formatWholeNumber(tL_stories$StoryItem.views.views_count, 0));
                     this.selfStatusView.setText(spannableStringBuilder);
                 } else {
-                    this.selfStatusView.setText(BuildConfig.APP_CENTER_HASH);
+                    this.selfStatusView.setText("");
                 }
-                if (this.reactionsCounterVisible) {
-                    this.likeButtonContainer.getLayoutParams().width = (int) (AndroidUtilities.dp(40.0f) + this.reactionsCounter.getAnimateToWidth() + AndroidUtilities.dp(4.0f));
-                    ((FrameLayout.LayoutParams) this.likeButtonContainer.getLayoutParams()).rightMargin = (AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(40.0f)) - this.likeButtonContainer.getLayoutParams().width;
-                } else {
-                    this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
-                    ((FrameLayout.LayoutParams) this.likeButtonContainer.getLayoutParams()).rightMargin = AndroidUtilities.dp(10.0f);
+                this.likeButtonContainer.getLayoutParams().width = (int) (AndroidUtilities.dp(40.0f) + (this.reactionsCounterVisible ? this.reactionsCounter.getAnimateToWidth() + AndroidUtilities.dp(4.0f) : 0.0f));
+                FrameLayout frameLayout = this.repostButtonContainer;
+                if (frameLayout != null) {
+                    frameLayout.getLayoutParams().width = (int) (AndroidUtilities.dp(40.0f) + (this.repostCounterVisible ? this.repostCounter.getAnimateToWidth() + AndroidUtilities.dp(4.0f) : 0.0f));
+                    this.repostButtonContainer.requestLayout();
                 }
                 this.likeButtonContainer.requestLayout();
                 this.selfAvatarsView.setVisibility(8);
@@ -3527,19 +3889,19 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             } else {
                 TL_stories$StoryViews tL_stories$StoryViews2 = tL_stories$StoryItem.views;
                 if (tL_stories$StoryViews2 != null && tL_stories$StoryViews2.views_count > 0) {
-                    int i2 = 0;
-                    for (int i3 = 0; i3 < tL_stories$StoryItem.views.recent_viewers.size(); i3++) {
-                        TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(tL_stories$StoryItem.views.recent_viewers.get(i3).longValue());
+                    int i3 = 0;
+                    for (int i4 = 0; i4 < tL_stories$StoryItem.views.recent_viewers.size(); i4++) {
+                        TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(tL_stories$StoryItem.views.recent_viewers.get(i4).longValue());
                         if (userOrChat != null) {
-                            this.selfAvatarsView.setObject(i2, this.currentAccount, userOrChat);
-                            i2++;
+                            this.selfAvatarsView.setObject(i3, this.currentAccount, userOrChat);
+                            i3++;
                         }
-                        if (i2 >= 3) {
+                        if (i3 >= 3) {
                             break;
                         }
                     }
-                    for (int i4 = i2; i4 < 3; i4++) {
-                        this.selfAvatarsView.setObject(i4, this.currentAccount, null);
+                    for (int i5 = i3; i5 < 3; i5++) {
+                        this.selfAvatarsView.setObject(i5, this.currentAccount, null);
                     }
                     this.selfAvatarsView.commitTransition(false);
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.formatPluralStringComma("Views", tL_stories$StoryItem.views.views_count));
@@ -3551,13 +3913,21 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                         spannableStringBuilder2.setSpan(coloredImageSpan, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 0);
                         spannableStringBuilder2.append((CharSequence) String.valueOf(tL_stories$StoryItem.views.reactions_count));
                     }
+                    if (tL_stories$StoryItem.views.forwards_count > 0) {
+                        spannableStringBuilder2.append((CharSequence) "  d ");
+                        ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_repost_story);
+                        coloredImageSpan2.setOverrideColor(-14161823);
+                        coloredImageSpan2.setTopOffset(AndroidUtilities.dp(0.2f));
+                        spannableStringBuilder2.setSpan(coloredImageSpan2, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 0);
+                        spannableStringBuilder2.append((CharSequence) String.valueOf(tL_stories$StoryItem.views.forwards_count));
+                    }
                     this.selfStatusView.setText(spannableStringBuilder2);
-                    if (i2 == 0) {
+                    if (i3 == 0) {
                         this.selfAvatarsView.setVisibility(8);
                         this.selfStatusView.setTranslationX(AndroidUtilities.dp(16.0f));
                     } else {
                         this.selfAvatarsView.setVisibility(0);
-                        this.selfStatusView.setTranslationX(AndroidUtilities.dp(13.0f) + AndroidUtilities.dp(24.0f) + (AndroidUtilities.dp(20.0f) * (i2 - 1)) + AndroidUtilities.dp(10.0f));
+                        this.selfStatusView.setTranslationX(AndroidUtilities.dp(13.0f) + AndroidUtilities.dp(24.0f) + (AndroidUtilities.dp(20.0f) * (i3 - 1)) + AndroidUtilities.dp(10.0f));
                     }
                     this.selfAvatarsContainer.setVisibility(0);
                 } else {
@@ -3566,7 +3936,6 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     this.selfAvatarsView.setVisibility(8);
                     this.selfAvatarsContainer.setVisibility(8);
                 }
-                ((FrameLayout.LayoutParams) this.likeButtonContainer.getLayoutParams()).rightMargin = AndroidUtilities.dp(10.0f);
                 this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
             }
         }
@@ -3921,7 +4290,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.headerView.backupImageView.getImageReceiver().setVisible(true, true);
         if (this.changeBoundAnimator != null) {
             this.chatActivityEnterView.reset();
-            this.chatActivityEnterView.setAlpha(1.0f);
+            this.chatActivityEnterView.setAlpha(1.0f - this.outT);
         }
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
         if (reactionsContainerLayout != null) {
@@ -4176,15 +4545,22 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 this.subtitleView[i].setTextSize(1, 12.0f);
                 this.subtitleView[i].setMaxLines(1);
                 this.subtitleView[i].setSingleLine(true);
-                this.subtitleView[i].setEllipsize(TextUtils.TruncateAt.END);
+                this.subtitleView[i].setEllipsize(TextUtils.TruncateAt.MIDDLE);
                 this.subtitleView[i].setTextColor(-1);
-                addView(this.subtitleView[i], LayoutHelper.createFrame(-2, -2.0f, 0, 54.0f, 18.0f, 86.0f, 0.0f));
+                this.subtitleView[i].setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(1.0f));
+                addView(this.subtitleView[i], LayoutHelper.createFrame(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
             }
             this.titleView.setTextColor(-1);
         }
 
         public void setSubtitle(CharSequence charSequence) {
             setSubtitle(charSequence, false);
+        }
+
+        public void setOnSubtitleClick(View.OnClickListener onClickListener) {
+            this.subtitleView[0].setOnClickListener(onClickListener);
+            this.subtitleView[0].setClickable(onClickListener != null);
+            this.subtitleView[0].setBackground(onClickListener == null ? null : Theme.createSelectorDrawable(822083583, 7));
         }
 
         public void setSubtitle(CharSequence charSequence, boolean z) {
@@ -4194,6 +4570,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 this.subtitleAnimator = null;
             }
             if (z) {
+                this.subtitleView[1].setOnClickListener(null);
                 TextView[] textViewArr = this.subtitleView;
                 textViewArr[1].setText(textViewArr[0].getText());
                 this.subtitleView[1].setVisibility(0);
@@ -4318,11 +4695,26 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         public boolean captionTranslated;
         public TL_stories$StoryItem editingSourceItem;
         private boolean isVideo;
+        private StoryCaptionView.Reply reply;
         boolean skipped;
         public TL_stories$StoryItem storyItem = null;
         public StoriesController.UploadingStory uploadingStory = null;
 
         public StoryItemHolder() {
+        }
+
+        public StoryCaptionView.Reply getReply() {
+            if (this.reply == null) {
+                if (this.storyItem != null) {
+                    this.reply = StoryCaptionView.Reply.from(PeerStoriesView.this.currentAccount, this.storyItem);
+                } else {
+                    StoriesController.UploadingStory uploadingStory = this.uploadingStory;
+                    if (uploadingStory != null) {
+                        this.reply = StoryCaptionView.Reply.from(uploadingStory);
+                    }
+                }
+            }
+            return this.reply;
         }
 
         public void updateCaption() {
@@ -4389,6 +4781,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
         void set(TL_stories$StoryItem tL_stories$StoryItem) {
             this.storyItem = tL_stories$StoryItem;
+            this.reply = null;
             this.uploadingStory = null;
             this.skipped = tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped;
             this.isVideo = isVideoInternal();
@@ -4414,6 +4807,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
         void set(StoriesController.UploadingStory uploadingStory) {
             this.uploadingStory = uploadingStory;
+            this.reply = null;
             this.storyItem = null;
             this.skipped = false;
             this.isVideo = isVideoInternal();
@@ -4629,7 +5023,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PeerStoriesView.this.lambda$onMeasure$28(valueAnimator2);
+                    PeerStoriesView.this.lambda$onMeasure$35(valueAnimator2);
                 }
             });
             this.keyboardAnimator.addListener(new AnimatorListenerAdapter() {
@@ -4725,16 +5119,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
         if (!this.BIG_SCREEN) {
-            int i4 = dp + size2;
-            ((FrameLayout.LayoutParams) this.shareButton.getLayoutParams()).topMargin = (i4 - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(40.0f);
-            ((FrameLayout.LayoutParams) this.likeButtonContainer.getLayoutParams()).topMargin = (i4 - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(40.0f);
+            ((FrameLayout.LayoutParams) this.bottomActionsLinearLayout.getLayoutParams()).topMargin = ((dp + size2) - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(40.0f);
             int dp2 = this.isSelf ? AndroidUtilities.dp(40.0f) : AndroidUtilities.dp(56.0f);
             ((FrameLayout.LayoutParams) this.storyCaptionView.getLayoutParams()).bottomMargin = dp2;
             this.storyCaptionView.blackoutBottomOffset = dp2;
         } else {
-            int i5 = dp + size2;
-            ((FrameLayout.LayoutParams) this.shareButton.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f) + i5;
-            ((FrameLayout.LayoutParams) this.likeButtonContainer.getLayoutParams()).topMargin = i5 + AndroidUtilities.dp(12.0f);
+            ((FrameLayout.LayoutParams) this.bottomActionsLinearLayout.getLayoutParams()).topMargin = dp + size2 + AndroidUtilities.dp(12.0f);
             ((FrameLayout.LayoutParams) this.storyCaptionView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(8.0f);
             this.storyCaptionView.blackoutBottomOffset = AndroidUtilities.dp(8.0f);
         }
@@ -4748,16 +5138,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
         FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) this.headerView.titleView.getLayoutParams();
         if (layoutParams5.rightMargin != dp3) {
-            int i6 = (int) dp3;
-            layoutParams5.rightMargin = i6;
-            ((FrameLayout.LayoutParams) this.headerView.subtitleView[0].getLayoutParams()).rightMargin = i6;
-            ((FrameLayout.LayoutParams) this.headerView.subtitleView[1].getLayoutParams()).rightMargin = i6;
+            int i4 = (int) dp3;
+            layoutParams5.rightMargin = i4;
+            ((FrameLayout.LayoutParams) this.headerView.subtitleView[0].getLayoutParams()).rightMargin = i4;
+            ((FrameLayout.LayoutParams) this.headerView.subtitleView[1].getLayoutParams()).rightMargin = i4;
             this.headerView.forceLayout();
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
-    public void lambda$onMeasure$28(ValueAnimator valueAnimator) {
+    public void lambda$onMeasure$35(ValueAnimator valueAnimator) {
         this.animatingKeyboardHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -4799,6 +5189,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
         ChatActivityEnterView chatActivityEnterView4 = this.chatActivityEnterView;
         boolean z = chatActivityEnterView4 != null && chatActivityEnterView4.isPopupShowing();
+        float hideInterfaceAlpha = getHideInterfaceAlpha();
+        if (this.BIG_SCREEN) {
+            this.inputBackgroundPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(-16777216, -1, 0.13f), ColorUtils.setAlphaComponent(-16777216, 170), this.progressToKeyboard));
+            Paint paint = this.inputBackgroundPaint;
+            paint.setAlpha((int) (paint.getAlpha() * (1.0f - this.progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT)));
+        } else {
+            this.inputBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (140.0f * hideInterfaceAlpha * (1.0f - this.outT))));
+        }
         if (!this.forceUpdateOffsets && this.progressToReply == this.storyViewer.swipeToReplyProgress && this.progressToHideInterface.get() == this.prevToHideProgress && this.lastAnimatingKeyboardHeight == this.animatingKeyboardHeight && f == this.progressToKeyboard && progressToDismiss == this.progressToDismiss && f2 == this.progressToRecording.get() && !z && f4 == this.progressToStickerExpanded.get() && f3 == this.progressToTextA.get()) {
             return;
         }
@@ -4820,14 +5218,6 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         if (reactionsContainerLayout2 != null) {
             reactionsContainerLayout2.setVisibility(f > 0.0f ? 0 : 8);
         }
-        float hideInterfaceAlpha = getHideInterfaceAlpha();
-        if (this.BIG_SCREEN) {
-            this.inputBackgroundPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(-16777216, -1, 0.13f), ColorUtils.setAlphaComponent(-16777216, 170), this.progressToKeyboard));
-            Paint paint = this.inputBackgroundPaint;
-            paint.setAlpha((int) (paint.getAlpha() * (1.0f - this.progressToDismiss) * hideInterfaceAlpha));
-        } else {
-            this.inputBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (140.0f * hideInterfaceAlpha)));
-        }
         for (int i2 = 0; i2 < getChildCount(); i2++) {
             View childAt = getChildAt(i2);
             if (childAt.getVisibility() != 0 || childAt == this.selfView || childAt.getTag(R.id.parent_tag) != null || childAt == this.storyCaptionView.textSelectionHelper.getOverlayView(getContext())) {
@@ -4844,7 +5234,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     childAt.setTranslationY(this.chatActivityEnterView.getEmojiView().getMeasuredHeight() - this.animatingKeyboardHeight);
                 } else if (childAt instanceof HintView) {
                     ((HintView) childAt).updatePosition();
-                } else if (childAt != this.instantCameraView && childAt != this.storyContainer && childAt != this.shareButton && childAt != this.mediaBanTooltip && childAt != this.likeButtonContainer && ((reactionsContainerLayout = this.likesReactionLayout) == null || reactionsContainerLayout.getReactionsWindow() == null || childAt != this.likesReactionLayout.getReactionsWindow().windowView)) {
+                } else if (childAt != this.instantCameraView && childAt != this.storyContainer && childAt != this.shareButton && childAt != this.bottomActionsLinearLayout && childAt != this.repostButtonContainer && childAt != this.mediaBanTooltip && childAt != this.likeButtonContainer && ((reactionsContainerLayout = this.likesReactionLayout) == null || reactionsContainerLayout.getReactionsWindow() == null || childAt != this.likesReactionLayout.getReactionsWindow().windowView)) {
                     float dp = ((((-this.enterViewBottomOffset) * (1.0f - this.progressToKeyboard)) - this.animatingKeyboardHeight) - (AndroidUtilities.dp(8.0f) * (1.0f - this.progressToKeyboard))) - (AndroidUtilities.dp(20.0f) * this.storyViewer.swipeToReplyProgress);
                     float f5 = this.BIG_SCREEN ? (1.0f - this.progressToDismiss) * hideInterfaceAlpha : hideInterfaceAlpha * 1.0f;
                     if (childAt == this.replyDisabledTextView) {
@@ -4873,8 +5263,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
         }
         float f9 = (1.0f - progressToDismiss) * hideInterfaceAlpha;
-        this.shareButton.setAlpha(f9);
-        this.likeButtonContainer.setAlpha(f9);
+        this.shareButton.setAlpha((1.0f - this.outT) * f9);
+        this.likeButtonContainer.setAlpha((1.0f - this.outT) * f9);
+        FrameLayout frameLayout = this.repostButtonContainer;
+        if (frameLayout != null) {
+            frameLayout.setAlpha(f9 * (1.0f - this.outT));
+        }
         for (int i3 = 0; i3 < this.storyContainer.getChildCount(); i3++) {
             View childAt2 = this.storyContainer.getChildAt(i3);
             if (childAt2 != null) {
@@ -4915,7 +5309,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (view == chatActivityEnterView) {
             this.sharedResources.rect1.set(0.0f, this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop(), getMeasuredWidth() + AndroidUtilities.dp(20.0f), getMeasuredHeight());
-            this.sharedResources.rect2.set(AndroidUtilities.dp(10.0f), (this.chatActivityEnterView.getBottom() - AndroidUtilities.dp(48.0f)) + this.chatActivityEnterView.getTranslationY() + AndroidUtilities.dp(2.0f), (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - ((this.allowShare ? AndroidUtilities.dp(46.0f) : 0) + AndroidUtilities.dp(40.0f)), (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
+            this.sharedResources.rect2.set(AndroidUtilities.dp(10.0f), (this.chatActivityEnterView.getBottom() - AndroidUtilities.dp(48.0f)) + this.chatActivityEnterView.getTranslationY() + AndroidUtilities.dp(2.0f), (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - ((this.allowShare ? AndroidUtilities.dp(SHARE_BUTTON_OFFSET) : 0) + AndroidUtilities.dp(40.0f)), (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
             if (this.chatActivityEnterView.getMeasuredHeight() > AndroidUtilities.dp(50.0f)) {
                 this.chatActivityEnterView.getEditField().setTranslationY((1.0f - this.progressToKeyboard) * (this.chatActivityEnterView.getMeasuredHeight() - AndroidUtilities.dp(50.0f)));
             } else {
@@ -4954,7 +5348,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             } else {
                 ReactionsContainerLayout reactionsContainerLayout2 = this.likesReactionLayout;
                 if (view == reactionsContainerLayout2) {
-                    view.setTranslationY(((-(reactionsContainerLayout2.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) - AndroidUtilities.dp(18.0f));
+                    view.setTranslationY((((-(reactionsContainerLayout2.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
                 }
             }
         }
@@ -5094,19 +5488,19 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ReactionsContainerLayout reactionsContainerLayout2 = this.reactionsContainerLayout;
             reactionsContainerLayout2.skipEnterAnimation = true;
             addView(reactionsContainerLayout2, this.reactionsContainerIndex, LayoutHelper.createFrame(-2, 72.0f, 49, 0.0f, 0.0f, 0.0f, 64.0f));
-            this.reactionsContainerLayout.setDelegate(new AnonymousClass33());
+            this.reactionsContainerLayout.setDelegate(new AnonymousClass34());
             this.reactionsContainerLayout.setMessage(null, null);
         }
         this.reactionsContainerLayout.setFragment(LaunchActivity.getLastFragment());
     }
 
-    public class AnonymousClass33 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+    public class AnonymousClass34 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         @Override
         public boolean drawBackground() {
             return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
         }
 
-        AnonymousClass33() {
+        AnonymousClass34() {
         }
 
         @Override
@@ -5121,7 +5515,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (z3 && PeerStoriesView.this.applyMessageToChat(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass33.this.lambda$onReactionClickedInternal$0(view, visibleReaction, z, z2);
+                    PeerStoriesView.AnonymousClass34.this.lambda$onReactionClickedInternal$0(view, visibleReaction, z, z2);
                 }
             })) {
                 return;
@@ -5168,7 +5562,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             BulletinFactory.of(peerStoriesView5.storyContainer, peerStoriesView5.resourcesProvider).createEmojiBulletin(tLRPC$Document, LocaleController.getString("ReactionSent", R.string.ReactionSent), LocaleController.getString("ViewInChat", R.string.ViewInChat), new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass33.this.lambda$onReactionClickedInternal$1();
+                    PeerStoriesView.AnonymousClass34.this.lambda$onReactionClickedInternal$1();
                 }
             }).setDuration(5000).show();
             if (PeerStoriesView.this.reactionsContainerLayout.getReactionsWindow() != null) {
@@ -5223,7 +5617,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             reactionsContainerLayout2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
             addView(this.likesReactionLayout, getChildCount() - 1, LayoutHelper.createFrame(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
             this.likesReactionLayout.setVisibility(8);
-            this.likesReactionLayout.setDelegate(new AnonymousClass35());
+            this.likesReactionLayout.setDelegate(new AnonymousClass36());
             this.likesReactionLayout.setMessage(null, null);
         } else {
             bringChildToFront(reactionsContainerLayout);
@@ -5232,7 +5626,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.likesReactionLayout.setFragment(LaunchActivity.getLastFragment());
     }
 
-    public class AnonymousClass35 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+    public class AnonymousClass36 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         @Override
         public boolean drawBackground() {
             return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
@@ -5248,7 +5642,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
         }
 
-        AnonymousClass35() {
+        AnonymousClass36() {
         }
 
         @Override
@@ -5256,7 +5650,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass35.this.lambda$onReactionClicked$1(visibleReaction, view);
+                    PeerStoriesView.AnonymousClass36.this.lambda$onReactionClicked$1(visibleReaction, view);
                 }
             };
             if (!z) {
@@ -5339,7 +5733,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PeerStoriesView.AnonymousClass35.this.lambda$onReactionClicked$0(ofFloat, zArr, valueAnimator);
+                    PeerStoriesView.AnonymousClass36.this.lambda$onReactionClicked$0(ofFloat, zArr, valueAnimator);
                 }
             });
             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -5397,13 +5791,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$needEnterText$29();
+                PeerStoriesView.this.lambda$needEnterText$36();
             }
         }, 300L);
         return isKeyboardVisible;
     }
 
-    public void lambda$needEnterText$29() {
+    public void lambda$needEnterText$36() {
         this.delegate.requestAdjust(true);
     }
 
@@ -5431,6 +5825,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         public RLottieDrawable muteDrawable;
         public RLottieDrawable noSoundDrawable;
         public Drawable optionsDrawable;
+        public Drawable repostDrawable;
         public final Paint selectedBarPaint;
         public Drawable shareDrawable;
         private final Drawable topOverlayGradient;
@@ -5443,6 +5838,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         public SharedResources(Context context) {
             this.shareDrawable = ContextCompat.getDrawable(context, R.drawable.media_share);
             this.likeDrawable = ContextCompat.getDrawable(context, R.drawable.media_like);
+            this.repostDrawable = ContextCompat.getDrawable(context, R.drawable.media_repost);
             Drawable drawable = ContextCompat.getDrawable(context, R.drawable.media_like_active);
             this.likeDrawableFilled = drawable;
             drawable.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
@@ -5491,12 +5887,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.delegate.showDialog(new StoryPrivacyBottomSheet(getContext(), tL_stories$StoryItem.pinned ? ConnectionsManager.DEFAULT_DATACENTER_ID : tL_stories$StoryItem.expire_date - tL_stories$StoryItem.date, this.resourcesProvider).setValue(storyPrivacy).enableSharing(false).isEdit(true).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
             @Override
             public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy2, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
-                PeerStoriesView.this.lambda$editPrivacy$32(tL_stories$StoryItem, storyPrivacy2, z, z2, tLRPC$InputPeer, runnable);
+                PeerStoriesView.this.lambda$editPrivacy$39(tL_stories$StoryItem, storyPrivacy2, z, z2, tLRPC$InputPeer, runnable);
             }
         }, false));
     }
 
-    public void lambda$editPrivacy$32(final TL_stories$StoryItem tL_stories$StoryItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, final Runnable runnable) {
+    public void lambda$editPrivacy$39(final TL_stories$StoryItem tL_stories$StoryItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, final Runnable runnable) {
         TL_stories$TL_stories_editStory tL_stories$TL_stories_editStory = new TL_stories$TL_stories_editStory();
         tL_stories$TL_stories_editStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(tL_stories$StoryItem.dialogId);
         tL_stories$TL_stories_editStory.id = tL_stories$StoryItem.id;
@@ -5505,21 +5901,21 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_editStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PeerStoriesView.this.lambda$editPrivacy$31(runnable, tL_stories$StoryItem, storyPrivacy, tLObject, tLRPC$TL_error);
+                PeerStoriesView.this.lambda$editPrivacy$38(runnable, tL_stories$StoryItem, storyPrivacy, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$editPrivacy$31(final Runnable runnable, final TL_stories$StoryItem tL_stories$StoryItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editPrivacy$38(final Runnable runnable, final TL_stories$StoryItem tL_stories$StoryItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$editPrivacy$30(runnable, tLRPC$TL_error, tL_stories$StoryItem, storyPrivacy);
+                PeerStoriesView.this.lambda$editPrivacy$37(runnable, tLRPC$TL_error, tL_stories$StoryItem, storyPrivacy);
             }
         });
     }
 
-    public void lambda$editPrivacy$30(Runnable runnable, TLRPC$TL_error tLRPC$TL_error, TL_stories$StoryItem tL_stories$StoryItem, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
+    public void lambda$editPrivacy$37(Runnable runnable, TLRPC$TL_error tLRPC$TL_error, TL_stories$StoryItem tL_stories$StoryItem, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
         if (runnable != null) {
             runnable.run();
         }
@@ -5573,7 +5969,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         builder.setPositiveButton(LocaleController.getString("DiscardVoiceMessageAction", R.string.DiscardVoiceMessageAction), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                PeerStoriesView.this.lambda$checkRecordLocked$33(z, dialogInterface, i);
+                PeerStoriesView.this.lambda$checkRecordLocked$40(z, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Continue", R.string.Continue), null);
@@ -5581,7 +5977,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         return true;
     }
 
-    public void lambda$checkRecordLocked$33(boolean z, DialogInterface dialogInterface, int i) {
+    public void lambda$checkRecordLocked$40(boolean z, DialogInterface dialogInterface, int i) {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             if (z) {
@@ -5605,7 +6001,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PeerStoriesView.this.lambda$animateOut$34(valueAnimator2);
+                PeerStoriesView.this.lambda$animateOut$41(valueAnimator2);
             }
         });
         this.outAnimator.addListener(new AnimatorListenerAdapter() {
@@ -5628,6 +6024,24 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     PeerStoriesView.this.privacyButton.setAlpha(1.0f - PeerStoriesView.this.outT);
                 }
                 PeerStoriesView.this.storyCaptionView.setAlpha(1.0f - PeerStoriesView.this.outT);
+                Delegate delegate = PeerStoriesView.this.delegate;
+                float progressToDismiss = delegate != null ? delegate.getProgressToDismiss() : 0.0f;
+                float hideInterfaceAlpha = PeerStoriesView.this.getHideInterfaceAlpha();
+                if (PeerStoriesView.this.likeButtonContainer != null) {
+                    PeerStoriesView.this.likeButtonContainer.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - PeerStoriesView.this.outT));
+                }
+                if (PeerStoriesView.this.shareButton != null) {
+                    PeerStoriesView.this.shareButton.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - PeerStoriesView.this.outT));
+                }
+                if (PeerStoriesView.this.repostButtonContainer != null) {
+                    PeerStoriesView.this.repostButtonContainer.setAlpha(hideInterfaceAlpha * (1.0f - progressToDismiss) * (1.0f - PeerStoriesView.this.outT));
+                }
+                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                ChatActivityEnterView chatActivityEnterView = peerStoriesView2.chatActivityEnterView;
+                if (chatActivityEnterView != null) {
+                    chatActivityEnterView.setAlpha(1.0f - peerStoriesView2.outT);
+                    PeerStoriesView.this.invalidate();
+                }
                 PeerStoriesView.this.storyContainer.invalidate();
             }
         });
@@ -5636,7 +6050,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.outAnimator.start();
     }
 
-    public void lambda$animateOut$34(ValueAnimator valueAnimator) {
+    public void lambda$animateOut$41(ValueAnimator valueAnimator) {
         this.outT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.headerView.setTranslationY((-AndroidUtilities.dp(8.0f)) * this.outT);
         this.headerView.setAlpha(1.0f - this.outT);
@@ -5655,6 +6069,26 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.privacyButton.setAlpha(1.0f - this.outT);
         }
         this.storyCaptionView.setAlpha(1.0f - this.outT);
+        Delegate delegate = this.delegate;
+        float progressToDismiss = delegate == null ? 0.0f : delegate.getProgressToDismiss();
+        float hideInterfaceAlpha = getHideInterfaceAlpha();
+        FrameLayout frameLayout2 = this.likeButtonContainer;
+        if (frameLayout2 != null) {
+            frameLayout2.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT));
+        }
+        ImageView imageView = this.shareButton;
+        if (imageView != null) {
+            imageView.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT));
+        }
+        FrameLayout frameLayout3 = this.repostButtonContainer;
+        if (frameLayout3 != null) {
+            frameLayout3.setAlpha(hideInterfaceAlpha * (1.0f - progressToDismiss) * (1.0f - this.outT));
+        }
+        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+        if (chatActivityEnterView != null) {
+            chatActivityEnterView.setAlpha(1.0f - this.outT);
+            invalidate();
+        }
         this.storyContainer.invalidate();
     }
 

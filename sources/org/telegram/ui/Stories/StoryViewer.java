@@ -37,7 +37,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -2023,7 +2022,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             transitionViewHolder.storyImage = null;
             transitionViewHolder.avatarImage = null;
             this.containerView.disableHwAcceleration();
-            checkNavBarColor();
             this.locker.unlock();
             PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = this.currentPlayerScope;
             if (videoPlayerSharedScope != null) {
@@ -2038,6 +2036,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             this.windowView = null;
             this.isShowing = false;
             this.foundViewToClose = false;
+            checkNavBarColor();
             Runnable runnable = this.onCloseListener;
             if (runnable != null) {
                 runnable.run();
@@ -2507,7 +2506,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public CharSequence getDraft(long j, TL_stories$StoryItem tL_stories$StoryItem) {
-        return (j == 0 || tL_stories$StoryItem == null) ? BuildConfig.APP_CENTER_HASH : replyDrafts.get(draftHash(j, tL_stories$StoryItem), BuildConfig.APP_CENTER_HASH);
+        return (j == 0 || tL_stories$StoryItem == null) ? "" : replyDrafts.get(draftHash(j, tL_stories$StoryItem), "");
     }
 
     public void clearDraft(long j, TL_stories$StoryItem tL_stories$StoryItem) {

@@ -39,7 +39,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -461,7 +460,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             });
         } else {
-            this.headerCountCell.setAction(BuildConfig.APP_CENTER_HASH, null);
+            this.headerCountCell.setAction("", null);
         }
         if (z) {
             AndroidUtilities.makeAccessibilityAnnouncement(((Object) this.headerCountCell.textView.getText()) + ", " + ((Object) this.headerCountCell.actionTextView.getText()));
@@ -759,11 +758,11 @@ public class FilterChatlistActivity extends BaseFragment {
                                 return;
                             }
                             headerCell.setText(LocaleController.getString("FilterInviteHeaderChatsNo", R.string.FilterInviteHeaderChatsNo), false);
-                            headerCell.setAction(BuildConfig.APP_CENTER_HASH, null);
+                            headerCell.setAction("", null);
                             return;
                         }
                         headerCell.setText(LocaleController.getString("InviteLink", R.string.InviteLink), false);
-                        headerCell.setAction(BuildConfig.APP_CENTER_HASH, null);
+                        headerCell.setAction("", null);
                     }
                 } else {
                     GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;

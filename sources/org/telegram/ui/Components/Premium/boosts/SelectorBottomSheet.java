@@ -24,7 +24,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -303,7 +302,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             }, this.countriesList);
             if (isSearching()) {
                 this.query = null;
-                this.searchField.setText(BuildConfig.APP_CENTER_HASH);
+                this.searchField.setText("");
                 updateList(false, false);
                 updateList(true, true);
                 return;
@@ -338,7 +337,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     public void clearSearchAfterSelectChannel() {
         if (isSearching()) {
             this.query = null;
-            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchField.setText("");
             AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
             this.peers.clear();
             this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
@@ -566,7 +565,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }
         this.openedIds.addAll(this.selectedIds);
-        this.searchField.setText(BuildConfig.APP_CENTER_HASH);
+        this.searchField.setText("");
         this.searchField.spansContainer.removeAllSpans(false);
         this.searchField.updateSpans(false, this.selectedIds, new Runnable() {
             @Override
@@ -595,7 +594,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
             this.sectionCell.setLayerHeight(32);
         } else if (i != 3) {
-            formatPluralStringComma = BuildConfig.APP_CENTER_HASH;
+            formatPluralStringComma = "";
         } else {
             formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
             this.sectionCell.setLayerHeight(1);
@@ -611,7 +610,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else if (i == 2) {
             string = LocaleController.formatPluralString("BoostingSelectUpToWarningChannelsPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
         } else {
-            string = i != 3 ? BuildConfig.APP_CENTER_HASH : LocaleController.formatPluralString("BoostingSelectUpToWarningCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
+            string = i != 3 ? "" : LocaleController.formatPluralString("BoostingSelectUpToWarningCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
         }
         SelectedObjectsListener selectedObjectsListener = this.selectedObjectsListener;
         if (selectedObjectsListener != null) {
@@ -674,7 +673,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.actionButton.setShowZero(false);
         int i = this.type;
         if (i != 1) {
-            string = (i == 2 || i == 3) ? LocaleController.getString("Save", R.string.Save) : BuildConfig.APP_CENTER_HASH;
+            string = (i == 2 || i == 3) ? LocaleController.getString("Save", R.string.Save) : "";
         } else {
             string = LocaleController.getString("BoostingSaveRecipients", R.string.BoostingSaveRecipients);
         }
@@ -813,7 +812,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         int i = this.type;
         if (i != 1) {
             if (i != 2) {
-                return i != 3 ? BuildConfig.APP_CENTER_HASH : LocaleController.getString("BoostingSelectCountry", R.string.BoostingSelectCountry);
+                return i != 3 ? "" : LocaleController.getString("BoostingSelectCountry", R.string.BoostingSelectCountry);
             }
             return LocaleController.getString("BoostingAddChannel", R.string.BoostingAddChannel);
         }

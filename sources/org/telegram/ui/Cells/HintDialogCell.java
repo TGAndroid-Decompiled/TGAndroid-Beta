@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
@@ -37,10 +36,11 @@ public class HintDialogCell extends FrameLayout {
     private BackupImageView imageView;
     private int lastUnreadCount;
     private TextView nameTextView;
+    private Theme.ResourcesProvider resourcesProvider;
     float showOnlineProgress;
     boolean wasDraw;
 
-    public HintDialogCell(Context context, boolean z) {
+    public HintDialogCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
         new RectF();
@@ -59,20 +59,20 @@ public class HintDialogCell extends FrameLayout {
         };
         this.nameTextView = textView;
         NotificationCenter.listenEmojiLoading(textView);
-        this.nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.nameTextView.setTextSize(1, 12.0f);
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setGravity(49);
         this.nameTextView.setLines(1);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         addView(this.nameTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 64.0f, 6.0f, 0.0f));
-        CounterView counterView = new CounterView(context, null);
+        CounterView counterView = new CounterView(context, resourcesProvider);
         this.counterView = counterView;
         addView(counterView, LayoutHelper.createFrame(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
         this.counterView.setColors(Theme.key_chats_unreadCounterText, Theme.key_chats_unreadCounter);
         this.counterView.setGravity(5);
         if (z) {
-            CheckBox2 checkBox2 = new CheckBox2(context, 21);
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
             this.checkBox.setDrawUnchecked(false);
@@ -129,15 +129,15 @@ public class HintDialogCell extends FrameLayout {
         if (DialogObject.isUserDialog(this.dialogId)) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
             this.currentUser = user;
-            this.avatarDrawable.setInfo(user);
+            this.avatarDrawable.setInfo(this.currentAccount, user);
             return;
         }
-        this.avatarDrawable.setInfo(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
+        this.avatarDrawable.setInfo(this.currentAccount, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
         this.currentUser = null;
     }
 
     public void setColors(int i, int i2) {
-        this.nameTextView.setTextColor(Theme.getColor(i));
+        this.nameTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         this.backgroundColorKey = i2;
         this.checkBox.setColor(Theme.key_dialogRoundCheckBox, i2, Theme.key_dialogRoundCheckBoxCheck);
     }
@@ -156,9 +156,9 @@ public class HintDialogCell extends FrameLayout {
             } else if (user != null) {
                 this.nameTextView.setText(UserObject.getFirstName(user));
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
-            this.avatarDrawable.setInfo(this.currentUser);
+            this.avatarDrawable.setInfo(this.currentAccount, this.currentUser);
             this.imageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
         } else {
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
@@ -167,9 +167,9 @@ public class HintDialogCell extends FrameLayout {
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
-            this.avatarDrawable.setInfo(chat);
+            this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.currentUser = null;
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);
         }

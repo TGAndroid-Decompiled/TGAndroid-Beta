@@ -29,7 +29,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
@@ -289,7 +288,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 boolean z2 = user.contact || ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).contactsDict.get(Long.valueOf(user.id)) != null;
                 boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView);
                 boolean isBlocked = messagesController.getStoriesController().isBlocked(tL_stories$TL_storyView);
-                String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? BuildConfig.APP_CENTER_HASH : user.last_name : user.first_name;
+                String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
                 int indexOf = str.indexOf(" ");
                 if (indexOf > 2) {
                     str = str.substring(0, indexOf);
@@ -901,7 +900,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                             spannableStringBuilder.append((CharSequence) "\n\n");
                             String string = LocaleController.getString("ExpiredViewsStubPremiumDescription", R.string.ExpiredViewsStubPremiumDescription);
                             final SelfStoryViewsPage selfStoryViewsPage2 = SelfStoryViewsPage.this;
-                            spannableStringBuilder.append(AndroidUtilities.replaceSingleTag(string, new Runnable() {
+                            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleTag(string, new Runnable() {
                                 @Override
                                 public final void run() {
                                     SelfStoryViewsPage.access$1200(SelfStoryViewsPage.this);
@@ -1126,7 +1125,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             tL_stories$TL_stories_getStoryViewsList.id = this.storyItem.id;
             tL_stories$TL_stories_getStoryViewsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
             if (this.useLocalFilters) {
-                tL_stories$TL_stories_getStoryViewsList.q = BuildConfig.APP_CENTER_HASH;
+                tL_stories$TL_stories_getStoryViewsList.q = "";
                 tL_stories$TL_stories_getStoryViewsList.just_contacts = false;
                 tL_stories$TL_stories_getStoryViewsList.reactions_first = true;
             } else {
@@ -1147,7 +1146,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             String str2 = this.offset;
             tL_stories$TL_stories_getStoryViewsList.offset = str2;
             if (str2 == null) {
-                tL_stories$TL_stories_getStoryViewsList.offset = BuildConfig.APP_CENTER_HASH;
+                tL_stories$TL_stories_getStoryViewsList.offset = "";
             }
             this.loading = true;
             FileLog.d("SelfStoryViewsPage load next " + this.storyItem.id + " " + this.initial + " offset=" + tL_stories$TL_stories_getStoryViewsList.offset + " q" + tL_stories$TL_stories_getStoryViewsList.q + " " + tL_stories$TL_stories_getStoryViewsList.just_contacts + " " + tL_stories$TL_stories_getStoryViewsList.reactions_first);
@@ -1336,7 +1335,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             this.initial = true;
             this.loading = false;
             this.hasNext = true;
-            this.offset = BuildConfig.APP_CENTER_HASH;
+            this.offset = "";
             loadNext();
         }
     }

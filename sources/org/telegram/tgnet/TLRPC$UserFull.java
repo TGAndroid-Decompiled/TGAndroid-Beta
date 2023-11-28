@@ -37,6 +37,7 @@ public abstract class TLRPC$UserFull extends TLObject {
     public boolean video_calls_available;
     public boolean voice_messages_forbidden;
     public TLRPC$WallPaper wallpaper;
+    public boolean wallpaper_overridden;
 
     public static TLRPC$UserFull TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$UserFull tLRPC$UserFull;

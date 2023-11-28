@@ -1,5 +1,8 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -26,20 +29,27 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 public class AnimatedEmojiSpan extends ReplacementSpan {
-    private int asizeDp;
+    private static boolean lockPositionChanging;
+    private boolean animateChanges;
     public int cacheType;
     public TLRPC$Document document;
     public String documentAbsolutePath;
     public long documentId;
+    private float extraScale;
     private Paint.FontMetricsInt fontMetrics;
     public boolean fromEmojiKeyboard;
     public boolean full;
+    private boolean isAdded;
+    private boolean isRemoved;
     float lastDrawnCx;
     float lastDrawnCy;
     protected int measuredSize;
+    private ValueAnimator moveAnimator;
     boolean positionChanged;
     private boolean recordPositions;
+    private Runnable removedAction;
     private float scale;
+    private ValueAnimator scaleAnimator;
     private float size;
     boolean spanDrawn;
     public boolean standard;
@@ -49,7 +59,87 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         void invalidate();
     }
 
-    public void addSize(int i) {
+    public void setAdded() {
+        this.isAdded = true;
+        this.extraScale = 0.0f;
+        lockPositionChanging = true;
+    }
+
+    public void setAnimateChanges() {
+        this.animateChanges = true;
+    }
+
+    public void setRemoved(Runnable runnable) {
+        this.removedAction = runnable;
+        this.isRemoved = true;
+        this.extraScale = 1.0f;
+    }
+
+    public float getExtraScale() {
+        if (this.isAdded) {
+            this.isAdded = false;
+            this.extraScale = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.scaleAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    AnimatedEmojiSpan.this.lambda$getExtraScale$0(valueAnimator);
+                }
+            });
+            this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    AnimatedEmojiSpan.this.scaleAnimator = null;
+                }
+            });
+            this.scaleAnimator.setDuration(130L);
+            this.scaleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.scaleAnimator.start();
+        } else if (this.isRemoved) {
+            this.isRemoved = false;
+            this.extraScale = 1.0f;
+            ValueAnimator valueAnimator = this.scaleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.scaleAnimator.cancel();
+            }
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.extraScale, 0.0f);
+            this.scaleAnimator = ofFloat2;
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    AnimatedEmojiSpan.this.lambda$getExtraScale$1(valueAnimator2);
+                }
+            });
+            this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    AnimatedEmojiSpan.this.scaleAnimator = null;
+                    if (AnimatedEmojiSpan.this.removedAction != null) {
+                        AnimatedEmojiSpan.this.removedAction.run();
+                        AnimatedEmojiSpan.this.removedAction = null;
+                    }
+                }
+            });
+            this.scaleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.scaleAnimator.setDuration(130L);
+            this.scaleAnimator.start();
+        }
+        return this.extraScale;
+    }
+
+    public void lambda$getExtraScale$0(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.extraScale = floatValue;
+        this.scale = AndroidUtilities.lerp(0.2f, 1.0f, floatValue);
+        lockPositionChanging = false;
+    }
+
+    public void lambda$getExtraScale$1(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.extraScale = floatValue;
+        this.scale = AndroidUtilities.lerp(0.0f, 1.0f, floatValue);
     }
 
     public AnimatedEmojiSpan(TLRPC$Document tLRPC$Document, Paint.FontMetricsInt fontMetricsInt) {
@@ -67,6 +157,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     }
 
     public AnimatedEmojiSpan(long j, float f, Paint.FontMetricsInt fontMetricsInt) {
+        this.extraScale = 1.0f;
         this.full = false;
         this.top = false;
         this.size = AndroidUtilities.dp(20.0f);
@@ -173,22 +264,52 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             fontMetricsInt.ascent = i6 + i8;
             fontMetricsInt.descent = i7 - i8;
         }
-        return this.measuredSize - 1;
+        return Math.max(0, this.measuredSize - 1);
+    }
+
+    public boolean isAnimating() {
+        return (this.moveAnimator == null && this.scaleAnimator == null) ? false : true;
+    }
+
+    private boolean animateChanges(final float f, final float f2) {
+        if (this.moveAnimator != null) {
+            return true;
+        }
+        if (this.animateChanges) {
+            this.animateChanges = false;
+            final float f3 = this.lastDrawnCx;
+            final float f4 = this.lastDrawnCy;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.moveAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    AnimatedEmojiSpan.this.lambda$animateChanges$2(f4, f2, f3, f, valueAnimator);
+                }
+            });
+            this.moveAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    AnimatedEmojiSpan.this.moveAnimator = null;
+                }
+            });
+            this.moveAnimator.setDuration(140L);
+            this.moveAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.moveAnimator.start();
+            return true;
+        }
+        return false;
+    }
+
+    public void lambda$animateChanges$2(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.lastDrawnCy = AndroidUtilities.lerp(f, f2, floatValue);
+        this.lastDrawnCx = AndroidUtilities.lerp(f3, f4, floatValue);
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        if (this.recordPositions) {
-            this.spanDrawn = true;
-            float f2 = f + (this.measuredSize / 2.0f);
-            float f3 = i3 + ((i5 - i3) / 2.0f);
-            if (f2 == this.lastDrawnCx && f3 == this.lastDrawnCy) {
-                return;
-            }
-            this.lastDrawnCx = f2;
-            this.lastDrawnCy = f3;
-            this.positionChanged = true;
-        }
+    public void draw(android.graphics.Canvas r1, java.lang.CharSequence r2, int r3, int r4, float r5, int r6, int r7, int r8, android.graphics.Paint r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiSpan.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
     }
 
     public static void drawAnimatedEmojis(Canvas canvas, Layout layout, EmojiGroupedSpans emojiGroupedSpans, float f, List<SpoilerEffect> list, float f2, float f3, float f4, float f5) {
@@ -305,7 +426,18 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                 }
                 animatedEmojiDrawable.setColorFilter(colorFilter);
                 this.drawable.setTime(j);
-                this.drawable.draw(canvas, this.drawableBounds, f3 * this.alpha);
+                float extraScale = this.span.getExtraScale();
+                if (extraScale != 1.0f) {
+                    canvas.save();
+                    canvas.scale(extraScale, extraScale, this.drawableBounds.centerX(), this.drawableBounds.centerY());
+                    this.drawable.draw(canvas, this.drawableBounds, f3 * this.alpha);
+                    canvas.restore();
+                } else {
+                    this.drawable.draw(canvas, this.drawableBounds, f3 * this.alpha);
+                }
+                if (this.span.isAnimating()) {
+                    invalidate();
+                }
             }
         }
 
@@ -840,6 +972,8 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             animatedEmojiSpan2 = new AnimatedEmojiSpan(animatedEmojiSpan.documentId, animatedEmojiSpan.scale, animatedEmojiSpan.fontMetrics);
         }
         animatedEmojiSpan2.fromEmojiKeyboard = animatedEmojiSpan.fromEmojiKeyboard;
+        animatedEmojiSpan2.isAdded = animatedEmojiSpan.isAdded;
+        animatedEmojiSpan2.isRemoved = animatedEmojiSpan.isRemoved;
         return animatedEmojiSpan2;
     }
 

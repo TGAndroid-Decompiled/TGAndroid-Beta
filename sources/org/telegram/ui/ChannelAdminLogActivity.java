@@ -53,7 +53,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -210,7 +209,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     private HashMap<String, ArrayList<MessageObject>> messagesByDays = new HashMap<>();
     protected ArrayList<MessageObject> messages = new ArrayList<>();
     private TLRPC$TL_channelAdminLogEventsFilter currentFilter = null;
-    private String searchQuery = BuildConfig.APP_CENTER_HASH;
+    private String searchQuery = "";
     private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.chatInfoDidLoad, NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats, NotificationCenter.messagesDidLoad, NotificationCenter.botKeyboardDidLoad});
     private HashMap<String, Object> invitesCache = new HashMap<>();
     private PhotoViewer.PhotoViewerProvider provider = new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -594,7 +593,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchCollapse() {
-                ChannelAdminLogActivity.this.searchQuery = BuildConfig.APP_CENTER_HASH;
+                ChannelAdminLogActivity.this.searchQuery = "";
                 ChannelAdminLogActivity.this.avatarContainer.setVisibility(0);
                 if (ChannelAdminLogActivity.this.searchWas) {
                     ChannelAdminLogActivity.this.searchWas = false;
@@ -1982,6 +1981,16 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, boolean z) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell, tLRPC$Chat, z);
+            }
+
+            @Override
+            public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendationsClose(this, chatMessageCell);
+            }
+
+            @Override
             public void didPressCodeCopy(ChatMessageCell chatMessageCell, MessageObject.TextLayoutBlock textLayoutBlock) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCodeCopy(this, chatMessageCell, textLayoutBlock);
             }
@@ -2009,6 +2018,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didPressHint(ChatMessageCell chatMessageCell, int i) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell, i);
+            }
+
+            @Override
+            public void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressMoreChannelRecommendations(this, chatMessageCell);
             }
 
             @Override
@@ -2394,6 +2408,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public boolean canDrawOutboundsContent() {
                 return ChatActionCell.ChatActionCellDelegate.CC.$default$canDrawOutboundsContent(this);
+            }
+
+            @Override
+            public void didClickButton(ChatActionCell chatActionCell) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didClickButton(this, chatActionCell);
             }
 
             @Override

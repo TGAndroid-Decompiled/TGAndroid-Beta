@@ -437,7 +437,7 @@ public class CodeHighlighting {
                     TokenPattern[] tokenPatternArr3 = tokenPattern3.insideTokenPatterns;
                     if (tokenPatternArr3 != null) {
                         i3 = length;
-                        stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, tokenPatternArr3, i2 + 1), matchPattern.length);
+                        stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, tokenPatternArr3, tokenPattern3, i2 + 1), matchPattern.length);
                     } else {
                         i3 = length;
                         String str4 = tokenPattern3.insideLanguage;

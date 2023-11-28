@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -66,6 +65,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_getExportedChatInvites;
 import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_photos_updateProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_photos_uploadProfilePhoto;
+import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.tgnet.TLRPC$TL_userProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_username;
@@ -88,6 +88,7 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.ChatEditActivity;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
@@ -98,6 +99,8 @@ import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity;
+import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.LocationActivity;
 import org.telegram.ui.PeerColorActivity;
@@ -148,6 +151,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private TextCell memberRequestsCell;
     private TextCell membersCell;
     private EditTextEmoji nameTextView;
+    private final List<AnimatedEmojiDrawable> preloadedReactions;
     private AlertDialog progressDialog;
     private PhotoViewer.PhotoViewerProvider provider;
     private TextCell publicLinkCell;
@@ -250,7 +254,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             ChatEditActivity chatEditActivity = ChatEditActivity.this;
             if (chatEditActivity.cameraDrawable == null) {
                 int i = R.raw.camera_outline;
-                chatEditActivity.cameraDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                chatEditActivity.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             }
             ChatEditActivity.this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
             ChatEditActivity.this.setAvatarCell.imageView.setAnimation(ChatEditActivity.this.cameraDrawable);
@@ -259,6 +263,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public ChatEditActivity(Bundle bundle) {
         super(bundle);
+        this.preloadedReactions = new ArrayList();
         this.provider = new AnonymousClass1();
         this.avatarDrawable = new AvatarDrawable();
         this.chatId = bundle.getLong("chat_id", 0L);
@@ -343,6 +348,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     @Override
     public void onPause() {
         super.onPause();
+        ReactionsUtils.stopPreloadReactions(this.preloadedReactions);
         EditTextEmoji editTextEmoji = this.nameTextView;
         if (editTextEmoji != null) {
             editTextEmoji.onPause();
@@ -501,7 +507,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.hasUploadedPhoto = true;
         if (this.cameraDrawable == null) {
             int i = R.raw.camera_outline;
-            this.cameraDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
         }
         this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -663,6 +669,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$createView$21(View view) {
+        if (ChatObject.isChannelAndNotMegaGroup(this.currentChat)) {
+            presentFragment(new ChatCustomReactionsEditActivity(this.chatId, this.info));
+            return;
+        }
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", this.chatId);
         ChatReactionsEditActivity chatReactionsEditActivity = new ChatReactionsEditActivity(bundle);
@@ -700,6 +710,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", this.chatId);
         bundle.putBoolean("is_megagroup", this.currentChat.megagroup);
+        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
+        if (chatFull == null || !chatFull.can_view_stats) {
+            bundle.putBoolean("only_boosts", true);
+        }
         presentFragment(new StatisticActivity(bundle));
     }
 
@@ -819,7 +833,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             if (this.cameraDrawable == null) {
                 int i = R.raw.camera_outline;
-                this.cameraDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             }
             this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
             this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -978,7 +992,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.setAvatarCell.setTextAndIcon(LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), R.drawable.msg_addphoto, true);
         if (this.cameraDrawable == null) {
             int i2 = R.raw.camera_outline;
-            this.cameraDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
         }
         this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -1014,9 +1028,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         String str;
         EditTextBoldCursor editTextBoldCursor2;
         String str2;
-        long j = this.userId;
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        if (j != 0) {
+        String str3 = "";
+        if (this.userId != 0) {
             TLRPC$UserFull tLRPC$UserFull = this.userInfo;
             if (tLRPC$UserFull != null && (str2 = tLRPC$UserFull.about) != null) {
                 str3 = str2;
@@ -1120,13 +1133,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             return;
         }
         this.donePressed = true;
-        TLRPC$User tLRPC$User = this.currentUser;
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        if (tLRPC$User != null) {
+        String str3 = "";
+        if (this.currentUser != null) {
             final TLRPC$TL_bots_setBotInfo tLRPC$TL_bots_setBotInfo = new TLRPC$TL_bots_setBotInfo();
             tLRPC$TL_bots_setBotInfo.bot = getMessagesController().getInputUser(this.currentUser);
             tLRPC$TL_bots_setBotInfo.flags |= 4;
-            tLRPC$TL_bots_setBotInfo.lang_code = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_bots_setBotInfo.lang_code = "";
             if (!this.currentUser.first_name.equals(this.nameTextView.getText().toString())) {
                 tLRPC$TL_bots_setBotInfo.name = this.nameTextView.getText().toString();
                 tLRPC$TL_bots_setBotInfo.flags |= 8;
@@ -1209,7 +1221,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                         getParentLayout().removeFragmentFromStack(i);
                         Bundle bundle = new Bundle();
                         bundle.putLong("chat_id", this.chatId);
-                        getParentLayout().addFragmentToStack(new TopicsFragment(bundle), i);
+                        getParentLayout().addFragmentToStack(TopicsFragment.getTopicsOrChat(this, bundle), i);
                     }
                 }
             }
@@ -1352,6 +1364,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             this.historyHidden = !ChatObject.isChannel(this.currentChat) || this.info.hidden_prehistory;
             this.availableReactions = this.info.available_reactions;
+            this.preloadedReactions.clear();
+            this.preloadedReactions.addAll(ReactionsUtils.startPreloadReactions(this.currentChat, this.info));
         }
     }
 
@@ -1733,29 +1747,47 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     private void updateReactionsCell(boolean z) {
         String string;
-        TLRPC$TL_availableReaction tLRPC$TL_availableReaction;
+        int i;
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.currentChat);
         TLRPC$ChatReactions tLRPC$ChatReactions = this.availableReactions;
         if (tLRPC$ChatReactions == null || (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsNone)) {
             string = LocaleController.getString("ReactionsOff", R.string.ReactionsOff);
         } else if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
             TLRPC$TL_chatReactionsSome tLRPC$TL_chatReactionsSome = (TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions;
-            int i = 0;
-            for (int i2 = 0; i2 < tLRPC$TL_chatReactionsSome.reactions.size(); i2++) {
-                TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_chatReactionsSome.reactions.get(i2);
-                if ((tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) && (tLRPC$TL_availableReaction = getMediaDataController().getReactionsMap().get(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon)) != null && !tLRPC$TL_availableReaction.inactive) {
-                    i++;
+            int i2 = 0;
+            while (i < tLRPC$TL_chatReactionsSome.reactions.size()) {
+                TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_chatReactionsSome.reactions.get(i);
+                if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
+                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = getMediaDataController().getReactionsMap().get(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon);
+                    if (tLRPC$TL_availableReaction != null) {
+                        if (tLRPC$TL_availableReaction.inactive) {
+                        }
+                        i2++;
+                    }
+                } else {
+                    i = tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji ? 0 : i + 1;
+                    i2++;
                 }
             }
-            int min = Math.min(getMediaDataController().getEnabledReactionsList().size(), i);
-            if (min == 0) {
-                string = LocaleController.getString("ReactionsOff", R.string.ReactionsOff);
+            if (isChannelAndNotMegaGroup) {
+                string = i2 == 0 ? LocaleController.getString("ReactionsOff", R.string.ReactionsOff) : String.valueOf(i2);
             } else {
-                string = LocaleController.formatString("ReactionsCount", R.string.ReactionsCount, Integer.valueOf(min), Integer.valueOf(getMediaDataController().getEnabledReactionsList().size()));
+                int min = Math.min(getMediaDataController().getEnabledReactionsList().size(), i2);
+                if (min == 0) {
+                    string = LocaleController.getString("ReactionsOff", R.string.ReactionsOff);
+                } else {
+                    string = LocaleController.formatString("ReactionsCount", R.string.ReactionsCount, Integer.valueOf(min), Integer.valueOf(getMediaDataController().getEnabledReactionsList().size()));
+                }
             }
         } else {
             string = LocaleController.getString("ReactionsAll", R.string.ReactionsAll);
         }
-        this.reactionsCell.setTextAndValueAndIcon(LocaleController.getString("Reactions", R.string.Reactions), string, z, R.drawable.msg_reactions2, true);
+        String str = string;
+        if (isChannelAndNotMegaGroup) {
+            this.reactionsCell.setTextAndValueAndIcon(TextCell.applyNewSpan(LocaleController.getString("Reactions", R.string.Reactions)), str, z, R.drawable.msg_reactions2, true);
+        } else {
+            this.reactionsCell.setTextAndValueAndIcon(LocaleController.getString("Reactions", R.string.Reactions), str, z, R.drawable.msg_reactions2, true);
+        }
     }
 
     @Override

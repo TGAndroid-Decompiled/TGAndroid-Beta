@@ -19,6 +19,7 @@ public abstract class TLRPC$Dialog extends TLObject {
     public boolean unread_mark;
     public int unread_mentions_count;
     public int unread_reactions_count;
+    public boolean view_forum_as_messages;
 
     public static TLRPC$Dialog TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Dialog tLRPC$Dialog;

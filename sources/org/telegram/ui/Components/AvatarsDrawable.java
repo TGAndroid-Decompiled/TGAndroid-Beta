@@ -305,12 +305,12 @@ public class AvatarsDrawable {
             long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
             if (DialogObject.isUserDialog(peerId)) {
                 TLRPC$User user = MessagesController.getInstance(i2).getUser(Long.valueOf(peerId));
-                this.animatingStates[i].avatarDrawable.setInfo(user);
+                this.animatingStates[i].avatarDrawable.setInfo(i2, user);
                 tLRPC$User = user;
                 chat = null;
             } else {
                 chat = MessagesController.getInstance(i2).getChat(Long.valueOf(-peerId));
-                this.animatingStates[i].avatarDrawable.setInfo(chat);
+                this.animatingStates[i].avatarDrawable.setInfo(i2, chat);
             }
             if (this.currentStyle == 4) {
                 if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
@@ -330,7 +330,7 @@ public class AvatarsDrawable {
             if (!tLRPC$User2.self || !this.showSavedMessages) {
                 this.animatingStates[i].avatarDrawable.setAvatarType(0);
                 this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
-                this.animatingStates[i].avatarDrawable.setInfo(tLRPC$User2);
+                this.animatingStates[i].avatarDrawable.setInfo(i2, tLRPC$User2);
             } else {
                 this.animatingStates[i].avatarDrawable.setAvatarType(1);
                 this.animatingStates[i].avatarDrawable.setScaleSize(0.6f);
@@ -342,7 +342,7 @@ public class AvatarsDrawable {
             tLRPC$Chat = (TLRPC$Chat) tLObject;
             this.animatingStates[i].avatarDrawable.setAvatarType(0);
             this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
-            this.animatingStates[i].avatarDrawable.setInfo(tLRPC$Chat);
+            this.animatingStates[i].avatarDrawable.setInfo(i2, tLRPC$Chat);
             this.animatingStates[i].id = -tLRPC$Chat.id;
         }
         if (tLRPC$User == null) {

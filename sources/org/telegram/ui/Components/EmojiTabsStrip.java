@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
@@ -301,6 +300,9 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         if (i == 3) {
             this.recentDrawableId = R.drawable.msg_emoji_smiles;
         }
+        if (i == 6) {
+            this.recentDrawableId = R.drawable.emoji_love;
+        }
         if (z) {
             LinearLayout linearLayout3 = this.contentView;
             EmojiTabButton emojiTabButton2 = new EmojiTabButton(context, this.recentDrawableId, false, false);
@@ -478,9 +480,9 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                         }
                         emojiTabButton.updateSelect(this.selected == i, false);
                         int i3 = this.currentType;
-                        if (i3 == 4) {
+                        if (i3 == 4 || i3 == 6) {
                             bool = null;
-                        } else if (i3 == 5) {
+                        } else if (i3 == 5 || i3 == 7) {
                             bool = null;
                         } else {
                             if (!z2 && !z3) {
@@ -704,7 +706,8 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     }
 
     public int selectorColor() {
-        if (this.currentType == 5) {
+        int i = this.currentType;
+        if (i == 5 || i == 7) {
             return Theme.multAlpha(this.accentColor, 0.09f);
         }
         return Theme.multAlpha(Theme.getColor(Theme.key_chat_emojiPanelIcon, this.resourcesProvider), 0.18f);
@@ -756,7 +759,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                 setBackground(Theme.createRadSelectorDrawable(EmojiTabsStrip.this.selectorColor(), 8, 8));
             }
             if (Build.VERSION.SDK_INT >= 23) {
-                RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), false, null);
+                RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), false, null);
                 this.lottieDrawable = rLottieDrawable;
                 rLottieDrawable.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(27.0f), AndroidUtilities.dp(27.0f));
                 this.lottieDrawable.setMasterParent(this);
@@ -1210,7 +1213,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         }
 
         private void setColor(int i) {
-            if (EmojiTabsStrip.this.currentType == 5) {
+            if (EmojiTabsStrip.this.currentType == 5 || EmojiTabsStrip.this.currentType == 7) {
                 i = EmojiTabsStrip.this.accentColor;
             }
             PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);

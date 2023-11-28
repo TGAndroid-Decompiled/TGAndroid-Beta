@@ -5,7 +5,6 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -34,7 +33,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
                         MemberRequestsBottomSheet.this.membersEmptyView.setVisibility(4);
                     }
                 } else if (z2) {
-                    MemberRequestsBottomSheet.this.searchView.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+                    MemberRequestsBottomSheet.this.searchView.searchEditText.setText("");
                 } else {
                     super.onImportersChanged(str, z, z2);
                 }

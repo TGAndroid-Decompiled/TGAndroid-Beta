@@ -4,6 +4,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.text.Layout;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -150,7 +152,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
                 }, 0, spannableString.length(), 33);
                 AnimatedEmojiDrawable make = AnimatedEmojiDrawable.make(i, 0, tLRPC$Document);
                 this.emojiDrawable = make;
-                make.setColorFilter(Theme.getAnimatedEmojiColorFilter(resourcesProvider));
+                make.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider), PorterDuff.Mode.SRC_IN));
                 this.emojiDrawable.addView(this);
                 SpannableString spannableString2 = new SpannableString(str);
                 spannableString2.setSpan(new BoldAndAccent(), 0, spannableString2.length(), 33);

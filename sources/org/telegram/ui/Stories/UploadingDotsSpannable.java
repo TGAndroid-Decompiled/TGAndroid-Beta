@@ -8,27 +8,27 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 public class UploadingDotsSpannable extends ReplacementSpan {
+    public boolean fixTop;
     private boolean isMediumTypeface;
     long lastTime;
     private View parent;
     float swapProgress;
     boolean waitForNextAnimation;
-    private String text = "…";
     int swapPosition1 = 1;
     int swapPosition2 = 2;
     CubicBezierInterpolator circle = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) paint.measureText(this.text);
+        return (int) paint.measureText("…");
     }
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         float f2;
         TextPaint textPaint = (TextPaint) paint;
-        float measureText = paint.measureText(this.text) / 3.0f;
-        float f3 = -textPaint.getFontMetrics().top;
+        float measureText = paint.measureText("…") / 3.0f;
+        float f3 = -(this.fixTop ? textPaint.getFontMetrics().ascent : textPaint.getFontMetrics().top);
         float f4 = (textPaint.getFontMetrics().bottom - textPaint.getFontMetrics().top) * (this.isMediumTypeface ? 0.05f : 0.0365f);
         float f5 = f3 - f4;
         if (this.waitForNextAnimation) {

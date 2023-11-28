@@ -417,7 +417,7 @@ public class PushListenerController {
                 return LocaleController.formatString("PushReactRound", R.string.PushReactRound, objArr);
             case MessageObject.TYPE_GIVEAWAY:
                 return LocaleController.formatString("PushReactVideo", R.string.PushReactVideo, objArr);
-            case 27:
+            case MessageObject.TYPE_JOINED_CHANNEL:
                 return LocaleController.formatString("PushReactDoc", R.string.PushReactDoc, objArr);
             case 28:
                 return LocaleController.formatString("PushReactGeo", R.string.PushReactGeo, objArr);

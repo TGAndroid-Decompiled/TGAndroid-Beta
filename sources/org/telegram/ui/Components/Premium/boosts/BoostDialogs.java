@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -165,6 +164,9 @@ public class BoostDialogs {
     }
 
     public static void showBulletin(BaseFragment baseFragment, TLRPC$Chat tLRPC$Chat, boolean z) {
+        if (baseFragment == null) {
+            return;
+        }
         showBulletin(BulletinFactory.of(baseFragment), baseFragment.getResourceProvider(), tLRPC$Chat, z);
     }
 
@@ -464,7 +466,7 @@ public class BoostDialogs {
         } else if (i == 2) {
             string = LocaleController.getString("BoostingApplyChangesChannels", R.string.BoostingApplyChangesChannels);
         } else {
-            string = i != 3 ? BuildConfig.APP_CENTER_HASH : LocaleController.getString("BoostingApplyChangesCountries", R.string.BoostingApplyChangesCountries);
+            string = i != 3 ? "" : LocaleController.getString("BoostingApplyChangesCountries", R.string.BoostingApplyChangesCountries);
         }
         builder.setMessage(string);
         builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
@@ -577,7 +579,7 @@ public class BoostDialogs {
                 spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString("BoostingGiveawayNotEligibleCountry", R.string.BoostingGiveawayNotEligibleCountry)));
             } else if (tLRPC$TL_payments_giveawayInfo.admin_disallowed_chat_id != 0) {
                 TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$TL_payments_giveawayInfo.admin_disallowed_chat_id));
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayNotEligibleAdmin", R.string.BoostingGiveawayNotEligibleAdmin, chat != null ? chat.title : BuildConfig.APP_CENTER_HASH)));
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayNotEligibleAdmin", R.string.BoostingGiveawayNotEligibleAdmin, chat != null ? chat.title : "")));
             } else if (tLRPC$TL_payments_giveawayInfo.joined_too_early_date != 0) {
                 spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayNotEligible", R.string.BoostingGiveawayNotEligible, LocaleController.getInstance().formatterGiveawayMonthDayYear.format(new Date(tLRPC$TL_payments_giveawayInfo.joined_too_early_date * 1000)))));
             } else if (z) {
@@ -768,17 +770,13 @@ public class BoostDialogs {
     }
 
     private static String getGiveawayCreatorName(MessageObject messageObject) {
-        String str = BuildConfig.APP_CENTER_HASH;
         if (messageObject == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         String forwardedName = messageObject.getForwardedName();
         if (forwardedName == null) {
             TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getFromChatId()));
-            if (chat != null) {
-                str = chat.title;
-            }
-            return str;
+            return chat != null ? chat.title : "";
         }
         return forwardedName;
     }

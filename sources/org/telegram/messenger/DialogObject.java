@@ -140,7 +140,7 @@ public class DialogObject {
                 }
             }
         } else if (!(tLObject instanceof TLRPC$Chat)) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         } else {
             TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
             str = tLRPC$Chat.title;

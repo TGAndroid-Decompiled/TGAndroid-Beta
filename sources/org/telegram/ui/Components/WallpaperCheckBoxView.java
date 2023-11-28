@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.text.TextPaint;
 import android.util.Property;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
@@ -22,6 +23,8 @@ public class WallpaperCheckBoxView extends View {
     private int[] colors;
     private String currentText;
     private int currentTextSize;
+    private float dimAmount;
+    private final Paint dimPaint;
     private Bitmap drawBitmap;
     private Canvas drawCanvas;
     private Paint eraserPaint;
@@ -48,6 +51,8 @@ public class WallpaperCheckBoxView extends View {
                 return Float.valueOf(WallpaperCheckBoxView.this.progress);
             }
         };
+        this.dimPaint = new Paint(1);
+        this.resourcesProvider = resourcesProvider;
         this.rect = new RectF();
         if (z) {
             this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Bitmap.Config.ARGB_4444);
@@ -95,6 +100,12 @@ public class WallpaperCheckBoxView extends View {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.maxTextSize + AndroidUtilities.dp(56.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
 
+    public void setDimAmount(float f) {
+        this.dimAmount = f;
+        this.dimPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f * 255.0f)));
+        invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         float f;
@@ -104,7 +115,10 @@ public class WallpaperCheckBoxView extends View {
         canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, getThemedPaint("paintChatActionBackground"));
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (resourcesProvider == null ? Theme.hasGradientService() : resourcesProvider.hasGradientService()) {
-            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, Theme.chat_actionBackgroundGradientDarkenPaint);
+            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, getThemedPaint("paintChatActionBackgroundDarken"));
+        }
+        if (this.dimAmount > 0.0f) {
+            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, this.dimPaint);
         }
         TextPaint textPaint = this.textPaint;
         int i = Theme.key_chat_serviceText;

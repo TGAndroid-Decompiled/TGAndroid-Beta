@@ -2,6 +2,8 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import androidx.core.graphics.ColorUtils;
 import java.util.HashSet;
@@ -53,7 +55,9 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
             } else if (i == 2) {
                 i2 = 15;
             }
-            this.animatedEmojiDrawable = new AnimatedEmojiDrawable(i2, UserConfig.selectedAccount, tLRPC$TL_videoSizeEmojiMarkup.emoji_id);
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(i2, UserConfig.selectedAccount, tLRPC$TL_videoSizeEmojiMarkup.emoji_id);
+            this.animatedEmojiDrawable = animatedEmojiDrawable;
+            animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeStickerMarkup) {
             this.sizeStickerMarkup = (TLRPC$TL_videoSizeStickerMarkup) tLRPC$VideoSize;
             ImageReceiver imageReceiver = new ImageReceiver() {

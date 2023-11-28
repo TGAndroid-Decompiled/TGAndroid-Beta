@@ -29,7 +29,9 @@ public class SuggestUserPhotoView extends View {
         this.newPhoto = new ImageReceiver(this);
         this.avatarDrawable = new AvatarDrawable();
         this.path = new Path();
-        this.avatarDrawable.setInfo(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+        AvatarDrawable avatarDrawable = this.avatarDrawable;
+        int i = UserConfig.selectedAccount;
+        avatarDrawable.setInfo(i, UserConfig.getInstance(i).getCurrentUser());
         this.currentPhoto.setForUserOrChat(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser(), this.avatarDrawable);
         this.newPhoto.setForUserOrChat(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser(), this.avatarDrawable);
         Drawable drawable = ContextCompat.getDrawable(context, R.drawable.msg_arrow_avatar);

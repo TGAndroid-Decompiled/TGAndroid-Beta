@@ -148,7 +148,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                                 tLRPC$User = null;
                             }
                         } else {
-                            str = BuildConfig.APP_CENTER_HASH;
+                            str = "";
                         }
                         tLRPC$Chat = chat;
                         tLRPC$User = null;
@@ -177,7 +177,9 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                                 avatarDrawable.setAvatarType(1);
                             }
                         } else {
-                            avatarDrawable = new AvatarDrawable(tLRPC$Chat);
+                            AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+                            avatarDrawable2.setInfo(this.accountInstance.getCurrentAccount(), tLRPC$Chat);
+                            avatarDrawable = avatarDrawable2;
                         }
                         avatarDrawable.setBounds(0, 0, dp, dp);
                         avatarDrawable.draw(canvas);

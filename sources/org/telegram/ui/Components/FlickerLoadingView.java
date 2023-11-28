@@ -777,7 +777,7 @@ public class FlickerLoadingView extends View {
             case 14:
             case 17:
             case 20:
-            case 27:
+            case MessageObject.TYPE_JOINED_CHANNEL:
             default:
                 return 0;
             case 15:

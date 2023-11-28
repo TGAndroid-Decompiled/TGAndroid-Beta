@@ -161,7 +161,7 @@ public class BottomSheet extends Dialog {
         return true;
     }
 
-    protected boolean canSwipeToBack() {
+    protected boolean canSwipeToBack(MotionEvent motionEvent) {
         return false;
     }
 
@@ -255,6 +255,7 @@ public class BottomSheet extends Dialog {
     }
 
     public class ContainerView extends FrameLayout implements NestedScrollingParent {
+        private boolean allowedSwipeToBack;
         private Paint backgroundPaint;
         private AnimatorSet currentAnimation;
         private boolean keyboardChanged;
@@ -427,8 +428,9 @@ public class BottomSheet extends Dialog {
             if (BottomSheet.this.onContainerTouchEvent(motionEvent)) {
                 return true;
             }
-            if (BottomSheet.this.canSwipeToBack()) {
+            if (BottomSheet.this.canSwipeToBack(motionEvent) || this.allowedSwipeToBack) {
                 if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.startedTracking && !this.maybeStartTracking && motionEvent.getPointerCount() == 1)) {
+                    this.allowedSwipeToBack = true;
                     this.startedTrackingX = (int) motionEvent.getX();
                     this.startedTrackingY = (int) motionEvent.getY();
                     this.startedTrackingPointerId = motionEvent.getPointerId(0);
@@ -500,6 +502,7 @@ public class BottomSheet extends Dialog {
                     this.maybeStartTracking = false;
                     this.startedTracking = false;
                     this.startedTrackingPointerId = -1;
+                    this.allowedSwipeToBack = false;
                 }
             } else if (BottomSheet.this.canDismissWithTouchOutside() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.startedTracking && !this.maybeStartTracking && motionEvent.getPointerCount() == 1)) {
                 this.startedTrackingX = (int) motionEvent.getX();
@@ -517,7 +520,7 @@ public class BottomSheet extends Dialog {
                 if (velocityTracker != null) {
                     velocityTracker.clear();
                 }
-            } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
+            } else if (BottomSheet.this.canDismissWithSwipe() && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
                 if (this.velocityTracker == null) {
                     this.velocityTracker = VelocityTracker.obtain();
                 }
@@ -559,7 +562,7 @@ public class BottomSheet extends Dialog {
                 }
                 this.startedTrackingPointerId = -1;
             }
-            return (!z && this.maybeStartTracking) || this.startedTracking || !(BottomSheet.this.canDismissWithSwipe() || BottomSheet.this.canSwipeToBack());
+            return (!z && this.maybeStartTracking) || this.startedTracking || !(BottomSheet.this.canDismissWithSwipe() || BottomSheet.this.canSwipeToBack(motionEvent));
         }
 
         public void lambda$processTouchEvent$1(ValueAnimator valueAnimator) {
@@ -596,7 +599,7 @@ public class BottomSheet extends Dialog {
 
         @Override
         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            if (BottomSheet.this.canDismissWithSwipe() || BottomSheet.this.canSwipeToBack()) {
+            if (BottomSheet.this.canDismissWithSwipe() || BottomSheet.this.canSwipeToBack(motionEvent)) {
                 return processTouchEvent(motionEvent, true);
             }
             return super.onInterceptTouchEvent(motionEvent);
@@ -1037,7 +1040,7 @@ public class BottomSheet extends Dialog {
     }
 
     public void fixNavigationBar(int i) {
-        this.drawNavigationBar = true;
+        this.drawNavigationBar = !this.occupyNavigationBar;
         this.drawDoubleNavigationBar = true;
         this.scrollNavBar = true;
         this.navBarColorKey = -1;

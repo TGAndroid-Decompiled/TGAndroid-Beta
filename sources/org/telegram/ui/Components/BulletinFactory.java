@@ -247,6 +247,27 @@ public final class BulletinFactory {
         return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
     }
 
+    public Bulletin createSimpleBulletin(int i, CharSequence charSequence, int i2, int i3) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        if (charSequence != null) {
+            String charSequence2 = charSequence.toString();
+            SpannableStringBuilder spannableStringBuilder = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : new SpannableStringBuilder(charSequence);
+            int i4 = 0;
+            for (int indexOf = charSequence2.indexOf(10); indexOf >= 0 && indexOf < charSequence.length(); indexOf = charSequence2.indexOf(10, indexOf + 1)) {
+                if (i4 >= i2) {
+                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) " ");
+                }
+                i4++;
+            }
+            charSequence = spannableStringBuilder;
+        }
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setMaxLines(i2);
+        return create(lottieLayout, i3);
+    }
+
     public Bulletin createSimpleBulletin(int i, CharSequence charSequence, CharSequence charSequence2) {
         Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
         twoLineLottieLayout.setAnimation(i, 36, 36, new String[0]);
@@ -468,6 +489,33 @@ public final class BulletinFactory {
             spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedSubscribersToChannel", arrayList.size(), new Object[0]));
         }
         return createUsersBulletin(arrayList, spannableStringBuilder);
+    }
+
+    public Bulletin createEmojiBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
+            lottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
+        }
+        lottieLayout.setAnimation(tLRPC$Document, 36, 36, new String[0]);
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setTextSize(1, 14.0f);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setMaxLines(3);
+        return create(lottieLayout, 2750);
+    }
+
+    public Bulletin createStaticEmojiBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
+            lottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
+        }
+        lottieLayout.setAnimation(tLRPC$Document, 36, 36, new String[0]);
+        lottieLayout.imageView.stopAnimation();
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setTextSize(1, 14.0f);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setMaxLines(3);
+        return create(lottieLayout, 2750);
     }
 
     public Bulletin createEmojiBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence, CharSequence charSequence2, Runnable runnable) {

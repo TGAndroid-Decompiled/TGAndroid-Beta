@@ -248,7 +248,7 @@ public class NotificationsController extends BaseController {
         StringBuilder sb = new StringBuilder();
         sb.append("messages");
         int i2 = this.currentAccount;
-        sb.append(i2 == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i2));
+        sb.append(i2 == 0 ? "" : Integer.valueOf(i2));
         this.notificationGroup = sb.toString();
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
         this.inChatSoundEnabled = notificationsSettings.getBoolean("EnableInChatSound", true);
@@ -1829,7 +1829,7 @@ public class NotificationsController extends BaseController {
             if (user == null) {
                 getUserConfig().getCurrentUser();
             }
-            String str7 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : BuildConfig.APP_CENTER_HASH;
+            String str7 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : "";
             ArrayList arrayList = new ArrayList();
             if (str2 != null) {
                 arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString("NotificationsChannels", R.string.NotificationsChannels) + str7));
@@ -1985,7 +1985,7 @@ public class NotificationsController extends BaseController {
         if (indexOf >= 0) {
             StringBuilder sb = new StringBuilder();
             sb.append(str.substring(0, indexOf));
-            sb.append(str.endsWith("…") ? "…" : BuildConfig.APP_CENTER_HASH);
+            sb.append(str.endsWith("…") ? "…" : "");
             return sb.toString();
         }
         return str;
@@ -2608,7 +2608,7 @@ public class NotificationsController extends BaseController {
         for (Map.Entry<String, ?> entry : MessagesController.getNotificationsSettings(this.currentAccount).getAll().entrySet()) {
             String key = entry.getKey();
             if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY + j)) {
-                int intValue = Utilities.parseInt((CharSequence) key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY + j, BuildConfig.APP_CENTER_HASH)).intValue();
+                int intValue = Utilities.parseInt((CharSequence) key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY + j, "")).intValue();
                 if (intValue != 0 && getMessagesController().isDialogMuted(j, intValue) != getMessagesController().isDialogMuted(j, 0)) {
                     hashSet.add(Integer.valueOf(intValue));
                 }
