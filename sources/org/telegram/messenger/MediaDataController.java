@@ -6842,99 +6842,106 @@ public class MediaDataController extends BaseController {
 
     public ArrayList<TLRPC$MessageEntity> getEntities(CharSequence[] charSequenceArr, boolean z) {
         int i;
+        int indexOf;
         int i2;
         int i3;
+        int i4;
         ArrayList<TLRPC$MessageEntity> arrayList = null;
         if (charSequenceArr != null && charSequenceArr[0] != null) {
-            int i4 = -1;
+            int i5 = -1;
             boolean z2 = false;
-            int i5 = 0;
+            int i6 = 0;
             loop0: while (true) {
                 i = -1;
                 while (true) {
-                    int indexOf = TextUtils.indexOf(charSequenceArr[0], !z2 ? "`" : "```", i5);
-                    if (indexOf == i4) {
+                    indexOf = TextUtils.indexOf(charSequenceArr[0], !z2 ? "`" : "```", i6);
+                    if (indexOf == i5) {
                         break loop0;
-                    } else if (i == i4) {
+                    } else if (i == i5) {
                         z2 = charSequenceArr[0].length() - indexOf > 2 && charSequenceArr[0].charAt(indexOf + 1) == '`' && charSequenceArr[0].charAt(indexOf + 2) == '`';
                         i = indexOf;
-                        i5 = indexOf + (z2 ? 3 : 1);
+                        i6 = indexOf + (z2 ? 3 : 1);
                     } else {
                         if (arrayList == null) {
                             arrayList = new ArrayList<>();
                         }
-                        for (int i6 = (z2 ? 3 : 1) + indexOf; i6 < charSequenceArr[0].length() && charSequenceArr[0].charAt(i6) == '`'; i6++) {
+                        for (int i7 = (z2 ? 3 : 1) + indexOf; i7 < charSequenceArr[0].length() && charSequenceArr[0].charAt(i7) == '`'; i7++) {
                             indexOf++;
                         }
                         i2 = (z2 ? 3 : 1) + indexOf;
                         if (z2) {
                             char charAt = i > 0 ? charSequenceArr[0].charAt(i - 1) : (char) 0;
-                            int i7 = (charAt == ' ' || charAt == '\n') ? 1 : 0;
-                            int i8 = i + 3;
-                            int indexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i8);
-                            String substring = (indexOf2 < 0 || indexOf2 - i8 <= 0) ? "" : charSequenceArr[0].toString().substring(i8, indexOf2);
-                            CharSequence substring2 = substring(charSequenceArr[0], 0, i - i7);
-                            int length = i8 + substring.length() + (!substring.isEmpty());
-                            if (length < 0 || length >= charSequenceArr[0].length() || length > indexOf) {
-                                i5 = i2;
-                                i4 = -1;
-                            } else {
+                            int i8 = (charAt == ' ' || charAt == '\n') ? 1 : 0;
+                            int i9 = i + 3;
+                            int indexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i9);
+                            String substring = (indexOf2 < 0 || indexOf2 - i9 <= 0) ? "" : charSequenceArr[0].toString().substring(i9, indexOf2);
+                            CharSequence substring2 = substring(charSequenceArr[0], 0, i - i8);
+                            int length = i9 + substring.length() + (!substring.isEmpty());
+                            if (length >= 0 && length < charSequenceArr[0].length() && length <= indexOf) {
                                 CharSequence substring3 = substring(charSequenceArr[0], length, indexOf);
-                                int i9 = indexOf + 3;
-                                char charAt2 = i9 < charSequenceArr[0].length() ? charSequenceArr[0].charAt(i9) : (char) 0;
-                                CharSequence substring4 = substring(charSequenceArr[0], i9 + ((charAt2 == ' ' || charAt2 == '\n') ? 1 : 0), charSequenceArr[0].length());
+                                int i10 = indexOf + 3;
+                                char charAt2 = i10 < charSequenceArr[0].length() ? charSequenceArr[0].charAt(i10) : (char) 0;
+                                CharSequence substring4 = substring(charSequenceArr[0], i10 + ((charAt2 == ' ' || charAt2 == '\n') ? 1 : 0), charSequenceArr[0].length());
                                 if (substring2.length() != 0) {
-                                    i3 = 1;
+                                    i4 = 1;
                                     substring2 = AndroidUtilities.concat(substring2, "\n");
                                 } else {
-                                    i3 = 1;
-                                    i7 = 1;
+                                    i4 = 1;
+                                    i8 = 1;
                                 }
                                 if (substring4.length() > 0 && substring4.charAt(0) != '\n') {
                                     CharSequence[] charSequenceArr2 = new CharSequence[2];
                                     charSequenceArr2[0] = "\n";
-                                    charSequenceArr2[i3] = substring4;
+                                    charSequenceArr2[i4] = substring4;
                                     substring4 = AndroidUtilities.concat(charSequenceArr2);
                                 }
-                                if (substring3.length() > 0 && substring3.charAt(substring3.length() - i3) == '\n') {
-                                    substring3 = substring(substring3, 0, substring3.length() - i3);
+                                if (substring3.length() > 0 && substring3.charAt(substring3.length() - i4) == '\n') {
+                                    substring3 = substring(substring3, 0, substring3.length() - i4);
                                 }
                                 if (!TextUtils.isEmpty(substring3)) {
-                                    if (substring3.length() > i3 && substring3.charAt(0) == '\n') {
-                                        substring3 = substring3.subSequence(i3, substring3.length());
+                                    if (substring3.length() > i4 && substring3.charAt(0) == '\n') {
+                                        substring3 = substring3.subSequence(i4, substring3.length());
                                         indexOf--;
                                     }
                                     CharSequence[] charSequenceArr3 = new CharSequence[3];
                                     charSequenceArr3[0] = substring2;
-                                    charSequenceArr3[i3] = substring3;
+                                    charSequenceArr3[i4] = substring3;
                                     charSequenceArr3[2] = substring4;
                                     charSequenceArr[0] = AndroidUtilities.concat(charSequenceArr3);
                                     TLRPC$MessageEntity tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityPre();
-                                    tLRPC$TL_messageEntityPre.offset = (i7 ^ 1) + i;
-                                    tLRPC$TL_messageEntityPre.length = (((indexOf - i) - 3) - (substring.length() + (!substring.isEmpty()))) + (i7 ^ 1);
+                                    tLRPC$TL_messageEntityPre.offset = (i8 ^ 1) + i;
+                                    tLRPC$TL_messageEntityPre.length = (((indexOf - i) - 3) - (substring.length() + (!substring.isEmpty()))) + (i8 ^ 1);
                                     tLRPC$TL_messageEntityPre.language = (TextUtils.isEmpty(substring) || substring.trim().length() == 0) ? "" : "";
                                     arrayList.add(tLRPC$TL_messageEntityPre);
                                     i2 -= 6;
                                 }
                             }
+                            i6 = i2;
+                            i5 = -1;
                         } else {
-                            int i10 = i + 1;
-                            if (i10 != indexOf) {
-                                charSequenceArr[0] = AndroidUtilities.concat(substring(charSequenceArr[0], 0, i), substring(charSequenceArr[0], i10, indexOf), substring(charSequenceArr[0], indexOf + 1, charSequenceArr[0].length()));
-                                TLRPC$MessageEntity tLRPC$TL_messageEntityCode = new TLRPC$TL_messageEntityCode();
-                                tLRPC$TL_messageEntityCode.offset = i;
-                                tLRPC$TL_messageEntityCode.length = (indexOf - i) - 1;
-                                arrayList.add(tLRPC$TL_messageEntityCode);
-                                i2 -= 2;
+                            i3 = i + 1;
+                            if (i3 == indexOf) {
+                                break;
                             }
+                            if (!(charSequenceArr[0] instanceof Spanned) || ((CodeHighlighting.Span[]) ((Spanned) charSequenceArr[0]).getSpans(Utilities.clamp(i, charSequenceArr[0].length(), 0), Utilities.clamp(i3, charSequenceArr[0].length(), 0), CodeHighlighting.Span.class)).length <= 0) {
+                                break;
+                            }
+                            i6 = i2;
+                            i5 = -1;
                         }
                     }
                 }
-                i5 = i2;
-                i4 = -1;
+                charSequenceArr[0] = AndroidUtilities.concat(substring(charSequenceArr[0], 0, i), substring(charSequenceArr[0], i3, indexOf), substring(charSequenceArr[0], indexOf + 1, charSequenceArr[0].length()));
+                TLRPC$MessageEntity tLRPC$TL_messageEntityCode = new TLRPC$TL_messageEntityCode();
+                tLRPC$TL_messageEntityCode.offset = i;
+                tLRPC$TL_messageEntityCode.length = (indexOf - i) - 1;
+                arrayList.add(tLRPC$TL_messageEntityCode);
+                i2 -= 2;
+                i6 = i2;
+                i5 = -1;
                 z2 = false;
             }
-            if (i != i4 && z2) {
+            if (i != i5 && z2) {
                 charSequenceArr[0] = AndroidUtilities.concat(substring(charSequenceArr[0], 0, i), substring(charSequenceArr[0], i + 2, charSequenceArr[0].length()));
                 if (arrayList == null) {
                     arrayList = new ArrayList<>();

@@ -799,7 +799,7 @@ public class TranscribeButton {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TranscribeButton.lambda$transcribePressed$4(ChatMessageCell.ChatMessageCellDelegate.this, i);
+                    TranscribeButton.lambda$transcribePressed$4(MessageObject.this, chatMessageCellDelegate, i);
                 }
             });
             return;
@@ -833,10 +833,15 @@ public class TranscribeButton {
         }
     }
 
-    public static void lambda$transcribePressed$4(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, int i) {
+    public static void lambda$transcribePressed$4(MessageObject messageObject, ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, int i) {
+        HashMap<Integer, MessageObject> hashMap = transcribeOperationsByDialogPosition;
+        if (hashMap != null) {
+            hashMap.remove(Integer.valueOf(reqInfoHash(messageObject)));
+        }
         if (chatMessageCellDelegate != null) {
             chatMessageCellDelegate.needShowPremiumBulletin(3);
         }
+        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
 

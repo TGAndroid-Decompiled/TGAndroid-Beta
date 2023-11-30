@@ -1,8 +1,10 @@
 package org.telegram.ui.Cells;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -352,7 +354,12 @@ public class ChannelRecommendationsCell {
         private final CharSequence name;
         private StaticLayout nameText;
         private final TextPaint nameTextPaint;
+        private final Paint subscribersBackgroundDimPaint;
         private final Paint subscribersBackgroundPaint;
+        private int subscribersBackgroundPaintBitmapHeight;
+        private int subscribersBackgroundPaintBitmapWidth;
+        private Matrix subscribersBackgroundPaintMatrix;
+        private BitmapShader subscribersBackgroundPaintShader;
         private boolean subscribersColorSet;
         private boolean subscribersColorSetFromThumb;
         private final Drawable subscribersDrawable;
@@ -371,6 +378,7 @@ public class ChannelRecommendationsCell {
             this.nameTextPaint = new TextPaint(1);
             this.subscribersStrokePaint = new Paint(1);
             this.subscribersBackgroundPaint = new Paint(1);
+            this.subscribersBackgroundDimPaint = new Paint(1);
             this.cell = chatMessageCell;
             this.chat = tLRPC$ChatArr[0];
             this.bounce = new ButtonBounce(this, chatMessageCell) {
@@ -452,6 +460,7 @@ public class ChannelRecommendationsCell {
             this.nameTextPaint = textPaint;
             this.subscribersStrokePaint = new Paint(1);
             this.subscribersBackgroundPaint = new Paint(1);
+            this.subscribersBackgroundDimPaint = new Paint(1);
             this.cell = chatMessageCell;
             this.chat = tLRPC$Chat;
             this.bounce = new ButtonBounce(this, chatMessageCell) {
@@ -510,7 +519,7 @@ public class ChannelRecommendationsCell {
             if (text != null) {
                 text.ellipsize(i - AndroidUtilities.dp(32.0f));
                 float dp = (f2 - (AndroidUtilities.dp(this.subscribersDrawable != null ? 17.0f : 8.0f) + this.subscribersText.getWidth())) / 2.0f;
-                float dp2 = AndroidUtilities.dp(3.835f) + avatarSize();
+                float dp2 = AndroidUtilities.dp(4.165f) + avatarSize();
                 Drawable drawable = this.subscribersDrawable;
                 if (drawable != null) {
                     drawable.setBounds((int) ((this.isLock ? this.subscribersText.getWidth() + AndroidUtilities.dp(1.33f) : 0.0f) + dp + AndroidUtilities.dp(3.0f)), (int) (dp2 - ((this.subscribersDrawable.getIntrinsicHeight() / 2.0f) * 0.625f)), (int) ((this.isLock ? this.subscribersText.getWidth() + AndroidUtilities.dp(1.33f) : 0.0f) + dp + AndroidUtilities.dp(3.0f) + (this.subscribersDrawable.getIntrinsicWidth() * 0.625f)), (int) (((this.subscribersDrawable.getIntrinsicHeight() / 2.0f) * 0.625f) + dp2));
@@ -559,13 +568,14 @@ public class ChannelRecommendationsCell {
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
-                    if (fArr2[1] > 0.05f && fArr2[1] < 0.95f) {
-                        fArr2[1] = Utilities.clamp(fArr2[1] - 0.06f, 0.4f, 0.0f);
-                        fArr2[2] = Utilities.clamp(fArr2[2] - 0.08f, 0.5f, 0.2f);
+                    if (fArr2[1] > 0.05f && fArr2[1] < 0.95f && fArr2[2] > 0.02f && fArr2[2] < 0.98f) {
+                        fArr2[1] = 0.25f;
+                        fArr2[2] = Theme.isCurrentThemeDark() ? 0.35f : 0.65f;
                         this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr2));
                         this.subscribersColorSet = true;
                     }
-                    fArr2[2] = Utilities.clamp(fArr2[2] - 0.1f, 0.6f, 0.3f);
+                    fArr2[1] = 0.0f;
+                    fArr2[2] = Theme.isCurrentThemeDark() ? 0.38f : 0.7f;
                     this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr2));
                     this.subscribersColorSet = true;
                 } else if (!this.subscribersColorSet && !this.subscribersColorSetFromThumb) {
@@ -585,11 +595,21 @@ public class ChannelRecommendationsCell {
                     this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr));
                     this.subscribersColorSetFromThumb = true;
                 }
-                RectF rectF = AndroidUtilities.rectTmp;
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundPaint);
-                rectF.inset((-AndroidUtilities.dp(1.0f)) / 2.0f, (-AndroidUtilities.dp(1.0f)) / 2.0f);
+                if (this.subscribersBackgroundPaintShader != null) {
+                    this.subscribersBackgroundPaintMatrix.reset();
+                    this.subscribersBackgroundPaintMatrix.postScale(avatarSize() / this.subscribersBackgroundPaintBitmapWidth, avatarSize() / this.subscribersBackgroundPaintBitmapHeight);
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    this.subscribersBackgroundPaintMatrix.postTranslate(f3 - (avatarSize() / 2.0f), rectF.bottom - avatarSize());
+                    this.subscribersBackgroundPaintShader.setLocalMatrix(this.subscribersBackgroundPaintMatrix);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundPaint);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundDimPaint);
+                } else {
+                    canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundPaint);
+                }
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.inset((-AndroidUtilities.dp(1.0f)) / 2.0f, (-AndroidUtilities.dp(1.0f)) / 2.0f);
                 this.subscribersStrokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersStrokePaint);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersStrokePaint);
             }
             canvas.restore();
         }

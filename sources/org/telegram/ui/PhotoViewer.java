@@ -11895,8 +11895,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             return;
                         }
                         ImageLocation imageLocation = this.imagesArrLocationsVideo.get(i3);
-                        pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(imageLocation.location, getFileLocationExt(imageLocation), false);
-                        pathToAttach2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(imageLocation.location, getFileLocationExt(imageLocation), true);
+                        if (imageLocation != null) {
+                            pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(imageLocation.location, getFileLocationExt(imageLocation), false);
+                            pathToAttach2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(imageLocation.location, getFileLocationExt(imageLocation), true);
+                        } else {
+                            pathToAttach2 = null;
+                            pathToAttach = null;
+                        }
                     } else if (this.currentSecureDocument != null) {
                         if (i3 < 0 || i3 >= this.secureDocuments.size()) {
                             this.photoProgressViews[i].setBackgroundState(-1, z2, true);

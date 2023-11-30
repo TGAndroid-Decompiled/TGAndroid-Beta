@@ -165,7 +165,9 @@ public class ReactionsUtils {
         hashMap.put(Long.valueOf(j), createAnimatedEmojiSpan);
         list.add(Long.valueOf(j));
         editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
-        selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(j), false);
+        if (selectAnimatedEmojiDialog != null) {
+            selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(j), false);
+        }
     }
 
     public static void addReactionToEditText(TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji, HashMap<Long, AnimatedEmojiSpan> hashMap, List<Long> list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
@@ -173,7 +175,9 @@ public class ReactionsUtils {
         hashMap.put(Long.valueOf(tLRPC$TL_reactionCustomEmoji.document_id), createAnimatedEmojiSpan);
         list.add(Long.valueOf(tLRPC$TL_reactionCustomEmoji.document_id));
         editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
-        selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(tLRPC$TL_reactionCustomEmoji.document_id), false);
+        if (selectAnimatedEmojiDialog != null) {
+            selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(tLRPC$TL_reactionCustomEmoji.document_id), false);
+        }
     }
 
     public static List<AnimatedEmojiDrawable> startPreloadReactions(TLRPC$Chat tLRPC$Chat, TLRPC$ChatFull tLRPC$ChatFull) {

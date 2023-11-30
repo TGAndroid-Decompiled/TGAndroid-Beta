@@ -299,7 +299,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private View themeSwitchSunView;
     private String videoPath;
     private ActionMode visibleActionMode;
-    private Dialog visibleDialog;
+    public Dialog visibleDialog;
     private String voicePath;
     private boolean wasMutedByAdminRaisedHand;
     public static final Pattern PREFIX_T_ME_PATTERN = Pattern.compile("^(?:http(?:s|)://|)([A-z0-9-]+?)\\.t\\.me");

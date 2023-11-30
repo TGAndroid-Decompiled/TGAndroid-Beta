@@ -964,7 +964,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             HeaderCell headerCell;
             if (i == 0) {
-                View manageChatUserCell = new ManageChatUserCell(this.mContext, 6, 2, false, MessageStatisticActivity.this.getResourceProvider());
+                ManageChatUserCell manageChatUserCell = new ManageChatUserCell(this.mContext, 6, 2, false, MessageStatisticActivity.this.getResourceProvider());
+                manageChatUserCell.setDividerColor(Theme.key_divider);
                 manageChatUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
                 headerCell = manageChatUserCell;
             } else if (i == 1) {

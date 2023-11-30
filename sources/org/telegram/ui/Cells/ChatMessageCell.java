@@ -6671,7 +6671,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public void drawCheckBox(Canvas canvas) {
         float f;
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || messageObject.isSending() || this.currentMessageObject.isSendError() || this.checkBox == null) {
+        if (messageObject == null || messageObject.isSending()) {
+            return;
+        }
+        MessageObject messageObject2 = this.currentMessageObject;
+        if (messageObject2.type == 27 || messageObject2.isSendError() || this.checkBox == null) {
             return;
         }
         if (this.checkBoxVisible || this.checkBoxAnimationInProgress) {

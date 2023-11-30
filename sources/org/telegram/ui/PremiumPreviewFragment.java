@@ -519,7 +519,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 float x = PremiumPreviewFragment.this.backgroundView.getX() + PremiumPreviewFragment.this.backgroundView.imageFrameLayout.getX();
                 float y = PremiumPreviewFragment.this.backgroundView.getY() + PremiumPreviewFragment.this.backgroundView.imageFrameLayout.getY();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(x, y, PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredWidth() + x, PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredHeight() + y);
+                rectF.set(x, y, (PremiumPreviewFragment.this.backgroundView.imageView == null ? 0 : PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredWidth()) + x, (PremiumPreviewFragment.this.backgroundView.imageView == null ? 0 : PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredHeight()) + y);
                 if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.iconInterceptedTouch) && !PremiumPreviewFragment.this.listView.scrollingByUser) {
                     motionEvent.offsetLocation(-x, -y);
                     if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
@@ -845,7 +845,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     public void updateBackgroundImage() {
-        if (this.contentView.getMeasuredWidth() == 0 || this.contentView.getMeasuredHeight() == 0) {
+        BackgroundView backgroundView;
+        if (this.contentView.getMeasuredWidth() == 0 || this.contentView.getMeasuredHeight() == 0 || (backgroundView = this.backgroundView) == null || backgroundView.imageView == null) {
             return;
         }
         this.gradientTools.gradientMatrix(0, 0, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), 0.0f, 0.0f);
@@ -1632,21 +1633,31 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     @Override
     public void onResume() {
         super.onResume();
-        this.backgroundView.imageView.setPaused(false);
-        this.backgroundView.imageView.setDialogVisible(false);
+        BackgroundView backgroundView = this.backgroundView;
+        if (backgroundView != null && backgroundView.imageView != null) {
+            this.backgroundView.imageView.setPaused(false);
+            this.backgroundView.imageView.setDialogVisible(false);
+        }
         this.particlesView.setPaused(false);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        this.backgroundView.imageView.setDialogVisible(true);
-        this.particlesView.setPaused(true);
+        BackgroundView backgroundView = this.backgroundView;
+        if (backgroundView != null && backgroundView.imageView != null) {
+            this.backgroundView.imageView.setDialogVisible(true);
+        }
+        StarParticlesView starParticlesView = this.particlesView;
+        if (starParticlesView != null) {
+            starParticlesView.setPaused(true);
+        }
     }
 
     @Override
     public boolean canBeginSlide() {
-        return !this.backgroundView.imageView.touched;
+        BackgroundView backgroundView = this.backgroundView;
+        return backgroundView == null || backgroundView.imageView == null || !this.backgroundView.imageView.touched;
     }
 
     @Override
@@ -1672,11 +1683,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         int i = Theme.key_premiumGradientBackgroundOverlay;
         actionBar.setItemsColor(Theme.getColor(i), false);
         this.actionBar.setItemsBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 60), false);
-        this.backgroundView.titleView.setTextColor(Theme.getColor(i));
-        this.backgroundView.subtitleView.setTextColor(Theme.getColor(i));
         this.particlesView.drawable.updateColors();
-        if (this.backgroundView.imageView.mRenderer != null) {
-            this.backgroundView.imageView.mRenderer.updateColors();
+        BackgroundView backgroundView = this.backgroundView;
+        if (backgroundView != null) {
+            backgroundView.titleView.setTextColor(Theme.getColor(i));
+            this.backgroundView.subtitleView.setTextColor(Theme.getColor(i));
+            if (this.backgroundView.imageView != null && this.backgroundView.imageView.mRenderer != null) {
+                this.backgroundView.imageView.mRenderer.updateColors();
+            }
         }
         updateBackgroundImage();
     }
@@ -1717,7 +1731,10 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     private void updateDialogVisibility(boolean z) {
         if (z != this.isDialogVisible) {
             this.isDialogVisible = z;
-            this.backgroundView.imageView.setDialogVisible(z);
+            BackgroundView backgroundView = this.backgroundView;
+            if (backgroundView != null && backgroundView.imageView != null) {
+                this.backgroundView.imageView.setDialogVisible(z);
+            }
             this.particlesView.setPaused(z);
             this.contentView.invalidate();
         }

@@ -2269,6 +2269,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 int i3 = Theme.key_actionBarDefault;
                 if (AndroidUtilities.computePerceivedBrightness(peerColorActivity2.getThemedColor(i3)) > 0.8f) {
                     this.emoji.setColor(Integer.valueOf(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, ((BaseFragment) PeerColorActivity.this).resourceProvider)));
+                } else if (AndroidUtilities.computePerceivedBrightness(PeerColorActivity.this.getThemedColor(i3)) < 0.2f) {
+                    this.emoji.setColor(Integer.valueOf(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultTitle, ((BaseFragment) PeerColorActivity.this).resourceProvider), 0.5f)));
                 } else {
                     this.emoji.setColor(Integer.valueOf(PeerColorActivity.adaptProfileEmojiColor(Theme.getColor(i3, ((BaseFragment) PeerColorActivity.this).resourceProvider))));
                 }
@@ -2296,6 +2298,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             int i = Theme.key_actionBarDefault;
             if (AndroidUtilities.computePerceivedBrightness(peerColorActivity.getThemedColor(i)) > 0.8f) {
                 this.emoji.setColor(Integer.valueOf(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, ((BaseFragment) PeerColorActivity.this).resourceProvider)));
+            } else if (AndroidUtilities.computePerceivedBrightness(PeerColorActivity.this.getThemedColor(i)) < 0.2f) {
+                this.emoji.setColor(Integer.valueOf(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultTitle, ((BaseFragment) PeerColorActivity.this).resourceProvider), 0.5f)));
             } else {
                 this.emoji.setColor(Integer.valueOf(PeerColorActivity.adaptProfileEmojiColor(Theme.getColor(i, ((BaseFragment) PeerColorActivity.this).resourceProvider))));
             }

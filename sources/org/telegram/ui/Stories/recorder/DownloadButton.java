@@ -30,6 +30,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.VideoEncodingService;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.ui.ActionBar.Theme;
@@ -408,6 +409,7 @@ public class DownloadButton extends ImageView {
                     }
                     if (longValue > 0) {
                         this.onDone.run();
+                        VideoEncodingService.stop();
                         stop(false);
                     }
                 }

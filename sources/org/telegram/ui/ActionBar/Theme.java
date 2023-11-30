@@ -7226,7 +7226,7 @@ public class Theme {
     }
 
     public static void applyServiceShaderMatrix(Bitmap bitmap, BitmapShader bitmapShader, Matrix matrix, int i, int i2, float f, float f2) {
-        if (bitmapShader == null) {
+        if (bitmapShader == null || matrix == null) {
             return;
         }
         float width = bitmap.getWidth();

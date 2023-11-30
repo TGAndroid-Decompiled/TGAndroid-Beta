@@ -48,6 +48,7 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 public class ChatCustomReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -129,7 +130,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
 
     @Override
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public android.view.View createView(android.content.Context r22) {
+    public android.view.View createView(android.content.Context r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -195,6 +196,30 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             str = LocaleController.formatPluralString("ReactionMaxCountError", this.maxReactionsCount, new Object[0]);
         }
         BulletinFactory.of(this).createErrorBulletin(str).show();
+    }
+
+    private void initSelectAnimatedEmojiDialog() {
+        if (this.selectAnimatedEmojiDialog != null) {
+            return;
+        }
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(this, getContext(), false, null, 6, false, getResourceProvider(), 16, Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, getResourceProvider()));
+        this.selectAnimatedEmojiDialog = anonymousClass4;
+        anonymousClass4.setAnimationsEnabled(false);
+        this.selectAnimatedEmojiDialog.setClipChildren(false);
+        this.selectAnimatedEmojiDialog.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.bottomDialogLayout.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -2, 80));
+        BackSpaceButtonView backSpaceButtonView = new BackSpaceButtonView(getContext(), getResourceProvider());
+        this.backSpaceButtonView = backSpaceButtonView;
+        backSpaceButtonView.setOnBackspace(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ChatCustomReactionsEditActivity.this.lambda$initSelectAnimatedEmojiDialog$8((Boolean) obj);
+            }
+        });
+        this.bottomDialogLayout.addView(this.backSpaceButtonView, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
+        for (Long l : this.selectedEmojisIds) {
+            this.selectAnimatedEmojiDialog.setMultiSelected(l, false);
+        }
     }
 
     public class AnonymousClass4 extends SelectAnimatedEmojiDialog {
@@ -273,8 +298,11 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
     }
 
-    public void lambda$createView$8(Boolean bool) {
+    public void lambda$initSelectAnimatedEmojiDialog$8(Boolean bool) {
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
+        if (deleteSelectedEmojis()) {
+            return;
+        }
         final int editTextSelectionEnd = this.editText.getEditTextSelectionEnd();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
         for (final AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
@@ -291,7 +319,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 animatedEmojiSpan.setRemoved(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatCustomReactionsEditActivity.this.lambda$createView$7(animatedEmojiSpan, editTextSelectionEnd);
+                        ChatCustomReactionsEditActivity.this.lambda$initSelectAnimatedEmojiDialog$7(animatedEmojiSpan, editTextSelectionEnd);
                     }
                 });
                 animateChangesInNextRows(animatedEmojiSpan);
@@ -301,7 +329,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
     }
 
-    public void lambda$createView$7(AnimatedEmojiSpan animatedEmojiSpan, int i) {
+    public void lambda$initSelectAnimatedEmojiDialog$7(AnimatedEmojiSpan animatedEmojiSpan, int i) {
         Editable text = this.editText.getText();
         int spanStart = text.getSpanStart(animatedEmojiSpan);
         int spanEnd = text.getSpanEnd(animatedEmojiSpan);
@@ -326,6 +354,24 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
     }
 
+    public boolean deleteSelectedEmojis() {
+        int editTextSelectionEnd = this.editText.getEditTextSelectionEnd();
+        int editTextSelectionStart = this.editText.getEditTextSelectionStart();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
+        if (this.editText.hasSelection()) {
+            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(editTextSelectionStart, editTextSelectionEnd, AnimatedEmojiSpan.class);
+            for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
+                this.selectedEmojisMap.remove(Long.valueOf(animatedEmojiSpan.documentId));
+                this.selectedEmojisIds.remove(Long.valueOf(animatedEmojiSpan.documentId));
+                this.selectAnimatedEmojiDialog.unselect(Long.valueOf(animatedEmojiSpan.documentId));
+            }
+            this.editText.dispatchKeyEvent(new KeyEvent(0, 67));
+            checkMaxCustomReactions(false);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean canBeginSlide() {
         if (checkChangesBeforeExit()) {
@@ -343,6 +389,16 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         if (!z || z2) {
             return;
         }
+        initSelectAnimatedEmojiDialog();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatCustomReactionsEditActivity.lambda$onTransitionAnimationEnd$9();
+            }
+        }, 200L);
+    }
+
+    public static void lambda$onTransitionAnimationEnd$9() {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
     }
 
@@ -442,14 +498,14 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatCustomReactionsEditActivity.this.lambda$onResume$9();
+                        ChatCustomReactionsEditActivity.this.lambda$onResume$10();
                     }
                 }, 250L);
             }
         }
     }
 
-    public void lambda$onResume$9() {
+    public void lambda$onResume$10() {
         this.editText.requestFocus();
     }
 
@@ -482,13 +538,13 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$10(dialogInterface, i);
+                    ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$11(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Discard", R.string.Discard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$11(dialogInterface, i);
+                    ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$12(dialogInterface, i);
                 }
             });
             builder.show();
@@ -496,11 +552,11 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         return z2;
     }
 
-    public void lambda$checkChangesBeforeExit$10(DialogInterface dialogInterface, int i) {
+    public void lambda$checkChangesBeforeExit$11(DialogInterface dialogInterface, int i) {
         this.actionButton.performClick();
     }
 
-    public void lambda$checkChangesBeforeExit$11(DialogInterface dialogInterface, int i) {
+    public void lambda$checkChangesBeforeExit$12(DialogInterface dialogInterface, int i) {
         finishFragment();
     }
 
@@ -557,6 +613,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             return;
         }
         this.emojiKeyboardVisible = true;
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
         updateScrollViewMarginBottom(this.bottomDialogLayout.getMeasuredHeight());
         this.bottomDialogLayout.setVisibility(0);
         FrameLayout frameLayout = this.bottomDialogLayout;
@@ -565,17 +622,18 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         this.bottomDialogLayout.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatCustomReactionsEditActivity.this.lambda$showKeyboard$12(valueAnimator);
+                ChatCustomReactionsEditActivity.this.lambda$showKeyboard$13(valueAnimator);
             }
         }).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
                 ChatCustomReactionsEditActivity.this.scrollView.fullScroll(130);
             }
         }).start();
     }
 
-    public void lambda$showKeyboard$12(ValueAnimator valueAnimator) {
+    public void lambda$showKeyboard$13(ValueAnimator valueAnimator) {
         this.actionButton.setTranslationY((-((Float) valueAnimator.getAnimatedValue()).floatValue()) * this.bottomDialogLayout.getMeasuredHeight());
     }
 
@@ -588,7 +646,12 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatCustomReactionsEditActivity.this.lambda$closeKeyboard$13(valueAnimator);
+                    ChatCustomReactionsEditActivity.this.lambda$closeKeyboard$14(valueAnimator);
+                }
+            }).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
                 }
             }).start();
             return true;
@@ -596,7 +659,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         return false;
     }
 
-    public void lambda$closeKeyboard$13(ValueAnimator valueAnimator) {
+    public void lambda$closeKeyboard$14(ValueAnimator valueAnimator) {
         this.actionButton.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * this.bottomDialogLayout.getMeasuredHeight());
     }
 

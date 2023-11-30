@@ -1507,7 +1507,8 @@ public class StoriesController {
         }
         if (j != UserConfig.getInstance(this.currentAccount).getClientUserId() || Utilities.isNullOrEmpty(this.uploadingStoriesByDialogId.get(j))) {
             for (int i = 0; i < tL_stories$PeerStories.stories.size(); i++) {
-                if (tL_stories$PeerStories.stories.get(i).id > tL_stories$PeerStories.max_read_id) {
+                TL_stories$StoryItem tL_stories$StoryItem = tL_stories$PeerStories.stories.get(i);
+                if (tL_stories$StoryItem != null && tL_stories$StoryItem.id > tL_stories$PeerStories.max_read_id) {
                     return true;
                 }
             }

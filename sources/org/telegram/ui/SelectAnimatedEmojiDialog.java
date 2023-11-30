@@ -2624,7 +2624,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             createImageReceiver(view);
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
             if (SelectAnimatedEmojiDialog.this.type == 6) {
-                this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "34_34_firstframe", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), null, svgThumb, tLRPC$Document.size, null, tLRPC$Document, 0);
+                this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), !LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD) ? "34_34_firstframe" : "34_34", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), null, svgThumb, tLRPC$Document.size, null, tLRPC$Document, 0);
             } else {
                 this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "100_100_firstframe", null, null, svgThumb, 0L, "tgs", tLRPC$Document, 0);
             }
@@ -2862,7 +2862,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         int i = this.type;
         if (i != 5 && i != 7) {
             if (i == 6) {
-                return 16;
+                return AnimatedEmojiDrawable.getCacheTypeForEnterView();
             }
             if (i != 3 && i != 4) {
                 return (i == 0 || i == 2) ? 2 : 3;
