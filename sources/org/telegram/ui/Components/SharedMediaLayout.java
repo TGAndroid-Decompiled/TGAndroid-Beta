@@ -5722,6 +5722,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         SharedMediaLayout.ChannelRecommendationsAdapter.this.lambda$onCreateViewHolder$0();
                     }
                 });
+                profileSearchCell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        SharedMediaLayout.ChannelRecommendationsAdapter.this.lambda$onCreateViewHolder$1(view);
+                    }
+                });
             } else {
                 profileSearchCell = new ProfileSearchCell(this.mContext, SharedMediaLayout.this.resourcesProvider);
             }
@@ -5733,6 +5739,16 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             if (SharedMediaLayout.this.profileActivity != null) {
                 SharedMediaLayout.this.profileActivity.presentFragment(new PremiumPreviewFragment("similar_channels"));
             }
+        }
+
+        public void lambda$onCreateViewHolder$1(View view) {
+            if (this.chats.size() <= 0) {
+                return;
+            }
+            Bundle bundle = new Bundle();
+            ArrayList<TLRPC$Chat> arrayList = this.chats;
+            bundle.putLong("chat_id", arrayList.get(arrayList.size() - 1).id);
+            SharedMediaLayout.this.profileActivity.presentFragment(new ChatActivity(bundle));
         }
 
         @Override
@@ -5762,11 +5778,17 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         private final Theme.ResourcesProvider resourcesProvider;
         private final LinkSpanDrawable.LinksTextView textView;
 
+        @Override
+        public void setOnClickListener(View.OnClickListener onClickListener) {
+            this.channelCell.setOnClickListener(onClickListener);
+        }
+
         public MoreRecommendationsCell(int i, Context context, Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
             super(context);
             this.resourcesProvider = resourcesProvider;
             ProfileSearchCell profileSearchCell = new ProfileSearchCell(context, resourcesProvider);
             this.channelCell = profileSearchCell;
+            profileSearchCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2));
             addView(profileSearchCell, LayoutHelper.createFrame(-1, -2.0f));
             View view = new View(context);
             this.gradientView = view;

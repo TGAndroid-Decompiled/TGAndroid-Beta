@@ -134,7 +134,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     private int selectedGradientRotation;
     private float selectedIntensity;
     private NumberTextView selectedMessagesCountTextView;
-    private LongSparseArray<Object> selectedWallPapers;
+    private final LongSparseArray<Object> selectedWallPapers;
     private int setColorRow;
     private FileWallpaper themeWallpaper;
     private int totalWallpaperRows;
@@ -350,7 +350,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new FileWallpaper("", file, file), bitmap);
                 themePreviewActivity.setDialogId(WallpapersListActivity.this.dialogId);
                 if (WallpapersListActivity.this.dialogId != 0) {
-                    themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda8(WallpapersListActivity.this));
+                    themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda9(WallpapersListActivity.this));
                 }
                 WallpapersListActivity.this.presentFragment(themePreviewActivity, z);
             }
@@ -894,10 +894,10 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
         String wallPaperSlug = getWallPaperSlug(obj2);
         boolean z2 = obj2 instanceof TLRPC$TL_wallPaper;
-        Object obj4 = obj2;
+        ColorWallpaper colorWallpaper = obj2;
         if (z2) {
             TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) obj2;
-            obj4 = obj2;
+            colorWallpaper = obj2;
             if (tLRPC$TL_wallPaper.pattern) {
                 String str = tLRPC$TL_wallPaper.slug;
                 TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$TL_wallPaper.settings;
@@ -907,22 +907,46 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 int i6 = tLRPC$WallPaperSettings.fourth_background_color;
                 int wallpaperRotation = AndroidUtilities.getWallpaperRotation(tLRPC$WallPaperSettings.rotation, false);
                 TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$TL_wallPaper.settings;
-                ColorWallpaper colorWallpaper = new ColorWallpaper(str, i3, i4, i5, i6, wallpaperRotation, tLRPC$WallPaperSettings2.intensity / 100.0f, tLRPC$WallPaperSettings2.motion, null);
-                colorWallpaper.pattern = tLRPC$TL_wallPaper;
-                colorWallpaper.parentWallpaper = tLRPC$TL_wallPaper;
-                obj4 = colorWallpaper;
+                ColorWallpaper colorWallpaper2 = new ColorWallpaper(str, i3, i4, i5, i6, wallpaperRotation, tLRPC$WallPaperSettings2.intensity / 100.0f, tLRPC$WallPaperSettings2.motion, null);
+                colorWallpaper2.pattern = tLRPC$TL_wallPaper;
+                colorWallpaper2.parentWallpaper = tLRPC$TL_wallPaper;
+                colorWallpaper = colorWallpaper2;
             }
         }
-        ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(obj4, null, true, false);
+        ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, colorWallpaper, null, true, false) {
+            @Override
+            public boolean insideBottomSheet() {
+                return true;
+            }
+        };
         if (this.currentType == 1 || this.dialogId != 0) {
-            themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda8(this));
+            themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda9(this));
         }
         if (this.selectedBackgroundSlug.equals(wallPaperSlug)) {
             themePreviewActivity.setInitialModes(this.selectedBackgroundBlurred, this.selectedBackgroundMotion, this.selectedIntensity);
         }
         themePreviewActivity.setPatterns(this.patterns);
         themePreviewActivity.setDialogId(this.dialogId);
-        presentFragment(themePreviewActivity);
+        showAsSheet(themePreviewActivity);
+    }
+
+    private void showAsSheet(ThemePreviewActivity themePreviewActivity) {
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        themePreviewActivity.setResourceProvider(this.resourceProvider);
+        bottomSheetParams.onOpenAnimationFinished = new Runnable() {
+            @Override
+            public final void run() {
+                WallpapersListActivity.lambda$showAsSheet$5();
+            }
+        };
+        bottomSheetParams.occupyNavigationBar = true;
+        showAsSheet(themePreviewActivity, bottomSheetParams);
+    }
+
+    public static void lambda$showAsSheet$5() {
+        PhotoViewer.getInstance().closePhoto(false, false);
     }
 
     private String getWallPaperSlug(Object obj) {
@@ -1066,21 +1090,21 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getWallPapers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                WallpapersListActivity.this.lambda$loadWallpapers$6(z, tLObject, tLRPC$TL_error);
+                WallpapersListActivity.this.lambda$loadWallpapers$7(z, tLObject, tLRPC$TL_error);
             }
         }), this.classGuid);
     }
 
-    public void lambda$loadWallpapers$6(final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadWallpapers$7(final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WallpapersListActivity.this.lambda$loadWallpapers$5(tLObject, z);
+                WallpapersListActivity.this.lambda$loadWallpapers$6(tLObject, z);
             }
         });
     }
 
-    public void lambda$loadWallpapers$5(TLObject tLObject, boolean z) {
+    public void lambda$loadWallpapers$6(TLObject tLObject, boolean z) {
         ColorWallpaper colorWallpaper;
         int i;
         TLRPC$WallPaperSettings tLRPC$WallPaperSettings;
@@ -1252,9 +1276,9 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             Collections.sort(this.wallPapers, new Comparator() {
                 @Override
                 public final int compare(Object obj4, Object obj5) {
-                    int lambda$fillWallpapersWithCustom$7;
-                    lambda$fillWallpapersWithCustom$7 = WallpapersListActivity.this.lambda$fillWallpapersWithCustom$7(j, str, isDark, obj4, obj5);
-                    return lambda$fillWallpapersWithCustom$7;
+                    int lambda$fillWallpapersWithCustom$8;
+                    lambda$fillWallpapersWithCustom$8 = WallpapersListActivity.this.lambda$fillWallpapersWithCustom$8(j, str, isDark, obj4, obj5);
+                    return lambda$fillWallpapersWithCustom$8;
                 }
             });
         } catch (Exception e) {
@@ -1314,7 +1338,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         updateRows();
     }
 
-    public int lambda$fillWallpapersWithCustom$7(long j, String str, boolean z, Object obj, Object obj2) {
+    public int lambda$fillWallpapersWithCustom$8(long j, String str, boolean z, Object obj, Object obj2) {
         if (obj instanceof ColorWallpaper) {
             obj = ((ColorWallpaper) obj).parentWallpaper;
         }

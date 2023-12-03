@@ -204,7 +204,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             }
         });
         this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", R.string.Done).toUpperCase());
-        this.fragmentView = new ScrollView(context);
+        ScrollView scrollView = new ScrollView(context);
+        this.fragmentView = scrollView;
+        scrollView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);

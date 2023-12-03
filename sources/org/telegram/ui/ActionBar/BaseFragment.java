@@ -889,6 +889,8 @@ public abstract class BaseFragment {
             BottomSheetParams bottomSheetParams = this.val$params;
             if (bottomSheetParams == null || !bottomSheetParams.occupyNavigationBar) {
                 fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
+            } else {
+                AndroidUtilities.setLightNavigationBar(this.val$bottomSheet[0].getWindow(), true);
             }
             AndroidUtilities.setLightStatusBar(getWindow(), this.val$fragment.isLightStatusBar());
             this.val$fragment.onBottomSheetCreated();

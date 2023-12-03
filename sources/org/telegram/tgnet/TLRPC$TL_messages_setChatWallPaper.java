@@ -4,6 +4,7 @@ public class TLRPC$TL_messages_setChatWallPaper extends TLObject {
     public boolean for_both;
     public int id;
     public TLRPC$InputPeer peer;
+    public boolean revert;
     public TLRPC$WallPaperSettings settings;
     public TLRPC$InputWallPaper wallpaper;
 
@@ -17,7 +18,9 @@ public class TLRPC$TL_messages_setChatWallPaper extends TLObject {
         abstractSerializedData.writeInt32(-1879389471);
         int i = this.for_both ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
-        abstractSerializedData.writeInt32(i);
+        int i2 = this.revert ? i | 16 : i & (-17);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
             this.wallpaper.serializeToStream(abstractSerializedData);

@@ -176,6 +176,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     public static ArrayList<StoryViewer> globalInstances = new ArrayList<>();
     private static boolean checkSilentMode = true;
     private static final LongSparseArray<CharSequence> replyDrafts = new LongSparseArray<>();
+    static int J = 0;
     public boolean USE_SURFACE_VIEW = SharedConfig.useSurfaceInStories;
     public boolean ATTACH_TO_FRAGMENT = true;
     public boolean foundViewToClose = false;
@@ -253,6 +254,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public StoryViewer(BaseFragment baseFragment) {
+        J++;
         new Paint(1);
         this.fragment = baseFragment;
     }

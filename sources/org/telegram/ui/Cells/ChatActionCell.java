@@ -1168,6 +1168,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return f;
     }
 
+    public boolean showingCancelButton() {
+        RadialProgress2 radialProgress2 = this.radialProgress;
+        return radialProgress2 != null && radialProgress2.getIcon() == 3;
+    }
+
     public int getCustomDate() {
         return this.customDate;
     }

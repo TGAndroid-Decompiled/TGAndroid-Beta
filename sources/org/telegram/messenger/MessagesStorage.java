@@ -82,8 +82,10 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
+import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported_old;
+import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_message_secret;
 import org.telegram.tgnet.TLRPC$TL_messages_botCallbackAnswer;
@@ -100,6 +102,7 @@ import org.telegram.tgnet.TLRPC$TL_userStatusLastMonth;
 import org.telegram.tgnet.TLRPC$TL_userStatusLastWeek;
 import org.telegram.tgnet.TLRPC$TL_userStatusRecently;
 import org.telegram.tgnet.TLRPC$TL_username;
+import org.telegram.tgnet.TLRPC$TL_webPageAttributeStory;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
@@ -109,6 +112,8 @@ import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.tgnet.TLRPC$messages_Dialogs;
 import org.telegram.tgnet.TLRPC$messages_Messages;
+import org.telegram.tgnet.tl.TL_stories$StoryFwdHeader;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 public class MessagesStorage extends BaseController {
@@ -7133,6 +7138,11 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         TLRPC$Peer tLRPC$Peer;
         TLRPC$Peer tLRPC$Peer2;
+        TLRPC$WebPage tLRPC$WebPage;
+        TL_stories$StoryItem tL_stories$StoryItem;
+        TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader;
+        TL_stories$StoryItem tL_stories$StoryItem2;
+        TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader2;
         long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
         if (DialogObject.isUserDialog(fromChatId)) {
             if (!arrayList.contains(Long.valueOf(fromChatId))) {
@@ -7218,6 +7228,18 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             }
+            TLRPC$MessageMedia tLRPC$MessageMedia4 = tLRPC$Message.media;
+            if ((tLRPC$MessageMedia4 instanceof TLRPC$TL_messageMediaStory) && (tL_stories$StoryItem2 = tLRPC$MessageMedia4.storyItem) != null && (tL_stories$StoryFwdHeader2 = tL_stories$StoryItem2.fwd_from) != null) {
+                addLoadPeerInfo(tL_stories$StoryFwdHeader2.from, arrayList, arrayList2);
+            }
+            TLRPC$MessageMedia tLRPC$MessageMedia5 = tLRPC$Message.media;
+            if ((tLRPC$MessageMedia5 instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = tLRPC$MessageMedia5.webpage) != null && tLRPC$WebPage.attributes != null) {
+                for (int i4 = 0; i4 < tLRPC$Message.media.webpage.attributes.size(); i4++) {
+                    if ((tLRPC$Message.media.webpage.attributes.get(i4) instanceof TLRPC$TL_webPageAttributeStory) && (tL_stories$StoryItem = ((TLRPC$TL_webPageAttributeStory) tLRPC$Message.media.webpage.attributes.get(i4)).storyItem) != null && (tL_stories$StoryFwdHeader = tL_stories$StoryItem.fwd_from) != null) {
+                        addLoadPeerInfo(tL_stories$StoryFwdHeader.from, arrayList, arrayList2);
+                    }
+                }
+            }
             TLRPC$Peer tLRPC$Peer3 = tLRPC$Message.media.peer;
             if (tLRPC$Peer3 != null) {
                 addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
@@ -7226,8 +7248,8 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;
         if (tLRPC$MessageReplies != null) {
             int size = tLRPC$MessageReplies.recent_repliers.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                addLoadPeerInfo(tLRPC$Message.replies.recent_repliers.get(i4), arrayList, arrayList2);
+            for (int i5 = 0; i5 < size; i5++) {
+                addLoadPeerInfo(tLRPC$Message.replies.recent_repliers.get(i5), arrayList, arrayList2);
             }
         }
         TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
@@ -7257,7 +7279,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private static void addLoadPeerInfo(TLRPC$Peer tLRPC$Peer, ArrayList<Long> arrayList, ArrayList<Long> arrayList2) {
+    public static void addLoadPeerInfo(TLRPC$Peer tLRPC$Peer, ArrayList<Long> arrayList, ArrayList<Long> arrayList2) {
         if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
             if (arrayList.contains(Long.valueOf(tLRPC$Peer.user_id))) {
                 return;

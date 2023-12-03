@@ -449,18 +449,25 @@ public class ChatThemeController extends BaseController {
     }
 
     public void clearWallpaper(long j, boolean z) {
+        clearWallpaper(j, z, false);
+    }
+
+    public void clearWallpaper(long j, boolean z, boolean z2) {
         TLRPC$TL_messages_setChatWallPaper tLRPC$TL_messages_setChatWallPaper = new TLRPC$TL_messages_setChatWallPaper();
         if (j >= 0) {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)));
-            TLRPC$UserFull userFull = getMessagesController().getUserFull(j);
-            if (userFull != null) {
-                userFull.wallpaper = null;
-                userFull.flags &= -16777217;
-                getMessagesStorage().updateUserInfo(userFull, false);
-            }
-            saveChatWallpaper(j, null);
-            if (z) {
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+            tLRPC$TL_messages_setChatWallPaper.revert = z2;
+            if (!z2) {
+                TLRPC$UserFull userFull = getMessagesController().getUserFull(j);
+                if (userFull != null) {
+                    userFull.wallpaper = null;
+                    userFull.flags &= -16777217;
+                    getMessagesStorage().updateUserInfo(userFull, false);
+                }
+                saveChatWallpaper(j, null);
+                if (z) {
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+                }
             }
         } else {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));

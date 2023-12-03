@@ -38,7 +38,7 @@ import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
 import org.telegram.ui.Components.Reactions.HwEmojis;
 public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
-    private int accentColor;
+    private final int accentColor;
     public boolean animateAppear;
     private int animatedEmojiCacheType;
     private ValueAnimator appearAnimation;
@@ -1065,13 +1065,20 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         }
 
         public void updateLockImageReceiver() {
-            ImageReceiver imageReceiver;
             PremiumLockIconView premiumLockIconView = this.lockView;
-            if (premiumLockIconView == null || premiumLockIconView.ready() || !(getDrawable() instanceof AnimatedEmojiDrawable) || (imageReceiver = ((AnimatedEmojiDrawable) getDrawable()).getImageReceiver()) == null) {
+            if (premiumLockIconView == null || premiumLockIconView.ready() || !(getDrawable() instanceof AnimatedEmojiDrawable)) {
                 return;
             }
-            this.lockView.setImageReceiver(imageReceiver);
-            this.lockView.invalidate();
+            if (((AnimatedEmojiDrawable) getDrawable()).canOverrideColor()) {
+                this.lockView.setImageReceiver(null);
+                this.lockView.setColor(EmojiTabsStrip.this.accentColor);
+                return;
+            }
+            ImageReceiver imageReceiver = ((AnimatedEmojiDrawable) getDrawable()).getImageReceiver();
+            if (imageReceiver != null) {
+                this.lockView.setImageReceiver(imageReceiver);
+                this.lockView.invalidate();
+            }
         }
 
         @Override

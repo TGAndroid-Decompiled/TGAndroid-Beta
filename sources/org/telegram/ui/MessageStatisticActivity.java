@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
@@ -66,8 +67,10 @@ import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_publicForwardStory;
 import org.telegram.tgnet.tl.TL_stories$TL_stats_getStoryStats;
 import org.telegram.tgnet.tl.TL_stories$TL_stats_storyStats;
+import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -81,6 +84,7 @@ import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.data.StackLinearChartData;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.EmptyTextProgressView;
@@ -292,6 +296,14 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
     }
 
+    public boolean checkIsDeletedStory(MessageObject messageObject) {
+        if (messageObject != null && messageObject.isStory() && (messageObject.storyItem instanceof TL_stories$TL_storyItemDeleted)) {
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString("StoryNotFound", R.string.StoryNotFound)).show();
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public View createView(Context context) {
         CharSequence charSequence;
@@ -347,6 +359,14 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             @Override
             public final void onItemClick(View view, int i3) {
                 MessageStatisticActivity.this.lambda$createView$0(view, i3);
+            }
+        });
+        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+            @Override
+            public final boolean onItemClick(View view, int i3) {
+                boolean lambda$createView$2;
+                lambda$createView$2 = MessageStatisticActivity.this.lambda$createView$2(view, i3);
+                return lambda$createView$2;
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -480,7 +500,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         this.avatarContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageStatisticActivity.this.lambda$createView$1(view);
+                MessageStatisticActivity.this.lambda$createView$3(view);
             }
         });
         updateMenu();
@@ -494,6 +514,10 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
         MessageObject messageObject = this.messages.get(i - i2);
         if (messageObject.isStory()) {
+            if (checkIsDeletedStory(messageObject)) {
+                return;
+            }
+            getOrCreateStoryViewer().open(getContext(), messageObject.storyItem, StoriesListPlaceProvider.of(this.listView));
             return;
         }
         long dialogId = MessageObject.getDialogId(messageObject.messageOwner);
@@ -510,7 +534,66 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
     }
 
-    public void lambda$createView$1(View view) {
+    public boolean lambda$createView$2(View view, int i) {
+        int i2;
+        String str;
+        if (i >= this.startRow && i < this.endRow) {
+            try {
+                view.performHapticFeedback(0, 2);
+            } catch (Exception unused) {
+            }
+            final MessageObject messageObject = this.messages.get(i - this.startRow);
+            final long dialogId = MessageObject.getDialogId(messageObject.messageOwner);
+            final boolean isUserDialog = DialogObject.isUserDialog(dialogId);
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), getResourceProvider());
+            if (messageObject.isStory()) {
+                if (isUserDialog) {
+                    i2 = R.string.OpenProfile;
+                    str = "OpenProfile";
+                } else {
+                    i2 = R.string.OpenChannel2;
+                    str = "OpenChannel2";
+                }
+                arrayList.add(LocaleController.getString(str, i2));
+                arrayList3.add(Integer.valueOf(isUserDialog ? R.drawable.msg_openprofile : R.drawable.msg_channel));
+            } else {
+                arrayList.add(LocaleController.getString("ViewMessage", R.string.ViewMessage));
+                arrayList3.add(Integer.valueOf(R.drawable.msg_msgbubble3));
+            }
+            arrayList2.add(0);
+            builder.setItems((CharSequence[]) arrayList.toArray(new CharSequence[arrayList2.size()]), AndroidUtilities.toIntArray(arrayList3), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i3) {
+                    MessageStatisticActivity.this.lambda$createView$1(messageObject, isUserDialog, dialogId, dialogInterface, i3);
+                }
+            });
+            showDialog(builder.create());
+        }
+        return false;
+    }
+
+    public void lambda$createView$1(MessageObject messageObject, boolean z, long j, DialogInterface dialogInterface, int i) {
+        if (messageObject.isStory()) {
+            presentFragment(z ? ProfileActivity.of(j) : ChatActivity.of(j));
+            return;
+        }
+        Bundle bundle = new Bundle();
+        if (z) {
+            bundle.putLong("user_id", j);
+        } else {
+            bundle.putLong("chat_id", -j);
+        }
+        bundle.putInt("message_id", messageObject.getId());
+        bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+        if (getMessagesController().checkCanOpenChat(bundle, this)) {
+            presentFragment(new ChatActivity(bundle));
+        }
+    }
+
+    public void lambda$createView$3(View view) {
         if (this.messageObject.isStory()) {
             return;
         }
@@ -584,7 +667,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getStoryPublicForwards, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessageStatisticActivity.this.lambda$loadChats$3(tLObject, tLRPC$TL_error);
+                    MessageStatisticActivity.this.lambda$loadChats$5(tLObject, tLRPC$TL_error);
                 }
             }, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
             return;
@@ -612,21 +695,21 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getMessagePublicForwards, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessageStatisticActivity.this.lambda$loadChats$5(tLObject, tLRPC$TL_error);
+                MessageStatisticActivity.this.lambda$loadChats$7(tLObject, tLRPC$TL_error);
             }
         }, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
     }
 
-    public void lambda$loadChats$3(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadChats$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadChats$2(tLRPC$TL_error, tLObject);
+                MessageStatisticActivity.this.lambda$loadChats$4(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadChats$2(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$loadChats$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error == null) {
             TLRPC$TL_stats_publicForwards tLRPC$TL_stats_publicForwards = (TLRPC$TL_stats_publicForwards) tLObject;
             if ((tLRPC$TL_stats_publicForwards.flags & 1) != 0) {
@@ -668,16 +751,16 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         updateRows();
     }
 
-    public void lambda$loadChats$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadChats$7(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadChats$4(tLRPC$TL_error, tLObject);
+                MessageStatisticActivity.this.lambda$loadChats$6(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadChats$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$loadChats$6(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error == null) {
             TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
             if ((tLRPC$messages_Messages.flags & 1) != 0) {
@@ -729,21 +812,21 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         getConnectionsManager().sendRequest(tLRPC$TL_stats_getMessageStats, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessageStatisticActivity.this.lambda$loadStat$10(tLObject, tLRPC$TL_error);
+                MessageStatisticActivity.this.lambda$loadStat$12(tLObject, tLRPC$TL_error);
             }
         }, null, null, 0, this.chat.stats_dc, 1, true);
     }
 
-    public void lambda$loadStat$10(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStat$12(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, tLObject);
+                MessageStatisticActivity.this.lambda$loadStat$11(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadStat$9(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$loadStat$11(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         TLRPC$StatsGraph tLRPC$StatsGraph;
         TLRPC$StatsGraph tLRPC$StatsGraph2;
         this.statsLoaded = true;
@@ -775,7 +858,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stats_loadAsyncGraph, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                    MessageStatisticActivity.this.lambda$loadStat$8(str, tLRPC$TL_stats_loadAsyncGraph, tLObject2, tLRPC$TL_error2);
+                    MessageStatisticActivity.this.lambda$loadStat$10(str, tLRPC$TL_stats_loadAsyncGraph, tLObject2, tLRPC$TL_error2);
                 }
             }, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
             return;
@@ -783,7 +866,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         updateRows();
     }
 
-    public void lambda$loadStat$8(final String str, final TLRPC$TL_stats_loadAsyncGraph tLRPC$TL_stats_loadAsyncGraph, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStat$10(final String str, final TLRPC$TL_stats_loadAsyncGraph tLRPC$TL_stats_loadAsyncGraph, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         ChartData chartData = null;
         if (tLObject instanceof TLRPC$TL_statsGraph) {
             try {
@@ -795,7 +878,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessageStatisticActivity.this.lambda$loadStat$6(tLObject);
+                    MessageStatisticActivity.this.lambda$loadStat$8(tLObject);
                 }
             });
         }
@@ -803,18 +886,18 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadStat$7(tLRPC$TL_error, chartData2, str, tLRPC$TL_stats_loadAsyncGraph);
+                MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, chartData2, str, tLRPC$TL_stats_loadAsyncGraph);
             }
         });
     }
 
-    public void lambda$loadStat$6(TLObject tLObject) {
+    public void lambda$loadStat$8(TLObject tLObject) {
         if (getParentActivity() != null) {
             Toast.makeText(getParentActivity(), ((TLRPC$TL_statsGraphError) tLObject).error, 1).show();
         }
     }
 
-    public void lambda$loadStat$7(TLRPC$TL_error tLRPC$TL_error, ChartData chartData, String str, TLRPC$TL_stats_loadAsyncGraph tLRPC$TL_stats_loadAsyncGraph) {
+    public void lambda$loadStat$9(TLRPC$TL_error tLRPC$TL_error, ChartData chartData, String str, TLRPC$TL_stats_loadAsyncGraph tLRPC$TL_stats_loadAsyncGraph) {
         this.statsLoaded = true;
         if (tLRPC$TL_error != null || chartData == null) {
             updateRows();
@@ -1007,6 +1090,9 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
 
         public void lambda$onBindViewHolder$0(MessageObject messageObject, View view) {
+            if (MessageStatisticActivity.this.checkIsDeletedStory(messageObject)) {
+                return;
+            }
             MessageStatisticActivity.this.getOrCreateStoryViewer().open(MessageStatisticActivity.this.getContext(), messageObject.storyItem, StoriesListPlaceProvider.of(MessageStatisticActivity.this.listView));
         }
 
@@ -1136,7 +1222,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                MessageStatisticActivity.this.lambda$getThemeDescriptions$11();
+                MessageStatisticActivity.this.lambda$getThemeDescriptions$13();
             }
 
             @Override
@@ -1177,7 +1263,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$11() {
+    public void lambda$getThemeDescriptions$13() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

@@ -1,5 +1,7 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -1602,7 +1604,15 @@ public class ChatRightsEditActivity extends BaseFragment {
 
     public boolean lambda$onDonePressed$17(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
-        return true;
+        if (tLRPC$TL_error == null || !"USER_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
+            return true;
+        }
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 11, this.currentAccount, getResourceProvider());
+        ArrayList<TLRPC$User> arrayList = new ArrayList<>();
+        arrayList.add(this.currentUser);
+        limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList);
+        limitReachedBottomSheet.show();
+        return false;
     }
 
     public void lambda$onDonePressed$21(DialogInterface dialogInterface, int i) {
@@ -1674,13 +1684,13 @@ public class ChatRightsEditActivity extends BaseFragment {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.loading = !z ? 1 : 0;
-        this.actionBar.getBackButton().setEnabled(!z ? 1 : 0);
+        this.loading = z;
+        this.actionBar.getBackButton().setEnabled(!this.loading);
         CrossfadeDrawable crossfadeDrawable = this.doneDrawable;
         if (crossfadeDrawable != null) {
             float[] fArr = new float[2];
             fArr[0] = crossfadeDrawable.getProgress();
-            fArr[1] = z ? 1.0f : 0.0f;
+            fArr[1] = this.loading ? 1.0f : 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
             this.doneDrawableAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -1689,7 +1699,14 @@ public class ChatRightsEditActivity extends BaseFragment {
                     ChatRightsEditActivity.this.lambda$setLoading$22(valueAnimator2);
                 }
             });
-            this.doneDrawableAnimator.setDuration(Math.abs(this.doneDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 150.0f);
+            this.doneDrawableAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationCancel(Animator animator) {
+                    ChatRightsEditActivity.this.doneDrawable.setProgress(ChatRightsEditActivity.this.loading ? 1.0f : 0.0f);
+                    ChatRightsEditActivity.this.doneDrawable.invalidateSelf();
+                }
+            });
+            this.doneDrawableAnimator.setDuration(Math.abs(this.doneDrawable.getProgress() - (this.loading ? 1.0f : 0.0f)) * 150.0f);
             this.doneDrawableAnimator.start();
         }
     }

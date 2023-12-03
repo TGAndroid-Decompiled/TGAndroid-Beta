@@ -121,12 +121,12 @@ public class CustomReactionEditText extends EditTextCaption {
 
     public void removeReactionsSpan(boolean z) {
         AddReactionsSpan[] addReactionsSpanArr;
-        final SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (final AddReactionsSpan addReactionsSpan : (AddReactionsSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AddReactionsSpan.class)) {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    CustomReactionEditText.this.lambda$removeReactionsSpan$1(spannableStringBuilder, addReactionsSpan);
+                    CustomReactionEditText.this.lambda$removeReactionsSpan$1(addReactionsSpan);
                 }
             };
             if (z) {
@@ -138,8 +138,8 @@ public class CustomReactionEditText extends EditTextCaption {
         }
     }
 
-    public void lambda$removeReactionsSpan$1(SpannableStringBuilder spannableStringBuilder, AddReactionsSpan addReactionsSpan) {
-        getText().delete(spannableStringBuilder.getSpanStart(addReactionsSpan), spannableStringBuilder.getSpanEnd(addReactionsSpan));
+    public void lambda$removeReactionsSpan$1(AddReactionsSpan addReactionsSpan) {
+        getText().delete(getText().getSpanStart(addReactionsSpan), getText().getSpanEnd(addReactionsSpan));
         setCursorVisible(true);
         setLongClickable(true);
     }

@@ -1647,7 +1647,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     z2 = true;
                 }
             } else if (childAt instanceof ChatActionCell) {
-                ((ChatActionCell) childAt).setVisiblePart((childAt.getY() + this.actionBar.getMeasuredHeight()) - this.contentView.getBackgroundTranslationY(), this.contentView.getBackgroundSizeY());
+                ChatActionCell chatActionCell = (ChatActionCell) childAt;
+                chatActionCell.setVisiblePart((childAt.getY() + this.actionBar.getMeasuredHeight()) - this.contentView.getBackgroundTranslationY(), this.contentView.getBackgroundSizeY());
+                if (chatActionCell.hasGradientService()) {
+                    chatActionCell.invalidate();
+                }
             }
             if (childAt.getBottom() > this.chatListView.getPaddingTop()) {
                 int bottom = childAt.getBottom();
@@ -1721,8 +1725,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
             int bottom2 = view.getBottom() - this.chatListView.getPaddingTop();
             if (bottom2 > this.floatingDateView.getMeasuredHeight() && bottom2 < this.floatingDateView.getMeasuredHeight() * 2) {
-                ChatActionCell chatActionCell = this.floatingDateView;
-                chatActionCell.setTranslationY(((-chatActionCell.getMeasuredHeight()) * 2) + bottom2);
+                ChatActionCell chatActionCell2 = this.floatingDateView;
+                chatActionCell2.setTranslationY(((-chatActionCell2.getMeasuredHeight()) * 2) + bottom2);
                 return;
             }
             this.floatingDateView.setTranslationY(0.0f);

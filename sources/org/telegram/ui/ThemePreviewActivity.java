@@ -2721,7 +2721,6 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     public void showPatternsView(final int i, final boolean z, boolean z2) {
-        float f;
         int indexOf;
         final boolean z3 = z && i == 1 && this.selectedPattern != null;
         if (z) {
@@ -2763,11 +2762,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.backgroundCheckBoxView[z3 ? (char) 2 : (char) 0].setVisibility(0);
         }
         if (i == 1 && !this.intensitySeekBar.isTwoSided()) {
-            float f2 = this.currentIntensity;
-            if (f2 < 0.0f) {
-                float f3 = -f2;
-                this.currentIntensity = f3;
-                this.intensitySeekBar.setProgress(f3);
+            float f = this.currentIntensity;
+            if (f < 0.0f) {
+                float f2 = -f;
+                this.currentIntensity = f2;
+                this.intensitySeekBar.setProgress(f2);
             }
         }
         if (z2) {
@@ -2804,7 +2803,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     RecyclerListView recyclerListView2 = this.listView2;
                     Property property4 = View.TRANSLATION_Y;
                     float[] fArr4 = new float[1];
-                    fArr4[0] = (-this.patternLayout[i].getMeasuredHeight()) + AndroidUtilities.dp(72 + ((this.dialogId == 0 || this.self) ? 0 : 58)) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0);
+                    fArr4[0] = (-this.patternLayout[i].getMeasuredHeight()) + AndroidUtilities.dp((this.applyButton2 == null ? 0 : 58) + 72) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0);
                     arrayList2.add(ObjectAnimator.ofFloat(recyclerListView2, property4, fArr4));
                     WallpaperCheckBoxView wallpaperCheckBoxView3 = this.backgroundCheckBoxView[2];
                     Property property5 = View.ALPHA;
@@ -2881,7 +2880,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
                 this.colorPicker.hideKeyboard();
             } else if (i10 == 2) {
-                this.listView2.setTranslationY((-AndroidUtilities.dp(i == 0 ? 343.0f : 316.0f)) + AndroidUtilities.dp(72 + ((this.dialogId == 0 || this.self) ? 0 : 58)) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0));
+                this.listView2.setTranslationY((-AndroidUtilities.dp(i == 0 ? 343.0f : 316.0f)) + AndroidUtilities.dp((this.applyButton2 == null ? 0 : 58) + 72) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0));
                 this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
                 this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
                 if (this.patternLayout[c].getVisibility() == 0) {
@@ -2900,18 +2899,16 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
                 this.colorPicker.hideKeyboard();
             }
-            f = 1.0f;
         } else {
             this.listView2.setTranslationY(0.0f);
             FrameLayout[] frameLayoutArr3 = this.patternLayout;
             frameLayoutArr3[i].setTranslationY(frameLayoutArr3[i].getMeasuredHeight());
-            f = 1.0f;
             this.backgroundCheckBoxView[0].setAlpha(1.0f);
             this.backgroundCheckBoxView[2].setAlpha(1.0f);
             this.backgroundImage.setAlpha(1.0f);
         }
         if (z && this.patternLayout[c].getVisibility() == 0) {
-            this.patternLayout[c].setAlpha(f);
+            this.patternLayout[c].setAlpha(1.0f);
             this.patternLayout[c].setVisibility(4);
         } else if (!z) {
             this.patternLayout[i].setVisibility(4);

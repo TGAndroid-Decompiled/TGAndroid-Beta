@@ -6826,12 +6826,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (this.enterTransitionInProgress && this.currentMessageObject.isAnimatedEmojiStickers()) {
             return;
         }
-        ChannelRecommendationsCell channelRecommendationsCell = this.channelRecommendationsCell;
-        if (channelRecommendationsCell != null && this.currentMessageObject.type == 27) {
-            channelRecommendationsCell.draw(canvas);
+        if (this.channelRecommendationsCell != null && this.currentMessageObject.type == 27) {
             ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
             if (chatMessageCellDelegate == null || chatMessageCellDelegate.canDrawOutboundsContent()) {
-                this.channelRecommendationsCell.drawText(canvas);
+                this.channelRecommendationsCell.draw(canvas);
             }
             this.transitionParams.recordDrawingState();
             return;
@@ -7708,7 +7706,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         MessageObject messageObject;
         ChannelRecommendationsCell channelRecommendationsCell = this.channelRecommendationsCell;
         if (channelRecommendationsCell != null && (messageObject = this.currentMessageObject) != null && messageObject.type == 27) {
-            channelRecommendationsCell.drawText(canvas);
+            channelRecommendationsCell.draw(canvas);
             return;
         }
         if (!this.enterTransitionInProgress) {

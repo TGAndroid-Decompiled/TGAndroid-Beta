@@ -24,7 +24,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -53,7 +52,6 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
@@ -66,7 +64,6 @@ import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$PrivacyRule;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
 import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
@@ -83,8 +80,6 @@ import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
 import org.telegram.tgnet.TLRPC$TL_messages_chats;
 import org.telegram.tgnet.TLRPC$TL_peerBlocked;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowUsers;
-import org.telegram.tgnet.TLRPC$TL_privacyValueDisallowUsers;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmpty;
@@ -1713,6 +1708,8 @@ public class StoriesController {
             TL_stories$StoryItem tL_stories$StoryItem;
             if (tLObject != null) {
                 TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
+                MessagesController.getInstance(StoriesController.this.currentAccount).putUsers(tL_stories$TL_stories_stories.users, false);
+                MessagesController.getInstance(StoriesController.this.currentAccount).putChats(tL_stories$TL_stories_stories.chats, false);
                 if (tL_stories$TL_stories_stories.stories.size() > 0) {
                     tL_stories$StoryItem = tL_stories$TL_stories_stories.stories.get(0);
                     StoriesController.this.resolvedStories.put(j, tL_stories$StoryItem);
@@ -2633,59 +2630,15 @@ public class StoriesController {
             });
         }
 
-        public void lambda$preloadCache$3(MessagesStorage messagesStorage) {
-            HashSet hashSet = new HashSet();
-            final ArrayList arrayList = new ArrayList();
-            final ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
-            SQLiteCursor sQLiteCursor = null;
-            try {
-                sQLiteCursor = messagesStorage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT data FROM profile_stories WHERE dialog_id = %d AND type = %d ORDER BY story_id DESC", Long.valueOf(this.dialogId), Integer.valueOf(this.type)), new Object[0]);
-                while (sQLiteCursor.next()) {
-                    NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
-                    if (byteBufferValue != null) {
-                        TL_stories$StoryItem TLdeserialize = TL_stories$StoryItem.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        TLdeserialize.dialogId = this.dialogId;
-                        TLdeserialize.messageId = TLdeserialize.id;
-                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize);
-                        Iterator<TLRPC$PrivacyRule> it = TLdeserialize.privacy.iterator();
-                        while (it.hasNext()) {
-                            TLRPC$PrivacyRule next = it.next();
-                            if (next instanceof TLRPC$TL_privacyValueDisallowUsers) {
-                                hashSet.addAll(((TLRPC$TL_privacyValueDisallowUsers) next).users);
-                            } else if (next instanceof TLRPC$TL_privacyValueAllowUsers) {
-                                hashSet.addAll(((TLRPC$TL_privacyValueAllowUsers) next).users);
-                            }
-                        }
-                        messageObject.generateThumbs(false);
-                        arrayList.add(messageObject);
-                        byteBufferValue.reuse();
-                    }
-                }
-                sQLiteCursor.dispose();
-                if (!hashSet.isEmpty()) {
-                    messagesStorage.getUsersInternal(TextUtils.join(",", hashSet), arrayList2);
-                }
-            } catch (Throwable th) {
-                try {
-                    messagesStorage.checkSQLException(th);
-                } finally {
-                    if (sQLiteCursor != null) {
-                        sQLiteCursor.dispose();
-                    }
-                }
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StoriesController.StoriesList.this.lambda$preloadCache$2(arrayList, arrayList2);
-                }
-            });
+        public void lambda$preloadCache$3(org.telegram.messenger.MessagesStorage r18) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$preloadCache$3(org.telegram.messenger.MessagesStorage):void");
         }
 
-        public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2) {
+        public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} preloadCache {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             this.preloading = false;
             MessagesController.getInstance(this.currentAccount).putUsers(arrayList2, true);
+            MessagesController.getInstance(this.currentAccount).putChats(arrayList3, true);
             if (this.invalidateAfterPreload) {
                 this.invalidateAfterPreload = false;
                 this.toLoad = null;
