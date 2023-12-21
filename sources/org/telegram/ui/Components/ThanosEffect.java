@@ -534,7 +534,8 @@ public class ThanosEffect extends TextureView {
                 this.left = 0.0f;
                 this.top = 0.0f;
                 this.density = AndroidUtilities.density;
-                this.timeScale = 1.2f;
+                this.longevity = 1.5f;
+                this.timeScale = 1.0f;
                 this.invalidateMatrix = true;
                 this.customMatrix = false;
                 this.glMatrixValues = new float[9];
@@ -555,7 +556,6 @@ public class ThanosEffect extends TextureView {
                 retrieveMatrixValues();
                 this.startCallback = runnable;
                 this.doneCallback = runnable2;
-                this.longevity = Utilities.clamp(this.viewWidth / AndroidUtilities.displaySize.x, 0.6f, 0.2f) * 1.5f;
                 this.bitmap = bitmap;
             }
 
@@ -590,7 +590,7 @@ public class ThanosEffect extends TextureView {
                 int i;
                 int i2;
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-                int i3 = devicePerformanceClass != 1 ? devicePerformanceClass != 2 ? 35000 : 100000 : 80000;
+                int i3 = devicePerformanceClass != 1 ? devicePerformanceClass != 2 ? 30000 : 75000 : 55000;
                 float max = Math.max(AndroidUtilities.dpf2(0.4f), 1.0f);
                 int clamp = Utilities.clamp((int) ((this.viewWidth * this.viewHeight) / (max * max)), (int) (i3 * f), 10);
                 this.particlesCount = clamp;
@@ -709,7 +709,7 @@ public class ThanosEffect extends TextureView {
             }
 
             public boolean isDead() {
-                return this.time > this.longevity + 0.75f;
+                return this.time > this.longevity + 0.9f;
             }
 
             public void done(boolean z) {

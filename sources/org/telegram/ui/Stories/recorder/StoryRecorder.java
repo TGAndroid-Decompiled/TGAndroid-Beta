@@ -155,6 +155,7 @@ import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.WrappedResourceProvider;
 public class StoryRecorder implements NotificationCenter.NotificationCenterDelegate {
+    private static boolean firstOpen = true;
     private static StoryRecorder instance;
     private LinearLayout actionBarButtons;
     private FrameLayout actionBarContainer;
@@ -844,7 +845,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             public final void run() {
                 StoryRecorder.this.lambda$openRepost$2();
             }
-        }, 16L);
+        }, firstOpen ? 80L : 16L);
         addNotificationObservers();
     }
 
@@ -967,17 +968,20 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.openCloseAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             }
             this.openCloseAnimator.start();
-            return;
+        } else {
+            this.frozenDismissProgress = null;
+            this.openProgress = f;
+            applyOpenProgress();
+            this.containerView.invalidate();
+            this.windowView.invalidate();
+            if (runnable != null) {
+                runnable.run();
+            }
+            checkBackgroundVisibility();
         }
-        this.frozenDismissProgress = null;
-        this.openProgress = f;
-        applyOpenProgress();
-        this.containerView.invalidate();
-        this.windowView.invalidate();
-        if (runnable != null) {
-            runnable.run();
+        if (f > 0.0f) {
+            firstOpen = false;
         }
-        checkBackgroundVisibility();
     }
 
     public void lambda$animateOpenTo$4(ValueAnimator valueAnimator) {

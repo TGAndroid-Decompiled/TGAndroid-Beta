@@ -3002,7 +3002,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     z2 = true;
                 }
             }
-            return z || !z2;
+            return z || (this.type == 0 && !z2);
         }
 
         public int colorsAvailable(int i) {
@@ -16221,7 +16221,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$TL_help_getPeerColors tLRPC$TL_help_getPeerColors = new TLRPC$TL_help_getPeerColors();
             PeerColors peerColors2 = this.peerColors;
             tLRPC$TL_help_getPeerColors.hash = peerColors2 != null ? peerColors2.hash : 0;
-            if (BuildVars.DEBUG_PRIVATE_VERSION && peerColors2 != null && peerColors2.needUpdate()) {
+            if (peerColors2 != null && peerColors2.needUpdate()) {
                 tLRPC$TL_help_getPeerColors.hash = 0;
             }
             getConnectionsManager().sendRequest(tLRPC$TL_help_getPeerColors, new RequestDelegate() {
@@ -16236,7 +16236,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$TL_help_getPeerProfileColors tLRPC$TL_help_getPeerProfileColors = new TLRPC$TL_help_getPeerProfileColors();
             PeerColors peerColors4 = this.profilePeerColors;
             tLRPC$TL_help_getPeerProfileColors.hash = peerColors4 != null ? peerColors4.hash : 0;
-            if (BuildVars.DEBUG_PRIVATE_VERSION && peerColors4 != null && peerColors4.needUpdate()) {
+            if (peerColors4 != null && peerColors4.needUpdate()) {
                 tLRPC$TL_help_getPeerProfileColors.hash = 0;
             }
             getConnectionsManager().sendRequest(tLRPC$TL_help_getPeerProfileColors, new RequestDelegate() {

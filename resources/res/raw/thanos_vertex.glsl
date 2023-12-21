@@ -14,7 +14,6 @@ out float outTime;
 
 out vec2 uvcenter;
 out vec2 uvsize;
-out float circle;
 out float alpha;
 
 uniform mat3 matrix;
@@ -111,7 +110,7 @@ void main() {
   vec2 uv = inUV;
   vec2 position = inPosition;
   vec2 velocity = inVelocity;
-  float particleTime = inTime + deltaTime;
+  float particleTime = inTime;
 
   float id = float(gl_VertexID);
   if (reset > 0.) {
@@ -120,45 +119,26 @@ void main() {
         floor(id / gridSize.x)
     ) / gridSize.xy;
     position = (matrix * vec3(uv + .5 / gridSize.xy, 1.0)).xy;
-    particleTime = -snapDuration * (uv.x - .15 * noise(vec3(uv * 2.0, 0.0)));
-    velocity = vec2(0.);
+    float direction = rand(3. * uv) * (3.14159265 * 2.0);
+    velocity = vec2(cos(direction), sin(direction)) * (0.1 + rand(5. * uv) * (0.2 - 0.1)) * 190.0 * dp;
+    particleTime = (0.7 + rand(uv) * (1.5 - 0.7));
   }
 
-  vec2 force = vec2(0.);
-  if (particleTime > 0.) {
-    float direction = rand(uv) * (3.14159265 * 2.0);
-    float amplitude = (.5 + .5 * rand(uv)) * 15.0 * dp;
-    vec2 explodeForce = vec2(cos(direction), sin(direction)) * amplitude + vec2(0., -.1);
-    vec2 blowForce = mix(normalize(curlNoise(
-      vec3(
-        position + time * (noiseMovement / 100. * min(size.x, size.y)),
-        time * noiseSpeed + rand(position) * 2.5
-      )
-    ).xy), vec2(.4, -.8), .4) * 20.0 * dp;
-    force += explodeForce * (1.0 - .6 * clamp(particleTime, 0.0, 1.0));
-    force += blowForce    * (clamp(particleTime + snapDuration * .4, 0.0, 1.0));
-    force += vec2(.4, -.8) * clamp(particleTime, 0.0, 1.0);
-    force = force * clamp(1. - particleTime / 10., 0., 1.);
-  }
-
-  velocity += force * forceMult * deltaTime;
-  velocity *= dampingMult;
-  position += velocity * velocityMult * deltaTime;
+  float effectFraction =   max(0.0, min(0.35, time)) / 0.35;
+  float particleFraction = max(0.0, min(0.2, .1 + time - uv.x * 0.6)) / 0.2;
+  position += velocity * deltaTime * particleFraction;
+  velocity += vec2(12.0, -60.0) * deltaTime * dp * particleFraction;
+  particleTime = max(0.0, particleTime - 1.2 * deltaTime * effectFraction);
 
   outUV = uv;
   outPosition = position;
   outVelocity = velocity;
   outTime = particleTime;
 
-  float scale = clamp(1.0 - (time - snapDuration), 0., 1.);
-  gl_PointSize = (.4 + .6 * scale) * (gridSize.z + 1.);
+  alpha = max(0.0, min(0.55, particleTime) / 0.55);
+  gl_PointSize = (gridSize.z + 1.);
   position.y = size.y - position.y;
   gl_Position = vec4(position / size * 2.0 - vec2(1.0), 0.0, 1.0);
-
-  circle = clamp(particleTime * .5, 0., 1.);
   uvcenter = uv;
-  uvsize = (.4 + .6 * scale) * (vec2(gridSize.z + 1.) / rectSize.xy);
-  alpha = scale;
+  uvsize = (vec2(gridSize.z + 1.) / rectSize.xy);
 }
-
-// @dkaraush

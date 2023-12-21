@@ -454,6 +454,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 canvas.save();
                 this.clipPath.rewind();
                 this.rectF.set(this.lastSelectedArea.getX(), this.lastSelectedArea.getY(), this.lastSelectedArea.getX() + this.lastSelectedArea.getMeasuredWidth(), this.lastSelectedArea.getY() + this.lastSelectedArea.getMeasuredHeight());
+                this.rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
                 float lerp = AndroidUtilities.lerp(1.0f, 1.05f, f2);
                 canvas.scale(lerp, lerp, this.rectF.centerX(), this.rectF.centerY());
                 canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
@@ -475,10 +476,11 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 fArr4[6] = dp4;
                 this.clipPath.addRoundRect(this.rectF, this.radii, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);
-                this.rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
                 this.rect.set(0, 0, this.parentBitmap.getWidth(), this.parentBitmap.getHeight());
                 canvas.rotate(-this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
-                canvas.drawBitmap(this.parentBitmap, this.rect, this.rectF, (Paint) null);
+                canvas.drawBitmap(this.parentBitmap, this.rect, rectF2, (Paint) null);
                 canvas.restore();
             }
         } else {
