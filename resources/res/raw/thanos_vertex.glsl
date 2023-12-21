@@ -121,7 +121,7 @@ void main() {
     position = (matrix * vec3(uv + .5 / gridSize.xy, 1.0)).xy;
     float direction = rand(3. * uv) * (3.14159265 * 2.0);
     velocity = vec2(cos(direction), sin(direction)) * (0.1 + rand(5. * uv) * (0.2 - 0.1)) * 190.0 * dp;
-    particleTime = (0.7 + rand(uv) * (1.5 - 0.7));
+    particleTime = (0.7 + rand(uv) * (1.5 - 0.7)) / 1.15;
   }
 
   float effectFraction =   max(0.0, min(0.35, time)) / 0.35;

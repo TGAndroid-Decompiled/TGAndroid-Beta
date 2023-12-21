@@ -3307,6 +3307,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     private void registerRemovalUndo(final EntityView entityView) {
+        if (entityView == null) {
+            return;
+        }
         this.undoStore.registerUndo(entityView.getUUID(), new Runnable() {
             @Override
             public final void run() {

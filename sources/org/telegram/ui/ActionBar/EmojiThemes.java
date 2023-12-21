@@ -224,15 +224,23 @@ public class EmojiThemes {
             } else {
                 theme = Theme.getTheme("Blue");
             }
-            Theme.ThemeInfo themeInfo2 = new Theme.ThemeInfo(theme);
-            themeAccent = themeInfo2.createNewAccent(tlTheme, i, true, settingsIndex);
-            if (themeAccent != null) {
-                themeInfo2.setCurrentAccentId(themeAccent.id);
+            if (theme != null) {
+                themeInfo = new Theme.ThemeInfo(theme);
+                themeAccent = themeInfo.createNewAccent(tlTheme, i, true, settingsIndex);
+                if (themeAccent != null) {
+                    themeInfo.setCurrentAccentId(themeAccent.id);
+                }
             }
-            themeInfo = themeInfo2;
+            themeAccent = null;
         } else {
             SparseArray<Theme.ThemeAccent> sparseArray = themeInfo.themeAccentsMap;
-            themeAccent = sparseArray != null ? sparseArray.get(this.items.get(i2).accentId) : null;
+            if (sparseArray != null) {
+                themeAccent = sparseArray.get(this.items.get(i2).accentId);
+            }
+            themeAccent = null;
+        }
+        if (themeInfo == null) {
+            return sparseIntArray2;
         }
         String[] strArr = new String[1];
         if (themeInfo.pathToFile != null) {

@@ -699,6 +699,12 @@ public abstract class TLRPC$Chat extends TLObject {
                         if ((this.flags2 & 16) != 0) {
                             this.stories_max_id = abstractSerializedData2.readInt32(z3);
                         }
+                        TLRPC$TL_peerColor tLRPC$TL_peerColor = new TLRPC$TL_peerColor();
+                        this.color = tLRPC$TL_peerColor;
+                        tLRPC$TL_peerColor.color = abstractSerializedData2.readInt32(z3);
+                        if ((this.flags2 & 32) != 0) {
+                            this.color.background_emoji_id = abstractSerializedData2.readInt64(z3);
+                        }
                     }
 
                     @Override
@@ -792,6 +798,12 @@ public abstract class TLRPC$Chat extends TLObject {
                         }
                         if ((this.flags2 & 16) != 0) {
                             abstractSerializedData2.writeInt32(this.stories_max_id);
+                        }
+                        TLRPC$TL_peerColor tLRPC$TL_peerColor = this.color;
+                        abstractSerializedData2.writeInt32(tLRPC$TL_peerColor == null ? (int) (this.id % 7) : tLRPC$TL_peerColor.color);
+                        if ((this.flags2 & 32) != 0) {
+                            TLRPC$TL_peerColor tLRPC$TL_peerColor2 = this.color;
+                            abstractSerializedData2.writeInt64(tLRPC$TL_peerColor2 == null ? 0L : tLRPC$TL_peerColor2.background_emoji_id);
                         }
                     }
                 };

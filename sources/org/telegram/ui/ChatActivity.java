@@ -3588,6 +3588,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
+        public boolean allowSelectChildAtPosition(View view) {
+            if (view == null || view.getVisibility() != 4) {
+                return super.allowSelectChildAtPosition(view);
+            }
+            return false;
+        }
+
+        @Override
         public void onMeasure(int i, int i2) {
             ChatActivity.this.saveScrollPosition();
             super.onMeasure(i, i2);

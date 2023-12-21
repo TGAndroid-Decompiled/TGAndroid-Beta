@@ -35,6 +35,7 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -865,8 +866,13 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         stickerEmptyView.subtitle.setText(spannableStringBuilder);
                     } else {
                         stickerEmptyView.title.setVisibility(0);
-                        stickerEmptyView.title.setText(LocaleController.getString("NoViews", R.string.NoViews));
-                        stickerEmptyView.setSubtitle(LocaleController.getString("NoViewsStub", R.string.NoViewsStub));
+                        if (SelfStoryViewsPage.this.defaultModel.isChannel) {
+                            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoReactions));
+                            stickerEmptyView.setSubtitle(LocaleController.getString(R.string.NoReactionsStub));
+                        } else {
+                            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoViews));
+                            stickerEmptyView.setSubtitle(LocaleController.getString(R.string.NoViewsStub));
+                        }
                     }
                     stickerEmptyView.showProgress(false, false);
                     linksTextView = stickerEmptyView;
@@ -1264,6 +1270,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 TL_stories$TL_storyReactionsList tL_stories$TL_storyReactionsList = (TL_stories$TL_storyReactionsList) tLObject;
                 MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_storyReactionsList.users, false);
                 MessagesController.getInstance(this.currentAccount).putChats(tL_stories$TL_storyReactionsList.chats, false);
+                MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_stories$TL_storyReactionsList.users, tL_stories$TL_storyReactionsList.chats, true, false);
                 if (this.initial) {
                     this.initial = false;
                     for (int i = 0; i < this.reactions.size(); i++) {
@@ -1331,6 +1338,9 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 TL_stories$StoryViewsList tL_stories$StoryViewsList = (TL_stories$StoryViewsList) tLObject;
                 MessagesController.getInstance(this.currentAccount).getStoriesController().applyStoryViewsBlocked(tL_stories$StoryViewsList);
                 MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$StoryViewsList.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(tL_stories$StoryViewsList.chats, false);
+                boolean z2 = true;
+                MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_stories$StoryViewsList.users, tL_stories$StoryViewsList.chats, true, false);
                 if (this.initial) {
                     this.initial = false;
                     for (int i = 0; i < this.views.size(); i++) {
@@ -1345,7 +1355,6 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 } else {
                     this.views.addAll(tL_stories$StoryViewsList.views);
                 }
-                boolean z2 = true;
                 if (!tL_stories$StoryViewsList.views.isEmpty()) {
                     this.hasNext = true;
                 } else {

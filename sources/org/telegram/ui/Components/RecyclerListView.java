@@ -1005,10 +1005,12 @@ public class RecyclerListView extends RecyclerView {
         while (i < 2) {
             for (int i2 = childCount - 1; i2 >= 0; i2--) {
                 View childAt = getChildAt(i2);
-                float translationX = i == 0 ? childAt.getTranslationX() : 0.0f;
-                float translationY = i == 0 ? childAt.getTranslationY() : 0.0f;
-                if (f >= childAt.getLeft() + translationX && f <= childAt.getRight() + translationX && f2 >= childAt.getTop() + translationY && f2 <= childAt.getBottom() + translationY) {
-                    return childAt;
+                if (childAt.getVisibility() != 4) {
+                    float translationX = i == 0 ? childAt.getTranslationX() : 0.0f;
+                    float translationY = i == 0 ? childAt.getTranslationY() : 0.0f;
+                    if (f >= childAt.getLeft() + translationX && f <= childAt.getRight() + translationX && f2 >= childAt.getTop() + translationY && f2 <= childAt.getBottom() + translationY) {
+                        return childAt;
+                    }
                 }
             }
             i++;

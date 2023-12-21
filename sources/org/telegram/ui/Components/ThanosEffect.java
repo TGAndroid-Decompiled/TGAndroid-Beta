@@ -535,7 +535,7 @@ public class ThanosEffect extends TextureView {
                 this.top = 0.0f;
                 this.density = AndroidUtilities.density;
                 this.longevity = 1.5f;
-                this.timeScale = 1.0f;
+                this.timeScale = 1.12f;
                 this.invalidateMatrix = true;
                 this.customMatrix = false;
                 this.glMatrixValues = new float[9];
