@@ -519,13 +519,17 @@ public class BlurringShader {
         }
 
         public void setFallbackBlur(Bitmap bitmap, int i) {
+            setFallbackBlur(bitmap, i, false);
+        }
+
+        public void setFallbackBlur(Bitmap bitmap, int i, boolean z) {
             ThumbBlurer thumbBlurer = this.thumbBlurer;
             StringBuilder sb = new StringBuilder();
             sb.append("");
             int i2 = this.i;
             this.i = i2 + 1;
             sb.append(i2);
-            this.fallbackBitmap = thumbBlurer.getBitmap(bitmap, sb.toString(), i, 0);
+            this.fallbackBitmap = thumbBlurer.getBitmap(bitmap, sb.toString(), i, 0, z);
         }
 
         public void resetBitmap() {
@@ -564,7 +568,7 @@ public class BlurringShader {
             this.thumbBitmap = null;
         }
 
-        public Bitmap getBitmap(final Bitmap bitmap, final String str, final int i, final int i2) {
+        public Bitmap getBitmap(final Bitmap bitmap, final String str, final int i, final int i2, final boolean z) {
             if (bitmap == null) {
                 return null;
             }
@@ -585,7 +589,7 @@ public class BlurringShader {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    BlurringShader.ThumbBlurer.this.lambda$getBitmap$1(bitmap, i, i2, str);
+                    BlurringShader.ThumbBlurer.this.lambda$getBitmap$1(bitmap, i, i2, str, z);
                 }
             };
             this.generate = runnable;
@@ -593,7 +597,7 @@ public class BlurringShader {
             return this.thumbBitmap;
         }
 
-        public void lambda$getBitmap$1(Bitmap bitmap, int i, int i2, final String str) {
+        public void lambda$getBitmap$1(final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
             int i3;
             int i4;
             float width = bitmap.getWidth() / bitmap.getHeight();
@@ -637,41 +641,43 @@ public class BlurringShader {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BlurringShader.ThumbBlurer.this.lambda$getBitmap$0(str, createBitmap);
+                    BlurringShader.ThumbBlurer.this.lambda$getBitmap$0(str, createBitmap, z, bitmap);
                 }
             });
         }
 
-        public void lambda$getBitmap$0(String str, Bitmap bitmap) {
+        public void lambda$getBitmap$0(String str, Bitmap bitmap, boolean z, Bitmap bitmap2) {
             if (TextUtils.equals(this.thumbKey, str)) {
                 this.generate = null;
-                Bitmap bitmap2 = this.thumbBitmap;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
+                Bitmap bitmap3 = this.thumbBitmap;
+                if (bitmap3 != null) {
+                    bitmap3.recycle();
                 }
                 this.thumbBitmap = bitmap;
                 Runnable runnable = this.invalidate;
                 if (runnable != null) {
                     runnable.run();
-                    return;
                 }
-                return;
+            } else {
+                bitmap.recycle();
             }
-            bitmap.recycle();
+            if (z) {
+                bitmap2.recycle();
+            }
         }
 
         public Bitmap getBitmap(ImageReceiver imageReceiver) {
             if (imageReceiver == null) {
                 return null;
             }
-            return getBitmap(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert());
+            return getBitmap(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert(), false);
         }
 
         public Bitmap getBitmap(ImageReceiver.BitmapHolder bitmapHolder) {
             if (bitmapHolder == null) {
                 return null;
             }
-            return getBitmap(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0);
+            return getBitmap(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0, false);
         }
     }
 
@@ -691,7 +697,9 @@ public class BlurringShader {
         private boolean oldPaintSet;
         public Paint paint;
         private Paint[] tempPaints;
+        private final int type;
         private final View view;
+        private boolean wasDark;
 
         public StoryBlurDrawer(BlurManager blurManager, View view, int i) {
             this(blurManager, view, i, false);
@@ -702,8 +710,10 @@ public class BlurringShader {
             this.paint = new Paint(3);
             this.matrix = new Matrix();
             this.bounds = new RectF();
+            this.wasDark = false;
             this.manager = blurManager;
             this.view = view;
+            this.type = i;
             this.animateBitmapChange = z;
             ColorMatrix colorMatrix = new ColorMatrix();
             if (i == 0) {
@@ -741,6 +751,10 @@ public class BlurringShader {
                 this.oldPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.4f);
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
+            } else if (i == 10) {
+                colorMatrix.setSaturation(1.6f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, this.wasDark ? 0.97f : 0.92f);
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, this.wasDark ? 0.12f : -0.06f);
             }
             this.paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             this.oldPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
@@ -802,6 +816,21 @@ public class BlurringShader {
             }
             rectF2.set(rectF);
             updateBounds();
+        }
+
+        public StoryBlurDrawer adapt(boolean z) {
+            if (this.wasDark != z) {
+                this.wasDark = z;
+                if (this.type == 10) {
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    colorMatrix.setSaturation(1.6f);
+                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, this.wasDark ? 0.97f : 0.92f);
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, this.wasDark ? 0.12f : -0.06f);
+                    this.paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                    this.oldPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                }
+            }
+            return this;
         }
 
         public Paint getPaint(float f) {
@@ -897,6 +926,7 @@ public class BlurringShader {
                 View view = this.view;
                 do {
                     this.matrix.preScale(1.0f / view.getScaleX(), 1.0f / view.getScaleY(), view.getPivotX(), view.getPivotY());
+                    this.matrix.preRotate(-view.getRotation(), view.getPivotX(), view.getPivotY());
                     this.matrix.preTranslate(-view.getX(), -view.getY());
                     if (!(view.getParent() instanceof View) || (view = (View) view.getParent()) == null || (blurManager = this.manager) == null) {
                         break;
@@ -910,6 +940,7 @@ public class BlurringShader {
                         if (view2 != null) {
                             this.matrix.postTranslate(view2.getX(), view2.getY());
                             this.matrix.postScale(1.0f / view2.getScaleX(), 1.0f / view2.getScaleY(), view2.getPivotX(), view2.getPivotY());
+                            this.matrix.postRotate(view2.getRotation(), view2.getPivotX(), view2.getPivotY());
                             indexOf++;
                         }
                     }

@@ -89,6 +89,9 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
+    public static final int CACHE_TYPE_CACHE = 1;
+    public static final int CACHE_TYPE_ENCRYPTED = 2;
+    public static final int CACHE_TYPE_NONE = 0;
     private static final boolean DEBUG_MODE = false;
     private boolean canForce8888;
     private LruCache<BitmapDrawable> lottieMemCache;
@@ -1680,7 +1683,7 @@ public class ImageLoader {
         this.testWebFile.remove(str);
     }
 
-    @TargetApi(MessageObject.TYPE_GIVEAWAY)
+    @TargetApi(26)
     private static void moveDirectory(File file, final File file2) {
         if (file.exists()) {
             if (file2.exists() || file2.mkdir()) {
@@ -2630,7 +2633,7 @@ public class ImageLoader {
         } else {
             boolean z = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
-            if (MessageObject.shouldEncryptPhotoOrVideo(tLRPC$Message)) {
+            if (MessageObject.shouldEncryptPhotoOrVideo(UserConfig.selectedAccount, tLRPC$Message)) {
                 pathToAttach = new File(pathToAttach.getAbsolutePath() + ".enc");
             } else {
                 z = false;

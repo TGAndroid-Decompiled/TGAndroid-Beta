@@ -3,11 +3,9 @@ package org.telegram.ui.Components;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -40,9 +38,10 @@ public class StatusBadgeComponent {
             this.verifiedDrawable = drawable;
             swapAnimatedEmojiDrawable.set(drawable, z);
             this.statusDrawable.setColor(null);
-            return this.statusDrawable;
-        }
-        if (tLRPC$User != null && tLRPC$User.verified) {
+        } else if (tLRPC$Chat != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status) != 0) {
+            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status), z);
+            this.statusDrawable.setColor(null);
+        } else if (tLRPC$User != null && tLRPC$User.verified) {
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.statusDrawable;
             Drawable drawable2 = this.verifiedDrawable;
             if (drawable2 == null) {
@@ -51,28 +50,15 @@ public class StatusBadgeComponent {
             this.verifiedDrawable = drawable2;
             swapAnimatedEmojiDrawable2.set(drawable2, z);
             this.statusDrawable.setColor(null);
+        } else if (tLRPC$User != null && DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status) != 0) {
+            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status), z);
+            this.statusDrawable.setColor(null);
+        } else if (tLRPC$User != null && tLRPC$User.premium) {
+            this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z);
+            this.statusDrawable.setColor(Integer.valueOf(i));
         } else {
-            if (tLRPC$User != null) {
-                TLRPC$EmojiStatus tLRPC$EmojiStatus = tLRPC$User.emoji_status;
-                if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus) {
-                    this.statusDrawable.set(((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus).document_id, z);
-                    this.statusDrawable.setColor(null);
-                }
-            }
-            if (tLRPC$User != null) {
-                TLRPC$EmojiStatus tLRPC$EmojiStatus2 = tLRPC$User.emoji_status;
-                if ((tLRPC$EmojiStatus2 instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus2).until > ((int) (System.currentTimeMillis() / 1000))) {
-                    this.statusDrawable.set(((TLRPC$TL_emojiStatusUntil) tLRPC$User.emoji_status).document_id, z);
-                    this.statusDrawable.setColor(null);
-                }
-            }
-            if (tLRPC$User != null && tLRPC$User.premium) {
-                this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z);
-                this.statusDrawable.setColor(Integer.valueOf(i));
-            } else {
-                this.statusDrawable.set((Drawable) null, z);
-                this.statusDrawable.setColor(null);
-            }
+            this.statusDrawable.set((Drawable) null, z);
+            this.statusDrawable.setColor(null);
         }
         return this.statusDrawable;
     }

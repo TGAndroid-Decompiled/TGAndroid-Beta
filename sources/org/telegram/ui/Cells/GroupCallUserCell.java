@@ -20,6 +20,7 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -27,10 +28,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -536,19 +534,9 @@ public class GroupCallUserCell extends FrameLayout {
                 }
                 this.verifiedDrawable = drawable;
                 swapAnimatedEmojiDrawable.set(drawable, z);
+            } else if (tLRPC$User != null && DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status) != 0) {
+                this.rightDrawable.set(DialogObject.getEmojiStatusDocumentId(this.currentUser.emoji_status), z);
             } else {
-                if (tLRPC$User != null) {
-                    TLRPC$EmojiStatus tLRPC$EmojiStatus = tLRPC$User.emoji_status;
-                    if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus) {
-                        this.rightDrawable.set(((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus).document_id, z);
-                    }
-                }
-                if (tLRPC$User != null) {
-                    TLRPC$EmojiStatus tLRPC$EmojiStatus2 = tLRPC$User.emoji_status;
-                    if ((tLRPC$EmojiStatus2 instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus2).until > ((int) (System.currentTimeMillis() / 1000))) {
-                        this.rightDrawable.set(((TLRPC$TL_emojiStatusUntil) this.currentUser.emoji_status).document_id, z);
-                    }
-                }
                 TLRPC$User tLRPC$User2 = this.currentUser;
                 if (tLRPC$User2 != null && tLRPC$User2.premium) {
                     if (this.premiumDrawable == null) {
@@ -586,7 +574,8 @@ public class GroupCallUserCell extends FrameLayout {
             TLRPC$Chat tLRPC$Chat = this.currentChat;
             if (tLRPC$Chat != null) {
                 this.nameTextView.setText(tLRPC$Chat.title);
-                if (this.currentChat.verified) {
+                TLRPC$Chat tLRPC$Chat2 = this.currentChat;
+                if (tLRPC$Chat2.verified) {
                     AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.rightDrawable;
                     Drawable drawable2 = this.verifiedDrawable;
                     if (drawable2 == null) {
@@ -594,6 +583,8 @@ public class GroupCallUserCell extends FrameLayout {
                     }
                     this.verifiedDrawable = drawable2;
                     swapAnimatedEmojiDrawable2.set(drawable2, z);
+                } else if (tLRPC$Chat2 != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat2.emoji_status) != 0) {
+                    this.rightDrawable.set(DialogObject.getEmojiStatusDocumentId(this.currentChat.emoji_status), z);
                 } else {
                     this.rightDrawable.set((Drawable) null, z);
                 }

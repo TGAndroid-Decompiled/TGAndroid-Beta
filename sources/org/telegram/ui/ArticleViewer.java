@@ -5245,10 +5245,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     case 25:
                         textView = new BlockTableCell(this.context, this);
                         break;
-                    case MessageObject.TYPE_GIVEAWAY:
+                    case 26:
                         textView = new BlockRelatedArticlesHeaderCell(this.context, this);
                         break;
-                    case MessageObject.TYPE_JOINED_CHANNEL:
+                    case 27:
                         textView = new BlockDetailsBottomCell(this.context);
                         break;
                     case 28:
@@ -5383,10 +5383,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     case 25:
                         ((BlockTableCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockTable) tLRPC$PageBlock2);
                         return;
-                    case MessageObject.TYPE_GIVEAWAY:
+                    case 26:
                         ((BlockRelatedArticlesHeaderCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockRelatedArticles) tLRPC$PageBlock2);
                         return;
-                    case MessageObject.TYPE_JOINED_CHANNEL:
+                    case 27:
                         BlockDetailsBottomCell blockDetailsBottomCell = (BlockDetailsBottomCell) viewHolder.itemView;
                         return;
                     default:
@@ -5575,6 +5575,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
+        public void notifyItemInserted(int i) {
+            updateRows();
+            super.notifyItemInserted(i);
+        }
+
+        @Override
         public void notifyItemMoved(int i, int i2) {
             updateRows();
             super.notifyItemMoved(i, i2);
@@ -5584,6 +5590,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void notifyItemRangeInserted(int i, int i2) {
             updateRows();
             super.notifyItemRangeInserted(i, i2);
+        }
+
+        @Override
+        public void notifyItemRemoved(int i) {
+            updateRows();
+            super.notifyItemRemoved(i);
         }
 
         @Override

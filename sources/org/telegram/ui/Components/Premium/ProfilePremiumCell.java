@@ -3,7 +3,6 @@ package org.telegram.ui.Components.Premium;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.Premium.StarParticlesView;
@@ -22,7 +21,7 @@ public class ProfilePremiumCell extends TextCell {
         drawable.minLifeTime = 600L;
         drawable.randLifeTime = 500;
         drawable.startFromCenter = true;
-        drawable.type = FileLoader.MEDIA_DIR_VIDEO_PUBLIC;
+        drawable.type = 101;
         drawable.init();
     }
 

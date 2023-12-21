@@ -11,10 +11,12 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
+import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLES30;
 import android.opengl.GLUtils;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import java.io.File;
@@ -41,16 +43,21 @@ import org.telegram.ui.Components.EditTextEffects;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Stories.recorder.StoryEntry;
 public class TextureRenderer {
+    private static final String FRAGMENT_EXTERNAL_MASK_SHADER = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nvarying vec2 MTextureCoord;\nuniform samplerExternalOES sTexture;\nuniform sampler2D sMask;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord) * texture2D(sMask, MTextureCoord).a;\n}\n";
     private static final String FRAGMENT_EXTERNAL_SHADER = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord);}\n";
+    private static final String FRAGMENT_MASK_SHADER = "precision highp float;\nvarying vec2 vTextureCoord;\nvarying vec2 MTextureCoord;\nuniform sampler2D sTexture;\nuniform sampler2D sMask;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord) * texture2D(sMask, MTextureCoord).a;\n}\n";
     private static final String FRAGMENT_SHADER = "precision highp float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     private static final String GRADIENT_FRAGMENT_SHADER = "precision highp float;\nvarying vec2 vTextureCoord;\nuniform vec4 gradientTopColor;\nuniform vec4 gradientBottomColor;\nfloat interleavedGradientNoise(vec2 n) {\n    return fract(52.9829189 * fract(.06711056 * n.x + .00583715 * n.y));\n}\nvoid main() {\n  gl_FragColor = mix(gradientTopColor, gradientBottomColor, vTextureCoord.y + (.2 * interleavedGradientNoise(gl_FragCoord.xy) - .1));\n}\n";
     private static final String VERTEX_SHADER = "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n";
     private static final String VERTEX_SHADER_300 = "#version 320 es\nuniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nin vec4 aPosition;\nin vec4 aTextureCoord;\nout vec2 vTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n";
+    private static final String VERTEX_SHADER_MASK = "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nattribute vec4 mTextureCoord;\nvarying vec2 vTextureCoord;\nvarying vec2 MTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n  MTextureCoord = (uSTMatrix * mTextureCoord).xy;\n}\n";
+    private static final String VERTEX_SHADER_MASK_300 = "#version 320 es\nuniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nin vec4 aPosition;\nin vec4 aTextureCoord;\nin vec4 mTextureCoord;\nout vec2 vTextureCoord;\nout vec2 MTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n  MTextureCoord = (uSTMatrix * mTextureCoord).xy;\n}\n";
     private int NUM_EXTERNAL_SHADER;
     private int NUM_FILTER_SHADER;
     private int NUM_GRADIENT_SHADER;
+    private Drawable backgroundDrawable;
+    private String backgroundPath;
     private FloatBuffer bitmapVerticesBuffer;
     private boolean blendEnabled;
     private BlurringShader blur;
@@ -80,17 +87,18 @@ public class TextureRenderer {
     private int mTextureID;
     private int[] maPositionHandle;
     private int[] maTextureHandle;
+    private FloatBuffer maskTextureBuffer;
+    private int[] maskTextureHandle;
     private ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
+    private String messagePath;
+    private String messageVideoMaskPath;
+    private int[] mmTextureHandle;
     private int[] muMVPMatrixHandle;
     private int[] muSTMatrixHandle;
     private int originalHeight;
     private int originalWidth;
     private String paintPath;
     private int[] paintTexture;
-    private ArrayList<StoryEntry.Part> parts;
-    private int[] partsTexture;
-    private FloatBuffer partsTextureBuffer;
-    private FloatBuffer[] partsVerticesBuffer;
     Path path;
     private FloatBuffer renderTextureBuffer;
     private Bitmap roundBitmap;
@@ -111,38 +119,50 @@ public class TextureRenderer {
     private boolean useMatrixForImagePath;
     private FloatBuffer verticesBuffer;
     private float videoFps;
+    private int videoMaskTexture;
     Paint xRefPaint;
     float[] bitmapData = {-1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f, -1.0f};
     private float[] mMVPMatrix = new float[16];
     private float[] mSTMatrix = new float[16];
     private float[] mSTMatrixIdentity = new float[16];
+    private int imagePathIndex = -1;
+    private int paintPathIndex = -1;
+    private int messagePathIndex = -1;
+    private int backgroundPathIndex = -1;
     private final Rect roundSrc = new Rect();
     private final RectF roundDst = new RectF();
     private boolean firstFrame = true;
 
-    public TextureRenderer(org.telegram.messenger.MediaController.SavedFilterState r26, java.lang.String r27, java.lang.String r28, java.lang.String r29, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r30, org.telegram.messenger.MediaController.CropState r31, int r32, int r33, int r34, int r35, int r36, float r37, boolean r38, java.lang.Integer r39, java.lang.Integer r40, org.telegram.ui.Stories.recorder.StoryEntry.HDRInfo r41, java.util.ArrayList<org.telegram.ui.Stories.recorder.StoryEntry.Part> r42) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.TextureRenderer.<init>(org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.lang.String, java.lang.String, java.util.ArrayList, org.telegram.messenger.MediaController$CropState, int, int, int, int, int, float, boolean, java.lang.Integer, java.lang.Integer, org.telegram.ui.Stories.recorder.StoryEntry$HDRInfo, java.util.ArrayList):void");
+    public TextureRenderer(org.telegram.messenger.MediaController.SavedFilterState r29, java.lang.String r30, java.lang.String r31, java.lang.String r32, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r33, org.telegram.messenger.MediaController.CropState r34, int r35, int r36, int r37, int r38, int r39, float r40, boolean r41, java.lang.Integer r42, java.lang.Integer r43, org.telegram.ui.Stories.recorder.StoryEntry.HDRInfo r44, org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r45) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.TextureRenderer.<init>(org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.lang.String, java.lang.String, java.util.ArrayList, org.telegram.messenger.MediaController$CropState, int, int, int, int, int, float, boolean, java.lang.Integer, java.lang.Integer, org.telegram.ui.Stories.recorder.StoryEntry$HDRInfo, org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams):void");
     }
 
     public int getTextureId() {
         return this.mTextureID;
     }
 
-    private void drawGradient() {
+    private void drawBackground() {
         int i = this.NUM_GRADIENT_SHADER;
-        if (i < 0) {
-            return;
+        if (i >= 0) {
+            GLES20.glUseProgram(this.mProgram[i]);
+            GLES20.glVertexAttribPointer(this.maPositionHandle[this.NUM_GRADIENT_SHADER], 2, 5126, false, 8, (Buffer) this.gradientVerticesBuffer);
+            GLES20.glEnableVertexAttribArray(this.maPositionHandle[this.NUM_GRADIENT_SHADER]);
+            GLES20.glVertexAttribPointer(this.maTextureHandle[this.NUM_GRADIENT_SHADER], 2, 5126, false, 8, (Buffer) this.gradientTextureBuffer);
+            GLES20.glEnableVertexAttribArray(this.maTextureHandle[this.NUM_GRADIENT_SHADER]);
+            GLES20.glUniformMatrix4fv(this.muSTMatrixHandle[this.NUM_GRADIENT_SHADER], 1, false, this.mSTMatrix, 0);
+            GLES20.glUniformMatrix4fv(this.muMVPMatrixHandle[this.NUM_GRADIENT_SHADER], 1, false, this.mMVPMatrix, 0);
+            GLES20.glUniform4f(this.gradientTopColorHandle, Color.red(this.gradientTopColor) / 255.0f, Color.green(this.gradientTopColor) / 255.0f, Color.blue(this.gradientTopColor) / 255.0f, Color.alpha(this.gradientTopColor) / 255.0f);
+            GLES20.glUniform4f(this.gradientBottomColorHandle, Color.red(this.gradientBottomColor) / 255.0f, Color.green(this.gradientBottomColor) / 255.0f, Color.blue(this.gradientBottomColor) / 255.0f, Color.alpha(this.gradientBottomColor) / 255.0f);
+            GLES20.glDrawArrays(5, 0, 4);
+        } else if (this.backgroundPathIndex >= 0) {
+            GLES20.glUseProgram(this.simpleShaderProgram);
+            GLES20.glActiveTexture(33984);
+            GLES20.glUniform1i(this.simpleSourceImageHandle, 0);
+            GLES20.glEnableVertexAttribArray(this.simpleInputTexCoordHandle);
+            GLES20.glVertexAttribPointer(this.simpleInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+            GLES20.glEnableVertexAttribArray(this.simplePositionHandle);
+            drawTexture(true, this.paintTexture[this.backgroundPathIndex], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, false, -1);
         }
-        GLES20.glUseProgram(this.mProgram[i]);
-        GLES20.glVertexAttribPointer(this.maPositionHandle[this.NUM_GRADIENT_SHADER], 2, 5126, false, 8, (Buffer) this.gradientVerticesBuffer);
-        GLES20.glEnableVertexAttribArray(this.maPositionHandle[this.NUM_GRADIENT_SHADER]);
-        GLES20.glVertexAttribPointer(this.maTextureHandle[this.NUM_GRADIENT_SHADER], 2, 5126, false, 8, (Buffer) this.gradientTextureBuffer);
-        GLES20.glEnableVertexAttribArray(this.maTextureHandle[this.NUM_GRADIENT_SHADER]);
-        GLES20.glUniformMatrix4fv(this.muSTMatrixHandle[this.NUM_GRADIENT_SHADER], 1, false, this.mSTMatrix, 0);
-        GLES20.glUniformMatrix4fv(this.muMVPMatrixHandle[this.NUM_GRADIENT_SHADER], 1, false, this.mMVPMatrix, 0);
-        GLES20.glUniform4f(this.gradientTopColorHandle, Color.red(this.gradientTopColor) / 255.0f, Color.green(this.gradientTopColor) / 255.0f, Color.blue(this.gradientTopColor) / 255.0f, Color.alpha(this.gradientTopColor) / 255.0f);
-        GLES20.glUniform4f(this.gradientBottomColorHandle, Color.red(this.gradientBottomColor) / 255.0f, Color.green(this.gradientBottomColor) / 255.0f, Color.blue(this.gradientBottomColor) / 255.0f, Color.alpha(this.gradientBottomColor) / 255.0f);
-        GLES20.glDrawArrays(5, 0, 4);
     }
 
     public void drawFrame(SurfaceTexture surfaceTexture, long j) {
@@ -155,8 +175,9 @@ public class TextureRenderer {
         int i6;
         int i7;
         int[] iArr;
+        boolean z = true;
         if (this.isPhoto) {
-            drawGradient();
+            drawBackground();
             i4 = 0;
         } else {
             surfaceTexture.getTransformMatrix(this.mSTMatrix);
@@ -209,14 +230,23 @@ public class TextureRenderer {
                 i3 = i11;
                 i4 = 0;
             }
-            drawGradient();
+            drawBackground();
             GLES20.glUseProgram(this.mProgram[i2]);
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(i, i3);
+            if (this.messageVideoMaskPath != null && this.videoMaskTexture != -1) {
+                GLES20.glActiveTexture(33985);
+                GLES20.glBindTexture(3553, this.videoMaskTexture);
+                GLES20.glUniform1i(this.maskTextureHandle[i2], 1);
+            }
             GLES20.glVertexAttribPointer(this.maPositionHandle[i2], 2, 5126, false, 8, (Buffer) this.verticesBuffer);
             GLES20.glEnableVertexAttribArray(this.maPositionHandle[i2]);
             GLES20.glVertexAttribPointer(this.maTextureHandle[i2], 2, 5126, false, 8, (Buffer) this.renderTextureBuffer);
             GLES20.glEnableVertexAttribArray(this.maTextureHandle[i2]);
+            if (this.messageVideoMaskPath != null && this.videoMaskTexture != -1) {
+                GLES20.glVertexAttribPointer(this.mmTextureHandle[i2], 2, 5126, false, 8, (Buffer) this.maskTextureBuffer);
+                GLES20.glEnableVertexAttribArray(this.mmTextureHandle[i2]);
+            }
             int i13 = this.texSizeHandle;
             if (i13 != 0) {
                 GLES20.glUniform2f(i13, this.transformedWidth, this.transformedHeight);
@@ -265,7 +295,7 @@ public class TextureRenderer {
                 GLES20.glDrawArrays(5, 0, 4);
             }
         }
-        if (this.isPhoto || this.paintTexture != null || this.stickerTexture != null || this.partsTexture != null) {
+        if (this.isPhoto || this.paintTexture != null || this.stickerTexture != null) {
             GLES20.glUseProgram(this.simpleShaderProgram);
             GLES20.glActiveTexture(33984);
             GLES20.glUniform1i(this.simpleSourceImageHandle, 0);
@@ -273,34 +303,17 @@ public class TextureRenderer {
             GLES20.glVertexAttribPointer(this.simpleInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
             GLES20.glEnableVertexAttribArray(this.simplePositionHandle);
         }
-        if (this.paintTexture != null && this.imagePath != null) {
-            int i14 = 0;
-            while (i14 < 1) {
-                drawTexture(true, this.paintTexture[i14], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, this.useMatrixForImagePath && this.isPhoto && i14 == 0, -1);
-                i14++;
-            }
+        int i14 = this.imagePathIndex;
+        if (i14 >= 0) {
+            drawTexture(true, this.paintTexture[i14], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, (this.useMatrixForImagePath && this.isPhoto) ? false : false, -1);
         }
-        if (this.partsTexture != null) {
-            int i15 = 0;
-            while (true) {
-                int[] iArr2 = this.partsTexture;
-                if (i15 >= iArr2.length) {
-                    break;
-                }
-                drawTexture(true, iArr2[i15], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, false, i15);
-                i15++;
-            }
+        int i15 = this.paintPathIndex;
+        if (i15 >= 0) {
+            drawTexture(true, this.paintTexture[i15], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, false, -1);
         }
-        if (this.paintTexture != null) {
-            int i16 = this.imagePath != null ? 1 : 0;
-            while (true) {
-                int[] iArr3 = this.paintTexture;
-                if (i16 >= iArr3.length) {
-                    break;
-                }
-                drawTexture(true, iArr3[i16], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, this.useMatrixForImagePath && this.isPhoto && i16 == 0, -1);
-                i16++;
-            }
+        int i16 = this.messagePathIndex;
+        if (i16 >= 0) {
+            drawTexture(true, this.paintTexture[i16], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, false, -1);
         }
         if (this.stickerTexture != null) {
             int size = this.mediaEntities.size();
@@ -563,9 +576,9 @@ public class TextureRenderer {
             }
         }
         this.bitmapVerticesBuffer.put(this.bitmapData).position(0);
-        GLES20.glVertexAttribPointer(this.simplePositionHandle, 2, 5126, false, 8, (Buffer) (i2 >= 0 ? this.partsVerticesBuffer[i2] : z3 ? this.verticesBuffer : this.bitmapVerticesBuffer));
+        GLES20.glVertexAttribPointer(this.simplePositionHandle, 2, 5126, false, 8, (Buffer) (z3 ? this.verticesBuffer : this.bitmapVerticesBuffer));
         GLES20.glEnableVertexAttribArray(this.simpleInputTexCoordHandle);
-        GLES20.glVertexAttribPointer(this.simpleInputTexCoordHandle, 2, 5126, false, 8, (Buffer) (i2 >= 0 ? this.partsTextureBuffer : z3 ? this.renderTextureBuffer : this.textureBuffer));
+        GLES20.glVertexAttribPointer(this.simpleInputTexCoordHandle, 2, 5126, false, 8, (Buffer) (z3 ? this.renderTextureBuffer : this.textureBuffer));
         if (z) {
             GLES20.glBindTexture(3553, i);
         }
@@ -619,15 +632,19 @@ public class TextureRenderer {
                 mediaEntity.firstSeek = true;
             }
         } else {
+            String str = mediaEntity.text;
+            if (!TextUtils.isEmpty(mediaEntity.segmentedPath) && (mediaEntity.subType & 16) != 0) {
+                str = mediaEntity.segmentedPath;
+            }
             if (Build.VERSION.SDK_INT >= 19) {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 if (mediaEntity.type == 2) {
                     options.inMutable = true;
                 }
-                mediaEntity.bitmap = BitmapFactory.decodeFile(mediaEntity.text, options);
+                mediaEntity.bitmap = BitmapFactory.decodeFile(str, options);
             } else {
                 try {
-                    File file = new File(mediaEntity.text);
+                    File file = new File(str);
                     RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
                     MappedByteBuffer map = randomAccessFile.getChannel().map(FileChannel.MapMode.READ_ONLY, 0L, file.length());
                     BitmapFactory.Options options2 = new BitmapFactory.Options();
@@ -752,27 +769,20 @@ public class TextureRenderer {
     }
 
     public void changeFragmentShader(String str, String str2, boolean z) {
+        int createProgram;
+        int createProgram2;
+        String str3 = this.messageVideoMaskPath != null ? z ? VERTEX_SHADER_MASK_300 : VERTEX_SHADER_MASK : z ? VERTEX_SHADER_300 : VERTEX_SHADER;
         int i = this.NUM_EXTERNAL_SHADER;
-        String str3 = VERTEX_SHADER_300;
-        if (i >= 0 && i < this.mProgram.length) {
-            int createProgram = createProgram(z ? VERTEX_SHADER_300 : VERTEX_SHADER, str, z);
-            if (createProgram != 0) {
-                GLES20.glDeleteProgram(this.mProgram[this.NUM_EXTERNAL_SHADER]);
-                this.mProgram[this.NUM_EXTERNAL_SHADER] = createProgram;
-                this.texSizeHandle = GLES20.glGetUniformLocation(createProgram, "texSize");
-            }
+        if (i >= 0 && i < this.mProgram.length && (createProgram2 = createProgram(str3, str, z)) != 0) {
+            GLES20.glDeleteProgram(this.mProgram[this.NUM_EXTERNAL_SHADER]);
+            this.mProgram[this.NUM_EXTERNAL_SHADER] = createProgram2;
+            this.texSizeHandle = GLES20.glGetUniformLocation(createProgram2, "texSize");
         }
         int i2 = this.NUM_FILTER_SHADER;
-        if (i2 < 0 || i2 >= this.mProgram.length) {
+        if (i2 < 0 || i2 >= this.mProgram.length || (createProgram = createProgram(str3, str2, z)) == 0) {
             return;
         }
-        if (!z) {
-            str3 = VERTEX_SHADER;
-        }
-        int createProgram2 = createProgram(str3, str2, z);
-        if (createProgram2 != 0) {
-            GLES20.glDeleteProgram(this.mProgram[this.NUM_FILTER_SHADER]);
-            this.mProgram[this.NUM_FILTER_SHADER] = createProgram2;
-        }
+        GLES20.glDeleteProgram(this.mProgram[this.NUM_FILTER_SHADER]);
+        this.mProgram[this.NUM_FILTER_SHADER] = createProgram;
     }
 }

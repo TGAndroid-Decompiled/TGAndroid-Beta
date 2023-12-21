@@ -4,10 +4,13 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$DraftMessage;
+import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$TL_dialog;
 import org.telegram.tgnet.TLRPC$TL_dialogFolder;
+import org.telegram.tgnet.TLRPC$TL_emojiStatus;
+import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -169,5 +172,34 @@ public class DialogObject {
             return UserObject.getPublicUsername((TLRPC$User) tLObject);
         }
         return null;
+    }
+
+    public static long getEmojiStatusDocumentId(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
+        if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus) {
+            return ((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus).document_id;
+        }
+        if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) {
+            TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
+            if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return tLRPC$TL_emojiStatusUntil.document_id;
+            }
+            return 0L;
+        }
+        return 0L;
+    }
+
+    public static int getEmojiStatusUntil(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
+        if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) {
+            TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
+            if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return tLRPC$TL_emojiStatusUntil.until;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public static boolean emojiStatusesEqual(TLRPC$EmojiStatus tLRPC$EmojiStatus, TLRPC$EmojiStatus tLRPC$EmojiStatus2) {
+        return getEmojiStatusDocumentId(tLRPC$EmojiStatus) == getEmojiStatusDocumentId(tLRPC$EmojiStatus2) && getEmojiStatusUntil(tLRPC$EmojiStatus) == getEmojiStatusUntil(tLRPC$EmojiStatus2);
     }
 }

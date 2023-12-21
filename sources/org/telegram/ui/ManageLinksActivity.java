@@ -177,7 +177,7 @@ public class ManageLinksActivity extends BaseFragment {
             setOrientation(1);
             BackupImageView backupImageView = new BackupImageView(context);
             this.stickerView = backupImageView;
-            addView(backupImageView, LayoutHelper.createLinear(104, 104, 49, 0, 2, 0, 0));
+            addView(backupImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, (int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, 49, 0, 2, 0, 0));
         }
 
         private void setSticker() {

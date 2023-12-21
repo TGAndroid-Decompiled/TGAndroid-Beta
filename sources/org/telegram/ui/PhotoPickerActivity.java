@@ -2053,9 +2053,9 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             } else {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 if (i < PhotoPickerActivity.this.recentSearches.size()) {
-                    textCell.setTextAndIcon((String) PhotoPickerActivity.this.recentSearches.get(i), R.drawable.msg_recent, false);
+                    textCell.setTextAndIcon((CharSequence) PhotoPickerActivity.this.recentSearches.get(i), R.drawable.msg_recent, false);
                 } else {
-                    textCell.setTextAndIcon(LocaleController.getString("ClearRecentHistory", R.string.ClearRecentHistory), R.drawable.msg_clear_recent, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("ClearRecentHistory", R.string.ClearRecentHistory), R.drawable.msg_clear_recent, false);
                 }
             }
         }

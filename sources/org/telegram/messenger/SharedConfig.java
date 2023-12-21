@@ -91,7 +91,6 @@ public class SharedConfig {
     public static int lastLogsCheckTime = 0;
     public static int lastPauseTime = 0;
     public static long lastUpdateCheckTime = 0;
-    public static String lastUpdateVersion = null;
     public static long lastUptimeMillis = 0;
     private static int legacyDevicePerformanceClass = -1;
     public static LiteMode liteMode = null;
@@ -441,7 +440,6 @@ public class SharedConfig {
                 edit.putInt("badPasscodeTries", badPasscodeTries);
                 edit.putInt("autoLockIn", autoLockIn);
                 edit.putInt("lastPauseTime", lastPauseTime);
-                edit.putString("lastUpdateVersion2", lastUpdateVersion);
                 edit.putBoolean("useFingerprint", useFingerprint);
                 edit.putBoolean("allowScreenCapture", allowScreenCapture);
                 edit.putString("pushString2", pushString);
@@ -502,6 +500,15 @@ public class SharedConfig {
 
     public static void loadConfig() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SharedConfig.loadConfig():void");
+    }
+
+    public static int buildVersion() {
+        try {
+            return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return 0;
+        }
     }
 
     public static void updateTabletConfig() {
@@ -573,18 +580,18 @@ public class SharedConfig {
     }
 
     public static boolean isAppUpdateAvailable() {
-        int i;
+        int buildVersion;
         TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
         if (tLRPC$TL_help_appUpdate == null || tLRPC$TL_help_appUpdate.document == null || !ApplicationLoader.isStandaloneBuild()) {
             return false;
         }
         try {
-            i = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
+            buildVersion = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
         } catch (Exception e) {
             FileLog.e(e);
-            i = BuildVars.BUILD_VERSION;
+            buildVersion = buildVersion();
         }
-        return pendingAppUpdateBuildVersion == i;
+        return pendingAppUpdateBuildVersion == buildVersion;
     }
 
     public static boolean setNewAppVersionAvailable(org.telegram.tgnet.TLRPC$TL_help_appUpdate r4) {
@@ -656,7 +663,6 @@ public class SharedConfig {
         useFingerprint = true;
         isWaitingForPasscodeEnter = false;
         allowScreenCapture = false;
-        lastUpdateVersion = BuildVars.BUILD_VERSION_STRING;
         textSelectionHintShows = 0;
         scheduledOrNoSoundHintShows = 0;
         scheduledOrNoSoundHintSeenAt = 0L;

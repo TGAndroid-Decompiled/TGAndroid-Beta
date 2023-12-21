@@ -576,7 +576,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             linearLayout.addView(textView);
             TextView textView2 = new TextView(context);
             this.subtitle = textView2;
-            textView2.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(i2), 102));
+            textView2.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(i2), R.styleable.AppCompatTheme_textAppearanceLargePopupMenu));
             textView2.setTextSize(1, 14.0f);
             textView2.setTag(textView2);
             textView2.setMaxLines(1);

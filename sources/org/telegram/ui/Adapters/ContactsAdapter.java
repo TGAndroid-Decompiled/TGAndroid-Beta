@@ -493,30 +493,30 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (i == 0) {
                 if (this.needPhonebook) {
                     if (i2 == 0) {
-                        textCell.setTextAndIcon(LocaleController.getString("InviteFriends", R.string.InviteFriends), R.drawable.msg_invite, false);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("InviteFriends", R.string.InviteFriends), R.drawable.msg_invite, false);
                         return;
                     } else if (i2 == 1) {
-                        textCell.setTextAndIcon(LocaleController.getString("AddPeopleNearby", R.string.AddPeopleNearby), R.drawable.msg_location, false);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("AddPeopleNearby", R.string.AddPeopleNearby), R.drawable.msg_location, false);
                         return;
                     } else {
                         return;
                     }
                 } else if (this.isAdmin) {
                     if (this.isChannel) {
-                        textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", R.string.ChannelInviteViaLink), R.drawable.msg_link2, false);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("ChannelInviteViaLink", R.string.ChannelInviteViaLink), R.drawable.msg_link2, false);
                         return;
                     } else {
-                        textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink), R.drawable.msg_link2, false);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink), R.drawable.msg_link2, false);
                         return;
                     }
                 } else if (i2 == 0) {
-                    textCell.setTextAndIcon(LocaleController.getString("NewGroup", R.string.NewGroup), R.drawable.msg_groups, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("NewGroup", R.string.NewGroup), R.drawable.msg_groups, false);
                     return;
                 } else if (i2 == 1) {
-                    textCell.setTextAndIcon(LocaleController.getString("NewSecretChat", R.string.NewSecretChat), R.drawable.msg_secret, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("NewSecretChat", R.string.NewSecretChat), R.drawable.msg_secret, false);
                     return;
                 } else if (i2 == 2) {
-                    textCell.setTextAndIcon(LocaleController.getString("NewChannel", R.string.NewChannel), R.drawable.msg_channel, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("NewChannel", R.string.NewChannel), R.drawable.msg_channel, false);
                     return;
                 } else {
                     return;

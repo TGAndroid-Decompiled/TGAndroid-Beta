@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
 import org.telegram.messenger.audioinfo.AudioInfo;
 public class ID3v2Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
@@ -357,7 +357,7 @@ public class ID3v2Info extends AudioInfo {
                 this.copyright = parseTextFrame(iD3v2FrameBody);
                 return;
             case 7:
-            case MessageObject.TYPE_GIVEAWAY:
+            case 26:
                 String parseTextFrame2 = parseTextFrame(iD3v2FrameBody);
                 try {
                     this.duration = Long.valueOf(parseTextFrame2).longValue();
@@ -371,7 +371,7 @@ public class ID3v2Info extends AudioInfo {
                     return;
                 }
             case '\b':
-            case MessageObject.TYPE_JOINED_CHANNEL:
+            case 27:
                 this.artist = parseTextFrame(iD3v2FrameBody);
                 return;
             case '\t':
@@ -418,7 +418,7 @@ public class ID3v2Info extends AudioInfo {
                 }
                 return;
             case 11:
-            case 30:
+            case R.styleable.AppCompatTheme_actionModeTheme:
                 String parseTextFrame4 = parseTextFrame(iD3v2FrameBody);
                 if (parseTextFrame4.length() > 0) {
                     int indexOf3 = parseTextFrame4.indexOf(47);
@@ -465,7 +465,7 @@ public class ID3v2Info extends AudioInfo {
                 this.title = parseTextFrame(iD3v2FrameBody);
                 return;
             case 14:
-            case 31:
+            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
                 String parseTextFrame5 = parseTextFrame(iD3v2FrameBody);
                 if (parseTextFrame5.length() > 0) {
                     try {

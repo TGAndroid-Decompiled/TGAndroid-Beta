@@ -57,6 +57,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.tl.TL_stories$StoryFwdHeader;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaChannelPost;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -526,8 +527,10 @@ public class StoryCaptionView extends NestedScrollView {
 
     public static class Reply {
         private int currentAccount;
+        public boolean isRepostMessage;
         private boolean loaded;
         private boolean loading;
+        public Integer messageId;
         public Long peerId;
         public Integer storyId;
         public CharSequence text;
@@ -590,46 +593,85 @@ public class StoryCaptionView extends NestedScrollView {
         }
 
         public static Reply from(int i, TL_stories$StoryItem tL_stories$StoryItem) {
-            if (tL_stories$StoryItem == null || tL_stories$StoryItem.fwd_from == null) {
+            TLRPC$Chat chat;
+            Reply reply = null;
+            if (tL_stories$StoryItem == null) {
                 return null;
             }
-            Reply reply = new Reply();
-            reply.currentAccount = i;
-            TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader = tL_stories$StoryItem.fwd_from;
-            TLRPC$Peer tLRPC$Peer = tL_stories$StoryFwdHeader.from;
-            if (tLRPC$Peer != null) {
-                Long valueOf = Long.valueOf(DialogObject.getPeerDialogId(tLRPC$Peer));
-                reply.peerId = valueOf;
-                long longValue = valueOf.longValue();
-                if (longValue >= 0) {
-                    reply.title = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(longValue))));
-                } else {
-                    TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-longValue));
-                    reply.title = new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? MessageObject.channelSpan() : MessageObject.groupSpan()).append((CharSequence) " ").append((CharSequence) (chat != null ? chat.title : ""));
+            if (tL_stories$StoryItem.fwd_from != null) {
+                Reply reply2 = new Reply();
+                reply2.currentAccount = i;
+                TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader = tL_stories$StoryItem.fwd_from;
+                TLRPC$Peer tLRPC$Peer = tL_stories$StoryFwdHeader.from;
+                if (tLRPC$Peer != null) {
+                    Long valueOf = Long.valueOf(DialogObject.getPeerDialogId(tLRPC$Peer));
+                    reply2.peerId = valueOf;
+                    long longValue = valueOf.longValue();
+                    if (longValue >= 0) {
+                        reply2.title = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(longValue))));
+                    } else {
+                        TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-longValue));
+                        reply2.title = new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat2) ? MessageObject.channelSpan() : MessageObject.groupSpan()).append((CharSequence) " ").append((CharSequence) (chat2 != null ? chat2.title : ""));
+                    }
+                } else if (tL_stories$StoryFwdHeader.from_name != null) {
+                    reply2.title = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) tL_stories$StoryItem.fwd_from.from_name);
                 }
-            } else if (tL_stories$StoryFwdHeader.from_name != null) {
-                reply.title = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) tL_stories$StoryItem.fwd_from.from_name);
+                reply2.small = true;
+                TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader2 = tL_stories$StoryItem.fwd_from;
+                if ((tL_stories$StoryFwdHeader2.flags & 4) != 0) {
+                    reply2.storyId = Integer.valueOf(tL_stories$StoryFwdHeader2.story_id);
+                }
+                reply2.load();
+                return reply2;
             }
-            reply.small = true;
-            TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader2 = tL_stories$StoryItem.fwd_from;
-            if ((tL_stories$StoryFwdHeader2.flags & 4) != 0) {
-                reply.storyId = Integer.valueOf(tL_stories$StoryFwdHeader2.story_id);
+            if (tL_stories$StoryItem.media_areas != null) {
+                TL_stories$TL_mediaAreaChannelPost tL_stories$TL_mediaAreaChannelPost = null;
+                for (int i2 = 0; i2 < tL_stories$StoryItem.media_areas.size(); i2++) {
+                    if (tL_stories$StoryItem.media_areas.get(i2) instanceof TL_stories$TL_mediaAreaChannelPost) {
+                        tL_stories$TL_mediaAreaChannelPost = (TL_stories$TL_mediaAreaChannelPost) tL_stories$StoryItem.media_areas.get(i2);
+                    }
+                }
+                if (tL_stories$TL_mediaAreaChannelPost != null && (chat = MessagesController.getInstance(i).getChat(Long.valueOf(tL_stories$TL_mediaAreaChannelPost.channel_id))) != null) {
+                    reply = new Reply();
+                    reply.peerId = Long.valueOf(-chat.id);
+                    reply.isRepostMessage = true;
+                    reply.currentAccount = i;
+                    reply.small = true;
+                    reply.messageId = Integer.valueOf(tL_stories$TL_mediaAreaChannelPost.msg_id);
+                    reply.title = new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? MessageObject.channelSpan() : MessageObject.groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
+                }
             }
-            reply.load();
             return reply;
         }
 
         public static Reply from(StoriesController.UploadingStory uploadingStory) {
             StoryEntry storyEntry;
-            if (uploadingStory == null || (storyEntry = uploadingStory.entry) == null || !storyEntry.isRepost) {
-                return null;
+            ArrayList<MessageObject> arrayList;
+            TLRPC$Chat chat;
+            Reply reply = null;
+            if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null) {
+                if (storyEntry.isRepost) {
+                    Reply reply2 = new Reply();
+                    StoryEntry storyEntry2 = uploadingStory.entry;
+                    reply2.title = storyEntry2.repostPeerName;
+                    String str = storyEntry2.repostCaption;
+                    reply2.text = str;
+                    reply2.small = TextUtils.isEmpty(str);
+                    return reply2;
+                } else if (storyEntry.isRepostMessage && (arrayList = storyEntry.messageObjects) != null && arrayList.size() > 0) {
+                    MessageObject messageObject = uploadingStory.entry.messageObjects.get(0);
+                    long repostDialogId = StoryEntry.getRepostDialogId(messageObject);
+                    if (repostDialogId < 0 && (chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-repostDialogId))) != null) {
+                        reply = new Reply();
+                        reply.peerId = Long.valueOf(repostDialogId);
+                        reply.isRepostMessage = true;
+                        reply.currentAccount = messageObject.currentAccount;
+                        reply.small = true;
+                        reply.messageId = Integer.valueOf(StoryEntry.getRepostMessageId(messageObject));
+                        reply.title = new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? MessageObject.channelSpan() : MessageObject.groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
+                    }
+                }
             }
-            Reply reply = new Reply();
-            StoryEntry storyEntry2 = uploadingStory.entry;
-            reply.title = storyEntry2.repostPeerName;
-            String str = storyEntry2.repostCaption;
-            reply.text = str;
-            reply.small = TextUtils.isEmpty(str);
             return reply;
         }
 

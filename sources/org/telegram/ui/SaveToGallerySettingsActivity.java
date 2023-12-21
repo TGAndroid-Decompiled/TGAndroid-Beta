@@ -396,7 +396,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             switch (i) {
                 case 1:
                     TextCell textCell = new TextCell(viewGroup.getContext());
-                    textCell.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                     textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                     textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     shadowSectionCell = textCell;

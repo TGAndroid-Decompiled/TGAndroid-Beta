@@ -3992,7 +3992,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
         public void lambda$onItemClick$2(boolean z, DialogInterface dialogInterface, int i) {
             GroupCallActivity.this.call.toggleRecord(null, 0);
-            GroupCallActivity.this.getUndoView().showWithAction(0L, z ? FileLoader.MEDIA_DIR_VIDEO_PUBLIC : 40, (Runnable) null);
+            GroupCallActivity.this.getUndoView().showWithAction(0L, z ? 101 : 40, (Runnable) null);
         }
 
         public class AnonymousClass1 extends GroupCallRecordAlert {
@@ -5174,7 +5174,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$new$35(Context context, View view) {
         LaunchActivity launchActivity;
         if (Build.VERSION.SDK_INT >= 23 && (launchActivity = this.parentActivity) != null && launchActivity.checkSelfPermission("android.permission.CAMERA") != 0) {
-            this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, 104);
+            this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, R.styleable.AppCompatTheme_textAppearanceListItemSecondary);
         } else if (VoIPService.getSharedInstance() == null) {
         } else {
             if (VoIPService.getSharedInstance().getVideoState(false) != 2) {
@@ -6936,6 +6936,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
+        public void notifyItemInserted(int i) {
+            updateRows();
+            super.notifyItemInserted(i);
+        }
+
+        @Override
         public void notifyItemMoved(int i, int i2) {
             updateRows();
             super.notifyItemMoved(i, i2);
@@ -6945,6 +6951,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         public void notifyItemRangeInserted(int i, int i2) {
             updateRows();
             super.notifyItemRangeInserted(i, i2);
+        }
+
+        @Override
+        public void notifyItemRemoved(int i) {
+            updateRows();
+            super.notifyItemRemoved(i);
         }
 
         @Override

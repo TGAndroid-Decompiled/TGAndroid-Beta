@@ -1,14 +1,18 @@
 package org.telegram.ui.Stories;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
@@ -26,14 +30,17 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
 import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaChannelPost;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaCoordinates;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaGeoPoint;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaVenue;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.EmojiAnimationsOverlay;
@@ -42,18 +49,29 @@ import org.telegram.ui.Stories.StoryMediaAreasView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 public class StoryMediaAreasView extends FrameLayout implements View.OnClickListener {
+    private final Path clipPath;
     private final Paint cutPaint;
     private HintView2 hintView;
     private final FrameLayout hintsContainer;
     private ArrayList<TL_stories$MediaArea> lastMediaAreas;
+    private AreaView lastSelectedArea;
     private boolean malicious;
     Matrix matrix;
+    private Bitmap parentBitmap;
     public final AnimatedFloat parentHighlightAlpha;
+    public final AnimatedFloat parentHighlightScaleAlpha;
+    private View parentView;
     float[] point;
+    private final float[] radii;
+    private final Rect rect;
     private final RectF rectF;
     private Theme.ResourcesProvider resourcesProvider;
     private AreaView selectedArea;
     private boolean shined;
+
+    protected Bitmap getPlayingBitmap() {
+        return null;
+    }
 
     protected void onHintVisible(boolean z) {
     }
@@ -64,20 +82,26 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     public void showEffect(StoryReactionWidgetView storyReactionWidgetView) {
     }
 
-    public StoryMediaAreasView(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public StoryMediaAreasView(Context context, View view, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.lastSelectedArea = null;
         this.selectedArea = null;
         this.hintView = null;
         this.matrix = new Matrix();
         this.point = new float[2];
+        this.rect = new Rect();
         this.rectF = new RectF();
         Paint paint = new Paint(1);
         this.cutPaint = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint.setColor(-1);
-        this.parentHighlightAlpha = new AnimatedFloat(this, 0L, 120L, new LinearInterpolator());
+        this.clipPath = new Path();
+        this.radii = new float[8];
         this.shined = false;
+        this.parentView = view;
         this.resourcesProvider = resourcesProvider;
+        this.parentHighlightAlpha = new AnimatedFloat(view, 0L, 120L, new LinearInterpolator());
+        this.parentHighlightScaleAlpha = new AnimatedFloat(view, 0L, 360L, CubicBezierInterpolator.EASE_OUT_QUINT);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.hintsContainer = frameLayout;
@@ -122,6 +146,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             i++;
         }
         this.selectedArea = null;
+        this.parentHighlightScaleAlpha.set(0.0f, true);
         invalidate();
         onHintVisible(false);
         this.malicious = false;
@@ -130,7 +155,6 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             return;
         }
         this.shined = false;
-        double d = 0.0d;
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TL_stories$MediaArea tL_stories$MediaArea = arrayList.get(i2);
             if (tL_stories$MediaArea != null && tL_stories$MediaArea.coordinates != null) {
@@ -142,15 +166,16 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     ScaleStateListAnimator.apply(storyReactionWidgetView2);
                     storyReactionWidgetView = storyReactionWidgetView2;
                 } else {
-                    storyReactionWidgetView = new AreaView(getContext(), this, tL_stories$MediaArea);
+                    storyReactionWidgetView = new AreaView(getContext(), this.parentView, tL_stories$MediaArea);
                 }
                 storyReactionWidgetView.setOnClickListener(this);
                 addView(storyReactionWidgetView);
                 TL_stories$TL_mediaAreaCoordinates tL_stories$TL_mediaAreaCoordinates = tL_stories$MediaArea.coordinates;
-                d += (tL_stories$TL_mediaAreaCoordinates.w / 100.0d) * 1080.0d * (tL_stories$TL_mediaAreaCoordinates.h / 100.0d) * 1920.0d;
+                double d = tL_stories$TL_mediaAreaCoordinates.w;
+                double d2 = tL_stories$TL_mediaAreaCoordinates.h;
             }
         }
-        this.malicious = d > 684288.0d;
+        this.malicious = false;
         this.hintsContainer.bringToFront();
     }
 
@@ -191,6 +216,15 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                         StoryMediaAreasView.this.lambda$onClick$0();
                     }
                 }, 200L);
+                if (this.selectedArea.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", ((TL_stories$TL_mediaAreaChannelPost) this.selectedArea.mediaArea).channel_id);
+                    bundle.putInt("message_id", ((TL_stories$TL_mediaAreaChannelPost) this.selectedArea.mediaArea).msg_id);
+                    presentFragment(new ChatActivity(bundle));
+                    this.selectedArea = null;
+                    invalidate();
+                    return;
+                }
                 LocationActivity locationActivity = new LocationActivity(this, 3) {
                     @Override
                     protected boolean disablePermissionCheck() {
@@ -228,7 +262,9 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             } else if (areaView != null && this.malicious) {
                 onClickAway();
             } else {
-                this.selectedArea = (AreaView) view;
+                AreaView areaView2 = (AreaView) view;
+                this.lastSelectedArea = areaView2;
+                this.selectedArea = areaView2;
                 invalidate();
                 HintView2 hintView2 = this.hintView;
                 if (hintView2 != null) {
@@ -236,7 +272,12 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     this.hintView = null;
                 }
                 boolean z = this.selectedArea.getTranslationY() < ((float) AndroidUtilities.dp(100.0f));
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("StoryViewLocation", R.string.StoryViewLocation));
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                if (this.selectedArea.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) {
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewMessage));
+                } else {
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewLocation));
+                }
                 SpannableString spannableString = new SpannableString(">");
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.photos_arrow);
                 coloredImageSpan.translate(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
@@ -258,10 +299,13 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                         StoryMediaAreasView.this.lambda$onClick$1(duration);
                     }
                 });
-                if (z) {
-                    this.hintView.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
+                AreaView areaView3 = this.selectedArea;
+                if (areaView3.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) {
+                    this.hintView.setTranslationY(areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+                } else if (z) {
+                    this.hintView.setTranslationY(areaView3.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
                 } else {
-                    this.hintView.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f));
+                    this.hintView.setTranslationY((areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f));
                 }
                 this.hintView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -373,19 +417,26 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     }
 
     private void drawHighlight(Canvas canvas) {
-        float f = this.parentHighlightAlpha.set(this.selectedArea != null);
+        AnimatedFloat animatedFloat = this.parentHighlightAlpha;
+        AreaView areaView = this.selectedArea;
+        float f = animatedFloat.set((areaView == null || !areaView.supportsBounds || this.selectedArea.scaleOnTap) ? false : true);
+        AreaView areaView2 = this.selectedArea;
+        boolean z = areaView2 != null && areaView2.scaleOnTap;
+        float f2 = this.parentHighlightScaleAlpha.set(z);
         if (f > 0.0f) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
             canvas.drawColor(Theme.multAlpha(402653184, f));
             for (int i = 0; i < getChildCount(); i++) {
                 View childAt = getChildAt(i);
                 if (childAt != this.hintsContainer) {
-                    float f2 = ((AreaView) childAt).highlightAlpha.set(childAt == this.selectedArea);
-                    if (f2 > 0.0f) {
+                    AnimatedFloat animatedFloat2 = ((AreaView) childAt).highlightAlpha;
+                    AreaView areaView3 = this.selectedArea;
+                    float f3 = animatedFloat2.set(childAt == areaView3 && areaView3.supportsBounds);
+                    if (f3 > 0.0f) {
                         canvas.save();
                         this.rectF.set(childAt.getX(), childAt.getY(), childAt.getX() + childAt.getMeasuredWidth(), childAt.getY() + childAt.getMeasuredHeight());
                         canvas.rotate(childAt.getRotation(), this.rectF.centerX(), this.rectF.centerY());
-                        this.cutPaint.setAlpha((int) (f2 * 255.0f));
+                        this.cutPaint.setAlpha((int) (f3 * 255.0f));
                         RectF rectF = this.rectF;
                         canvas.drawRoundRect(rectF, rectF.height() * 0.2f, this.rectF.height() * 0.2f, this.cutPaint);
                         canvas.restore();
@@ -393,6 +444,60 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 }
             }
             canvas.restore();
+        }
+        if ((z || f2 > 0.0f) && this.lastSelectedArea != null) {
+            if (this.parentBitmap == null) {
+                this.parentBitmap = getPlayingBitmap();
+            }
+            if (this.parentBitmap != null) {
+                canvas.drawColor(Theme.multAlpha(805306368, f2));
+                canvas.save();
+                this.clipPath.rewind();
+                this.rectF.set(this.lastSelectedArea.getX(), this.lastSelectedArea.getY(), this.lastSelectedArea.getX() + this.lastSelectedArea.getMeasuredWidth(), this.lastSelectedArea.getY() + this.lastSelectedArea.getMeasuredHeight());
+                float lerp = AndroidUtilities.lerp(1.0f, 1.05f, f2);
+                canvas.scale(lerp, lerp, this.rectF.centerX(), this.rectF.centerY());
+                canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
+                float[] fArr = this.radii;
+                float dp = AndroidUtilities.dp(16.0f);
+                fArr[1] = dp;
+                fArr[0] = dp;
+                float[] fArr2 = this.radii;
+                float dp2 = AndroidUtilities.dp(16.0f);
+                fArr2[3] = dp2;
+                fArr2[2] = dp2;
+                float[] fArr3 = this.radii;
+                float dp3 = AndroidUtilities.dp(16.0f);
+                fArr3[5] = dp3;
+                fArr3[4] = dp3;
+                float[] fArr4 = this.radii;
+                float dp4 = AndroidUtilities.dp(8.0f);
+                fArr4[7] = dp4;
+                fArr4[6] = dp4;
+                this.clipPath.addRoundRect(this.rectF, this.radii, Path.Direction.CW);
+                canvas.clipPath(this.clipPath);
+                this.rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                this.rect.set(0, 0, this.parentBitmap.getWidth(), this.parentBitmap.getHeight());
+                canvas.rotate(-this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
+                canvas.drawBitmap(this.parentBitmap, this.rect, this.rectF, (Paint) null);
+                canvas.restore();
+            }
+        } else {
+            Bitmap bitmap = this.parentBitmap;
+            if (bitmap != null) {
+                bitmap.recycle();
+                this.parentBitmap = null;
+            }
+        }
+        invalidate();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Bitmap bitmap = this.parentBitmap;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.parentBitmap = null;
         }
     }
 
@@ -411,6 +516,11 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
 
     public boolean hasSelected() {
         return this.selectedArea != null;
+    }
+
+    public boolean hasSelectedForScale() {
+        AreaView areaView = this.selectedArea;
+        return areaView != null && (areaView.scaleOnTap || this.selectedArea.supportsBounds);
     }
 
     public boolean hasAreaAboveAt(float f, float f2) {
@@ -475,18 +585,24 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         private final Paint gradientPaint;
         public final AnimatedFloat highlightAlpha;
         public final TL_stories$MediaArea mediaArea;
+        private boolean scaleOnTap;
         private final Runnable shineRunnable;
         private boolean shining;
         private long startTime;
         private LinearGradient strokeGradient;
         private final Paint strokeGradientPaint;
+        private boolean supportsBounds;
+        private boolean supportsShining;
 
         public AreaView(Context context, View view, TL_stories$MediaArea tL_stories$MediaArea) {
             super(context);
+            boolean z = true;
             this.gradientPaint = new Paint(1);
             Paint paint = new Paint(1);
             this.strokeGradientPaint = paint;
             this.gradientMatrix = new Matrix();
+            this.supportsBounds = false;
+            this.supportsShining = false;
             this.shining = false;
             this.shineRunnable = new Runnable() {
                 @Override
@@ -495,6 +611,13 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 }
             };
             this.mediaArea = tL_stories$MediaArea;
+            boolean z2 = tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaGeoPoint;
+            this.supportsBounds = z2 || (tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaVenue);
+            if (!z2 && !(tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaVenue)) {
+                z = false;
+            }
+            this.supportsShining = z;
+            this.scaleOnTap = false;
             this.highlightAlpha = new AnimatedFloat(view, 0L, 120L, new LinearInterpolator());
             paint.setStyle(Paint.Style.STROKE);
         }
@@ -502,45 +625,48 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            if (!this.shining || this.gradient == null) {
-                return;
+            if (this.supportsShining && this.shining && this.gradient != null) {
+                float measuredWidth = getMeasuredWidth() * 0.7f;
+                float currentTimeMillis = ((float) (System.currentTimeMillis() - this.startTime)) / 600.0f;
+                float measuredWidth2 = ((getMeasuredWidth() + measuredWidth) * currentTimeMillis) - measuredWidth;
+                if (currentTimeMillis >= 1.0f) {
+                    this.shining = false;
+                    return;
+                }
+                this.gradientMatrix.reset();
+                this.gradientMatrix.postScale(measuredWidth / 40.0f, 1.0f);
+                this.gradientMatrix.postTranslate(measuredWidth2, 0.0f);
+                this.gradient.setLocalMatrix(this.gradientMatrix);
+                this.gradientPaint.setShader(this.gradient);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                canvas.drawRoundRect(rectF, getMeasuredHeight() * 0.2f, getMeasuredHeight() * 0.2f, this.gradientPaint);
+                this.strokeGradient.setLocalMatrix(this.gradientMatrix);
+                this.strokeGradientPaint.setShader(this.strokeGradient);
+                float dpf2 = AndroidUtilities.dpf2(1.5f);
+                this.strokeGradientPaint.setStrokeWidth(dpf2);
+                float f = dpf2 / 2.0f;
+                rectF.inset(f, f);
+                canvas.drawRoundRect(rectF, (getMeasuredHeight() * 0.2f) - f, (getMeasuredHeight() * 0.2f) - f, this.strokeGradientPaint);
+                invalidate();
             }
-            float measuredWidth = getMeasuredWidth() * 0.7f;
-            float currentTimeMillis = ((float) (System.currentTimeMillis() - this.startTime)) / 600.0f;
-            float measuredWidth2 = ((getMeasuredWidth() + measuredWidth) * currentTimeMillis) - measuredWidth;
-            if (currentTimeMillis >= 1.0f) {
-                this.shining = false;
-                return;
-            }
-            this.gradientMatrix.reset();
-            this.gradientMatrix.postScale(measuredWidth / 40.0f, 1.0f);
-            this.gradientMatrix.postTranslate(measuredWidth2, 0.0f);
-            this.gradient.setLocalMatrix(this.gradientMatrix);
-            this.gradientPaint.setShader(this.gradient);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, getMeasuredHeight() * 0.2f, getMeasuredHeight() * 0.2f, this.gradientPaint);
-            this.strokeGradient.setLocalMatrix(this.gradientMatrix);
-            this.strokeGradientPaint.setShader(this.strokeGradient);
-            float dpf2 = AndroidUtilities.dpf2(1.5f);
-            this.strokeGradientPaint.setStrokeWidth(dpf2);
-            float f = dpf2 / 2.0f;
-            rectF.inset(f, f);
-            canvas.drawRoundRect(rectF, (getMeasuredHeight() * 0.2f) - f, (getMeasuredHeight() * 0.2f) - f, this.strokeGradientPaint);
-            invalidate();
         }
 
         public void shine() {
-            AndroidUtilities.cancelRunOnUIThread(this.shineRunnable);
-            AndroidUtilities.runOnUIThread(this.shineRunnable, 400L);
+            if (this.supportsShining) {
+                AndroidUtilities.cancelRunOnUIThread(this.shineRunnable);
+                AndroidUtilities.runOnUIThread(this.shineRunnable, 400L);
+            }
         }
 
         public void shineInternal() {
-            this.shining = true;
-            this.startTime = System.currentTimeMillis();
-            this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            invalidate();
+            if (this.supportsShining) {
+                this.shining = true;
+                this.startTime = System.currentTimeMillis();
+                this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+                this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+                invalidate();
+            }
         }
     }
 }

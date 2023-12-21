@@ -5390,7 +5390,7 @@ public class AlertsCreator {
                     Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + context.getPackageName()));
                     Activity findActivity = AndroidUtilities.findActivity(context);
                     if (findActivity instanceof LaunchActivity) {
-                        findActivity.startActivityForResult(intent, 105);
+                        findActivity.startActivityForResult(intent, R.styleable.AppCompatTheme_textAppearanceListItemSmall);
                     } else {
                         context.startActivity(intent);
                     }

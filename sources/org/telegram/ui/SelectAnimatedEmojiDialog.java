@@ -96,6 +96,7 @@ import org.telegram.tgnet.TLRPC$StickerSetCovered;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.tgnet.TLRPC$TL_emojiList;
 import org.telegram.tgnet.TLRPC$TL_emojiStatus;
+import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmojiChannelDefaultStatuses;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmojiDefaultStatuses;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
@@ -305,7 +306,8 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     }
 
     public boolean isBottom() {
-        return this.type == 5;
+        int i = this.type;
+        return i == 5 || i == 10;
     }
 
     public void setSelectedReactions(HashSet<ReactionsLayoutInBubble.VisibleReaction> hashSet) {
@@ -488,7 +490,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         this(baseFragment, context, z, num, i, z2, resourcesProvider, i2, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider));
     }
 
-    public SelectAnimatedEmojiDialog(org.telegram.ui.ActionBar.BaseFragment r32, android.content.Context r33, boolean r34, java.lang.Integer r35, final int r36, boolean r37, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r38, int r39, int r40) {
+    public SelectAnimatedEmojiDialog(org.telegram.ui.ActionBar.BaseFragment r34, android.content.Context r35, boolean r36, java.lang.Integer r37, final int r38, boolean r39, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r40, int r41, int r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SelectAnimatedEmojiDialog.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, boolean, java.lang.Integer, int, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int, int):void");
     }
 
@@ -541,11 +543,12 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         @Override
         public boolean onItemClick(final View view, int i, float f, float f2) {
             int i2;
+            int i3;
             boolean z = view instanceof ImageViewEmoji;
-            if (!z || ((i2 = this.val$type) != 1 && i2 != 8)) {
+            if (!z || ((i3 = this.val$type) != 1 && i3 != 8)) {
                 if (z) {
                     ImageViewEmoji imageViewEmoji = (ImageViewEmoji) view;
-                    if (imageViewEmoji.span != null && this.val$type == 0) {
+                    if (imageViewEmoji.span != null && ((i2 = this.val$type) == 0 || i2 == 9 || i2 == 10)) {
                         SelectAnimatedEmojiDialog.this.selectStatusDateDialog = new SelectStatusDurationDialog(this.val$context, SelectAnimatedEmojiDialog.this.dismiss, SelectAnimatedEmojiDialog.this, imageViewEmoji, this.val$resourcesProvider) {
                             {
                                 SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = SelectAnimatedEmojiDialog.this;
@@ -706,6 +709,9 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     }
 
     public void setExpireDateHint(int i) {
+        if (i <= 0) {
+            return;
+        }
         this.includeHint = true;
         this.hintExpireDate = Integer.valueOf(i);
         updateRows(true, false);
@@ -865,7 +871,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     public Drawable getPremiumStar() {
         if (this.premiumStar == null) {
             int i = this.type;
-            if (i == 5 || i == 7) {
+            if (i == 5 || i == 9 || i == 10 || i == 7) {
                 this.premiumStar = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_filled_blocked).mutate();
             } else {
                 this.premiumStar = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_settings_premium).mutate();
@@ -1893,7 +1899,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 };
                 textView2.setTextSize(1, 13.0f);
                 if (SelectAnimatedEmojiDialog.this.type != 3) {
-                    if (SelectAnimatedEmojiDialog.this.type == 0) {
+                    if (SelectAnimatedEmojiDialog.this.type == 0 || SelectAnimatedEmojiDialog.this.type == 9 || SelectAnimatedEmojiDialog.this.type == 10) {
                         textView2.setText(LocaleController.getString("EmojiLongtapHint", R.string.EmojiLongtapHint));
                     } else {
                         textView2.setText(LocaleController.getString("ReactionsLongtapHint", R.string.ReactionsLongtapHint));
@@ -2662,8 +2668,9 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     }
 
     public void onEmojiClick(final View view, final AnimatedEmojiSpan animatedEmojiSpan) {
+        int i;
         incrementHintUse();
-        if (animatedEmojiSpan == null || (this.type == 0 && this.selectedDocumentIds.contains(Long.valueOf(animatedEmojiSpan.documentId)))) {
+        if (animatedEmojiSpan == null || (((i = this.type) == 0 || i == 9 || i == 10) && this.selectedDocumentIds.contains(Long.valueOf(animatedEmojiSpan.documentId)))) {
             onEmojiSelected(view, null, null, null);
             return;
         }
@@ -2674,11 +2681,12 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.documentId);
         }
         if (view instanceof ImageViewEmoji) {
-            if (this.type == 0) {
+            int i2 = this.type;
+            if (i2 == 0 || i2 == 9 || i2 == 10) {
                 MediaDataController.getInstance(this.currentAccount).pushRecentEmojiStatus(tLRPC$TL_emojiStatus);
             }
-            int i = this.type;
-            if (i == 0 || i == 2) {
+            int i3 = this.type;
+            if (i3 == 0 || i3 == 9 || i3 == 10 || i3 == 2) {
                 animateEmojiSelect((ImageViewEmoji) view, new Runnable() {
                     @Override
                     public final void run() {
@@ -2704,12 +2712,13 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         }
         StringBuilder sb = new StringBuilder();
         sb.append("emoji");
-        sb.append(this.type == 0 ? "status" : "reaction");
+        int i = this.type;
+        sb.append((i == 0 || i == 9 || i == 10) ? "status" : "reaction");
         sb.append("usehint");
         String sb2 = sb.toString();
-        int i = MessagesController.getGlobalMainSettings().getInt(sb2, 0);
-        if (i <= 3) {
-            MessagesController.getGlobalMainSettings().edit().putInt(sb2, i + 1).apply();
+        int i2 = MessagesController.getGlobalMainSettings().getInt(sb2, 0);
+        if (i2 <= 3) {
+            MessagesController.getGlobalMainSettings().edit().putInt(sb2, i2 + 1).apply();
         }
     }
 
@@ -2720,13 +2729,21 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         MediaDataController.getInstance(i2).checkStickers(5);
         if (i == 1 || i == 2 || i == 6) {
             MediaDataController.getInstance(i2).checkReactions();
+        } else if (i == 9 || i == 10) {
+            if (MessagesController.getInstance(i2).getMainSettings().getBoolean("resetemojipacks", true)) {
+                MediaDataController.getInstance(i2).loadStickers(5, false, false);
+                MessagesController.getInstance(i2).getMainSettings().edit().putBoolean("resetemojipacks", false).commit();
+            }
+            MediaDataController.getInstance(i2).fetchEmojiStatuses(2, false);
+            MediaDataController.getInstance(i2).loadRestrictedStatusEmojis();
+            MediaDataController.getInstance(i2).getStickerSet(new TLRPC$TL_inputStickerSetEmojiChannelDefaultStatuses(), false);
         } else if (i == 0) {
             MediaDataController.getInstance(i2).fetchEmojiStatuses(0, true);
             MediaDataController.getInstance(i2).getStickerSet(new TLRPC$TL_inputStickerSetEmojiDefaultStatuses(), false);
         } else if (i == 3) {
             MediaDataController.getInstance(i2).checkDefaultTopicIcons();
         } else if (i == 4) {
-            MediaDataController.getInstance(this.currentAccount).loadRecents(0, false, true, false);
+            MediaDataController.getInstance(i2).loadRecents(0, false, true, false);
             MediaDataController.getInstance(i2).checkStickers(0);
         }
     }
@@ -2865,7 +2882,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 return AnimatedEmojiDrawable.getCacheTypeForEnterView();
             }
             if (i != 3 && i != 4) {
-                return (i == 0 || i == 2) ? 2 : 3;
+                return (i == 0 || i == 9 || i == 10 || i == 2) ? 2 : 3;
             }
         }
         return 13;
@@ -3133,7 +3150,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     if (!imageViewEmoji.notDraw) {
                         if (imageViewEmoji.empty) {
                             Drawable premiumStar = SelectAnimatedEmojiDialog.this.getPremiumStar();
-                            float f = (SelectAnimatedEmojiDialog.this.type == 5 || SelectAnimatedEmojiDialog.this.type == 7) ? 1.3f : 1.0f;
+                            float f = (SelectAnimatedEmojiDialog.this.type == 5 || SelectAnimatedEmojiDialog.this.type == 10 || SelectAnimatedEmojiDialog.this.type == 9 || SelectAnimatedEmojiDialog.this.type == 7) ? 1.3f : 1.0f;
                             if (imageViewEmoji.pressedProgress != 0.0f || imageViewEmoji.selected) {
                                 f *= ((1.0f - (imageViewEmoji.selected ? 0.7f : imageViewEmoji.pressedProgress)) * 0.2f) + 0.8f;
                             }
@@ -3278,7 +3295,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                             Drawable drawable = null;
                             if (imageViewEmoji.empty) {
                                 drawable = SelectAnimatedEmojiDialog.this.getPremiumStar();
-                                if (SelectAnimatedEmojiDialog.this.type == 5 || SelectAnimatedEmojiDialog.this.type == 7) {
+                                if (SelectAnimatedEmojiDialog.this.type == 5 || SelectAnimatedEmojiDialog.this.type == 10 || SelectAnimatedEmojiDialog.this.type == 9 || SelectAnimatedEmojiDialog.this.type == 7) {
                                     rect.inset((int) ((-rect.width()) * 0.15f), (int) ((-rect.height()) * 0.15f));
                                 }
                                 drawable.setBounds(rect);
@@ -3561,7 +3578,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     SelectAnimatedEmojiDialog.this.emojiGridView.invalidate();
                 }
             });
-            if (isFirstOpen && (i = this.type) != 5 && i != 7) {
+            if (isFirstOpen && (i = this.type) != 5 && i != 10 && i != 7) {
                 isFirstOpen = false;
                 AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).setUiDbCallback(new Runnable() {
                     @Override
@@ -5089,5 +5106,21 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         public SetTitleDocument(String str) {
             this.title = str;
         }
+    }
+
+    private ArrayList<TLRPC$Document> filter(ArrayList<TLRPC$Document> arrayList, HashSet<Long> hashSet) {
+        if (hashSet == null) {
+            return arrayList;
+        }
+        int i = 0;
+        while (i < arrayList.size()) {
+            TLRPC$Document tLRPC$Document = arrayList.get(i);
+            if (tLRPC$Document == null || hashSet.contains(Long.valueOf(tLRPC$Document.id))) {
+                arrayList.remove(i);
+                i--;
+            }
+            i++;
+        }
+        return arrayList;
     }
 }

@@ -251,7 +251,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             this.editText.setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
             this.editText.setTextColor(getThemedColor(i2));
             this.editText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
-            this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), AndroidUtilities.dp(8.0f));
+            this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), AndroidUtilities.dp(11.0f));
             EditTextCaption editTextCaption5 = this.editText;
             boolean z2 = LocaleController.isRTL;
             addView(editTextCaption5, LayoutHelper.createFrame(-1, -2.0f, 19, z2 ? 11.0f : 0.0f, 1.0f, z2 ? 0.0f : 11.0f, 0.0f));
@@ -304,7 +304,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         if (i == 0) {
             this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
             this.emojiIconDrawable.setIcon(R.drawable.smiles_tab_smiles, false);
-            addView(this.emojiButton, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, 0.0f, 0.0f, 7.0f));
+            addView(this.emojiButton, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, 0.0f, 0.0f, 5.0f));
         } else if (i == 2 || i == 3) {
             this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(-1929379841, PorterDuff.Mode.MULTIPLY));
             this.emojiIconDrawable.setIcon(R.drawable.input_smile, false);
@@ -400,10 +400,11 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     public void setEnabled(boolean z) {
         this.editText.setEnabled(z);
         this.emojiButton.setVisibility(z ? 0 : 8);
+        int dp = AndroidUtilities.dp(this.currentStyle == 0 ? 11.0f : 8.0f);
         if (z) {
-            this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), AndroidUtilities.dp(8.0f));
+            this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), dp);
         } else {
-            this.editText.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+            this.editText.setPadding(0, 0, 0, dp);
         }
     }
 

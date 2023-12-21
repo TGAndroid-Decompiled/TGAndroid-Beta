@@ -94,11 +94,20 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         if ((this.flags2 & 128) != 0) {
             this.color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            this.profile_color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            this.emoji_status = TLRPC$EmojiStatus.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 1024) != 0) {
+            this.level = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1903702824);
+        abstractSerializedData.writeInt32(179174543);
         int i = this.creator ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.left ? i | 4 : i & (-5);
@@ -190,6 +199,15 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         }
         if ((this.flags2 & 128) != 0) {
             this.color.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            this.profile_color.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            this.emoji_status.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 1024) != 0) {
+            abstractSerializedData.writeInt32(this.level);
         }
     }
 }

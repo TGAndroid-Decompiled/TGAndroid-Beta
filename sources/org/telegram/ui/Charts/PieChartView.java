@@ -11,7 +11,6 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.data.StackLinearChartData;
 import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
@@ -62,7 +61,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         this.rectF = new RectF();
         this.MIN_TEXT_SIZE = AndroidUtilities.dp(9.0f);
         this.MAX_TEXT_SIZE = AndroidUtilities.dp(13.0f);
-        this.lookupTable = new String[FileLoader.MEDIA_DIR_VIDEO_PUBLIC];
+        this.lookupTable = new String[101];
         this.emptyDataAlpha = 1.0f;
         this.oldW = 0;
         this.lastStartIndex = -1;

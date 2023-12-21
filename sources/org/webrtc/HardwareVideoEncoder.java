@@ -87,9 +87,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        VideoCodecStatus rateAllocation;
-        rateAllocation = setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
-        return rateAllocation;
+        return VideoEncoder.CC.$default$setRates(this, rateControlParameters);
     }
 
     public static class BusyCount {
@@ -300,8 +298,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
     @Override
     public VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i) {
         this.encodeThreadChecker.checkIsOnValidThread();
-        if (i > MAX_VIDEO_FRAMERATE) {
-            i = MAX_VIDEO_FRAMERATE;
+        if (i > 30) {
+            i = 30;
         }
         this.bitrateAdjuster.setTargets(bitrateAllocation.getSum(), i);
         return VideoCodecStatus.OK;

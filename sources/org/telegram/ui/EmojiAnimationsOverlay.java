@@ -15,7 +15,6 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -495,8 +494,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             }
             DrawingObject drawingObject = new DrawingObject(this);
             drawingObject.isPremiumSticker = true;
-            drawingObject.randomOffsetX = (imageWidth / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
-            drawingObject.randomOffsetY = (imageHeight / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
+            drawingObject.randomOffsetX = (imageWidth / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+            drawingObject.randomOffsetY = (imageHeight / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
             drawingObject.messageId = chatActionCell.getMessageObject().getId();
             drawingObject.isOut = true;
             drawingObject.imageReceiver.setAllowStartAnimation(true);
@@ -672,8 +671,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                 }
                 DrawingObject drawingObject = new DrawingObject(this);
                 drawingObject.isPremiumSticker = messageObject == null ? false : messageObject.isPremiumSticker();
-                drawingObject.randomOffsetX = (f / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
-                drawingObject.randomOffsetY = (f2 / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
+                drawingObject.randomOffsetX = (f / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+                drawingObject.randomOffsetY = (f2 / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
                 drawingObject.messageId = i;
                 drawingObject.document = tLRPC$Document2;
                 drawingObject.isOut = z3;
@@ -975,8 +974,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         }
         DrawingObject drawingObject2 = new DrawingObject(this);
         drawingObject2.genericEffect = AnimatedEmojiEffect.createFrom(storyReactionWidgetView.getAnimatedEmojiDrawable(), z2, z2);
-        drawingObject2.randomOffsetX = (f3 / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
-        drawingObject2.randomOffsetY = (f / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
+        drawingObject2.randomOffsetX = (f3 / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+        drawingObject2.randomOffsetY = (f / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
         drawingObject2.messageId = i;
         drawingObject2.document = null;
         drawingObject2.documentId = fromTLReaction.documentId;

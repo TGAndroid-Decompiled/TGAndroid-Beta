@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -176,6 +177,10 @@ public class PremiumGradient {
             this.colorKey3 = i3;
             this.colorKey4 = i4;
             this.colorKey5 = i5;
+        }
+
+        public void gradientMatrix(RectF rectF) {
+            gradientMatrix((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom, 0.0f, 0.0f);
         }
 
         public void gradientMatrix(int i, int i2, int i3, int i4, float f, float f2) {

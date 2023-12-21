@@ -24,6 +24,7 @@ import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorCountryCell;
@@ -34,9 +35,12 @@ import org.telegram.ui.Components.StickerEmptyView;
 public class SelectorAdapter extends AdapterWithDiffUtils {
     private HashMap<Long, Integer> chatsParticipantsCount = new HashMap<>();
     private final Context context;
+    private boolean isGreenSelector;
     private List<Item> items;
     private RecyclerListView listView;
     private final Theme.ResourcesProvider resourcesProvider;
+    private GraySectionCell topSectionCell;
+    private View.OnClickListener topSectionClickListener;
 
     public SelectorAdapter(Context context, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
@@ -59,6 +63,22 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         this.listView = recyclerListView;
     }
 
+    public void setTopSectionClickListener(View.OnClickListener onClickListener) {
+        this.topSectionClickListener = onClickListener;
+        GraySectionCell graySectionCell = this.topSectionCell;
+        if (graySectionCell != null) {
+            if (onClickListener == null) {
+                graySectionCell.setRightText(null);
+            } else {
+                graySectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, onClickListener);
+            }
+        }
+    }
+
+    public void setGreenSelector(boolean z) {
+        this.isGreenSelector = z;
+    }
+
     @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 6;
@@ -70,7 +90,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         if (i == -1) {
             selectorUserCell = new View(this.context);
         } else if (i == 3) {
-            selectorUserCell = new SelectorUserCell(this.context, this.resourcesProvider, false);
+            selectorUserCell = new SelectorUserCell(this.context, this.resourcesProvider, this.isGreenSelector);
         } else if (i == 5) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.context, null, 1, this.resourcesProvider);
             stickerEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
@@ -81,6 +101,8 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             selectorUserCell = new SelectorLetterCell(this.context, this.resourcesProvider);
         } else if (i == 6) {
             selectorUserCell = new SelectorCountryCell(this.context, this.resourcesProvider);
+        } else if (i == 8) {
+            selectorUserCell = new GraySectionCell(this.context, this.resourcesProvider);
         } else {
             selectorUserCell = new View(this.context);
         }
@@ -109,6 +131,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         }
         Item item = list.get(i);
         int itemViewType = viewHolder.getItemViewType();
+        boolean z = true;
         if (itemViewType != 3) {
             if (itemViewType == 6) {
                 SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
@@ -132,6 +155,16 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
                 } catch (Exception unused) {
                     return;
                 }
+            } else if (itemViewType == 8) {
+                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+                graySectionCell.setText(item.text);
+                if (this.topSectionClickListener == null) {
+                    graySectionCell.setRightText((String) null, (View.OnClickListener) null);
+                } else {
+                    graySectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), this.topSectionClickListener);
+                }
+                this.topSectionCell = graySectionCell;
+                return;
             } else {
                 return;
             }
@@ -164,6 +197,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         selectorUserCell.setChecked(item.checked, false);
         selectorUserCell.setCheckboxAlpha(1.0f, false);
         selectorUserCell.setDivider(i < this.items.size() + (-2));
+        int i4 = i + 1;
+        if (i4 >= this.items.size() || this.items.get(i4).viewType != 7) {
+            return;
+        }
+        selectorUserCell.setDivider(false);
     }
 
     @Override
@@ -194,6 +232,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     }
 
     @Override
+    public void notifyItemInserted(int i) {
+        realAdapter().notifyItemInserted(i + 1);
+    }
+
+    @Override
     public void notifyItemMoved(int i, int i2) {
         realAdapter().notifyItemMoved(i + 1, i2);
     }
@@ -216,6 +259,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     @Override
     public void notifyItemRangeRemoved(int i, int i2) {
         realAdapter().notifyItemRangeRemoved(i + 1, i2);
+    }
+
+    @Override
+    public void notifyItemRemoved(int i) {
+        realAdapter().notifyItemRemoved(i + 1);
     }
 
     @Override
@@ -253,8 +301,23 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
+        public static Item asUser(TLRPC$User tLRPC$User, boolean z) {
+            Item item = new Item(3, true);
+            item.user = tLRPC$User;
+            item.peer = null;
+            item.chat = null;
+            item.checked = z;
+            return item;
+        }
+
         public static Item asLetter(String str) {
             Item item = new Item(7, false);
+            item.text = str;
+            return item;
+        }
+
+        public static Item asTopSection(String str) {
+            Item item = new Item(8, false);
             item.text = str;
             return item;
         }
@@ -294,7 +357,10 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (i != -1 || this.padHeight == item.padHeight) {
                 if (i != 3 || (this.user == item.user && this.chat == item.chat && this.peer == item.peer && this.type == item.type && this.checked == item.checked)) {
                     if (i != 6 || (this.country == item.country && this.checked == item.checked)) {
-                        return i != 7 || TextUtils.equals(this.text, item.text);
+                        if (i != 7 || TextUtils.equals(this.text, item.text)) {
+                            return this.viewType != 8 || (TextUtils.equals(this.text, item.text) && this.checked == item.checked);
+                        }
+                        return false;
                     }
                     return false;
                 }

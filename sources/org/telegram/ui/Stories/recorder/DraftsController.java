@@ -34,7 +34,6 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Stories.recorder.StoryEntry;
 public class DraftsController {
     public final int currentAccount;
     public final ArrayList<StoryEntry> drafts = new ArrayList<>();
@@ -507,7 +506,6 @@ public class DraftsController {
         public int orientation;
         public String paintEntitiesFilePath;
         public String paintFilePath;
-        private final ArrayList<StoryEntry.Part> parts;
         public TLRPC$InputPeer peer;
         private int period;
         public final ArrayList<TLRPC$InputPrivacyRule> privacyRules;
@@ -531,8 +529,6 @@ public class DraftsController {
             this.matrixValues = fArr;
             ArrayList<TLRPC$InputPrivacyRule> arrayList = new ArrayList<>();
             this.privacyRules = arrayList;
-            ArrayList<StoryEntry.Part> arrayList2 = new ArrayList<>();
-            this.parts = arrayList2;
             this.audioRight = 1.0f;
             this.audioVolume = 1.0f;
             this.roundVolume = 1.0f;
@@ -577,8 +573,6 @@ public class DraftsController {
             this.filterFilePath = file6 == null ? "" : file6.toString();
             this.filterState = storyEntry.filterState;
             this.period = storyEntry.period;
-            arrayList2.clear();
-            arrayList2.addAll(storyEntry.parts);
             this.isError = storyEntry.isError;
             this.error = storyEntry.error;
             this.audioPath = storyEntry.audioPath;
@@ -663,12 +657,6 @@ public class DraftsController {
             }
             storyEntry.filterState = this.filterState;
             storyEntry.period = this.period;
-            storyEntry.parts.clear();
-            storyEntry.parts.addAll(this.parts);
-            storyEntry.partsMaxId = 0;
-            for (int i = 0; i < this.parts.size(); i++) {
-                storyEntry.partsMaxId = Math.max(storyEntry.partsMaxId, this.parts.get(i).id);
-            }
             storyEntry.isEdit = this.isEdit;
             storyEntry.editStoryId = this.editStoryId;
             storyEntry.editStoryPeerId = this.editStoryPeerId;
@@ -776,10 +764,7 @@ public class DraftsController {
             }
             abstractSerializedData.writeInt32(this.period);
             abstractSerializedData.writeInt32(481674261);
-            abstractSerializedData.writeInt32(this.parts.size());
-            for (int i6 = 0; i6 < this.parts.size(); i6++) {
-                this.parts.get(i6).serializeToStream(abstractSerializedData);
-            }
+            abstractSerializedData.writeInt32(0);
             abstractSerializedData.writeBool(this.isEdit);
             abstractSerializedData.writeInt32(this.editStoryId);
             abstractSerializedData.writeInt64(this.editStoryPeerId);
@@ -847,7 +832,6 @@ public class DraftsController {
         public StoryDraft(AbstractSerializedData abstractSerializedData, boolean z) {
             this.matrixValues = new float[9];
             this.privacyRules = new ArrayList<>();
-            this.parts = new ArrayList<>();
             this.audioRight = 1.0f;
             this.audioVolume = 1.0f;
             this.roundVolume = 1.0f;
@@ -977,13 +961,7 @@ public class DraftsController {
                     }
                     return;
                 }
-                int readInt326 = abstractSerializedData.readInt32(z);
-                this.parts.clear();
-                for (int i6 = 0; i6 < readInt326; i6++) {
-                    StoryEntry.Part part = new StoryEntry.Part();
-                    part.readParams(abstractSerializedData, z);
-                    this.parts.add(part);
-                }
+                abstractSerializedData.readInt32(z);
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.isEdit = abstractSerializedData.readBool(z);
@@ -1002,11 +980,11 @@ public class DraftsController {
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.isError = abstractSerializedData.readBool(z);
-                int readInt327 = abstractSerializedData.readInt32(z);
-                if (readInt327 == 1450380236) {
+                int readInt326 = abstractSerializedData.readInt32(z);
+                if (readInt326 == 1450380236) {
                     this.error = null;
                 } else {
-                    this.error = TLRPC$TL_error.TLdeserialize(abstractSerializedData, readInt327, z);
+                    this.error = TLRPC$TL_error.TLdeserialize(abstractSerializedData, readInt326, z);
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }

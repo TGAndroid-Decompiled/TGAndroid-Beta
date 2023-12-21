@@ -817,7 +817,6 @@ public class Theme {
     public static final int key_checkboxSquareCheck;
     public static final int key_checkboxSquareDisabled;
     public static final int key_checkboxSquareUnchecked;
-    public static final int key_code_background;
     public static final int key_code_comment;
     public static final int key_code_constant;
     public static final int key_code_function;
@@ -2055,7 +2054,7 @@ public class Theme {
                 int i36 = this.currentType;
                 if (i36 == 1) {
                     if (z3 || z) {
-                        if (this.isBottomNear) {
+                        if (this.isBottomNear || this.botButtonsBottom) {
                             i6 = i4;
                         }
                         path.lineTo(rect.left + i, (rect.bottom - i) - i6);
@@ -2807,7 +2806,6 @@ public class Theme {
                 i37 = Theme.getColor(i36);
             }
             sparseIntArray2.put(Theme.key_actionBarDefaultSubmenuSeparator, Color.argb(Color.alpha(i37), Math.max(0, Color.red(i37) - 10), Math.max(0, Color.green(i37) - 10), Math.max(0, Color.blue(i37) - 10)));
-            sparseIntArray2.put(Theme.key_chat_inCodeBackground, codeBackground(i31, isDark));
             if (isDark) {
                 int i38 = Theme.key_chat_outBubbleGradient1;
                 if (sparseIntArray2.get(i38) != 0) {
@@ -4502,6 +4500,14 @@ public class Theme {
 
         public static Drawable circle(int i, float f) {
             return createCircle(calcRippleColor(i), f);
+        }
+
+        public static Drawable filledCircle() {
+            return filledCircle(null, Theme.getColor(defaultBackgroundColorKey), -1.0f);
+        }
+
+        public static Drawable filledCircle(Drawable drawable, int i, float f) {
+            return createCircle(drawable, calcRippleColor(i), f);
         }
 
         public static Drawable rect() {

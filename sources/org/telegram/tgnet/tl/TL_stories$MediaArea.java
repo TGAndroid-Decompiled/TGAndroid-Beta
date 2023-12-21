@@ -25,6 +25,12 @@ public class TL_stories$MediaArea extends TLObject {
             case 340088945:
                 tL_stories$TL_inputMediaAreaVenue = new TL_stories$TL_mediaAreaSuggestedReaction();
                 break;
+            case 577893055:
+                tL_stories$TL_inputMediaAreaVenue = new TL_stories$TL_inputMediaAreaChannelPost();
+                break;
+            case 1996756655:
+                tL_stories$TL_inputMediaAreaVenue = new TL_stories$TL_mediaAreaChannelPost();
+                break;
             default:
                 tL_stories$TL_inputMediaAreaVenue = null;
                 break;

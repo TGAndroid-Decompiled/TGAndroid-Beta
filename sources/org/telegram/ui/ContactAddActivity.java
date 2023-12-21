@@ -392,7 +392,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             final TextCell textCell = new TextCell(context, this.resourcesProvider);
             String formatString = LocaleController.formatString("SuggestUserPhoto", R.string.SuggestUserPhoto, user.first_name);
             int i6 = R.drawable.msg_addphoto;
-            textCell.setTextAndIcon(formatString, i6, true);
+            textCell.setTextAndIcon((CharSequence) formatString, i6, true);
             textCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             int i7 = Theme.key_windowBackgroundWhiteBlueIcon;
             int i8 = Theme.key_windowBackgroundWhiteBlueButton;
@@ -409,7 +409,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             });
             this.linearLayout.addView(textCell, LayoutHelper.createLinear(-1, -2, 0, 0, 18, 0, 0));
             final TextCell textCell2 = new TextCell(context, this.resourcesProvider);
-            textCell2.setTextAndIcon(LocaleController.formatString("UserSetPhoto", R.string.UserSetPhoto, user.first_name), i6, false);
+            textCell2.setTextAndIcon((CharSequence) LocaleController.formatString("UserSetPhoto", R.string.UserSetPhoto, user.first_name), i6, false);
             textCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textCell2.setColors(i7, i8);
             int i10 = R.raw.camera_outline;

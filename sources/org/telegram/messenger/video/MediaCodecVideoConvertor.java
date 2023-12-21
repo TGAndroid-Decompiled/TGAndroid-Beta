@@ -43,7 +43,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r86, boolean r87, int r88) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r89, boolean r90, int r91) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -179,7 +179,9 @@ public class MediaCodecVideoConvertor {
     }
 
     public static class ConvertVideoParams {
+        int account;
         long avatarStartTime;
+        String backgroundPath;
         int bitrate;
         String blurPath;
         File cacheFile;
@@ -191,18 +193,20 @@ public class MediaCodecVideoConvertor {
         Integer gradientBottomColor;
         Integer gradientTopColor;
         StoryEntry.HDRInfo hdrInfo;
+        boolean isDark;
         boolean isPhoto;
         boolean isRound;
         boolean isSecret;
         boolean isStory;
         ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
+        String messagePath;
+        String messageVideoMaskPath;
         boolean muted;
         boolean needCompress;
         int originalBitrate;
         int originalHeight;
         int originalWidth;
         String paintPath;
-        ArrayList<StoryEntry.Part> parts;
         int resultHeight;
         int resultWidth;
         int rotationValue;
@@ -210,11 +214,12 @@ public class MediaCodecVideoConvertor {
         public ArrayList<MixedSoundInfo> soundInfos = new ArrayList<>();
         long startTime;
         String videoPath;
+        long wallpaperPeerId;
 
         private ConvertVideoParams() {
         }
 
-        public static ConvertVideoParams of(String str, File file, int i, boolean z, int i2, int i3, int i4, int i5, int i6, int i7, int i8, long j, long j2, long j3, boolean z2, long j4, MediaController.SavedFilterState savedFilterState, String str2, String str3, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z3, MediaController.CropState cropState, boolean z4, MediaController.VideoConvertorListener videoConvertorListener, Integer num, Integer num2, boolean z5, boolean z6, StoryEntry.HDRInfo hDRInfo, ArrayList<StoryEntry.Part> arrayList2) {
+        public static ConvertVideoParams of(String str, File file, int i, boolean z, int i2, int i3, int i4, int i5, int i6, int i7, int i8, long j, long j2, long j3, boolean z2, long j4, MediaController.VideoConvertorListener videoConvertorListener, VideoEditedInfo videoEditedInfo) {
             ConvertVideoParams convertVideoParams = new ConvertVideoParams();
             convertVideoParams.videoPath = str;
             convertVideoParams.cacheFile = file;
@@ -232,20 +237,25 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.avatarStartTime = j3;
             convertVideoParams.needCompress = z2;
             convertVideoParams.duration = j4;
-            convertVideoParams.savedFilterState = savedFilterState;
-            convertVideoParams.paintPath = str2;
-            convertVideoParams.blurPath = str3;
-            convertVideoParams.mediaEntities = arrayList;
-            convertVideoParams.isPhoto = z3;
-            convertVideoParams.cropState = cropState;
-            convertVideoParams.isRound = z4;
+            convertVideoParams.savedFilterState = videoEditedInfo.filterState;
+            convertVideoParams.paintPath = videoEditedInfo.paintPath;
+            convertVideoParams.blurPath = videoEditedInfo.blurPath;
+            convertVideoParams.mediaEntities = videoEditedInfo.mediaEntities;
+            convertVideoParams.isPhoto = videoEditedInfo.isPhoto;
+            convertVideoParams.cropState = videoEditedInfo.cropState;
+            convertVideoParams.isRound = videoEditedInfo.roundVideo;
             convertVideoParams.callback = videoConvertorListener;
-            convertVideoParams.gradientTopColor = num;
-            convertVideoParams.gradientBottomColor = num2;
-            convertVideoParams.muted = z5;
-            convertVideoParams.isStory = z6;
-            convertVideoParams.hdrInfo = hDRInfo;
-            convertVideoParams.parts = arrayList2;
+            convertVideoParams.gradientTopColor = videoEditedInfo.gradientTopColor;
+            convertVideoParams.gradientBottomColor = videoEditedInfo.gradientBottomColor;
+            convertVideoParams.muted = videoEditedInfo.muted;
+            convertVideoParams.isStory = videoEditedInfo.isStory;
+            convertVideoParams.hdrInfo = videoEditedInfo.hdrInfo;
+            convertVideoParams.isDark = videoEditedInfo.isDark;
+            convertVideoParams.wallpaperPeerId = videoEditedInfo.wallpaperPeerId;
+            convertVideoParams.account = videoEditedInfo.account;
+            convertVideoParams.messagePath = videoEditedInfo.messagePath;
+            convertVideoParams.messageVideoMaskPath = videoEditedInfo.messageVideoMaskPath;
+            convertVideoParams.backgroundPath = videoEditedInfo.backgroundPath;
             return convertVideoParams;
         }
     }

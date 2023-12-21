@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,7 @@ import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.TopicsFragment;
 public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter {
     private BaseFragment baseFragment;
+    private FrameLayout container;
     private TLRPC$TL_payments_checkedGiftCode giftCode;
     private boolean isUnused;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -78,11 +80,12 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         this.resourcesProvider = resourcesProvider;
     }
 
-    public void init(BaseFragment baseFragment, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, String str) {
+    public void init(BaseFragment baseFragment, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, String str, FrameLayout frameLayout) {
         this.isUnused = tLRPC$TL_payments_checkedGiftCode.used_date == 0;
         this.baseFragment = baseFragment;
         this.giftCode = tLRPC$TL_payments_checkedGiftCode;
         this.slug = str;
+        this.container = frameLayout;
     }
 
     @Override
@@ -166,7 +169,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             actionBtnCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$4(actionBtnCell, view);
+                    GiftInfoAdapter.this.lambda$onBindViewHolder$2(actionBtnCell, view);
                 }
             });
             TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode2 = this.giftCode;
@@ -175,7 +178,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 actionBtnCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GiftInfoAdapter.this.lambda$onBindViewHolder$5(view);
+                        GiftInfoAdapter.this.lambda$onBindViewHolder$3(view);
                     }
                 });
             }
@@ -200,12 +203,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 } else {
                     string = LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends);
                 }
-                textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new Runnable() {
-                    @Override
-                    public final void run() {
-                        GiftInfoAdapter.this.lambda$onBindViewHolder$1();
-                    }
-                }, this.resourcesProvider));
+                textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda3(this), this.resourcesProvider));
             } else {
                 Date date = new Date(this.giftCode.used_date * 1000);
                 textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date))));
@@ -213,36 +211,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         }
     }
 
-    public void lambda$onBindViewHolder$1() {
-        final String str = "https://t.me/giftcode/" + this.slug;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("onlySelect", true);
-        bundle.putInt("dialogsType", 3);
-        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-            @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-                boolean lambda$onBindViewHolder$0;
-                lambda$onBindViewHolder$0 = GiftInfoAdapter.this.lambda$onBindViewHolder$0(str, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
-                return lambda$onBindViewHolder$0;
-            }
-        });
-        this.baseFragment.presentFragment(dialogsActivity);
-        dismiss();
-    }
-
-    public boolean lambda$onBindViewHolder$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-        long j = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
-            this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
-        }
-        dialogsActivity.finishFragment();
-        BoostDialogs.showGiftLinkForwardedBulletin(j);
-        return true;
-    }
-
-    public void lambda$onBindViewHolder$4(final ActionBtnCell actionBtnCell, View view) {
+    public void lambda$onBindViewHolder$2(final ActionBtnCell actionBtnCell, View view) {
         if (this.isUnused) {
             if (actionBtnCell.isLoading()) {
                 return;
@@ -251,12 +220,12 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$2(actionBtnCell, (Void) obj);
+                    GiftInfoAdapter.this.lambda$onBindViewHolder$0(actionBtnCell, (Void) obj);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$3(actionBtnCell, (TLRPC$TL_error) obj);
+                    GiftInfoAdapter.this.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC$TL_error) obj);
                 }
             });
             return;
@@ -264,18 +233,47 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         dismiss();
     }
 
-    public void lambda$onBindViewHolder$2(ActionBtnCell actionBtnCell, Void r2) {
+    public void lambda$onBindViewHolder$0(ActionBtnCell actionBtnCell, Void r2) {
         actionBtnCell.updateLoading(false);
         afterCodeApplied();
         dismiss();
     }
 
-    public void lambda$onBindViewHolder$3(ActionBtnCell actionBtnCell, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC$TL_error tLRPC$TL_error) {
         actionBtnCell.updateLoading(false);
-        BoostDialogs.showToastError(this.baseFragment.getContext(), tLRPC$TL_error);
+        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda3(this));
     }
 
-    public void lambda$onBindViewHolder$5(View view) {
+    public void lambda$onBindViewHolder$3(View view) {
         dismiss();
+    }
+
+    public void share() {
+        final String str = "https://t.me/giftcode/" + this.slug;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("onlySelect", true);
+        bundle.putInt("dialogsType", 3);
+        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+            @Override
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                boolean lambda$share$4;
+                lambda$share$4 = GiftInfoAdapter.this.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                return lambda$share$4;
+            }
+        });
+        this.baseFragment.presentFragment(dialogsActivity);
+        dismiss();
+    }
+
+    public boolean lambda$share$4(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+        long j = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
+            this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
+        }
+        dialogsActivity.finishFragment();
+        BoostDialogs.showGiftLinkForwardedBulletin(j);
+        return true;
     }
 }

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -262,39 +261,8 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         });
     }
 
-    public void postDrawInternal(Canvas canvas, View view) {
-        ActionBar actionBar;
-        boolean z = this.showShadow;
-        if (z) {
-            float f = this.shadowAlpha;
-            if (f != 1.0f) {
-                this.shadowAlpha = f + 0.10666667f;
-                view.invalidate();
-                this.shadowAlpha = Utilities.clamp(this.shadowAlpha, 1.0f, 0.0f);
-                actionBar = this.actionBar;
-                if (actionBar != null && actionBar.getVisibility() == 0 && this.actionBar.getAlpha() != 0.0f && this.shadowAlpha != 0.0f) {
-                    this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom(), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
-                    this.headerShadowDrawable.setAlpha((int) (this.actionBar.getAlpha() * 255.0f * this.shadowAlpha));
-                    this.headerShadowDrawable.draw(canvas);
-                }
-                this.wasDrawn = true;
-            }
-        }
-        if (!z) {
-            float f2 = this.shadowAlpha;
-            if (f2 != 0.0f) {
-                this.shadowAlpha = f2 - 0.10666667f;
-                view.invalidate();
-            }
-        }
-        this.shadowAlpha = Utilities.clamp(this.shadowAlpha, 1.0f, 0.0f);
-        actionBar = this.actionBar;
-        if (actionBar != null) {
-            this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom(), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
-            this.headerShadowDrawable.setAlpha((int) (this.actionBar.getAlpha() * 255.0f * this.shadowAlpha));
-            this.headerShadowDrawable.draw(canvas);
-        }
-        this.wasDrawn = true;
+    public void postDrawInternal(android.graphics.Canvas r7, android.view.View r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.postDrawInternal(android.graphics.Canvas, android.view.View):void");
     }
 
     public void preDrawInternal(Canvas canvas, View view) {

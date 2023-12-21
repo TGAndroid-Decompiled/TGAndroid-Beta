@@ -53,7 +53,7 @@ public class ChatGreetingsView extends LinearLayout {
         this.stickerToSendView = new BackupImageView(context);
         addView(this.titleView, LayoutHelper.createLinear(-1, -2, 20.0f, 14.0f, 20.0f, 14.0f));
         addView(this.descriptionView, LayoutHelper.createLinear(-1, -2, 20.0f, 12.0f, 20.0f, 0.0f));
-        addView(this.stickerToSendView, LayoutHelper.createLinear(112, 112, 1, 0, 16, 0, 16));
+        addView(this.stickerToSendView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 1, 0, 16, 0, 16));
         updateColors();
         if (i <= 0) {
             this.titleView.setText(LocaleController.getString("NoMessages", R.string.NoMessages));

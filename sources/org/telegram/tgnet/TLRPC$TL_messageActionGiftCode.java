@@ -1,8 +1,6 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
-    public static int constructor = -758129906;
     public TLRPC$Peer boost_peer;
-    public int months;
     public String slug;
     public boolean unclaimed;
     public boolean via_giveaway;
@@ -18,11 +16,23 @@ public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
         }
         this.months = abstractSerializedData.readInt32(z);
         this.slug = abstractSerializedData.readString(z);
+        if ((this.flags & 4) != 0) {
+            this.currency = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 4) != 0) {
+            this.amount = abstractSerializedData.readInt64(z);
+        }
+        if ((this.flags & 8) != 0) {
+            this.cryptoCurrency = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 8) != 0) {
+            this.cryptoAmount = abstractSerializedData.readInt64(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1737240073);
         int i = this.via_giveaway ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.unclaimed ? i | 4 : i & (-5);
@@ -33,5 +43,17 @@ public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
         }
         abstractSerializedData.writeInt32(this.months);
         abstractSerializedData.writeString(this.slug);
+        if ((this.flags & 4) != 0) {
+            abstractSerializedData.writeString(this.currency);
+        }
+        if ((this.flags & 4) != 0) {
+            abstractSerializedData.writeInt64(this.amount);
+        }
+        if ((this.flags & 8) != 0) {
+            abstractSerializedData.writeString(this.cryptoCurrency);
+        }
+        if ((this.flags & 8) != 0) {
+            abstractSerializedData.writeInt64(this.cryptoAmount);
+        }
     }
 }

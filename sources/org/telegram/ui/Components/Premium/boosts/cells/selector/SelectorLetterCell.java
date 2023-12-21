@@ -28,7 +28,7 @@ public class SelectorLetterCell extends FrameLayout {
     }
 
     public void setLetter(String str) {
-        this.textView.setText(str.toUpperCase());
+        this.textView.setText(str);
     }
 
     private int getThemedColor(int i) {

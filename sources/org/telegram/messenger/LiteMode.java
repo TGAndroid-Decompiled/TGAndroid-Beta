@@ -21,7 +21,7 @@ public class LiteMode {
     private static int BATTERY_MEDIUM = 10;
     public static final int FLAGS_ANIMATED_EMOJI = 28700;
     public static final int FLAGS_ANIMATED_STICKERS = 3;
-    public static final int FLAGS_CHAT = 33248;
+    public static final int FLAGS_CHAT = 98784;
     public static final int FLAG_ANIMATED_EMOJI_CHAT = 4112;
     public static final int FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM = 4096;
     public static final int FLAG_ANIMATED_EMOJI_CHAT_PREMIUM = 16;
@@ -41,9 +41,10 @@ public class LiteMode {
     public static final int FLAG_CHAT_FORUM_TWOCOLUMN = 64;
     public static final int FLAG_CHAT_SCALE = 32768;
     public static final int FLAG_CHAT_SPOILER = 128;
-    public static int PRESET_HIGH = 65535;
-    public static int PRESET_LOW = 2076;
-    public static int PRESET_MEDIUM = 7775;
+    public static final int FLAG_CHAT_THANOS = 65536;
+    public static int PRESET_HIGH = 131071;
+    public static int PRESET_LOW = 67612;
+    public static int PRESET_MEDIUM = 73311;
     public static int PRESET_POWER_SAVER = 0;
     private static int lastBatteryLevelCached = -1;
     private static long lastBatteryLevelChecked;
@@ -169,8 +170,11 @@ public class LiteMode {
             i2 = BATTERY_MEDIUM;
         }
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        if (!globalMainSettings.contains("lite_mode2")) {
-            if (globalMainSettings.contains("lite_mode")) {
+        if (!globalMainSettings.contains("lite_mode3")) {
+            if (globalMainSettings.contains("lite_mode2")) {
+                i = globalMainSettings.getInt("lite_mode2", i) | 65536;
+                globalMainSettings.edit().putInt("lite_mode3", i).apply();
+            } else if (globalMainSettings.contains("lite_mode")) {
                 i = globalMainSettings.getInt("lite_mode", i);
                 if (i == 4095) {
                     i = PRESET_HIGH;
@@ -199,7 +203,7 @@ public class LiteMode {
             }
         }
         int i3 = value;
-        int i4 = globalMainSettings.getInt("lite_mode2", i);
+        int i4 = globalMainSettings.getInt("lite_mode3", i);
         value = i4;
         if (loaded) {
             onFlagsUpdate(i3, i4);

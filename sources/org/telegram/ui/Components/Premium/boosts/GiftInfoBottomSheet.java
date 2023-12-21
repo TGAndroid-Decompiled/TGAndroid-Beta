@@ -15,6 +15,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
+import org.telegram.tgnet.TLRPC$TL_premiumGiftOption;
+import org.telegram.tgnet.TLRPC$TL_user;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -65,7 +67,17 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         if (atomicBoolean.get() || baseFragment.getParentActivity() == null) {
             return;
         }
-        baseFragment.showDialog(new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, str));
+        if (tLRPC$TL_payments_checkedGiftCode.from_id == null) {
+            TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption = new TLRPC$TL_premiumGiftOption();
+            tLRPC$TL_premiumGiftOption.months = tLRPC$TL_payments_checkedGiftCode.months;
+            TLRPC$User currentUser = baseFragment instanceof ChatActivity ? ((ChatActivity) baseFragment).getCurrentUser() : null;
+            if (currentUser == null || currentUser.self) {
+                currentUser = new TLRPC$TL_user();
+            }
+            PremiumPreviewGiftLinkBottomSheet.show(str, tLRPC$TL_premiumGiftOption, currentUser, tLRPC$TL_payments_checkedGiftCode.used_date != 0);
+        } else {
+            baseFragment.showDialog(new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, str));
+        }
         if (progress != null) {
             progress.end();
         }
@@ -122,7 +134,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         setApplyBottomPadding(false);
         fixNavigationBar();
         updateTitle();
-        this.adapter.init(baseFragment, tLRPC$TL_payments_checkedGiftCode, str);
+        this.adapter.init(baseFragment, tLRPC$TL_payments_checkedGiftCode, str, this.container);
     }
 
     @Override
@@ -196,7 +208,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        protected void onObjectClicked(TLObject tLObject) {
+        public void onObjectClicked(TLObject tLObject) {
             dismiss();
             if (tLObject instanceof TLRPC$Chat) {
                 GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(-((TLRPC$Chat) tLObject).id));
@@ -211,7 +223,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        protected void onHiddenLinkClicked() {
+        public void onHiddenLinkClicked() {
             String string;
             if ((GiftInfoBottomSheet.this.slug == null || GiftInfoBottomSheet.this.slug.isEmpty()) && GiftInfoBottomSheet.this.giftCode.to_id == -1) {
                 string = LocaleController.getString("BoostingOnlyGiveawayCreatorSeeLink", R.string.BoostingOnlyGiveawayCreatorSeeLink);

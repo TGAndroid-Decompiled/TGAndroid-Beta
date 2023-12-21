@@ -7,7 +7,6 @@ import java.util.Objects;
 public class BuildVars {
     public static String APP_HASH = null;
     public static int APP_ID = 0;
-    public static int BUILD_VERSION = 0;
     public static String BUILD_VERSION_STRING = null;
     public static boolean CHECK_UPDATES = true;
     public static boolean DEBUG_PRIVATE_VERSION = false;
@@ -26,8 +25,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION = 4139;
-        BUILD_VERSION_STRING = "10.3.2";
+        BUILD_VERSION_STRING = BuildConfig.BUILD_VERSION_STRING;
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";

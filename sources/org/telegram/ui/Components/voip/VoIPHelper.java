@@ -29,7 +29,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -135,7 +134,7 @@ public class VoIPHelper {
             if (arrayList.isEmpty()) {
                 initiateCall(tLRPC$User, null, null, z, z2, false, null, activity, null, accountInstance);
             } else {
-                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), z ? 102 : FileLoader.MEDIA_DIR_VIDEO_PUBLIC);
+                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), z ? R.styleable.AppCompatTheme_textAppearanceLargePopupMenu : 101);
             }
         } else {
             initiateCall(tLRPC$User, null, null, z, z2, false, null, activity, null, accountInstance);
@@ -198,7 +197,7 @@ public class VoIPHelper {
             if (arrayList.isEmpty()) {
                 initiateCall(null, tLRPC$Chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
             } else {
-                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), 103);
+                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), R.styleable.AppCompatTheme_textAppearanceListItem);
             }
         } else {
             initiateCall(null, tLRPC$Chat, str, false, false, z, bool, activity, baseFragment, accountInstance);

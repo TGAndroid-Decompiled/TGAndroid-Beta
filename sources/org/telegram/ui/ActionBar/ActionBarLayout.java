@@ -1723,7 +1723,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     private boolean shouldOpenFragmentOverlay(Dialog dialog) {
-        return (dialog instanceof ChatAttachAlert) || (dialog instanceof BotWebViewSheet);
+        return dialog != null && dialog.isShowing() && ((dialog instanceof ChatAttachAlert) || (dialog instanceof BotWebViewSheet));
     }
 
     @Override
@@ -1835,6 +1835,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void expandPreviewFragment() {
+        boolean z = true;
         this.previewOpenAnimationInProgress = true;
         this.inPreviewMode = false;
         List<BaseFragment> list = this.fragmentsStack;
@@ -1868,6 +1869,14 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         performHapticFeedback(3);
         baseFragment2.setInPreviewMode(false);
         baseFragment2.setInMenuMode(false);
+        try {
+            Window window = this.parentActivity.getWindow();
+            if (Theme.getColor(Theme.key_actionBarDefault) != -1 && (!baseFragment2.hasForceLightStatusBar() || Theme.getCurrentTheme().isDark())) {
+                z = false;
+            }
+            AndroidUtilities.setLightStatusBar(window, z, baseFragment2.hasForceLightStatusBar());
+        } catch (Exception unused) {
+        }
     }
 
     @Override

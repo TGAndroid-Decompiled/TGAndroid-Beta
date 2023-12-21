@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.video.Track;
 public class Track {
     private static Map<Integer, Integer> samplingFrequencyIndexMap;
@@ -165,7 +166,7 @@ public class Track {
                     } else if (integer2 == 8) {
                         avcConfigurationBox.setAvcProfileIndication(100);
                     } else if (integer2 == 16) {
-                        avcConfigurationBox.setAvcProfileIndication(110);
+                        avcConfigurationBox.setAvcProfileIndication(R.styleable.AppCompatTheme_textColorAlertDialogListItem);
                     } else if (integer2 == 32) {
                         avcConfigurationBox.setAvcProfileIndication(122);
                     } else if (integer2 == 64) {
@@ -266,7 +267,7 @@ public class Track {
         String string2 = mediaFormat.containsKey("mime") ? mediaFormat.getString("mime") : "audio/mp4-latm";
         DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
         if ("audio/mpeg".equals(string2)) {
-            decoderConfigDescriptor.setObjectTypeIndication(105);
+            decoderConfigDescriptor.setObjectTypeIndication(R.styleable.AppCompatTheme_textAppearanceListItemSmall);
         } else {
             decoderConfigDescriptor.setObjectTypeIndication(64);
         }

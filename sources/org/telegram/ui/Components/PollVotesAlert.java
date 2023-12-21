@@ -1256,7 +1256,7 @@ public class PollVotesAlert extends BottomSheet {
                     return;
                 }
                 VotesList votesList = (VotesList) PollVotesAlert.this.voters.get(i - 1);
-                ((TextCell) viewHolder.itemView).setTextAndIcon(LocaleController.formatPluralString("ShowVotes", votesList.count - votesList.getCount(), new Object[0]), R.drawable.arrow_more, false);
+                ((TextCell) viewHolder.itemView).setTextAndIcon((CharSequence) LocaleController.formatPluralString("ShowVotes", votesList.count - votesList.getCount(), new Object[0]), R.drawable.arrow_more, false);
                 return;
             }
             SectionCell sectionCell = (SectionCell) viewHolder.itemView;

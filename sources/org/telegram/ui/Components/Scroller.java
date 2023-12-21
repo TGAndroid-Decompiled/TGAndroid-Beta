@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.ViewConfiguration;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
-import org.telegram.messenger.FileLoader;
 public class Scroller {
     private static float sViscousFluidNormalize;
     private static float sViscousFluidScale;
@@ -33,7 +32,7 @@ public class Scroller {
     private static float DECELERATION_RATE = (float) (Math.log(0.75d) / Math.log(0.9d));
     private static float START_TENSION = 0.4f;
     private static float END_TENSION = 1.0f - 0.4f;
-    private static final float[] SPLINE = new float[FileLoader.MEDIA_DIR_VIDEO_PUBLIC];
+    private static final float[] SPLINE = new float[101];
 
     static {
         float f;

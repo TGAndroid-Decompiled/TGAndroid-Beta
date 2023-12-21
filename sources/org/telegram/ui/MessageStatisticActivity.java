@@ -44,15 +44,12 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$PublicForward;
 import org.telegram.tgnet.TLRPC$StatsGraph;
 import org.telegram.tgnet.TLRPC$TL_chatReactionsNone;
 import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_messagesSlice;
 import org.telegram.tgnet.TLRPC$TL_publicForwardMessage;
 import org.telegram.tgnet.TLRPC$TL_statsGraph;
 import org.telegram.tgnet.TLRPC$TL_statsGraphError;
@@ -62,7 +59,6 @@ import org.telegram.tgnet.TLRPC$TL_stats_getStoryPublicForwards;
 import org.telegram.tgnet.TLRPC$TL_stats_loadAsyncGraph;
 import org.telegram.tgnet.TLRPC$TL_stats_messageStats;
 import org.telegram.tgnet.TLRPC$TL_stats_publicForwards;
-import org.telegram.tgnet.TLRPC$messages_Messages;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_publicForwardStory;
 import org.telegram.tgnet.tl.TL_stories$TL_stats_getStoryStats;
@@ -122,7 +118,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     private ArrayList<MessageObject> messages;
     private boolean needActionbarMenu;
     private String nextOffset;
-    private int nextRate;
     private int overviewHeaderRow;
     private int overviewRow;
     private LinearLayout progressLayout;
@@ -660,10 +655,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             tLRPC$TL_stats_getStoryPublicForwards.id = this.messageObject.storyItem.id;
             tLRPC$TL_stats_getStoryPublicForwards.peer = getMessagesController().getInputPeer(-this.chatId);
             String str = this.nextOffset;
-            if (str == null) {
-                str = "";
-            }
-            tLRPC$TL_stats_getStoryPublicForwards.offset = str;
+            tLRPC$TL_stats_getStoryPublicForwards.offset = str != null ? str : "";
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getStoryPublicForwards, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -683,15 +675,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             tLRPC$TL_stats_getMessagePublicForwards.msg_id = messageObject.getId();
             tLRPC$TL_stats_getMessagePublicForwards.channel = getMessagesController().getInputChannel(-this.messageObject.getDialogId());
         }
-        if (!this.messages.isEmpty()) {
-            ArrayList<MessageObject> arrayList = this.messages;
-            TLRPC$Message tLRPC$Message = arrayList.get(arrayList.size() - 1).messageOwner;
-            tLRPC$TL_stats_getMessagePublicForwards.offset_id = tLRPC$Message.id;
-            tLRPC$TL_stats_getMessagePublicForwards.offset_peer = getMessagesController().getInputPeer(MessageObject.getDialogId(tLRPC$Message));
-            tLRPC$TL_stats_getMessagePublicForwards.offset_rate = this.nextRate;
-        } else {
-            tLRPC$TL_stats_getMessagePublicForwards.offset_peer = new TLRPC$TL_inputPeerEmpty();
-        }
+        String str2 = this.nextOffset;
+        tLRPC$TL_stats_getMessagePublicForwards.offset = str2 != null ? str2 : "";
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getMessagePublicForwards, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -762,21 +747,35 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
     public void lambda$loadChats$6(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error == null) {
-            TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
-            if ((tLRPC$messages_Messages.flags & 1) != 0) {
-                this.nextRate = tLRPC$messages_Messages.next_rate;
+            TLRPC$TL_stats_publicForwards tLRPC$TL_stats_publicForwards = (TLRPC$TL_stats_publicForwards) tLObject;
+            if ((tLRPC$TL_stats_publicForwards.flags & 1) != 0) {
+                this.nextOffset = tLRPC$TL_stats_publicForwards.next_offset;
+            } else {
+                this.nextOffset = null;
             }
-            int i = tLRPC$messages_Messages.count;
+            int i = tLRPC$TL_stats_publicForwards.count;
             if (i != 0) {
                 this.publicChats = i;
             } else if (this.publicChats == 0) {
-                this.publicChats = tLRPC$messages_Messages.messages.size();
+                this.publicChats = tLRPC$TL_stats_publicForwards.forwards.size();
             }
-            this.endReached = !(tLRPC$messages_Messages instanceof TLRPC$TL_messages_messagesSlice);
-            getMessagesController().putChats(tLRPC$messages_Messages.chats, false);
-            getMessagesController().putUsers(tLRPC$messages_Messages.users, false);
-            for (int i2 = 0; i2 < tLRPC$messages_Messages.messages.size(); i2++) {
-                this.messages.add(new MessageObject(this.currentAccount, tLRPC$messages_Messages.messages.get(i2), false, true));
+            this.endReached = this.nextOffset == null;
+            getMessagesController().putChats(tLRPC$TL_stats_publicForwards.chats, false);
+            getMessagesController().putUsers(tLRPC$TL_stats_publicForwards.users, false);
+            Iterator<TLRPC$PublicForward> it = tLRPC$TL_stats_publicForwards.forwards.iterator();
+            while (it.hasNext()) {
+                TLRPC$PublicForward next = it.next();
+                if (next instanceof TL_stories$TL_publicForwardStory) {
+                    TL_stories$TL_publicForwardStory tL_stories$TL_publicForwardStory = (TL_stories$TL_publicForwardStory) next;
+                    tL_stories$TL_publicForwardStory.story.dialogId = DialogObject.getPeerDialogId(tL_stories$TL_publicForwardStory.peer);
+                    TL_stories$StoryItem tL_stories$StoryItem = tL_stories$TL_publicForwardStory.story;
+                    tL_stories$StoryItem.messageId = tL_stories$StoryItem.id;
+                    MessageObject messageObject = new MessageObject(this.currentAccount, tL_stories$TL_publicForwardStory.story);
+                    messageObject.generateThumbs(false);
+                    this.messages.add(messageObject);
+                } else if (next instanceof TLRPC$TL_publicForwardMessage) {
+                    this.messages.add(new MessageObject(this.currentAccount, ((TLRPC$TL_publicForwardMessage) next).message, false, true));
+                }
             }
             EmptyTextProgressView emptyTextProgressView = this.emptyView;
             if (emptyTextProgressView != null) {

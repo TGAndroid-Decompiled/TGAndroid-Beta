@@ -388,7 +388,7 @@ public class TextPaintView extends EntityView {
     }
 
     @Override
-    protected Rect getSelectionBounds() {
+    public Rect getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Rect();

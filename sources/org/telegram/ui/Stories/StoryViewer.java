@@ -2009,6 +2009,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.isShowing) {
             AndroidUtilities.hideKeyboard(this.windowView);
             this.isClosed = true;
+            this.fullyVisible = false;
+            this.progressToOpen = 0.0f;
+            this.progressToDismiss = 0.0f;
             updatePlayingMode();
             this.fromY = 0.0f;
             this.fromX = 0.0f;

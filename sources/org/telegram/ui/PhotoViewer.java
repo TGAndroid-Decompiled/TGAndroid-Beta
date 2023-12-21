@@ -4579,7 +4579,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            protected boolean ignoreTouches() {
+            protected boolean ignoreTouches(float f, float f2) {
                 return (this.keyboardShown || PhotoViewer.this.currentEditMode == 0) ? false : true;
             }
 
@@ -4950,7 +4950,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         ListAdapter listAdapter = new ListAdapter(this.parentActivity);
         this.selectedPhotosAdapter = listAdapter;
         selectedPhotosListView2.setAdapter(listAdapter);
-        this.containerView.addView(this.selectedPhotosListView, LayoutHelper.createFrame(-1, 103, 51));
+        this.containerView.addView(this.selectedPhotosListView, LayoutHelper.createFrame(-1, (int) R.styleable.AppCompatTheme_textAppearanceListItem, 51));
         this.selectedPhotosListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i11) {
@@ -10383,6 +10383,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 photoViewer2.updateMinMax(photoViewer2.scale);
                 PhotoViewer.this.padImageForHorizontalInsets = true;
                 PhotoViewer.this.containerView.invalidate();
+                if (PhotoViewer.this.placeProvider == null || !PhotoViewer.this.placeProvider.closeKeyboard()) {
+                    PhotoViewer.this.makeFocusable();
+                }
             }
         });
         this.imageMoveAnimation.start();

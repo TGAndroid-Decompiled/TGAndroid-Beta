@@ -230,7 +230,7 @@ public class MessagePreviewParams {
         ChatActivity.ReplyQuote replyQuote2;
         int i;
         MessageObject messageObject2 = messageObject;
-        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21) {
+        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25) {
             messageObject2 = null;
             replyQuote2 = null;
         } else {

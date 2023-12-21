@@ -578,7 +578,7 @@ public class Emoji {
         if (num == null) {
             num = 0;
         }
-        if (num.intValue() == 0 && emojiUseHistory.size() >= MAX_RECENT_EMOJI_COUNT) {
+        if (num.intValue() == 0 && emojiUseHistory.size() >= 48) {
             ArrayList<String> arrayList = recentEmoji;
             emojiUseHistory.remove(arrayList.get(arrayList.size() - 1));
             ArrayList<String> arrayList2 = recentEmoji;
@@ -608,7 +608,7 @@ public class Emoji {
                 return lambda$sortEmoji$2;
             }
         });
-        while (recentEmoji.size() > MAX_RECENT_EMOJI_COUNT) {
+        while (recentEmoji.size() > 48) {
             ArrayList<String> arrayList = recentEmoji;
             arrayList.remove(arrayList.size() - 1);
         }

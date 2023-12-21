@@ -121,7 +121,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
         });
         this.fragmentView = this.contentView;
-        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 33184 : LiteMode.FLAGS_CHAT;
+        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 98720 : LiteMode.FLAGS_CHAT;
         updateItems();
         return this.fragmentView;
     }
@@ -266,6 +266,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur"), LiteMode.FLAG_CHAT_BLUR));
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), LiteMode.FLAG_CHAT_SCALE));
+            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsThanos"), 65536));
         }
         this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), LiteMode.FLAG_CALLS_ANIMATIONS));
         this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString("LiteOptionsAutoplayVideo"), 1024));

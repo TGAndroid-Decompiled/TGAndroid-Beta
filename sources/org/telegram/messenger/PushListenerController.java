@@ -415,21 +415,21 @@ public class PushListenerController {
                 return LocaleController.formatString("PushReactPhoto", R.string.PushReactPhoto, objArr);
             case 25:
                 return LocaleController.formatString("PushReactRound", R.string.PushReactRound, objArr);
-            case MessageObject.TYPE_GIVEAWAY:
+            case 26:
                 return LocaleController.formatString("PushReactVideo", R.string.PushReactVideo, objArr);
-            case MessageObject.TYPE_JOINED_CHANNEL:
+            case 27:
                 return LocaleController.formatString("PushReactDoc", R.string.PushReactDoc, objArr);
             case 28:
                 return LocaleController.formatString("PushReactGeo", R.string.PushReactGeo, objArr);
             case 29:
                 return LocaleController.formatString("PushReactGif", R.string.PushReactGif, objArr);
-            case 30:
+            case R.styleable.AppCompatTheme_actionModeTheme:
                 return LocaleController.formatString("PushChatReactGame", R.string.PushChatReactGame, objArr);
-            case 31:
+            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
                 return LocaleController.formatString("PushChatReactPoll", R.string.PushChatReactPoll, objArr);
             case ' ':
                 return LocaleController.formatString("PushChatReactQuiz", R.string.PushChatReactQuiz, objArr);
-            case '!':
+            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
                 return LocaleController.formatString("PushChatReactText", R.string.PushChatReactText, objArr);
             default:
                 return null;

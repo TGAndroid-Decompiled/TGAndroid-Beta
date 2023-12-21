@@ -198,7 +198,7 @@ public class FiltersView extends RecyclerListView {
             }
 
             @Override
-            protected void animateRemoveImpl(final RecyclerView.ViewHolder viewHolder) {
+            public void animateRemoveImpl(final RecyclerView.ViewHolder viewHolder) {
                 final View view = viewHolder.itemView;
                 final ViewPropertyAnimator animate = view.animate();
                 this.mRemoveAnimations.add(viewHolder);

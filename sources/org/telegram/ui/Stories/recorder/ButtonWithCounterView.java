@@ -56,6 +56,10 @@ public class ButtonWithCounterView extends FrameLayout {
     private int timerSeconds;
     private boolean withCounterIcon;
 
+    protected float calculateCounterWidth(float f, float f2) {
+        return f * f2;
+    }
+
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         return false;
@@ -180,10 +184,14 @@ public class ButtonWithCounterView extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence, boolean z) {
+        setText(charSequence, z, true);
+    }
+
+    public void setText(CharSequence charSequence, boolean z, boolean z2) {
         if (z) {
             this.text.cancelAnimation();
         }
-        this.text.setText(charSequence, z);
+        this.text.setText(charSequence, z, z2);
         setContentDescription(charSequence);
         invalidate();
     }
@@ -413,16 +421,16 @@ public class ButtonWithCounterView extends FrameLayout {
             float currentWidth = this.text.getCurrentWidth();
             float f2 = this.countAlphaAnimated.set(this.countAlpha);
             float dp2 = this.withCounterIcon ? AndroidUtilities.dp(12.0f) : 0.0f;
-            float dp3 = currentWidth + dp2 + ((AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth()) * f2);
+            float calculateCounterWidth = currentWidth + dp2 + calculateCounterWidth(AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth(), f2);
             Rect rect = AndroidUtilities.rectTmp2;
-            rect.set((int) (((getMeasuredWidth() - dp3) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp3) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - calculateCounterWidth) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
             rect.offset(0, (int) ((-AndroidUtilities.dp(7.0f)) * this.subTextT));
             this.text.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             this.text.setBounds(rect);
             this.text.draw(canvas);
             if (this.subTextVisible) {
-                dp3 = this.subText.getCurrentWidth();
-                rect.set((int) (((getMeasuredWidth() - dp3) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp3) + getWidth()) / 2.0f) + dp3), (int) (((getMeasuredHeight() + this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+                calculateCounterWidth = this.subText.getCurrentWidth();
+                rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - calculateCounterWidth) + getWidth()) / 2.0f) + calculateCounterWidth), (int) (((getMeasuredHeight() + this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
                 rect.offset(0, AndroidUtilities.dp(11.0f));
                 canvas.save();
                 float lerp = AndroidUtilities.lerp(0.1f, 1.0f, this.subTextT);
@@ -432,7 +440,7 @@ public class ButtonWithCounterView extends FrameLayout {
                 this.subText.draw(canvas);
                 canvas.restore();
             }
-            rect.set((int) (((getMeasuredWidth() - dp3) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp3) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
+            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             if (this.countScale != 1.0f) {
@@ -442,10 +450,10 @@ public class ButtonWithCounterView extends FrameLayout {
             }
             if (this.countFilled) {
                 this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
-                float dp4 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
-                canvas.drawRoundRect(rectF, dp4, dp4, this.paint);
+                float dp3 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
+                canvas.drawRoundRect(rectF, dp3, dp3, this.paint);
             }
-            rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
+            rect.offset(-AndroidUtilities.dp((this.countText.getText() != null ? this.countText.getText().length() : 0) > 1 ? 0.3f : 0.0f), -AndroidUtilities.dp(0.4f));
             this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * (this.countFilled ? 1.0f : 0.5f)));
             this.countText.setBounds(rect);
             canvas.save();

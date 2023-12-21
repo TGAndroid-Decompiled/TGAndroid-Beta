@@ -1063,6 +1063,12 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
+        public void notifyItemRemoved(int i) {
+            updateRows();
+            super.notifyItemRemoved(i);
+        }
+
+        @Override
         public void notifyItemRangeRemoved(int i, int i2) {
             updateRows();
             super.notifyItemRangeRemoved(i, i2);

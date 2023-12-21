@@ -35,7 +35,6 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -1254,9 +1253,9 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public void showPremiumBulletin(String str, int i) {
+    public void showPremiumBulletin(String str) {
         this.container.performHapticFeedback(3);
-        BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(ContextCompat.getDrawable(getContext(), R.drawable.msg_premium_normal), LocaleController.getString("IncreaseLimit", R.string.IncreaseLimit), premiumText(LocaleController.getString(str, i))).show(true);
+        BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, LocaleController.getString(R.string.IncreaseLimit), premiumText(str)).show(true);
     }
 
     private CharSequence premiumText(String str) {

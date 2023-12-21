@@ -52,7 +52,7 @@ public class SelectorCountryCell extends BaseCell {
     }
 
     @Override
-    protected void updateLayouts() {
+    public void updateLayouts() {
         SimpleTextView simpleTextView = this.titleTextView;
         boolean z = LocaleController.isRTL;
         simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 16, z ? 20.0f : 52.0f, 0.0f, z ? 52.0f : 20.0f, 0.0f));

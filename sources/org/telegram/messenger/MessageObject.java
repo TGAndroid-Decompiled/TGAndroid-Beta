@@ -43,7 +43,6 @@ import java.util.regex.Pattern;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.tgnet.ConnectionsManager;
@@ -51,6 +50,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$BotApp;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
+import org.telegram.tgnet.TLRPC$ChannelAdminLogEventAction;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$ChatReactions;
@@ -83,6 +83,7 @@ import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
 import org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent;
+import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionChangeWallpaper;
 import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
 import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
 import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
@@ -146,6 +147,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaGame;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGeoLive;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
+import org.telegram.tgnet.TLRPC$TL_messageMediaGiveawayResults;
 import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
@@ -183,6 +185,7 @@ import org.telegram.tgnet.TLRPC$TL_sponsoredWebPage;
 import org.telegram.tgnet.TLRPC$TL_stickerPack;
 import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.tgnet.TLRPC$TL_textWithEntities;
+import org.telegram.tgnet.TLRPC$TL_wallPaperNoFile;
 import org.telegram.tgnet.TLRPC$TL_webPage;
 import org.telegram.tgnet.TLRPC$TL_webPageAttributeStory;
 import org.telegram.tgnet.TLRPC$TL_webPageAttributeTheme;
@@ -232,6 +235,7 @@ public class MessageObject {
     public static final int TYPE_GIFT_PREMIUM = 18;
     public static final int TYPE_GIFT_PREMIUM_CHANNEL = 25;
     public static final int TYPE_GIVEAWAY = 26;
+    public static final int TYPE_GIVEAWAY_RESULTS = 28;
     public static final int TYPE_JOINED_CHANNEL = 27;
     public static final int TYPE_LOADING = 6;
     public static final int TYPE_MUSIC = 14;
@@ -280,6 +284,7 @@ public class MessageObject {
     public String customReplyName;
     public String dateKey;
     public boolean deleted;
+    public boolean deletedByThanos;
     public boolean drawServiceWithDefaultTypeface;
     public CharSequence editingMessage;
     public ArrayList<TLRPC$MessageEntity> editingMessageEntities;
@@ -320,6 +325,8 @@ public class MessageObject {
     public boolean isMediaSpoilersRevealedInSharedMedia;
     public Boolean isOutOwnerCached;
     public boolean isReactionPush;
+    public boolean isRepostPreview;
+    public boolean isRepostVideoPreview;
     public boolean isRestrictedMessage;
     private int isRoundVideoCached;
     public boolean isSpoilersRevealed;
@@ -353,7 +360,6 @@ public class MessageObject {
     public String monthKey;
     public int overrideLinkColor;
     public long overrideLinkEmoji;
-    public MessagesController.PeerColor overrideProfilePeerColor;
     public int parentWidth;
     public SvgHelper.SvgDrawable pathThumb;
     public ArrayList<TLRPC$PhotoSize> photoThumbs;
@@ -572,8 +578,12 @@ public class MessageObject {
     }
 
     public boolean hasMediaSpoilers() {
-        TLRPC$MessageMedia tLRPC$MessageMedia = this.messageOwner.media;
-        return (tLRPC$MessageMedia != null && tLRPC$MessageMedia.spoiler) || needDrawBluredPreview();
+        TLRPC$MessageMedia tLRPC$MessageMedia;
+        return !this.isRepostPreview && (((tLRPC$MessageMedia = this.messageOwner.media) != null && tLRPC$MessageMedia.spoiler) || needDrawBluredPreview());
+    }
+
+    public boolean shouldDrawReactions() {
+        return !this.isRepostPreview;
     }
 
     public TLRPC$MessagePeerReaction getRandomUnreadReaction() {
@@ -953,13 +963,13 @@ public class MessageObject {
                         break;
                     }
                     break;
-                case 99:
+                case R.styleable.AppCompatTheme_spinnerDropDownItemStyle:
                     if (replaceAll.equals("c")) {
                         c = '\n';
                         break;
                     }
                     break;
-                case 114:
+                case R.styleable.AppCompatTheme_tooltipForegroundColor:
                     if (replaceAll.equals("r")) {
                         c = 11;
                         break;
@@ -1245,11 +1255,11 @@ public class MessageObject {
                 case '\b':
                 case '\n':
                 case 25:
-                case 31:
+                case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
                 case ' ':
-                case '&':
-                case ',':
-                case '3':
+                case R.styleable.AppCompatTheme_alertDialogTheme:
+                case R.styleable.AppCompatTheme_buttonBarPositiveButtonStyle:
+                case R.styleable.AppCompatTheme_colorBackgroundFloating:
                     return capitalizeFirst(str);
                 case 7:
                 case 15:
@@ -1264,43 +1274,43 @@ public class MessageObject {
                 case 22:
                 case 23:
                 case 24:
-                case MessageObject.TYPE_GIVEAWAY:
+                case 26:
                 case 28:
                 case 29:
-                case 30:
-                case '\"':
-                case '#':
-                case '$':
-                case '%':
-                case '\'':
-                case '(':
-                case ')':
-                case '-':
-                case '/':
-                case '0':
-                case '1':
-                case '2':
+                case R.styleable.AppCompatTheme_actionModeTheme:
+                case R.styleable.AppCompatTheme_activityChooserViewStyle:
+                case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+                case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+                case R.styleable.AppCompatTheme_alertDialogStyle:
+                case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
+                case R.styleable.AppCompatTheme_borderlessButtonStyle:
+                case R.styleable.AppCompatTheme_buttonBarButtonStyle:
+                case R.styleable.AppCompatTheme_buttonBarStyle:
+                case R.styleable.AppCompatTheme_buttonStyleSmall:
+                case R.styleable.AppCompatTheme_checkboxStyle:
+                case R.styleable.AppCompatTheme_checkedTextViewStyle:
+                case R.styleable.AppCompatTheme_colorAccent:
                     return str.toUpperCase();
                 case '\r':
-                case '4':
+                case R.styleable.AppCompatTheme_colorButtonNormal:
                     return "JavaScript";
                 case 14:
-                case '6':
+                case R.styleable.AppCompatTheme_colorControlHighlight:
                     return "Markdown";
                 case 16:
-                case '+':
+                case R.styleable.AppCompatTheme_buttonBarNeutralButtonStyle:
                     return "Ruby";
                 case 20:
                     return "C++";
-                case MessageObject.TYPE_JOINED_CHANNEL:
-                case '.':
+                case 27:
+                case R.styleable.AppCompatTheme_buttonStyle:
                     return "TL-B";
-                case '!':
+                case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
                     return "FunC";
-                case '*':
-                case '7':
+                case R.styleable.AppCompatTheme_buttonBarNegativeButtonStyle:
+                case R.styleable.AppCompatTheme_colorControlNormal:
                     return "Objective-C";
-                case '5':
+                case R.styleable.AppCompatTheme_colorControlActivated:
                     return "AutoHotKey";
                 default:
                     return str;
@@ -1541,6 +1551,10 @@ public class MessageObject {
     }
 
     public MessageObject(int i, TLRPC$Message tLRPC$Message, MessageObject messageObject, AbstractMap<Long, TLRPC$User> abstractMap, AbstractMap<Long, TLRPC$Chat> abstractMap2, LongSparseArray<TLRPC$User> longSparseArray, LongSparseArray<TLRPC$Chat> longSparseArray2, boolean z, boolean z2, long j) {
+        this(i, tLRPC$Message, messageObject, abstractMap, abstractMap2, longSparseArray, longSparseArray2, z, z2, j, false, false);
+    }
+
+    public MessageObject(int i, TLRPC$Message tLRPC$Message, MessageObject messageObject, AbstractMap<Long, TLRPC$User> abstractMap, AbstractMap<Long, TLRPC$Chat> abstractMap2, LongSparseArray<TLRPC$User> longSparseArray, LongSparseArray<TLRPC$Chat> longSparseArray2, boolean z, boolean z2, long j, boolean z3, boolean z4) {
         TextPaint textPaint;
         this.type = 1000;
         this.forceSeekTo = -1.0f;
@@ -1550,6 +1564,8 @@ public class MessageObject {
         this.spoiledLoginCode = false;
         this.translated = false;
         Theme.createCommonMessageResources();
+        this.isRepostPreview = z3;
+        this.isRepostVideoPreview = z4;
         this.currentAccount = i;
         this.messageOwner = tLRPC$Message;
         this.replyMessageObject = messageObject;
@@ -1836,7 +1852,7 @@ public class MessageObject {
         this.totalAnimatedEmojiCount = 0;
     }
 
-    public MessageObject(int r28, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r29, java.util.ArrayList<org.telegram.messenger.MessageObject> r30, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r31, org.telegram.tgnet.TLRPC$Chat r32, int[] r33, boolean r34) {
+    public MessageObject(int r30, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r31, java.util.ArrayList<org.telegram.messenger.MessageObject> r32, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r33, org.telegram.tgnet.TLRPC$Chat r34, int[] r35, boolean r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 
@@ -2631,7 +2647,7 @@ public class MessageObject {
 
     public boolean hasInlineBotButtons() {
         TLRPC$Message tLRPC$Message;
-        if (!this.isRestrictedMessage && (tLRPC$Message = this.messageOwner) != null) {
+        if (!this.isRestrictedMessage && !this.isRepostPreview && (tLRPC$Message = this.messageOwner) != null) {
             TLRPC$ReplyMarkup tLRPC$ReplyMarkup = tLRPC$Message.reply_markup;
             if ((tLRPC$ReplyMarkup instanceof TLRPC$TL_replyInlineMarkup) && !tLRPC$ReplyMarkup.rows.isEmpty()) {
                 return true;
@@ -2807,6 +2823,8 @@ public class MessageObject {
                     this.type = 10;
                 } else if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGiveaway) {
                     this.type = 26;
+                } else if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGiveawayResults) {
+                    this.type = 28;
                 } else if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaDice) {
                     this.type = 15;
                     if (getMedia(this.messageOwner).document == null) {
@@ -2865,57 +2883,80 @@ public class MessageObject {
                         this.contentType = 1;
                     }
                 }
-            } else if (tLRPC$Message instanceof TLRPC$TL_messageService) {
-                TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
-                if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetSameChatWallPaper) {
-                    this.contentType = 1;
-                    this.type = 10;
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetChatWallPaper) {
-                    this.contentType = 1;
-                    this.type = 22;
-                    TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = (TLRPC$TL_messageActionSetChatWallPaper) tLRPC$MessageAction;
-                    ArrayList<TLRPC$PhotoSize> arrayList = new ArrayList<>();
-                    this.photoThumbs = arrayList;
-                    TLRPC$Document tLRPC$Document = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
-                    if (tLRPC$Document != null) {
-                        arrayList.addAll(tLRPC$Document.thumbs);
-                        this.photoThumbsObject = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
+            } else {
+                TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent = this.currentEvent;
+                if (tLRPC$TL_channelAdminLogEvent != null) {
+                    TLRPC$ChannelAdminLogEventAction tLRPC$ChannelAdminLogEventAction = tLRPC$TL_channelAdminLogEvent.action;
+                    if (tLRPC$ChannelAdminLogEventAction instanceof TLRPC$TL_channelAdminLogEventActionChangeWallpaper) {
+                        TLRPC$TL_channelAdminLogEventActionChangeWallpaper tLRPC$TL_channelAdminLogEventActionChangeWallpaper = (TLRPC$TL_channelAdminLogEventActionChangeWallpaper) tLRPC$ChannelAdminLogEventAction;
+                        this.contentType = 1;
+                        TLRPC$WallPaper tLRPC$WallPaper = tLRPC$TL_channelAdminLogEventActionChangeWallpaper.new_value;
+                        if ((tLRPC$WallPaper instanceof TLRPC$TL_wallPaperNoFile) && tLRPC$WallPaper.id == 0 && tLRPC$WallPaper.settings == null) {
+                            this.type = 10;
+                        } else {
+                            this.type = 22;
+                            ArrayList<TLRPC$PhotoSize> arrayList = new ArrayList<>();
+                            this.photoThumbs = arrayList;
+                            TLRPC$Document tLRPC$Document = tLRPC$TL_channelAdminLogEventActionChangeWallpaper.new_value.document;
+                            if (tLRPC$Document != null) {
+                                arrayList.addAll(tLRPC$Document.thumbs);
+                                this.photoThumbsObject = tLRPC$TL_channelAdminLogEventActionChangeWallpaper.new_value.document;
+                            }
+                        }
                     }
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSuggestProfilePhoto) {
-                    this.contentType = 1;
-                    this.type = 21;
-                    ArrayList<TLRPC$PhotoSize> arrayList2 = new ArrayList<>();
-                    this.photoThumbs = arrayList2;
-                    arrayList2.addAll(this.messageOwner.action.photo.sizes);
-                    this.photoThumbsObject = this.messageOwner.action.photo;
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionLoginUnknownLocation) {
-                    this.type = 0;
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftCode) {
-                    this.contentType = 1;
-                    this.type = 25;
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftPremium) {
-                    this.contentType = 1;
-                    this.type = 18;
-                } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionChatEditPhoto) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionUserUpdatedPhoto)) {
-                    this.contentType = 1;
-                    this.type = 11;
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageEncryptedAction) {
-                    TLRPC$DecryptedMessageAction tLRPC$DecryptedMessageAction = tLRPC$MessageAction.encryptedAction;
-                    if ((tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionScreenshotMessages) || (tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionSetMessageTTL)) {
+                }
+                if (tLRPC$Message instanceof TLRPC$TL_messageService) {
+                    TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
+                    if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetSameChatWallPaper) {
                         this.contentType = 1;
                         this.type = 10;
-                    } else {
+                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetChatWallPaper) {
+                        this.contentType = 1;
+                        this.type = 22;
+                        TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = (TLRPC$TL_messageActionSetChatWallPaper) tLRPC$MessageAction;
+                        ArrayList<TLRPC$PhotoSize> arrayList2 = new ArrayList<>();
+                        this.photoThumbs = arrayList2;
+                        TLRPC$Document tLRPC$Document2 = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
+                        if (tLRPC$Document2 != null) {
+                            arrayList2.addAll(tLRPC$Document2.thumbs);
+                            this.photoThumbsObject = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
+                        }
+                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSuggestProfilePhoto) {
+                        this.contentType = 1;
+                        this.type = 21;
+                        ArrayList<TLRPC$PhotoSize> arrayList3 = new ArrayList<>();
+                        this.photoThumbs = arrayList3;
+                        arrayList3.addAll(this.messageOwner.action.photo.sizes);
+                        this.photoThumbsObject = this.messageOwner.action.photo;
+                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionLoginUnknownLocation) {
+                        this.type = 0;
+                    } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftCode) && ((TLRPC$TL_messageActionGiftCode) tLRPC$MessageAction).boost_peer != null) {
+                        this.contentType = 1;
+                        this.type = 25;
+                    } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftPremium) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftCode)) {
+                        this.contentType = 1;
+                        this.type = 18;
+                    } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionChatEditPhoto) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionUserUpdatedPhoto)) {
+                        this.contentType = 1;
+                        this.type = 11;
+                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageEncryptedAction) {
+                        TLRPC$DecryptedMessageAction tLRPC$DecryptedMessageAction = tLRPC$MessageAction.encryptedAction;
+                        if ((tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionScreenshotMessages) || (tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionSetMessageTTL)) {
+                            this.contentType = 1;
+                            this.type = 10;
+                        } else {
+                            this.contentType = -1;
+                            this.type = -1;
+                        }
+                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionHistoryClear) {
                         this.contentType = -1;
                         this.type = -1;
+                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPhoneCall) {
+                        this.type = 16;
+                    } else {
+                        this.contentType = 1;
+                        this.type = 10;
                     }
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionHistoryClear) {
-                    this.contentType = -1;
-                    this.type = -1;
-                } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPhoneCall) {
-                    this.type = 16;
-                } else {
-                    this.contentType = 1;
-                    this.type = 10;
                 }
             }
         }
@@ -3758,7 +3799,7 @@ public class MessageObject {
 
     public boolean needDrawShareButton() {
         int i;
-        if (this.type == 27 || isSponsored() || this.hasCode || this.preview || this.scheduled || this.eventId != 0) {
+        if (this.isRepostPreview || this.type == 27 || isSponsored() || this.hasCode || this.preview || this.scheduled || this.eventId != 0) {
             return false;
         }
         TLRPC$Message tLRPC$Message = this.messageOwner;
@@ -3885,7 +3926,7 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r37) {
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
@@ -3969,7 +4010,7 @@ public class MessageObject {
     }
 
     public boolean needDrawAvatar() {
-        if (this.forceAvatar || this.customAvatarDrawable != null) {
+        if (this.isRepostPreview || this.forceAvatar || this.customAvatarDrawable != null) {
             return true;
         }
         if (!isSponsored()) {
@@ -3985,7 +4026,7 @@ public class MessageObject {
     }
 
     public boolean needDrawAvatarInternal() {
-        if (this.forceAvatar || this.customAvatarDrawable != null) {
+        if (this.isRepostPreview || this.forceAvatar || this.customAvatarDrawable != null) {
             return true;
         }
         if (!isSponsored()) {
@@ -4253,13 +4294,33 @@ public class MessageObject {
         return 0L;
     }
 
-    public static boolean shouldEncryptPhotoOrVideo(TLRPC$Message tLRPC$Message) {
-        int i;
-        return tLRPC$Message instanceof TLRPC$TL_message_secret ? ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) || isVideoMessage(tLRPC$Message)) && (i = tLRPC$Message.ttl) > 0 && i <= 60 : ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) || (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaDocument)) && getMedia(tLRPC$Message).ttl_seconds != 0;
+    public static long getChatId(TLRPC$Message tLRPC$Message) {
+        if (tLRPC$Message == null) {
+            return 0L;
+        }
+        TLRPC$Peer tLRPC$Peer = tLRPC$Message.peer_id;
+        if (tLRPC$Peer instanceof TLRPC$TL_peerChat) {
+            return tLRPC$Peer.chat_id;
+        }
+        if (tLRPC$Peer instanceof TLRPC$TL_peerChannel) {
+            return tLRPC$Peer.channel_id;
+        }
+        return 0L;
+    }
+
+    public static boolean shouldEncryptPhotoOrVideo(int i, TLRPC$Message tLRPC$Message) {
+        int i2;
+        if (MessagesController.getInstance(i).isChatNoForwards(getChatId(tLRPC$Message))) {
+            return true;
+        }
+        if (tLRPC$Message == null || !tLRPC$Message.noforwards) {
+            return tLRPC$Message instanceof TLRPC$TL_message_secret ? ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) || isVideoMessage(tLRPC$Message)) && (i2 = tLRPC$Message.ttl) > 0 && i2 <= 60 : ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) || (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaDocument)) && getMedia(tLRPC$Message).ttl_seconds != 0;
+        }
+        return true;
     }
 
     public boolean shouldEncryptPhotoOrVideo() {
-        return shouldEncryptPhotoOrVideo(this.messageOwner);
+        return shouldEncryptPhotoOrVideo(this.currentAccount, this.messageOwner);
     }
 
     public static boolean isSecretPhotoOrVideo(TLRPC$Message tLRPC$Message) {
@@ -4284,15 +4345,24 @@ public class MessageObject {
     }
 
     public boolean needDrawBluredPreview() {
+        if (this.isRepostPreview) {
+            return false;
+        }
         if (hasExtendedMediaPreview()) {
             return true;
         }
         TLRPC$Message tLRPC$Message = this.messageOwner;
-        if (!(tLRPC$Message instanceof TLRPC$TL_message_secret)) {
-            return (tLRPC$Message instanceof TLRPC$TL_message) && getMedia(tLRPC$Message) != null && getMedia(this.messageOwner).ttl_seconds != 0 && ((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto) || (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaDocument));
+        if (tLRPC$Message instanceof TLRPC$TL_message_secret) {
+            int max = Math.max(tLRPC$Message.ttl, getMedia(tLRPC$Message).ttl_seconds);
+            if (max > 0) {
+                return (((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto) || isVideo() || isGif()) && max <= 60) || isRoundVideo();
+            }
+            return false;
+        } else if (!(tLRPC$Message instanceof TLRPC$TL_message) || getMedia(tLRPC$Message) == null || getMedia(this.messageOwner).ttl_seconds == 0) {
+            return false;
+        } else {
+            return (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto) || (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaDocument);
         }
-        int max = Math.max(tLRPC$Message.ttl, getMedia(tLRPC$Message).ttl_seconds);
-        return max > 0 && ((((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto) || isVideo() || isGif()) && max <= 60) || isRoundVideo());
     }
 
     public boolean isSecretMedia() {
@@ -6284,6 +6354,14 @@ public class MessageObject {
         return this.type == 26;
     }
 
+    public boolean isGiveawayOrGiveawayResults() {
+        return isGiveaway() || isGiveawayResults();
+    }
+
+    public boolean isGiveawayResults() {
+        return this.type == 28;
+    }
+
     public boolean isAnyGift() {
         int i = this.type;
         return i == 18 || i == 25;
@@ -6461,7 +6539,7 @@ public class MessageObject {
         boolean z = !this.isRestrictedMessage && (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC$TL_webPage);
         TLRPC$WebPage tLRPC$WebPage = z ? getMedia(this.messageOwner).webpage : null;
         String str = tLRPC$WebPage != null ? tLRPC$WebPage.type : null;
-        return z && !isGiveaway() && tLRPC$WebPage != null && (tLRPC$WebPage.photo != null || isVideoDocument(tLRPC$WebPage.document)) && !((TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) || ((isSponsored() && this.sponsoredWebPage == null && this.sponsoredChannelPost == 0) || "telegram_megagroup".equals(str) || "telegram_background".equals(str) || "telegram_voicechat".equals(str) || "telegram_livestream".equals(str) || "telegram_user".equals(str) || "telegram_story".equals(str) || "telegram_channel_boost".equals(str)));
+        return z && !isGiveawayOrGiveawayResults() && tLRPC$WebPage != null && (tLRPC$WebPage.photo != null || isVideoDocument(tLRPC$WebPage.document)) && !((TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) || ((isSponsored() && this.sponsoredWebPage == null && this.sponsoredChannelPost == 0) || "telegram_megagroup".equals(str) || "telegram_background".equals(str) || "telegram_voicechat".equals(str) || "telegram_livestream".equals(str) || "telegram_user".equals(str) || "telegram_story".equals(str) || "telegram_channel_boost".equals(str)));
     }
 
     public boolean isLinkMediaSmall() {

@@ -62,7 +62,7 @@ public class StoriesStorage {
         });
     }
 
-    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r19) {
+    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$getAllStories$3(com.google.android.exoplayer2.util.Consumer):void");
     }
 

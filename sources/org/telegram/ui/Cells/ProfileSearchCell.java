@@ -31,11 +31,8 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatPhoto;
 import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$UserStatus;
@@ -236,7 +233,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 this.nameLeft = AndroidUtilities.dp(11.0f);
             }
             this.nameLockTop = AndroidUtilities.dp(22.0f);
-            updateStatus(false, null, false);
+            updateStatus(false, null, null, false);
         } else {
             TLRPC$Chat tLRPC$Chat = this.chat;
             if (tLRPC$Chat != null) {
@@ -247,7 +244,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 } else {
                     this.nameLeft = AndroidUtilities.dp(11.0f);
                 }
-                updateStatus(this.drawCheck, null, false);
+                updateStatus(this.drawCheck, null, this.chat, false);
             } else {
                 TLRPC$User tLRPC$User = this.user;
                 if (tLRPC$User != null) {
@@ -262,7 +259,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                     if (!this.savedMessages) {
                         MessagesController.getInstance(this.currentAccount).isPremiumUser(this.user);
                     }
-                    updateStatus(this.drawCheck, this.user, false);
+                    updateStatus(this.drawCheck, this.user, null, false);
                 } else if (this.contact != null) {
                     this.dialog_id = 0L;
                     if (!LocaleController.isRTL) {
@@ -541,37 +538,25 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         callOnClick();
     }
 
-    public void updateStatus(boolean z, TLRPC$User tLRPC$User, boolean z2) {
+    public void updateStatus(boolean z, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean z2) {
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.statusDrawable;
         swapAnimatedEmojiDrawable.center = LocaleController.isRTL;
         if (z) {
             swapAnimatedEmojiDrawable.set(new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable, 0, 0), z2);
             this.statusDrawable.setColor(null);
-            return;
-        }
-        if (tLRPC$User != null && !this.savedMessages) {
-            TLRPC$EmojiStatus tLRPC$EmojiStatus = tLRPC$User.emoji_status;
-            if ((tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus).until > ((int) (System.currentTimeMillis() / 1000))) {
-                this.statusDrawable.set(((TLRPC$TL_emojiStatusUntil) tLRPC$User.emoji_status).document_id, z2);
-                this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
-                return;
-            }
-        }
-        if (tLRPC$User != null && !this.savedMessages) {
-            TLRPC$EmojiStatus tLRPC$EmojiStatus2 = tLRPC$User.emoji_status;
-            if (tLRPC$EmojiStatus2 instanceof TLRPC$TL_emojiStatus) {
-                this.statusDrawable.set(((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus2).document_id, z2);
-                this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
-                return;
-            }
-        }
-        if (tLRPC$User != null && !this.savedMessages && MessagesController.getInstance(this.currentAccount).isPremiumUser(tLRPC$User)) {
+        } else if (tLRPC$User != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status) != 0) {
+            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status), z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
+        } else if (tLRPC$Chat != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status) != 0) {
+            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status), z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
+        } else if (tLRPC$User != null && !this.savedMessages && MessagesController.getInstance(this.currentAccount).isPremiumUser(tLRPC$User)) {
             this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z2);
             this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
-            return;
+        } else {
+            this.statusDrawable.set((Drawable) null, z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
         }
-        this.statusDrawable.set((Drawable) null, z2);
-        this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
     }
 
     public void update(int i) {
@@ -647,8 +632,8 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                     z2 = true;
                 }
             }
-            if (!z2 && (MessagesController.UPDATE_MASK_EMOJI_STATUS & i) != 0 && (tLRPC$User = this.user) != null) {
-                updateStatus(tLRPC$User.verified, tLRPC$User, true);
+            if (!z2 && (MessagesController.UPDATE_MASK_EMOJI_STATUS & i) != 0 && ((tLRPC$User = this.user) != null || this.chat != null)) {
+                updateStatus(tLRPC$User != null ? tLRPC$User.verified : this.chat.verified, tLRPC$User, this.chat, true);
             }
             if ((!z2 && (MessagesController.UPDATE_MASK_NAME & i) != 0 && this.user != null) || ((MessagesController.UPDATE_MASK_CHAT_NAME & i) != 0 && this.chat != null)) {
                 if (this.user != null) {

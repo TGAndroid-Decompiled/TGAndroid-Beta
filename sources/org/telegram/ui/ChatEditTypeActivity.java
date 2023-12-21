@@ -475,7 +475,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         TextCell textCell = new TextCell(context);
         this.manageLinksTextView = textCell;
         textCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-        this.manageLinksTextView.setTextAndIcon(LocaleController.getString("ManageInviteLinks", R.string.ManageInviteLinks), R.drawable.msg_link2, false);
+        this.manageLinksTextView.setTextAndIcon((CharSequence) LocaleController.getString("ManageInviteLinks", R.string.ManageInviteLinks), R.drawable.msg_link2, false);
         this.manageLinksTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

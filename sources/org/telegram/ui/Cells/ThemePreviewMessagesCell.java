@@ -13,17 +13,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatBackgroundDrawable;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 public class ThemePreviewMessagesCell extends LinearLayout {
     private Drawable backgroundDrawable;
     private BackgroundGradientDrawable.Disposable backgroundGradientDisposable;
     private final Runnable cancelProgress;
     private ChatMessageCell[] cells;
+    public boolean customAnimation;
     public BaseFragment fragment;
     private Drawable oldBackgroundDrawable;
     private BackgroundGradientDrawable.Disposable oldBackgroundGradientDisposable;
     private Drawable overrideDrawable;
+    private final AnimatedFloat overrideDrawableUpdate;
     private INavigationLayout parentLayout;
     private int progress;
     private Drawable shadowDrawable;
@@ -57,7 +62,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public ThemePreviewMessagesCell(android.content.Context r18, org.telegram.ui.ActionBar.INavigationLayout r19, int r20, long r21, org.telegram.ui.ActionBar.Theme.ResourcesProvider r23) {
+    public ThemePreviewMessagesCell(android.content.Context r19, org.telegram.ui.ActionBar.INavigationLayout r20, int r21, long r22, org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ThemePreviewMessagesCell.<init>(android.content.Context, org.telegram.ui.ActionBar.INavigationLayout, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -81,7 +86,27 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
     public void setOverrideBackground(Drawable drawable) {
         this.overrideDrawable = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        if ((this.overrideDrawable instanceof ChatBackgroundDrawable) && isAttachedToWindow()) {
+            ((ChatBackgroundDrawable) this.overrideDrawable).onAttachedToWindow(this);
+        }
         invalidate();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Drawable drawable = this.overrideDrawable;
+        if (drawable instanceof ChatBackgroundDrawable) {
+            ((ChatBackgroundDrawable) drawable).onAttachedToWindow(this);
+        }
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.overrideDrawable || drawable == this.oldBackgroundDrawable || super.verifyDrawable(drawable);
     }
 
     @Override
@@ -94,7 +119,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             invalidate();
         }
         if (drawable != this.backgroundDrawable && drawable != null) {
-            if (Theme.isAnimatingColor()) {
+            if (Theme.isAnimatingColor() || this.customAnimation) {
                 this.oldBackgroundDrawable = this.backgroundDrawable;
                 this.oldBackgroundGradientDisposable = this.backgroundGradientDisposable;
             } else {
@@ -105,13 +130,14 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 }
             }
             this.backgroundDrawable = drawable;
+            this.overrideDrawableUpdate.set(0.0f, true);
         }
-        float themeAnimationValue = this.parentLayout.getThemeAnimationValue();
+        float themeAnimationValue = this.customAnimation ? this.overrideDrawableUpdate.set(1.0f) : this.parentLayout.getThemeAnimationValue();
         int i = 0;
         while (i < 2) {
             Drawable drawable2 = i == 0 ? this.oldBackgroundDrawable : this.backgroundDrawable;
             if (drawable2 != null) {
-                int i2 = (i != 1 || this.oldBackgroundDrawable == null || this.parentLayout == null) ? 255 : (int) (255.0f * themeAnimationValue);
+                int i2 = (i != 1 || this.oldBackgroundDrawable == null || (this.parentLayout == null && !this.customAnimation)) ? 255 : (int) (255.0f * themeAnimationValue);
                 if (i2 > 0) {
                     drawable2.setAlpha(i2);
                     if ((drawable2 instanceof ColorDrawable) || (drawable2 instanceof GradientDrawable) || (drawable2 instanceof MotionBackgroundDrawable)) {
@@ -142,6 +168,8 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                         }
                         drawable2.draw(canvas);
                         canvas.restore();
+                    } else {
+                        StoryEntry.drawBackgroundDrawable(canvas, drawable2, getWidth(), getHeight());
                     }
                     if (i == 0 && this.oldBackgroundDrawable != null && themeAnimationValue >= 1.0f) {
                         BackgroundGradientDrawable.Disposable disposable2 = this.oldBackgroundGradientDisposable;
@@ -177,6 +205,10 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         if (disposable2 != null) {
             disposable2.dispose();
             this.oldBackgroundGradientDisposable = null;
+        }
+        Drawable drawable = this.overrideDrawable;
+        if (drawable instanceof ChatBackgroundDrawable) {
+            ((ChatBackgroundDrawable) drawable).onDetachedFromWindow(this);
         }
     }
 

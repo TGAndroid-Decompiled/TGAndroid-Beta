@@ -204,21 +204,41 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                 }
             } else if (childAt instanceof ReactedUserHolderView) {
                 ReactedUserHolderView reactedUserHolderView = (ReactedUserHolderView) childAt;
-                if (reactedUserHolderView.dialogId == j) {
-                    BackupImageView backupImageView2 = reactedUserHolderView.avatarView;
-                    transitionViewHolder.view = backupImageView2;
-                    transitionViewHolder.params = reactedUserHolderView.params;
-                    transitionViewHolder.avatarImage = backupImageView2.getImageReceiver();
-                    transitionViewHolder.clipParent = (View) reactedUserHolderView.getParent();
-                    float alpha = reactedUserHolderView.getAlpha() * reactedUserHolderView.getAlphaInternal();
-                    transitionViewHolder.alpha = alpha;
-                    if (alpha < 1.0f) {
-                        Paint paint = new Paint(1);
-                        transitionViewHolder.bgPaint = paint;
-                        paint.setColor(Theme.getColor(Theme.key_dialogBackground, reactedUserHolderView.getResourcesProvider()));
+                if (reactedUserHolderView.dialogId != j) {
+                    continue;
+                } else {
+                    BackupImageView backupImageView2 = reactedUserHolderView.storyPreviewView;
+                    boolean z = (backupImageView2 == null || backupImageView2.getImageReceiver() == null || reactedUserHolderView.storyPreviewView.getImageReceiver().getImageDrawable() == null) ? false : true;
+                    if (reactedUserHolderView.storyId == i2 && z) {
+                        BackupImageView backupImageView3 = reactedUserHolderView.storyPreviewView;
+                        transitionViewHolder.view = backupImageView3;
+                        transitionViewHolder.storyImage = backupImageView3.getImageReceiver();
+                        transitionViewHolder.clipParent = (View) reactedUserHolderView.getParent();
+                        float alpha = reactedUserHolderView.getAlpha() * reactedUserHolderView.getAlphaInternal();
+                        transitionViewHolder.alpha = alpha;
+                        if (alpha < 1.0f) {
+                            Paint paint = new Paint(1);
+                            transitionViewHolder.bgPaint = paint;
+                            paint.setColor(Theme.getColor(Theme.key_dialogBackground, reactedUserHolderView.getResourcesProvider()));
+                        }
+                        updateClip(transitionViewHolder);
+                        return true;
+                    } else if (!z) {
+                        BackupImageView backupImageView4 = reactedUserHolderView.avatarView;
+                        transitionViewHolder.view = backupImageView4;
+                        transitionViewHolder.params = reactedUserHolderView.params;
+                        transitionViewHolder.avatarImage = backupImageView4.getImageReceiver();
+                        transitionViewHolder.clipParent = (View) reactedUserHolderView.getParent();
+                        float alpha2 = reactedUserHolderView.getAlpha() * reactedUserHolderView.getAlphaInternal();
+                        transitionViewHolder.alpha = alpha2;
+                        if (alpha2 < 1.0f) {
+                            Paint paint2 = new Paint(1);
+                            transitionViewHolder.bgPaint = paint2;
+                            paint2.setColor(Theme.getColor(Theme.key_dialogBackground, reactedUserHolderView.getResourcesProvider()));
+                        }
+                        updateClip(transitionViewHolder);
+                        return true;
                     }
-                    updateClip(transitionViewHolder);
-                    return true;
                 }
             } else if (childAt instanceof ProfileSearchCell) {
                 ProfileSearchCell profileSearchCell = (ProfileSearchCell) childAt;

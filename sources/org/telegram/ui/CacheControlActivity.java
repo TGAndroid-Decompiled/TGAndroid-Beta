@@ -219,7 +219,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         long directorySize = getDirectorySize(FileLoader.checkDirectory(4), 5);
         long directorySize2 = getDirectorySize(FileLoader.checkDirectory(4), 4);
         long directorySize3 = getDirectorySize(FileLoader.checkDirectory(0), 0) + getDirectorySize(FileLoader.checkDirectory(100), 0);
-        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(2), 0) + getDirectorySize(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), 0);
+        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(2), 0) + getDirectorySize(FileLoader.checkDirectory(101), 0);
         long directorySize5 = getDirectorySize(FileLoader.checkDirectory(3), 1) + getDirectorySize(FileLoader.checkDirectory(5), 1);
         long directorySize6 = getDirectorySize(FileLoader.checkDirectory(3), 2) + getDirectorySize(FileLoader.checkDirectory(5), 2);
         Long valueOf = Long.valueOf(directorySize + directorySize2 + directorySize4 + getDirectorySize(FileLoader.checkDirectory(1), 0) + directorySize3 + directorySize5 + directorySize6 + getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0) + getDirectorySize(FileLoader.checkDirectory(4), 3) + getDirectorySize(FileLoader.checkDirectory(6), 0));
@@ -362,7 +362,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
         long directorySize2 = getDirectorySize(FileLoader.checkDirectory(2), 0);
         this.videoSize = directorySize2;
-        this.videoSize = directorySize2 + getDirectorySize(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), 0);
+        this.videoSize = directorySize2 + getDirectorySize(FileLoader.checkDirectory(101), 0);
         if (canceled) {
             return;
         }
@@ -505,7 +505,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         fillDialogsEntitiesRecursive(FileLoader.checkDirectory(0), 0, longSparseArray, cacheModel);
         fillDialogsEntitiesRecursive(FileLoader.checkDirectory(100), 0, longSparseArray, cacheModel);
         fillDialogsEntitiesRecursive(FileLoader.checkDirectory(2), 1, longSparseArray, cacheModel);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), 1, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(101), 1, longSparseArray, cacheModel);
         fillDialogsEntitiesRecursive(FileLoader.checkDirectory(1), 4, longSparseArray, cacheModel);
         fillDialogsEntitiesRecursive(FileLoader.checkDirectory(6), 6, longSparseArray, cacheModel);
         fillDialogsEntitiesRecursive(FileLoader.checkDirectory(3), 2, longSparseArray, cacheModel);
@@ -1384,7 +1384,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (pathContains(str, 0) || pathContains(str, 100)) {
             return 0;
         }
-        return (pathContains(str, 2) || pathContains(str, FileLoader.MEDIA_DIR_VIDEO_PUBLIC)) ? 1 : 6;
+        return (pathContains(str, 2) || pathContains(str, 101)) ? 1 : 6;
     }
 
     private boolean pathContains(String str, int i) {

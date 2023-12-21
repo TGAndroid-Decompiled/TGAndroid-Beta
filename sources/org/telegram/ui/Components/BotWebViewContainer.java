@@ -192,11 +192,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00201(this);
+                this.imageReceiver = new C00211(this);
             }
 
-            public class C00201 extends ImageReceiver {
-                C00201(View view) {
+            public class C00211 extends ImageReceiver {
+                C00211(View view) {
                     super(view);
                 }
 
@@ -207,7 +207,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00201.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00211.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();

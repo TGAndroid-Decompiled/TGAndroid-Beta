@@ -1146,10 +1146,10 @@ public class AndroidUtilities {
         double[] rgbToHsv = rgbToHsv((i2 >> 16) & 255, (i2 >> 8) & 255, i2 & 255);
         rgbToHsv[1] = Math.min(1.0d, rgbToHsv[1] + 0.05d + ((1.0d - rgbToHsv[1]) * 0.1d));
         int[] hsvToRgb = hsvToRgb(rgbToHsv[0], rgbToHsv[1], Math.max(0.0d, rgbToHsv[2] * 0.65d));
-        iArr[0] = Color.argb(102, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
+        iArr[0] = Color.argb((int) R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
         iArr[1] = Color.argb((int) MessagesStorage.LAST_DB_VERSION, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
         int[] hsvToRgb2 = hsvToRgb(rgbToHsv[0], rgbToHsv[1], Math.max(0.0d, rgbToHsv[2] * 0.72d));
-        iArr[2] = Color.argb(102, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
+        iArr[2] = Color.argb((int) R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
         iArr[3] = Color.argb((int) MessagesStorage.LAST_DB_VERSION, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
         return iArr;
     }
@@ -4419,6 +4419,10 @@ public class AndroidUtilities {
     }
 
     public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2, boolean z3) {
+        updateViewVisibilityAnimated(view, z, f, z2, 1.0f, z3);
+    }
+
+    public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2, float f2, boolean z3) {
         if (view == null) {
             return;
         }
@@ -4429,7 +4433,7 @@ public class AndroidUtilities {
             view.animate().setListener(null).cancel();
             view.setVisibility(z ? 0 : z2 ? 8 : 4);
             view.setTag(z ? 1 : null);
-            view.setAlpha(1.0f);
+            view.setAlpha(f2);
             view.setScaleX(1.0f);
             view.setScaleY(1.0f);
         } else if (z && view.getTag() == null) {
@@ -4440,7 +4444,7 @@ public class AndroidUtilities {
                 view.setScaleX(f);
                 view.setScaleY(f);
             }
-            view.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+            view.animate().alpha(f2).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
             view.setTag(1);
         } else if (z || view.getTag() == null) {
         } else {
@@ -4585,7 +4589,7 @@ public class AndroidUtilities {
         return (Build.VERSION.SDK_INT >= 21 && (exc instanceof IOException) && (exc.getCause() instanceof ErrnoException) && ((ErrnoException) exc.getCause()).errno == OsConstants.EROFS) || (exc.getMessage() != null && exc.getMessage().toLowerCase().contains("read-only file system"));
     }
 
-    public static CharSequence replaceCharSequence(String str, CharSequence charSequence, CharSequence charSequence2) {
+    public static SpannableStringBuilder replaceCharSequence(String str, CharSequence charSequence, CharSequence charSequence2) {
         SpannableStringBuilder spannableStringBuilder;
         if (charSequence instanceof SpannableStringBuilder) {
             spannableStringBuilder = (SpannableStringBuilder) charSequence;

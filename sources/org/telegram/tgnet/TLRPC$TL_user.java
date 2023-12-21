@@ -221,9 +221,15 @@ public class TLRPC$TL_user extends TLRPC$User {
             abstractSerializedData.writeInt32(this.stories_max_id);
         }
         if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            if (this.color == null) {
+                this.color = new TLRPC$TL_peerColor();
+            }
             this.color.serializeToStream(abstractSerializedData);
         }
         if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            if (this.profile_color == null) {
+                this.profile_color = new TLRPC$TL_peerColor();
+            }
             this.profile_color.serializeToStream(abstractSerializedData);
         }
     }

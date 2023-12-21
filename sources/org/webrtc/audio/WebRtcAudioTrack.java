@@ -9,7 +9,6 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.MessageObject;
 import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -323,7 +322,7 @@ public class WebRtcAudioTrack {
         return new AudioTrack(getAudioAttributes(audioAttributes), new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build(), i3, 1, 0);
     }
 
-    @TargetApi(MessageObject.TYPE_GIVEAWAY)
+    @TargetApi(26)
     private static AudioTrack createAudioTrackOnOreoOrHigher(int i, int i2, int i3, AudioAttributes audioAttributes) {
         Logging.d(TAG, "createAudioTrackOnOreoOrHigher");
         logNativeOutputSampleRate(i);

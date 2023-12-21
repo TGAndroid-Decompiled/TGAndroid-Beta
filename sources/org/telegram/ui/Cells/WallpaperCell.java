@@ -390,14 +390,15 @@ public class WallpaperCell extends FrameLayout {
         int size = View.MeasureSpec.getSize(i);
         int dp = size - AndroidUtilities.dp(((this.spanCount - 1) * 6) + 28);
         int i4 = dp / this.spanCount;
-        int dp2 = this.currentType == 0 ? AndroidUtilities.dp(180.0f) : i4;
+        int i5 = this.currentType;
+        int dp2 = (i5 == 0 || i5 == 2 || i5 == 3) ? AndroidUtilities.dp(180.0f) : i4;
         setMeasuredDimension(size, (this.isTop ? AndroidUtilities.dp(14.0f) : 0) + dp2 + AndroidUtilities.dp(this.isBottom ? 14.0f : 6.0f));
         while (true) {
-            int i5 = this.spanCount;
-            if (i3 >= i5) {
+            int i6 = this.spanCount;
+            if (i3 >= i6) {
                 return;
             }
-            this.wallpaperViews[i3].measure(View.MeasureSpec.makeMeasureSpec(i3 == i5 + (-1) ? dp : i4, 1073741824), View.MeasureSpec.makeMeasureSpec(dp2, 1073741824));
+            this.wallpaperViews[i3].measure(View.MeasureSpec.makeMeasureSpec(i3 == i6 + (-1) ? dp : i4, 1073741824), View.MeasureSpec.makeMeasureSpec(dp2, 1073741824));
             dp -= i4;
             i3++;
         }

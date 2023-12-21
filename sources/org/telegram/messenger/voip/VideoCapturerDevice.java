@@ -103,7 +103,7 @@ public class VideoCapturerDevice {
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
         VideoCapturer videoCapturer = videoCapturerDevice.videoCapturer;
         if (videoCapturer != null) {
-            videoCapturer.changeCaptureFormat(point.x, point.y, CAPTURE_FPS);
+            videoCapturer.changeCaptureFormat(point.x, point.y, 30);
         }
     }
 
@@ -255,7 +255,7 @@ public class VideoCapturerDevice {
             }
             this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j);
             this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
-            this.videoCapturer.startCapture(point.x, point.y, CAPTURE_FPS);
+            this.videoCapturer.startCapture(point.x, point.y, 30);
             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.Instance;
             if (webRtcAudioRecord != null) {
                 webRtcAudioRecord.initDeviceAudioRecord(((ScreenCapturerAndroid) this.videoCapturer).getMediaProjection());
@@ -310,7 +310,7 @@ public class VideoCapturerDevice {
         }
         this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
         this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
-        this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
+        this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
     }
 
     public class AnonymousClass3 implements CameraVideoCapturer.CameraSwitchHandler {
@@ -380,7 +380,7 @@ public class VideoCapturerDevice {
             return;
         }
         if (i == 2) {
-            videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
+            videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
             return;
         }
         try {

@@ -117,6 +117,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static AlbumEntry allVideosAlbumEntry;
     private static Runnable broadcastPhotosRunnable;
     private static final ConcurrentHashMap<String, Integer> cachedEncoderBitrates;
+    public static boolean forceBroadcastNewPhotos;
     private static final String[] projectionPhotos;
     private static final String[] projectionVideo;
     private static Runnable refreshGalleryRunnable;
@@ -3394,14 +3395,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public boolean isPlayingMessage(MessageObject messageObject) {
         MessageObject messageObject2;
-        if ((this.audioPlayer != null || this.videoPlayer != null) && messageObject != null && (messageObject2 = this.playingMessageObject) != null) {
-            long j = messageObject2.eventId;
-            if (j != 0 && j == messageObject.eventId) {
-                return !this.downloadingCurrentMessage;
+        if (messageObject == null || !messageObject.isRepostPreview) {
+            if ((this.audioPlayer != null || this.videoPlayer != null) && messageObject != null && (messageObject2 = this.playingMessageObject) != null) {
+                long j = messageObject2.eventId;
+                if (j != 0 && j == messageObject.eventId) {
+                    return !this.downloadingCurrentMessage;
+                }
+                if (isSamePlayingMessage(messageObject)) {
+                    return !this.downloadingCurrentMessage;
+                }
             }
-            if (isSamePlayingMessage(messageObject)) {
-                return !this.downloadingCurrentMessage;
-            }
+            return false;
         }
         return false;
     }
@@ -4253,7 +4257,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static void lambda$broadcastNewPhotos$43(int i, ArrayList arrayList, ArrayList arrayList2, Integer num, AlbumEntry albumEntry, AlbumEntry albumEntry2, AlbumEntry albumEntry3) {
-        if (PhotoViewer.getInstance().isVisible()) {
+        if (PhotoViewer.getInstance().isVisible() && !forceBroadcastNewPhotos) {
             broadcastNewPhotos(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3, 1000);
             return;
         }
@@ -4516,7 +4520,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public boolean convertVideo(final org.telegram.messenger.MediaController.VideoConvertMessage r51) {
+    public boolean convertVideo(final org.telegram.messenger.MediaController.VideoConvertMessage r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.convertVideo(org.telegram.messenger.MediaController$VideoConvertMessage):boolean");
     }
 

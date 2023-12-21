@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 public class DotDividerSpan extends ReplacementSpan {
     int color;
     Paint p = new Paint(1);
-    private int size = 3;
+    private float size = 3.0f;
     int topPadding;
 
     @Override
@@ -27,7 +27,7 @@ public class DotDividerSpan extends ReplacementSpan {
         this.topPadding = i;
     }
 
-    public void setSize(int i) {
-        this.size = i;
+    public void setSize(float f) {
+        this.size = f;
     }
 }

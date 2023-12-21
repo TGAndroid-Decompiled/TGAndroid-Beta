@@ -642,6 +642,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             this.emojiKeyboardVisible = false;
             this.editText.clearFocus();
             updateScrollViewMarginBottom(0);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
             this.bottomDialogLayout.animate().setListener(null).cancel();
             this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -651,6 +652,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             }).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
                     ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
                 }
             }).start();

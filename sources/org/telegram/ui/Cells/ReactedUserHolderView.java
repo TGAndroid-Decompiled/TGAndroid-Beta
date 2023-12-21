@@ -5,51 +5,36 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatPhoto;
 import org.telegram.tgnet.TLRPC$MessagePeerReaction;
-import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
-import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.StatusBadgeComponent;
 import org.telegram.ui.Stories.StoriesUtilities;
 public class ReactedUserHolderView extends FrameLayout {
     public static int STYLE_DEFAULT = 0;
     public static int STYLE_STORY = 1;
+    public static final MessageSeenCheckDrawable forwardDrawable;
     public static final MessageSeenCheckDrawable reactDrawable;
+    public static final MessageSeenCheckDrawable repostDrawable;
     public static final MessageSeenCheckDrawable seenDrawable;
     private ValueAnimator alphaAnimator;
     private float alphaInternal;
@@ -63,6 +48,8 @@ public class ReactedUserHolderView extends FrameLayout {
     BackupImageView reactView;
     Theme.ResourcesProvider resourcesProvider;
     StatusBadgeComponent statusBadgeComponent;
+    public int storyId;
+    public BackupImageView storyPreviewView;
     int style;
     SimpleTextView subtitleView;
     SimpleTextView titleView;
@@ -75,6 +62,10 @@ public class ReactedUserHolderView extends FrameLayout {
         int i2 = Theme.key_windowBackgroundWhiteGrayText;
         seenDrawable = new MessageSeenCheckDrawable(i, i2);
         reactDrawable = new MessageSeenCheckDrawable(R.drawable.msg_reactions, i2, 16, 16, 5.66f);
+        int i3 = R.drawable.mini_repost_story;
+        int i4 = Theme.key_stories_circle1;
+        repostDrawable = new MessageSeenCheckDrawable(i3, i4);
+        forwardDrawable = new MessageSeenCheckDrawable(R.drawable.mini_forward_story, i4);
     }
 
     public ReactedUserHolderView(int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -152,6 +143,9 @@ public class ReactedUserHolderView extends FrameLayout {
         BackupImageView backupImageView2 = new BackupImageView(context);
         this.reactView = backupImageView2;
         addView(backupImageView2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
+        BackupImageView backupImageView3 = new BackupImageView(context);
+        this.storyPreviewView = backupImageView3;
+        addView(backupImageView3, LayoutHelper.createFrameRelatively(22.0f, 35.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
         if (z) {
             View view = new View(context);
             this.overlaySelectorView = view;
@@ -160,99 +154,8 @@ public class ReactedUserHolderView extends FrameLayout {
         }
     }
 
-    public void setUserReaction(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, TLRPC$Reaction tLRPC$Reaction, boolean z, long j, boolean z2, boolean z3) {
-        TLRPC$ChatPhoto tLRPC$ChatPhoto;
-        Drawable drawable;
-        String formatString;
-        boolean z4;
-        TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
-        TLRPC$User tLRPC$User2 = tLRPC$User == null ? tLRPC$Chat : tLRPC$User;
-        if (tLRPC$User2 == null) {
-            return;
-        }
-        this.statusBadgeComponent.updateDrawable(tLRPC$User, tLRPC$Chat, Theme.getColor(this.style == STYLE_STORY ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_chats_verifiedBackground, this.resourcesProvider), false);
-        this.avatarDrawable.setInfo(this.currentAccount, (TLObject) tLRPC$User2);
-        if (tLRPC$User != null) {
-            this.dialogId = tLRPC$User.id;
-            this.titleView.setText(UserObject.getUserName(tLRPC$User));
-        } else {
-            this.dialogId = tLRPC$Chat.id;
-            this.titleView.setText(tLRPC$Chat.title);
-        }
-        Drawable drawable2 = this.avatarDrawable;
-        if (tLRPC$User == null ? !((tLRPC$ChatPhoto = tLRPC$Chat.photo) == null || (drawable = tLRPC$ChatPhoto.strippedBitmap) == null) : !((tLRPC$UserProfilePhoto = tLRPC$User.photo) == null || (drawable = tLRPC$UserProfilePhoto.strippedBitmap) == null)) {
-            drawable2 = drawable;
-        }
-        this.avatarView.setImage(ImageLocation.getForUserOrChat(tLRPC$User2, 1), "50_50", drawable2, tLRPC$User2);
-        if (z) {
-            this.reactView.setAnimatedEmojiDrawable(null);
-            Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.media_like_active).mutate();
-            this.reactView.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
-            this.reactView.setImageDrawable(mutate);
-            formatString = LocaleController.formatString("AccDescrLike", R.string.AccDescrLike, new Object[0]);
-            z4 = true;
-        } else if (tLRPC$Reaction != null) {
-            ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction);
-            if (fromTLReaction.emojicon != null) {
-                this.reactView.setAnimatedEmojiDrawable(null);
-                TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(fromTLReaction.emojicon);
-                if (tLRPC$TL_availableReaction != null) {
-                    this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon.thumbs, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
-                    z4 = true;
-                } else {
-                    this.reactView.setImageDrawable(null);
-                    z4 = false;
-                }
-                this.reactView.setColorFilter(null);
-            } else {
-                AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, this.currentAccount, fromTLReaction.documentId);
-                animatedEmojiDrawable.setColorFilter(Theme.getAnimatedEmojiColorFilter(this.resourcesProvider));
-                this.reactView.setAnimatedEmojiDrawable(animatedEmojiDrawable);
-                z4 = true;
-            }
-            int i = R.string.AccDescrReactedWith;
-            Object[] objArr = new Object[2];
-            objArr[0] = this.titleView.getText();
-            Object obj = fromTLReaction.emojicon;
-            if (obj == null) {
-                obj = tLRPC$Reaction;
-            }
-            objArr[1] = obj;
-            formatString = LocaleController.formatString("AccDescrReactedWith", i, objArr);
-        } else {
-            this.reactView.setAnimatedEmojiDrawable(null);
-            this.reactView.setImageDrawable(null);
-            formatString = LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, this.titleView.getText());
-            z4 = false;
-        }
-        if (j != 0) {
-            formatString = formatString + " " + LocaleController.formatSeenDate(j);
-        }
-        setContentDescription(formatString);
-        float f = 0.0f;
-        if (j != 0) {
-            this.subtitleView.setVisibility(0);
-            this.subtitleView.setText(TextUtils.concat((z2 ? seenDrawable : reactDrawable).getSpanned(getContext(), this.resourcesProvider), LocaleController.formatSeenDate(j)));
-            this.subtitleView.setTranslationY(!z2 ? AndroidUtilities.dp(-1.0f) : 0.0f);
-            this.titleView.setTranslationY(0.0f);
-            if (z3) {
-                this.titleView.setTranslationY(AndroidUtilities.dp(9.0f));
-                this.titleView.animate().translationY(0.0f);
-                this.subtitleView.setAlpha(0.0f);
-                this.subtitleView.animate().alpha(1.0f);
-            }
-        } else {
-            this.subtitleView.setVisibility(8);
-            this.titleView.setTranslationY(AndroidUtilities.dp(9.0f));
-        }
-        this.titleView.setRightPadding(AndroidUtilities.dp(z4 ? 30.0f : 0.0f));
-        this.titleView.setTranslationX((z4 && LocaleController.isRTL) ? AndroidUtilities.dp(30.0f) : 0.0f);
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).rightMargin = AndroidUtilities.dp((!z4 || LocaleController.isRTL) ? 12.0f : 36.0f);
-        SimpleTextView simpleTextView = this.subtitleView;
-        if (z4 && LocaleController.isRTL) {
-            f = AndroidUtilities.dp(30.0f);
-        }
-        simpleTextView.setTranslationX(f);
+    public void setUserReaction(org.telegram.tgnet.TLRPC$User r19, org.telegram.tgnet.TLRPC$Chat r20, org.telegram.tgnet.TLRPC$Reaction r21, boolean r22, long r23, org.telegram.tgnet.tl.TL_stories$StoryItem r25, boolean r26, boolean r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ReactedUserHolderView.setUserReaction(org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$Reaction, boolean, long, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean, boolean, boolean):void");
     }
 
     public void setUserReaction(TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
@@ -269,7 +172,7 @@ public class ReactedUserHolderView extends FrameLayout {
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
             tLRPC$User = null;
         }
-        setUserReaction(tLRPC$User, chat, tLRPC$MessagePeerReaction.reaction, false, tLRPC$MessagePeerReaction.date, tLRPC$MessagePeerReaction.dateIsSeen, false);
+        setUserReaction(tLRPC$User, chat, tLRPC$MessagePeerReaction.reaction, false, tLRPC$MessagePeerReaction.date, null, false, tLRPC$MessagePeerReaction.dateIsSeen, false);
     }
 
     @Override

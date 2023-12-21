@@ -1402,6 +1402,10 @@ public class LocaleController {
         return formatString(str2, str + "_other", identifier, identifier2, objArr2);
     }
 
+    public static String getStringParamForNumber(int i) {
+        return getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i));
+    }
+
     public static String formatPluralStringComma(String str, int i) {
         return formatPluralStringComma(str, i, ',');
     }
@@ -1755,8 +1759,8 @@ public class LocaleController {
             case 23:
             case 24:
             case 25:
-            case MessageObject.TYPE_GIVEAWAY:
-            case MessageObject.TYPE_JOINED_CHANNEL:
+            case 26:
+            case 27:
             case 28:
             case 29:
                 d = abs;
@@ -2022,8 +2026,8 @@ public class LocaleController {
             case 23:
             case 24:
             case 25:
-            case MessageObject.TYPE_GIVEAWAY:
-            case MessageObject.TYPE_JOINED_CHANNEL:
+            case 26:
+            case 27:
             case 28:
                 return 1;
             case 3:
@@ -2254,8 +2258,8 @@ public class LocaleController {
             case 23:
             case 24:
             case 25:
-            case MessageObject.TYPE_GIVEAWAY:
-            case MessageObject.TYPE_JOINED_CHANNEL:
+            case 26:
+            case 27:
             case 28:
             case 29:
                 d = abs;

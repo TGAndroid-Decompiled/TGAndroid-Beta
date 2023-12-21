@@ -117,7 +117,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             }
         });
         updateAvatars(false);
-        this.windowView.addView(this.avatarsImageView, LayoutHelper.createFrame(108, 36, 49));
+        this.windowView.addView(this.avatarsImageView, LayoutHelper.createFrame((int) R.styleable.AppCompatTheme_textAppearanceSearchResultTitle, 36, 49));
         this.windowRemoveTooltipView = new FrameLayout(context) {
             @Override
             protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {

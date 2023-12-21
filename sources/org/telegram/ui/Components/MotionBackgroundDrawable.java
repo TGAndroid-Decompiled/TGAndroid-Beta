@@ -54,7 +54,7 @@ public class MotionBackgroundDrawable extends Drawable {
     private final CubicBezierInterpolator interpolator;
     private boolean invalidateLegacy;
     private boolean isIndeterminateAnimation;
-    private boolean isPreview;
+    public boolean isPreview;
     private long lastUpdateTime;
     private Bitmap legacyBitmap;
     private Bitmap legacyBitmap2;

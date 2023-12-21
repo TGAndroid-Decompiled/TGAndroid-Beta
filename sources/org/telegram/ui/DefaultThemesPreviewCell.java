@@ -62,9 +62,16 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f));
-        ChatThemeBottomSheet.Adapter adapter = new ChatThemeBottomSheet.Adapter(baseFragment.getCurrentAccount(), null, this.currentType == 0 ? 0 : 1);
+        int currentAccount = baseFragment.getCurrentAccount();
+        int i2 = this.currentType;
+        ChatThemeBottomSheet.Adapter adapter = new ChatThemeBottomSheet.Adapter(currentAccount, null, (i2 == 0 || i2 == -1) ? 0 : 1);
         this.adapter = adapter;
-        RecyclerListView recyclerListView = new RecyclerListView(getContext());
+        RecyclerListView recyclerListView = new RecyclerListView(this, getContext()) {
+            @Override
+            public Integer getSelectorColor(int i3) {
+                return 0;
+            }
+        };
         this.recyclerView = recyclerListView;
         recyclerListView.setAdapter(adapter);
         recyclerListView.setSelectorDrawableColor(0);
@@ -78,15 +85,16 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) {
-                DefaultThemesPreviewCell.this.lambda$new$0(baseFragment, view, i2);
+            public final void onItemClick(View view, int i3) {
+                DefaultThemesPreviewCell.this.lambda$new$0(baseFragment, view, i3);
             }
         });
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(getContext(), null);
         this.progressView = flickerLoadingView;
         flickerLoadingView.setViewType(14);
         flickerLoadingView.setVisibility(0);
-        if (this.currentType == 0) {
+        int i3 = this.currentType;
+        if (i3 == 0 || i3 == -1) {
             frameLayout.addView(flickerLoadingView, LayoutHelper.createFrame(-1, 104.0f, 8388611, 0.0f, 8.0f, 0.0f, 8.0f));
             frameLayout.addView(recyclerListView, LayoutHelper.createFrame(-1, 104.0f, 8388611, 0.0f, 8.0f, 0.0f, 8.0f));
         } else {
@@ -96,8 +104,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setEmptyView(flickerLoadingView);
         recyclerListView.setAnimateEmptyView(true, 0);
         if (this.currentType == 0) {
-            int i2 = R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            int i4 = R.raw.sun_outline;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i4, "" + i4, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             this.darkThemeDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.darkThemeDrawable.beginApplyLayerColors();
@@ -110,9 +118,9 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             addView(textCell2, LayoutHelper.createFrame(-1, -2.0f));
             TextCell textCell3 = new TextCell(context);
             this.browseThemesCell = textCell3;
-            textCell3.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", R.string.SettingsBrowseThemes), R.drawable.msg_colors, false);
+            textCell3.setTextAndIcon((CharSequence) LocaleController.getString("SettingsBrowseThemes", R.string.SettingsBrowseThemes), R.drawable.msg_colors, false);
             addView(this.browseThemesCell, LayoutHelper.createFrame(-1, -2.0f));
-            this.dayNightCell.setOnClickListener(new AnonymousClass1(context, baseFragment));
+            this.dayNightCell.setOnClickListener(new AnonymousClass2(context, baseFragment));
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.browseThemesCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -142,11 +150,11 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         updateDayNightMode();
         updateSelectedPosition();
         updateColors();
-        int i3 = this.selectedPosition;
-        if (i3 < 0 || (linearLayoutManager = this.layoutManager) == null) {
+        int i5 = this.selectedPosition;
+        if (i5 < 0 || (linearLayoutManager = this.layoutManager) == null) {
             return;
         }
-        linearLayoutManager.scrollToPositionWithOffset(i3, AndroidUtilities.dp(16.0f));
+        linearLayoutManager.scrollToPositionWithOffset(i5, AndroidUtilities.dp(16.0f));
     }
 
     public void lambda$new$0(BaseFragment baseFragment, View view, int i) {
@@ -189,11 +197,11 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         Theme.turnOffAutoNight(baseFragment);
     }
 
-    public class AnonymousClass1 implements View.OnClickListener {
+    public class AnonymousClass2 implements View.OnClickListener {
         final Context val$context;
         final BaseFragment val$parentFragment;
 
-        AnonymousClass1(Context context, BaseFragment baseFragment) {
+        AnonymousClass2(Context context, BaseFragment baseFragment) {
             this.val$context = context;
             this.val$parentFragment = baseFragment;
         }
@@ -201,7 +209,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         @Override
         @android.annotation.SuppressLint({"NotifyDataSetChanged"})
         public void onClick(android.view.View r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass1.onClick(android.view.View):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass2.onClick(android.view.View):void");
         }
 
         public void lambda$onClick$0(final int i, Context context, int i2, boolean z, BaseFragment baseFragment) {
@@ -270,7 +278,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         boolean z = point.y > point.x;
         Boolean bool = this.wasPortrait;
         if (bool == null || bool.booleanValue() != z) {
-            if (this.currentType == 0) {
+            int i = this.currentType;
+            if (i == 0 || i == -1) {
                 if (this.layoutManager == null) {
                     RecyclerListView recyclerListView = this.recyclerView;
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), 0, false);
@@ -278,16 +287,16 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                     recyclerListView.setLayoutManager(linearLayoutManager);
                 }
             } else {
-                int i = z ? 3 : 9;
+                int i2 = z ? 3 : 9;
                 LinearLayoutManager linearLayoutManager2 = this.layoutManager;
                 if (linearLayoutManager2 instanceof GridLayoutManager) {
-                    ((GridLayoutManager) linearLayoutManager2).setSpanCount(i);
+                    ((GridLayoutManager) linearLayoutManager2).setSpanCount(i2);
                 } else {
                     this.recyclerView.setHasFixedSize(false);
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), i);
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), i2);
                     gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(this) {
                         @Override
-                        public int getSpanSize(int i2) {
+                        public int getSpanSize(int i3) {
                             return 1;
                         }
                     });
@@ -309,7 +318,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     public void updateDayNightMode() {
         int i;
         int i2;
-        if (this.currentType == 0) {
+        int i3 = this.currentType;
+        if (i3 == 0 || i3 == -1) {
             this.themeIndex = Theme.isCurrentThemeDay() ? 0 : 2;
         } else if (Theme.getActiveTheme().getKey().equals("Blue")) {
             this.themeIndex = 0;
@@ -328,8 +338,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             }
         }
         if (this.adapter.items != null) {
-            for (int i3 = 0; i3 < this.adapter.items.size(); i3++) {
-                this.adapter.items.get(i3).themeIndex = this.themeIndex;
+            for (int i4 = 0; i4 < this.adapter.items.size(); i4++) {
+                this.adapter.items.get(i4).themeIndex = this.themeIndex;
             }
             ChatThemeBottomSheet.Adapter adapter = this.adapter;
             adapter.notifyItemRangeChanged(0, adapter.items.size());
@@ -387,16 +397,24 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     }
 
     public void updateColors() {
-        if (this.currentType == 0) {
+        int i = this.currentType;
+        if (i == 0 || i == -1) {
             RLottieDrawable rLottieDrawable = this.darkThemeDrawable;
-            int i = Theme.key_windowBackgroundWhiteBlueText4;
-            rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN));
-            Drawable background = this.dayNightCell.getBackground();
-            int i2 = Theme.key_listSelector;
-            Theme.setSelectorDrawableColor(background, Theme.getColor(i2), true);
-            this.browseThemesCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(i2)));
-            this.dayNightCell.setColors(-1, i);
-            this.browseThemesCell.setColors(i, i);
+            if (rLottieDrawable != null) {
+                rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4), PorterDuff.Mode.SRC_IN));
+            }
+            TextCell textCell = this.dayNightCell;
+            if (textCell != null) {
+                Theme.setSelectorDrawableColor(textCell.getBackground(), Theme.getColor(Theme.key_listSelector), true);
+                this.dayNightCell.setColors(-1, Theme.key_windowBackgroundWhiteBlueText4);
+            }
+            TextCell textCell2 = this.browseThemesCell;
+            if (textCell2 != null) {
+                textCell2.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_listSelector)));
+                TextCell textCell3 = this.browseThemesCell;
+                int i2 = Theme.key_windowBackgroundWhiteBlueText4;
+                textCell3.setColors(i2, i2);
+            }
         }
     }
 

@@ -114,14 +114,6 @@ public class ChatObject {
         return null;
     }
 
-    public static int getProfileColorId(TLRPC$Chat tLRPC$Chat) {
-        return tLRPC$Chat == null ? 0 : -1;
-    }
-
-    public static long getProfileEmojiId(TLRPC$Chat tLRPC$Chat) {
-        return -1L;
-    }
-
     private static boolean isAdminAction(int i) {
         return i == 0 || i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || i == 12 || i == 13 || i == 15;
     }
@@ -2074,6 +2066,25 @@ public class ChatObject {
     public static long getEmojiId(TLRPC$Chat tLRPC$Chat) {
         TLRPC$TL_peerColor tLRPC$TL_peerColor;
         if (tLRPC$Chat == null || (tLRPC$TL_peerColor = tLRPC$Chat.color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return tLRPC$TL_peerColor.background_emoji_id;
+    }
+
+    public static int getProfileColorId(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            return 0;
+        }
+        TLRPC$TL_peerColor tLRPC$TL_peerColor = tLRPC$Chat.profile_color;
+        if (tLRPC$TL_peerColor == null || (tLRPC$TL_peerColor.flags & 1) == 0) {
+            return -1;
+        }
+        return tLRPC$TL_peerColor.color;
+    }
+
+    public static long getProfileEmojiId(TLRPC$Chat tLRPC$Chat) {
+        TLRPC$TL_peerColor tLRPC$TL_peerColor;
+        if (tLRPC$Chat == null || (tLRPC$TL_peerColor = tLRPC$Chat.profile_color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
             return 0L;
         }
         return tLRPC$TL_peerColor.background_emoji_id;

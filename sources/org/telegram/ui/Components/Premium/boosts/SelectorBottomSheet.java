@@ -750,7 +750,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 }
                 if (!arrayList.isEmpty()) {
                     i += AndroidUtilities.dp(32.0f);
-                    this.items.add(SelectorAdapter.Item.asLetter(str));
+                    this.items.add(SelectorAdapter.Item.asLetter(str.toUpperCase()));
                     this.items.addAll(arrayList);
                 }
             }

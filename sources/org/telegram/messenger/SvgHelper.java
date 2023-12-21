@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.parsers.SAXParserFactory;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -570,8 +569,8 @@ public class SvgHelper {
                     case '\t':
                     case '\n':
                     case ' ':
-                    case ',':
-                    case '-':
+                    case R.styleable.AppCompatTheme_buttonBarPositiveButtonStyle:
+                    case R.styleable.AppCompatTheme_buttonBarStyle:
                         if (charAt == '-' && str.charAt(i2 - 1) == 'e') {
                             break;
                         } else {
@@ -591,24 +590,24 @@ public class SvgHelper {
                                 continue;
                             }
                         }
-                    case ')':
-                    case VoIPService.CALL_MIN_LAYER:
-                    case 'C':
-                    case 'H':
-                    case 'L':
-                    case 'M':
-                    case 'Q':
-                    case 'S':
-                    case 'T':
+                    case R.styleable.AppCompatTheme_buttonBarButtonStyle:
+                    case 'A':
+                    case R.styleable.AppCompatTheme_dropdownListPreferredItemHeight:
+                    case R.styleable.AppCompatTheme_imageButtonStyle:
+                    case R.styleable.AppCompatTheme_listDividerAlertDialog:
+                    case R.styleable.AppCompatTheme_listMenuViewStyle:
+                    case R.styleable.AppCompatTheme_listPreferredItemHeightSmall:
+                    case R.styleable.AppCompatTheme_listPreferredItemPaddingLeft:
+                    case R.styleable.AppCompatTheme_listPreferredItemPaddingRight:
                     case 'V':
-                    case 'Z':
-                    case 'a':
-                    case 'c':
-                    case 'h':
-                    case 'l':
-                    case 'm':
-                    case 'q':
-                    case 's':
+                    case R.styleable.AppCompatTheme_popupWindowStyle:
+                    case R.styleable.AppCompatTheme_selectableItemBackground:
+                    case R.styleable.AppCompatTheme_spinnerDropDownItemStyle:
+                    case R.styleable.AppCompatTheme_textAppearanceListItemSecondary:
+                    case R.styleable.AppCompatTheme_textAppearanceSearchResultTitle:
+                    case R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu:
+                    case R.styleable.AppCompatTheme_toolbarStyle:
+                    case R.styleable.AppCompatTheme_tooltipFrameBackground:
                     case 't':
                     case 'v':
                     case 'z':
@@ -1139,7 +1138,7 @@ public class SvgHelper {
                             break;
                         }
                         break;
-                    case 103:
+                    case R.styleable.AppCompatTheme_textAppearanceListItem:
                         if (str2.equals(ImageLoader.AUTOPLAY_FILTER)) {
                             c = 3;
                             break;
@@ -1454,7 +1453,7 @@ public class SvgHelper {
             str2.hashCode();
             char c = 65535;
             switch (str2.hashCode()) {
-                case 103:
+                case R.styleable.AppCompatTheme_textAppearanceListItem:
                     if (str2.equals(ImageLoader.AUTOPLAY_FILTER)) {
                         c = 0;
                         break;

@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import org.telegram.messenger.R;
 public class HevcDecoderConfigurationRecord {
     int avgFrameRate;
     int bitDepthChromaMinus8;
@@ -483,12 +484,12 @@ public class HevcDecoderConfigurationRecord {
                 case 32:
                     arrayList3.add(byteBuffer.duplicate());
                     break;
-                case 33:
+                case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
                     arrayList.add(byteBuffer.duplicate());
                     byteBuffer.position(2);
                     sequenceParameterSetRbsp = new SequenceParameterSetRbsp(new CleanInputStream(Channels.newInputStream(new ByteBufferByteChannel(byteBuffer.slice()))));
                     break;
-                case 34:
+                case R.styleable.AppCompatTheme_activityChooserViewStyle:
                     arrayList2.add(byteBuffer.duplicate());
                     break;
             }

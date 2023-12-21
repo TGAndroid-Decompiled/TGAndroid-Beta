@@ -123,11 +123,17 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
             case 771095562:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionDefaultBannedRights();
                 break;
+            case 834362706:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeWallpaper();
+                break;
             case 1009460347:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeColor();
                 break;
             case 1048537159:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionParticipantVolume();
+                break;
+            case 1051328177:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeEmojiStatus();
                 break;
             case 1091179342:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionExportedInviteRevoke();
@@ -150,6 +156,9 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
             case 1456906823:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleGroupCallSetting();
                 break;
+            case 1469507456:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangePeerColor();
+                break;
             case 1483767080:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionCreateTopic();
                 break;
@@ -158,6 +167,9 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case 1569535291:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionPinTopic();
+                break;
+            case 1581742885:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeProfilePeerColor();
                 break;
             case 1599903217:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionTogglePreHistoryHidden();

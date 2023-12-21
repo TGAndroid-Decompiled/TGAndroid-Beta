@@ -38,7 +38,7 @@ public class PreviewButtons extends FrameLayout {
     private ValueAnimator appearAnimator;
     private float appearT;
     private boolean appearing;
-    private ArrayList<View> buttons;
+    private ArrayList<ButtonView> buttons;
     private boolean isShareEnabled;
     private Utilities.Callback<Integer> onClickListener;
     private View shadowView;
@@ -67,6 +67,25 @@ public class PreviewButtons extends FrameLayout {
         updateAppearT();
     }
 
+    public void setFiltersVisible(boolean z) {
+        for (int i = 0; i < this.buttons.size(); i++) {
+            ButtonView buttonView = this.buttons.get(i);
+            if (buttonView.id == 3) {
+                buttonView.setVisibility(z ? 0 : 8);
+            }
+        }
+    }
+
+    private boolean isFiltersVisible() {
+        for (int i = 0; i < this.buttons.size(); i++) {
+            ButtonView buttonView = this.buttons.get(i);
+            if (buttonView.id == 3) {
+                return buttonView.getVisibility() == 0;
+            }
+        }
+        return false;
+    }
+
     public void setShareText(String str) {
         if (TextUtils.equals(str, this.shareText)) {
             return;
@@ -93,13 +112,22 @@ public class PreviewButtons extends FrameLayout {
         this.shadowView.layout(0, 0, i5, i6);
         ShareButtonView shareButtonView = this.shareButton;
         shareButtonView.layout(i5 - shareButtonView.getMeasuredWidth(), (i6 - this.shareButton.getMeasuredHeight()) / 2, i5, (this.shareButton.getMeasuredHeight() + i6) / 2);
-        int min = Math.min(AndroidUtilities.dp(20.0f), this.buttons.size() < 2 ? 0 : (((i5 - AndroidUtilities.dp(32.33f)) - this.shareButton.getMeasuredWidth()) - (this.buttons.size() * AndroidUtilities.dp(40.0f))) / (this.buttons.size() - 1));
-        int dp = (i6 - AndroidUtilities.dp(40.0f)) / 2;
-        int dp2 = (i6 + AndroidUtilities.dp(40.0f)) / 2;
-        int dp3 = AndroidUtilities.dp(12.33f);
-        for (int i7 = 0; i7 < this.buttons.size(); i7++) {
-            this.buttons.get(i7).layout(dp3, dp, AndroidUtilities.dp(40.0f) + dp3, dp2);
-            dp3 += AndroidUtilities.dp(40.0f) + min;
+        int dp = (i5 - AndroidUtilities.dp(32.33f)) - this.shareButton.getMeasuredWidth();
+        int i7 = 0;
+        for (int i8 = 0; i8 < this.buttons.size(); i8++) {
+            if (this.buttons.get(i8).getVisibility() == 0) {
+                i7++;
+            }
+        }
+        int min = Math.min(AndroidUtilities.dp(isFiltersVisible() ? 20.0f : 30.0f), i7 < 2 ? 0 : (dp - (AndroidUtilities.dp(40.0f) * i7)) / (i7 - 1));
+        int dp2 = (i6 - AndroidUtilities.dp(40.0f)) / 2;
+        int dp3 = (i6 + AndroidUtilities.dp(40.0f)) / 2;
+        int dp4 = AndroidUtilities.dp(12.33f) + (!isFiltersVisible() ? ((dp - (AndroidUtilities.dp(40.0f) * i7)) - ((i7 - 1) * min)) / 2 : 0);
+        for (int i9 = 0; i9 < this.buttons.size(); i9++) {
+            if (this.buttons.get(i9).getVisibility() == 0) {
+                this.buttons.get(i9).layout(dp4, dp2, AndroidUtilities.dp(40.0f) + dp4, dp3);
+                dp4 += AndroidUtilities.dp(40.0f) + min;
+            }
         }
     }
 
@@ -327,8 +355,11 @@ public class PreviewButtons extends FrameLayout {
     }
 
     public class ButtonView extends ImageView {
+        public final int id;
+
         public ButtonView(Context context, final int i, int i2) {
             super(context);
+            this.id = i;
             setBackground(Theme.createSelectorDrawable(1090519039));
             setScaleType(ImageView.ScaleType.CENTER);
             setImageResource(i2);

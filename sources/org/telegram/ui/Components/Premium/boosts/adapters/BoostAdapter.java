@@ -26,14 +26,17 @@ import org.telegram.ui.Components.Premium.boosts.cells.BoostTypeSingleCell;
 import org.telegram.ui.Components.Premium.boosts.cells.ChatCell;
 import org.telegram.ui.Components.Premium.boosts.cells.DateEndCell;
 import org.telegram.ui.Components.Premium.boosts.cells.DurationCell;
+import org.telegram.ui.Components.Premium.boosts.cells.EnterPrizeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.HeaderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.ParticipantsTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SliderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SubtitleWithCounterCell;
+import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
 public class BoostAdapter extends AdapterWithDiffUtils {
+    private EnterPrizeCell.AfterTextChangedListener afterTextChangedListener;
     private ChatCell.ChatDeleteListener chatDeleteListener;
     private HeaderCell headerCell;
     private List<Item> items = new ArrayList();
@@ -45,11 +48,12 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         this.resourcesProvider = resourcesProvider;
     }
 
-    public void setItems(List<Item> list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener) {
+    public void setItems(List<Item> list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
         this.items = list;
         this.recyclerListView = recyclerListView;
         this.sliderCallback = callback;
         this.chatDeleteListener = chatDeleteListener;
+        this.afterTextChangedListener = afterTextChangedListener;
     }
 
     public void updateBoostCounter(int i) {
@@ -63,11 +67,30 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             }
         }
         notifyItemChanged(8);
-        notifyItemChanged(this.items.size() - 1);
-        notifyItemChanged(this.items.size() - 2);
-        notifyItemChanged(this.items.size() - 3);
-        notifyItemChanged(this.items.size() - 4);
-        notifyItemChanged(this.items.size() - 6);
+        notifyItemRangeChanged(this.items.size() - 12, 12);
+    }
+
+    public void notifyAllVisibleTextDividers() {
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i).viewType == 7) {
+                notifyItemChanged(i);
+            }
+        }
+    }
+
+    public void notifyAdditionalPrizeItem(boolean z) {
+        for (int i = 0; i < this.items.size(); i++) {
+            Item item = this.items.get(i);
+            if (item.viewType == 15 && item.subType == SwitcherCell.TYPE_ADDITION_PRIZE) {
+                if (z) {
+                    notifyItemInserted(i + 1);
+                    return;
+                } else {
+                    notifyItemRemoved(i + 1);
+                    return;
+                }
+            }
+        }
     }
 
     public void setPausedStars(boolean z) {
@@ -84,6 +107,11 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     @Override
     public void notifyItemChanged(int i) {
         realAdapter().notifyItemChanged(i + 1);
+    }
+
+    @Override
+    public void notifyItemInserted(int i) {
+        realAdapter().notifyItemInserted(i + 1);
     }
 
     @Override
@@ -112,6 +140,11 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     }
 
     @Override
+    public void notifyItemRemoved(int i) {
+        realAdapter().notifyItemRemoved(i + 1);
+    }
+
+    @Override
     @SuppressLint({"NotifyDataSetChanged"})
     public void notifyDataSetChanged() {
         realAdapter().notifyDataSetChanged();
@@ -120,61 +153,71 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         int itemViewType = viewHolder.getItemViewType();
-        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 12;
+        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 15 || itemViewType == 12;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View boostTypeCell;
+        SwitcherCell switcherCell;
         Context context = viewGroup.getContext();
         switch (i) {
             case 2:
-                boostTypeCell = new BoostTypeCell(context, this.resourcesProvider);
+                switcherCell = new BoostTypeCell(context, this.resourcesProvider);
                 break;
             case 3:
-                boostTypeCell = new View(context);
+                switcherCell = new View(context);
                 break;
             case 4:
-                boostTypeCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+                switcherCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
                 break;
             case 5:
-                boostTypeCell = new SliderCell(context, this.resourcesProvider);
+                switcherCell = new SliderCell(context, this.resourcesProvider);
                 break;
             case 6:
-                boostTypeCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
-                boostTypeCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                View headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                switcherCell = headerCell;
                 break;
             case 7:
-                boostTypeCell = new TextInfoCell(context, this.resourcesProvider);
+                switcherCell = new TextInfoCell(context, this.resourcesProvider);
                 break;
             case 8:
-                boostTypeCell = new AddChannelCell(context, this.resourcesProvider);
+                switcherCell = new AddChannelCell(context, this.resourcesProvider);
                 break;
             case 9:
-                boostTypeCell = new ChatCell(context, this.resourcesProvider);
+                switcherCell = new ChatCell(context, this.resourcesProvider);
                 break;
             case 10:
-                boostTypeCell = new DateEndCell(context, this.resourcesProvider);
+                switcherCell = new DateEndCell(context, this.resourcesProvider);
                 break;
             case 11:
-                boostTypeCell = new ParticipantsTypeCell(context, this.resourcesProvider);
+                switcherCell = new ParticipantsTypeCell(context, this.resourcesProvider);
                 break;
             case 12:
-                boostTypeCell = new DurationCell(context, this.resourcesProvider);
+                switcherCell = new DurationCell(context, this.resourcesProvider);
                 break;
             case 13:
-                boostTypeCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
-                boostTypeCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                View subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
+                subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                switcherCell = subtitleWithCounterCell;
                 break;
             case 14:
-                boostTypeCell = new BoostTypeSingleCell(context, this.resourcesProvider);
+                switcherCell = new BoostTypeSingleCell(context, this.resourcesProvider);
+                break;
+            case 15:
+                SwitcherCell switcherCell2 = new SwitcherCell(context, this.resourcesProvider);
+                switcherCell2.setHeight(50);
+                switcherCell = switcherCell2;
+                break;
+            case 16:
+                switcherCell = new EnterPrizeCell(context, this.resourcesProvider);
                 break;
             default:
-                boostTypeCell = new HeaderCell(context, this.resourcesProvider);
+                switcherCell = new HeaderCell(context, this.resourcesProvider);
                 break;
         }
-        boostTypeCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(boostTypeCell);
+        switcherCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        return new RecyclerListView.Holder(switcherCell);
     }
 
     @Override
@@ -229,6 +272,14 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                     return;
                 case 14:
                     ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories$TL_prepaidGiveaway) item.user);
+                    return;
+                case 15:
+                    ((SwitcherCell) viewHolder.itemView).setData(item.text, item.selectable, item.boolValue, item.subType);
+                    return;
+                case 16:
+                    EnterPrizeCell enterPrizeCell = (EnterPrizeCell) viewHolder.itemView;
+                    enterPrizeCell.setCount(item.intValue);
+                    enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
                     return;
                 default:
                     return;
@@ -295,6 +346,20 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             item.chat = null;
             item.boolValue = z;
             item.intValue = i;
+            return item;
+        }
+
+        public static Item asEnterPrize(int i) {
+            Item item = new Item(16, false);
+            item.intValue = i;
+            return item;
+        }
+
+        public static Item asSwitcher(CharSequence charSequence, boolean z, boolean z2, int i) {
+            Item item = new Item(15, z);
+            item.text = charSequence;
+            item.boolValue = z2;
+            item.subType = i;
             return item;
         }
 

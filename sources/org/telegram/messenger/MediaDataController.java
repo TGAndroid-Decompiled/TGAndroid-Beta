@@ -74,6 +74,7 @@ import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
 import org.telegram.tgnet.TLRPC$TL_account_emojiStatuses;
 import org.telegram.tgnet.TLRPC$TL_account_emojiStatusesNotModified;
+import org.telegram.tgnet.TLRPC$TL_account_getChannelDefaultEmojiStatuses;
 import org.telegram.tgnet.TLRPC$TL_account_getDefaultEmojiStatuses;
 import org.telegram.tgnet.TLRPC$TL_account_getRecentEmojiStatuses;
 import org.telegram.tgnet.TLRPC$TL_account_saveRingtone;
@@ -127,6 +128,7 @@ import org.telegram.tgnet.TLRPC$TL_inputReplyToMessage;
 import org.telegram.tgnet.TLRPC$TL_inputReplyToStory;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetAnimatedEmoji;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetDice;
+import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmojiChannelDefaultStatuses;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmojiDefaultStatuses;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmojiDefaultTopicIcons;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmojiGenericAnimations;
@@ -356,11 +358,13 @@ public class MediaDataController extends BaseController {
     private LongSparseArray<Runnable> removingStickerSetsUndos;
     public TLRPC$TL_emojiList replyIconsDefault;
     private int reqId;
+    public TLRPC$TL_emojiList restrictedStatusEmojis;
     public final RingtoneDataStore ringtoneDataStore;
     public HashMap<String, RingtoneUploader> ringtoneUploaderHashMap;
     private Runnable[] scheduledLoadStickers;
     private ArrayList<MessageObject> searchResultMessages;
     private SparseArray<MessageObject>[] searchResultMessagesMap;
+    private TLRPC$TL_messages_stickerSet stickerSetDefaultChannelStatuses;
     private TLRPC$TL_messages_stickerSet stickerSetDefaultStatuses;
     private ArrayList<TLRPC$TL_messages_stickerSet>[] stickerSets;
     private LongSparseArray<TLRPC$TL_messages_stickerSet> stickerSetsById;
@@ -455,6 +459,7 @@ public class MediaDataController extends BaseController {
         this.groupStickerSets = new LongSparseArray<>();
         this.stickerSetsByName = new ConcurrentHashMap<>(100, 1.0f, 1);
         this.stickerSetDefaultStatuses = null;
+        this.stickerSetDefaultChannelStatuses = null;
         this.diceStickerSetsByEmoji = new HashMap<>();
         this.diceEmojiStickerSetsById = new LongSparseArray<>();
         this.loadingDiceStickerSets = new HashSet<>();
@@ -484,11 +489,11 @@ public class MediaDataController extends BaseController {
         this.featuredStickersLoaded = new boolean[2];
         this.defaultEmojiThemes = new ArrayList<>();
         this.premiumPreviewStickers = new ArrayList<>();
-        this.emojiStatusesHash = new long[2];
-        this.emojiStatuses = new ArrayList[2];
-        this.emojiStatusesFetchDate = new Long[2];
-        this.emojiStatusesFromCacheFetched = new boolean[2];
-        this.emojiStatusesFetching = new boolean[2];
+        this.emojiStatusesHash = new long[4];
+        this.emojiStatuses = new ArrayList[4];
+        this.emojiStatusesFetchDate = new Long[4];
+        this.emojiStatusesFromCacheFetched = new boolean[4];
+        this.emojiStatusesFetching = new boolean[4];
         this.loadingStickerSets = new HashMap<>();
         this.messagesSearchCount = new int[]{0, 0};
         this.messagesSearchEndReached = new boolean[]{false, false};
@@ -1744,7 +1749,7 @@ public class MediaDataController extends BaseController {
             tLRPC$TL_messages_stickerSet = this.stickerSetsById.get(tLRPC$InputStickerSet.id);
         } else if ((tLRPC$InputStickerSet instanceof TLRPC$TL_inputStickerSetShortName) && (str = tLRPC$InputStickerSet.short_name) != null && this.stickerSetsByName.containsKey(str.toLowerCase())) {
             tLRPC$TL_messages_stickerSet = this.stickerSetsByName.get(tLRPC$InputStickerSet.short_name.toLowerCase());
-        } else if (!(tLRPC$InputStickerSet instanceof TLRPC$TL_inputStickerSetEmojiDefaultStatuses) || (tLRPC$TL_messages_stickerSet = this.stickerSetDefaultStatuses) == null) {
+        } else if ((!(tLRPC$InputStickerSet instanceof TLRPC$TL_inputStickerSetEmojiDefaultStatuses) || (tLRPC$TL_messages_stickerSet = this.stickerSetDefaultStatuses) == null) && (!(tLRPC$InputStickerSet instanceof TLRPC$TL_inputStickerSetEmojiChannelDefaultStatuses) || (tLRPC$TL_messages_stickerSet = this.stickerSetDefaultChannelStatuses) == null)) {
             tLRPC$TL_messages_stickerSet = null;
         }
         if (tLRPC$TL_messages_stickerSet != null) {
@@ -1825,8 +1830,12 @@ public class MediaDataController extends BaseController {
             if (tLRPC$StickerSet != null) {
                 this.stickerSetsById.put(tLRPC$StickerSet.id, tLRPC$TL_messages_stickerSet);
                 this.stickerSetsByName.put(tLRPC$TL_messages_stickerSet.set.short_name.toLowerCase(), tLRPC$TL_messages_stickerSet);
-                if (tLRPC$InputStickerSet instanceof TLRPC$TL_inputStickerSetEmojiDefaultStatuses) {
+                boolean z = tLRPC$InputStickerSet instanceof TLRPC$TL_inputStickerSetEmojiDefaultStatuses;
+                if (z) {
                     this.stickerSetDefaultStatuses = tLRPC$TL_messages_stickerSet;
+                }
+                if (z) {
+                    this.stickerSetDefaultChannelStatuses = tLRPC$TL_messages_stickerSet;
                 }
             }
             saveStickerSetIntoCache(tLRPC$TL_messages_stickerSet);
@@ -4076,7 +4085,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray<Runnable> longSparseArray = this.removingStickerSetsUndos;
             long j = tLRPC$StickerSet.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda156(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda157(delayedAction));
             Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i2), Boolean.TRUE);
@@ -4175,7 +4184,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray<Runnable> longSparseArray = this.removingStickerSetsUndos;
             long j = arrayList.get(i9).set.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda156(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda157(delayedAction));
         }
         Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
     }
@@ -8683,6 +8692,15 @@ public class MediaDataController extends BaseController {
         return this.emojiStatuses[1];
     }
 
+    public ArrayList<TLRPC$EmojiStatus> getDefaultChannelEmojiStatuses() {
+        if (!this.emojiStatusesFromCacheFetched[2]) {
+            fetchEmojiStatuses(2, true);
+        } else if (this.emojiStatuses[2] == null || (this.emojiStatusesFetchDate[2] != null && (System.currentTimeMillis() / 1000) - this.emojiStatusesFetchDate[2].longValue() > 1800)) {
+            fetchEmojiStatuses(2, false);
+        }
+        return this.emojiStatuses[2];
+    }
+
     public ArrayList<TLRPC$EmojiStatus> getRecentEmojiStatuses() {
         if (!this.emojiStatusesFromCacheFetched[0]) {
             fetchEmojiStatuses(0, true);
@@ -8740,7 +8758,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void fetchEmojiStatuses(final int i, boolean z) {
-        TLRPC$TL_account_getDefaultEmojiStatuses tLRPC$TL_account_getDefaultEmojiStatuses;
+        TLRPC$TL_account_getChannelDefaultEmojiStatuses tLRPC$TL_account_getChannelDefaultEmojiStatuses;
         boolean[] zArr = this.emojiStatusesFetching;
         if (zArr[i]) {
             return;
@@ -8758,13 +8776,17 @@ public class MediaDataController extends BaseController {
         if (i == 0) {
             TLRPC$TL_account_getRecentEmojiStatuses tLRPC$TL_account_getRecentEmojiStatuses = new TLRPC$TL_account_getRecentEmojiStatuses();
             tLRPC$TL_account_getRecentEmojiStatuses.hash = this.emojiStatusesHash[i];
-            tLRPC$TL_account_getDefaultEmojiStatuses = tLRPC$TL_account_getRecentEmojiStatuses;
+            tLRPC$TL_account_getChannelDefaultEmojiStatuses = tLRPC$TL_account_getRecentEmojiStatuses;
+        } else if (i == 1) {
+            TLRPC$TL_account_getDefaultEmojiStatuses tLRPC$TL_account_getDefaultEmojiStatuses = new TLRPC$TL_account_getDefaultEmojiStatuses();
+            tLRPC$TL_account_getDefaultEmojiStatuses.hash = this.emojiStatusesHash[i];
+            tLRPC$TL_account_getChannelDefaultEmojiStatuses = tLRPC$TL_account_getDefaultEmojiStatuses;
         } else {
-            TLRPC$TL_account_getDefaultEmojiStatuses tLRPC$TL_account_getDefaultEmojiStatuses2 = new TLRPC$TL_account_getDefaultEmojiStatuses();
-            tLRPC$TL_account_getDefaultEmojiStatuses2.hash = this.emojiStatusesHash[i];
-            tLRPC$TL_account_getDefaultEmojiStatuses = tLRPC$TL_account_getDefaultEmojiStatuses2;
+            TLRPC$TL_account_getChannelDefaultEmojiStatuses tLRPC$TL_account_getChannelDefaultEmojiStatuses2 = new TLRPC$TL_account_getChannelDefaultEmojiStatuses();
+            tLRPC$TL_account_getChannelDefaultEmojiStatuses2.hash = this.emojiStatusesHash[i];
+            tLRPC$TL_account_getChannelDefaultEmojiStatuses = tLRPC$TL_account_getChannelDefaultEmojiStatuses2;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getDefaultEmojiStatuses, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getChannelDefaultEmojiStatuses, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 MediaDataController.this.lambda$fetchEmojiStatuses$218(i, tLObject, tLRPC$TL_error);
@@ -8997,6 +9019,31 @@ public class MediaDataController extends BaseController {
             this.replyIconsDefault = (TLRPC$TL_emojiList) tLObject;
             edit.putString("replyicons", Utilities.bytesToHex(serializedData.toByteArray()));
             edit.putLong("replyicons_last_check", System.currentTimeMillis());
+            edit.apply();
+        }
+    }
+
+    public void loadRestrictedStatusEmojis() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadRestrictedStatusEmojis():void");
+    }
+
+    public void lambda$loadRestrictedStatusEmojis$227(final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MediaDataController.this.lambda$loadRestrictedStatusEmojis$226(tLObject, sharedPreferences);
+            }
+        });
+    }
+
+    public void lambda$loadRestrictedStatusEmojis$226(TLObject tLObject, SharedPreferences sharedPreferences) {
+        if (tLObject instanceof TLRPC$TL_emojiList) {
+            SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
+            tLObject.serializeToStream(serializedData);
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            this.restrictedStatusEmojis = (TLRPC$TL_emojiList) tLObject;
+            edit.putString("restrictedstatuses", Utilities.bytesToHex(serializedData.toByteArray()));
+            edit.putLong("restrictedstatuses_last_check", System.currentTimeMillis());
             edit.apply();
         }
     }

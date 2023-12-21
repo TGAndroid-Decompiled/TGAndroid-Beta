@@ -414,6 +414,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void updateItems(boolean z, boolean z2) {
+        boolean z3 = true;
         if ((this.currentState == 1 || this.overscrollPrgoress != 0.0f) && !z2) {
             this.updateOnIdleState = true;
             return;
@@ -460,7 +461,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             this.currentTitle = LocaleController.formatPluralString("Stories", max, new Object[0]);
         }
         if (!this.hasOverlayText) {
-            this.titleView.setText(this.currentTitle, z);
+            this.titleView.setText(this.currentTitle, (!z || LocaleController.isRTL) ? false : false);
         }
         this.miniItems.clear();
         for (int i2 = 0; i2 < this.items.size(); i2++) {
@@ -741,12 +742,12 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                         spannableString = valueOf;
                     }
                 }
-                this.titleView.setText(spannableString, true);
+                this.titleView.setText(spannableString, true ^ LocaleController.isRTL);
             }
         } else {
             this.hasOverlayText = false;
             this.overlayTextId = 0;
-            this.titleView.setText(this.currentTitle, true);
+            this.titleView.setText(this.currentTitle, true ^ LocaleController.isRTL);
         }
         if (z) {
             this.ellipsizeSpanAnimator.addView(this.titleView);

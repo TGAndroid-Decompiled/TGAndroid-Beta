@@ -251,7 +251,11 @@ public class ApplicationLoader extends Application {
             startTime = elapsedRealtime;
             sb.append(elapsedRealtime);
             FileLog.d(sb.toString());
-            FileLog.d("buildVersion = " + BuildVars.BUILD_VERSION);
+            try {
+                FileLog.d("buildVersion = " + applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0).versionCode);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();

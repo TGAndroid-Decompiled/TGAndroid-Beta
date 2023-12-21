@@ -63,6 +63,10 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.translateX = f;
     }
 
+    public void setTranslateY(float f) {
+        this.translateY = f;
+    }
+
     public void translate(float f, float f2) {
         this.translateX = f;
         this.translateY = f2;

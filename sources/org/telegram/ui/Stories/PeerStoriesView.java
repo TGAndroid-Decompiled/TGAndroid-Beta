@@ -103,7 +103,6 @@ import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$Reaction;
@@ -212,6 +211,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     private boolean BIG_SCREEN;
     private boolean allowDrawSurface;
     Runnable allowDrawSurfaceRunnable;
+    private boolean allowRepost;
     private boolean allowShare;
     private boolean allowShareLink;
     private float alpha;
@@ -550,7 +550,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.inputBackgroundPaint = new Paint(1);
         this.resourcesProvider = resourcesProvider;
         setClipChildren(false);
-        this.storyAreasView = new StoryMediaAreasView(context, resourcesProvider) {
+        this.storyAreasView = new StoryMediaAreasView(context, this.storyContainer, resourcesProvider) {
             @Override
             protected void onHintVisible(boolean z) {
                 Delegate delegate = PeerStoriesView.this.delegate;
@@ -579,6 +579,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 storyReactionWidgetView.performHapticFeedback(3);
                 storyReactionWidgetView.playAnimation();
                 PeerStoriesView.this.emojiAnimationsOverlay.showAnimationForWidget(storyReactionWidgetView);
+            }
+
+            @Override
+            protected Bitmap getPlayingBitmap() {
+                return PeerStoriesView.this.getPlayingBitmap();
             }
         };
         AnonymousClass4 anonymousClass4 = new AnonymousClass4(context, sharedResources, storyViewer);
@@ -801,11 +806,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
     public class AnonymousClass4 extends HwFrameLayout {
         boolean drawOverlayed;
-        CellFlickerDrawable loadingDrawable;
-        AnimatedFloat loadingDrawableAlpha;
-        AnimatedFloat loadingDrawableAlpha2;
-        AnimatedFloat progressToAudio;
-        AnimatedFloat progressToFullBlackoutA;
+        final CellFlickerDrawable loadingDrawable;
+        final AnimatedFloat loadingDrawableAlpha;
+        final AnimatedFloat loadingDrawableAlpha2;
+        final AnimatedFloat progressToAudio;
+        final AnimatedFloat progressToFullBlackoutA;
         boolean splitDrawing;
         final SharedResources val$sharedResources;
         final StoryViewer val$storyViewer;
@@ -817,11 +822,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
             this.progressToAudio = new AnimatedFloat(this, 150L, cubicBezierInterpolator);
             this.progressToFullBlackoutA = new AnimatedFloat(this, 150L, cubicBezierInterpolator);
-            this.loadingDrawable = new CellFlickerDrawable(32, 102, 240);
-            this.loadingDrawableAlpha2 = new AnimatedFloat(this);
-            this.loadingDrawableAlpha = new AnimatedFloat(this);
-            this.loadingDrawableAlpha2.setDuration(500L);
-            this.loadingDrawableAlpha.setDuration(100L);
+            this.loadingDrawable = new CellFlickerDrawable(32, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, 240);
+            AnimatedFloat animatedFloat = new AnimatedFloat(this);
+            this.loadingDrawableAlpha2 = animatedFloat;
+            AnimatedFloat animatedFloat2 = new AnimatedFloat(this);
+            this.loadingDrawableAlpha = animatedFloat2;
+            animatedFloat.setDuration(500L);
+            animatedFloat2.setDuration(100L);
         }
 
         @Override
@@ -1068,7 +1075,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (reply == null) {
                 return;
             }
-            if (reply.peerId != null && reply.storyId != null) {
+            if (reply.isRepostMessage && reply.peerId != null && reply.messageId != null) {
+                Bundle bundle = new Bundle();
+                if (reply.peerId.longValue() >= 0) {
+                    bundle.putLong("user_id", reply.peerId.longValue());
+                } else {
+                    bundle.putLong("chat_id", -reply.peerId.longValue());
+                }
+                bundle.putInt("message_id", reply.messageId.intValue());
+                this.val$storyViewer.presentFragment(new ChatActivity(bundle));
+            } else if (reply.peerId != null && reply.storyId != null) {
                 StoriesController storiesController = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController();
                 long longValue = reply.peerId.longValue();
                 int intValue = reply.storyId.intValue();
@@ -1080,9 +1096,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                         PeerStoriesView.AnonymousClass5.this.lambda$onReplyClick$3(storyViewer, reply, resourcesProvider, (TL_stories$StoryItem) obj);
                     }
                 });
-                return;
+            } else {
+                BulletinFactory.of(PeerStoriesView.this.storyContainer, this.val$resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
             }
-            BulletinFactory.of(PeerStoriesView.this.storyContainer, this.val$resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
         }
 
         public void lambda$onReplyClick$3(final StoryViewer storyViewer, StoryCaptionView.Reply reply, Theme.ResourcesProvider resourcesProvider, TL_stories$StoryItem tL_stories$StoryItem) {
@@ -1359,7 +1375,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             DraftsController draftsController = MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getDraftsController();
             TL_stories$StoryItem tL_stories$StoryItem = PeerStoriesView.this.currentStory.storyItem;
             StoryEntry forEdit = draftsController.getForEdit(tL_stories$StoryItem.dialogId, tL_stories$StoryItem);
-            if (forEdit == null || (file = forEdit.file) == null || !file.exists()) {
+            if (forEdit == null || forEdit.isRepostMessage || (file = forEdit.file) == null || !file.exists()) {
                 forEdit = StoryEntry.fromStoryItem(PeerStoriesView.this.currentStory.getPath(), PeerStoriesView.this.currentStory.storyItem);
                 forEdit.editStoryPeerId = PeerStoriesView.this.dialogId;
             }
@@ -3098,6 +3114,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         } else {
             this.isSelf = false;
             this.isChannel = true;
+            if (this.storiesController.canEditStories(j) || BuildVars.DEBUG_PRIVATE_VERSION) {
+                this.userCanSeeViews = true;
+            }
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
             this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.headerView.backupImageView.getImageReceiver().setForUserOrChat(chat, this.avatarDrawable);
@@ -3746,15 +3765,19 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePosition(boolean):void");
     }
 
-    public void lambda$updatePosition$32(View view) {
-        TLRPC$Peer tLRPC$Peer = this.currentStory.storyItem.fwd_from.from;
-        if (tLRPC$Peer != null) {
-            long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
+    public void lambda$updatePosition$32(StoryCaptionView.Reply reply, View view) {
+        Integer num;
+        if (reply.peerId != null) {
             Bundle bundle = new Bundle();
-            if (peerDialogId >= 0) {
-                bundle.putLong("user_id", peerDialogId);
+            if (reply.peerId.longValue() >= 0) {
+                bundle.putLong("user_id", reply.peerId.longValue());
             } else {
-                bundle.putLong("chat_id", -peerDialogId);
+                bundle.putLong("chat_id", -reply.peerId.longValue());
+            }
+            if (reply.isRepostMessage && (num = reply.messageId) != null) {
+                bundle.putInt("message_id", num.intValue());
+                this.storyViewer.presentFragment(new ChatActivity(bundle));
+                return;
             }
             this.storyViewer.presentFragment(new ProfileActivity(bundle));
             return;
@@ -4095,12 +4118,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.delegate = delegate;
     }
 
-    public void createBlurredBitmap(Canvas canvas, Bitmap bitmap) {
+    public void drawPlayingBitmap(int i, int i2, Canvas canvas) {
         TextureView textureView;
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
         View view = videoPlayerSharedScope.renderView;
         if (view != null && videoPlayerSharedScope.surfaceView != null) {
-            Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
             if (Build.VERSION.SDK_INT >= 24) {
                 AndroidUtilities.getBitmapFromSurface(this.playerSharedScope.surfaceView, createBitmap);
             }
@@ -4108,18 +4131,28 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 canvas.drawBitmap(createBitmap, 0.0f, 0.0f, (Paint) null);
             }
         } else if (view != null && (textureView = videoPlayerSharedScope.textureView) != null) {
-            Bitmap bitmap2 = textureView.getBitmap(bitmap.getWidth(), bitmap.getHeight());
-            if (bitmap2 != null) {
-                canvas.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
+            Bitmap bitmap = textureView.getBitmap(i, i2);
+            if (bitmap != null) {
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
             }
         } else {
             canvas.save();
-            canvas.scale(bitmap.getWidth() / this.storyContainer.getMeasuredWidth(), bitmap.getHeight() / this.storyContainer.getMeasuredHeight());
+            canvas.scale(i / this.storyContainer.getMeasuredWidth(), i2 / this.storyContainer.getMeasuredHeight());
             this.imageReceiver.draw(canvas);
             canvas.restore();
         }
+    }
+
+    public Bitmap getPlayingBitmap() {
+        Bitmap createBitmap = Bitmap.createBitmap(this.storyContainer.getWidth(), this.storyContainer.getHeight(), Bitmap.Config.ARGB_8888);
+        drawPlayingBitmap(createBitmap.getWidth(), createBitmap.getHeight(), new Canvas(createBitmap));
+        return createBitmap;
+    }
+
+    public void createBlurredBitmap(Canvas canvas, Bitmap bitmap) {
+        drawPlayingBitmap(bitmap.getWidth(), bitmap.getHeight(), canvas);
         if (AndroidUtilities.computePerceivedBrightness(AndroidUtilities.getDominantColor(bitmap)) < 0.15f) {
-            canvas.drawColor(ColorUtils.setAlphaComponent(-1, 102));
+            canvas.drawColor(ColorUtils.setAlphaComponent(-1, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu));
         }
         Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
         Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
@@ -5909,7 +5942,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             Paint paint2 = new Paint(1);
             this.selectedBarPaint = paint2;
             paint2.setColor(-1);
-            int alphaComponent = ColorUtils.setAlphaComponent(-16777216, 102);
+            int alphaComponent = ColorUtils.setAlphaComponent(-16777216, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
             this.topOverlayGradient = ContextCompat.getDrawable(context, R.drawable.shadow_story_top);
             this.bottomOverlayGradient = ContextCompat.getDrawable(context, R.drawable.shadow_story_bottom);
             Paint paint3 = new Paint();

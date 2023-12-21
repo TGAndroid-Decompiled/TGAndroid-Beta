@@ -40,7 +40,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
@@ -128,7 +127,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    @TargetApi(MessageObject.TYPE_GIVEAWAY)
+    @TargetApi(26)
     public int getAutofillType() {
         return 0;
     }

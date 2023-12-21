@@ -37,8 +37,12 @@ public class StarParticlesView extends View {
         } else {
             i = SharedConfig.getDevicePerformanceClass() == 1 ? 100 : 50;
         }
-        Drawable drawable = new Drawable(i);
-        this.drawable = drawable;
+        this.drawable = new Drawable(i);
+        configure();
+    }
+
+    public void configure() {
+        Drawable drawable = this.drawable;
         drawable.type = 100;
         drawable.roundEffect = true;
         drawable.useRotate = true;

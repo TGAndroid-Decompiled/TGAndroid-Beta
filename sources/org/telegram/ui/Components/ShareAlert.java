@@ -136,6 +136,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private RecyclerListView gridView;
     private int hasPoll;
     private boolean includeStory;
+    public boolean includeStoryFromMessage;
     private boolean isChannel;
     int lastOffset;
     private GridLayoutManager layoutManager;
@@ -216,6 +217,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+    }
+
+    protected void onShareStory(View view) {
     }
 
     public void setStoryToShare(TL_stories$StoryItem tL_stories$StoryItem) {
@@ -1272,7 +1276,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.shadow[0].setAlpha(0.0f);
         this.shadow[0].setTag(1);
         this.containerView.addView(this.shadow[0], layoutParams);
-        this.containerView.addView(this.frameLayout, LayoutHelper.createFrame(-1, (!this.darkTheme || this.linkToCopy[1] == null) ? 58 : 111, 51));
+        this.containerView.addView(this.frameLayout, LayoutHelper.createFrame(-1, (!this.darkTheme || this.linkToCopy[1] == null) ? 58 : R.styleable.AppCompatTheme_textColorSearchUrl, 51));
         FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
         layoutParams2.bottomMargin = AndroidUtilities.dp(48.0f);
         this.shadow[1] = new View(context);
@@ -1765,9 +1769,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void selectDialog(View view, final TLRPC$Dialog tLRPC$Dialog) {
         DialogsSearchAdapter.CategoryAdapterRecycler categoryAdapterRecycler;
         if (tLRPC$Dialog instanceof ShareDialogsAdapter.MyStoryDialog) {
-            LongSparseArray<TLRPC$Dialog> longSparseArray = new LongSparseArray<>();
-            longSparseArray.put(Long.MAX_VALUE, tLRPC$Dialog);
-            onSend(longSparseArray, 1, null);
+            onShareStory(view);
         } else if (this.topicsGridView.getVisibility() != 8 || this.parentActivity == null) {
         } else {
             if (DialogObject.isChatDialog(tLRPC$Dialog.id)) {
@@ -1822,9 +1824,11 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         ShareAlert.this.lambda$selectDialog$13(atomicReference, anonymousClass22, tLRPC$Dialog);
                     }
                 });
-                NotificationCenter.getInstance(this.currentAccount).addObserver(anonymousClass22, NotificationCenter.topicsDidLoaded);
+                NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+                int i = NotificationCenter.topicsDidLoaded;
+                notificationCenter.addObserver(anonymousClass22, i);
                 if (MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-tLRPC$Dialog.id) != null) {
-                    anonymousClass22.didReceivedNotification(NotificationCenter.topicsDidLoaded, this.currentAccount, Long.valueOf(-tLRPC$Dialog.id));
+                    anonymousClass22.didReceivedNotification(i, this.currentAccount, Long.valueOf(-tLRPC$Dialog.id));
                     return;
                 }
                 MessagesController.getInstance(this.currentAccount).getTopicsController().loadTopics(-tLRPC$Dialog.id);
@@ -2908,15 +2912,27 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shareDialogCell;
+            View view;
             if (i == 0) {
-                shareDialogCell = new ShareDialogCell(this.context, ShareAlert.this.darkTheme ? 1 : 0, ShareAlert.this.resourcesProvider);
-                shareDialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(100.0f)));
+                view = new ShareDialogCell(this.context, ShareAlert.this.darkTheme ? 1 : 0, ShareAlert.this.resourcesProvider) {
+                    {
+                        ShareDialogsAdapter.this = this;
+                    }
+
+                    @Override
+                    public String repostToCustomName() {
+                        if (ShareAlert.this.includeStoryFromMessage) {
+                            return LocaleController.getString(R.string.RepostToStory);
+                        }
+                        return super.repostToCustomName();
+                    }
+                };
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(100.0f)));
             } else {
-                shareDialogCell = new View(this.context);
-                shareDialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp((!ShareAlert.this.darkTheme || ShareAlert.this.linkToCopy[1] == null) ? 56.0f : 109.0f)));
+                view = new View(this.context);
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp((!ShareAlert.this.darkTheme || ShareAlert.this.linkToCopy[1] == null) ? 56.0f : 109.0f)));
             }
-            return new RecyclerListView.Holder(shareDialogCell);
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -2924,6 +2940,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             if (viewHolder.getItemViewType() == 0) {
                 ShareDialogCell shareDialogCell = (ShareDialogCell) viewHolder.itemView;
                 TLRPC$Dialog item = getItem(i);
+                if (item == null) {
+                    return;
+                }
                 shareDialogCell.setTopic(ShareAlert.this.selectedDialogTopics.get(item), false);
                 long j = item.id;
                 shareDialogCell.setDialog(j, ShareAlert.this.selectedDialogs.indexOfKey(j) >= 0, null);
@@ -3497,7 +3516,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         ((ProfileSearchCell) viewHolder.itemView).useSeparator = i < getItemCount() - 2;
                         return;
                     } else if (view instanceof ShareDialogCell) {
-                        ((ShareDialogCell) view).setDialog((int) j4, ShareAlert.this.selectedDialogs.indexOfKey(j4) >= 0, str3);
+                        ((ShareDialogCell) view).setDialog(j4, ShareAlert.this.selectedDialogs.indexOfKey(j4) >= 0, str3);
                         return;
                     } else {
                         return;

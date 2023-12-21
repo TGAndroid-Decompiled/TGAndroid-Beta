@@ -1,14 +1,12 @@
 package org.telegram.ui.Components.Premium.boosts;
 
+import java.text.Collator;
 import java.util.Comparator;
 public final class BoostRepository$$ExternalSyntheticLambda31 implements Comparator {
-    public static final BoostRepository$$ExternalSyntheticLambda31 INSTANCE = new BoostRepository$$ExternalSyntheticLambda31();
-
-    private BoostRepository$$ExternalSyntheticLambda31() {
-    }
+    public final Collator f$0;
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return ((String) obj).compareTo((String) obj2);
+        return this.f$0.compare((String) obj, (String) obj2);
     }
 }

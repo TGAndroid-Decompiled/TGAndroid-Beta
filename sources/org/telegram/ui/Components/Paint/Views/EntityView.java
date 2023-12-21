@@ -81,6 +81,10 @@ public class EntityView extends FrameLayout {
     public interface EntityViewDelegate {
 
         public final class CC {
+            public static boolean $default$isEntityDeletable(EntityViewDelegate entityViewDelegate) {
+                return true;
+            }
+
             public static void $default$onEntityDragEnd(EntityViewDelegate entityViewDelegate, boolean z) {
             }
 
@@ -114,6 +118,8 @@ public class EntityView extends FrameLayout {
 
         void getTransformedTouch(float f, float f2, float[] fArr);
 
+        boolean isEntityDeletable();
+
         void onEntityDragEnd(boolean z);
 
         void onEntityDragMultitouchEnd();
@@ -145,6 +151,10 @@ public class EntityView extends FrameLayout {
 
     protected SelectionView createSelectionView() {
         return null;
+    }
+
+    protected float getBounceScale() {
+        return 0.04f;
     }
 
     protected float getMaxScale() {
@@ -316,7 +326,8 @@ public class EntityView extends FrameLayout {
                 entityViewDelegate5.onEntityDraggedTop(this.position.y - ((((float) getHeight()) / 2.0f) * scaleX) < ((float) AndroidUtilities.dp(66.0f)));
                 this.delegate.onEntityDraggedBottom(this.position.y + ((((float) getHeight()) / 2.0f) * scaleX) > ((float) (((View) getParent()).getHeight() - AndroidUtilities.dp(114.0f))));
             }
-            updateTrash(!z && MathUtils.distance(f5, f6, ((float) ((View) getParent()).getWidth()) / 2.0f, (float) (((View) getParent()).getHeight() - AndroidUtilities.dp(76.0f))) < ((float) AndroidUtilities.dp(32.0f)));
+            EntityViewDelegate entityViewDelegate6 = this.delegate;
+            updateTrash((entityViewDelegate6 == null || entityViewDelegate6.isEntityDeletable()) && !z && MathUtils.distance(f5, f6, ((float) ((View) getParent()).getWidth()) / 2.0f, (float) (((View) getParent()).getHeight() - AndroidUtilities.dp(76.0f))) < ((float) AndroidUtilities.dp(32.0f)));
             this.bounce.setPressed(false);
             return true;
         }
@@ -821,7 +832,7 @@ public class EntityView extends FrameLayout {
         updateSelectionView();
     }
 
-    protected Rect getSelectionBounds() {
+    public Rect getSelectionBounds() {
         return new Rect(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
@@ -1018,7 +1029,7 @@ public class EntityView extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float scale = this.bounce.getScale(0.05f);
+        float scale = this.bounce.getScale(getBounceScale());
         canvas.save();
         canvas.scale(scale, scale, getWidth() / 2.0f, getHeight() / 2.0f);
         if (getParent() instanceof View) {

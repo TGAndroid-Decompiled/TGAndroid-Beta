@@ -65,7 +65,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(176.0f) + (i2 >= 21 ? AndroidUtilities.statusBarHeight : 0)));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
-        rLottieImageView.setAnimation(R.raw.qr_code_logo, 108, 108);
+        rLottieImageView.setAnimation(R.raw.qr_code_logo, R.styleable.AppCompatTheme_textAppearanceSearchResultTitle, R.styleable.AppCompatTheme_textAppearanceSearchResultTitle);
         rLottieImageView.playAnimation();
         rLottieImageView.getAnimatedDrawable().setAutoRepeat(1);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);

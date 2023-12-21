@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$FileLocation;
@@ -99,6 +100,7 @@ public class ManageChatUserCell extends FrameLayout {
         simpleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 46.0f : i2 + 68, 11.5f, z3 ? i2 + 68 : 46.0f, 0.0f));
+        NotificationCenter.listenEmojiLoading(simpleTextView);
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.statusTextView = simpleTextView2;
         simpleTextView2.setTextSize(14);

@@ -2658,31 +2658,35 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             SimpleTextView simpleTextView = this.titleTextView;
             boolean z2 = LocaleController.isRTL;
             int i2 = (z2 ? 5 : 3) | 16;
+            int i3 = R.styleable.AppCompatTheme_textAppearanceListItemSmall;
             if (z2) {
                 f = 20.0f;
             } else {
-                f = this.needCheck ? 105 : 68;
+                f = this.needCheck ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 68;
             }
             if (z2) {
-                f2 = this.needCheck ? 105 : 68;
+                f2 = this.needCheck ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 68;
             } else {
                 f2 = 20.0f;
             }
             simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i2, f, 0.0f, f2, 0.0f));
             SimpleTextView simpleTextView2 = this.subtitleTextView;
             boolean z3 = LocaleController.isRTL;
-            int i3 = (z3 ? 5 : 3) | 16;
+            int i4 = (z3 ? 5 : 3) | 16;
             if (z3) {
                 f3 = 20.0f;
             } else {
-                f3 = this.needCheck ? 105 : 68;
+                f3 = this.needCheck ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 68;
             }
             if (z3) {
-                f4 = this.needCheck ? 105 : 68;
+                if (!this.needCheck) {
+                    i3 = 68;
+                }
+                f4 = i3;
             } else {
                 f4 = 20.0f;
             }
-            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i3, f3, 0.0f, f4, 0.0f));
+            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i4, f3, 0.0f, f4, 0.0f));
             this.checkBox.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
             this.radioButton.setLayoutParams(LayoutHelper.createFrame(22, 22.0f, (LocaleController.isRTL ? 5 : 3) | 16, 14.0f, 0.0f, 15.0f, 0.0f));
         }

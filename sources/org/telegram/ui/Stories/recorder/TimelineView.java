@@ -82,6 +82,7 @@ public class TimelineView extends View {
     private boolean hasAudio;
     private boolean hasRound;
     private boolean hasVideo;
+    private boolean isMainVideoRound;
     private long lastTime;
     private float lastX;
     private final AnimatedFloat loopProgress;
@@ -176,7 +177,7 @@ public class TimelineView extends View {
     }
 
     public static int heightDp() {
-        return 112;
+        return R.styleable.AppCompatTheme_toolbarNavigationButtonStyle;
     }
 
     private long getBaseDuration() {
@@ -368,7 +369,7 @@ public class TimelineView extends View {
         this.delegate = timelineDelegate;
     }
 
-    public void setVideo(String str, long j, float f) {
+    public void setVideo(boolean z, String str, long j, float f) {
         if (TextUtils.equals(this.videoPath, str)) {
             return;
         }
@@ -377,6 +378,7 @@ public class TimelineView extends View {
             videoThumbsLoader.destroy();
             this.thumbs = null;
         }
+        this.isMainVideoRound = z;
         if (str != null) {
             this.scroll = 0L;
             this.videoPath = str;
@@ -460,13 +462,14 @@ public class TimelineView extends View {
         if (getMeasuredWidth() <= 0 || this.thumbs != null) {
             return;
         }
+        boolean z = this.isMainVideoRound;
         String str = this.videoPath;
         int i = this.w;
         int i2 = this.px;
         int i3 = (i - i2) - i2;
         int dp = AndroidUtilities.dp(38.0f);
         long j = this.videoDuration;
-        VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(this, str, i3, dp, j > 2 ? Long.valueOf(j) : null);
+        VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(this, z, str, i3, dp, j > 2 ? Long.valueOf(j) : null);
         this.thumbs = videoThumbsLoader;
         if (videoThumbsLoader.getDuration() > 0) {
             this.videoDuration = this.thumbs.getDuration();
@@ -485,7 +488,7 @@ public class TimelineView extends View {
             int i3 = (i - i2) - i2;
             int dp = AndroidUtilities.dp(38.0f);
             long j = this.roundDuration;
-            VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(str, i3, dp, j > 2 ? Long.valueOf(j) : null, this.hasVideo ? this.videoDuration : 120000L);
+            VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(false, str, i3, dp, j > 2 ? Long.valueOf(j) : null, this.hasVideo ? this.videoDuration : 120000L);
             this.roundThumbs = videoThumbsLoader;
             if (videoThumbsLoader.getDuration() > 0) {
                 this.roundDuration = this.roundThumbs.getDuration();
@@ -1255,6 +1258,7 @@ public class TimelineView extends View {
 
     public class VideoThumbsLoader {
         private final Paint bitmapPaint;
+        private Path clipPath;
         private final int count;
         private boolean destroyed;
         private long duration;
@@ -1262,16 +1266,17 @@ public class TimelineView extends View {
         private final long frameIterator;
         private final int frameWidth;
         private final ArrayList<BitmapFrame> frames;
+        private final boolean isRound;
         private boolean loading;
         private MediaMetadataRetriever metadataRetriever;
         private long nextFrame;
 
-        public VideoThumbsLoader(TimelineView timelineView, String str, int i, int i2, Long l) {
-            this(str, i, i2, l, 120000L);
+        public VideoThumbsLoader(TimelineView timelineView, boolean z, String str, int i, int i2, Long l) {
+            this(z, str, i, i2, l, 120000L);
         }
 
-        public VideoThumbsLoader(java.lang.String r7, int r8, int r9, java.lang.Long r10, long r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.VideoThumbsLoader.<init>(org.telegram.ui.Stories.recorder.TimelineView, java.lang.String, int, int, java.lang.Long, long):void");
+        public VideoThumbsLoader(boolean r6, java.lang.String r7, int r8, int r9, java.lang.Long r10, long r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.VideoThumbsLoader.<init>(org.telegram.ui.Stories.recorder.TimelineView, boolean, java.lang.String, int, int, java.lang.Long, long):void");
         }
 
         public int getFrameWidth() {
@@ -1304,7 +1309,20 @@ public class TimelineView extends View {
                     Bitmap createBitmap = Bitmap.createBitmap(this.frameWidth, this.frameHeight, Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     float max = Math.max(this.frameWidth / bitmap.getWidth(), this.frameHeight / bitmap.getHeight());
-                    canvas.drawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()), new Rect((int) ((createBitmap.getWidth() - (bitmap.getWidth() * max)) / 2.0f), (int) ((createBitmap.getHeight() - (bitmap.getHeight() * max)) / 2.0f), (int) ((createBitmap.getWidth() + (bitmap.getWidth() * max)) / 2.0f), (int) ((createBitmap.getHeight() + (bitmap.getHeight() * max)) / 2.0f)), this.bitmapPaint);
+                    Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                    Rect rect2 = new Rect((int) ((createBitmap.getWidth() - (bitmap.getWidth() * max)) / 2.0f), (int) ((createBitmap.getHeight() - (bitmap.getHeight() * max)) / 2.0f), (int) ((createBitmap.getWidth() + (bitmap.getWidth() * max)) / 2.0f), (int) ((createBitmap.getHeight() + (bitmap.getHeight() * max)) / 2.0f));
+                    if (this.isRound) {
+                        if (this.clipPath == null) {
+                            this.clipPath = new Path();
+                        }
+                        this.clipPath.rewind();
+                        Path path = this.clipPath;
+                        int i = this.frameWidth;
+                        int i2 = this.frameHeight;
+                        path.addCircle(i / 2.0f, i2 / 2.0f, Math.min(i, i2) / 2.0f, Path.Direction.CW);
+                        canvas.clipPath(this.clipPath);
+                    }
+                    canvas.drawBitmap(bitmap, rect, rect2, this.bitmapPaint);
                     bitmap.recycle();
                     bitmap = createBitmap;
                 }

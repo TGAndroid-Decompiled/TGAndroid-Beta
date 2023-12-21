@@ -315,14 +315,6 @@ public final class BulletinFactory {
         return create(lottieLayout, 2750);
     }
 
-    public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence, CharSequence charSequence2) {
-        Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
-        twoLineLottieLayout.imageView.setImageDrawable(drawable);
-        twoLineLottieLayout.titleTextView.setText(charSequence);
-        twoLineLottieLayout.subtitleTextView.setText(charSequence2);
-        return create(twoLineLottieLayout, 2750);
-    }
-
     public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence, CharSequence charSequence2, String str, Runnable runnable) {
         Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
         twoLineLottieLayout.imageView.setImageDrawable(drawable);

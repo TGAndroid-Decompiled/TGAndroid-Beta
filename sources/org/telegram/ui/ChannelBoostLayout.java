@@ -180,7 +180,7 @@ public class ChannelBoostLayout extends FrameLayout {
                         break;
                     case 10:
                         TextCell textCell = new TextCell(ChannelBoostLayout.this.getContext());
-                        textCell.setTextAndIcon(LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
                         textCell.offsetFromImage = 64;
                         int i2 = Theme.key_windowBackgroundWhiteBlueText4;
                         textCell.setColors(i2, i2);

@@ -15,6 +15,7 @@ public class TLRPC$Message extends TLObject {
     public long dialog_id;
     public int edit_date;
     public boolean edit_hide;
+    public int expire_date;
     public int flags;
     public int forwards;
     public TLRPC$Peer from_id;
@@ -2891,8 +2892,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 167;
-            this.params.put("legacy_layer", "167");
+            this.layer = 168;
+            this.params.put("legacy_layer", "168");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

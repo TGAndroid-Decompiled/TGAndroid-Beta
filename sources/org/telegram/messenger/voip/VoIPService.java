@@ -3855,7 +3855,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return LaunchActivity.class;
     }
 
-    @TargetApi(MessageObject.TYPE_GIVEAWAY)
+    @TargetApi(26)
     public CallConnection getConnectionAndStartCall() {
         if (this.systemCallConnection == null) {
             if (BuildVars.LOGS_ENABLED) {
@@ -4991,7 +4991,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.remoteVideoState;
     }
 
-    @TargetApi(MessageObject.TYPE_GIVEAWAY)
+    @TargetApi(26)
     private PhoneAccountHandle addAccountToTelecomManager() {
         TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         ComponentName componentName = new ComponentName(this, TelegramConnectionService.class);

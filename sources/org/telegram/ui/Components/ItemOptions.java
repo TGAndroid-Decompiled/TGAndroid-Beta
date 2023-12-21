@@ -84,7 +84,7 @@ public class ItemOptions {
         this.resourcesProvider = baseFragment.getResourceProvider();
         this.context = baseFragment.getContext();
         this.scrimView = view;
-        this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider))) > 0.705d ? 102 : 51;
+        this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider))) > 0.705d ? R.styleable.AppCompatTheme_textAppearanceLargePopupMenu : 51;
         init();
     }
 
@@ -100,7 +100,7 @@ public class ItemOptions {
         this.resourcesProvider = resourcesProvider;
         this.context = viewGroup.getContext();
         this.scrimView = view;
-        this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider))) > 0.705d ? 102 : 51;
+        this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider))) > 0.705d ? R.styleable.AppCompatTheme_textAppearanceLargePopupMenu : 51;
         init();
     }
 

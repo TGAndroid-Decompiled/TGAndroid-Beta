@@ -157,6 +157,10 @@ public class SelectorSearchCell extends ScrollView {
         });
     }
 
+    public void setHintText(String str, boolean z) {
+        this.editText.setHintText(str, z);
+    }
+
     public void updateSpans(boolean z, final HashSet<Long> hashSet, final Runnable runnable, List<TLRPC$TL_help_country> list) {
         boolean z2;
         Object chat;

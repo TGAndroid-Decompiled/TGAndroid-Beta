@@ -4416,7 +4416,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if (scaleAndSaveImage != null) {
             arrayList.add(scaleAndSaveImage);
         }
-        TLRPC$PhotoSize scaleAndSaveImage2 = ImageLoader.scaleAndSaveImage(loadBitmap, AndroidUtilities.getPhotoSize(), AndroidUtilities.getPhotoSize(), true, 80, false, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC);
+        TLRPC$PhotoSize scaleAndSaveImage2 = ImageLoader.scaleAndSaveImage(loadBitmap, AndroidUtilities.getPhotoSize(), AndroidUtilities.getPhotoSize(), true, 80, false, 101, 101);
         if (scaleAndSaveImage2 != null) {
             arrayList.add(scaleAndSaveImage2);
         }
@@ -4888,7 +4888,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 loadBitmap = ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true);
             }
             Bitmap bitmap = loadBitmap;
-            if (!exists2 && (scaleAndSaveImage2 = ImageLoader.scaleAndSaveImage(closestPhotoSizeWithSize2, bitmap, Bitmap.CompressFormat.JPEG, true, AndroidUtilities.getPhotoSize(), AndroidUtilities.getPhotoSize(), 80, false, FileLoader.MEDIA_DIR_VIDEO_PUBLIC, FileLoader.MEDIA_DIR_VIDEO_PUBLIC, false)) != closestPhotoSizeWithSize2) {
+            if (!exists2 && (scaleAndSaveImage2 = ImageLoader.scaleAndSaveImage(closestPhotoSizeWithSize2, bitmap, Bitmap.CompressFormat.JPEG, true, AndroidUtilities.getPhotoSize(), AndroidUtilities.getPhotoSize(), 80, false, 101, 101, false)) != closestPhotoSizeWithSize2) {
                 tLRPC$TL_photo.sizes.add(0, scaleAndSaveImage2);
             }
             if (!exists && (scaleAndSaveImage = ImageLoader.scaleAndSaveImage(closestPhotoSizeWithSize, bitmap, 90.0f, 90.0f, 55, true, false)) != closestPhotoSizeWithSize) {

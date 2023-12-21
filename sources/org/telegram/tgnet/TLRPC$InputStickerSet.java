@@ -34,6 +34,9 @@ public abstract class TLRPC$InputStickerSet extends TLObject {
             case 1153562857:
                 tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetEmojiDefaultTopicIcons();
                 break;
+            case 1232373075:
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetEmojiChannelDefaultStatuses();
+                break;
             default:
                 tLRPC$TL_inputStickerSetShortName = null;
                 break;

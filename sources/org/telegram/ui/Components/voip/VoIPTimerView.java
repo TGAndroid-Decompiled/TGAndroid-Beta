@@ -10,6 +10,7 @@ import android.text.TextPaint;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 public class VoIPTimerView extends View {
     Paint activePaint;
@@ -44,7 +45,7 @@ public class VoIPTimerView extends View {
         this.textPaint.setColor(-1);
         this.textPaint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(0.6666667f), 1275068416);
         this.activePaint.setColor(ColorUtils.setAlphaComponent(-1, 229));
-        this.inactivePaint.setColor(ColorUtils.setAlphaComponent(-1, 102));
+        this.inactivePaint.setColor(ColorUtils.setAlphaComponent(-1, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu));
     }
 
     @Override

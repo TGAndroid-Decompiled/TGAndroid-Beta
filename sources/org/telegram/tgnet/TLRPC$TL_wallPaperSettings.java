@@ -24,11 +24,14 @@ public class TLRPC$TL_wallPaperSettings extends TLRPC$WallPaperSettings {
         if ((this.flags & 16) != 0) {
             this.rotation = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 128) != 0) {
+            this.emoticon = abstractSerializedData.readString(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(499236004);
+        abstractSerializedData.writeInt32(925826256);
         int i = this.blur ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.motion ? i | 4 : i & (-5);
@@ -51,6 +54,9 @@ public class TLRPC$TL_wallPaperSettings extends TLRPC$WallPaperSettings {
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.rotation);
+        }
+        if ((this.flags & 128) != 0) {
+            abstractSerializedData.writeString(this.emoticon);
         }
     }
 }

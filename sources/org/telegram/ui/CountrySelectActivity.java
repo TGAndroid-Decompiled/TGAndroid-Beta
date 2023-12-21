@@ -49,8 +49,8 @@ import org.telegram.ui.Cells.LetterSectionCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda29;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda33;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.CountrySelectActivity;
 public class CountrySelectActivity extends BaseFragment {
@@ -312,9 +312,9 @@ public class CountrySelectActivity extends BaseFragment {
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());
                 Objects.requireNonNull(collator);
-                comparator = new BoostRepository$$ExternalSyntheticLambda29(collator);
+                comparator = new BoostRepository$$ExternalSyntheticLambda31(collator);
             } else {
-                comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
+                comparator = BoostRepository$$ExternalSyntheticLambda33.INSTANCE;
             }
             Collections.sort(this.sortedCountries, comparator);
             for (ArrayList<Country> arrayList4 : this.countries.values()) {

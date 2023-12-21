@@ -170,14 +170,16 @@ public class BoostRepository {
         TLRPC$TL_payments_getPaymentForm tLRPC$TL_payments_getPaymentForm = new TLRPC$TL_payments_getPaymentForm();
         final TLRPC$TL_inputInvoicePremiumGiftCode tLRPC$TL_inputInvoicePremiumGiftCode = new TLRPC$TL_inputInvoicePremiumGiftCode();
         TLRPC$TL_inputStorePaymentPremiumGiftCode tLRPC$TL_inputStorePaymentPremiumGiftCode = new TLRPC$TL_inputStorePaymentPremiumGiftCode();
-        tLRPC$TL_inputStorePaymentPremiumGiftCode.flags = 1;
         tLRPC$TL_inputStorePaymentPremiumGiftCode.users = new ArrayList<>();
         for (TLObject tLObject : list) {
             if (tLObject instanceof TLRPC$User) {
                 tLRPC$TL_inputStorePaymentPremiumGiftCode.users.add(messagesController.getInputUser((TLRPC$User) tLObject));
             }
         }
-        tLRPC$TL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+        if (tLRPC$Chat != null) {
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.flags = 1;
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+        }
         tLRPC$TL_inputStorePaymentPremiumGiftCode.currency = tLRPC$TL_premiumGiftCodeOption.currency;
         tLRPC$TL_inputStorePaymentPremiumGiftCode.amount = tLRPC$TL_premiumGiftCodeOption.amount;
         tLRPC$TL_inputInvoicePremiumGiftCode.purpose = tLRPC$TL_inputStorePaymentPremiumGiftCode;
@@ -187,7 +189,7 @@ public class BoostRepository {
             TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
             tLRPC$TL_payments_getPaymentForm.theme_params = tLRPC$TL_dataJSON;
             tLRPC$TL_dataJSON.data = makeThemeParams.toString();
-            tLRPC$TL_payments_getPaymentForm.flags |= 1;
+            tLRPC$TL_payments_getPaymentForm.flags = 1 | tLRPC$TL_payments_getPaymentForm.flags;
         }
         tLRPC$TL_payments_getPaymentForm.invoice = tLRPC$TL_inputInvoicePremiumGiftCode;
         connectionsManager.sendRequest(tLRPC$TL_payments_getPaymentForm, new RequestDelegate() {
@@ -246,14 +248,16 @@ public class BoostRepository {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final TLRPC$TL_inputStorePaymentPremiumGiftCode tLRPC$TL_inputStorePaymentPremiumGiftCode = new TLRPC$TL_inputStorePaymentPremiumGiftCode();
-        tLRPC$TL_inputStorePaymentPremiumGiftCode.flags = 1;
         tLRPC$TL_inputStorePaymentPremiumGiftCode.users = new ArrayList<>();
         for (TLObject tLObject : list) {
             if (tLObject instanceof TLRPC$User) {
                 tLRPC$TL_inputStorePaymentPremiumGiftCode.users.add(messagesController.getInputUser((TLRPC$User) tLObject));
             }
         }
-        tLRPC$TL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+        if (tLRPC$Chat != null) {
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.flags = 1;
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+        }
         BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tLRPC$TL_premiumGiftCodeOption.store_product).build()), new ProductDetailsResponseListener() {
             @Override
             public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
@@ -328,15 +332,21 @@ public class BoostRepository {
         });
     }
 
-    public static void launchPreparedGiveaway(TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway, List<TLObject> list, List<TLObject> list2, TLRPC$Chat tLRPC$Chat, int i, boolean z, final Utilities.Callback<Void> callback, final Utilities.Callback<TLRPC$TL_error> callback2) {
+    public static void launchPreparedGiveaway(TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway, List<TLObject> list, List<TLObject> list2, TLRPC$Chat tLRPC$Chat, int i, boolean z, boolean z2, boolean z3, String str, final Utilities.Callback<Void> callback, final Utilities.Callback<TLRPC$TL_error> callback2) {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_inputStorePaymentPremiumGiveaway tLRPC$TL_inputStorePaymentPremiumGiveaway = new TLRPC$TL_inputStorePaymentPremiumGiveaway();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.only_new_subscribers = z;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
         int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags | 2;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 4;
+        int i3 = i2 | 4;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3;
+        if (z3) {
+            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3 | 16;
+        }
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
@@ -381,25 +391,31 @@ public class BoostRepository {
         }
     }
 
-    public static void payGiveAway(List<TLObject> list, List<TLObject> list2, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, int i, boolean z, BaseFragment baseFragment, Utilities.Callback<Void> callback, Utilities.Callback<TLRPC$TL_error> callback2) {
+    public static void payGiveAway(List<TLObject> list, List<TLObject> list2, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, int i, boolean z, BaseFragment baseFragment, boolean z2, boolean z3, String str, Utilities.Callback<Void> callback, Utilities.Callback<TLRPC$TL_error> callback2) {
         if (!isGoogleBillingAvailable()) {
-            payGiveAwayByInvoice(list, list2, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, i, z, baseFragment, callback, callback2);
+            payGiveAwayByInvoice(list, list2, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, i, z, baseFragment, z2, z3, str, callback, callback2);
         } else {
-            payGiveAwayByGoogle(list, list2, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, i, z, baseFragment, callback, callback2);
+            payGiveAwayByGoogle(list, list2, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, i, z, baseFragment, z2, z3, str, callback, callback2);
         }
     }
 
-    public static void payGiveAwayByInvoice(List<TLObject> list, List<TLObject> list2, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, int i, boolean z, final BaseFragment baseFragment, final Utilities.Callback<Void> callback, final Utilities.Callback<TLRPC$TL_error> callback2) {
+    public static void payGiveAwayByInvoice(List<TLObject> list, List<TLObject> list2, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, int i, boolean z, final BaseFragment baseFragment, boolean z2, boolean z3, String str, final Utilities.Callback<Void> callback, final Utilities.Callback<TLRPC$TL_error> callback2) {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_payments_getPaymentForm tLRPC$TL_payments_getPaymentForm = new TLRPC$TL_payments_getPaymentForm();
         final TLRPC$TL_inputInvoicePremiumGiftCode tLRPC$TL_inputInvoicePremiumGiftCode = new TLRPC$TL_inputInvoicePremiumGiftCode();
         TLRPC$TL_inputStorePaymentPremiumGiveaway tLRPC$TL_inputStorePaymentPremiumGiveaway = new TLRPC$TL_inputStorePaymentPremiumGiveaway();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.only_new_subscribers = z;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
         int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags | 2;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 4;
+        int i3 = i2 | 4;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3;
+        if (z3) {
+            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3 | 16;
+        }
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
         for (TLObject tLObject : list) {
@@ -477,15 +493,21 @@ public class BoostRepository {
         }
     }
 
-    public static void payGiveAwayByGoogle(List<TLObject> list, List<TLObject> list2, final TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, int i, boolean z, final BaseFragment baseFragment, final Utilities.Callback<Void> callback, final Utilities.Callback<TLRPC$TL_error> callback2) {
+    public static void payGiveAwayByGoogle(List<TLObject> list, List<TLObject> list2, final TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, int i, boolean z, final BaseFragment baseFragment, boolean z2, boolean z3, String str, final Utilities.Callback<Void> callback, final Utilities.Callback<TLRPC$TL_error> callback2) {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final TLRPC$TL_inputStorePaymentPremiumGiveaway tLRPC$TL_inputStorePaymentPremiumGiveaway = new TLRPC$TL_inputStorePaymentPremiumGiveaway();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.only_new_subscribers = z;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
         int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags | 2;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 4;
+        int i3 = i2 | 4;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3;
+        if (z3) {
+            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3 | 16;
+        }
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
         for (TLObject tLObject : list) {
@@ -590,6 +612,19 @@ public class BoostRepository {
         return arrayList;
     }
 
+    public static List<TLRPC$TL_premiumGiftCodeOption> filterGiftOptionsByBilling(List<TLRPC$TL_premiumGiftCodeOption> list) {
+        if (isGoogleBillingAvailable()) {
+            ArrayList arrayList = new ArrayList();
+            for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption : list) {
+                if (tLRPC$TL_premiumGiftCodeOption.store_product != null) {
+                    arrayList.add(tLRPC$TL_premiumGiftCodeOption);
+                }
+            }
+            return arrayList;
+        }
+        return list;
+    }
+
     public static void loadCountries(final Utilities.Callback<Pair<Map<String, List<TLRPC$TL_help_country>>, List<String>>> callback) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_help_getCountriesList tLRPC$TL_help_getCountriesList = new TLRPC$TL_help_getCountriesList();
@@ -628,9 +663,9 @@ public class BoostRepository {
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());
                 Objects.requireNonNull(collator);
-                comparator = new BoostRepository$$ExternalSyntheticLambda29(collator);
+                comparator = new BoostRepository$$ExternalSyntheticLambda31(collator);
             } else {
-                comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
+                comparator = BoostRepository$$ExternalSyntheticLambda33.INSTANCE;
             }
             Collections.sort(arrayList, comparator);
             for (List list2 : hashMap.values()) {
@@ -664,8 +699,10 @@ public class BoostRepository {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_payments_getPremiumGiftCodeOptions tLRPC$TL_payments_getPremiumGiftCodeOptions = new TLRPC$TL_payments_getPremiumGiftCodeOptions();
-        tLRPC$TL_payments_getPremiumGiftCodeOptions.flags = 1;
-        tLRPC$TL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+        if (tLRPC$Chat != null) {
+            tLRPC$TL_payments_getPremiumGiftCodeOptions.flags = 1;
+            tLRPC$TL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+        }
         connectionsManager.sendRequest(tLRPC$TL_payments_getPremiumGiftCodeOptions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -734,6 +771,56 @@ public class BoostRepository {
         });
     }
 
+    public static int searchContacts(int i, String str, final Utilities.Callback<List<TLRPC$User>> callback) {
+        final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
+        if (i != 0) {
+            connectionsManager.cancelRequest(i, false);
+        }
+        if (str == null || str.isEmpty()) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    BoostRepository.lambda$searchContacts$32(Utilities.Callback.this);
+                }
+            });
+            return 0;
+        }
+        TLRPC$TL_contacts_search tLRPC$TL_contacts_search = new TLRPC$TL_contacts_search();
+        tLRPC$TL_contacts_search.q = str;
+        tLRPC$TL_contacts_search.limit = 50;
+        return connectionsManager.sendRequest(tLRPC$TL_contacts_search, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                BoostRepository.lambda$searchContacts$34(MessagesController.this, callback, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public static void lambda$searchContacts$32(Utilities.Callback callback) {
+        callback.run(Collections.emptyList());
+    }
+
+    public static void lambda$searchContacts$34(MessagesController messagesController, final Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        if (tLObject instanceof TLRPC$TL_contacts_found) {
+            TLRPC$TL_contacts_found tLRPC$TL_contacts_found = (TLRPC$TL_contacts_found) tLObject;
+            messagesController.putUsers(tLRPC$TL_contacts_found.users, false);
+            final ArrayList arrayList = new ArrayList();
+            for (int i = 0; i < tLRPC$TL_contacts_found.users.size(); i++) {
+                TLRPC$User tLRPC$User = tLRPC$TL_contacts_found.users.get(i);
+                if (!tLRPC$User.self && !UserObject.isDeleted(tLRPC$User) && !tLRPC$User.bot) {
+                    arrayList.add(tLRPC$User);
+                }
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(arrayList);
+                }
+            });
+        }
+    }
+
     public static void searchChats(final long j, int i, String str, int i2, final Utilities.Callback<List<TLRPC$InputPeer>> callback) {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -743,12 +830,12 @@ public class BoostRepository {
         connectionsManager.sendRequest(tLRPC$TL_contacts_search, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$searchChats$33(MessagesController.this, j, callback, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$searchChats$36(MessagesController.this, j, callback, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$searchChats$33(MessagesController messagesController, long j, final Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$searchChats$36(MessagesController messagesController, long j, final Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject instanceof TLRPC$TL_contacts_found) {
             TLRPC$TL_contacts_found tLRPC$TL_contacts_found = (TLRPC$TL_contacts_found) tLObject;
             messagesController.putChats(tLRPC$TL_contacts_found.chats, false);
@@ -785,21 +872,21 @@ public class BoostRepository {
         connectionsManager.sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$loadChatParticipants$35(MessagesController.this, callback, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$loadChatParticipants$38(MessagesController.this, callback, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$loadChatParticipants$35(final MessagesController messagesController, final Utilities.Callback callback, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$loadChatParticipants$38(final MessagesController messagesController, final Utilities.Callback callback, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostRepository.lambda$loadChatParticipants$34(TLObject.this, messagesController, callback);
+                BoostRepository.lambda$loadChatParticipants$37(TLObject.this, messagesController, callback);
             }
         });
     }
 
-    public static void lambda$loadChatParticipants$34(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback) {
+    public static void lambda$loadChatParticipants$37(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback) {
         TLRPC$User user;
         if (tLObject instanceof TLRPC$TL_channels_channelParticipants) {
             TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
@@ -825,21 +912,21 @@ public class BoostRepository {
         connectionsManager.sendRequest(tLRPC$TL_payments_checkGiftCode, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$checkGiftCode$37(MessagesController.this, callback, callback2, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$checkGiftCode$40(MessagesController.this, callback, callback2, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$checkGiftCode$37(final MessagesController messagesController, final Utilities.Callback callback, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$checkGiftCode$40(final MessagesController messagesController, final Utilities.Callback callback, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostRepository.lambda$checkGiftCode$36(TLObject.this, messagesController, callback, callback2, tLRPC$TL_error);
+                BoostRepository.lambda$checkGiftCode$39(TLObject.this, messagesController, callback, callback2, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$checkGiftCode$36(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback, Utilities.Callback callback2, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$checkGiftCode$39(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback, Utilities.Callback callback2, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject instanceof TLRPC$TL_payments_checkedGiftCode) {
             TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode = (TLRPC$TL_payments_checkedGiftCode) tLObject;
             messagesController.putChats(tLRPC$TL_payments_checkedGiftCode.chats, false);
@@ -856,21 +943,21 @@ public class BoostRepository {
         connectionsManager.sendRequest(tLRPC$TL_payments_applyGiftCode, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$applyGiftCode$39(Utilities.Callback.this, callback, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$applyGiftCode$42(Utilities.Callback.this, callback, tLObject, tLRPC$TL_error);
             }
-        });
+        }, 2);
     }
 
-    public static void lambda$applyGiftCode$39(final Utilities.Callback callback, final Utilities.Callback callback2, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$applyGiftCode$42(final Utilities.Callback callback, final Utilities.Callback callback2, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostRepository.lambda$applyGiftCode$38(TLRPC$TL_error.this, callback, callback2);
+                BoostRepository.lambda$applyGiftCode$41(TLRPC$TL_error.this, callback, callback2);
             }
         });
     }
 
-    public static void lambda$applyGiftCode$38(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, Utilities.Callback callback2) {
+    public static void lambda$applyGiftCode$41(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, Utilities.Callback callback2) {
         if (tLRPC$TL_error != null) {
             callback.run(tLRPC$TL_error);
         } else {
@@ -888,21 +975,21 @@ public class BoostRepository {
         connectionsManager.sendRequest(tLRPC$TL_payments_getGiveawayInfo, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$getGiveawayInfo$41(Utilities.Callback.this, callback, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$getGiveawayInfo$44(Utilities.Callback.this, callback, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$getGiveawayInfo$41(final Utilities.Callback callback, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$getGiveawayInfo$44(final Utilities.Callback callback, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostRepository.lambda$getGiveawayInfo$40(TLRPC$TL_error.this, callback, tLObject, callback2);
+                BoostRepository.lambda$getGiveawayInfo$43(TLRPC$TL_error.this, callback, tLObject, callback2);
             }
         });
     }
 
-    public static void lambda$getGiveawayInfo$40(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, TLObject tLObject, Utilities.Callback callback2) {
+    public static void lambda$getGiveawayInfo$43(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, TLObject tLObject, Utilities.Callback callback2) {
         if (tLRPC$TL_error != null) {
             callback.run(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$payments_GiveawayInfo) {
@@ -928,21 +1015,21 @@ public class BoostRepository {
         }, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$getMyBoosts$43(Utilities.Callback.this, messagesController, callback, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$getMyBoosts$46(Utilities.Callback.this, messagesController, callback, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$getMyBoosts$43(final Utilities.Callback callback, final MessagesController messagesController, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$getMyBoosts$46(final Utilities.Callback callback, final MessagesController messagesController, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostRepository.lambda$getMyBoosts$42(TLRPC$TL_error.this, callback, tLObject, messagesController, callback2);
+                BoostRepository.lambda$getMyBoosts$45(TLRPC$TL_error.this, callback, tLObject, messagesController, callback2);
             }
         });
     }
 
-    public static void lambda$getMyBoosts$42(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, TLObject tLObject, MessagesController messagesController, Utilities.Callback callback2) {
+    public static void lambda$getMyBoosts$45(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, TLObject tLObject, MessagesController messagesController, Utilities.Callback callback2) {
         if (tLRPC$TL_error != null) {
             callback.run(tLRPC$TL_error);
         } else if (tLObject instanceof TL_stories$TL_premium_myBoosts) {
@@ -963,21 +1050,21 @@ public class BoostRepository {
         connectionsManager.sendRequest(tL_stories$TL_premium_applyBoost, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$applyBoost$45(Utilities.Callback.this, messagesController, callback, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$applyBoost$48(Utilities.Callback.this, messagesController, callback, tLObject, tLRPC$TL_error);
             }
         }, 1024);
     }
 
-    public static void lambda$applyBoost$45(final Utilities.Callback callback, final MessagesController messagesController, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$applyBoost$48(final Utilities.Callback callback, final MessagesController messagesController, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostRepository.lambda$applyBoost$44(TLRPC$TL_error.this, callback, tLObject, messagesController, callback2);
+                BoostRepository.lambda$applyBoost$47(TLRPC$TL_error.this, callback, tLObject, messagesController, callback2);
             }
         });
     }
 
-    public static void lambda$applyBoost$44(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, TLObject tLObject, MessagesController messagesController, Utilities.Callback callback2) {
+    public static void lambda$applyBoost$47(TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback, TLObject tLObject, MessagesController messagesController, Utilities.Callback callback2) {
         if (tLRPC$TL_error != null) {
             callback.run(tLRPC$TL_error);
         } else if (tLObject instanceof TL_stories$TL_premium_myBoosts) {

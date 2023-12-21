@@ -2253,7 +2253,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     defaultThemesPreviewCell = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
                     break;
                 case 21:
-                    defaultThemesPreviewCell = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, false, this.mContext, ThemeActivity.this.getResourceProvider());
+                    defaultThemesPreviewCell = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, 0L, this.mContext, ThemeActivity.this.getResourceProvider());
                     break;
             }
             return new RecyclerListView.Holder(defaultThemesPreviewCell);
@@ -2542,7 +2542,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                 if (i != ThemeActivity.this.liteModeRow) {
                                     if (i == ThemeActivity.this.stickersRow) {
                                         textCell.setColors(Theme.key_dialogIcon, Theme.key_windowBackgroundWhiteBlackText);
-                                        textCell.setTextAndIcon(LocaleController.getString("StickersName", R.string.StickersName), R.drawable.msg2_sticker, false);
+                                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("StickersName", R.string.StickersName), R.drawable.msg2_sticker, false);
                                         textCell.setSubtitle(LocaleController.getString("StickersNameInfo2", R.string.StickersNameInfo2));
                                         textCell.offsetFromImage = 64;
                                         textCell.heightDp = 60;
@@ -2552,7 +2552,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                     return;
                                 }
                                 textCell.setColors(Theme.key_dialogIcon, Theme.key_windowBackgroundWhiteBlackText);
-                                textCell.setTextAndIcon(LocaleController.getString("LiteMode", R.string.LiteMode), R.drawable.msg2_animations, true);
+                                textCell.setTextAndIcon((CharSequence) LocaleController.getString("LiteMode", R.string.LiteMode), R.drawable.msg2_animations, true);
                                 textCell.setSubtitle(LocaleController.getString("LiteModeInfo", R.string.LiteModeInfo));
                                 textCell.heightDp = 60;
                                 textCell.offsetFromImage = 64;
@@ -2562,13 +2562,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             textCell.setSubtitle(null);
                             int i9 = Theme.key_windowBackgroundWhiteBlueText4;
                             textCell.setColors(i9, i9);
-                            textCell.setTextAndIcon(LocaleController.getString("CreateNewTheme", R.string.CreateNewTheme), R.drawable.msg_colors, false);
+                            textCell.setTextAndIcon((CharSequence) LocaleController.getString("CreateNewTheme", R.string.CreateNewTheme), R.drawable.msg_colors, false);
                             return;
                         }
                         textCell.setSubtitle(null);
                         int i10 = Theme.key_windowBackgroundWhiteBlueText4;
                         textCell.setColors(i10, i10);
-                        textCell.setTextAndIcon(LocaleController.getString("EditCurrentTheme", R.string.EditCurrentTheme), R.drawable.msg_theme, true);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("EditCurrentTheme", R.string.EditCurrentTheme), R.drawable.msg_theme, true);
                         return;
                     }
                     textCell.setSubtitle(null);

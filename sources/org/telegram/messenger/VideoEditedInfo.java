@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
@@ -25,7 +24,9 @@ import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 public class VideoEditedInfo {
+    public int account;
     public boolean alreadyScheduledConverting;
+    public String backgroundPath;
     public int bitrate;
     public String blurPath;
     public boolean canceled;
@@ -43,11 +44,14 @@ public class VideoEditedInfo {
     public Integer gradientBottomColor;
     public Integer gradientTopColor;
     public StoryEntry.HDRInfo hdrInfo;
+    public boolean isDark;
     public boolean isPhoto;
     public boolean isStory;
     public byte[] iv;
     public byte[] key;
     public ArrayList<MediaEntity> mediaEntities;
+    public String messagePath;
+    public String messageVideoMaskPath;
     public boolean muted;
     public int originalBitrate;
     public long originalDuration;
@@ -55,7 +59,6 @@ public class VideoEditedInfo {
     public String originalPath;
     public int originalWidth;
     public String paintPath;
-    public ArrayList<StoryEntry.Part> parts;
     public int resultHeight;
     public int resultWidth;
     public int rotationValue;
@@ -65,6 +68,7 @@ public class VideoEditedInfo {
     public boolean videoConvertFirstWrite;
     public long avatarStartTime = -1;
     public int framerate = 24;
+    public long wallpaperPeerId = Long.MIN_VALUE;
     public boolean needUpdateProgress = false;
     public boolean shouldLimitFps = true;
     public boolean tryUseHevc = false;
@@ -101,6 +105,7 @@ public class VideoEditedInfo {
 
     public static class MediaEntity {
         public static final byte TYPE_LOCATION = 3;
+        public static final byte TYPE_MESSAGE = 6;
         public static final byte TYPE_PHOTO = 2;
         public static final byte TYPE_REACTION = 4;
         public static final byte TYPE_ROUND = 5;
@@ -136,6 +141,7 @@ public class VideoEditedInfo {
         public Canvas roundRadiusCanvas;
         public long roundRight;
         public float scale;
+        public String segmentedPath;
         public byte subType;
         public String text;
         public int textAlign;
@@ -157,11 +163,15 @@ public class VideoEditedInfo {
         public MediaEntity() {
             this.text = "";
             this.entities = new ArrayList<>();
+            this.segmentedPath = "";
+            this.scale = 1.0f;
         }
 
         public MediaEntity(AbstractSerializedData abstractSerializedData, boolean z) {
             this.text = "";
             this.entities = new ArrayList<>();
+            this.segmentedPath = "";
+            this.scale = 1.0f;
             this.type = abstractSerializedData.readByte(false);
             this.subType = abstractSerializedData.readByte(false);
             this.x = abstractSerializedData.readFloat(false);
@@ -218,6 +228,9 @@ public class VideoEditedInfo {
                 this.roundLeft = abstractSerializedData.readInt64(false);
                 this.roundRight = abstractSerializedData.readInt64(false);
                 this.roundDuration = abstractSerializedData.readInt64(false);
+            }
+            if (this.type == 2) {
+                this.segmentedPath = abstractSerializedData.readString(false);
             }
         }
 
@@ -293,6 +306,9 @@ public class VideoEditedInfo {
                 abstractSerializedData.writeInt64(this.roundLeft);
                 abstractSerializedData.writeInt64(this.roundRight);
                 abstractSerializedData.writeInt64(this.roundDuration);
+            }
+            if (this.type == 2) {
+                abstractSerializedData.writeString(this.segmentedPath);
             }
         }
 
@@ -456,16 +472,7 @@ public class VideoEditedInfo {
             } else {
                 serializedData.writeByte(0);
             }
-            ArrayList<StoryEntry.Part> arrayList3 = this.parts;
-            if (arrayList3 != null && !arrayList3.isEmpty()) {
-                serializedData.writeInt32(this.parts.size());
-                Iterator<StoryEntry.Part> it = this.parts.iterator();
-                while (it.hasNext()) {
-                    it.next().serializeToStream(serializedData);
-                }
-            } else {
-                serializedData.writeInt32(0);
-            }
+            serializedData.writeInt32(0);
             serializedData.writeBool(this.isStory);
             serializedData.writeBool(this.fromCamera);
             if (bArr2 != null) {
@@ -578,10 +585,7 @@ public class VideoEditedInfo {
                             }
                         }
                         if (readInt32 >= 6) {
-                            int readInt323 = serializedData.readInt32(false);
-                            for (int i4 = 0; i4 < readInt323; i4++) {
-                                new StoryEntry.Part().readParams(serializedData, false);
-                            }
+                            serializedData.readInt32(false);
                         }
                         if (readInt32 >= 7) {
                             this.isStory = serializedData.readBool(false);

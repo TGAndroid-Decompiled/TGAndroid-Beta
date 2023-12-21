@@ -178,13 +178,13 @@ public class GroupCallRenderersContainer extends FrameLayout {
         imageView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(-1, 55)));
         View view = new View(context);
         this.topShadowView = view;
-        Drawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0, ColorUtils.setAlphaComponent(-16777216, 114)});
+        Drawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0, ColorUtils.setAlphaComponent(-16777216, R.styleable.AppCompatTheme_tooltipForegroundColor)});
         this.topShadowDrawable = gradientDrawable;
         view.setBackground(gradientDrawable);
         addView(view, LayoutHelper.createFrame(-1, 120.0f));
         View view2 = new View(context);
         this.rightShadowView = view2;
-        Drawable gradientDrawable2 = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0, ColorUtils.setAlphaComponent(-16777216, 114)});
+        Drawable gradientDrawable2 = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0, ColorUtils.setAlphaComponent(-16777216, R.styleable.AppCompatTheme_tooltipForegroundColor)});
         this.rightShadowDrawable = gradientDrawable2;
         view2.setBackground(gradientDrawable2);
         view2.setVisibility((call == null || !isRtmpStream()) ? 8 : 0);

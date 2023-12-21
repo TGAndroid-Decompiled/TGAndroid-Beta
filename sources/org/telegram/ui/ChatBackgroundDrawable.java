@@ -148,7 +148,7 @@ public class ChatBackgroundDrawable extends Drawable {
     }
 
     public static Drawable createThumb(TLRPC$WallPaper tLRPC$WallPaper) {
-        Drawable bitmapDrawable;
+        Drawable bitmapDrawableOf;
         Drawable drawable = tLRPC$WallPaper.thumbDrawable;
         if (drawable != null) {
             return drawable;
@@ -160,21 +160,21 @@ public class ChatBackgroundDrawable extends Drawable {
             return new ColorDrawable(-16777216);
         }
         if (tLRPC$WallPaper.document != null) {
-            bitmapDrawable = null;
+            bitmapDrawableOf = null;
             while (r2 < tLRPC$WallPaper.document.thumbs.size()) {
                 if (tLRPC$WallPaper.document.thumbs.get(r2) instanceof TLRPC$TL_photoStrippedSize) {
-                    bitmapDrawable = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(tLRPC$WallPaper.document.thumbs.get(r2).bytes, "b"));
+                    bitmapDrawableOf = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(tLRPC$WallPaper.document.thumbs.get(r2).bytes, "b"));
                 }
                 r2++;
             }
         } else {
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
-            if (tLRPC$WallPaperSettings.intensity < 0) {
-                bitmapDrawable = bitmapDrawableOf(new ColorDrawable(-16777216));
+            if (tLRPC$WallPaperSettings == null || tLRPC$WallPaperSettings.intensity < 0) {
+                bitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(-16777216));
             } else if (tLRPC$WallPaperSettings.second_background_color == 0) {
-                bitmapDrawable = bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.background_color, 255)));
+                bitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.background_color, 255)));
             } else if (tLRPC$WallPaperSettings.third_background_color == 0) {
-                bitmapDrawable = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(tLRPC$WallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255)}));
+                bitmapDrawableOf = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(tLRPC$WallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255)}));
             } else {
                 int alphaComponent = ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings.background_color, 255);
                 int alphaComponent2 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255);
@@ -183,11 +183,11 @@ public class ChatBackgroundDrawable extends Drawable {
                 r2 = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
                 MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
                 motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, r2);
-                bitmapDrawable = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
+                bitmapDrawableOf = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
             }
         }
-        tLRPC$WallPaper.thumbDrawable = bitmapDrawable;
-        return bitmapDrawable;
+        tLRPC$WallPaper.thumbDrawable = bitmapDrawableOf;
+        return bitmapDrawableOf;
     }
 
     private static Drawable bitmapDrawableOf(Drawable drawable) {

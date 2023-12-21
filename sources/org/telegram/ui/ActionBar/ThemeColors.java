@@ -714,8 +714,7 @@ public class ThemeColors {
         iArr[Theme.key_stories_circle_dialog2] = -11680769;
         iArr[Theme.key_stories_circle_closeFriends1] = -3544264;
         iArr[Theme.key_stories_circle_closeFriends2] = -16137881;
-        iArr[Theme.key_code_background] = 536870912;
-        iArr[Theme.key_chat_inCodeBackground] = 138954824;
+        iArr[Theme.key_chat_inCodeBackground] = -9467746;
         iArr[Theme.key_chat_outCodeBackground] = 305952003;
         iArr[Theme.key_code_keyword] = -2075818;
         iArr[Theme.key_code_operator] = -11682817;
@@ -1453,7 +1452,6 @@ public class ThemeColors {
         sparseArray.put(Theme.key_stories_circle_dialog2, "stories_circle_dialog2");
         sparseArray.put(Theme.key_stories_circle_closeFriends1, "stories_circle_closeFriends1");
         sparseArray.put(Theme.key_stories_circle_closeFriends2, "stories_circle_closeFriends2");
-        sparseArray.put(Theme.key_code_background, "code_background");
         sparseArray.put(Theme.key_chat_inCodeBackground, "chat_inCodeBackground");
         sparseArray.put(Theme.key_chat_outCodeBackground, "chat_outCodeBackground");
         sparseArray.put(Theme.key_code_keyword, "code_keyword");

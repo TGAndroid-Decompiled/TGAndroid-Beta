@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -24,6 +25,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.FilterCreateActivity;
+import org.telegram.ui.PeerColorActivity;
 public class TextCell extends FrameLayout {
     private int changeProgressStartDelay;
     private Switch checkBox;
@@ -180,8 +182,8 @@ public class TextCell extends FrameLayout {
         if (this.prioritizeTitleOverValue) {
             this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding + 71), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
             this.subtitleView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding + 71), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-            this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 103)) - this.textView.getTextWidth(), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-            this.valueSpoilersTextView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 103)) - this.textView.getTextWidth(), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + R.styleable.AppCompatTheme_textAppearanceListItem)) - this.textView.getTextWidth(), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            this.valueSpoilersTextView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + R.styleable.AppCompatTheme_textAppearanceListItem)) - this.textView.getTextWidth(), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         } else {
             this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
             this.valueSpoilersTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
@@ -294,6 +296,7 @@ public class TextCell extends FrameLayout {
     public void setText(String str, boolean z) {
         this.imageLeft = 21;
         this.textView.setText(str);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;
         animatedTextView.setText(null, false);
@@ -305,10 +308,16 @@ public class TextCell extends FrameLayout {
         setWillNotDraw(!z);
     }
 
-    public void setTextAndIcon(String str, int i, boolean z) {
+    public void setLockLevel(boolean z, int i) {
+        this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), z, i, this.resourcesProvider));
+        this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
+    }
+
+    public void setTextAndIcon(CharSequence charSequence, int i, boolean z) {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
-        this.textView.setText(str);
+        this.textView.setText(charSequence);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;
         animatedTextView.setText(null, false);
@@ -326,6 +335,7 @@ public class TextCell extends FrameLayout {
         this.offsetFromImage = 68;
         this.imageLeft = 18;
         this.textView.setText(str);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;
         animatedTextView.setText(null, false);
@@ -355,6 +365,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(str);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = str2;
         animatedTextView.setText(TextUtils.ellipsize(str2, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END), z);
@@ -374,6 +385,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(str);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = charSequence;
         animatedTextView.setText(TextUtils.ellipsize(charSequence, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END), z);
@@ -393,6 +405,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(str);
+        this.textView.setRightDrawable((Drawable) null);
         this.valueSpoilersTextView.setVisibility(0);
         this.valueSpoilersTextView.setText(charSequence);
         this.valueTextView.setVisibility(8);
@@ -418,6 +431,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(charSequence);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = str;
         animatedTextView.setText(TextUtils.ellipsize(str, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END), z);
@@ -460,6 +474,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(charSequence);
+        this.textView.setRightDrawable((Drawable) null);
         this.imageView.setVisibility(8);
         this.valueImageView.setVisibility(8);
         this.needDivider = z2;
@@ -475,6 +490,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(charSequence);
+        this.textView.setRightDrawable((Drawable) null);
         this.valueTextView.setVisibility(8);
         this.valueSpoilersTextView.setVisibility(8);
         this.valueImageView.setVisibility(8);
@@ -494,6 +510,7 @@ public class TextCell extends FrameLayout {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(str);
+        this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;
         animatedTextView.setText(null, false);

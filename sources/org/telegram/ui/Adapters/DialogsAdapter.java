@@ -934,9 +934,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             TLRPC$RequestPeerType tLRPC$RequestPeerType = this.requestPeerType;
             if (tLRPC$RequestPeerType != null) {
                 if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeBroadcast) {
-                    textCell.setTextAndIcon(LocaleController.getString("CreateChannelForThis", R.string.CreateChannelForThis), R.drawable.msg_channel_create, true);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("CreateChannelForThis", R.string.CreateChannelForThis), R.drawable.msg_channel_create, true);
                 } else {
-                    textCell.setTextAndIcon(LocaleController.getString("CreateGroupForThis", R.string.CreateGroupForThis), R.drawable.msg_groups_create, true);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("CreateGroupForThis", R.string.CreateGroupForThis), R.drawable.msg_groups_create, true);
                 }
             } else {
                 textCell.setTextAndIcon(LocaleController.getString("CreateGroupForImport", R.string.CreateGroupForImport), R.drawable.msg_groups_create, this.dialogsCount != 0);

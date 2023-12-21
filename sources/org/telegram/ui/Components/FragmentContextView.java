@@ -512,7 +512,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             }
         });
         this.avatars.setVisibility(8);
-        addView(this.avatars, LayoutHelper.createFrame(108, 36, 51));
+        addView(this.avatars, LayoutHelper.createFrame((int) R.styleable.AppCompatTheme_textAppearanceSearchResultTitle, 36, 51));
         int i4 = R.raw.voice_muted;
         this.muteDrawable = new RLottieDrawable(i4, "" + i4, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
         AnonymousClass7 anonymousClass7 = new AnonymousClass7(context);
@@ -1184,7 +1184,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         AvatarsImageView avatarsImageView = this.avatars;
         if (avatarsImageView != null) {
             avatarsImageView.setStyle(this.currentStyle);
-            this.avatars.setLayoutParams(LayoutHelper.createFrame(108, getStyleHeight(), 51));
+            this.avatars.setLayoutParams(LayoutHelper.createFrame((int) R.styleable.AppCompatTheme_textAppearanceSearchResultTitle, getStyleHeight(), 51));
         }
         this.frameLayout.setLayoutParams(LayoutHelper.createFrame(-1, getStyleHeight(), 51, 0.0f, 0.0f, 0.0f, 0.0f));
         this.shadow.setLayoutParams(LayoutHelper.createFrame(-1, 2.0f, 51, 0.0f, getStyleHeight(), 0.0f, 0.0f));

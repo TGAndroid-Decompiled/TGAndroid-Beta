@@ -87,7 +87,7 @@ public class AdminLogFilterAlert extends BottomSheet {
             tLRPC$TL_channelAdminLogEventsFilter2.invites = tLRPC$TL_channelAdminLogEventsFilter.invites;
         }
         if (longSparseArray != null) {
-            this.selectedAdmins = longSparseArray.m0clone();
+            this.selectedAdmins = longSparseArray.m2clone();
         }
         this.isMegagroup = z;
         if (z) {

@@ -1,7 +1,9 @@
 package org.telegram.ui.Components.spoilers;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES31;
@@ -90,13 +92,13 @@ public class SpoilerEffect2 {
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         if (devicePerformanceClass == 1) {
             Point point = AndroidUtilities.displaySize;
-            return Math.min(900, (int) (Math.min(point.x, point.y) * 0.8f));
+            return Math.min(900, (int) (((point.x + point.y) / 2.0f) * 0.8f));
         } else if (devicePerformanceClass == 2) {
             Point point2 = AndroidUtilities.displaySize;
-            return Math.min(900, (int) (Math.min(point2.x, point2.y) * 1.0f));
+            return Math.min(1280, (int) (((point2.x + point2.y) / 2.0f) * 1.0f));
         } else {
             Point point3 = AndroidUtilities.displaySize;
-            return Math.min(720, (int) (Math.min(point3.x, point3.y) * 0.7f));
+            return Math.min(720, (int) (((point3.x + point3.y) / 2.0f) * 0.7f));
         }
     }
 
@@ -161,6 +163,10 @@ public class SpoilerEffect2 {
     }
 
     public void draw(Canvas canvas, View view, int i, int i2, float f) {
+        draw(canvas, view, i, i2, f, false);
+    }
+
+    public void draw(Canvas canvas, View view, int i, int i2, float f, boolean z) {
         if (canvas == null || view == null) {
             return;
         }
@@ -184,8 +190,18 @@ public class SpoilerEffect2 {
         if (num.intValue() % 4 == 3) {
             canvas.scale(1.0f, -1.0f, i3 / 2.0f, i4 / 2.0f);
         }
-        this.textureView.setAlpha(f);
-        this.textureView.draw(canvas);
+        if (z) {
+            Bitmap bitmap = this.textureView.getBitmap();
+            if (bitmap != null) {
+                Paint paint = new Paint(7);
+                paint.setColor(-1);
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                bitmap.recycle();
+            }
+        } else {
+            this.textureView.setAlpha(f);
+            this.textureView.draw(canvas);
+        }
         canvas.restore();
     }
 

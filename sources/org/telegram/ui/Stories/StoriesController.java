@@ -90,7 +90,9 @@ import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$messages_Chats;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$StoryView;
 import org.telegram.tgnet.tl.TL_stories$StoryViews;
+import org.telegram.tgnet.tl.TL_stories$StoryViewsList;
 import org.telegram.tgnet.tl.TL_stories$TL_peerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.tgnet.tl.TL_stories$TL_storiesStealthMode;
@@ -107,13 +109,11 @@ import org.telegram.tgnet.tl.TL_stories$TL_stories_peerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_readStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_sendReaction;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_stories;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_storyViewsList;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_togglePeerStoriesHidden;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_togglePinned;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemSkipped;
-import org.telegram.tgnet.tl.TL_stories$TL_storyView;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -2630,7 +2630,7 @@ public class StoriesController {
             });
         }
 
-        public void lambda$preloadCache$3(org.telegram.messenger.MessagesStorage r18) {
+        public void lambda$preloadCache$3(org.telegram.messenger.MessagesStorage r19) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$preloadCache$3(org.telegram.messenger.MessagesStorage):void");
         }
 
@@ -2906,6 +2906,8 @@ public class StoriesController {
         public void lambda$load$10(ArrayList arrayList, TL_stories$TL_stories_stories tL_stories$TL_stories_stories, int i) {
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} loaded {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_stories_stories.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_stories$TL_stories_stories.chats, false);
+            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_stories$TL_stories_stories.users, tL_stories$TL_stories_stories.chats, true, true);
             this.loading = false;
             this.totalCount = tL_stories$TL_stories_stories.count;
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -3291,24 +3293,24 @@ public class StoriesController {
         }
     }
 
-    public boolean isBlocked(TL_stories$TL_storyView tL_stories$TL_storyView) {
-        if (tL_stories$TL_storyView == null) {
+    public boolean isBlocked(TL_stories$StoryView tL_stories$StoryView) {
+        if (tL_stories$StoryView == null) {
             return false;
         }
-        if (this.blockedOverride.containsKey(tL_stories$TL_storyView.user_id)) {
-            return this.blockedOverride.get(tL_stories$TL_storyView.user_id).booleanValue();
+        if (this.blockedOverride.containsKey(tL_stories$StoryView.user_id)) {
+            return this.blockedOverride.get(tL_stories$StoryView.user_id).booleanValue();
         }
-        return this.lastBlocklistRequested == 0 ? tL_stories$TL_storyView.blocked_my_stories_from || tL_stories$TL_storyView.blocked : this.blocklist.contains(Long.valueOf(tL_stories$TL_storyView.user_id)) || tL_stories$TL_storyView.blocked_my_stories_from || tL_stories$TL_storyView.blocked;
+        return this.lastBlocklistRequested == 0 ? tL_stories$StoryView.blocked_my_stories_from || tL_stories$StoryView.blocked : this.blocklist.contains(Long.valueOf(tL_stories$StoryView.user_id)) || tL_stories$StoryView.blocked_my_stories_from || tL_stories$StoryView.blocked;
     }
 
-    public void applyStoryViewsBlocked(TL_stories$TL_stories_storyViewsList tL_stories$TL_stories_storyViewsList) {
-        if (tL_stories$TL_stories_storyViewsList == null || tL_stories$TL_stories_storyViewsList.views == null) {
+    public void applyStoryViewsBlocked(TL_stories$StoryViewsList tL_stories$StoryViewsList) {
+        if (tL_stories$StoryViewsList == null || tL_stories$StoryViewsList.views == null) {
             return;
         }
-        for (int i = 0; i < tL_stories$TL_stories_storyViewsList.views.size(); i++) {
-            TL_stories$TL_storyView tL_stories$TL_storyView = tL_stories$TL_stories_storyViewsList.views.get(i);
-            if (this.blockedOverride.containsKey(tL_stories$TL_storyView.user_id)) {
-                this.blockedOverride.put(tL_stories$TL_storyView.user_id, Boolean.valueOf(tL_stories$TL_storyView.blocked_my_stories_from));
+        for (int i = 0; i < tL_stories$StoryViewsList.views.size(); i++) {
+            TL_stories$StoryView tL_stories$StoryView = tL_stories$StoryViewsList.views.get(i);
+            if (this.blockedOverride.containsKey(tL_stories$StoryView.user_id)) {
+                this.blockedOverride.put(tL_stories$StoryView.user_id, Boolean.valueOf(tL_stories$StoryView.blocked_my_stories_from));
             }
         }
     }

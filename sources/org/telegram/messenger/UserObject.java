@@ -21,6 +21,10 @@ import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 public class UserObject {
     public static final long REPLY_BOT = 1271266957;
 
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC$User tLRPC$User) {
+        return null;
+    }
+
     public static boolean isReplyUser(long j) {
         return j == 708513 || j == REPLY_BOT;
     }
@@ -157,14 +161,6 @@ public class UserObject {
             }
         }
         return null;
-    }
-
-    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC$User tLRPC$User) {
-        TLRPC$TL_peerColor tLRPC$TL_peerColor;
-        if (tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.profile_color) == null || tLRPC$TL_peerColor.color < 0 || MessagesController.getInstance(i).profilePeerColors == null) {
-            return null;
-        }
-        return MessagesController.getInstance(i).profilePeerColors.getColor(tLRPC$User.profile_color.color);
     }
 
     public static int getColorId(TLRPC$User tLRPC$User) {

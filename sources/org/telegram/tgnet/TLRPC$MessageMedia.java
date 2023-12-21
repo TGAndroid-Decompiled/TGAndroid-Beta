@@ -203,6 +203,9 @@ public abstract class TLRPC$MessageMedia extends TLObject {
             case -1186937242:
                 tLRPC$MessageMedia = new TLRPC$TL_messageMediaGeoLive();
                 break;
+            case -963047320:
+                tLRPC$MessageMedia = new TLRPC$TL_messageMediaGiveawayResults();
+                break;
             case -961117440:
                 tLRPC$MessageMedia = new TLRPC$MessageMedia() {
                     @Override
@@ -291,6 +294,9 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                     }
                 };
                 break;
+            case -626162256:
+                tLRPC$MessageMedia = new TLRPC$TL_messageMediaGiveaway();
+                break;
             case -571405253:
                 tLRPC$MessageMedia = new TLRPC$TL_messageMediaWebPage();
                 break;
@@ -368,7 +374,66 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 tLRPC$MessageMedia = new TLRPC$TL_messageMediaGeo();
                 break;
             case 1478887012:
-                tLRPC$MessageMedia = new TLRPC$TL_messageMediaGiveaway();
+                tLRPC$MessageMedia = new TLRPC$TL_messageMediaGiveaway() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.only_new_subscribers = (readInt32 & 1) != 0;
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        if (readInt322 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                            }
+                            return;
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt323; i2++) {
+                            this.channels.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                        }
+                        if ((this.flags & 2) != 0) {
+                            int readInt324 = abstractSerializedData2.readInt32(z2);
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                                }
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.countries_iso2.add(abstractSerializedData2.readString(z2));
+                            }
+                        }
+                        this.quantity = abstractSerializedData2.readInt32(z2);
+                        this.months = abstractSerializedData2.readInt32(z2);
+                        this.until_date = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1478887012);
+                        int i2 = this.only_new_subscribers ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        abstractSerializedData2.writeInt32(481674261);
+                        int size = this.channels.size();
+                        abstractSerializedData2.writeInt32(size);
+                        for (int i3 = 0; i3 < size; i3++) {
+                            abstractSerializedData2.writeInt64(this.channels.get(i3).longValue());
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size2 = this.countries_iso2.size();
+                            abstractSerializedData2.writeInt32(size2);
+                            for (int i4 = 0; i4 < size2; i4++) {
+                                abstractSerializedData2.writeString(this.countries_iso2.get(i4));
+                            }
+                        }
+                        abstractSerializedData2.writeInt32(this.quantity);
+                        abstractSerializedData2.writeInt32(this.months);
+                        abstractSerializedData2.writeInt32(this.until_date);
+                    }
+                };
                 break;
             case 1540298357:
                 tLRPC$MessageMedia = new TLRPC$TL_messageMediaVideo_layer45();

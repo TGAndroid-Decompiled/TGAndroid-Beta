@@ -25,6 +25,8 @@ public class FireworksOverlay extends View {
     private static Drawable[] heartDrawable;
     private static Paint[] paint;
     private static final int particlesCount;
+    private static int[] starsColors;
+    private static Drawable[] starsDrawable;
     private int fallingDownCount;
     private boolean isFebruary14;
     private long lastUpdateTime;
@@ -33,11 +35,12 @@ public class FireworksOverlay extends View {
     private float speedCoef;
     private boolean started;
     private boolean startedFall;
+    private boolean withStars;
 
     public void onStop() {
     }
 
-    static int access$408(FireworksOverlay fireworksOverlay) {
+    static int access$508(FireworksOverlay fireworksOverlay) {
         int i = fireworksOverlay.fallingDownCount;
         fireworksOverlay.fallingDownCount = i + 1;
         return i;
@@ -49,6 +52,7 @@ public class FireworksOverlay extends View {
         int[] iArr = {-13845272, -6421296, -79102, -187561, -14185218, -10897300};
         colors = iArr;
         heartColors = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
+        starsColors = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
         paint = new Paint[iArr.length];
         int i = 0;
         while (true) {
@@ -89,18 +93,23 @@ public class FireworksOverlay extends View {
                 canvas.drawRoundRect(FireworksOverlay.this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), FireworksOverlay.paint[this.colorType]);
                 canvas.restore();
             } else if (b == 2) {
-                Drawable drawable = FireworksOverlay.heartDrawable[this.colorType];
-                int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
-                int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                float f = this.x;
-                float f2 = this.y;
-                drawable.setBounds(((int) f) - intrinsicWidth, ((int) f2) - intrinsicHeight, ((int) f) + intrinsicWidth, ((int) f2) + intrinsicHeight);
-                canvas.save();
-                canvas.rotate(this.rotation, this.x, this.y);
-                byte b2 = this.typeSize;
-                canvas.scale(b2 / 6.0f, b2 / 6.0f, this.x, this.y);
-                drawable.draw(canvas);
-                canvas.restore();
+                Drawable drawable = FireworksOverlay.starsDrawable != null ? FireworksOverlay.starsDrawable[this.colorType] : null;
+                if (FireworksOverlay.heartDrawable != null) {
+                    drawable = FireworksOverlay.heartDrawable[this.colorType];
+                }
+                if (drawable != null) {
+                    int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
+                    int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
+                    float f = this.x;
+                    float f2 = this.y;
+                    drawable.setBounds(((int) f) - intrinsicWidth, ((int) f2) - intrinsicHeight, ((int) f) + intrinsicWidth, ((int) f2) + intrinsicHeight);
+                    canvas.save();
+                    canvas.rotate(this.rotation, this.x, this.y);
+                    byte b2 = this.typeSize;
+                    canvas.scale(b2 / 6.0f, b2 / 6.0f, this.x, this.y);
+                    drawable.draw(canvas);
+                    canvas.restore();
+                }
             }
         }
 
@@ -151,7 +160,7 @@ public class FireworksOverlay extends View {
                 this.moveY = f9 + ((AndroidUtilities.dp(1.0f) / 3.0f) * f);
             }
             if (z && this.moveY > f8) {
-                FireworksOverlay.access$408(FireworksOverlay.this);
+                FireworksOverlay.access$508(FireworksOverlay.this);
             }
             byte b = this.type;
             if (b == 1 || b == 2) {
@@ -189,6 +198,23 @@ public class FireworksOverlay extends View {
         }
     }
 
+    private void loadStarsDrawables() {
+        if (starsDrawable != null) {
+            return;
+        }
+        starsDrawable = new Drawable[starsColors.length];
+        int i = 0;
+        while (true) {
+            Drawable[] drawableArr = starsDrawable;
+            if (i >= drawableArr.length) {
+                return;
+            }
+            drawableArr[i] = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_settings_premium).mutate();
+            starsDrawable[i].setColorFilter(new PorterDuffColorFilter(starsColors[i], PorterDuff.Mode.MULTIPLY));
+            i++;
+        }
+    }
+
     public int getHeightForAnimation() {
         if (getMeasuredHeight() == 0) {
             return ((View) getParent()).getHeight();
@@ -210,6 +236,9 @@ public class FireworksOverlay extends View {
         if (this.isFebruary14 && nextInt == 0) {
             particle.type = (byte) 2;
             particle.colorType = (byte) Utilities.random.nextInt(heartColors.length);
+        } else if (this.withStars && Utilities.random.nextBoolean()) {
+            particle.type = (byte) 2;
+            particle.colorType = (byte) Utilities.random.nextInt(starsColors.length);
         } else {
             particle.colorType = (byte) Utilities.random.nextInt(colors.length);
         }
@@ -244,12 +273,11 @@ public class FireworksOverlay extends View {
         return this.started;
     }
 
-    public void start() {
+    public void start(boolean z) {
+        this.withStars = z;
         this.particles.clear();
-        if (Build.VERSION.SDK_INT >= 18) {
-            setLayerType(2, null);
-        }
-        boolean z = true;
+        setLayerType(2, null);
+        boolean z2 = true;
         this.started = true;
         this.startedFall = false;
         this.fallingDownCount = 0;
@@ -258,16 +286,22 @@ public class FireworksOverlay extends View {
         calendar.setTimeInMillis(System.currentTimeMillis());
         int i = calendar.get(5);
         if (calendar.get(2) != 1 || (!BuildVars.DEBUG_PRIVATE_VERSION && i != 14)) {
-            z = false;
+            z2 = false;
         }
-        this.isFebruary14 = z;
-        if (z) {
+        this.isFebruary14 = z2;
+        if (z2) {
             loadHeartDrawables();
+        } else if (z) {
+            loadStarsDrawables();
         }
         for (int i2 = 0; i2 < particlesCount; i2++) {
             this.particles.add(createParticle(false));
         }
         invalidate();
+    }
+
+    public void start() {
+        start(false);
     }
 
     private void startFall() {
