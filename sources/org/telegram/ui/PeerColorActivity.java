@@ -326,7 +326,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
             public void lambda$onCreateViewHolder$0(PeerColorGrid peerColorGrid, int i, Integer num) {
                 Page.this.selectedColor = num.intValue();
-                peerColorGrid.setSelected(num.intValue(), false);
+                peerColorGrid.setSelected(num.intValue(), true);
                 Page.this.updateMessages();
                 if (Page.this.setReplyIconCell != null) {
                     Page.this.setReplyIconCell.invalidate();

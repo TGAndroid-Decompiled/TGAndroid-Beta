@@ -29,6 +29,7 @@ uniform vec3 gridSize;
 uniform float seed;
 uniform float longevity;
 uniform float dp;
+uniform vec2 offset;
 
 #define noiseScale   12.0
 #define noiseSpeed    0.6
@@ -120,7 +121,7 @@ void main() {
     ) / gridSize.xy;
     position = (matrix * vec3(uv + .5 / gridSize.xy, 1.0)).xy;
     float direction = rand(3. * uv) * (3.14159265 * 2.0);
-    velocity = vec2(cos(direction), sin(direction)) * (0.1 + rand(5. * uv) * (0.2 - 0.1)) * 190.0 * dp;
+    velocity = vec2(cos(direction), sin(direction)) * (0.1 + rand(5. * uv) * (0.2 - 0.1)) * 210.0 * dp;
     particleTime = (0.7 + rand(uv) * (1.5 - 0.7)) / 1.15;
   }
 
@@ -138,7 +139,7 @@ void main() {
   alpha = max(0.0, min(0.55, particleTime) / 0.55);
   gl_PointSize = (gridSize.z + 1.);
   position.y = size.y - position.y;
-  gl_Position = vec4(position / size * 2.0 - vec2(1.0), 0.0, 1.0);
+  gl_Position = vec4((position + offset) / size * 2.0 - vec2(1.0), 0.0, 1.0);
   uvcenter = uv;
   uvsize = (vec2(gridSize.z + 1.) / rectSize.xy);
 }

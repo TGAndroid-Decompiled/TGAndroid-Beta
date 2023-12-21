@@ -697,7 +697,6 @@ public class BlurringShader {
         private boolean oldPaintSet;
         public Paint paint;
         private Paint[] tempPaints;
-        private final int type;
         private final View view;
         private boolean wasDark;
 
@@ -713,7 +712,6 @@ public class BlurringShader {
             this.wasDark = false;
             this.manager = blurManager;
             this.view = view;
-            this.type = i;
             this.animateBitmapChange = z;
             ColorMatrix colorMatrix = new ColorMatrix();
             if (i == 0) {
@@ -816,21 +814,6 @@ public class BlurringShader {
             }
             rectF2.set(rectF);
             updateBounds();
-        }
-
-        public StoryBlurDrawer adapt(boolean z) {
-            if (this.wasDark != z) {
-                this.wasDark = z;
-                if (this.type == 10) {
-                    ColorMatrix colorMatrix = new ColorMatrix();
-                    colorMatrix.setSaturation(1.6f);
-                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, this.wasDark ? 0.97f : 0.92f);
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, this.wasDark ? 0.12f : -0.06f);
-                    this.paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                    this.oldPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                }
-            }
-            return this;
         }
 
         public Paint getPaint(float f) {

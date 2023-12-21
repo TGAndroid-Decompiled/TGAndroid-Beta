@@ -328,16 +328,16 @@ public class ActionBar extends FrameLayout {
             boolean drawChild = super.drawChild(canvas, view, j);
             if (this.supportsHolidayImage && !this.titleOverlayShown && !LocaleController.isRTL) {
                 SimpleTextView[] simpleTextViewArr = this.titleTextView;
-                if ((view == simpleTextViewArr[0] || view == simpleTextViewArr[1]) && (currentHolidayDrawable = Theme.getCurrentHolidayDrawable()) != null) {
-                    SimpleTextView simpleTextView = (SimpleTextView) view;
-                    if (simpleTextView.getVisibility() == 0 && (simpleTextView.getText() instanceof String)) {
+                if ((view == simpleTextViewArr[0] || view == simpleTextViewArr[1] || (view == this.titlesContainer && this.useContainerForTitles)) && (currentHolidayDrawable = Theme.getCurrentHolidayDrawable()) != null) {
+                    SimpleTextView simpleTextView = view == this.titlesContainer ? this.titleTextView[0] : (SimpleTextView) view;
+                    if (simpleTextView != null && simpleTextView.getVisibility() == 0 && (simpleTextView.getText() instanceof String)) {
                         TextPaint textPaint = simpleTextView.getTextPaint();
                         textPaint.getFontMetricsInt(this.fontMetricsInt);
                         textPaint.getTextBounds((String) simpleTextView.getText(), 0, 1, this.rect);
                         int textStartX = simpleTextView.getTextStartX() + Theme.getCurrentHolidayDrawableXOffset() + ((this.rect.width() - (currentHolidayDrawable.getIntrinsicWidth() + Theme.getCurrentHolidayDrawableXOffset())) / 2);
-                        int textStartY = simpleTextView.getTextStartY() + Theme.getCurrentHolidayDrawableYOffset() + ((int) Math.ceil((simpleTextView.getTextHeight() - this.rect.height()) / 2.0f));
+                        int textStartY = simpleTextView.getTextStartY() + Theme.getCurrentHolidayDrawableYOffset() + ((int) Math.ceil((simpleTextView.getTextHeight() - this.rect.height()) / 2.0f)) + ((int) (AndroidUtilities.dp(8.0f) * (1.0f - this.titlesContainer.getScaleY())));
                         currentHolidayDrawable.setBounds(textStartX, textStartY - currentHolidayDrawable.getIntrinsicHeight(), currentHolidayDrawable.getIntrinsicWidth() + textStartX, textStartY);
-                        currentHolidayDrawable.setAlpha((int) (simpleTextView.getAlpha() * 255.0f));
+                        currentHolidayDrawable.setAlpha((int) (this.titlesContainer.getAlpha() * 255.0f * simpleTextView.getAlpha()));
                         currentHolidayDrawable.draw(canvas);
                         if (this.overlayTitleAnimationInProgress) {
                             view.invalidate();

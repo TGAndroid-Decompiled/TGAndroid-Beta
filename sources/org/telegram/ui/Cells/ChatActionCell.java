@@ -1371,7 +1371,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return Theme.getColor(i, this.themeDelegate);
     }
 
-    public Paint getThemedPaint(String str) {
+    protected Paint getThemedPaint(String str) {
         Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
         Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
         return paint != null ? paint : Theme.getThemePaint(str);

@@ -619,6 +619,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.fromRect.set(sourceView.screenRect);
             this.fromRounding = sourceView.rounding;
         } else {
+            this.fromSourceView = null;
             this.openType = 0;
             this.fromRect.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
             this.fromRounding = AndroidUtilities.dp(8.0f);
@@ -2545,6 +2546,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
     public void lambda$initViews$13(Runnable runnable) {
         applyPaint();
+        applyPaintMessage();
         applyFilter(runnable);
     }
 
@@ -2921,6 +2923,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$upload$32(boolean z) {
+        applyPaintMessage();
         this.preparingUpload = false;
         uploadInternal(z);
     }
@@ -5086,6 +5089,51 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.applyPaint():void");
     }
 
+    private void applyPaintMessage() {
+        StoryEntry storyEntry;
+        if (this.paintView == null || (storyEntry = this.outputEntry) == null || !storyEntry.isRepostMessage) {
+            return;
+        }
+        File file = storyEntry.messageFile;
+        if (file != null) {
+            try {
+                file.delete();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            this.outputEntry.messageFile = null;
+        }
+        this.outputEntry.messageFile = StoryEntry.makeCacheFile(this.currentAccount, "webp");
+        PaintView paintView = this.paintView;
+        StoryEntry storyEntry2 = this.outputEntry;
+        Bitmap bitmap = paintView.getBitmap(storyEntry2.mediaEntities, storyEntry2.resultWidth, storyEntry2.resultHeight, false, false, true, !this.isVideo, storyEntry2);
+        try {
+            try {
+                bitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.outputEntry.messageFile));
+                if (bitmap.isRecycled()) {
+                    return;
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                try {
+                    this.outputEntry.messageFile.delete();
+                } catch (Exception e3) {
+                    FileLog.e(e3);
+                }
+                this.outputEntry.messageFile = null;
+                if (bitmap == null || bitmap.isRecycled()) {
+                    return;
+                }
+            }
+            bitmap.recycle();
+        } catch (Throwable th) {
+            if (bitmap != null && !bitmap.isRecycled()) {
+                bitmap.recycle();
+            }
+            throw th;
+        }
+    }
+
     private void applyFilter(Runnable runnable) {
         StoryEntry storyEntry;
         PreviewView previewView;
@@ -5508,6 +5556,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.showSavedDraftHint = !this.outputEntry.isDraft;
         applyFilter(null);
         applyPaint();
+        applyPaintMessage();
         destroyPhotoFilterView();
         StoryEntry storyEntry2 = this.outputEntry;
         storyEntry2.destroy(true);

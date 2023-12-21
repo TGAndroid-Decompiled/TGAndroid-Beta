@@ -1732,9 +1732,14 @@ public class ChannelColorActivity extends BaseFragment {
                 chatThemeItem.themeIndex = isDark;
                 this.items.add(chatThemeItem);
             }
-            for (int i2 = 0; i2 < this.items.size(); i2++) {
-                ChatThemeBottomSheet.ChatThemeItem chatThemeItem2 = this.items.get(i2);
-                chatThemeItem2.isSelected = TextUtils.equals(this.currentEmoticon, chatThemeItem2.getEmoticon()) || (TextUtils.isEmpty(this.currentEmoticon) && chatThemeItem2.chatTheme.showAsDefaultStub);
+            int i2 = -1;
+            for (int i3 = 0; i3 < this.items.size(); i3++) {
+                ChatThemeBottomSheet.ChatThemeItem chatThemeItem2 = this.items.get(i3);
+                boolean z = TextUtils.equals(this.currentEmoticon, chatThemeItem2.getEmoticon()) || (TextUtils.isEmpty(this.currentEmoticon) && chatThemeItem2.chatTheme.showAsDefaultStub);
+                chatThemeItem2.isSelected = z;
+                if (z) {
+                    i2 = i3;
+                }
             }
             RecyclerListView.SelectionAdapter selectionAdapter = this.adapter;
             if (selectionAdapter != null) {
@@ -1742,6 +1747,10 @@ public class ChannelColorActivity extends BaseFragment {
             }
             this.listView.animate().alpha(1.0f).setDuration(150L).start();
             updateState(true);
+            if (i2 < 0 || !(this.listView.getLayoutManager() instanceof LinearLayoutManager)) {
+                return;
+            }
+            ((LinearLayoutManager) this.listView.getLayoutManager()).scrollToPositionWithOffset(i2, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(83.0f)) / 2);
         }
 
         public boolean parseTheme(final Theme.ThemeInfo themeInfo) {

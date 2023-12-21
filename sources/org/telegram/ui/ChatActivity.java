@@ -19931,11 +19931,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     arrayList = new ArrayList<>();
                     arrayList.add(messageObject);
                 }
-                boolean canRepostMessage = StoryEntry.canRepostMessage(messageObject);
+                ArrayList<MessageObject> arrayList2 = arrayList;
+                boolean z = ChatActivity.this.getMessagesController().storiesEnabled() && StoryEntry.canRepostMessage(messageObject);
                 ChatActivity chatActivity = ChatActivity.this;
                 Context context = ChatActivity.this.getContext();
                 ChatActivity chatActivity2 = ChatActivity.this;
-                chatActivity.showDialog(new AnonymousClass1(context, chatActivity2, arrayList, null, null, ChatObject.isChannel(chatActivity2.currentChat), null, null, false, false, canRepostMessage, ChatActivity.this.themeDelegate, canRepostMessage, messageObject));
+                chatActivity.showDialog(new AnonymousClass1(context, chatActivity2, arrayList2, null, null, ChatObject.isChannel(chatActivity2.currentChat), null, null, false, false, z, ChatActivity.this.themeDelegate, z, messageObject));
                 AndroidUtilities.setAdjustResizeToNothing(ChatActivity.this.getParentActivity(), ((BaseFragment) ChatActivity.this).classGuid);
                 ((BaseFragment) ChatActivity.this).fragmentView.requestLayout();
             }
@@ -19982,7 +19983,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             public void lambda$onShareStory$1(StoryRecorder storyRecorder, View view, Long l, Runnable runnable, Boolean bool, final Long l2) {
-                if (bool.booleanValue()) {
+                boolean booleanValue = bool.booleanValue();
+                StoryRecorder.SourceView sourceView = null;
+                if (booleanValue) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -19992,7 +19995,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     dismiss();
                     storyRecorder.replaceSourceView(null);
                 } else {
-                    storyRecorder.replaceSourceView(view instanceof ShareDialogCell ? StoryRecorder.SourceView.fromShareCell((ShareDialogCell) view) : null);
+                    if ((view instanceof ShareDialogCell) && view.isAttachedToWindow()) {
+                        sourceView = StoryRecorder.SourceView.fromShareCell((ShareDialogCell) view);
+                    }
+                    storyRecorder.replaceSourceView(sourceView);
                 }
                 AndroidUtilities.runOnUIThread(runnable);
             }

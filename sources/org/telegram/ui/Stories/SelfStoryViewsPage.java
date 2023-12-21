@@ -13,6 +13,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
@@ -603,7 +605,8 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         if (tL_stories$StoryItem == null) {
             return;
         }
-        ViewsModel viewsModel = MessagesController.getInstance(i).storiesController.selfViewsModel.get(tL_stories$StoryItem.id);
+        SparseArray<ViewsModel> sparseArray = MessagesController.getInstance(i).storiesController.selfViewsModel.get(tL_stories$StoryItem.dialogId);
+        ViewsModel viewsModel = sparseArray == null ? null : sparseArray.get(tL_stories$StoryItem.id);
         TL_stories$StoryViews tL_stories$StoryViews = tL_stories$StoryItem.views;
         int i2 = tL_stories$StoryViews == null ? 0 : tL_stories$StoryViews.views_count;
         if (viewsModel == null || viewsModel.totalCount != i2) {
@@ -612,7 +615,13 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             }
             ViewsModel viewsModel2 = new ViewsModel(i, j, tL_stories$StoryItem, true);
             viewsModel2.loadNext();
-            MessagesController.getInstance(i).storiesController.selfViewsModel.put(tL_stories$StoryItem.id, viewsModel2);
+            if (sparseArray == null) {
+                LongSparseArray<SparseArray<ViewsModel>> longSparseArray = MessagesController.getInstance(i).storiesController.selfViewsModel;
+                long j2 = tL_stories$StoryItem.dialogId;
+                sparseArray = new SparseArray<>();
+                longSparseArray.put(j2, sparseArray);
+            }
+            sparseArray.put(tL_stories$StoryItem.id, viewsModel2);
         }
     }
 

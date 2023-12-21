@@ -564,25 +564,26 @@ public class StoryEntry {
     }
 
     public static boolean canRepostMessage(MessageObject messageObject) {
+        TLRPC$Message tLRPC$Message;
         int i;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         TLRPC$Peer tLRPC$Peer;
-        if (messageObject == null) {
-            return false;
-        }
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        if ((tLRPC$Message != null && tLRPC$Message.noforwards) || (i = messageObject.type) == 17 || i == 12) {
-            return false;
-        }
-        long dialogId = messageObject.getDialogId();
-        TLRPC$Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
-        if (chat == null || !chat.noforwards) {
-            if ((dialogId < 0 && ChatObject.isChannelAndNotMegaGroup(chat)) || (tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from) == null || (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) == null || (tLRPC$MessageFwdHeader.flags & 4) == 0) {
+        if (messageObject != null && !messageObject.isSponsored() && (((tLRPC$Message = messageObject.messageOwner) == null || !tLRPC$Message.noforwards) && (i = messageObject.type) != 17 && i != 12)) {
+            long dialogId = messageObject.getDialogId();
+            TLRPC$Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
+            if (chat != null && chat.noforwards) {
+                return false;
+            }
+            if (dialogId < 0 && ChatObject.isChannelAndNotMegaGroup(chat)) {
                 return true;
             }
-            long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
-            TLRPC$Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
-            return peerDialogId < 0 && (chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2) && ChatObject.isPublic(chat2);
+            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null && (tLRPC$MessageFwdHeader.flags & 4) != 0) {
+                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
+                TLRPC$Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2) && ChatObject.isPublic(chat2))) {
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -593,12 +594,13 @@ public class StoryEntry {
         if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return null;
         }
-        if (!ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$Message.peer_id))))) {
+        TLRPC$Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$Message.peer_id)));
+        if ((chat != null && chat.noforwards) || !ChatObject.isChannelAndNotMegaGroup(chat)) {
             TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
             if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null && (tLRPC$MessageFwdHeader.flags & 4) != 0) {
                 long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
-                TLRPC$Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
-                if (peerDialogId < 0 && ((chat == null || !chat.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat))) {
+                TLRPC$Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2))) {
                     return Boolean.TRUE;
                 }
             }

@@ -2408,6 +2408,23 @@ public class LocaleController {
         }
     }
 
+    public static String formatSmallDateChat(long j) {
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            int i = calendar.get(1);
+            long j2 = j * 1000;
+            calendar.setTimeInMillis(j2);
+            if (i == calendar.get(1)) {
+                return getInstance().formatterDayMonth.format(j2);
+            }
+            return getInstance().formatterDayMonth.format(j2) + ", " + calendar.get(1);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "LOC_ERR: formatDateChat";
+        }
+    }
+
     public static String formatDate(long j) {
         long j2 = j * 1000;
         try {

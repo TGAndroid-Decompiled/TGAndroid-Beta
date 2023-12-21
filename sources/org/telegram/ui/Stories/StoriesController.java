@@ -169,7 +169,7 @@ public class StoriesController {
     private LongSparseArray<TL_stories$PeerStories> allStoriesMap = new LongSparseArray<>();
     private LongSparseIntArray loadingDialogsStories = new LongSparseIntArray();
     final LongSparseArray<ViewsForPeerStoriesRequester> pollingViewsForSelfStoriesRequester = new LongSparseArray<>();
-    public SparseArray<SelfStoryViewsPage.ViewsModel> selfViewsModel = new SparseArray<>();
+    public LongSparseArray<SparseArray<SelfStoryViewsPage.ViewsModel>> selfViewsModel = new LongSparseArray<>();
     private boolean hasMoreHidden = true;
     private boolean firstLoad = true;
     HashSet<Long> allStoriesLoading = new HashSet<>();

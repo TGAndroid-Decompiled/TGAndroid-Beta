@@ -58,7 +58,7 @@ public class DraftsController {
         });
     }
 
-    public static void lambda$loadInternal$1(org.telegram.messenger.MessagesStorage r6, boolean r7, final org.telegram.messenger.Utilities.Callback r8) {
+    public static void lambda$loadInternal$1(org.telegram.messenger.MessagesStorage r8, boolean r9, final org.telegram.messenger.Utilities.Callback r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DraftsController.lambda$loadInternal$1(org.telegram.messenger.MessagesStorage, boolean, org.telegram.messenger.Utilities$Callback):void");
     }
 
@@ -221,7 +221,7 @@ public class DraftsController {
     }
 
     public void append(StoryEntry storyEntry) {
-        if (storyEntry == null) {
+        if (storyEntry == null || storyEntry.isRepostMessage) {
             return;
         }
         prepare(storyEntry);
@@ -318,7 +318,7 @@ public class DraftsController {
     }
 
     public void saveForEdit(StoryEntry storyEntry, long j, TL_stories$StoryItem tL_stories$StoryItem) {
-        if (storyEntry == null || tL_stories$StoryItem == null || tL_stories$StoryItem.media == null) {
+        if (storyEntry == null || storyEntry.isRepostMessage || tL_stories$StoryItem == null || tL_stories$StoryItem.media == null) {
             return;
         }
         ArrayList<StoryEntry> arrayList = new ArrayList<>();
@@ -923,7 +923,7 @@ public class DraftsController {
                 if (this.mediaEntities == null) {
                     this.mediaEntities = new ArrayList<>();
                 }
-                this.mediaEntities.add(new VideoEditedInfo.MediaEntity(abstractSerializedData, true));
+                this.mediaEntities.add(new VideoEditedInfo.MediaEntity(abstractSerializedData, true, z));
             }
             if (abstractSerializedData.readInt32(z) != 481674261) {
                 if (z) {
