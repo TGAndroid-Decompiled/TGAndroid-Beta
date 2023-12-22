@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -106,18 +105,15 @@ public class BoostDialogs {
         }
         if (str.contains("PREMIUM_SUB_ACTIVE_UNTIL_")) {
             String format = LocaleController.getInstance().formatterBoostExpired.format(new Date(Integer.parseInt(tLRPC$TL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), Theme.key_undo_cancelColor, 0, runnable);
+            BulletinFactory of = BulletinFactory.of(frameLayout, resourcesProvider);
+            int i = R.raw.chats_infotip;
+            String string = LocaleController.getString("GiftPremiumActivateErrorTitle", R.string.GiftPremiumActivateErrorTitle);
+            of.createSimpleBulletin(i, string, AndroidUtilities.replaceCharSequence("%1$s", replaceSingleTag, AndroidUtilities.replaceTags("**" + format + "**"))).show();
             try {
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), Theme.key_undo_cancelColor, 0, runnable);
-                replaceSingleTag.replace(replaceSingleTag.toString().indexOf("%1$s"), replaceSingleTag.toString().indexOf("%1$s") + 4, (CharSequence) AndroidUtilities.replaceTags("**" + format + "**"));
-                BulletinFactory.of(frameLayout, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString("GiftPremiumActivateErrorTitle", R.string.GiftPremiumActivateErrorTitle), replaceSingleTag).show();
-                try {
-                    frameLayout.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
+                frameLayout.performHapticFeedback(3, 2);
+                return;
+            } catch (Exception unused) {
                 return;
             }
         }

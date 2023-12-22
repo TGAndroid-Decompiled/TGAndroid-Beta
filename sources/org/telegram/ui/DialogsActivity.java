@@ -5999,6 +5999,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     this.dialogsHintCell.setVisibility(4);
                 } else {
                     this.dialogsHintCell.setVisibility(0);
+                    ViewParent parent = this.dialogsHintCell.getParent();
+                    if (parent != null) {
+                        parent.requestLayout();
+                    }
                 }
             }
         }

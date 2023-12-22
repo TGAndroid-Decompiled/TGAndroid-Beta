@@ -331,10 +331,9 @@ public class MessageEntityView extends EntityView {
                     i8 = Math.max(right, i8);
                 }
                 RecyclerListView recyclerListView = MessageEntityView.this.listView;
-                int i10 = -measuredWidth;
-                recyclerListView.layout(i10, 0, recyclerListView.getMeasuredWidth() - measuredWidth, MessageEntityView.this.listView.getMeasuredHeight());
+                recyclerListView.layout(-measuredWidth, 0, recyclerListView.getMeasuredWidth() - measuredWidth, MessageEntityView.this.listView.getMeasuredHeight());
                 if (MessageEntityView.this.textureView != null) {
-                    MessageEntityView.this.textureView.layout(i10, 0, MessageEntityView.this.listView.getMeasuredWidth() - measuredWidth, MessageEntityView.this.listView.getMeasuredHeight());
+                    MessageEntityView.this.textureView.layout(0, 0, getMeasuredWidth(), MessageEntityView.this.listView.getMeasuredHeight());
                 }
             }
 
@@ -349,11 +348,11 @@ public class MessageEntityView extends EntityView {
                     this.videoMatrix.reset();
                     float max = Math.max(photoImage.getImageWidth() / MessageEntityView.this.videoWidth, photoImage.getImageHeight() / MessageEntityView.this.videoHeight);
                     this.videoMatrix.postScale((MessageEntityView.this.videoWidth / MessageEntityView.this.textureView.getWidth()) * max, (MessageEntityView.this.videoHeight / MessageEntityView.this.textureView.getHeight()) * max);
-                    this.videoMatrix.postTranslate((cell.getX() + photoImage.getCenterX()) - ((MessageEntityView.this.videoWidth * max) / 2.0f), (cell.getY() + photoImage.getCenterY()) - ((MessageEntityView.this.videoHeight * max) / 2.0f));
+                    this.videoMatrix.postTranslate(((MessageEntityView.this.listView.getX() + cell.getX()) + photoImage.getCenterX()) - ((MessageEntityView.this.videoWidth * max) / 2.0f), ((MessageEntityView.this.listView.getY() + cell.getY()) + photoImage.getCenterY()) - ((MessageEntityView.this.videoHeight * max) / 2.0f));
                     MessageEntityView.this.textureView.setTransform(this.videoMatrix);
                     canvas.save();
                     this.clipPath.rewind();
-                    AndroidUtilities.rectTmp.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
+                    AndroidUtilities.rectTmp.set(MessageEntityView.this.listView.getX() + cell.getX() + photoImage.getImageX(), MessageEntityView.this.listView.getY() + cell.getY() + photoImage.getImageY(), MessageEntityView.this.listView.getX() + cell.getX() + photoImage.getImageX2(), MessageEntityView.this.listView.getY() + cell.getY() + photoImage.getImageY2());
                     for (int i4 = 0; i4 < photoImage.getRoundRadius().length; i4++) {
                         int i5 = i4 * 2;
                         this.radii[i5] = photoImage.getRoundRadius()[i4];

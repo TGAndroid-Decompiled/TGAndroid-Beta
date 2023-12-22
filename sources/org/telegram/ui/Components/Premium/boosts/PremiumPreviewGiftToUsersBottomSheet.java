@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -137,7 +138,10 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         coloredImageSpan.setTranslateX(-AndroidUtilities.dp(4.0f));
         coloredImageSpan.setTranslateY(-AndroidUtilities.dp(1.0f));
         coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText4);
-        spannableStringBuilder.setSpan(coloredImageSpan, replaceTags.toString().indexOf("⚡"), replaceTags.toString().indexOf("⚡") + 1, 33);
+        int indexOf = TextUtils.indexOf(replaceTags, "⚡");
+        if (indexOf >= 0) {
+            spannableStringBuilder.setSpan(coloredImageSpan, indexOf, indexOf + 1, 33);
+        }
         this.subtitleView.append(spannableStringBuilder);
     }
 

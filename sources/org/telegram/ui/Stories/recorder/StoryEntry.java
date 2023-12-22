@@ -85,6 +85,7 @@ public class StoryEntry {
     public String audioTitle;
     public Drawable backgroundDrawable;
     public File backgroundFile;
+    public String backgroundWallpaperEmoticon;
     public Bitmap blurredVideoThumb;
     public CharSequence caption;
     public long draftDate;
@@ -634,20 +635,12 @@ public class StoryEntry {
     public static StoryEntry repostMessage(ArrayList<MessageObject> arrayList) {
         MessageObject messageObject;
         int i;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
-        TLRPC$Peer tLRPC$Peer;
         StoryEntry storyEntry = new StoryEntry();
         storyEntry.isRepostMessage = true;
         storyEntry.messageObjects = arrayList;
         storyEntry.resultWidth = 1080;
         storyEntry.resultHeight = 1920;
-        MessageObject messageObject2 = arrayList.get(0);
-        TLRPC$Message tLRPC$Message = messageObject2.messageOwner;
-        if (tLRPC$Message != null && (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
-            storyEntry.backgroundWallpaperPeerId = DialogObject.getPeerDialogId(tLRPC$Peer);
-        } else {
-            storyEntry.backgroundWallpaperPeerId = messageObject2.getDialogId();
-        }
+        storyEntry.backgroundWallpaperPeerId = getRepostDialogId(arrayList.get(0));
         VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
         mediaEntity.type = (byte) 6;
         mediaEntity.x = 0.5f;
@@ -655,9 +648,9 @@ public class StoryEntry {
         ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = new ArrayList<>();
         storyEntry.mediaEntities = arrayList2;
         arrayList2.add(mediaEntity);
-        if (arrayList.size() == 1 && (messageObject = arrayList.get(0)) != null && ((i = messageObject.type) == 3 || i == 5)) {
-            TLRPC$Message tLRPC$Message2 = messageObject.messageOwner;
-            if (tLRPC$Message2 != null && tLRPC$Message2.attachPath != null) {
+        if (arrayList.size() == 1 && (messageObject = arrayList.get(0)) != null && ((i = messageObject.type) == 8 || i == 3 || i == 5)) {
+            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+            if (tLRPC$Message != null && tLRPC$Message.attachPath != null) {
                 storyEntry.file = new File(messageObject.messageOwner.attachPath);
             }
             File file = storyEntry.file;

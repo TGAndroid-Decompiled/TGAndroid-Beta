@@ -285,6 +285,7 @@ import org.telegram.tgnet.TLRPC$TL_urlAuthResultAccepted;
 import org.telegram.tgnet.TLRPC$TL_urlAuthResultDefault;
 import org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest;
 import org.telegram.tgnet.TLRPC$TL_userProfilePhotoEmpty;
+import org.telegram.tgnet.TLRPC$TL_webPage;
 import org.telegram.tgnet.TLRPC$TL_webPageAttributeStory;
 import org.telegram.tgnet.TLRPC$TL_webPageEmpty;
 import org.telegram.tgnet.TLRPC$TL_webPagePending;
@@ -9921,7 +9922,41 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.waitingForWebpageId != i) {
             return;
         }
-        bool.booleanValue();
+        if (bool.booleanValue()) {
+            this.foundWebPage = tLRPC$WebPage;
+            String str = tLRPC$TL_messages_getWebPagePreview.message;
+            tLRPC$WebPage.display_url = str;
+            if (!(tLRPC$WebPage instanceof TLRPC$TL_webPage) && !(tLRPC$WebPage instanceof TLRPC$TL_webPagePending)) {
+                if (tLRPC$WebPage != null) {
+                    this.foundWebPage = null;
+                    MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
+                    if (messagePreviewParams != null) {
+                        int i2 = this.currentAccount;
+                        CharSequence fieldText = this.chatActivityEnterView.getFieldText();
+                        MessageObject messageObject = this.replyingMessageObject;
+                        messagePreviewParams.updateLink(i2, null, fieldText, messageObject == this.threadMessageObject ? null : messageObject, this.replyingQuote, this.editingMessageObject);
+                    }
+                    fallbackFieldPanel();
+                    return;
+                }
+                return;
+            }
+            if (tLRPC$WebPage instanceof TLRPC$TL_webPagePending) {
+                this.pendingLinkSearchString = str;
+            }
+            if (this.currentEncryptedChat != null && (tLRPC$WebPage instanceof TLRPC$TL_webPagePending)) {
+                tLRPC$WebPage.url = str;
+            }
+            MessagePreviewParams messagePreviewParams2 = this.messagePreviewParams;
+            if (messagePreviewParams2 != null) {
+                int i3 = this.currentAccount;
+                CharSequence fieldText2 = this.chatActivityEnterView.getFieldText();
+                MessageObject messageObject2 = this.replyingMessageObject;
+                messagePreviewParams2.updateLink(i3, null, fieldText2, messageObject2 == this.threadMessageObject ? null : messageObject2, this.replyingQuote, this.editingMessageObject);
+            }
+            showFieldPanelForWebPage(true, this.foundWebPage, false);
+            return;
+        }
         this.foundWebPage = null;
         fallbackFieldPanel();
     }

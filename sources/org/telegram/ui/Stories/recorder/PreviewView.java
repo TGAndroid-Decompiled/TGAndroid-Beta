@@ -92,6 +92,7 @@ public class PreviewView extends FrameLayout {
     private final PointF lastTouch;
     private float lastTouchDistance;
     private double lastTouchRotation;
+    private Drawable lastWallpaperDrawable;
     private final Matrix matrix;
     private boolean moving;
     private boolean multitouch;
@@ -123,6 +124,7 @@ public class PreviewView extends FrameLayout {
     private VideoPlayer videoPlayer;
     private int videoWidth;
     private Drawable wallpaperDrawable;
+    private AnimatedFloat wallpaperDrawableCrossfade;
 
     public boolean additionalTouchEvent(MotionEvent motionEvent) {
         return false;
@@ -165,6 +167,7 @@ public class PreviewView extends FrameLayout {
                 PreviewView.this.lambda$new$7();
             }
         };
+        this.wallpaperDrawableCrossfade = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.bitmapPaint = new Paint(7);
         this.gradientPaint = new Paint(1);
         this.matrix = new Matrix();
@@ -210,7 +213,7 @@ public class PreviewView extends FrameLayout {
         if (storyEntry == null) {
             setupVideoPlayer(null, runnable, j);
             setupImage(null);
-            setupWallpaper(null);
+            setupWallpaper(null, false);
             this.gradientPaint.setShader(null);
             setupAudio((StoryEntry) null, false);
             setupRound(null, null, false);
@@ -230,7 +233,7 @@ public class PreviewView extends FrameLayout {
             setupGradient();
         }
         applyMatrix();
-        setupWallpaper(storyEntry);
+        setupWallpaper(storyEntry, false);
         setupAudio(storyEntry, false);
         setupRound(storyEntry, null, false);
     }
@@ -239,7 +242,7 @@ public class PreviewView extends FrameLayout {
         this.entry = storyEntry;
         if (storyEntry == null) {
             setupImage(null);
-            setupWallpaper(null);
+            setupWallpaper(null, false);
             this.gradientPaint.setShader(null);
             setupAudio((StoryEntry) null, false);
             setupRound(null, null, false);
@@ -257,7 +260,7 @@ public class PreviewView extends FrameLayout {
             setupGradient();
         }
         applyMatrix();
-        setupWallpaper(storyEntry);
+        setupWallpaper(storyEntry, false);
         setupAudio(storyEntry, false);
         setupRound(storyEntry, null, false);
     }
@@ -1431,6 +1434,14 @@ public class PreviewView extends FrameLayout {
                 canvas.save();
                 canvas.clipPath(path);
             }
+            Drawable drawable = this.wallpaperDrawable;
+            float f = !(!(drawable instanceof MotionBackgroundDrawable) || ((MotionBackgroundDrawable) drawable).getPatternBitmap() != null) ? 0.0f : this.wallpaperDrawableCrossfade.set(1.0f);
+            Drawable drawable2 = this.lastWallpaperDrawable;
+            if (drawable2 != null && f < 1.0f) {
+                drawable2.setAlpha((int) ((1.0f - f) * 255.0f));
+                StoryEntry.drawBackgroundDrawable(canvas, this.lastWallpaperDrawable, getWidth(), getHeight());
+            }
+            this.wallpaperDrawable.setAlpha((int) (f * 255.0f));
             StoryEntry.drawBackgroundDrawable(canvas, this.wallpaperDrawable, getWidth(), getHeight());
             if (this.drawForThemeToggle) {
                 canvas.restore();
@@ -1439,8 +1450,8 @@ public class PreviewView extends FrameLayout {
             canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.gradientPaint);
         }
         if (this.draw && this.entry != null) {
-            float f = this.thumbAlpha.set(this.bitmap != null);
-            if (this.thumbBitmap != null && 1.0f - f > 0.0f) {
+            float f2 = this.thumbAlpha.set(this.bitmap != null);
+            if (this.thumbBitmap != null && 1.0f - f2 > 0.0f) {
                 this.matrix.set(this.entry.matrix);
                 this.matrix.preScale(this.entry.width / this.thumbBitmap.getWidth(), this.entry.height / this.thumbBitmap.getHeight());
                 this.matrix.postScale(getWidth() / this.entry.resultWidth, getHeight() / this.entry.resultHeight);
@@ -1451,7 +1462,7 @@ public class PreviewView extends FrameLayout {
                 this.matrix.set(this.entry.matrix);
                 this.matrix.preScale(this.entry.width / this.bitmap.getWidth(), this.entry.height / this.bitmap.getHeight());
                 this.matrix.postScale(getWidth() / this.entry.resultWidth, getHeight() / this.entry.resultHeight);
-                this.bitmapPaint.setAlpha((int) (f * 255.0f));
+                this.bitmapPaint.setAlpha((int) (f2 * 255.0f));
                 canvas.drawBitmap(this.bitmap, this.matrix, this.bitmapPaint);
             }
         }
@@ -1614,50 +1625,71 @@ public class PreviewView extends FrameLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.getBackgroundDrawable(android.graphics.drawable.Drawable, int, org.telegram.tgnet.TLRPC$WallPaper, boolean):android.graphics.drawable.Drawable");
     }
 
-    public void setupWallpaper(StoryEntry storyEntry) {
-        if (storyEntry != null) {
-            long j = storyEntry.backgroundWallpaperPeerId;
-            if (j != Long.MIN_VALUE) {
-                Drawable backgroundDrawable = getBackgroundDrawable(this.wallpaperDrawable, storyEntry.currentAccount, j, storyEntry.isDark);
-                storyEntry.backgroundDrawable = backgroundDrawable;
-                this.wallpaperDrawable = backgroundDrawable;
-                if (backgroundDrawable != null) {
-                    backgroundDrawable.setCallback(this);
-                }
-                BlurringShader.BlurManager blurManager = this.blurManager;
-                if (blurManager != null) {
-                    Drawable drawable = this.wallpaperDrawable;
-                    if (drawable != null) {
-                        if (drawable instanceof BitmapDrawable) {
-                            blurManager.setFallbackBlur(((BitmapDrawable) drawable).getBitmap(), 0);
-                        } else {
-                            int intrinsicWidth = drawable.getIntrinsicWidth();
-                            int intrinsicHeight = this.wallpaperDrawable.getIntrinsicHeight();
-                            if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
-                                intrinsicWidth = 1080;
-                                intrinsicHeight = 1920;
-                            }
-                            float f = intrinsicWidth;
-                            float f2 = intrinsicHeight;
-                            float max = Math.max(100.0f / f, 100.0f / f2);
-                            if (max > 1.0f) {
-                                intrinsicWidth = (int) (f * max);
-                                intrinsicHeight = (int) (f2 * max);
-                            }
-                            Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
-                            this.wallpaperDrawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                            this.wallpaperDrawable.draw(new Canvas(createBitmap));
-                            this.blurManager.setFallbackBlur(createBitmap, 0, true);
-                        }
-                    } else {
-                        blurManager.setFallbackBlur(null, 0);
-                    }
-                }
-                invalidate();
-                return;
+    public void setupWallpaper(StoryEntry storyEntry, boolean z) {
+        Drawable drawable = this.wallpaperDrawable;
+        this.lastWallpaperDrawable = drawable;
+        if (drawable != null) {
+            drawable.setCallback(null);
+        }
+        if (storyEntry == null) {
+            this.wallpaperDrawable = null;
+            return;
+        }
+        long j = storyEntry.backgroundWallpaperPeerId;
+        String str = storyEntry.backgroundWallpaperEmoticon;
+        if (str != null) {
+            Drawable backgroundDrawableFromTheme = getBackgroundDrawableFromTheme(storyEntry.currentAccount, str, storyEntry.isDark);
+            storyEntry.backgroundDrawable = backgroundDrawableFromTheme;
+            this.wallpaperDrawable = backgroundDrawableFromTheme;
+        } else if (j != Long.MIN_VALUE) {
+            Drawable backgroundDrawable = getBackgroundDrawable(this.wallpaperDrawable, storyEntry.currentAccount, j, storyEntry.isDark);
+            storyEntry.backgroundDrawable = backgroundDrawable;
+            this.wallpaperDrawable = backgroundDrawable;
+        } else {
+            this.wallpaperDrawable = null;
+            return;
+        }
+        if (this.lastWallpaperDrawable != this.wallpaperDrawable) {
+            if (z) {
+                this.wallpaperDrawableCrossfade.set(0.0f, true);
+            } else {
+                this.lastWallpaperDrawable = null;
             }
         }
-        this.wallpaperDrawable = null;
+        Drawable drawable2 = this.wallpaperDrawable;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
+        }
+        BlurringShader.BlurManager blurManager = this.blurManager;
+        if (blurManager != null) {
+            Drawable drawable3 = this.wallpaperDrawable;
+            if (drawable3 != null) {
+                if (drawable3 instanceof BitmapDrawable) {
+                    blurManager.setFallbackBlur(((BitmapDrawable) drawable3).getBitmap(), 0);
+                } else {
+                    int intrinsicWidth = drawable3.getIntrinsicWidth();
+                    int intrinsicHeight = this.wallpaperDrawable.getIntrinsicHeight();
+                    if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
+                        intrinsicWidth = 1080;
+                        intrinsicHeight = 1920;
+                    }
+                    float f = intrinsicWidth;
+                    float f2 = intrinsicHeight;
+                    float max = Math.max(100.0f / f, 100.0f / f2);
+                    if (max > 1.0f) {
+                        intrinsicWidth = (int) (f * max);
+                        intrinsicHeight = (int) (f2 * max);
+                    }
+                    Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
+                    this.wallpaperDrawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+                    this.wallpaperDrawable.draw(new Canvas(createBitmap));
+                    this.blurManager.setFallbackBlur(createBitmap, 0, true);
+                }
+            } else {
+                blurManager.setFallbackBlur(null, 0);
+            }
+        }
+        invalidate();
     }
 
     public static Drawable getBackgroundDrawableFromTheme(int i, String str, boolean z) {

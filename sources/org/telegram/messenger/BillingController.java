@@ -92,7 +92,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     }
 
     public String formatCurrency(long j, String str, int i, boolean z) {
-        if (str.isEmpty()) {
+        if (str == null || str.isEmpty()) {
             return String.valueOf(j);
         }
         Currency currency = Currency.getInstance(str);

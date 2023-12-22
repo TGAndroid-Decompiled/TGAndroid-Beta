@@ -135,7 +135,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         if (itemViewType != 3) {
             if (itemViewType == 6) {
                 SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
-                selectorCountryCell.setCountry(item.country, (i >= this.items.size() + (-2) || (i2 = i + 1) >= this.items.size() + (-2) || this.items.get(i2).viewType == 7) ? false : false);
+                selectorCountryCell.setCountry(item.country, (i >= this.items.size() - 1 || (i2 = i + 1) >= this.items.size() - 1 || this.items.get(i2).viewType == 7) ? false : false);
                 selectorCountryCell.setChecked(item.checked, false);
                 return;
             } else if (itemViewType == -1) {

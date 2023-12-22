@@ -300,12 +300,12 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     }
                 });
                 AreaView areaView3 = this.selectedArea;
-                if (areaView3.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) {
-                    this.hintView.setTranslationY(areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+                if ((areaView3.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) && (!z ? (areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f) >= AndroidUtilities.dp(120.0f) : areaView3.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f) <= getMeasuredHeight() - AndroidUtilities.dp(120.0f))) {
+                    this.hintView.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
                 } else if (z) {
-                    this.hintView.setTranslationY(areaView3.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
+                    this.hintView.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
                 } else {
-                    this.hintView.setTranslationY((areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f));
+                    this.hintView.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f));
                 }
                 this.hintView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -454,7 +454,6 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 canvas.save();
                 this.clipPath.rewind();
                 this.rectF.set(this.lastSelectedArea.getX(), this.lastSelectedArea.getY(), this.lastSelectedArea.getX() + this.lastSelectedArea.getMeasuredWidth(), this.lastSelectedArea.getY() + this.lastSelectedArea.getMeasuredHeight());
-                this.rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
                 float lerp = AndroidUtilities.lerp(1.0f, 1.05f, f2);
                 canvas.scale(lerp, lerp, this.rectF.centerX(), this.rectF.centerY());
                 canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());

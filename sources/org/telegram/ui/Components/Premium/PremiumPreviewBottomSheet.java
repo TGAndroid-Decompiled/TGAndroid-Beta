@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -726,10 +725,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 frameLayout.addView(linearLayout);
                 PremiumPreviewBottomSheet premiumPreviewBottomSheet9 = PremiumPreviewBottomSheet.this;
                 GLIconTextureView gLIconTextureView = premiumPreviewBottomSheet9.iconTextureView;
+                view = frameLayout;
                 if (gLIconTextureView != null) {
                     gLIconTextureView.setStarParticlesView(premiumPreviewBottomSheet9.starParticlesView);
+                    view = frameLayout;
                 }
-                view = frameLayout;
             } else if (i == 2) {
                 view = new ShadowSectionCell(context, 12, PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_windowBackgroundGray));
             } else if (i == 3) {
@@ -755,24 +755,19 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             } else {
                 TextInfoCell textInfoCell = new TextInfoCell(context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider);
                 textInfoCell.setBackground(true);
-                try {
-                    String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
-                    int i4 = Theme.key_chat_messageLinkIn;
-                    SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i4, 0, new Runnable() {
-                        @Override
-                        public final void run() {
-                            PremiumPreviewBottomSheet.Adapter.this.lambda$onCreateViewHolder$0();
-                        }
-                    });
-                    textInfoCell.setText(replaceSingleTag.replace(replaceSingleTag.toString().indexOf("%1$s"), replaceSingleTag.toString().indexOf("%1$s") + 4, (CharSequence) AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i4, 0, new Runnable() {
-                        @Override
-                        public final void run() {
-                            PremiumPreviewBottomSheet.Adapter.this.lambda$onCreateViewHolder$1();
-                        }
-                    })));
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+                String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
+                int i4 = Theme.key_chat_messageLinkIn;
+                textInfoCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i4, 0, new Runnable() {
+                    @Override
+                    public final void run() {
+                        PremiumPreviewBottomSheet.Adapter.this.lambda$onCreateViewHolder$0();
+                    }
+                }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i4, 0, new Runnable() {
+                    @Override
+                    public final void run() {
+                        PremiumPreviewBottomSheet.Adapter.this.lambda$onCreateViewHolder$1();
+                    }
+                })));
                 view = textInfoCell;
             }
             view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));

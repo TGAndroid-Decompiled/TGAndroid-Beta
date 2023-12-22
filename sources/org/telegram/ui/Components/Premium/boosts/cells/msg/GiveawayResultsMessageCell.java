@@ -281,13 +281,9 @@ public class GiveawayResultsMessageCell {
                     GiveawayResultsMessageCell.this.lambda$setMessageContent$1(messageObject, tLRPC$TL_messageMediaGiveawayResults);
                 }
             });
-            int indexOf = replaceSingleTag.toString().indexOf("%1$d");
-            if (indexOf != -1) {
-                replaceSingleTag.replace(indexOf, indexOf + 4, (CharSequence) AndroidUtilities.replaceTags("**" + tLRPC$TL_messageMediaGiveawayResults.winners_count + "**"));
-            }
-            this.topStringBuilder.append((CharSequence) replaceSingleTag);
+            this.topStringBuilder.append((CharSequence) AndroidUtilities.replaceCharSequence("%1$d", replaceSingleTag, AndroidUtilities.replaceTags("**" + tLRPC$TL_messageMediaGiveawayResults.winners_count + "**")));
             this.topStringBuilder.append((CharSequence) "\n\n");
-            this.topStringBuilder.setSpan(new RelativeSizeSpan(0.4f), this.topStringBuilder.length() - 1, this.topStringBuilder.length(), 33);
+            this.topStringBuilder.setSpan(new RelativeSizeSpan(0.4f), this.topStringBuilder.length() + (-1), this.topStringBuilder.length(), 33);
             SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(LocaleController.getPluralString("BoostingGiveawayResultsMsgWinners", tLRPC$TL_messageMediaGiveawayResults.winners_count));
             this.topStringBuilder.append((CharSequence) replaceTags2);
             this.topStringBuilder.setSpan(new RelativeSizeSpan(1.05f), replaceSingleTag.length() + 2, replaceSingleTag.length() + 2 + replaceTags2.length(), 33);
