@@ -4184,7 +4184,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public static String getFileName(Uri uri) {
         if (uri == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         try {
             if (uri.getScheme().equals("content")) {
@@ -4204,7 +4204,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return r2;
         } catch (Exception e2) {
             FileLog.e(e2);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 

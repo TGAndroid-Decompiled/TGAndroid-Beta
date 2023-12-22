@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -335,7 +336,7 @@ public class PollVotesAlert extends BottomSheet {
             this.drawPlaceholder = tLObject == null;
             this.placeholderNum = i;
             if (tLObject == null) {
-                this.nameTextView.setText("");
+                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
                 this.avatarImageView.setImageDrawable(null);
             } else {
                 update(0);

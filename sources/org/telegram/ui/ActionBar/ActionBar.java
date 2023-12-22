@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -1237,7 +1238,7 @@ public class ActionBar extends FrameLayout {
         if (actionBarMenu == null) {
             return;
         }
-        actionBarMenu.openSearchField(!this.isSearchFieldVisible, false, "", z);
+        actionBarMenu.openSearchField(!this.isSearchFieldVisible, false, BuildConfig.APP_CENTER_HASH, z);
     }
 
     public void setSearchFilter(FiltersView.MediaFilterData mediaFilterData) {

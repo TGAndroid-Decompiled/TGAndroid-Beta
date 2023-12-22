@@ -53,6 +53,7 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -491,7 +492,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 @Override
                 public void onSearchExpand() {
                     TopicsFragment.this.animateToSearchView(true);
-                    TopicsFragment.this.searchContainer.setSearchString("");
+                    TopicsFragment.this.searchContainer.setSearchString(BuildConfig.APP_CENTER_HASH);
                     TopicsFragment.this.searchContainer.setAlpha(0.0f);
                     TopicsFragment.this.searchContainer.emptyView.showProgress(true, false);
                 }

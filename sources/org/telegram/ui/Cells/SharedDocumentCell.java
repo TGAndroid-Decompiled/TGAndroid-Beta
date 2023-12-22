@@ -24,6 +24,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -347,7 +348,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             str = photoEntry.path;
         } else {
             this.thumbImageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         File file = new File(str);
         this.nameTextView.setText(file.getName());
@@ -423,13 +424,14 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             this.downloadedSize = 0L;
         }
         TLRPC$Document document = messageObject.getDocument();
+        String str4 = BuildConfig.APP_CENTER_HASH;
         if (document != null) {
-            String str4 = null;
+            String str5 = null;
             if (messageObject.isMusic()) {
                 for (int i = 0; i < document.attributes.size(); i++) {
                     TLRPC$DocumentAttribute tLRPC$DocumentAttribute = document.attributes.get(i);
                     if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) && (((str2 = tLRPC$DocumentAttribute.performer) != null && str2.length() != 0) || ((str3 = tLRPC$DocumentAttribute.title) != null && str3.length() != 0))) {
-                        str4 = messageObject.getMusicAuthor() + " - " + messageObject.getMusicTitle();
+                        str5 = messageObject.getMusicAuthor() + " - " + messageObject.getMusicTitle();
                     }
                 }
             }
@@ -437,21 +439,24 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             if (TextUtils.isEmpty(documentFileName) && (str = document.mime_type) != null) {
                 documentFileName = str.startsWith(MediaStreamTrack.VIDEO_TRACK_KIND) ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", R.string.AttachGif) : LocaleController.getString("AttachVideo", R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", R.string.AttachGif) : LocaleController.getString("AttachPhoto", R.string.AttachPhoto) : document.mime_type.startsWith(MediaStreamTrack.AUDIO_TRACK_KIND) ? LocaleController.getString("AttachAudio", R.string.AttachAudio) : LocaleController.getString("AttachDocument", R.string.AttachDocument);
             }
-            if (str4 == null) {
-                str4 = documentFileName;
+            if (str5 == null) {
+                str5 = documentFileName;
             }
-            CharSequence highlightText = AndroidUtilities.highlightText(str4, messageObject.highlightedWords, this.resourcesProvider);
+            CharSequence highlightText = AndroidUtilities.highlightText(str5, messageObject.highlightedWords, this.resourcesProvider);
             if (highlightText != null) {
                 this.nameTextView.setText(highlightText);
             } else {
-                this.nameTextView.setText(str4);
+                this.nameTextView.setText(str5);
             }
             this.placeholderImageView.setVisibility(0);
             this.extTextView.setVisibility(0);
             this.placeholderImageView.setImageResource(AndroidUtilities.getThumbForNameOrMime(documentFileName, document.mime_type, false));
             TextView textView = this.extTextView;
             int lastIndexOf = documentFileName.lastIndexOf(46);
-            textView.setText(lastIndexOf != -1 ? documentFileName.substring(lastIndexOf + 1).toLowerCase() : "");
+            if (lastIndexOf != -1) {
+                str4 = documentFileName.substring(lastIndexOf + 1).toLowerCase();
+            }
+            textView.setText(str4);
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
             TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
             if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
@@ -487,9 +492,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
                 }
             }
         } else {
-            this.nameTextView.setText("");
-            this.extTextView.setText("");
-            this.dateTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.extTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.dateTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.placeholderImageView.setVisibility(0);
             this.extTextView.setVisibility(0);
             this.extTextView.setAlpha(1.0f);

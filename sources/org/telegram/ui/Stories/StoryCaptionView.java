@@ -43,6 +43,7 @@ import java.util.Objects;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -611,7 +612,7 @@ public class StoryCaptionView extends NestedScrollView {
                         reply2.title = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(longValue))));
                     } else {
                         TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-longValue));
-                        reply2.title = new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat2) ? MessageObject.channelSpan() : MessageObject.groupSpan()).append((CharSequence) " ").append((CharSequence) (chat2 != null ? chat2.title : ""));
+                        reply2.title = new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat2) ? MessageObject.channelSpan() : MessageObject.groupSpan()).append((CharSequence) " ").append((CharSequence) (chat2 != null ? chat2.title : BuildConfig.APP_CENTER_HASH));
                     }
                 } else if (tL_stories$StoryFwdHeader.from_name != null) {
                     reply2.title = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) tL_stories$StoryItem.fwd_from.from_name);
@@ -693,16 +694,21 @@ public class StoryCaptionView extends NestedScrollView {
         }
 
         public void draw(Canvas canvas, float f) {
-            if (this.titleLayout == null) {
+            Text text = this.titleLayout;
+            String str = BuildConfig.APP_CENTER_HASH;
+            if (text == null) {
                 CharSequence charSequence = this.title;
                 if (charSequence == null) {
-                    charSequence = "";
+                    charSequence = BuildConfig.APP_CENTER_HASH;
                 }
                 this.titleLayout = new Text(charSequence, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             }
             if (this.textLayout == null || this.updateText) {
                 ?? r5 = this.text;
-                this.textLayout = new Text(r5 != 0 ? r5 : "", 14.0f);
+                if (r5 != 0) {
+                    str = r5;
+                }
+                this.textLayout = new Text(str, 14.0f);
             }
             float f2 = this.animatedSmall.set(this.small);
             this.backgroundPaint.setColor(1073741824);
@@ -820,7 +826,7 @@ public class StoryCaptionView extends NestedScrollView {
                 ArrayList arrayList = new ArrayList();
                 this.spoilers = arrayList;
                 this.spoilersPool = new Stack<>();
-                this.text = "";
+                this.text = BuildConfig.APP_CENTER_HASH;
                 this.translateT = new AnimatedFloat(StoryCaptionView.this, 0L, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.loadingPath = new Path();
                 this.patchedLayout = new AtomicReference<>();
@@ -1257,7 +1263,7 @@ public class StoryCaptionView extends NestedScrollView {
 
         public void setText(CharSequence charSequence, Reply reply, boolean z, boolean z2) {
             if (charSequence == null) {
-                charSequence = "";
+                charSequence = BuildConfig.APP_CENTER_HASH;
             }
             if (TextUtils.equals(this.state[0].text, charSequence)) {
                 TextState[] textStateArr = this.state;

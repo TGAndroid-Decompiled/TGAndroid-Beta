@@ -12,6 +12,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 public class Text {
     private boolean doNotSave;
     private LinearGradient ellipsizeGradient;
@@ -147,6 +148,6 @@ public class Text {
 
     public CharSequence getText() {
         StaticLayout staticLayout = this.layout;
-        return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
+        return (staticLayout == null || staticLayout.getText() == null) ? BuildConfig.APP_CENTER_HASH : this.layout.getText();
     }
 }

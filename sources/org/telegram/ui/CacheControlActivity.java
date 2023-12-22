@@ -40,6 +40,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.Emoji;
@@ -1827,7 +1828,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             StringBuilder sb = new StringBuilder();
             sb.append(LocaleController.getString("ClearCache", R.string.ClearCache));
             if (TextUtils.isEmpty(this.valueTextView.getText())) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 str = " (" + ((Object) this.valueTextView.getText()) + ")";
             }
@@ -2028,7 +2029,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.valueTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.valueTextView.setTextColor(Theme.blendOver(Theme.getColor(i), Theme.multAlpha(Theme.getColor(i2), 0.7f)));
-            this.valueTextView.setText("");
+            this.valueTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
             setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
@@ -2048,7 +2049,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 string = LocaleController.getString("ClearSelectedCache", R.string.ClearSelectedCache);
             }
             animatedTextDrawable.setText(string);
-            this.valueTextView.setText(j <= 0 ? "" : AndroidUtilities.formatFileSize(j));
+            this.valueTextView.setText(j <= 0 ? BuildConfig.APP_CENTER_HASH : AndroidUtilities.formatFileSize(j));
             setDisabled(j <= 0);
             this.button.invalidate();
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
@@ -2820,7 +2821,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             sb.append((Object) this.textView.getText());
             AnimatedTextView animatedTextView = this.valueTextView;
             if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 str = "\n" + ((Object) this.valueTextView.getText());
             }

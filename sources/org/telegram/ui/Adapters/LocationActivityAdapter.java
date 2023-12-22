@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Locale;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MessageObject;
@@ -168,11 +169,11 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     private void updateCell() {
-        String str;
         SendLocationCell sendLocationCell = this.sendLocationCell;
         if (sendLocationCell != null) {
-            str = "";
-            if (this.locationType == 4 || this.customLocation != null) {
+            int i = this.locationType;
+            String str = BuildConfig.APP_CENTER_HASH;
+            if (i == 4 || this.customLocation != null) {
                 if (!TextUtils.isEmpty(this.addressName)) {
                     str = this.addressName;
                 } else {
@@ -200,7 +201,11 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), LocaleController.formatString("AccurateTo", R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
                 this.sendLocationCell.setHasLocation(true);
             } else {
-                sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), this.myLocationDenied ? "" : LocaleController.getString("Loading", R.string.Loading));
+                String string = LocaleController.getString("SendLocation", R.string.SendLocation);
+                if (!this.myLocationDenied) {
+                    str = LocaleController.getString("Loading", R.string.Loading);
+                }
+                sendLocationCell.setText(string, str);
                 this.sendLocationCell.setHasLocation(!this.myLocationDenied);
             }
         }

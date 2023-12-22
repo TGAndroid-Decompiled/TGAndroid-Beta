@@ -413,7 +413,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             if (supportBigNotifications) {
                 build2.bigContentView.setTextViewText(i18, str);
                 build2.bigContentView.setTextViewText(i19, str2);
-                build2.bigContentView.setTextViewText(R.id.player_album_title, (audioInfo == null || TextUtils.isEmpty(audioInfo.getAlbum())) ? "" : audioInfo.getAlbum());
+                build2.bigContentView.setTextViewText(R.id.player_album_title, (audioInfo == null || TextUtils.isEmpty(audioInfo.getAlbum())) ? BuildConfig.APP_CENTER_HASH : audioInfo.getAlbum());
             }
             build2.flags |= 2;
             startForeground(5, build2);

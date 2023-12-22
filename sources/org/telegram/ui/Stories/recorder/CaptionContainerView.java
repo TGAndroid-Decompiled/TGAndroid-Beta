@@ -33,6 +33,7 @@ import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -443,7 +444,7 @@ public class CaptionContainerView extends FrameLayout {
             CaptionContainerView.this.codePointCount = Character.codePointCount(editable, 0, editable.length());
             int captionLimit = CaptionContainerView.this.getCaptionLimit();
             if (CaptionContainerView.this.codePointCount + 25 > captionLimit) {
-                str = "" + (captionLimit - CaptionContainerView.this.codePointCount);
+                str = BuildConfig.APP_CENTER_HASH + (captionLimit - CaptionContainerView.this.codePointCount);
             } else {
                 str = null;
             }
@@ -885,11 +886,11 @@ public class CaptionContainerView extends FrameLayout {
         }
         this.hasReply = true;
         if (charSequence == null) {
-            charSequence = "";
+            charSequence = BuildConfig.APP_CENTER_HASH;
         }
         this.replyTitle = new Text(charSequence, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         if (charSequence2 == null) {
-            charSequence2 = "";
+            charSequence2 = BuildConfig.APP_CENTER_HASH;
         }
         this.replyText = new Text(charSequence2, 14.0f);
     }
@@ -1102,7 +1103,7 @@ public class CaptionContainerView extends FrameLayout {
 
     public void clear() {
         this.ignoreTextChange = true;
-        this.editText.setText("");
+        this.editText.setText(BuildConfig.APP_CENTER_HASH);
     }
 
     public void setText(CharSequence charSequence) {
@@ -1291,7 +1292,7 @@ public class CaptionContainerView extends FrameLayout {
 
         public void setValue(int i, boolean z, boolean z2) {
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-            animatedTextDrawable.setText("" + i, z2);
+            animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z2);
             this.filled = z;
             if (!z2) {
                 this.fillT.set(z, true);

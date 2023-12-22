@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -100,7 +101,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         this.noButton.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
         this.noButton.setLoading(false, false);
         if (arrayList != null && arrayList.size() == 1) {
-            String str = "" + arrayList.get(0).device;
+            String str = BuildConfig.APP_CENTER_HASH + arrayList.get(0).device;
             if (!TextUtils.isEmpty(arrayList.get(0).location) && !str.isEmpty()) {
                 str = str + ", ";
             }
@@ -362,9 +363,9 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
 
     private static String from(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth) {
         if (unconfirmedAuth == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
-        String str = "" + unconfirmedAuth.device;
+        String str = BuildConfig.APP_CENTER_HASH + unconfirmedAuth.device;
         if (!TextUtils.isEmpty(unconfirmedAuth.location) && !str.isEmpty()) {
             str = str + ", ";
         }

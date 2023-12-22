@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC$User;
@@ -75,7 +76,7 @@ public class CheckBoxUserCell extends FrameLayout {
         if (tLRPC$User != null) {
             this.textView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
         } else {
-            this.textView.setText("");
+            this.textView.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.textView.setRightDrawable((tLRPC$User == null || !tLRPC$User.verified) ? null : getVerifiedDrawable());
         this.checkBox.setChecked(z, false);

@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -113,7 +114,7 @@ public class SliderView extends View {
                 animatedTextDrawable2.setText(LocaleController.getString(R.string.WallpaperDimming));
             }
         }
-        animatedTextDrawable.setText("");
+        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
         paint.setColor(i2);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
     }

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -144,7 +145,7 @@ public class SessionCell extends FrameLayout {
                 str = UserObject.getFirstName(user);
                 this.imageView.setForUserOrChat(user, this.avatarDrawable);
             } else {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             int i = Theme.key_windowBackgroundWhiteGrayText3;
             setTag(Integer.valueOf(i));

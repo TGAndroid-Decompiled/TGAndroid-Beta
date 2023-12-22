@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -478,7 +479,7 @@ public class StoryEntry {
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
-                        next.segmentedPath = "";
+                        next.segmentedPath = BuildConfig.APP_CENTER_HASH;
                     }
                 }
             }

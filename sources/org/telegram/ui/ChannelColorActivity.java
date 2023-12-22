@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
@@ -421,7 +422,7 @@ public class ChannelColorActivity extends BaseFragment {
             }
         });
         int i = R.raw.sun;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.sunDrawable = rLottieDrawable;
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         if (!this.isDark) {
@@ -1143,7 +1144,7 @@ public class ChannelColorActivity extends BaseFragment {
                         if (i != ChannelColorActivity.this.profileHintRow) {
                             if (i != ChannelColorActivity.this.statusHintRow) {
                                 if (i == ChannelColorActivity.this.removeProfileColorShadowRow) {
-                                    textInfoPrivacyCell.setText("");
+                                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                                     textInfoPrivacyCell.setFixedSize(12);
                                 }
                             } else {

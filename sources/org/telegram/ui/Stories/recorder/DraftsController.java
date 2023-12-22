@@ -10,6 +10,7 @@ import java.util.List;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -262,7 +263,7 @@ public class DraftsController {
             sb3.append(storyDraft.editExpireDate);
             str = sb3.toString();
         } else {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         sb2.append(str);
         sb2.append(", now=");
@@ -424,7 +425,7 @@ public class DraftsController {
                     sb3.append(storyEntry.editExpireDate);
                     str = sb3.toString();
                 } else {
-                    str = "";
+                    str = BuildConfig.APP_CENTER_HASH;
                 }
                 sb2.append(str);
                 sb2.append(", now=");
@@ -536,12 +537,13 @@ public class DraftsController {
             this.id = storyEntry.draftId;
             this.date = storyEntry.draftDate;
             File file = storyEntry.draftThumbFile;
-            this.thumb = file == null ? "" : file.toString();
+            String str = BuildConfig.APP_CENTER_HASH;
+            this.thumb = file == null ? BuildConfig.APP_CENTER_HASH : file.toString();
             File file2 = storyEntry.uploadThumbFile;
-            this.fullThumb = file2 == null ? "" : file2.toString();
+            this.fullThumb = file2 == null ? BuildConfig.APP_CENTER_HASH : file2.toString();
             this.isVideo = storyEntry.isVideo;
             File file3 = storyEntry.file;
-            this.file = file3 == null ? "" : file3.toString();
+            this.file = file3 == null ? BuildConfig.APP_CENTER_HASH : file3.toString();
             this.fileDeletable = storyEntry.fileDeletable;
             this.muted = storyEntry.muted;
             float f = storyEntry.left;
@@ -560,17 +562,17 @@ public class DraftsController {
             this.gradientBottomColor = storyEntry.gradientBottomColor;
             CharSequence charSequence = storyEntry.caption;
             this.captionEntities = storyEntry.captionEntitiesAllowed ? MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true) : null;
-            this.caption = charSequence == null ? "" : charSequence.toString();
+            this.caption = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
             arrayList.addAll(storyEntry.privacyRules);
             File file4 = storyEntry.paintFile;
-            this.paintFilePath = file4 == null ? "" : file4.toString();
+            this.paintFilePath = file4 == null ? BuildConfig.APP_CENTER_HASH : file4.toString();
             File file5 = storyEntry.paintEntitiesFile;
-            this.paintEntitiesFilePath = file5 == null ? "" : file5.toString();
+            this.paintEntitiesFilePath = file5 == null ? BuildConfig.APP_CENTER_HASH : file5.toString();
             this.averageDuration = storyEntry.averageDuration;
             this.mediaEntities = storyEntry.mediaEntities;
             this.stickers = storyEntry.stickers;
             File file6 = storyEntry.filterFile;
-            this.filterFilePath = file6 == null ? "" : file6.toString();
+            this.filterFilePath = file6 == null ? BuildConfig.APP_CENTER_HASH : file6.toString();
             this.filterState = storyEntry.filterState;
             this.period = storyEntry.period;
             this.isError = storyEntry.isError;
@@ -584,7 +586,7 @@ public class DraftsController {
             this.audioRight = storyEntry.audioRight;
             this.audioVolume = storyEntry.audioVolume;
             File file7 = storyEntry.round;
-            this.roundPath = file7 != null ? file7.getAbsolutePath() : "";
+            this.roundPath = file7 != null ? file7.getAbsolutePath() : str;
             this.roundThumb = storyEntry.roundThumb;
             this.roundDuration = storyEntry.roundDuration;
             this.roundOffset = storyEntry.roundOffset;
@@ -639,7 +641,7 @@ public class DraftsController {
                 MessageObject.addEntitiesToText(replaceEmoji, this.captionEntities, true, false, true, false);
                 storyEntry.caption = replaceEmoji;
             } else {
-                storyEntry.caption = "";
+                storyEntry.caption = BuildConfig.APP_CENTER_HASH;
             }
             storyEntry.privacyRules.clear();
             storyEntry.privacyRules.addAll(this.privacyRules);
@@ -753,7 +755,7 @@ public class DraftsController {
             }
             String str = this.filterFilePath;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             abstractSerializedData.writeString(str);
             if (this.filterState == null) {

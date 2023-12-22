@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -107,7 +108,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         this.selectedMonths = 12;
         this.selectedEndDate = BoostDialogs.getThreeDaysAfterToday();
         this.selectedSliderIndex = 2;
-        this.additionalPrize = "";
+        this.additionalPrize = BuildConfig.APP_CENTER_HASH;
         this.isShowWinnersSelected = true;
         this.hideKeyboardRunnable = new Runnable() {
             @Override

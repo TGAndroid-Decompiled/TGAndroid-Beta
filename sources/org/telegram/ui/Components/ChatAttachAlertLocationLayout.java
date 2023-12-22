@@ -49,6 +49,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.IMapsProvider;
@@ -1591,13 +1592,13 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             return;
         }
         if (d != 0.0d && d2 != 0.0d) {
-            Location location = new Location("");
+            Location location = new Location(BuildConfig.APP_CENTER_HASH);
             this.userLocation = location;
             location.reset();
             this.userLocation.setLatitude(d);
             this.userLocation.setLongitude(d2);
         } else {
-            Location location2 = new Location("");
+            Location location2 = new Location(BuildConfig.APP_CENTER_HASH);
             this.myLocation = location2;
             location2.reset();
             this.myLocation.setLatitude(d);

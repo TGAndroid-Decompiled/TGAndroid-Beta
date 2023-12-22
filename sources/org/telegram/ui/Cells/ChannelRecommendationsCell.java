@@ -19,6 +19,7 @@ import android.view.VelocityTracker;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -447,12 +448,12 @@ public class ChannelRecommendationsCell {
             avatarDrawableArr[0].setInfo(i, tLRPC$Chat);
             imageReceiverArr[0].setForUserOrChat(tLRPC$Chat, avatarDrawableArr[0]);
             textPaint.setTextSize(AndroidUtilities.dp(11.0f));
-            String str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
+            CharSequence charSequence = tLRPC$Chat != null ? tLRPC$Chat.title : BuildConfig.APP_CENTER_HASH;
             try {
-                str = Emoji.replaceEmoji(str, textPaint.getFontMetricsInt(), false);
+                charSequence = Emoji.replaceEmoji(charSequence, textPaint.getFontMetricsInt(), false);
             } catch (Exception unused) {
             }
-            this.name = str;
+            this.name = charSequence;
             this.subscribersStrokePaint.setStyle(Paint.Style.STROKE);
             this.isLock = false;
             this.subscribersDrawable = chatMessageCell.getContext().getResources().getDrawable(R.drawable.mini_reply_user).mutate();
