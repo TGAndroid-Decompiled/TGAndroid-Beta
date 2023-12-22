@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
@@ -75,7 +74,7 @@ public class ReactionsUtils {
             spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
             return spannableStringBuilder;
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static void applyForStoryViews(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2, TL_stories$StoryViews tL_stories$StoryViews) {

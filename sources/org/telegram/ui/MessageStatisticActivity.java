@@ -27,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.Emoji;
@@ -650,18 +649,13 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (listAdapter != null) {
             listAdapter.notifyDataSetChanged();
         }
-        boolean isStory = this.messageObject.isStory();
-        String str = BuildConfig.APP_CENTER_HASH;
-        if (isStory) {
+        if (this.messageObject.isStory()) {
             TLRPC$TL_stats_getStoryPublicForwards tLRPC$TL_stats_getStoryPublicForwards = new TLRPC$TL_stats_getStoryPublicForwards();
             tLRPC$TL_stats_getStoryPublicForwards.limit = i;
             tLRPC$TL_stats_getStoryPublicForwards.id = this.messageObject.storyItem.id;
             tLRPC$TL_stats_getStoryPublicForwards.peer = getMessagesController().getInputPeer(-this.chatId);
-            String str2 = this.nextOffset;
-            if (str2 != null) {
-                str = str2;
-            }
-            tLRPC$TL_stats_getStoryPublicForwards.offset = str;
+            String str = this.nextOffset;
+            tLRPC$TL_stats_getStoryPublicForwards.offset = str != null ? str : "";
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getStoryPublicForwards, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -681,11 +675,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             tLRPC$TL_stats_getMessagePublicForwards.msg_id = messageObject.getId();
             tLRPC$TL_stats_getMessagePublicForwards.channel = getMessagesController().getInputChannel(-this.messageObject.getDialogId());
         }
-        String str3 = this.nextOffset;
-        if (str3 != null) {
-            str = str3;
-        }
-        tLRPC$TL_stats_getMessagePublicForwards.offset = str;
+        String str2 = this.nextOffset;
+        tLRPC$TL_stats_getMessagePublicForwards.offset = str2 != null ? str2 : "";
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getMessagePublicForwards, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

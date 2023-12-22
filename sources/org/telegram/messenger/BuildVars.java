@@ -10,12 +10,12 @@ public class BuildVars {
     public static String BUILD_VERSION_STRING = null;
     public static boolean CHECK_UPDATES = true;
     public static boolean DEBUG_PRIVATE_VERSION = false;
-    public static boolean DEBUG_VERSION = false;
+    public static boolean DEBUG_VERSION = true;
     public static String GOOGLE_AUTH_CLIENT_ID = null;
     public static String HUAWEI_APP_ID = null;
     public static String HUAWEI_STORE_URL = null;
     public static boolean IS_BILLING_UNAVAILABLE = false;
-    public static boolean LOGS_ENABLED = false;
+    public static boolean LOGS_ENABLED = true;
     public static boolean NO_SCOPED_STORAGE = false;
     public static String PLAYSTORE_APP_URL = null;
     public static String SAFETYNET_KEY = null;

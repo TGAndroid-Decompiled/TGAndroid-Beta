@@ -93,7 +93,6 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -757,7 +756,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             super(context);
             ChatActivityEnterView.this = r8;
             int i = R.raw.chat_audio_record_delete_2;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             this.drawable = rLottieDrawable;
             rLottieDrawable.setCurrentParentView(this);
             this.drawable.setInvalidateOnProgressSet(true);
@@ -2482,10 +2481,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void lambda$new$3(View view) {
         EditTextCaption editTextCaption = this.messageEditText;
-        String obj = editTextCaption != null ? editTextCaption.getText().toString() : BuildConfig.APP_CENTER_HASH;
+        String obj = editTextCaption != null ? editTextCaption.getText().toString() : "";
         int indexOf = obj.indexOf(32);
         if (indexOf == -1 || indexOf == obj.length() - 1) {
-            setFieldText(BuildConfig.APP_CENTER_HASH);
+            setFieldText("");
         } else {
             setFieldText(obj.substring(0, indexOf + 1));
         }
@@ -3660,7 +3659,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (!ChatActivityEnterView.this.isInScheduleMode()) {
                     if (ChatActivityEnterView.this.parentFragment == null || !ChatActivityEnterView.this.parentFragment.checkSlowMode(view)) {
                         SendMessagesHelper.getInstance(ChatActivityEnterView.this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(command, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, false, null, null, null, true, 0, null, false));
-                        ChatActivityEnterView.this.setFieldText(BuildConfig.APP_CENTER_HASH);
+                        ChatActivityEnterView.this.setFieldText("");
                         ChatActivityEnterView.this.botCommandsMenuContainer.dismiss();
                         return;
                     }
@@ -3677,7 +3676,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public void lambda$onItemClick$0(String str, boolean z, int i) {
             SendMessagesHelper.getInstance(ChatActivityEnterView.this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(str, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, false, null, null, null, z, i, null, false));
-            ChatActivityEnterView.this.setFieldText(BuildConfig.APP_CENTER_HASH);
+            ChatActivityEnterView.this.setFieldText("");
             ChatActivityEnterView.this.botCommandsMenuContainer.dismiss();
         }
     }
@@ -5702,7 +5701,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             checkSendButton(true);
         } else {
             EditTextCaption editTextCaption = this.messageEditText;
-            final Editable text = editTextCaption == null ? BuildConfig.APP_CENTER_HASH : editTextCaption.getText();
+            final String text = editTextCaption == null ? "" : editTextCaption.getText();
             ChatActivity chatActivity2 = this.parentFragment;
             if (chatActivity2 != null && (currentChat = chatActivity2.getCurrentChat()) != null && currentChat.slowmode_enabled && !ChatObject.hasAdminRights(currentChat)) {
                 if (text.length() > this.accountInstance.getMessagesController().maxMessageLength) {
@@ -5720,7 +5719,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (this.delegate.hasForwardingMessages() || ((i != 0 && !isInScheduleMode()) || isInScheduleMode())) {
                     EditTextCaption editTextCaption2 = this.messageEditText;
                     if (editTextCaption2 != null) {
-                        editTextCaption2.setText(BuildConfig.APP_CENTER_HASH);
+                        editTextCaption2.setText("");
                     }
                     ChatActivityEnterViewDelegate chatActivityEnterViewDelegate4 = this.delegate;
                     if (chatActivityEnterViewDelegate4 != null) {
@@ -5754,7 +5753,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         hideTopView(true);
         EditTextCaption editTextCaption = this.messageEditText;
         if (editTextCaption != null) {
-            editTextCaption.setText(BuildConfig.APP_CENTER_HASH);
+            editTextCaption.setText("");
         }
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
         if (chatActivityEnterViewDelegate != null) {
@@ -5829,7 +5828,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         }
         EditTextCaption editTextCaption = this.messageEditText;
-        CharSequence text = editTextCaption == null ? BuildConfig.APP_CENTER_HASH : editTextCaption.getText();
+        String text = editTextCaption == null ? "" : editTextCaption.getText();
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject == null || messageObject.type != 19) {
             text = AndroidUtilities.getTrimmedString(text);
@@ -6048,7 +6047,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 chatActivity5.foundWebPage = null;
                 MessagePreviewParams messagePreviewParams4 = chatActivity5.messagePreviewParams;
                 if (messagePreviewParams4 != null) {
-                    messagePreviewParams4.updateLink(this.currentAccount, null, BuildConfig.APP_CENTER_HASH, null, null, null);
+                    messagePreviewParams4.updateLink(this.currentAccount, null, "", null, null, null);
                 }
                 setWebPage(null, true);
                 this.parentFragment.fallbackFieldPanel();
@@ -6088,7 +6087,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         boolean z2 = this.isPaused ? false : z;
         EditTextCaption editTextCaption = this.messageEditText;
-        CharSequence trimmedString = editTextCaption == null ? BuildConfig.APP_CENTER_HASH : AndroidUtilities.getTrimmedString(editTextCaption.getText());
+        String trimmedString = editTextCaption == null ? "" : AndroidUtilities.getTrimmedString(editTextCaption.getText());
         int i3 = this.slowModeTimer;
         float f = 1.0f;
         if (i3 > 0 && i3 != Integer.MAX_VALUE && !isInScheduleMode()) {
@@ -7081,9 +7080,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 tLRPC$User = this.accountInstance.getMessagesController().getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id));
             }
             if ((this.botCount != 1 || z2) && tLRPC$User != null && tLRPC$User.bot && !str.contains("@")) {
-                str2 = String.format(Locale.US, "%s@%s", str, UserObject.getPublicUsername(tLRPC$User)) + " " + obj.replaceFirst("^/[a-zA-Z@\\d_]{1,255}(\\s|$)", BuildConfig.APP_CENTER_HASH);
+                str2 = String.format(Locale.US, "%s@%s", str, UserObject.getPublicUsername(tLRPC$User)) + " " + obj.replaceFirst("^/[a-zA-Z@\\d_]{1,255}(\\s|$)", "");
             } else {
-                str2 = str + " " + obj.replaceFirst("^/[a-zA-Z@\\d_]{1,255}(\\s|$)", BuildConfig.APP_CENTER_HASH);
+                str2 = str + " " + obj.replaceFirst("^/[a-zA-Z@\\d_]{1,255}(\\s|$)", "");
             }
             this.ignoreTextChange = true;
             this.messageEditText.setText(str2);
@@ -8472,7 +8471,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 TLRPC$User tLRPC$User = (TLRPC$User) obj2;
                 HashMap hashMap = new HashMap();
                 hashMap.put("id", tLRPC$BotInlineResult.id);
-                hashMap.put("query_id", BuildConfig.APP_CENTER_HASH + tLRPC$BotInlineResult.query_id);
+                hashMap.put("query_id", "" + tLRPC$BotInlineResult.query_id);
                 hashMap.put("force_gif", "1");
                 if (replyToStory == null) {
                     SendMessagesHelper.prepareSendingBotContextResult(ChatActivityEnterView.this.parentFragment, ChatActivityEnterView.this.accountInstance, tLRPC$BotInlineResult, hashMap, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, ChatActivityEnterView.this.replyingQuote, z, i);
@@ -8699,7 +8698,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             chatActivityEnterViewDelegate3.onMessageSend(null, true, i);
         }
         if (z2) {
-            setFieldText(BuildConfig.APP_CENTER_HASH);
+            setFieldText("");
         }
         MediaDataController.getInstance(this.currentAccount).addRecentSticker(0, obj, tLRPC$Document, (int) (System.currentTimeMillis() / 1000), false);
     }
@@ -9027,7 +9026,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (chatActivity != null && chatActivity.isTopic) {
             return this.dialog_id + "_" + this.parentFragment.getTopicId();
         }
-        return BuildConfig.APP_CENTER_HASH + this.dialog_id;
+        return "" + this.dialog_id;
     }
 
     public void setEmojiButtonImage(boolean z, boolean z2) {
@@ -9586,7 +9585,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     tLRPC$TL_peerUser.user_id = clientUserId;
                     tLRPC$Peer.user_id = clientUserId;
                     tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-                    tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_message.message = "";
                     tLRPC$TL_message.attachPath = this.audioToSendPath;
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
                     tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
@@ -10843,7 +10842,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         setStickersExpanded(false, true, false);
         showPopup(0, 0, false);
         if (getEditField() != null && !TextUtils.isEmpty(getEditField().getText())) {
-            getEditField().setText(BuildConfig.APP_CENTER_HASH);
+            getEditField().setText("");
         }
         this.recordingAudioVideo = false;
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = this.audioVideoSendButton;

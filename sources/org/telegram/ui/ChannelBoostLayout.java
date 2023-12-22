@@ -22,7 +22,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
@@ -320,8 +319,8 @@ public class ChannelBoostLayout extends FrameLayout {
                 return ((ItemInternal) ChannelBoostLayout.this.items.get(i)).viewType;
             }
         };
-        this.lastBoostsOffset = BuildConfig.APP_CENTER_HASH;
-        this.lastGiftsOffset = BuildConfig.APP_CENTER_HASH;
+        this.lastBoostsOffset = "";
+        this.lastGiftsOffset = "";
         this.limitGifts = 5;
         this.limitBoosts = 5;
         this.fragment = baseFragment;

@@ -71,7 +71,7 @@ public class LauncherIconController {
             PREMIUM = launcherIcon4;
             LauncherIcon launcherIcon5 = new LauncherIcon("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true);
             TURBO = launcherIcon5;
-            LauncherIcon launcherIcon6 = new LauncherIcon("NOX", 5, "NoxIcon", R.drawable.icon_2_background_sa, i2, R.string.AppIconNox, true);
+            LauncherIcon launcherIcon6 = new LauncherIcon("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i2, R.string.AppIconNox, true);
             NOX = launcherIcon6;
             $VALUES = new LauncherIcon[]{launcherIcon, launcherIcon2, launcherIcon3, launcherIcon4, launcherIcon5, launcherIcon6};
         }

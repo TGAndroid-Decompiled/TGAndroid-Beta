@@ -25,7 +25,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -492,7 +491,6 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
     }
 
     public boolean checkUrl(final String str, boolean z) {
-        String str2;
         Runnable runnable = this.checkRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -543,10 +541,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         } else {
             if (!z) {
                 TLRPC$TL_theme tLRPC$TL_theme = this.info;
-                if (tLRPC$TL_theme == null || (str2 = tLRPC$TL_theme.slug) == null) {
-                    str2 = BuildConfig.APP_CENTER_HASH;
-                }
-                if (str.equals(str2)) {
+                if (str.equals((tLRPC$TL_theme == null || (r10 = tLRPC$TL_theme.slug) == null) ? "" : "")) {
                     setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
                     return true;
                 }
@@ -568,7 +563,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
     public void lambda$checkUrl$8(final String str) {
         TLRPC$TL_account_createTheme tLRPC$TL_account_createTheme = new TLRPC$TL_account_createTheme();
         tLRPC$TL_account_createTheme.slug = str;
-        tLRPC$TL_account_createTheme.title = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_account_createTheme.title = "";
         tLRPC$TL_account_createTheme.document = new TLRPC$TL_inputDocumentEmpty();
         this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_createTheme, new RequestDelegate() {
             @Override
@@ -649,17 +644,14 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             } else {
                 TLRPC$TL_theme tLRPC$TL_theme3 = this.info;
                 String str3 = tLRPC$TL_theme3.slug;
-                String str4 = BuildConfig.APP_CENTER_HASH;
                 if (str3 == null) {
-                    str3 = BuildConfig.APP_CENTER_HASH;
+                    str3 = "";
                 }
-                String str5 = tLRPC$TL_theme3.title;
-                if (str5 != null) {
-                    str4 = str5;
-                }
+                String str4 = tLRPC$TL_theme3.title;
+                String str5 = str4 != null ? str4 : "";
                 String obj2 = this.linkField.getText().toString();
                 String obj3 = this.nameField.getText().toString();
-                if (str3.equals(obj2) && str4.equals(obj3)) {
+                if (str3.equals(obj2) && str5.equals(obj3)) {
                     finishFragment();
                     return;
                 }

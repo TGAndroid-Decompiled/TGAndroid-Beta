@@ -40,7 +40,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LruCache;
@@ -722,7 +721,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.actionBar.addView(this.avatarContainer, 0, LayoutHelper.createFrame(-2, -1.0f, 51, !this.inPreviewMode ? 50.0f : 0.0f, 0.0f, 40.0f, 0.0f));
         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         this.avatarContainer.setChatAvatar(chat);
-        this.avatarContainer.setTitle(chat == null ? BuildConfig.APP_CENTER_HASH : chat.title);
+        this.avatarContainer.setTitle(chat == null ? "" : chat.title);
         this.avatarContainer.hideSubtitle();
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -2933,23 +2932,21 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         }
 
         private Quadruple<String, String, Boolean, Boolean> prepare(TLRPC$TL_statsAbsValueAndPrev tLRPC$TL_statsAbsValueAndPrev) {
+            String str;
             double d = tLRPC$TL_statsAbsValueAndPrev.current;
             double d2 = tLRPC$TL_statsAbsValueAndPrev.previous;
             int i = (int) (d - d2);
             float abs = d2 == 0.0d ? 0.0f : Math.abs((i / ((float) d2)) * 100.0f);
             boolean z = false;
             String formatWholeNumber = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_statsAbsValueAndPrev.current, 0);
-            String str = BuildConfig.APP_CENTER_HASH;
+            str = "";
             if (i != 0 && abs != 0.0f) {
                 int i2 = (int) abs;
                 if (abs == i2) {
                     Locale locale = Locale.ENGLISH;
                     Object[] objArr = new Object[3];
                     StringBuilder sb = new StringBuilder();
-                    if (i > 0) {
-                        str = "+";
-                    }
-                    sb.append(str);
+                    sb.append(i > 0 ? "+" : "");
                     sb.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr[0] = sb.toString();
                     objArr[1] = Integer.valueOf(i2);
@@ -2959,10 +2956,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale2 = Locale.ENGLISH;
                     Object[] objArr2 = new Object[3];
                     StringBuilder sb2 = new StringBuilder();
-                    if (i > 0) {
-                        str = "+";
-                    }
-                    sb2.append(str);
+                    sb2.append(i > 0 ? "+" : "");
                     sb2.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr2[0] = sb2.toString();
                     objArr2[1] = Float.valueOf(abs);
@@ -3006,14 +3000,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.followersTitle = LocaleController.getString("FollowersChartTitle", R.string.FollowersChartTitle);
             this.followersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_broadcastStats.followers.current, 0);
             if (i == 0 || abs == 0.0f) {
-                this.followersSecondary = BuildConfig.APP_CENTER_HASH;
+                this.followersSecondary = "";
             } else {
                 int i2 = (int) abs;
                 if (abs == i2) {
                     Locale locale = Locale.ENGLISH;
                     Object[] objArr = new Object[3];
                     StringBuilder sb = new StringBuilder();
-                    sb.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                    sb.append(i > 0 ? "+" : "");
                     sb.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr[0] = sb.toString();
                     objArr[1] = Integer.valueOf(i2);
@@ -3023,7 +3017,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale2 = Locale.ENGLISH;
                     Object[] objArr2 = new Object[3];
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                    sb2.append(i > 0 ? "+" : "");
                     sb2.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr2[0] = sb2.toString();
                     objArr2[1] = Float.valueOf(abs);
@@ -3040,14 +3034,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.sharesTitle = LocaleController.getString("SharesPerPost", R.string.SharesPerPost);
             this.sharesPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_broadcastStats.shares_per_post.current, 0);
             if (i3 == 0 || abs2 == 0.0f) {
-                this.sharesSecondary = BuildConfig.APP_CENTER_HASH;
+                this.sharesSecondary = "";
             } else {
                 int i4 = (int) abs2;
                 if (abs2 == i4) {
                     Locale locale3 = Locale.ENGLISH;
                     Object[] objArr3 = new Object[3];
                     StringBuilder sb3 = new StringBuilder();
-                    sb3.append(i3 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                    sb3.append(i3 > 0 ? "+" : "");
                     sb3.append(AndroidUtilities.formatWholeNumber(i3, 0));
                     objArr3[0] = sb3.toString();
                     objArr3[1] = Integer.valueOf(i4);
@@ -3057,7 +3051,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale4 = Locale.ENGLISH;
                     Object[] objArr4 = new Object[3];
                     StringBuilder sb4 = new StringBuilder();
-                    sb4.append(i3 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                    sb4.append(i3 > 0 ? "+" : "");
                     sb4.append(AndroidUtilities.formatWholeNumber(i3, 0));
                     objArr4[0] = sb4.toString();
                     objArr4[1] = Float.valueOf(abs2);
@@ -3074,14 +3068,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.viewsTitle = LocaleController.getString("ViewsPerPost", R.string.ViewsPerPost);
             this.viewsPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_broadcastStats.views_per_post.current, 0);
             if (i5 == 0 || abs3 == 0.0f) {
-                this.viewsSecondary = BuildConfig.APP_CENTER_HASH;
+                this.viewsSecondary = "";
             } else {
                 int i6 = (int) abs3;
                 if (abs3 == i6) {
                     Locale locale5 = Locale.ENGLISH;
                     Object[] objArr5 = new Object[3];
                     StringBuilder sb5 = new StringBuilder();
-                    sb5.append(i5 <= 0 ? BuildConfig.APP_CENTER_HASH : "+");
+                    sb5.append(i5 <= 0 ? "" : "+");
                     sb5.append(AndroidUtilities.formatWholeNumber(i5, 0));
                     objArr5[0] = sb5.toString();
                     objArr5[1] = Integer.valueOf(i6);
@@ -3091,7 +3085,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale6 = Locale.ENGLISH;
                     Object[] objArr6 = new Object[3];
                     StringBuilder sb6 = new StringBuilder();
-                    sb6.append(i5 <= 0 ? BuildConfig.APP_CENTER_HASH : "+");
+                    sb6.append(i5 <= 0 ? "" : "+");
                     sb6.append(AndroidUtilities.formatWholeNumber(i5, 0));
                     objArr6[0] = sb6.toString();
                     objArr6[1] = Float.valueOf(abs3);
@@ -3139,14 +3133,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.membersTitle = LocaleController.getString("MembersOverviewTitle", R.string.MembersOverviewTitle);
             this.membersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.members.current, 0);
             if (i == 0 || abs == 0.0f) {
-                this.membersSecondary = BuildConfig.APP_CENTER_HASH;
+                this.membersSecondary = "";
             } else {
                 int i2 = (int) abs;
                 if (abs == i2) {
                     Locale locale = Locale.ENGLISH;
                     Object[] objArr = new Object[3];
                     StringBuilder sb = new StringBuilder();
-                    sb.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                    sb.append(i > 0 ? "+" : "");
                     sb.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr[0] = sb.toString();
                     objArr[1] = Integer.valueOf(i2);
@@ -3156,7 +3150,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale2 = Locale.ENGLISH;
                     Object[] objArr2 = new Object[3];
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                    sb2.append(i > 0 ? "+" : "");
                     sb2.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr2[0] = sb2.toString();
                     objArr2[1] = Float.valueOf(abs);
@@ -3173,12 +3167,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.viewingMembersTitle = LocaleController.getString("ViewingMembers", R.string.ViewingMembers);
             this.viewingMembersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.viewers.current, 0);
             if (i3 == 0 || abs2 == 0.0f) {
-                this.viewingMembersSecondary = BuildConfig.APP_CENTER_HASH;
+                this.viewingMembersSecondary = "";
             } else {
                 Locale locale3 = Locale.ENGLISH;
                 Object[] objArr3 = new Object[1];
                 StringBuilder sb3 = new StringBuilder();
-                sb3.append(i3 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                sb3.append(i3 > 0 ? "+" : "");
                 sb3.append(AndroidUtilities.formatWholeNumber(i3, 0));
                 objArr3[0] = sb3.toString();
                 this.viewingMembersSecondary = String.format(locale3, "%s", objArr3);
@@ -3192,12 +3186,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.postingMembersTitle = LocaleController.getString("PostingMembers", R.string.PostingMembers);
             this.postingMembersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.posters.current, 0);
             if (i4 == 0 || abs3 == 0.0f) {
-                this.postingMembersSecondary = BuildConfig.APP_CENTER_HASH;
+                this.postingMembersSecondary = "";
             } else {
                 Locale locale4 = Locale.ENGLISH;
                 Object[] objArr4 = new Object[1];
                 StringBuilder sb4 = new StringBuilder();
-                sb4.append(i4 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
+                sb4.append(i4 > 0 ? "+" : "");
                 sb4.append(AndroidUtilities.formatWholeNumber(i4, 0));
                 objArr4[0] = sb4.toString();
                 this.postingMembersSecondary = String.format(locale4, "%s", objArr4);
@@ -3211,12 +3205,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.messagesTitle = LocaleController.getString("MessagesOverview", R.string.MessagesOverview);
             this.messagesPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.messages.current, 0);
             if (i5 == 0 || abs4 == 0.0f) {
-                this.messagesSecondary = BuildConfig.APP_CENTER_HASH;
+                this.messagesSecondary = "";
             } else {
                 Locale locale5 = Locale.ENGLISH;
                 Object[] objArr5 = new Object[1];
                 StringBuilder sb5 = new StringBuilder();
-                sb5.append(i5 <= 0 ? BuildConfig.APP_CENTER_HASH : "+");
+                sb5.append(i5 <= 0 ? "" : "+");
                 sb5.append(AndroidUtilities.formatWholeNumber(i5, 0));
                 objArr5[0] = sb5.toString();
                 this.messagesSecondary = String.format(locale5, "%s", objArr5);
@@ -3285,7 +3279,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                             break;
                         case 1:
                             textViewArr[i2].setText(overviewChannelData.notificationsPrimary);
-                            this.secondary[i2].setText(BuildConfig.APP_CENTER_HASH);
+                            this.secondary[i2].setText("");
                             this.title[i2].setText(overviewChannelData.notificationsTitle);
                             break;
                         case 2:
@@ -3471,7 +3465,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             if (i > 0) {
                 memberData.description = LocaleController.formatPluralString("Invitations", i, new Object[0]);
             } else {
-                memberData.description = BuildConfig.APP_CENTER_HASH;
+                memberData.description = "";
             }
             return memberData;
         }
@@ -3688,7 +3682,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                         if (i2 == 0) {
                             TLRPC$ChannelParticipant tLRPC$ChannelParticipant2 = tLRPC$TL_chatChannelParticipant.channelParticipant;
                             tLRPC$ChannelParticipant2.admin_rights = null;
-                            tLRPC$ChannelParticipant2.rank = BuildConfig.APP_CENTER_HASH;
+                            tLRPC$ChannelParticipant2.rank = "";
                             return;
                         }
                         TLRPC$ChannelParticipant tLRPC$ChannelParticipant3 = tLRPC$TL_chatChannelParticipant.channelParticipant;

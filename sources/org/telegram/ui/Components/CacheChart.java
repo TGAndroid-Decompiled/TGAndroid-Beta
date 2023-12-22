@@ -22,7 +22,6 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.Arrays;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
@@ -809,24 +808,18 @@ public class CacheChart extends View {
                     j2 = j3;
                 }
                 String[] split = AndroidUtilities.formatFileSize(j2, true, true).split(" ");
-                int length2 = split.length;
-                String str2 = BuildConfig.APP_CENTER_HASH;
-                if (length2 > 0) {
+                if (split.length > 0) {
                     c = 0;
                     str = split[0];
                 } else {
                     c = 0;
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 if (str.length() >= 4 && j2 < 1073741824) {
                     str = str.split("\\.")[c];
                 }
                 this.topText.setText(str, z);
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.bottomText;
-                if (split.length > 1) {
-                    str2 = split[1];
-                }
-                animatedTextDrawable.setText(str2, z);
+                this.bottomText.setText(split.length > 1 ? split[1] : "", z);
                 if (this.completeFloat.get() > 0.0f) {
                     this.topCompleteText.setText(this.topText.getText(), z);
                     this.bottomCompleteText.setText(this.bottomText.getText(), z);

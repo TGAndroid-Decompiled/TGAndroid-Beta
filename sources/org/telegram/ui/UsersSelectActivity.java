@@ -37,7 +37,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -1045,8 +1044,8 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 this.actionBar.setSubtitle(String.format(LocaleController.getPluralString("MembersCountSelected", i3), Integer.valueOf(this.selectedCount), Integer.valueOf(i2)));
             }
         } else if (i == 1) {
-            this.actionBar.setTitle(BuildConfig.APP_CENTER_HASH);
-            this.actionBar.setSubtitle(BuildConfig.APP_CENTER_HASH);
+            this.actionBar.setTitle("");
+            this.actionBar.setSubtitle("");
             if (this.selectedCount == 0) {
                 this.animatedAvatarContainer.getTitle().setText(LocaleController.getString("SelectChats", R.string.SelectChats), true);
                 if (this.ttlPeriod > 0) {

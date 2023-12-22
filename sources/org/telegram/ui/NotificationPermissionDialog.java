@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -222,9 +221,9 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 r1 = i2 < i;
                 this.lastCount = i;
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-                String str = BuildConfig.APP_CENTER_HASH;
+                String str = "";
                 if (i > 0) {
-                    str = BuildConfig.APP_CENTER_HASH + this.lastCount;
+                    str = "" + this.lastCount;
                 }
                 animatedTextDrawable.setText(str, true);
                 if (r1) {

@@ -130,7 +130,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         this.subtitleView.setText(AndroidUtilities.replaceTags(formatString));
         this.subtitleView.append("\n");
         this.subtitleView.append("\n");
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("GiftPremiumWillReceiveBoosts", R.string.GiftPremiumWillReceiveBoosts, Integer.valueOf(this.selectedUsers.size() * BoostRepository.boostsPerSentGift())));
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftPremiumWillReceiveBoostsPlural", this.selectedUsers.size() * BoostRepository.boostsPerSentGift(), new Object[0]));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTags);
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_boost_button);
         coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));

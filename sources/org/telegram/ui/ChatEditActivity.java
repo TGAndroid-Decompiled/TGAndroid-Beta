@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -255,7 +254,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             ChatEditActivity chatEditActivity = ChatEditActivity.this;
             if (chatEditActivity.cameraDrawable == null) {
                 int i = R.raw.camera_outline;
-                chatEditActivity.cameraDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                chatEditActivity.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             }
             ChatEditActivity.this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
             ChatEditActivity.this.setAvatarCell.imageView.setAnimation(ChatEditActivity.this.cameraDrawable);
@@ -508,7 +507,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.hasUploadedPhoto = true;
         if (this.cameraDrawable == null) {
             int i = R.raw.camera_outline;
-            this.cameraDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
         }
         this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -835,7 +834,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             if (this.cameraDrawable == null) {
                 int i = R.raw.camera_outline;
-                this.cameraDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             }
             this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
             this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -994,7 +993,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), R.drawable.msg_addphoto, true);
         if (this.cameraDrawable == null) {
             int i2 = R.raw.camera_outline;
-            this.cameraDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
         }
         this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -1030,9 +1029,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         String str;
         EditTextBoldCursor editTextBoldCursor2;
         String str2;
-        long j = this.userId;
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        if (j != 0) {
+        String str3 = "";
+        if (this.userId != 0) {
             TLRPC$UserFull tLRPC$UserFull = this.userInfo;
             if (tLRPC$UserFull != null && (str2 = tLRPC$UserFull.about) != null) {
                 str3 = str2;
@@ -1136,13 +1134,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             return;
         }
         this.donePressed = true;
-        TLRPC$User tLRPC$User = this.currentUser;
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        if (tLRPC$User != null) {
+        String str3 = "";
+        if (this.currentUser != null) {
             final TLRPC$TL_bots_setBotInfo tLRPC$TL_bots_setBotInfo = new TLRPC$TL_bots_setBotInfo();
             tLRPC$TL_bots_setBotInfo.bot = getMessagesController().getInputUser(this.currentUser);
             tLRPC$TL_bots_setBotInfo.flags |= 4;
-            tLRPC$TL_bots_setBotInfo.lang_code = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_bots_setBotInfo.lang_code = "";
             if (!this.currentUser.first_name.equals(this.nameTextView.getText().toString())) {
                 tLRPC$TL_bots_setBotInfo.name = this.nameTextView.getText().toString();
                 tLRPC$TL_bots_setBotInfo.flags |= 8;

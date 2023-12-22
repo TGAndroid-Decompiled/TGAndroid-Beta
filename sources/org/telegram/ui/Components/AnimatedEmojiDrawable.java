@@ -22,7 +22,6 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
@@ -590,7 +589,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     if (this.cacheType != 0) {
                         str = this.cacheType + "_";
                     } else {
-                        str = BuildConfig.APP_CENTER_HASH;
+                        str = "";
                     }
                     sb.append(str);
                     tLRPC$PhotoSize = closestPhotoSizeWithSize;

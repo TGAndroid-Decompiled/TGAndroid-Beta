@@ -161,9 +161,9 @@ public class VideoEditedInfo {
         public float y;
 
         public MediaEntity() {
-            this.text = BuildConfig.APP_CENTER_HASH;
+            this.text = "";
             this.entities = new ArrayList<>();
-            this.segmentedPath = BuildConfig.APP_CENTER_HASH;
+            this.segmentedPath = "";
             this.scale = 1.0f;
         }
 
@@ -172,9 +172,9 @@ public class VideoEditedInfo {
         }
 
         public MediaEntity(AbstractSerializedData abstractSerializedData, boolean z, boolean z2) {
-            this.text = BuildConfig.APP_CENTER_HASH;
+            this.text = "";
             this.entities = new ArrayList<>();
-            this.segmentedPath = BuildConfig.APP_CENTER_HASH;
+            this.segmentedPath = "";
             this.scale = 1.0f;
             this.type = abstractSerializedData.readByte(z2);
             this.subType = abstractSerializedData.readByte(z2);
@@ -261,7 +261,7 @@ public class VideoEditedInfo {
             if (paintTypeface == null) {
                 key = this.textTypefaceKey;
                 if (key == null) {
-                    key = BuildConfig.APP_CENTER_HASH;
+                    key = "";
                 }
             } else {
                 key = paintTypeface.getKey();
@@ -285,13 +285,13 @@ public class VideoEditedInfo {
                 this.mediaArea.serializeToStream(abstractSerializedData);
                 TLRPC$MessageMedia tLRPC$MessageMedia = this.mediaGeo;
                 if (tLRPC$MessageMedia.provider == null) {
-                    tLRPC$MessageMedia.provider = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$MessageMedia.provider = "";
                 }
                 if (tLRPC$MessageMedia.venue_id == null) {
-                    tLRPC$MessageMedia.venue_id = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$MessageMedia.venue_id = "";
                 }
                 if (tLRPC$MessageMedia.venue_type == null) {
-                    tLRPC$MessageMedia.venue_type = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$MessageMedia.venue_type = "";
                 }
                 tLRPC$MessageMedia.serializeToStream(abstractSerializedData);
                 TLRPC$MessageMedia tLRPC$MessageMedia2 = this.mediaGeo;
@@ -376,7 +376,7 @@ public class VideoEditedInfo {
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && this.blurPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            bytesToHex = BuildConfig.APP_CENTER_HASH;
+            bytesToHex = "";
         } else {
             int i = this.filterState != null ? 170 : 10;
             String str = this.paintPath;

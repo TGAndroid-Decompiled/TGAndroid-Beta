@@ -51,7 +51,6 @@ import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -3694,7 +3693,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             this.headerAnimator = interpolator;
             interpolator.start();
         }
-        this.parentAlert.actionBar.setTitle(BuildConfig.APP_CENTER_HASH);
+        this.parentAlert.actionBar.setTitle("");
         this.layoutManager.scrollToPositionWithOffset(0, 0);
         if (z) {
             this.gridView.post(new Runnable() {
@@ -4491,7 +4490,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 }
                 return LocaleController.formatYearMont(j, true);
             }
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
 
         @Override

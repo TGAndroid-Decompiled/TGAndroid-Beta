@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
@@ -362,10 +361,10 @@ public class GiveawayResultsMessageCell {
                 } else {
                     this.users[i6] = null;
                     this.avatarVisible[i6] = false;
-                    this.userTitles[i6] = BuildConfig.APP_CENTER_HASH;
+                    this.userTitles[i6] = "";
                     this.needNewRow[i6] = false;
                     this.userTitleWidths[i6] = AndroidUtilities.dp(20.0f);
-                    this.avatarDrawables[i6].setInfo(longValue, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                    this.avatarDrawables[i6].setInfo(longValue, "", "");
                 }
             }
         }
@@ -636,7 +635,7 @@ public class GiveawayResultsMessageCell {
         this.giftReceiver.setAllowStartLottieAnimation(false);
         if (this.giftDrawable == null) {
             int i = R.raw.giveaway_results;
-            this.giftDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
+            this.giftDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
         }
         this.giftReceiver.setImageBitmap(this.giftDrawable);
     }

@@ -25,7 +25,6 @@ import android.widget.TextView;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -429,7 +428,7 @@ public class LimitPreviewView extends LinearLayout {
                 spannableStringBuilder2.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
                 this.limitIcon.setText(spannableStringBuilder2, false);
             }
-            this.premiumCount.setText(BuildConfig.APP_CENTER_HASH);
+            this.premiumCount.setText("");
         }
     }
 
@@ -661,7 +660,7 @@ public class LimitPreviewView extends LinearLayout {
                     }
                     int i3 = 1;
                     while (i3 <= charAt) {
-                        animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                        animatedLayout.staticLayouts.add(new StaticLayout("" + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                         i3++;
                     }
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
@@ -717,8 +716,8 @@ public class LimitPreviewView extends LinearLayout {
                         i = 0;
                     }
                     i++;
-                    animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + charAt, this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-                    animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + this.text.charAt(length), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    animatedLayout.staticLayouts.add(new StaticLayout("" + charAt, this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    animatedLayout.staticLayouts.add(new StaticLayout("" + this.text.charAt(length), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), length, length + 1, 0);
                 }
                 length--;
