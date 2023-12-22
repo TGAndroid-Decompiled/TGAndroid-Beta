@@ -47,7 +47,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
@@ -1247,7 +1246,7 @@ public class MessagePreviewView extends FrameLayout {
 
                     @Override
                     public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                        Browser.openUrl(chatMessageCell2.getContext(), str);
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell2, tLRPC$WebPage, str, z);
                     }
 
                     @Override
@@ -1605,7 +1604,7 @@ public class MessagePreviewView extends FrameLayout {
 
                         @Override
                         public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                            Browser.openUrl(chatMessageCell2.getContext(), str);
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell2, tLRPC$WebPage, str, z);
                         }
 
                         @Override

@@ -1357,6 +1357,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
             public static void $default$videoTimerReached(ChatMessageCellDelegate chatMessageCellDelegate) {
             }
+
+            public static void $default$didPressWebPage(ChatMessageCellDelegate _this, ChatMessageCell chatMessageCell, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
+                Browser.openUrl(chatMessageCell.getContext(), str);
+            }
         }
     }
 
@@ -6188,7 +6192,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     this.radialProgress.setProgress(0.0f, false);
                     this.radialProgress.setMiniIcon(getMiniIconForCurrentState(), false, z);
                 }
-                this.delegate.didPressImage(this, 0.0f, 0.0f);
+                ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+                if (chatMessageCellDelegate != null) {
+                    chatMessageCellDelegate.didPressImage(this, 0.0f, 0.0f);
+                }
             } else if (i == 4) {
                 int i9 = this.documentAttachType;
                 if (i9 == 3 || i9 == 5 || (i9 == 7 && (messageObject = this.currentMessageObject) != null && messageObject.isVoiceTranscriptionOpen())) {

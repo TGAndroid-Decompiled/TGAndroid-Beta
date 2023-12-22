@@ -370,10 +370,12 @@ public class TextCheckCell extends FrameLayout {
         if (this.needDivider) {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : Theme.dividerPaint;
-            if (this.imageView != null) {
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : this.padding, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? this.padding : 0), getMeasuredHeight() - 1, paint);
-            } else {
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, paint);
+            if (paint != null) {
+                if (this.imageView != null) {
+                    canvas.drawLine(LocaleController.isRTL ? 0.0f : this.padding, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? this.padding : 0), getMeasuredHeight() - 1, paint);
+                } else {
+                    canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, paint);
+                }
             }
         }
     }
