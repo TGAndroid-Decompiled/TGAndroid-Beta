@@ -320,7 +320,9 @@ public class TableCell extends FrameLayout {
         }
         textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
         textView.setTextSize(1, 14.0f);
-        textView.setGravity(LocaleController.isRTL ? 5 : 3);
+        if (!z) {
+            textView.setGravity(LocaleController.isRTL ? 5 : 3);
+        }
         if (str != null) {
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setText(str);

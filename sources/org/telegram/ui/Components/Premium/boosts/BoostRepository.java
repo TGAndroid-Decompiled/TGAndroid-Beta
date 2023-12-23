@@ -808,7 +808,7 @@ public class BoostRepository {
             final ArrayList arrayList = new ArrayList();
             for (int i = 0; i < tLRPC$TL_contacts_found.users.size(); i++) {
                 TLRPC$User tLRPC$User = tLRPC$TL_contacts_found.users.get(i);
-                if (!tLRPC$User.self && !UserObject.isDeleted(tLRPC$User) && !tLRPC$User.bot) {
+                if (!tLRPC$User.self && !UserObject.isDeleted(tLRPC$User) && !tLRPC$User.bot && !UserObject.isService(tLRPC$User.id)) {
                     arrayList.add(tLRPC$User);
                 }
             }

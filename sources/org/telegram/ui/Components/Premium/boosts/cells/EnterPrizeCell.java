@@ -81,6 +81,13 @@ public class EnterPrizeCell extends LinearLayout {
         this.textView = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
+        if (LocaleController.isRTL) {
+            LinearLayout.LayoutParams createLinear = LayoutHelper.createLinear(-1, -2, 16, 20, 0, 36, 0);
+            createLinear.weight = 1.0f;
+            addView(editTextCaption, createLinear);
+            addView(textView, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 20, 0));
+            return;
+        }
         addView(textView, LayoutHelper.createLinear(-2, -2, 16, 20, 0, 0, 0));
         addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 16, 36, 0, 20, 0));
     }

@@ -123,9 +123,9 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         } else if (size == 2) {
             formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName(this.selectedUsers.get(0)), UserObject.getFirstName(this.selectedUsers.get(1))));
         } else if (size == 3) {
-            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName(this.selectedUsers.get(0)), UserObject.getFirstName(this.selectedUsers.get(1)), UserObject.getFirstName(this.selectedUsers.get(1))));
+            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName(this.selectedUsers.get(0)), UserObject.getFirstName(this.selectedUsers.get(1)), UserObject.getFirstName(this.selectedUsers.get(2))));
         } else {
-            formatString = LocaleController.formatPluralString("GiftPremiumUsersGiveAccessMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName(this.selectedUsers.get(0)), UserObject.getFirstName(this.selectedUsers.get(1)), UserObject.getFirstName(this.selectedUsers.get(1))));
+            formatString = LocaleController.formatPluralString("GiftPremiumUsersGiveAccessMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName(this.selectedUsers.get(0)), UserObject.getFirstName(this.selectedUsers.get(1)), UserObject.getFirstName(this.selectedUsers.get(2))));
         }
         this.subtitleView.setText(AndroidUtilities.replaceTags(formatString));
         this.subtitleView.append("\n");

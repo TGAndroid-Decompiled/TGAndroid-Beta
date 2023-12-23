@@ -1321,10 +1321,10 @@ public class LocaleController {
     }
 
     private String getStringInternal(String str, int i) {
-        return getStringInternal(str, null, i);
+        return getStringInternal(str, null, 0, i);
     }
 
-    private String getStringInternal(String str, String str2, int i) {
+    private String getStringInternal(String str, String str2, int i, int i2) {
         String str3 = BuildVars.USE_CLOUD_STRINGS ? this.localeValues.get(str) : null;
         if (str3 == null) {
             if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
@@ -1332,8 +1332,14 @@ public class LocaleController {
             }
             if (str3 == null) {
                 try {
-                    str3 = ApplicationLoader.applicationContext.getString(i);
+                    str3 = ApplicationLoader.applicationContext.getString(i2);
                 } catch (Exception e) {
+                    if (i != 0) {
+                        try {
+                            str3 = ApplicationLoader.applicationContext.getString(i);
+                        } catch (Exception unused) {
+                        }
+                    }
                     FileLog.e(e);
                 }
             }
@@ -1366,8 +1372,12 @@ public class LocaleController {
         return getInstance().getStringInternal(str, i);
     }
 
+    public static String getString(String str, String str2, int i, int i2) {
+        return getInstance().getStringInternal(str, str2, i, i2);
+    }
+
     public static String getString(String str, String str2, int i) {
-        return getInstance().getStringInternal(str, str2, i);
+        return getInstance().getStringInternal(str, str2, 0, i);
     }
 
     public static String getString(String str) {
@@ -1386,7 +1396,7 @@ public class LocaleController {
             return "LOC_ERR:" + str;
         }
         String str2 = str + "_" + getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i));
-        return getString(str2, str + "_other", ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()));
+        return getString(str2, str + "_other", ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()), ApplicationLoader.applicationContext.getResources().getIdentifier(str + "_other", "string", ApplicationLoader.applicationContext.getPackageName()));
     }
 
     public static String formatPluralString(String str, int i, Object... objArr) {

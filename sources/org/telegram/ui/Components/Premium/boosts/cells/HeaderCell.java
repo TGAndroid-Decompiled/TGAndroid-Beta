@@ -16,8 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -161,29 +159,14 @@ public class HeaderCell extends FrameLayout {
 
     public void setGiftLinkToUserText(long j, final Utilities.Callback<TLObject> callback) {
         this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        try {
-            String string = LocaleController.getString("BoostingLinkAllowsToUser", R.string.BoostingLinkAllowsToUser);
-            String substring = string.substring(0, string.indexOf("**%1$s**") + 8);
-            String substring2 = string.substring(string.indexOf("**%1$s**") + 8);
-            final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-            spannableStringBuilder2.append((CharSequence) "**");
-            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleView.getPaint().getFontMetricsInt(), false));
-            spannableStringBuilder2.append((CharSequence) "**");
-            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(substring.toString().replace("**%1$s**", spannableStringBuilder2), Theme.key_chat_messageLinkIn, 2, new Runnable() {
-                @Override
-                public final void run() {
-                    Utilities.Callback.this.run(user);
-                }
-            }, this.resourcesProvider);
-            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(substring2.toString());
-            spannableStringBuilder.append((CharSequence) replaceSingleTag);
-            spannableStringBuilder.append((CharSequence) replaceTags);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        this.subtitleView.setText(spannableStringBuilder);
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("BoostingLinkAllowsToUser", R.string.BoostingLinkAllowsToUser));
+        final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
+        this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
+            @Override
+            public final void run() {
+                Utilities.Callback.this.run(user);
+            }
+        }, this.resourcesProvider)));
     }
 
     @Override

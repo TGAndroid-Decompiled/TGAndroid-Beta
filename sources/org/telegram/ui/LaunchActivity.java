@@ -298,7 +298,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private View themeSwitchSunView;
     private String videoPath;
     private ActionMode visibleActionMode;
-    public Dialog visibleDialog;
     private String voicePath;
     private boolean wasMutedByAdminRaisedHand;
     public static final Pattern PREFIX_T_ME_PATTERN = Pattern.compile("^(?:http(?:s|)://|)([A-z0-9-]+?)\\.t\\.me");
@@ -307,6 +306,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private static ArrayList<BaseFragment> rightFragmentsStack = new ArrayList<>();
     public ArrayList<INavigationLayout> sheetFragmentsStack = new ArrayList<>();
     private List<PasscodeView> overlayPasscodeViews = new ArrayList();
+    public final ArrayList<Dialog> visibleDialogs = new ArrayList<>();
     private boolean isNavigationBarColorFrozen = false;
     private List<Runnable> onUserLeaveHintListeners = new ArrayList();
     private SparseIntArray requestedPermissions = new SparseIntArray();
@@ -334,6 +334,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public void onMeasureOverride(int[] iArr) {
         INavigationLayout.INavigationLayoutDelegate.CC.$default$onMeasureOverride(this, iArr);
+    }
+
+    public Dialog getVisibleDialog() {
+        for (int size = this.visibleDialogs.size() - 1; size >= 0; size--) {
+            Dialog dialog = this.visibleDialogs.get(size);
+            if (dialog.isShowing()) {
+                return dialog;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -398,6 +408,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this, false);
         this.actionBarLayout = INavigationLayout.CC.newLayout(this);
         FrameLayout frameLayout = new FrameLayout(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -418,6 +432,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 protected void onDraw(Canvas canvas) {
                     if (LaunchActivity.this.themeSwitchSunDrawable != null) {
@@ -443,7 +461,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            protected void onStop() {
+            public void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -453,6 +471,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setupActionBarLayout();
         this.sideMenuContainer = new FrameLayout(this);
         RecyclerListView recyclerListView = new RecyclerListView(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean drawChild(Canvas canvas, View view2, long j) {
                 int i3;
@@ -524,6 +546,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int i4) {
+            }
+
+            {
+                LaunchActivity.this = this;
             }
 
             @Override
@@ -787,6 +813,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (i5 >= 31) {
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void onViewAttachedToWindow(View view2) {
                     LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(C$r8$wrapper$java$util$function$Consumer$WRP.convert(LaunchActivity.this.blurListener));
@@ -811,10 +841,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         AnonymousClass3(Context context) {
             super(context);
+            LaunchActivity.this = r1;
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -1042,6 +1073,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 itemTouchHelper.startDrag(this.sideMenu.getChildViewHolder(view));
             } else {
                 DialogsActivity dialogsActivity = new DialogsActivity(null) {
+                    {
+                        LaunchActivity.this = this;
+                    }
+
                     @Override
                     public void onTransitionAnimationEnd(boolean z, boolean z2) {
                         super.onTransitionAnimationEnd(z, z2);
@@ -1113,13 +1148,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         int i = this.currentAccount;
         long j = tLRPC$TL_attachMenuBot.bot_id;
         botWebViewSheet.requestWebView(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, null, false, str, null, 2);
-        Dialog dialog = this.visibleDialog;
-        if (dialog != null) {
-            dialog.dismiss();
-            this.visibleDialog = null;
-        }
         botWebViewSheet.show();
-        this.visibleDialog = botWebViewSheet;
+        this.visibleDialogs.add(botWebViewSheet);
     }
 
     @Override
@@ -1153,6 +1183,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
+                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1364,6 +1395,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         View view2 = view;
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void onSettings() {
                 DrawerLayoutContainer drawerLayoutContainer = LaunchActivity.this.drawerLayoutContainer;
@@ -1432,6 +1467,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialog.setSaveState(2);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
         SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1734,6 +1773,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void showUpdateActivity(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
         if (this.blockingUpdateView == null) {
             BlockingUpdateView blockingUpdateView = new BlockingUpdateView(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void setVisibility(int i2) {
                     super.setVisibility(i2);
@@ -1769,6 +1812,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public class AnonymousClass15 implements TermsOfServiceView.TermsOfServiceViewDelegate {
         AnonymousClass15() {
+            LaunchActivity.this = r1;
         }
 
         @Override
@@ -2090,6 +2134,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putString("selectAlertStringGroup", LocaleController.getString("SendMessagesToGroupText", R.string.SendMessagesToGroupText));
         }
         DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean shouldShowNextButton(DialogsActivity dialogsActivity2, ArrayList<Long> arrayList2, CharSequence charSequence, boolean z2) {
                 if (LaunchActivity.this.exportingChatUri != null) {
@@ -3053,6 +3101,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Integer val$messageId;
 
         AnonymousClass18(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+            LaunchActivity.this = r1;
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3659,13 +3708,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         botWebViewSheet.setParentActivity(this);
         long j = tLRPC$User.id;
         botWebViewSheet.requestWebView(i, j, j, null, null, 3, 0, false, baseFragment, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User);
-        Dialog dialog = this.visibleDialog;
-        if (dialog != null) {
-            dialog.dismiss();
-            this.visibleDialog = null;
-        }
         botWebViewSheet.show();
-        this.visibleDialog = botWebViewSheet;
+        this.visibleDialogs.add(botWebViewSheet);
         if (tLRPC$TL_messages_botApp.inactive || z) {
             botWebViewSheet.showJustAddedBulletin();
         }
@@ -3822,11 +3866,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (baseFragment2 != null) {
                     baseFragment2.dismissCurrentDialog();
                 }
-                Dialog dialog = this.visibleDialog;
-                if (dialog != null) {
-                    dialog.dismiss();
-                    this.visibleDialog = null;
+                for (int i2 = 0; i2 < this.visibleDialogs.size(); i2++) {
+                    if (this.visibleDialogs.get(i2).isShowing()) {
+                        this.visibleDialogs.get(i2).dismiss();
+                    }
                 }
+                this.visibleDialogs.clear();
                 lambda$runLinkRequest$87(dialogsActivity);
                 return;
             } else if (baseFragment2 instanceof ChatActivity) {
@@ -3907,11 +3952,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             if (baseFragment != null) {
                 baseFragment.dismissCurrentDialog();
             }
-            Dialog dialog = this.visibleDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.visibleDialog = null;
+            for (int i = 0; i < this.visibleDialogs.size(); i++) {
+                if (this.visibleDialogs.get(i).isShowing()) {
+                    this.visibleDialogs.get(i).dismiss();
+                }
             }
+            this.visibleDialogs.clear();
             lambda$runLinkRequest$87(dialogsActivity);
         } else if (baseFragment instanceof ChatActivity) {
             ((ChatActivity) baseFragment).openAttachBotLayout(tLRPC$User.id, str, true);
@@ -4034,35 +4080,25 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public Dialog showAlertDialog(AlertDialog.Builder builder) {
         try {
-            Dialog dialog = this.visibleDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.visibleDialog = null;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        try {
-            AlertDialog show = builder.show();
-            this.visibleDialog = show;
+            final AlertDialog show = builder.show();
             show.setCanceledOnTouchOutside(true);
-            this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            show.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    LaunchActivity.this.lambda$showAlertDialog$119(dialogInterface);
+                    LaunchActivity.this.lambda$showAlertDialog$119(show, dialogInterface);
                 }
             });
-            return this.visibleDialog;
-        } catch (Exception e2) {
-            FileLog.e(e2);
+            this.visibleDialogs.add(show);
+            return show;
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
 
-    public void lambda$showAlertDialog$119(DialogInterface dialogInterface) {
-        Dialog dialog = this.visibleDialog;
-        if (dialog != null) {
-            if (dialog == this.localeDialog) {
+    public void lambda$showAlertDialog$119(AlertDialog alertDialog, DialogInterface dialogInterface) {
+        if (alertDialog != null) {
+            if (alertDialog == this.localeDialog) {
                 INavigationLayout iNavigationLayout = this.actionBarLayout;
                 BaseFragment lastFragment = iNavigationLayout == null ? null : iNavigationLayout.getLastFragment();
                 try {
@@ -4076,7 +4112,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     FileLog.e(e);
                 }
                 this.localeDialog = null;
-            } else if (dialog == this.proxyErrorDialog) {
+            } else if (alertDialog == this.proxyErrorDialog) {
                 MessagesController.getGlobalMainSettings();
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 edit.putBoolean("proxy_enabled", false);
@@ -4087,7 +4123,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 this.proxyErrorDialog = null;
             }
         }
-        this.visibleDialog = null;
+        this.visibleDialogs.remove(alertDialog);
     }
 
     public void showBulletin(Function<BulletinFactory, Bulletin> function) {
@@ -4722,15 +4758,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (themeEditorView != null) {
             themeEditorView.destroy();
         }
-        try {
-            Dialog dialog = this.visibleDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.visibleDialog = null;
+        for (int i = 0; i < this.visibleDialogs.size(); i++) {
+            try {
+                if (this.visibleDialogs.get(i).isShowing()) {
+                    this.visibleDialogs.get(i).dismiss();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
-        } catch (Exception e) {
-            FileLog.e(e);
         }
+        this.visibleDialogs.clear();
         try {
             if (this.onGlobalLayoutListener != null) {
                 getWindow().getDecorView().getRootView().getViewTreeObserver().removeOnGlobalLayoutListener(this.onGlobalLayoutListener);
@@ -5256,11 +5293,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.localeDialog = null;
         this.drawerLayoutContainer.closeDrawer(true);
         lambda$runLinkRequest$87(new LanguageSelectActivity());
-        Dialog dialog = this.visibleDialog;
-        if (dialog != null) {
-            dialog.dismiss();
-            this.visibleDialog = null;
+        for (int i = 0; i < this.visibleDialogs.size(); i++) {
+            if (this.visibleDialogs.get(i).isShowing()) {
+                this.visibleDialogs.get(i).dismiss();
+            }
         }
+        this.visibleDialogs.clear();
     }
 
     public void lambda$showLanguageAlertInternal$144(LocaleController.LocaleInfo[] localeInfoArr, DialogInterface dialogInterface, int i) {
@@ -5424,6 +5462,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable = new Runnable() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void run() {
                     if (LaunchActivity.this.lockRunnable == this) {
@@ -6107,6 +6149,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         });
         this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 LaunchActivity.this.setNavigationBarColor(i, false);
