@@ -23957,7 +23957,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public ThanosEffect getChatThanosEffect() {
         if (LiteMode.isEnabled(65536)) {
             if (this.chatListThanosEffect == null) {
-                if (getContext() == null || this.chatListView == null || this.contentView == null) {
+                if (getContext() == null || !ThanosEffect.supports() || this.chatListView == null || this.contentView == null) {
                     return null;
                 }
                 ThanosEffect thanosEffect = new ThanosEffect(getContext());

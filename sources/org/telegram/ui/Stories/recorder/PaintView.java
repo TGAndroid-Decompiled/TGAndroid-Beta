@@ -538,7 +538,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         view.setVisibility(8);
         this.textDim.setBackgroundColor(1291845632);
         this.textDim.setAlpha(0.0f);
-        RenderView renderView = new RenderView(context, new Painting(getPaintingSize(), bitmap3, i2, blurManager), bitmap, bitmap2, storyEntry.isRepostMessage ? null : blurManager) {
+        RenderView renderView = new RenderView(context, new Painting(getPaintingSize(), bitmap3, i2, blurManager), bitmap, bitmap2, (storyEntry == null || !storyEntry.isRepostMessage) ? blurManager : null) {
             @Override
             public void selectBrush(Brush brush) {
                 int indexOf = Brush.BRUSHES_LIST.indexOf(brush) + 1;

@@ -4573,9 +4573,11 @@ public class Theme {
                 shapeDrawable = new ShapeDrawable(new RectShape());
                 shapeDrawable.getPaint().setColor(i);
             }
-            LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{drawable, shapeDrawable});
-            stateListDrawable.addState(new int[]{16842919}, layerDrawable);
-            stateListDrawable.addState(new int[]{16842913}, layerDrawable);
+            if (drawable != null) {
+                shapeDrawable = new LayerDrawable(new Drawable[]{drawable, shapeDrawable});
+            }
+            stateListDrawable.addState(new int[]{16842919}, shapeDrawable);
+            stateListDrawable.addState(new int[]{16842913}, shapeDrawable);
             stateListDrawable.addState(StateSet.WILD_CARD, drawable);
             return stateListDrawable;
         }
@@ -4593,9 +4595,12 @@ public class Theme {
                 return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), drawable, new CircleDrawable(f));
             }
             StateListDrawable stateListDrawable = new StateListDrawable();
-            LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{drawable, new CircleDrawable(f, i)});
-            stateListDrawable.addState(new int[]{16842919}, layerDrawable);
-            stateListDrawable.addState(new int[]{16842913}, layerDrawable);
+            Drawable circleDrawable = new CircleDrawable(f, i);
+            if (drawable != null) {
+                circleDrawable = new LayerDrawable(new Drawable[]{drawable, circleDrawable});
+            }
+            stateListDrawable.addState(new int[]{16842919}, circleDrawable);
+            stateListDrawable.addState(new int[]{16842913}, circleDrawable);
             stateListDrawable.addState(StateSet.WILD_CARD, drawable);
             return stateListDrawable;
         }

@@ -6153,7 +6153,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public ThanosEffect getThanosEffect() {
-        if (this.thanosEffect == null) {
+        if (this.thanosEffect == null && !ThanosEffect.supports()) {
             WindowView windowView = this.windowView;
             ThanosEffect thanosEffect = new ThanosEffect(getContext());
             this.thanosEffect = thanosEffect;

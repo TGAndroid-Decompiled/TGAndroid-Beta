@@ -42,6 +42,7 @@ public class ApplicationLoader extends Application {
     public static volatile boolean externalInterfacePaused = true;
     public static volatile boolean isScreenOn = false;
     private static int lastKnownNetworkType = -1;
+    private static long lastNetworkCheck = -1;
     private static long lastNetworkCheckTypeTime = 0;
     private static ILocationServiceProvider locationServiceProvider = null;
     public static volatile boolean mainInterfacePaused = true;
@@ -352,6 +353,12 @@ public class ApplicationLoader extends Application {
         }
     }
 
+    private static void ensureCurrentNetworkGet() {
+        long currentTimeMillis = System.currentTimeMillis();
+        ensureCurrentNetworkGet(currentTimeMillis - lastNetworkCheck > 5000);
+        lastNetworkCheck = currentTimeMillis;
+    }
+
     public static void ensureCurrentNetworkGet(boolean z) {
         if (z || currentNetworkInfo == null) {
             try {
@@ -421,6 +428,11 @@ public class ApplicationLoader extends Application {
             FileLog.e(e);
         }
         return false;
+    }
+
+    public static boolean useLessData() {
+        ensureCurrentNetworkGet();
+        return SharedConfig.forceLessData || isConnectionSlow();
     }
 
     public static boolean isConnectionSlow() {

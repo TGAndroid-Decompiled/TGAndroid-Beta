@@ -765,11 +765,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public void updateColors() {
             int themedColor = ChatActivityEnterView.this.getThemedColor(Theme.key_chat_recordedVoiceDot);
-            ColorUtils.blendARGB(themedColor, ChatActivityEnterView.this.getThemedColor(Theme.key_chat_messagePanelBackground), 0.5f);
+            int blendARGB = ColorUtils.blendARGB(themedColor, ChatActivityEnterView.this.getThemedColor(Theme.key_chat_messagePanelBackground), 0.5f);
             ChatActivityEnterView.this.redDotPaint.setColor(themedColor);
             this.drawable.beginApplyLayerColors();
             this.drawable.setLayerColor("Cup Red.**", themedColor);
             this.drawable.setLayerColor("Box.**", themedColor);
+            this.drawable.setLayerColor("Line 1.**", blendARGB);
+            this.drawable.setLayerColor("Line 2.**", blendARGB);
+            this.drawable.setLayerColor("Line 3.**", blendARGB);
             this.drawable.commitApplyLayerColors();
             if (ChatActivityEnterView.this.playPauseDrawable != null) {
                 ChatActivityEnterView.this.playPauseDrawable.setColor(ChatActivityEnterView.this.getThemedColor(Theme.key_chat_recordedVoicePlayPause));

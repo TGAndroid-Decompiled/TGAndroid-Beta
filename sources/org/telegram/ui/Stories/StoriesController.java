@@ -714,12 +714,12 @@ public class StoriesController {
         ArrayList<TLRPC$PhotoSize> arrayList;
         if (tL_stories$StoryItem.attachPath == null && DownloadController.getInstance(this.currentAccount).canPreloadStories()) {
             TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-            boolean z = tLRPC$MessageMedia != null && MessageObject.isVideoDocument(tLRPC$MessageMedia.document);
+            boolean z = tLRPC$MessageMedia != null && MessageObject.isVideoDocument(tLRPC$MessageMedia.getDocument());
             tL_stories$StoryItem.dialogId = j;
             if (z) {
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_stories$StoryItem.media.document.thumbs, 1000);
-                FileLoader.getInstance(this.currentAccount).loadFile(tL_stories$StoryItem.media.document, tL_stories$StoryItem, 0, 1);
-                FileLoader.getInstance(this.currentAccount).loadFile(ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_stories$StoryItem.media.document), tL_stories$StoryItem, "jpg", 0, 1);
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_stories$StoryItem.media.getDocument().thumbs, 1000);
+                FileLoader.getInstance(this.currentAccount).loadFile(tL_stories$StoryItem.media.getDocument(), tL_stories$StoryItem, 0, 1);
+                FileLoader.getInstance(this.currentAccount).loadFile(ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_stories$StoryItem.media.getDocument()), tL_stories$StoryItem, "jpg", 0, 1);
                 return;
             }
             TLRPC$MessageMedia tLRPC$MessageMedia2 = tL_stories$StoryItem.media;

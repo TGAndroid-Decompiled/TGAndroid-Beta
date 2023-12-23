@@ -3886,7 +3886,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     public ThanosEffect getThanosEffect() {
-        if (this.thanosEffect == null) {
+        if (this.thanosEffect == null && ThanosEffect.supports()) {
             ThanosEffect thanosEffect = new ThanosEffect(getContext());
             this.thanosEffect = thanosEffect;
             addView(thanosEffect);

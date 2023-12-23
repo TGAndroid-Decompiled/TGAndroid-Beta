@@ -251,10 +251,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), shareAlert.getThemedColor(shareAlert.darkTheme ? Theme.key_voipgroup_searchBackground : Theme.key_dialogSearchBackground)));
             addView(this.searchBackground, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
             View view2 = new View(context, shareAlert) {
-                {
-                    SwitchView.this = this;
-                }
-
                 @Override
                 public void setTranslationX(float f) {
                     super.setTranslationX(f);
@@ -336,10 +332,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.animator.setDuration(180L);
             this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             this.animator.addListener(new AnimatorListenerAdapter() {
-                {
-                    SwitchView.this = this;
-                }
-
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     SwitchView.this.animator = null;
@@ -376,26 +368,21 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         public SearchField(Context context) {
             super(context);
-            ShareAlert.this = r9;
             View view = new View(context);
             this.searchBackground = view;
-            view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), r9.getThemedColor(r9.darkTheme ? Theme.key_voipgroup_searchBackground : Theme.key_dialogSearchBackground)));
+            view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), ShareAlert.this.getThemedColor(ShareAlert.this.darkTheme ? Theme.key_voipgroup_searchBackground : Theme.key_dialogSearchBackground)));
             addView(this.searchBackground, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.searchIconImageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.searchIconImageView.setImageResource(R.drawable.smiles_inputsearch);
-            this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(r9.getThemedColor(r9.darkTheme ? Theme.key_voipgroup_mutedIcon : Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
+            this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(ShareAlert.this.getThemedColor(ShareAlert.this.darkTheme ? Theme.key_voipgroup_mutedIcon : Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
             addView(this.searchIconImageView, LayoutHelper.createFrame(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.clearSearchImageView = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             ImageView imageView3 = this.clearSearchImageView;
-            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(r9) {
-                {
-                    SearchField.this = this;
-                }
-
+            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(ShareAlert.this) {
                 @Override
                 protected int getCurrentColor() {
                     ShareAlert shareAlert = ShareAlert.this;
@@ -418,8 +405,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.searchEditText = editTextBoldCursor;
             editTextBoldCursor.setTextSize(1, 16.0f);
-            this.searchEditText.setHintTextColor(r9.getThemedColor(r9.darkTheme ? Theme.key_voipgroup_searchPlaceholder : Theme.key_dialogSearchHint));
-            this.searchEditText.setTextColor(r9.getThemedColor(r9.darkTheme ? Theme.key_voipgroup_searchText : Theme.key_dialogSearchText));
+            this.searchEditText.setHintTextColor(ShareAlert.this.getThemedColor(ShareAlert.this.darkTheme ? Theme.key_voipgroup_searchPlaceholder : Theme.key_dialogSearchHint));
+            this.searchEditText.setTextColor(ShareAlert.this.getThemedColor(ShareAlert.this.darkTheme ? Theme.key_voipgroup_searchText : Theme.key_dialogSearchText));
             this.searchEditText.setBackgroundDrawable(null);
             this.searchEditText.setPadding(0, 0, 0, 0);
             this.searchEditText.setMaxLines(1);
@@ -427,21 +414,17 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.searchEditText.setSingleLine(true);
             this.searchEditText.setImeOptions(268435459);
             this.searchEditText.setHint(LocaleController.getString("ShareSendTo", R.string.ShareSendTo));
-            this.searchEditText.setCursorColor(r9.getThemedColor(r9.darkTheme ? Theme.key_voipgroup_searchText : Theme.key_featuredStickers_addedIcon));
+            this.searchEditText.setCursorColor(ShareAlert.this.getThemedColor(ShareAlert.this.darkTheme ? Theme.key_voipgroup_searchText : Theme.key_featuredStickers_addedIcon));
             this.searchEditText.setCursorSize(AndroidUtilities.dp(20.0f));
             this.searchEditText.setCursorWidth(1.5f);
             addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-            this.searchEditText.addTextChangedListener(new TextWatcher(r9) {
+            this.searchEditText.addTextChangedListener(new TextWatcher(ShareAlert.this) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                }
-
-                {
-                    SearchField.this = this;
                 }
 
                 @Override
@@ -572,10 +555,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         strArr2[1] = str2;
         this.useSmoothKeyboard = true;
         super.setDelegate(new BottomSheet.BottomSheetDelegate() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onOpenAnimationEnd() {
                 ShareAlert.this.fullyShown = true;
@@ -621,12 +600,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             private RectF rect1 = new RectF();
 
             {
-                ShareAlert.this = this;
                 this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this) {
-                    {
-                        AnonymousClass2.this = this;
-                    }
-
                     @Override
                     public void onTransitionStart(boolean z5, int i4) {
                         super.onTransitionStart(z5, i4);
@@ -731,7 +705,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         return !ShareAlert.this.commentTextView.isPopupVisible();
                     }
                 };
-                this.lightStatusBar = AndroidUtilities.computePerceivedBrightness(this.getThemedColor(this.darkTheme ? Theme.key_voipgroup_inviteMembersBackground : Theme.key_dialogBackground)) > 0.721f;
+                this.lightStatusBar = AndroidUtilities.computePerceivedBrightness(ShareAlert.this.getThemedColor(ShareAlert.this.darkTheme ? Theme.key_voipgroup_inviteMembersBackground : Theme.key_dialogBackground)) > 0.721f;
                 this.pinnedToTop = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
             }
 
@@ -945,10 +919,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         frameLayout.setBackgroundColor(getThemedColor(this.darkTheme ? Theme.key_voipgroup_inviteMembersBackground : Theme.key_dialogBackground));
         if (this.darkTheme && this.linkToCopy[1] != null) {
             SwitchView switchView = new SwitchView(context) {
-                {
-                    ShareAlert.this = this;
-                }
-
                 @Override
                 protected void onTabSwitch(int i5) {
                     if (ShareAlert.this.pickerBottomLayout == null) {
@@ -976,10 +946,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.topicsBackActionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), false);
         this.topicsBackActionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarWhiteSelector), false);
         this.topicsBackActionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onItemClick(int i5) {
                 ShareAlert.this.onBackPressed();
@@ -993,10 +959,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.topicsLayoutManager = gridLayoutManager;
         recyclerListView.setLayoutManager(gridLayoutManager);
         this.topicsLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public int getSpanSize(int i5) {
                 if (i5 == 0) {
@@ -1006,10 +968,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         });
         this.topicsGridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
                 if (i6 != 0) {
@@ -1061,10 +1019,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.topicsGridView.setVisibility(8);
         this.containerView.addView(this.topicsGridView, LayoutHelper.createFrame(-1, -1, 51));
         RecyclerListView recyclerListView3 = new RecyclerListView(context, resourcesProvider) {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
                 return f2 >= ((float) (AndroidUtilities.dp((!ShareAlert.this.darkTheme || ShareAlert.this.linkToCopy[1] == null) ? 58.0f : 111.0f) + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0)));
@@ -1099,10 +1053,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.layoutManager = gridLayoutManager2;
         recyclerListView4.setLayoutManager(gridLayoutManager2);
         this.layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public int getSpanSize(int i5) {
                 if (i5 == 0) {
@@ -1141,10 +1091,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         });
         this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
                 if (i6 != 0) {
@@ -1155,10 +1101,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         });
         RecyclerListView recyclerListView6 = new RecyclerListView(context, resourcesProvider) {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
                 return f2 >= ((float) (AndroidUtilities.dp((!ShareAlert.this.darkTheme || ShareAlert.this.linkToCopy[1] == null) ? 58.0f : 111.0f) + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0)));
@@ -1193,10 +1135,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.searchLayoutManager = fillLastGridLayoutManager;
         recyclerListView7.setLayoutManager(fillLastGridLayoutManager);
         this.searchLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public int getSpanSize(int i5) {
                 return ShareAlert.this.searchAdapter.getSpanSize(4, i5);
@@ -1213,10 +1151,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.searchGridView.setHorizontalScrollBarEnabled(false);
         this.searchGridView.setVerticalScrollBarEnabled(false);
         this.searchGridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
                 if (i6 != 0) {
@@ -1366,10 +1300,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.frameLayout2.setClipToPadding(false);
         this.commentTextView.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context) {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -1432,10 +1362,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         View view2 = new View(context) {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             protected void onDraw(Canvas canvas) {
                 String format = String.format("%d", Integer.valueOf(Math.max(1, ShareAlert.this.selectedDialogs.size())));
@@ -1469,10 +1395,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);
         }
         DialogsSearchAdapter.loadRecentSearch(this.currentAccount, 0, new DialogsSearchAdapter.OnRecentSearchLoaded() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void setRecentSearch(ArrayList<DialogsSearchAdapter.RecentSearchObject> arrayList3, LongSparseArray<DialogsSearchAdapter.RecentSearchObject> longSparseArray) {
                 if (arrayList3 != null) {
@@ -1605,7 +1527,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public class AnonymousClass16 extends FrameLayout {
         AnonymousClass16(Context context) {
             super(context);
-            ShareAlert.this = r1;
             new Paint();
         }
 
@@ -1670,7 +1591,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         AnonymousClass17(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, BaseFragment baseFragment, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context, sizeNotifierFrameLayout, baseFragment, i, z, resourcesProvider);
-            ShareAlert.this = r8;
         }
 
         @Override
@@ -1875,7 +1795,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         final AtomicReference val$timeoutRef;
 
         AnonymousClass22(TLRPC$Dialog tLRPC$Dialog, AtomicReference atomicReference, View view) {
-            ShareAlert.this = r1;
             this.val$dialog = tLRPC$Dialog;
             this.val$timeoutRef = atomicReference;
             this.val$cell = view;
@@ -2091,10 +2010,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarPopupWindowLayout.setOnTouchListener(new View.OnTouchListener() {
                 private android.graphics.Rect popupRect = new android.graphics.Rect();
 
-                {
-                    ShareAlert.this = this;
-                }
-
                 @Override
                 public boolean onTouch(View view2, MotionEvent motionEvent) {
                     if (motionEvent.getActionMasked() == 0 && ShareAlert.this.sendPopupWindow != null && ShareAlert.this.sendPopupWindow.isShowing()) {
@@ -2152,10 +2067,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarPopupWindowLayout2.setAnimationEnabled(false);
         actionBarPopupWindowLayout2.setOnTouchListener(new View.OnTouchListener() {
             private android.graphics.Rect popupRect = new android.graphics.Rect();
-
-            {
-                ShareAlert.this = this;
-            }
 
             @Override
             public boolean onTouch(View view2, MotionEvent motionEvent) {
@@ -2594,10 +2505,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         animatorSet.playTogether(animatorArr);
         this.shadowAnimation[i].setDuration(150L);
         this.shadowAnimation[i].addListener(new AnimatorListenerAdapter() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (ShareAlert.this.shadowAnimation[i] == null || !ShareAlert.this.shadowAnimation[i].equals(animator)) {
@@ -2736,10 +2643,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.animatorSet.setInterpolator(new DecelerateInterpolator());
         this.animatorSet.setDuration(180L);
         this.animatorSet.addListener(new AnimatorListenerAdapter() {
-            {
-                ShareAlert.this = this;
-            }
-
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (animator.equals(ShareAlert.this.animatorSet)) {
@@ -2825,7 +2728,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
 
         public ShareDialogsAdapter(Context context) {
-            ShareAlert.this = r1;
             this.context = context;
             fetchDialogs();
         }
@@ -2915,12 +2817,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             View view;
             if (i == 0) {
                 view = new ShareDialogCell(this.context, ShareAlert.this.darkTheme ? 1 : 0, ShareAlert.this.resourcesProvider) {
-                    {
-                        ShareDialogsAdapter.this = this;
-                    }
-
                     @Override
-                    public String repostToCustomName() {
+                    protected String repostToCustomName() {
                         if (ShareAlert.this.includeStoryFromMessage) {
                             return LocaleController.getString(R.string.RepostToStory);
                         }
@@ -2960,7 +2858,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
 
         public ShareTopicsAdapter(Context context) {
-            ShareAlert.this = r1;
             this.context = context;
         }
 
@@ -3031,16 +2928,15 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         boolean internalDialogsIsSearching = false;
 
         public ShareSearchAdapter(Context context) {
-            ShareAlert.this = r2;
             this.context = context;
-            SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(this, false, r2) {
+            SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(this, false, ShareAlert.this) {
                 @Override
                 protected boolean filter(TLObject tLObject) {
                     return !(tLObject instanceof TLRPC$Chat) || ChatObject.canWriteToChat((TLRPC$Chat) tLObject);
                 }
             };
             this.searchAdapterHelper = searchAdapterHelper;
-            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(r2) {
+            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(ShareAlert.this) {
                 @Override
                 public LongSparseArray getExcludeCallParticipants() {
                     return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$getExcludeCallParticipants(this);
@@ -3054,10 +2950,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 @Override
                 public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
                     SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, hashMap);
-                }
-
-                {
-                    ShareSearchAdapter.this = this;
                 }
 
                 @Override
@@ -3346,10 +3238,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 linearLayoutManager.setOrientation(0);
                 recyclerListView.setLayoutManager(linearLayoutManager);
                 DialogsSearchAdapter.CategoryAdapterRecycler categoryAdapterRecycler = new DialogsSearchAdapter.CategoryAdapterRecycler(this.context, ((BottomSheet) ShareAlert.this).currentAccount, true, ShareAlert.this.resourcesProvider) {
-                    {
-                        ShareSearchAdapter.this = this;
-                    }
-
                     @Override
                     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
                         TLRPC$Chat tLRPC$Chat;
@@ -3410,10 +3298,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 graySectionCell = graySectionCell2;
             } else if (i == 4) {
                 graySectionCell = new View(this.context) {
-                    {
-                        ShareSearchAdapter.this = this;
-                    }
-
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(ShareAlert.this.searchLayoutManager.lastItemHeight, 1073741824));

@@ -1421,6 +1421,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.wallpaperPreviewDrawable || super.verifyDrawable(drawable);
+    }
+
     private ColorFilter getAdaptiveEmojiColorFilter(int i) {
         if (i != this.adaptiveEmojiColor || this.adaptiveEmojiColorFilter == null) {
             this.adaptiveEmojiColor = i;

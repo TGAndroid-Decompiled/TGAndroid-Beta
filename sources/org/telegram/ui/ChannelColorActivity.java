@@ -2111,17 +2111,24 @@ public class ChannelColorActivity extends BaseFragment {
         }
 
         public void updateColors() {
+            final MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
             AndroidUtilities.forEachViews((RecyclerView) this.listView, (Consumer<View>) new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChannelColorActivity.PeerColorPicker.this.lambda$updateColors$1((View) obj);
+                    ChannelColorActivity.PeerColorPicker.this.lambda$updateColors$1(peerColors, (View) obj);
                 }
             });
         }
 
-        public void lambda$updateColors$1(View view) {
+        public void lambda$updateColors$1(MessagesController.PeerColors peerColors, View view) {
             if (view instanceof ColorCell) {
-                ((ColorCell) view).setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                ColorCell colorCell = (ColorCell) view;
+                colorCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                int childAdapterPosition = this.listView.getChildAdapterPosition(view);
+                if (peerColors == null || childAdapterPosition < 0 || childAdapterPosition >= peerColors.colors.size()) {
+                    return;
+                }
+                colorCell.set(peerColors.colors.get(childAdapterPosition));
             }
         }
 
