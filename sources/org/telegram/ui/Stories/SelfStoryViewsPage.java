@@ -853,7 +853,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         stickerEmptyView.title.setVisibility(8);
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString("ExpiredViewsStub", R.string.ExpiredViewsStub)));
-                        if (!MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount).premiumLocked) {
+                        if (!MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount).premiumFeaturesBlocked()) {
                             spannableStringBuilder.append((CharSequence) "\n\n");
                             String string = LocaleController.getString("ExpiredViewsStubPremiumDescription", R.string.ExpiredViewsStubPremiumDescription);
                             final SelfStoryViewsPage selfStoryViewsPage2 = SelfStoryViewsPage.this;

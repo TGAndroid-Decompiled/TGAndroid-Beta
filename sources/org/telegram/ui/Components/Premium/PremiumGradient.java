@@ -124,7 +124,7 @@ public class PremiumGradient {
     }
 
     public Paint getMainGradientPaint() {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked) {
+        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
             if (this.lockedPremiumPaint == null) {
                 this.lockedPremiumPaint = new Paint(1);
             }

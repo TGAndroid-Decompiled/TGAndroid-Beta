@@ -427,7 +427,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 AndroidUtilities.addToClipboard(getBoostLink());
                 dismiss();
                 return;
-            } else if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumLocked || this.isVeryLargeFile) {
+            } else if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || this.isVeryLargeFile) {
                 dismiss();
                 return;
             } else {
@@ -778,7 +778,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_copy_filled), 0, 1, 0);
             spannableStringBuilder.append((CharSequence) LocaleController.getString("CopyLink", R.string.CopyLink));
             this.premiumButtonView.buttonTextView.setText(spannableStringBuilder);
-        } else if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumLocked || this.isVeryLargeFile) {
+        } else if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || this.isVeryLargeFile) {
             this.premiumButtonView.buttonTextView.setText(LocaleController.getString("OK", R.string.OK));
             this.premiumButtonView.hideIcon();
         } else {

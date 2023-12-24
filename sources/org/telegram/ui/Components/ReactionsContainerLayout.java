@@ -676,11 +676,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     public boolean showCustomEmojiReaction() {
-        return (!MessagesController.getInstance(this.currentAccount).premiumLocked && this.allReactionsAvailable) || this.showExpandableReactions;
+        return this.allReactionsAvailable || this.showExpandableReactions;
     }
 
     public boolean showUnlockPremiumButton() {
-        return (this.premiumLockedReactions.isEmpty() || MessagesController.getInstance(this.currentAccount).premiumLocked) ? false : true;
+        return (this.premiumLockedReactions.isEmpty() || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) ? false : true;
     }
 
     public void showUnlockPremium(float f, float f2) {
@@ -959,7 +959,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             fillRecentReactionsList(arrayList);
         }
         filterReactions(arrayList);
-        this.showExpandableReactions = (this.allReactionsAvailable || arrayList.size() <= 16) ? false : false;
+        if ((this.allReactionsAvailable || arrayList.size() <= 16) && (!this.allReactionsAvailable || UserConfig.getInstance(this.currentAccount).isPremium() || !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked())) {
+            z = false;
+        }
+        this.showExpandableReactions = z;
         setVisibleReactionsList(arrayList);
         if (messageObject == null || (tLRPC$TL_messageReactions = messageObject.messageOwner.reactions) == null || tLRPC$TL_messageReactions.results == null) {
             return;

@@ -5787,7 +5787,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.shiftDp = f;
             AndroidUtilities.shakeViewSpring(animatedTextView, f);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            if (MessagesController.getInstance(this.currentAccount).premiumLocked || MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium <= this.captionEdit.getCodePointCount()) {
+            if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium <= this.captionEdit.getCodePointCount()) {
                 return;
             }
             showCaptionLimitBulletin(this.containerView);

@@ -218,7 +218,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private void bottomPanelTranslationY(float f, float f2) {
     }
 
-    public static void lambda$onSwitchSegmentedAnimation$49() {
+    public static void lambda$onSwitchSegmentedAnimation$50() {
     }
 
     protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
@@ -3886,12 +3886,28 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     public ThanosEffect getThanosEffect() {
-        if (this.thanosEffect == null && ThanosEffect.supports()) {
-            ThanosEffect thanosEffect = new ThanosEffect(getContext());
-            this.thanosEffect = thanosEffect;
-            addView(thanosEffect);
+        if (ThanosEffect.supports()) {
+            if (this.thanosEffect == null) {
+                ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
+                    @Override
+                    public final void run() {
+                        LPhotoPaintView.this.lambda$getThanosEffect$48();
+                    }
+                });
+                this.thanosEffect = thanosEffect;
+                addView(thanosEffect);
+            }
+            return this.thanosEffect;
         }
-        return this.thanosEffect;
+        return null;
+    }
+
+    public void lambda$getThanosEffect$48() {
+        ThanosEffect thanosEffect = this.thanosEffect;
+        if (thanosEffect != null) {
+            this.thanosEffect = null;
+            removeView(thanosEffect);
+        }
     }
 
     public void onSwitchSegmentedAnimation(final PhotoView photoView) {
@@ -3949,7 +3965,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }, new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.lambda$onSwitchSegmentedAnimation$49();
+                LPhotoPaintView.lambda$onSwitchSegmentedAnimation$50();
             }
         });
     }

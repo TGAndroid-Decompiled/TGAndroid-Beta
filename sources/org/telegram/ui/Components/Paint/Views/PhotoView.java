@@ -250,9 +250,9 @@ public class PhotoView extends EntityView {
             return null;
         }
         if (this.segmentedFile == null) {
-            this.segmentedFile = StoryEntry.makeCacheFile(i, false);
+            this.segmentedFile = StoryEntry.makeCacheFile(i, "webp");
             try {
-                this.segmentedImage.compress(Bitmap.CompressFormat.JPEG, 94, new FileOutputStream(this.segmentedFile));
+                this.segmentedImage.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.segmentedFile));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -300,9 +300,13 @@ public class PhotoView extends EntityView {
             float f = width;
             float f2 = height;
             rectF.set(0.0f, 0.0f, f, f2);
+            float f3 = this.mirrorT.get();
+            float f4 = f / 2.0f;
+            canvas.scale(1.0f - (f3 * 2.0f), 1.0f, f4, 0.0f);
+            canvas.skew(0.0f, 4.0f * f3 * (1.0f - f3) * 0.25f);
             this.roundRectPath.addRoundRect(rectF, AndroidUtilities.dp(12.0f) * getScaleX(), AndroidUtilities.dp(12.0f) * getScaleY(), Path.Direction.CW);
             canvas.clipPath(this.roundRectPath);
-            canvas.translate(f / 2.0f, f2 / 2.0f);
+            canvas.translate(f4, f2 / 2.0f);
             canvas.rotate(this.orientation);
             canvas.translate((-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f);
             rectF.set(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());

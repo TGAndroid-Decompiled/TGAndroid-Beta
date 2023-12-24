@@ -760,7 +760,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         this.rowCount = i15 + 1;
         this.groupsRow = i15;
         this.groupsDetailRow = -1;
-        if (!getMessagesController().premiumLocked || getUserConfig().isPremium()) {
+        if (!getMessagesController().premiumFeaturesBlocked() || getUserConfig().isPremium()) {
             int i16 = this.rowCount;
             this.rowCount = i16 + 1;
             this.voicesRow = i16;

@@ -139,7 +139,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
     private void updateIconsVisibility() {
         this.availableIcons.clear();
         this.availableIcons.addAll(Arrays.asList(LauncherIconController.LauncherIcon.values()));
-        if (MessagesController.getInstance(this.currentAccount).premiumLocked) {
+        if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
             int i = 0;
             while (i < this.availableIcons.size()) {
                 if (this.availableIcons.get(i).premium) {

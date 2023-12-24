@@ -37,7 +37,7 @@ public class DialogsHintCell extends FrameLayout {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setSingleLine();
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 48));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, (LocaleController.isRTL ? 5 : 3) | 48));
         TextView textView2 = new TextView(context);
         this.messageView = textView2;
         textView2.setTextSize(1, 14.0f);

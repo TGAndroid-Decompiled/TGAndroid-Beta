@@ -1316,7 +1316,7 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            if (MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked && (!FilterTabsView.this.isEditing || (viewHolder.getAdapterPosition() == 0 && ((Tab) FilterTabsView.this.tabs.get(0)).isDefault && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()))) {
+            if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && (!FilterTabsView.this.isEditing || (viewHolder.getAdapterPosition() == 0 && ((Tab) FilterTabsView.this.tabs.get(0)).isDefault && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()))) {
                 return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
             }
             return ItemTouchHelper.Callback.makeMovementFlags(12, 0);
@@ -1324,7 +1324,7 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (!MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked || (!(viewHolder.getAdapterPosition() == 0 || viewHolder2.getAdapterPosition() == 0) || UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+            if (!MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() || (!(viewHolder.getAdapterPosition() == 0 || viewHolder2.getAdapterPosition() == 0) || UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
                 FilterTabsView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
                 return true;
             }

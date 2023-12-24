@@ -3057,7 +3057,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 this.captionLimitView.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
-            if (MessagesController.getInstance(this.currentAccount).premiumLocked || MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium <= this.codepointCount) {
+            if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium <= this.codepointCount) {
                 return;
             }
             showCaptionLimitBulletin(baseFragment);

@@ -1671,7 +1671,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (chatActivityEnterView != null && chatActivityEnterView.getEmojiView() != null) {
                 ChatActivity.this.chatActivityEnterView.getEmojiView().onMessageSend();
             }
-            if (ChatActivity.this.getMessagesController().premiumLocked || ChatActivity.this.getMessagesController().transcribeAudioTrialWeeklyNumber > 0 || ChatActivity.this.getMessagesController().didPressTranscribeButtonEnough() || ChatActivity.this.getUserConfig().isPremium() || TextUtils.isEmpty(charSequence) || ChatActivity.this.messages == null) {
+            if (ChatActivity.this.getMessagesController().premiumFeaturesBlocked() || ChatActivity.this.getMessagesController().transcribeAudioTrialWeeklyNumber > 0 || ChatActivity.this.getMessagesController().didPressTranscribeButtonEnough() || ChatActivity.this.getUserConfig().isPremium() || TextUtils.isEmpty(charSequence) || ChatActivity.this.messages == null) {
                 return;
             }
             for (int i3 = 1; i3 < Math.min(5, ChatActivity.this.messages.size()); i3++) {
@@ -14091,7 +14091,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     @Override
     public void onBecomeFullyHidden() {
-        if (!getMessagesController().premiumLocked && getMessagesController().transcribeAudioTrialWeeklyNumber <= 0 && !getMessagesController().didPressTranscribeButtonEnough() && !getUserConfig().isPremium() && this.messages != null) {
+        if (!getMessagesController().premiumFeaturesBlocked() && getMessagesController().transcribeAudioTrialWeeklyNumber <= 0 && !getMessagesController().didPressTranscribeButtonEnough() && !getUserConfig().isPremium() && this.messages != null) {
             for (int i = 0; i < this.messages.size(); i++) {
                 MessageObject messageObject = this.messages.get(i);
                 if (messageObject != null && !messageObject.isOutOwner() && ((messageObject.isVoice() || messageObject.isRoundVideo()) && !messageObject.isUnread() && (messageObject.isContentUnread() || ChatObject.isChannelAndNotMegaGroup(this.currentChat)))) {
@@ -15769,7 +15769,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (messageObject == null && this.selectedMessagesIds[0].size() + this.selectedMessagesIds[1].size() == 0) {
             return;
         }
-        getChatThanosEffect();
         AlertsCreator.createDeleteMessagesAlert(this, this.currentUser, this.currentChat, this.currentEncryptedChat, this.chatInfo, this.mergeDialogId, messageObject, this.selectedMessagesIds, groupedMessages, this.chatMode == 1, i, new Runnable() {
             @Override
             public final void run() {
@@ -20879,7 +20878,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
             Bulletin createContainsEmojiBulletin;
-            if (!ChatActivity.this.getMessagesController().premiumLocked && animatedEmojiSpan != null && !animatedEmojiSpan.standard) {
+            if (!ChatActivity.this.getMessagesController().premiumFeaturesBlocked() && animatedEmojiSpan != null && !animatedEmojiSpan.standard) {
                 long documentId = animatedEmojiSpan.getDocumentId();
                 TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
                 if (tLRPC$Document == null) {
@@ -23952,13 +23951,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.headerItem.lazilyAddSubItem(16, R.drawable.msg_delete, LocaleController.getString("DeleteChatUser", R.string.DeleteChatUser));
     }
 
+    public boolean supportsThanosEffect() {
+        return ThanosEffect.supports() && LiteMode.isEnabled(65536);
+    }
+
     public ThanosEffect getChatThanosEffect() {
         if (LiteMode.isEnabled(65536) && ThanosEffect.supports()) {
             if (this.chatListThanosEffect == null) {
                 if (getContext() == null || !ThanosEffect.supports() || this.chatListView == null || this.contentView == null) {
                     return null;
                 }
-                ThanosEffect thanosEffect = new ThanosEffect(getContext());
+                ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatActivity.this.lambda$getChatThanosEffect$306();
+                    }
+                });
                 this.chatListThanosEffect = thanosEffect;
                 ChatActivityFragmentView chatActivityFragmentView = this.contentView;
                 chatActivityFragmentView.addView(thanosEffect, chatActivityFragmentView.indexOfChild(this.chatListView) + 1, LayoutHelper.createFrame(-1, -1.0f));
@@ -23966,5 +23974,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return this.chatListThanosEffect;
         }
         return null;
+    }
+
+    public void lambda$getChatThanosEffect$306() {
+        ThanosEffect thanosEffect = this.chatListThanosEffect;
+        if (thanosEffect != null) {
+            this.chatListThanosEffect = null;
+            this.contentView.removeView(thanosEffect);
+        }
     }
 }

@@ -6178,7 +6178,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             }
         }
-        if (MessagesController.getInstance(this.currentAccount).premiumLocked) {
+        if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
             int i3 = 0;
             while (i3 < this.favouriteStickers.size()) {
                 if (MessageObject.isPremiumSticker(this.favouriteStickers.get(i3))) {

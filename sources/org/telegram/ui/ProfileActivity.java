@@ -5108,7 +5108,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -5297,7 +5297,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (this.avatarBig != null) {
             return;
         }
-        if (this.isTopic && !getMessagesController().premiumLocked) {
+        if (this.isTopic && !getMessagesController().premiumFeaturesBlocked()) {
             ArrayList<TLRPC$TL_forumTopic> topics = getMessagesController().getTopicsController().getTopics(this.chatId);
             if (topics != null) {
                 TLRPC$TL_forumTopic tLRPC$TL_forumTopic = null;
@@ -6408,7 +6408,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -11426,7 +11426,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         private boolean isPremiumFeatureAvailable(int i) {
-            if (!ProfileActivity.this.getMessagesController().premiumLocked || ProfileActivity.this.getUserConfig().isPremium()) {
+            if (!ProfileActivity.this.getMessagesController().premiumFeaturesBlocked() || ProfileActivity.this.getUserConfig().isPremium()) {
                 return i == -1 || ProfileActivity.this.getMessagesController().premiumFeaturesTypesToPosition.get(i, -1) != -1;
             }
             return false;

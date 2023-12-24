@@ -315,7 +315,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         boolean onTouch(MotionEvent motionEvent);
     }
 
-    public static boolean lambda$toggleTheme$70(View view, MotionEvent motionEvent) {
+    public static boolean lambda$toggleTheme$71(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -681,7 +681,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerView.setScaleY(1.0f);
         this.dismissProgress = 0.0f;
         AndroidUtilities.lockOrientation(this.activity, 1);
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda39(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda40(this));
         addNotificationObservers();
     }
 
@@ -737,7 +737,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$openEdit$0(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda39(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda40(this));
         this.previewButtons.appear(true, true);
     }
 
@@ -795,7 +795,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$openForward$1(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda39(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda40(this));
     }
 
     public void openRepost(SourceView sourceView, StoryEntry storyEntry) {
@@ -843,7 +843,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.previewButtons.appear(true, false);
         navigateTo(1, false);
         switchToEditMode(-1, false);
-        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda39(this));
+        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda40(this));
         addNotificationObservers();
     }
 
@@ -2342,7 +2342,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public boolean captionLimitToast() {
-            if (MessagesController.getInstance(this.currentAccount).premiumLocked) {
+            if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
                 return false;
             }
             Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
@@ -4352,7 +4352,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             CaptionStory captionStory = this.captionEdit;
             StoryEntry storyEntry7 = this.outputEntry;
             captionStory.setPeriod(storyEntry7 == null ? 86400 : storyEntry7.period, false);
-            this.captionEdit.setPeriodVisible(!MessagesController.getInstance(this.currentAccount).premiumLocked && ((storyEntry = this.outputEntry) == null || !storyEntry.isEdit));
+            this.captionEdit.setPeriodVisible(!MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() && ((storyEntry = this.outputEntry) == null || !storyEntry.isEdit));
             CaptionStory captionStory2 = this.captionEdit;
             StoryEntry storyEntry8 = this.outputEntry;
             captionStory2.setHasRoundVideo((storyEntry8 == null || storyEntry8.round == null) ? false : true);
@@ -6223,13 +6223,29 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public ThanosEffect getThanosEffect() {
-        if (this.thanosEffect == null && !ThanosEffect.supports()) {
-            WindowView windowView = this.windowView;
-            ThanosEffect thanosEffect = new ThanosEffect(getContext());
-            this.thanosEffect = thanosEffect;
-            windowView.addView(thanosEffect);
+        if (ThanosEffect.supports()) {
+            if (this.thanosEffect == null) {
+                WindowView windowView = this.windowView;
+                ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryRecorder.this.lambda$getThanosEffect$69();
+                    }
+                });
+                this.thanosEffect = thanosEffect;
+                windowView.addView(thanosEffect);
+            }
+            return this.thanosEffect;
         }
-        return this.thanosEffect;
+        return null;
+    }
+
+    public void lambda$getThanosEffect$69() {
+        ThanosEffect thanosEffect = this.thanosEffect;
+        if (thanosEffect != null) {
+            this.thanosEffect = null;
+            this.windowView.removeView(thanosEffect);
+        }
     }
 
     public ImageView getThemeButton() {
@@ -6261,7 +6277,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.themeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StoryRecorder.this.lambda$getThemeButton$69(view);
+                    StoryRecorder.this.lambda$getThemeButton$70(view);
                 }
             });
             this.themeButton.setVisibility(8);
@@ -6272,7 +6288,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         return this.themeButton;
     }
 
-    public void lambda$getThemeButton$69(View view) {
+    public void lambda$getThemeButton$70(View view) {
         toggleTheme();
     }
 
@@ -6372,9 +6388,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             view.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    boolean lambda$toggleTheme$70;
-                    lambda$toggleTheme$70 = StoryRecorder.lambda$toggleTheme$70(view2, motionEvent);
-                    return lambda$toggleTheme$70;
+                    boolean lambda$toggleTheme$71;
+                    lambda$toggleTheme$71 = StoryRecorder.lambda$toggleTheme$71(view2, motionEvent);
+                    return lambda$toggleTheme$71;
                 }
             });
             this.changeDayNightViewProgress = 0.0f;
@@ -6424,13 +6440,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.this.lambda$toggleTheme$71();
+                    StoryRecorder.this.lambda$toggleTheme$72();
                 }
             });
         }
     }
 
-    public void lambda$toggleTheme$71() {
+    public void lambda$toggleTheme$72() {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry == null) {
             return;

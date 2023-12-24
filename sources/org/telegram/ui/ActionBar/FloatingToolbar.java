@@ -982,14 +982,14 @@ public final class FloatingToolbar {
                 });
             }
             int size = list.size();
-            boolean z = MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked;
+            boolean premiumFeaturesBlocked = MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked();
             for (int i = 0; i < size; i++) {
                 MenuItem menuItem = list.get(i);
-                boolean z2 = true;
+                boolean z = true;
                 if (FloatingToolbar.this.premiumLockClickListener != null && FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId()))) {
-                    z2 = true ^ z;
+                    z = true ^ premiumFeaturesBlocked;
                 }
-                if (z2) {
+                if (z) {
                     arrayAdapter.add(menuItem);
                 }
             }

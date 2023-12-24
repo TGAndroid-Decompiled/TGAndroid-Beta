@@ -224,7 +224,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
             boolean z = this.listView.getAdapter() == this.searchListViewAdapter;
             if (!z) {
-                i -= (7 - ((getChatValue() || getContextValue()) ? 0 : 1)) - (getMessagesController().premiumLocked ? 1 : 0);
+                i -= (7 - ((getChatValue() || getContextValue()) ? 0 : 1)) - (getMessagesController().premiumFeaturesBlocked() ? 1 : 0);
             }
             if (z) {
                 localeInfo = this.searchResult.get(i);
@@ -478,7 +478,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (!LanguageSelectActivity.this.unofficialLanguages.isEmpty()) {
                 size += LanguageSelectActivity.this.unofficialLanguages.size() + 1;
             }
-            return (!LanguageSelectActivity.this.getMessagesController().premiumLocked ? 1 : 0) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 1) + 1 + size;
+            return (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 1) + 1 + size;
         }
 
         @Override
@@ -534,7 +534,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (i2 == 0) {
                 return 2;
             }
-            if (!LanguageSelectActivity.this.getMessagesController().premiumLocked) {
+            if (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
                 int i4 = i3 - 1;
                 if (i3 == 0) {
                     return 2;
