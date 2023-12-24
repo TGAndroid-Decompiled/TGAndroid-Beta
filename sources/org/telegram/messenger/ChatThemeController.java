@@ -219,7 +219,7 @@ public class ChatThemeController extends BaseController {
         if (str != null) {
             return TextUtils.equals(tLRPC$WallPaper2.uploadingImage, str);
         }
-        return tLRPC$WallPaper.id == tLRPC$WallPaper2.id && TextUtils.equals(ChatBackgroundDrawable.hash(tLRPC$WallPaper.settings), ChatBackgroundDrawable.hash(tLRPC$WallPaper2.settings));
+        return tLRPC$WallPaper.id == tLRPC$WallPaper2.id && TextUtils.equals(ChatBackgroundDrawable.hash(tLRPC$WallPaper.settings), ChatBackgroundDrawable.hash(tLRPC$WallPaper2.settings)) && TextUtils.equals(getWallpaperEmoticon(tLRPC$WallPaper), getWallpaperEmoticon(tLRPC$WallPaper2));
     }
 
     public void setDialogTheme(long j, String str, boolean z) {
@@ -457,7 +457,7 @@ public class ChatThemeController extends BaseController {
         if (chatFull == null || wallpaperEquals(chatFull.wallpaper, tLRPC$TL_updatePeerWallpaper.wallpaper)) {
             return;
         }
-        long j2 = chatFull.id;
+        long j2 = -chatFull.id;
         if ((tLRPC$TL_updatePeerWallpaper.flags & 1) != 0) {
             chatFull.wallpaper = tLRPC$TL_updatePeerWallpaper.wallpaper;
             chatFull.flags2 |= 128;

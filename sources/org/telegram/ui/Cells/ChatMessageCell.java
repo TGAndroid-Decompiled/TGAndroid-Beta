@@ -1356,10 +1356,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
             public static void $default$videoTimerReached(ChatMessageCellDelegate chatMessageCellDelegate) {
             }
-
-            public static void $default$didPressWebPage(ChatMessageCellDelegate _this, ChatMessageCell chatMessageCell, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                Browser.openUrl(chatMessageCell.getContext(), str);
-            }
         }
     }
 

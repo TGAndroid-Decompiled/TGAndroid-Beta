@@ -26,6 +26,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
@@ -33,12 +34,17 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ThanosEffect;
 public class ThanosEffect extends TextureView {
+    private static Boolean nothanos;
     private DrawingThread drawThread;
     private final Choreographer.FrameCallback frameCallback;
     private final ArrayList<ToSet> toSet;
 
     public static boolean supports() {
-        return Build.VERSION.SDK_INT >= 21;
+        if (nothanos == null) {
+            nothanos = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        }
+        Boolean bool = nothanos;
+        return (bool == null || !bool.booleanValue()) && Build.VERSION.SDK_INT >= 21;
     }
 
     public static class ToSet {
@@ -251,14 +257,38 @@ public class ThanosEffect extends TextureView {
 
         @Override
         public void run() {
-            init();
-            if (!this.toAddAnimations.isEmpty()) {
-                for (int i = 0; i < this.toAddAnimations.size(); i++) {
-                    addAnimationInternal(this.toAddAnimations.get(i));
+            try {
+                init();
+                if (!this.toAddAnimations.isEmpty()) {
+                    for (int i = 0; i < this.toAddAnimations.size(); i++) {
+                        addAnimationInternal(this.toAddAnimations.get(i));
+                    }
+                    this.toAddAnimations.clear();
+                }
+                super.run();
+            } catch (Exception e) {
+                FileLog.e(e);
+                for (int i2 = 0; i2 < this.toAddAnimations.size(); i2++) {
+                    Animation animation = this.toAddAnimations.get(i2);
+                    Runnable runnable = animation.startCallback;
+                    if (runnable != null) {
+                        AndroidUtilities.runOnUIThread(runnable);
+                    }
+                    animation.done(false);
                 }
                 this.toAddAnimations.clear();
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ThanosEffect.DrawingThread.lambda$run$0();
+                    }
+                });
+                killInternal();
             }
-            super.run();
+        }
+
+        public static void lambda$run$0() {
+            MessagesController.getGlobalMainSettings().edit().putBoolean("nothanos", ThanosEffect.nothanos = Boolean.TRUE.booleanValue()).apply();
         }
 
         public void requestDraw() {
@@ -434,12 +464,34 @@ public class ThanosEffect extends TextureView {
                     i++;
                 }
                 checkGlErrors();
-                this.egl.eglSwapBuffers(this.eglDisplay, this.eglSurface);
-                for (int i2 = 0; i2 < this.toRunStartCallback.size(); i2++) {
-                    AndroidUtilities.runOnUIThread(this.toRunStartCallback.get(i2).startCallback);
+                try {
+                    this.egl.eglSwapBuffers(this.eglDisplay, this.eglSurface);
+                    for (int i2 = 0; i2 < this.toRunStartCallback.size(); i2++) {
+                        AndroidUtilities.runOnUIThread(this.toRunStartCallback.get(i2).startCallback);
+                    }
+                    this.toRunStartCallback.clear();
+                } catch (Exception unused) {
+                    for (int i3 = 0; i3 < this.toRunStartCallback.size(); i3++) {
+                        AndroidUtilities.runOnUIThread(this.toRunStartCallback.get(i3).startCallback);
+                    }
+                    this.toRunStartCallback.clear();
+                    for (int i4 = 0; i4 < this.pendingAnimations.size(); i4++) {
+                        this.pendingAnimations.get(i4).done(false);
+                    }
+                    this.pendingAnimations.clear();
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            ThanosEffect.DrawingThread.lambda$draw$1();
+                        }
+                    });
+                    killInternal();
                 }
-                this.toRunStartCallback.clear();
             }
+        }
+
+        public static void lambda$draw$1() {
+            MessagesController.getGlobalMainSettings().edit().putBoolean("nothanos", ThanosEffect.nothanos = Boolean.TRUE.booleanValue()).apply();
         }
 
         public void animateGroup(ArrayList<View> arrayList, Runnable runnable) {

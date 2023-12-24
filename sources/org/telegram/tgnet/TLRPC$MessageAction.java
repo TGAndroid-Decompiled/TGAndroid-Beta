@@ -467,7 +467,27 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 };
                 break;
             case -25742243:
-                tLRPC$MessageAction = new TLRPC$TL_messageActionRequestedPeer();
+                tLRPC$MessageAction = new TLRPC$TL_messageActionRequestedPeer() {
+                    public TLRPC$Peer peer;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.button_id = abstractSerializedData2.readInt32(z2);
+                        TLRPC$Peer TLdeserialize = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.peer = TLdeserialize;
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.peers.add(TLdeserialize);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-25742243);
+                        abstractSerializedData2.writeInt32(this.button_id);
+                        this.peer.serializeToStream(abstractSerializedData2);
+                    }
+                };
                 break;
             case 29007925:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
@@ -488,6 +508,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 715107781:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionGiveawayResults();
+                break;
+            case 827428507:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionRequestedPeer();
                 break;
             case 858499565:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {

@@ -16,6 +16,8 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputFileLocation;
 import org.telegram.tgnet.TLRPC$InputWebFileLocation;
+import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_fileHash;
 import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
@@ -1465,6 +1467,8 @@ public class FileLoadOperation {
     }
 
     private void requestReference(RequestInfo requestInfo) {
+        TLRPC$Message tLRPC$Message;
+        TLRPC$MessageMedia tLRPC$MessageMedia;
         TLRPC$WebPage tLRPC$WebPage;
         if (this.requestingReference) {
             return;
@@ -1474,7 +1478,7 @@ public class FileLoadOperation {
         Object obj = this.parentObject;
         if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
-            if (messageObject.getId() < 0 && (tLRPC$WebPage = messageObject.messageOwner.media.webpage) != null) {
+            if (messageObject.getId() < 0 && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && (tLRPC$WebPage = tLRPC$MessageMedia.webpage) != null) {
                 this.parentObject = tLRPC$WebPage;
             }
         }

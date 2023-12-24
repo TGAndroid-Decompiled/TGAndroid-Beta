@@ -71,6 +71,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private ArrayList<int[]> animateEndColors;
     private int animateSetThemeAccentIdAfterAnimation;
     private Theme.ThemeInfo animateSetThemeAfterAnimation;
+    private boolean animateSetThemeAfterAnimationApply;
     private boolean animateSetThemeNightAfterAnimation;
     private ArrayList<int[]> animateStartColors;
     private boolean animateThemeAfterAnimation;
@@ -2294,6 +2295,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             this.animateSetThemeAfterAnimation = themeAnimationSettings.theme;
             this.animateSetThemeNightAfterAnimation = themeAnimationSettings.nightTheme;
             this.animateSetThemeAccentIdAfterAnimation = themeAnimationSettings.accentId;
+            this.animateSetThemeAfterAnimationApply = themeAnimationSettings.applyTrulyTheme;
             if (runnable != null) {
                 runnable.run();
                 return;
@@ -2312,7 +2314,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ActionBarLayout.this.lambda$animateThemedValues$6(size, themeAnimationSettings, runnable);
             }
         };
-        if (size >= 1 && themeAnimationSettings.applyTheme) {
+        if (size >= 1 && themeAnimationSettings.applyTheme && themeAnimationSettings.applyTrulyTheme) {
             int i = themeAnimationSettings.accentId;
             if (i != -1 && (themeInfo = themeAnimationSettings.theme) != null) {
                 themeInfo.setCurrentAccentId(i);
@@ -2562,7 +2564,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             rebuildAllFragmentViews(this.rebuildLastAfterAnimation, this.showLastAfterAnimation);
             this.rebuildAfterAnimation = false;
         } else if (this.animateThemeAfterAnimation) {
-            animateThemedValues(this.animateSetThemeAfterAnimation, this.animateSetThemeAccentIdAfterAnimation, this.animateSetThemeNightAfterAnimation, false);
+            INavigationLayout.ThemeAnimationSettings themeAnimationSettings = new INavigationLayout.ThemeAnimationSettings(this.animateSetThemeAfterAnimation, this.animateSetThemeAccentIdAfterAnimation, this.animateSetThemeNightAfterAnimation, false);
+            boolean z = this.animateSetThemeAfterAnimationApply;
+            if (!z) {
+                themeAnimationSettings.applyTrulyTheme = z;
+                themeAnimationSettings.applyTheme = z;
+            }
+            animateThemedValues(themeAnimationSettings, null);
             this.animateSetThemeAfterAnimation = null;
             this.animateThemeAfterAnimation = false;
         }

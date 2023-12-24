@@ -432,7 +432,7 @@ public class ApplicationLoader extends Application {
 
     public static boolean useLessData() {
         ensureCurrentNetworkGet();
-        return SharedConfig.forceLessData || isConnectionSlow();
+        return BuildVars.DEBUG_PRIVATE_VERSION && (SharedConfig.forceLessData || isConnectionSlow());
     }
 
     public static boolean isConnectionSlow() {

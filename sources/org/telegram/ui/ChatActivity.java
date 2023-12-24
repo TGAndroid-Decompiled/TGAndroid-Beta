@@ -22800,13 +22800,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$checkThemeEmoticonOrWallpaper$299() {
-        TLRPC$ChatFull tLRPC$ChatFull;
         TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-        String str = tLRPC$UserFull != null ? tLRPC$UserFull.theme_emoticon : null;
-        if (str == null && (tLRPC$ChatFull = this.chatInfo) != null) {
-            str = tLRPC$ChatFull.theme_emoticon;
-        }
-        setChatThemeEmoticon(str);
+        setChatThemeEmoticon(tLRPC$UserFull != null ? tLRPC$UserFull.theme_emoticon : null);
     }
 
     private void setChatThemeEmoticon(String str) {
@@ -23129,6 +23124,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 initPaints();
             }
             themeAnimationSettings.applyTheme = false;
+            if (ChatActivity.this.dialog_id < 0) {
+                themeAnimationSettings.applyTrulyTheme = false;
+            }
             themeAnimationSettings.afterStartDescriptionsAddedRunnable = new Runnable() {
                 @Override
                 public final void run() {
@@ -23304,7 +23302,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 this.patternAlphaAnimator.start();
             }
-            if (emojiThemes == null) {
+            if (emojiThemes == null && ChatActivity.this.dialog_id >= 0) {
                 if (Theme.getActiveTheme().isDark() == this.isDark) {
                     theme = Theme.getActiveTheme();
                 } else {
@@ -23955,7 +23953,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public ThanosEffect getChatThanosEffect() {
-        if (LiteMode.isEnabled(65536)) {
+        if (LiteMode.isEnabled(65536) && ThanosEffect.supports()) {
             if (this.chatListThanosEffect == null) {
                 if (getContext() == null || !ThanosEffect.supports() || this.chatListView == null || this.contentView == null) {
                     return null;

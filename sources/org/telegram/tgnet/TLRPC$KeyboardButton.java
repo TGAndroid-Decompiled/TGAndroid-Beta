@@ -232,7 +232,22 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 };
                 break;
             case 218842764:
-                tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonRequestPeer();
+                tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonRequestPeer() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.text = abstractSerializedData2.readString(z2);
+                        this.button_id = abstractSerializedData2.readInt32(z2);
+                        this.peer_type = TLRPC$RequestPeerType.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(218842764);
+                        abstractSerializedData2.writeString(this.text);
+                        abstractSerializedData2.writeInt32(this.button_id);
+                        this.peer_type.serializeToStream(abstractSerializedData2);
+                    }
+                };
                 break;
             case 280464681:
                 tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonUrlAuth();
@@ -301,6 +316,9 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                         abstractSerializedData2.writeString(this.text);
                     }
                 };
+                break;
+            case 1406648280:
+                tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonRequestPeer();
                 break;
             case 1748655686:
                 tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonCallback() {

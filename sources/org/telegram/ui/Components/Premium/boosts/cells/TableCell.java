@@ -10,7 +10,6 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -313,7 +312,6 @@ public class TableCell extends FrameLayout {
         TextView textView;
         if (z) {
             textView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
             textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
         } else {
             textView = new TextView(getContext());

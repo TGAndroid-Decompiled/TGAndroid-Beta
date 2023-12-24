@@ -350,6 +350,7 @@ public interface INavigationLayout {
         public Theme.ResourcesProvider resourcesProvider;
         public final Theme.ThemeInfo theme;
         public boolean applyTheme = true;
+        public boolean applyTrulyTheme = true;
         public long duration = 200;
 
         public interface onAnimationProgress {

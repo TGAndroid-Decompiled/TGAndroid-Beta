@@ -54,6 +54,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.Switch;
+import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.LiteModeSettingsActivity;
 public class LiteModeSettingsActivity extends BaseFragment {
     private int FLAGS_CHAT;
@@ -266,7 +267,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur"), LiteMode.FLAG_CHAT_BLUR));
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), LiteMode.FLAG_CHAT_SCALE));
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsThanos"), 65536));
+            if (ThanosEffect.supports()) {
+                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsThanos"), 65536));
+            }
         }
         this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), LiteMode.FLAG_CALLS_ANIMATIONS));
         this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString("LiteOptionsAutoplayVideo"), 1024));

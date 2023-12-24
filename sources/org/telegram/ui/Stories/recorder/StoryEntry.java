@@ -176,18 +176,21 @@ public class StoryEntry {
     }
 
     public boolean wouldBeVideo() {
-        ArrayList<VideoEditedInfo.EmojiEntity> arrayList;
+        return wouldBeVideo(this.mediaEntities);
+    }
+
+    public boolean wouldBeVideo(ArrayList<VideoEditedInfo.MediaEntity> arrayList) {
+        ArrayList<VideoEditedInfo.EmojiEntity> arrayList2;
         if (!this.isVideo && this.audioPath == null && this.round == null) {
-            ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = this.mediaEntities;
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                for (int i = 0; i < this.mediaEntities.size(); i++) {
-                    VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i);
+            if (arrayList != null && !arrayList.isEmpty()) {
+                for (int i = 0; i < arrayList.size(); i++) {
+                    VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i);
                     byte b = mediaEntity.type;
                     if (b == 0) {
                         if (isAnimated(mediaEntity.document, mediaEntity.text)) {
                             return true;
                         }
-                    } else if (b == 1 && (arrayList = mediaEntity.entities) != null && !arrayList.isEmpty()) {
+                    } else if (b == 1 && (arrayList2 = mediaEntity.entities) != null && !arrayList2.isEmpty()) {
                         for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
                             VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
                             if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
