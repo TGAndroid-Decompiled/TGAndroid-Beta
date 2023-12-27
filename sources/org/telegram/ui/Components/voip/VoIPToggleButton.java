@@ -45,6 +45,8 @@ public class VoIPToggleButton extends FrameLayout {
     private boolean drawCross;
     Drawable[] icon;
     private boolean iconChangeColor;
+    private float pressedScale;
+    private ValueAnimator pressedScaleAnimator;
     private float radius;
     ValueAnimator replaceAnimator;
     private int replaceColorFrom;
@@ -67,6 +69,7 @@ public class VoIPToggleButton extends FrameLayout {
         this.crossPaint = new Paint(1);
         this.xRefPaint = new Paint(1);
         this.bitmapPaint = new Paint(1);
+        this.pressedScale = 1.0f;
         this.radius = f;
         setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -78,7 +81,7 @@ public class VoIPToggleButton extends FrameLayout {
             textView.setTextSize(1, 11.0f);
             textView.setTextColor(-1);
             textView.setImportantForAccessibility(2);
-            this.textLayoutContainer.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 4.0f + f, 0.0f, 0.0f));
+            this.textLayoutContainer.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 6.0f + f, 0.0f, 0.0f));
             this.textView[i] = textView;
         }
         this.textView[1].setVisibility(8);
@@ -98,6 +101,31 @@ public class VoIPToggleButton extends FrameLayout {
 
     public void setDrawBackground(boolean z) {
         this.drawBackground = z;
+    }
+
+    public void setPressedBtn(boolean z) {
+        ValueAnimator valueAnimator = this.pressedScaleAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float[] fArr = new float[2];
+        fArr[0] = this.pressedScale;
+        fArr[1] = z ? 0.8f : 1.0f;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        this.pressedScaleAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                VoIPToggleButton.this.lambda$setPressedBtn$0(valueAnimator2);
+            }
+        });
+        this.pressedScaleAnimator.setDuration(150L);
+        this.pressedScaleAnimator.start();
+    }
+
+    public void lambda$setPressedBtn$0(ValueAnimator valueAnimator) {
+        this.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
     }
 
     @Override
@@ -200,7 +228,7 @@ public class VoIPToggleButton extends FrameLayout {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIPToggleButton.this.lambda$setData$0(z5, valueAnimator2);
+                VoIPToggleButton.this.lambda$setData$1(z5, valueAnimator2);
             }
         });
         this.replaceAnimator.addListener(new AnimatorListenerAdapter() {
@@ -236,7 +264,7 @@ public class VoIPToggleButton extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$setData$0(boolean z, ValueAnimator valueAnimator) {
+    public void lambda$setData$1(boolean z, ValueAnimator valueAnimator) {
         this.replaceProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
         if (z) {
@@ -304,7 +332,7 @@ public class VoIPToggleButton extends FrameLayout {
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        VoIPToggleButton.this.lambda$setChecked$1(valueAnimator2);
+                        VoIPToggleButton.this.lambda$setChecked$2(valueAnimator2);
                     }
                 });
                 this.checkAnimator.addListener(new AnimatorListenerAdapter() {
@@ -325,7 +353,7 @@ public class VoIPToggleButton extends FrameLayout {
         }
     }
 
-    public void lambda$setChecked$1(ValueAnimator valueAnimator) {
+    public void lambda$setChecked$2(ValueAnimator valueAnimator) {
         this.checkedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         setBackgroundColor(this.backgroundCheck1, this.backgroundCheck2);
     }

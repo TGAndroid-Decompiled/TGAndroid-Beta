@@ -1,6 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.media.AudioManager;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Utilities;
 import org.webrtc.MediaStreamTrack;
@@ -38,6 +39,31 @@ public class VoipAudioManager {
             return getAudioManager().isSpeakerphoneOn();
         }
         return bool.booleanValue();
+    }
+
+    public void isBluetoothAndSpeakerOnAsync(final Utilities.Callback2<Boolean, Boolean> callback2) {
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                VoipAudioManager.this.lambda$isBluetoothAndSpeakerOnAsync$2(callback2);
+            }
+        });
+    }
+
+    public void lambda$isBluetoothAndSpeakerOnAsync$2(final Utilities.Callback2 callback2) {
+        AudioManager audioManager = getAudioManager();
+        final boolean isBluetoothScoOn = audioManager.isBluetoothScoOn();
+        final boolean isSpeakerphoneOn = audioManager.isSpeakerphoneOn();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$1(Utilities.Callback2.this, isBluetoothScoOn, isSpeakerphoneOn);
+            }
+        });
+    }
+
+    public static void lambda$isBluetoothAndSpeakerOnAsync$1(Utilities.Callback2 callback2, boolean z, boolean z2) {
+        callback2.run(Boolean.valueOf(z), Boolean.valueOf(z2));
     }
 
     private AudioManager getAudioManager() {

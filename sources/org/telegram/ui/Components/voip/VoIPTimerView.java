@@ -4,18 +4,22 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 public class VoIPTimerView extends View {
     Paint activePaint;
+    private final Drawable callsDeclineDrawable;
     String currentTimeStr;
     Paint inactivePaint;
+    private boolean isDrawCallIcon;
     RectF rectF;
     private int signalBarCount;
     TextPaint textPaint;
@@ -35,6 +39,7 @@ public class VoIPTimerView extends View {
         this.inactivePaint = new Paint(1);
         this.textPaint = new TextPaint(1);
         this.signalBarCount = 4;
+        this.isDrawCallIcon = false;
         this.updater = new Runnable() {
             @Override
             public final void run() {
@@ -46,6 +51,9 @@ public class VoIPTimerView extends View {
         this.textPaint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(0.6666667f), 1275068416);
         this.activePaint.setColor(ColorUtils.setAlphaComponent(-1, 229));
         this.inactivePaint.setColor(ColorUtils.setAlphaComponent(-1, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu));
+        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.calls_decline);
+        this.callsDeclineDrawable = drawable;
+        drawable.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
     }
 
     @Override
@@ -104,14 +112,19 @@ public class VoIPTimerView extends View {
         canvas.save();
         canvas.translate((getMeasuredWidth() - width) / 2.0f, 0.0f);
         canvas.save();
-        canvas.translate(0.0f, (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2.0f);
-        while (i < 4) {
-            int i2 = i + 1;
-            Paint paint = i2 > this.signalBarCount ? this.inactivePaint : this.activePaint;
-            float f = i;
-            this.rectF.set(AndroidUtilities.dpf2(4.16f) * f, AndroidUtilities.dpf2(2.75f) * (3 - i), (AndroidUtilities.dpf2(4.16f) * f) + AndroidUtilities.dpf2(2.75f), AndroidUtilities.dp(11.0f));
-            canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(0.7f), AndroidUtilities.dpf2(0.7f), paint);
-            i = i2;
+        if (this.isDrawCallIcon) {
+            canvas.translate(-AndroidUtilities.dp(7.0f), -AndroidUtilities.dp(3.0f));
+            this.callsDeclineDrawable.draw(canvas);
+        } else {
+            canvas.translate(0.0f, (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2.0f);
+            while (i < 4) {
+                int i2 = i + 1;
+                Paint paint = i2 > this.signalBarCount ? this.inactivePaint : this.activePaint;
+                float f = i;
+                this.rectF.set(AndroidUtilities.dpf2(4.16f) * f, AndroidUtilities.dpf2(2.75f) * (3 - i), (AndroidUtilities.dpf2(4.16f) * f) + AndroidUtilities.dpf2(2.75f), AndroidUtilities.dp(11.0f));
+                canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(0.7f), AndroidUtilities.dpf2(0.7f), paint);
+                i = i2;
+            }
         }
         canvas.restore();
         if (staticLayout != null) {
@@ -123,6 +136,11 @@ public class VoIPTimerView extends View {
 
     public void setSignalBarCount(int i) {
         this.signalBarCount = i;
+        invalidate();
+    }
+
+    public void setDrawCallIcon() {
+        this.isDrawCallIcon = true;
         invalidate();
     }
 }

@@ -451,8 +451,8 @@ public class TextCell extends FrameLayout {
         }
     }
 
-    public static CharSequence applyNewSpan(String str) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+    public static CharSequence applyNewSpan(CharSequence charSequence) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) "  d");
         FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(10.0f);
         newSpan.setColor(Theme.getColor(Theme.key_premiumGradient1));

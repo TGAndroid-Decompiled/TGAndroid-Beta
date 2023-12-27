@@ -3762,8 +3762,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$setParentActivity$20(int i) {
-        Activity activity;
-        if (this.adapter[0].currentPage == null || (activity = this.parentActivity) == null) {
+        if (this.adapter[0].currentPage == null || this.parentActivity == null) {
             return;
         }
         if (i == 1) {
@@ -3773,7 +3772,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         } else if (i == 3) {
             Browser.openUrl((Context) this.parentActivity, !TextUtils.isEmpty(this.adapter[0].currentPage.cached_page.url) ? this.adapter[0].currentPage.cached_page.url : this.adapter[0].currentPage.url, true, false);
         } else if (i == 4) {
-            BottomSheet.Builder builder = new BottomSheet.Builder(activity);
+            BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);
             builder.setApplyTopPadding(false);
             LinearLayout linearLayout = new LinearLayout(this.parentActivity);
             linearLayout.setPadding(0, 0, 0, AndroidUtilities.dp(4.0f));

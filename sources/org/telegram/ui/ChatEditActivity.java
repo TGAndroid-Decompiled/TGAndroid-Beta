@@ -1783,12 +1783,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             string = LocaleController.getString("ReactionsAll", R.string.ReactionsAll);
         }
-        String str = string;
-        if (isChannelAndNotMegaGroup) {
-            this.reactionsCell.setTextAndValueAndIcon(TextCell.applyNewSpan(LocaleController.getString("Reactions", R.string.Reactions)), str, z, R.drawable.msg_reactions2, true);
-        } else {
-            this.reactionsCell.setTextAndValueAndIcon(LocaleController.getString("Reactions", R.string.Reactions), str, z, R.drawable.msg_reactions2, true);
-        }
+        this.reactionsCell.setTextAndValueAndIcon(LocaleController.getString("Reactions", R.string.Reactions), string, z, R.drawable.msg_reactions2, true);
     }
 
     @Override

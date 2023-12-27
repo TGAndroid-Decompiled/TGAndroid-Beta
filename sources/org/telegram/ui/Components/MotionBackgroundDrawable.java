@@ -37,7 +37,9 @@ public class MotionBackgroundDrawable extends Drawable {
     private int alpha;
     private GenericProvider<MotionBackgroundDrawable, Float> animationProgressProvider;
     private float backgroundAlpha;
+    private int bitmapHeight;
     private BitmapShader bitmapShader;
+    private int bitmapWidth;
     private int[] colors;
     private Bitmap currentBitmap;
     private boolean disableGradientShaderScaling;
@@ -125,6 +127,8 @@ public class MotionBackgroundDrawable extends Drawable {
         this.backgroundAlpha = 1.0f;
         this.alpha = 255;
         this.indeterminateSpeedScale = 1.0f;
+        this.bitmapWidth = 60;
+        this.bitmapHeight = 80;
         init();
     }
 
@@ -133,6 +137,10 @@ public class MotionBackgroundDrawable extends Drawable {
     }
 
     public MotionBackgroundDrawable(int i, int i2, int i3, int i4, int i5, boolean z) {
+        this(i, i2, i3, i4, i5, z, false);
+    }
+
+    public MotionBackgroundDrawable(int i, int i2, int i3, int i4, int i5, boolean z, boolean z2) {
         this.colors = new int[]{-12423849, -531317, -7888252, -133430};
         this.interpolator = new CubicBezierInterpolator(0.33d, 0.0d, 0.0d, 1.0d);
         this.posAnimationProgress = 1.0f;
@@ -154,6 +162,12 @@ public class MotionBackgroundDrawable extends Drawable {
         this.backgroundAlpha = 1.0f;
         this.alpha = 255;
         this.indeterminateSpeedScale = 1.0f;
+        this.bitmapWidth = 60;
+        this.bitmapHeight = 80;
+        if (z2) {
+            this.bitmapWidth = 80;
+            this.bitmapHeight = 80;
+        }
         this.isPreview = z;
         setColors(i, i2, i3, i4, i5, false);
         init();
@@ -161,12 +175,12 @@ public class MotionBackgroundDrawable extends Drawable {
 
     @SuppressLint({"NewApi"})
     private void init() {
-        this.currentBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+        this.currentBitmap = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
         for (int i = 0; i < 3; i++) {
-            this.gradientToBitmap[i] = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+            this.gradientToBitmap[i] = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
         }
         this.gradientCanvas = new Canvas(this.currentBitmap);
-        this.gradientFromBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+        this.gradientFromBitmap = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
         this.gradientFromCanvas = new Canvas(this.gradientFromBitmap);
         Utilities.generateGradient(this.currentBitmap, true, this.phase, this.interpolator.getInterpolation(this.posAnimationProgress), this.currentBitmap.getWidth(), this.currentBitmap.getHeight(), this.currentBitmap.getRowBytes(), this.colors);
         if (useSoftLight) {

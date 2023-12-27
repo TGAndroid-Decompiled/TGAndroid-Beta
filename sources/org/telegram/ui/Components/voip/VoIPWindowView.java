@@ -73,35 +73,35 @@ public class VoIPWindowView extends FrameLayout {
             if (motionEvent.getAction() == 2) {
                 float x = motionEvent.getX() - this.startX;
                 float y = motionEvent.getY() - this.startY;
-                if (!this.startDragging && Math.abs(x) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(x) / 3.0f > y) {
-                    this.startX = motionEvent.getX();
+                if (!this.startDragging && Math.abs(y) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y) / 3.0f > x) {
+                    this.startY = motionEvent.getY();
                     this.startDragging = true;
-                    x = 0.0f;
+                    y = 0.0f;
                 }
                 if (this.startDragging) {
-                    float f = x >= 0.0f ? x : 0.0f;
+                    float f = y >= 0.0f ? y : 0.0f;
                     if (this.velocityTracker == null) {
                         this.velocityTracker = VelocityTracker.obtain();
                     }
                     this.velocityTracker.addMovement(motionEvent);
-                    setTranslationX(f);
+                    setTranslationY(f);
                 }
                 return this.startDragging;
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                float translationX = getTranslationX();
+                float translationY = getTranslationY();
                 if (this.velocityTracker == null) {
                     this.velocityTracker = VelocityTracker.obtain();
                 }
                 this.velocityTracker.computeCurrentVelocity(1000);
                 float xVelocity = this.velocityTracker.getXVelocity();
                 float yVelocity = this.velocityTracker.getYVelocity();
-                if (translationX >= getMeasuredWidth() / 3.0f || (xVelocity >= 3500.0f && xVelocity >= yVelocity)) {
+                if (translationY >= getMeasuredHeight() / 3.0f || (xVelocity >= 3500.0f && xVelocity >= yVelocity)) {
                     z = false;
                 }
                 if (!z) {
-                    finish(Math.max((int) ((200.0f / getMeasuredWidth()) * (getMeasuredWidth() - getTranslationX())), 50));
+                    finish(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
                 } else {
-                    animate().translationX(0.0f).start();
+                    animate().translationY(0.0f).start();
                 }
                 this.startDragging = false;
             }
@@ -110,7 +110,7 @@ public class VoIPWindowView extends FrameLayout {
     }
 
     public void finish() {
-        finish(150L);
+        finish(330L);
     }
 
     public void finish(long j) {
@@ -129,7 +129,7 @@ public class VoIPWindowView extends FrameLayout {
         }
         int i = UserConfig.selectedAccount;
         this.notificationsLocker.lock();
-        animate().translationX(getMeasuredWidth()).setListener(new AnimatorListenerAdapter() {
+        animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 VoIPWindowView.this.notificationsLocker.unlock();
@@ -152,8 +152,9 @@ public class VoIPWindowView extends FrameLayout {
         if (this.lockOnScreen) {
             return;
         }
-        setTranslationX(getMeasuredWidth());
-        animate().translationX(0.0f).setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        setTranslationY(getMeasuredHeight());
+        setAlpha(0.0f);
+        animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
     }
 
     public void setLockOnScreen(boolean z) {

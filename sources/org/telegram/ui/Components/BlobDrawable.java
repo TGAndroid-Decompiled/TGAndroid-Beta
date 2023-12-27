@@ -21,14 +21,14 @@ public class BlobDrawable {
     public static float SCALE_SMALL = 0.704f;
     public static float SCALE_SMALL_MIN = 0.926f;
     private final float L;
-    private final float N;
+    protected final float N;
     public float amplitude;
-    private float[] angle;
-    private float[] angleNext;
+    protected float[] angle;
+    protected float[] angleNext;
     private float animateAmplitudeDiff;
     private float animateToAmplitude;
     public float cubicBezierK;
-    private final int liteFlag;
+    protected final int liteFlag;
     private final Matrix m;
     public float maxRadius;
     public float minRadius;
@@ -36,11 +36,11 @@ public class BlobDrawable {
     private Path path;
     private float[] pointEnd;
     private float[] pointStart;
-    private float[] progress;
-    private float[] radius;
-    private float[] radiusNext;
-    final Random random;
-    private float[] speed;
+    protected float[] progress;
+    protected float[] radius;
+    protected float[] radiusNext;
+    protected final Random random;
+    protected float[] speed;
 
     public BlobDrawable(int i) {
         this(i, LiteMode.FLAG_CALLS_ANIMATIONS);
@@ -73,7 +73,7 @@ public class BlobDrawable {
         this.liteFlag = i2;
     }
 
-    private void generateBlob(float[] fArr, float[] fArr2, int i) {
+    public void generateBlob(float[] fArr, float[] fArr2, int i) {
         float f = this.maxRadius;
         float f2 = this.minRadius;
         fArr[i] = f2 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f - f2));

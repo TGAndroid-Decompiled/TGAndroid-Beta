@@ -33,6 +33,7 @@ public class VoIPFloatingLayout extends FrameLayout {
     float bottomPadding;
     private VoIPFloatingLayoutDelegate delegate;
     private boolean floatingMode;
+    public boolean isAppearing;
     int lastH;
     WindowInsets lastInsets;
     int lastW;
@@ -187,12 +188,16 @@ public class VoIPFloatingLayout extends FrameLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (this.updatePositionFromX >= 0.0f) {
-            animate().setListener(null).cancel();
+            if (!this.isAppearing) {
+                animate().setListener(null).cancel();
+            }
             setTranslationX(this.updatePositionFromX);
             setTranslationY(this.updatePositionFromY);
-            setScaleX(1.0f);
-            setScaleY(1.0f);
-            setAlpha(1.0f);
+            if (!this.isAppearing) {
+                setScaleX(1.0f);
+                setScaleY(1.0f);
+                setAlpha(1.0f);
+            }
             this.updatePositionFromX = -1.0f;
             this.updatePositionFromY = -1.0f;
         }

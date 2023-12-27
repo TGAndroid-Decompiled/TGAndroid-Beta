@@ -159,6 +159,7 @@ public class NotificationCenter {
     public static final int messagesReadEncrypted;
     public static final int moreMusicDidLoad;
     public static final int musicDidLoad;
+    public static final int nearEarEvent;
     public static final int needAddArchivedStickers;
     public static final int needCheckSystemBarColors;
     public static final int needDeleteDialog;
@@ -1068,8 +1069,11 @@ public class NotificationCenter {
         int i257 = i256 + 1;
         totalEvents = i257;
         onReceivedChannelDifference = i256;
-        totalEvents = i257 + 1;
+        int i258 = i257 + 1;
+        totalEvents = i258;
         storiesReadUpdated = i257;
+        totalEvents = i258 + 1;
+        nearEarEvent = i258;
     }
 
     public static class DelayedPost {

@@ -514,7 +514,13 @@ public class MessagePreviewParams {
         if (arrayList != null) {
             tLRPC$TL_message.entities.addAll(arrayList);
         }
-        tLRPC$TL_message.out = bool == null ? messageObject.messageOwner.out : bool.booleanValue();
+        boolean booleanValue = bool == null ? messageObject.messageOwner.out : bool.booleanValue();
+        tLRPC$TL_message.out = booleanValue;
+        if (booleanValue) {
+            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+            tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
+            tLRPC$TL_peerUser.user_id = UserConfig.getInstance(messageObject.currentAccount).getClientUserId();
+        }
         tLRPC$TL_message.unread = false;
         TLRPC$Message tLRPC$Message2 = messageObject.messageOwner;
         tLRPC$TL_message.via_bot_id = tLRPC$Message2.via_bot_id;
@@ -531,7 +537,7 @@ public class MessagePreviewParams {
         tLRPC$TL_message.invert_media = tLRPC$Message2.invert_media;
         if (i == 0) {
             TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader = null;
-            long j = UserConfig.getInstance(messageObject.currentAccount).clientUserId;
+            long clientUserId = UserConfig.getInstance(messageObject.currentAccount).getClientUserId();
             if (!this.isSecret) {
                 TLRPC$Message tLRPC$Message4 = messageObject.messageOwner;
                 ?? r4 = tLRPC$Message4.fwd_from;
@@ -543,8 +549,8 @@ public class MessagePreviewParams {
                     }
                     tLRPC$TL_messageFwdHeader = r4;
                 } else {
-                    long j2 = tLRPC$Message4.from_id.user_id;
-                    if (j2 == 0 || tLRPC$Message4.dialog_id != j || j2 != j) {
+                    long j = tLRPC$Message4.from_id.user_id;
+                    if (j == 0 || tLRPC$Message4.dialog_id != clientUserId || j != clientUserId) {
                         tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
                         tLRPC$TL_messageFwdHeader.from_id = messageObject.messageOwner.from_id;
                         if (!messageObject.isDice()) {

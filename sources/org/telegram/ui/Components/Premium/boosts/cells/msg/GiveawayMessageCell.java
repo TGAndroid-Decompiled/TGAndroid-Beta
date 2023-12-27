@@ -54,6 +54,7 @@ public class GiveawayMessageCell {
     private TextPaint countriesTextPaint;
     private int diffTextWidth;
     private ImageReceiver giftReceiver;
+    private Paint lineDividerPaint;
     private MessageObject messageObject;
     private boolean[] needNewRow;
     private final ChatMessageCell parentView;
@@ -97,6 +98,7 @@ public class GiveawayMessageCell {
         this.chatTextPaint = new TextPaint(1);
         this.textPaint = new TextPaint(1);
         this.textDividerPaint = new TextPaint(1);
+        this.lineDividerPaint = new Paint(1);
         this.countriesTextPaint = new TextPaint(1);
         this.counterBgPaint = new Paint(1);
         this.chatBgPaint = new Paint(1);
@@ -213,6 +215,9 @@ public class GiveawayMessageCell {
     }
 
     private int getChatColor(TLRPC$Chat tLRPC$Chat, Theme.ResourcesProvider resourcesProvider) {
+        if (this.messageObject.isOutOwner()) {
+            return Theme.getColor(Theme.key_chat_outPreviewInstantText, resourcesProvider);
+        }
         int colorId = ChatObject.getColorId(tLRPC$Chat);
         if (colorId < 7) {
             return Theme.getColor(Theme.keys_avatar_nameInMessage[colorId], resourcesProvider);
@@ -239,7 +244,8 @@ public class GiveawayMessageCell {
             this.selectorDrawable = Theme.createRadSelectorDrawable(color, 12, 12);
         }
         this.textPaint.setColor(Theme.chat_msgTextPaint.getColor());
-        this.textDividerPaint.setColor(Theme.getColor(Theme.key_dialogTextGray2));
+        this.textDividerPaint.setColor(Theme.multAlpha(Theme.chat_msgTextPaint.getColor(), 0.45f));
+        this.lineDividerPaint.setColor(Theme.multAlpha(Theme.chat_msgTextPaint.getColor(), 0.15f));
         this.countriesTextPaint.setColor(Theme.chat_msgTextPaint.getColor());
         if (this.messageObject.isOutOwner()) {
             TextPaint textPaint = this.chatTextPaint;
@@ -286,8 +292,8 @@ public class GiveawayMessageCell {
             float dp4 = (this.titleHeight + this.additionPrizeHeight) - AndroidUtilities.dp(6.0f);
             float f6 = this.measuredWidth / 2.0f;
             canvas.drawText(this.textDivider, f6, dp4, this.textDividerPaint);
-            canvas.drawLine(AndroidUtilities.dp(17.0f), dp4 - AndroidUtilities.dp(4.0f), (f6 - (this.textDividerWidth / 2.0f)) - AndroidUtilities.dp(6.0f), dp4 - AndroidUtilities.dp(4.0f), Theme.dividerPaint);
-            canvas.drawLine(f6 + (this.textDividerWidth / 2.0f) + AndroidUtilities.dp(6.0f), dp4 - AndroidUtilities.dp(4.0f), this.measuredWidth - AndroidUtilities.dp(16.0f), dp4 - AndroidUtilities.dp(4.0f), Theme.dividerPaint);
+            canvas.drawLine(AndroidUtilities.dp(17.0f), dp4 - AndroidUtilities.dp(4.0f), (f6 - (this.textDividerWidth / 2.0f)) - AndroidUtilities.dp(6.0f), dp4 - AndroidUtilities.dp(4.0f), this.lineDividerPaint);
+            canvas.drawLine(f6 + (this.textDividerWidth / 2.0f) + AndroidUtilities.dp(6.0f), dp4 - AndroidUtilities.dp(4.0f), this.measuredWidth - AndroidUtilities.dp(16.0f), dp4 - AndroidUtilities.dp(4.0f), this.lineDividerPaint);
             canvas.translate((this.measuredWidth - this.additionPrizeLayout.getWidth()) / 2.0f, this.titleHeight);
             this.additionPrizeLayout.draw(canvas);
             canvas.restore();

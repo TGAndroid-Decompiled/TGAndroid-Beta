@@ -31,6 +31,21 @@ public class BitmapShaderTools {
         updateBounds();
     }
 
+    public BitmapShaderTools(int i, int i2) {
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        this.bounds = new RectF();
+        this.matrix = new Matrix();
+        Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+        this.bitmap = createBitmap;
+        this.canvas = new Canvas(createBitmap);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.shader = bitmapShader;
+        paint.setShader(bitmapShader);
+        updateBounds();
+    }
+
     public Bitmap getBitmap() {
         return this.bitmap;
     }
@@ -66,5 +81,13 @@ public class BitmapShaderTools {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(f, f2, f3, f4);
         setBounds(rectF);
+    }
+
+    public void setMatrix(float f, float f2, float f3, float f4) {
+        this.matrix.reset();
+        this.matrix.postRotate(f4, this.bitmap.getWidth() / 2.0f, this.bitmap.getHeight() / 2.0f);
+        this.matrix.postScale(f3, f3);
+        this.matrix.postTranslate(f, f2);
+        this.shader.setLocalMatrix(this.matrix);
     }
 }

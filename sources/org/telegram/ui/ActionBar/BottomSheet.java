@@ -70,6 +70,7 @@ public class BottomSheet extends Dialog {
     protected boolean calcMandatoryInsets;
     private boolean canDismissWithSwipe;
     private boolean canDismissWithTouchOutside;
+    private int cellType;
     protected ContainerView container;
     protected ViewGroup containerView;
     protected int currentAccount;
@@ -120,6 +121,7 @@ public class BottomSheet extends Dialog {
     protected Theme.ResourcesProvider resourcesProvider;
     private int rightInset;
     public boolean scrollNavBar;
+    private Integer selectedPos;
     protected Drawable shadowDrawable;
     private boolean showWithoutAnimation;
     boolean showing;
@@ -757,7 +759,9 @@ public class BottomSheet extends Dialog {
             this.isSelected = false;
             this.resourcesProvider = resourcesProvider;
             this.currentType = i;
-            setBackgroundDrawable(Theme.getSelectorDrawable(false, resourcesProvider));
+            if (i != Builder.CELL_TYPE_CALL) {
+                setBackgroundDrawable(Theme.getSelectorDrawable(false, resourcesProvider));
+            }
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -769,7 +773,7 @@ public class BottomSheet extends Dialog {
             this.textView.setSingleLine(true);
             this.textView.setGravity(1);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
-            if (i == 0) {
+            if (i == 0 || i == Builder.CELL_TYPE_CALL) {
                 this.textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
                 this.textView.setTextSize(1, 16.0f);
                 addView(this.textView, LayoutHelper.createFrame(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
@@ -900,7 +904,7 @@ public class BottomSheet extends Dialog {
         this.applyTopPadding = true;
         this.applyBottomPadding = true;
         this.itemViews = new ArrayList<>();
-        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda6(this);
+        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda8(this);
         this.navigationBarAlpha = 0.0f;
         this.navBarColorKey = Theme.key_windowBackgroundGray;
         this.pauseAllHeavyOperations = true;
@@ -1160,7 +1164,7 @@ public class BottomSheet extends Dialog {
                     break;
                 }
                 if (charSequenceArr[i2] != null) {
-                    BottomSheetCell bottomSheetCell = new BottomSheetCell(getContext(), 0, this.resourcesProvider);
+                    BottomSheetCell bottomSheetCell = new BottomSheetCell(getContext(), this.cellType, this.resourcesProvider);
                     CharSequence charSequence = this.items[i2];
                     int[] iArr = this.itemIcons;
                     bottomSheetCell.setTextAndIcon(charSequence, iArr != null ? iArr[i2] : 0, drawable, this.bigTitle);
@@ -1536,7 +1540,7 @@ public class BottomSheet extends Dialog {
         return this.dismissed;
     }
 
-    public void dismissWithButtonClick(int i) {
+    public void dismissWithButtonClick(final int i) {
         if (this.dismissed) {
             return;
         }
@@ -1553,11 +1557,37 @@ public class BottomSheet extends Dialog {
         animatorArr[0] = ObjectAnimator.ofFloat(viewGroup, property, fArr);
         animatorArr[1] = ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0);
         animatorSet.playTogether(animatorArr);
-        this.currentSheetAnimation.setDuration(180L);
+        this.currentSheetAnimation.setDuration(this.cellType == Builder.CELL_TYPE_CALL ? 330L : 180L);
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.currentSheetAnimation.addListener(new AnonymousClass7(i));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
         this.currentSheetAnimation.start();
+        if (this.cellType != Builder.CELL_TYPE_CALL || this.selectedPos == null || Build.VERSION.SDK_INT < 21) {
+            return;
+        }
+        int currentTextColor = getItemViews().get(this.selectedPos.intValue()).getTextView().getCurrentTextColor();
+        int currentTextColor2 = getItemViews().get(i).getTextView().getCurrentTextColor();
+        ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
+        ofArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                BottomSheet.this.lambda$dismissWithButtonClick$5(valueAnimator);
+            }
+        });
+        ofArgb.setDuration(130L);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        ofArgb.setInterpolator(cubicBezierInterpolator);
+        ofArgb.start();
+        ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
+        ofArgb2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                BottomSheet.this.lambda$dismissWithButtonClick$6(i, valueAnimator);
+            }
+        });
+        ofArgb2.setDuration(130L);
+        ofArgb2.setInterpolator(cubicBezierInterpolator);
+        ofArgb2.start();
     }
 
     public class AnonymousClass7 extends AnimatorListenerAdapter {
@@ -1610,6 +1640,16 @@ public class BottomSheet extends Dialog {
         }
     }
 
+    public void lambda$dismissWithButtonClick$5(ValueAnimator valueAnimator) {
+        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        setItemColor(this.selectedPos.intValue(), intValue, intValue);
+    }
+
+    public void lambda$dismissWithButtonClick$6(int i, ValueAnimator valueAnimator) {
+        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        setItemColor(i, intValue, intValue);
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (this.dismissed) {
@@ -1631,7 +1671,7 @@ public class BottomSheet extends Dialog {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheet.dismiss():void");
     }
 
-    public void lambda$dismiss$5() {
+    public void lambda$dismiss$7() {
         try {
             dismissInternal();
         } catch (Exception e) {
@@ -1639,7 +1679,7 @@ public class BottomSheet extends Dialog {
         }
     }
 
-    public void lambda$dismiss$6(ValueAnimator valueAnimator) {
+    public void lambda$dismiss$8(ValueAnimator valueAnimator) {
         this.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         ContainerView containerView = this.container;
         if (containerView != null) {
@@ -1701,6 +1741,7 @@ public class BottomSheet extends Dialog {
     }
 
     public static class Builder {
+        public static int CELL_TYPE_CALL = 4;
         private BottomSheet bottomSheet;
 
         public Builder(Context context) {
@@ -1755,6 +1796,16 @@ public class BottomSheet extends Dialog {
         public Builder setTitle(CharSequence charSequence, boolean z) {
             this.bottomSheet.title = charSequence;
             this.bottomSheet.bigTitle = z;
+            return this;
+        }
+
+        public Builder selectedPos(Integer num) {
+            this.bottomSheet.selectedPos = num;
+            return this;
+        }
+
+        public Builder setCellType(int i) {
+            this.bottomSheet.cellType = i;
             return this;
         }
 

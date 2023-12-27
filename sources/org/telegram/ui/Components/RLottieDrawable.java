@@ -1268,6 +1268,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         drawInternal(canvas, null, true, 0L, i2);
     }
 
+    public void draw(Canvas canvas, Paint paint) {
+        drawInternal(canvas, paint, false, 0L, 0);
+    }
+
     public void drawInternal(Canvas canvas, Paint paint, boolean z, long j, int i) {
         float f;
         float f2;

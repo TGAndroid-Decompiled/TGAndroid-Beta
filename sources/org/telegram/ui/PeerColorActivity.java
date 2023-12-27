@@ -1429,7 +1429,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             Drawable mutate = context.getResources().getDrawable(R.drawable.msg_palette).mutate();
             this.drawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            this.buttonText = new Text(LocaleController.getString(z ? R.string.ChangeChannelNameColor2 : R.string.ChangeUserNameColor), 16.0f);
+            CharSequence string = LocaleController.getString(z ? R.string.ChangeChannelNameColor2 : R.string.ChangeUserNameColor);
             if (z && MessagesController.getInstance(i).getMainSettings().getInt("boostingappearance", 0) < 3) {
                 MessagesController messagesController = MessagesController.getInstance(i);
                 int i3 = ConnectionsManager.DEFAULT_DATACENTER_ID;
@@ -1465,6 +1465,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     this.lock = new LevelLock(context, true, Math.max(i4, min8), resourcesProvider);
                 }
             }
+            if (z && this.lock == null) {
+                string = TextCell.applyNewSpan(string);
+            }
+            this.buttonText = new Text(string, 16.0f);
             updateColors();
         }
 

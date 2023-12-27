@@ -42,6 +42,8 @@ public class ReplyMessageLine {
     private long emojiDocumentId;
     private boolean emojiLoaded;
     public final AnimatedFloat emojiLoadedT;
+    private float emojiOffsetX;
+    private float emojiOffsetY;
     public boolean hasColor2;
     public boolean hasColor3;
     private IconCoords[] iconCoords;
@@ -500,6 +502,12 @@ public class ReplyMessageLine {
         }
     }
 
+    public ReplyMessageLine offsetEmoji(float f, float f2) {
+        this.emojiOffsetX = f;
+        this.emojiOffsetY = f2;
+        return this;
+    }
+
     public void drawBackground(Canvas canvas, RectF rectF, float f, boolean z, boolean z2) {
         if (!z2) {
             this.backgroundPath.rewind();
@@ -522,6 +530,7 @@ public class ReplyMessageLine {
         }
         canvas.save();
         canvas.clipRect(rectF);
+        canvas.translate(this.emojiOffsetX, this.emojiOffsetY);
         float max = Math.max(rectF.right - AndroidUtilities.dp(15.0f), rectF.centerX());
         if (z) {
             max -= AndroidUtilities.dp(12.0f);

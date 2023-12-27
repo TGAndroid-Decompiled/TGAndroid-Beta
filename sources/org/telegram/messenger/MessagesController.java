@@ -5266,7 +5266,7 @@ public class MessagesController extends BaseController implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.loadFullChat(long, int, boolean):void");
     }
 
-    public void lambda$loadFullChat$60(long j, final long j2, TLRPC$Chat tLRPC$Chat, final int i, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFullChat$60(final long j, final long j2, TLRPC$Chat tLRPC$Chat, final int i, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             final TLRPC$TL_messages_chatFull tLRPC$TL_messages_chatFull = (TLRPC$TL_messages_chatFull) tLObject;
             getMessagesStorage().putUsersAndChats(tLRPC$TL_messages_chatFull.users, tLRPC$TL_messages_chatFull.chats, true, true);
@@ -5306,7 +5306,7 @@ public class MessagesController extends BaseController implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesController.this.lambda$loadFullChat$58(j2, tLRPC$TL_messages_chatFull, i);
+                    MessagesController.this.lambda$loadFullChat$58(j2, tLRPC$TL_messages_chatFull, i, j);
                 }
             });
             return;
@@ -5319,22 +5319,22 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$loadFullChat$58(long j, TLRPC$TL_messages_chatFull tLRPC$TL_messages_chatFull, int i) {
+    public void lambda$loadFullChat$58(long j, TLRPC$TL_messages_chatFull tLRPC$TL_messages_chatFull, int i, long j2) {
         TLRPC$ChatFull tLRPC$ChatFull = this.fullChats.get(j);
         if (tLRPC$ChatFull != null) {
             tLRPC$TL_messages_chatFull.full_chat.inviterId = tLRPC$ChatFull.inviterId;
         }
         this.fullChats.put(j, tLRPC$TL_messages_chatFull.full_chat);
-        long j2 = -j;
-        getTranslateController().updateDialogFull(j2);
-        applyDialogNotificationsSettings(j2, 0, tLRPC$TL_messages_chatFull.full_chat.notify_settings);
+        long j3 = -j;
+        getTranslateController().updateDialogFull(j3);
+        applyDialogNotificationsSettings(j3, 0, tLRPC$TL_messages_chatFull.full_chat.notify_settings);
         for (int i2 = 0; i2 < tLRPC$TL_messages_chatFull.full_chat.bot_info.size(); i2++) {
-            getMediaDataController().putBotInfo(j2, tLRPC$TL_messages_chatFull.full_chat.bot_info.get(i2));
+            getMediaDataController().putBotInfo(j3, tLRPC$TL_messages_chatFull.full_chat.bot_info.get(i2));
         }
-        int indexOfKey = this.blockePeers.indexOfKey(j2);
+        int indexOfKey = this.blockePeers.indexOfKey(j3);
         if (tLRPC$TL_messages_chatFull.full_chat.blocked) {
             if (indexOfKey < 0) {
-                this.blockePeers.put(j2, 1);
+                this.blockePeers.put(j3, 1);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.blockedUsersDidLoad, new Object[0]);
             }
         } else if (indexOfKey >= 0) {
@@ -5350,7 +5350,7 @@ public class MessagesController extends BaseController implements NotificationCe
             getMediaDataController().getGroupStickerSetById(tLRPC$TL_messages_chatFull.full_chat.stickerset);
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.chatInfoDidLoad, tLRPC$TL_messages_chatFull.full_chat, Integer.valueOf(i), Boolean.FALSE, Boolean.TRUE);
-        TLRPC$Dialog tLRPC$Dialog = this.dialogs_dict.get(j2);
+        TLRPC$Dialog tLRPC$Dialog = this.dialogs_dict.get(j3);
         if (tLRPC$Dialog != null) {
             TLRPC$ChatFull tLRPC$ChatFull2 = tLRPC$TL_messages_chatFull.full_chat;
             if ((tLRPC$ChatFull2.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
@@ -5368,7 +5368,12 @@ public class MessagesController extends BaseController implements NotificationCe
                 tLRPC$Dialog.ttl_period = i6;
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
-            tLRPC$Dialog.view_forum_as_messages = tLRPC$TL_messages_chatFull.full_chat.view_forum_as_messages;
+            boolean z = tLRPC$Dialog.view_forum_as_messages;
+            boolean z2 = tLRPC$TL_messages_chatFull.full_chat.view_forum_as_messages;
+            if (z != z2) {
+                tLRPC$Dialog.view_forum_as_messages = z2;
+                getMessagesStorage().setDialogViewThreadAsMessages(j2, tLRPC$TL_messages_chatFull.full_chat.view_forum_as_messages);
+            }
         }
     }
 
@@ -11172,14 +11177,14 @@ public class MessagesController extends BaseController implements NotificationCe
         convertToMegaGroup(context, j, baseFragment, longCallback, null);
     }
 
-    public void convertToMegaGroup(final Context context, long j, final BaseFragment baseFragment, final MessagesStorage.LongCallback longCallback, final Runnable runnable) {
+    public void convertToMegaGroup(final Context context, final long j, final BaseFragment baseFragment, final MessagesStorage.LongCallback longCallback, final Runnable runnable) {
         final TLRPC$TL_messages_migrateChat tLRPC$TL_messages_migrateChat = new TLRPC$TL_messages_migrateChat();
         tLRPC$TL_messages_migrateChat.chat_id = j;
         final AlertDialog alertDialog = context != null ? new AlertDialog(context, 3) : null;
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_messages_migrateChat, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagesController.this.lambda$convertToMegaGroup$228(context, alertDialog, longCallback, runnable, baseFragment, tLRPC$TL_messages_migrateChat, tLObject, tLRPC$TL_error);
+                MessagesController.this.lambda$convertToMegaGroup$228(context, alertDialog, longCallback, j, runnable, baseFragment, tLRPC$TL_messages_migrateChat, tLObject, tLRPC$TL_error);
             }
         });
         if (alertDialog != null) {
@@ -11196,7 +11201,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$convertToMegaGroup$228(final Context context, final AlertDialog alertDialog, final MessagesStorage.LongCallback longCallback, Runnable runnable, final BaseFragment baseFragment, final TLRPC$TL_messages_migrateChat tLRPC$TL_messages_migrateChat, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$convertToMegaGroup$228(final Context context, final AlertDialog alertDialog, final MessagesStorage.LongCallback longCallback, final long j, Runnable runnable, final BaseFragment baseFragment, final TLRPC$TL_messages_migrateChat tLRPC$TL_messages_migrateChat, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             if (context != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -11211,7 +11216,7 @@ public class MessagesController extends BaseController implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesController.lambda$convertToMegaGroup$226(MessagesStorage.LongCallback.this, tLRPC$Updates);
+                    MessagesController.lambda$convertToMegaGroup$226(MessagesStorage.LongCallback.this, tLRPC$Updates, j);
                 }
             });
             return;
@@ -11238,14 +11243,42 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$convertToMegaGroup$226(MessagesStorage.LongCallback longCallback, TLRPC$Updates tLRPC$Updates) {
+    public static void lambda$convertToMegaGroup$226(MessagesStorage.LongCallback longCallback, TLRPC$Updates tLRPC$Updates, long j) {
+        TLRPC$Chat tLRPC$Chat;
+        TLRPC$Chat tLRPC$Chat2;
+        TLRPC$InputChannel tLRPC$InputChannel;
         if (longCallback != null) {
-            for (int i = 0; i < tLRPC$Updates.chats.size(); i++) {
-                TLRPC$Chat tLRPC$Chat = tLRPC$Updates.chats.get(i);
-                if (ChatObject.isChannel(tLRPC$Chat)) {
-                    longCallback.run(tLRPC$Chat.id);
-                    return;
+            int i = 0;
+            int i2 = 0;
+            while (true) {
+                tLRPC$Chat = null;
+                if (i2 >= tLRPC$Updates.chats.size()) {
+                    tLRPC$Chat2 = null;
+                    break;
                 }
+                tLRPC$Chat2 = tLRPC$Updates.chats.get(i2);
+                if (j == tLRPC$Chat2.id) {
+                    break;
+                }
+                i2++;
+            }
+            if (tLRPC$Chat2 == null || (tLRPC$InputChannel = tLRPC$Chat2.migrated_to) == null) {
+                return;
+            }
+            long j2 = tLRPC$InputChannel.channel_id;
+            while (true) {
+                if (i >= tLRPC$Updates.chats.size()) {
+                    break;
+                }
+                TLRPC$Chat tLRPC$Chat3 = tLRPC$Updates.chats.get(i);
+                if (j2 == tLRPC$Chat3.id) {
+                    tLRPC$Chat = tLRPC$Chat3;
+                    break;
+                }
+                i++;
+            }
+            if (tLRPC$Chat != null) {
+                longCallback.run(j2);
             }
         }
     }

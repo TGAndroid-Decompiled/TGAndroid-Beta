@@ -499,7 +499,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.sizedp = (int) (((Math.abs(Theme.chat_msgTextPaintEmoji[2].ascent()) + Math.abs(Theme.chat_msgTextPaintEmoji[2].descent())) * 1.15f) / AndroidUtilities.density);
         } else if (i == 8) {
             this.sizedp = (int) (((Math.abs(Theme.chat_msgTextPaintEmoji[0].ascent()) + Math.abs(Theme.chat_msgTextPaintEmoji[0].descent())) * 1.15f) / AndroidUtilities.density);
-        } else if (i == 14 || i == 15) {
+        } else if (i == 14 || i == 15 || i == 17) {
             this.sizedp = 100;
         } else {
             this.sizedp = 34;
@@ -522,10 +522,10 @@ public class AnimatedEmojiDrawable extends Drawable {
 
     private void initDocument(boolean z) {
         int i;
-        TLRPC$PhotoSize tLRPC$PhotoSize;
         SvgHelper.SvgDrawable svgThumb;
         ImageLocation imageLocation;
         String str;
+        ImageLocation forDocument;
         if (this.document != null) {
             ImageReceiver imageReceiver = this.imageReceiver;
             if (imageReceiver == null || z) {
@@ -568,11 +568,11 @@ public class AnimatedEmojiDrawable extends Drawable {
                     str2 = str2 + "_d_nostream";
                 }
                 int i4 = this.cacheType;
-                if (i4 != 15 && i4 != 14 && i4 != 8 && ((i4 != 1 || SharedConfig.getDevicePerformanceClass() < 2) && this.cacheType != 12)) {
+                if (i4 != 17 && i4 != 15 && i4 != 14 && i4 != 8 && ((i4 != 1 || SharedConfig.getDevicePerformanceClass() < 2) && this.cacheType != 12)) {
                     str2 = str2 + "_pcache";
                 }
                 int i5 = this.cacheType;
-                if (i5 != 0 && i5 != 1 && i5 != 14 && i5 != 15) {
+                if (i5 != 17 && i5 != 0 && i5 != 1 && i5 != 14 && i5 != 15) {
                     str2 = str2 + "_compress";
                 }
                 if (this.cacheType == 8) {
@@ -583,7 +583,6 @@ public class AnimatedEmojiDrawable extends Drawable {
                     imageLocation = ImageLocation.getForDocument(this.document);
                     str2 = str2 + "_" + ImageLoader.AUTOPLAY_FILTER;
                     svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
-                    tLRPC$PhotoSize = closestPhotoSizeWithSize;
                 } else if ("application/x-tgsticker".equals(this.document.mime_type)) {
                     StringBuilder sb = new StringBuilder();
                     if (this.cacheType != 0) {
@@ -592,7 +591,6 @@ public class AnimatedEmojiDrawable extends Drawable {
                         str = "";
                     }
                     sb.append(str);
-                    tLRPC$PhotoSize = closestPhotoSizeWithSize;
                     sb.append(this.documentId);
                     sb.append("@");
                     sb.append(str2);
@@ -600,14 +598,14 @@ public class AnimatedEmojiDrawable extends Drawable {
                     if (SharedConfig.getDevicePerformanceClass() == 0 && this.cacheType != 2 && ImageLoader.getInstance().hasLottieMemCache(sb2)) {
                         svgThumb = null;
                     } else {
-                        svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
-                        if (svgThumb != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
-                            svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                        SvgHelper.SvgDrawable svgThumb2 = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
+                        if (svgThumb2 != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                            svgThumb2.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
                         }
+                        svgThumb = svgThumb2;
                     }
                     imageLocation = ImageLocation.getForDocument(this.document);
                 } else {
-                    tLRPC$PhotoSize = closestPhotoSizeWithSize;
                     svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
                     if (svgThumb != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
                         svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
@@ -623,20 +621,21 @@ public class AnimatedEmojiDrawable extends Drawable {
                         TLRPC$Document tLRPC$Document = this.document;
                         imageReceiver3.setImage(null, null, imageLocation, str2, null, null, svgThumb, tLRPC$Document.size, null, tLRPC$Document, 1);
                     } else if (z2 || (!liteModeKeyboard && i6 != 14)) {
-                        ImageLocation forDocument = i6 == 16 ? ImageLocation.getForDocument(tLRPC$PhotoSize, this.document) : null;
+                        forDocument = i6 == 16 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
                         if ("video/webm".equals(this.document.mime_type)) {
                             TLRPC$Document tLRPC$Document2 = this.document;
-                            this.imageReceiver.setImage(null, null, ImageLocation.getForDocument(tLRPC$PhotoSize, this.document), this.sizedp + "_" + this.sizedp, forDocument, null, svgThumb, tLRPC$Document2.size, null, tLRPC$Document2, 1);
+                            this.imageReceiver.setImage(null, null, ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document), this.sizedp + "_" + this.sizedp, forDocument, null, svgThumb, tLRPC$Document2.size, null, tLRPC$Document2, 1);
                         } else if (MessageObject.isAnimatedStickerDocument(this.document, true)) {
                             TLRPC$Document tLRPC$Document3 = this.document;
                             this.imageReceiver.setImage(imageLocation, str2 + "_firstframe", forDocument, null, svgThumb, tLRPC$Document3.size, null, tLRPC$Document3, 1);
                         } else {
                             TLRPC$Document tLRPC$Document4 = this.document;
-                            this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$PhotoSize, this.document), this.sizedp + "_" + this.sizedp, forDocument, null, svgThumb, tLRPC$Document4.size, null, tLRPC$Document4, 1);
+                            this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document), this.sizedp + "_" + this.sizedp, forDocument, null, svgThumb, tLRPC$Document4.size, null, tLRPC$Document4, 1);
                         }
                     } else {
+                        forDocument = i6 == 17 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
                         TLRPC$Document tLRPC$Document5 = this.document;
-                        this.imageReceiver.setImage(imageLocation, str2, ImageLocation.getForDocument(tLRPC$PhotoSize, this.document), this.sizedp + "_" + this.sizedp, null, null, svgThumb, tLRPC$Document5.size, null, tLRPC$Document5, 1);
+                        this.imageReceiver.setImage(imageLocation, str2, ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document), this.sizedp + "_" + this.sizedp, forDocument, null, svgThumb, tLRPC$Document5.size, null, tLRPC$Document5, 1);
                     }
                 }
                 updateAutoRepeat(this.imageReceiver);
@@ -673,6 +672,8 @@ public class AnimatedEmojiDrawable extends Drawable {
             imageReceiver.setAutoRepeatCount(2);
         } else if (i == 11 || i == 14 || i == 6 || i == 5) {
             imageReceiver.setAutoRepeatCount(1);
+        } else if (i == 17) {
+            imageReceiver.setAutoRepeatCount(0);
         }
     }
 

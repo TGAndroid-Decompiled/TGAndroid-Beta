@@ -69,12 +69,6 @@ public class EllipsizeSpanAnimator {
         this.ellAnimator.cancel();
     }
 
-    public void reset() {
-        for (TextAlphaSpan textAlphaSpan : this.ellSpans) {
-            textAlphaSpan.setAlpha(0);
-        }
-    }
-
     private Animator createEllipsizeAnimator(final TextAlphaSpan textAlphaSpan, int i, int i2, int i3, int i4) {
         ValueAnimator ofInt = ValueAnimator.ofInt(i, i2);
         ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

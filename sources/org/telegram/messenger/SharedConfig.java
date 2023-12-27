@@ -55,6 +55,7 @@ public class SharedConfig {
     public static int badPasscodeTries = 0;
     public static boolean bigCameraForRound = false;
     public static int bubbleRadius = 0;
+    public static int callEncryptionHintDisplayedCount = 0;
     public static boolean chatBubbles = false;
     private static int chatSwipeAction = 0;
     private static boolean configLoaded = false;
@@ -882,6 +883,13 @@ public class SharedConfig {
         }
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("debugWebView", debugWebView);
+        edit.apply();
+    }
+
+    public static void incrementCallEncryptionHintDisplayed(int i) {
+        callEncryptionHintDisplayedCount += i;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putInt("callEncryptionHintDisplayedCount", callEncryptionHintDisplayedCount);
         edit.apply();
     }
 

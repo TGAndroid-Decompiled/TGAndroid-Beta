@@ -391,6 +391,9 @@ public class GiveawayResultsMessageCell {
     }
 
     private int getUserColor(TLRPC$User tLRPC$User, Theme.ResourcesProvider resourcesProvider) {
+        if (this.messageObject.isOutOwner()) {
+            return Theme.getColor(Theme.key_chat_outPreviewInstantText, resourcesProvider);
+        }
         int colorId = UserObject.getColorId(tLRPC$User);
         if (colorId < 7) {
             return Theme.getColor(Theme.keys_avatar_nameInMessage[colorId], resourcesProvider);
