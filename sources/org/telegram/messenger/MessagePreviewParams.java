@@ -230,7 +230,7 @@ public class MessagePreviewParams {
         ChatActivity.ReplyQuote replyQuote2;
         int i;
         MessageObject messageObject2 = messageObject;
-        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25) {
+        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25 || i == 16) {
             messageObject2 = null;
             replyQuote2 = null;
         } else {
@@ -394,16 +394,20 @@ public class MessagePreviewParams {
 
     public boolean hasLink(CharSequence charSequence, String str) {
         if (str != null) {
-            SpannableString valueOf = SpannableString.valueOf(charSequence);
             try {
-                AndroidUtilities.addLinks(valueOf, 1);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
-                if (areUrlsEqual(uRLSpan.getURL(), str)) {
-                    return true;
+                SpannableString valueOf = SpannableString.valueOf(charSequence);
+                try {
+                    AndroidUtilities.addLinks(valueOf, 1);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
+                for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
+                    if (areUrlsEqual(uRLSpan.getURL(), str)) {
+                        return true;
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
             }
         }
         return false;

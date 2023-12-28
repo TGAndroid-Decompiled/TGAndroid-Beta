@@ -278,7 +278,7 @@ public class VoIPFloatingLayout extends FrameLayout {
         float measuredHeight = systemWindowInsetTop + ((((view.getMeasuredHeight() - f3) - systemWindowInsetTop) - i2) * f2);
         if (z) {
             animate().setListener(null).cancel();
-            animate().scaleX(1.0f).scaleY(1.0f).translationX(measuredWidth).translationY(measuredHeight).alpha(1.0f).setStartDelay(0L).setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+            animate().scaleX(1.0f).scaleY(1.0f).translationX(measuredWidth).translationY(measuredHeight).alpha(1.0f).setStartDelay(this.uiVisible ? 0L : 150L).setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
             return;
         }
         if (!this.alwaysFloating) {

@@ -11,13 +11,16 @@ public class VoIpHintView extends HintView2 {
     private final VoIPBackgroundProvider backgroundProvider;
     private final Paint mainPaint;
 
-    public VoIpHintView(Context context, int i, VoIPBackgroundProvider voIPBackgroundProvider) {
+    public VoIpHintView(Context context, int i, VoIPBackgroundProvider voIPBackgroundProvider, boolean z) {
         super(context, i);
         Paint paint = new Paint(1);
         this.mainPaint = paint;
         this.backgroundProvider = voIPBackgroundProvider;
         voIPBackgroundProvider.attach(this);
         paint.setPathEffect(new CornerPathEffect(this.rounding));
+        if (z) {
+            setCloseButton(true);
+        }
     }
 
     @Override

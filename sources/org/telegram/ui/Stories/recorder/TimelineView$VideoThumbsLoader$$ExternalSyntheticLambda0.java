@@ -10,6 +10,6 @@ public final class TimelineView$VideoThumbsLoader$$ExternalSyntheticLambda0 impl
 
     @Override
     public final void run() {
-        this.f$0.retrieveFrame();
+        TimelineView.VideoThumbsLoader.m2862$r8$lambda$bN6eXgmfeiJhYuzEanlE5dKz1c(this.f$0);
     }
 }

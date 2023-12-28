@@ -56,11 +56,8 @@ public class FabBackgroundDrawable extends Drawable {
             return;
         }
         this.shadowBitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
-        Canvas canvas = new Canvas(this.shadowBitmap);
-        Paint paint = new Paint(1);
-        paint.setShadowLayer(AndroidUtilities.dp(3.33333f), 0.0f, AndroidUtilities.dp(0.666f), -1);
         float f = min / 2;
-        canvas.drawCircle(f, f, i - AndroidUtilities.dp(4.0f), paint);
+        new Canvas(this.shadowBitmap).drawCircle(f, f, i - AndroidUtilities.dp(4.0f), new Paint(1));
     }
 
     @Keep

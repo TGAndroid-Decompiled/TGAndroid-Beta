@@ -969,7 +969,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             }
             if (bitmapDrawable instanceof AnimatedFileDrawable) {
                 ((AnimatedFileDrawable) drawable).setRoundRadius(this.roundRadius);
-            } else if (bitmapDrawable.getBitmap() != null) {
+            } else if (bitmapDrawable.getBitmap() == null || bitmapDrawable.getBitmap().isRecycled()) {
+            } else {
                 Bitmap bitmap = bitmapDrawable.getBitmap();
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 setDrawableShader(drawable, new BitmapShader(bitmap, tileMode, tileMode));

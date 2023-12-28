@@ -1434,7 +1434,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public void lambda$dismiss$27(Runnable runnable) {
-        super.dismiss();
+        try {
+            super.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
         if (runnable != null) {
             runnable.run();
         }

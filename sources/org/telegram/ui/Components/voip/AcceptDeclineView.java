@@ -7,7 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,6 +60,7 @@ public class AcceptDeclineView extends View {
     float leftOffsetX;
     Paint linePaint;
     Listener listener;
+    private final Paint maskPaint;
     float maxOffset;
     private StaticLayout retryLayout;
     boolean retryMod;
@@ -84,12 +87,16 @@ public class AcceptDeclineView extends View {
         this.acceptRect = new Rect();
         this.declineRect = new Rect();
         this.linePaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.maskPaint = paint;
         ImageWithWavesView.AvatarWavesDrawable avatarWavesDrawable = new ImageWithWavesView.AvatarWavesDrawable(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(8.0f), 4);
         this.avatarWavesDrawable = avatarWavesDrawable;
         avatarWavesDrawable.muteToStatic = true;
         avatarWavesDrawable.muteToStaticProgress = 0.0f;
         avatarWavesDrawable.wavesEnter = 0.0f;
         avatarWavesDrawable.setAmplitude(0.0d);
+        paint.setColor(-16777216);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.buttonWidth = AndroidUtilities.dp(60.0f);
         FabBackgroundDrawable fabBackgroundDrawable = new FabBackgroundDrawable();
@@ -252,17 +259,26 @@ public class AcceptDeclineView extends View {
         canvas.translate(0.0f, AndroidUtilities.dp(40.0f));
         canvas.save();
         canvas.translate(((this.rigthOffsetX + getMeasuredWidth()) - AndroidUtilities.dp(46.0f)) - this.buttonWidth, 0.0f);
-        this.declineDrawable.draw(canvas);
+        if (this.retryMod) {
+            canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.linePaint, 31);
+            this.declineDrawable.draw(canvas);
+            Drawable drawable3 = this.cancelDrawable;
+            if (drawable3 instanceof BitmapDrawable) {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable3;
+                if (bitmapDrawable.getBitmap() != null) {
+                    canvas.drawBitmap(bitmapDrawable.getBitmap(), this.cancelDrawable.getBounds().left + AndroidUtilities.dp(2.0f), this.cancelDrawable.getBounds().top + AndroidUtilities.dp(2.0f), this.maskPaint);
+                }
+            }
+            canvas.restore();
+        } else {
+            this.declineDrawable.draw(canvas);
+            this.callDrawable.draw(canvas);
+        }
         canvas.save();
         canvas.translate((this.buttonWidth / 2.0f) - (this.declineLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.dp(4.0f));
         this.declineLayout.draw(canvas);
         this.declineRect.set((getMeasuredWidth() - AndroidUtilities.dp(46.0f)) - this.buttonWidth, AndroidUtilities.dp(40.0f), getMeasuredWidth() - AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f) + this.buttonWidth);
         canvas.restore();
-        if (this.retryMod) {
-            this.cancelDrawable.draw(canvas);
-        } else {
-            this.callDrawable.draw(canvas);
-        }
         if (this.leftDrag) {
             this.rippleDrawable.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.buttonWidth - AndroidUtilities.dp(4.0f), this.buttonWidth - AndroidUtilities.dp(4.0f));
             this.rippleDrawable.draw(canvas);

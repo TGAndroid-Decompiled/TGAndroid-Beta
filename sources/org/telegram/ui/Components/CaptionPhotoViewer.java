@@ -170,7 +170,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void onTextChange() {
+    protected void onTextChange() {
         Runnable runnable = this.applyCaption;
         if (runnable != null) {
             runnable.run();
