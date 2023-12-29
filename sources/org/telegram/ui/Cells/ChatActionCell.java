@@ -771,7 +771,13 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     } else {
                         TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
                         if ((tLRPC$Document instanceof TLRPC$TL_documentEmpty) || ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && tLRPC$Document == null)) {
-                            charSequence = LocaleController.getString(R.string.AttachVideoExpired);
+                            if (tLRPC$MessageMedia.voice) {
+                                charSequence = LocaleController.getString(R.string.AttachVoiceExpired);
+                            } else if (tLRPC$MessageMedia.round) {
+                                charSequence = LocaleController.getString(R.string.AttachRoundExpired);
+                            } else {
+                                charSequence = LocaleController.getString(R.string.AttachVideoExpired);
+                            }
                         } else {
                             charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
                         }

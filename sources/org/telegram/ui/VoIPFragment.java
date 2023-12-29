@@ -108,6 +108,7 @@ import org.telegram.ui.Components.voip.VoIPToggleButton;
 import org.telegram.ui.Components.voip.VoIPWindowView;
 import org.telegram.ui.Components.voip.VoIpGradientLayout;
 import org.telegram.ui.Components.voip.VoIpHintView;
+import org.telegram.ui.Components.voip.VoIpSnowView;
 import org.telegram.ui.Components.voip.VoIpSwitchLayout;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.VoIPFragment;
@@ -194,6 +195,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     View topShadow;
     float touchSlop;
     ValueAnimator uiVisibilityAnimator;
+    private VoIpSnowView voIpSnowView;
     private boolean wasEstablished;
     private VoIPWindowView windowView;
     ValueAnimator zoomBackAnimator;
@@ -775,6 +777,9 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.callingUserTextureView.renderer.setRotateTextureWithScreen(true);
         this.callingUserTextureView.scaleType = VoIPTextureView.SCALE_TYPE_FIT;
         frameLayout.addView(this.gradientLayout, LayoutHelper.createFrame(-1, -1.0f));
+        VoIpSnowView voIpSnowView = new VoIpSnowView(context);
+        this.voIpSnowView = voIpSnowView;
+        frameLayout.addView(voIpSnowView, LayoutHelper.createFrame(-1, 220.0f));
         frameLayout.addView(this.callingUserTextureView);
         new BackgroundGradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-14994098, -14328963}).startDithering(BackgroundGradientDrawable.Sizes.ofDeviceScreen(BackgroundGradientDrawable.Sizes.Orientation.PORTRAIT), new BackgroundGradientDrawable.ListenerAdapter() {
             @Override
@@ -994,7 +999,6 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         AcceptDeclineView acceptDeclineView = new AcceptDeclineView(context);
         this.acceptDeclineView = acceptDeclineView;
         acceptDeclineView.setListener(new AnonymousClass8());
-        this.acceptDeclineView.setScreenWasWakeup(false);
         this.acceptDeclineView.setScaleX(1.15f);
         this.acceptDeclineView.setScaleY(1.15f);
         frameLayout.addView(this.buttonsLayout, LayoutHelper.createFrame(-1, -2, 80));

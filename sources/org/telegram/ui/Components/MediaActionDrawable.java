@@ -34,9 +34,9 @@ public class MediaActionDrawable extends Drawable {
     private int percentStringWidth;
     private float savedTransitionProgress;
     private TextPaint textPaint = new TextPaint(1);
-    private Paint paint = new Paint(1);
+    public Paint paint = new Paint(1);
     private Paint backPaint = new Paint(1);
-    private Paint paint2 = new Paint(1);
+    public Paint paint2 = new Paint(1);
     private Paint paint3 = new Paint(1);
     private RectF rect = new RectF();
     private float scale = 1.0f;
@@ -230,7 +230,7 @@ public class MediaActionDrawable extends Drawable {
         }
     }
 
-    private void applyShaderMatrix(boolean z) {
+    public void applyShaderMatrix(boolean z) {
         Theme.MessageDrawable messageDrawable = this.messageDrawable;
         if (messageDrawable == null || !messageDrawable.hasGradient() || this.hasOverlayImage) {
             return;

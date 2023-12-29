@@ -540,7 +540,7 @@ public class MessageEntityView extends EntityView {
                             View childAt3 = getChildAt(i11);
                             if (childAt3 instanceof ChatMessageCell) {
                                 ChatMessageCell chatMessageCell3 = (ChatMessageCell) childAt3;
-                                if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f3 && chatMessageCell3.getVisibility() != i4 && (currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup()) != null && ((i10 != 0 || currentMessagesGroup.messages.size() != z2) && ((i10 != z2 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i10 != 0 || !chatMessageCell3.getMessageObject().deleted) && ((i10 != z2 || chatMessageCell3.getMessageObject().deleted) && ((i10 != i5 || chatMessageCell3.willRemovedAfterAnimation()) && (i10 == i5 || !chatMessageCell3.willRemovedAfterAnimation()))))))) {
+                                if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f3 && chatMessageCell3.getVisibility() != i4 && chatMessageCell3.getVisibility() != 8 && (currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup()) != null && ((i10 != 0 || currentMessagesGroup.messages.size() != z2) && ((i10 != z2 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i10 != 0 || !chatMessageCell3.getMessageObject().deleted) && ((i10 != z2 || chatMessageCell3.getMessageObject().deleted) && ((i10 != i5 || chatMessageCell3.willRemovedAfterAnimation()) && (i10 == i5 || !chatMessageCell3.willRemovedAfterAnimation()))))))) {
                                     if (!this.drawingGroups.contains(currentMessagesGroup)) {
                                         MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                         transitionParams.left = 0;
@@ -561,27 +561,28 @@ public class MessageEntityView extends EntityView {
                                     if ((chatMessageCell3.getCurrentPosition().flags & i4) == 0) {
                                         top -= AndroidUtilities.dp(10.0f);
                                     }
-                                    if ((chatMessageCell3.getCurrentPosition().flags & 8) == 0) {
+                                    if ((8 & chatMessageCell3.getCurrentPosition().flags) == 0) {
                                         top2 += AndroidUtilities.dp(10.0f);
                                     }
+                                    int i12 = top2;
                                     if (chatMessageCell3.willRemovedAfterAnimation()) {
                                         currentMessagesGroup.transitionParams.cell = chatMessageCell3;
                                     }
                                     MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
-                                    int i12 = transitionParams2.top;
-                                    if (i12 == 0 || top < i12) {
+                                    int i13 = transitionParams2.top;
+                                    if (i13 == 0 || top < i13) {
                                         transitionParams2.top = top;
                                     }
-                                    int i13 = transitionParams2.bottom;
-                                    if (i13 == 0 || top2 > i13) {
-                                        transitionParams2.bottom = top2;
+                                    int i14 = transitionParams2.bottom;
+                                    if (i14 == 0 || i12 > i14) {
+                                        transitionParams2.bottom = i12;
                                     }
-                                    int i14 = transitionParams2.left;
-                                    if (i14 == 0 || left < i14) {
+                                    int i15 = transitionParams2.left;
+                                    if (i15 == 0 || left < i15) {
                                         transitionParams2.left = left;
                                     }
-                                    int i15 = transitionParams2.right;
-                                    if (i15 == 0 || left2 > i15) {
+                                    int i16 = transitionParams2.right;
+                                    if (i16 == 0 || left2 > i16) {
                                         transitionParams2.right = left2;
                                     }
                                     i11++;
@@ -591,9 +592,9 @@ public class MessageEntityView extends EntityView {
                             i11++;
                             i5 = 2;
                         }
-                        int i16 = 0;
-                        while (i16 < this.drawingGroups.size()) {
-                            MessageObject.GroupedMessages groupedMessages3 = this.drawingGroups.get(i16);
+                        int i17 = 0;
+                        while (i17 < this.drawingGroups.size()) {
+                            MessageObject.GroupedMessages groupedMessages3 = this.drawingGroups.get(i17);
                             float nonAnimationTranslationX = groupedMessages3.transitionParams.cell.getNonAnimationTranslationX(z2);
                             MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages3.transitionParams;
                             float f5 = transitionParams3.left + nonAnimationTranslationX + transitionParams3.offsetLeft;
@@ -612,15 +613,15 @@ public class MessageEntityView extends EntityView {
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages3.transitionParams;
                             float f10 = f6;
-                            int i17 = i16;
+                            int i18 = i17;
                             transitionParams4.cell.drawBackground(canvas, (int) f5, (int) f6, (int) f7, (int) f9, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, 0);
                             MessageObject.GroupedMessages.TransitionParams transitionParams5 = groupedMessages3.transitionParams;
                             transitionParams5.cell = null;
                             transitionParams5.drawCaptionLayout = groupedMessages3.hasCaption;
                             if (z3) {
                                 canvas.restore();
-                                for (int i18 = 0; i18 < childCount; i18++) {
-                                    View childAt4 = getChildAt(i18);
+                                for (int i19 = 0; i19 < childCount; i19++) {
+                                    View childAt4 = getChildAt(i19);
                                     if (childAt4 instanceof ChatMessageCell) {
                                         ChatMessageCell chatMessageCell4 = (ChatMessageCell) childAt4;
                                         if (chatMessageCell4.getCurrentMessagesGroup() == groupedMessages3) {
@@ -632,7 +633,7 @@ public class MessageEntityView extends EntityView {
                                     }
                                 }
                             }
-                            i16 = i17 + 1;
+                            i17 = i18 + 1;
                             canvas2 = canvas;
                             z2 = true;
                         }

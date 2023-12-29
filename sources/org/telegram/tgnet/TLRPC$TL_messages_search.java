@@ -13,6 +13,7 @@ public class TLRPC$TL_messages_search extends TLObject {
     public int offset_id;
     public TLRPC$InputPeer peer;
     public String q;
+    public TLRPC$InputPeer saved_peer_id;
     public int top_msg_id;
 
     @Override
@@ -22,12 +23,15 @@ public class TLRPC$TL_messages_search extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1593989278);
+        abstractSerializedData.writeInt32(-1481316055);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.q);
         if ((this.flags & 1) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 4) != 0) {
+            this.saved_peer_id.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.top_msg_id);

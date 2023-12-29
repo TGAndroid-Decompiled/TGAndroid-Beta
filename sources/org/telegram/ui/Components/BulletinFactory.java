@@ -39,6 +39,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.Stories.recorder.HintView2;
 public final class BulletinFactory {
     private final FrameLayout containerLayout;
     private final BaseFragment fragment;
@@ -205,6 +206,21 @@ public final class BulletinFactory {
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(2);
         return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
+    }
+
+    public Bulletin createImageBulletin(int i, CharSequence charSequence) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        lottieLayout.setBackground(Theme.getColor(Theme.key_undo_background, this.resourcesProvider), 12);
+        lottieLayout.imageView.setImageResource(i);
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setLines(2);
+        lottieLayout.textView.setMaxLines(4);
+        LinkSpanDrawable.LinksTextView linksTextView = lottieLayout.textView;
+        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), lottieLayout.textView.getPaint()));
+        ((ViewGroup.MarginLayoutParams) lottieLayout.textView.getLayoutParams()).rightMargin = AndroidUtilities.dp(12.0f);
+        lottieLayout.setWrapWidth();
+        return create(lottieLayout, 5000);
     }
 
     public Bulletin createSimpleLargeBulletin(int i, CharSequence charSequence, CharSequence charSequence2) {

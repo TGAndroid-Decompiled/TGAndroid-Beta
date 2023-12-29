@@ -170,7 +170,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    protected void onTextChange() {
+    public void onTextChange() {
         Runnable runnable = this.applyCaption;
         if (runnable != null) {
             runnable.run();
@@ -328,6 +328,6 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     @Override
     public void updateColors(Theme.ResourcesProvider resourcesProvider) {
         super.updateColors(resourcesProvider);
-        this.timerDrawable.updateColors(-1, Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider));
+        this.timerDrawable.updateColors(-1, Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider), -1);
     }
 }

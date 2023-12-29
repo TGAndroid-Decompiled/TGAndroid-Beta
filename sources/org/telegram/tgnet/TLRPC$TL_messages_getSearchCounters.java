@@ -5,6 +5,7 @@ public class TLRPC$TL_messages_getSearchCounters extends TLObject {
     public ArrayList<TLRPC$MessagesFilter> filters = new ArrayList<>();
     public int flags;
     public TLRPC$InputPeer peer;
+    public TLRPC$InputPeer saved_peer_id;
     public int top_msg_id;
 
     @Override
@@ -23,9 +24,12 @@ public class TLRPC$TL_messages_getSearchCounters extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(11435201);
+        abstractSerializedData.writeInt32(465367808);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
+        if ((this.flags & 2) != 0) {
+            this.saved_peer_id.serializeToStream(abstractSerializedData);
+        }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.top_msg_id);
         }

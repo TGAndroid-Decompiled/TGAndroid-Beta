@@ -39,6 +39,11 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
     private boolean wasLayout;
 
     @Override
+    public boolean isSeekBarDragAllowed() {
+        return SeekBar.SeekBarDelegate.CC.$default$isSeekBarDragAllowed(this);
+    }
+
+    @Override
     public void onProgressUpload(String str, long j, long j2, boolean z) {
     }
 
@@ -55,6 +60,11 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
     @Override
     public void onSeekBarReleased() {
         SeekBar.SeekBarDelegate.CC.$default$onSeekBarReleased(this);
+    }
+
+    @Override
+    public boolean reverseWaveform() {
+        return SeekBar.SeekBarDelegate.CC.$default$reverseWaveform(this);
     }
 
     public PopupAudioView(Context context) {

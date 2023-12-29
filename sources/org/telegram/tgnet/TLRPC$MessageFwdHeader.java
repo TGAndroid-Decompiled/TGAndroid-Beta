@@ -8,8 +8,12 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
     public boolean imported;
     public String post_author;
     public String psa_type;
+    public int saved_date;
+    public TLRPC$Peer saved_from_id;
     public int saved_from_msg_id;
+    public String saved_from_name;
     public TLRPC$Peer saved_from_peer;
+    public boolean saved_out;
 
     public static TLRPC$MessageFwdHeader TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader;
@@ -230,6 +234,9 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                     }
                 };
                 break;
+            case 1313731771:
+                tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
+                break;
             case 1436466797:
                 tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
                     @Override
@@ -288,7 +295,66 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                 };
                 break;
             case 1601666510:
-                tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
+                tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.imported = (readInt32 & 128) != 0;
+                        if ((readInt32 & 1) != 0) {
+                            this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.from_name = abstractSerializedData2.readString(z2);
+                        }
+                        this.date = abstractSerializedData2.readInt32(z2);
+                        if ((this.flags & 4) != 0) {
+                            this.channel_post = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.post_author = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.saved_from_peer = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.saved_from_msg_id = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.psa_type = abstractSerializedData2.readString(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1601666510);
+                        int i2 = this.imported ? this.flags | 128 : this.flags & (-129);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        if ((this.flags & 1) != 0) {
+                            this.from_id.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            abstractSerializedData2.writeString(this.from_name);
+                        }
+                        abstractSerializedData2.writeInt32(this.date);
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeInt32(this.channel_post);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeString(this.post_author);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.saved_from_peer.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            abstractSerializedData2.writeInt32(this.saved_from_msg_id);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            abstractSerializedData2.writeString(this.psa_type);
+                        }
+                    }
+                };
                 break;
             default:
                 tLRPC$TL_messageFwdHeader = null;

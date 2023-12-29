@@ -24,20 +24,21 @@ public class RadialProgress2 {
     private int circleCrossfadeColorKey;
     private float circleCrossfadeColorProgress;
     private Paint circleMiniPaint;
-    private Paint circlePaint;
+    public Paint circlePaint;
     private int circlePressedColor;
     private int circlePressedColorKey;
     private int circleRadius;
     private boolean drawBackground;
     private boolean drawMiniIcon;
-    private int iconColor;
-    private int iconColorKey;
+    public int iconColor;
+    public int iconColorKey;
     private int iconPressedColor;
     private int iconPressedColorKey;
+    public float iconScale;
     private boolean isPressed;
     private boolean isPressedMini;
     private int maxIconSize;
-    private MediaActionDrawable mediaActionDrawable;
+    public MediaActionDrawable mediaActionDrawable;
     private Bitmap miniDrawBitmap;
     private Canvas miniDrawCanvas;
     private float miniIconScale;
@@ -50,7 +51,7 @@ public class RadialProgress2 {
     public float overrideCircleAlpha;
     private View parent;
     private int progressColor;
-    private RectF progressRect;
+    public RectF progressRect;
     private Theme.ResourcesProvider resourcesProvider;
 
     public RadialProgress2(View view) {
@@ -74,6 +75,7 @@ public class RadialProgress2 {
         this.drawBackground = true;
         this.overrideAlpha = 1.0f;
         this.overlayImageAlpha = 1.0f;
+        this.iconScale = 1.0f;
         this.resourcesProvider = resourcesProvider;
         this.miniProgressBackgroundPaint = new Paint(1);
         this.parent = view;
@@ -471,6 +473,11 @@ public class RadialProgress2 {
             if (i18 > 0 && i17 > i18) {
                 i17 = i18;
             }
+            if (this.iconScale != 1.0f) {
+                canvas.save();
+                float f3 = this.iconScale;
+                canvas.scale(f3, f3, ceil, ceil2);
+            }
             this.mediaActionDrawable.setBounds(ceil - i17, ceil2 - i17, ceil + i17, ceil2 + i17);
             this.mediaActionDrawable.setHasOverlayImage(this.overlayImageView.hasBitmapImage());
             if (this.drawMiniIcon || this.circleCrossfadeColorKey >= 0) {
@@ -490,9 +497,9 @@ public class RadialProgress2 {
             if (this.drawMiniIcon || this.circleCrossfadeColorKey >= 0) {
                 if (Math.abs(this.progressRect.width() - AndroidUtilities.dp(44.0f)) < AndroidUtilities.density) {
                     i3 = 20;
-                    float f3 = 16;
-                    centerX = this.progressRect.centerX() + AndroidUtilities.dp(f3);
-                    centerY = this.progressRect.centerY() + AndroidUtilities.dp(f3);
+                    float f4 = 16;
+                    centerX = this.progressRect.centerX() + AndroidUtilities.dp(f4);
+                    centerY = this.progressRect.centerY() + AndroidUtilities.dp(f4);
                     i15 = 0;
                 } else {
                     i3 = 22;
@@ -510,8 +517,8 @@ public class RadialProgress2 {
                 }
                 Canvas canvas7 = this.miniDrawCanvas;
                 if (canvas7 != null) {
-                    float f4 = i3 + 18 + i15;
-                    canvas7.drawCircle(AndroidUtilities.dp(f4), AndroidUtilities.dp(f4), AndroidUtilities.dp(i19 + 1) * f * this.miniIconScale, Theme.checkboxSquare_eraserPaint);
+                    float f5 = i3 + 18 + i15;
+                    canvas7.drawCircle(AndroidUtilities.dp(f5), AndroidUtilities.dp(f5), AndroidUtilities.dp(i19 + 1) * f * this.miniIconScale, Theme.checkboxSquare_eraserPaint);
                 } else {
                     this.miniProgressBackgroundPaint.setColor(this.progressColor);
                     canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(12.0f), this.miniProgressBackgroundPaint);
@@ -523,20 +530,23 @@ public class RadialProgress2 {
                 }
                 if (this.miniIconScale < 1.0f) {
                     i4 = canvas.save();
-                    float f5 = this.miniIconScale;
-                    canvas.scale(f5, f5, centerX, centerY);
+                    float f6 = this.miniIconScale;
+                    canvas.scale(f6, f6, centerX, centerY);
                 } else {
                     i4 = Integer.MIN_VALUE;
                 }
-                float f6 = i19;
-                canvas.drawCircle(centerX, centerY, (AndroidUtilities.dp(f6) * f) + (AndroidUtilities.dp(1.0f) * (1.0f - this.circleCheckProgress)), this.circleMiniPaint);
+                float f7 = i19;
+                canvas.drawCircle(centerX, centerY, (AndroidUtilities.dp(f7) * f) + (AndroidUtilities.dp(1.0f) * (1.0f - this.circleCheckProgress)), this.circleMiniPaint);
                 if (this.drawMiniIcon) {
-                    this.miniMediaActionDrawable.setBounds((int) (centerX - (AndroidUtilities.dp(f6) * f)), (int) (centerY - (AndroidUtilities.dp(f6) * f)), (int) (centerX + (AndroidUtilities.dp(f6) * f)), (int) (centerY + (AndroidUtilities.dp(f6) * f)));
+                    this.miniMediaActionDrawable.setBounds((int) (centerX - (AndroidUtilities.dp(f7) * f)), (int) (centerY - (AndroidUtilities.dp(f7) * f)), (int) (centerX + (AndroidUtilities.dp(f7) * f)), (int) (centerY + (AndroidUtilities.dp(f7) * f)));
                     this.miniMediaActionDrawable.draw(canvas);
                 }
                 if (i4 != Integer.MIN_VALUE) {
                     canvas.restoreToCount(i4);
                 }
+            }
+            if (this.iconScale != 1.0f) {
+                canvas.restore();
             }
         }
     }

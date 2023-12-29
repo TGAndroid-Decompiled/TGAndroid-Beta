@@ -33,6 +33,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public String provider;
     public int proximity_notification_radius;
     public int receipt_msg_id;
+    public boolean round;
     public boolean safe;
     public boolean shipping_address_requested;
     public boolean spoiler;
@@ -47,7 +48,9 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public String venue_id;
     public String venue_type;
     public boolean via_mention;
+    public boolean video;
     public TLRPC$Video video_unused;
+    public boolean voice;
     public TLRPC$WebPage webpage;
 
     public static TLRPC$MessageMedia TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {

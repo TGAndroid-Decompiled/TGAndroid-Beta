@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.Choreographer;
 import android.view.TextureView;
 import android.view.View;
@@ -118,7 +117,6 @@ public class ThanosEffect extends TextureView {
 
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-            Log.i("lolkek", "THANOS EFFECT START");
             if (ThanosEffect.this.drawThread != null) {
                 ThanosEffect.this.drawThread.kill();
                 ThanosEffect.this.drawThread = null;
@@ -164,7 +162,6 @@ public class ThanosEffect extends TextureView {
 
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-            Log.i("lolkek", "THANOS EFFECT DESTROYED");
             if (ThanosEffect.this.drawThread != null) {
                 ThanosEffect.this.drawThread.kill();
                 ThanosEffect.this.drawThread = null;
@@ -667,7 +664,7 @@ public class ThanosEffect extends TextureView {
 
             public static void lambda$new$0(ArrayList arrayList) {
                 for (int i = 0; i < arrayList.size(); i++) {
-                    ((View) arrayList.get(i)).setVisibility(4);
+                    ((View) arrayList.get(i)).setVisibility(8);
                     if (arrayList.get(i) instanceof ChatMessageCell) {
                         ((ChatMessageCell) arrayList.get(i)).setCheckBoxVisible(false, false);
                         ((ChatMessageCell) arrayList.get(i)).setChecked(false, false, false);
@@ -730,7 +727,7 @@ public class ThanosEffect extends TextureView {
 
             public void lambda$new$1() {
                 for (int i = 0; i < this.views.size(); i++) {
-                    this.views.get(i).setVisibility(4);
+                    this.views.get(i).setVisibility(8);
                     if (this.views.get(i) instanceof ChatMessageCell) {
                         ((ChatMessageCell) this.views.get(i)).setCheckBoxVisible(false, false);
                         ((ChatMessageCell) this.views.get(i)).setChecked(false, false, false);
@@ -853,9 +850,6 @@ public class ThanosEffect extends TextureView {
             }
 
             public void lambda$done$2() {
-                for (int i = 0; i < this.views.size(); i++) {
-                    this.views.get(i).setVisibility(0);
-                }
                 Runnable runnable = this.doneCallback;
                 if (runnable != null) {
                     runnable.run();

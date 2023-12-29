@@ -1206,11 +1206,20 @@ public class CaptionContainerView extends FrameLayout {
     }
 
     public static class PeriodDrawable extends Drawable {
+        private final Path activePath;
+        public final AnimatedTextView.AnimatedTextDrawable activeTextDrawable;
+        private boolean clear;
+        private float cx;
+        private float cy;
+        private final int dashes;
+        public float diameterDp;
         private final Paint fillPaint;
         private final AnimatedFloat fillT;
         private boolean filled;
-        private final Paint strokePaint;
+        public final Paint strokePaint;
         public final AnimatedTextView.AnimatedTextDrawable textDrawable;
+        public float textOffsetX;
+        public float textOffsetY;
 
         @Override
         public int getOpacity() {
@@ -1226,6 +1235,10 @@ public class CaptionContainerView extends FrameLayout {
         }
 
         public PeriodDrawable() {
+            this(5);
+        }
+
+        public PeriodDrawable(int i) {
             Paint paint = new Paint(1);
             this.strokePaint = paint;
             this.fillPaint = new Paint(1);
@@ -1236,6 +1249,13 @@ public class CaptionContainerView extends FrameLayout {
                 }
             };
             this.textDrawable = animatedTextDrawable;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, false, false) {
+                @Override
+                public void invalidateSelf() {
+                    PeriodDrawable.this.invalidateSelf();
+                }
+            };
+            this.activeTextDrawable = animatedTextDrawable2;
             this.filled = false;
             Runnable runnable = new Runnable() {
                 @Override
@@ -1245,6 +1265,9 @@ public class CaptionContainerView extends FrameLayout {
             };
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.fillT = new AnimatedFloat(runnable, 0L, 350L, cubicBezierInterpolator);
+            this.activePath = new Path();
+            this.diameterDp = 21.0f;
+            this.dashes = i;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
             paint.setStrokeCap(Paint.Cap.ROUND);
@@ -1252,46 +1275,104 @@ public class CaptionContainerView extends FrameLayout {
             animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
             animatedTextDrawable.setTextSize(AndroidUtilities.dpf2(12.0f));
             animatedTextDrawable.setGravity(17);
-            updateColors(-1, -15033089);
+            animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
+            animatedTextDrawable2.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
+            animatedTextDrawable2.setTextSize(AndroidUtilities.dpf2(12.0f));
+            animatedTextDrawable2.setGravity(17);
+            updateColors(-1, -15033089, -1);
         }
 
-        public void updateColors(int i, int i2) {
+        public void setTextSize(float f) {
+            this.activeTextDrawable.setTextSize(AndroidUtilities.dpf2(f));
+            this.textDrawable.setTextSize(AndroidUtilities.dpf2(f));
+        }
+
+        public void updateColors(int i, int i2, int i3) {
             this.strokePaint.setColor(i);
             this.textDrawable.setTextColor(i);
+            this.activeTextDrawable.setTextColor(i3);
             this.fillPaint.setColor(i2);
+        }
+
+        public void setClear(boolean z) {
+            if (this.clear != z) {
+                this.clear = z;
+                this.strokePaint.setXfermode(z ? new PorterDuffXfermode(PorterDuff.Mode.CLEAR) : null);
+                this.textDrawable.getPaint().setXfermode(z ? new PorterDuffXfermode(PorterDuff.Mode.CLEAR) : null);
+            }
+        }
+
+        public void setCenterXY(float f, float f2) {
+            this.cx = f;
+            this.cy = f2;
+        }
+
+        @Override
+        public void setBounds(Rect rect) {
+            super.setBounds(rect);
+            this.cx = getBounds().centerX();
+            this.cy = getBounds().centerY();
+        }
+
+        @Override
+        public void setBounds(int i, int i2, int i3, int i4) {
+            super.setBounds(i, i2, i3, i4);
+            this.cx = getBounds().centerX();
+            this.cy = getBounds().centerY();
         }
 
         @Override
         public void draw(Canvas canvas) {
-            float centerY = getBounds().centerY();
-            float centerY2 = getBounds().centerY();
-            float dpf2 = AndroidUtilities.dpf2(21.0f) / 2.0f;
-            float f = this.fillT.set(this.filled);
-            if (f > 0.0f) {
-                this.fillPaint.setAlpha((int) (f * 255.0f));
-                canvas.drawCircle(centerY, centerY2, AndroidUtilities.dpf2(11.33f) * f, this.fillPaint);
+            draw(canvas, 1.0f);
+        }
+
+        public void draw(Canvas canvas, float f) {
+            float dpf2 = AndroidUtilities.dpf2(this.diameterDp) / 2.0f;
+            float f2 = this.fillT.set(this.filled);
+            if (f2 > 0.0f) {
+                this.fillPaint.setAlpha((int) (f * 255.0f * f2));
+                canvas.drawCircle(this.cx, this.cy, AndroidUtilities.dpf2(11.33f) * f2, this.fillPaint);
             }
-            this.strokePaint.setAlpha((int) ((1.0f - f) * 255.0f));
+            float f3 = f * 255.0f;
+            this.strokePaint.setAlpha((int) ((1.0f - f2) * f3));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(centerY - dpf2, centerY2 - dpf2, centerY + dpf2, dpf2 + centerY2);
+            float f4 = this.cx;
+            float f5 = this.cy;
+            rectF.set(f4 - dpf2, f5 - dpf2, f4 + dpf2, f5 + dpf2);
             canvas.drawArc(rectF, 90.0f, 180.0f, false, this.strokePaint);
-            float f2 = 19.285715f;
-            for (int i = 0; i < 5; i++) {
-                canvas.drawArc(AndroidUtilities.rectTmp, f2 + 270.0f, 12.857143f, false, this.strokePaint);
-                f2 += 32.14286f;
+            int i = this.dashes;
+            float f6 = (i + 1) * 1.5f;
+            float f7 = (1.0f / ((i * 1.0f) + f6)) * 180.0f;
+            float f8 = (1.5f / ((i * 1.0f) + f6)) * 180.0f;
+            float f9 = f8;
+            for (int i2 = 0; i2 < this.dashes; i2++) {
+                canvas.drawArc(AndroidUtilities.rectTmp, f9 + 270.0f, f7, false, this.strokePaint);
+                f9 += f7 + f8;
             }
             canvas.save();
-            canvas.translate(0.0f, -1.0f);
+            canvas.translate(this.textOffsetX + 0.0f, this.textOffsetY);
             Rect rect = AndroidUtilities.rectTmp2;
-            rect.set((int) (centerY - AndroidUtilities.dp(20.0f)), (int) (centerY2 - AndroidUtilities.dp(20.0f)), (int) (centerY + AndroidUtilities.dp(20.0f)), (int) (centerY2 + AndroidUtilities.dp(20.0f)));
+            rect.set((int) (this.cx - AndroidUtilities.dp(20.0f)), (int) (this.cy - AndroidUtilities.dp(20.0f)), (int) (this.cx + AndroidUtilities.dp(20.0f)), (int) (this.cy + AndroidUtilities.dp(20.0f)));
             this.textDrawable.setBounds(rect);
+            int i3 = (int) f3;
+            this.textDrawable.setAlpha(i3);
             this.textDrawable.draw(canvas);
+            if (f2 > 0.0f) {
+                this.activePath.rewind();
+                this.activePath.addCircle(this.cx, this.cy + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(11.33f) * f2, Path.Direction.CW);
+                canvas.clipPath(this.activePath);
+                this.activeTextDrawable.setBounds(rect);
+                this.activeTextDrawable.setAlpha(i3);
+                this.activeTextDrawable.draw(canvas);
+            }
             canvas.restore();
         }
 
         public void setValue(int i, boolean z, boolean z2) {
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
             animatedTextDrawable.setText("" + i, z2);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.activeTextDrawable;
+            animatedTextDrawable2.setText("" + i, z2);
             this.filled = z;
             if (!z2) {
                 this.fillT.set(z, true);

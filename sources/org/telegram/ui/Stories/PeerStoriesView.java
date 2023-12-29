@@ -2370,6 +2370,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
+        public boolean onceVoiceAvailable() {
+            return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onceVoiceAvailable(this);
+        }
+
+        @Override
         public void openScheduledMessages() {
             ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$openScheduledMessages(this);
         }
@@ -2424,7 +2429,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        public void needStartRecordVideo(int i, boolean z, int i2) {
+        public void needStartRecordVideo(int i, boolean z, int i2, int i3) {
             PeerStoriesView.this.checkInstantCameraView();
             if (PeerStoriesView.this.instantCameraView != null) {
                 if (i == 0) {
@@ -2432,7 +2437,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     return;
                 }
                 if (i == 1 || i == 3 || i == 4) {
-                    PeerStoriesView.this.instantCameraView.send(i, z, i2);
+                    PeerStoriesView.this.instantCameraView.send(i, z, i2, i3);
                 } else if (i == 2 || i == 5) {
                     PeerStoriesView.this.instantCameraView.cancel(i == 2);
                 }

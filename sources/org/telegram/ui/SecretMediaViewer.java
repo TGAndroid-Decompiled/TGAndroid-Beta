@@ -1346,10 +1346,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.secretHint.setInnerPadding(12, 7, 11, 7);
         this.secretHint.setIconMargin(2);
         this.secretHint.setIconTranslate(0.0f, 0.0f);
-        int i = R.raw.fire_on;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
-        rLottieDrawable.start();
-        this.secretHint.setIcon(rLottieDrawable);
+        this.secretHint.setIcon(R.raw.fire_on);
         this.secretHint.show();
         MessagesController.getGlobalMainSettings().edit().putInt("viewoncehint", MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) + 1).commit();
     }

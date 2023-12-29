@@ -24,6 +24,9 @@ public class TLRPC$TL_message extends TLRPC$Message {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.peer_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        if ((this.flags & 268435456) != 0) {
+            this.saved_peer_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
         if ((this.flags & 4) != 0) {
             this.fwd_from = TLRPC$MessageFwdHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -110,7 +113,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(940666592);
+        abstractSerializedData.writeInt32(1992213009);
         int i = this.out ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.mentioned ? i | 16 : i & (-17);
@@ -139,6 +142,9 @@ public class TLRPC$TL_message extends TLRPC$Message {
             this.from_id.serializeToStream(abstractSerializedData);
         }
         this.peer_id.serializeToStream(abstractSerializedData);
+        if ((this.flags & 268435456) != 0) {
+            this.saved_peer_id.serializeToStream(abstractSerializedData);
+        }
         if ((this.flags & 4) != 0) {
             this.fwd_from.serializeToStream(abstractSerializedData);
         }

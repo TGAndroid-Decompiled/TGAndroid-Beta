@@ -281,7 +281,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void needStartRecordVideo(int i2, boolean z, int i3) {
+            public void needStartRecordVideo(int i2, boolean z, int i3, int i4) {
             }
 
             @Override
@@ -363,6 +363,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
 
             @Override
             public void onWindowSizeChanged(int i2) {
+            }
+
+            @Override
+            public boolean onceVoiceAvailable() {
+                return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onceVoiceAvailable(this);
             }
 
             @Override

@@ -231,6 +231,12 @@ public class HintView2 extends View {
         return this;
     }
 
+    public HintView2 setIcon(int i) {
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        rLottieDrawable.start();
+        return setIcon(rLottieDrawable);
+    }
+
     public HintView2 setIcon(Drawable drawable) {
         Drawable drawable2 = this.icon;
         if (drawable2 != null) {
@@ -259,31 +265,28 @@ public class HintView2 extends View {
             return textPaint.measureText(charSequence.toString());
         }
         Spanned spanned = (Spanned) charSequence;
-        int i = 0;
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spanned.getSpans(0, charSequence.length(), TypefaceSpan.class);
         if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
             return textPaint.measureText(charSequence.toString());
         }
-        int i2 = 0;
-        while (i < typefaceSpanArr.length) {
-            int spanStart = spanned.getSpanStart(typefaceSpanArr[i]);
-            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i]);
-            int max = Math.max(i2, spanStart);
-            if (max - i2 > 0) {
-                f += textPaint.measureText(spanned, i2, max);
+        int i = 0;
+        for (int i2 = 0; i2 < typefaceSpanArr.length; i2++) {
+            int spanStart = spanned.getSpanStart(typefaceSpanArr[i2]);
+            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i2]);
+            int max = Math.max(i, spanStart);
+            if (max - i > 0) {
+                f += textPaint.measureText(spanned, i, max);
             }
-            int max2 = Math.max(max, spanEnd);
-            if (max2 - max > 0) {
+            i = Math.max(max, spanEnd);
+            if (i - max > 0) {
                 Typeface typeface = textPaint.getTypeface();
-                textPaint.setTypeface(typefaceSpanArr[i].getTypeface());
-                f += textPaint.measureText(spanned, max, max2);
+                textPaint.setTypeface(typefaceSpanArr[i2].getTypeface());
+                f += textPaint.measureText(spanned, max, i);
                 textPaint.setTypeface(typeface);
             }
-            i++;
-            i2 = max;
         }
-        int max3 = Math.max(i2, charSequence.length());
-        return max3 - i2 > 0 ? f + textPaint.measureText(spanned, i2, max3) : f;
+        int max2 = Math.max(i, charSequence.length());
+        return max2 - i > 0 ? f + textPaint.measureText(spanned, i, max2) : f;
     }
 
     public static int cutInFancyHalf(CharSequence charSequence, TextPaint textPaint) {
@@ -293,14 +296,21 @@ public class HintView2 extends View {
         float f3 = 0.0f;
         float f4 = Float.MAX_VALUE;
         int i = 0;
+        int i2 = -1;
         while (i < 10) {
-            while (length > 0 && charSequence.charAt(length) != ' ') {
-                length--;
+            while (length > 0 && length < charSequence.length() && charSequence.charAt(length) != ' ') {
+                length += i2;
             }
-            f2 = measureCorrectly(charSequence.subSequence(0, length).toString(), textPaint);
-            f3 = measureCorrectly(charSequence.subSequence(length, charSequence.length()).toString().trim(), textPaint);
+            f2 = measureCorrectly(charSequence.subSequence(0, length), textPaint);
+            f3 = measureCorrectly(AndroidUtilities.getTrimmedString(charSequence.subSequence(length, charSequence.length())), textPaint);
             if (f2 != f || f3 != f4) {
-                length = f2 < f3 ? length + 1 : length - 1;
+                if (f2 < f3) {
+                    length++;
+                    i2 = 1;
+                } else {
+                    length--;
+                    i2 = -1;
+                }
                 if (length <= 0 || length >= charSequence.length()) {
                     break;
                 }

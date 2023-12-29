@@ -427,7 +427,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                     this.clipPath.reset();
                     this.clipPath.addCircle(width, height, this.selectedRadius, Path.Direction.CW);
                     canvas.clipPath(this.clipPath);
-                    canvas.drawColor(-1);
+                    canvas.drawCircle(width, height, this.selectedRadius, this.whiteCirclePaint);
                     this.selectedIcon.setAlpha(255);
                     this.selectedIcon.draw(canvas, this.maskPaint);
                     this.selectedIcon.setAlpha(35);

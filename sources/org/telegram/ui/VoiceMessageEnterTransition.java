@@ -24,7 +24,6 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
     final Paint circlePaint = new Paint(1);
     MessageEnterTransitionContainer container;
     float fromRadius;
-    private final Matrix gradientMatrix;
     private final Paint gradientPaint;
     private final LinearGradient gradientShader;
     float lastToCx;
@@ -49,7 +48,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
             recordCircle.voiceEnterTransitionInProgress = true;
             recordCircle.skipDraw = true;
         }
-        this.gradientMatrix = new Matrix();
+        new Matrix();
         Paint paint = new Paint(1);
         this.gradientPaint = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
@@ -93,15 +92,15 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    public void onDraw(final Canvas canvas) {
         float centerY;
         float centerX;
-        float f = this.progress;
+        final float f = this.progress;
         float f2 = f > 0.6f ? 1.0f : f / 0.6f;
         ChatActivityEnterView.RecordCircle recordCircle = this.recordCircle;
-        float x = recordCircle == null ? 0.0f : (recordCircle.drawingCx + recordCircle.getX()) - this.container.getX();
+        final float x = recordCircle == null ? 0.0f : (recordCircle.drawingCx + recordCircle.getX()) - this.container.getX();
         ChatActivityEnterView.RecordCircle recordCircle2 = this.recordCircle;
-        float y = recordCircle2 == null ? 0.0f : (recordCircle2.drawingCy + recordCircle2.getY()) - this.container.getY();
+        final float y = recordCircle2 == null ? 0.0f : (recordCircle2.drawingCy + recordCircle2.getY()) - this.container.getY();
         if (this.messageView.getMessageObject().stableId != this.messageId) {
             centerX = this.lastToCx;
             centerY = this.lastToCy;
@@ -113,12 +112,17 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         this.lastToCy = centerY;
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(f);
         float interpolation2 = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(f);
-        float f3 = ((1.0f - interpolation2) * x) + (centerX * interpolation2);
+        final float f3 = ((1.0f - interpolation2) * x) + (centerX * interpolation2);
         float f4 = 1.0f - interpolation;
-        float f5 = (y * f4) + (centerY * interpolation);
+        final float f5 = (y * f4) + (centerY * interpolation);
         float height = this.messageView.getRadialProgress().getProgressRect().height() / 2.0f;
         float f6 = (this.fromRadius * f4) + (height * interpolation);
-        int measuredHeight = this.container.getMeasuredHeight() > 0 ? (int) ((this.container.getMeasuredHeight() * f4) + (((this.listView.getY() - this.container.getY()) + this.listView.getMeasuredHeight()) * interpolation)) : 0;
+        this.listView.getY();
+        this.container.getY();
+        this.listView.getMeasuredHeight();
+        if (this.container.getMeasuredHeight() > 0) {
+            this.container.getMeasuredHeight();
+        }
         this.circlePaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_chat_messagePanelVoiceBackground), getThemedColor(this.messageView.getRadialProgress().getCircleColorKey()), interpolation));
         ChatActivityEnterView.RecordCircle recordCircle3 = this.recordCircle;
         if (recordCircle3 != null) {
@@ -126,23 +130,35 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         }
         canvas.drawCircle(f3, f5, f6, this.circlePaint);
         canvas.save();
-        float f7 = f6 / height;
+        final float f7 = f6 / height;
         canvas.scale(f7, f7, f3, f5);
-        canvas.translate(f3 - this.messageView.getRadialProgress().getProgressRect().centerX(), f5 - this.messageView.getRadialProgress().getProgressRect().centerY());
+        final float centerX2 = f3 - this.messageView.getRadialProgress().getProgressRect().centerX();
+        final float centerY2 = f5 - this.messageView.getRadialProgress().getProgressRect().centerY();
+        canvas.translate(centerX2, centerY2);
         this.messageView.getRadialProgress().setOverrideAlpha(interpolation);
         this.messageView.getRadialProgress().setDrawBackground(false);
-        this.messageView.getRadialProgress().draw(canvas);
+        this.messageView.drawVoiceOnce(canvas, interpolation, new Runnable() {
+            @Override
+            public final void run() {
+                VoiceMessageEnterTransition.this.lambda$onDraw$1(canvas, centerX2, centerY2, f7, f3, f5, x, y, f);
+            }
+        });
         this.messageView.getRadialProgress().setDrawBackground(true);
         this.messageView.getRadialProgress().setOverrideAlpha(1.0f);
         canvas.restore();
-        if (this.container.getMeasuredHeight() > 0) {
-            this.gradientMatrix.setTranslate(0.0f, measuredHeight);
-            this.gradientShader.setLocalMatrix(this.gradientMatrix);
+    }
+
+    public void lambda$onDraw$1(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8) {
+        this.messageView.getRadialProgress().draw(canvas);
+        canvas.translate(-f, -f2);
+        float f9 = 1.0f / f3;
+        canvas.scale(f9, f9, f4, f5);
+        ChatActivityEnterView.RecordCircle recordCircle = this.recordCircle;
+        if (recordCircle != null) {
+            recordCircle.drawIcon(canvas, (int) f6, (int) f7, 1.0f - f8);
         }
-        ChatActivityEnterView.RecordCircle recordCircle4 = this.recordCircle;
-        if (recordCircle4 != null) {
-            recordCircle4.drawIcon(canvas, (int) x, (int) y, 1.0f - f);
-        }
+        canvas.scale(f3, f3, f4, f5);
+        canvas.translate(f, f2);
     }
 
     private int getThemedColor(int i) {

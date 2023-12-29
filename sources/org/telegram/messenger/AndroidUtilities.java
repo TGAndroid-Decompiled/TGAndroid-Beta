@@ -4677,7 +4677,7 @@ public class AndroidUtilities {
         return null;
     }
 
-    public static void makeGlobalBlurBitmap(final Utilities.Callback<Bitmap> callback, float f) {
+    public static void makeGlobalBlurBitmap(Utilities.Callback<Bitmap> callback, float f) {
         if (callback == null) {
             return;
         }
@@ -4690,7 +4690,7 @@ public class AndroidUtilities {
             Point point = displaySize;
             int i = (int) (point.x / f);
             int i2 = (int) ((point.y + statusBarHeight) / f);
-            final Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+            Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
             float f2 = 1.0f / f;
             canvas.scale(f2, f2);
@@ -4715,20 +4715,10 @@ public class AndroidUtilities {
                 canvas.restore();
             }
             Utilities.stackBlurBitmap(createBitmap, Math.max((int) f, Math.max(i, i2) / 180));
-            runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    Utilities.Callback.this.run(createBitmap);
-                }
-            });
+            callback.run(createBitmap);
         } catch (Exception e) {
             FileLog.e(e);
-            runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    Utilities.Callback.this.run(null);
-                }
-            });
+            callback.run(null);
         }
     }
 

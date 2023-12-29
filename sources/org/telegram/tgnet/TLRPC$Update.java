@@ -239,6 +239,30 @@ public abstract class TLRPC$Update extends TLObject {
             case -1371598819:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updatePeerWallpaper();
                 break;
+            case -1364222348:
+                tLRPC$TL_updateTheme = new TLRPC$Update() {
+                    public int flags;
+                    public TLRPC$DialogPeer peer;
+                    public boolean pinned;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.pinned = (readInt32 & 1) != 0;
+                        this.peer = TLRPC$DialogPeer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1364222348);
+                        int i2 = this.pinned ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        this.peer.serializeToStream(abstractSerializedData2);
+                    }
+                };
+                break;
             case -1304443240:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelAvailableMessages();
                 break;
@@ -560,6 +584,45 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 1666927625:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannel();
+                break;
+            case 1751942566:
+                tLRPC$TL_updateTheme = new TLRPC$Update() {
+                    public int flags;
+                    public ArrayList<TLRPC$DialogPeer> order = new ArrayList<>();
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        if ((readInt32 & 1) != 0) {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                                }
+                                return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                this.order.add(TLRPC$DialogPeer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1751942566);
+                        abstractSerializedData2.writeInt32(this.flags);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.order.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i2 = 0; i2 < size; i2++) {
+                                this.order.get(i2).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                    }
+                };
                 break;
             case 1753886890:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateNewStickerSet();

@@ -37,6 +37,7 @@ public class MessagePreviewParams {
     public Messages forwardMessages;
     public boolean hasCaption;
     public boolean hasMedia;
+    public boolean hasSecretMessages;
     public boolean hasSenders;
     public boolean hideCaption;
     public boolean hideForwardSendersName;
@@ -236,6 +237,7 @@ public class MessagePreviewParams {
         } else {
             replyQuote2 = replyQuote;
         }
+        this.hasSecretMessages = messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce());
         if (messageObject2 != null || replyQuote2 != null) {
             if (groupedMessages != null) {
                 this.replyMessage = new Messages(null, 1, groupedMessages.messages, j, null);

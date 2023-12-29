@@ -75,7 +75,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     private final float startLocationY;
     private int strangeCurrentPage;
     private VoIPTextureView textureView;
-    private TextView[] titles;
+    private VoIpBitmapTextView[] titles;
     private LinearLayout titlesLayout;
     private FrameLayout viewPager;
     private int visibleCameraPage;
@@ -134,6 +134,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public PrivateVideoPreviewDialogNew(Context context, final float f, final float f2) {
         super(context);
+        String string;
         this.visibleCameraPage = 1;
         this.previousPage = -1;
         this.openProgress1 = 0.0f;
@@ -149,7 +150,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         this.bgBlueViolet = new MotionBackgroundDrawable(-16735258, -14061833, -15151390, -12602625, 0, false, true);
         this.startLocationX = f;
         this.startLocationY = f2;
-        this.titles = new TextView[3];
+        this.titles = new VoIpBitmapTextView[3];
         this.scrollGestureDetector = new GestureDetector(context, new AnonymousClass1());
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
@@ -314,34 +315,23 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         this.titlesLayout = linearLayout;
         linearLayout.setClipChildren(false);
         addView(this.titlesLayout, LayoutHelper.createFrame(-1, 64, 80));
-        final int i2 = 0;
-        while (true) {
-            TextView[] textViewArr = this.titles;
-            if (i2 >= textViewArr.length) {
-                break;
-            }
-            textViewArr[i2] = new TextView(context);
-            this.titles[i2].setTextSize(1, 13.0f);
-            this.titles[i2].setTextColor(-1);
-            this.titles[i2].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titles[i2].setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(10.0f), 0);
-            this.titles[i2].setGravity(16);
-            this.titles[i2].setSingleLine(true);
-            this.titlesLayout.addView(this.titles[i2], LayoutHelper.createLinear(-2, -1));
+        for (final int i2 = 0; i2 < this.titles.length; i2++) {
             if (i2 == 0) {
-                this.titles[i2].setText(LocaleController.getString("VoipPhoneScreen", R.string.VoipPhoneScreen));
+                string = LocaleController.getString("VoipPhoneScreen", R.string.VoipPhoneScreen);
             } else if (i2 == 1) {
-                this.titles[i2].setText(LocaleController.getString("VoipFrontCamera", R.string.VoipFrontCamera));
+                string = LocaleController.getString("VoipFrontCamera", R.string.VoipFrontCamera);
             } else {
-                this.titles[i2].setText(LocaleController.getString("VoipBackCamera", R.string.VoipBackCamera));
+                string = LocaleController.getString("VoipBackCamera", R.string.VoipBackCamera);
             }
+            this.titles[i2] = new VoIpBitmapTextView(context, string);
+            this.titles[i2].setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(10.0f), 0);
+            this.titlesLayout.addView(this.titles[i2], LayoutHelper.createLinear(-2, -1));
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     PrivateVideoPreviewDialogNew.this.lambda$new$1(i2, view);
                 }
             });
-            i2++;
         }
         setWillNotDraw(false);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -463,7 +453,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     public void lambda$new$1(int i, View view) {
-        if (view.getAlpha() == 0.0f) {
+        if (this.scrollAnimator != null || view.getAlpha() == 0.0f) {
             return;
         }
         setCurrentPage(i, true);
@@ -524,7 +514,9 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                     this.visibleCameraPage = i;
                     this.cameraReady = false;
                     showStub(true, true);
-                    VoIPService.getSharedInstance().switchCamera();
+                    if (VoIPService.getSharedInstance() != null) {
+                        VoIPService.getSharedInstance().switchCamera();
+                    }
                 } else {
                     showStub(false, false);
                     this.textureView.animate().alpha(1.0f).setDuration(250L).start();
@@ -540,7 +532,9 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 this.cameraReady = false;
                 showStub(true, false);
                 this.textureView.animate().alpha(0.0f).setDuration(250L).start();
-                VoIPService.getSharedInstance().switchCamera();
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().switchCamera();
+                }
             }
             int i3 = this.realCurrentPage;
             if (i > i3) {
@@ -759,20 +753,20 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     public void updateTitlesLayout() {
-        TextView[] textViewArr = this.titles;
+        VoIpBitmapTextView[] voIpBitmapTextViewArr = this.titles;
         int i = this.strangeCurrentPage;
-        TextView textView = textViewArr[i];
-        TextView textView2 = i < textViewArr.length - 1 ? textViewArr[i + 1] : null;
-        float left = textView.getLeft() + (textView.getMeasuredWidth() / 2);
+        VoIpBitmapTextView voIpBitmapTextView = voIpBitmapTextViewArr[i];
+        VoIpBitmapTextView voIpBitmapTextView2 = i < voIpBitmapTextViewArr.length - 1 ? voIpBitmapTextViewArr[i + 1] : null;
+        float left = voIpBitmapTextView.getLeft() + (voIpBitmapTextView.getMeasuredWidth() / 2);
         float measuredWidth = (getMeasuredWidth() / 2) - left;
-        if (textView2 != null) {
-            measuredWidth -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
+        if (voIpBitmapTextView2 != null) {
+            measuredWidth -= ((voIpBitmapTextView2.getLeft() + (voIpBitmapTextView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
         }
         int i2 = 0;
         while (true) {
-            TextView[] textViewArr2 = this.titles;
+            VoIpBitmapTextView[] voIpBitmapTextViewArr2 = this.titles;
             float f = 0.7f;
-            if (i2 >= textViewArr2.length) {
+            if (i2 >= voIpBitmapTextViewArr2.length) {
                 break;
             }
             int i3 = this.strangeCurrentPage;
@@ -788,7 +782,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                     f2 = 0.9f + (f4 * 0.1f);
                 }
             }
-            textViewArr2[i2].setAlpha(f);
+            voIpBitmapTextViewArr2[i2].setAlpha(f);
             this.titles[i2].setScaleX(f2);
             this.titles[i2].setScaleY(f2);
             this.titles[i2].setTranslationX(measuredWidth);

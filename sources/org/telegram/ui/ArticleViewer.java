@@ -5982,6 +5982,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.seekBar = seekBar;
             seekBar.setDelegate(new SeekBar.SeekBarDelegate() {
                 @Override
+                public boolean isSeekBarDragAllowed() {
+                    return SeekBar.SeekBarDelegate.CC.$default$isSeekBarDragAllowed(this);
+                }
+
+                @Override
                 public void onSeekBarContinuousDrag(float f) {
                     SeekBar.SeekBarDelegate.CC.$default$onSeekBarContinuousDrag(this, f);
                 }
@@ -5999,6 +6004,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 @Override
                 public void onSeekBarReleased() {
                     SeekBar.SeekBarDelegate.CC.$default$onSeekBarReleased(this);
+                }
+
+                @Override
+                public boolean reverseWaveform() {
+                    return SeekBar.SeekBarDelegate.CC.$default$reverseWaveform(this);
                 }
             });
         }
