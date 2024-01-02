@@ -4493,7 +4493,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public int getTopicId() {
+                    public long getTopicId() {
                         return ChatActionCell.ChatActionCellDelegate.CC.$default$getTopicId(this);
                     }
 

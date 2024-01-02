@@ -362,6 +362,7 @@ public class ThanosEffect extends TextureView {
                 for (int i = 0; i < this.pendingAnimations.size(); i++) {
                     this.pendingAnimations.get(i).done(false);
                 }
+                this.pendingAnimations.clear();
                 SurfaceTexture surfaceTexture = this.surfaceTexture;
                 if (surfaceTexture != null) {
                     surfaceTexture.release();

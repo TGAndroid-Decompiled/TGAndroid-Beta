@@ -309,10 +309,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.listView.setFastScrollVisible(true);
                 ChatLinkActivity.this.listView.setVerticalScrollBarEnabled(false);
                 ChatLinkActivity.this.emptyView.setShowAtCenter(false);
-                View view = ((BaseFragment) ChatLinkActivity.this).fragmentView;
+                View view = ChatLinkActivity.this.fragmentView;
                 int i = Theme.key_windowBackgroundGray;
                 view.setBackgroundColor(Theme.getColor(i));
-                ((BaseFragment) ChatLinkActivity.this).fragmentView.setTag(Integer.valueOf(i));
+                ChatLinkActivity.this.fragmentView.setTag(Integer.valueOf(i));
                 ChatLinkActivity.this.emptyView.showProgress();
             }
 
@@ -326,10 +326,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     ChatLinkActivity.this.searchWas = true;
                     if (ChatLinkActivity.this.listView != null && ChatLinkActivity.this.listView.getAdapter() != ChatLinkActivity.this.searchAdapter) {
                         ChatLinkActivity.this.listView.setAdapter(ChatLinkActivity.this.searchAdapter);
-                        View view = ((BaseFragment) ChatLinkActivity.this).fragmentView;
+                        View view = ChatLinkActivity.this.fragmentView;
                         int i = Theme.key_windowBackgroundWhite;
                         view.setBackgroundColor(Theme.getColor(i));
-                        ((BaseFragment) ChatLinkActivity.this).fragmentView.setTag(Integer.valueOf(i));
+                        ChatLinkActivity.this.fragmentView.setTag(Integer.valueOf(i));
                         ChatLinkActivity.this.searchAdapter.notifyDataSetChanged();
                         ChatLinkActivity.this.listView.setFastScrollVisible(false);
                         ChatLinkActivity.this.listView.setVerticalScrollBarEnabled(true);

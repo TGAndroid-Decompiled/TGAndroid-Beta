@@ -300,17 +300,19 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         this.fragmentView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                if (((BaseFragment) IdenticonActivity.this).fragmentView == null) {
+                View view = IdenticonActivity.this.fragmentView;
+                if (view == null) {
                     return true;
                 }
-                ((BaseFragment) IdenticonActivity.this).fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
+                view.getViewTreeObserver().removeOnPreDrawListener(this);
                 int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
                 if (rotation == 3 || rotation == 1) {
                     IdenticonActivity.this.linearLayout.setOrientation(0);
                 } else {
                     IdenticonActivity.this.linearLayout.setOrientation(1);
                 }
-                ((BaseFragment) IdenticonActivity.this).fragmentView.setPadding(((BaseFragment) IdenticonActivity.this).fragmentView.getPaddingLeft(), 0, ((BaseFragment) IdenticonActivity.this).fragmentView.getPaddingRight(), ((BaseFragment) IdenticonActivity.this).fragmentView.getPaddingBottom());
+                View view2 = IdenticonActivity.this.fragmentView;
+                view2.setPadding(view2.getPaddingLeft(), 0, IdenticonActivity.this.fragmentView.getPaddingRight(), IdenticonActivity.this.fragmentView.getPaddingBottom());
                 return true;
             }
         });

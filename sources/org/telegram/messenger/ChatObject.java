@@ -1827,12 +1827,12 @@ public class ChatObject {
         return canManageTopics(tLRPC$Chat) || isMyTopic(i, tLRPC$TL_forumTopic);
     }
 
-    public static boolean canManageTopic(int i, TLRPC$Chat tLRPC$Chat, int i2) {
-        return canManageTopics(tLRPC$Chat) || isMyTopic(i, tLRPC$Chat, i2);
+    public static boolean canManageTopic(int i, TLRPC$Chat tLRPC$Chat, long j) {
+        return canManageTopics(tLRPC$Chat) || isMyTopic(i, tLRPC$Chat, j);
     }
 
-    public static boolean canDeleteTopic(int i, TLRPC$Chat tLRPC$Chat, int i2) {
-        return (i2 == 1 || tLRPC$Chat == null || !canDeleteTopic(i, tLRPC$Chat, MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, i2))) ? false : true;
+    public static boolean canDeleteTopic(int i, TLRPC$Chat tLRPC$Chat, long j) {
+        return (j == 1 || tLRPC$Chat == null || !canDeleteTopic(i, tLRPC$Chat, MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, j))) ? false : true;
     }
 
     public static boolean canDeleteTopic(int i, TLRPC$Chat tLRPC$Chat, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
@@ -1866,12 +1866,12 @@ public class ChatObject {
         return false;
     }
 
-    public static boolean isMyTopic(int i, TLRPC$Chat tLRPC$Chat, int i2) {
-        return tLRPC$Chat != null && tLRPC$Chat.forum && isMyTopic(i, tLRPC$Chat.id, i2);
+    public static boolean isMyTopic(int i, TLRPC$Chat tLRPC$Chat, long j) {
+        return tLRPC$Chat != null && tLRPC$Chat.forum && isMyTopic(i, tLRPC$Chat.id, j);
     }
 
-    public static boolean isMyTopic(int i, long j, int i2) {
-        return isMyTopic(i, MessagesController.getInstance(i).getTopicsController().findTopic(j, i2));
+    public static boolean isMyTopic(int i, long j, long j2) {
+        return isMyTopic(i, MessagesController.getInstance(i).getTopicsController().findTopic(j, j2));
     }
 
     public static boolean isChannel(long j, int i) {

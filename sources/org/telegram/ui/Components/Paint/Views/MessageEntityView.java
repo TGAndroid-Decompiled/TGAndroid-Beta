@@ -276,7 +276,7 @@ public class MessageEntityView extends EntityView {
             }
             copyMessage.voiceTranscriptionOpen = false;
             int i3 = messageObject.currentAccount;
-            this.messageObjects.add(new MessageObject(i3, copyMessage, messageObject.replyMessageObject, MessagesController.getInstance(i3).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z));
+            this.messageObjects.add(new MessageObject(i3, copyMessage, messageObject.replyMessageObject, MessagesController.getInstance(i3).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z, false));
         }
         this.groupedMessages = null;
         if (this.messageObjects.size() > 1) {

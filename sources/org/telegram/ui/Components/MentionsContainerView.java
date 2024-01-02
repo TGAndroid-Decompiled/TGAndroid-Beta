@@ -133,7 +133,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
     protected void onScrolled(boolean z, boolean z2) {
     }
 
-    public MentionsContainerView(Context context, long j, int i, final BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider) {
+    public MentionsContainerView(Context context, long j, long j2, final BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider) {
         super(context, sizeNotifierFrameLayout);
         this.shouldLiftMentions = false;
         this.rect = new android.graphics.Rect();
@@ -160,11 +160,11 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
             }
 
             @Override
-            public void sendButtonPressed(int i2, VideoEditedInfo videoEditedInfo, boolean z, int i3, boolean z2) {
-                if (i2 < 0 || i2 >= MentionsContainerView.this.botContextResults.size()) {
+            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, boolean z2) {
+                if (i < 0 || i >= MentionsContainerView.this.botContextResults.size()) {
                     return;
                 }
-                MentionsContainerView.this.delegate.sendBotInlineResult((TLRPC$BotInlineResult) MentionsContainerView.this.botContextResults.get(i2), z, i3);
+                MentionsContainerView.this.delegate.sendBotInlineResult((TLRPC$BotInlineResult) MentionsContainerView.this.botContextResults.get(i), z, i2);
             }
         };
         this.baseFragment = baseFragment;
@@ -204,57 +204,57 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
             }
 
             @Override
-            protected Size getSizeForItem(int i2) {
+            protected Size getSizeForItem(int i) {
                 TLRPC$PhotoSize closestPhotoSizeWithSize;
-                if (i2 != 0) {
-                    int i3 = i2 - 1;
+                if (i != 0) {
+                    int i2 = i - 1;
                     if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                        i3++;
+                        i2++;
                     }
                     Size size = this.size;
                     size.width = 0.0f;
                     size.height = 0.0f;
-                    Object item = MentionsContainerView.this.adapter.getItem(i3);
+                    Object item = MentionsContainerView.this.adapter.getItem(i2);
                     if (item instanceof TLRPC$BotInlineResult) {
                         TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) item;
                         TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
-                        int i4 = 0;
+                        int i3 = 0;
                         if (tLRPC$Document != null) {
                             TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                             Size size2 = this.size;
                             size2.width = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.w : 100.0f;
                             size2.height = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.h : 100.0f;
-                            while (i4 < tLRPC$BotInlineResult.document.attributes.size()) {
-                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$BotInlineResult.document.attributes.get(i4);
+                            while (i3 < tLRPC$BotInlineResult.document.attributes.size()) {
+                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$BotInlineResult.document.attributes.get(i3);
                                 if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) {
                                     Size size3 = this.size;
                                     size3.width = tLRPC$DocumentAttribute.w;
                                     size3.height = tLRPC$DocumentAttribute.h;
                                     break;
                                 }
-                                i4++;
+                                i3++;
                             }
                         } else if (tLRPC$BotInlineResult.content != null) {
-                            while (i4 < tLRPC$BotInlineResult.content.attributes.size()) {
-                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute2 = tLRPC$BotInlineResult.content.attributes.get(i4);
+                            while (i3 < tLRPC$BotInlineResult.content.attributes.size()) {
+                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute2 = tLRPC$BotInlineResult.content.attributes.get(i3);
                                 if ((tLRPC$DocumentAttribute2 instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute2 instanceof TLRPC$TL_documentAttributeVideo)) {
                                     Size size4 = this.size;
                                     size4.width = tLRPC$DocumentAttribute2.w;
                                     size4.height = tLRPC$DocumentAttribute2.h;
                                     break;
                                 }
-                                i4++;
+                                i3++;
                             }
                         } else if (tLRPC$BotInlineResult.thumb != null) {
-                            while (i4 < tLRPC$BotInlineResult.thumb.attributes.size()) {
-                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute3 = tLRPC$BotInlineResult.thumb.attributes.get(i4);
+                            while (i3 < tLRPC$BotInlineResult.thumb.attributes.size()) {
+                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute3 = tLRPC$BotInlineResult.thumb.attributes.get(i3);
                                 if ((tLRPC$DocumentAttribute3 instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute3 instanceof TLRPC$TL_documentAttributeVideo)) {
                                     Size size5 = this.size;
                                     size5.width = tLRPC$DocumentAttribute3.w;
                                     size5.height = tLRPC$DocumentAttribute3.h;
                                     break;
                                 }
-                                i4++;
+                                i3++;
                             }
                         } else {
                             TLRPC$Photo tLRPC$Photo = tLRPC$BotInlineResult.photo;
@@ -287,12 +287,12 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
             }
 
             @Override
-            public int getSpanSize(int i2) {
-                if (i2 == 0) {
+            public int getSpanSize(int i) {
+                if (i == 0) {
                     return 100;
                 }
-                int i3 = i2 - 1;
-                Object item = MentionsContainerView.this.adapter.getItem(i3);
+                int i2 = i - 1;
+                Object item = MentionsContainerView.this.adapter.getItem(i2);
                 if (item instanceof TLRPC$TL_inlineBotSwitchPM) {
                     return 100;
                 }
@@ -300,9 +300,9 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     return 20;
                 }
                 if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                    i3--;
+                    i2--;
                 }
-                return MentionsContainerView.this.gridLayoutManager.getSpanSizeForItem(i3);
+                return MentionsContainerView.this.gridLayoutManager.getSpanSizeForItem(i2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -315,13 +315,13 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setClipToPadding(false);
         this.listView.setLayoutManager(this.linearLayoutManager);
-        MentionsAdapter mentionsAdapter = new MentionsAdapter(context, false, j, i, new MentionsAdapter.MentionsAdapterDelegate() {
+        MentionsAdapter mentionsAdapter = new MentionsAdapter(context, false, j, j2, new MentionsAdapter.MentionsAdapterDelegate() {
             {
                 MentionsContainerView.this = this;
             }
 
             @Override
-            public void onItemCountUpdate(int i2, int i3) {
+            public void onItemCountUpdate(int i, int i2) {
                 if (MentionsContainerView.this.listView.getLayoutManager() == MentionsContainerView.this.gridLayoutManager || !MentionsContainerView.this.shown) {
                     return;
                 }

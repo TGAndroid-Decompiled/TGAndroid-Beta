@@ -2088,7 +2088,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     NotificationsController notificationsController = NotificationsController.getInstance(ChatActivityEnterView.this.currentAccount);
                     long j = ChatActivityEnterView.this.dialog_id;
                     ChatActivity chatActivity2 = chatActivity;
-                    notificationsController.updateServerNotificationsSettings(j, chatActivity2 == null ? 0 : chatActivity2.getTopicId());
+                    notificationsController.updateServerNotificationsSettings(j, chatActivity2 == null ? 0L : chatActivity2.getTopicId());
                     UndoView undoView = chatActivity.getUndoView();
                     if (undoView != null) {
                         undoView.showWithAction(0L, !ChatActivityEnterView.this.silent ? 54 : 55, (Runnable) null);
@@ -5556,7 +5556,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.messageEditText.setHintText(LocaleController.formatString("TypeMessageIn", R.string.TypeMessageIn, str2), z);
                     return;
                 }
-                TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(this.parentFragment.getCurrentChat().id, 1);
+                TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(this.parentFragment.getCurrentChat().id, 1L);
                 if (findTopic != null && (str = findTopic.title) != null) {
                     this.messageEditText.setHintText(LocaleController.formatString("TypeMessageIn", R.string.TypeMessageIn, str), z);
                     return;
@@ -5569,9 +5569,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 TLRPC$Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id));
                 TLRPC$ChatFull chatFull = this.accountInstance.getMessagesController().getChatFull(-this.dialog_id);
                 z2 = ChatObject.isChannel(chat) && !chat.megagroup;
-                if (ChatObject.getSendAsPeerId(chat, chatFull) == chat.id) {
-                    z3 = true;
-                }
+                z3 = ChatObject.getSendAsPeerId(chat, chatFull) == chat.id;
             } else {
                 z2 = false;
             }
@@ -7236,7 +7234,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return this.moveToSendStateRunnable != null;
     }
 
-    public void updateRecordInterface(final int r24) {
+    public void updateRecordInterface(final int r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.updateRecordInterface(int):void");
     }
 
@@ -8111,7 +8109,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void lambda$setButtons$44(TLRPC$KeyboardButton tLRPC$KeyboardButton) {
         ChatActivity chatActivity;
-        boolean z = this.replyingMessageObject != null && (chatActivity = this.parentFragment) != null && chatActivity.isTopic && chatActivity.getTopicId() == this.replyingMessageObject.getId();
+        boolean z = this.replyingMessageObject != null && (chatActivity = this.parentFragment) != null && chatActivity.isTopic && chatActivity.getTopicId() == ((long) this.replyingMessageObject.getId());
         MessageObject messageObject = this.replyingMessageObject;
         if (messageObject == null || z) {
             messageObject = DialogObject.isChatDialog(this.dialog_id) ? this.botButtonsMessageObject : null;

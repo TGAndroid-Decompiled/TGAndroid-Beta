@@ -783,8 +783,10 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     return;
                 }
                 if (tLRPC$TL_username.editable) {
-                    if (((BaseFragment) ChatEditTypeActivity.this).fragmentView instanceof ScrollView) {
-                        ((ScrollView) ((BaseFragment) ChatEditTypeActivity.this).fragmentView).smoothScrollTo(0, ChatEditTypeActivity.this.linkContainer.getTop() - AndroidUtilities.dp(128.0f));
+                    ChatEditTypeActivity chatEditTypeActivity = ChatEditTypeActivity.this;
+                    View view2 = chatEditTypeActivity.fragmentView;
+                    if (view2 instanceof ScrollView) {
+                        ((ScrollView) view2).smoothScrollTo(0, chatEditTypeActivity.linkContainer.getTop() - AndroidUtilities.dp(128.0f));
                     }
                     ChatEditTypeActivity.this.usernameTextView.requestFocus();
                     AndroidUtilities.showKeyboard(ChatEditTypeActivity.this.usernameTextView);

@@ -107,7 +107,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 TLRPC$TL_forumTopic tLRPC$TL_forumTopic = TopicsNotifySettingsFragments.this.items.get(i).topic;
                 Bundle bundle2 = new Bundle();
                 bundle2.putLong("dialog_id", TopicsNotifySettingsFragments.this.dialogId);
-                bundle2.putInt("topic_id", tLRPC$TL_forumTopic.id);
+                bundle2.putLong("topic_id", tLRPC$TL_forumTopic.id);
                 bundle2.putBoolean("exception", false);
                 ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle2);
                 profileNotificationsActivity.setDelegate(new AnonymousClass1(tLRPC$TL_forumTopic));
@@ -136,7 +136,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         public void lambda$onItemClick$1(final TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", TopicsNotifySettingsFragments.this.dialogId);
-            bundle.putInt("topic_id", tLRPC$TL_forumTopic.id);
+            bundle.putLong("topic_id", tLRPC$TL_forumTopic.id);
             bundle.putBoolean("exception", true);
             ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle);
             profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {

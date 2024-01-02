@@ -99,7 +99,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     int systemTonesEndRow;
     int systemTonesHeaderRow;
     int systemTonesStartRow;
-    int topicId;
+    long topicId;
     int uploadRow;
     ArrayList<Tone> uploadingTones;
 
@@ -125,7 +125,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.stableIds = 100;
         this.selectedTones = new SparseArray<>();
         this.currentType = -1;
-        this.topicId = 0;
+        this.topicId = 0L;
         this.resourcesProvider = resourcesProvider;
     }
 
@@ -135,7 +135,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         String str2;
         if (getArguments() != null) {
             this.dialogId = getArguments().getLong("dialog_id", 0L);
-            this.topicId = getArguments().getInt("topic_id", 0);
+            this.topicId = getArguments().getLong("topic_id", 0L);
             this.currentType = getArguments().getInt("type", -1);
         }
         long j = this.dialogId;

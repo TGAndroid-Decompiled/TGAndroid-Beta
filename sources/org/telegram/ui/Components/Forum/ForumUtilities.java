@@ -79,17 +79,17 @@ public class ForumUtilities {
         return new GeneralTopicDrawable(context, f, i, z);
     }
 
-    public static void filterMessagesByTopic(int i, ArrayList<MessageObject> arrayList) {
+    public static void filterMessagesByTopic(long j, ArrayList<MessageObject> arrayList) {
         if (arrayList == null) {
             return;
         }
-        int i2 = 0;
-        while (i2 < arrayList.size()) {
-            if (i != MessageObject.getTopicId(arrayList.get(i2).messageOwner, true)) {
-                arrayList.remove(i2);
-                i2--;
+        int i = 0;
+        while (i < arrayList.size()) {
+            if (j != MessageObject.getTopicId(arrayList.get(i).currentAccount, arrayList.get(i).messageOwner, true)) {
+                arrayList.remove(i);
+                i--;
             }
-            i2++;
+            i++;
         }
     }
 
@@ -339,7 +339,7 @@ public class ForumUtilities {
 
     public static void applyTopicToMessage(MessageObject messageObject) {
         TLRPC$TL_forumTopic findTopic;
-        if (messageObject.getDialogId() <= 0 && (findTopic = MessagesController.getInstance(messageObject.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
+        if (messageObject.getDialogId() <= 0 && (findTopic = MessagesController.getInstance(messageObject.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
             Drawable[] drawableArr = messageObject.topicIconDrawable;
             if (drawableArr[0] instanceof ForumBubbleDrawable) {
                 ((ForumBubbleDrawable) drawableArr[0]).setColor(findTopic.icon_color);

@@ -193,7 +193,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     }
 
     public void lambda$createView$6(NotificationsSettingsActivity.NotificationException notificationException, View view, int i) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0);
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
         edit.remove(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey).commit();
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList = this.autoExceptions;
@@ -213,12 +213,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             UserCell userCell = (UserCell) view;
             userCell.setException(notificationException, null, userCell.needDivider);
         }
-        getNotificationsController().updateServerNotificationsSettings(notificationException.did, 0, false);
+        getNotificationsController().updateServerNotificationsSettings(notificationException.did, 0L, false);
         updateRows(true);
     }
 
     private void updateMute(NotificationsSettingsActivity.NotificationException notificationException, View view, int i, boolean z, boolean z2) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0);
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
         boolean isTop5Peer = isTop5Peer(this.currentAccount, notificationException.did);
         notificationException.notify = z2 ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
@@ -247,7 +247,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             UserCell userCell = (UserCell) view;
             userCell.setException(notificationException, null, userCell.needDivider);
         }
-        getNotificationsController().updateServerNotificationsSettings(notificationException.did, 0, false);
+        getNotificationsController().updateServerNotificationsSettings(notificationException.did, 0L, false);
         updateRows(true);
     }
 

@@ -422,7 +422,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             if (ContactsActivity.this.listViewAdapter.hasStories && sectionForPosition == 1 && (view instanceof UserCell)) {
                 final long dialogId = ((UserCell) view).getDialogId();
                 final TLRPC$User user = MessagesController.getInstance(((BaseFragment) ContactsActivity.this).currentAccount).getUser(Long.valueOf(dialogId));
-                final String sharedPrefKey = NotificationsController.getSharedPrefKey(dialogId, 0);
+                final String sharedPrefKey = NotificationsController.getSharedPrefKey(dialogId, 0L);
                 boolean z = !NotificationsCustomSettingsActivity.areStoriesNotMuted(((BaseFragment) ContactsActivity.this).currentAccount, dialogId);
                 ItemOptions addIf = ItemOptions.makeOptions(ContactsActivity.this, view).setScrimViewBackground(Theme.createRoundRectDrawable(0, 0, Theme.getColor(Theme.key_windowBackgroundWhite))).add(R.drawable.msg_discussion, LocaleController.getString("SendMessage", R.string.SendMessage), new Runnable() {
                     @Override
@@ -468,7 +468,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         public void lambda$onItemClick$2(String str, long j, TLRPC$User tLRPC$User) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
-            ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0);
+            ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
             String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
@@ -480,7 +480,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         public void lambda$onItemClick$3(String str, long j, TLRPC$User tLRPC$User) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
-            ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0);
+            ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
             String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
@@ -986,7 +986,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     if (ContactsActivity.this.floatingButtonContainer.getParent() instanceof ViewGroup) {
                         ((ViewGroup) ContactsActivity.this.floatingButtonContainer.getParent()).removeView(ContactsActivity.this.floatingButtonContainer);
                     }
-                    ((ViewGroup) ((BaseFragment) ContactsActivity.this).fragmentView).addView(ContactsActivity.this.floatingButtonContainer);
+                    ContactsActivity contactsActivity = ContactsActivity.this;
+                    ((ViewGroup) contactsActivity.fragmentView).addView(contactsActivity.floatingButtonContainer);
                     view2.setVisibility(0);
                     if (!z) {
                         if (z2) {

@@ -1015,7 +1015,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             }
             EditTextEmoji editTextEmoji2 = PhotoPickerActivity.this.commentTextView;
             if (editTextEmoji2 != null && editTextEmoji2.isPopupShowing()) {
-                ((BaseFragment) PhotoPickerActivity.this).fragmentView.setTranslationY(0.0f);
+                PhotoPickerActivity.this.fragmentView.setTranslationY(0.0f);
                 PhotoPickerActivity.this.listView.setTranslationY(0.0f);
                 PhotoPickerActivity.this.emptyView.setTranslationY(0.0f);
             }

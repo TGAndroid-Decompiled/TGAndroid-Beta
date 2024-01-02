@@ -23,13 +23,13 @@ public class NotificationsSettingsFacade {
         this.currentAccount = i;
     }
 
-    public boolean isDefault(long j, int i) {
-        NotificationsController.getSharedPrefKey(j, i, true);
+    public boolean isDefault(long j, long j2) {
+        NotificationsController.getSharedPrefKey(j, j2, true);
         return false;
     }
 
-    public void clearPreference(long j, int i) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
+    public void clearPreference(long j, long j2) {
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
         SharedPreferences.Editor edit = getPreferences().edit();
         SharedPreferences.Editor remove = edit.remove(PROPERTY_NOTIFY + sharedPrefKey);
         SharedPreferences.Editor remove2 = remove.remove(PROPERTY_CUSTOM + sharedPrefKey);
@@ -39,56 +39,56 @@ public class NotificationsSettingsFacade {
         remove5.remove(PROPERTY_STORIES_NOTIFY + sharedPrefKey).apply();
     }
 
-    public int getProperty(String str, long j, int i, int i2) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
+    public int getProperty(String str, long j, long j2, int i) {
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
         SharedPreferences preferences = getPreferences();
         if (preferences.contains(str + sharedPrefKey)) {
             SharedPreferences preferences2 = getPreferences();
-            return preferences2.getInt(str + sharedPrefKey, i2);
+            return preferences2.getInt(str + sharedPrefKey, i);
         }
-        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0, true);
+        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0L, true);
         SharedPreferences preferences3 = getPreferences();
-        return preferences3.getInt(str + sharedPrefKey2, i2);
+        return preferences3.getInt(str + sharedPrefKey2, i);
     }
 
-    public long getProperty(String str, long j, int i, long j2) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
+    public long getProperty(String str, long j, long j2, long j3) {
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
         SharedPreferences preferences = getPreferences();
         if (preferences.contains(str + sharedPrefKey)) {
             SharedPreferences preferences2 = getPreferences();
-            return preferences2.getLong(str + sharedPrefKey, j2);
+            return preferences2.getLong(str + sharedPrefKey, j3);
         }
-        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0, true);
+        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0L, true);
         SharedPreferences preferences3 = getPreferences();
-        return preferences3.getLong(str + sharedPrefKey2, j2);
+        return preferences3.getLong(str + sharedPrefKey2, j3);
     }
 
-    public boolean getProperty(String str, long j, int i, boolean z) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+    public boolean getProperty(String str, long j, long j2, boolean z) {
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2);
         SharedPreferences preferences = getPreferences();
         if (preferences.contains(str + sharedPrefKey)) {
             SharedPreferences preferences2 = getPreferences();
             return preferences2.getBoolean(str + sharedPrefKey, z);
         }
-        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0);
+        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0L);
         SharedPreferences preferences3 = getPreferences();
         return preferences3.getBoolean(str + sharedPrefKey2, z);
     }
 
-    public String getPropertyString(String str, long j, int i, String str2) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+    public String getPropertyString(String str, long j, long j2, String str2) {
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2);
         SharedPreferences preferences = getPreferences();
         if (preferences.contains(str + sharedPrefKey)) {
             SharedPreferences preferences2 = getPreferences();
             return preferences2.getString(str + sharedPrefKey, str2);
         }
-        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0);
+        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0L);
         SharedPreferences preferences3 = getPreferences();
         return preferences3.getString(str + sharedPrefKey2, str2);
     }
 
-    public void removeProperty(String str, long j, int i) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+    public void removeProperty(String str, long j, long j2) {
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2);
         SharedPreferences.Editor edit = getPreferences().edit();
         edit.remove(str + sharedPrefKey).apply();
     }
@@ -97,27 +97,27 @@ public class NotificationsSettingsFacade {
         return MessagesController.getNotificationsSettings(this.currentAccount);
     }
 
-    public void applyDialogNotificationsSettings(final long j, final int i, final TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
+    public void applyDialogNotificationsSettings(final long j, final long j2, final TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
         if (tLRPC$PeerNotifySettings == null) {
             return;
         }
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsSettingsFacade.this.lambda$applyDialogNotificationsSettings$1(j, i, tLRPC$PeerNotifySettings);
+                NotificationsSettingsFacade.this.lambda$applyDialogNotificationsSettings$1(j, j2, tLRPC$PeerNotifySettings);
             }
         });
     }
 
-    public void lambda$applyDialogNotificationsSettings$1(long r18, int r20, org.telegram.tgnet.TLRPC$PeerNotifySettings r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsSettingsFacade.lambda$applyDialogNotificationsSettings$1(long, int, org.telegram.tgnet.TLRPC$PeerNotifySettings):void");
+    public void lambda$applyDialogNotificationsSettings$1(long r20, long r22, org.telegram.tgnet.TLRPC$PeerNotifySettings r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsSettingsFacade.lambda$applyDialogNotificationsSettings$1(long, long, org.telegram.tgnet.TLRPC$PeerNotifySettings):void");
     }
 
     public void lambda$applyDialogNotificationsSettings$0() {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
 
-    public void applySoundSettings(TLRPC$NotificationSound tLRPC$NotificationSound, SharedPreferences.Editor editor, long j, int i, int i2, boolean z) {
+    public void applySoundSettings(TLRPC$NotificationSound tLRPC$NotificationSound, SharedPreferences.Editor editor, long j, long j2, int i, boolean z) {
         String str;
         String str2;
         String str3;
@@ -125,19 +125,19 @@ public class NotificationsSettingsFacade {
             return;
         }
         if (j != 0) {
-            String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
+            String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
             str = "sound_" + sharedPrefKey;
             str3 = "sound_path_" + sharedPrefKey;
             str2 = "sound_document_id_" + sharedPrefKey;
-        } else if (i2 == 0) {
+        } else if (i == 0) {
             str = "GroupSound";
             str2 = "GroupSoundDocId";
             str3 = "GroupSoundPath";
-        } else if (i2 == 3) {
+        } else if (i == 3) {
             str = "StoriesSound";
             str2 = "StoriesSoundDocId";
             str3 = "StoriesSoundPath";
-        } else if (i2 == 1) {
+        } else if (i == 1) {
             str = "GlobalSound";
             str2 = "GlobalSoundDocId";
             str3 = "GlobalSoundPath";

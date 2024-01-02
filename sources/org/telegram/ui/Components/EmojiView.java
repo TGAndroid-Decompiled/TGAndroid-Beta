@@ -9666,17 +9666,17 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     public static abstract class ChooseStickerActionTracker {
         private final int currentAccount;
         private final long dialogId;
-        private final int threadId;
+        private final long threadId;
         boolean typingWasSent;
         boolean visible = false;
         long lastActionTime = -1;
 
         public abstract boolean isShown();
 
-        public ChooseStickerActionTracker(int i, long j, int i2) {
+        public ChooseStickerActionTracker(int i, long j, long j2) {
             this.currentAccount = i;
             this.dialogId = j;
-            this.threadId = i2;
+            this.threadId = j2;
         }
 
         public void doSomeAction() {

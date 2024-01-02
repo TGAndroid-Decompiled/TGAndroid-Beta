@@ -143,7 +143,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
         if (this.classGuid == 0) {
             this.classGuid = ConnectionsManager.generateClassGuid();
         }
-        this.accountInstance.getMessagesController().loadMessages(this.dialogId, 0L, false, 20, 0, 0, true, 0, this.classGuid, 0, 0, 0, 0, 0, 1, false);
+        this.accountInstance.getMessagesController().loadMessages(this.dialogId, 0L, false, 20, 0, 0, true, 0, this.classGuid, 0, 0, 0, 0L, 0, 1, false);
     }
 
     @Override

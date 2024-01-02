@@ -393,7 +393,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 if (PopupNotificationActivity.this.currentMessageNum >= 0 && PopupNotificationActivity.this.currentMessageNum < PopupNotificationActivity.this.popupMessages.size()) {
                     PopupNotificationActivity.this.popupMessages.remove(PopupNotificationActivity.this.currentMessageNum);
                 }
-                MessagesController.getInstance(PopupNotificationActivity.this.currentMessageObject.currentAccount).markDialogAsRead(PopupNotificationActivity.this.currentMessageObject.getDialogId(), PopupNotificationActivity.this.currentMessageObject.getId(), Math.max(0, PopupNotificationActivity.this.currentMessageObject.getId()), PopupNotificationActivity.this.currentMessageObject.messageOwner.date, true, 0, 0, true, 0);
+                MessagesController.getInstance(PopupNotificationActivity.this.currentMessageObject.currentAccount).markDialogAsRead(PopupNotificationActivity.this.currentMessageObject.getDialogId(), PopupNotificationActivity.this.currentMessageObject.getId(), Math.max(0, PopupNotificationActivity.this.currentMessageObject.getId()), PopupNotificationActivity.this.currentMessageObject.messageOwner.date, true, 0L, 0, true, 0);
                 PopupNotificationActivity.this.currentMessageObject = null;
                 PopupNotificationActivity.this.getNewMessage();
             }
@@ -401,7 +401,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             @Override
             public void needSendTyping() {
                 if (PopupNotificationActivity.this.currentMessageObject != null) {
-                    MessagesController.getInstance(PopupNotificationActivity.this.currentMessageObject.currentAccount).sendTyping(PopupNotificationActivity.this.currentMessageObject.getDialogId(), 0, 0, PopupNotificationActivity.this.classGuid);
+                    MessagesController.getInstance(PopupNotificationActivity.this.currentMessageObject.currentAccount).sendTyping(PopupNotificationActivity.this.currentMessageObject.getDialogId(), 0L, 0, PopupNotificationActivity.this.classGuid);
                 }
             }
         });
@@ -1105,7 +1105,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             this.onlineTextView.setText(LocaleController.getString("ServiceNotifications", R.string.ServiceNotifications));
             return;
         }
-        CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0, false);
+        CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0L, false);
         if (printingString == null || printingString.length() == 0) {
             this.lastPrintString = null;
             setTypingAnimation(false);
@@ -1152,7 +1152,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         int i = 0;
         if (z) {
             try {
-                Integer printingStringType = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingStringType(this.currentMessageObject.getDialogId(), 0);
+                Integer printingStringType = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingStringType(this.currentMessageObject.getDialogId(), 0L);
                 this.onlineTextView.setCompoundDrawablesWithIntrinsicBounds(this.statusDrawables[printingStringType.intValue()], (Drawable) null, (Drawable) null, (Drawable) null);
                 this.onlineTextView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
                 while (i < this.statusDrawables.length) {
@@ -1277,7 +1277,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 checkAndUpdateAvatar();
             }
             if ((intValue & MessagesController.UPDATE_MASK_USER_PRINT) != 0) {
-                CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0, false);
+                CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0L, false);
                 CharSequence charSequence = this.lastPrintString;
                 if ((charSequence == null || printingString != null) && ((charSequence != null || printingString == null) && (charSequence == null || charSequence.equals(printingString)))) {
                     return;

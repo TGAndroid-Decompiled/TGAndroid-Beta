@@ -297,6 +297,15 @@ public class Browser {
         return false;
     }
 
+    public static boolean isTMe(String str) {
+        try {
+            return TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
     public static boolean isInternalUri(Uri uri, boolean[] zArr) {
         return isInternalUri(uri, false, zArr);
     }

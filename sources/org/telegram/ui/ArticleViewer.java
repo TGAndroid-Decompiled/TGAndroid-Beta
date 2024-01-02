@@ -4274,7 +4274,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     messageObject.messageOwner.media.webpage = tLRPC$TL_webPage;
                     TLRPC$TL_messages_messages tLRPC$TL_messages_messages = new TLRPC$TL_messages_messages();
                     tLRPC$TL_messages_messages.messages.add(messageObject.messageOwner);
-                    MessagesStorage.getInstance(i).putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled, 0);
+                    MessagesStorage.getInstance(i).putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                 }
                 this.pagesStack.set(0, tLRPC$TL_webPage);
                 if (this.pagesStack.size() == 1) {
@@ -4314,7 +4314,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 if (messageObject != null) {
                     TLRPC$TL_messages_messages tLRPC$TL_messages_messages2 = new TLRPC$TL_messages_messages();
                     tLRPC$TL_messages_messages2.messages.add(messageObject.messageOwner);
-                    MessagesStorage.getInstance(i).putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages2, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled, 0);
+                    MessagesStorage.getInstance(i).putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages2, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                 }
             }
         }

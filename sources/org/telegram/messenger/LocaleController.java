@@ -3471,7 +3471,7 @@ public class LocaleController {
             str10 = "s";
         }
         if (this.translitChars == null) {
-            HashMap<String, String> hashMap3 = new HashMap<>(487);
+            HashMap<String, String> hashMap3 = new HashMap<>(488);
             this.translitChars = hashMap3;
             hashMap3.put("ȼ", "c");
             this.translitChars.put("ᶇ", "n");
@@ -3967,6 +3967,8 @@ public class LocaleController {
             this.translitChars.put("ő", "o");
             this.translitChars.put("ꜩ", "tz");
             this.translitChars.put("ẻ", "e");
+            this.translitChars.put("і", "i");
+            this.translitChars.put("ї", "i");
         }
         StringBuilder sb = new StringBuilder(str.length());
         int length = str.length();

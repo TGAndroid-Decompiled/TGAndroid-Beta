@@ -218,6 +218,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private BounceInterpolator interpolator;
     private boolean isDialogCell;
     private boolean isForum;
+    public boolean isSavedDialog;
     private boolean isSelected;
     private boolean isSliding;
     private boolean isTopic;
@@ -1578,6 +1579,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 if (tLRPC$User != null) {
                     if (UserObject.isReplyUser(tLRPC$User)) {
                         sb.append(LocaleController.getString("RepliesTitle", R.string.RepliesTitle));
+                    } else if (UserObject.isAnonymous(this.user)) {
+                        sb.append(LocaleController.getString(R.string.AnonymousForward));
                     } else {
                         if (this.user.bot) {
                             sb.append(LocaleController.getString("Bot", R.string.Bot));
@@ -1811,14 +1814,23 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         TLRPC$Message tLRPC$Message;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         String str2;
+        MessageObject messageObject;
         TLRPC$Message tLRPC$Message2;
         TLRPC$User user;
-        MessageObject messageObject = this.message;
+        TLRPC$Message tLRPC$Message3;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2;
+        MessageObject messageObject2 = this.message;
         TLRPC$User tLRPC$User = null;
-        if (messageObject == null) {
+        if (messageObject2 == null) {
             return null;
         }
-        long fromChatId = messageObject.getFromChatId();
+        long fromChatId = messageObject2.getFromChatId();
+        if (this.isSavedDialog && (tLRPC$Message3 = this.message.messageOwner) != null && (tLRPC$MessageFwdHeader2 = tLRPC$Message3.fwd_from) != null) {
+            fromChatId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader2.saved_from_id);
+            if (fromChatId == 0) {
+                fromChatId = DialogObject.getPeerDialogId(this.message.messageOwner.fwd_from.from_id);
+            }
+        }
         if (DialogObject.isUserDialog(fromChatId)) {
             tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
             chat = null;
@@ -1828,8 +1840,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (this.message.isOutOwner()) {
             return LocaleController.getString("FromYou", R.string.FromYou);
         }
-        MessageObject messageObject2 = this.message;
-        if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
+        if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
             return UserObject.getFirstName(user).replace("\n", "");
         }
         MessageObject messageObject3 = this.message;
@@ -1872,7 +1883,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             if (MessageObject.isTopicActionMessage(messageObject2)) {
                 valueOf = formatInternal(i, charSequence5, charSequence);
-                if ((this.message.topicIconDrawable[0] instanceof ForumBubbleDrawable) && (findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-this.message.getDialogId(), MessageObject.getTopicId(this.message.messageOwner, true))) != null) {
+                if ((this.message.topicIconDrawable[0] instanceof ForumBubbleDrawable) && (findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-this.message.getDialogId(), MessageObject.getTopicId(this.currentAccount, this.message.messageOwner, true))) != null) {
                     ((ForumBubbleDrawable) this.message.topicIconDrawable[0]).setColor(findTopic.icon_color);
                 }
             } else {
@@ -2167,7 +2178,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         public void formatTopicsNames(int i, MessageObject messageObject, TLRPC$Chat tLRPC$Chat) {
             boolean z;
             int i2;
-            int i3;
             int id = (messageObject == null || tLRPC$Chat == null) ? 0 : messageObject.getId();
             if (this.lastMessageId != id || this.isLoadingState) {
                 this.topMessageTopicStartIndex = 0;
@@ -2190,13 +2200,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                             }
                         }));
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                        long j = 0;
                         if (messageObject != null) {
-                            i2 = MessageObject.getTopicId(messageObject.messageOwner, true);
-                            TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, i2);
+                            j = MessageObject.getTopicId(i, messageObject.messageOwner, true);
+                            TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, j);
                             if (findTopic != null) {
                                 CharSequence topicSpannedName = ForumUtilities.getTopicSpannedName(findTopic, textPaint, false);
                                 spannableStringBuilder.append(topicSpannedName);
-                                i3 = findTopic.unread_count > 0 ? topicSpannedName.length() : 0;
+                                i2 = findTopic.unread_count > 0 ? topicSpannedName.length() : 0;
                                 this.topMessageTopicStartIndex = 0;
                                 this.topMessageTopicEndIndex = topicSpannedName.length();
                                 if (messageObject.isOutOwner()) {
@@ -2206,7 +2217,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                                 }
                             } else {
                                 this.lastTopicMessageUnread = false;
-                                i3 = 0;
+                                i2 = 0;
                             }
                             if (this.lastTopicMessageUnread) {
                                 spannableStringBuilder.append((CharSequence) " ");
@@ -2218,10 +2229,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                         } else {
                             z = false;
                             i2 = 0;
-                            i3 = 0;
                         }
-                        for (int i4 = 0; i4 < Math.min(4, arrayList.size()); i4++) {
-                            if (((TLRPC$TL_forumTopic) arrayList.get(i4)).id != i2) {
+                        for (int i3 = 0; i3 < Math.min(4, arrayList.size()); i3++) {
+                            if (((TLRPC$TL_forumTopic) arrayList.get(i3)).id != j) {
                                 if (spannableStringBuilder.length() != 0) {
                                     if (z2 && z) {
                                         spannableStringBuilder.append((CharSequence) " ");
@@ -2229,12 +2239,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                                         spannableStringBuilder.append((CharSequence) ", ");
                                     }
                                 }
-                                spannableStringBuilder.append(ForumUtilities.getTopicSpannedName((TLRPC$ForumTopic) arrayList.get(i4), textPaint, false));
+                                spannableStringBuilder.append(ForumUtilities.getTopicSpannedName((TLRPC$ForumTopic) arrayList.get(i3), textPaint, false));
                                 z2 = false;
                             }
                         }
-                        if (i3 > 0) {
-                            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.key_chats_name, null), 0, Math.min(spannableStringBuilder.length(), i3 + 2), 0);
+                        if (i2 > 0) {
+                            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.key_chats_name, null), 0, Math.min(spannableStringBuilder.length(), i2 + 2), 0);
                         }
                         this.formattedNames = spannableStringBuilder;
                     } else if (!MessagesController.getInstance(i).getTopicsController().endIsReached(tLRPC$Chat.id)) {

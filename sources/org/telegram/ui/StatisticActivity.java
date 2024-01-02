@@ -319,7 +319,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 }
             });
             if (this.recentPostsAll.size() > 0) {
-                getMessagesStorage().getMessages(-this.chatId, 0L, false, this.recentPostsAll.size(), this.recentPostsAll.get(0).getId(), 0, 0, this.classGuid, 0, false, 0, 0, true, false, null);
+                getMessagesStorage().getMessages(-this.chatId, 0L, false, this.recentPostsAll.size(), this.recentPostsAll.get(0).getId(), 0, 0, this.classGuid, 0, 0, 0L, 0, true, false, null);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2465,7 +2465,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             for (int i = 0; i < arrayList2.size(); i++) {
                 arrayList.add(new MessageObject(this.currentAccount, arrayList2.get(i), false, true));
             }
-            getMessagesStorage().putMessages(arrayList2, false, true, true, 0, false, 0);
+            getMessagesStorage().putMessages(arrayList2, false, true, true, 0, 0, 0L);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

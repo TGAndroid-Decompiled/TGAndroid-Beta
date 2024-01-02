@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda260;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda262;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -1210,7 +1210,7 @@ public class Theme {
     private static boolean[] loadingRemoteThemes = new boolean[4];
     private static int[] lastLoadingThemesTime = new int[4];
     private static long[] remoteThemesHash = new long[4];
-    public static Drawable[] avatarDrawables = new Drawable[18];
+    public static Drawable[] avatarDrawables = new Drawable[20];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
     public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
@@ -5133,7 +5133,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda260.INSTANCE, 2100L);
+                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda262.INSTANCE, 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -6190,6 +6190,8 @@ public class Theme {
             avatarDrawables[15] = resources.getDrawable(R.drawable.filled_unknown);
             avatarDrawables[16] = resources.getDrawable(R.drawable.filled_unclaimed);
             avatarDrawables[17] = resources.getDrawable(R.drawable.large_repost_story);
+            avatarDrawables[18] = resources.getDrawable(R.drawable.large_hidden);
+            avatarDrawables[19] = resources.getDrawable(R.drawable.large_notes);
             RLottieDrawable rLottieDrawable = dialogs_archiveAvatarDrawable;
             if (rLottieDrawable != null) {
                 rLottieDrawable.setCallback(null);
@@ -6804,7 +6806,7 @@ public class Theme {
             chat_shareIconDrawable = resources.getDrawable(R.drawable.filled_button_share).mutate();
             chat_replyIconDrawable = resources.getDrawable(R.drawable.filled_button_reply);
             chat_closeIconDrawable = resources.getDrawable(R.drawable.msg_voiceclose).mutate();
-            chat_goIconDrawable = resources.getDrawable(R.drawable.message_arrow);
+            chat_goIconDrawable = resources.getDrawable(R.drawable.filled_open_message);
             int dp = AndroidUtilities.dp(2.0f);
             RectF rectF = new RectF();
             chat_filePath[0] = new Path();

@@ -336,13 +336,14 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
 
     public void lambda$createView$10(View view, final int i, float f, float f2) {
         ArrayList<NotificationException> arrayList;
-        final int i2;
+        boolean isGlobalNotificationsEnabled;
         if (getParentActivity() == null) {
             return;
         }
-        int i3 = this.privateRow;
+        int i2 = this.privateRow;
+        final int i3 = 2;
         ArrayList<NotificationException> arrayList2 = null;
-        r2 = null;
+        r4 = null;
         Parcelable parcelable = null;
         arrayList2 = null;
         arrayList2 = null;
@@ -353,40 +354,40 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         z = false;
         z = false;
         z = false;
-        if (i == i3 || i == this.groupRow || i == this.channelsRow || i == this.storiesRow) {
-            if (i == i3) {
+        if (i == i2 || i == this.groupRow || i == this.channelsRow || i == this.storiesRow) {
+            if (i == i2) {
                 arrayList = this.exceptionUsers;
-                z = getNotificationsController().isGlobalNotificationsEnabled(1);
-                i2 = 1;
+                isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(1);
+                i3 = 1;
             } else if (i == this.groupRow) {
                 arrayList = this.exceptionChats;
-                z = getNotificationsController().isGlobalNotificationsEnabled(0);
-                i2 = 0;
+                isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(0);
+                i3 = 0;
             } else if (i == this.storiesRow) {
                 arrayList = this.exceptionStories;
                 arrayList2 = this.exceptionAutoStories;
-                z = getNotificationsSettings().getBoolean("EnableAllStories", false);
-                i2 = 3;
+                isGlobalNotificationsEnabled = getNotificationsSettings().getBoolean("EnableAllStories", false);
+                i3 = 3;
             } else {
                 arrayList = this.exceptionChannels;
-                z = getNotificationsController().isGlobalNotificationsEnabled(2);
-                i2 = 2;
+                isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(2);
             }
             if (arrayList == null) {
                 return;
             }
             final NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
             if ((LocaleController.isRTL && f <= AndroidUtilities.dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) {
-                final boolean z2 = z;
+                final boolean z2 = isGlobalNotificationsEnabled;
                 showExceptionsAlert(i, new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationsSettingsActivity.this.lambda$createView$3(i2, z2, notificationsCheckCell, i);
+                        NotificationsSettingsActivity.this.lambda$createView$3(i3, z2, notificationsCheckCell, i);
                     }
                 });
             } else {
-                presentFragment(new NotificationsCustomSettingsActivity(i2, arrayList, arrayList2));
+                presentFragment(new NotificationsCustomSettingsActivity(i3, arrayList, arrayList2));
             }
+            z = isGlobalNotificationsEnabled;
         } else if (i == this.callsRingtoneRow) {
             try {
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
@@ -543,7 +544,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             if (getParentActivity() == null) {
                 return;
             }
-            showDialog(AlertsCreator.createVibrationSelectDialog(getParentActivity(), 0L, 0, i == this.callsVibrateRow ? "vibrate_calls" : null, new Runnable() {
+            showDialog(AlertsCreator.createVibrationSelectDialog(getParentActivity(), 0L, 0L, i == this.callsVibrateRow ? "vibrate_calls" : null, new Runnable() {
                 @Override
                 public final void run() {
                     NotificationsSettingsActivity.this.lambda$createView$8(i);

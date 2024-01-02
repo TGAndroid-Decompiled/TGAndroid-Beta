@@ -1238,7 +1238,7 @@ public class AlertsCreator {
         baseFragment.showDialog(builder3.create());
     }
 
-    public static void lambda$showCustomNotificationsDialog$17(long r17, int r19, boolean r20, int r21, org.telegram.messenger.MessagesStorage.IntCallback r22, int r23, org.telegram.ui.ActionBar.BaseFragment r24, java.util.ArrayList r25, java.util.ArrayList r26, org.telegram.messenger.MessagesStorage.IntCallback r27, org.telegram.ui.ActionBar.AlertDialog.Builder r28, android.view.View r29) {
+    public static void lambda$showCustomNotificationsDialog$17(long r18, int r20, boolean r21, int r22, org.telegram.messenger.MessagesStorage.IntCallback r23, int r24, org.telegram.ui.ActionBar.BaseFragment r25, java.util.ArrayList r26, java.util.ArrayList r27, org.telegram.messenger.MessagesStorage.IntCallback r28, org.telegram.ui.ActionBar.AlertDialog.Builder r29, android.view.View r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.lambda$showCustomNotificationsDialog$17(long, int, boolean, int, org.telegram.messenger.MessagesStorage$IntCallback, int, org.telegram.ui.ActionBar.BaseFragment, java.util.ArrayList, java.util.ArrayList, org.telegram.messenger.MessagesStorage$IntCallback, org.telegram.ui.ActionBar.AlertDialog$Builder, android.view.View):void");
     }
 
@@ -4259,34 +4259,34 @@ public class AlertsCreator {
         builder.getDismissRunnable().run();
     }
 
-    public static BottomSheet createMuteAlert(final BaseFragment baseFragment, final long j, final int i, final Theme.ResourcesProvider resourcesProvider) {
+    public static BottomSheet createMuteAlert(final BaseFragment baseFragment, final long j, final long j2, final Theme.ResourcesProvider resourcesProvider) {
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return null;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(baseFragment.getParentActivity(), false, resourcesProvider);
         builder.setTitle(LocaleController.getString("Notifications", R.string.Notifications), true);
-        int i2 = R.string.MuteFor;
-        builder.setItems(new CharSequence[]{LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Hours", 8, new Object[0])), LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Days", 2, new Object[0])), LocaleController.getString("MuteDisable", R.string.MuteDisable)}, new DialogInterface.OnClickListener() {
+        int i = R.string.MuteFor;
+        builder.setItems(new CharSequence[]{LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Hours", 8, new Object[0])), LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Days", 2, new Object[0])), LocaleController.getString("MuteDisable", R.string.MuteDisable)}, new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i3) {
-                AlertsCreator.lambda$createMuteAlert$99(j, i, baseFragment, resourcesProvider, dialogInterface, i3);
+            public final void onClick(DialogInterface dialogInterface, int i2) {
+                AlertsCreator.lambda$createMuteAlert$99(j, j2, baseFragment, resourcesProvider, dialogInterface, i2);
             }
         });
         return builder.create();
     }
 
-    public static void lambda$createMuteAlert$99(long j, int i, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i2) {
-        int i3 = 2;
-        if (i2 == 0) {
-            i3 = 0;
-        } else if (i2 == 1) {
-            i3 = 1;
-        } else if (i2 != 2) {
-            i3 = 3;
+    public static void lambda$createMuteAlert$99(long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
+        int i2 = 2;
+        if (i == 0) {
+            i2 = 0;
+        } else if (i == 1) {
+            i2 = 1;
+        } else if (i != 2) {
+            i2 = 3;
         }
-        NotificationsController.getInstance(UserConfig.selectedAccount).setDialogNotificationsSettings(j, i, i3);
+        NotificationsController.getInstance(UserConfig.selectedAccount).setDialogNotificationsSettings(j, j2, i2);
         if (BulletinFactory.canShowBulletin(baseFragment)) {
-            BulletinFactory.createMuteBulletin(baseFragment, i3, 0, resourcesProvider).show();
+            BulletinFactory.createMuteBulletin(baseFragment, i2, 0, resourcesProvider).show();
         }
     }
 
@@ -4921,38 +4921,38 @@ public class AlertsCreator {
         return createColorSelectDialog(activity, j, i, i2, runnable, null);
     }
 
-    public static Dialog createColorSelectDialog(Activity activity, final long j, final int i, final int i2, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-        int i3;
+    public static Dialog createColorSelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+        int i2;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
-        final String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+        final String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2);
         if (j != 0) {
             if (notificationsSettings.contains("color_" + sharedPrefKey)) {
-                i3 = notificationsSettings.getInt("color_" + sharedPrefKey, -16776961);
+                i2 = notificationsSettings.getInt("color_" + sharedPrefKey, -16776961);
             } else if (DialogObject.isChatDialog(j)) {
-                i3 = notificationsSettings.getInt("GroupLed", -16776961);
+                i2 = notificationsSettings.getInt("GroupLed", -16776961);
             } else {
-                i3 = notificationsSettings.getInt("MessagesLed", -16776961);
+                i2 = notificationsSettings.getInt("MessagesLed", -16776961);
             }
-        } else if (i2 == 1) {
-            i3 = notificationsSettings.getInt("MessagesLed", -16776961);
-        } else if (i2 == 0) {
-            i3 = notificationsSettings.getInt("GroupLed", -16776961);
-        } else if (i2 == 3) {
-            i3 = notificationsSettings.getInt("StoriesLed", -16776961);
+        } else if (i == 1) {
+            i2 = notificationsSettings.getInt("MessagesLed", -16776961);
+        } else if (i == 0) {
+            i2 = notificationsSettings.getInt("GroupLed", -16776961);
+        } else if (i == 3) {
+            i2 = notificationsSettings.getInt("StoriesLed", -16776961);
         } else {
-            i3 = notificationsSettings.getInt("ChannelLed", -16776961);
+            i2 = notificationsSettings.getInt("ChannelLed", -16776961);
         }
         final LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         String[] strArr = {LocaleController.getString("ColorRed", R.string.ColorRed), LocaleController.getString("ColorOrange", R.string.ColorOrange), LocaleController.getString("ColorYellow", R.string.ColorYellow), LocaleController.getString("ColorGreen", R.string.ColorGreen), LocaleController.getString("ColorCyan", R.string.ColorCyan), LocaleController.getString("ColorBlue", R.string.ColorBlue), LocaleController.getString("ColorViolet", R.string.ColorViolet), LocaleController.getString("ColorPink", R.string.ColorPink), LocaleController.getString("ColorWhite", R.string.ColorWhite)};
-        final int[] iArr = {i3};
-        for (int i4 = 0; i4 < 9; i4++) {
+        final int[] iArr = {i2};
+        for (int i3 = 0; i3 < 9; i3++) {
             RadioColorCell radioColorCell = new RadioColorCell(activity, resourcesProvider);
             radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            radioColorCell.setTag(Integer.valueOf(i4));
+            radioColorCell.setTag(Integer.valueOf(i3));
             int[] iArr2 = TextColorCell.colors;
-            radioColorCell.setCheckColor(iArr2[i4], iArr2[i4]);
-            radioColorCell.setTextAndValue(strArr[i4], i3 == TextColorCell.colorsToSave[i4]);
+            radioColorCell.setCheckColor(iArr2[i3], iArr2[i3]);
+            radioColorCell.setTextAndValue(strArr[i3], i2 == TextColorCell.colorsToSave[i3]);
             linearLayout.addView(radioColorCell);
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -4966,21 +4966,21 @@ public class AlertsCreator {
         builder.setView(linearLayout);
         builder.setPositiveButton(LocaleController.getString("Set", R.string.Set), new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i5) {
-                AlertsCreator.lambda$createColorSelectDialog$108(j, sharedPrefKey, iArr, i, i2, runnable, dialogInterface, i5);
+            public final void onClick(DialogInterface dialogInterface, int i4) {
+                AlertsCreator.lambda$createColorSelectDialog$108(j, sharedPrefKey, iArr, j2, i, runnable, dialogInterface, i4);
             }
         });
         builder.setNeutralButton(LocaleController.getString("LedDisabled", R.string.LedDisabled), new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i5) {
-                AlertsCreator.lambda$createColorSelectDialog$109(j, i2, runnable, dialogInterface, i5);
+            public final void onClick(DialogInterface dialogInterface, int i4) {
+                AlertsCreator.lambda$createColorSelectDialog$109(j, i, runnable, dialogInterface, i4);
             }
         });
         if (j != 0) {
             builder.setNegativeButton(LocaleController.getString("Default", R.string.Default), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i5) {
-                    AlertsCreator.lambda$createColorSelectDialog$110(sharedPrefKey, runnable, dialogInterface, i5);
+                public final void onClick(DialogInterface dialogInterface, int i4) {
+                    AlertsCreator.lambda$createColorSelectDialog$110(sharedPrefKey, runnable, dialogInterface, i4);
                 }
             });
         }
@@ -4996,22 +4996,22 @@ public class AlertsCreator {
         iArr[0] = TextColorCell.colorsToSave[((Integer) view.getTag()).intValue()];
     }
 
-    public static void lambda$createColorSelectDialog$108(long j, String str, int[] iArr, int i, int i2, Runnable runnable, DialogInterface dialogInterface, int i3) {
+    public static void lambda$createColorSelectDialog$108(long j, String str, int[] iArr, long j2, int i, Runnable runnable, DialogInterface dialogInterface, int i2) {
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
             edit.putInt("color_" + str, iArr[0]);
-            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, i);
+            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, j2);
         } else {
-            if (i2 == 1) {
+            if (i == 1) {
                 edit.putInt("MessagesLed", iArr[0]);
-            } else if (i2 == 0) {
+            } else if (i == 0) {
                 edit.putInt("GroupLed", iArr[0]);
-            } else if (i2 == 3) {
+            } else if (i == 3) {
                 edit.putInt("StoriesLed", iArr[0]);
             } else {
                 edit.putInt("ChannelLed", iArr[0]);
             }
-            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(i2);
+            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(i);
         }
         edit.commit();
         if (runnable != null) {
@@ -5047,26 +5047,26 @@ public class AlertsCreator {
         }
     }
 
-    public static Dialog createVibrationSelectDialog(Activity activity, long j, int i, boolean z, boolean z2, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+    public static Dialog createVibrationSelectDialog(Activity activity, long j, long j2, boolean z, boolean z2, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         String str;
         if (j != 0) {
             str = "vibrate_" + j;
         } else {
             str = z ? "vibrate_group" : "vibrate_messages";
         }
-        return createVibrationSelectDialog(activity, j, i, str, runnable, resourcesProvider);
+        return createVibrationSelectDialog(activity, j, j2, str, runnable, resourcesProvider);
     }
 
-    public static Dialog createVibrationSelectDialog(Activity activity, long j, int i, String str, Runnable runnable) {
-        return createVibrationSelectDialog(activity, j, i, str, runnable, null);
+    public static Dialog createVibrationSelectDialog(Activity activity, long j, long j2, String str, Runnable runnable) {
+        return createVibrationSelectDialog(activity, j, j2, str, runnable, null);
     }
 
-    public static Dialog createVibrationSelectDialog(Activity activity, final long j, final int i, final String str, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+    public static Dialog createVibrationSelectDialog(Activity activity, final long j, final long j2, final String str, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         String[] strArr;
         Activity activity2 = activity;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
         final int[] iArr = new int[1];
-        int i2 = 0;
+        int i = 0;
         if (j != 0) {
             iArr[0] = notificationsSettings.getInt(str, 0);
             if (iArr[0] == 3) {
@@ -5089,36 +5089,33 @@ public class AlertsCreator {
         String[] strArr2 = strArr;
         LinearLayout linearLayout = new LinearLayout(activity2);
         linearLayout.setOrientation(1);
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity2, resourcesProvider);
-        int i3 = 0;
-        while (i3 < strArr2.length) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity2, resourcesProvider);
+        int i2 = 0;
+        while (i2 < strArr2.length) {
             RadioColorCell radioColorCell = new RadioColorCell(activity2, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.dp(4.0f), i2, AndroidUtilities.dp(4.0f), i2);
-            radioColorCell.setTag(Integer.valueOf(i3));
+            radioColorCell.setPadding(AndroidUtilities.dp(4.0f), i, AndroidUtilities.dp(4.0f), i);
+            radioColorCell.setTag(Integer.valueOf(i2));
             radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
-            radioColorCell.setTextAndValue(strArr2[i3], iArr[i2] == i3);
+            radioColorCell.setTextAndValue(strArr2[i2], iArr[i] == i2);
             linearLayout.addView(radioColorCell);
-            int i4 = i3;
-            final AlertDialog.Builder builder2 = builder;
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createVibrationSelectDialog$111(iArr, j, str, i, builder2, runnable, view);
+                    AlertsCreator.lambda$createVibrationSelectDialog$111(iArr, j, str, j2, builder, runnable, view);
                 }
             });
-            i3 = i4 + 1;
-            builder = builder;
-            i2 = 0;
+            i2++;
+            linearLayout = linearLayout;
+            i = 0;
             activity2 = activity;
         }
-        AlertDialog.Builder builder3 = builder;
-        builder3.setTitle(LocaleController.getString("Vibrate", R.string.Vibrate));
-        builder3.setView(linearLayout);
-        builder3.setPositiveButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-        return builder3.create();
+        builder.setTitle(LocaleController.getString("Vibrate", R.string.Vibrate));
+        builder.setView(linearLayout);
+        builder.setPositiveButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        return builder.create();
     }
 
-    public static void lambda$createVibrationSelectDialog$111(int[] iArr, long j, String str, int i, AlertDialog.Builder builder, Runnable runnable, View view) {
+    public static void lambda$createVibrationSelectDialog$111(int[] iArr, long j, String str, long j2, AlertDialog.Builder builder, Runnable runnable, View view) {
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
@@ -5131,7 +5128,7 @@ public class AlertsCreator {
             } else if (iArr[0] == 3) {
                 edit.putInt(str, 2);
             }
-            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, i);
+            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, j2);
         } else {
             if (iArr[0] == 0) {
                 edit.putInt(str, 2);
@@ -5442,14 +5439,14 @@ public class AlertsCreator {
         return createPrioritySelectDialog(activity, j, i, i2, runnable, null);
     }
 
-    public static Dialog createPrioritySelectDialog(Activity activity, final long j, final int i, final int i2, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-        int i3;
+    public static Dialog createPrioritySelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+        int i2;
         String[] strArr;
-        int i4;
+        int i3;
         Activity activity2 = activity;
         final SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
         int[] iArr = new int[1];
-        int i5 = 0;
+        int i4 = 0;
         if (j != 0) {
             iArr[0] = notificationsSettings.getInt("priority_" + j, 3);
             if (iArr[0] == 3) {
@@ -5457,7 +5454,7 @@ public class AlertsCreator {
             } else if (iArr[0] == 4) {
                 iArr[0] = 1;
             } else {
-                i4 = 5;
+                i3 = 5;
                 if (iArr[0] == 5) {
                     iArr[0] = 2;
                 } else if (iArr[0] == 0) {
@@ -5465,32 +5462,32 @@ public class AlertsCreator {
                 } else {
                     iArr[0] = 4;
                 }
-                String[] strArr2 = new String[i4];
+                String[] strArr2 = new String[i3];
                 strArr2[0] = LocaleController.getString("NotificationsPrioritySettings", R.string.NotificationsPrioritySettings);
                 strArr2[1] = LocaleController.getString("NotificationsPriorityLow", R.string.NotificationsPriorityLow);
                 strArr2[2] = LocaleController.getString("NotificationsPriorityMedium", R.string.NotificationsPriorityMedium);
                 strArr2[3] = LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh);
                 strArr2[4] = LocaleController.getString("NotificationsPriorityUrgent", R.string.NotificationsPriorityUrgent);
                 strArr = strArr2;
-                i3 = 1;
+                i2 = 1;
             }
-            i4 = 5;
-            String[] strArr22 = new String[i4];
+            i3 = 5;
+            String[] strArr22 = new String[i3];
             strArr22[0] = LocaleController.getString("NotificationsPrioritySettings", R.string.NotificationsPrioritySettings);
             strArr22[1] = LocaleController.getString("NotificationsPriorityLow", R.string.NotificationsPriorityLow);
             strArr22[2] = LocaleController.getString("NotificationsPriorityMedium", R.string.NotificationsPriorityMedium);
             strArr22[3] = LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh);
             strArr22[4] = LocaleController.getString("NotificationsPriorityUrgent", R.string.NotificationsPriorityUrgent);
             strArr = strArr22;
-            i3 = 1;
+            i2 = 1;
         } else {
-            if (i2 == 1) {
+            if (i == 1) {
                 iArr[0] = notificationsSettings.getInt("priority_messages", 1);
-            } else if (i2 == 0) {
+            } else if (i == 0) {
                 iArr[0] = notificationsSettings.getInt("priority_group", 1);
-            } else if (i2 == 2) {
+            } else if (i == 2) {
                 iArr[0] = notificationsSettings.getInt("priority_channel", 1);
-            } else if (i2 == 3) {
+            } else if (i == 3) {
                 iArr[0] = notificationsSettings.getInt("priority_stories", 1);
             }
             if (iArr[0] == 4) {
@@ -5502,35 +5499,35 @@ public class AlertsCreator {
             } else {
                 iArr[0] = 3;
             }
-            i3 = 1;
+            i2 = 1;
             strArr = new String[]{LocaleController.getString("NotificationsPriorityLow", R.string.NotificationsPriorityLow), LocaleController.getString("NotificationsPriorityMedium", R.string.NotificationsPriorityMedium), LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh), LocaleController.getString("NotificationsPriorityUrgent", R.string.NotificationsPriorityUrgent)};
         }
         LinearLayout linearLayout = new LinearLayout(activity2);
-        linearLayout.setOrientation(i3);
+        linearLayout.setOrientation(i2);
         AlertDialog.Builder builder = new AlertDialog.Builder(activity2, resourcesProvider);
-        int i6 = 0;
-        while (i6 < strArr.length) {
+        int i5 = 0;
+        while (i5 < strArr.length) {
             RadioColorCell radioColorCell = new RadioColorCell(activity2, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.dp(4.0f), i5, AndroidUtilities.dp(4.0f), i5);
-            radioColorCell.setTag(Integer.valueOf(i6));
+            radioColorCell.setPadding(AndroidUtilities.dp(4.0f), i4, AndroidUtilities.dp(4.0f), i4);
+            radioColorCell.setTag(Integer.valueOf(i5));
             radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
-            radioColorCell.setTextAndValue(strArr[i6], iArr[i5] == i6);
+            radioColorCell.setTextAndValue(strArr[i5], iArr[i4] == i5);
             linearLayout.addView(radioColorCell);
             final int[] iArr2 = iArr;
             final AlertDialog.Builder builder2 = builder;
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createPrioritySelectDialog$121(iArr2, j, i, i2, notificationsSettings, builder2, runnable, view);
+                    AlertsCreator.lambda$createPrioritySelectDialog$121(iArr2, j, j2, i, notificationsSettings, builder2, runnable, view);
                 }
             });
-            i6++;
+            i5++;
             activity2 = activity;
+            builder = builder2;
             linearLayout = linearLayout;
             strArr = strArr;
-            builder = builder2;
             iArr = iArr;
-            i5 = 0;
+            i4 = 0;
         }
         AlertDialog.Builder builder3 = builder;
         builder3.setTitle(LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance));
@@ -5539,43 +5536,43 @@ public class AlertsCreator {
         return builder3.create();
     }
 
-    public static void lambda$createPrioritySelectDialog$121(int[] iArr, long j, int i, int i2, SharedPreferences sharedPreferences, AlertDialog.Builder builder, Runnable runnable, View view) {
-        int i3 = 0;
+    public static void lambda$createPrioritySelectDialog$121(int[] iArr, long j, long j2, int i, SharedPreferences sharedPreferences, AlertDialog.Builder builder, Runnable runnable, View view) {
+        int i2 = 0;
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
-        int i4 = 5;
+        int i3 = 5;
         if (j != 0) {
             if (iArr[0] == 0) {
-                i3 = 3;
+                i2 = 3;
             } else if (iArr[0] == 1) {
-                i3 = 4;
+                i2 = 4;
             } else if (iArr[0] == 2) {
-                i3 = 5;
+                i2 = 5;
             } else if (iArr[0] != 3) {
-                i3 = 1;
+                i2 = 1;
             }
-            edit.putInt("priority_" + j, i3);
-            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, i);
+            edit.putInt("priority_" + j, i2);
+            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, j2);
         } else {
             if (iArr[0] == 0) {
-                i4 = 4;
+                i3 = 4;
             } else if (iArr[0] != 1) {
-                i4 = iArr[0] == 2 ? 0 : 1;
+                i3 = iArr[0] == 2 ? 0 : 1;
             }
-            if (i2 == 1) {
-                edit.putInt("priority_messages", i4);
+            if (i == 1) {
+                edit.putInt("priority_messages", i3);
                 iArr[0] = sharedPreferences.getInt("priority_messages", 1);
-            } else if (i2 == 0) {
-                edit.putInt("priority_group", i4);
+            } else if (i == 0) {
+                edit.putInt("priority_group", i3);
                 iArr[0] = sharedPreferences.getInt("priority_group", 1);
-            } else if (i2 == 2) {
-                edit.putInt("priority_channel", i4);
+            } else if (i == 2) {
+                edit.putInt("priority_channel", i3);
                 iArr[0] = sharedPreferences.getInt("priority_channel", 1);
-            } else if (i2 == 3) {
-                edit.putInt("priority_stories", i4);
+            } else if (i == 3) {
+                edit.putInt("priority_stories", i3);
                 iArr[0] = sharedPreferences.getInt("priority_stories", 1);
             }
-            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(i2);
+            NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(i);
         }
         edit.commit();
         builder.getDismissRunnable().run();
@@ -5793,20 +5790,20 @@ public class AlertsCreator {
         accountSelectDelegate.didSelectAccount(((AccountSelectCell) view).getAccountNumber());
     }
 
-    public static void createDeleteMessagesAlert(final org.telegram.ui.ActionBar.BaseFragment r47, final org.telegram.tgnet.TLRPC$User r48, final org.telegram.tgnet.TLRPC$Chat r49, final org.telegram.tgnet.TLRPC$EncryptedChat r50, final org.telegram.tgnet.TLRPC$ChatFull r51, final long r52, final org.telegram.messenger.MessageObject r54, final android.util.SparseArray<org.telegram.messenger.MessageObject>[] r55, final org.telegram.messenger.MessageObject.GroupedMessages r56, final boolean r57, int r58, final java.lang.Runnable r59, final java.lang.Runnable r60, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r61) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createDeleteMessagesAlert(org.telegram.ui.ActionBar.BaseFragment, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$ChatFull, long, org.telegram.messenger.MessageObject, android.util.SparseArray[], org.telegram.messenger.MessageObject$GroupedMessages, boolean, int, java.lang.Runnable, java.lang.Runnable, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public static void createDeleteMessagesAlert(final org.telegram.ui.ActionBar.BaseFragment r46, final org.telegram.tgnet.TLRPC$User r47, final org.telegram.tgnet.TLRPC$Chat r48, final org.telegram.tgnet.TLRPC$EncryptedChat r49, final org.telegram.tgnet.TLRPC$ChatFull r50, final long r51, final org.telegram.messenger.MessageObject r53, final android.util.SparseArray<org.telegram.messenger.MessageObject>[] r54, final org.telegram.messenger.MessageObject.GroupedMessages r55, final boolean r56, final boolean r57, int r58, final java.lang.Runnable r59, final java.lang.Runnable r60, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r61) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createDeleteMessagesAlert(org.telegram.ui.ActionBar.BaseFragment, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$ChatFull, long, org.telegram.messenger.MessageObject, android.util.SparseArray[], org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean, int, java.lang.Runnable, java.lang.Runnable, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    public static void lambda$createDeleteMessagesAlert$128(final AlertDialog[] alertDialogArr, final BaseFragment baseFragment, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final TLRPC$EncryptedChat tLRPC$EncryptedChat, final TLRPC$ChatFull tLRPC$ChatFull, final long j, final MessageObject messageObject, final SparseArray[] sparseArrayArr, final MessageObject.GroupedMessages groupedMessages, final boolean z, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$createDeleteMessagesAlert$128(final AlertDialog[] alertDialogArr, final BaseFragment baseFragment, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final TLRPC$EncryptedChat tLRPC$EncryptedChat, final TLRPC$ChatFull tLRPC$ChatFull, final long j, final MessageObject messageObject, final SparseArray[] sparseArrayArr, final MessageObject.GroupedMessages groupedMessages, final boolean z, final boolean z2, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.lambda$createDeleteMessagesAlert$127(alertDialogArr, tLObject, tLRPC$TL_error, baseFragment, tLRPC$User, tLRPC$Chat, tLRPC$EncryptedChat, tLRPC$ChatFull, j, messageObject, sparseArrayArr, groupedMessages, z, runnable, runnable2, resourcesProvider);
+                AlertsCreator.lambda$createDeleteMessagesAlert$127(alertDialogArr, tLObject, tLRPC$TL_error, baseFragment, tLRPC$User, tLRPC$Chat, tLRPC$EncryptedChat, tLRPC$ChatFull, j, messageObject, sparseArrayArr, groupedMessages, z, z2, runnable, runnable2, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$createDeleteMessagesAlert$127(AlertDialog[] alertDialogArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, BaseFragment baseFragment, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, TLRPC$EncryptedChat tLRPC$EncryptedChat, TLRPC$ChatFull tLRPC$ChatFull, long j, MessageObject messageObject, SparseArray[] sparseArrayArr, MessageObject.GroupedMessages groupedMessages, boolean z, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
+    public static void lambda$createDeleteMessagesAlert$127(AlertDialog[] alertDialogArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, BaseFragment baseFragment, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, TLRPC$EncryptedChat tLRPC$EncryptedChat, TLRPC$ChatFull tLRPC$ChatFull, long j, MessageObject messageObject, SparseArray[] sparseArrayArr, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
         int i;
         int i2 = 0;
         try {
@@ -5820,7 +5817,7 @@ public class AlertsCreator {
         } else {
             i = (tLRPC$TL_error == null || !"USER_NOT_PARTICIPANT".equals(tLRPC$TL_error.text)) ? 2 : 0;
         }
-        createDeleteMessagesAlert(baseFragment, tLRPC$User, tLRPC$Chat, tLRPC$EncryptedChat, tLRPC$ChatFull, j, messageObject, sparseArrayArr, groupedMessages, z, i, runnable, runnable2, resourcesProvider);
+        createDeleteMessagesAlert(baseFragment, tLRPC$User, tLRPC$Chat, tLRPC$EncryptedChat, tLRPC$ChatFull, j, messageObject, sparseArrayArr, groupedMessages, z, z2, i, runnable, runnable2, resourcesProvider);
     }
 
     public static void lambda$createDeleteMessagesAlert$130(AlertDialog[] alertDialogArr, final int i, final int i2, BaseFragment baseFragment) {
@@ -5859,11 +5856,12 @@ public class AlertsCreator {
         ((CheckBoxCell) view).setChecked(zArr[0], true);
     }
 
-    public static void lambda$createDeleteMessagesAlert$135(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC$EncryptedChat tLRPC$EncryptedChat, int i, long j, boolean[] zArr, boolean z, SparseArray[] sparseArrayArr, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean[] zArr2, TLRPC$Chat tLRPC$Chat2, Runnable runnable, DialogInterface dialogInterface, int i2) {
+    public static void lambda$createDeleteMessagesAlert$135(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC$EncryptedChat tLRPC$EncryptedChat, boolean[] zArr, boolean z2, SparseArray[] sparseArrayArr, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean[] zArr2, TLRPC$Chat tLRPC$Chat2, Runnable runnable, DialogInterface dialogInterface, int i2) {
         int i3;
         ArrayList<Integer> arrayList;
         ArrayList arrayList2;
         ArrayList arrayList3;
+        long clientUserId = z ? UserConfig.getInstance(i).getClientUserId() : j;
         int i4 = 10;
         ArrayList arrayList4 = null;
         char c = 0;
@@ -5877,54 +5875,58 @@ public class AlertsCreator {
                         if (arrayList4 == null) {
                             arrayList4 = new ArrayList();
                         }
-                        arrayList4.add(Long.valueOf(messageObject2.messageOwner.random_id));
+                        ArrayList arrayList6 = arrayList4;
+                        arrayList6.add(Long.valueOf(messageObject2.messageOwner.random_id));
+                        arrayList4 = arrayList6;
                     }
                 }
             } else {
                 arrayList5.add(Integer.valueOf(messageObject.getId()));
                 if (tLRPC$EncryptedChat != null && messageObject.messageOwner.random_id != 0 && messageObject.type != 10) {
-                    ArrayList arrayList6 = new ArrayList();
-                    arrayList6.add(Long.valueOf(messageObject.messageOwner.random_id));
-                    arrayList3 = arrayList6;
+                    ArrayList arrayList7 = new ArrayList();
+                    arrayList7.add(Long.valueOf(messageObject.messageOwner.random_id));
+                    arrayList3 = arrayList7;
+                    long j2 = clientUserId;
                     arrayList = arrayList5;
+                    MessagesController.getInstance(i).deleteMessages(arrayList5, arrayList3, tLRPC$EncryptedChat, j2, zArr[0], z2);
                     i3 = 0;
-                    MessagesController.getInstance(i).deleteMessages(arrayList5, arrayList3, tLRPC$EncryptedChat, j, zArr[0], z);
                 }
             }
             arrayList3 = arrayList4;
+            long j22 = clientUserId;
             arrayList = arrayList5;
+            MessagesController.getInstance(i).deleteMessages(arrayList5, arrayList3, tLRPC$EncryptedChat, j22, zArr[0], z2);
             i3 = 0;
-            MessagesController.getInstance(i).deleteMessages(arrayList5, arrayList3, tLRPC$EncryptedChat, j, zArr[0], z);
         } else {
-            ArrayList<Integer> arrayList7 = null;
+            ArrayList<Integer> arrayList8 = null;
             int i6 = 1;
             while (i6 >= 0) {
-                ArrayList<Integer> arrayList8 = new ArrayList<>();
+                ArrayList<Integer> arrayList9 = new ArrayList<>();
                 for (int i7 = 0; i7 < sparseArrayArr[i6].size(); i7++) {
-                    arrayList8.add(Integer.valueOf(sparseArrayArr[i6].keyAt(i7)));
+                    arrayList9.add(Integer.valueOf(sparseArrayArr[i6].keyAt(i7)));
                 }
                 if (tLRPC$EncryptedChat != null) {
-                    ArrayList arrayList9 = new ArrayList();
+                    ArrayList arrayList10 = new ArrayList();
                     for (int i8 = 0; i8 < sparseArrayArr[i6].size(); i8++) {
                         MessageObject messageObject3 = (MessageObject) sparseArrayArr[i6].valueAt(i8);
-                        long j2 = messageObject3.messageOwner.random_id;
-                        if (j2 != 0 && messageObject3.type != i4) {
-                            arrayList9.add(Long.valueOf(j2));
+                        long j3 = messageObject3.messageOwner.random_id;
+                        if (j3 != 0 && messageObject3.type != i4) {
+                            arrayList10.add(Long.valueOf(j3));
                         }
                     }
-                    arrayList2 = arrayList9;
+                    arrayList2 = arrayList10;
                 } else {
                     arrayList2 = null;
                 }
-                MessagesController.getInstance(i).deleteMessages(arrayList8, arrayList2, tLRPC$EncryptedChat, j, zArr[c], z);
+                MessagesController.getInstance(i).deleteMessages(arrayList9, arrayList2, tLRPC$EncryptedChat, clientUserId, zArr[c], z2);
                 sparseArrayArr[i6].clear();
                 i6--;
-                arrayList7 = arrayList8;
+                arrayList8 = arrayList9;
                 c = 0;
                 i4 = 10;
             }
             i3 = 0;
-            arrayList = arrayList7;
+            arrayList = arrayList8;
         }
         if (tLRPC$User != null || tLRPC$Chat != null) {
             if (zArr2[i3]) {

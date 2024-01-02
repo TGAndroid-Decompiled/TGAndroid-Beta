@@ -19,6 +19,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 public class UserObject {
+    public static final long ANONYMOUS = 2666000;
     public static final long REPLY_BOT = 1271266957;
 
     public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC$User tLRPC$User) {
@@ -53,6 +54,10 @@ public class UserObject {
             }
         }
         return false;
+    }
+
+    public static boolean isAnonymous(TLRPC$User tLRPC$User) {
+        return tLRPC$User != null && tLRPC$User.id == ANONYMOUS;
     }
 
     public static String getUserName(TLRPC$User tLRPC$User) {

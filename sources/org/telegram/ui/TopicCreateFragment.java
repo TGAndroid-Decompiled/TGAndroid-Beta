@@ -78,10 +78,10 @@ public class TopicCreateFragment extends BaseFragment {
     TLRPC$TL_forumTopic topicForEdit;
     int topicId;
 
-    public static TopicCreateFragment create(long j, int i) {
+    public static TopicCreateFragment create(long j, long j2) {
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", j);
-        bundle.putInt("topic_id", i);
+        bundle.putLong("topic_id", j2);
         return new TopicCreateFragment(bundle);
     }
 

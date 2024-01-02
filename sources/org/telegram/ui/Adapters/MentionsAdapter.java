@@ -124,7 +124,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private String searchingContextUsername;
     private ArrayList<StickerResult> stickers;
     private HashMap<String, TLRPC$Document> stickersMap;
-    private int threadMessageId;
+    private long threadMessageId;
     private TLRPC$User user;
     private boolean visibleByStickersSearch;
     private boolean allowStickers = true;
@@ -187,19 +187,19 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public MentionsAdapter(Context context, boolean z, long j, int i, MentionsAdapterDelegate mentionsAdapterDelegate, Theme.ResourcesProvider resourcesProvider) {
+    public MentionsAdapter(Context context, boolean z, long j, long j2, MentionsAdapterDelegate mentionsAdapterDelegate, Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         this.mContext = context;
         this.delegate = mentionsAdapterDelegate;
         this.isDarkTheme = z;
         this.dialog_id = j;
-        this.threadMessageId = i;
+        this.threadMessageId = j2;
         SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
         this.searchAdapterHelper = searchAdapterHelper;
         searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate() {
             @Override
-            public boolean canApplySearchResults(int i2) {
-                return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$canApplySearchResults(this, i2);
+            public boolean canApplySearchResults(int i) {
+                return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$canApplySearchResults(this, i);
             }
 
             @Override
@@ -213,7 +213,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
 
             @Override
-            public void onDataSetChanged(int i2) {
+            public void onDataSetChanged(int i) {
                 MentionsAdapter.this.notifyDataSetChanged();
             }
 
@@ -1009,7 +1009,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r24, final int r25, final java.util.ArrayList<org.telegram.messenger.MessageObject> r26, final boolean r27, final boolean r28) {
+    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r23, final int r24, final java.util.ArrayList<org.telegram.messenger.MessageObject> r25, final boolean r26, final boolean r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$7(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
     }
 
@@ -1023,13 +1023,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         final MessagesController val$messagesController;
         final LongSparseArray val$newMap;
         final ArrayList val$newResult;
-        final int val$threadId;
+        final long val$threadId;
         final String val$usernameString;
 
-        AnonymousClass7(TLRPC$Chat tLRPC$Chat, String str, int i, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
+        AnonymousClass7(TLRPC$Chat tLRPC$Chat, String str, long j, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
             this.val$chat = tLRPC$Chat;
             this.val$usernameString = str;
-            this.val$threadId = i;
+            this.val$threadId = j;
             this.val$newResult = arrayList;
             this.val$newMap = longSparseArray;
             this.val$messagesController = messagesController;
@@ -1048,10 +1048,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             int i = tLRPC$TL_channelParticipantsMentions.flags | 1;
             tLRPC$TL_channelParticipantsMentions.flags = i;
             tLRPC$TL_channelParticipantsMentions.q = this.val$usernameString;
-            int i2 = this.val$threadId;
-            if (i2 != 0) {
+            long j = this.val$threadId;
+            if (j != 0) {
                 tLRPC$TL_channelParticipantsMentions.flags = i | 2;
-                tLRPC$TL_channelParticipantsMentions.top_msg_id = i2;
+                tLRPC$TL_channelParticipantsMentions.top_msg_id = (int) j;
             }
             tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsMentions;
             final int access$1704 = MentionsAdapter.access$1704(MentionsAdapter.this);

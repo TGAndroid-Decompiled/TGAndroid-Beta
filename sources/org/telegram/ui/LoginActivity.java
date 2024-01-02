@@ -2993,7 +2993,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return true;
         }
 
-        static int access$8626(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8326(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.time;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -3001,7 +3001,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return i;
         }
 
-        static int access$9726(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$9426(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.codeTime;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -3544,7 +3544,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivitySmsView.this.lastCodeTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCodeTime = currentTimeMillis;
-                LoginActivitySmsView.access$9726(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$9426(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.codeTime <= 1000) {
                     LoginActivitySmsView.this.setProblemTextVisible(true);
                     LoginActivitySmsView.this.timeText.setVisibility(8);
@@ -3605,7 +3605,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivitySmsView.this.lastCurrentTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivitySmsView.access$8626(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$8326(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.time >= 1000) {
                     int i = (LoginActivitySmsView.this.time / 1000) / 60;
                     int i2 = (LoginActivitySmsView.this.time / 1000) - (i * 60);
@@ -3770,7 +3770,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$22() {
             try {
-                ((BaseFragment) LoginActivity.this).fragmentView.performHapticFeedback(3, 2);
+                LoginActivity.this.fragmentView.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
             AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.YourPasswordSuccess));
@@ -7471,7 +7471,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$17(TLObject tLObject) {
             LoginActivity.this.needHideProgress(false, false);
-            AndroidUtilities.hideKeyboard(((BaseFragment) LoginActivity.this).fragmentView.findFocus());
+            AndroidUtilities.hideKeyboard(LoginActivity.this.fragmentView.findFocus());
             LoginActivity.this.onAuthSuccess((TLRPC$TL_auth_authorization) tLObject, true);
             final TLRPC$FileLocation tLRPC$FileLocation = this.avatarBig;
             if (tLRPC$FileLocation != null) {
@@ -7589,18 +7589,18 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             public void onAnimationStart(Animator animator) {
                 LoginActivity.this.floatingButtonContainer.setVisibility(4);
                 LoginActivity.this.keyboardLinearLayout.setAlpha(0.0f);
-                ((BaseFragment) LoginActivity.this).fragmentView.setBackgroundColor(0);
+                LoginActivity.this.fragmentView.setBackgroundColor(0);
                 LoginActivity.this.startMessagingButton.setVisibility(4);
-                ((FrameLayout) ((BaseFragment) LoginActivity.this).fragmentView).addView(transformableLoginButtonView);
+                ((FrameLayout) LoginActivity.this.fragmentView).addView(transformableLoginButtonView);
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
                 LoginActivity.this.keyboardLinearLayout.setAlpha(1.0f);
                 LoginActivity.this.startMessagingButton.setVisibility(0);
-                ((BaseFragment) LoginActivity.this).fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                LoginActivity.this.fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 LoginActivity.this.floatingButtonContainer.setVisibility(0);
-                ((FrameLayout) ((BaseFragment) LoginActivity.this).fragmentView).removeView(transformableLoginButtonView);
+                ((FrameLayout) LoginActivity.this.fragmentView).removeView(transformableLoginButtonView);
                 if (LoginActivity.this.animationFinishCallback != null) {
                     AndroidUtilities.runOnUIThread(LoginActivity.this.animationFinishCallback);
                     LoginActivity.this.animationFinishCallback = null;

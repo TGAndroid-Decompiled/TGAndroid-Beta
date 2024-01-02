@@ -98,7 +98,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     private int smartRow;
     private int soundRow;
     private int storiesRow;
-    private int topicId;
+    private long topicId;
     private int vibrateRow;
 
     public interface ProfileNotificationsActivityDelegate {
@@ -121,7 +121,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         super(bundle);
         this.resourcesProvider = resourcesProvider;
         this.dialogId = bundle.getLong("dialog_id");
-        this.topicId = bundle.getInt("topic_id");
+        this.topicId = bundle.getLong("topic_id");
         this.addingException = bundle.getBoolean("exception", false);
     }
 
@@ -276,7 +276,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             } else if (i == this.soundRow) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("dialog_id", this.dialogId);
-                bundle.putInt("topic_id", this.topicId);
+                bundle.putLong("topic_id", this.topicId);
                 presentFragment(new NotificationsSoundActivity(bundle, this.resourcesProvider));
             } else if (i == this.ringtoneRow) {
                 try {

@@ -2247,7 +2247,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         of = AvatarPreviewer.Data.of(userFull, menuItemArr);
                     }
                     if (AvatarPreviewer.canPreview(of)) {
-                        AvatarPreviewer.getInstance().show((ViewGroup) ((BaseFragment) ChannelAdminLogActivity.this).fragmentView, of, new AvatarPreviewer.Callback() {
+                        AvatarPreviewer.getInstance().show((ViewGroup) ChannelAdminLogActivity.this.fragmentView, of, new AvatarPreviewer.Callback() {
                             @Override
                             public final void onMenuClick(AvatarPreviewer.MenuItem menuItem) {
                                 ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.this.lambda$didLongPressUserAvatar$0(chatMessageCell, tLRPC$User, menuItem);
@@ -2378,7 +2378,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r10, float r11, float r12) {
+            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float):void");
             }
 
@@ -2434,7 +2434,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public int getTopicId() {
+            public long getTopicId() {
                 return ChatActionCell.ChatActionCellDelegate.CC.$default$getTopicId(this);
             }
 
@@ -2456,7 +2456,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 PhotoViewer.getInstance().setParentActivity(ChannelAdminLogActivity.this);
                 TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
                 if (closestPhotoSizeWithSize == null) {
-                    PhotoViewer.getInstance().openPhoto(messageObject, (ChatActivity) null, 0L, 0L, 0, ChannelAdminLogActivity.this.provider);
+                    PhotoViewer.getInstance().openPhoto(messageObject, (ChatActivity) null, 0L, 0L, 0L, ChannelAdminLogActivity.this.provider);
                     return;
                 }
                 PhotoViewer.getInstance().openPhoto(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), ChannelAdminLogActivity.this.provider);

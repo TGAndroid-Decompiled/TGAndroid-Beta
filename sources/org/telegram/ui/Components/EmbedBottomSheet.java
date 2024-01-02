@@ -134,7 +134,7 @@ public class EmbedBottomSheet extends BottomSheet {
         }
         if (((messageObject == null || (tLRPC$MessageMedia = messageObject.messageOwner.media) == null || tLRPC$MessageMedia.webpage == null) ? null : WebPlayerView.getYouTubeVideoId(str4)) != null) {
             PhotoViewer.getInstance().setParentActivity(baseFragment);
-            PhotoViewer.getInstance().openPhoto(messageObject, i3, null, 0L, 0L, 0, photoViewerProvider);
+            PhotoViewer.getInstance().openPhoto(messageObject, i3, null, 0L, 0L, 0L, photoViewerProvider);
             return;
         }
         EmbedBottomSheet embedBottomSheet2 = new EmbedBottomSheet(baseFragment.getParentActivity(), str, str2, str3, str4, i, i2, i3);

@@ -19,8 +19,8 @@ public interface ChatActivityInterface {
             return 0L;
         }
 
-        public static int $default$getTopicId(ChatActivityInterface chatActivityInterface) {
-            return 0;
+        public static long $default$getTopicId(ChatActivityInterface chatActivityInterface) {
+            return 0L;
         }
 
         public static boolean $default$openedWithLivestream(ChatActivityInterface chatActivityInterface) {
@@ -55,7 +55,7 @@ public interface ChatActivityInterface {
 
     Theme.ResourcesProvider getResourceProvider();
 
-    int getTopicId();
+    long getTopicId();
 
     boolean openedWithLivestream();
 

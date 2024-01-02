@@ -69,6 +69,7 @@ import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.EmptyCell;
@@ -457,7 +458,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 if (charSequence2.length() > 150) {
                     charSequence2 = charSequence2.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
                 }
-                charSequence = Emoji.replaceEmoji(charSequence2, this.avatarContainer.getSubtitleTextView().getTextPaint().getFontMetricsInt(), AndroidUtilities.dp(17.0f), false);
+                charSequence = Emoji.replaceEmoji(charSequence2, this.avatarContainer.getSubtitlePaint().getFontMetricsInt(), AndroidUtilities.dp(17.0f), false);
             } else {
                 charSequence = this.messageObject.messageText;
             }
@@ -488,7 +489,10 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             }
         });
         this.avatarContainer.setTitleColors(Theme.getColor(i, getResourceProvider()), Theme.getColor(i2, getResourceProvider()));
-        this.avatarContainer.getSubtitleTextView().setLinkTextColor(Theme.getColor(i2, getResourceProvider()));
+        View subtitleTextView = this.avatarContainer.getSubtitleTextView();
+        if (subtitleTextView instanceof SimpleTextView) {
+            ((SimpleTextView) subtitleTextView).setLinkTextColor(Theme.getColor(i2, getResourceProvider()));
+        }
         this.actionBar.setItemsColor(Theme.getColor(i, getResourceProvider()), false);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector, getResourceProvider()), false);
         this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, getResourceProvider()));
@@ -1287,7 +1291,10 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (sharedUiComponents != null) {
             sharedUiComponents.invalidate();
         }
-        this.avatarContainer.getSubtitleTextView().setLinkTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, getResourceProvider()));
+        View subtitleTextView = this.avatarContainer.getSubtitleTextView();
+        if (subtitleTextView instanceof SimpleTextView) {
+            ((SimpleTextView) subtitleTextView).setLinkTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, getResourceProvider()));
+        }
     }
 
     private void recolorRecyclerItem(View view) {

@@ -1297,6 +1297,15 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("CREATE TABLE stickersets2(id INTEGER PRIMATE KEY, data BLOB, hash INTEGER, date INTEGER);").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS stickersets2_id_index ON stickersets2(id);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 136").stepThis().dispose();
+            i7 = 136;
+        }
+        if (i7 == 136) {
+            sQLiteDatabase.executeFast("CREATE TABLE saved_dialogs(did INTEGER PRIMARY KEY, date INTEGER, last_mid INTEGER, pinned INTEGER, flags INTEGER, folder_id INTEGER, last_mid_group INTEGER, count INTEGER)").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS date_idx_dialogs ON saved_dialogs(date);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_dialogs ON saved_dialogs(last_mid);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_dialogs ON saved_dialogs(folder_id);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_dialogs ON saved_dialogs(flags);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 137").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1306,6 +1315,7 @@ public class DatabaseMigrationHelper {
         boolean z;
         SQLiteDatabase sQLiteDatabase;
         int intValue;
+        SQLiteDatabase sQLiteDatabase2;
         SQLiteCursor sQLiteCursor;
         int i2;
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
@@ -1341,7 +1351,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 136) {
+        if (intValue != 137) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }
@@ -1400,26 +1410,29 @@ public class DatabaseMigrationHelper {
             SQLiteCursor queryFinalized2 = sQLiteDatabase.queryFinalized("SELECT last_mid_i, last_mid FROM old.dialogs WHERE did = " + l, new Object[i4]);
             if (queryFinalized2.next()) {
                 long longValue3 = queryFinalized2.longValue(i4);
-                SQLiteDatabase sQLiteDatabase2 = sQLiteDatabase;
+                SQLiteDatabase sQLiteDatabase3 = sQLiteDatabase;
                 long longValue4 = queryFinalized2.longValue(i3);
-                sQLiteDatabase2.executeFast("INSERT OR IGNORE INTO messages_v2 SELECT * FROM old.messages_v2 WHERE uid = " + l + " AND mid IN (" + longValue3 + "," + longValue4 + ")").stepThis().dispose();
-                sQLiteDatabase = sQLiteDatabase2;
+                sQLiteDatabase3.executeFast("INSERT OR IGNORE INTO messages_v2 SELECT * FROM old.messages_v2 WHERE uid = " + l + " AND mid IN (" + longValue3 + "," + longValue4 + ")").stepThis().dispose();
+                sQLiteDatabase2 = sQLiteDatabase3;
                 sQLiteCursor = queryFinalized2;
                 i2 = i7;
-                MessagesStorage.createFirstHoles(l.longValue(), executeFast, executeFast2, (int) longValue4, 0);
+                MessagesStorage.createFirstHoles(l.longValue(), executeFast, executeFast2, (int) longValue4, 0L);
             } else {
+                sQLiteDatabase2 = sQLiteDatabase;
                 sQLiteCursor = queryFinalized2;
                 i2 = i7;
             }
             sQLiteCursor.dispose();
             i7 = i2 + 1;
+            sQLiteDatabase = sQLiteDatabase2;
             i3 = 1;
             i4 = 0;
         }
+        SQLiteDatabase sQLiteDatabase4 = sQLiteDatabase;
         executeFast.dispose();
         executeFast2.dispose();
-        sQLiteDatabase.executeFast("DETACH DATABASE old;").stepThis().dispose();
-        sQLiteDatabase.close();
+        sQLiteDatabase4.executeFast("DETACH DATABASE old;").stepThis().dispose();
+        sQLiteDatabase4.close();
         z = true;
         if (z) {
             try {

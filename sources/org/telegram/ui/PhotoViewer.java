@@ -646,7 +646,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private LinearGradient topFancyShadow;
     private Matrix topFancyShadowMatrix;
     private Paint topFancyShadowPaint;
-    private int topicId;
+    private long topicId;
     private int totalImagesCount;
     private int totalImagesCountMerge;
     private int touchSlop;
@@ -3769,7 +3769,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public void didReceivedNotification(int r28, int r29, java.lang.Object... r30) {
+    public void didReceivedNotification(int r29, int r30, java.lang.Object... r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -4113,7 +4113,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.menuItem.getPopupLayout().setFitItems(true);
         this.menuItem.addSubItem(11, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp)).setColors(-328966, -328966);
         this.menuItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
-        ActionBarMenuSubItem addSubItem = this.menuItem.addSubItem(2, R.drawable.msg_media, LocaleController.getString("ShowAllMedia", R.string.ShowAllMedia));
+        ActionBarMenuSubItem addSubItem = this.menuItem.addSubItem(2, R.drawable.msg_media, LocaleController.getString(R.string.ShowAllMedia));
         this.allMediaItem = addSubItem;
         addSubItem.setColors(-328966, -328966);
         this.menuItem.addSubItem(14, R.drawable.msg_gif, LocaleController.getString("SaveToGIFs", R.string.SaveToGIFs)).setColors(-328966, -328966);
@@ -11230,7 +11230,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         updateActionBarTitlePadding();
     }
 
-    public void onPhotoShow(org.telegram.messenger.MessageObject r21, org.telegram.tgnet.TLRPC$FileLocation r22, org.telegram.messenger.ImageLocation r23, org.telegram.messenger.ImageLocation r24, java.util.ArrayList<org.telegram.messenger.MessageObject> r25, java.util.ArrayList<org.telegram.messenger.SecureDocument> r26, java.util.List<java.lang.Object> r27, int r28, org.telegram.ui.PhotoViewer.PlaceProviderObject r29) {
+    public void onPhotoShow(org.telegram.messenger.MessageObject r33, org.telegram.tgnet.TLRPC$FileLocation r34, org.telegram.messenger.ImageLocation r35, org.telegram.messenger.ImageLocation r36, java.util.ArrayList<org.telegram.messenger.MessageObject> r37, java.util.ArrayList<org.telegram.messenger.SecureDocument> r38, java.util.List<java.lang.Object> r39, int r40, org.telegram.ui.PhotoViewer.PlaceProviderObject r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.onPhotoShow(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.List, int, org.telegram.ui.PhotoViewer$PlaceProviderObject):void");
     }
 
@@ -11256,7 +11256,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(final int r35, boolean r36, boolean r37) {
+    private void setIsAboutToSwitchToIndex(final int r36, boolean r37, boolean r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean):void");
     }
 
@@ -12171,40 +12171,40 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public boolean openPhoto(MessageObject messageObject, ChatActivity chatActivity, long j, long j2, int i, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(messageObject, null, null, null, null, null, null, 0, photoViewerProvider, chatActivity, j, j2, i, true, null, null);
+    public boolean openPhoto(MessageObject messageObject, ChatActivity chatActivity, long j, long j2, long j3, PhotoViewerProvider photoViewerProvider) {
+        return openPhoto(messageObject, null, null, null, null, null, null, 0, photoViewerProvider, chatActivity, j, j2, j3, true, null, null);
     }
 
-    public boolean openPhoto(MessageObject messageObject, int i, ChatActivity chatActivity, long j, long j2, int i2, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(messageObject, null, null, null, null, null, null, 0, photoViewerProvider, chatActivity, j, j2, i2, true, null, Integer.valueOf(i));
+    public boolean openPhoto(MessageObject messageObject, int i, ChatActivity chatActivity, long j, long j2, long j3, PhotoViewerProvider photoViewerProvider) {
+        return openPhoto(messageObject, null, null, null, null, null, null, 0, photoViewerProvider, chatActivity, j, j2, j3, true, null, Integer.valueOf(i));
     }
 
-    public boolean openPhoto(MessageObject messageObject, long j, long j2, int i, PhotoViewerProvider photoViewerProvider, boolean z) {
-        return openPhoto(messageObject, null, null, null, null, null, null, 0, photoViewerProvider, null, j, j2, i, z, null, null);
+    public boolean openPhoto(MessageObject messageObject, long j, long j2, long j3, PhotoViewerProvider photoViewerProvider, boolean z) {
+        return openPhoto(messageObject, null, null, null, null, null, null, 0, photoViewerProvider, null, j, j2, j3, z, null, null);
     }
 
     public boolean openPhoto(TLRPC$FileLocation tLRPC$FileLocation, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(null, tLRPC$FileLocation, null, null, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0, true, null, null);
+        return openPhoto(null, tLRPC$FileLocation, null, null, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
     }
 
     public boolean openPhotoWithVideo(TLRPC$FileLocation tLRPC$FileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(null, tLRPC$FileLocation, null, imageLocation, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0, true, null, null);
+        return openPhoto(null, tLRPC$FileLocation, null, imageLocation, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
     }
 
     public boolean openPhoto(TLRPC$FileLocation tLRPC$FileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(null, tLRPC$FileLocation, imageLocation, null, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0, true, null, null);
+        return openPhoto(null, tLRPC$FileLocation, imageLocation, null, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
     }
 
-    public boolean openPhoto(ArrayList<MessageObject> arrayList, int i, long j, long j2, int i2, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(arrayList.get(i), null, null, null, arrayList, null, null, i, photoViewerProvider, null, j, j2, i2, true, null, null);
+    public boolean openPhoto(ArrayList<MessageObject> arrayList, int i, long j, long j2, long j3, PhotoViewerProvider photoViewerProvider) {
+        return openPhoto(arrayList.get(i), null, null, null, arrayList, null, null, i, photoViewerProvider, null, j, j2, j3, true, null, null);
     }
 
     public boolean openPhoto(ArrayList<SecureDocument> arrayList, int i, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(null, null, null, null, null, arrayList, null, i, photoViewerProvider, null, 0L, 0L, 0, true, null, null);
+        return openPhoto(null, null, null, null, null, arrayList, null, i, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
     }
 
     public boolean openPhoto(int i, PageBlocksAdapter pageBlocksAdapter, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(null, null, null, null, null, null, null, i, photoViewerProvider, null, 0L, 0L, 0, true, pageBlocksAdapter, null);
+        return openPhoto(null, null, null, null, null, null, null, i, photoViewerProvider, null, 0L, 0L, 0L, true, pageBlocksAdapter, null);
     }
 
     public boolean openPhotoForSelect(ArrayList<Object> arrayList, int i, int i2, boolean z, PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity) {
@@ -12260,7 +12260,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             return true;
         }
         this.sendPhotoType = i2;
-        return openPhoto(null, tLRPC$FileLocation, imageLocation, null, null, null, arrayList, i, photoViewerProvider, chatActivity, 0L, 0L, 0, true, null, null);
+        return openPhoto(null, tLRPC$FileLocation, imageLocation, null, null, null, arrayList, i, photoViewerProvider, chatActivity, 0L, 0L, 0L, true, null, null);
     }
 
     public void setTitle(CharSequence charSequence) {
@@ -12506,7 +12506,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.padImageForHorizontalInsets = true;
     }
 
-    public boolean openPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, ImageLocation imageLocation, ImageLocation imageLocation2, ArrayList<MessageObject> arrayList, ArrayList<SecureDocument> arrayList2, ArrayList<Object> arrayList3, int i, final PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity, long j, long j2, int i2, boolean z, PageBlocksAdapter pageBlocksAdapter, final Integer num) {
+    public boolean openPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, ImageLocation imageLocation, ImageLocation imageLocation2, ArrayList<MessageObject> arrayList, ArrayList<SecureDocument> arrayList2, ArrayList<Object> arrayList3, int i, final PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity, long j, long j2, long j3, boolean z, PageBlocksAdapter pageBlocksAdapter, final Integer num) {
         TLRPC$Message tLRPC$Message;
         boolean z2;
         PhotoViewerProvider photoViewerProvider2;
@@ -12573,7 +12573,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.placeProvider = photoViewerProvider;
                 this.mergeDialogId = j2;
                 this.currentDialogId = j;
-                this.topicId = i2;
+                this.topicId = j3;
                 this.selectedPhotosAdapter.notifyDataSetChanged();
                 this.pageBlocksAdapter = pageBlocksAdapter;
                 this.setAvatarFor = null;
@@ -12637,12 +12637,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     ClippingImageView[] animatingImageViews = getAnimatingImageViews(placeForPhoto);
                     this.clippingImageProgress = 1.0f;
-                    for (int i3 = 0; i3 < animatingImageViews.length; i3++) {
-                        animatingImageViews[i3].setAnimationValues(this.animationValues);
-                        animatingImageViews[i3].setVisibility(0);
-                        animatingImageViews[i3].setRadius(placeForPhoto.radius);
-                        animatingImageViews[i3].setOrientation(orientation, placeForPhoto.imageReceiver.getInvert());
-                        animatingImageViews[i3].setImageBitmap(placeForPhoto.thumb);
+                    for (int i2 = 0; i2 < animatingImageViews.length; i2++) {
+                        animatingImageViews[i2].setAnimationValues(this.animationValues);
+                        animatingImageViews[i2].setVisibility(0);
+                        animatingImageViews[i2].setRadius(placeForPhoto.radius);
+                        animatingImageViews[i2].setOrientation(orientation, placeForPhoto.imageReceiver.getInvert());
+                        animatingImageViews[i2].setImageBitmap(placeForPhoto.thumb);
                     }
                     initCropView();
                     if (this.sendPhotoType == 1) {
@@ -12658,21 +12658,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     if (height <= 0) {
                         layoutParams2.height = 100;
                     }
-                    for (int i4 = 0; i4 < animatingImageViews.length; i4++) {
+                    for (int i3 = 0; i3 < animatingImageViews.length; i3++) {
                         if (animatingImageViews.length > 1) {
                             f = 0.0f;
-                            animatingImageViews[i4].setAlpha(0.0f);
+                            animatingImageViews[i3].setAlpha(0.0f);
                         } else {
                             f = 0.0f;
-                            animatingImageViews[i4].setAlpha(1.0f);
+                            animatingImageViews[i3].setAlpha(1.0f);
                         }
-                        animatingImageViews[i4].setPivotX(f);
-                        animatingImageViews[i4].setPivotY(f);
-                        animatingImageViews[i4].setScaleX(placeForPhoto.scale);
-                        animatingImageViews[i4].setScaleY(placeForPhoto.scale);
-                        animatingImageViews[i4].setTranslationX(placeForPhoto.viewX + (drawRegion.left * placeForPhoto.scale));
-                        animatingImageViews[i4].setTranslationY(placeForPhoto.viewY + (drawRegion.top * placeForPhoto.scale));
-                        animatingImageViews[i4].setLayoutParams(layoutParams2);
+                        animatingImageViews[i3].setPivotX(f);
+                        animatingImageViews[i3].setPivotY(f);
+                        animatingImageViews[i3].setScaleX(placeForPhoto.scale);
+                        animatingImageViews[i3].setScaleY(placeForPhoto.scale);
+                        animatingImageViews[i3].setTranslationX(placeForPhoto.viewX + (drawRegion.left * placeForPhoto.scale));
+                        animatingImageViews[i3].setTranslationY(placeForPhoto.viewY + (drawRegion.top * placeForPhoto.scale));
+                        animatingImageViews[i3].setLayoutParams(layoutParams2);
                     }
                     this.windowView.getViewTreeObserver().addOnPreDrawListener(new AnonymousClass66(animatingImageViews, layoutParams2, f2, placeForPhoto, f3, pageBlocksAdapter, photoViewerProvider, arrayList3, num));
                 } else {

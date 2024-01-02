@@ -99,7 +99,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     edit2.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + sharedPrefKey);
                 }
                 edit2.commit();
-                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(longValue, 0, true);
+                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(longValue, 0L, true);
             }
             AccountInstance.getInstance(intValue).getConnectionsManager().resumeNetworkMaybe();
         }

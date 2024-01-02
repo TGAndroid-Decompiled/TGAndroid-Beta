@@ -216,7 +216,7 @@ public class NotificationCenter {
     public static final int replaceMessagesObjects;
     public static final int replyMessagesDidLoad;
     public static final int requestPermissions;
-    public static final int savedMessagesUpdate;
+    public static final int savedMessagesDialogsUpdate;
     public static final int scheduledMessagesUpdated;
     public static final int screenStateChanged;
     public static final int screenshotTook;
@@ -840,7 +840,7 @@ public class NotificationCenter {
         channelRecommendationsLoaded = i179;
         int i181 = i180 + 1;
         totalEvents = i181;
-        savedMessagesUpdate = i180;
+        savedMessagesDialogsUpdate = i180;
         int i182 = i181 + 1;
         totalEvents = i182;
         pushMessagesUpdated = i181;

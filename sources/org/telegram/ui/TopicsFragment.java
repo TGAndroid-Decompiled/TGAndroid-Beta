@@ -233,7 +233,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private ViewPagerFixed.TabsView searchTabsView;
     public boolean searching;
     private NumberTextView selectedDialogsCountTextView;
-    private int selectedTopicForTablet;
+    private long selectedTopicForTablet;
     HashSet<Integer> selectedTopics;
     private ActionBarMenuItem showItem;
     ValueAnimator slideBackTransitionAnimator;
@@ -280,7 +280,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
-    public int getTopicId() {
+    public long getTopicId() {
         return ChatActivityInterface.CC.$default$getTopicId(this);
     }
 
@@ -833,8 +833,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             @Override
             public void setAlpha(float f2) {
                 super.setAlpha(f2);
-                if (((BaseFragment) TopicsFragment.this).fragmentView != null) {
-                    ((BaseFragment) TopicsFragment.this).fragmentView.invalidate();
+                View view2 = TopicsFragment.this.fragmentView;
+                if (view2 != null) {
+                    view2.invalidate();
                 }
             }
         };
@@ -954,7 +955,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     }
                     break;
                 case 3:
-                    final TopicCreateFragment create = TopicCreateFragment.create(TopicsFragment.this.chatId, 0);
+                    final TopicCreateFragment create = TopicCreateFragment.create(TopicsFragment.this.chatId, 0L);
                     TopicsFragment.this.presentFragment(create);
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -1332,7 +1333,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void lambda$createView$4(View view) {
-        presentFragment(TopicCreateFragment.create(this.chatId, 0));
+        presentFragment(TopicCreateFragment.create(this.chatId, 0L));
     }
 
     public class AnonymousClass16 implements View.OnClickListener {
@@ -1386,7 +1387,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             return;
         }
         String string = LocaleController.getString("General", R.string.General);
-        TLRPC$TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, 1);
+        TLRPC$TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, 1L);
         if (findTopic != null) {
             string = findTopic.title;
         }
@@ -1982,7 +1983,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         public void lambda$showCustomize$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", -TopicsFragment.this.chatId);
-            bundle.putInt("topic_id", tLRPC$TL_forumTopic.id);
+            bundle.putLong("topic_id", tLRPC$TL_forumTopic.id);
             TopicsFragment topicsFragment = TopicsFragment.this;
             topicsFragment.presentFragment(new ProfileNotificationsActivity(bundle, topicsFragment.themeDelegate));
         }
@@ -2220,39 +2221,38 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 ((View) this.fragmentView.getParent()).invalidate();
             }
             this.actionBar.showActionMode(true);
-            int i4 = 0;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             Iterator<Integer> it = this.selectedTopics.iterator();
+            int i4 = 0;
             int i5 = 0;
             int i6 = 0;
             int i7 = 0;
-            int i8 = 0;
             while (it.hasNext()) {
-                int intValue = it.next().intValue();
+                long intValue = it.next().intValue();
                 TLRPC$TL_forumTopic findTopic = this.topicsController.findTopic(this.chatId, intValue);
                 if (findTopic != null) {
                     if (findTopic.unread_count != 0) {
-                        i5++;
+                        i4++;
                     }
                     if (ChatObject.canManageTopics(chat) && !findTopic.hidden) {
                         if (findTopic.pinned) {
-                            i8++;
-                        } else {
                             i7++;
+                        } else {
+                            i6++;
                         }
                     }
                 }
                 if (getMessagesController().isDialogMuted(-this.chatId, intValue)) {
-                    i6++;
+                    i5++;
                 }
             }
-            if (i5 > 0) {
+            if (i4 > 0) {
                 this.readItem.setVisibility(0);
                 this.readItem.setTextAndIcon(LocaleController.getString("MarkAsRead", R.string.MarkAsRead), R.drawable.msg_markread);
             } else {
                 this.readItem.setVisibility(8);
             }
-            if (i6 != 0) {
+            if (i5 != 0) {
                 this.mute = false;
                 this.muteItem.setIcon(R.drawable.msg_unmute);
                 this.muteItem.setContentDescription(LocaleController.getString("ChatsUnmute", R.string.ChatsUnmute));
@@ -2261,42 +2261,45 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 this.muteItem.setIcon(R.drawable.msg_mute);
                 this.muteItem.setContentDescription(LocaleController.getString("ChatsMute", R.string.ChatsMute));
             }
-            this.pinItem.setVisibility((i7 == 1 && i8 == 0) ? 0 : 8);
-            this.unpinItem.setVisibility((i8 == 1 && i7 == 0) ? 0 : 8);
+            this.pinItem.setVisibility((i6 == 1 && i7 == 0) ? 0 : 8);
+            this.unpinItem.setVisibility((i7 == 1 && i6 == 0) ? 0 : 8);
             this.selectedDialogsCountTextView.setNumber(this.selectedTopics.size(), true);
             Iterator<Integer> it2 = this.selectedTopics.iterator();
+            int i8 = 0;
             int i9 = 0;
             int i10 = 0;
             int i11 = 0;
             int i12 = 0;
-            int i13 = 0;
             while (it2.hasNext()) {
+                int i13 = i8;
                 TLRPC$TL_forumTopic findTopic2 = this.topicsController.findTopic(this.chatId, it2.next().intValue());
                 if (findTopic2 != null) {
                     if (ChatObject.canDeleteTopic(this.currentAccount, chat, findTopic2)) {
-                        i11++;
+                        i10++;
                     }
                     if (ChatObject.canManageTopic(this.currentAccount, chat, findTopic2)) {
                         if (findTopic2.id == 1) {
                             if (findTopic2.hidden) {
-                                i13++;
-                            } else {
                                 i12++;
+                            } else {
+                                i11++;
                             }
                         }
                         if (!findTopic2.hidden) {
                             if (findTopic2.closed) {
-                                i9++;
+                                i8 = i13 + 1;
                             } else {
-                                i10++;
+                                i9++;
                             }
                         }
                     }
                 }
+                i8 = i13;
             }
-            this.closeTopic.setVisibility((i9 != 0 || i10 <= 0) ? 8 : 0);
+            int i14 = i8;
+            this.closeTopic.setVisibility((i14 != 0 || i9 <= 0) ? 8 : 0);
             ActionBarMenuSubItem actionBarMenuSubItem = this.closeTopic;
-            if (i10 > 1) {
+            if (i9 > 1) {
                 i = R.string.CloseTopics;
                 str = "CloseTopics";
             } else {
@@ -2304,9 +2307,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 str = "CloseTopic";
             }
             actionBarMenuSubItem.setText(LocaleController.getString(str, i));
-            this.restartTopic.setVisibility((i10 != 0 || i9 <= 0) ? 8 : 0);
+            this.restartTopic.setVisibility((i9 != 0 || i14 <= 0) ? 8 : 0);
             ActionBarMenuSubItem actionBarMenuSubItem2 = this.restartTopic;
-            if (i9 > 1) {
+            if (i14 > 1) {
                 i2 = R.string.RestartTopics;
                 str2 = "RestartTopics";
             } else {
@@ -2314,9 +2317,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 str2 = "RestartTopic";
             }
             actionBarMenuSubItem2.setText(LocaleController.getString(str2, i2));
-            this.deleteItem.setVisibility(i11 == this.selectedTopics.size() ? 0 : 8);
-            this.hideItem.setVisibility((i12 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
-            this.showItem.setVisibility((i13 == 1 && this.selectedTopics.size() == 1) ? 8 : 8);
+            this.deleteItem.setVisibility(i10 == this.selectedTopics.size() ? 0 : 8);
+            this.hideItem.setVisibility((i11 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
+            this.showItem.setVisibility((i12 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
             this.otherItem.checkHideMenuItem();
             updateReordering();
             return;
@@ -2689,14 +2692,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (i == NotificationCenter.openedChatChanged && getParentActivity() != null && this.inPreviewMode && AndroidUtilities.isTablet()) {
             boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
             long longValue = ((Long) objArr[0]).longValue();
-            int intValue2 = ((Integer) objArr[1]).intValue();
+            long longValue2 = ((Long) objArr[1]).longValue();
             if (longValue == (-this.chatId) && !booleanValue) {
-                if (this.selectedTopicForTablet != intValue2) {
-                    this.selectedTopicForTablet = intValue2;
+                if (this.selectedTopicForTablet != longValue2) {
+                    this.selectedTopicForTablet = longValue2;
                     updateTopicsList(false, false);
                 }
             } else if (this.selectedTopicForTablet != 0) {
-                this.selectedTopicForTablet = 0;
+                this.selectedTopicForTablet = 0L;
                 updateTopicsList(false, false);
             }
         }
@@ -2838,7 +2841,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
                 topicDialogCell.setTopicIcon(tLRPC$TL_forumTopic);
                 topicDialogCell.setChecked(TopicsFragment.this.selectedTopics.contains(Integer.valueOf(i4)), z);
-                topicDialogCell.setDialogSelected(TopicsFragment.this.selectedTopicForTablet == i4);
+                topicDialogCell.setDialogSelected(TopicsFragment.this.selectedTopicForTablet == ((long) i4));
                 topicDialogCell.onReorderStateChanged(TopicsFragment.this.reordering, true);
             }
         }
@@ -3687,12 +3690,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     MessagesSearchContainer messagesSearchContainer2 = MessagesSearchContainer.this;
                     MessageObject messageObject = messagesSearchContainer2.searchResultMessages.get(i - messagesSearchContainer2.messagesStartRow);
                     TopicDialogCell topicDialogCell = (TopicDialogCell) viewHolder.itemView;
-                    topicDialogCell.drawDivider = i != MessagesSearchContainer.this.messagesEndRow - 1;
-                    int topicId = MessageObject.getTopicId(messageObject.messageOwner, true);
-                    int i2 = topicId != 0 ? topicId : 1;
-                    TLRPC$TL_forumTopic findTopic = TopicsFragment.this.topicsController.findTopic(TopicsFragment.this.chatId, i2);
+                    MessagesSearchContainer messagesSearchContainer3 = MessagesSearchContainer.this;
+                    topicDialogCell.drawDivider = i != messagesSearchContainer3.messagesEndRow - 1;
+                    long topicId = MessageObject.getTopicId(((BaseFragment) TopicsFragment.this).currentAccount, messageObject.messageOwner, true);
+                    if (topicId == 0) {
+                        topicId = 1;
+                    }
+                    TLRPC$TL_forumTopic findTopic = TopicsFragment.this.topicsController.findTopic(TopicsFragment.this.chatId, topicId);
                     if (findTopic == null) {
-                        FileLog.d("cant find topic " + i2);
+                        FileLog.d("cant find topic " + topicId);
                         return;
                     }
                     topicDialogCell.setForumTopic(findTopic, messageObject.getDialogId(), messageObject, false, false);

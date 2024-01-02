@@ -124,10 +124,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             }
         }
         if (this.sharedMediaPreloader == null) {
-            SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(this);
-            this.sharedMediaPreloader = sharedMediaPreloader;
-            sharedMediaPreloader.addDelegate(this);
+            this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(this);
         }
+        this.sharedMediaPreloader.addDelegate(this);
         return super.onFragmentCreate();
     }
 
@@ -410,111 +409,100 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
         boolean z = !LocaleController.isRTL;
         int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
-        if (closestTab != 8 && closestTab != 9) {
-            if (closestTab >= 0) {
-                if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
-                    if (closestTab == 0) {
-                        showSubtitle(i, true, true);
-                        if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
-                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]), z);
-                            return;
-                        } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
-                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]), z);
-                            return;
-                        } else {
-                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]), z);
-                            return;
-                        }
-                    } else if (closestTab == 1) {
-                        showSubtitle(i, true, true);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]), z);
-                        return;
-                    } else if (closestTab == 2) {
-                        showSubtitle(i, true, true);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]), z);
-                        return;
-                    } else if (closestTab == 3) {
-                        showSubtitle(i, true, true);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]), z);
-                        return;
-                    } else if (closestTab == 4) {
-                        showSubtitle(i, true, true);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]), z);
-                        return;
-                    } else if (closestTab == 5) {
-                        showSubtitle(i, true, true);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]), z);
-                        return;
-                    } else if (closestTab == 10) {
-                        showSubtitle(i, true, true);
-                        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
-                        return;
-                    } else {
-                        return;
+        if (closestTab == 8 || closestTab == 9) {
+            ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
+            if (actionBarMenuSubItem != null) {
+                actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
+                ActionBarMenuSubItem actionBarMenuSubItem2 = this.zoomOutItem;
+                actionBarMenuSubItem2.setAlpha(actionBarMenuSubItem2.isEnabled() ? 1.0f : 0.5f);
+            }
+            ActionBarMenuSubItem actionBarMenuSubItem3 = this.zoomInItem;
+            if (actionBarMenuSubItem3 != null) {
+                actionBarMenuSubItem3.setEnabled(this.sharedMediaLayout.canZoomIn());
+                ActionBarMenuSubItem actionBarMenuSubItem4 = this.zoomInItem;
+                actionBarMenuSubItem4.setAlpha(actionBarMenuSubItem4.isEnabled() ? 1.0f : 0.5f);
+            }
+            int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
+            if (storiesCount > 0) {
+                showSubtitle(0, true, true);
+                this.subtitleTextView[0].setText(LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]), z);
+            } else {
+                showSubtitle(0, false, true);
+            }
+            if (this.type == 1) {
+                int storiesCount2 = this.sharedMediaLayout.getStoriesCount(9);
+                if (storiesCount2 > 0) {
+                    showSubtitle(1, true, true);
+                    this.subtitleTextView[1].setText(LocaleController.formatPluralString("ProfileStoriesArchiveCount", storiesCount2, new Object[0]), z);
+                } else {
+                    showSubtitle(1, false, true);
+                }
+                hideFloatingButton(closestTab != 9 || this.sharedMediaLayout.getStoriesCount(9) > 0, true);
+            }
+            if (this.optionsItem != null) {
+                SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
+                final boolean z2 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
+                if (!z2) {
+                    this.optionsItem.setVisibility(0);
+                }
+                this.optionsItem.animate().alpha(z2 ? 0.0f : 1.0f).withEndAction(new Runnable() {
+                    @Override
+                    public final void run() {
+                        MediaActivity.this.lambda$updateMediaCount$12(z2);
                     }
+                }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            }
+            ButtonWithCounterView buttonWithCounterView = this.button;
+            if (buttonWithCounterView != null) {
+                boolean z3 = z && this.lastTab == closestTab;
+                if (closestTab == 8) {
+                    SparseArray<MessageObject> sparseArray = this.actionModeMessageObjects;
+                    buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z3);
+                } else {
+                    buttonWithCounterView.setText(LocaleController.getString("SaveToProfile", R.string.SaveToProfile), z3);
                 }
-                return;
+                this.lastTab = closestTab;
             }
-            return;
-        }
-        ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
-        if (actionBarMenuSubItem != null) {
-            actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
-            ActionBarMenuSubItem actionBarMenuSubItem2 = this.zoomOutItem;
-            actionBarMenuSubItem2.setAlpha(actionBarMenuSubItem2.isEnabled() ? 1.0f : 0.5f);
-        }
-        ActionBarMenuSubItem actionBarMenuSubItem3 = this.zoomInItem;
-        if (actionBarMenuSubItem3 != null) {
-            actionBarMenuSubItem3.setEnabled(this.sharedMediaLayout.canZoomIn());
-            ActionBarMenuSubItem actionBarMenuSubItem4 = this.zoomInItem;
-            actionBarMenuSubItem4.setAlpha(actionBarMenuSubItem4.isEnabled() ? 1.0f : 0.5f);
-        }
-        int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
-        if (storiesCount > 0) {
-            showSubtitle(0, true, true);
-            this.subtitleTextView[0].setText(LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]), z);
-        } else {
-            showSubtitle(0, false, true);
-        }
-        if (this.type == 1) {
-            int storiesCount2 = this.sharedMediaLayout.getStoriesCount(9);
-            if (storiesCount2 > 0) {
-                showSubtitle(1, true, true);
-                this.subtitleTextView[1].setText(LocaleController.formatPluralString("ProfileStoriesArchiveCount", storiesCount2, new Object[0]), z);
-            } else {
-                showSubtitle(1, false, true);
+            if (this.calendarItem != null) {
+                boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
+                this.calendarItem.setEnabled(z4);
+                this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
             }
-            hideFloatingButton(closestTab != 9 || this.sharedMediaLayout.getStoriesCount(9) > 0, true);
-        }
-        if (this.optionsItem != null) {
-            SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
-            final boolean z2 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
-            if (!z2) {
-                this.optionsItem.setVisibility(0);
-            }
-            this.optionsItem.animate().alpha(z2 ? 0.0f : 1.0f).withEndAction(new Runnable() {
-                @Override
-                public final void run() {
-                    MediaActivity.this.lambda$updateMediaCount$12(z2);
+        } else if (closestTab == 11) {
+            showSubtitle(i, true, true);
+            this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
+        } else if (closestTab >= 0) {
+            if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
+                if (closestTab == 0) {
+                    showSubtitle(i, true, true);
+                    if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]), z);
+                    } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]), z);
+                    } else {
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]), z);
+                    }
+                } else if (closestTab == 1) {
+                    showSubtitle(i, true, true);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]), z);
+                } else if (closestTab == 2) {
+                    showSubtitle(i, true, true);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]), z);
+                } else if (closestTab == 3) {
+                    showSubtitle(i, true, true);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]), z);
+                } else if (closestTab == 4) {
+                    showSubtitle(i, true, true);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]), z);
+                } else if (closestTab == 5) {
+                    showSubtitle(i, true, true);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]), z);
+                } else if (closestTab == 10) {
+                    showSubtitle(i, true, true);
+                    MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
                 }
-            }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-        }
-        ButtonWithCounterView buttonWithCounterView = this.button;
-        if (buttonWithCounterView != null) {
-            boolean z3 = z && this.lastTab == closestTab;
-            if (closestTab == 8) {
-                SparseArray<MessageObject> sparseArray = this.actionModeMessageObjects;
-                buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z3);
-            } else {
-                buttonWithCounterView.setText(LocaleController.getString("SaveToProfile", R.string.SaveToProfile), z3);
             }
-            this.lastTab = closestTab;
-        }
-        if (this.calendarItem != null) {
-            boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
-            this.calendarItem.setEnabled(z4);
-            this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
         }
     }
 

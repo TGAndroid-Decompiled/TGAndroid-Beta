@@ -1488,7 +1488,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                                 messageObject7.messageOwner.media.document.size = longValue2;
                                 ArrayList<TLRPC$Message> arrayList10 = new ArrayList<>();
                                 arrayList10.add(messageObject7.messageOwner);
-                                getMessagesStorage().putMessages(arrayList10, false, true, false, 0, messageObject7.scheduled, 0);
+                                getMessagesStorage().putMessages(arrayList10, false, true, false, 0, messageObject7.scheduled ? 1 : 0, 0L);
                                 break;
                             }
                             i8++;
@@ -1501,7 +1501,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                             delayedMessage4.obj.messageOwner.media.document.size = longValue2;
                             ArrayList<TLRPC$Message> arrayList11 = new ArrayList<>();
                             arrayList11.add(delayedMessage4.obj.messageOwner);
-                            getMessagesStorage().putMessages(arrayList11, false, true, false, 0, delayedMessage4.obj.scheduled, 0);
+                            getMessagesStorage().putMessages(arrayList11, false, true, false, 0, delayedMessage4.obj.scheduled ? 1 : 0, 0L);
                             return;
                         }
                     }
@@ -1623,7 +1623,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$Message.attachPath = file.toString();
             ArrayList<TLRPC$Message> arrayList = new ArrayList<>();
             arrayList.add(messageObject.messageOwner);
-            getMessagesStorage().putMessages(arrayList, false, true, false, 0, messageObject.scheduled, 0);
+            getMessagesStorage().putMessages(arrayList, false, true, false, 0, messageObject.scheduled ? 1 : 0, 0L);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, messageObject.messageOwner);
             ArrayList<TLRPC$PhotoSize> arrayList2 = tLRPC$TL_photo.sizes;
             delayedMessage.photoSize = arrayList2.get(arrayList2.size() - 1);
@@ -1678,7 +1678,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
         ArrayList<TLRPC$Message> arrayList = new ArrayList<>();
         arrayList.add(messageObject.messageOwner);
-        getMessagesStorage().putMessages(arrayList, false, true, false, 0, messageObject.scheduled, 0);
+        getMessagesStorage().putMessages(arrayList, false, true, false, 0, messageObject.scheduled ? 1 : 0, 0L);
         delayedMessage.performMediaUpload = true;
         performSendDelayedMessage(delayedMessage);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, delayedMessage.obj.messageOwner);
@@ -1713,7 +1713,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
         ArrayList<TLRPC$Message> arrayList2 = new ArrayList<>();
         arrayList2.add(messageObject.messageOwner);
-        getMessagesStorage().putMessages(arrayList2, false, true, false, 0, messageObject.scheduled, 0);
+        getMessagesStorage().putMessages(arrayList2, false, true, false, 0, messageObject.scheduled ? 1 : 0, 0L);
         ArrayList arrayList3 = new ArrayList();
         arrayList3.add(messageObject);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(messageObject.getDialogId()), arrayList3);
@@ -1803,7 +1803,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                                     TLRPC$TL_messages_messages tLRPC$TL_messages_messages = new TLRPC$TL_messages_messages();
                                     tLRPC$TL_messages_messages.messages.add(messageObject3.messageOwner);
                                     j = dialogId;
-                                    getMessagesStorage().putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, delayedMessage.peer, -2, 0, false, z3, 0);
+                                    getMessagesStorage().putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, delayedMessage.peer, -2, 0, false, (int) z3, 0L);
                                 } else {
                                     j = dialogId;
                                 }
@@ -1982,7 +1982,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
         ArrayList<TLRPC$Message> arrayList2 = new ArrayList<>();
         arrayList2.add(tLRPC$Message2);
-        getMessagesStorage().putMessages(arrayList2, false, true, false, 0, false, 0);
+        getMessagesStorage().putMessages(arrayList2, false, true, false, 0, false, 0, 0L);
         performSendMessageRequest(tLRPC$TL_messages_sendScreenshotNotification, messageObject, null, null, null, null, false);
     }
 
@@ -2140,7 +2140,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void lambda$sendMessage$8(ArrayList arrayList, final MessageObject messageObject, final TLRPC$Message tLRPC$Message, final int i, final int i2) {
-        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, false, 0);
+        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, 0, 0L);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2160,7 +2160,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public void lambda$sendMessage$11(final TLRPC$Message tLRPC$Message, TLRPC$Peer tLRPC$Peer, final int i, final int i2, ArrayList arrayList, final long j, final TLRPC$Message tLRPC$Message2, final int i3) {
         getMessagesStorage().updateMessageStateAndId(tLRPC$Message.random_id, MessageObject.getPeerId(tLRPC$Peer), Integer.valueOf(i), tLRPC$Message.id, 0, false, i2 != 0 ? 1 : 0);
-        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, i2 != 0, 0);
+        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, i2 != 0 ? 1 : 0, 0L);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2251,7 +2251,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void editMessage(org.telegram.messenger.MessageObject r29, org.telegram.tgnet.TLRPC$TL_photo r30, org.telegram.messenger.VideoEditedInfo r31, org.telegram.tgnet.TLRPC$TL_document r32, java.lang.String r33, java.util.HashMap<java.lang.String, java.lang.String> r34, boolean r35, boolean r36, java.lang.Object r37) {
+    public void editMessage(org.telegram.messenger.MessageObject r30, org.telegram.tgnet.TLRPC$TL_photo r31, org.telegram.messenger.VideoEditedInfo r32, org.telegram.tgnet.TLRPC$TL_document r33, java.lang.String r34, java.util.HashMap<java.lang.String, java.lang.String> r35, boolean r36, boolean r37, java.lang.Object r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.editMessage(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.messenger.VideoEditedInfo, org.telegram.tgnet.TLRPC$TL_document, java.lang.String, java.util.HashMap, boolean, boolean, java.lang.Object):void");
     }
 
@@ -2388,7 +2388,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 SendMessagesHelper.this.lambda$sendNotificationCallback$18(str, list, tLObject, tLRPC$TL_error);
             }
         }, 2);
-        getMessagesController().markDialogAsRead(j, i, i, 0, false, 0, 0, true, 0);
+        getMessagesController().markDialogAsRead(j, i, i, 0, false, 0L, 0, true, 0);
     }
 
     public void lambda$sendNotificationCallback$18(final String str, final List list, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2895,7 +2895,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r82) {
+    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r80) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(org.telegram.messenger.SendMessagesHelper$SendMessageParams):void");
     }
 
@@ -3406,7 +3406,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         int i = 0;
         if (z) {
             this.delayedMessages.remove(str);
-            getMessagesStorage().putMessages(delayedMessage.messages, false, true, false, 0, delayedMessage.scheduled, 0);
+            getMessagesStorage().putMessages(delayedMessage.messages, false, true, false, 0, delayedMessage.scheduled ? 1 : 0, 0L);
             getMessagesController().updateInterfaceWithMessages(delayedMessage.peer, delayedMessage.messageObjects, delayedMessage.scheduled);
             if (!delayedMessage.scheduled) {
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
@@ -3861,7 +3861,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public void lambda$performSendMessageRequestMulti$42(final TLRPC$Message tLRPC$Message, final int i, final boolean z, ArrayList arrayList, final long j, final int i2) {
         getMessagesStorage().updateMessageStateAndId(tLRPC$Message.random_id, MessageObject.getPeerId(tLRPC$Message.peer_id), Integer.valueOf(i), tLRPC$Message.id, 0, false, z ? 1 : 0);
-        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, z, 0);
+        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, z ? 1 : 0, 0L);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -4087,7 +4087,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void lambda$performSendMessageRequest$56(ArrayList arrayList, final MessageObject messageObject, final TLRPC$Message tLRPC$Message, final int i, final boolean z) {
-        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, false, 0);
+        getMessagesStorage().putMessages(arrayList, true, false, false, 0, false, 0, 0L);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -4107,7 +4107,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public void lambda$performSendMessageRequest$58(final TLRPC$Message tLRPC$Message, final int i, final boolean z, ArrayList arrayList, final int i2) {
         getMessagesStorage().updateMessageStateAndId(tLRPC$Message.random_id, MessageObject.getPeerId(tLRPC$Message.peer_id), Integer.valueOf(i), tLRPC$Message.id, 0, false, z ? 1 : 0);
-        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, z, 0);
+        getMessagesStorage().putMessages((ArrayList<TLRPC$Message>) arrayList, true, false, false, 0, z ? 1 : 0, 0L);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -4535,7 +4535,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         messageObject.messageOwner.params.put("final", "1");
         TLRPC$TL_messages_messages tLRPC$TL_messages_messages = new TLRPC$TL_messages_messages();
         tLRPC$TL_messages_messages.messages.add(messageObject.messageOwner);
-        accountInstance.getMessagesStorage().putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, delayedMessage.peer, -2, 0, false, i != 0, 0);
+        accountInstance.getMessagesStorage().putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, delayedMessage.peer, -2, 0, false, i != 0 ? 1 : 0, 0L);
         sendMessagesHelper.sendReadyToSendGroup(delayedMessage, true, true);
     }
 
@@ -4837,38 +4837,38 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public static void prepareSendingText(AccountInstance accountInstance, String str, long j, boolean z, int i) {
-        prepareSendingText(accountInstance, str, j, 0, z, i);
+        prepareSendingText(accountInstance, str, j, 0L, z, i);
     }
 
-    public static void lambda$prepareSendingText$84(final String str, final int i, final AccountInstance accountInstance, final long j, final boolean z, final int i2) {
+    public static void lambda$prepareSendingText$84(final String str, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$83(str, i, accountInstance, j, z, i2);
+                SendMessagesHelper.lambda$prepareSendingText$83(str, j, accountInstance, j2, z, i);
             }
         });
     }
 
-    public static void lambda$prepareSendingText$85(final String str, final int i, final AccountInstance accountInstance, final long j, final boolean z, final int i2) {
+    public static void lambda$prepareSendingText$85(final String str, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$84(str, i, accountInstance, j, z, i2);
+                SendMessagesHelper.lambda$prepareSendingText$84(str, j, accountInstance, j2, z, i);
             }
         });
     }
 
-    public static void prepareSendingText(final AccountInstance accountInstance, final String str, final long j, final int i, final boolean z, final int i2) {
+    public static void prepareSendingText(final AccountInstance accountInstance, final String str, final long j, final long j2, final boolean z, final int i) {
         accountInstance.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$85(str, i, accountInstance, j, z, i2);
+                SendMessagesHelper.lambda$prepareSendingText$85(str, j2, accountInstance, j, z, i);
             }
         });
     }
 
-    public static void lambda$prepareSendingText$83(java.lang.String r20, int r21, org.telegram.messenger.AccountInstance r22, long r23, boolean r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingText$83(java.lang.String, int, org.telegram.messenger.AccountInstance, long, boolean, int):void");
+    public static void lambda$prepareSendingText$83(java.lang.String r22, long r23, org.telegram.messenger.AccountInstance r25, long r26, boolean r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingText$83(java.lang.String, long, org.telegram.messenger.AccountInstance, long, boolean, int):void");
     }
 
     public static void ensureMediaThumbExists(AccountInstance accountInstance, boolean z, TLObject tLObject, String str, Uri uri, long j) {

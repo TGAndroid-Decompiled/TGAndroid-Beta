@@ -234,64 +234,64 @@ public class ChatNotificationsPopupWrapper {
         this.lastDismissTime = System.currentTimeMillis();
     }
 
-    public void lambda$update$11(final long j, final int i, final HashSet<Integer> hashSet) {
+    public void lambda$update$11(final long j, final long j2, final HashSet<Integer> hashSet) {
+        int i;
         int i2;
         int i3;
-        int i4;
         if (System.currentTimeMillis() - this.lastDismissTime < 200) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatNotificationsPopupWrapper.this.lambda$update$11(j, i, hashSet);
+                    ChatNotificationsPopupWrapper.this.lambda$update$11(j, j2, hashSet);
                 }
             });
             return;
         }
-        boolean isDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, i);
+        boolean isDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, j2);
         if (isDialogMuted) {
             this.muteUnmuteButton.setTextAndIcon(LocaleController.getString("UnmuteNotifications", R.string.UnmuteNotifications), R.drawable.msg_unmute);
-            i2 = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
+            i = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
             this.soundToggle.setVisibility(8);
         } else {
             this.muteUnmuteButton.setTextAndIcon(LocaleController.getString("MuteNotifications", R.string.MuteNotifications), R.drawable.msg_mute);
             int color = Theme.getColor(Theme.key_text_RedBold);
             this.soundToggle.setVisibility(0);
-            if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, i)) {
+            if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, j2)) {
                 this.soundToggle.setTextAndIcon(LocaleController.getString("SoundOff", R.string.SoundOff), R.drawable.msg_tone_off);
             } else {
                 this.soundToggle.setTextAndIcon(LocaleController.getString("SoundOn", R.string.SoundOn), R.drawable.msg_tone_on);
             }
-            i2 = color;
+            i = color;
         }
         if (this.type == 1) {
             this.backItem.setVisibility(8);
         }
         if (isDialogMuted || this.type == 1) {
+            i2 = 0;
             i3 = 0;
-            i4 = 0;
         } else {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-            i4 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
-            i3 = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
+            i3 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
+            i2 = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
         }
-        if (i4 != 0) {
-            this.muteForLastSelected1Time = i4;
+        if (i3 != 0) {
+            this.muteForLastSelected1Time = i3;
             this.muteForLastSelected.setVisibility(0);
-            this.muteForLastSelected.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i4));
-            this.muteForLastSelected.setText(formatMuteForTime(i4));
+            this.muteForLastSelected.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i3));
+            this.muteForLastSelected.setText(formatMuteForTime(i3));
         } else {
             this.muteForLastSelected.setVisibility(8);
         }
-        if (i3 != 0) {
-            this.muteForLastSelected2Time = i3;
+        if (i2 != 0) {
+            this.muteForLastSelected2Time = i2;
             this.muteForLastSelected2.setVisibility(0);
-            this.muteForLastSelected2.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i3));
-            this.muteForLastSelected2.setText(formatMuteForTime(i3));
+            this.muteForLastSelected2.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i2));
+            this.muteForLastSelected2.setText(formatMuteForTime(i2));
         } else {
             this.muteForLastSelected2.setVisibility(8);
         }
-        this.muteUnmuteButton.setColors(i2, i2);
-        this.muteUnmuteButton.setSelectorColor(Theme.multAlpha(i2, 0.1f));
+        this.muteUnmuteButton.setColors(i, i);
+        this.muteUnmuteButton.setSelectorColor(Theme.multAlpha(i, 0.1f));
         if (hashSet == null || hashSet.isEmpty()) {
             this.gap.setVisibility(8);
             this.topicsExceptionsTextView.setVisibility(8);

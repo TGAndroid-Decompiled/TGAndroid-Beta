@@ -49,6 +49,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$FileLocation;
+import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
@@ -470,10 +471,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public static CharSequence createFromInfoString(MessageObject messageObject, boolean z, int i, TextPaint textPaint) {
+        TLRPC$Chat chat;
+        TLRPC$Chat chat2;
+        TLRPC$User tLRPC$User;
         TLRPC$TL_forumTopic findTopic;
         TLRPC$TL_forumTopic findTopic2;
         int i2;
-        if (messageObject == null) {
+        if (messageObject == null || messageObject.messageOwner == null) {
             return "";
         }
         SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
@@ -495,33 +499,52 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             SpannableStringBuilder[] spannableStringBuilderArr2 = arrowSpan;
             spannableStringBuilderArr2[i].setSpan(coloredImageSpan, 0, spannableStringBuilderArr2[i].length(), 0);
         }
+        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
         CharSequence charSequence = null;
-        TLRPC$User user = messageObject.messageOwner.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
-        TLRPC$Chat chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
-        if (chat == null) {
-            chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+        if (tLRPC$Message.saved_peer_id != null) {
+            if (messageObject.getSavedDialogId() >= 0) {
+                tLRPC$User = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
+                chat = null;
+            } else if (messageObject.getSavedDialogId() < 0) {
+                chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getSavedDialogId()));
+                tLRPC$User = null;
+                chat2 = null;
+            } else {
+                tLRPC$User = null;
+                chat = null;
+            }
+            chat2 = chat;
+        } else {
+            TLRPC$User user = tLRPC$Message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
+            chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
+            if (chat == null) {
+                chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+            }
+            chat2 = messageObject.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+            if (chat2 == null) {
+                chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
+            }
+            if (ChatObject.isChannelAndNotMegaGroup(chat2) || z) {
+                tLRPC$User = user;
+            } else {
+                tLRPC$User = user;
+                chat2 = null;
+            }
         }
-        TLRPC$Chat chat2 = messageObject.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
-        if (chat2 == null) {
-            chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
-        }
-        if (!ChatObject.isChannelAndNotMegaGroup(chat2) && !z) {
-            chat2 = null;
-        }
-        if (user != null && chat2 != null) {
+        if (tLRPC$User != null && chat2 != null) {
             CharSequence charSequence2 = chat2.title;
-            if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
+            if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
                 charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
             }
             CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append(Emoji.replaceEmoji(UserObject.getFirstName(user), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
+            spannableStringBuilder.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
             charSequence = spannableStringBuilder;
-        } else if (user != null) {
-            charSequence = Emoji.replaceEmoji(UserObject.getUserName(user), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
+        } else if (tLRPC$User != null) {
+            charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
         } else if (chat != null) {
             CharSequence charSequence3 = chat.title;
-            if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
+            if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
                 charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null, false);
             }
             charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
@@ -1052,7 +1075,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             int i3 = this.currentSearchFilter.filterType;
             if (i3 == 0) {
                 PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                PhotoViewer.getInstance().openPhoto(this.messages, i, 0L, 0L, 0, this.provider);
+                PhotoViewer.getInstance().openPhoto(this.messages, i, 0L, 0L, 0L, this.provider);
                 this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
             } else if (i3 == 3 || i3 == 5) {
                 if (view instanceof SharedAudioCell) {
@@ -1098,12 +1121,12 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                             ArrayList<MessageObject> arrayList = new ArrayList<>();
                             arrayList.add(messageObject);
                             PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                            PhotoViewer.getInstance().openPhoto(arrayList, 0, 0L, 0L, 0, this.provider);
+                            PhotoViewer.getInstance().openPhoto(arrayList, 0, 0L, 0L, 0L, this.provider);
                             this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
                             return;
                         }
                         PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                        PhotoViewer.getInstance().openPhoto(this.messages, indexOf, 0L, 0L, 0, this.provider);
+                        PhotoViewer.getInstance().openPhoto(this.messages, indexOf, 0L, 0L, 0L, this.provider);
                         this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
                         return;
                     }

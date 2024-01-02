@@ -380,7 +380,7 @@ public class EditWidgetActivity extends BaseFragment {
                 } else if (i == 1 && EditWidgetActivity.this.getParentActivity() != null) {
                     ArrayList<MessagesStorage.TopicKey> arrayList = new ArrayList<>();
                     for (int i2 = 0; i2 < EditWidgetActivity.this.selectedDialogs.size(); i2++) {
-                        arrayList.add(MessagesStorage.TopicKey.of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0));
+                        arrayList.add(MessagesStorage.TopicKey.of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
                     }
                     EditWidgetActivity.this.getMessagesStorage().putWidgetDialogs(EditWidgetActivity.this.currentWidgetId, arrayList);
                     SharedPreferences.Editor edit = EditWidgetActivity.this.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();

@@ -26,6 +26,6 @@ public class AutoMessageReplyReceiver extends BroadcastReceiver {
             return;
         }
         SendMessagesHelper.getInstance(intExtra2).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), longExtra, null, null, null, true, null, null, null, true, 0, null, false));
-        MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
+        MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0L, 0, true, 0);
     }
 }

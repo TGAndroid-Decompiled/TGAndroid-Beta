@@ -64,7 +64,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
     private HashMap<Long, Boolean> preloaded;
     Runnable sentInteractionsRunnable;
     TLRPC$TL_messages_stickerSet set;
-    int threadMsgId;
+    long threadMsgId;
     boolean inited = false;
     HashMap<String, ArrayList<TLRPC$Document>> emojiInteractionsStickersMap = new HashMap<>();
     HashMap<Long, Integer> lastAnimationIndex = new HashMap<>();
@@ -98,13 +98,13 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         this.currentAccount = i;
     }
 
-    public EmojiAnimationsOverlay(ChatActivity chatActivity, FrameLayout frameLayout, RecyclerListView recyclerListView, int i, long j, int i2) {
+    public EmojiAnimationsOverlay(ChatActivity chatActivity, FrameLayout frameLayout, RecyclerListView recyclerListView, int i, long j, long j2) {
         this.chatActivity = chatActivity;
         this.contentLayout = frameLayout;
         this.listView = recyclerListView;
         this.currentAccount = i;
         this.dialogId = j;
-        this.threadMsgId = i2;
+        this.threadMsgId = j2;
     }
 
     public void onAttachedToWindow() {
@@ -855,9 +855,9 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             jSONObject.put("a", jSONArray);
             tLRPC$TL_sendMessageEmojiInteraction.interaction.data = jSONObject.toString();
             TLRPC$TL_messages_setTyping tLRPC$TL_messages_setTyping = new TLRPC$TL_messages_setTyping();
-            int i2 = this.threadMsgId;
-            if (i2 != 0) {
-                tLRPC$TL_messages_setTyping.top_msg_id = i2;
+            long j = this.threadMsgId;
+            if (j != 0) {
+                tLRPC$TL_messages_setTyping.top_msg_id = (int) j;
                 tLRPC$TL_messages_setTyping.flags |= 1;
             }
             tLRPC$TL_messages_setTyping.action = tLRPC$TL_sendMessageEmojiInteraction;
