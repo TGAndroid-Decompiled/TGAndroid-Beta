@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextPaint;
@@ -80,6 +81,7 @@ public class ReactionsLayoutInBubble {
     public int y;
     private static Paint paint = new Paint(1);
     private static Paint tagPaint = new Paint(1);
+    private static Paint cutTagPaint = new Paint(1);
     private static TextPaint textPaint = new TextPaint(1);
     private static final ButtonsComparator comparator = new ButtonsComparator();
     private static int pointer = 1;
@@ -121,6 +123,7 @@ public class ReactionsLayoutInBubble {
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.touchSlop = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
+        cutTagPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public static boolean equalsTLReaction(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2) {
@@ -511,11 +514,29 @@ public class ReactionsLayoutInBubble {
                     RectF rectF6 = this.bounds;
                     rectF5.set(rectF6.left, rectF6.bottom - AndroidUtilities.dp(12.0f), this.bounds.left + AndroidUtilities.dp(12.0f), this.bounds.bottom);
                     this.path.arcTo(this.rect2, -180.0f, -90.0f, false);
-                    this.path.lineTo(this.bounds.right - AndroidUtilities.dp(8.4f), this.bounds.bottom);
+                    float dpf2 = this.bounds.right - AndroidUtilities.dpf2(9.09f);
+                    float dpf22 = dpf2 - AndroidUtilities.dpf2(0.056f);
+                    float dpf23 = dpf2 + AndroidUtilities.dpf2(1.22f);
+                    float dpf24 = AndroidUtilities.dpf2(3.07f) + dpf2;
+                    float dpf25 = dpf2 + AndroidUtilities.dpf2(2.406f);
+                    float dpf26 = AndroidUtilities.dpf2(8.27f) + dpf2;
+                    float dpf27 = dpf2 + AndroidUtilities.dpf2(8.923f);
+                    float dpf28 = this.bounds.top + AndroidUtilities.dpf2(1.753f);
+                    float dpf29 = this.bounds.bottom - AndroidUtilities.dpf2(1.753f);
+                    float dpf210 = this.bounds.top + AndroidUtilities.dpf2(0.663f);
+                    float dpf211 = this.bounds.bottom - AndroidUtilities.dpf2(0.663f);
+                    float dpf212 = this.bounds.top + AndroidUtilities.dpf2(10.263f);
+                    float dpf213 = this.bounds.bottom - AndroidUtilities.dpf2(10.263f);
+                    float dpf214 = this.bounds.top + AndroidUtilities.dpf2(11.333f);
+                    float dpf215 = this.bounds.bottom - AndroidUtilities.dpf2(11.333f);
+                    this.path.lineTo(dpf22, this.bounds.bottom);
+                    this.path.cubicTo(dpf23, this.bounds.bottom, dpf25, dpf211, dpf24, dpf29);
+                    this.path.lineTo(dpf26, dpf213);
+                    this.path.cubicTo(dpf27, dpf215, dpf27, dpf214, dpf26, dpf212);
+                    this.path.lineTo(dpf24, dpf28);
                     Path path = this.path;
-                    RectF rectF7 = this.bounds;
-                    path.lineTo(rectF7.right, rectF7.centerY());
-                    this.path.lineTo(this.bounds.right - AndroidUtilities.dp(8.4f), this.bounds.top);
+                    float f3 = this.bounds.top;
+                    path.cubicTo(dpf25, dpf210, dpf23, f3, dpf22, f3);
                     this.path.close();
                 }
                 canvas.drawPath(this.path, paint);
@@ -528,6 +549,7 @@ public class ReactionsLayoutInBubble {
             int dp;
             int dp2;
             float f5;
+            Paint paint;
             Theme.MessageDrawable currentBackgroundDrawable;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
             ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
@@ -555,6 +577,7 @@ public class ReactionsLayoutInBubble {
             updateColors(f3);
             ReactionsLayoutInBubble.textPaint.setColor(this.lastDrawnTextColor);
             ReactionsLayoutInBubble.paint.setColor(this.lastDrawnBackgroundColor);
+            boolean z2 = this.isTag && AndroidUtilities.computePerceivedBrightness(this.lastDrawnBackgroundColor) > 0.8f;
             if (f4 != 1.0f) {
                 ReactionsLayoutInBubble.textPaint.setAlpha((int) (ReactionsLayoutInBubble.textPaint.getAlpha() * f4));
                 ReactionsLayoutInBubble.paint.setAlpha((int) (ReactionsLayoutInBubble.paint.getAlpha() * f4));
@@ -588,11 +611,22 @@ public class ReactionsLayoutInBubble {
             if (reactionsLayoutInBubble2.drawServiceShaderBackground < 1.0f && z && (currentBackgroundDrawable = reactionsLayoutInBubble2.parentView.getCurrentBackgroundDrawable(false)) != null) {
                 drawRoundRect(canvas, rectF, f6, currentBackgroundDrawable.getPaint());
             }
+            if (z2) {
+                canvas.saveLayerAlpha(rectF, 255, 31);
+            }
             drawRoundRect(canvas, rectF, f6, ReactionsLayoutInBubble.paint);
             if (this.isTag) {
-                ReactionsLayoutInBubble.tagPaint.setColor(1526726655);
-                ReactionsLayoutInBubble.tagPaint.setAlpha((int) (90.0f * f4));
-                canvas.drawCircle(rectF.right - AndroidUtilities.dp(8.4f), rectF.centerY(), AndroidUtilities.dp(2.66f), ReactionsLayoutInBubble.tagPaint);
+                if (z2) {
+                    paint = ReactionsLayoutInBubble.cutTagPaint;
+                } else {
+                    ReactionsLayoutInBubble.tagPaint.setColor(1526726655);
+                    ReactionsLayoutInBubble.tagPaint.setAlpha((int) (90.0f * f4));
+                    paint = ReactionsLayoutInBubble.tagPaint;
+                }
+                canvas.drawCircle(rectF.right - AndroidUtilities.dp(8.4f), rectF.centerY(), AndroidUtilities.dp(2.66f), paint);
+            }
+            if (z2) {
+                canvas.restore();
             }
             if (imageReceiver != null) {
                 if (this.animatedEmojiDrawable != null) {

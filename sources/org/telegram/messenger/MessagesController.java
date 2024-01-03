@@ -22,8 +22,6 @@ import androidx.core.util.Consumer;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.function.Consumer;
 import java.io.File;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9099,11 +9097,8 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void loadMessagesInternal(final long j, final long j2, final boolean z, final int i, final int i2, final int i3, boolean z2, final int i4, final int i5, final int i6, final int i7, final int i8, final long j3, final int i9, final int i10, final int i11, final int i12, final boolean z3, final int i13, boolean z4, final boolean z5, final boolean z6, MessageLoaderLogger messageLoaderLogger, long j4) {
         int i14;
-        int i15;
-        StringWriter stringWriter;
         if (BuildVars.LOGS_ENABLED) {
-            new Exception().printStackTrace(new PrintWriter(new StringWriter()));
-            FileLog.d("load messages in chat " + j + " topic_id " + j3 + " count " + i + " max_id " + i2 + " cache " + z2 + " mindate = " + i4 + " guid " + i5 + " load_type " + i6 + " last_message_id " + i7 + " mode " + i8 + " index " + i9 + " firstUnread " + i10 + " unread_count " + i11 + " last_date " + i12 + " queryFromServer " + z3 + " isTopic " + z6 + "\n" + stringWriter.toString());
+            FileLog.d("load messages in chat " + j + " topic_id " + j3 + " count " + i + " max_id " + i2 + " cache " + z2 + " mindate = " + i4 + " guid " + i5 + " load_type " + i6 + " last_message_id " + i7 + " mode " + i8 + " index " + i9 + " firstUnread " + i10 + " unread_count " + i11 + " last_date " + i12 + " queryFromServer " + z3 + " isTopic " + z6);
         }
         MessageLoaderLogger messageLoaderLogger2 = (BuildVars.LOGS_ENABLED && messageLoaderLogger == null && i8 == 0) ? new MessageLoaderLogger(j, i9, i) : messageLoaderLogger;
         if ((j3 == 0 || z6 || i8 == 3) && i8 != 2 && (z2 || DialogObject.isEncryptedDialog(j))) {
@@ -9200,13 +9195,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (findTopic != null) {
                     loadMessagesInternal(j, j2, z, i, i2, i3, false, i4, i5, i6, findTopic.top_message, 0, j3, i9, i10, findTopic.unread_count, i12, z3, findTopic.unread_mentions_count, false, z5, z6, messageLoaderLogger2, 0L);
                     return;
-                } else {
-                    i15 = i6;
-                    i14 = i3;
                 }
+                i14 = i6;
             } else {
-                i14 = i3;
-                i15 = i6;
+                i14 = i6;
             }
             if (i8 != 0) {
                 return;
@@ -9214,14 +9206,14 @@ public class MessagesController extends BaseController implements NotificationCe
             final TLRPC$TL_messages_getReplies tLRPC$TL_messages_getReplies = new TLRPC$TL_messages_getReplies();
             tLRPC$TL_messages_getReplies.peer = getInputPeer(j);
             tLRPC$TL_messages_getReplies.msg_id = (int) j3;
-            tLRPC$TL_messages_getReplies.offset_date = i14;
-            if (i15 == 4) {
+            tLRPC$TL_messages_getReplies.offset_date = i3;
+            if (i14 == 4) {
                 tLRPC$TL_messages_getReplies.add_offset = (-i) + 5;
-            } else if (i15 == 3) {
+            } else if (i14 == 3) {
                 tLRPC$TL_messages_getReplies.add_offset = (-i) / 2;
-            } else if (i15 == 1) {
+            } else if (i14 == 1) {
                 tLRPC$TL_messages_getReplies.add_offset = (-i) - 1;
-            } else if (i15 == 2 && i2 != 0) {
+            } else if (i14 == 2 && i2 != 0) {
                 tLRPC$TL_messages_getReplies.add_offset = (-i) + 10;
             } else if (j < 0 && i2 != 0) {
                 if (ChatObject.isChannel(getChat(Long.valueOf(-j)))) {

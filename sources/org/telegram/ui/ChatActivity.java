@@ -4278,7 +4278,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             canvas.save();
             if (ChatActivity.this.fragmentTransition == null || (ChatActivity.this.fromPullingDownTransition && !ChatActivity.this.toPullingDownTransition)) {
                 ChatActivity chatActivity = ChatActivity.this;
-                canvas.clipRect(0.0f, (chatActivity.chatListViewPaddingTop - chatActivity.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(4.0f), getMeasuredWidth(), getMeasuredHeight() - ChatActivity.this.blurredViewBottomOffset);
+                if (!chatActivity.isInsideContainer) {
+                    canvas.clipRect(0.0f, (chatActivity.chatListViewPaddingTop - chatActivity.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(4.0f), getMeasuredWidth(), getMeasuredHeight() - ChatActivity.this.blurredViewBottomOffset);
+                }
             }
             this.selectorRect.setEmpty();
             if (ChatActivity.this.pullingDownOffset != 0.0f) {
@@ -5908,39 +5910,41 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.replyButton != null || getContext() == null) {
             return;
         }
-        TextView textView = new TextView(getContext());
-        this.replyButton = textView;
-        textView.setText(LocaleController.getString("Reply", R.string.Reply));
-        this.replyButton.setGravity(16);
-        this.replyButton.setTextSize(1, 15.0f);
-        this.replyButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(21.0f), 0);
-        TextView textView2 = this.replyButton;
-        int i = Theme.key_actionBarActionModeDefaultSelector;
-        textView2.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i), 3));
-        TextView textView3 = this.replyButton;
-        int i2 = Theme.key_actionBarActionModeDefaultIcon;
-        textView3.setTextColor(getThemedColor(i2));
-        this.replyButton.setCompoundDrawablePadding(AndroidUtilities.dp(7.0f));
-        this.replyButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.input_reply).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
-        this.replyButton.setCompoundDrawablesWithIntrinsicBounds(mutate, (Drawable) null, (Drawable) null, (Drawable) null);
-        this.replyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ChatActivity.this.lambda$createBottomMessagesActionButtons$60(view);
-            }
-        });
-        this.bottomMessagesActionContainer.addView(this.replyButton, LayoutHelper.createFrame(-2, -1, 51));
-        TextView textView4 = new TextView(getContext());
-        this.forwardButton = textView4;
-        textView4.setText(LocaleController.getString("Forward", R.string.Forward));
+        if (!this.isInsideContainer) {
+            TextView textView = new TextView(getContext());
+            this.replyButton = textView;
+            textView.setText(LocaleController.getString("Reply", R.string.Reply));
+            this.replyButton.setGravity(16);
+            this.replyButton.setTextSize(1, 15.0f);
+            this.replyButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(21.0f), 0);
+            this.replyButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), 3));
+            TextView textView2 = this.replyButton;
+            int i = Theme.key_actionBarActionModeDefaultIcon;
+            textView2.setTextColor(getThemedColor(i));
+            this.replyButton.setCompoundDrawablePadding(AndroidUtilities.dp(7.0f));
+            this.replyButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            Drawable mutate = getContext().getResources().getDrawable(R.drawable.input_reply).mutate();
+            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
+            this.replyButton.setCompoundDrawablesWithIntrinsicBounds(mutate, (Drawable) null, (Drawable) null, (Drawable) null);
+            this.replyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChatActivity.this.lambda$createBottomMessagesActionButtons$60(view);
+                }
+            });
+            this.bottomMessagesActionContainer.addView(this.replyButton, LayoutHelper.createFrame(-2, -1, 51));
+        }
+        TextView textView3 = new TextView(getContext());
+        this.forwardButton = textView3;
+        textView3.setText(LocaleController.getString("Forward", R.string.Forward));
         this.forwardButton.setGravity(16);
         this.forwardButton.setTextSize(1, 15.0f);
         this.forwardButton.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
         this.forwardButton.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        this.forwardButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i), 3));
-        this.forwardButton.setTextColor(getThemedColor(i2));
+        this.forwardButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), 3));
+        TextView textView4 = this.forwardButton;
+        int i2 = Theme.key_actionBarActionModeDefaultIcon;
+        textView4.setTextColor(getThemedColor(i2));
         this.forwardButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.input_forward).mutate();
         mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
@@ -12429,16 +12433,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void processRowSelect(View view, boolean z, float f, float f2) {
-        if (this.isInsideContainer) {
-            return;
-        }
-        MessageObject messageObject = null;
+        MessageObject messageObject;
         if (view instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) view;
             messageObject = chatMessageCell.getMessageObject();
             chatMessageCell.setLastTouchCoords(f, f2);
-        } else if (view instanceof ChatActionCell) {
-            messageObject = ((ChatActionCell) view).getMessageObject();
+        } else {
+            messageObject = view instanceof ChatActionCell ? ((ChatActionCell) view).getMessageObject() : null;
         }
         int messageType = getMessageType(messageObject);
         if ((messageObject == null || !messageObject.isAnyGift()) && messageType >= 2 && messageType != 20 && messageType != 21) {
@@ -15443,24 +15444,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             @Override
             public int getBottomOffset(int i) {
-                int dp;
+                int i2 = 0;
                 if (i == 1) {
                     return 0;
                 }
                 ChatActivityEnterView chatActivityEnterView2 = ChatActivity.this.chatActivityEnterView;
                 if (chatActivityEnterView2 != null && chatActivityEnterView2.getVisibility() == 0) {
                     if ((ChatActivity.this.contentView.getKeyboardHeight() < AndroidUtilities.dp(20.0f) && ChatActivity.this.chatActivityEnterView.isPopupShowing()) || ChatActivity.this.chatActivityEnterView.panelAnimationInProgress()) {
-                        dp = ChatActivity.this.chatActivityEnterView.getHeight() + ChatActivity.this.chatActivityEnterView.getEmojiPadding();
+                        i2 = ChatActivity.this.chatActivityEnterView.getEmojiPadding() + ChatActivity.this.chatActivityEnterView.getHeight();
                     } else {
-                        dp = ChatActivity.this.chatActivityEnterView.getHeight();
+                        i2 = ChatActivity.this.chatActivityEnterView.getHeight();
                     }
-                } else {
-                    dp = AndroidUtilities.dp(51.0f);
+                } else if (!ChatActivity.this.isInsideContainer) {
+                    i2 = AndroidUtilities.dp(51.0f);
                 }
                 if (ChatActivity.this.chatActivityEnterView.panelAnimationInProgress()) {
-                    dp = (int) (dp + (ChatActivity.this.bottomPanelTranslationY - ChatActivity.this.chatActivityEnterView.getEmojiPadding()));
+                    i2 = (int) (i2 + (ChatActivity.this.bottomPanelTranslationY - ChatActivity.this.chatActivityEnterView.getEmojiPadding()));
                 }
-                return ((int) (dp + ChatActivity.this.contentPanTranslation)) - AndroidUtilities.dp(1.5f);
+                return ((int) (i2 + ChatActivity.this.contentPanTranslation)) - AndroidUtilities.dp(1.5f);
             }
 
             @Override
@@ -19215,19 +19216,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public int getItemCount() {
             this.botInfoEmptyRow = -5;
-            if (!ChatActivity.this.clearingHistory) {
-                if (ChatActivity.this.clearingHistory) {
+            if (ChatActivity.this.clearingHistory) {
+                ChatActivity chatActivity = ChatActivity.this;
+                TLRPC$User tLRPC$User = chatActivity.currentUser;
+                if (tLRPC$User == null || !tLRPC$User.bot || chatActivity.chatMode != 0 || ((ChatActivity.this.botInfo.size() <= 0 || (((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description == null && ((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description_photo == null && ((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description_document == null)) && !UserObject.isReplyUser(ChatActivity.this.currentUser))) {
                     return 0;
                 }
-                return this.rowCount;
+                this.botInfoEmptyRow = 0;
+                return 1;
             }
-            ChatActivity chatActivity = ChatActivity.this;
-            TLRPC$User tLRPC$User = chatActivity.currentUser;
-            if (tLRPC$User == null || !tLRPC$User.bot || chatActivity.chatMode != 0 || ((ChatActivity.this.botInfo.size() <= 0 || (((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description == null && ((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description_photo == null && ((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description_document == null)) && !UserObject.isReplyUser(ChatActivity.this.currentUser))) {
-                return 0;
-            }
-            this.botInfoEmptyRow = 0;
-            return 1;
+            return this.rowCount;
         }
 
         @Override
@@ -24326,6 +24324,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public static int lambda$checkGroupMessagesOrder$307(MessageObject messageObject, MessageObject messageObject2) {
-        return messageObject.getId() - messageObject2.getId();
+        return messageObject2.getId() - messageObject.getId();
     }
 }

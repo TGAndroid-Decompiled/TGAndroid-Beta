@@ -7929,6 +7929,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         float f;
         float f2;
         float f3;
+        MessageObject.GroupedMessagePosition groupedMessagePosition2;
         float dp;
         int extraTextX;
         float f4;
@@ -7941,6 +7942,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int i;
         int i2;
         float dp3;
+        MessageObject.GroupedMessages groupedMessages;
         MessageObject messageObject;
         ChannelRecommendationsCell channelRecommendationsCell = this.channelRecommendationsCell;
         if (channelRecommendationsCell != null && (messageObject = this.currentMessageObject) != null && messageObject.type == 27) {
@@ -7950,7 +7952,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (!this.enterTransitionInProgress) {
                 drawAnimatedEmojis(canvas, 1.0f);
             }
-            if (this.currentNameStatusDrawable != null && this.drawNameLayout && this.nameLayout != null) {
+            if (this.currentNameStatusDrawable != null && this.drawNameLayout && this.nameLayout != null && (((groupedMessagePosition2 = this.currentPosition) == null || (groupedMessagePosition2.minX == 0 && groupedMessagePosition2.minY == 0)) && (!this.currentMessageObject.deleted || this.drawingToBitmap || (groupedMessages = this.currentMessagesGroup) == null || groupedMessages.messages.size() < 1))) {
                 if (this.currentMessageObject.shouldDrawWithoutBackground()) {
                     themedColor = getThemedColor(Theme.key_chat_stickerNameText);
                     if (this.currentMessageObject.isOutOwner()) {
@@ -8016,9 +8018,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     }
                     dp2 = AndroidUtilities.dp(this.drawPinnedTop ? 9.0f : 10.0f);
                 }
-                MessageObject.GroupedMessages groupedMessages = this.currentMessagesGroup;
-                if (groupedMessages != null) {
-                    MessageObject.GroupedMessages.TransitionParams transitionParams2 = groupedMessages.transitionParams;
+                MessageObject.GroupedMessages groupedMessages2 = this.currentMessagesGroup;
+                if (groupedMessages2 != null) {
+                    MessageObject.GroupedMessages.TransitionParams transitionParams2 = groupedMessages2.transitionParams;
                     if (transitionParams2.backgroundChangeBounds) {
                         f4 += transitionParams2.offsetLeft;
                         dp2 += transitionParams2.offsetTop - getTranslationY();
