@@ -3786,7 +3786,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public boolean lambda$updateFlagSecure$9() {
         TLRPC$Message tLRPC$Message;
         MessageObject messageObject = this.currentMessageObject;
-        return (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (!tLRPC$Message.noforwards && !messageObject.hasRevealedExtendedMedia())) ? false : true;
+        return (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (!tLRPC$Message.noforwards && !messageObject.isVoiceOnce() && !this.currentMessageObject.hasRevealedExtendedMedia())) ? false : true;
     }
 
     public void checkVideoPlayback(boolean z, Bitmap bitmap) {

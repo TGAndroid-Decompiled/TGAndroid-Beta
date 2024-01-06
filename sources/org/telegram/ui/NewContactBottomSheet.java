@@ -55,8 +55,6 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     private ArrayList<CountrySelectActivity.Country> countriesArray;
     private String countryCodeForHint;
     private TextView countryFlag;
-    private int countryState;
-    private CountrySelectActivity.Country currentCountry;
     private TextView doneButton;
     private FrameLayout doneButtonContainer;
     private boolean donePressed;
@@ -277,6 +275,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     public void show() {
         super.show();
         this.firstNameField.getEditText().requestFocus();
+        this.firstNameField.getEditText().setSelection(this.firstNameField.getEditText().length());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -357,8 +356,18 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public void setInitialName(String str, String str2) {
-        this.initialFirstName = str;
-        this.initialLastName = str2;
+        OutlineEditText outlineEditText = this.firstNameField;
+        if (outlineEditText != null) {
+            outlineEditText.getEditText().setText(str);
+        } else {
+            this.initialFirstName = str;
+        }
+        OutlineEditText outlineEditText2 = this.lastNameField;
+        if (outlineEditText2 != null) {
+            outlineEditText2.getEditText().setText(str2);
+        } else {
+            this.initialLastName = str2;
+        }
     }
 
     public void setCountryHint(String str, CountrySelectActivity.Country country) {

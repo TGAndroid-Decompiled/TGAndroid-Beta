@@ -60,7 +60,6 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
-import org.telegram.ui.LaunchActivity;
 public class AlertDialog extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
     private View aboveMessageView;
     private int additioanalHorizontalPadding;
@@ -151,6 +150,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return null;
     }
 
+    protected boolean supportsNativeBlur() {
+        return false;
+    }
+
     public void lambda$new$0() {
         if (isShowing()) {
             return;
@@ -165,10 +168,6 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.blurAlpha = f;
         this.blurBehind = z;
         this.blurredBackground = z2;
-    }
-
-    protected boolean supportsNativeBlur() {
-        return Build.VERSION.SDK_INT >= 31 && LaunchActivity.systemBlurEnabled;
     }
 
     public void redPositive() {

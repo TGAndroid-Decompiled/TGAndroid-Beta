@@ -1342,11 +1342,11 @@ public class StoryCaptionView extends NestedScrollView {
             this.verticalPadding = AndroidUtilities.dp(8.0f);
             if (this.sizeCached != i3) {
                 this.sizeCached = i3;
-                int size = View.MeasureSpec.getSize(i) - (this.horizontalPadding * 2);
-                this.state[0].measure(size);
+                int max = Math.max(0, View.MeasureSpec.getSize(i) - (this.horizontalPadding * 2));
+                this.state[0].measure(max);
                 TextState[] textStateArr = this.state;
                 if (textStateArr[1] != null) {
-                    textStateArr[1].measure(size);
+                    textStateArr[1].measure(max);
                 }
             }
             int i4 = this.verticalPadding * 2;

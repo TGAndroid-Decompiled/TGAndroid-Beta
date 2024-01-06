@@ -255,7 +255,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public LimitReachedBottomSheet(BaseFragment baseFragment, Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-        super(baseFragment, false, hasFixedSize(i), false, resourcesProvider);
+        super(context, baseFragment, false, hasFixedSize(i), false, resourcesProvider);
         this.linkRow = -1;
         this.lockInvalidation = false;
         this.chats = new ArrayList<>();

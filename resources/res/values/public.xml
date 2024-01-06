@@ -11111,9 +11111,9 @@
     <public type="style" name="Widget.Compat.NotificationActionContainer" id="0x7f100187" />
     <public type="style" name="Widget.Compat.NotificationActionText" id="0x7f100188" />
     <public type="style" name="scrollbarShapeStyle" id="0x7f100189" />
-    <public type="xml" name="actions" id="0x7f120000" />
-    <public type="xml" name="auth" id="0x7f120001" />
-    <public type="xml" name="auth_menu" id="0x7f120002" />
+    <public type="xml" name="auth" id="0x7f120000" />
+    <public type="xml" name="auth_menu" id="0x7f120001" />
+    <public type="xml" name="automotive_app_desc" id="0x7f120002" />
     <public type="xml" name="chats_widget_info" id="0x7f120003" />
     <public type="xml" name="contacts" id="0x7f120004" />
     <public type="xml" name="contacts_widget_info" id="0x7f120005" />

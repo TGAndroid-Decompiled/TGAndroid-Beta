@@ -950,7 +950,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.rectF.set(f - AndroidUtilities.dpf2(18.0f), lerp, f + AndroidUtilities.dpf2(18.0f), ChatActivityEnterView.this.recordCircle.lockSize + lerp);
             this.rectF.offset(0.0f, getMeasuredHeight() - ChatActivityEnterView.this.recordCircle.getMeasuredHeight());
             ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
-            chatActivityEnterView2.onceVisible = (chatActivityEnterView2.delegate == null || !ChatActivityEnterView.this.delegate.onceVoiceAvailable() || ChatActivityEnterView.this.isInVideoMode) ? false : true;
+            chatActivityEnterView2.onceVisible = chatActivityEnterView2.delegate != null && ChatActivityEnterView.this.delegate.onceVoiceAvailable();
             if (ChatActivityEnterView.this.onceVisible) {
                 float dpf2 = AndroidUtilities.dpf2(AndroidUtilities.lerp(4, 12, chatActivityEnterView.recordCircle.moveProgress));
                 RectF rectF = this.rectF;
@@ -5568,8 +5568,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             if (DialogObject.isChatDialog(this.dialog_id)) {
                 TLRPC$Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id));
                 TLRPC$ChatFull chatFull = this.accountInstance.getMessagesController().getChatFull(-this.dialog_id);
-                z2 = ChatObject.isChannel(chat) && !chat.megagroup;
-                z3 = ChatObject.getSendAsPeerId(chat, chatFull) == chat.id;
+                z2 = ChatObject.isChannelAndNotMegaGroup(chat);
+                z3 = ChatObject.getSendAsPeerId(chat, chatFull) == (-this.dialog_id);
             } else {
                 z2 = false;
             }

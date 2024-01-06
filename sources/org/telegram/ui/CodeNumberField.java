@@ -354,13 +354,13 @@ public class CodeNumberField extends EditTextBoldCursor {
 
     public void pasteFromClipboard() {
         ClipboardManager clipboardManager;
+        ClipData primaryClip;
         CodeFieldContainer codeFieldContainer = getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) getParent() : null;
-        if (codeFieldContainer == null || (clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class)) == null) {
+        if (codeFieldContainer == null || (clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class)) == null || (primaryClip = clipboardManager.getPrimaryClip()) == null) {
             return;
         }
-        clipboardManager.getPrimaryClipDescription().hasMimeType("text/plain");
         int i = -1;
-        String charSequence = clipboardManager.getPrimaryClip().getItemAt(0).getText().toString();
+        String charSequence = primaryClip.getItemAt(0).getText().toString();
         try {
             i = Integer.parseInt(charSequence);
         } catch (Exception unused) {

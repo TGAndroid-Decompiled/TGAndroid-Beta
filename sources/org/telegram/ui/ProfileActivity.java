@@ -12063,7 +12063,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (i == 1 && (!this.fragmentOpened || this.openAnimationInProgress)) {
             this.photoDescriptionProgress = 0.0f;
         } else if (i == 2 && (!this.fragmentOpened || this.openAnimationInProgress)) {
-            this.photoDescriptionProgress = this.onlineTextView[1].getAlpha();
+            SimpleTextView[] simpleTextViewArr = this.onlineTextView;
+            this.photoDescriptionProgress = simpleTextViewArr[1] == null ? 0.0f : simpleTextViewArr[1].getAlpha();
         } else if (this.userId == UserConfig.getInstance(this.currentAccount).clientUserId) {
             this.photoDescriptionProgress = this.currentExpandAnimatorValue * (1.0f - this.customAvatarProgress);
         } else {
@@ -12072,9 +12073,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (this.userId == UserConfig.getInstance(this.currentAccount).clientUserId) {
             if (this.hasFallbackPhoto) {
                 this.customPhotoOffset = AndroidUtilities.dp(28.0f) * this.photoDescriptionProgress;
-                SimpleTextView[] simpleTextViewArr = this.onlineTextView;
-                if (simpleTextViewArr[2] != null) {
-                    simpleTextViewArr[2].setAlpha(this.currentExpandAnimatorValue);
+                SimpleTextView[] simpleTextViewArr2 = this.onlineTextView;
+                if (simpleTextViewArr2[2] != null) {
+                    simpleTextViewArr2[2].setAlpha(this.currentExpandAnimatorValue);
                     this.onlineTextView[3].setAlpha(1.0f - this.currentExpandAnimatorValue);
                     this.onlineTextView[1].setTranslationX(this.onlineX + this.customPhotoOffset);
                     this.avatarContainer2.invalidate();
@@ -12082,20 +12083,20 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 return;
             }
-            SimpleTextView[] simpleTextViewArr2 = this.onlineTextView;
-            if (simpleTextViewArr2[2] != null) {
-                simpleTextViewArr2[2].setAlpha(0.0f);
+            SimpleTextView[] simpleTextViewArr3 = this.onlineTextView;
+            if (simpleTextViewArr3[2] != null) {
+                simpleTextViewArr3[2].setAlpha(0.0f);
                 this.onlineTextView[3].setAlpha(0.0f);
             }
         } else if (this.hasCustomPhoto) {
-            SimpleTextView[] simpleTextViewArr3 = this.onlineTextView;
-            if (simpleTextViewArr3[2] != null) {
-                simpleTextViewArr3[2].setAlpha(this.photoDescriptionProgress);
-            }
-        } else {
             SimpleTextView[] simpleTextViewArr4 = this.onlineTextView;
             if (simpleTextViewArr4[2] != null) {
-                simpleTextViewArr4[2].setAlpha(0.0f);
+                simpleTextViewArr4[2].setAlpha(this.photoDescriptionProgress);
+            }
+        } else {
+            SimpleTextView[] simpleTextViewArr5 = this.onlineTextView;
+            if (simpleTextViewArr5[2] != null) {
+                simpleTextViewArr5[2].setAlpha(0.0f);
             }
         }
     }

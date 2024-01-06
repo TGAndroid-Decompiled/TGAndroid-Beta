@@ -10713,6 +10713,9 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void addToViewsQueue(final MessageObject messageObject) {
+        if (messageObject == null) {
+            return;
+        }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {

@@ -7478,8 +7478,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final ArrayList arrayList = new ArrayList(ChatActivity.this.pinnedMessageIds);
             final ArrayList arrayList2 = new ArrayList(ChatActivity.this.pinnedMessageObjects.values());
             if (z2) {
-                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ChatActivity.this).currentAccount).edit();
-                edit.putInt("pin_" + ChatActivity.this.dialog_id, ((Integer) ChatActivity.this.pinnedMessageIds.get(0)).intValue()).commit();
+                SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) ChatActivity.this).currentAccount);
+                if (ChatActivity.this.pinnedMessageIds.isEmpty()) {
+                    SharedPreferences.Editor edit = notificationsSettings.edit();
+                    edit.remove("pin_" + ChatActivity.this.dialog_id).commit();
+                } else {
+                    SharedPreferences.Editor edit2 = notificationsSettings.edit();
+                    edit2.putInt("pin_" + ChatActivity.this.dialog_id, ((Integer) ChatActivity.this.pinnedMessageIds.get(0)).intValue()).commit();
+                }
                 ChatActivity.this.updatePinnedMessageView(true);
             } else {
                 ChatActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(ChatActivity.this.dialog_id), arrayList, Boolean.FALSE, null, null, 0, 0, Boolean.TRUE);
@@ -13924,8 +13930,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i;
     }
 
-    private void processDeletedMessages(java.util.ArrayList<java.lang.Integer> r43, long r44) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processDeletedMessages(java.util.ArrayList, long):void");
+    private void processDeletedMessages(java.util.ArrayList<java.lang.Integer> r43, long r44, boolean r46) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processDeletedMessages(java.util.ArrayList, long, boolean):void");
     }
 
     private void replaceMessageObjects(ArrayList<MessageObject> arrayList, int i, boolean z) {
@@ -15594,7 +15600,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void applyDraftMaybe(boolean z) {
         TLRPC$DraftMessage draft;
-        Integer num;
+        Long l;
         TLRPC$Message tLRPC$Message;
         TLRPC$DraftMessage tLRPC$DraftMessage;
         TLRPC$TL_forumTopic findTopic;
@@ -15606,30 +15612,30 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AnimatedEmojiSpan animatedEmojiSpan;
         TLRPC$InputReplyTo tLRPC$InputReplyTo;
         TLRPC$DraftMessage tLRPC$DraftMessage3;
-        Integer num2;
+        Long l2;
         if (this.chatActivityEnterView == null || this.chatMode != 0) {
             return;
         }
         Paint.FontMetricsInt fontMetricsInt2 = null;
         if (isForumInViewAsMessagesMode()) {
-            Pair<Integer, TLRPC$DraftMessage> oneThreadDraft = getMediaDataController().getOneThreadDraft(this.dialog_id);
+            Pair<Long, TLRPC$DraftMessage> oneThreadDraft = getMediaDataController().getOneThreadDraft(this.dialog_id);
             if (oneThreadDraft != null) {
-                num2 = (Integer) oneThreadDraft.first;
+                l2 = (Long) oneThreadDraft.first;
                 tLRPC$DraftMessage3 = (TLRPC$DraftMessage) oneThreadDraft.second;
             } else {
                 tLRPC$DraftMessage3 = null;
-                num2 = null;
+                l2 = null;
             }
-            num = num2;
+            l = l2;
             draft = tLRPC$DraftMessage3;
         } else {
             draft = getMediaDataController().getDraft(this.dialog_id, this.threadMessageId);
-            num = null;
+            l = null;
         }
         if (draft == null || (tLRPC$InputReplyTo = draft.reply_to) == null || tLRPC$InputReplyTo.reply_to_msg_id == 0) {
             tLRPC$Message = null;
         } else {
-            tLRPC$Message = getMediaDataController().getDraftMessage(this.dialog_id, num != null ? num.intValue() : this.threadMessageId);
+            tLRPC$Message = getMediaDataController().getDraftMessage(this.dialog_id, l != null ? l.longValue() : this.threadMessageId);
         }
         if (this.chatActivityEnterView.getFieldText() != null) {
             tLRPC$DraftMessage = draft;
@@ -15764,7 +15770,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     showFieldPanelForReply(this.replyingMessageObject);
                 }
                 updateBottomOverlay();
-            } else if (num == null || num.intValue() == 0 || this.currentChat == null || (findTopic = getMessagesController().getTopicsController().findTopic(this.currentChat.id, num.intValue())) == null || findTopic.topicStartMessage == null) {
+            } else if (l == null || l.longValue() == 0 || this.currentChat == null || (findTopic = getMessagesController().getTopicsController().findTopic(this.currentChat.id, l.longValue())) == null || findTopic.topicStartMessage == null) {
             } else {
                 MessageObject messageObject4 = new MessageObject(this.currentAccount, findTopic.topicStartMessage, (AbstractMap<Long, TLRPC$User>) getMessagesController().getUsers(), false, false);
                 this.replyingMessageObject = messageObject4;
@@ -17444,7 +17450,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$processSelectedOption$260(TLRPC$TL_messages_sendScheduledMessages tLRPC$TL_messages_sendScheduledMessages) {
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, tLRPC$TL_messages_sendScheduledMessages.id, Long.valueOf(-this.dialog_id), Boolean.TRUE, Long.valueOf(this.dialog_id));
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+        int i = NotificationCenter.messagesDeleted;
+        Object[] objArr = new Object[4];
+        objArr[0] = tLRPC$TL_messages_sendScheduledMessages.id;
+        long clientUserId = getUserConfig().getClientUserId();
+        long j = this.dialog_id;
+        objArr[1] = Long.valueOf(clientUserId == j ? 0L : -j);
+        Boolean bool = Boolean.TRUE;
+        objArr[2] = bool;
+        objArr[3] = bool;
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, objArr);
     }
 
     public void lambda$processSelectedOption$261(TLRPC$TL_error tLRPC$TL_error) {

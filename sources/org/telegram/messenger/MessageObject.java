@@ -387,6 +387,7 @@ public class MessageObject {
     public boolean resendAsIs;
     public boolean revealingMediaSpoilers;
     public boolean scheduled;
+    public boolean scheduledSent;
     private CharSequence secretOnceSpan;
     private CharSequence secretPlaySpan;
     public SendAnimationData sendAnimationData;

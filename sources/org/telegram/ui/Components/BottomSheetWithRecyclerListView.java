@@ -58,18 +58,21 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         this(baseFragment, z, z2, false, baseFragment == null ? null : baseFragment.getResourceProvider());
     }
 
-    public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider) {
-        super(baseFragment.getParentActivity(), z, resourcesProvider);
+    public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider) {
+        this(baseFragment.getParentActivity(), baseFragment, z, z2, z3, resourcesProvider);
+    }
+
+    public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider) {
+        super(context, z, resourcesProvider);
         final FrameLayout frameLayout;
         this.topPadding = 0.4f;
         this.showShadow = true;
         this.shadowAlpha = 1.0f;
         this.baseFragment = baseFragment;
         this.hasFixedSize = z2;
-        Context parentActivity = baseFragment.getParentActivity();
-        this.headerShadowDrawable = ContextCompat.getDrawable(parentActivity, R.drawable.header_shadow).mutate();
+        this.headerShadowDrawable = ContextCompat.getDrawable(context, R.drawable.header_shadow).mutate();
         if (z3) {
-            NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(parentActivity) {
+            NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
@@ -110,7 +113,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             this.nestedSizeNotifierLayout = nestedSizeNotifierLayout;
             frameLayout = nestedSizeNotifierLayout;
         } else {
-            frameLayout = new FrameLayout(parentActivity) {
+            frameLayout = new FrameLayout(context) {
                 @Override
                 protected void onMeasure(int i, int i2) {
                     BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
@@ -149,9 +152,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
             };
         }
-        RecyclerListView recyclerListView = new RecyclerListView(parentActivity, resourcesProvider);
+        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider);
         this.recyclerListView = recyclerListView;
-        recyclerListView.setLayoutManager(new LinearLayoutManager(parentActivity));
+        recyclerListView.setLayoutManager(new LinearLayoutManager(context));
         NestedSizeNotifierLayout nestedSizeNotifierLayout2 = this.nestedSizeNotifierLayout;
         if (nestedSizeNotifierLayout2 != null) {
             nestedSizeNotifierLayout2.setBottomSheetContainerView(getContainer());
@@ -163,9 +166,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             setCustomView(frameLayout);
             frameLayout.addView(this.recyclerListView, LayoutHelper.createFrame(-1, -2.0f));
         } else {
-            resetAdapter(parentActivity);
+            resetAdapter(context);
             this.containerView = frameLayout;
-            ActionBar actionBar = new ActionBar(parentActivity) {
+            ActionBar actionBar = new ActionBar(context) {
                 @Override
                 public void setAlpha(float f) {
                     if (getAlpha() != f) {

@@ -11802,9 +11802,9 @@ public final class R {
     }
 
     public static final class xml {
-        public static final int actions = 0x7f120000;
-        public static final int auth = 0x7f120001;
-        public static final int auth_menu = 0x7f120002;
+        public static final int auth = 0x7f120000;
+        public static final int auth_menu = 0x7f120001;
+        public static final int automotive_app_desc = 0x7f120002;
         public static final int chats_widget_info = 0x7f120003;
         public static final int contacts = 0x7f120004;
         public static final int contacts_widget_info = 0x7f120005;

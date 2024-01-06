@@ -7277,7 +7277,7 @@ public class MediaDataController extends BaseController {
         return longSparseArray.get(j2);
     }
 
-    public Pair<Integer, TLRPC$DraftMessage> getOneThreadDraft(long j) {
+    public Pair<Long, TLRPC$DraftMessage> getOneThreadDraft(long j) {
         LongSparseArray<TLRPC$DraftMessage> longSparseArray = this.drafts.get(j);
         if (longSparseArray == null || longSparseArray.size() <= 0) {
             return null;

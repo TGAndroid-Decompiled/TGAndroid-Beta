@@ -1062,7 +1062,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         dismiss();
         BaseFragment baseFragment = this.fragment;
         if (baseFragment != null) {
-            MediaDataController.getInstance(baseFragment.getCurrentAccount()).removeMultipleStickerSets(this.fragment.getFragmentView().getContext(), this.fragment, arrayList);
+            MediaDataController.getInstance(baseFragment.getCurrentAccount()).removeMultipleStickerSets(this.fragment.getContext(), this.fragment, arrayList);
         } else {
             int i = 0;
             while (i < arrayList.size()) {
