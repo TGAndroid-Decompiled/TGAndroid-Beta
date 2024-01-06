@@ -274,6 +274,7 @@ public class ThanosEffect extends TextureView {
         private int gridSizeHandle;
         private int height;
         private final Runnable invalidate;
+        private boolean killed;
         private int longevityHandle;
         private int matrixHandle;
         private int offsetHandle;
@@ -396,9 +397,16 @@ public class ThanosEffect extends TextureView {
         }
 
         public void kill() {
-            Handler handler = getHandler();
-            if (handler != null) {
-                handler.sendMessage(handler.obtainMessage(2));
+            if (this.killed) {
+                return;
+            }
+            try {
+                Handler handler = getHandler();
+                if (handler != null) {
+                    handler.sendMessage(handler.obtainMessage(2));
+                }
+                this.killed = true;
+            } catch (Exception unused) {
             }
         }
 

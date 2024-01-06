@@ -950,7 +950,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.rectF.set(f - AndroidUtilities.dpf2(18.0f), lerp, f + AndroidUtilities.dpf2(18.0f), ChatActivityEnterView.this.recordCircle.lockSize + lerp);
             this.rectF.offset(0.0f, getMeasuredHeight() - ChatActivityEnterView.this.recordCircle.getMeasuredHeight());
             ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
-            chatActivityEnterView2.onceVisible = chatActivityEnterView2.delegate != null && ChatActivityEnterView.this.delegate.onceVoiceAvailable();
+            chatActivityEnterView2.onceVisible = (chatActivityEnterView2.delegate == null || !ChatActivityEnterView.this.delegate.onceVoiceAvailable() || ChatActivityEnterView.this.isInVideoMode) ? false : true;
             if (ChatActivityEnterView.this.onceVisible) {
                 float dpf2 = AndroidUtilities.dpf2(AndroidUtilities.lerp(4, 12, chatActivityEnterView.recordCircle.moveProgress));
                 RectF rectF = this.rectF;
