@@ -3959,7 +3959,45 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r39) {
+    public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z) {
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 24) {
+            boolean z2 = true;
+            StaticLayout.Builder alignment = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            if (z) {
+                alignment.setIncludePad(false);
+                if (i2 >= 28) {
+                    alignment.setUseLineSpacingFromFallbacks(false);
+                }
+            }
+            StaticLayout build = alignment.build();
+            int i3 = 0;
+            while (true) {
+                if (i3 >= build.getLineCount()) {
+                    z2 = false;
+                    break;
+                } else if (build.getLineRight(i3) > i) {
+                    break;
+                } else {
+                    i3++;
+                }
+            }
+            if (z2) {
+                StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                if (z) {
+                    alignment2.setIncludePad(false);
+                    if (Build.VERSION.SDK_INT >= 28) {
+                        alignment2.setUseLineSpacingFromFallbacks(false);
+                    }
+                }
+                return alignment2.build();
+            }
+            return build;
+        }
+        return new StaticLayout(charSequence, textPaint, i, Layout.Alignment.ALIGN_NORMAL, f, f2, false);
+    }
+
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
@@ -3979,7 +4017,7 @@ public class MessageObject {
         public int textWidth;
         public float textXOffset;
 
-        public TextLayoutBlocks(org.telegram.messenger.MessageObject r39, java.lang.CharSequence r40, android.text.TextPaint r41, int r42) {
+        public TextLayoutBlocks(org.telegram.messenger.MessageObject r33, java.lang.CharSequence r34, android.text.TextPaint r35, int r36) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.TextLayoutBlocks.<init>(org.telegram.messenger.MessageObject, java.lang.CharSequence, android.text.TextPaint, int):void");
         }
     }
@@ -4501,24 +4539,20 @@ public class MessageObject {
 
     public static long getSavedDialogId(long j, TLRPC$Message tLRPC$Message) {
         TLRPC$Peer tLRPC$Peer;
-        TLRPC$Peer tLRPC$Peer2;
-        TLRPC$Peer tLRPC$Peer3 = tLRPC$Message.saved_peer_id;
-        if (tLRPC$Peer3 != null) {
-            long j2 = tLRPC$Peer3.chat_id;
+        TLRPC$Peer tLRPC$Peer2 = tLRPC$Message.saved_peer_id;
+        if (tLRPC$Peer2 != null) {
+            long j2 = tLRPC$Peer2.chat_id;
             if (j2 != 0) {
                 return -j2;
             }
-            long j3 = tLRPC$Peer3.channel_id;
-            return j3 != 0 ? -j3 : tLRPC$Peer3.user_id;
+            long j3 = tLRPC$Peer2.channel_id;
+            return j3 != 0 ? -j3 : tLRPC$Peer2.user_id;
         } else if (tLRPC$Message.from_id.user_id == j) {
             TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
-            if (tLRPC$MessageFwdHeader == null || (tLRPC$Peer2 = tLRPC$MessageFwdHeader.saved_from_peer) == null) {
-                if (tLRPC$MessageFwdHeader == null || (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) == null) {
-                    return tLRPC$MessageFwdHeader != null ? UserObject.ANONYMOUS : j;
-                }
-                return DialogObject.getPeerDialogId(tLRPC$Peer);
+            if (tLRPC$MessageFwdHeader == null || (tLRPC$Peer = tLRPC$MessageFwdHeader.saved_from_peer) == null) {
+                return ((tLRPC$MessageFwdHeader == null || tLRPC$MessageFwdHeader.from_id == null) && tLRPC$MessageFwdHeader != null) ? UserObject.ANONYMOUS : j;
             }
-            return DialogObject.getPeerDialogId(tLRPC$Peer2);
+            return DialogObject.getPeerDialogId(tLRPC$Peer);
         } else {
             return 0L;
         }

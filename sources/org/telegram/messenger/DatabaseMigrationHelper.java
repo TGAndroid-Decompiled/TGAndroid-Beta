@@ -1306,6 +1306,11 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_dialogs ON saved_dialogs(folder_id);").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_dialogs ON saved_dialogs(flags);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 137").stepThis().dispose();
+            i7 = 137;
+        }
+        if (i7 == 137) {
+            sQLiteDatabase.executeFast("ALTER TABLE unread_push_messages ADD COLUMN is_reaction INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 138").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1351,7 +1356,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 137) {
+        if (intValue != 138) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

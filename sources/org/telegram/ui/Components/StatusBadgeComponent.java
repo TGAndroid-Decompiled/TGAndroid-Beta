@@ -15,7 +15,11 @@ public class StatusBadgeComponent {
     private Drawable verifiedDrawable;
 
     public StatusBadgeComponent(View view) {
-        this.statusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(18.0f));
+        this(view, 18);
+    }
+
+    public StatusBadgeComponent(View view, int i) {
+        this.statusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(i));
     }
 
     public Drawable updateDrawable(TLObject tLObject, int i, boolean z) {
@@ -40,7 +44,7 @@ public class StatusBadgeComponent {
             this.statusDrawable.setColor(null);
         } else if (tLRPC$Chat != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status) != 0) {
             this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status), z);
-            this.statusDrawable.setColor(null);
+            this.statusDrawable.setColor(Integer.valueOf(i));
         } else if (tLRPC$User != null && tLRPC$User.verified) {
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.statusDrawable;
             Drawable drawable2 = this.verifiedDrawable;
@@ -52,7 +56,7 @@ public class StatusBadgeComponent {
             this.statusDrawable.setColor(null);
         } else if (tLRPC$User != null && DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status) != 0) {
             this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status), z);
-            this.statusDrawable.setColor(null);
+            this.statusDrawable.setColor(Integer.valueOf(i));
         } else if (tLRPC$User != null && tLRPC$User.premium) {
             this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z);
             this.statusDrawable.setColor(Integer.valueOf(i));

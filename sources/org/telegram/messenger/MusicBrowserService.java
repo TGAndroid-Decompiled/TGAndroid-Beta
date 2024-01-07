@@ -73,6 +73,16 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         super.onCreate();
         ApplicationLoader.postInitApplication();
         this.lastSelectedDialog = AndroidUtilities.getPrefIntOrLong(MessagesController.getNotificationsSettings(this.currentAccount), "auto_lastSelectedDialog", 0L);
+        updatePlaybackState(null);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidStart);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidReset);
+    }
+
+    public void createMediaSession() {
+        if (this.mediaSession != null) {
+            return;
+        }
         MediaSession mediaSession = new MediaSession(this, "MusicService");
         this.mediaSession = mediaSession;
         setSessionToken(mediaSession.getSessionToken());
@@ -85,10 +95,6 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         bundle.putBoolean(SLOT_RESERVATION_SKIP_TO_PREV, true);
         bundle.putBoolean(SLOT_RESERVATION_SKIP_TO_NEXT, true);
         this.mediaSession.setExtras(bundle);
-        updatePlaybackState(null);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidReset);
     }
 
     @Override
@@ -96,7 +102,10 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         super.onDestroy();
         handleStopRequest(null);
         this.delayedStopHandler.removeCallbacksAndMessages(null);
-        this.mediaSession.release();
+        MediaSession mediaSession = this.mediaSession;
+        if (mediaSession != null) {
+            mediaSession.release();
+        }
     }
 
     @Override
@@ -219,6 +228,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             ArrayList<MessageObject> arrayList = this.musicObjects.get(j);
             ArrayList<MediaSession.QueueItem> arrayList2 = this.musicQueues.get(this.lastSelectedDialog);
             if (arrayList != null && !arrayList.isEmpty()) {
+                createMediaSession();
                 this.mediaSession.setQueue(arrayList2);
                 long j2 = this.lastSelectedDialog;
                 if (j2 > 0) {
@@ -284,7 +294,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         }
     }
 
-    private final class MediaSessionCallback extends MediaSession.Callback {
+    public final class MediaSessionCallback extends MediaSession.Callback {
         private MediaSessionCallback() {
         }
 
@@ -334,6 +344,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 MusicBrowserService.this.lastSelectedDialog = parseLong;
                 MessagesController.getNotificationsSettings(MusicBrowserService.this.currentAccount).edit().putLong("auto_lastSelectedDialog", parseLong).commit();
                 MediaController.getInstance().setPlaylist(arrayList, arrayList.get(parseInt), 0L, false, null);
+                MusicBrowserService.this.createMediaSession();
                 MusicBrowserService.this.mediaSession.setQueue(arrayList2);
                 if (parseLong > 0) {
                     TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(parseLong);
@@ -427,7 +438,10 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         } else {
             actions.setActiveQueueItemId(0L);
         }
-        this.mediaSession.setPlaybackState(actions.build());
+        MediaSession mediaSession = this.mediaSession;
+        if (mediaSession != null) {
+            mediaSession.setPlaybackState(actions.build());
+        }
     }
 
     private long getAvailableActions() {
@@ -459,7 +473,9 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             }
             this.serviceStarted = true;
         }
-        if (!this.mediaSession.isActive()) {
+        MediaSession mediaSession = this.mediaSession;
+        if (mediaSession == null || !mediaSession.isActive()) {
+            createMediaSession();
             this.mediaSession.setActive(true);
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();

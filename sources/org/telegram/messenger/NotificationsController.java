@@ -525,9 +525,11 @@ public class NotificationsController extends BaseController {
         for (int i = 0; i < this.pushMessages.size(); i++) {
             MessageObject messageObject = this.pushMessages.get(i);
             long dialogId = messageObject.getDialogId();
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if ((!tLRPC$Message.mentioned || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionPinMessage)) && !DialogObject.isEncryptedDialog(dialogId) && (messageObject.messageOwner.peer_id.channel_id == 0 || messageObject.isSupergroup())) {
-                return true;
+            if (!messageObject.isReactionPush) {
+                TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+                if ((!tLRPC$Message.mentioned || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionPinMessage)) && !DialogObject.isEncryptedDialog(dialogId) && (messageObject.messageOwner.peer_id.channel_id == 0 || messageObject.isSupergroup())) {
+                    return true;
+                }
             }
         }
         return false;

@@ -2051,7 +2051,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             return true;
         }
         DialogCellDelegate dialogCellDelegate = this.delegate;
-        if ((dialogCellDelegate == null || dialogCellDelegate.canClickButtonInside()) && this.lastTopicMessageUnread && (canvasButton = this.canvasButton) != null && this.buttonLayout != null && canvasButton.checkTouchEvent(motionEvent)) {
+        if ((dialogCellDelegate == null || dialogCellDelegate.canClickButtonInside()) && this.lastTopicMessageUnread && (canvasButton = this.canvasButton) != null && this.buttonLayout != null && this.dialogsType == 0 && canvasButton.checkTouchEvent(motionEvent)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);
