@@ -36,6 +36,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ThanosEffect;
 public class ThanosEffect extends TextureView {
     private static Boolean nothanos;
+    public boolean destroyed;
     private DrawingThread drawThread;
     private final Choreographer.FrameCallback frameCallback;
     private final ArrayList<ToSet> toSet;
@@ -178,6 +179,7 @@ public class ThanosEffect extends TextureView {
     }
 
     public void destroy() {
+        this.destroyed = true;
         Runnable runnable = this.whenDone;
         if (runnable != null) {
             this.whenDone = null;
@@ -186,6 +188,7 @@ public class ThanosEffect extends TextureView {
     }
 
     public void kill() {
+        this.destroyed = true;
         Iterator<ToSet> it = this.toSet.iterator();
         while (it.hasNext()) {
             Runnable runnable = it.next().doneCallback;
@@ -260,7 +263,7 @@ public class ThanosEffect extends TextureView {
     }
 
     public static class DrawingThread extends DispatchQueue {
-        private boolean alive;
+        private volatile boolean alive;
         private int deltaTimeHandle;
         private int densityHandle;
         private Runnable destroy;
@@ -375,16 +378,18 @@ public class ThanosEffect extends TextureView {
 
         public void requestDraw() {
             Handler handler = getHandler();
-            if (handler != null) {
-                handler.sendMessage(handler.obtainMessage(0));
+            if (handler == null || !this.alive) {
+                return;
             }
+            handler.sendMessage(handler.obtainMessage(0));
         }
 
         public void resize(int i, int i2) {
             Handler handler = getHandler();
-            if (handler != null) {
-                handler.sendMessage(handler.obtainMessage(1, i, i2));
+            if (handler == null || !this.alive) {
+                return;
             }
+            handler.sendMessage(handler.obtainMessage(1, i, i2));
         }
 
         private void resizeInternal(int i, int i2) {

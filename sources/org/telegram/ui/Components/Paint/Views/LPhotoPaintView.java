@@ -2893,23 +2893,26 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             });
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 48));
         }
-        TextView textView4 = new TextView(getContext());
-        textView4.setTextColor(getThemedColor(i));
-        textView4.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-        textView4.setGravity(16);
-        textView4.setEllipsize(TextUtils.TruncateAt.END);
-        textView4.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        textView4.setTextSize(1, 14.0f);
-        textView4.setTag(2);
-        textView4.setText(LocaleController.getString("PaintDuplicate", R.string.PaintDuplicate));
-        textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$showMenuForEntity$39(view);
-            }
-        });
-        linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 48));
-        if (entityView instanceof PhotoView) {
+        boolean z = entityView instanceof PhotoView;
+        if (!z) {
+            TextView textView4 = new TextView(getContext());
+            textView4.setTextColor(getThemedColor(i));
+            textView4.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+            textView4.setGravity(16);
+            textView4.setEllipsize(TextUtils.TruncateAt.END);
+            textView4.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
+            textView4.setTextSize(1, 14.0f);
+            textView4.setTag(2);
+            textView4.setText(LocaleController.getString("PaintDuplicate", R.string.PaintDuplicate));
+            textView4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    LPhotoPaintView.this.lambda$showMenuForEntity$39(view);
+                }
+            });
+            linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 48));
+        }
+        if (z) {
             final PhotoView photoView = (PhotoView) entityView;
             if (photoView.hasSegmentedImage()) {
                 TextView textView5 = new TextView(getContext());

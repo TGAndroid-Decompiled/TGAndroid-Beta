@@ -24270,7 +24270,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public boolean supportsThanosEffect() {
-        return ThanosEffect.supports() && LiteMode.isEnabled(65536);
+        ThanosEffect thanosEffect = this.chatListThanosEffect;
+        return (thanosEffect == null || !thanosEffect.destroyed) && ThanosEffect.supports() && LiteMode.isEnabled(65536);
     }
 
     public ThanosEffect getChatThanosEffect() {
