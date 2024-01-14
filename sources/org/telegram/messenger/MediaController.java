@@ -1793,16 +1793,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             boolean z8 = this.proximityTouched;
             if (z8 && z7) {
-                if (z2 && this.recordStartRunnable == null && this.recordingAudio == null) {
+                if (z2 && this.recordStartRunnable == null) {
                     if (!this.raiseToEarRecord) {
                         if (BuildVars.LOGS_ENABLED) {
                             FileLog.d("start record");
                         }
                         this.useFrontSpeaker = true;
-                        if (!this.raiseChat.playFirstUnreadVoiceMessage()) {
+                        if (this.recordingAudio != null || !this.raiseChat.playFirstUnreadVoiceMessage()) {
                             this.raiseToEarRecord = true;
                             this.useFrontSpeaker = false;
-                            startRecording(this.raiseChat.getCurrentAccount(), this.raiseChat.getDialogId(), null, this.raiseChat.getThreadMessage(), null, this.raiseChat.getClassGuid(), false);
+                            raiseToSpeakUpdated(true);
                         }
                         if (this.useFrontSpeaker) {
                             setUseFrontSpeaker(true);
@@ -1832,7 +1832,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d("stop record");
                     }
-                    stopRecording(2, false, 0, false);
+                    raiseToSpeakUpdated(false);
                     this.raiseToEarRecord = false;
                     this.ignoreOnPause = false;
                 } else if (this.useFrontSpeaker) {
@@ -1852,6 +1852,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.raisedToTopSign = 0;
             this.countLess = 0;
             this.timeSinceRaise = 0L;
+        }
+    }
+
+    private void raiseToSpeakUpdated(boolean z) {
+        if (this.recordingAudio != null) {
+            toggleRecordingPause();
+        } else if (z) {
+            startRecording(this.raiseChat.getCurrentAccount(), this.raiseChat.getDialogId(), null, this.raiseChat.getThreadMessage(), null, this.raiseChat.getClassGuid(), false);
+        } else {
+            stopRecording(2, false, 0, false);
         }
     }
 
@@ -3745,6 +3755,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordingAudio = null;
         this.recordingAudioFile = null;
         this.manualRecording = false;
+        this.raiseToEarRecord = false;
+        this.ignoreOnPause = false;
     }
 
     public void lambda$stopRecordingInternal$34(final File file, final TLRPC$TL_document tLRPC$TL_document, final int i, final boolean z, final int i2, final boolean z2) {
@@ -3833,6 +3845,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         AudioRecord audioRecord = this.audioRecorder;
         if (audioRecord == null) {
+            this.recordingAudio = null;
+            this.manualRecording = false;
+            this.raiseToEarRecord = false;
+            this.ignoreOnPause = false;
             return;
         }
         try {
