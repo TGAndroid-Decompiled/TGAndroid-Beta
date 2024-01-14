@@ -764,7 +764,7 @@ public class PipVideoOverlay {
                 this.path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
             }
         };
-        ViewGroup viewGroup = new ViewGroup(context) {
+        PipVideoViewGroup pipVideoViewGroup = new PipVideoViewGroup(context) {
             @Override
             protected void onLayout(boolean z3, int i5, int i6, int i7, int i8) {
                 PipVideoOverlay.this.contentFrameLayout.layout(0, 0, PipVideoOverlay.this.pipWidth, PipVideoOverlay.this.pipHeight);
@@ -784,8 +784,8 @@ public class PipVideoOverlay {
                 canvas.restore();
             }
         };
-        this.contentView = viewGroup;
-        viewGroup.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
+        this.contentView = pipVideoViewGroup;
+        pipVideoViewGroup.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
         if (i4 >= 21) {
             this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
@@ -1317,6 +1317,12 @@ public class PipVideoOverlay {
 
         public float getPipY() {
             return this.mPrefs.getFloat("y", -1.0f);
+        }
+    }
+
+    public static class PipVideoViewGroup extends ViewGroup {
+        public PipVideoViewGroup(Context context) {
+            super(context);
         }
     }
 }

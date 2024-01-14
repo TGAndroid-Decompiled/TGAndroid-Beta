@@ -2229,7 +2229,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             loadFromStart(mediaPage.selectedType);
                         }
                         if (this.mediaPages[0].listView == recyclerListView) {
-                            if ((this.mediaPages[0].selectedType == 0 || this.mediaPages[0].selectedType == 5) && findFirstVisibleItemPosition != -1 && (findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition)) != null && findViewHolderForAdapterPosition.getItemViewType() == 0) {
+                            if ((this.mediaPages[0].selectedType != 0 && this.mediaPages[0].selectedType != 5) || findFirstVisibleItemPosition == -1 || (findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition)) == null) {
+                                return;
+                            }
+                            if (findViewHolderForAdapterPosition.getItemViewType() == 0 || findViewHolderForAdapterPosition.getItemViewType() == 12) {
                                 View view = findViewHolderForAdapterPosition.itemView;
                                 if (view instanceof SharedPhotoVideoCell) {
                                     MessageObject messageObject = ((SharedPhotoVideoCell) view).getMessageObject(0);
@@ -4408,7 +4411,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            if (i != 0) {
+            if (i != 0 && i != 19) {
                 View createEmptyStubView = SharedMediaLayout.createEmptyStubView(this.mContext, 0, SharedMediaLayout.this.dialog_id, SharedMediaLayout.this.resourcesProvider);
                 createEmptyStubView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
                 return new RecyclerListView.Holder(createEmptyStubView);
@@ -4900,7 +4903,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() != this.searchResult.size() + this.globalSearch.size();
+            return this.searchResult.size() + this.globalSearch.size() != 0;
         }
 
         @Override
@@ -6206,6 +6209,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             return 22;
         }
 
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
         public GroupUsersSearchAdapter(Context context) {
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
@@ -6365,11 +6373,6 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 }
                 notifyDataSetChanged();
             }
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() != 1;
         }
 
         @Override

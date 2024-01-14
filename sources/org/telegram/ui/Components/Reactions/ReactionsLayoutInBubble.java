@@ -562,8 +562,7 @@ public class ReactionsLayoutInBubble {
         }
 
         protected boolean drawCounter() {
-            int i = this.count;
-            return ((i == 0 || i == 1) && this.counterDrawable.countChangeProgress == 1.0f) ? false : true;
+            return (this.count == 0 && this.counterDrawable.countChangeProgress == 1.0f) ? false : true;
         }
 
         public void draw(Canvas canvas, float f, float f2, float f3, float f4, boolean z) {

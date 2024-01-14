@@ -175,6 +175,7 @@ import org.telegram.ui.Components.HideViewAfterAnimation;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.PickerBottomLayout;
+import org.telegram.ui.Components.PipRoundVideoView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -4698,21 +4699,23 @@ public class AndroidUtilities {
             int[] iArr = new int[2];
             for (int i3 = 0; i3 < allGlobalViews.size(); i3++) {
                 View view = allGlobalViews.get(i3);
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                if (layoutParams instanceof WindowManager.LayoutParams) {
-                    WindowManager.LayoutParams layoutParams2 = (WindowManager.LayoutParams) layoutParams;
-                    if ((layoutParams2.flags & 2) != 0) {
-                        canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (layoutParams2.dimAmount * 255.0f)));
+                if (!(view instanceof PipRoundVideoView.PipFrameLayout) && !(view instanceof PipRoundVideoView.PipFrameLayout)) {
+                    ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                    if (layoutParams instanceof WindowManager.LayoutParams) {
+                        WindowManager.LayoutParams layoutParams2 = (WindowManager.LayoutParams) layoutParams;
+                        if ((layoutParams2.flags & 2) != 0) {
+                            canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (layoutParams2.dimAmount * 255.0f)));
+                        }
                     }
+                    canvas.save();
+                    view.getLocationOnScreen(iArr);
+                    canvas.translate(iArr[0] / f, iArr[1] / f);
+                    try {
+                        view.draw(canvas);
+                    } catch (Exception unused) {
+                    }
+                    canvas.restore();
                 }
-                canvas.save();
-                view.getLocationOnScreen(iArr);
-                canvas.translate(iArr[0] / f, iArr[1] / f);
-                try {
-                    view.draw(canvas);
-                } catch (Exception unused) {
-                }
-                canvas.restore();
             }
             Utilities.stackBlurBitmap(createBitmap, Math.max((int) f, Math.max(i, i2) / 180));
             callback.run(createBitmap);
