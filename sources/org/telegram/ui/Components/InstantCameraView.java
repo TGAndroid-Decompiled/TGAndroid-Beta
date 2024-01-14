@@ -2468,14 +2468,24 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     }
                 }
                 FileLog.d("InstantCamera handleStopRecording finish muxer");
-                if (this.writingToDifferentFile && i != 2 && !this.fileToWrite.renameTo(this.videoFile)) {
-                    FileLog.e("InstantCamera unable to rename file, try move file");
-                    try {
-                        AndroidUtilities.copyFile(this.fileToWrite, this.videoFile);
-                        this.fileToWrite.delete();
-                    } catch (IOException e6) {
-                        FileLog.e(e6);
-                        FileLog.e("InstantCamera unable to move file");
+                if (this.writingToDifferentFile) {
+                    if (this.videoFile.exists()) {
+                        try {
+                            this.videoFile.delete();
+                        } catch (Exception e6) {
+                            FileLog.e("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + this.videoFile);
+                            FileLog.e(e6);
+                        }
+                    }
+                    if (!this.fileToWrite.renameTo(this.videoFile)) {
+                        FileLog.e("InstantCamera unable to rename file, try move file");
+                        try {
+                            AndroidUtilities.copyFile(this.fileToWrite, this.videoFile);
+                            this.fileToWrite.delete();
+                        } catch (IOException e7) {
+                            FileLog.e(e7);
+                            FileLog.e("InstantCamera unable to move file");
+                        }
                     }
                 }
             }

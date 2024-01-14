@@ -261,7 +261,7 @@ public class VideoTimelineView extends View {
     }
 
     public void setVideoPath(String str) {
-        destroy();
+        destroy(false);
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         this.mediaMetadataRetriever = mediaMetadataRetriever;
         this.progressLeft = 0.0f;
@@ -364,6 +364,10 @@ public class VideoTimelineView extends View {
     }
 
     public void destroy() {
+        destroy(true);
+    }
+
+    public void destroy(boolean z) {
         synchronized (sync) {
             try {
                 MediaMetadataRetriever mediaMetadataRetriever = this.mediaMetadataRetriever;
@@ -373,6 +377,26 @@ public class VideoTimelineView extends View {
                 }
             } catch (Exception e) {
                 FileLog.e(e);
+            }
+        }
+        if (z) {
+            int i = 0;
+            if (!this.keyframes.isEmpty()) {
+                while (i < this.keyframes.size()) {
+                    Bitmap bitmap = this.keyframes.get(i);
+                    if (bitmap != null) {
+                        bitmap.recycle();
+                    }
+                    i++;
+                }
+            } else {
+                while (i < this.frames.size()) {
+                    Bitmap bitmap2 = this.frames.get(i);
+                    if (bitmap2 != null) {
+                        bitmap2.recycle();
+                    }
+                    i++;
+                }
             }
         }
         this.keyframes.clear();
