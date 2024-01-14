@@ -289,6 +289,62 @@ public class TLRPC$Message extends TLObject {
             case -1864508399:
                 tLRPC$Message = new TLRPC$TL_message() {
                     @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1864508399);
+                        int i2 = this.out ? this.flags | 2 : this.flags & (-3);
+                        this.flags = i2;
+                        int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
+                        this.flags = i3;
+                        int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
+                        this.flags = i4;
+                        int i5 = this.silent ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i4 & (-8193);
+                        this.flags = i5;
+                        int i6 = this.post ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i5 & (-16385);
+                        this.flags = i6;
+                        abstractSerializedData2.writeInt32(i6);
+                        abstractSerializedData2.writeInt32(this.id);
+                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                            abstractSerializedData2.writeInt32((int) this.from_id.user_id);
+                        }
+                        this.peer_id.serializeToStream(abstractSerializedData2);
+                        if ((this.flags & 4) != 0) {
+                            this.fwd_from.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                            abstractSerializedData2.writeInt32((int) this.via_bot_id);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeInt32(this.reply_to.reply_to_msg_id);
+                        }
+                        abstractSerializedData2.writeInt32(this.date);
+                        abstractSerializedData2.writeString(this.message);
+                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            this.media.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.reply_markup.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 128) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.entities.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i7 = 0; i7 < size; i7++) {
+                                this.entities.get(i7).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags & 1024) != 0) {
+                            abstractSerializedData2.writeInt32(this.views);
+                        }
+                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                            abstractSerializedData2.writeInt32(this.edit_date);
+                        }
+                        if ((this.flags & 65536) != 0) {
+                            abstractSerializedData2.writeString(this.post_author);
+                        }
+                        writeAttachPath(abstractSerializedData2);
+                    }
+
+                    @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
@@ -357,62 +413,6 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 65536) != 0) {
                             this.post_author = abstractSerializedData2.readString(z2);
                         }
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(-1864508399);
-                        int i2 = this.out ? this.flags | 2 : this.flags & (-3);
-                        this.flags = i2;
-                        int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
-                        this.flags = i3;
-                        int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
-                        this.flags = i4;
-                        int i5 = this.silent ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i4 & (-8193);
-                        this.flags = i5;
-                        int i6 = this.post ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i5 & (-16385);
-                        this.flags = i6;
-                        abstractSerializedData2.writeInt32(i6);
-                        abstractSerializedData2.writeInt32(this.id);
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
-                            abstractSerializedData2.writeInt32((int) this.from_id.user_id);
-                        }
-                        this.peer_id.serializeToStream(abstractSerializedData2);
-                        if ((this.flags & 4) != 0) {
-                            this.fwd_from.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
-                            abstractSerializedData2.writeInt32((int) this.via_bot_id);
-                        }
-                        if ((this.flags & 8) != 0) {
-                            abstractSerializedData2.writeInt32(this.reply_to.reply_to_msg_id);
-                        }
-                        abstractSerializedData2.writeInt32(this.date);
-                        abstractSerializedData2.writeString(this.message);
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            this.media.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & 64) != 0) {
-                            this.reply_markup.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & 128) != 0) {
-                            abstractSerializedData2.writeInt32(481674261);
-                            int size = this.entities.size();
-                            abstractSerializedData2.writeInt32(size);
-                            for (int i7 = 0; i7 < size; i7++) {
-                                this.entities.get(i7).serializeToStream(abstractSerializedData2);
-                            }
-                        }
-                        if ((this.flags & 1024) != 0) {
-                            abstractSerializedData2.writeInt32(this.views);
-                        }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
-                            abstractSerializedData2.writeInt32(this.edit_date);
-                        }
-                        if ((this.flags & 65536) != 0) {
-                            abstractSerializedData2.writeString(this.post_author);
-                        }
-                        writeAttachPath(abstractSerializedData2);
                     }
                 };
                 break;
@@ -997,63 +997,6 @@ public class TLRPC$Message extends TLObject {
             case -1063525281:
                 tLRPC$Message = new TLRPC$TL_message() {
                     @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(-1063525281);
-                        int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
-                        this.flags = i2;
-                        int i3 = this.out ? i2 | 2 : i2 & (-3);
-                        this.flags = i3;
-                        int i4 = this.mentioned ? i3 | 16 : i3 & (-17);
-                        this.flags = i4;
-                        int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
-                        this.flags = i5;
-                        int i6 = this.silent ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i5 & (-8193);
-                        this.flags = i6;
-                        int i7 = this.post ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i6 & (-16385);
-                        this.flags = i7;
-                        int i8 = this.with_my_score ? i7 | 1073741824 : i7 & (-1073741825);
-                        this.flags = i8;
-                        abstractSerializedData2.writeInt32(i8);
-                        abstractSerializedData2.writeInt32(this.id);
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
-                            abstractSerializedData2.writeInt32((int) this.from_id.user_id);
-                        }
-                        this.peer_id.serializeToStream(abstractSerializedData2);
-                        if ((this.flags & 4) != 0) {
-                            this.fwd_from.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
-                            abstractSerializedData2.writeInt32((int) this.via_bot_id);
-                        }
-                        if ((this.flags & 8) != 0) {
-                            abstractSerializedData2.writeInt32(this.reply_to.reply_to_msg_id);
-                        }
-                        abstractSerializedData2.writeInt32(this.date);
-                        abstractSerializedData2.writeString(this.message);
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            this.media.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & 64) != 0) {
-                            this.reply_markup.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & 128) != 0) {
-                            abstractSerializedData2.writeInt32(481674261);
-                            int size = this.entities.size();
-                            abstractSerializedData2.writeInt32(size);
-                            for (int i9 = 0; i9 < size; i9++) {
-                                this.entities.get(i9).serializeToStream(abstractSerializedData2);
-                            }
-                        }
-                        if ((this.flags & 1024) != 0) {
-                            abstractSerializedData2.writeInt32(this.views);
-                        }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
-                            abstractSerializedData2.writeInt32(this.edit_date);
-                        }
-                        writeAttachPath(abstractSerializedData2);
-                    }
-
-                    @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
@@ -1124,6 +1067,63 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
                             this.edit_date = abstractSerializedData2.readInt32(z2);
                         }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1063525281);
+                        int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        int i3 = this.out ? i2 | 2 : i2 & (-3);
+                        this.flags = i3;
+                        int i4 = this.mentioned ? i3 | 16 : i3 & (-17);
+                        this.flags = i4;
+                        int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
+                        this.flags = i5;
+                        int i6 = this.silent ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i5 & (-8193);
+                        this.flags = i6;
+                        int i7 = this.post ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i6 & (-16385);
+                        this.flags = i7;
+                        int i8 = this.with_my_score ? i7 | 1073741824 : i7 & (-1073741825);
+                        this.flags = i8;
+                        abstractSerializedData2.writeInt32(i8);
+                        abstractSerializedData2.writeInt32(this.id);
+                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                            abstractSerializedData2.writeInt32((int) this.from_id.user_id);
+                        }
+                        this.peer_id.serializeToStream(abstractSerializedData2);
+                        if ((this.flags & 4) != 0) {
+                            this.fwd_from.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                            abstractSerializedData2.writeInt32((int) this.via_bot_id);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeInt32(this.reply_to.reply_to_msg_id);
+                        }
+                        abstractSerializedData2.writeInt32(this.date);
+                        abstractSerializedData2.writeString(this.message);
+                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            this.media.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.reply_markup.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 128) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.entities.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i9 = 0; i9 < size; i9++) {
+                                this.entities.get(i9).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags & 1024) != 0) {
+                            abstractSerializedData2.writeInt32(this.views);
+                        }
+                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                            abstractSerializedData2.writeInt32(this.edit_date);
+                        }
+                        writeAttachPath(abstractSerializedData2);
                     }
                 };
                 break;
@@ -3091,8 +3091,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 170;
-            this.params.put("legacy_layer", "170");
+            this.layer = 171;
+            this.params.put("legacy_layer", "171");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

@@ -1056,6 +1056,10 @@ public class ActionBar extends FrameLayout {
         }
     }
 
+    public int getBackgroundColor() {
+        return this.actionBarColor;
+    }
+
     public boolean isActionModeShowed() {
         return this.actionMode != null && this.actionModeVisible;
     }
@@ -1244,6 +1248,13 @@ public class ActionBar extends FrameLayout {
         ActionBarMenu actionBarMenu = this.menu;
         if (actionBarMenu != null) {
             actionBarMenu.setFilter(mediaFilterData);
+        }
+    }
+
+    public void clearSearchFilters() {
+        ActionBarMenu actionBarMenu = this.menu;
+        if (actionBarMenu != null) {
+            actionBarMenu.clearSearchFilters();
         }
     }
 

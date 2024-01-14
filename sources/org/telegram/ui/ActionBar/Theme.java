@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda262;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda266;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -409,6 +409,8 @@ public class Theme {
     public static final int key_actionBarActionModeDefaultIcon;
     public static final int key_actionBarActionModeDefaultSelector;
     public static final int key_actionBarActionModeDefaultTop;
+    public static final int key_actionBarActionModeReaction;
+    public static final int key_actionBarActionModeReactionDot;
     public static final int key_actionBarBrowser;
     public static final int key_actionBarDefault;
     public static final int key_actionBarDefaultArchived;
@@ -5133,7 +5135,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda262.INSTANCE, 2100L);
+                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda266.INSTANCE, 2100L);
                 }
             }
             currentTheme = themeInfo;

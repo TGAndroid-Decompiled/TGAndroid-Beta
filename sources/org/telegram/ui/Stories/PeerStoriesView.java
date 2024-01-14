@@ -2223,27 +2223,30 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        public void updateRecordInterface(int i) {
+        protected void updateRecordInterface(int i) {
             super.updateRecordInterface(i);
             checkRecording();
         }
 
         @Override
-        public void isRecordingStateChanged() {
+        protected void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }
 
         private void checkRecording() {
             FrameLayout frameLayout;
+            boolean z = PeerStoriesView.this.isRecording;
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
-            peerStoriesView.isRecording = peerStoriesView.chatActivityEnterView.isRecordingAudioVideo() || ((frameLayout = this.recordedAudioPanel) != null && frameLayout.getVisibility() == 0);
-            PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
-            if (peerStoriesView2.isActive) {
-                peerStoriesView2.delegate.setIsRecording(peerStoriesView2.isRecording);
+            peerStoriesView.isRecording = peerStoriesView.chatActivityEnterView.isRecordingAudioVideo() || PeerStoriesView.this.chatActivityEnterView.seekbarVisible() || ((frameLayout = this.recordedAudioPanel) != null && frameLayout.getVisibility() == 0);
+            if (z != PeerStoriesView.this.isRecording) {
+                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                if (peerStoriesView2.isActive) {
+                    peerStoriesView2.delegate.setIsRecording(peerStoriesView2.isRecording);
+                }
+                invalidate();
+                PeerStoriesView.this.storyContainer.invalidate();
             }
-            invalidate();
-            PeerStoriesView.this.storyContainer.invalidate();
         }
 
         @Override
@@ -2370,11 +2373,6 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        public boolean onceVoiceAvailable() {
-            return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onceVoiceAvailable(this);
-        }
-
-        @Override
         public void openScheduledMessages() {
             ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$openScheduledMessages(this);
         }
@@ -2433,14 +2431,19 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             PeerStoriesView.this.checkInstantCameraView();
             if (PeerStoriesView.this.instantCameraView != null) {
                 if (i == 0) {
-                    PeerStoriesView.this.instantCameraView.showCamera();
-                    return;
-                }
-                if (i == 1 || i == 3 || i == 4) {
+                    PeerStoriesView.this.instantCameraView.showCamera(false);
+                } else if (i == 1 || i == 3 || i == 4) {
                     PeerStoriesView.this.instantCameraView.send(i, z, i2, i3);
                 } else if (i == 2 || i == 5) {
                     PeerStoriesView.this.instantCameraView.cancel(i == 2);
                 }
+            }
+        }
+
+        @Override
+        public void toggleVideoRecordingPause() {
+            if (PeerStoriesView.this.instantCameraView != null) {
+                PeerStoriesView.this.instantCameraView.togglePause();
             }
         }
 
@@ -2471,6 +2474,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         @Override
         public TL_stories$StoryItem getReplyToStory() {
             return PeerStoriesView.this.currentStory.storyItem;
+        }
+
+        @Override
+        public boolean onceVoiceAvailable() {
+            TLRPC$User user;
+            return (PeerStoriesView.this.dialogId < 0 || (user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId))) == null || UserObject.isUserSelf(user) || user.bot) ? false : true;
         }
     }
 
@@ -2834,7 +2843,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -5353,7 +5362,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                         childAt.setScaleY(f8);
                     } else {
                         childAt.setTranslationY(dp);
-                        childAt.setAlpha(f5);
+                        ChatActivityEnterView chatActivityEnterView6 = this.chatActivityEnterView;
+                        if (chatActivityEnterView6 == null || childAt != chatActivityEnterView6.controlsView) {
+                            childAt.setAlpha(f5);
+                        }
                     }
                 }
             }
@@ -5380,9 +5392,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
             }
         }
-        ChatActivityEnterView chatActivityEnterView6 = this.chatActivityEnterView;
-        if (chatActivityEnterView6 != null) {
-            chatActivityEnterView6.setHorizontalPadding(AndroidUtilities.dp(10.0f), this.progressToKeyboard, this.allowShare);
+        ChatActivityEnterView chatActivityEnterView7 = this.chatActivityEnterView;
+        if (chatActivityEnterView7 != null) {
+            chatActivityEnterView7.setHorizontalPadding(AndroidUtilities.dp(10.0f), this.progressToKeyboard, this.allowShare);
             if (this.chatActivityEnterView.getEmojiView() != null) {
                 this.chatActivityEnterView.getEmojiView().setAlpha(this.progressToKeyboard);
             }
@@ -5513,7 +5525,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }, this.resourcesProvider);
         this.instantCameraView = instantCameraView;
         instantCameraView.drawBlur = false;
-        addView(this.instantCameraView, indexOfChild(this.chatActivityEnterView.getRecordCircle()), LayoutHelper.createFrame(-1, -1, 51));
+        addView(this.instantCameraView, Math.min(indexOfChild(this.chatActivityEnterView.getRecordCircle()), indexOfChild(this.chatActivityEnterView.controlsView)), LayoutHelper.createFrame(-1, -1, 51));
     }
 
     public void afterMessageSend() {

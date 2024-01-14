@@ -212,12 +212,12 @@ public class VoIPNotificationsLayout extends LinearLayout {
             voIPBackgroundProvider.attach(this);
             ImageView imageView = new ImageView(context);
             this.iconView = imageView;
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, 16, 10.0f, 2.0f, 10.0f, 2.0f));
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextColor(-1);
             this.textView.setTextSize(1, 14.0f);
-            addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 16, i == 0 ? 14.0f : 42.0f, 2.0f, 14.0f, 2.0f));
+            addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 16, i == 0 ? 14.0f : 36.0f, 2.0f, 14.0f, 2.0f));
         }
 
         public void setText(CharSequence charSequence) {
@@ -235,7 +235,18 @@ public class VoIPNotificationsLayout extends LinearLayout {
         protected void dispatchDraw(Canvas canvas) {
             this.bgRect.set(0.0f, 0.0f, getWidth(), getHeight());
             this.backgroundProvider.setDarkTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) getParent()).getY());
+            int alpha = this.backgroundProvider.getDarkPaint(this.ignoreShader).getAlpha();
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
+            this.backgroundProvider.getDarkPaint(this.ignoreShader).setAlpha(255);
             canvas.drawRoundRect(this.bgRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.backgroundProvider.getDarkPaint(this.ignoreShader));
+            this.backgroundProvider.getDarkPaint(this.ignoreShader).setAlpha(alpha);
+            if (this.backgroundProvider.isReveal()) {
+                int alpha2 = this.backgroundProvider.getRevealDarkPaint().getAlpha();
+                this.backgroundProvider.getRevealDarkPaint().setAlpha(255);
+                canvas.drawRoundRect(this.bgRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.backgroundProvider.getRevealDarkPaint());
+                this.backgroundProvider.getRevealDarkPaint().setAlpha(alpha2);
+            }
+            canvas.restore();
             super.dispatchDraw(canvas);
         }
     }

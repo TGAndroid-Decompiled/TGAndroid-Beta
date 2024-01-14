@@ -52,6 +52,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -65,6 +66,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 public class ActionBarMenuItem extends FrameLayout {
     private int additionalXOffset;
     private int additionalYOffset;
@@ -1084,6 +1086,7 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public void onFiltersChanged() {
+        final SearchFilterView searchFilterView;
         boolean z = !this.currentSearchFilters.isEmpty();
         ArrayList arrayList = new ArrayList(this.currentSearchFilters);
         if (Build.VERSION.SDK_INT >= 19 && this.searchContainer.getTag() != null) {
@@ -1150,8 +1153,13 @@ public class ActionBarMenuItem extends FrameLayout {
             i++;
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            final SearchFilterView searchFilterView = new SearchFilterView(getContext(), this.resourcesProvider);
-            searchFilterView.setData((FiltersView.MediaFilterData) arrayList.get(i2));
+            FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) arrayList.get(i2);
+            if (mediaFilterData.reaction != null) {
+                searchFilterView = new ReactionFilterView(getContext(), this.resourcesProvider);
+            } else {
+                searchFilterView = new SearchFilterView(getContext(), this.resourcesProvider);
+            }
+            searchFilterView.setData(mediaFilterData);
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -2120,12 +2128,88 @@ public class ActionBarMenuItem extends FrameLayout {
         return Theme.getColor(i, this.resourcesProvider);
     }
 
+    public static class ReactionFilterView extends SearchFilterView {
+        private boolean attached;
+        private ReactionsLayoutInBubble.ReactionButton reactionButton;
+
+        public ReactionFilterView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+            removeAllViews();
+            setBackground(null);
+            setWillNotDraw(false);
+        }
+
+        @Override
+        public void setData(FiltersView.MediaFilterData mediaFilterData) {
+            TLRPC$TL_reactionCount tLRPC$TL_reactionCount = new TLRPC$TL_reactionCount();
+            tLRPC$TL_reactionCount.count = 1;
+            tLRPC$TL_reactionCount.reaction = mediaFilterData.reaction.toTLReaction();
+            ReactionsLayoutInBubble.ReactionButton reactionButton = new ReactionsLayoutInBubble.ReactionButton(null, UserConfig.selectedAccount, this, tLRPC$TL_reactionCount, false, this.resourcesProvider) {
+                @Override
+                protected int getCacheType() {
+                    return 9;
+                }
+
+                @Override
+                protected void updateColors(float f) {
+                    this.lastDrawnBackgroundColor = ColorUtils.blendARGB(this.fromBackgroundColor, Theme.getColor(Theme.key_chat_inReactionButtonBackground, ReactionFilterView.this.resourcesProvider), f);
+                }
+            };
+            this.reactionButton = reactionButton;
+            reactionButton.width = AndroidUtilities.dp(44.33f);
+            this.reactionButton.height = AndroidUtilities.dp(28.0f);
+            ReactionsLayoutInBubble.ReactionButton reactionButton2 = this.reactionButton;
+            reactionButton2.choosen = true;
+            if (this.attached) {
+                reactionButton2.attach();
+            }
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            setMeasuredDimension(AndroidUtilities.dp(49.0f), AndroidUtilities.dp(32.0f));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            ReactionsLayoutInBubble.ReactionButton reactionButton = this.reactionButton;
+            if (reactionButton != null) {
+                reactionButton.draw(canvas, ((getWidth() - AndroidUtilities.dp(4.0f)) - this.reactionButton.width) / 2.0f, (getHeight() - this.reactionButton.height) / 2.0f, 1.0f, 1.0f, false);
+            }
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            if (this.attached) {
+                return;
+            }
+            ReactionsLayoutInBubble.ReactionButton reactionButton = this.reactionButton;
+            if (reactionButton != null) {
+                reactionButton.attach();
+            }
+            this.attached = true;
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            if (this.attached) {
+                ReactionsLayoutInBubble.ReactionButton reactionButton = this.reactionButton;
+                if (reactionButton != null) {
+                    reactionButton.detach();
+                }
+                this.attached = false;
+            }
+        }
+    }
+
     public static class SearchFilterView extends FrameLayout {
         BackupImageView avatarImageView;
         ImageView closeIconView;
         FiltersView.MediaFilterData data;
         Runnable removeSelectionRunnable;
-        private final Theme.ResourcesProvider resourcesProvider;
+        protected final Theme.ResourcesProvider resourcesProvider;
         ValueAnimator selectAnimator;
         private boolean selectedForDelete;
         private float selectedProgress;

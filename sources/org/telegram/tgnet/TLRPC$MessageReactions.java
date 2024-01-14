@@ -5,6 +5,7 @@ public abstract class TLRPC$MessageReactions extends TLObject {
     public boolean can_see_list;
     public int flags;
     public boolean min;
+    public boolean reactions_as_tags;
     public ArrayList<TLRPC$ReactionCount> results = new ArrayList<>();
     public ArrayList<TLRPC$MessagePeerReaction> recent_reactions = new ArrayList<>();
 

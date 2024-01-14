@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
@@ -63,6 +64,10 @@ public class RadioCell extends FrameLayout {
         RadioButton radioButton2 = this.radioButton;
         boolean z2 = LocaleController.isRTL;
         addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z2 ? 3 : 5) | 48, z2 ? i + 1 : 0, 14.0f, z2 ? 0 : i + 1, 0.0f));
+    }
+
+    public void setRadioIcon(Drawable drawable) {
+        this.radioButton.setIcon(drawable);
     }
 
     @Override

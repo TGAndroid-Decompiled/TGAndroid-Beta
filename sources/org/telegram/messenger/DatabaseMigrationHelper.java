@@ -1311,6 +1311,11 @@ public class DatabaseMigrationHelper {
         if (i7 == 137) {
             sQLiteDatabase.executeFast("ALTER TABLE unread_push_messages ADD COLUMN is_reaction INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 138").stepThis().dispose();
+            i7 = 138;
+        }
+        if (i7 == 138) {
+            sQLiteDatabase.executeFast("CREATE TABLE IF NOT EXISTS saved_reaction_tags (data BLOB);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 139").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1356,7 +1361,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 138) {
+        if (intValue != 139) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

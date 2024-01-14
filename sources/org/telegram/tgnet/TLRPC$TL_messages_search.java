@@ -1,4 +1,6 @@
 package org.telegram.tgnet;
+
+import java.util.ArrayList;
 public class TLRPC$TL_messages_search extends TLObject {
     public int add_offset;
     public TLRPC$MessagesFilter filter;
@@ -14,6 +16,7 @@ public class TLRPC$TL_messages_search extends TLObject {
     public TLRPC$InputPeer peer;
     public String q;
     public TLRPC$InputPeer saved_peer_id;
+    public ArrayList<TLRPC$Reaction> saved_reaction = new ArrayList<>();
     public int top_msg_id;
 
     @Override
@@ -23,7 +26,7 @@ public class TLRPC$TL_messages_search extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1481316055);
+        abstractSerializedData.writeInt32(703497338);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.q);
@@ -32,6 +35,14 @@ public class TLRPC$TL_messages_search extends TLObject {
         }
         if ((this.flags & 4) != 0) {
             this.saved_peer_id.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 8) != 0) {
+            abstractSerializedData.writeInt32(481674261);
+            int size = this.saved_reaction.size();
+            abstractSerializedData.writeInt32(size);
+            for (int i = 0; i < size; i++) {
+                this.saved_reaction.get(i).serializeToStream(abstractSerializedData);
+            }
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.top_msg_id);

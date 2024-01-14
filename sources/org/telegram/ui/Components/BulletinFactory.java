@@ -65,21 +65,17 @@ public final class BulletinFactory {
     public static BulletinFactory global() {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null) {
-            return null;
+            return of(Bulletin.BulletinWindow.make(ApplicationLoader.applicationContext), null);
         }
         return of(lastFragment);
     }
 
-    public static void showForError(TLRPC$TL_error tLRPC$TL_error) {
-        BulletinFactory global = global();
-        if (global == null) {
-            return;
-        }
+    public void showForError(TLRPC$TL_error tLRPC$TL_error) {
         if (BuildVars.DEBUG_VERSION) {
-            global.createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text).show();
+            createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text).show();
             return;
         }
-        global.createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError)).show();
+        createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
     public static final class FileType {

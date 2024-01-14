@@ -186,7 +186,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             this.sortByName = SharedConfig.sortContactsByName;
         }
         getContactsController().checkInviteText();
-        getContactsController().reloadContactsStatusesMaybe();
+        getContactsController().reloadContactsStatusesMaybe(false);
         MessagesController.getInstance(this.currentAccount).getStoriesController().loadHiddenStories();
         return true;
     }

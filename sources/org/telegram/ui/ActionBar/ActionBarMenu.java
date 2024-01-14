@@ -548,6 +548,20 @@ public class ActionBarMenu extends LinearLayout {
         }
     }
 
+    public void clearSearchFilters() {
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt instanceof ActionBarMenuItem) {
+                ActionBarMenuItem actionBarMenuItem = (ActionBarMenuItem) childAt;
+                if (actionBarMenuItem.isSearchField()) {
+                    actionBarMenuItem.clearSearchFilters();
+                    return;
+                }
+            }
+        }
+    }
+
     public void setOnLayoutListener(Runnable runnable) {
         this.onLayoutListener = runnable;
     }

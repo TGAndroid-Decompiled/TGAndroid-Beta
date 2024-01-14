@@ -210,6 +210,9 @@ public class AvatarsDrawable {
     }
 
     public void animateFromState(AvatarsDrawable avatarsDrawable, int i, boolean z) {
+        if (avatarsDrawable == null) {
+            return;
+        }
         ValueAnimator valueAnimator = avatarsDrawable.transitionProgressAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();

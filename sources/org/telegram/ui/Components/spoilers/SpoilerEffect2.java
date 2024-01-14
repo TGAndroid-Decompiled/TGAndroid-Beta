@@ -177,10 +177,6 @@ public class SpoilerEffect2 {
         if (num == null) {
             num = 0;
         }
-        if (i > i3 || i2 > i4) {
-            float max = Math.max(i / i3, i2 / i4);
-            canvas.scale(max, max);
-        }
         if (num.intValue() % 4 == 1) {
             canvas.rotate(180.0f, i3 / 2.0f, i4 / 2.0f);
         }
@@ -190,6 +186,14 @@ public class SpoilerEffect2 {
         if (num.intValue() % 4 == 3) {
             canvas.scale(1.0f, -1.0f, i3 / 2.0f, i4 / 2.0f);
         }
+        float f2 = i;
+        float f3 = i2;
+        canvas.translate(f2 / 2.0f, f3 / 2.0f);
+        if (i > i3 || i2 > i4) {
+            float max = Math.max(f2 / i3, f3 / i4);
+            canvas.scale(max, max);
+        }
+        canvas.translate((-i) / 2.0f, (-i2) / 2.0f);
         if (z) {
             Bitmap bitmap = this.textureView.getBitmap();
             if (bitmap != null) {
@@ -458,14 +462,6 @@ public class SpoilerEffect2 {
                     GLES31.glUniform1f(this.resetHandle, this.reset ? 1.0f : 0.0f);
                     GLES31.glUniform1f(this.radiusHandle, this.radius);
                     GLES31.glUniform1f(this.seedHandle, Utilities.fastRandom.nextInt(LiteMode.FLAG_CHAT_BLUR) / 256.0f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "noiseScale"), 6.0f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "noiseSpeed"), 0.6f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "noiseMovement"), 4.0f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "longevity"), 1.4f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "dampingMult"), 0.9999f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "maxVelocity"), 6.0f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "velocityMult"), 1.0f);
-                    GLES31.glUniform1f(GLES31.glGetUniformLocation(this.drawProgram, "forceMult"), 0.6f);
                 }
             }
         }

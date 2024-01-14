@@ -44,6 +44,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
 public class FiltersView extends RecyclerListView {
     DiffUtil.Callback diffUtilsCallback;
@@ -697,9 +698,10 @@ public class FiltersView extends RecyclerListView {
     public static class MediaFilterData {
         public TLObject chat;
         public DateData dateData;
-        public final TLRPC$MessagesFilter filter;
-        public final int filterType;
-        public final int iconResFilled;
+        public TLRPC$MessagesFilter filter;
+        public int filterType;
+        public int iconResFilled;
+        public ReactionsLayoutInBubble.VisibleReaction reaction;
         public boolean removable = true;
         private String title;
         public int titleResId;

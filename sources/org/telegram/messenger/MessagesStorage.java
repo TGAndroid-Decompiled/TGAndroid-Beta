@@ -120,7 +120,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 138;
+    public static final int LAST_DB_VERSION = 139;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -457,7 +457,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (intValue < 138) {
+                if (intValue < 139) {
                     try {
                         updateDbToLastVersion(intValue);
                     } catch (Exception e4) {
@@ -700,7 +700,8 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE story_drafts (id INTEGER PRIMARY KEY, date INTEGER, data BLOB, type INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE story_pushes (uid INTEGER, sid INTEGER, date INTEGER, localName TEXT, flags INTEGER, expire_date INTEGER, PRIMARY KEY(uid, sid));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE unconfirmed_auth (data BLOB);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 138").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE saved_reaction_tags (data BLOB);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 139").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -1071,7 +1072,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$31(long j, long j2, int i) {
-        getMessagesController().lambda$checkDeletingTask$75(j, j2, i);
+        getMessagesController().lambda$checkDeletingTask$76(j, j2, i);
     }
 
     public void saveChannelPts(final long j, final int i) {
@@ -6081,7 +6082,7 @@ public class MessagesStorage extends BaseController {
                             TLRPC$Document tLRPC$Document = TLdeserialize.document;
                             if (tLRPC$Document != null) {
                                 downloadObject.object = tLRPC$Document;
-                                downloadObject.secret = MessageObject.isVideoDocument(tLRPC$Document) && (((i2 = TLdeserialize.ttl_seconds) > 0 && i2 <= 60) || i2 == Integer.MAX_VALUE);
+                                downloadObject.secret = (MessageObject.isVideoDocument(tLRPC$Document) || MessageObject.isVoiceDocument(TLdeserialize.document) || MessageObject.isRoundVideoDocument(TLdeserialize.document)) && (((i2 = TLdeserialize.ttl_seconds) > 0 && i2 <= 60) || i2 == Integer.MAX_VALUE);
                             } else {
                                 TLRPC$Photo tLRPC$Photo = TLdeserialize.photo;
                                 if (tLRPC$Photo != null) {
@@ -6930,12 +6931,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(170);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(171);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(170);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(171);
             tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
         }
     }

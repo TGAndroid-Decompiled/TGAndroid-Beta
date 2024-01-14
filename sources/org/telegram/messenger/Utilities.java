@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import com.carrotsearch.randomizedtesting.Xoroshiro128PlusRandom;
 import java.io.File;
@@ -138,12 +139,21 @@ public class Utilities {
     }
 
     public static Bitmap stackBlurBitmapMax(Bitmap bitmap) {
+        return stackBlurBitmapMax(bitmap, false);
+    }
+
+    public static Bitmap stackBlurBitmapMax(Bitmap bitmap, boolean z) {
         int dp = AndroidUtilities.dp(20.0f);
         int dp2 = (int) ((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth());
         Bitmap createBitmap = Bitmap.createBitmap(dp, dp2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.save();
         canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+        if (z) {
+            Path path = new Path();
+            path.addCircle(bitmap.getWidth() / 2.0f, bitmap.getHeight() / 2.0f, (Math.min(bitmap.getWidth(), bitmap.getHeight()) / 2.0f) - 1.0f, Path.Direction.CW);
+            canvas.clipPath(path);
+        }
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
         stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));

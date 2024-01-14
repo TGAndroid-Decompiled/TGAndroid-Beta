@@ -28,8 +28,10 @@ import com.coremedia.iso.boxes.TrackBox;
 import com.coremedia.iso.boxes.TrackHeaderBox;
 import com.googlecode.mp4parser.DataSource;
 import com.googlecode.mp4parser.util.Matrix;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.WritableByteChannel;
@@ -38,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import org.telegram.messenger.AndroidUtilities;
 public class MP4Builder {
     private boolean splitMdat;
     private boolean wasFirstVideoFrame;
@@ -160,6 +163,51 @@ public class MP4Builder {
         }
         this.fc.close();
         this.fos.close();
+    }
+
+    public void finishMovie(File file) throws Exception {
+        if (file == null) {
+            finishMovie();
+            return;
+        }
+        this.fos.flush();
+        long position = this.fc.position();
+        if (this.allowSyncFiles) {
+            this.fos.getFD().sync();
+        }
+        AndroidUtilities.copyFile(this.currentMp4Movie.getCacheFile(), file);
+        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+        try {
+            FileChannel channel = randomAccessFile.getChannel();
+            channel.position(position);
+            if (this.mdat.getContentSize() != 0) {
+                channel.position(this.mdat.getOffset());
+                this.mdat.getBox(channel);
+                channel.position(position);
+            }
+            this.track2SampleSizes.clear();
+            Iterator<Track> it = this.currentMp4Movie.getTracks().iterator();
+            while (it.hasNext()) {
+                Track next = it.next();
+                ArrayList<Sample> samples = next.getSamples();
+                int size = samples.size();
+                long[] jArr = new long[size];
+                for (int i = 0; i < size; i++) {
+                    jArr[i] = samples.get(i).getSize();
+                }
+                this.track2SampleSizes.put(next, jArr);
+            }
+            createMovieBox(this.currentMp4Movie).getBox(channel);
+            channel.close();
+            randomAccessFile.close();
+        } catch (Throwable th) {
+            try {
+                randomAccessFile.close();
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+            }
+            throw th;
+        }
     }
 
     protected FileTypeBox createFileTypeBox(boolean z) {

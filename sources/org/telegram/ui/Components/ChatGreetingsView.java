@@ -21,6 +21,7 @@ import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Stories.recorder.HintView2;
 public class ChatGreetingsView extends LinearLayout {
     private final int currentAccount;
     private TextView descriptionView;
@@ -45,15 +46,15 @@ public class ChatGreetingsView extends LinearLayout {
         this.titleView = textView;
         textView.setTextSize(1, 14.0f);
         this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.titleView.setGravity(1);
+        this.titleView.setTextAlignment(4);
+        this.titleView.setGravity(17);
         TextView textView2 = new TextView(context);
         this.descriptionView = textView2;
-        textView2.setTextSize(1, 14.0f);
+        textView2.setTextAlignment(4);
+        this.descriptionView.setGravity(17);
+        this.descriptionView.setTextSize(1, 14.0f);
         this.descriptionView.setGravity(1);
         this.stickerToSendView = new BackupImageView(context);
-        addView(this.titleView, LayoutHelper.createLinear(-1, -2, 20.0f, 14.0f, 20.0f, 14.0f));
-        addView(this.descriptionView, LayoutHelper.createLinear(-1, -2, 20.0f, 12.0f, 20.0f, 0.0f));
-        addView(this.stickerToSendView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 1, 0, 16, 0, 16));
         updateColors();
         if (i <= 0) {
             this.titleView.setText(LocaleController.getString("NoMessages", R.string.NoMessages));
@@ -62,7 +63,12 @@ public class ChatGreetingsView extends LinearLayout {
             this.titleView.setText(LocaleController.formatString("NearbyPeopleGreetingsMessage", R.string.NearbyPeopleGreetingsMessage, tLRPC$User.first_name, LocaleController.formatDistance(i, 1)));
             this.descriptionView.setText(LocaleController.getString("NearbyPeopleGreetingsDescription", R.string.NearbyPeopleGreetingsDescription));
         }
+        TextView textView3 = this.descriptionView;
+        textView3.setMaxWidth(HintView2.cutInFancyHalf(textView3.getText(), this.descriptionView.getPaint()));
         this.stickerToSendView.setContentDescription(this.descriptionView.getText());
+        addView(this.titleView, LayoutHelper.createLinear(-2, -2, 1, 20, 14, 20, 6));
+        addView(this.descriptionView, LayoutHelper.createLinear(-2, -2, 1, 20, 6, 20, 0));
+        addView(this.stickerToSendView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 1, 0, 16, 0, 16));
         this.preloadedGreetingsSticker = tLRPC$Document;
         if (tLRPC$Document == null) {
             this.preloadedGreetingsSticker = MediaDataController.getInstance(i2).getGreetingsSticker();

@@ -151,9 +151,9 @@ public class ShareDialogCell extends FrameLayout {
             }
             this.imageView.setImage((ImageLocation) null, (String) null, this.repostStoryDrawable, (Object) null);
         } else if (DialogObject.isUserDialog(j)) {
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-            this.user = user;
-            this.avatarDrawable.setInfo(this.currentAccount, user);
+            this.user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+            invalidate();
+            this.avatarDrawable.setInfo(this.currentAccount, this.user);
             if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
                 this.nameTextView.setText(LocaleController.getString("RepliesTitle", R.string.RepliesTitle));
                 this.avatarDrawable.setAvatarType(12);

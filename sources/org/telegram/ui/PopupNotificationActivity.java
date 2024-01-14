@@ -386,6 +386,10 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
+            public void toggleVideoRecordingPause() {
+            }
+
+            @Override
             public void onMessageSend(CharSequence charSequence, boolean z, int i2) {
                 if (PopupNotificationActivity.this.currentMessageObject == null) {
                     return;

@@ -57,12 +57,14 @@ public class ThanosEffect extends TextureView {
     public static class ToSet {
         public final Bitmap bitmap;
         public final Runnable doneCallback;
+        public float durationMultiplier;
         public final Matrix matrix;
         public final Runnable startCallback;
         public final View view;
         public final ArrayList<View> views;
 
         public ToSet(View view, Runnable runnable) {
+            this.durationMultiplier = 1.0f;
             this.view = view;
             this.views = null;
             this.startCallback = null;
@@ -72,6 +74,7 @@ public class ThanosEffect extends TextureView {
         }
 
         public ToSet(ArrayList<View> arrayList, Runnable runnable) {
+            this.durationMultiplier = 1.0f;
             this.view = null;
             this.views = arrayList;
             this.startCallback = null;
@@ -81,6 +84,7 @@ public class ThanosEffect extends TextureView {
         }
 
         public ToSet(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+            this.durationMultiplier = 1.0f;
             this.view = null;
             this.views = null;
             this.startCallback = runnable;
@@ -148,7 +152,7 @@ public class ThanosEffect extends TextureView {
                 } else if (toSet.views != null) {
                     ThanosEffect.this.drawThread.animateGroup(toSet.views, toSet.doneCallback);
                 } else {
-                    ThanosEffect.this.drawThread.animate(toSet.view, toSet.doneCallback);
+                    ThanosEffect.this.drawThread.animate(toSet.view, toSet.durationMultiplier, toSet.doneCallback);
                 }
             }
             ThanosEffect.this.toSet.clear();
@@ -223,11 +227,23 @@ public class ThanosEffect extends TextureView {
     public void animate(View view, Runnable runnable) {
         DrawingThread drawingThread = this.drawThread;
         if (drawingThread != null) {
-            drawingThread.animate(view, runnable);
+            drawingThread.animate(view, 1.0f, runnable);
             Choreographer.getInstance().postFrameCallback(this.frameCallback);
             return;
         }
         this.toSet.add(new ToSet(view, runnable));
+    }
+
+    public void animate(View view, float f, Runnable runnable) {
+        DrawingThread drawingThread = this.drawThread;
+        if (drawingThread != null) {
+            drawingThread.animate(view, f, runnable);
+            Choreographer.getInstance().postFrameCallback(this.frameCallback);
+            return;
+        }
+        ToSet toSet = new ToSet(view, runnable);
+        toSet.durationMultiplier = f;
+        this.toSet.add(toSet);
     }
 
     public void cancel(View view) {
@@ -614,9 +630,9 @@ public class ThanosEffect extends TextureView {
             }
         }
 
-        public void animate(View view, Runnable runnable) {
+        public void animate(View view, float f, Runnable runnable) {
             if (this.alive) {
-                Animation animation = new Animation(view, runnable);
+                Animation animation = new Animation(view, f, runnable);
                 Handler handler = getHandler();
                 this.running = true;
                 if (handler == null) {
@@ -747,7 +763,7 @@ public class ThanosEffect extends TextureView {
                 this.top = 0.0f;
                 this.density = AndroidUtilities.density;
                 this.longevity = 1.5f;
-                this.timeScale = 1.12f;
+                this.timeScale = 1.15f;
                 this.invalidateMatrix = true;
                 this.customMatrix = false;
                 this.glMatrixValues = new float[9];
@@ -834,8 +850,8 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            public Animation(android.view.View r8, java.lang.Runnable r9) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, android.view.View, java.lang.Runnable):void");
+            public Animation(android.view.View r8, float r9, java.lang.Runnable r10) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, android.view.View, float, java.lang.Runnable):void");
             }
 
             public void lambda$new$1() {

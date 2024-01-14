@@ -335,14 +335,14 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
 
                 @Override
-                public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                     Page.this.listView.invalidate();
                 }
 
                 @Override
-                public void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                 }

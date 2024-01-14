@@ -80,6 +80,7 @@ public class SimpleTextView extends View {
     private Drawable rightDrawable;
     private Drawable rightDrawable2;
     private boolean rightDrawableHidden;
+    private boolean rightDrawableInside;
     private View.OnClickListener rightDrawableOnClickListener;
     private boolean rightDrawableOutside;
     private float rightDrawableScale;
@@ -102,6 +103,10 @@ public class SimpleTextView extends View {
     private boolean wasLayout;
     private boolean widthWrapContent;
     private Drawable wrapBackgroundDrawable;
+
+    public interface PressableDrawable {
+        void setPressed(boolean z);
+    }
 
     @Override
     public boolean hasOverlappingRendering() {
@@ -271,6 +276,9 @@ public class SimpleTextView extends View {
     }
 
     private void calcOffset(int i) {
+        int i2;
+        Drawable drawable;
+        Drawable drawable2;
         Layout layout = this.layout;
         if (layout == null) {
             return;
@@ -286,10 +294,10 @@ public class SimpleTextView extends View {
             } else {
                 this.textHeight = this.layout.getLineBottom(0);
             }
-            int i2 = this.gravity;
-            if ((i2 & 7) == 1) {
+            int i3 = this.gravity;
+            if ((i3 & 7) == 1) {
                 this.offsetX = ((i - this.textWidth) / 2) - ((int) this.layout.getLineLeft(0));
-            } else if ((i2 & 7) == 3) {
+            } else if ((i3 & 7) == 3) {
                 Layout layout4 = this.firstLineLayout;
                 if (layout4 != null) {
                     this.offsetX = -((int) layout4.getLineLeft(0));
@@ -307,27 +315,35 @@ public class SimpleTextView extends View {
                 this.offsetX = -AndroidUtilities.dp(8.0f);
             }
             this.offsetX += getPaddingLeft();
-            this.textDoesNotFit = this.textWidth > i - this.paddingRight;
+            if (this.rightDrawableInside) {
+                i2 = (this.rightDrawable == null || this.rightDrawableOutside) ? 0 : ((int) (drawable.getIntrinsicWidth() * this.rightDrawableScale)) + 0;
+                if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
+                    i2 += (int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale);
+                }
+            } else {
+                i2 = 0;
+            }
+            this.textDoesNotFit = this.textWidth + i2 > i - this.paddingRight;
             Layout layout6 = this.fullLayout;
             if (layout6 != null && this.fullLayoutAdditionalWidth > 0) {
                 this.fullLayoutLeftCharactersOffset = layout6.getPrimaryHorizontal(0) - this.firstLineLayout.getPrimaryHorizontal(0);
             }
         }
-        int i3 = this.replacingDrawableTextIndex;
-        if (i3 >= 0) {
-            this.replacingDrawableTextOffset = this.layout.getPrimaryHorizontal(i3);
+        int i4 = this.replacingDrawableTextIndex;
+        if (i4 >= 0) {
+            this.replacingDrawableTextOffset = this.layout.getPrimaryHorizontal(i4);
         } else {
             this.replacingDrawableTextOffset = 0.0f;
         }
     }
 
     public boolean createLayout(int i) {
-        Drawable drawable;
         int i2;
-        Drawable drawable2;
         int dp;
         int i3;
         int dp2;
+        Drawable drawable;
+        Drawable drawable2;
         CharSequence charSequence = this.text;
         this.replacingDrawableTextIndex = -1;
         this.rightDrawableHidden = false;
@@ -335,15 +351,19 @@ public class SimpleTextView extends View {
             try {
                 Drawable drawable3 = this.leftDrawable;
                 int intrinsicWidth = drawable3 != null ? (i - drawable3.getIntrinsicWidth()) - this.drawablePadding : i;
-                if (this.rightDrawable == null || this.rightDrawableOutside) {
+                if (this.rightDrawableInside) {
                     i2 = 0;
                 } else {
-                    i2 = (int) (drawable.getIntrinsicWidth() * this.rightDrawableScale);
-                    intrinsicWidth = (intrinsicWidth - i2) - this.drawablePadding;
-                }
-                if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
-                    i2 = (int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale);
-                    intrinsicWidth = (intrinsicWidth - i2) - this.drawablePadding;
+                    if (this.rightDrawable == null || this.rightDrawableOutside) {
+                        i2 = 0;
+                    } else {
+                        i2 = ((int) (drawable.getIntrinsicWidth() * this.rightDrawableScale)) + 0;
+                        intrinsicWidth = (intrinsicWidth - i2) - this.drawablePadding;
+                    }
+                    if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
+                        i2 += (int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale);
+                        intrinsicWidth = (intrinsicWidth - i2) - this.drawablePadding;
+                    }
                 }
                 SpannableStringBuilder spannableStringBuilder = charSequence;
                 if (this.replacedText != null) {
@@ -499,7 +519,14 @@ public class SimpleTextView extends View {
     }
 
     public int getTextWidth() {
-        return this.textWidth;
+        int i = this.textWidth;
+        if (this.rightDrawableInside) {
+            Drawable drawable = this.rightDrawable;
+            int intrinsicWidth = drawable != null ? (int) (drawable.getIntrinsicWidth() * this.rightDrawableScale) : 0;
+            Drawable drawable2 = this.rightDrawable2;
+            r2 = (drawable2 != null ? (int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale) : 0) + intrinsicWidth;
+        }
+        return i + r2;
     }
 
     public int getRightDrawableWidth() {
@@ -757,15 +784,17 @@ public class SimpleTextView extends View {
                 maxTextWidth = (maxTextWidth - drawable.getIntrinsicWidth()) - this.drawablePadding;
             }
             int i2 = 0;
-            Drawable drawable2 = this.rightDrawable;
-            if (drawable2 != null && !this.rightDrawableOutside) {
-                i2 = (int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale);
-                maxTextWidth = (maxTextWidth - i2) - this.drawablePadding;
-            }
-            Drawable drawable3 = this.rightDrawable2;
-            if (drawable3 != null && !this.rightDrawableOutside) {
-                i2 = (int) (drawable3.getIntrinsicWidth() * this.rightDrawableScale);
-                maxTextWidth = (maxTextWidth - i2) - this.drawablePadding;
+            if (!this.rightDrawableInside) {
+                Drawable drawable2 = this.rightDrawable;
+                if (drawable2 != null && !this.rightDrawableOutside) {
+                    i2 = (int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale);
+                    maxTextWidth = (maxTextWidth - i2) - this.drawablePadding;
+                }
+                Drawable drawable3 = this.rightDrawable2;
+                if (drawable3 != null && !this.rightDrawableOutside) {
+                    i2 = (int) (drawable3.getIntrinsicWidth() * this.rightDrawableScale);
+                    maxTextWidth = (maxTextWidth - i2) - this.drawablePadding;
+                }
             }
             if (this.replacedText != null && this.replacedDrawable != null) {
                 int indexOf = this.text.toString().indexOf(this.replacedText);
@@ -794,117 +823,122 @@ public class SimpleTextView extends View {
         int i2;
         int paddingTop2;
         int i3;
-        float f;
         Drawable drawable3;
         Drawable drawable4;
-        Drawable drawable5;
         int paddingTop3;
         int i4;
         int paddingTop4;
-        int i5;
-        int paddingTop5;
-        int i6;
+        float f;
+        Drawable drawable5;
         Drawable drawable6;
+        Drawable drawable7;
+        int paddingTop5;
+        int i5;
         int paddingTop6;
-        int i7;
+        int i6;
         int paddingTop7;
-        int i8;
-        int intrinsicHeight;
+        int i7;
+        Drawable drawable8;
         int paddingTop8;
+        int i8;
+        int paddingTop9;
         int i9;
+        int intrinsicHeight;
+        int paddingTop10;
+        int i10;
         super.onDraw(canvas);
         boolean z = this.scrollNonFitText && (this.textDoesNotFit || this.scrollingOffset != 0.0f);
         int saveLayerAlpha = (z || this.ellipsizeByGradient) ? canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31) : Integer.MIN_VALUE;
         this.totalWidth = this.textWidth;
         if (this.leftDrawable != null) {
-            int i10 = (int) (-this.scrollingOffset);
-            int i11 = this.gravity;
-            if ((i11 & 7) == 1) {
-                i10 += this.offsetX;
+            int i11 = (int) (-this.scrollingOffset);
+            int i12 = this.gravity;
+            if ((i12 & 7) == 1) {
+                i11 += this.offsetX;
             }
-            if ((i11 & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                paddingTop8 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
-                i9 = this.leftDrawableTopPadding;
+            if ((i12 & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                paddingTop10 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
+                i10 = this.leftDrawableTopPadding;
             } else {
-                paddingTop8 = getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2);
-                i9 = this.leftDrawableTopPadding;
+                paddingTop10 = getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2);
+                i10 = this.leftDrawableTopPadding;
             }
-            int i12 = paddingTop8 + i9;
-            Drawable drawable7 = this.leftDrawable;
-            drawable7.setBounds(i10, i12, drawable7.getIntrinsicWidth() + i10, this.leftDrawable.getIntrinsicHeight() + i12);
+            int i13 = paddingTop10 + i10;
+            Drawable drawable9 = this.leftDrawable;
+            drawable9.setBounds(i11, i13, drawable9.getIntrinsicWidth() + i11, this.leftDrawable.getIntrinsicHeight() + i13);
             this.leftDrawable.draw(canvas);
-            int i13 = this.gravity;
-            i = ((i13 & 7) == 3 || (i13 & 7) == 1) ? this.drawablePadding + this.leftDrawable.getIntrinsicWidth() + 0 : 0;
+            int i14 = this.gravity;
+            i = ((i14 & 7) == 3 || (i14 & 7) == 1) ? this.drawablePadding + this.leftDrawable.getIntrinsicWidth() + 0 : 0;
             this.totalWidth += this.drawablePadding + this.leftDrawable.getIntrinsicWidth();
         } else {
             i = 0;
         }
-        Drawable drawable8 = this.replacedDrawable;
-        if (drawable8 != null && this.replacedText != null) {
-            int i14 = (int) ((-this.scrollingOffset) + this.replacingDrawableTextOffset);
-            int i15 = this.gravity;
-            if ((i15 & 7) == 1) {
-                i14 += this.offsetX;
+        Drawable drawable10 = this.replacedDrawable;
+        if (drawable10 != null && this.replacedText != null) {
+            int i15 = (int) ((-this.scrollingOffset) + this.replacingDrawableTextOffset);
+            int i16 = this.gravity;
+            if ((i16 & 7) == 1) {
+                i15 += this.offsetX;
             }
-            if ((i15 & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((i16 & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
                 intrinsicHeight = ((getMeasuredHeight() - this.replacedDrawable.getIntrinsicHeight()) / 2) + this.leftDrawableTopPadding;
             } else {
-                intrinsicHeight = this.leftDrawableTopPadding + ((this.textHeight - drawable8.getIntrinsicHeight()) / 2);
+                intrinsicHeight = this.leftDrawableTopPadding + ((this.textHeight - drawable10.getIntrinsicHeight()) / 2);
             }
-            Drawable drawable9 = this.replacedDrawable;
-            drawable9.setBounds(i14, intrinsicHeight, drawable9.getIntrinsicWidth() + i14, this.replacedDrawable.getIntrinsicHeight() + intrinsicHeight);
+            Drawable drawable11 = this.replacedDrawable;
+            drawable11.setBounds(i15, intrinsicHeight, drawable11.getIntrinsicWidth() + i15, this.replacedDrawable.getIntrinsicHeight() + intrinsicHeight);
             this.replacedDrawable.draw(canvas);
             if (this.replacingDrawableTextIndex < 0) {
-                int i16 = this.gravity;
-                if ((i16 & 7) == 3 || (i16 & 7) == 1) {
+                int i17 = this.gravity;
+                if ((i17 & 7) == 3 || (i17 & 7) == 1) {
                     i += this.drawablePadding + this.replacedDrawable.getIntrinsicWidth();
                 }
                 this.totalWidth += this.drawablePadding + this.replacedDrawable.getIntrinsicWidth();
             }
         }
-        int i17 = i;
-        if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside) {
-            int i18 = this.textWidth + i17 + this.drawablePadding + ((int) (-this.scrollingOffset));
-            int i19 = this.gravity;
-            if ((i19 & 7) == 1 || (i19 & 7) == 5) {
-                i18 += this.offsetX;
+        int i18 = i;
+        if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && !this.rightDrawableInside) {
+            int i19 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
+            int i20 = this.gravity;
+            if ((i20 & 7) == 1 || (i20 & 7) == 5) {
+                i19 += this.offsetX;
             }
             int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * this.rightDrawableScale);
             int intrinsicHeight2 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
             if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                paddingTop7 = (getMeasuredHeight() - intrinsicHeight2) / 2;
-                i8 = this.rightDrawableTopPadding;
+                paddingTop9 = (getMeasuredHeight() - intrinsicHeight2) / 2;
+                i9 = this.rightDrawableTopPadding;
             } else {
-                paddingTop7 = getPaddingTop() + ((this.textHeight - intrinsicHeight2) / 2);
-                i8 = this.rightDrawableTopPadding;
+                paddingTop9 = getPaddingTop() + ((this.textHeight - intrinsicHeight2) / 2);
+                i9 = this.rightDrawableTopPadding;
             }
-            int i20 = paddingTop7 + i8;
-            this.rightDrawable.setBounds(i18, i20, i18 + intrinsicWidth, i20 + intrinsicHeight2);
-            this.rightDrawableX = i18 + (intrinsicWidth >> 1);
-            this.rightDrawableY = i20 + (intrinsicHeight2 >> 1);
+            int i21 = paddingTop9 + i9;
+            this.rightDrawable.setBounds(i19, i21, i19 + intrinsicWidth, i21 + intrinsicHeight2);
+            this.rightDrawableX = i19 + (intrinsicWidth >> 1);
+            this.rightDrawableY = i21 + (intrinsicHeight2 >> 1);
             this.rightDrawable.draw(canvas);
             this.totalWidth += this.drawablePadding + intrinsicWidth;
         }
-        if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside) {
-            int i21 = this.textWidth + i17 + this.drawablePadding + ((int) (-this.scrollingOffset));
+        if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && !this.rightDrawableInside) {
+            int i22 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
             if (this.rightDrawable != null) {
-                i21 += ((int) (drawable6.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+                i22 += ((int) (drawable8.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
             }
-            int i22 = this.gravity;
-            if ((i22 & 7) == 1 || (i22 & 7) == 5) {
-                i21 += this.offsetX;
+            int i23 = this.gravity;
+            if ((i23 & 7) == 1 || (i23 & 7) == 5) {
+                i22 += this.offsetX;
             }
             int intrinsicWidth2 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
             int intrinsicHeight3 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
             if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                paddingTop6 = (getMeasuredHeight() - intrinsicHeight3) / 2;
-                i7 = this.rightDrawableTopPadding;
+                paddingTop8 = (getMeasuredHeight() - intrinsicHeight3) / 2;
+                i8 = this.rightDrawableTopPadding;
             } else {
-                paddingTop6 = getPaddingTop() + ((this.textHeight - intrinsicHeight3) / 2);
-                i7 = this.rightDrawableTopPadding;
+                paddingTop8 = getPaddingTop() + ((this.textHeight - intrinsicHeight3) / 2);
+                i8 = this.rightDrawableTopPadding;
             }
-            int i23 = paddingTop6 + i7;
-            this.rightDrawable2.setBounds(i21, i23, i21 + intrinsicWidth2, intrinsicHeight3 + i23);
+            int i24 = paddingTop8 + i8;
+            this.rightDrawable2.setBounds(i22, i24, i22 + intrinsicWidth2, intrinsicHeight3 + i24);
             this.rightDrawable2.draw(canvas);
             this.totalWidth += this.drawablePadding + intrinsicWidth2;
         }
@@ -912,50 +946,50 @@ public class SimpleTextView extends View {
         float f2 = this.scrollingOffset;
         if (f2 != 0.0f) {
             if (this.leftDrawable != null) {
-                int i24 = ((int) (-f2)) + dp;
+                int i25 = ((int) (-f2)) + dp;
                 if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                    paddingTop5 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
-                    i6 = this.leftDrawableTopPadding;
+                    paddingTop7 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
+                    i7 = this.leftDrawableTopPadding;
                 } else {
-                    paddingTop5 = getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2);
-                    i6 = this.leftDrawableTopPadding;
+                    paddingTop7 = getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2);
+                    i7 = this.leftDrawableTopPadding;
                 }
-                int i25 = paddingTop5 + i6;
-                Drawable drawable10 = this.leftDrawable;
-                drawable10.setBounds(i24, i25, drawable10.getIntrinsicWidth() + i24, this.leftDrawable.getIntrinsicHeight() + i25);
+                int i26 = paddingTop7 + i7;
+                Drawable drawable12 = this.leftDrawable;
+                drawable12.setBounds(i25, i26, drawable12.getIntrinsicWidth() + i25, this.leftDrawable.getIntrinsicHeight() + i26);
                 this.leftDrawable.draw(canvas);
             }
             if (this.rightDrawable != null && !this.rightDrawableOutside) {
-                int intrinsicWidth3 = (int) (drawable3.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicWidth3 = (int) (drawable5.getIntrinsicWidth() * this.rightDrawableScale);
                 int intrinsicHeight4 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-                int i26 = this.textWidth + i17 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
+                int i27 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
                 if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                    paddingTop4 = (getMeasuredHeight() - intrinsicHeight4) / 2;
-                    i5 = this.rightDrawableTopPadding;
+                    paddingTop6 = (getMeasuredHeight() - intrinsicHeight4) / 2;
+                    i6 = this.rightDrawableTopPadding;
                 } else {
-                    paddingTop4 = getPaddingTop() + ((this.textHeight - intrinsicHeight4) / 2);
-                    i5 = this.rightDrawableTopPadding;
+                    paddingTop6 = getPaddingTop() + ((this.textHeight - intrinsicHeight4) / 2);
+                    i6 = this.rightDrawableTopPadding;
                 }
-                int i27 = paddingTop4 + i5;
-                this.rightDrawable.setBounds(i26, i27, intrinsicWidth3 + i26, intrinsicHeight4 + i27);
+                int i28 = paddingTop6 + i6;
+                this.rightDrawable.setBounds(i27, i28, intrinsicWidth3 + i27, intrinsicHeight4 + i28);
                 this.rightDrawable.draw(canvas);
             }
             if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
-                int intrinsicWidth4 = (int) (drawable4.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicWidth4 = (int) (drawable6.getIntrinsicWidth() * this.rightDrawableScale);
                 int intrinsicHeight5 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-                int i28 = this.textWidth + i17 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
+                int i29 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
                 if (this.rightDrawable != null) {
-                    i28 += ((int) (drawable5.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+                    i29 += ((int) (drawable7.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
                 }
                 if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                    paddingTop3 = (getMeasuredHeight() - intrinsicHeight5) / 2;
-                    i4 = this.rightDrawableTopPadding;
+                    paddingTop5 = (getMeasuredHeight() - intrinsicHeight5) / 2;
+                    i5 = this.rightDrawableTopPadding;
                 } else {
-                    paddingTop3 = getPaddingTop() + ((this.textHeight - intrinsicHeight5) / 2);
-                    i4 = this.rightDrawableTopPadding;
+                    paddingTop5 = getPaddingTop() + ((this.textHeight - intrinsicHeight5) / 2);
+                    i5 = this.rightDrawableTopPadding;
                 }
-                int i29 = paddingTop3 + i4;
-                this.rightDrawable2.setBounds(i28, i29, intrinsicWidth4 + i28, intrinsicHeight5 + i29);
+                int i30 = paddingTop5 + i5;
+                this.rightDrawable2.setBounds(i29, i30, intrinsicWidth4 + i29, intrinsicHeight5 + i30);
                 this.rightDrawable2.draw(canvas);
             }
         }
@@ -963,21 +997,21 @@ public class SimpleTextView extends View {
             if (this.rightDrawableOutside || this.ellipsizeByGradient || this.paddingRight > 0) {
                 canvas.save();
                 int maxTextWidth = getMaxTextWidth() - this.paddingRight;
-                Drawable drawable11 = this.rightDrawable;
-                canvas.clipRect(0, 0, maxTextWidth - AndroidUtilities.dp((drawable11 == null || (drawable11 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), getMeasuredHeight());
+                Drawable drawable13 = this.rightDrawable;
+                canvas.clipRect(0, 0, maxTextWidth - AndroidUtilities.dp((drawable13 == null || (drawable13 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), getMeasuredHeight());
             }
             Emoji.emojiDrawingUseAlpha = this.usaAlphaForEmoji;
             if (this.wrapBackgroundDrawable != null) {
-                int i30 = this.textWidth;
-                int i31 = ((int) ((this.offsetX + i17) - this.scrollingOffset)) + (i30 / 2);
-                int max = Math.max(i30 + getPaddingLeft() + getPaddingRight(), this.minWidth);
-                int i32 = i31 - (max / 2);
-                this.wrapBackgroundDrawable.setBounds(i32, 0, max + i32, getMeasuredHeight());
+                int i31 = this.textWidth;
+                int i32 = ((int) ((this.offsetX + i18) - this.scrollingOffset)) + (i31 / 2);
+                int max = Math.max(i31 + getPaddingLeft() + getPaddingRight(), this.minWidth);
+                int i33 = i32 - (max / 2);
+                this.wrapBackgroundDrawable.setBounds(i33, 0, max + i33, getMeasuredHeight());
                 this.wrapBackgroundDrawable.draw(canvas);
             }
-            if (this.offsetX + i17 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
+            if (this.offsetX + i18 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
                 canvas.save();
-                canvas.translate((this.offsetX + i17) - this.scrollingOffset, this.offsetY);
+                canvas.translate((this.offsetX + i18) - this.scrollingOffset, this.offsetY);
             }
             drawLayout(canvas);
             if (this.partLayout != null && this.fullAlpha < 1.0f) {
@@ -1013,8 +1047,50 @@ public class SimpleTextView extends View {
                 canvas.translate(dp, 0.0f);
                 drawLayout(canvas);
             }
-            if (this.offsetX + i17 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
+            if (this.offsetX + i18 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
                 canvas.restore();
+            }
+            if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && this.rightDrawableInside) {
+                int i34 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
+                int i35 = this.gravity;
+                if ((i35 & 7) == 1 || (i35 & 7) == 5) {
+                    i34 += this.offsetX;
+                }
+                int intrinsicWidth5 = (int) (drawable3.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicHeight6 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
+                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                    paddingTop4 = ((getMeasuredHeight() - intrinsicHeight6) / 2) + this.rightDrawableTopPadding;
+                } else {
+                    paddingTop4 = this.rightDrawableTopPadding + getPaddingTop() + ((this.textHeight - intrinsicHeight6) / 2);
+                }
+                this.rightDrawable.setBounds(i34, paddingTop4, i34 + intrinsicWidth5, paddingTop4 + intrinsicHeight6);
+                this.rightDrawableX = i34 + (intrinsicWidth5 >> 1);
+                this.rightDrawableY = paddingTop4 + (intrinsicHeight6 >> 1);
+                this.rightDrawable.draw(canvas);
+                this.totalWidth += this.drawablePadding + intrinsicWidth5;
+            }
+            if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && this.rightDrawableInside) {
+                int i36 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
+                if (this.rightDrawable != null) {
+                    i36 += ((int) (drawable4.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+                }
+                int i37 = this.gravity;
+                if ((i37 & 7) == 1 || (i37 & 7) == 5) {
+                    i36 += this.offsetX;
+                }
+                int intrinsicWidth6 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicHeight7 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
+                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                    paddingTop3 = (getMeasuredHeight() - intrinsicHeight7) / 2;
+                    i4 = this.rightDrawableTopPadding;
+                } else {
+                    paddingTop3 = getPaddingTop() + ((this.textHeight - intrinsicHeight7) / 2);
+                    i4 = this.rightDrawableTopPadding;
+                }
+                int i38 = paddingTop3 + i4;
+                this.rightDrawable2.setBounds(i36, i38, i36 + intrinsicWidth6, intrinsicHeight7 + i38);
+                this.rightDrawable2.draw(canvas);
+                this.totalWidth += this.drawablePadding + intrinsicWidth6;
             }
             if (z) {
                 if (this.scrollingOffset < AndroidUtilities.dp(10.0f)) {
@@ -1034,8 +1110,8 @@ public class SimpleTextView extends View {
                 updateFadePaints();
                 if (!this.ellipsizeByGradientLeft) {
                     int maxTextWidth2 = (getMaxTextWidth() - this.paddingRight) - this.fadeEllpsizePaintWidth;
-                    Drawable drawable12 = this.rightDrawable;
-                    canvas.translate(maxTextWidth2 - AndroidUtilities.dp((drawable12 == null || (drawable12 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), 0.0f);
+                    Drawable drawable14 = this.rightDrawable;
+                    canvas.translate(maxTextWidth2 - AndroidUtilities.dp((drawable14 == null || (drawable14 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), 0.0f);
                 }
                 canvas.drawRect(0.0f, 0.0f, this.fadeEllpsizePaintWidth, getMeasuredHeight(), this.fadeEllpsizePaint);
                 canvas.restore();
@@ -1050,44 +1126,44 @@ public class SimpleTextView extends View {
             canvas.restoreToCount(saveLayerAlpha);
         }
         if (this.rightDrawable != null && this.rightDrawableOutside) {
-            int i33 = this.textWidth + i17 + this.drawablePadding;
+            int i39 = this.textWidth + i18 + this.drawablePadding;
             float f6 = this.scrollingOffset;
-            int min = Math.min(i33 + (f6 == 0.0f ? -dp : (int) (-f6)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
-            int intrinsicWidth5 = (int) (this.rightDrawable.getIntrinsicWidth() * this.rightDrawableScale);
-            int intrinsicHeight6 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
+            int min = Math.min(i39 + (f6 == 0.0f ? -dp : (int) (-f6)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
+            int intrinsicWidth7 = (int) (this.rightDrawable.getIntrinsicWidth() * this.rightDrawableScale);
+            int intrinsicHeight8 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
             if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-                paddingTop2 = (getMeasuredHeight() - intrinsicHeight6) / 2;
+                paddingTop2 = (getMeasuredHeight() - intrinsicHeight8) / 2;
                 i3 = this.rightDrawableTopPadding;
             } else {
-                paddingTop2 = getPaddingTop() + ((this.textHeight - intrinsicHeight6) / 2);
+                paddingTop2 = getPaddingTop() + ((this.textHeight - intrinsicHeight8) / 2);
                 i3 = this.rightDrawableTopPadding;
             }
-            int i34 = paddingTop2 + i3;
-            this.rightDrawable.setBounds(min, i34, min + intrinsicWidth5, i34 + intrinsicHeight6);
-            this.rightDrawableX = min + (intrinsicWidth5 >> 1);
-            this.rightDrawableY = i34 + (intrinsicHeight6 >> 1);
+            int i40 = paddingTop2 + i3;
+            this.rightDrawable.setBounds(min, i40, min + intrinsicWidth7, i40 + intrinsicHeight8);
+            this.rightDrawableX = min + (intrinsicWidth7 >> 1);
+            this.rightDrawableY = i40 + (intrinsicHeight8 >> 1);
             this.rightDrawable.draw(canvas);
         }
         if (this.rightDrawable2 == null || !this.rightDrawableOutside) {
             return;
         }
-        int i35 = i17 + this.textWidth + this.drawablePadding;
+        int i41 = i18 + this.textWidth + this.drawablePadding;
         float f7 = this.scrollingOffset;
-        int min2 = Math.min(i35 + (f7 == 0.0f ? -dp : (int) (-f7)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
+        int min2 = Math.min(i41 + (f7 == 0.0f ? -dp : (int) (-f7)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
         if (this.rightDrawable != null) {
             min2 += ((int) (drawable2.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
         }
-        int intrinsicWidth6 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
-        int intrinsicHeight7 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
+        int intrinsicWidth8 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
+        int intrinsicHeight9 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
         if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
-            paddingTop = (getMeasuredHeight() - intrinsicHeight7) / 2;
+            paddingTop = (getMeasuredHeight() - intrinsicHeight9) / 2;
             i2 = this.rightDrawableTopPadding;
         } else {
-            paddingTop = getPaddingTop() + ((this.textHeight - intrinsicHeight7) / 2);
+            paddingTop = getPaddingTop() + ((this.textHeight - intrinsicHeight9) / 2);
             i2 = this.rightDrawableTopPadding;
         }
-        int i36 = paddingTop + i2;
-        this.rightDrawable2.setBounds(min2, i36, intrinsicWidth6 + min2, intrinsicHeight7 + i36);
+        int i42 = paddingTop + i2;
+        this.rightDrawable2.setBounds(min2, i42, intrinsicWidth8 + min2, intrinsicHeight9 + i42);
         this.rightDrawable2.draw(canvas);
     }
 
@@ -1243,6 +1319,10 @@ public class SimpleTextView extends View {
         this.rightDrawableOutside = z;
     }
 
+    public void setRightDrawableInside(boolean z) {
+        this.rightDrawableInside = z;
+    }
+
     public boolean getRightDrawableOutside() {
         return this.rightDrawableOutside;
     }
@@ -1261,14 +1341,26 @@ public class SimpleTextView extends View {
                 this.touchDownX = motionEvent.getX();
                 this.touchDownY = motionEvent.getY();
                 getParent().requestDisallowInterceptTouchEvent(true);
+                Drawable drawable = this.rightDrawable;
+                if (drawable instanceof PressableDrawable) {
+                    ((PressableDrawable) drawable).setPressed(true);
+                }
             } else if (motionEvent.getAction() == 2 && this.maybeClick) {
                 if (Math.abs(motionEvent.getX() - this.touchDownX) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.touchDownY) >= AndroidUtilities.touchSlop) {
                     this.maybeClick = false;
                     getParent().requestDisallowInterceptTouchEvent(false);
+                    Drawable drawable2 = this.rightDrawable;
+                    if (drawable2 instanceof PressableDrawable) {
+                        ((PressableDrawable) drawable2).setPressed(false);
+                    }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 if (this.maybeClick && motionEvent.getAction() == 1) {
                     this.rightDrawableOnClickListener.onClick(this);
+                    Drawable drawable3 = this.rightDrawable;
+                    if (drawable3 instanceof PressableDrawable) {
+                        ((PressableDrawable) drawable3).setPressed(false);
+                    }
                 }
                 this.maybeClick = false;
                 getParent().requestDisallowInterceptTouchEvent(false);

@@ -107,6 +107,7 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.RadioCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Cells.TextSettingsCell;
@@ -803,7 +804,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             this.actionBar.setTitle(LocaleController.getString("GroupsAndChannels", R.string.GroupsAndChannels));
         } else if (i == 8) {
             this.actionBar.setTitle(LocaleController.getString("PrivacyVoiceMessages", R.string.PrivacyVoiceMessages));
-        } else {
+        } else if (i == 0) {
             this.actionBar.setTitle(LocaleController.getString("PrivacyLastSeen", R.string.PrivacyLastSeen));
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -1316,13 +1317,24 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         this.photoForRestRow = -1;
         this.currentPhotoForRestRow = -1;
         this.photoForRestDescriptionRow = -1;
+        this.messageRow = -1;
+        this.phoneDetailRow = -1;
+        this.phoneSectionRow = -1;
+        this.phoneEverybodyRow = -1;
+        this.phoneContactsRow = -1;
+        this.alwaysShareRow = -1;
+        this.neverShareRow = -1;
+        this.p2pSectionRow = -1;
+        this.p2pRow = -1;
+        this.p2pDetailRow = -1;
+        this.nobodyRow = -1;
+        this.shareSectionRow = -1;
+        this.shareDetailRow = -1;
         this.rowCount = 0;
         int i3 = this.rulesType;
         if (i3 == 5) {
             this.rowCount = 0 + 1;
             this.messageRow = 0;
-        } else {
-            this.messageRow = -1;
         }
         int i4 = this.rowCount;
         int i5 = i4 + 1;
@@ -1337,8 +1349,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         if (i3 == 4 || i3 == 9 || i3 == 0 || i3 == 2 || i3 == 3 || i3 == 5 || i3 == 6 || i3 == 8 || i3 == 1) {
             this.rowCount = i7 + 1;
             this.nobodyRow = i7;
-        } else {
-            this.nobodyRow = -1;
         }
         if (i3 == 6 && this.currentType == 1) {
             int i8 = this.rowCount;
@@ -1353,11 +1363,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             this.phoneEverybodyRow = i10;
             this.rowCount = i11 + 1;
             this.phoneContactsRow = i11;
-        } else {
-            this.phoneDetailRow = -1;
-            this.phoneSectionRow = -1;
-            this.phoneEverybodyRow = -1;
-            this.phoneContactsRow = -1;
         }
         int i12 = this.rowCount;
         int i13 = i12 + 1;
@@ -1370,15 +1375,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         if (i15 == 1 || i15 == 2) {
             this.rowCount = i14 + 1;
             this.alwaysShareRow = i14;
-        } else {
-            this.alwaysShareRow = -1;
         }
         if (i15 == 0 || i15 == 2) {
             int i16 = this.rowCount;
             this.rowCount = i16 + 1;
             this.neverShareRow = i16;
-        } else {
-            this.neverShareRow = -1;
         }
         int i17 = this.rowCount;
         int i18 = i17 + 1;
@@ -1393,10 +1394,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             this.p2pRow = i19;
             this.rowCount = i20 + 1;
             this.p2pDetailRow = i20;
-        } else {
-            this.p2pSectionRow = -1;
-            this.p2pRow = -1;
-            this.p2pDetailRow = -1;
         }
         if (i3 == 4 && (this.currentMinus.size() > 0 || (i2 = this.currentType) == 2 || i2 == 1)) {
             int i21 = this.rowCount;
@@ -1576,74 +1573,89 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View textSettingsCell;
-            if (i == 0) {
-                textSettingsCell = new TextSettingsCell(this.mContext);
-                textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else if (i == 1) {
-                textSettingsCell = new TextInfoPrivacyCell(this.mContext);
-            } else if (i == 2) {
-                textSettingsCell = new HeaderCell(this.mContext);
-                textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else if (i == 3) {
-                textSettingsCell = new RadioCell(this.mContext);
-                textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else if (i == 4) {
-                textSettingsCell = PrivacyControlActivity.this.messageCell;
-            } else if (i == 6) {
-                PrivacyControlActivity.this.setAvatarCell = new TextCell(PrivacyControlActivity.this.getContext());
-                if (PrivacyControlActivity.this.avatarForRest == null) {
-                    PrivacyControlActivity.this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.formatString("SetPhotoForRest", R.string.SetPhotoForRest, new Object[0]), R.drawable.msg_addphoto, false);
-                } else {
-                    PrivacyControlActivity.this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.formatString("UpdatePhotoForRest", R.string.UpdatePhotoForRest, new Object[0]), R.drawable.msg_addphoto, true);
-                }
-                PrivacyControlActivity.this.setAvatarCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                PrivacyControlActivity.this.setAvatarCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                PrivacyControlActivity privacyControlActivity = PrivacyControlActivity.this;
-                int i2 = R.raw.camera_outline;
-                privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-                PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
-                PrivacyControlActivity.this.setAvatarCell.imageView.setAnimation(PrivacyControlActivity.this.cameraDrawable);
-                PrivacyControlActivity.this.setAvatarCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                textSettingsCell = PrivacyControlActivity.this.setAvatarCell;
-            } else if (i != 7) {
-                textSettingsCell = new ShadowSectionCell(this.mContext);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                combinedDrawable.setFullsize(true);
-                textSettingsCell.setBackgroundDrawable(combinedDrawable);
-            } else {
-                PrivacyControlActivity.this.oldAvatarView = new BackupImageView(PrivacyControlActivity.this.getContext());
-                PrivacyControlActivity.this.oldPhotoCell = new TextCell(PrivacyControlActivity.this.getContext()) {
-                    @Override
-                    public void onMeasure(int i3, int i4) {
-                        super.onMeasure(i3, i4);
-                        PrivacyControlActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                        PrivacyControlActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.dp(30.0f));
-                    }
-
-                    @Override
-                    public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
-                        super.onLayout(z, i3, i4, i5, i6);
-                        int dp = AndroidUtilities.dp(21.0f);
-                        int measuredHeight = (getMeasuredHeight() - PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
-                        PrivacyControlActivity.this.oldAvatarView.layout(dp, measuredHeight, PrivacyControlActivity.this.oldAvatarView.getMeasuredWidth() + dp, PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
-                    }
-                };
-                if (PrivacyControlActivity.this.avatarForRest != null) {
-                    if (PrivacyControlActivity.this.avatarForRestPhoto != null) {
-                        PrivacyControlActivity.this.oldAvatarView.setImage(ImageLocation.getForPhoto(PrivacyControlActivity.this.avatarForRest, PrivacyControlActivity.this.avatarForRestPhoto), "50_50", (Drawable) null, UserConfig.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getCurrentUser());
+            switch (i) {
+                case 0:
+                    textSettingsCell = new TextSettingsCell(this.mContext);
+                    textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
+                case 1:
+                    textSettingsCell = new TextInfoPrivacyCell(this.mContext);
+                    break;
+                case 2:
+                    textSettingsCell = new HeaderCell(this.mContext);
+                    textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
+                case 3:
+                    textSettingsCell = new RadioCell(this.mContext);
+                    textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
+                case 4:
+                    textSettingsCell = PrivacyControlActivity.this.messageCell;
+                    break;
+                case 5:
+                default:
+                    View shadowSectionCell = new ShadowSectionCell(this.mContext);
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    combinedDrawable.setFullsize(true);
+                    shadowSectionCell.setBackgroundDrawable(combinedDrawable);
+                    textSettingsCell = shadowSectionCell;
+                    break;
+                case 6:
+                    PrivacyControlActivity.this.setAvatarCell = new TextCell(PrivacyControlActivity.this.getContext());
+                    if (PrivacyControlActivity.this.avatarForRest == null) {
+                        PrivacyControlActivity.this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.formatString("SetPhotoForRest", R.string.SetPhotoForRest, new Object[0]), R.drawable.msg_addphoto, false);
                     } else {
-                        PrivacyControlActivity.this.oldAvatarView.setImage(ImageLocation.getForLocal(PrivacyControlActivity.this.avatarForRest.location), "50_50", (Drawable) null, UserConfig.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getCurrentUser());
+                        PrivacyControlActivity.this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.formatString("UpdatePhotoForRest", R.string.UpdatePhotoForRest, new Object[0]), R.drawable.msg_addphoto, true);
                     }
-                }
-                PrivacyControlActivity.this.oldPhotoCell.addView(PrivacyControlActivity.this.oldAvatarView, LayoutHelper.createFrame(30, 30.0f, 16, 21.0f, 0.0f, 21.0f, 0.0f));
-                PrivacyControlActivity.this.oldPhotoCell.setText(LocaleController.getString("RemovePublicPhoto", R.string.RemovePublicPhoto), false);
-                PrivacyControlActivity.this.oldPhotoCell.getImageView().setVisibility(0);
-                PrivacyControlActivity.this.oldPhotoCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                TextCell textCell = PrivacyControlActivity.this.oldPhotoCell;
-                int i3 = Theme.key_text_RedRegular;
-                textCell.setColors(i3, i3);
-                PrivacyControlActivity.this.oldPhotoCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                textSettingsCell = PrivacyControlActivity.this.oldPhotoCell;
+                    PrivacyControlActivity.this.setAvatarCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                    PrivacyControlActivity.this.setAvatarCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
+                    PrivacyControlActivity privacyControlActivity = PrivacyControlActivity.this;
+                    int i2 = R.raw.camera_outline;
+                    privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                    PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
+                    PrivacyControlActivity.this.setAvatarCell.imageView.setAnimation(PrivacyControlActivity.this.cameraDrawable);
+                    PrivacyControlActivity.this.setAvatarCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    textSettingsCell = PrivacyControlActivity.this.setAvatarCell;
+                    break;
+                case 7:
+                    PrivacyControlActivity.this.oldAvatarView = new BackupImageView(PrivacyControlActivity.this.getContext());
+                    PrivacyControlActivity.this.oldPhotoCell = new TextCell(PrivacyControlActivity.this.getContext()) {
+                        @Override
+                        public void onMeasure(int i3, int i4) {
+                            super.onMeasure(i3, i4);
+                            PrivacyControlActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                            PrivacyControlActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.dp(30.0f));
+                        }
+
+                        @Override
+                        public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                            super.onLayout(z, i3, i4, i5, i6);
+                            int dp = AndroidUtilities.dp(21.0f);
+                            int measuredHeight = (getMeasuredHeight() - PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
+                            PrivacyControlActivity.this.oldAvatarView.layout(dp, measuredHeight, PrivacyControlActivity.this.oldAvatarView.getMeasuredWidth() + dp, PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
+                        }
+                    };
+                    if (PrivacyControlActivity.this.avatarForRest != null) {
+                        if (PrivacyControlActivity.this.avatarForRestPhoto != null) {
+                            PrivacyControlActivity.this.oldAvatarView.setImage(ImageLocation.getForPhoto(PrivacyControlActivity.this.avatarForRest, PrivacyControlActivity.this.avatarForRestPhoto), "50_50", (Drawable) null, UserConfig.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getCurrentUser());
+                        } else {
+                            PrivacyControlActivity.this.oldAvatarView.setImage(ImageLocation.getForLocal(PrivacyControlActivity.this.avatarForRest.location), "50_50", (Drawable) null, UserConfig.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getCurrentUser());
+                        }
+                    }
+                    PrivacyControlActivity.this.oldPhotoCell.addView(PrivacyControlActivity.this.oldAvatarView, LayoutHelper.createFrame(30, 30.0f, 16, 21.0f, 0.0f, 21.0f, 0.0f));
+                    PrivacyControlActivity.this.oldPhotoCell.setText(LocaleController.getString("RemovePublicPhoto", R.string.RemovePublicPhoto), false);
+                    PrivacyControlActivity.this.oldPhotoCell.getImageView().setVisibility(0);
+                    PrivacyControlActivity.this.oldPhotoCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                    TextCell textCell = PrivacyControlActivity.this.oldPhotoCell;
+                    int i3 = Theme.key_text_RedRegular;
+                    textCell.setColors(i3, i3);
+                    PrivacyControlActivity.this.oldPhotoCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    textSettingsCell = PrivacyControlActivity.this.oldPhotoCell;
+                    break;
+                case 8:
+                    textSettingsCell = new TextCheckCell(this.mContext, ((BaseFragment) PrivacyControlActivity.this).resourceProvider);
+                    textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
             }
             return new RecyclerListView.Holder(textSettingsCell);
         }
@@ -1674,6 +1686,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             int i2 = 0;
             if (itemViewType == 0) {
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
+                textSettingsCell.setTextColor(PrivacyControlActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
                 if (i == PrivacyControlActivity.this.alwaysShareRow) {
                     if (PrivacyControlActivity.this.currentPlus.size() != 0) {
                         string2 = LocaleController.formatPluralString("Users", getUsersCount(PrivacyControlActivity.this.currentPlus), new Object[0]);
@@ -1715,7 +1728,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                                         if (PrivacyControlActivity.this.rulesType != 2) {
                                             if (PrivacyControlActivity.this.rulesType != 1) {
                                                 if (PrivacyControlActivity.this.rulesType == 8) {
-                                                    textInfoPrivacyCell.setText(LocaleController.getString("PrivacyVoiceMessagesInfo", R.string.PrivacyVoiceMessagesInfo));
+                                                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.PrivacyVoiceMessagesInfo));
                                                 } else {
                                                     textInfoPrivacyCell.setText(LocaleController.getString("CustomHelp", R.string.CustomHelp));
                                                 }
@@ -1797,7 +1810,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     } else {
                         textInfoPrivacyCell.setText(LocaleController.getString("PrivacyPhoneInfo2", R.string.PrivacyPhoneInfo2));
                     }
-                    if (PrivacyControlActivity.this.rulesType == 2) {
+                    if (PrivacyControlActivity.this.rulesType == 2 || PrivacyControlActivity.this.rulesType == 0) {
                         i2 = R.drawable.greydivider;
                     } else {
                         i2 = R.drawable.greydivider_bottom;
@@ -1819,6 +1832,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     return;
                 }
                 RadioCell radioCell = (RadioCell) viewHolder.itemView;
+                radioCell.setRadioIcon(null);
                 if (i == PrivacyControlActivity.this.everybodyRow || i == PrivacyControlActivity.this.myContactsRow || i == PrivacyControlActivity.this.nobodyRow) {
                     if (i == PrivacyControlActivity.this.everybodyRow) {
                         if (PrivacyControlActivity.this.rulesType == 3) {

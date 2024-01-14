@@ -118,6 +118,7 @@ public class VoIpSwitchLayout extends FrameLayout {
         } else {
             string = LocaleController.getString("VoipMute", R.string.VoipMute);
         }
+        setContentDescription(string);
         if (this.currentTextView.getVisibility() == 8 && this.newTextView.getVisibility() == 8) {
             this.currentTextView.setVisibility(0);
             this.currentTextView.setText(string);
@@ -158,7 +159,7 @@ public class VoIpSwitchLayout extends FrameLayout {
         voIpButtonView.setSelectedState(z, false, type);
         voIpButtonView.setAlpha(0.0f);
         voIpButtonView.setOnBtnClickedListener(this.voIpButtonView.onBtnClickedListener);
-        addView(voIpButtonView, LayoutHelper.createFrame(52, 52, 1));
+        addView(voIpButtonView, LayoutHelper.createFrame(53.5f, 53.5f, 1));
         final VoIpButtonView voIpButtonView2 = this.voIpButtonView;
         this.voIpButtonView = voIpButtonView;
         voIpButtonView.animate().alpha(1.0f).setDuration(250L).start();
@@ -223,6 +224,8 @@ public class VoIpSwitchLayout extends FrameLayout {
         private final Paint maskPaint;
         private final int maxRadius;
         private OnBtnClickedListener onBtnClickedListener;
+        private float pressedScale;
+        private ValueAnimator pressedScaleAnimator;
         private RLottieDrawable selectedIcon;
         private int selectedRadius;
         private RLottieDrawable singleIcon;
@@ -365,6 +368,7 @@ public class VoIpSwitchLayout extends FrameLayout {
             this.selectedRadius = 0;
             this.isSelectedState = false;
             this.singleIconBackgroundAlphaPercent = 0;
+            this.pressedScale = 1.0f;
             this.backgroundProvider = voIPBackgroundProvider;
             voIPBackgroundProvider.attach(this);
             setLayerType(1, null);
@@ -376,8 +380,36 @@ public class VoIpSwitchLayout extends FrameLayout {
             paint3.setAlpha(35);
         }
 
+        private void setPressedBtn(boolean z) {
+            ValueAnimator valueAnimator = this.pressedScaleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float[] fArr = new float[2];
+            fArr[0] = this.pressedScale;
+            fArr[1] = z ? 0.8f : 1.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            this.pressedScaleAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    VoIpSwitchLayout.VoIpButtonView.this.lambda$setPressedBtn$3(valueAnimator2);
+                }
+            });
+            this.pressedScaleAnimator.setDuration(150L);
+            this.pressedScaleAnimator.start();
+        }
+
+        public void lambda$setPressedBtn$3(ValueAnimator valueAnimator) {
+            this.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            invalidate();
+        }
+
         @Override
         protected void onDraw(Canvas canvas) {
+            canvas.save();
+            float f = this.pressedScale;
+            canvas.scale(f, f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
             float width = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             this.backgroundProvider.setLightTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) ((View) getParent()).getParent()).getY());
@@ -433,6 +465,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                     this.selectedIcon.setAlpha(35);
                     this.selectedIcon.draw(canvas);
                 }
+                canvas.restore();
             }
         }
 
@@ -448,19 +481,16 @@ public class VoIpSwitchLayout extends FrameLayout {
             OnBtnClickedListener onBtnClickedListener;
             int action = motionEvent.getAction();
             if (action == 0) {
-                animate().scaleX(0.8f).scaleY(0.8f).setDuration(150L).start();
-                animate().scaleX(0.8f).scaleY(0.8f).setDuration(150L).start();
+                setPressedBtn(true);
                 this.startX = motionEvent.getX();
                 this.startY = motionEvent.getY();
             } else if (action == 1) {
-                animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
-                animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                setPressedBtn(false);
                 if (isClick(this.startX, motionEvent.getX(), this.startY, motionEvent.getY()) && !isAnimating() && (onBtnClickedListener = this.onBtnClickedListener) != null) {
                     onBtnClickedListener.onClicked(this);
                 }
             } else if (action == 3) {
-                animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
-                animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                setPressedBtn(false);
             }
             return true;
         }

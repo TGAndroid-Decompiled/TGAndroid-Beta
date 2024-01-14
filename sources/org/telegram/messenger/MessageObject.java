@@ -1736,11 +1736,12 @@ public class MessageObject {
         if (this.photoThumbs != null) {
             if ((canCreateStripedThubms() || hasExtendedMediaPreview()) && this.strippedThumb == null) {
                 try {
+                    String str = isRoundVideo() ? "br" : "b";
                     int size = this.photoThumbs.size();
                     for (int i = 0; i < size; i++) {
                         TLRPC$PhotoSize tLRPC$PhotoSize = this.photoThumbs.get(i);
                         if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
-                            this.strippedThumb = new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), ImageLoader.getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, "b"));
+                            this.strippedThumb = new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), ImageLoader.getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, str));
                             return;
                         }
                     }
@@ -2639,17 +2640,20 @@ public class MessageObject {
     public void createMessageSendInfo() {
         HashMap<String, String> hashMap;
         String str;
+        VideoEditedInfo videoEditedInfo = this.videoEditedInfo;
+        boolean z = videoEditedInfo != null && videoEditedInfo.notReadyYet;
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message.message != null) {
             if ((tLRPC$Message.id < 0 || isEditing()) && (hashMap = this.messageOwner.params) != null) {
                 String str2 = hashMap.get("ve");
                 if (str2 != null && (isVideo() || isNewGif() || isRoundVideo())) {
-                    VideoEditedInfo videoEditedInfo = new VideoEditedInfo();
-                    this.videoEditedInfo = videoEditedInfo;
-                    if (!videoEditedInfo.parseString(str2)) {
+                    VideoEditedInfo videoEditedInfo2 = new VideoEditedInfo();
+                    this.videoEditedInfo = videoEditedInfo2;
+                    if (!videoEditedInfo2.parseString(str2)) {
                         this.videoEditedInfo = null;
                     } else {
                         this.videoEditedInfo.roundVideo = isRoundVideo();
+                        this.videoEditedInfo.notReadyYet = z;
                     }
                 }
                 TLRPC$Message tLRPC$Message2 = this.messageOwner;
@@ -4403,10 +4407,7 @@ public class MessageObject {
 
     public static boolean shouldEncryptPhotoOrVideo(int i, TLRPC$Message tLRPC$Message) {
         int i2;
-        if (MessagesController.getInstance(i).isChatNoForwards(getChatId(tLRPC$Message))) {
-            return true;
-        }
-        if (tLRPC$Message == null || !tLRPC$Message.noforwards) {
+        if (tLRPC$Message == null || tLRPC$Message.media == null || !((isVoiceDocument(getDocument(tLRPC$Message)) || isRoundVideoMessage(tLRPC$Message)) && tLRPC$Message.media.ttl_seconds == Integer.MAX_VALUE)) {
             return tLRPC$Message instanceof TLRPC$TL_message_secret ? ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) || isVideoMessage(tLRPC$Message)) && (i2 = tLRPC$Message.ttl) > 0 && i2 <= 60 : ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) || (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaDocument)) && getMedia(tLRPC$Message).ttl_seconds != 0;
         }
         return true;
@@ -6053,7 +6054,7 @@ public class MessageObject {
             }
             if (!this.attachPathExists) {
                 File pathToMessage2 = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner, z);
-                if (this.type == 3 && needDrawBluredPreview()) {
+                if ((this.type == 3 && needDrawBluredPreview()) || isVoiceOnce() || isRoundOnce()) {
                     this.mediaExists = new File(pathToMessage2.getAbsolutePath() + ".enc").exists();
                 }
                 if (!this.mediaExists) {
@@ -6312,6 +6313,8 @@ public class MessageObject {
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message.reactions == null) {
             tLRPC$Message.reactions = new TLRPC$TL_messageReactions();
+            TLRPC$Message tLRPC$Message2 = this.messageOwner;
+            tLRPC$Message2.reactions.reactions_as_tags = getDialogId(tLRPC$Message2) == UserConfig.getInstance(this.currentAccount).getClientUserId();
             this.messageOwner.reactions.can_see_list = isFromGroup() || isFromUser();
         }
         ArrayList arrayList = new ArrayList();
@@ -6354,6 +6357,9 @@ public class MessageObject {
                 if (i4 <= 0) {
                     this.messageOwner.reactions.results.remove(tLRPC$ReactionCount);
                 }
+                if (this.messageOwner.reactions.reactions_as_tags) {
+                    MessagesController.getInstance(this.currentAccount).updateSavedReactionTags(visibleReaction, false);
+                }
             }
             if (this.messageOwner.reactions.can_see_list) {
                 int i5 = 0;
@@ -6382,6 +6388,9 @@ public class MessageObject {
             if (i8 <= 0) {
                 this.messageOwner.reactions.results.remove(tLRPC$ReactionCount3);
             }
+            if (this.messageOwner.reactions.reactions_as_tags) {
+                MessagesController.getInstance(this.currentAccount).updateSavedReactionTags(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$ReactionCount3.reaction), false);
+            }
             arrayList.remove(tLRPC$ReactionCount3);
             if (this.messageOwner.reactions.can_see_list) {
                 int i9 = 0;
@@ -6396,39 +6405,33 @@ public class MessageObject {
         }
         if (tLRPC$ReactionCount == null) {
             tLRPC$ReactionCount = new TLRPC$TL_reactionCount();
-            if (visibleReaction.emojicon != null) {
-                TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
-                tLRPC$ReactionCount.reaction = tLRPC$TL_reactionEmoji;
-                tLRPC$TL_reactionEmoji.emoticon = visibleReaction.emojicon;
-                this.messageOwner.reactions.results.add(tLRPC$ReactionCount);
-            } else {
-                TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
-                tLRPC$ReactionCount.reaction = tLRPC$TL_reactionCustomEmoji;
-                tLRPC$TL_reactionCustomEmoji.document_id = visibleReaction.documentId;
-                this.messageOwner.reactions.results.add(tLRPC$ReactionCount);
-            }
+            tLRPC$ReactionCount.reaction = visibleReaction.toTLReaction();
+            this.messageOwner.reactions.results.add(tLRPC$ReactionCount);
         }
         tLRPC$ReactionCount.chosen = true;
         tLRPC$ReactionCount.count++;
         tLRPC$ReactionCount.chosen_order = i + 1;
-        TLRPC$Message tLRPC$Message2 = this.messageOwner;
-        if (tLRPC$Message2.reactions.can_see_list || (tLRPC$Message2.dialog_id > 0 && maxUserReactionsCount > 1)) {
+        if (this.messageOwner.reactions.reactions_as_tags) {
+            MessagesController.getInstance(this.currentAccount).updateSavedReactionTags(visibleReaction, true);
+        }
+        TLRPC$Message tLRPC$Message3 = this.messageOwner;
+        if (tLRPC$Message3.reactions.can_see_list || (tLRPC$Message3.dialog_id > 0 && maxUserReactionsCount > 1)) {
             TLRPC$TL_messagePeerReaction tLRPC$TL_messagePeerReaction = new TLRPC$TL_messagePeerReaction();
-            TLRPC$Message tLRPC$Message3 = this.messageOwner;
-            if (tLRPC$Message3.isThreadMessage && tLRPC$Message3.fwd_from != null) {
+            TLRPC$Message tLRPC$Message4 = this.messageOwner;
+            if (tLRPC$Message4.isThreadMessage && tLRPC$Message4.fwd_from != null) {
                 tLRPC$TL_messagePeerReaction.peer_id = MessagesController.getInstance(this.currentAccount).getSendAsSelectedPeer(getFromChatId());
             } else {
                 tLRPC$TL_messagePeerReaction.peer_id = MessagesController.getInstance(this.currentAccount).getSendAsSelectedPeer(getDialogId());
             }
             this.messageOwner.reactions.recent_reactions.add(0, tLRPC$TL_messagePeerReaction);
             if (visibleReaction.emojicon != null) {
-                TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji2 = new TLRPC$TL_reactionEmoji();
-                tLRPC$TL_messagePeerReaction.reaction = tLRPC$TL_reactionEmoji2;
-                tLRPC$TL_reactionEmoji2.emoticon = visibleReaction.emojicon;
+                TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
+                tLRPC$TL_messagePeerReaction.reaction = tLRPC$TL_reactionEmoji;
+                tLRPC$TL_reactionEmoji.emoticon = visibleReaction.emojicon;
             } else {
-                TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji2 = new TLRPC$TL_reactionCustomEmoji();
-                tLRPC$TL_messagePeerReaction.reaction = tLRPC$TL_reactionCustomEmoji2;
-                tLRPC$TL_reactionCustomEmoji2.document_id = visibleReaction.documentId;
+                TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
+                tLRPC$TL_messagePeerReaction.reaction = tLRPC$TL_reactionCustomEmoji;
+                tLRPC$TL_reactionCustomEmoji.document_id = visibleReaction.documentId;
             }
         }
         this.reactionsChanged = true;

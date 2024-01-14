@@ -173,6 +173,8 @@ public class ThemeColors {
         iArr[Theme.key_actionBarDefaultSubmenuBackground] = -1;
         iArr[Theme.key_actionBarDefaultSubmenuSeparator] = -657931;
         iArr[Theme.key_actionBarActionModeDefaultSelector] = -1907998;
+        iArr[Theme.key_actionBarActionModeReaction] = -986896;
+        iArr[Theme.key_actionBarActionModeReactionDot] = -4144960;
         iArr[Theme.key_actionBarTabActiveText] = -1;
         iArr[Theme.key_actionBarTabUnactiveText] = -2758409;
         iArr[Theme.key_actionBarTabLine] = -1;
@@ -896,6 +898,8 @@ public class ThemeColors {
         sparseArray.put(Theme.key_actionBarActionModeDefaultTop, "actionBarActionModeDefaultTop");
         sparseArray.put(Theme.key_actionBarActionModeDefaultIcon, "actionBarActionModeDefaultIcon");
         sparseArray.put(Theme.key_actionBarActionModeDefaultSelector, "actionBarActionModeDefaultSelector");
+        sparseArray.put(Theme.key_actionBarActionModeReaction, "actionBarActionModeReaction");
+        sparseArray.put(Theme.key_actionBarActionModeReactionDot, "actionBarActionModeReactionDot");
         sparseArray.put(Theme.key_actionBarDefaultTitle, "actionBarDefaultTitle");
         sparseArray.put(Theme.key_actionBarDefaultSubtitle, "actionBarDefaultSubtitle");
         sparseArray.put(Theme.key_actionBarDefaultSearch, "actionBarDefaultSearch");

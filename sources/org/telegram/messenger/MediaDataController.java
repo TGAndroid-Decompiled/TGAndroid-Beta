@@ -173,6 +173,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_getAllStickers;
 import org.telegram.tgnet.TLRPC$TL_messages_getArchivedStickers;
 import org.telegram.tgnet.TLRPC$TL_messages_getAttachMenuBots;
 import org.telegram.tgnet.TLRPC$TL_messages_getAvailableReactions;
+import org.telegram.tgnet.TLRPC$TL_messages_getDefaultTagReactions;
 import org.telegram.tgnet.TLRPC$TL_messages_getEmojiStickers;
 import org.telegram.tgnet.TLRPC$TL_messages_getFeaturedEmojiStickers;
 import org.telegram.tgnet.TLRPC$TL_messages_getFeaturedStickers;
@@ -227,6 +228,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
 import org.telegram.ui.Components.QuoteSpan;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.StickerSetBulletinLayout;
 import org.telegram.ui.Components.StickersArchiveAlert;
 import org.telegram.ui.Components.TextStyleSpan;
@@ -307,6 +309,7 @@ public class MediaDataController extends BaseController {
     private long lastDialogId;
     private int lastGuid;
     private long lastMergeDialogId;
+    private ReactionsLayoutInBubble.VisibleReaction lastReaction;
     private long lastReplyMessageId;
     private int lastReqId;
     private int lastReturnedNum;
@@ -319,6 +322,8 @@ public class MediaDataController extends BaseController {
     public boolean loadFeaturedPremium;
     private long[] loadHash;
     boolean loaded;
+    boolean loadedRecentReactions;
+    boolean loadedSavedReactions;
     boolean loading;
     private boolean loadingDefaultTopicIcons;
     private HashSet<String> loadingDiceStickerSets;
@@ -331,6 +336,7 @@ public class MediaDataController extends BaseController {
     private boolean loadingRecentGifs;
     boolean loadingRecentReactions;
     private boolean[] loadingRecentStickers;
+    boolean loadingSavedReactions;
     private final HashMap<TLRPC$InputStickerSet, ArrayList<Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet>>> loadingStickerSets;
     private boolean[] loadingStickers;
     private int menuBotsUpdateDate;
@@ -361,6 +367,7 @@ public class MediaDataController extends BaseController {
     public TLRPC$TL_emojiList restrictedStatusEmojis;
     public final RingtoneDataStore ringtoneDataStore;
     public HashMap<String, RingtoneUploader> ringtoneUploaderHashMap;
+    ArrayList<TLRPC$Reaction> savedReactions;
     private Runnable[] scheduledLoadStickers;
     private ArrayList<MessageObject> searchResultMessages;
     private SparseArray<MessageObject>[] searchResultMessagesMap;
@@ -513,6 +520,7 @@ public class MediaDataController extends BaseController {
         this.triedLoadingEmojipacks = false;
         this.recentReactions = new ArrayList<>();
         this.topReactions = new ArrayList<>();
+        this.savedReactions = new ArrayList<>();
         if (this.currentAccount == 0) {
             this.draftPreferences = ApplicationLoader.applicationContext.getSharedPreferences("drafts", 0);
         } else {
@@ -4085,7 +4093,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray<Runnable> longSparseArray = this.removingStickerSetsUndos;
             long j = tLRPC$StickerSet.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda157(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda160(delayedAction));
             Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i2), Boolean.TRUE);
@@ -4184,7 +4192,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray<Runnable> longSparseArray = this.removingStickerSetsUndos;
             long j = arrayList.get(i9).set.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda157(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda160(delayedAction));
         }
         Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
     }
@@ -4417,8 +4425,8 @@ public class MediaDataController extends BaseController {
         return this.searchResultMessagesMap[z ? 1 : 0].indexOfKey(i) >= 0;
     }
 
-    public void searchMessagesInChat(String str, long j, long j2, int i, int i2, long j3, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean z) {
-        searchMessagesInChat(str, j, j2, i, i2, j3, false, tLRPC$User, tLRPC$Chat, true);
+    public void searchMessagesInChat(String str, long j, long j2, int i, int i2, long j3, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        searchMessagesInChat(str, j, j2, i, i2, j3, false, tLRPC$User, tLRPC$Chat, true, visibleReaction);
     }
 
     public void jumpToSearchedMessage(int i, int i2) {
@@ -4433,6 +4441,11 @@ public class MediaDataController extends BaseController {
         notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, Integer.valueOf(i), Integer.valueOf(messageObject.getId()), Integer.valueOf(getMask()), Long.valueOf(messageObject.getDialogId()), Integer.valueOf(this.lastReturnedNum), Integer.valueOf(iArr[0] + iArr[1]), Boolean.TRUE);
     }
 
+    public boolean searchEndReached() {
+        boolean[] zArr = this.messagesSearchEndReached;
+        return zArr[0] && this.lastMergeDialogId == 0 && zArr[1];
+    }
+
     public void loadMoreSearchMessages() {
         if (this.loadingMoreSearchMessages) {
             return;
@@ -4443,37 +4456,37 @@ public class MediaDataController extends BaseController {
         }
         int size = this.searchResultMessages.size();
         this.lastReturnedNum = this.searchResultMessages.size();
-        searchMessagesInChat(null, this.lastDialogId, this.lastMergeDialogId, this.lastGuid, 1, this.lastReplyMessageId, false, this.lastSearchUser, this.lastSearchChat, false);
+        searchMessagesInChat(null, this.lastDialogId, this.lastMergeDialogId, this.lastGuid, 1, this.lastReplyMessageId, false, this.lastSearchUser, this.lastSearchChat, false, this.lastReaction);
         this.lastReturnedNum = size;
         this.loadingMoreSearchMessages = true;
     }
 
-    private void searchMessagesInChat(java.lang.String r26, final long r27, final long r29, final int r31, final int r32, final long r33, boolean r35, final org.telegram.tgnet.TLRPC$User r36, final org.telegram.tgnet.TLRPC$Chat r37, final boolean r38) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.searchMessagesInChat(java.lang.String, long, long, int, int, long, boolean, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean):void");
+    private void searchMessagesInChat(java.lang.String r28, final long r29, final long r31, final int r33, final int r34, final long r35, boolean r37, final org.telegram.tgnet.TLRPC$User r38, final org.telegram.tgnet.TLRPC$Chat r39, final boolean r40, final org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.searchMessagesInChat(java.lang.String, long, long, int, int, long, boolean, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction):void");
     }
 
-    public void lambda$searchMessagesInChat$112(final long j, final TLRPC$TL_messages_search tLRPC$TL_messages_search, final long j2, final int i, final int i2, final long j3, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$searchMessagesInChat$112(final long j, final TLRPC$TL_messages_search tLRPC$TL_messages_search, final long j2, final int i, final int i2, final long j3, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final boolean z, final ReactionsLayoutInBubble.VisibleReaction visibleReaction, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$searchMessagesInChat$111(j, tLObject, tLRPC$TL_messages_search, j2, i, i2, j3, tLRPC$User, tLRPC$Chat, z);
+                MediaDataController.this.lambda$searchMessagesInChat$111(j, tLObject, tLRPC$TL_messages_search, j2, i, i2, j3, tLRPC$User, tLRPC$Chat, z, visibleReaction);
             }
         });
     }
 
-    public void lambda$searchMessagesInChat$111(long j, TLObject tLObject, TLRPC$TL_messages_search tLRPC$TL_messages_search, long j2, int i, int i2, long j3, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean z) {
+    public void lambda$searchMessagesInChat$111(long j, TLObject tLObject, TLRPC$TL_messages_search tLRPC$TL_messages_search, long j2, int i, int i2, long j3, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         if (this.lastMergeDialogId == j) {
             this.mergeReqId = 0;
             if (tLObject != null) {
                 TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
                 this.messagesSearchEndReached[1] = tLRPC$messages_Messages.messages.isEmpty();
                 this.messagesSearchCount[1] = tLRPC$messages_Messages instanceof TLRPC$TL_messages_messagesSlice ? tLRPC$messages_Messages.count : tLRPC$messages_Messages.messages.size();
-                searchMessagesInChat(tLRPC$TL_messages_search.q, j2, j, i, i2, j3, true, tLRPC$User, tLRPC$Chat, z);
+                searchMessagesInChat(tLRPC$TL_messages_search.q, j2, j, i, i2, j3, true, tLRPC$User, tLRPC$Chat, z, visibleReaction);
                 return;
             }
             this.messagesSearchEndReached[1] = true;
             this.messagesSearchCount[1] = 0;
-            searchMessagesInChat(tLRPC$TL_messages_search.q, j2, j, i, i2, j3, true, tLRPC$User, tLRPC$Chat, z);
+            searchMessagesInChat(tLRPC$TL_messages_search.q, j2, j, i, i2, j3, true, tLRPC$User, tLRPC$Chat, z, visibleReaction);
         }
     }
 
@@ -4535,7 +4548,7 @@ public class MediaDataController extends BaseController {
                     i4++;
                     z2 = true;
                 }
-                this.messagesSearchEndReached[j == j2 ? (char) 0 : (char) 1] = tLRPC$messages_Messages.messages.size() < 21;
+                this.messagesSearchEndReached[j == j2 ? (char) 0 : (char) 1] = tLRPC$messages_Messages.messages.size() < tLRPC$TL_messages_search.limit;
                 this.messagesSearchCount[j == j2 ? (char) 0 : (char) 1] = ((tLRPC$messages_Messages instanceof TLRPC$TL_messages_messagesSlice) || (tLRPC$messages_Messages instanceof TLRPC$TL_messages_channelMessages)) ? tLRPC$messages_Messages.count : tLRPC$messages_Messages.messages.size();
                 if (this.searchResultMessages.isEmpty()) {
                     getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.chatSearchResultsAvailable, Integer.valueOf(i2), 0, Integer.valueOf(getMask()), 0L, 0, 0, Boolean.valueOf(z));
@@ -4554,7 +4567,7 @@ public class MediaDataController extends BaseController {
                     if (!zArr[0] || j3 == 0 || zArr[1]) {
                         return;
                     }
-                    searchMessagesInChat(this.lastSearchQuery, j2, j3, i2, 0, j4, true, tLRPC$User, tLRPC$Chat, z);
+                    searchMessagesInChat(this.lastSearchQuery, j2, j3, i2, 0, j4, true, tLRPC$User, tLRPC$Chat, z, this.lastReaction);
                 }
             }
         }
@@ -8960,39 +8973,52 @@ public class MediaDataController extends BaseController {
     }
 
     public void loadRecentAndTopReactions(boolean z) {
-        if (this.loadingRecentReactions || !this.recentReactions.isEmpty() || z) {
+        if (this.loadingRecentReactions) {
             return;
         }
-        Context context = ApplicationLoader.applicationContext;
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("recent_reactions_" + this.currentAccount, 0);
-        Context context2 = ApplicationLoader.applicationContext;
-        final SharedPreferences sharedPreferences2 = context2.getSharedPreferences("top_reactions_" + this.currentAccount, 0);
-        this.recentReactions.clear();
-        this.topReactions.clear();
-        this.recentReactions.addAll(loadReactionsFromPref(sharedPreferences));
-        this.topReactions.addAll(loadReactionsFromPref(sharedPreferences2));
-        this.loadingRecentReactions = true;
-        TLRPC$TL_messages_getRecentReactions tLRPC$TL_messages_getRecentReactions = new TLRPC$TL_messages_getRecentReactions();
-        tLRPC$TL_messages_getRecentReactions.hash = sharedPreferences.getLong("hash", 0L);
-        tLRPC$TL_messages_getRecentReactions.limit = 50;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getRecentReactions, new RequestDelegate() {
+        if (!this.loadedRecentReactions || z) {
+            Context context = ApplicationLoader.applicationContext;
+            final SharedPreferences sharedPreferences = context.getSharedPreferences("recent_reactions_" + this.currentAccount, 0);
+            Context context2 = ApplicationLoader.applicationContext;
+            final SharedPreferences sharedPreferences2 = context2.getSharedPreferences("top_reactions_" + this.currentAccount, 0);
+            this.recentReactions.clear();
+            this.topReactions.clear();
+            this.recentReactions.addAll(loadReactionsFromPref(sharedPreferences));
+            this.topReactions.addAll(loadReactionsFromPref(sharedPreferences2));
+            this.loadingRecentReactions = true;
+            this.loadedRecentReactions = true;
+            final boolean[] zArr = new boolean[2];
+            TLRPC$TL_messages_getRecentReactions tLRPC$TL_messages_getRecentReactions = new TLRPC$TL_messages_getRecentReactions();
+            tLRPC$TL_messages_getRecentReactions.hash = sharedPreferences.getLong("hash", 0L);
+            tLRPC$TL_messages_getRecentReactions.limit = 50;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getRecentReactions, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MediaDataController.this.lambda$loadRecentAndTopReactions$221(sharedPreferences, zArr, tLObject, tLRPC$TL_error);
+                }
+            });
+            TLRPC$TL_messages_getTopReactions tLRPC$TL_messages_getTopReactions = new TLRPC$TL_messages_getTopReactions();
+            tLRPC$TL_messages_getTopReactions.hash = sharedPreferences2.getLong("hash", 0L);
+            tLRPC$TL_messages_getTopReactions.limit = 100;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getTopReactions, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MediaDataController.this.lambda$loadRecentAndTopReactions$223(sharedPreferences2, zArr, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+    }
+
+    public void lambda$loadRecentAndTopReactions$221(final SharedPreferences sharedPreferences, final boolean[] zArr, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$loadRecentAndTopReactions$220(sharedPreferences, tLObject, tLRPC$TL_error);
-            }
-        });
-        TLRPC$TL_messages_getTopReactions tLRPC$TL_messages_getTopReactions = new TLRPC$TL_messages_getTopReactions();
-        tLRPC$TL_messages_getTopReactions.hash = sharedPreferences2.getLong("hash", 0L);
-        tLRPC$TL_messages_getTopReactions.limit = 100;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getTopReactions, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$loadRecentAndTopReactions$221(sharedPreferences2, tLObject, tLRPC$TL_error);
+            public final void run() {
+                MediaDataController.this.lambda$loadRecentAndTopReactions$220(tLRPC$TL_error, tLObject, sharedPreferences, zArr);
             }
         });
     }
 
-    public void lambda$loadRecentAndTopReactions$220(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRecentAndTopReactions$220(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr) {
         if (tLRPC$TL_error == null) {
             if (tLObject instanceof TLRPC$TL_messages_reactions) {
                 TLRPC$TL_messages_reactions tLRPC$TL_messages_reactions = (TLRPC$TL_messages_reactions) tLObject;
@@ -9002,9 +9028,22 @@ public class MediaDataController extends BaseController {
             }
             boolean z = tLObject instanceof TLRPC$TL_messages_reactionsNotModified;
         }
+        zArr[0] = true;
+        if (zArr[1]) {
+            this.loadingRecentReactions = false;
+        }
     }
 
-    public void lambda$loadRecentAndTopReactions$221(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRecentAndTopReactions$223(final SharedPreferences sharedPreferences, final boolean[] zArr, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MediaDataController.this.lambda$loadRecentAndTopReactions$222(tLRPC$TL_error, tLObject, sharedPreferences, zArr);
+            }
+        });
+    }
+
+    public void lambda$loadRecentAndTopReactions$222(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr) {
         if (tLRPC$TL_error == null) {
             if (tLObject instanceof TLRPC$TL_messages_reactions) {
                 TLRPC$TL_messages_reactions tLRPC$TL_messages_reactions = (TLRPC$TL_messages_reactions) tLObject;
@@ -9014,6 +9053,59 @@ public class MediaDataController extends BaseController {
             }
             boolean z = tLObject instanceof TLRPC$TL_messages_reactionsNotModified;
         }
+        zArr[1] = true;
+        if (zArr[0]) {
+            this.loadingRecentReactions = false;
+        }
+    }
+
+    public ArrayList<TLRPC$Reaction> getSavedReactions() {
+        return this.savedReactions;
+    }
+
+    public void loadSavedReactions(boolean z) {
+        if (this.loadingSavedReactions) {
+            return;
+        }
+        if (!this.loadedSavedReactions || z) {
+            Context context = ApplicationLoader.applicationContext;
+            final SharedPreferences sharedPreferences = context.getSharedPreferences("saved_reactions_" + this.currentAccount, 0);
+            this.savedReactions.clear();
+            this.savedReactions.addAll(loadReactionsFromPref(sharedPreferences));
+            this.loadingSavedReactions = true;
+            this.loadedSavedReactions = true;
+            TLRPC$TL_messages_getDefaultTagReactions tLRPC$TL_messages_getDefaultTagReactions = new TLRPC$TL_messages_getDefaultTagReactions();
+            tLRPC$TL_messages_getDefaultTagReactions.hash = sharedPreferences.getLong("hash", 0L);
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getDefaultTagReactions, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MediaDataController.this.lambda$loadSavedReactions$225(sharedPreferences, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+    }
+
+    public void lambda$loadSavedReactions$225(final SharedPreferences sharedPreferences, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MediaDataController.this.lambda$loadSavedReactions$224(tLRPC$TL_error, tLObject, sharedPreferences);
+            }
+        });
+    }
+
+    public void lambda$loadSavedReactions$224(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, SharedPreferences sharedPreferences) {
+        if (tLRPC$TL_error == null) {
+            if (tLObject instanceof TLRPC$TL_messages_reactions) {
+                TLRPC$TL_messages_reactions tLRPC$TL_messages_reactions = (TLRPC$TL_messages_reactions) tLObject;
+                this.savedReactions.clear();
+                this.savedReactions.addAll(tLRPC$TL_messages_reactions.reactions);
+                saveReactionsToPref(sharedPreferences, tLRPC$TL_messages_reactions.hash, tLRPC$TL_messages_reactions.reactions);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, new Object[0]);
+            }
+            boolean z = tLObject instanceof TLRPC$TL_messages_reactionsNotModified;
+        }
+        this.loadingSavedReactions = false;
     }
 
     public static void saveReactionsToPref(SharedPreferences sharedPreferences, long j, ArrayList<? extends TLObject> arrayList) {
@@ -9049,16 +9141,16 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadAvatarConstructor(boolean):void");
     }
 
-    public void lambda$loadAvatarConstructor$223(final SharedPreferences sharedPreferences, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadAvatarConstructor$227(final SharedPreferences sharedPreferences, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$loadAvatarConstructor$222(tLObject, sharedPreferences, z);
+                MediaDataController.this.lambda$loadAvatarConstructor$226(tLObject, sharedPreferences, z);
             }
         });
     }
 
-    public void lambda$loadAvatarConstructor$222(TLObject tLObject, SharedPreferences sharedPreferences, boolean z) {
+    public void lambda$loadAvatarConstructor$226(TLObject tLObject, SharedPreferences sharedPreferences, boolean z) {
         if (tLObject instanceof TLRPC$TL_emojiList) {
             SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
             tLObject.serializeToStream(serializedData);
@@ -9080,16 +9172,16 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadReplyIcons():void");
     }
 
-    public void lambda$loadReplyIcons$225(final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadReplyIcons$229(final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$loadReplyIcons$224(tLObject, sharedPreferences);
+                MediaDataController.this.lambda$loadReplyIcons$228(tLObject, sharedPreferences);
             }
         });
     }
 
-    public void lambda$loadReplyIcons$224(TLObject tLObject, SharedPreferences sharedPreferences) {
+    public void lambda$loadReplyIcons$228(TLObject tLObject, SharedPreferences sharedPreferences) {
         if (tLObject instanceof TLRPC$TL_emojiList) {
             SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
             tLObject.serializeToStream(serializedData);
@@ -9105,16 +9197,16 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadRestrictedStatusEmojis():void");
     }
 
-    public void lambda$loadRestrictedStatusEmojis$227(final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRestrictedStatusEmojis$231(final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$loadRestrictedStatusEmojis$226(tLObject, sharedPreferences);
+                MediaDataController.this.lambda$loadRestrictedStatusEmojis$230(tLObject, sharedPreferences);
             }
         });
     }
 
-    public void lambda$loadRestrictedStatusEmojis$226(TLObject tLObject, SharedPreferences sharedPreferences) {
+    public void lambda$loadRestrictedStatusEmojis$230(TLObject tLObject, SharedPreferences sharedPreferences) {
         if (tLObject instanceof TLRPC$TL_emojiList) {
             SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
             tLObject.serializeToStream(serializedData);

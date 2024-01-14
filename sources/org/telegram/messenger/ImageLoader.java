@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -43,7 +44,6 @@ import java.net.UnknownHostException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -1015,7 +1015,9 @@ public class ImageLoader {
     public static Bitmap getStrippedPhotoBitmap(byte[] bArr, String str) {
         int length = (bArr.length - 3) + Bitmaps.header.length + Bitmaps.footer.length;
         byte[] bArr2 = bytesLocal.get();
-        bArr2 = (bArr2 == null || bArr2.length < length) ? null : null;
+        if (bArr2 == null || bArr2.length < length) {
+            bArr2 = null;
+        }
         if (bArr2 == null) {
             bArr2 = new byte[length];
             bytesLocal.set(bArr2);
@@ -1024,11 +1026,27 @@ public class ImageLoader {
         System.arraycopy(bArr3, 0, bArr2, 0, bArr3.length);
         System.arraycopy(bArr, 3, bArr2, Bitmaps.header.length, bArr.length - 3);
         System.arraycopy(Bitmaps.footer, 0, bArr2, (Bitmaps.header.length + bArr.length) - 3, Bitmaps.footer.length);
+        boolean z = true;
         bArr2[164] = bArr[1];
         bArr2[166] = bArr[2];
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = SharedConfig.deviceIsHigh() ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+        z = (TextUtils.isEmpty(str) || !str.contains("r")) ? false : false;
+        options.inPreferredConfig = (SharedConfig.deviceIsHigh() || z) ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
         Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr2, 0, length, options);
+        if (z) {
+            Bitmap createBitmap = Bitmap.createBitmap(decodeByteArray.getWidth(), decodeByteArray.getHeight(), decodeByteArray.getConfig());
+            Canvas canvas = new Canvas(createBitmap);
+            canvas.save();
+            canvas.scale(1.2f, 1.2f, decodeByteArray.getWidth() / 2.0f, decodeByteArray.getHeight() / 2.0f);
+            canvas.drawBitmap(decodeByteArray, 0.0f, 0.0f, (Paint) null);
+            canvas.restore();
+            Path path = new Path();
+            path.addCircle(decodeByteArray.getWidth() / 2.0f, decodeByteArray.getHeight() / 2.0f, Math.min(decodeByteArray.getWidth(), decodeByteArray.getHeight()) / 2.0f, Path.Direction.CW);
+            canvas.clipPath(path);
+            canvas.drawBitmap(decodeByteArray, 0.0f, 0.0f, (Paint) null);
+            decodeByteArray.recycle();
+            decodeByteArray = createBitmap;
+        }
         if (decodeByteArray != null && !TextUtils.isEmpty(str) && str.contains("b")) {
             Utilities.blurBitmap(decodeByteArray, 3, 1, decodeByteArray.getWidth(), decodeByteArray.getHeight(), decodeByteArray.getRowBytes());
         }
@@ -1038,6 +1056,7 @@ public class ImageLoader {
     public class CacheImage {
         protected ArtworkLoadTask artworkTask;
         protected CacheOutTask cacheTask;
+        protected int cacheType;
         protected int currentAccount;
         protected File encryptionKeyPath;
         protected String ext;
@@ -1581,6 +1600,7 @@ public class ImageLoader {
                     cacheImage2.cacheTask = new CacheOutTask(cacheImage2);
                     cacheImage2.filter = str3;
                     cacheImage2.imageType = cacheImage.imageType;
+                    cacheImage2.cacheType = cacheImage.cacheType;
                     ImageLoader.this.imageLoadingByKeys.put(str2, cacheImage2);
                     arrayList.add(cacheImage2.cacheTask);
                 }
@@ -1692,7 +1712,7 @@ public class ImageLoader {
                     convert.forEach(new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            ImageLoader.lambda$moveDirectory$2(file2, (Path) obj);
+                            ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
                         }
 
                         @Override
@@ -1708,7 +1728,7 @@ public class ImageLoader {
         }
     }
 
-    public static void lambda$moveDirectory$2(File file, Path path) {
+    public static void lambda$moveDirectory$2(File file, java.nio.file.Path path) {
         File file2 = new File(file, path.getFileName().toString());
         if (Files.isDirectory(path, new LinkOption[0])) {
             moveDirectory(path.toFile(), file2);
@@ -2305,6 +2325,7 @@ public class ImageLoader {
                 cacheImage2.parentObject = cacheImage.parentObject;
                 cacheImage2.isPFrame = cacheImage.isPFrame;
                 cacheImage2.key = str2;
+                cacheImage2.cacheType = cacheImage.cacheType;
                 cacheImage2.imageLocation = cacheImage.imageLocation;
                 cacheImage2.type = intValue;
                 cacheImage2.ext = cacheImage.ext;

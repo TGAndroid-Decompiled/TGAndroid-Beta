@@ -375,24 +375,6 @@ public class VideoTimelineView extends View {
                 FileLog.e(e);
             }
         }
-        int i = 0;
-        if (!this.keyframes.isEmpty()) {
-            while (i < this.keyframes.size()) {
-                Bitmap bitmap = this.keyframes.get(i);
-                if (bitmap != null) {
-                    bitmap.recycle();
-                }
-                i++;
-            }
-        } else {
-            while (i < this.frames.size()) {
-                Bitmap bitmap2 = this.frames.get(i);
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                i++;
-            }
-        }
         this.keyframes.clear();
         this.frames.clear();
         AsyncTask<Integer, Integer, Bitmap> asyncTask = this.currentTask;
@@ -458,7 +440,7 @@ public class VideoTimelineView extends View {
             int i = 0;
             for (int i2 = 0; i2 < this.frames.size(); i2++) {
                 Bitmap bitmap = this.frames.get(i2);
-                if (bitmap != null) {
+                if (bitmap != null && !bitmap.isRecycled()) {
                     boolean z = this.isRoundFrames;
                     int i3 = this.frameWidth;
                     if (z) {

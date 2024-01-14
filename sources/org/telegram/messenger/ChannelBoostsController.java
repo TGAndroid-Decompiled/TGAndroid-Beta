@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Utilities;
@@ -16,8 +17,12 @@ import org.telegram.tgnet.tl.TL_stories$TL_myBoost;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_getBoostsStatus;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_myBoosts;
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
+import org.telegram.ui.LaunchActivity;
 public class ChannelBoostsController {
     public static final int BOOSTS_FOR_LEVEL_1 = 1;
     public static final int BOOSTS_FOR_LEVEL_2 = 1;
@@ -56,7 +61,23 @@ public class ChannelBoostsController {
             consumer.accept((TL_stories$TL_premium_boostsStatus) tLObject);
             return;
         }
-        BulletinFactory.showForError(tLRPC$TL_error);
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (tLRPC$TL_error != null && lastFragment != null && "CHANNEL_PRIVATE".equals(tLRPC$TL_error.text)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
+            builder.setTitle(LocaleController.getString(R.string.AppName));
+            HashMap hashMap = new HashMap();
+            int i = Theme.key_dialogTopBackground;
+            hashMap.put("info1.**", Integer.valueOf(Theme.getColor(i)));
+            hashMap.put("info2.**", Integer.valueOf(Theme.getColor(i)));
+            builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), hashMap);
+            builder.setTopAnimationIsNew(true);
+            builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));
+            builder.setMessage(LocaleController.getString("ChannelCantOpenPrivate2", R.string.ChannelCantOpenPrivate2));
+            builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
+            builder.show();
+        } else {
+            BulletinFactory.global().showForError(tLRPC$TL_error);
+        }
         consumer.accept(null);
     }
 

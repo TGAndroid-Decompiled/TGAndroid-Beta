@@ -6,6 +6,7 @@ public class TLRPC$TL_messageReactions extends TLRPC$MessageReactions {
         this.flags = readInt32;
         this.min = (readInt32 & 1) != 0;
         this.can_see_list = (readInt32 & 4) != 0;
+        this.reactions_as_tags = (readInt32 & 8) != 0;
         int readInt322 = abstractSerializedData.readInt32(z);
         if (readInt322 != 481674261) {
             if (z) {
@@ -47,19 +48,21 @@ public class TLRPC$TL_messageReactions extends TLRPC$MessageReactions {
         this.flags = i;
         int i2 = this.can_see_list ? i | 4 : i & (-5);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.reactions_as_tags ? i2 | 8 : i2 & (-9);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         abstractSerializedData.writeInt32(481674261);
         int size = this.results.size();
         abstractSerializedData.writeInt32(size);
-        for (int i3 = 0; i3 < size; i3++) {
-            this.results.get(i3).serializeToStream(abstractSerializedData);
+        for (int i4 = 0; i4 < size; i4++) {
+            this.results.get(i4).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.recent_reactions.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i4 = 0; i4 < size2; i4++) {
-                this.recent_reactions.get(i4).serializeToStream(abstractSerializedData);
+            for (int i5 = 0; i5 < size2; i5++) {
+                this.recent_reactions.get(i5).serializeToStream(abstractSerializedData);
             }
         }
     }

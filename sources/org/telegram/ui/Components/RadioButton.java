@@ -7,7 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
@@ -22,6 +24,7 @@ public class RadioButton extends View {
     private ObjectAnimator checkAnimator;
     private int checkedColor;
     private int color;
+    private Drawable icon;
     private boolean isChecked;
     private float progress;
     private int size;
@@ -69,6 +72,14 @@ public class RadioButton extends View {
         this.size = i;
     }
 
+    public void setIcon(Drawable drawable) {
+        this.icon = drawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
+        }
+        invalidate();
+    }
+
     public int getColor() {
         return this.color;
     }
@@ -76,12 +87,20 @@ public class RadioButton extends View {
     public void setColor(int i, int i2) {
         this.color = i;
         this.checkedColor = i2;
+        Drawable drawable = this.icon;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
+        }
         invalidate();
     }
 
     @Override
     public void setBackgroundColor(int i) {
         this.color = i;
+        Drawable drawable = this.icon;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
+        }
         invalidate();
     }
 
@@ -166,6 +185,11 @@ public class RadioButton extends View {
             int rgb = Color.rgb(red + ((int) ((Color.red(this.checkedColor) - red) * f3)), green + ((int) ((Color.green(this.checkedColor) - green) * f3)), blue + ((int) ((Color.blue(this.checkedColor) - blue) * f3)));
             paint.setColor(rgb);
             checkedPaint.setColor(rgb);
+        }
+        Drawable drawable = this.icon;
+        if (drawable != null) {
+            drawable.setBounds((int) ((getWidth() / 2.0f) - (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.icon.getIntrinsicHeight() / 2.0f)), (int) ((getWidth() / 2.0f) + (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) + (this.icon.getIntrinsicHeight() / 2.0f)));
+            this.icon.draw(canvas);
         }
         Bitmap bitmap3 = this.bitmap;
         if (bitmap3 != null) {

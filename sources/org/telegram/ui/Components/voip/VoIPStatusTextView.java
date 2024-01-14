@@ -37,7 +37,6 @@ public class VoIPStatusTextView extends FrameLayout {
         for (int i = 0; i < 2; i++) {
             this.textView[i] = new TextView(context);
             this.textView[i].setTextSize(1, 15.0f);
-            this.textView[i].setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(0.6666667f), 1275068416);
             this.textView[i].setTextColor(-1);
             this.textView[i].setGravity(1);
             addView(this.textView[i]);
@@ -72,7 +71,6 @@ public class VoIPStatusTextView extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.reconnectTextView = textView2;
         textView2.setTextSize(1, 15.0f);
-        this.reconnectTextView.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(0.6666667f), 1275068416);
         this.reconnectTextView.setTextColor(-1);
         this.reconnectTextView.setGravity(1);
         addView(this.reconnectTextView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));

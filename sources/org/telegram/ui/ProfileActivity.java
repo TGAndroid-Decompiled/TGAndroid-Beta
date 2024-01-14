@@ -328,6 +328,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private final Property<ProfileActivity, Float> HEADER_SHADOW;
     private AboutLinkCell aboutLinkCell;
     private int actionBarAnimationColorFrom;
+    private int actionBarBackgroundColor;
     private Paint actionBarBackgroundPaint;
     private int addMemberRow;
     private int addToContactsRow;
@@ -617,15 +618,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$getInitialSearchString(this);
     }
 
-    public static void access$31000(ProfileActivity profileActivity, View view) {
+    public static void access$31100(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
-    public static void access$7300(ProfileActivity profileActivity) {
+    public static void access$7400(ProfileActivity profileActivity) {
         profileActivity.onWriteButtonClick();
     }
 
-    static int access$9412(ProfileActivity profileActivity, int i) {
+    static int access$9512(ProfileActivity profileActivity, int i) {
         int i2 = profileActivity.listContentHeight + i;
         profileActivity.listContentHeight = i2;
         return i2;
@@ -863,6 +864,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.currentColor = i;
                 this.paint.setColor(i);
                 invalidate();
+                if (this.hasColorById) {
+                    return;
+                }
+                ProfileActivity.this.actionBarBackgroundColor = this.currentColor;
             }
         }
 
@@ -870,9 +875,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (peerColor != null) {
                 this.hasColorById = true;
                 this.color1 = peerColor.getBgColor1(Theme.isCurrentThemeDark());
-                this.color2 = peerColor.getBgColor2(Theme.isCurrentThemeDark());
+                int bgColor2 = peerColor.getBgColor2(Theme.isCurrentThemeDark());
+                this.color2 = bgColor2;
+                ProfileActivity.this.actionBarBackgroundColor = ColorUtils.blendARGB(this.color1, bgColor2, 0.25f);
                 this.emojiColor = PeerColorActivity.adaptProfileEmojiColor(this.color1);
             } else {
+                ProfileActivity.this.actionBarBackgroundColor = this.currentColor;
                 this.hasColorById = false;
                 ProfileActivity profileActivity = ProfileActivity.this;
                 int i = Theme.key_actionBarDefault;
@@ -3837,10 +3845,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         RecyclerView.ViewHolder createViewHolder = ProfileActivity.this.listAdapter.createViewHolder(null, itemViewType);
                         ProfileActivity.this.listAdapter.onBindViewHolder(createViewHolder, i5);
                         createViewHolder.itemView.measure(makeMeasureSpec, makeMeasureSpec2);
-                        ProfileActivity.access$9412(ProfileActivity.this, createViewHolder.itemView.getMeasuredHeight());
+                        ProfileActivity.access$9512(ProfileActivity.this, createViewHolder.itemView.getMeasuredHeight());
                     } else {
                         ProfileActivity profileActivity = ProfileActivity.this;
-                        ProfileActivity.access$9412(profileActivity, profileActivity.listView.getMeasuredHeight());
+                        ProfileActivity.access$9512(profileActivity, profileActivity.listView.getMeasuredHeight());
                     }
                 }
                 if (ProfileActivity.this.emptyView != null) {
@@ -7182,7 +7190,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (min != i3) {
                 this.nameTextView[1].requestLayout();
             }
-            float measureText2 = this.onlineTextView[1].getPaint().measureText(this.onlineTextView[1].getText().toString());
+            float measureText2 = this.onlineTextView[1].getPaint().measureText(this.onlineTextView[1].getText().toString()) + this.onlineTextView[1].getRightDrawableWidth();
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.onlineTextView[1].getLayoutParams();
             FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.mediaCounterTextView.getLayoutParams();
             int i4 = layoutParams2.width;
@@ -9584,7 +9592,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             searchResultArr[4] = new SearchResult(this, 504, string, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.access$7300(ProfileActivity.this);
+                    ProfileActivity.access$7400(ProfileActivity.this);
                 }
             });
             int i = R.string.NotificationsAndSounds;

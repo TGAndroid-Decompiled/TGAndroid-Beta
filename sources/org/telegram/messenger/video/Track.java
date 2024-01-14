@@ -308,6 +308,7 @@ public class Track {
 
     public void prepare() {
         int i;
+        this.duration = 0L;
         ArrayList arrayList = new ArrayList(this.samplePresentationTimes);
         Collections.sort(this.samplePresentationTimes, new Comparator() {
             @Override
