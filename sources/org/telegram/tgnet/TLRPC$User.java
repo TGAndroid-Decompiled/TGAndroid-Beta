@@ -20,6 +20,7 @@ public abstract class TLRPC$User extends TLObject {
     public boolean close_friend;
     public TLRPC$TL_peerColor color;
     public boolean contact;
+    public boolean contact_require_premium;
     public boolean deleted;
     public TLRPC$EmojiStatus emoji_status;
     public boolean explicit_content;

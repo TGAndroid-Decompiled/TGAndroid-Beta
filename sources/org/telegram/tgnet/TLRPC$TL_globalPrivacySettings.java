@@ -2,8 +2,10 @@ package org.telegram.tgnet;
 public class TLRPC$TL_globalPrivacySettings extends TLObject {
     public boolean archive_and_mute_new_noncontact_peers;
     public int flags;
+    public boolean hide_read_marks;
     public boolean keep_archived_folders;
     public boolean keep_archived_unmuted;
+    public boolean new_noncontact_peers_require_premium;
 
     public static TLRPC$TL_globalPrivacySettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1934380235 != i) {
@@ -24,6 +26,8 @@ public class TLRPC$TL_globalPrivacySettings extends TLObject {
         this.archive_and_mute_new_noncontact_peers = (readInt32 & 1) != 0;
         this.keep_archived_unmuted = (readInt32 & 2) != 0;
         this.keep_archived_folders = (readInt32 & 4) != 0;
+        this.hide_read_marks = (readInt32 & 8) != 0;
+        this.new_noncontact_peers_require_premium = (readInt32 & 16) != 0;
     }
 
     @Override
@@ -35,6 +39,10 @@ public class TLRPC$TL_globalPrivacySettings extends TLObject {
         this.flags = i2;
         int i3 = this.keep_archived_folders ? i2 | 4 : i2 & (-5);
         this.flags = i3;
-        abstractSerializedData.writeInt32(i3);
+        int i4 = this.hide_read_marks ? i3 | 8 : i3 & (-9);
+        this.flags = i4;
+        int i5 = this.new_noncontact_peers_require_premium ? i4 | 16 : i4 & (-17);
+        this.flags = i5;
+        abstractSerializedData.writeInt32(i5);
     }
 }

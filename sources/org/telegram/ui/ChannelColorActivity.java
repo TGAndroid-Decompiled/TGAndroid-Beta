@@ -1598,7 +1598,7 @@ public class ChannelColorActivity extends BaseFragment {
                         }
 
                         @Override
-                        protected int noThemeStringTextSize() {
+                        public int noThemeStringTextSize() {
                             if (z) {
                                 return super.noThemeStringTextSize();
                             }

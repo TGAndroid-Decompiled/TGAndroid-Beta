@@ -1011,11 +1011,11 @@ public class TopicsController extends BaseController {
         }
     }
 
-    public void loadTopic(final long j, final int i, final Runnable runnable) {
+    public void loadTopic(final long j, final long j2, final Runnable runnable) {
         getMessagesStorage().loadTopics(-j, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                TopicsController.this.lambda$loadTopic$25(j, i, runnable, (ArrayList) obj);
+                TopicsController.this.lambda$loadTopic$25(j, j2, runnable, (ArrayList) obj);
             }
 
             @Override
@@ -1025,16 +1025,16 @@ public class TopicsController extends BaseController {
         });
     }
 
-    public void lambda$loadTopic$25(final long j, final int i, final Runnable runnable, final ArrayList arrayList) {
+    public void lambda$loadTopic$25(final long j, final long j2, final Runnable runnable, final ArrayList arrayList) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsController.this.lambda$loadTopic$24(j, arrayList, i, runnable);
+                TopicsController.this.lambda$loadTopic$24(j, arrayList, j2, runnable);
             }
         });
     }
 
-    public void lambda$loadTopic$24(long j, ArrayList arrayList, int i, Runnable runnable) {
+    public void lambda$loadTopic$24(long j, ArrayList arrayList, long j2, Runnable runnable) {
         if (BuildVars.LOGS_ENABLED) {
             StringBuilder sb = new StringBuilder();
             sb.append("loaded from cache ");
@@ -1045,12 +1045,12 @@ public class TopicsController extends BaseController {
         }
         processTopics(j, arrayList, null, true, 0, -1);
         sortTopics(j);
-        if (findTopic(j, i) != null) {
+        if (findTopic(j, j2) != null) {
             runnable.run();
             return;
         }
         ArrayList<TLRPC$TL_forumTopic> arrayList2 = new ArrayList<>();
-        new TLRPC$TL_forumTopic().id = i;
+        new TLRPC$TL_forumTopic().id = (int) j2;
         reloadTopics(j, arrayList2, runnable);
     }
 

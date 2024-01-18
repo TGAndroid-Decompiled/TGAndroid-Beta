@@ -4619,7 +4619,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void calcBackgroundWidth(int r7, int r8, int r9) {
+    private void calcBackgroundWidth(int r8, int r9, int r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.calcBackgroundWidth(int, int, int):void");
     }
 
@@ -5957,7 +5957,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         runnable.run();
     }
 
-    public void drawLinkPreview(android.graphics.Canvas r48, float r49) {
+    public void drawLinkPreview(android.graphics.Canvas r49, float r50) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawLinkPreview(android.graphics.Canvas, float):void");
     }
 

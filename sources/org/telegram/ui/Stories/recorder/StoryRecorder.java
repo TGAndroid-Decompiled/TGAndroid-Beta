@@ -4020,8 +4020,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         AnonymousClass19 anonymousClass19 = new AnonymousClass19(this.currentAccount, getContext(), this.resourcesProvider, this.lastGallerySelectedAlbum, z);
         this.galleryListView = anonymousClass19;
-        anonymousClass19.allowSearch(z);
-        this.galleryListView.setOnBackClickListener(new Runnable() {
+        anonymousClass19.setOnBackClickListener(new Runnable() {
             @Override
             public final void run() {
                 StoryRecorder.this.lambda$createGalleryListView$41();

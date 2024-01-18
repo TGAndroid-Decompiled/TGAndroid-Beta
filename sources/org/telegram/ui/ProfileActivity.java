@@ -24,6 +24,7 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -271,6 +272,7 @@ import org.telegram.ui.Components.BackButtonMenu;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.ChatActivityInterface;
 import org.telegram.ui.Components.ChatAvatarContainer;
@@ -287,6 +289,7 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.MediaActivity;
+import org.telegram.ui.Components.MessagePrivateSeenView;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
 import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
@@ -304,6 +307,7 @@ import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickerEmptyView;
+import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TimerDrawable;
 import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -558,6 +562,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int sharedMediaRow;
     private boolean showAddToContacts;
     boolean showBoostsAlert;
+    private ShowDrawable showStatusButton;
     private ArrayList<Integer> sortedUsers;
     private int stickersRow;
     private ProfileStoriesView storyView;
@@ -618,7 +623,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$getInitialSearchString(this);
     }
 
-    public static void access$31100(ProfileActivity profileActivity, View view) {
+    public static void access$31200(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -2816,6 +2821,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             ProfileActivity.this.onlineTextView[2].setTextColor(i6);
                             ProfileActivity.this.onlineTextView[3].setTextColor(i6);
                         }
+                        if (ProfileActivity.this.showStatusButton != null) {
+                            ProfileActivity.this.showStatusButton.setTextColor(Theme.multAlpha(Theme.adaptHSV(i6, -0.02f, 0.15f), 1.4f));
+                        }
                     }
                 };
             } else {
@@ -3976,6 +3984,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.avatarContainer.setVisibility(8);
                     ProfileActivity.this.avatarsViewPager.resetCurrentItem();
                     ProfileActivity.this.avatarsViewPager.setVisibility(0);
+                    if (ProfileActivity.this.showStatusButton != null) {
+                        ProfileActivity.this.showStatusButton.setBackgroundColor(603979775);
+                    }
                     if (ProfileActivity.this.storyView != null) {
                         ProfileActivity.this.storyView.setExpandProgress(1.0f);
                     }
@@ -5262,7 +5273,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    private void setAvatarExpandProgress(float r22) {
+    private void setAvatarExpandProgress(float r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.setAvatarExpandProgress(float):void");
     }
 
@@ -7040,6 +7051,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.nameY = ((float) Math.floor(this.avatarY)) + AndroidUtilities.dp(1.3f) + (AndroidUtilities.dp(7.0f) * min) + (this.titleAnimationsYDiff * (1.0f - this.avatarAnimationProgress));
                 this.onlineX = AndroidUtilities.density * (-21.0f) * min;
                 this.onlineY = ((float) Math.floor(this.avatarY)) + AndroidUtilities.dp(24.0f) + (((float) Math.floor(AndroidUtilities.density * 11.0f)) * min);
+                ShowDrawable showDrawable = this.showStatusButton;
+                if (showDrawable != null) {
+                    showDrawable.setAlpha((int) (255.0f * min));
+                }
                 while (true) {
                     SimpleTextView[] simpleTextViewArr2 = this.nameTextView;
                     if (i >= simpleTextViewArr2.length) {
@@ -8188,15 +8203,28 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.animatedStatusView.translate(this.nameTextView[1].getX() + (this.nameTextView[1].getRightDrawableX() * this.nameTextView[1].getScaleX()), this.nameTextView[1].getY() + (this.nameTextView[1].getHeight() - ((this.nameTextView[1].getHeight() - this.nameTextView[1].getRightDrawableY()) * this.nameTextView[1].getScaleY())));
     }
 
-    public void updateProfileData(boolean r29) {
+    public void updateProfileData(boolean r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateProfileData(boolean):void");
     }
 
-    public void lambda$updateProfileData$53(View view) {
+    public void lambda$updateProfileData$54(View view) {
+        MessagePrivateSeenView.showSheet(getContext(), this.currentAccount, this.dialogId, true, null, new Runnable() {
+            @Override
+            public final void run() {
+                ProfileActivity.this.lambda$updateProfileData$53();
+            }
+        }, this.resourcesProvider);
+    }
+
+    public void lambda$updateProfileData$53() {
+        getMessagesController().reloadUser(this.dialogId);
+    }
+
+    public void lambda$updateProfileData$55(View view) {
         showStatusSelect();
     }
 
-    public void lambda$updateProfileData$54(TLRPC$User tLRPC$User, SimpleTextView simpleTextView, View view) {
+    public void lambda$updateProfileData$56(TLRPC$User tLRPC$User, SimpleTextView simpleTextView, View view) {
         ImageLocation forDocument;
         PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(this, this.currentAccount, tLRPC$User, this.resourcesProvider);
         simpleTextView.getLocationOnScreen(new int[2]);
@@ -8245,11 +8273,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(premiumPreviewBottomSheet);
     }
 
-    public void lambda$updateProfileData$55(View view) {
+    public void lambda$updateProfileData$57(View view) {
         showStatusSelect();
     }
 
-    public void lambda$updateProfileData$56(View view) {
+    public void lambda$updateProfileData$58(View view) {
         goToForum();
     }
 
@@ -8270,6 +8298,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 themedColor2 = getThemedColor(Theme.key_avatar_subtitleInProfileBlue);
             }
             this.onlineTextView[1].setTextColor(ColorUtils.blendARGB(applyPeerColor(themedColor2, true, Boolean.valueOf(this.isOnline[0])), -1275068417, this.currentExpandAnimatorValue));
+        }
+        ShowDrawable showDrawable = this.showStatusButton;
+        if (showDrawable != null) {
+            showDrawable.setBackgroundColor(ColorUtils.blendARGB(Theme.multAlpha(Theme.adaptHSV(this.actionBarBackgroundColor, 0.18f, -0.1f), 0.5f), 603979775, this.currentExpandAnimatorValue));
         }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
@@ -8299,7 +8331,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.forEachViews((RecyclerView) this.listView, (com.google.android.exoplayer2.util.Consumer<View>) new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                ProfileActivity.this.lambda$updatedPeerColor$57((View) obj);
+                ProfileActivity.this.lambda$updatedPeerColor$59((View) obj);
             }
         });
         SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
@@ -8310,7 +8342,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         updateEmojiStatusDrawableColor();
     }
 
-    public void lambda$updatedPeerColor$57(View view) {
+    public void lambda$updatedPeerColor$59(View view) {
         if (view instanceof HeaderCell) {
             ((HeaderCell) view).setTextColor(applyPeerColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader), false));
         } else if (view instanceof TextDetailCell) {
@@ -8568,7 +8600,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ProfileActivity.this.lambda$searchExpandTransition$58(ofFloat, f, z, valueAnimator);
+                ProfileActivity.this.lambda$searchExpandTransition$60(ofFloat, f, z, valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -8602,7 +8634,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return ofFloat;
     }
 
-    public void lambda$searchExpandTransition$58(ValueAnimator valueAnimator, float f, boolean z, ValueAnimator valueAnimator2) {
+    public void lambda$searchExpandTransition$60(ValueAnimator valueAnimator, float f, boolean z, ValueAnimator valueAnimator2) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.searchTransitionProgress = floatValue;
         float f2 = (floatValue - 0.5f) / 0.5f;
@@ -8734,21 +8766,21 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$didUploadPhoto$61(tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, d, str, tLRPC$PhotoSize2, tLRPC$PhotoSize);
+                ProfileActivity.this.lambda$didUploadPhoto$63(tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, d, str, tLRPC$PhotoSize2, tLRPC$PhotoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$60(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didUploadPhoto$62(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$didUploadPhoto$59(tLRPC$TL_error, tLObject, str);
+                ProfileActivity.this.lambda$didUploadPhoto$61(tLRPC$TL_error, tLObject, str);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$59(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, String str) {
+    public void lambda$didUploadPhoto$61(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, String str) {
         if (tLRPC$TL_error == null) {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
             if (user == null) {
@@ -8805,7 +8837,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getUserConfig().saveConfig(true);
     }
 
-    public void lambda$didUploadPhoto$61(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, TLRPC$VideoSize tLRPC$VideoSize, double d, final String str, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2) {
+    public void lambda$didUploadPhoto$63(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, TLRPC$VideoSize tLRPC$VideoSize, double d, final String str, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2) {
         if (tLRPC$InputFile != null || tLRPC$InputFile2 != null || tLRPC$VideoSize != null) {
             if (this.avatar == null) {
                 return;
@@ -8829,7 +8861,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.avatarUploadingRequest = getConnectionsManager().sendRequest(tLRPC$TL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ProfileActivity.this.lambda$didUploadPhoto$60(str, tLObject, tLRPC$TL_error);
+                    ProfileActivity.this.lambda$didUploadPhoto$62(str, tLObject, tLRPC$TL_error);
                 }
             });
         } else {
@@ -8937,12 +8969,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.lambda$sendLogs$63(AlertDialog.this, z, activity);
+                ProfileActivity.lambda$sendLogs$65(AlertDialog.this, z, activity);
             }
         });
     }
 
-    public static void lambda$sendLogs$63(final AlertDialog alertDialog, boolean z, final Activity activity) {
+    public static void lambda$sendLogs$65(final AlertDialog alertDialog, boolean z, final Activity activity) {
         ZipOutputStream zipOutputStream;
         try {
             File logsDir = AndroidUtilities.getLogsDir();
@@ -9000,7 +9032,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            ProfileActivity.lambda$sendLogs$62(AlertDialog.this, zArr, activity, file);
+                                            ProfileActivity.lambda$sendLogs$64(AlertDialog.this, zArr, activity, file);
                                         }
                                     });
                                 } catch (Throwable th) {
@@ -9034,7 +9066,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.lambda$sendLogs$62(AlertDialog.this, zArr, activity, file);
+                    ProfileActivity.lambda$sendLogs$64(AlertDialog.this, zArr, activity, file);
                 }
             });
         } catch (Exception e4) {
@@ -9042,7 +9074,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void lambda$sendLogs$62(AlertDialog alertDialog, boolean[] zArr, Activity activity, File file) {
+    public static void lambda$sendLogs$64(AlertDialog alertDialog, boolean[] zArr, Activity activity, File file) {
         Uri fromFile;
         try {
             alertDialog.dismiss();
@@ -11560,7 +11592,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ProfileActivity.this.lambda$dimBehindView$64(valueAnimator);
+                ProfileActivity.this.lambda$dimBehindView$66(valueAnimator);
             }
         });
         this.scrimAnimatorSet.playTogether(arrayList);
@@ -11577,7 +11609,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.scrimAnimatorSet.start();
     }
 
-    public void lambda$dimBehindView$64(ValueAnimator valueAnimator) {
+    public void lambda$dimBehindView$66(ValueAnimator valueAnimator) {
         this.scrimPaint.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
     }
 
@@ -11589,7 +11621,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ProfileActivity.this.lambda$getThemeDescriptions$65();
+                ProfileActivity.this.lambda$getThemeDescriptions$67();
             }
 
             @Override
@@ -11715,7 +11747,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$65() {
+    public void lambda$getThemeDescriptions$67() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
@@ -11874,13 +11906,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         contactAddActivity.setDelegate(new ContactAddActivity.ContactAddActivityDelegate() {
             @Override
             public final void didAddToContacts() {
-                ProfileActivity.this.lambda$openAddToContact$66(tLRPC$User);
+                ProfileActivity.this.lambda$openAddToContact$68(tLRPC$User);
             }
         });
         presentFragment(contactAddActivity);
     }
 
-    public void lambda$openAddToContact$66(TLRPC$User tLRPC$User) {
+    public void lambda$openAddToContact$68(TLRPC$User tLRPC$User) {
         if (this.addToContactsRow >= 0) {
             if (this.sharedMediaRow == -1) {
                 updateRowsIds();
@@ -12264,5 +12296,99 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.blurredView.setBackground(new BitmapDrawable(createBitmap));
         this.blurredView.setAlpha(0.0f);
         this.blurredView.setVisibility(0);
+    }
+
+    public ShowDrawable getShowStatusButton() {
+        if (this.showStatusButton == null) {
+            ShowDrawable showDrawable = new ShowDrawable();
+            this.showStatusButton = showDrawable;
+            showDrawable.setAlpha((int) (Math.min(1.0f, this.extraHeight / AndroidUtilities.dp(88.0f)) * 255.0f));
+            this.showStatusButton.setBackgroundColor(ColorUtils.blendARGB(Theme.multAlpha(Theme.adaptHSV(this.actionBarBackgroundColor, 0.18f, -0.1f), 0.5f), 603979775, this.currentExpandAnimatorValue));
+        }
+        return this.showStatusButton;
+    }
+
+    public static class ShowDrawable extends Drawable implements SimpleTextView.PressableDrawable {
+        private float alpha;
+        public final Paint backgroundPaint;
+        private final ButtonBounce bounce;
+        private final Text text;
+        private int textColor;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public ShowDrawable() {
+            Paint paint = new Paint(1);
+            this.backgroundPaint = paint;
+            this.alpha = 1.0f;
+            this.bounce = new ButtonBounce(null) {
+                @Override
+                public void invalidate() {
+                    ShowDrawable.this.invalidateSelf();
+                }
+            };
+            this.text = new Text(LocaleController.getString(R.string.StatusHiddenShow), 11.0f);
+            paint.setColor(520093696);
+        }
+
+        public void setBackgroundColor(int i) {
+            if (this.backgroundPaint.getColor() != i) {
+                this.backgroundPaint.setColor(i);
+                invalidateSelf();
+            }
+        }
+
+        public void setTextColor(int i) {
+            if (this.textColor != i) {
+                this.textColor = i;
+                invalidateSelf();
+            }
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            if (this.alpha <= 0.0f) {
+                return;
+            }
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getBounds());
+            canvas.save();
+            float scale = this.bounce.getScale(0.1f);
+            canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
+            int alpha = this.backgroundPaint.getAlpha();
+            this.backgroundPaint.setAlpha((int) (alpha * this.alpha));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.backgroundPaint);
+            this.backgroundPaint.setAlpha(alpha);
+            this.text.draw(canvas, rectF.left + AndroidUtilities.dp(5.5f), rectF.centerY(), this.textColor, this.alpha);
+            canvas.restore();
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.alpha = i / 255.0f;
+            invalidateSelf();
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return (int) (this.text.getCurrentWidth() + AndroidUtilities.dp(11.0f));
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return AndroidUtilities.dp(17.33f);
+        }
+
+        @Override
+        public void setPressed(boolean z) {
+            this.bounce.setPressed(z);
+        }
     }
 }

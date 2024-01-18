@@ -5883,7 +5883,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     return;
                 }
                 ArticleViewer.this.videoPlayer.seekTo(this.playFrom);
-                ArticleViewer.this.videoPlayer.preparePlayer(prepareUri, true);
+                ArticleViewer.this.videoPlayer.preparePlayer(prepareUri, true, 1.0f);
                 ArticleViewer.this.videoPlayer.play();
             }
         }

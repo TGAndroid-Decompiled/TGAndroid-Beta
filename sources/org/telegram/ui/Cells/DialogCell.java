@@ -49,6 +49,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
@@ -86,6 +87,7 @@ import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BubbleCounterPath;
 import org.telegram.ui.Components.CanvasButton;
@@ -94,6 +96,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.Forum.ForumBubbleDrawable;
 import org.telegram.ui.Components.Forum.ForumUtilities;
+import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.TimerDrawable;
@@ -235,6 +238,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean lastTopicMessageUnread;
     private boolean lastUnreadState;
     private int lock2Left;
+    private Drawable lockDrawable;
     private boolean markUnread;
     private int mentionCount;
     private StaticLayout mentionLayout;
@@ -274,6 +278,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int pinLeft;
     private int pinTop;
     private DialogsAdapter.DialogsPreloader preloader;
+    private boolean premiumBlocked;
+    private final AnimatedFloat premiumBlockedT;
+    private PremiumGradient.PremiumGradientTools premiumGradient;
     private int printingStringType;
     private int progressStage;
     private boolean promoDialog;
@@ -331,6 +338,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private StaticLayout typingLayout;
     private int typingLeft;
     private int unreadCount;
+    private Runnable unsubscribePremiumBlocked;
     private final DialogUpdateHelper updateHelper;
     private boolean updateLayout;
     public boolean useForceThreeLines;
@@ -502,6 +510,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
     }
 
+    public boolean isBlocked() {
+        return this.premiumBlocked;
+    }
+
     public DialogCell(DialogsActivity dialogsActivity, Context context, boolean z, boolean z2) {
         this(dialogsActivity, context, z, z2, UserConfig.selectedAccount, null);
     }
@@ -556,6 +568,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.avatarImage = new ImageReceiver(this);
         this.avatarDrawable = new AvatarDrawable();
         this.interpolator = new BounceInterpolator();
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.spoilersPool = new Stack<>();
         this.spoilers = new ArrayList();
         this.spoilersPool2 = new Stack<>();
@@ -614,6 +627,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             this.currentDialogFolderId = 0;
         }
         this.dialogsType = i;
+        showPremiumBlocked(i == 3);
         this.folderId = i2;
         this.messageId = 0;
         if (update(0, false)) {
@@ -1257,7 +1271,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    public boolean drawAvatarOverlays(android.graphics.Canvas r18) {
+    public boolean drawAvatarOverlays(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.drawAvatarOverlays(android.graphics.Canvas):boolean");
     }
 
@@ -2274,5 +2288,38 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             colorFilterArr[i] = new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN);
         }
         return this.adaptiveEmojiColorFilter[i];
+    }
+
+    public void showPremiumBlocked(boolean z) {
+        Runnable runnable = this.unsubscribePremiumBlocked;
+        if (z != (runnable != null)) {
+            if (!z && runnable != null) {
+                runnable.run();
+                this.unsubscribePremiumBlocked = null;
+            } else if (z) {
+                this.unsubscribePremiumBlocked = NotificationCenter.getInstance(this.currentAccount).listen(this, NotificationCenter.userIsPremiumBlockedUpadted, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        DialogCell.this.lambda$showPremiumBlocked$5((Object[]) obj);
+                    }
+                });
+            }
+        }
+    }
+
+    public void lambda$showPremiumBlocked$5(Object[] objArr) {
+        updatePremiumBlocked(true);
+    }
+
+    private void updatePremiumBlocked(boolean z) {
+        boolean z2 = this.premiumBlocked;
+        boolean z3 = (this.unsubscribePremiumBlocked == null || this.user == null || !MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.user.id)) ? false : true;
+        this.premiumBlocked = z3;
+        if (z2 != z3) {
+            if (!z) {
+                this.premiumBlockedT.set(z3, true);
+            }
+            invalidate();
+        }
     }
 }

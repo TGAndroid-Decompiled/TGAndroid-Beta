@@ -18,7 +18,7 @@ import org.telegram.ui.Components.PopupSwipeBackLayout;
 public class ChooseSpeedLayout {
     ActionBarMenuSlider.SpeedSlider slider;
     ActionBarMenuSubItem[] speedItems = new ActionBarMenuSubItem[5];
-    ActionBarPopupWindow.ActionBarPopupWindowLayout speedSwipeBackLayout;
+    public ActionBarPopupWindow.ActionBarPopupWindowLayout speedSwipeBackLayout;
 
     public interface Callback {
         void onSpeedSelected(float f, boolean z, boolean z2);

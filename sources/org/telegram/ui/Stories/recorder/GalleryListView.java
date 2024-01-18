@@ -557,10 +557,6 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         callback2.run(this.searchAdapterImages.results.get(i), null);
     }
 
-    public void allowSearch(boolean z) {
-        this.searchItem.setVisibility(z ? 0 : 8);
-    }
-
     private ArrayList<MediaController.PhotoEntry> getPhotoEntries(MediaController.AlbumEntry albumEntry) {
         if (albumEntry == null) {
             return new ArrayList<>();

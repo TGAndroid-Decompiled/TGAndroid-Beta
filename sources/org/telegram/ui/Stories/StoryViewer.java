@@ -174,6 +174,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     WindowManager windowManager;
     public SizeNotifierFrameLayout windowView;
     public static ArrayList<StoryViewer> globalInstances = new ArrayList<>();
+    public static float currentSpeed = 1.0f;
     private static boolean checkSilentMode = true;
     private static final LongSparseArray<CharSequence> replyDrafts = new LongSparseArray<>();
     static int J = 0;
@@ -259,6 +260,32 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         this.fragment = baseFragment;
     }
 
+    public void setSpeed(float f) {
+        VideoPlayerHolder videoPlayerHolder;
+        currentSpeed = f;
+        VideoPlayerHolder videoPlayerHolder2 = this.playerHolder;
+        if (videoPlayerHolder2 != null) {
+            videoPlayerHolder2.setSpeed(f);
+            StoryViewer storyViewer = null;
+            BaseFragment baseFragment = this.fragment;
+            if (baseFragment != null) {
+                StoryViewer storyViewer2 = baseFragment.overlayStoryViewer;
+                if (storyViewer2 != this) {
+                    storyViewer = storyViewer2;
+                } else {
+                    StoryViewer storyViewer3 = baseFragment.storyViewer;
+                    if (storyViewer3 != this) {
+                        storyViewer = storyViewer3;
+                    }
+                }
+            }
+            if (storyViewer == null || (videoPlayerHolder = storyViewer.playerHolder) == null) {
+                return;
+            }
+            videoPlayerHolder.setSpeed(f);
+        }
+    }
+
     public void open(Context context, TL_stories$StoryItem tL_stories$StoryItem, PlaceProvider placeProvider) {
         if (tL_stories$StoryItem == null) {
             return;
@@ -325,6 +352,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             this.doOnAnimationReadyRunnables.clear();
             return;
         }
+        setSpeed(1.0f);
         boolean z2 = (AndroidUtilities.isTablet() || this.fromBottomSheet) ? false : true;
         this.ATTACH_TO_FRAGMENT = z2;
         this.USE_SURFACE_VIEW = SharedConfig.useSurfaceInStories && z2;
@@ -1053,11 +1081,12 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                                 storyViewer5.playerHolder = new VideoPlayerHolder(storyViewer5.surfaceView, StoryViewer.this.textureView);
                                 StoryViewer.this.playerHolder.document = tLRPC$Document;
                             }
-                            StoryViewer storyViewer6 = StoryViewer.this;
-                            VideoPlayerHolder videoPlayerHolder3 = storyViewer6.playerHolder;
+                            VideoPlayerHolder videoPlayerHolder3 = StoryViewer.this.playerHolder;
                             videoPlayerHolder3.uri = uri;
+                            videoPlayerHolder3.setSpeed(StoryViewer.currentSpeed);
+                            StoryViewer storyViewer6 = StoryViewer.this;
                             PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope3 = storyViewer6.currentPlayerScope;
-                            videoPlayerSharedScope3.player = videoPlayerHolder3;
+                            videoPlayerSharedScope3.player = storyViewer6.playerHolder;
                             videoPlayerSharedScope3.firstFrameRendered = false;
                             videoPlayerSharedScope3.renderView = storyViewer6.aspectRatioFrameLayout;
                             videoPlayerSharedScope3.textureView = storyViewer6.textureView;
@@ -1073,24 +1102,27 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                                 j2 = j3;
                             }
                             StoryViewer storyViewer8 = StoryViewer.this;
-                            storyViewer8.currentPlayerScope.player.start(storyViewer8.isPaused(), uri, j2, StoryViewer.isInSilentMode);
+                            storyViewer8.currentPlayerScope.player.start(storyViewer8.isPaused(), uri, j2, StoryViewer.isInSilentMode, StoryViewer.currentSpeed);
                             StoryViewer.this.currentPlayerScope.invalidate();
                         }
                     } else if (equals) {
                         storyViewer.currentPlayerScope = videoPlayerSharedScope;
                         videoPlayerSharedScope.player = videoPlayerHolder;
-                        videoPlayerSharedScope.firstFrameRendered = videoPlayerHolder.firstFrameRendered;
-                        videoPlayerSharedScope.renderView = storyViewer.aspectRatioFrameLayout;
-                        videoPlayerSharedScope.textureView = storyViewer.textureView;
+                        videoPlayerHolder.setSpeed(StoryViewer.currentSpeed);
                         StoryViewer storyViewer9 = StoryViewer.this;
-                        storyViewer9.currentPlayerScope.surfaceView = storyViewer9.surfaceView;
+                        PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope4 = storyViewer9.currentPlayerScope;
+                        videoPlayerSharedScope4.firstFrameRendered = storyViewer9.playerHolder.firstFrameRendered;
+                        videoPlayerSharedScope4.renderView = storyViewer9.aspectRatioFrameLayout;
+                        videoPlayerSharedScope4.textureView = storyViewer9.textureView;
+                        StoryViewer storyViewer10 = StoryViewer.this;
+                        storyViewer10.currentPlayerScope.surfaceView = storyViewer10.surfaceView;
                     }
-                    StoryViewer storyViewer10 = StoryViewer.this;
-                    if (storyViewer10.USE_SURFACE_VIEW) {
+                    StoryViewer storyViewer11 = StoryViewer.this;
+                    if (storyViewer11.USE_SURFACE_VIEW) {
                         if (uri == null) {
-                            storyViewer10.surfaceView.setVisibility(4);
+                            storyViewer11.surfaceView.setVisibility(4);
                         } else {
-                            storyViewer10.surfaceView.setVisibility(0);
+                            storyViewer11.surfaceView.setVisibility(0);
                         }
                     }
                     StoryViewer.this.playerSavedPosition = 0L;
@@ -1228,7 +1260,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     TLRPC$Document tLRPC$Document = arrayList.get(i3);
                     videoPlayerHolder.document = tLRPC$Document;
                     FileStreamLoadOperation.setPriorityForDocument(tLRPC$Document, 0);
-                    videoPlayerHolder.preparePlayer(uri, StoryViewer.isInSilentMode);
+                    videoPlayerHolder.preparePlayer(uri, StoryViewer.isInSilentMode, StoryViewer.currentSpeed);
                     StoryViewer.this.preparedPlayers.add(videoPlayerHolder);
                     if (StoryViewer.this.preparedPlayers.size() > 2) {
                         StoryViewer.this.preparedPlayers.remove(0).release(null);
@@ -1694,7 +1726,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if (isPaused) {
                 videoPlayerHolder.pause();
             } else {
-                videoPlayerHolder.play();
+                videoPlayerHolder.play(currentSpeed);
             }
         }
         this.storiesViewPager.enableTouch((this.keyboardVisible || this.isClosed || this.isRecording || this.isLongpressed || this.isInPinchToZoom || this.selfStoriesViewsOffset != 0.0f || this.isInTextSelectionMode) ? false : false);

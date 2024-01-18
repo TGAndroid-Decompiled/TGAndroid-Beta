@@ -11,7 +11,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,21 +33,22 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CheckBoxBase;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
-public class ShareDialogCell extends FrameLayout {
+public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final AvatarDrawable avatarDrawable;
     private final CheckBox2 checkBox;
     private final int currentAccount;
@@ -56,13 +56,21 @@ public class ShareDialogCell extends FrameLayout {
     private final int currentType;
     private final BackupImageView imageView;
     private long lastUpdateTime;
+    private Drawable lockDrawable;
     private final TextView nameTextView;
     private float onlineProgress;
+    private boolean premiumBlocked;
+    private final AnimatedFloat premiumBlockedT;
+    private PremiumGradient.PremiumGradientTools premiumGradient;
     private RepostStoryDrawable repostStoryDrawable;
     public final Theme.ResourcesProvider resourcesProvider;
     private final SimpleTextView topicTextView;
     private boolean topicWasVisible;
     private TLRPC$User user;
+
+    public boolean isBlocked() {
+        return this.premiumBlocked;
+    }
 
     public BackupImageView getImageView() {
         return this.imageView;
@@ -78,6 +86,7 @@ public class ShareDialogCell extends FrameLayout {
             }
         };
         this.currentAccount = UserConfig.selectedAccount;
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         this.currentType = i;
@@ -97,7 +106,7 @@ public class ShareDialogCell extends FrameLayout {
         };
         this.nameTextView = textView;
         NotificationCenter.listenEmojiLoading(textView);
-        textView.setTextColor(getThemedColor(i == 1 ? Theme.key_voipgroup_nameText : Theme.key_dialogTextBlack));
+        textView.setTextColor(getThemedColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : i == 1 ? Theme.key_voipgroup_nameText : Theme.key_dialogTextBlack));
         textView.setTextSize(1, 12.0f);
         textView.setMaxLines(2);
         textView.setGravity(49);
@@ -135,6 +144,31 @@ public class ShareDialogCell extends FrameLayout {
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.userIsPremiumBlockedUpadted) {
+            boolean z = this.premiumBlocked;
+            boolean z2 = this.user != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.user.id);
+            this.premiumBlocked = z2;
+            this.nameTextView.setTextColor(getThemedColor(z2 ? Theme.key_windowBackgroundWhiteGrayText5 : this.currentType == 1 ? Theme.key_voipgroup_nameText : Theme.key_dialogTextBlack));
+            if (this.premiumBlocked != z) {
+                invalidate();
+            }
+        }
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.currentType == 2 ? 95.0f : 103.0f), 1073741824));
     }
@@ -152,6 +186,10 @@ public class ShareDialogCell extends FrameLayout {
             this.imageView.setImage((ImageLocation) null, (String) null, this.repostStoryDrawable, (Object) null);
         } else if (DialogObject.isUserDialog(j)) {
             this.user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+            boolean isUserPremiumBlocked = MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(j);
+            this.premiumBlocked = isUserPremiumBlocked;
+            this.nameTextView.setTextColor(getThemedColor(isUserPremiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : this.currentType == 1 ? Theme.key_voipgroup_nameText : Theme.key_dialogTextBlack));
+            this.premiumBlockedT.set(this.premiumBlocked, true);
             invalidate();
             this.avatarDrawable.setInfo(this.currentAccount, this.user);
             if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
@@ -178,6 +216,8 @@ public class ShareDialogCell extends FrameLayout {
             this.imageView.setRoundRadius(AndroidUtilities.dp(28.0f));
         } else {
             this.user = null;
+            this.premiumBlocked = false;
+            this.premiumBlockedT.set(0.0f, true);
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
             if (charSequence != null) {
                 this.nameTextView.setText(charSequence);
@@ -265,54 +305,8 @@ public class ShareDialogCell extends FrameLayout {
     }
 
     @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        TLRPC$User tLRPC$User;
-        TLRPC$UserStatus tLRPC$UserStatus;
-        boolean drawChild = super.drawChild(canvas, view, j);
-        if (view == this.imageView && this.currentType != 2 && (tLRPC$User = this.user) != null && !MessagesController.isSupportUser(tLRPC$User)) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j2 = elapsedRealtime - this.lastUpdateTime;
-            if (j2 > 17) {
-                j2 = 17;
-            }
-            this.lastUpdateTime = elapsedRealtime;
-            TLRPC$User tLRPC$User2 = this.user;
-            boolean z = (tLRPC$User2.self || tLRPC$User2.bot || (((tLRPC$UserStatus = tLRPC$User2.status) == null || tLRPC$UserStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.id)))) ? false : true;
-            if (z || this.onlineProgress != 0.0f) {
-                int bottom = this.imageView.getBottom() - AndroidUtilities.dp(6.0f);
-                int right = this.imageView.getRight() - AndroidUtilities.dp(10.0f);
-                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(this.currentType == 1 ? Theme.key_voipgroup_inviteMembersBackground : Theme.key_windowBackgroundWhite));
-                float f = right;
-                float f2 = bottom;
-                canvas.drawCircle(f, f2, AndroidUtilities.dp(7.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
-                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_chats_onlineCircle));
-                canvas.drawCircle(f, f2, AndroidUtilities.dp(5.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
-                if (z) {
-                    float f3 = this.onlineProgress;
-                    if (f3 < 1.0f) {
-                        float f4 = f3 + (((float) j2) / 150.0f);
-                        this.onlineProgress = f4;
-                        if (f4 > 1.0f) {
-                            this.onlineProgress = 1.0f;
-                        }
-                        this.imageView.invalidate();
-                        invalidate();
-                    }
-                } else {
-                    float f5 = this.onlineProgress;
-                    if (f5 > 0.0f) {
-                        float f6 = f5 - (((float) j2) / 150.0f);
-                        this.onlineProgress = f6;
-                        if (f6 < 0.0f) {
-                            this.onlineProgress = 0.0f;
-                        }
-                        this.imageView.invalidate();
-                        invalidate();
-                    }
-                }
-            }
-        }
-        return drawChild;
+    protected boolean drawChild(android.graphics.Canvas r25, android.view.View r26, long r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ShareDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
     @Override

@@ -1915,7 +1915,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @android.annotation.SuppressLint({"Range"})
-    private boolean handleIntent(android.content.Intent r94, boolean r95, boolean r96, boolean r97, org.telegram.messenger.browser.Browser.Progress r98, boolean r99) {
+    private boolean handleIntent(android.content.Intent r97, boolean r98, boolean r99, boolean r100, org.telegram.messenger.browser.Browser.Progress r101, boolean r102) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean):boolean");
     }
 
@@ -1948,9 +1948,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$handleIntent$19(long j, int i, ChatActivity chatActivity) {
-        long j2 = i;
-        FileLog.d("LaunchActivity openForum after load " + j + " " + i + " TL_forumTopic " + MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(j, j2));
+    public void lambda$handleIntent$19(long j, long j2, ChatActivity chatActivity) {
+        TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(j, j2);
+        FileLog.d("LaunchActivity openForum after load " + j + " " + j2 + " TL_forumTopic " + findTopic);
         if (this.actionBarLayout != null) {
             ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(-j, j2));
             getActionBarLayout().presentFragment(chatActivity);

@@ -402,6 +402,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private ArrayList<Long> selectedDialogs;
     private NumberTextView selectedDialogsCountTextView;
     private ActionBarPopupWindow sendPopupWindow;
+    private int shiftDp;
     private boolean showSetPasswordConfirm;
     private String showingSuggestion;
     private RecyclerView sideMenu;
@@ -450,7 +451,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList<MessagesStorage.TopicKey> arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment);
     }
 
-    public static boolean lambda$createActionMode$46(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createActionMode$47(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -2054,6 +2055,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 return Float.valueOf(DialogsActivity.this.searchViewPagerTranslationY);
             }
         };
+        this.shiftDp = -4;
         this.scrollBarVisible = true;
         this.storiesEnabled = true;
         this.isNextButton = false;
@@ -3094,6 +3096,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$createView$8(ViewPage viewPage, View view, int i, float f, float f2) {
+        boolean z = view instanceof DialogCell;
+        if (z) {
+            DialogCell dialogCell = (DialogCell) view;
+            if (dialogCell.isBlocked()) {
+                showPremiumBlockedToast(view, dialogCell.getDialogId());
+                return;
+            }
+        }
         int i2 = this.initialDialogsType;
         if (i2 == 15 && (view instanceof TextCell)) {
             viewPage.dialogsAdapter.onCreateGroupForThisClick();
@@ -3141,9 +3151,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                     return;
                 }
-            } else if ((view instanceof DialogCell) && !this.actionBar.isActionModeShowed() && !this.rightSlidingDialogContainer.hasFragment()) {
-                DialogCell dialogCell = (DialogCell) view;
-                AndroidUtilities.rectTmp.set(dialogCell.avatarImage.getImageX(), dialogCell.avatarImage.getImageY(), dialogCell.avatarImage.getImageX2(), dialogCell.avatarImage.getImageY2());
+            } else if (z && !this.actionBar.isActionModeShowed() && !this.rightSlidingDialogContainer.hasFragment()) {
+                DialogCell dialogCell2 = (DialogCell) view;
+                AndroidUtilities.rectTmp.set(dialogCell2.avatarImage.getImageX(), dialogCell2.avatarImage.getImageY(), dialogCell2.avatarImage.getImageX2(), dialogCell2.avatarImage.getImageY2());
             }
             onItemClick(view, i, viewPage.dialogsAdapter, f, f2);
         }
@@ -3168,6 +3178,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (z && DialogsActivity.this.searchViewPager.dialogsSearchAdapter.getItemCount() == 0) {
                 DialogsActivity.this.searchViewPager.cancelEnterAnimation();
             }
+        }
+
+        @Override
+        public void didPressedBlockedDialog(View view, long j) {
+            DialogsActivity.this.showPremiumBlockedToast(view, j);
         }
 
         @Override
@@ -3304,6 +3319,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$createView$9(View view, int i, float f, float f2) {
+        if (view instanceof ProfileSearchCell) {
+            ProfileSearchCell profileSearchCell = (ProfileSearchCell) view;
+            if (profileSearchCell.isBlocked()) {
+                showPremiumBlockedToast(view, profileSearchCell.getDialogId());
+                return;
+            }
+        }
         if (this.initialDialogsType == 10) {
             SearchViewPager searchViewPager = this.searchViewPager;
             onItemLongClick(searchViewPager.searchListView, view, i, f, f2, -1, searchViewPager.dialogsSearchAdapter);
@@ -3845,6 +3867,32 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
+    public void showPremiumBlockedToast(View view, long j) {
+        Bulletin createSimpleBulletin;
+        int i = -this.shiftDp;
+        this.shiftDp = i;
+        AndroidUtilities.shakeViewSpring(view, i);
+        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        String userName = j >= 0 ? UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) : "";
+        if (getMessagesController().premiumFeaturesBlocked()) {
+            createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)));
+        } else {
+            createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.this.lambda$showPremiumBlockedToast$25();
+                }
+            });
+        }
+        createSimpleBulletin.show();
+    }
+
+    public void lambda$showPremiumBlockedToast$25() {
+        if (LaunchActivity.getLastFragment() != null) {
+            presentFragment(new PremiumPreviewFragment("noncontacts"));
+        }
+    }
+
     private void updateAuthHintCellVisibility(final boolean z) {
         final int i;
         if (this.authHintCellVisible != z) {
@@ -3878,13 +3926,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             AndroidUtilities.doOnLayout(this.fragmentView, new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$updateAuthHintCellVisibility$27(z, findFirstVisibleItemPosition, i, ofFloat);
+                    DialogsActivity.this.lambda$updateAuthHintCellVisibility$28(z, findFirstVisibleItemPosition, i, ofFloat);
                 }
             });
         }
     }
 
-    public void lambda$updateAuthHintCellVisibility$27(final boolean z, int i, int i2, ValueAnimator valueAnimator) {
+    public void lambda$updateAuthHintCellVisibility$28(final boolean z, int i, int i2, ValueAnimator valueAnimator) {
         View findViewByPosition;
         final float measuredHeight = this.authHintCell.getMeasuredHeight();
         if (!z && (findViewByPosition = this.viewPages[0].layoutManager.findViewByPosition(i)) != null) {
@@ -3894,7 +3942,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                DialogsActivity.this.lambda$updateAuthHintCellVisibility$26(measuredHeight, valueAnimator2);
+                DialogsActivity.this.lambda$updateAuthHintCellVisibility$27(measuredHeight, valueAnimator2);
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -3920,7 +3968,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         valueAnimator.start();
     }
 
-    public void lambda$updateAuthHintCellVisibility$26(float f, ValueAnimator valueAnimator) {
+    public void lambda$updateAuthHintCellVisibility$27(float f, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.authHintCellProgress = floatValue;
         this.viewPages[0].listView.setTranslationY(f * floatValue);
@@ -3958,7 +4006,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setChristmasStyle(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$29(view);
+                    DialogsActivity.this.lambda$updateDialogsHint$30(view);
                 }
             });
             updateAuthHintCellVisibility(false);
@@ -3968,7 +4016,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$31(view);
+                    DialogsActivity.this.lambda$updateDialogsHint$32(view);
                 }
             });
             this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.RestorePremiumHintTitle, MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false)), Theme.key_windowBackgroundWhiteValueText, 2, null), LocaleController.getString(R.string.RestorePremiumHintMessage));
@@ -3979,7 +4027,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$33(view);
+                    DialogsActivity.this.lambda$updateDialogsHint$34(view);
                 }
             });
             this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(this.isPremiumHintUpgrade ? R.string.SaveOnAnnualPremiumTitle : R.string.UpgradePremiumTitle, MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false)), Theme.key_windowBackgroundWhiteValueText, 2, null), LocaleController.getString(this.isPremiumHintUpgrade ? R.string.UpgradePremiumMessage : R.string.SaveOnAnnualPremiumMessage));
@@ -3990,7 +4038,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$35(view);
+                    DialogsActivity.this.lambda$updateDialogsHint$36(view);
                 }
             });
             this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.ClearStorageHintTitle, AndroidUtilities.formatFileSize(this.cacheSize.longValue())), Theme.key_windowBackgroundWhiteValueText, 2, null), LocaleController.getString(R.string.ClearStorageHintMessage));
@@ -4002,7 +4050,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$updateDialogsHint$29(View view) {
+    public void lambda$updateDialogsHint$30(View view) {
         MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "PREMIUM_CHRISTMAS");
         ChangeBounds changeBounds = new ChangeBounds();
         changeBounds.setDuration(200L);
@@ -4011,47 +4059,47 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString("BoostingPremiumChristmasToast", R.string.BoostingPremiumChristmasToast), 4).setDuration(5000).show();
     }
 
-    public void lambda$updateDialogsHint$31(View view) {
+    public void lambda$updateDialogsHint$32(View view) {
         presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$updateDialogsHint$30();
+                DialogsActivity.this.lambda$updateDialogsHint$31();
             }
         }, 250L);
     }
 
-    public void lambda$updateDialogsHint$30() {
+    public void lambda$updateDialogsHint$31() {
         MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "PREMIUM_RESTORE");
         updateDialogsHint();
     }
 
-    public void lambda$updateDialogsHint$33(View view) {
+    public void lambda$updateDialogsHint$34(View view) {
         presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$updateDialogsHint$32();
+                DialogsActivity.this.lambda$updateDialogsHint$33();
             }
         }, 250L);
     }
 
-    public void lambda$updateDialogsHint$32() {
+    public void lambda$updateDialogsHint$33() {
         MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, this.isPremiumHintUpgrade ? "PREMIUM_UPGRADE" : "PREMIUM_ANNUAL");
         updateDialogsHint();
     }
 
-    public void lambda$updateDialogsHint$35(View view) {
+    public void lambda$updateDialogsHint$36(View view) {
         presentFragment(new CacheControlActivity());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$updateDialogsHint$34();
+                DialogsActivity.this.lambda$updateDialogsHint$35();
             }
         }, 250L);
     }
 
-    public void lambda$updateDialogsHint$34() {
+    public void lambda$updateDialogsHint$35() {
         resetCacheHintVisible();
         updateDialogsHint();
     }
@@ -4070,7 +4118,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             channelCreateActivity.setOnFinishListener(new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    DialogsActivity.this.lambda$createGroupForThis$45(channelCreateActivity, alertDialog, (BaseFragment) obj, (Long) obj2);
+                    DialogsActivity.this.lambda$createGroupForThis$46(channelCreateActivity, alertDialog, (BaseFragment) obj, (Long) obj2);
                 }
             });
             presentFragment(channelCreateActivity);
@@ -4087,60 +4135,60 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createGroupForThis$45(final ChannelCreateActivity channelCreateActivity, final AlertDialog alertDialog, final BaseFragment baseFragment, final Long l) {
+    public void lambda$createGroupForThis$46(final ChannelCreateActivity channelCreateActivity, final AlertDialog alertDialog, final BaseFragment baseFragment, final Long l) {
         Utilities.doCallbacks(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsActivity.this.lambda$createGroupForThis$37(l, channelCreateActivity, baseFragment, (Runnable) obj);
+                DialogsActivity.this.lambda$createGroupForThis$38(l, channelCreateActivity, baseFragment, (Runnable) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsActivity.this.lambda$createGroupForThis$39(alertDialog, l, (Runnable) obj);
+                DialogsActivity.this.lambda$createGroupForThis$40(alertDialog, l, (Runnable) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsActivity.this.lambda$createGroupForThis$41(l, (Runnable) obj);
+                DialogsActivity.this.lambda$createGroupForThis$42(l, (Runnable) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsActivity.this.lambda$createGroupForThis$43(l, (Runnable) obj);
+                DialogsActivity.this.lambda$createGroupForThis$44(l, (Runnable) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsActivity.this.lambda$createGroupForThis$44(alertDialog, l, channelCreateActivity, baseFragment, (Runnable) obj);
+                DialogsActivity.this.lambda$createGroupForThis$45(alertDialog, l, channelCreateActivity, baseFragment, (Runnable) obj);
             }
         });
     }
 
-    public void lambda$createGroupForThis$37(Long l, final ChannelCreateActivity channelCreateActivity, final BaseFragment baseFragment, Runnable runnable) {
+    public void lambda$createGroupForThis$38(Long l, final ChannelCreateActivity channelCreateActivity, final BaseFragment baseFragment, Runnable runnable) {
         showSendToBotAlert(getMessagesController().getChat(l), runnable, new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$createGroupForThis$36(channelCreateActivity, baseFragment);
+                DialogsActivity.this.lambda$createGroupForThis$37(channelCreateActivity, baseFragment);
             }
         });
     }
 
-    public void lambda$createGroupForThis$36(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
+    public void lambda$createGroupForThis$37(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
         baseFragment.finishFragment();
     }
 
-    public void lambda$createGroupForThis$39(AlertDialog alertDialog, Long l, final Runnable runnable) {
+    public void lambda$createGroupForThis$40(AlertDialog alertDialog, Long l, final Runnable runnable) {
         alertDialog.showDelayed(150L);
         Boolean bool = this.requestPeerType.bot_participant;
         if (bool != null && bool.booleanValue()) {
             getMessagesController().addUserToChat(l.longValue(), getMessagesController().getUser(Long.valueOf(this.requestPeerBotId)), 0, null, this, false, runnable, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
-                    boolean lambda$createGroupForThis$38;
-                    lambda$createGroupForThis$38 = DialogsActivity.lambda$createGroupForThis$38(runnable, tLRPC$TL_error);
-                    return lambda$createGroupForThis$38;
+                    boolean lambda$createGroupForThis$39;
+                    lambda$createGroupForThis$39 = DialogsActivity.lambda$createGroupForThis$39(runnable, tLRPC$TL_error);
+                    return lambda$createGroupForThis$39;
                 }
             });
             return;
@@ -4148,12 +4196,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         runnable.run();
     }
 
-    public static boolean lambda$createGroupForThis$38(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
+    public static boolean lambda$createGroupForThis$39(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
         runnable.run();
         return true;
     }
 
-    public void lambda$createGroupForThis$41(Long l, final Runnable runnable) {
+    public void lambda$createGroupForThis$42(Long l, final Runnable runnable) {
         if (this.requestPeerType.bot_admin_rights != null) {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.requestPeerBotId));
             MessagesController messagesController = getMessagesController();
@@ -4164,9 +4212,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             messagesController.setUserAdminRole(longValue, user, tLRPC$TL_chatAdminRights, null, false, this, bool == null || !bool.booleanValue(), true, null, runnable, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
-                    boolean lambda$createGroupForThis$40;
-                    lambda$createGroupForThis$40 = DialogsActivity.lambda$createGroupForThis$40(runnable, tLRPC$TL_error);
-                    return lambda$createGroupForThis$40;
+                    boolean lambda$createGroupForThis$41;
+                    lambda$createGroupForThis$41 = DialogsActivity.lambda$createGroupForThis$41(runnable, tLRPC$TL_error);
+                    return lambda$createGroupForThis$41;
                 }
             });
             return;
@@ -4174,19 +4222,19 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         runnable.run();
     }
 
-    public static boolean lambda$createGroupForThis$40(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
+    public static boolean lambda$createGroupForThis$41(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
         runnable.run();
         return true;
     }
 
-    public void lambda$createGroupForThis$43(Long l, final Runnable runnable) {
+    public void lambda$createGroupForThis$44(Long l, final Runnable runnable) {
         if (this.requestPeerType.user_admin_rights != null) {
             getMessagesController().setUserAdminRole(l.longValue(), getAccountInstance().getUserConfig().getCurrentUser(), ChatRightsEditActivity.rightsOR(getMessagesController().getChat(l).admin_rights, this.requestPeerType.user_admin_rights), null, true, this, false, true, null, runnable, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
-                    boolean lambda$createGroupForThis$42;
-                    lambda$createGroupForThis$42 = DialogsActivity.lambda$createGroupForThis$42(runnable, tLRPC$TL_error);
-                    return lambda$createGroupForThis$42;
+                    boolean lambda$createGroupForThis$43;
+                    lambda$createGroupForThis$43 = DialogsActivity.lambda$createGroupForThis$43(runnable, tLRPC$TL_error);
+                    return lambda$createGroupForThis$43;
                 }
             });
             return;
@@ -4194,12 +4242,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         runnable.run();
     }
 
-    public static boolean lambda$createGroupForThis$42(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
+    public static boolean lambda$createGroupForThis$43(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
         runnable.run();
         return true;
     }
 
-    public void lambda$createGroupForThis$44(AlertDialog alertDialog, Long l, ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment, Runnable runnable) {
+    public void lambda$createGroupForThis$45(AlertDialog alertDialog, Long l, ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment, Runnable runnable) {
         alertDialog.dismiss();
         getMessagesController().loadChannelParticipants(l);
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
@@ -4643,9 +4691,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.selectedDialogsCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createActionMode$46;
-                lambda$createActionMode$46 = DialogsActivity.lambda$createActionMode$46(view, motionEvent);
-                return lambda$createActionMode$46;
+                boolean lambda$createActionMode$47;
+                lambda$createActionMode$47 = DialogsActivity.lambda$createActionMode$47(view, motionEvent);
+                return lambda$createActionMode$47;
             }
         });
         int i = R.drawable.msg_pin;
@@ -4665,9 +4713,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.muteItem.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                boolean lambda$createActionMode$47;
-                lambda$createActionMode$47 = DialogsActivity.this.lambda$createActionMode$47(view);
-                return lambda$createActionMode$47;
+                boolean lambda$createActionMode$48;
+                lambda$createActionMode$48 = DialogsActivity.this.lambda$createActionMode$48(view);
+                return lambda$createActionMode$48;
             }
         });
         this.actionModeViews.add(this.pinItem);
@@ -4680,7 +4728,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public boolean lambda$createActionMode$47(View view) {
+    public boolean lambda$createActionMode$48(View view) {
         performSelectedDialogsAction(this.selectedDialogs, R.styleable.AppCompatTheme_textAppearanceListItemSecondary, true, true);
         return true;
     }
@@ -5181,7 +5229,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.this.lambda$onResume$50(z4, z5, z2, parentActivity);
+                        DialogsActivity.this.lambda$onResume$51(z4, z5, z2, parentActivity);
                     }
                 }, (this.afterSignup && (z || z3)) ? 4000L : 0L);
             }
@@ -5192,12 +5240,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             showDialog(new AlertDialog.Builder(getParentActivity()).setTopAnimation(R.raw.permission_request_apk, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(LocaleController.getString("PermissionXiaomiLockscreen", R.string.PermissionXiaomiLockscreen)).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    DialogsActivity.this.lambda$onResume$51(dialogInterface, i3);
+                    DialogsActivity.this.lambda$onResume$52(dialogInterface, i3);
                 }
             }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    DialogsActivity.lambda$onResume$52(dialogInterface, i3);
+                    DialogsActivity.lambda$onResume$53(dialogInterface, i3);
                 }
             }).create());
         }
@@ -5285,7 +5333,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         checkSuggestClearDatabase();
     }
 
-    public void lambda$onResume$50(boolean z, boolean z2, boolean z3, final Activity activity) {
+    public void lambda$onResume$51(boolean z, boolean z2, boolean z3, final Activity activity) {
         if (getParentActivity() == null) {
             return;
         }
@@ -5296,7 +5344,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 Dialog notificationPermissionDialog = new NotificationPermissionDialog(activity, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        DialogsActivity.lambda$onResume$48(activity, (Boolean) obj);
+                        DialogsActivity.lambda$onResume$49(activity, (Boolean) obj);
                     }
                 });
                 if (showDialog(notificationPermissionDialog) == null) {
@@ -5310,7 +5358,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 AlertDialog create = AlertsCreator.createContactsPermissionDialog(activity, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i) {
-                        DialogsActivity.this.lambda$onResume$49(i);
+                        DialogsActivity.this.lambda$onResume$50(i);
                     }
                 }).create();
                 this.permissionDialog = create;
@@ -5327,19 +5375,19 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void lambda$onResume$48(Activity activity, Boolean bool) {
+    public static void lambda$onResume$49(Activity activity, Boolean bool) {
         if (bool.booleanValue()) {
             activity.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
         }
     }
 
-    public void lambda$onResume$49(int i) {
+    public void lambda$onResume$50(int i) {
         this.askAboutContacts = i != 0;
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", this.askAboutContacts).apply();
         askForPermissons(false);
     }
 
-    public void lambda$onResume$51(DialogInterface dialogInterface, int i) {
+    public void lambda$onResume$52(DialogInterface dialogInterface, int i) {
         Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
         if (permissionManagerIntent != null) {
             try {
@@ -5356,7 +5404,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void lambda$onResume$52(DialogInterface dialogInterface, int i) {
+    public static void lambda$onResume$53(DialogInterface dialogInterface, int i) {
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
     }
 
@@ -5544,18 +5592,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         final BottomSheet[] bottomSheetArr = {new BottomSheet.Builder(getContext(), false, getResourceProvider()).setCustomView(new ArchiveHelp(getContext(), this.currentAccount, getResourceProvider(), new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$showArchiveHelp$54(bottomSheetArr);
+                DialogsActivity.this.lambda$showArchiveHelp$55(bottomSheetArr);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.lambda$showArchiveHelp$55(bottomSheetArr);
+                DialogsActivity.lambda$showArchiveHelp$56(bottomSheetArr);
             }
         }), 49).show()};
         bottomSheetArr[0].fixNavigationBar(Theme.getColor(Theme.key_dialogBackground));
     }
 
-    public void lambda$showArchiveHelp$54(BottomSheet[] bottomSheetArr) {
+    public void lambda$showArchiveHelp$55(BottomSheet[] bottomSheetArr) {
         if (bottomSheetArr[0] != null) {
             bottomSheetArr[0].dismiss();
             bottomSheetArr[0] = null;
@@ -5563,16 +5611,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$showArchiveHelp$53();
+                DialogsActivity.this.lambda$showArchiveHelp$54();
             }
         }, 300L);
     }
 
-    public void lambda$showArchiveHelp$53() {
+    public void lambda$showArchiveHelp$54() {
         presentFragment(new ArchiveSettingsActivity());
     }
 
-    public static void lambda$showArchiveHelp$55(BottomSheet[] bottomSheetArr) {
+    public static void lambda$showArchiveHelp$56(BottomSheet[] bottomSheetArr) {
         if (bottomSheetArr[0] != null) {
             bottomSheetArr[0].dismiss();
             bottomSheetArr[0] = null;
@@ -5858,7 +5906,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    DialogsActivity.this.lambda$showSearch$56(valueAnimator);
+                    DialogsActivity.this.lambda$showSearch$57(valueAnimator);
                 }
             });
             arrayList.add(ofFloat);
@@ -6027,7 +6075,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$showSearch$56(ValueAnimator valueAnimator) {
+    public void lambda$showSearch$57(ValueAnimator valueAnimator) {
         setSearchAnimationProgress(((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
     }
 
@@ -6086,7 +6134,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 this.filtersTabAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        DialogsActivity.this.lambda$updateFilterTabsVisibility$57(z3, f, valueAnimator3);
+                        DialogsActivity.this.lambda$updateFilterTabsVisibility$58(z3, f, valueAnimator3);
                     }
                 });
                 this.filtersTabAnimator.setDuration(220L);
@@ -6105,7 +6153,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$updateFilterTabsVisibility$57(boolean z, float f, ValueAnimator valueAnimator) {
+    public void lambda$updateFilterTabsVisibility$58(boolean z, float f, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.filterTabsProgress = floatValue;
         if (!z && !this.hasStories) {
@@ -6292,7 +6340,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            DialogsActivity.this.lambda$checkListLoad$58(z3, z4, z2, z);
+                            DialogsActivity.this.lambda$checkListLoad$59(z3, z4, z2, z);
                         }
                     });
                 }
@@ -6310,12 +6358,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$checkListLoad$58(z3, z4, z2, z);
+                DialogsActivity.this.lambda$checkListLoad$59(z3, z4, z2, z);
             }
         });
     }
 
-    public void lambda$checkListLoad$58(boolean z, boolean z2, boolean z3, boolean z4) {
+    public void lambda$checkListLoad$59(boolean z, boolean z2, boolean z3, boolean z4) {
         if (z) {
             getMessagesController().loadDialogs(this.folderId, -1, 100, z2);
         }
@@ -6385,7 +6433,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         builder.setPositiveButton(LocaleController.getString("ClearSearchRemove", R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i3) {
-                                DialogsActivity.this.lambda$onItemLongClick$59(makeEncryptedDialogId, dialogInterface, i3);
+                                DialogsActivity.this.lambda$onItemLongClick$60(makeEncryptedDialogId, dialogInterface, i3);
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -6439,7 +6487,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public void lambda$onItemLongClick$59(long j, DialogInterface dialogInterface, int i) {
+    public void lambda$onItemLongClick$60(long j, DialogInterface dialogInterface, int i) {
         this.searchViewPager.dialogsSearchAdapter.removeRecentSearch(j);
     }
 
@@ -6465,13 +6513,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                DialogsActivity.this.lambda$onArchiveLongPress$60(dialogInterface, i2);
+                DialogsActivity.this.lambda$onArchiveLongPress$61(dialogInterface, i2);
             }
         });
         showDialog(builder.create());
     }
 
-    public void lambda$onArchiveLongPress$60(DialogInterface dialogInterface, int i) {
+    public void lambda$onArchiveLongPress$61(DialogInterface dialogInterface, int i) {
         if (i == 0) {
             getMessagesStorage().readAllDialogs(1);
         } else if (i != 1 || this.viewPages == null) {
@@ -6560,7 +6608,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsActivity.this.lambda$showChatPreview$61(dialogCell, dialogId, view);
+                DialogsActivity.this.lambda$showChatPreview$62(dialogCell, dialogId, view);
             }
         });
         actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem);
@@ -6669,7 +6717,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DialogsActivity.this.lambda$showChatPreview$63(dialogFilter, tLRPC$Dialog, dialogId, view);
+                    DialogsActivity.this.lambda$showChatPreview$64(dialogFilter, tLRPC$Dialog, dialogId, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem2);
@@ -6689,7 +6737,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DialogsActivity.this.lambda$showChatPreview$64(dialogId, view);
+                    DialogsActivity.this.lambda$showChatPreview$65(dialogId, view);
                 }
             });
             z = false;
@@ -6705,7 +6753,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsActivity.this.lambda$showChatPreview$65(arrayList2, view);
+                DialogsActivity.this.lambda$showChatPreview$66(arrayList2, view);
             }
         });
         actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem4);
@@ -6739,7 +6787,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public void lambda$showChatPreview$61(DialogCell dialogCell, long j, View view) {
+    public void lambda$showChatPreview$62(DialogCell dialogCell, long j, View view) {
         if (dialogCell.getHasUnread()) {
             markAsRead(j);
         } else {
@@ -6748,17 +6796,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$63(final MessagesController.DialogFilter dialogFilter, final TLRPC$Dialog tLRPC$Dialog, final long j, View view) {
+    public void lambda$showChatPreview$64(final MessagesController.DialogFilter dialogFilter, final TLRPC$Dialog tLRPC$Dialog, final long j, View view) {
         finishPreviewFragment();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$showChatPreview$62(dialogFilter, tLRPC$Dialog, j);
+                DialogsActivity.this.lambda$showChatPreview$63(dialogFilter, tLRPC$Dialog, j);
             }
         }, 100L);
     }
 
-    public void lambda$showChatPreview$62(MessagesController.DialogFilter dialogFilter, TLRPC$Dialog tLRPC$Dialog, long j) {
+    public void lambda$showChatPreview$63(MessagesController.DialogFilter dialogFilter, TLRPC$Dialog tLRPC$Dialog, long j) {
         int i;
         boolean z;
         int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
@@ -6814,7 +6862,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_REORDER | MessagesController.UPDATE_MASK_CHECK);
     }
 
-    public void lambda$showChatPreview$64(long j, View view) {
+    public void lambda$showChatPreview$65(long j, View view) {
         boolean isDialogMuted = getMessagesController().isDialogMuted(j, 0L);
         if (!isDialogMuted) {
             getNotificationsController().setDialogNotificationsSettings(j, 0L, 3);
@@ -6825,7 +6873,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$65(ArrayList arrayList, View view) {
+    public void lambda$showChatPreview$66(ArrayList arrayList, View view) {
         performSelectedDialogsAction(arrayList, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, false, false);
         finishPreviewFragment();
     }
@@ -6888,12 +6936,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$checkAnimationFinished$66();
+                DialogsActivity.this.lambda$checkAnimationFinished$67();
             }
         }, 300L);
     }
 
-    public void lambda$checkAnimationFinished$66() {
+    public void lambda$checkAnimationFinished$67() {
         ArrayList<TLRPC$Dialog> arrayList;
         if (this.viewPages != null && this.folderId != 0 && ((arrayList = this.frozenDialogsList) == null || arrayList.isEmpty())) {
             int i = 0;
@@ -7061,7 +7109,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                DialogsActivity.this.lambda$hideActionMode$67(f, valueAnimator2);
+                DialogsActivity.this.lambda$hideActionMode$68(f, valueAnimator2);
             }
         });
         this.actionBarColorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -7121,7 +7169,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_REORDER | MessagesController.UPDATE_MASK_CHECK | (z ? MessagesController.UPDATE_MASK_CHAT : 0));
     }
 
-    public void lambda$hideActionMode$67(float f, ValueAnimator valueAnimator) {
+    public void lambda$hideActionMode$68(float f, ValueAnimator valueAnimator) {
         if (this.hasStories) {
             this.viewPages[0].setTranslationY(f * (1.0f - this.progressToActionMode));
         }
@@ -7228,7 +7276,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     undoView.showWithAction(0L, i6, null, new Runnable() {
                         @Override
                         public final void run() {
-                            DialogsActivity.this.lambda$performSelectedDialogsAction$68(arrayList2);
+                            DialogsActivity.this.lambda$performSelectedDialogsAction$69(arrayList2);
                         }
                     });
                 }
@@ -7338,7 +7386,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             builder.setPositiveButton(string, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i14) {
-                    DialogsActivity.this.lambda$performSelectedDialogsAction$70(arrayList, i, dialogInterface, i14);
+                    DialogsActivity.this.lambda$performSelectedDialogsAction$71(arrayList, i, dialogInterface, i14);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -7356,7 +7404,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 AlertsCreator.createBlockDialogAlert(dialogsActivity4, size, dialogsActivity4.canReportSpamCount != 0, size == 1 ? getMessagesController().getUser(Long.valueOf(arrayList.get(0).longValue())) : null, new AlertsCreator.BlockDialogCallback() {
                     @Override
                     public final void run(boolean z7, boolean z8) {
-                        DialogsActivity.this.lambda$performSelectedDialogsAction$71(arrayList, z7, z8);
+                        DialogsActivity.this.lambda$performSelectedDialogsAction$72(arrayList, z7, z8);
                     }
                 });
                 return;
@@ -7437,7 +7485,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                         builder2.setPositiveButton(LocaleController.getString("PsaHide", R.string.PsaHide), new DialogInterface.OnClickListener() {
                                             @Override
                                             public final void onClick(DialogInterface dialogInterface, int i19) {
-                                                DialogsActivity.this.lambda$performSelectedDialogsAction$72(dialogInterface, i19);
+                                                DialogsActivity.this.lambda$performSelectedDialogsAction$73(dialogInterface, i19);
                                             }
                                         });
                                         builder2.setNegativeButton(LocaleController.getString(str2, R.string.Cancel), null);
@@ -7449,7 +7497,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                     AlertsCreator.createClearOrDeleteDialogAlert(this, i == 103, chat, tLRPC$User, DialogObject.isEncryptedDialog(tLRPC$Dialog3.id), i == 102, new MessagesStorage.BooleanCallback() {
                                         @Override
                                         public final void run(boolean z8) {
-                                            DialogsActivity.this.lambda$performSelectedDialogsAction$74(i, tLRPC$Chat, longValue2, z7, z8);
+                                            DialogsActivity.this.lambda$performSelectedDialogsAction$75(i, tLRPC$Chat, longValue2, z7, z8);
                                         }
                                     });
                                     return;
@@ -7462,14 +7510,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                 } else {
                                     boolean z8 = z4;
                                     str3 = str2;
-                                    lambda$performSelectedDialogsAction$73(i, longValue2, chat, z8, false);
+                                    lambda$performSelectedDialogsAction$74(i, longValue2, chat, z8, false);
                                 }
                             } else if (i == 104) {
                                 if (size == 1 && dialogsActivity3.canMuteCount == 1) {
                                     dialogsActivity3.showDialog(AlertsCreator.createMuteAlert(this, longValue2, 0L, (Theme.ResourcesProvider) null), new DialogInterface.OnDismissListener() {
                                         @Override
                                         public final void onDismiss(DialogInterface dialogInterface) {
-                                            DialogsActivity.this.lambda$performSelectedDialogsAction$75(dialogInterface);
+                                            DialogsActivity.this.lambda$performSelectedDialogsAction$76(dialogInterface);
                                         }
                                     });
                                     return;
@@ -7483,7 +7531,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                     dialogsActivity2.showDialog(AlertsCreator.createMuteAlert(dialogsActivity2, arrayList, 0, (Theme.ResourcesProvider) null), new DialogInterface.OnDismissListener() {
                                         @Override
                                         public final void onDismiss(DialogInterface dialogInterface) {
-                                            DialogsActivity.this.lambda$performSelectedDialogsAction$76(dialogInterface);
+                                            DialogsActivity.this.lambda$performSelectedDialogsAction$77(dialogInterface);
                                         }
                                     });
                                     return;
@@ -7549,11 +7597,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         dialogsActivity.hideActionMode((i == 108 || i == 100 || i == 102) ? false : true);
     }
 
-    public void lambda$performSelectedDialogsAction$68(ArrayList arrayList) {
+    public void lambda$performSelectedDialogsAction$69(ArrayList arrayList) {
         getMessagesController().addDialogToFolder(arrayList, this.folderId == 0 ? 0 : 1, -1, null, 0L);
     }
 
-    public void lambda$performSelectedDialogsAction$70(ArrayList arrayList, final int i, DialogInterface dialogInterface, int i2) {
+    public void lambda$performSelectedDialogsAction$71(ArrayList arrayList, final int i, DialogInterface dialogInterface, int i2) {
         if (arrayList.isEmpty()) {
             return;
         }
@@ -7563,14 +7611,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             undoView.showWithAction(arrayList2, i == 102 ? 27 : 26, (Object) null, (Object) null, new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$performSelectedDialogsAction$69(i, arrayList2);
+                    DialogsActivity.this.lambda$performSelectedDialogsAction$70(i, arrayList2);
                 }
             }, (Runnable) null);
         }
         hideActionMode(i == 103);
     }
 
-    public void lambda$performSelectedDialogsAction$69(int i, ArrayList arrayList) {
+    public void lambda$performSelectedDialogsAction$70(int i, ArrayList arrayList) {
         if (i == 102) {
             getMessagesController().setDialogsInTransaction(true);
             performSelectedDialogsAction(arrayList, i, false, false);
@@ -7587,7 +7635,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         performSelectedDialogsAction(arrayList, i, false, false);
     }
 
-    public void lambda$performSelectedDialogsAction$71(ArrayList arrayList, boolean z, boolean z2) {
+    public void lambda$performSelectedDialogsAction$72(ArrayList arrayList, boolean z, boolean z2) {
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             long longValue = ((Long) arrayList.get(i)).longValue();
@@ -7602,12 +7650,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(false);
     }
 
-    public void lambda$performSelectedDialogsAction$72(DialogInterface dialogInterface, int i) {
+    public void lambda$performSelectedDialogsAction$73(DialogInterface dialogInterface, int i) {
         getMessagesController().hidePromoDialog();
         hideActionMode(false);
     }
 
-    public void lambda$performSelectedDialogsAction$74(final int i, final TLRPC$Chat tLRPC$Chat, final long j, final boolean z, final boolean z2) {
+    public void lambda$performSelectedDialogsAction$75(final int i, final TLRPC$Chat tLRPC$Chat, final long j, final boolean z, final boolean z2) {
         int i2;
         int i3;
         int i4;
@@ -7648,7 +7696,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             undoView.showWithAction(j, i == 103 ? 0 : 1, new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$performSelectedDialogsAction$73(i, j, tLRPC$Chat, z, z2);
+                    DialogsActivity.this.lambda$performSelectedDialogsAction$74(i, j, tLRPC$Chat, z, z2);
                 }
             });
         } else {
@@ -7681,11 +7729,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$performSelectedDialogsAction$75(DialogInterface dialogInterface) {
+    public void lambda$performSelectedDialogsAction$76(DialogInterface dialogInterface) {
         hideActionMode(true);
     }
 
-    public void lambda$performSelectedDialogsAction$76(DialogInterface dialogInterface) {
+    public void lambda$performSelectedDialogsAction$77(DialogInterface dialogInterface) {
         hideActionMode(true);
     }
 
@@ -7714,7 +7762,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$performSelectedDialogsAction$73(int i, long j, TLRPC$Chat tLRPC$Chat, boolean z, boolean z2) {
+    public void lambda$performSelectedDialogsAction$74(int i, long j, TLRPC$Chat tLRPC$Chat, boolean z, boolean z2) {
         if (i == 103) {
             getMessagesController().deleteDialog(j, 1, z2);
             return;
@@ -7741,7 +7789,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.pinDialog(long, boolean, org.telegram.messenger.MessagesController$DialogFilter, int, boolean):void");
     }
 
-    public void lambda$pinDialog$77() {
+    public void lambda$pinDialog$78() {
         setDialogsListFrozen(false);
     }
 
@@ -8086,7 +8134,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.actionBarColorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    DialogsActivity.this.lambda$showOrUpdateActionMode$78(f, valueAnimator2);
+                    DialogsActivity.this.lambda$showOrUpdateActionMode$79(f, valueAnimator2);
                 }
             });
             this.actionBarColorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -8133,7 +8181,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.selectedDialogsCountTextView.setNumber(this.selectedDialogs.size(), z);
     }
 
-    public void lambda$showOrUpdateActionMode$78(float f, ValueAnimator valueAnimator) {
+    public void lambda$showOrUpdateActionMode$79(float f, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.progressToActionMode = floatValue;
         if (this.hasStories) {
@@ -8500,7 +8548,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 showDialog(new NotificationPermissionDialog(parentActivity, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        DialogsActivity.lambda$askForPermissons$79(parentActivity, (Boolean) obj);
+                        DialogsActivity.lambda$askForPermissons$80(parentActivity, (Boolean) obj);
                     }
                 }));
                 return;
@@ -8512,7 +8560,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 AlertDialog create = AlertsCreator.createContactsPermissionDialog(parentActivity, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i2) {
-                        DialogsActivity.this.lambda$askForPermissons$80(i2);
+                        DialogsActivity.this.lambda$askForPermissons$81(i2);
                     }
                 }).create();
                 this.permissionDialog = create;
@@ -8551,13 +8599,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void lambda$askForPermissons$79(Activity activity, Boolean bool) {
+    public static void lambda$askForPermissons$80(Activity activity, Boolean bool) {
         if (bool.booleanValue()) {
             activity.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
         }
     }
 
-    public void lambda$askForPermissons$80(int i) {
+    public void lambda$askForPermissons$81(int i) {
         this.askAboutContacts = i != 0;
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", this.askAboutContacts).commit();
         askForPermissons(false);
@@ -8669,7 +8717,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    DialogsActivity.this.lambda$onRequestPermissionsResultFragment$81();
+                                    DialogsActivity.this.lambda$onRequestPermissionsResultFragment$82();
                                 }
                             });
                             getContactsController().forceImportContacts();
@@ -8689,7 +8737,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$onRequestPermissionsResultFragment$81() {
+    public void lambda$onRequestPermissionsResultFragment$82() {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
     }
 
@@ -8763,7 +8811,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            DialogsActivity.this.lambda$didReceivedNotification$82(viewPage, objArr);
+                            DialogsActivity.this.lambda$didReceivedNotification$83(viewPage, objArr);
                         }
                     }, 160L);
                 } else {
@@ -8946,7 +8994,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$didReceivedNotification$83(tLRPC$Chat, longValue3, booleanValue, tLRPC$User, z);
+                    DialogsActivity.this.lambda$didReceivedNotification$84(tLRPC$Chat, longValue3, booleanValue, tLRPC$User, z);
                 }
             };
             createUndoView();
@@ -9104,7 +9152,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$didReceivedNotification$82(ViewPage viewPage, Object[] objArr) {
+    public void lambda$didReceivedNotification$83(ViewPage viewPage, Object[] objArr) {
         reloadViewPageDialogs(viewPage, objArr.length > 0);
         FilterTabsView filterTabsView = this.filterTabsView;
         if (filterTabsView == null || filterTabsView.getVisibility() != 0) {
@@ -9113,7 +9161,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.filterTabsView.checkTabsCounter();
     }
 
-    public void lambda$didReceivedNotification$83(TLRPC$Chat tLRPC$Chat, long j, boolean z, TLRPC$User tLRPC$User, boolean z2) {
+    public void lambda$didReceivedNotification$84(TLRPC$Chat tLRPC$Chat, long j, boolean z, TLRPC$User tLRPC$User, boolean z2) {
         if (tLRPC$Chat != null) {
             if (ChatObject.isNotInChat(tLRPC$Chat)) {
                 getMessagesController().deleteDialog(j, 0, z);
@@ -9191,13 +9239,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             builder.setPositiveButton(LocaleController.getString("GoToSettings", R.string.GoToSettings), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    DialogsActivity.this.lambda$showSuggestion$84(dialogInterface, i);
+                    DialogsActivity.this.lambda$showSuggestion$85(dialogInterface, i);
                 }
             });
             showDialog(builder.create(), new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    DialogsActivity.this.lambda$showSuggestion$85(dialogInterface);
+                    DialogsActivity.this.lambda$showSuggestion$86(dialogInterface);
                 }
             });
             return true;
@@ -9205,12 +9253,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public void lambda$showSuggestion$84(DialogInterface dialogInterface, int i) {
+    public void lambda$showSuggestion$85(DialogInterface dialogInterface, int i) {
         presentFragment(new PrivacySettingsActivity());
         AndroidUtilities.scrollToFragmentRow(this.parentLayout, "newChatsRow");
     }
 
-    public void lambda$showSuggestion$85(DialogInterface dialogInterface) {
+    public void lambda$showSuggestion$86(DialogInterface dialogInterface) {
         onSuggestionDismiss();
     }
 
@@ -9226,24 +9274,24 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$showFiltersHint$87();
+                DialogsActivity.this.lambda$showFiltersHint$88();
             }
         }, 1000L);
     }
 
-    public void lambda$showFiltersHint$87() {
+    public void lambda$showFiltersHint$88() {
         UndoView undoView = getUndoView();
         if (undoView != null) {
             undoView.showWithAction(0L, 15, null, new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$showFiltersHint$86();
+                    DialogsActivity.this.lambda$showFiltersHint$87();
                 }
             });
         }
     }
 
-    public void lambda$showFiltersHint$86() {
+    public void lambda$showFiltersHint$87() {
         presentFragment(new FiltersSetupActivity());
     }
 
@@ -9267,13 +9315,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.viewPages[0].listView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$setDialogsListFrozen$88();
+                    DialogsActivity.this.lambda$setDialogsListFrozen$89();
                 }
             });
         }
     }
 
-    public void lambda$setDialogsListFrozen$88() {
+    public void lambda$setDialogsListFrozen$89() {
         this.viewPages[0].dialogsAdapter.notifyDataSetChanged();
     }
 
@@ -9613,7 +9661,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    DialogsActivity.this.lambda$hideFloatingButton$89(valueAnimator);
+                    DialogsActivity.this.lambda$hideFloatingButton$90(valueAnimator);
                 }
             });
             animatorSet.playTogether(ofFloat);
@@ -9628,7 +9676,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$hideFloatingButton$89(ValueAnimator valueAnimator) {
+    public void lambda$hideFloatingButton$90(ValueAnimator valueAnimator) {
         this.floatingButtonHideProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.floatingButtonTranslation = AndroidUtilities.dp(100.0f) * this.floatingButtonHideProgress;
         updateFloatingButtonOffset();
@@ -9645,13 +9693,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.contactsAlphaAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                DialogsActivity.this.lambda$animateContactsAlpha$90(valueAnimator2);
+                DialogsActivity.this.lambda$animateContactsAlpha$91(valueAnimator2);
             }
         });
         this.contactsAlphaAnimator.start();
     }
 
-    public void lambda$animateContactsAlpha$90(ValueAnimator valueAnimator) {
+    public void lambda$animateContactsAlpha$91(ValueAnimator valueAnimator) {
         setContactsAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -9774,16 +9822,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.didSelectResult(long, int, boolean, boolean, org.telegram.ui.TopicsFragment):void");
     }
 
-    public void lambda$didSelectResult$93(final AlertDialog alertDialog, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final long j, final boolean z, final TLRPC$TL_messages_checkHistoryImportPeer tLRPC$TL_messages_checkHistoryImportPeer, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didSelectResult$94(final AlertDialog alertDialog, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final long j, final boolean z, final TLRPC$TL_messages_checkHistoryImportPeer tLRPC$TL_messages_checkHistoryImportPeer, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$didSelectResult$92(alertDialog, tLObject, tLRPC$User, tLRPC$Chat, j, z, tLRPC$TL_error, tLRPC$TL_messages_checkHistoryImportPeer);
+                DialogsActivity.this.lambda$didSelectResult$93(alertDialog, tLObject, tLRPC$User, tLRPC$Chat, j, z, tLRPC$TL_error, tLRPC$TL_messages_checkHistoryImportPeer);
             }
         });
     }
 
-    public void lambda$didSelectResult$92(AlertDialog alertDialog, TLObject tLObject, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, final long j, final boolean z, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_messages_checkHistoryImportPeer tLRPC$TL_messages_checkHistoryImportPeer) {
+    public void lambda$didSelectResult$93(AlertDialog alertDialog, TLObject tLObject, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, final long j, final boolean z, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_messages_checkHistoryImportPeer tLRPC$TL_messages_checkHistoryImportPeer) {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -9794,7 +9842,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             AlertsCreator.createImportDialogAlert(this, this.arguments.getString("importTitle"), ((TLRPC$TL_messages_checkedHistoryImportPeer) tLObject).confirm_text, tLRPC$User, tLRPC$Chat, new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.this.lambda$didSelectResult$91(j, z);
+                    DialogsActivity.this.lambda$didSelectResult$92(j, z);
                 }
             });
             return;
@@ -9803,18 +9851,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.historyImportProgressChanged, Long.valueOf(j), tLRPC$TL_messages_checkHistoryImportPeer, tLRPC$TL_error);
     }
 
-    public void lambda$didSelectResult$91(long j, boolean z) {
+    public void lambda$didSelectResult$92(long j, boolean z) {
         setDialogsListFrozen(true);
         ArrayList<MessagesStorage.TopicKey> arrayList = new ArrayList<>();
         arrayList.add(MessagesStorage.TopicKey.of(j, 0L));
         this.delegate.didSelectDialogs(this, arrayList, null, z, null);
     }
 
-    public void lambda$didSelectResult$94(long j, int i, TopicsFragment topicsFragment, DialogInterface dialogInterface, int i2) {
+    public void lambda$didSelectResult$95(long j, int i, TopicsFragment topicsFragment, DialogInterface dialogInterface, int i2) {
         didSelectResult(j, i, false, false, topicsFragment);
     }
 
-    public void lambda$didSelectResult$95(long j, int i, boolean z, TopicsFragment topicsFragment) {
+    public void lambda$didSelectResult$96(long j, int i, boolean z, TopicsFragment topicsFragment) {
         if (this.delegate != null) {
             ArrayList<MessagesStorage.TopicKey> arrayList = new ArrayList<>();
             arrayList.add(MessagesStorage.TopicKey.of(j, i));
@@ -9828,14 +9876,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         finishFragment();
     }
 
-    public void lambda$didSelectResult$97(long j, final Runnable runnable) {
+    public void lambda$didSelectResult$98(long j, final Runnable runnable) {
         if (this.requestPeerType.bot_admin_rights != null) {
             getMessagesController().setUserAdminRole(-j, getMessagesController().getUser(Long.valueOf(this.requestPeerBotId)), this.requestPeerType.bot_admin_rights, null, false, this, true, true, null, runnable, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
-                    boolean lambda$didSelectResult$96;
-                    lambda$didSelectResult$96 = DialogsActivity.lambda$didSelectResult$96(runnable, tLRPC$TL_error);
-                    return lambda$didSelectResult$96;
+                    boolean lambda$didSelectResult$97;
+                    lambda$didSelectResult$97 = DialogsActivity.lambda$didSelectResult$97(runnable, tLRPC$TL_error);
+                    return lambda$didSelectResult$97;
                 }
             });
             return;
@@ -9843,7 +9891,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         runnable.run();
     }
 
-    public static boolean lambda$didSelectResult$96(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
+    public static boolean lambda$didSelectResult$97(Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
         runnable.run();
         return true;
     }
@@ -9858,12 +9906,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }).setNegativeButton(LocaleController.formatString("Cancel", R.string.Cancel, new Object[0]), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                DialogsActivity.lambda$showSendToBotAlert$99(runnable2, dialogInterface, i);
+                DialogsActivity.lambda$showSendToBotAlert$100(runnable2, dialogInterface, i);
             }
         }).create());
     }
 
-    public static void lambda$showSendToBotAlert$99(Runnable runnable, DialogInterface dialogInterface, int i) {
+    public static void lambda$showSendToBotAlert$100(Runnable runnable, DialogInterface dialogInterface, int i) {
         if (runnable != null) {
             runnable.run();
         }
@@ -9900,12 +9948,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }).setNegativeButton(LocaleController.formatString("Cancel", R.string.Cancel, new Object[0]), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                DialogsActivity.lambda$showSendToBotAlert$101(runnable2, dialogInterface, i);
+                DialogsActivity.lambda$showSendToBotAlert$102(runnable2, dialogInterface, i);
             }
         }).create());
     }
 
-    public static void lambda$showSendToBotAlert$101(Runnable runnable, DialogInterface dialogInterface, int i) {
+    public static void lambda$showSendToBotAlert$102(Runnable runnable, DialogInterface dialogInterface, int i) {
         if (runnable != null) {
             runnable.run();
         }
@@ -9944,7 +9992,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                DialogsActivity.this.lambda$onSendLongClick$102(keyEvent);
+                DialogsActivity.this.lambda$onSendLongClick$103(keyEvent);
             }
         });
         actionBarPopupWindowLayout.setShownFromBottom(false);
@@ -9956,7 +10004,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                DialogsActivity.this.lambda$onSendLongClick$103(view2);
+                DialogsActivity.this.lambda$onSendLongClick$104(view2);
             }
         });
         linearLayout.addView(actionBarPopupWindowLayout, LayoutHelper.createLinear(-1, -2));
@@ -9980,14 +10028,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public void lambda$onSendLongClick$102(KeyEvent keyEvent) {
+    public void lambda$onSendLongClick$103(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
         }
     }
 
-    public void lambda$onSendLongClick$103(View view) {
+    public void lambda$onSendLongClick$104(View view) {
         ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
@@ -10008,11 +10056,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.getThemeDescriptions():java.util.ArrayList");
     }
 
-    public void lambda$getThemeDescriptions$104() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.lambda$getThemeDescriptions$104():void");
+    public void lambda$getThemeDescriptions$105() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.lambda$getThemeDescriptions$105():void");
     }
 
-    public void lambda$getThemeDescriptions$105() {
+    public void lambda$getThemeDescriptions$106() {
         SearchViewPager searchViewPager = this.searchViewPager;
         if (searchViewPager != null) {
             ActionBarMenu actionMode = searchViewPager.getActionMode();
@@ -10026,7 +10074,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$getThemeDescriptions$106() {
+    public void lambda$getThemeDescriptions$107() {
         this.speedItem.getIconView().setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.SRC_IN));
         this.speedItem.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector)));
     }
@@ -10077,7 +10125,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                DialogsActivity.this.lambda$getCustomSlideTransition$107(valueAnimator);
+                DialogsActivity.this.lambda$getCustomSlideTransition$108(valueAnimator);
             }
         });
         this.slideBackTransitionAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -10086,7 +10134,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return this.slideBackTransitionAnimator;
     }
 
-    public void lambda$getCustomSlideTransition$107(ValueAnimator valueAnimator) {
+    public void lambda$getCustomSlideTransition$108(ValueAnimator valueAnimator) {
         setSlideTransitionProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -10294,22 +10342,22 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return Arrays.asList(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugDialogsActivity)), new FloatingDebugController.DebugItem(LocaleController.getString(R.string.ClearLocalDatabase), new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$onGetDebugItems$108();
+                DialogsActivity.this.lambda$onGetDebugItems$109();
             }
         }), new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugClearSendMessageAsPeers), new Runnable() {
             @Override
             public final void run() {
-                DialogsActivity.this.lambda$onGetDebugItems$109();
+                DialogsActivity.this.lambda$onGetDebugItems$110();
             }
         }));
     }
 
-    public void lambda$onGetDebugItems$108() {
+    public void lambda$onGetDebugItems$109() {
         getMessagesStorage().clearLocalDatabase();
         Toast.makeText(getContext(), LocaleController.getString(R.string.DebugClearLocalDatabaseSuccess), 0).show();
     }
 
-    public void lambda$onGetDebugItems$109() {
+    public void lambda$onGetDebugItems$110() {
         getMessagesController().clearSendAsPeers();
     }
 

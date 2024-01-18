@@ -3,6 +3,7 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,16 +15,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.CounterView;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.PremiumGradient;
 public class HintDialogCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private int backgroundColorKey;
@@ -35,16 +40,26 @@ public class HintDialogCell extends FrameLayout {
     private final boolean drawCheckbox;
     private BackupImageView imageView;
     private int lastUnreadCount;
+    private Drawable lockDrawable;
     private TextView nameTextView;
+    private boolean premiumBlocked;
+    private final AnimatedFloat premiumBlockedT;
+    private PremiumGradient.PremiumGradientTools premiumGradient;
     private Theme.ResourcesProvider resourcesProvider;
     float showOnlineProgress;
+    private boolean showPremiumBlocked;
     boolean wasDraw;
+
+    public boolean isBlocked() {
+        return this.premiumBlocked;
+    }
 
     public HintDialogCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
         new RectF();
         this.currentAccount = UserConfig.selectedAccount;
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.backgroundColorKey = Theme.key_windowBackgroundWhite;
         this.drawCheckbox = z;
         BackupImageView backupImageView = new BackupImageView(context);
@@ -96,6 +111,35 @@ public class HintDialogCell extends FrameLayout {
         invalidate();
     }
 
+    public void showPremiumBlocked() {
+        if (this.showPremiumBlocked) {
+            return;
+        }
+        this.showPremiumBlocked = true;
+        NotificationCenter.getInstance(this.currentAccount).listen(this, NotificationCenter.userIsPremiumBlockedUpadted, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                HintDialogCell.this.lambda$showPremiumBlocked$1((Object[]) obj);
+            }
+        });
+    }
+
+    public void lambda$showPremiumBlocked$1(Object[] objArr) {
+        updatePremiumBlocked(true);
+    }
+
+    private void updatePremiumBlocked(boolean z) {
+        boolean z2 = this.premiumBlocked;
+        boolean z3 = this.showPremiumBlocked && this.currentUser != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.currentUser.id);
+        this.premiumBlocked = z3;
+        if (z2 != z3) {
+            if (!z) {
+                this.premiumBlockedT.set(z3, true);
+            }
+            invalidate();
+        }
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
@@ -130,10 +174,11 @@ public class HintDialogCell extends FrameLayout {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
             this.currentUser = user;
             this.avatarDrawable.setInfo(this.currentAccount, user);
-            return;
+        } else {
+            this.avatarDrawable.setInfo(this.currentAccount, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
+            this.currentUser = null;
         }
-        this.avatarDrawable.setInfo(this.currentAccount, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
-        this.currentUser = null;
+        updatePremiumBlocked(true);
     }
 
     public void setColors(int i, int i2) {
@@ -173,13 +218,14 @@ public class HintDialogCell extends FrameLayout {
             this.currentUser = null;
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);
         }
+        updatePremiumBlocked(false);
         if (z) {
             update(0);
         }
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r6, android.view.View r7, long r8) {
+    protected boolean drawChild(android.graphics.Canvas r24, android.view.View r25, long r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.HintDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 

@@ -381,6 +381,7 @@ import org.telegram.tgnet.TLRPC$TL_userProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_userProfilePhotoEmpty;
 import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$TL_users_getFullUser;
+import org.telegram.tgnet.TLRPC$TL_users_getIsPremiumRequiredToContact;
 import org.telegram.tgnet.TLRPC$TL_users_getUsers;
 import org.telegram.tgnet.TLRPC$TL_users_userFull;
 import org.telegram.tgnet.TLRPC$TL_wallPaperSettings;
@@ -497,6 +498,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private CacheByChatsController cacheByChatsController;
     private HashMap<Long, ChannelRecommendations> cachedChannelRecommendations;
     private TLRPC$TL_exportedContactToken cachedContactToken;
+    private LongSparseArray<Boolean> cachedIsUserPremiumBlocked;
     public int callConnectTimeout;
     public int callPacketTimeout;
     public int callReceiveTimeout;
@@ -647,6 +649,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private HashSet<Long> loadingFullParticipants;
     private HashSet<Long> loadingFullUsers;
     private HashSet<Long> loadingGroupCalls;
+    private HashSet<Long> loadingIsUserPremiumBlocked;
     private int loadingNotificationSettings;
     private boolean loadingNotificationSignUpSettings;
     private LongSparseArray<Boolean> loadingPeerSettings;
@@ -693,6 +696,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public Set<String> pendingSuggestions;
     private LongSparseIntArray pendingUnreadCounter;
     public SparseArray<ImageUpdater> photoSuggestion;
+    public int pmReadDateExpirePeriod;
     private LongSparseArray<SparseArray<MessageObject>> pollsToCheck;
     private int pollsToCheckSize;
     public boolean preloadFeaturedStickers;
@@ -736,6 +740,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private LongSparseArray<ArrayList<MessageObject>> reloadingWebpagesPending;
     public boolean remoteConfigLoaded;
     private ArrayList<ReadTask> repliesReadTasks;
+    private Runnable requestIsUserPremiumBlockedRunnable;
     private boolean requestingContactToken;
     private TLRPC$messages_Dialogs resetDialogsAll;
     private TLRPC$TL_messages_peerDialogs resetDialogsPinned;
@@ -1910,7 +1915,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.loadingPinnedDialogs = new SparseIntArray();
         this.faqSearchArray = new ArrayList<>();
         this.suggestContacts = true;
-        this.themeCheckRunnable = MessagesController$$ExternalSyntheticLambda264.INSTANCE;
+        this.themeCheckRunnable = MessagesController$$ExternalSyntheticLambda266.INSTANCE;
         this.passwordCheckRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -1964,6 +1969,14 @@ public class MessagesController extends BaseController implements NotificationCe
         this.DIALOGS_LOAD_TYPE_CACHE = 1;
         this.DIALOGS_LOAD_TYPE_CHANNEL = 2;
         this.DIALOGS_LOAD_TYPE_UNKNOWN = 3;
+        this.cachedIsUserPremiumBlocked = new LongSparseArray<>();
+        this.loadingIsUserPremiumBlocked = new HashSet<>();
+        this.requestIsUserPremiumBlockedRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                MessagesController.this.requestIsUserPremiumBlocked();
+            }
+        };
         ImageLoader.getInstance();
         getMessagesStorage();
         getLocationController();
@@ -2041,6 +2054,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.chatReadMarkExpirePeriod = this.mainPreferences.getInt("chatReadMarkExpirePeriod", 604800);
         this.ringtoneDurationMax = this.mainPreferences.getInt("ringtoneDurationMax", 5);
         this.ringtoneSizeMax = this.mainPreferences.getInt("ringtoneSizeMax", 102400);
+        this.pmReadDateExpirePeriod = this.mainPreferences.getInt("pmReadDateExpirePeriod", 604800);
         this.suggestStickersApiOnly = this.mainPreferences.getBoolean("suggestStickersApiOnly", false);
         this.roundVideoSize = this.mainPreferences.getInt("roundVideoSize", 384);
         this.roundVideoBitrate = this.mainPreferences.getInt("roundVideoBitrate", 1000);
@@ -16688,5 +16702,111 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkPeerColors$418(TLObject tLObject) {
         this.profilePeerColors = PeerColors.fromTL(1, (TLRPC$TL_help_peerColors) tLObject);
         this.mainPreferences.edit().putString("profilePeerColors", this.profilePeerColors.toString()).apply();
+    }
+
+    public boolean isUserPremiumBlocked(long j) {
+        return isUserPremiumBlocked(j, false);
+    }
+
+    public boolean isUserPremiumBlocked(long j, boolean z) {
+        if (getUserConfig().isPremium()) {
+            return false;
+        }
+        Boolean bool = this.cachedIsUserPremiumBlocked.get(j);
+        if (bool != null) {
+            return bool.booleanValue();
+        }
+        TLRPC$User user = getUser(Long.valueOf(j));
+        if (user == null || user.contact_require_premium) {
+            TLRPC$UserFull userFull = getUserFull(j);
+            if (userFull != null) {
+                return userFull.contact_require_premium;
+            }
+            if (getInputUser(j) == null || z) {
+                return false;
+            }
+            this.loadingIsUserPremiumBlocked.add(Long.valueOf(j));
+            AndroidUtilities.cancelRunOnUIThread(this.requestIsUserPremiumBlockedRunnable);
+            AndroidUtilities.runOnUIThread(this.requestIsUserPremiumBlockedRunnable, 60L);
+            return false;
+        }
+        return false;
+    }
+
+    public void invalidateUserPremiumBlocked(long j, int i) {
+        if (this.loadingFullUsers.contains(Long.valueOf(j))) {
+            return;
+        }
+        int indexOfKey = this.loadedFullUsers.indexOfKey(j);
+        if (indexOfKey >= 0) {
+            this.loadedFullUsers.removeAt(indexOfKey);
+        }
+        loadFullUser(getUser(Long.valueOf(j)), i, true);
+    }
+
+    public void requestIsUserPremiumBlocked() {
+        if (this.loadingIsUserPremiumBlocked.isEmpty()) {
+            return;
+        }
+        TLRPC$TL_users_getIsPremiumRequiredToContact tLRPC$TL_users_getIsPremiumRequiredToContact = new TLRPC$TL_users_getIsPremiumRequiredToContact();
+        final ArrayList arrayList = new ArrayList();
+        Iterator<Long> it = this.loadingIsUserPremiumBlocked.iterator();
+        while (it.hasNext()) {
+            long longValue = it.next().longValue();
+            TLRPC$InputUser inputUser = getInputUser(longValue);
+            if (inputUser != null) {
+                tLRPC$TL_users_getIsPremiumRequiredToContact.id.add(inputUser);
+                arrayList.add(Long.valueOf(longValue));
+            }
+        }
+        this.loadingIsUserPremiumBlocked.clear();
+        if (tLRPC$TL_users_getIsPremiumRequiredToContact.id.isEmpty()) {
+            return;
+        }
+        getConnectionsManager().sendRequest(tLRPC$TL_users_getIsPremiumRequiredToContact, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                MessagesController.this.lambda$requestIsUserPremiumBlocked$421(arrayList, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$requestIsUserPremiumBlocked$421(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessagesController.this.lambda$requestIsUserPremiumBlocked$420(tLObject, arrayList);
+            }
+        });
+    }
+
+    public void lambda$requestIsUserPremiumBlocked$420(TLObject tLObject, ArrayList arrayList) {
+        boolean z;
+        if (tLObject instanceof TLRPC$Vector) {
+            ArrayList<Object> arrayList2 = ((TLRPC$Vector) tLObject).objects;
+            z = false;
+            for (int i = 0; i < Math.min(arrayList.size(), arrayList2.size()); i++) {
+                long longValue = ((Long) arrayList.get(i)).longValue();
+                boolean z2 = arrayList2.get(i) instanceof TLRPC$TL_boolTrue;
+                Boolean bool = this.cachedIsUserPremiumBlocked.get(longValue);
+                if (bool == null || bool.booleanValue() != z2) {
+                    this.cachedIsUserPremiumBlocked.put(longValue, Boolean.valueOf(z2));
+                    z = true;
+                }
+                TLRPC$UserFull userFull = getUserFull(longValue);
+                if (userFull != null && userFull.contact_require_premium != z2) {
+                    userFull.contact_require_premium = z2;
+                    getMessagesStorage().updateUserInfo(userFull, true);
+                } else if (userFull == null) {
+                    getMessagesStorage().updateUserInfoPremiumBlocked(longValue, z2);
+                }
+                z = true;
+            }
+        } else {
+            z = false;
+        }
+        if (z) {
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userIsPremiumBlockedUpadted, new Object[0]);
+        }
     }
 }

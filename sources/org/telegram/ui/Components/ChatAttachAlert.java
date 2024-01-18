@@ -4380,8 +4380,134 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.updateSelectedPosition(int):void");
     }
 
-    private void updateActionBarVisibility(final boolean r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.updateActionBarVisibility(boolean, boolean):void");
+    private void updateActionBarVisibility(final boolean z, boolean z2) {
+        AttachAlertLayout attachAlertLayout;
+        if (!(z && this.actionBar.getTag() == null) && (z || this.actionBar.getTag() == null)) {
+            return;
+        }
+        this.actionBar.setTag(z ? 1 : null);
+        AnimatorSet animatorSet = this.actionBarAnimation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.actionBarAnimation = null;
+        }
+        ActionBarMenuItem actionBarMenuItem = this.searchItem;
+        boolean z3 = actionBarMenuItem != null && this.avatarSearch;
+        boolean z4 = !this.isPhotoPicker && !(this.avatarPicker == 0 && this.menuShowed) && this.currentAttachLayout == this.photoLayout && (this.photosEnabled || this.videosEnabled);
+        if (this.currentAttachLayout == this.restrictedLayout) {
+            z3 = false;
+            z4 = false;
+        }
+        if (z) {
+            if (z3) {
+                actionBarMenuItem.setVisibility(0);
+            }
+            if (z4) {
+                this.selectedMenuItem.setVisibility(0);
+            }
+        } else if (this.typeButtonsAvailable && this.frameLayout2.getTag() == null) {
+            this.buttonsRecyclerView.setVisibility(0);
+        }
+        if (getWindow() != null && this.baseFragment != null) {
+            if (z) {
+                AndroidUtilities.setLightStatusBar(getWindow(), isLightStatusBar());
+            } else {
+                AndroidUtilities.setLightStatusBar(getWindow(), this.baseFragment.isLightStatusBar());
+            }
+        }
+        if (z2) {
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.actionBarAnimation = animatorSet2;
+            animatorSet2.setDuration(Math.abs((z ? 1.0f : 0.0f) - this.actionBar.getAlpha()) * 180.0f);
+            ArrayList arrayList = new ArrayList();
+            ActionBar actionBar = this.actionBar;
+            Property property = View.ALPHA;
+            float[] fArr = new float[1];
+            fArr[0] = z ? 1.0f : 0.0f;
+            arrayList.add(ObjectAnimator.ofFloat(actionBar, property, fArr));
+            View view = this.actionBarShadow;
+            Property property2 = View.ALPHA;
+            float[] fArr2 = new float[1];
+            fArr2[0] = z ? 1.0f : 0.0f;
+            arrayList.add(ObjectAnimator.ofFloat(view, property2, fArr2));
+            if (z3) {
+                ActionBarMenuItem actionBarMenuItem2 = this.searchItem;
+                Property property3 = View.ALPHA;
+                float[] fArr3 = new float[1];
+                fArr3[0] = z ? 1.0f : 0.0f;
+                arrayList.add(ObjectAnimator.ofFloat(actionBarMenuItem2, property3, fArr3));
+            }
+            if (z4) {
+                ActionBarMenuItem actionBarMenuItem3 = this.selectedMenuItem;
+                Property property4 = View.ALPHA;
+                float[] fArr4 = new float[1];
+                fArr4[0] = z ? 1.0f : 0.0f;
+                arrayList.add(ObjectAnimator.ofFloat(actionBarMenuItem3, property4, fArr4));
+            }
+            this.actionBarAnimation.playTogether(arrayList);
+            this.actionBarAnimation.addListener(new AnimatorListenerAdapter() {
+                {
+                    ChatAttachAlert.this = this;
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (ChatAttachAlert.this.actionBarAnimation != null) {
+                        if (z) {
+                            ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
+                            if (chatAttachAlert.typeButtonsAvailable) {
+                                if (chatAttachAlert.currentAttachLayout == null || ChatAttachAlert.this.currentAttachLayout.shouldHideBottomButtons()) {
+                                    ChatAttachAlert.this.buttonsRecyclerView.setVisibility(4);
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        ActionBarMenuItem actionBarMenuItem4 = ChatAttachAlert.this.searchItem;
+                        if (actionBarMenuItem4 != null) {
+                            actionBarMenuItem4.setVisibility(4);
+                        }
+                        ChatAttachAlert chatAttachAlert2 = ChatAttachAlert.this;
+                        if (chatAttachAlert2.avatarPicker == 0 && chatAttachAlert2.menuShowed) {
+                            return;
+                        }
+                        ChatAttachAlert.this.selectedMenuItem.setVisibility(4);
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+                    ChatAttachAlert.this.actionBarAnimation = null;
+                }
+            });
+            this.actionBarAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.actionBarAnimation.setDuration(380L);
+            this.actionBarAnimation.start();
+            return;
+        }
+        if (z && this.typeButtonsAvailable && ((attachAlertLayout = this.currentAttachLayout) == null || attachAlertLayout.shouldHideBottomButtons())) {
+            this.buttonsRecyclerView.setVisibility(4);
+        }
+        this.actionBar.setAlpha(z ? 1.0f : 0.0f);
+        this.actionBarShadow.setAlpha(z ? 1.0f : 0.0f);
+        if (z3) {
+            this.searchItem.setAlpha(z ? 1.0f : 0.0f);
+        }
+        if (z4) {
+            this.selectedMenuItem.setAlpha(z ? 1.0f : 0.0f);
+        }
+        if (z) {
+            return;
+        }
+        ActionBarMenuItem actionBarMenuItem4 = this.searchItem;
+        if (actionBarMenuItem4 != null) {
+            actionBarMenuItem4.setVisibility(4);
+        }
+        if (this.avatarPicker == 0 && this.menuShowed) {
+            return;
+        }
+        this.selectedMenuItem.setVisibility(4);
     }
 
     @android.annotation.SuppressLint({"NewApi"})

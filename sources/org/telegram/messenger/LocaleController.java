@@ -2492,6 +2492,22 @@ public class LocaleController {
         }
     }
 
+    public static String formatPmSeenDate(long j) {
+        long j2 = j * 1000;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            int i = calendar.get(6);
+            int i2 = calendar.get(1);
+            calendar.setTimeInMillis(j2);
+            int i3 = calendar.get(6);
+            int i4 = calendar.get(1);
+            return (i3 == i && i2 == i4) ? formatString(R.string.PmReadTodayAt, getInstance().formatterDay.format(new Date(j2))) : (i3 + 1 == i && i2 == i4) ? formatString(R.string.PmReadYesterdayAt, getInstance().formatterDay.format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString(R.string.PmReadDateTimeAt, getInstance().formatterDayMonth.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))) : formatString(R.string.PmReadDateTimeAt, getInstance().formatterYear.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2)));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "LOC_ERR";
+        }
+    }
+
     public static String formatShortDate(long j) {
         long j2 = j * 1000;
         try {
@@ -2936,11 +2952,11 @@ public class LocaleController {
         TLRPC$UserStatus tLRPC$UserStatus3;
         if (tLRPC$User != null && (tLRPC$UserStatus3 = tLRPC$User.status) != null && tLRPC$UserStatus3.expires == 0) {
             if (tLRPC$UserStatus3 instanceof TLRPC$TL_userStatusRecently) {
-                tLRPC$UserStatus3.expires = -100;
+                tLRPC$UserStatus3.expires = tLRPC$UserStatus3.by_me ? -1000 : -100;
             } else if (tLRPC$UserStatus3 instanceof TLRPC$TL_userStatusLastWeek) {
-                tLRPC$UserStatus3.expires = -101;
+                tLRPC$UserStatus3.expires = tLRPC$UserStatus3.by_me ? -1001 : -101;
             } else if (tLRPC$UserStatus3 instanceof TLRPC$TL_userStatusLastMonth) {
-                tLRPC$UserStatus3.expires = -102;
+                tLRPC$UserStatus3.expires = tLRPC$UserStatus3.by_me ? -1002 : -102;
             }
         }
         if (tLRPC$User != null && (tLRPC$UserStatus2 = tLRPC$User.status) != null && tLRPC$UserStatus2.expires <= 0 && MessagesController.getInstance(i).onlinePrivacy.containsKey(Long.valueOf(tLRPC$User.id))) {
@@ -2961,13 +2977,13 @@ public class LocaleController {
             } else if (i2 == -1) {
                 return getString("Invisible", R.string.Invisible);
             } else {
-                if (i2 == -100) {
+                if (i2 == -100 || i2 == -1000) {
                     return getString("Lately", R.string.Lately);
                 }
-                if (i2 == -101) {
+                if (i2 == -101 || i2 == -1001) {
                     return getString("WithinAWeek", R.string.WithinAWeek);
                 }
-                if (i2 == -102) {
+                if (i2 == -102 || i2 == -1002) {
                     return getString("WithinAMonth", R.string.WithinAMonth);
                 }
                 return formatDateOnline(i2, zArr2);

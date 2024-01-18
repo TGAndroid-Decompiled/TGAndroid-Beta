@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import org.telegram.messenger.Utilities;
 public class NotificationCenter {
     private static final long EXPIRE_NOTIFICATIONS_TIME = 5017;
     private static volatile NotificationCenter[] Instance = new NotificationCenter[4];
@@ -263,6 +264,7 @@ public class NotificationCenter {
     public static final int uploadStoryProgress;
     public static final int userEmojiStatusUpdated;
     public static final int userInfoDidLoad;
+    public static final int userIsPremiumBlockedUpadted;
     public static final int videoLoadingStateChanged;
     public static final int voiceTranscriptionUpdate;
     public static final int voipServiceCreated;
@@ -299,6 +301,9 @@ public class NotificationCenter {
 
     public interface PostponeNotificationCallback {
         boolean needPostpone(int i, int i2, Object[] objArr);
+    }
+
+    public static void lambda$listen$3() {
     }
 
     static {
@@ -855,237 +860,240 @@ public class NotificationCenter {
         savedReactionTagsUpdate = i183;
         int i185 = i184 + 1;
         totalEvents = i185;
-        pushMessagesUpdated = i184;
+        userIsPremiumBlockedUpadted = i184;
         int i186 = i185 + 1;
         totalEvents = i186;
-        wallpapersDidLoad = i185;
+        pushMessagesUpdated = i185;
         int i187 = i186 + 1;
         totalEvents = i187;
-        wallpapersNeedReload = i186;
+        wallpapersDidLoad = i186;
         int i188 = i187 + 1;
         totalEvents = i188;
-        didReceiveSmsCode = i187;
+        wallpapersNeedReload = i187;
         int i189 = i188 + 1;
         totalEvents = i189;
-        didReceiveCall = i188;
+        didReceiveSmsCode = i188;
         int i190 = i189 + 1;
         totalEvents = i190;
-        emojiLoaded = i189;
+        didReceiveCall = i189;
         int i191 = i190 + 1;
         totalEvents = i191;
-        invalidateMotionBackground = i190;
+        emojiLoaded = i190;
         int i192 = i191 + 1;
         totalEvents = i192;
-        closeOtherAppActivities = i191;
+        invalidateMotionBackground = i191;
         int i193 = i192 + 1;
         totalEvents = i193;
-        cameraInitied = i192;
+        closeOtherAppActivities = i192;
         int i194 = i193 + 1;
         totalEvents = i194;
-        didReplacedPhotoInMemCache = i193;
+        cameraInitied = i193;
         int i195 = i194 + 1;
         totalEvents = i195;
-        didSetNewTheme = i194;
+        didReplacedPhotoInMemCache = i194;
         int i196 = i195 + 1;
         totalEvents = i196;
-        themeListUpdated = i195;
+        didSetNewTheme = i195;
         int i197 = i196 + 1;
         totalEvents = i197;
-        didApplyNewTheme = i196;
+        themeListUpdated = i196;
         int i198 = i197 + 1;
         totalEvents = i198;
-        themeAccentListUpdated = i197;
+        didApplyNewTheme = i197;
         int i199 = i198 + 1;
         totalEvents = i199;
-        needCheckSystemBarColors = i198;
+        themeAccentListUpdated = i198;
         int i200 = i199 + 1;
         totalEvents = i200;
-        needShareTheme = i199;
+        needCheckSystemBarColors = i199;
         int i201 = i200 + 1;
         totalEvents = i201;
-        needSetDayNightTheme = i200;
+        needShareTheme = i200;
         int i202 = i201 + 1;
         totalEvents = i202;
-        goingToPreviewTheme = i201;
+        needSetDayNightTheme = i201;
         int i203 = i202 + 1;
         totalEvents = i203;
-        locationPermissionGranted = i202;
+        goingToPreviewTheme = i202;
         int i204 = i203 + 1;
         totalEvents = i204;
-        locationPermissionDenied = i203;
+        locationPermissionGranted = i203;
         int i205 = i204 + 1;
         totalEvents = i205;
-        reloadInterface = i204;
+        locationPermissionDenied = i204;
         int i206 = i205 + 1;
         totalEvents = i206;
-        suggestedLangpack = i205;
+        reloadInterface = i205;
         int i207 = i206 + 1;
         totalEvents = i207;
-        didSetNewWallpapper = i206;
+        suggestedLangpack = i206;
         int i208 = i207 + 1;
         totalEvents = i208;
-        proxySettingsChanged = i207;
+        didSetNewWallpapper = i207;
         int i209 = i208 + 1;
         totalEvents = i209;
-        proxyCheckDone = i208;
+        proxySettingsChanged = i208;
         int i210 = i209 + 1;
         totalEvents = i210;
-        proxyChangedByRotation = i209;
+        proxyCheckDone = i209;
         int i211 = i210 + 1;
         totalEvents = i211;
-        liveLocationsChanged = i210;
+        proxyChangedByRotation = i210;
         int i212 = i211 + 1;
         totalEvents = i212;
-        newLocationAvailable = i211;
+        liveLocationsChanged = i211;
         int i213 = i212 + 1;
         totalEvents = i213;
-        liveLocationsCacheChanged = i212;
+        newLocationAvailable = i212;
         int i214 = i213 + 1;
         totalEvents = i214;
-        notificationsCountUpdated = i213;
+        liveLocationsCacheChanged = i213;
         int i215 = i214 + 1;
         totalEvents = i215;
-        playerDidStartPlaying = i214;
+        notificationsCountUpdated = i214;
         int i216 = i215 + 1;
         totalEvents = i216;
-        closeSearchByActiveAction = i215;
+        playerDidStartPlaying = i215;
         int i217 = i216 + 1;
         totalEvents = i217;
-        messagePlayingSpeedChanged = i216;
+        closeSearchByActiveAction = i216;
         int i218 = i217 + 1;
         totalEvents = i218;
-        screenStateChanged = i217;
+        messagePlayingSpeedChanged = i217;
         int i219 = i218 + 1;
         totalEvents = i219;
-        didClearDatabase = i218;
+        screenStateChanged = i218;
         int i220 = i219 + 1;
         totalEvents = i220;
-        voipServiceCreated = i219;
+        didClearDatabase = i219;
         int i221 = i220 + 1;
         totalEvents = i221;
-        webRtcMicAmplitudeEvent = i220;
+        voipServiceCreated = i220;
         int i222 = i221 + 1;
         totalEvents = i222;
-        webRtcSpeakerAmplitudeEvent = i221;
+        webRtcMicAmplitudeEvent = i221;
         int i223 = i222 + 1;
         totalEvents = i223;
-        showBulletin = i222;
+        webRtcSpeakerAmplitudeEvent = i222;
         int i224 = i223 + 1;
         totalEvents = i224;
-        appUpdateAvailable = i223;
+        showBulletin = i223;
         int i225 = i224 + 1;
         totalEvents = i225;
-        onDatabaseMigration = i224;
+        appUpdateAvailable = i224;
         int i226 = i225 + 1;
         totalEvents = i226;
-        onEmojiInteractionsReceived = i225;
+        onDatabaseMigration = i225;
         int i227 = i226 + 1;
         totalEvents = i227;
-        emojiPreviewThemesChanged = i226;
+        onEmojiInteractionsReceived = i226;
         int i228 = i227 + 1;
         totalEvents = i228;
-        reactionsDidLoad = i227;
+        emojiPreviewThemesChanged = i227;
         int i229 = i228 + 1;
         totalEvents = i229;
-        attachMenuBotsDidLoad = i228;
+        reactionsDidLoad = i228;
         int i230 = i229 + 1;
         totalEvents = i230;
-        chatAvailableReactionsUpdated = i229;
+        attachMenuBotsDidLoad = i229;
         int i231 = i230 + 1;
         totalEvents = i231;
-        dialogsUnreadReactionsCounterChanged = i230;
+        chatAvailableReactionsUpdated = i230;
         int i232 = i231 + 1;
         totalEvents = i232;
-        onDatabaseOpened = i231;
+        dialogsUnreadReactionsCounterChanged = i231;
         int i233 = i232 + 1;
         totalEvents = i233;
-        onDownloadingFilesChanged = i232;
+        onDatabaseOpened = i232;
         int i234 = i233 + 1;
         totalEvents = i234;
-        onActivityResultReceived = i233;
+        onDownloadingFilesChanged = i233;
         int i235 = i234 + 1;
         totalEvents = i235;
-        onRequestPermissionResultReceived = i234;
+        onActivityResultReceived = i234;
         int i236 = i235 + 1;
         totalEvents = i236;
-        onUserRingtonesUpdated = i235;
+        onRequestPermissionResultReceived = i235;
         int i237 = i236 + 1;
         totalEvents = i237;
-        currentUserPremiumStatusChanged = i236;
+        onUserRingtonesUpdated = i236;
         int i238 = i237 + 1;
         totalEvents = i238;
-        premiumPromoUpdated = i237;
+        currentUserPremiumStatusChanged = i237;
         int i239 = i238 + 1;
         totalEvents = i239;
-        premiumStatusChangedGlobal = i238;
+        premiumPromoUpdated = i238;
         int i240 = i239 + 1;
         totalEvents = i240;
-        currentUserShowLimitReachedDialog = i239;
+        premiumStatusChangedGlobal = i239;
         int i241 = i240 + 1;
         totalEvents = i241;
-        billingProductDetailsUpdated = i240;
+        currentUserShowLimitReachedDialog = i240;
         int i242 = i241 + 1;
         totalEvents = i242;
-        billingConfirmPurchaseError = i241;
+        billingProductDetailsUpdated = i241;
         int i243 = i242 + 1;
         totalEvents = i243;
-        premiumStickersPreviewLoaded = i242;
+        billingConfirmPurchaseError = i242;
         int i244 = i243 + 1;
         totalEvents = i244;
-        userEmojiStatusUpdated = i243;
+        premiumStickersPreviewLoaded = i243;
         int i245 = i244 + 1;
         totalEvents = i245;
-        requestPermissions = i244;
+        userEmojiStatusUpdated = i244;
         int i246 = i245 + 1;
         totalEvents = i246;
-        permissionsGranted = i245;
+        requestPermissions = i245;
         int i247 = i246 + 1;
         totalEvents = i247;
-        topicsDidLoaded = i246;
+        permissionsGranted = i246;
         int i248 = i247 + 1;
         totalEvents = i248;
-        chatSwithcedToForum = i247;
+        topicsDidLoaded = i247;
         int i249 = i248 + 1;
         totalEvents = i249;
-        didUpdateGlobalAutoDeleteTimer = i248;
+        chatSwithcedToForum = i248;
         int i250 = i249 + 1;
         totalEvents = i250;
-        onDatabaseReset = i249;
+        didUpdateGlobalAutoDeleteTimer = i249;
         int i251 = i250 + 1;
         totalEvents = i251;
-        wallpaperSettedToUser = i250;
+        onDatabaseReset = i250;
         int i252 = i251 + 1;
         totalEvents = i252;
-        storiesUpdated = i251;
+        wallpaperSettedToUser = i251;
         int i253 = i252 + 1;
         totalEvents = i253;
-        storiesListUpdated = i252;
+        storiesUpdated = i252;
         int i254 = i253 + 1;
         totalEvents = i254;
-        storiesDraftsUpdated = i253;
+        storiesListUpdated = i253;
         int i255 = i254 + 1;
         totalEvents = i255;
-        chatlistFolderUpdate = i254;
+        storiesDraftsUpdated = i254;
         int i256 = i255 + 1;
         totalEvents = i256;
-        uploadStoryProgress = i255;
+        chatlistFolderUpdate = i255;
         int i257 = i256 + 1;
         totalEvents = i257;
-        uploadStoryEnd = i256;
+        uploadStoryProgress = i256;
         int i258 = i257 + 1;
         totalEvents = i258;
-        customTypefacesLoaded = i257;
+        uploadStoryEnd = i257;
         int i259 = i258 + 1;
         totalEvents = i259;
-        stealthModeChanged = i258;
+        customTypefacesLoaded = i258;
         int i260 = i259 + 1;
         totalEvents = i260;
-        onReceivedChannelDifference = i259;
+        stealthModeChanged = i259;
         int i261 = i260 + 1;
         totalEvents = i261;
-        storiesReadUpdated = i260;
-        totalEvents = i261 + 1;
-        nearEarEvent = i261;
+        onReceivedChannelDifference = i260;
+        int i262 = i261 + 1;
+        totalEvents = i262;
+        storiesReadUpdated = i261;
+        totalEvents = i262 + 1;
+        nearEarEvent = i262;
     }
 
     public static class DelayedPost {
@@ -1151,9 +1159,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            NotificationCenter$$ExternalSyntheticLambda1 notificationCenter$$ExternalSyntheticLambda1 = new NotificationCenter$$ExternalSyntheticLambda1(this);
-            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda1;
-            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda1, EXPIRE_NOTIFICATIONS_TIME);
+            NotificationCenter$$ExternalSyntheticLambda2 notificationCenter$$ExternalSyntheticLambda2 = new NotificationCenter$$ExternalSyntheticLambda2(this);
+            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda2;
+            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda2, EXPIRE_NOTIFICATIONS_TIME);
         }
         return this.animationInProgressPointer;
     }
@@ -1193,7 +1201,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda1(this);
+        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda2(this);
     }
 
     public void updateAllowedNotifications(int i, int[] iArr) {
@@ -1493,46 +1501,77 @@ public class NotificationCenter {
         }
     }
 
-    public static void listenEmojiLoading(final View view) {
-        if (view == null) {
-            return;
+    public Runnable listen(final View view, final int i, final Utilities.Callback<Object[]> callback) {
+        if (view == null || callback == null) {
+            return new Runnable() {
+                @Override
+                public final void run() {
+                    NotificationCenter.lambda$listen$3();
+                }
+            };
         }
         final NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
             @Override
-            public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                NotificationCenter.lambda$listenEmojiLoading$3(view, i, i2, objArr);
+            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
+                NotificationCenter.lambda$listen$4(i, callback, i2, i3, objArr);
             }
         };
-        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+        final View.OnAttachStateChangeListener onAttachStateChangeListener = new View.OnAttachStateChangeListener() {
+            {
+                NotificationCenter.this = this;
+            }
+
             @Override
             public void onViewAttachedToWindow(View view2) {
-                NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegate, NotificationCenter.emojiLoaded);
+                NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegate, i);
             }
 
             @Override
             public void onViewDetachedFromWindow(View view2) {
-                NotificationCenter.getGlobalInstance().removeObserver(notificationCenterDelegate, NotificationCenter.emojiLoaded);
+                NotificationCenter.getGlobalInstance().removeObserver(notificationCenterDelegate, i);
             }
-        });
+        };
+        view.addOnAttachStateChangeListener(onAttachStateChangeListener);
+        return new Runnable() {
+            @Override
+            public final void run() {
+                NotificationCenter.lambda$listen$5(view, onAttachStateChangeListener, notificationCenterDelegate, i);
+            }
+        };
     }
 
-    public static void lambda$listenEmojiLoading$3(View view, int i, int i2, Object[] objArr) {
-        if (i == emojiLoaded && view != null && view.isAttachedToWindow()) {
-            view.invalidate();
+    public static void lambda$listen$4(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
+        if (i2 == i) {
+            callback.run(objArr);
         }
+    }
+
+    public static void lambda$listen$5(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
+        view.removeOnAttachStateChangeListener(onAttachStateChangeListener);
+        getGlobalInstance().removeObserver(notificationCenterDelegate, i);
+    }
+
+    public static void listenEmojiLoading(final View view) {
+        getGlobalInstance().listen(view, emojiLoaded, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                Object[] objArr = (Object[]) obj;
+                view.invalidate();
+            }
+        });
     }
 
     public void listenOnce(final int i, final Runnable runnable) {
         final NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                NotificationCenter.this.lambda$listenOnce$4(i, notificationCenterDelegateArr, runnable, i2, i3, objArr);
+                NotificationCenter.this.lambda$listenOnce$7(i, notificationCenterDelegateArr, runnable, i2, i3, objArr);
             }
         }};
         addObserver(notificationCenterDelegateArr[0], i);
     }
 
-    public void lambda$listenOnce$4(int i, NotificationCenterDelegate[] notificationCenterDelegateArr, Runnable runnable, int i2, int i3, Object[] objArr) {
+    public void lambda$listenOnce$7(int i, NotificationCenterDelegate[] notificationCenterDelegateArr, Runnable runnable, int i2, int i3, Object[] objArr) {
         if (i2 != i || notificationCenterDelegateArr[0] == null) {
             return;
         }

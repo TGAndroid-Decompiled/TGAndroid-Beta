@@ -77,6 +77,7 @@ public class ContactsController extends BaseController {
     public static final int PRIVACY_RULES_TYPE_FORWARDS = 5;
     public static final int PRIVACY_RULES_TYPE_INVITE = 1;
     public static final int PRIVACY_RULES_TYPE_LASTSEEN = 0;
+    public static final int PRIVACY_RULES_TYPE_MESSAGES = 10;
     public static final int PRIVACY_RULES_TYPE_P2P = 3;
     public static final int PRIVACY_RULES_TYPE_PHONE = 6;
     public static final int PRIVACY_RULES_TYPE_PHOTO = 4;
@@ -2284,11 +2285,11 @@ public class ContactsController extends BaseController {
                 if (tLRPC$TL_contactStatus != null) {
                     TLRPC$UserStatus tLRPC$UserStatus = tLRPC$TL_contactStatus.status;
                     if (tLRPC$UserStatus instanceof TLRPC$TL_userStatusRecently) {
-                        tLRPC$UserStatus.expires = -100;
+                        tLRPC$UserStatus.expires = tLRPC$UserStatus.by_me ? -1000 : -100;
                     } else if (tLRPC$UserStatus instanceof TLRPC$TL_userStatusLastWeek) {
-                        tLRPC$UserStatus.expires = -101;
+                        tLRPC$UserStatus.expires = tLRPC$UserStatus.by_me ? -1001 : -101;
                     } else if (tLRPC$UserStatus instanceof TLRPC$TL_userStatusLastMonth) {
-                        tLRPC$UserStatus.expires = -102;
+                        tLRPC$UserStatus.expires = tLRPC$UserStatus.by_me ? -1002 : -102;
                     }
                     TLRPC$User user = getMessagesController().getUser(Long.valueOf(tLRPC$TL_contactStatus.user_id));
                     if (user != null) {

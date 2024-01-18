@@ -45,6 +45,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -75,6 +76,7 @@ import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.GroupCreateSectionCell;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.EditTextBoldCursor;
@@ -123,6 +125,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private boolean searching;
     private LongSparseArray<GroupCreateSpan> selectedContacts;
     private PermanentLinkBottomSheet sharedLinkBottomSheet;
+    private int shiftDp;
     private SpansContainer spansContainer;
 
     public interface ContactsAddActivityDelegate {
@@ -348,6 +351,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.chatType = 0;
         this.selectedContacts = new LongSparseArray<>();
         this.allSpans = new ArrayList<>();
+        this.shiftDp = -4;
     }
 
     public GroupCreateActivity(Bundle bundle) {
@@ -356,6 +360,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.chatType = 0;
         this.selectedContacts = new LongSparseArray<>();
         this.allSpans = new ArrayList<>();
+        this.shiftDp = -4;
         this.chatType = bundle.getInt("chatType", 0);
         this.forImport = bundle.getBoolean("forImport", false);
         this.isAlwaysShare = bundle.getBoolean("isAlwaysShare", false);
@@ -812,6 +817,10 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             }
             LongSparseArray<TLObject> longSparseArray = this.ignoreUsers;
             if (longSparseArray == null || longSparseArray.indexOfKey(j) < 0) {
+                if (groupCreateUserCell.isBlocked()) {
+                    showPremiumBlockedToast(groupCreateUserCell, j);
+                    return;
+                }
                 boolean z2 = this.selectedContacts.indexOfKey(j) >= 0;
                 if (z2) {
                     this.spansContainer.removeSpan(this.selectedContacts.get(j));
@@ -889,6 +898,30 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$4(View view) {
         onDonePressed(true);
+    }
+
+    private void showPremiumBlockedToast(View view, long j) {
+        Bulletin createSimpleBulletin;
+        int i = -this.shiftDp;
+        this.shiftDp = i;
+        AndroidUtilities.shakeViewSpring(view, i);
+        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        String userName = j >= 0 ? UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) : "";
+        if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+            createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)));
+        } else {
+            createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
+                @Override
+                public final void run() {
+                    GroupCreateActivity.this.lambda$showPremiumBlockedToast$5();
+                }
+            });
+        }
+        createSimpleBulletin.show();
+    }
+
+    public void lambda$showPremiumBlockedToast$5() {
+        presentFragment(new PremiumPreviewFragment("noncontacts"));
     }
 
     public void updateEditTextHint() {
@@ -1093,7 +1126,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GroupCreateActivity.lambda$onDonePressed$5(checkBoxCellArr, view);
+                        GroupCreateActivity.lambda$onDonePressed$6(checkBoxCellArr, view);
                     }
                 });
                 builder.setView(linearLayout);
@@ -1101,7 +1134,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             builder.setPositiveButton(LocaleController.getString("Add", R.string.Add), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    GroupCreateActivity.this.lambda$onDonePressed$6(checkBoxCellArr, dialogInterface, i3);
+                    GroupCreateActivity.this.lambda$onDonePressed$7(checkBoxCellArr, dialogInterface, i3);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1153,11 +1186,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public static void lambda$onDonePressed$5(CheckBoxCell[] checkBoxCellArr, View view) {
+    public static void lambda$onDonePressed$6(CheckBoxCell[] checkBoxCellArr, View view) {
         checkBoxCellArr[0].setChecked(!checkBoxCellArr[0].isChecked(), true);
     }
 
-    public void lambda$onDonePressed$6(CheckBoxCell[] checkBoxCellArr, DialogInterface dialogInterface, int i) {
+    public void lambda$onDonePressed$7(CheckBoxCell[] checkBoxCellArr, DialogInterface dialogInterface, int i) {
         int i2 = 0;
         if (checkBoxCellArr[0] != null && checkBoxCellArr[0].isChecked()) {
             i2 = 100;
@@ -1406,29 +1439,25 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View groupCreateSectionCell;
-            GroupCreateUserCell groupCreateUserCell;
-            if (i != 0) {
-                if (i == 1) {
-                    groupCreateUserCell = new GroupCreateUserCell(this.context, 1, 0, false);
-                } else if (i == 3) {
-                    StickerEmptyView stickerEmptyView = new StickerEmptyView(this, this.context, null, 0) {
-                        @Override
-                        public void onAttachedToWindow() {
-                            super.onAttachedToWindow();
-                            this.stickerView.getImageReceiver().startAnimation();
-                        }
-                    };
-                    stickerEmptyView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                    stickerEmptyView.subtitle.setVisibility(8);
-                    stickerEmptyView.title.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
-                    stickerEmptyView.setAnimateLayoutChange(true);
-                    groupCreateUserCell = stickerEmptyView;
-                } else {
-                    groupCreateSectionCell = new TextCell(this.context);
-                }
-                groupCreateSectionCell = groupCreateUserCell;
-            } else {
+            if (i == 0) {
                 groupCreateSectionCell = new GroupCreateSectionCell(this.context);
+            } else if (i == 1) {
+                groupCreateSectionCell = new GroupCreateUserCell(this.context, 1, 0, false).showPremiumBlocked();
+            } else if (i == 3) {
+                StickerEmptyView stickerEmptyView = new StickerEmptyView(this, this.context, null, 0) {
+                    @Override
+                    public void onAttachedToWindow() {
+                        super.onAttachedToWindow();
+                        this.stickerView.getImageReceiver().startAnimation();
+                    }
+                };
+                stickerEmptyView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
+                stickerEmptyView.subtitle.setVisibility(8);
+                stickerEmptyView.title.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+                stickerEmptyView.setAnimateLayoutChange(true);
+                groupCreateSectionCell = stickerEmptyView;
+            } else {
+                groupCreateSectionCell = new TextCell(this.context);
             }
             return new RecyclerListView.Holder(groupCreateSectionCell);
         }
@@ -1658,7 +1687,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                GroupCreateActivity.this.lambda$getThemeDescriptions$7();
+                GroupCreateActivity.this.lambda$getThemeDescriptions$8();
             }
 
             @Override
@@ -1725,7 +1754,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$7() {
+    public void lambda$getThemeDescriptions$8() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

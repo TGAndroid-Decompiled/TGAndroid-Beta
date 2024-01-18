@@ -23,7 +23,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     private int iconColor;
     public RLottieImageView imageView;
     private int itemHeight;
-    Runnable openSwipeBackLayout;
+    public Runnable openSwipeBackLayout;
     private final Theme.ResourcesProvider resourcesProvider;
     private ImageView rightIcon;
     private int selectorColor;
