@@ -3334,17 +3334,17 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             int i2 = this.recentDialogsStartRow;
             if (i >= i2 && i2 >= 0) {
                 int i3 = i - i2;
-                if (i3 < 0 || i3 >= ShareAlert.this.recentSearchObjects.size()) {
-                    return null;
+                if (i3 >= 0 && i3 < ShareAlert.this.recentSearchObjects.size()) {
+                    TLObject tLObject = ((DialogsSearchAdapter.RecentSearchObject) ShareAlert.this.recentSearchObjects.get(i3)).object;
+                    TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
+                    if (tLObject instanceof TLRPC$User) {
+                        tLRPC$TL_dialog.id = ((TLRPC$User) tLObject).id;
+                    } else if (tLObject instanceof TLRPC$Chat) {
+                        tLRPC$TL_dialog.id = -((TLRPC$Chat) tLObject).id;
+                    }
+                    return tLRPC$TL_dialog;
                 }
-                TLObject tLObject = ((DialogsSearchAdapter.RecentSearchObject) ShareAlert.this.recentSearchObjects.get(i3)).object;
-                TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-                if (tLObject instanceof TLRPC$User) {
-                    tLRPC$TL_dialog.id = ((TLRPC$User) tLObject).id;
-                } else {
-                    tLRPC$TL_dialog.id = -((TLRPC$Chat) tLObject).id;
-                }
-                return tLRPC$TL_dialog;
+                return null;
             }
             int i4 = i - 1;
             if (i4 < 0) {
@@ -3360,7 +3360,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 TLRPC$TL_dialog tLRPC$TL_dialog2 = new TLRPC$TL_dialog();
                 if (tLObject2 instanceof TLRPC$User) {
                     tLRPC$TL_dialog2.id = ((TLRPC$User) tLObject2).id;
-                } else {
+                } else if (tLObject2 instanceof TLRPC$Chat) {
                     tLRPC$TL_dialog2.id = -((TLRPC$Chat) tLObject2).id;
                 }
                 return tLRPC$TL_dialog2;

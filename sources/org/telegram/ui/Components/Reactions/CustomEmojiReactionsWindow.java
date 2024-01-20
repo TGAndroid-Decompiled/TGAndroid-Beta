@@ -345,7 +345,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void invalidateParent() {
+        public void invalidateParent() {
             CustomEmojiReactionsWindow.this.containerView.invalidate();
         }
     }

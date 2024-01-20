@@ -5597,7 +5597,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                     return z5;
                 } else if (!z4 && iNavigationLayout != (iNavigationLayout2 = this.rightActionBarLayout)) {
-                    iNavigationLayout2.getView().setVisibility(0);
+                    if (iNavigationLayout2.getView() != null) {
+                        this.rightActionBarLayout.getView().setVisibility(0);
+                    }
                     this.backgroundTablet.setVisibility(8);
                     this.rightActionBarLayout.removeAllFragments();
                     this.rightActionBarLayout.presentFragment(navigationParams.setNoAnimation(true).setRemoveLast(z).setCheckPresentFromDelegate(false));

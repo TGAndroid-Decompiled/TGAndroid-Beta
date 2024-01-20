@@ -1783,7 +1783,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 onDraw((Integer) message.obj);
             } else if (i == 1) {
                 finish();
-                if (this.recording && message.arg2 != -2) {
+                if (this.recording && message.arg2 != -2 && InstantCameraView.this.videoEncoder != null) {
                     InstantCameraView.this.videoEncoder.stopRecording(message.arg1, message.arg2);
                 }
                 Looper myLooper = Looper.myLooper();

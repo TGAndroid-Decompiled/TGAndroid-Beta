@@ -1920,10 +1920,11 @@ public class MessageObject {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             for (int i = 0; i < tLRPC$TL_chatReactionsSome.reactions.size(); i++) {
                 if (i != 0) {
-                    spannableStringBuilder.append((CharSequence) ", ");
+                    spannableStringBuilder.append((CharSequence) " ");
                 }
-                spannableStringBuilder.append(ReactionsUtils.reactionToCharSequence(tLRPC$TL_chatReactionsSome.reactions.get(i)));
+                spannableStringBuilder.append(Emoji.replaceEmoji(ReactionsUtils.reactionToCharSequence(tLRPC$TL_chatReactionsSome.reactions.get(i)), null, false));
             }
+            return spannableStringBuilder;
         }
         return LocaleController.getString("NoReactions", R.string.NoReactions);
     }

@@ -14,7 +14,6 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -308,15 +307,6 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             } else if (i == this.forwardsRow) {
                 presentFragment(new PrivacyControlActivity(5));
             } else if (i == this.voicesRow) {
-                if (!getUserConfig().isPremium()) {
-                    try {
-                        this.fragmentView.performHapticFeedback(3, 2);
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                    BulletinFactory.of(this).createRestrictVoiceMessagesPremiumBulletin().show();
-                    return;
-                }
                 presentFragment(new PrivacyControlActivity(8));
             } else if (i == this.noncontactsRow) {
                 presentFragment(new PrivacyControlActivity(10));
@@ -1140,15 +1130,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             z = false;
                         }
                         textSettingsCell.setTextAndValue(PrivacySettingsActivity.this.addPremiumStar(LocaleController.getString(R.string.PrivacyVoiceMessages)), str6, PrivacySettingsActivity.this.noncontactsRow != -1);
-                        ImageView valueImageView = textSettingsCell.getValueImageView();
-                        if (!PrivacySettingsActivity.this.getUserConfig().isPremium()) {
-                            valueImageView.setVisibility(0);
-                            valueImageView.setImageResource(R.drawable.msg_mini_premiumlock);
-                            valueImageView.setTranslationY(AndroidUtilities.dp(1.0f));
-                            valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteValueText), PorterDuff.Mode.MULTIPLY));
-                        } else {
-                            valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
-                        }
+                        textSettingsCell.getValueImageView().setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
                         r9 = z;
                     } else if (i == PrivacySettingsActivity.this.noncontactsRow) {
                         textSettingsCell.setTextAndValue(PrivacySettingsActivity.this.addPremiumStar(LocaleController.getString(R.string.PrivacyMessages)), LocaleController.getString(PrivacySettingsActivity.this.noncontactsValue ? R.string.ContactsAndPremium : R.string.P2PEverybody), false);

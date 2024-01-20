@@ -344,7 +344,6 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private int[] location;
     private float lockAnimatedTranslation;
     private Drawable lockShadowDrawable;
-    private View.AccessibilityDelegate mediaMessageButtonsDelegate;
     protected EditTextCaption messageEditText;
     protected FrameLayout messageEditTextContainer;
     private boolean messageEditTextEnabled;
@@ -933,6 +932,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         private TextPaint tooltipPaint;
         private float tooltipWidth;
         private Drawable vidDrawable;
+        private VirtualViewHelper virtualViewHelper;
 
         @Override
         public void setAlpha(float f) {
@@ -959,6 +959,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.radiiLeft = r2;
             this.radiiRight = r0;
             this.hidePauseT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            VirtualViewHelper virtualViewHelper = new VirtualViewHelper(this);
+            this.virtualViewHelper = virtualViewHelper;
+            ViewCompat.setAccessibilityDelegate(this, virtualViewHelper);
             CaptionContainerView.PeriodDrawable periodDrawable = new CaptionContainerView.PeriodDrawable();
             this.periodDrawable = periodDrawable;
             periodDrawable.setCallback(this);
@@ -1356,6 +1359,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         }
 
+        @Override
+        protected boolean dispatchHoverEvent(MotionEvent motionEvent) {
+            return super.dispatchHoverEvent(motionEvent) || this.virtualViewHelper.dispatchHoverEvent(motionEvent);
+        }
+
         public void updateColors() {
             CaptionContainerView.PeriodDrawable periodDrawable = this.periodDrawable;
             ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
@@ -1444,6 +1452,54 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         @Override
         protected boolean verifyDrawable(Drawable drawable) {
             return drawable == this.periodDrawable || super.verifyDrawable(drawable);
+        }
+
+        public class VirtualViewHelper extends ExploreByTouchHelper {
+            @Override
+            protected boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
+                return true;
+            }
+
+            public VirtualViewHelper(View view) {
+                super(view);
+                ControlsView.this = r1;
+            }
+
+            @Override
+            protected int getVirtualViewAt(float f, float f2) {
+                if (ChatActivityEnterView.this.sendButtonVisible && ChatActivityEnterView.this.recordCircle != null && ChatActivityEnterView.this.pauseRect.contains(f, f2)) {
+                    return 2;
+                }
+                ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+                return (!chatActivityEnterView.onceVisible || chatActivityEnterView.recordCircle == null || ChatActivityEnterView.this.snapAnimationProgress <= 0.1f || !ControlsView.this.onceRect.contains(f, f2)) ? -1 : 4;
+            }
+
+            @Override
+            protected void getVisibleVirtualViews(List<Integer> list) {
+                if (ChatActivityEnterView.this.sendButtonVisible) {
+                    list.add(2);
+                }
+                ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+                if (!chatActivityEnterView.onceVisible || chatActivityEnterView.recordCircle == null || ChatActivityEnterView.this.snapAnimationProgress <= 0.1f) {
+                    return;
+                }
+                list.add(4);
+            }
+
+            @Override
+            protected void onPopulateNodeForVirtualView(int i, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+                if (i == 2) {
+                    ChatActivityEnterView.this.rect.set((int) ChatActivityEnterView.this.pauseRect.left, (int) ChatActivityEnterView.this.pauseRect.top, (int) ChatActivityEnterView.this.pauseRect.right, (int) ChatActivityEnterView.this.pauseRect.bottom);
+                    accessibilityNodeInfoCompat.setBoundsInParent(ChatActivityEnterView.this.rect);
+                    accessibilityNodeInfoCompat.setText(LocaleController.getString(ChatActivityEnterView.this.transformToSeekbar > 0.5f ? R.string.AccActionResume : R.string.AccActionPause));
+                } else if (i == 4) {
+                    android.graphics.Rect rect = ChatActivityEnterView.this.rect;
+                    RectF rectF = ControlsView.this.onceRect;
+                    rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                    accessibilityNodeInfoCompat.setBoundsInParent(ChatActivityEnterView.this.rect);
+                    accessibilityNodeInfoCompat.setText(LocaleController.getString(ChatActivityEnterView.this.voiceOnce ? R.string.AccActionOnceDeactivate : R.string.AccActionOnceActivate));
+                }
+            }
         }
     }
 
@@ -1924,7 +1980,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.sendVoiceEnabled = true;
         this.sendPlainEnabled = true;
         this.animationParamsX = new HashMap<>();
-        this.mediaMessageButtonsDelegate = new View.AccessibilityDelegate(this) {
+        new View.AccessibilityDelegate(this) {
             @Override
             public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
@@ -2547,9 +2603,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.audioVideoButtonContainer.setImportantForAccessibility(1);
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView3 = new ChatActivityEnterViewAnimatedIconView(activity);
         this.audioVideoSendButton = chatActivityEnterViewAnimatedIconView3;
-        chatActivityEnterViewAnimatedIconView3.setFocusable(true);
-        this.audioVideoSendButton.setImportantForAccessibility(1);
-        this.audioVideoSendButton.setAccessibilityDelegate(this.mediaMessageButtonsDelegate);
+        chatActivityEnterViewAnimatedIconView3.setImportantForAccessibility(2);
         int dp2 = AndroidUtilities.dp(9.5f);
         this.audioVideoSendButton.setPadding(dp2, dp2, dp2, dp2);
         this.audioVideoSendButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), PorterDuff.Mode.SRC_IN));

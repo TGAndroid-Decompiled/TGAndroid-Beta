@@ -4030,6 +4030,9 @@ public class AndroidUtilities {
     }
 
     public static void makeAccessibilityAnnouncement(CharSequence charSequence) {
+        if (TextUtils.isEmpty(charSequence)) {
+            return;
+        }
         AccessibilityManager accessibilityManager2 = (AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility");
         if (accessibilityManager2.isEnabled()) {
             AccessibilityEvent obtain = AccessibilityEvent.obtain();

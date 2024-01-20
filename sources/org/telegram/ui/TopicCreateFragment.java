@@ -76,7 +76,7 @@ public class TopicCreateFragment extends BaseFragment {
     SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
     long selectedEmojiDocumentId;
     TLRPC$TL_forumTopic topicForEdit;
-    int topicId;
+    long topicId;
 
     public static TopicCreateFragment create(long j, long j2) {
         Bundle bundle = new Bundle();
@@ -95,9 +95,9 @@ public class TopicCreateFragment extends BaseFragment {
     @Override
     public boolean onFragmentCreate() {
         this.chatId = this.arguments.getLong("chat_id");
-        int i = this.arguments.getInt("topic_id", 0);
-        this.topicId = i;
-        if (i != 0) {
+        long j = this.arguments.getLong("topic_id", 0L);
+        this.topicId = j;
+        if (j != 0) {
             TLRPC$TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, this.topicId);
             this.topicForEdit = findTopic;
             if (findTopic == null) {

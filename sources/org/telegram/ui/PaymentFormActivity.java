@@ -2735,8 +2735,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.donePressed = z;
         this.swipeBackEnabled = !z;
         ActionBar actionBar = this.actionBar;
-        if (actionBar != null) {
-            actionBar.getBackButton().setEnabled(!this.donePressed);
+        if (actionBar != null && actionBar.getBackButton() != null) {
+            this.actionBar.getBackButton().setEnabled(!this.donePressed);
         }
         TextDetailSettingsCell[] textDetailSettingsCellArr = this.detailSettingsCell;
         if (textDetailSettingsCellArr[0] != null) {

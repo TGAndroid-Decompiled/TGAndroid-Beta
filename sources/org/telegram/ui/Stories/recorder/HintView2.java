@@ -451,6 +451,7 @@ public class HintView2 extends View {
         if (this.shown) {
             bounceShow();
         }
+        AndroidUtilities.makeAccessibilityAnnouncement(getText());
         this.shown = true;
         invalidate();
         AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);

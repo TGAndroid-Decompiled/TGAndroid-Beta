@@ -3079,10 +3079,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             String str7 = str6;
             putToDelayedMessages(str7, delayedMessage);
             VideoEditedInfo videoEditedInfo4 = delayedMessage.obj.videoEditedInfo;
-            if (videoEditedInfo4 != null && videoEditedInfo4.needConvert()) {
-                getFileLoader().uploadFile(str7, true, false, document3.size, ConnectionsManager.FileTypeVideo, false);
-            } else {
-                getFileLoader().uploadFile(str7, true, false, ConnectionsManager.FileTypeVideo);
+            if (videoEditedInfo4 == null || !videoEditedInfo4.notReadyYet) {
+                if (videoEditedInfo4 != null && videoEditedInfo4.needConvert()) {
+                    getFileLoader().uploadFile(str7, true, false, document3.size, ConnectionsManager.FileTypeVideo, false);
+                } else {
+                    getFileLoader().uploadFile(str7, true, false, ConnectionsManager.FileTypeVideo);
+                }
             }
             putToUploadingMessages(delayedMessage.obj);
         } else if (i2 == 2) {

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.SpannableString;
@@ -640,7 +641,12 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     private boolean closeKeyboard() {
         if (this.emojiKeyboardVisible) {
             this.emojiKeyboardVisible = false;
-            this.editText.clearFocus();
+            if (isClearFocusNotWorking()) {
+                this.switchLayout.setFocusableInTouchMode(true);
+                this.switchLayout.requestFocus();
+            } else {
+                this.editText.clearFocus();
+            }
             updateScrollViewMarginBottom(0);
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
             this.bottomDialogLayout.animate().setListener(null).cancel();
@@ -654,6 +660,9 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 public void onAnimationEnd(Animator animator) {
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
                     ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
+                    if (ChatCustomReactionsEditActivity.this.isClearFocusNotWorking()) {
+                        ChatCustomReactionsEditActivity.this.switchLayout.setFocusableInTouchMode(false);
+                    }
                 }
             }).start();
             return true;
@@ -663,6 +672,10 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
 
     public void lambda$closeKeyboard$14(ValueAnimator valueAnimator) {
         this.actionButton.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * this.bottomDialogLayout.getMeasuredHeight());
+    }
+
+    public boolean isClearFocusNotWorking() {
+        return Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28;
     }
 
     public void updateScrollViewMarginBottom(int i) {
