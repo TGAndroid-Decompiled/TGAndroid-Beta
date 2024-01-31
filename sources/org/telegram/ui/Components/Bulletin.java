@@ -1560,7 +1560,7 @@ public class Bulletin {
             this.reactionsContainerLayout.setClipToPadding(false);
             this.reactionsContainerLayout.setVisibility(0);
             this.reactionsContainerLayout.setBubbleOffset(-AndroidUtilities.dp(80.0f));
-            this.reactionsContainerLayout.setHint(LocaleController.getString("SavedTagReactionsHint", R.string.SavedTagReactionsHint));
+            this.reactionsContainerLayout.setHint(LocaleController.getString(R.string.SavedTagReactionsHint));
             addView(this.reactionsContainerLayout, LayoutHelper.createFrame(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
             this.reactionsContainerLayout.setMessage(null, null);
         }

@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -123,7 +122,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         int i2 = Theme.key_dialogTextBlack;
         loadingTextView2.setTextColor(getThemedColor(i2));
         this.loadingTextView.setLinkTextColor(Theme.multAlpha(getThemedColor(i2), 0.2f));
-        this.loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString(), this.loadingTextView.getPaint().getFontMetricsInt(), true));
+        this.loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? "" : charSequence.toString(), this.loadingTextView.getPaint().getFontMetricsInt(), true));
         this.textViewContainer = new FrameLayout(this, context) {
             @Override
             protected void onMeasure(int i3, int i4) {
@@ -271,7 +270,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         TLRPC$TL_messages_translateText tLRPC$TL_messages_translateText = new TLRPC$TL_messages_translateText();
         final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
         CharSequence charSequence = this.reqText;
-        tLRPC$TL_textWithEntities.text = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
+        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
         ArrayList<TLRPC$MessageEntity> arrayList = this.reqMessageEntities;
         if (arrayList != null) {
             tLRPC$TL_textWithEntities.entities = arrayList;

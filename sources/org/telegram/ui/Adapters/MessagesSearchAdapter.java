@@ -46,14 +46,6 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
             }
         }
         this.loadedCount = this.searchResultMessages.size();
-        ArrayList<MessageObject> arrayList = MediaDataController.getInstance(this.currentAccount).searchLocalResultMessages;
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            MessageObject messageObject2 = arrayList.get(i2);
-            if ((!messageObject2.hasValidGroupId() || messageObject2.isPrimaryGroupMessage) && !this.messageIds.contains(Integer.valueOf(messageObject2.getId()))) {
-                this.searchResultMessages.add(messageObject2);
-                this.messageIds.add(Integer.valueOf(messageObject2.getId()));
-            }
-        }
         super.notifyDataSetChanged();
     }
 

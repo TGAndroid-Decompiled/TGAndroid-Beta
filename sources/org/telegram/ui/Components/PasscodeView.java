@@ -48,7 +48,6 @@ import java.util.LinkedList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FingerprintController;
 import org.telegram.messenger.GenericProvider;
@@ -693,7 +692,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 frameLayout5.setContentDescription(LocaleController.getString("AccDescrBackspace", R.string.AccDescrBackspace));
                 setNextFocus(frameLayout5, R.id.passcode_btn_1);
             } else {
-                frameLayout5.setContentDescription(i4 + BuildConfig.APP_CENTER_HASH);
+                frameLayout5.setContentDescription(i4 + "");
                 if (i4 == 0) {
                     setNextFocus(frameLayout5, R.id.passcode_btn_backspace);
                 } else if (i4 == 9) {
@@ -812,7 +811,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public boolean lambda$new$3(View view) {
-        this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
+        this.passwordEditText.setText("");
         this.passwordEditText2.eraseAllCharacters(true);
         Drawable drawable = this.backgroundDrawable;
         if (drawable instanceof MotionBackgroundDrawable) {
@@ -1023,7 +1022,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             if (i == 0) {
                 obj = this.passwordEditText2.getString();
             } else {
-                obj = i == 1 ? this.passwordEditText.getText().toString() : BuildConfig.APP_CENTER_HASH;
+                obj = i == 1 ? this.passwordEditText.getText().toString() : "";
             }
             if (obj.length() == 0) {
                 onPasscodeError();
@@ -1033,7 +1032,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 if (SharedConfig.passcodeRetryInMs > 0) {
                     checkRetryTextView();
                 }
-                this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
+                this.passwordEditText.setText("");
                 this.passwordEditText2.eraseAllCharacters(true);
                 onPasscodeError();
                 Drawable drawable = this.backgroundDrawable;
@@ -1484,7 +1483,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
         setVisibility(0);
         this.passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
+        this.passwordEditText.setText("");
         this.passwordEditText2.eraseAllCharacters(false);
         if (z2) {
             setAlpha(0.0f);

@@ -37,7 +37,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -2428,7 +2427,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public CharSequence getDraft(long j, TL_stories$StoryItem tL_stories$StoryItem) {
-        return (j == 0 || tL_stories$StoryItem == null) ? BuildConfig.APP_CENTER_HASH : replyDrafts.get(draftHash(j, tL_stories$StoryItem), BuildConfig.APP_CENTER_HASH);
+        return (j == 0 || tL_stories$StoryItem == null) ? "" : replyDrafts.get(draftHash(j, tL_stories$StoryItem), "");
     }
 
     public void clearDraft(long j, TL_stories$StoryItem tL_stories$StoryItem) {

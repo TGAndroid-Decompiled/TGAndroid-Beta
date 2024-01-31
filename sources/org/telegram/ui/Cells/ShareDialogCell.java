@@ -23,7 +23,6 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -209,7 +208,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                     if (tLRPC$User != null) {
                         this.nameTextView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
                     } else {
-                        this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                        this.nameTextView.setText("");
                     }
                 }
                 this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
@@ -225,7 +224,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
             this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);

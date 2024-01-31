@@ -79,7 +79,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         this.animatingState = null;
     }
 
-    static class AnonymousClass2 {
+    public static class AnonymousClass2 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State;
 
         static {
@@ -134,6 +134,10 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         final int resource;
         final State secondState;
 
+        private static TransitState[] $values() {
+            return new TransitState[]{VOICE_TO_VIDEO, STICKER_TO_KEYBOARD, SMILE_TO_KEYBOARD, VIDEO_TO_VOICE, KEYBOARD_TO_STICKER, KEYBOARD_TO_GIF, KEYBOARD_TO_SMILE, GIF_TO_KEYBOARD, GIF_TO_SMILE, SMILE_TO_GIF, SMILE_TO_STICKER, STICKER_TO_SMILE};
+        }
+
         public static TransitState valueOf(String str) {
             return (TransitState) Enum.valueOf(TransitState.class, str);
         }
@@ -145,35 +149,23 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         static {
             State state = State.VOICE;
             State state2 = State.VIDEO;
-            TransitState transitState = new TransitState("VOICE_TO_VIDEO", 0, state, state2, R.raw.voice_to_video);
-            VOICE_TO_VIDEO = transitState;
+            VOICE_TO_VIDEO = new TransitState("VOICE_TO_VIDEO", 0, state, state2, R.raw.voice_to_video);
             State state3 = State.STICKER;
             State state4 = State.KEYBOARD;
-            TransitState transitState2 = new TransitState("STICKER_TO_KEYBOARD", 1, state3, state4, R.raw.sticker_to_keyboard);
-            STICKER_TO_KEYBOARD = transitState2;
+            STICKER_TO_KEYBOARD = new TransitState("STICKER_TO_KEYBOARD", 1, state3, state4, R.raw.sticker_to_keyboard);
             State state5 = State.SMILE;
-            TransitState transitState3 = new TransitState("SMILE_TO_KEYBOARD", 2, state5, state4, R.raw.smile_to_keyboard);
-            SMILE_TO_KEYBOARD = transitState3;
-            TransitState transitState4 = new TransitState("VIDEO_TO_VOICE", 3, state2, state, R.raw.video_to_voice);
-            VIDEO_TO_VOICE = transitState4;
-            TransitState transitState5 = new TransitState("KEYBOARD_TO_STICKER", 4, state4, state3, R.raw.keyboard_to_sticker);
-            KEYBOARD_TO_STICKER = transitState5;
+            SMILE_TO_KEYBOARD = new TransitState("SMILE_TO_KEYBOARD", 2, state5, state4, R.raw.smile_to_keyboard);
+            VIDEO_TO_VOICE = new TransitState("VIDEO_TO_VOICE", 3, state2, state, R.raw.video_to_voice);
+            KEYBOARD_TO_STICKER = new TransitState("KEYBOARD_TO_STICKER", 4, state4, state3, R.raw.keyboard_to_sticker);
             State state6 = State.GIF;
-            TransitState transitState6 = new TransitState("KEYBOARD_TO_GIF", 5, state4, state6, R.raw.keyboard_to_gif);
-            KEYBOARD_TO_GIF = transitState6;
-            TransitState transitState7 = new TransitState("KEYBOARD_TO_SMILE", 6, state4, state5, R.raw.keyboard_to_smile);
-            KEYBOARD_TO_SMILE = transitState7;
-            TransitState transitState8 = new TransitState("GIF_TO_KEYBOARD", 7, state6, state4, R.raw.gif_to_keyboard);
-            GIF_TO_KEYBOARD = transitState8;
-            TransitState transitState9 = new TransitState("GIF_TO_SMILE", 8, state6, state5, R.raw.gif_to_smile);
-            GIF_TO_SMILE = transitState9;
-            TransitState transitState10 = new TransitState("SMILE_TO_GIF", 9, state5, state6, R.raw.smile_to_gif);
-            SMILE_TO_GIF = transitState10;
-            TransitState transitState11 = new TransitState("SMILE_TO_STICKER", 10, state5, state3, R.raw.smile_to_sticker);
-            SMILE_TO_STICKER = transitState11;
-            TransitState transitState12 = new TransitState("STICKER_TO_SMILE", 11, state3, state5, R.raw.sticker_to_smile);
-            STICKER_TO_SMILE = transitState12;
-            $VALUES = new TransitState[]{transitState, transitState2, transitState3, transitState4, transitState5, transitState6, transitState7, transitState8, transitState9, transitState10, transitState11, transitState12};
+            KEYBOARD_TO_GIF = new TransitState("KEYBOARD_TO_GIF", 5, state4, state6, R.raw.keyboard_to_gif);
+            KEYBOARD_TO_SMILE = new TransitState("KEYBOARD_TO_SMILE", 6, state4, state5, R.raw.keyboard_to_smile);
+            GIF_TO_KEYBOARD = new TransitState("GIF_TO_KEYBOARD", 7, state6, state4, R.raw.gif_to_keyboard);
+            GIF_TO_SMILE = new TransitState("GIF_TO_SMILE", 8, state6, state5, R.raw.gif_to_smile);
+            SMILE_TO_GIF = new TransitState("SMILE_TO_GIF", 9, state5, state6, R.raw.smile_to_gif);
+            SMILE_TO_STICKER = new TransitState("SMILE_TO_STICKER", 10, state5, state3, R.raw.smile_to_sticker);
+            STICKER_TO_SMILE = new TransitState("STICKER_TO_SMILE", 11, state3, state5, R.raw.sticker_to_smile);
+            $VALUES = $values();
         }
 
         private TransitState(String str, int i, State state, State state2, int i2) {

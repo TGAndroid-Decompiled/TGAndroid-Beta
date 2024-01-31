@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -15,7 +14,7 @@ public class TL_stories$StoryViewsList extends TLObject {
     public ArrayList<TL_stories$StoryView> views = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
-    public String next_offset = BuildConfig.APP_CENTER_HASH;
+    public String next_offset = "";
 
     public static TL_stories$StoryViewsList TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_stories$StoryViewsList tL_stories$StoryViewsList;

@@ -51,7 +51,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
@@ -1510,7 +1509,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                                                         public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                             if (this.firstCreateView) {
                                                                 if (this.searchItem != null) {
-                                                                    lambda$openSearchWithText$283(BuildConfig.APP_CENTER_HASH);
+                                                                    lambda$openSearchWithText$283("");
                                                                     this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                                 }
                                                                 SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -2764,7 +2763,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         arrayList.add(Long.valueOf(j));
                     }
                 }
-                String str = BuildConfig.APP_CENTER_HASH;
+                String str = "";
                 if (arrayList.isEmpty()) {
                     z = false;
                 } else {
@@ -4388,11 +4387,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -4487,7 +4486,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             emptyStubView.emptyTextView.setText(LocaleController.getString("NoGroupsInCommon", R.string.NoGroupsInCommon));
         } else if (i == 7) {
             emptyStubView.emptyImageView.setImageDrawable(null);
-            emptyStubView.emptyTextView.setText(BuildConfig.APP_CENTER_HASH);
+            emptyStubView.emptyTextView.setText("");
         }
         return emptyStubView;
     }
@@ -4648,11 +4647,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -5932,7 +5931,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             int i = R.raw.contact_check;
             int i2 = R.string.YouJoinedChannel;
             Object[] objArr = new Object[1];
-            objArr[0] = tLRPC$Chat == null ? BuildConfig.APP_CENTER_HASH : tLRPC$Chat.title;
+            objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
             of.createSimpleBulletin(i, LocaleController.formatString(i2, objArr)).show();
         }
 
@@ -6016,7 +6015,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     SharedMediaLayout.MoreRecommendationsCell.lambda$new$1(runnable);
                 }
             });
-            SpannableString spannableString2 = new SpannableString(BuildConfig.APP_CENTER_HASH + MessagesController.getInstance(i).recommendedChannelsLimitPremium);
+            SpannableString spannableString2 = new SpannableString("" + MessagesController.getInstance(i).recommendedChannelsLimitPremium);
             spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString2.length(), 33);
             linksTextView.setText(AndroidUtilities.replaceCharSequence("%s", premiumText, spannableString2));
             addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));

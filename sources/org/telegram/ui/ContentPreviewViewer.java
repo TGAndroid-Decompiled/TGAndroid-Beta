@@ -319,12 +319,12 @@ public class ContentPreviewViewer {
                     for (int i9 = 0; i9 < arrayList3.size(); i9++) {
                         iArr[i9] = ((Integer) arrayList3.get(i9)).intValue();
                     }
-                    View$OnClickListenerC00371 view$OnClickListenerC00371 = new View$OnClickListenerC00371(arrayList2, isStickerInFavorites);
+                    View$OnClickListenerC00401 view$OnClickListenerC00401 = new View$OnClickListenerC00401(arrayList2, isStickerInFavorites);
                     ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert3, ContentPreviewViewer.this.resourcesProvider);
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i10)).intValue(), (CharSequence) arrayList.get(i10), false, ContentPreviewViewer.this.resourcesProvider);
                         addItem.setTag(Integer.valueOf(i10));
-                        addItem.setOnClickListener(view$OnClickListenerC00371);
+                        addItem.setOnClickListener(view$OnClickListenerC00401);
                     }
                     ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                         {
@@ -613,11 +613,11 @@ public class ContentPreviewViewer {
             }
         }
 
-        class View$OnClickListenerC00371 implements View.OnClickListener {
+        class View$OnClickListenerC00401 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            View$OnClickListenerC00371(ArrayList arrayList, boolean z) {
+            View$OnClickListenerC00401(ArrayList arrayList, boolean z) {
                 AnonymousClass1.this = r1;
                 this.val$actions = arrayList;
                 this.val$inFavs = z;

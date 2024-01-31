@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
@@ -103,7 +102,7 @@ public class ReactionsLayoutInBubble {
             return lambda$static$0;
         }
     };
-    ArrayList<ReactionButton> reactionButtons = new ArrayList<>();
+    public ArrayList<ReactionButton> reactionButtons = new ArrayList<>();
     ArrayList<ReactionButton> outButtons = new ArrayList<>();
     HashMap<String, ReactionButton> lastDrawingReactionButtons = new HashMap<>();
     HashMap<String, ReactionButton> lastDrawingReactionButtonsTmp = new HashMap<>();
@@ -613,7 +612,7 @@ public class ReactionsLayoutInBubble {
             } else {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = this.textDrawable;
                 if (animatedTextDrawable3 != null) {
-                    animatedTextDrawable3.setText(BuildConfig.APP_CENTER_HASH, false);
+                    animatedTextDrawable3.setText("", false);
                 }
                 if (this.hasName) {
                     String str = this.name;
@@ -960,7 +959,7 @@ public class ReactionsLayoutInBubble {
 
         public static VisibleReaction fromEmojicon(String str) {
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             VisibleReaction visibleReaction = new VisibleReaction();
             if (str.startsWith("animated_")) {

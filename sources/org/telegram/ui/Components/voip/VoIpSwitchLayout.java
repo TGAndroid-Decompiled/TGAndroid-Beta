@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
@@ -107,7 +106,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                 if (i == 4) {
                     string = LocaleController.getString("VoipAudioRoutingBluetooth", R.string.VoipAudioRoutingBluetooth);
                 } else {
-                    string = i != 5 ? BuildConfig.APP_CENTER_HASH : LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker);
+                    string = i != 5 ? "" : LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker);
                 }
             } else if (z) {
                 string = LocaleController.getString("VoipStartVideo", R.string.VoipStartVideo);
@@ -150,11 +149,11 @@ public class VoIpSwitchLayout extends FrameLayout {
     private void attachNewButton(int i, int i2, boolean z, Type type) {
         VoIpButtonView voIpButtonView = new VoIpButtonView(getContext(), this.backgroundProvider);
         if (i == R.raw.camera_flip2) {
-            voIpButtonView.singleIcon = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, i2, i2, true, null);
+            voIpButtonView.singleIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
             voIpButtonView.singleIcon.setMasterParent(voIpButtonView);
         } else {
-            voIpButtonView.unSelectedIcon = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, i2, i2, true, null);
-            voIpButtonView.selectedIcon = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, i2, i2, true, null);
+            voIpButtonView.unSelectedIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
+            voIpButtonView.selectedIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
             voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         }
         voIpButtonView.setSelectedState(z, false, type);
@@ -201,18 +200,18 @@ public class VoIpSwitchLayout extends FrameLayout {
     public void lambda$setType$0(int i) {
         VoIpButtonView voIpButtonView = this.voIpButtonView;
         int i2 = R.raw.speaker_to_bt;
-        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, i, i, true, null);
+        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
         VoIpButtonView voIpButtonView2 = this.voIpButtonView;
-        voIpButtonView2.selectedIcon = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, i, i, true, null);
+        voIpButtonView2.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
         this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
     public void lambda$setType$2(int i) {
         VoIpButtonView voIpButtonView = this.voIpButtonView;
         int i2 = R.raw.bt_to_speaker;
-        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, i, i, true, null);
+        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
         VoIpButtonView voIpButtonView2 = this.voIpButtonView;
-        voIpButtonView2.selectedIcon = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, i, i, true, null);
+        voIpButtonView2.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
         this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 

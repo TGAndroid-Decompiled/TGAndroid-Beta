@@ -8,7 +8,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -52,7 +51,7 @@ public class ExpiredStoryView {
                 TextPaint textPaint = Theme.chat_forwardNamePaint;
                 int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
                 if (str2 == null) {
-                    str2 = BuildConfig.APP_CENTER_HASH;
+                    str2 = "";
                 }
                 String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - ceil, TextUtils.TruncateAt.END);
                 String string2 = LocaleController.getString("FromFormatted", R.string.FromFormatted);

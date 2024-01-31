@@ -200,7 +200,7 @@ public class SavedMessagesController {
                 str2 = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(savedDialog.dialogId)));
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-savedDialog.dialogId));
-                str2 = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
+                str2 = chat != null ? chat.title : "";
             }
             if (str2 != null) {
                 String translitSafe2 = AndroidUtilities.translitSafe(str2.toLowerCase());
@@ -469,7 +469,7 @@ public class SavedMessagesController {
                 if (savedDialog.dialogId == keyAt) {
                     int i4 = savedDialog.top_message_id;
                     int i5 = tLRPC$Message3.id;
-                    if (i4 <= i5 || (i5 < 0 && tLRPC$Message3.date > savedDialog.getDate())) {
+                    if (i4 < i5 || (i5 < 0 && tLRPC$Message3.date > savedDialog.getDate())) {
                         if (savedDialog.top_message_id < tLRPC$Message3.id) {
                             int i6 = 0;
                             for (int i7 = 0; i7 < arrayList.size(); i7++) {
@@ -1045,7 +1045,7 @@ public class SavedMessagesController {
             if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
                 return this.localDate;
             }
-            if ((tLRPC$Message.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+            if ((tLRPC$Message.flags & LiteMode.FLAG_CHAT_SCALE) != 0 && !tLRPC$Message.edit_hide) {
                 return tLRPC$Message.edit_date;
             }
             return tLRPC$Message.date;

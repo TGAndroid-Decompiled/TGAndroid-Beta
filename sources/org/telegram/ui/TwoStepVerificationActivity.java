@@ -20,7 +20,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -791,10 +790,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         this.currentSecret = null;
         TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = tLRPC$TL_account_updatePasswordSettings.new_settings;
         tLRPC$TL_account_passwordInputSettings.flags = 3;
-        tLRPC$TL_account_passwordInputSettings.hint = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_account_passwordInputSettings.hint = "";
         tLRPC$TL_account_passwordInputSettings.new_password_hash = new byte[0];
         tLRPC$TL_account_passwordInputSettings.new_algo = new TLRPC$TL_passwordKdfAlgoUnknown();
-        tLRPC$TL_account_updatePasswordSettings.new_settings.email = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_account_updatePasswordSettings.new_settings.email = "";
         needShowProgress();
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
@@ -1127,7 +1126,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         } catch (Exception unused) {
         }
         if (z) {
-            textView.setText(BuildConfig.APP_CENTER_HASH);
+            textView.setText("");
         }
         outlineTextContainerView.animateError(1.0f);
         AndroidUtilities.shakeViewSpring(outlineTextContainerView, 5.0f, new Runnable() {

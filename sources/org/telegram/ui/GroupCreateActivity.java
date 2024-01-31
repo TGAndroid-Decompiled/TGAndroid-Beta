@@ -46,7 +46,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -907,7 +906,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.shiftDp = i;
         AndroidUtilities.shakeViewSpring(view, i);
         BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        String userName = j >= 0 ? UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) : BuildConfig.APP_CENTER_HASH;
+        String userName = j >= 0 ? UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) : "";
         if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
             createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)));
         } else {
@@ -1095,7 +1094,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             if (this.selectedContacts.size() > 5) {
                 int size = this.selectedContacts.size();
                 Object[] objArr = new Object[1];
-                objArr[0] = chat == null ? BuildConfig.APP_CENTER_HASH : chat.title;
+                objArr[0] = chat == null ? "" : chat.title;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddManyMembersAlertNamesText", size, objArr)));
                 String format = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
                 int indexOf = TextUtils.indexOf(spannableStringBuilder, format);
@@ -1107,7 +1106,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 int i2 = R.string.AddMembersAlertNamesText;
                 Object[] objArr2 = new Object[2];
                 objArr2[0] = sb;
-                objArr2[1] = chat == null ? BuildConfig.APP_CENTER_HASH : chat.title;
+                objArr2[1] = chat == null ? "" : chat.title;
                 builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", i2, objArr2)));
             }
             final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[1];
@@ -1118,9 +1117,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 checkBoxCellArr[0].setMultiline(true);
                 if (this.selectedContacts.size() == 1) {
-                    checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("AddOneMemberForwardMessages", R.string.AddOneMemberForwardMessages, UserObject.getFirstName(getMessagesController().getUser(Long.valueOf(this.selectedContacts.keyAt(0)))))), BuildConfig.APP_CENTER_HASH, true, false);
+                    checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("AddOneMemberForwardMessages", R.string.AddOneMemberForwardMessages, UserObject.getFirstName(getMessagesController().getUser(Long.valueOf(this.selectedContacts.keyAt(0)))))), "", true, false);
                 } else {
-                    checkBoxCellArr[0].setText(LocaleController.getString("AddMembersForwardMessages", R.string.AddMembersForwardMessages), BuildConfig.APP_CENTER_HASH, true, false);
+                    checkBoxCellArr[0].setText(LocaleController.getString("AddMembersForwardMessages", R.string.AddMembersForwardMessages), "", true, false);
                 }
                 checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 linearLayout.addView(checkBoxCellArr[0], LayoutHelper.createLinear(-1, -2));
@@ -1381,7 +1380,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 str2 = tLRPC$User.last_name;
             } else {
                 str = ((TLRPC$Chat) tLObject).title;
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             }
             if (LocaleController.nameDisplayOrder == 1) {
                 if (!TextUtils.isEmpty(str)) {
@@ -1397,7 +1396,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     return str.substring(0, 1).toUpperCase();
                 }
             }
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
 
         @Override

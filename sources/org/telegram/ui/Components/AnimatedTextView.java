@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 public class AnimatedTextView extends View {
@@ -67,6 +66,7 @@ public class AnimatedTextView extends View {
         private int overrideFullWidth;
         private boolean preserveIndex;
         private float rightPadding;
+        private float scaleAmplitude;
         private int shadowColor;
         private float shadowDx;
         private float shadowDy;
@@ -144,6 +144,7 @@ public class AnimatedTextView extends View {
             this.animateDuration = 450L;
             this.animateInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.moveAmplitude = 1.0f;
+            this.scaleAmplitude = 0.0f;
             this.alpha = 255;
             this.bounds = new android.graphics.Rect();
             this.shadowed = false;
@@ -173,7 +174,7 @@ public class AnimatedTextView extends View {
         }
 
         @Override
-        public void draw(android.graphics.Canvas r18) {
+        public void draw(android.graphics.Canvas r19) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedTextView.AnimatedTextDrawable.draw(android.graphics.Canvas):void");
         }
 
@@ -205,7 +206,7 @@ public class AnimatedTextView extends View {
         public void setText(CharSequence charSequence, boolean z, boolean z2) {
             z = (this.currentText == null || charSequence == null) ? false : false;
             if (charSequence == null) {
-                charSequence = BuildConfig.APP_CENTER_HASH;
+                charSequence = "";
             }
             final int i = this.overrideFullWidth;
             if (i <= 0) {
@@ -741,6 +742,10 @@ public class AnimatedTextView extends View {
             this.animateInterpolator = timeInterpolator;
         }
 
+        public void setScaleProperty(float f) {
+            this.scaleAmplitude = f;
+        }
+
         public TextPaint getPaint() {
             return this.textPaint;
         }
@@ -919,6 +924,10 @@ public class AnimatedTextView extends View {
 
     public void setAnimationProperties(float f, long j, long j2, TimeInterpolator timeInterpolator) {
         this.drawable.setAnimationProperties(f, j, j2, timeInterpolator);
+    }
+
+    public void setScaleProperty(float f) {
+        this.drawable.setScaleProperty(f);
     }
 
     public AnimatedTextDrawable getDrawable() {

@@ -10,7 +10,6 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.BuildConfig;
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -49,6 +48,7 @@ public class FileVideoCapturer implements VideoCapturer {
         private final long videoStart;
 
         public VideoReaderY4M(String str) throws IOException {
+            String[] split;
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
@@ -61,11 +61,10 @@ public class FileVideoCapturer implements VideoCapturer {
                     sb.append((char) read);
                 } else {
                     this.videoStart = this.mediaFileChannel.position();
-                    String[] split = sb.toString().split("[ ]");
-                    String str2 = BuildConfig.APP_CENTER_HASH;
+                    String str2 = "";
                     int i = 0;
                     int i2 = 0;
-                    for (String str3 : split) {
+                    for (String str3 : sb.toString().split("[ ]")) {
                         char charAt = str3.charAt(0);
                         if (charAt == 'C') {
                             str2 = str3.substring(1);

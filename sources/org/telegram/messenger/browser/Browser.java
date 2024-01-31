@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
@@ -162,7 +161,7 @@ public class Browser {
         }
         StringBuilder sb = new StringBuilder();
         sb.append("^(https");
-        sb.append(z2 ? BuildConfig.APP_CENTER_HASH : "?");
+        sb.append(z2 ? "" : "?");
         sb.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
         return str.matches(sb.toString());
     }
@@ -315,8 +314,7 @@ public class Browser {
         String str;
         String str2;
         String hostAuthority = AndroidUtilities.getHostAuthority(uri);
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : BuildConfig.APP_CENTER_HASH;
+        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
         if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
             if (zArr != null) {
                 zArr[0] = true;
@@ -329,23 +327,20 @@ public class Browser {
             sb.append("https://t.me/");
             sb.append(matcher.group(1));
             if (TextUtils.isEmpty(uri.getPath())) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = "/" + uri.getPath();
             }
             sb.append(str);
             if (TextUtils.isEmpty(uri.getQuery())) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             } else {
                 str2 = "?" + uri.getQuery();
             }
             sb.append(str2);
             uri = Uri.parse(sb.toString());
             String host = uri.getHost();
-            if (host != null) {
-                str3 = host.toLowerCase();
-            }
-            lowerCase = str3;
+            lowerCase = host != null ? host.toLowerCase() : "";
         }
         if ("ton".equals(uri.getScheme())) {
             try {

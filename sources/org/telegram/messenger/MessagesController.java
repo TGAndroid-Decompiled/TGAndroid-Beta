@@ -287,6 +287,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_saveDefaultSendAs;
 import org.telegram.tgnet.TLRPC$TL_messages_saveGif;
 import org.telegram.tgnet.TLRPC$TL_messages_saveRecentSticker;
 import org.telegram.tgnet.TLRPC$TL_messages_savedReactionsTags;
+import org.telegram.tgnet.TLRPC$TL_messages_savedReactionsTagsNotModified;
 import org.telegram.tgnet.TLRPC$TL_messages_search;
 import org.telegram.tgnet.TLRPC$TL_messages_setChatAvailableReactions;
 import org.telegram.tgnet.TLRPC$TL_messages_setEncryptedTyping;
@@ -1035,7 +1036,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (tLRPC$TL_error != null) {
                     str = tLRPC$TL_error.code + " " + tLRPC$TL_error.text;
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 sb.append(str);
                 FileLog.e(sb.toString());
@@ -2144,8 +2145,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.authorizationAutoconfirmPeriod = this.mainPreferences.getInt("authorization_autoconfirm_period", 604800);
         this.quoteLengthMax = this.mainPreferences.getInt("quoteLengthMax", 1024);
         this.giveawayGiftsPurchaseAvailable = this.mainPreferences.getBoolean("giveawayGiftsPurchaseAvailable", false);
-        this.peerColors = PeerColors.fromString(0, this.mainPreferences.getString("peerColors", BuildConfig.APP_CENTER_HASH));
-        this.profilePeerColors = PeerColors.fromString(1, this.mainPreferences.getString("profilePeerColors", BuildConfig.APP_CENTER_HASH));
+        this.peerColors = PeerColors.fromString(0, this.mainPreferences.getString("peerColors", ""));
+        this.profilePeerColors = PeerColors.fromString(1, this.mainPreferences.getString("profilePeerColors", ""));
         int i4 = this.mainPreferences.getInt("transcribeAudioTrialWeeklyNumber", BuildVars.DEBUG_PRIVATE_VERSION ? 2 : 0);
         this.transcribeAudioTrialWeeklyNumber = i4;
         this.transcribeAudioTrialCurrentNumber = this.mainPreferences.getInt("transcribeAudioTrialCurrentNumber", i4);
@@ -3756,7 +3757,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tLRPC$TL_userForeign_old2.phone = "333";
         tLRPC$TL_userForeign_old2.id = 333000L;
         tLRPC$TL_userForeign_old2.first_name = "Telegram";
-        tLRPC$TL_userForeign_old2.last_name = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_userForeign_old2.last_name = "";
         tLRPC$TL_userForeign_old2.status = null;
         tLRPC$TL_userForeign_old2.photo = new TLRPC$TL_userProfilePhotoEmpty();
         putUser(tLRPC$TL_userForeign_old2, true);
@@ -4277,7 +4278,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 TLRPC$TL_account_createTheme tLRPC$TL_account_createTheme = new TLRPC$TL_account_createTheme();
                 tLRPC$TL_account_createTheme.document = tLRPC$TL_inputDocument;
                 tLRPC$TL_account_createTheme.flags |= 4;
-                tLRPC$TL_account_createTheme.slug = (tLRPC$TL_theme == null || TextUtils.isEmpty(tLRPC$TL_theme.slug)) ? BuildConfig.APP_CENTER_HASH : tLRPC$TL_theme.slug;
+                tLRPC$TL_account_createTheme.slug = (tLRPC$TL_theme == null || TextUtils.isEmpty(tLRPC$TL_theme.slug)) ? "" : tLRPC$TL_theme.slug;
                 tLRPC$TL_account_createTheme.title = name;
                 if (tLRPC$TL_inputThemeSettings != null) {
                     tLRPC$TL_account_createTheme.settings = tLRPC$TL_inputThemeSettings;
@@ -5275,14 +5276,14 @@ public class MessagesController extends BaseController implements NotificationCe
     public String getAdminRank(long j, long j2) {
         TLRPC$ChannelParticipant tLRPC$ChannelParticipant;
         if (j == j2) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         LongSparseArray<TLRPC$ChannelParticipant> longSparseArray = this.channelAdmins.get(j);
         if (longSparseArray == null || (tLRPC$ChannelParticipant = longSparseArray.get(j2)) == null) {
             return null;
         }
         String str = tLRPC$ChannelParticipant.rank;
-        return str != null ? str : BuildConfig.APP_CENTER_HASH;
+        return str != null ? str : "";
     }
 
     public boolean isChannelAdminsLoaded(long j) {
@@ -5764,7 +5765,7 @@ public class MessagesController extends BaseController implements NotificationCe
             } else if (tLRPC$User != null) {
                 tLRPC$TL_account_reportPeer.peer = getInputPeer(tLRPC$User.id);
             }
-            tLRPC$TL_account_reportPeer.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_account_reportPeer.message = "";
             tLRPC$TL_account_reportPeer.reason = new TLRPC$ReportReason() {
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
@@ -6279,7 +6280,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tLRPC$TL_messages_search.add_offset = i;
             tLRPC$TL_messages_search.limit = i2;
             tLRPC$TL_messages_search.offset_id = 0;
-            tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_messages_search.q = "";
             tLRPC$TL_messages_search.peer = MessagesController.this.getInputPeer(this.dialogId);
             MessagesController.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
                 @Override
@@ -8518,8 +8519,8 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             SharedPreferences globalMainSettings = getGlobalMainSettings();
             globalMainSettings.getBoolean("proxy_enabled", false);
-            final String string = globalMainSettings.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-            final String string2 = globalMainSettings.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+            final String string = globalMainSettings.getString("proxy_ip", "");
+            final String string2 = globalMainSettings.getString("proxy_secret", "");
             if (this.promoDialogId != 0 && this.promoDialogType == PROMO_TYPE_PROXY && (str = this.proxyDialogAddress) != null) {
                 if (!str.equals(string + string2)) {
                     z2 = true;
@@ -8761,14 +8762,14 @@ public class MessagesController extends BaseController implements NotificationCe
 
     private String getUserNameForTyping(TLRPC$User tLRPC$User) {
         if (tLRPC$User == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         String str = tLRPC$User.first_name;
         if (str != null && str.length() > 0) {
             return tLRPC$User.first_name;
         }
         String str2 = tLRPC$User.last_name;
-        return (str2 == null || str2.length() <= 0) ? BuildConfig.APP_CENTER_HASH : tLRPC$User.last_name;
+        return (str2 == null || str2.length() <= 0) ? "" : tLRPC$User.last_name;
     }
 
     private void updatePrintingStrings() {
@@ -11314,7 +11315,7 @@ public class MessagesController extends BaseController implements NotificationCe
             final TLRPC$TL_channels_createChannel tLRPC$TL_channels_createChannel = new TLRPC$TL_channels_createChannel();
             tLRPC$TL_channels_createChannel.title = str;
             if (str2 == null) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             }
             tLRPC$TL_channels_createChannel.about = str2;
             tLRPC$TL_channels_createChannel.for_import = z;
@@ -16539,10 +16540,8 @@ public class MessagesController extends BaseController implements NotificationCe
                         int max = Math.max(0, (z ? 1 : -1) + i3);
                         tLRPC$TL_savedReactionTag.count = max;
                         if (max <= 0) {
-                            if (TextUtils.isEmpty(getSavedTagName(tLRPC$TL_savedReactionTag.reaction))) {
-                                tLRPC$TL_messages_savedReactionsTags.tags.remove(i2);
-                                i2--;
-                            }
+                            tLRPC$TL_messages_savedReactionsTags.tags.remove(i2);
+                            i2--;
                         } else if (max == i3) {
                             z5 = true;
                         }
@@ -16682,33 +16681,54 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction visibleReaction, String str) {
-        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags;
         boolean z;
+        boolean z2;
         String str2;
         long m;
         long m2;
         LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
-        if (longSparseArray == null || (tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(0L)) == null) {
+        if (longSparseArray == null) {
             return;
+        }
+        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(0L);
+        if (tLRPC$TL_messages_savedReactionsTags == null) {
+            LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray2 = this.reactionTags;
+            TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags2 = new TLRPC$TL_messages_savedReactionsTags();
+            longSparseArray2.put(0L, tLRPC$TL_messages_savedReactionsTags2);
+            tLRPC$TL_messages_savedReactionsTags = tLRPC$TL_messages_savedReactionsTags2;
         }
         int i = 0;
         while (true) {
             if (i >= tLRPC$TL_messages_savedReactionsTags.tags.size()) {
                 z = false;
+                z2 = false;
                 break;
             }
             TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = tLRPC$TL_messages_savedReactionsTags.tags.get(i);
-            if (!visibleReaction.isSame(tLRPC$TL_savedReactionTag.reaction)) {
-                i++;
-            } else if (TextUtils.isEmpty(str)) {
-                z = tLRPC$TL_savedReactionTag.title != null;
-                tLRPC$TL_savedReactionTag.flags &= -2;
-                tLRPC$TL_savedReactionTag.title = null;
+            if (visibleReaction.isSame(tLRPC$TL_savedReactionTag.reaction)) {
+                if (TextUtils.isEmpty(str)) {
+                    z = tLRPC$TL_savedReactionTag.title != null;
+                    tLRPC$TL_savedReactionTag.flags &= -2;
+                    tLRPC$TL_savedReactionTag.title = null;
+                } else {
+                    z = !TextUtils.equals(tLRPC$TL_savedReactionTag.title, str);
+                    tLRPC$TL_savedReactionTag.flags |= 1;
+                    tLRPC$TL_savedReactionTag.title = str;
+                }
+                z2 = true;
             } else {
-                z = !TextUtils.equals(tLRPC$TL_savedReactionTag.title, str);
-                tLRPC$TL_savedReactionTag.flags |= 1;
-                tLRPC$TL_savedReactionTag.title = str;
+                i++;
             }
+        }
+        if (!z2) {
+            TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2 = new TLRPC$TL_savedReactionTag();
+            tLRPC$TL_savedReactionTag2.reaction = visibleReaction.toTLReaction();
+            if (!TextUtils.isEmpty(str)) {
+                tLRPC$TL_savedReactionTag2.title = str;
+            }
+            tLRPC$TL_savedReactionTag2.count = 1;
+            tLRPC$TL_messages_savedReactionsTags.tags.add(tLRPC$TL_savedReactionTag2);
+            z = true;
         }
         if (z) {
             TLRPC$TL_messages_updateSavedReactionTag tLRPC$TL_messages_updateSavedReactionTag = new TLRPC$TL_messages_updateSavedReactionTag();
@@ -16728,20 +16748,20 @@ public class MessagesController extends BaseController implements NotificationCe
             });
             long j = 0;
             for (int i2 = 0; i2 < tLRPC$TL_messages_savedReactionsTags.tags.size(); i2++) {
-                TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2 = tLRPC$TL_messages_savedReactionsTags.tags.get(i2);
-                if (tLRPC$TL_savedReactionTag2.count > 0) {
-                    TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_savedReactionTag2.reaction;
+                TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag3 = tLRPC$TL_messages_savedReactionsTags.tags.get(i2);
+                if (tLRPC$TL_savedReactionTag3.count > 0) {
+                    TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_savedReactionTag3.reaction;
                     if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
                         m2 = MessagesController$$ExternalSyntheticBackport4.m(r6, 0, Utilities.MD5(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon).substring(0, 16).length(), 16);
                         j = MediaDataController.calcHash(j, m2);
                     } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
                         j = MediaDataController.calcHash(j, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
                     }
-                    if ((tLRPC$TL_savedReactionTag2.flags & 1) != 0 && (str2 = tLRPC$TL_savedReactionTag2.title) != null) {
+                    if ((tLRPC$TL_savedReactionTag3.flags & 1) != 0 && (str2 = tLRPC$TL_savedReactionTag3.title) != null) {
                         m = MessagesController$$ExternalSyntheticBackport5.m(r6, 0, Utilities.MD5(str2).substring(0, 16).length(), 16);
                         j = MediaDataController.calcHash(j, m);
                     }
-                    j = MediaDataController.calcHash(j, tLRPC$TL_savedReactionTag2.count);
+                    j = MediaDataController.calcHash(j, tLRPC$TL_savedReactionTag3.count);
                 }
             }
             tLRPC$TL_messages_savedReactionsTags.hash = j;
@@ -16813,7 +16833,7 @@ public class MessagesController extends BaseController implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getSavedReactionTags$415(long):void");
     }
 
-    public void lambda$getSavedReactionTags$414(TLRPC$messages_SavedReactionTags tLRPC$messages_SavedReactionTags, final long j) {
+    public void lambda$getSavedReactionTags$414(final TLRPC$messages_SavedReactionTags tLRPC$messages_SavedReactionTags, final long j) {
         if (this.reactionTags == null) {
             this.reactionTags = new LongSparseArray<>();
         }
@@ -16822,7 +16842,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.reactionTags.put(j, (TLRPC$TL_messages_savedReactionsTags) tLRPC$messages_SavedReactionTags);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, Long.valueOf(j));
         }
-        TLRPC$TL_messages_getSavedReactionTags tLRPC$TL_messages_getSavedReactionTags = new TLRPC$TL_messages_getSavedReactionTags();
+        final TLRPC$TL_messages_getSavedReactionTags tLRPC$TL_messages_getSavedReactionTags = new TLRPC$TL_messages_getSavedReactionTags();
         if (z) {
             tLRPC$TL_messages_getSavedReactionTags.hash = tLRPC$messages_SavedReactionTags.hash;
         }
@@ -16833,26 +16853,31 @@ public class MessagesController extends BaseController implements NotificationCe
         getConnectionsManager().sendRequest(tLRPC$TL_messages_getSavedReactionTags, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagesController.this.lambda$getSavedReactionTags$413(j, tLObject, tLRPC$TL_error);
+                MessagesController.this.lambda$getSavedReactionTags$413(j, tLRPC$messages_SavedReactionTags, tLRPC$TL_messages_getSavedReactionTags, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$getSavedReactionTags$413(final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$getSavedReactionTags$413(final long j, final TLRPC$messages_SavedReactionTags tLRPC$messages_SavedReactionTags, final TLRPC$TL_messages_getSavedReactionTags tLRPC$TL_messages_getSavedReactionTags, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$getSavedReactionTags$412(tLObject, j);
+                MessagesController.this.lambda$getSavedReactionTags$412(tLObject, j, tLRPC$messages_SavedReactionTags, tLRPC$TL_messages_getSavedReactionTags);
             }
         });
     }
 
-    public void lambda$getSavedReactionTags$412(TLObject tLObject, long j) {
+    public void lambda$getSavedReactionTags$412(TLObject tLObject, long j, TLRPC$messages_SavedReactionTags tLRPC$messages_SavedReactionTags, TLRPC$TL_messages_getSavedReactionTags tLRPC$TL_messages_getSavedReactionTags) {
         if (tLObject instanceof TLRPC$TL_messages_savedReactionsTags) {
             TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags = (TLRPC$TL_messages_savedReactionsTags) tLObject;
             this.reactionTags.put(j, tLRPC$TL_messages_savedReactionsTags);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, Long.valueOf(j));
             saveSavedReactionsTags(j, tLRPC$TL_messages_savedReactionsTags);
+        } else if ((tLObject instanceof TLRPC$TL_messages_savedReactionsTagsNotModified) && tLRPC$messages_SavedReactionTags == null && tLRPC$TL_messages_getSavedReactionTags.hash == 0) {
+            TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags2 = new TLRPC$TL_messages_savedReactionsTags();
+            this.reactionTags.put(j, tLRPC$TL_messages_savedReactionsTags2);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, Long.valueOf(j));
+            saveSavedReactionsTags(j, tLRPC$TL_messages_savedReactionsTags2);
         }
     }
 
