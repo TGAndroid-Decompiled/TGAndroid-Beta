@@ -25,6 +25,7 @@ import java.util.Locale;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -495,7 +496,7 @@ public class VoIPHelper {
                 String[] split = str.split(" ");
                 if (split.length >= 2) {
                     String str2 = split[0];
-                    if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + "")) {
+                    if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + BuildConfig.APP_CENTER_HASH)) {
                         return true;
                     }
                 }
@@ -508,7 +509,7 @@ public class VoIPHelper {
         final int i3 = UserConfig.selectedAccount;
         TLRPC$TL_phone_setCallRating tLRPC$TL_phone_setCallRating = new TLRPC$TL_phone_setCallRating();
         tLRPC$TL_phone_setCallRating.rating = i2;
-        tLRPC$TL_phone_setCallRating.comment = "";
+        tLRPC$TL_phone_setCallRating.comment = BuildConfig.APP_CENTER_HASH;
         TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
         tLRPC$TL_phone_setCallRating.peer = tLRPC$TL_inputPhoneCall;
         tLRPC$TL_inputPhoneCall.access_hash = j2;
@@ -533,7 +534,7 @@ public class VoIPHelper {
             String[] split = str.split(" ");
             if (split.length >= 2) {
                 String str2 = split[0];
-                if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + "")) {
+                if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + BuildConfig.APP_CENTER_HASH)) {
                     try {
                         showRateAlert(context, null, tLRPC$TL_messageActionPhoneCall.video, tLRPC$TL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), UserConfig.selectedAccount, true);
                         return;
@@ -753,7 +754,7 @@ public class VoIPHelper {
             if (tLRPC$TL_phone_setCallRating.rating < 5) {
                 tLRPC$TL_phone_setCallRating.comment = editTextBoldCursor.getText().toString();
             } else {
-                tLRPC$TL_phone_setCallRating.comment = "";
+                tLRPC$TL_phone_setCallRating.comment = BuildConfig.APP_CENTER_HASH;
             }
             if (!arrayList.isEmpty() && !zArr[0]) {
                 tLRPC$TL_phone_setCallRating.comment += " " + TextUtils.join(" ", arrayList);

@@ -188,7 +188,7 @@ public class SavedMessagesController {
                 str2 = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(savedDialog.dialogId)));
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-savedDialog.dialogId));
-                str2 = chat != null ? chat.title : "";
+                str2 = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
             }
             if (str2 != null) {
                 String translitSafe2 = AndroidUtilities.translitSafe(str2.toLowerCase());

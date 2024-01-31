@@ -65,6 +65,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -2220,7 +2221,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.shiftDp = i;
         AndroidUtilities.shakeViewSpring(chatActivityEnterView, i);
         BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        String userName = this.dialogId >= 0 ? UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId))) : "";
+        String userName = this.dialogId >= 0 ? UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId))) : BuildConfig.APP_CENTER_HASH;
         if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
             createSimpleBulletin = BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedRepliesNonPremium, userName)));
         } else {
@@ -2443,13 +2444,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        public void updateRecordInterface(int i) {
+        protected void updateRecordInterface(int i) {
             super.updateRecordInterface(i);
             checkRecording();
         }
 
         @Override
-        public void isRecordingStateChanged() {
+        protected void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }
@@ -2724,7 +2725,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
                 SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tLRPC$TL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj);
                 PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tLRPC$TL_document);
-                PeerStoriesView.this.chatActivityEnterView.setFieldText("");
+                PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
                 PeerStoriesView.this.afterMessageSend();
             }
 
@@ -2748,11 +2749,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 long contextBotId = PeerStoriesView.this.mentionContainer.getAdapter().getContextBotId();
                 HashMap hashMap = new HashMap();
                 hashMap.put("id", tLRPC$BotInlineResult.id);
-                hashMap.put("query_id", "" + tLRPC$BotInlineResult.query_id);
-                hashMap.put("bot", "" + contextBotId);
+                hashMap.put("query_id", BuildConfig.APP_CENTER_HASH + tLRPC$BotInlineResult.query_id);
+                hashMap.put("bot", BuildConfig.APP_CENTER_HASH + contextBotId);
                 hashMap.put("bot_name", PeerStoriesView.this.mentionContainer.getAdapter().getContextBotName());
                 SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, z, i);
-                PeerStoriesView.this.chatActivityEnterView.setFieldText("");
+                PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
                 PeerStoriesView.this.afterMessageSend();
                 MediaDataController.getInstance(PeerStoriesView.this.currentAccount).increaseInlineRaiting(contextBotId);
             }
@@ -2940,7 +2941,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                                 i4 = 0;
                                 i3 = 4;
                             }
-                            PeerStoriesView.this.chatActivityEnterView.setFieldText("");
+                            PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
                             PeerStoriesView.this.afterMessageSend();
                         } else if (PeerStoriesView.this.chatAttachAlert != null) {
                             PeerStoriesView.this.chatAttachAlert.dismissWithButtonClick(i);
@@ -3063,7 +3064,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -4012,7 +4013,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     String formatString = LocaleController.formatString("StealthModeActiveHint", i4, String.format(locale, "%02d:%02d", 99, 99));
                     this.chatActivityEnterView.setEnabled(true);
                     if (((int) this.chatActivityEnterView.getEditField().getPaint().measureText(formatString)) * 1.2f >= this.chatActivityEnterView.getEditField().getMeasuredWidth()) {
-                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHintShort", i4, ""), String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), z);
+                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHintShort", i4, BuildConfig.APP_CENTER_HASH), String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), z);
                     } else {
                         this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHint", R.string.StealthModeActiveHint, String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3))), z);
                     }
@@ -4169,7 +4170,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         boolean z2 = this.isChannel;
         if (z2 || this.isSelf) {
             if (tL_stories$StoryItem == null) {
-                this.selfStatusView.setText("");
+                this.selfStatusView.setText(BuildConfig.APP_CENTER_HASH);
                 this.selfAvatarsContainer.setVisibility(8);
                 this.selfAvatarsView.setVisibility(8);
             } else if (z2) {
@@ -4210,7 +4211,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.formatWholeNumber(tL_stories$StoryItem.views.views_count, 0));
                     this.selfStatusView.setText(spannableStringBuilder);
                 } else {
-                    this.selfStatusView.setText("");
+                    this.selfStatusView.setText(BuildConfig.APP_CENTER_HASH);
                 }
                 this.likeButtonContainer.getLayoutParams().width = (int) (AndroidUtilities.dp(40.0f) + (this.reactionsCounterVisible ? this.reactionsCounter.getAnimateToWidth() + AndroidUtilities.dp(4.0f) : 0.0f));
                 ((ViewGroup.MarginLayoutParams) this.selfView.getLayoutParams()).rightMargin = AndroidUtilities.dp(40.0f) + this.likeButtonContainer.getLayoutParams().width;

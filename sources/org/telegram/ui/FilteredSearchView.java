@@ -29,6 +29,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -478,7 +479,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         TLRPC$TL_forumTopic findTopic2;
         int i2;
         if (messageObject == null || messageObject.messageOwner == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
         if (spannableStringBuilderArr[i] == null) {
@@ -488,7 +489,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             } else if (i == 1) {
                 i2 = R.drawable.msg_mini_arrow_mediathin;
             } else if (i != 2) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             } else {
                 i2 = R.drawable.msg_mini_arrow_mediabold;
             }
@@ -549,7 +550,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
             charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
         }
-        return charSequence == null ? "" : charSequence;
+        return charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence;
     }
 
     public void search(final long j, final long j2, final long j3, final FiltersView.MediaFilterData mediaFilterData, final boolean z, final String str, boolean z2) {

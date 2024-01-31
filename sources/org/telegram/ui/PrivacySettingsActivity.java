@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -464,7 +465,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     textView3.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                 }
             } else if (i == this.passportRow) {
-                presentFragment(new PassportActivity(5, 0L, "", "", (String) null, (String) null, (String) null, (TLRPC$TL_account_authorizationForm) null, (TLRPC$account_Password) null));
+                presentFragment(new PassportActivity(5, 0L, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, (String) null, (String) null, (String) null, (TLRPC$TL_account_authorizationForm) null, (TLRPC$account_Password) null));
             }
         }
     }
@@ -1265,11 +1266,12 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 viewHolder.itemView.setTag(Integer.valueOf(i));
                 textCell.setPrioritizeTitleOverValue(false);
                 if (i != PrivacySettingsActivity.this.autoDeleteMesages) {
-                    String str7 = "";
-                    if (i == PrivacySettingsActivity.this.sessionsRow) {
+                    int i5 = PrivacySettingsActivity.this.sessionsRow;
+                    String str7 = BuildConfig.APP_CENTER_HASH;
+                    if (i == i5) {
                         if (PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount() == 0) {
                             if (PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount == 0) {
-                                str4 = "";
+                                str4 = BuildConfig.APP_CENTER_HASH;
                                 r9 = true;
                                 PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount = PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount();
                                 textCell.setTextAndValueAndIcon(LocaleController.getString("SessionsTitle", R.string.SessionsTitle), str4, true, R.drawable.msg2_devices, false);
@@ -1297,9 +1299,9 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                                 TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                                 textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
                                 textStyleRun.start = indexOf;
-                                int i5 = lastIndexOf + 1;
-                                textStyleRun.end = i5;
-                                valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i5, 0);
+                                int i6 = lastIndexOf + 1;
+                                textStyleRun.end = i6;
+                                valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i6, 0);
                                 str3 = valueOf;
                             }
                         }
@@ -1307,7 +1309,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         textCell.setTextAndSpoilersValueAndIcon(LocaleController.getString(R.string.EmailLogin), str3, R.drawable.msg2_email, true);
                     } else if (i == PrivacySettingsActivity.this.passwordRow) {
                         if (PrivacySettingsActivity.this.currentPassword == null) {
-                            str2 = "";
+                            str2 = BuildConfig.APP_CENTER_HASH;
                             r9 = true;
                         } else {
                             if (PrivacySettingsActivity.this.currentPassword.has_password) {
@@ -1320,13 +1322,13 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         textCell.setTextAndValueAndIcon(LocaleController.getString("TwoStepVerification", R.string.TwoStepVerification), str2, true, R.drawable.msg2_permissions, true);
                     } else if (i != PrivacySettingsActivity.this.passcodeRow) {
                         if (i == PrivacySettingsActivity.this.blockedRow) {
-                            int i6 = PrivacySettingsActivity.this.getMessagesController().totalBlockedCount;
-                            if (i6 == 0) {
+                            int i7 = PrivacySettingsActivity.this.getMessagesController().totalBlockedCount;
+                            if (i7 == 0) {
                                 format = LocaleController.getString("BlockedEmpty", R.string.BlockedEmpty);
-                            } else if (i6 > 0) {
-                                format = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(i6));
+                            } else if (i7 > 0) {
+                                format = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(i7));
                             } else {
-                                str = "";
+                                str = BuildConfig.APP_CENTER_HASH;
                                 r9 = true;
                                 textCell.setTextAndValueAndIcon(LocaleController.getString("BlockedUsers", R.string.BlockedUsers), str, true, R.drawable.msg2_block2, true);
                             }

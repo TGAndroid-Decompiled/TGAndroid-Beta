@@ -17,6 +17,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import java.util.ArrayList;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -218,7 +219,7 @@ public class StatisticPostInfoCell extends FrameLayout {
             charSequence = charSequence2 != null ? charSequence2 : messageObject.messageText;
         }
         if (charSequence == null) {
-            charSequence = "";
+            charSequence = BuildConfig.APP_CENTER_HASH;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {

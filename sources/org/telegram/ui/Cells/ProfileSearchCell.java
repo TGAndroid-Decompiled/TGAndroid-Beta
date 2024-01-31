@@ -17,6 +17,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.Locale;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -327,7 +328,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 userName = tLRPC$Chat2.title;
             } else {
                 TLRPC$User tLRPC$User2 = this.user;
-                userName = tLRPC$User2 != null ? UserObject.getUserName(tLRPC$User2) : "";
+                userName = tLRPC$User2 != null ? UserObject.getUserName(tLRPC$User2) : BuildConfig.APP_CENTER_HASH;
             }
             str3 = userName.replace('\n', ' ');
         }

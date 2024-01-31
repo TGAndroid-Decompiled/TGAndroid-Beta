@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -207,7 +208,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$createView$2(DialogInterface dialogInterface, int i) {
-        SharedConfig.passcodeHash = "";
+        SharedConfig.passcodeHash = BuildConfig.APP_CENTER_HASH;
         SharedConfig.appLocked = false;
         SharedConfig.saveConfig();
         getMediaDataController().buildShortcuts();
@@ -232,7 +233,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         if (i == 0) {
             return LocaleController.getString("AutoLockDisabled", R.string.AutoLockDisabled);
         }
-        return i == 1 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0])) : i == 2 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0])) : i == 3 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0])) : i == 4 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0])) : "";
+        return i == 1 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0])) : i == 2 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0])) : i == 3 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0])) : i == 4 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0])) : BuildConfig.APP_CENTER_HASH;
     }
 
     public void lambda$createView$4(NumberPicker numberPicker, int i, DialogInterface dialogInterface, int i2) {
@@ -275,9 +276,9 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                         PasscodeActivity.AnonymousClass4.this.lambda$onItemClick$0(actionBarMenuSubItem);
                     }
                 }, 150L);
-                PasscodeActivity.this.passwordEditText.setText("");
+                PasscodeActivity.this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
                 for (CodeNumberField codeNumberField : PasscodeActivity.this.codeFieldContainer.codeField) {
-                    codeNumberField.setText("");
+                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
                 }
                 PasscodeActivity.this.updateFields();
             }
@@ -726,10 +727,10 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         this.titleTextView.setText(LocaleController.getString("ConfirmCreatePasscode", R.string.ConfirmCreatePasscode));
         this.descriptionTextSwitcher.setText(AndroidUtilities.replaceTags(LocaleController.getString("PasscodeReinstallNotice", R.string.PasscodeReinstallNotice)));
         this.firstPassword = isPinCode() ? this.codeFieldContainer.getCode() : this.passwordEditText.getText().toString();
-        this.passwordEditText.setText("");
+        this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
         this.passwordEditText.setInputType(524417);
         for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-            codeNumberField.setText("");
+            codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
         }
         showKeyboard();
         this.passcodeSetStep = 1;
@@ -763,12 +764,12 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             if (!this.firstPassword.equals(code)) {
                 AndroidUtilities.updateViewVisibilityAnimated(this.passcodesDoNotMatchTextView, true);
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText("");
+                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
                 }
                 if (isPinCode()) {
                     this.codeFieldContainer.codeField[0].requestFocus();
                 }
-                this.passwordEditText.setText("");
+                this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
                 onPasscodeError();
                 this.codeFieldContainer.removeCallbacks(this.hidePasscodesDoNotMatch);
                 this.codeFieldContainer.post(new Runnable() {
@@ -820,18 +821,18 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 Double.isNaN(d);
                 Toast.makeText(getParentActivity(), LocaleController.formatString("TooManyTries", R.string.TooManyTries, LocaleController.formatPluralString("Seconds", Math.max(1, (int) Math.ceil(d / 1000.0d)), new Object[0])), 0).show();
                 for (CodeNumberField codeNumberField3 : this.codeFieldContainer.codeField) {
-                    codeNumberField3.setText("");
+                    codeNumberField3.setText(BuildConfig.APP_CENTER_HASH);
                 }
-                this.passwordEditText.setText("");
+                this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
                 if (isPinCode()) {
                     this.codeFieldContainer.codeField[0].requestFocus();
                 }
                 onPasscodeError();
             } else if (!SharedConfig.checkPasscode(code)) {
                 SharedConfig.increaseBadPasscodeTries();
-                this.passwordEditText.setText("");
+                this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
                 for (CodeNumberField codeNumberField4 : this.codeFieldContainer.codeField) {
-                    codeNumberField4.setText("");
+                    codeNumberField4.setText(BuildConfig.APP_CENTER_HASH);
                 }
                 if (isPinCode()) {
                     this.codeFieldContainer.codeField[0].requestFocus();

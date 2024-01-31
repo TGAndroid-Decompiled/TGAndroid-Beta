@@ -1,4 +1,6 @@
 package org.telegram.tgnet;
+
+import org.telegram.messenger.BuildConfig;
 public abstract class TLRPC$MessagePeerReaction extends TLObject {
     public boolean big;
     public int date;
@@ -37,7 +39,7 @@ public abstract class TLRPC$MessagePeerReaction extends TLObject {
                         if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
                             abstractSerializedData2.writeString(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon);
                         } else {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                     }
                 };
@@ -94,7 +96,7 @@ public abstract class TLRPC$MessagePeerReaction extends TLObject {
                         if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
                             abstractSerializedData2.writeString(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon);
                         } else {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                     }
                 };

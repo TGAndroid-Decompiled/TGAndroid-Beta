@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -120,7 +121,7 @@ public class ChatGreetingsView extends LinearLayout {
                 this.premiumTextView.setGravity(17);
                 this.premiumTextView.setTextSize(1, 13.0f);
             }
-            String userName = (j < 0 || (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) == null) ? "" : UserObject.getUserName(user);
+            String userName = (j < 0 || (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) == null) ? BuildConfig.APP_CENTER_HASH : UserObject.getUserName(user);
             if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
                 formatString = LocaleController.formatString(R.string.MessageLockedPremiumLocked, userName);
             } else {
@@ -399,7 +400,7 @@ public class ChatGreetingsView extends LinearLayout {
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
-        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : "";
+        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : BuildConfig.APP_CENTER_HASH;
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(premiumFeaturesBlocked ? R.string.PremiumMessageTextLocked : R.string.PremiumMessageText, firstName, firstName)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 12, 9, 12, 19));
         if (!premiumFeaturesBlocked) {

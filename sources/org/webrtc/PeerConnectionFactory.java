@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Process;
 import java.util.List;
 import java.util.Objects;
+import org.telegram.messenger.BuildConfig;
 import org.webrtc.Logging;
 import org.webrtc.PeerConnection;
 import org.webrtc.audio.AudioDeviceModule;
@@ -107,7 +108,7 @@ public class PeerConnectionFactory {
             private boolean enableInternalTracer;
             private Loggable loggable;
             private Logging.Severity loggableSeverity;
-            private String fieldTrials = "";
+            private String fieldTrials = BuildConfig.APP_CENTER_HASH;
             private String nativeLibraryName = "jingle_peerconnection_so";
 
             Builder(Context context) {

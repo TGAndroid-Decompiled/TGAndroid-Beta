@@ -152,7 +152,7 @@ public class ChatThemeController extends BaseController {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         ArrayList arrayList = new ArrayList(i);
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
             try {
                 TLRPC$TL_theme TLdeserialize = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 if (TLdeserialize != null) {
@@ -249,7 +249,7 @@ public class ChatThemeController extends BaseController {
         if (z) {
             TLRPC$TL_messages_setChatTheme tLRPC$TL_messages_setChatTheme = new TLRPC$TL_messages_setChatTheme();
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             tLRPC$TL_messages_setChatTheme.emoticon = str;
             tLRPC$TL_messages_setChatTheme.peer = getMessagesController().getInputPeer(j);
@@ -505,7 +505,7 @@ public class ChatThemeController extends BaseController {
     public static String getWallpaperEmoticon(TLRPC$WallPaper tLRPC$WallPaper) {
         if (tLRPC$WallPaper != null) {
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
-            return (tLRPC$WallPaperSettings == null || TextUtils.isEmpty(tLRPC$WallPaperSettings.emoticon)) ? "" : tLRPC$WallPaper.settings.emoticon;
+            return (tLRPC$WallPaperSettings == null || TextUtils.isEmpty(tLRPC$WallPaperSettings.emoticon)) ? BuildConfig.APP_CENTER_HASH : tLRPC$WallPaper.settings.emoticon;
         }
         return null;
     }

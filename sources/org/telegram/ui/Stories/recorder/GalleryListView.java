@@ -47,6 +47,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.GenericProvider;
@@ -1137,14 +1138,14 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
 
         private String key(MediaController.PhotoEntry photoEntry) {
             if (photoEntry == null) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             String str = photoEntry.thumbPath;
             if (str != null) {
                 return str;
             }
             if (photoEntry.isVideo) {
-                return "" + photoEntry.imageId;
+                return BuildConfig.APP_CENTER_HASH + photoEntry.imageId;
             }
             return photoEntry.path;
         }
@@ -1662,15 +1663,18 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
                 tLRPC$TL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.bot);
                 String str2 = this.query;
+                String str3 = BuildConfig.APP_CENTER_HASH;
                 if (str2 == null) {
-                    str2 = "";
+                    str2 = BuildConfig.APP_CENTER_HASH;
                 }
                 tLRPC$TL_messages_getInlineBotResults.query = str2;
                 tLRPC$TL_messages_getInlineBotResults.peer = new TLRPC$TL_inputPeerEmpty();
-                String str3 = this.lastOffset;
-                String str4 = str3 != null ? str3 : "";
-                tLRPC$TL_messages_getInlineBotResults.offset = str4;
-                final boolean isEmpty = TextUtils.isEmpty(str4);
+                String str4 = this.lastOffset;
+                if (str4 != null) {
+                    str3 = str4;
+                }
+                tLRPC$TL_messages_getInlineBotResults.offset = str3;
+                final boolean isEmpty = TextUtils.isEmpty(str3);
                 this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tLRPC$TL_messages_getInlineBotResults, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

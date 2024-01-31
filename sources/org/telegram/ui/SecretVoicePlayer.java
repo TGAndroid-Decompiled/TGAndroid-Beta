@@ -42,6 +42,7 @@ import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LiteMode;
@@ -938,7 +939,7 @@ public class SecretVoicePlayer extends Dialog {
             this.hintView = hintView22;
             hintView22.setMultilineText(true);
             if (z) {
-                String str = "";
+                String str = BuildConfig.APP_CENTER_HASH;
                 long dialogId = this.messageObject.getDialogId();
                 if (dialogId > 0) {
                     TLRPC$User user = MessagesController.getInstance(this.messageObject.currentAccount).getUser(Long.valueOf(dialogId));

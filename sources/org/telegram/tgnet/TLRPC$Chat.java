@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$Chat extends TLObject {
@@ -879,7 +880,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(this.version);
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                     }
                 };
@@ -1158,7 +1159,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(this.version);
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
                             this.admin_rights_layer92.serializeToStream(abstractSerializedData2);
@@ -1462,7 +1463,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(this.version);
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
                             this.admin_rights_layer92.serializeToStream(abstractSerializedData2);
@@ -2082,7 +2083,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(this.version);
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
                             this.admin_rights_layer92.serializeToStream(abstractSerializedData2);
@@ -2157,7 +2158,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(this.version);
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                     }
                 };
@@ -2248,7 +2249,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(this.version);
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
                             this.admin_rights.serializeToStream(abstractSerializedData2);

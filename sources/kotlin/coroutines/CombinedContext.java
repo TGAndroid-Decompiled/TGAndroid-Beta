@@ -4,6 +4,7 @@ import java.io.Serializable;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
+import org.telegram.messenger.BuildConfig;
 public final class CombinedContext implements CoroutineContext, Serializable {
     private final CoroutineContext.Element element;
     private final CoroutineContext left;
@@ -96,7 +97,7 @@ public final class CombinedContext implements CoroutineContext, Serializable {
     }
 
     public String toString() {
-        return '[' + ((String) fold("", new Function2<String, CoroutineContext.Element, String>() {
+        return '[' + ((String) fold(BuildConfig.APP_CENTER_HASH, new Function2<String, CoroutineContext.Element, String>() {
             @Override
             public final String invoke(String acc, CoroutineContext.Element element) {
                 Intrinsics.checkNotNullParameter(acc, "acc");

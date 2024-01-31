@@ -48,6 +48,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -181,7 +182,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.flickerDrawable = cellFlickerDrawable;
         this.lastButtonColor = getColor(Theme.key_featuredStickers_addButton);
         this.lastButtonTextColor = getColor(Theme.key_featuredStickers_buttonText);
-        this.lastButtonText = "";
+        this.lastButtonText = BuildConfig.APP_CENTER_HASH;
         this.lastDialogType = -1;
         this.shownDialogsCount = 0;
         this.resourcesProvider = resourcesProvider;
@@ -192,14 +193,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                BotWebViewContainer.this = this;
-                this.imageReceiver = new C00211(this);
+                this.imageReceiver = new C00181(this);
             }
 
-            public class C00211 extends ImageReceiver {
-                C00211(View view) {
+            public class C00181 extends ImageReceiver {
+                C00181(View view) {
                     super(view);
-                    AnonymousClass1.this = r1;
                 }
 
                 @Override
@@ -209,7 +208,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00211.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00181.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -284,10 +283,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             private int prevScrollX;
             private int prevScrollY;
 
-            {
-                BotWebViewContainer.this = this;
-            }
-
             @Override
             protected void onScrollChanged(int i, int i2, int i3, int i4) {
                 super.onScrollChanged(i, i2, i3, i4);
@@ -357,10 +352,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         GeolocationPermissions.getInstance().clearAll();
         this.webView.setVerticalScrollBarEnabled(false);
         this.webView.setWebViewClient(new WebViewClient() {
-            {
-                BotWebViewContainer.this = this;
-            }
-
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
                 Uri parse = Uri.parse(str);
@@ -392,17 +383,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         private Dialog lastPermissionsDialog;
 
         AnonymousClass4() {
-            BotWebViewContainer.this = r1;
         }
 
         @Override
         public boolean onCreateWindow(WebView webView, boolean z, boolean z2, Message message) {
             WebView webView2 = new WebView(webView.getContext());
             webView2.setWebViewClient(new WebViewClient() {
-                {
-                    AnonymousClass4.this = this;
-                }
-
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
                     BotWebViewContainer.this.onOpenUri(Uri.parse(str));
@@ -681,10 +667,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.webView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.flickerView, View.ALPHA, 0.0f));
         animatorSet.addListener(new AnimatorListenerAdapter() {
-            {
-                BotWebViewContainer.this = this;
-            }
-
             @Override
             public void onAnimationEnd(Animator animator) {
                 BotWebViewContainer.this.flickerView.setVisibility(8);
@@ -1053,10 +1035,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
 
-            {
-                BotWebViewContainer.this = this;
-            }
-
             @Override
             public int getBottomOffset(int i) {
                 if (BotWebViewContainer.this.getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) {
@@ -1385,7 +1363,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (str != null) {
             str2 = ": " + str;
         } else {
-            str2 = "";
+            str2 = BuildConfig.APP_CENTER_HASH;
         }
         sb.append(str2);
         error(sb.toString());
@@ -1455,10 +1433,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
             }
 
-            {
-                BotWebViewContainer.this = this;
-            }
-
             @Override
             public void didFindQr(String str) {
                 try {
@@ -1503,7 +1477,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public class WebViewProxy {
         private WebViewProxy() {
-            BotWebViewContainer.this = r1;
         }
 
         public void lambda$postEvent$0(String str, String str2) {

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.exoplayer2.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
@@ -45,7 +46,7 @@ public class WebAppDisclaimerAlert {
             public final void run() {
                 WebAppDisclaimerAlert.lambda$show$0(context);
             }
-        }), "", false, false);
+        }), BuildConfig.APP_CENTER_HASH, false, false);
         builder.setView(linearLayout);
         builder.setPositiveButton(LocaleController.getString("Continue", R.string.Continue), new DialogInterface.OnClickListener() {
             @Override

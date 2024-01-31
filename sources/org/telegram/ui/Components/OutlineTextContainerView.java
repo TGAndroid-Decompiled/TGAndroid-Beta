@@ -13,6 +13,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 public class OutlineTextContainerView extends FrameLayout {
@@ -74,7 +75,7 @@ public class OutlineTextContainerView extends FrameLayout {
     public OutlineTextContainerView(Context context) {
         super(context);
         this.rect = new RectF();
-        this.mText = "";
+        this.mText = BuildConfig.APP_CENTER_HASH;
         this.outlinePaint = new Paint(1);
         this.textPaint = new TextPaint(1);
         this.selectionSpring = new SpringAnimation(this, SELECTION_PROGRESS_PROPERTY);

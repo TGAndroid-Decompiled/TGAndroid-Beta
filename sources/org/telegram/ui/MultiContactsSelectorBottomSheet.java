@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -277,7 +278,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 }
             }
         });
-        selectorSearchCell.setText("");
+        selectorSearchCell.setText(BuildConfig.APP_CENTER_HASH);
         selectorSearchCell.spansContainer.removeAllSpans(false);
         selectorSearchCell.updateSpans(false, hashSet, new Runnable() {
             @Override
@@ -439,7 +440,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
     private void clearSearchAfterSelect() {
         if (isSearching()) {
             this.query = null;
-            this.searchField.setText("");
+            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
             AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
             updateItems(true, true);
         }

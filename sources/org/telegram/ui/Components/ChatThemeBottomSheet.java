@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.FileLoader;
@@ -198,7 +199,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         int themedColor = getThemedColor(i2);
         int dp2 = AndroidUtilities.dp(28.0f);
         int i3 = R.raw.sun_outline;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, "" + i3, dp2, dp2, false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, dp2, dp2, false, null);
         this.darkThemeDrawable = rLottieDrawable;
         this.forceDark = Theme.getActiveTheme().isDark() ^ true;
         setForceDark(Theme.getActiveTheme().isDark(), false);
@@ -334,7 +335,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             if (chatActivity.getCurrentUser() != null) {
                 str = UserObject.getFirstName(chatActivity.getCurrentUser());
             } else {
-                str = chatActivity.getCurrentChat() != null ? chatActivity.getCurrentChat().title : "";
+                str = chatActivity.getCurrentChat() != null ? chatActivity.getCurrentChat().title : BuildConfig.APP_CENTER_HASH;
             }
             this.themeHintTextView.setText(LocaleController.formatString("ChatThemeApplyHint", R.string.ChatThemeApplyHint, str));
             this.themeHintTextView.setTextSize(1, 15.0f);
@@ -1519,7 +1520,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                     android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap) {
+                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, new WallpapersListActivity.FileWallpaper(BuildConfig.APP_CENTER_HASH, file, file), loadBitmap) {
                         @Override
                         public boolean insideBottomSheet() {
                             return true;
@@ -1706,7 +1707,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                     android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap) {
+                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, new WallpapersListActivity.FileWallpaper(BuildConfig.APP_CENTER_HASH, file, file), loadBitmap) {
                         @Override
                         public boolean insideBottomSheet() {
                             return true;
