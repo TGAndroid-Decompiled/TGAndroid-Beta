@@ -3,13 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +38,8 @@ import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.StoryViewer;
@@ -221,8 +225,8 @@ public final class BulletinFactory {
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setLines(2);
         lottieLayout.textView.setMaxLines(4);
-        LinkSpanDrawable.LinksTextView linksTextView = lottieLayout.textView;
-        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), lottieLayout.textView.getPaint()));
+        TextView textView = lottieLayout.textView;
+        textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), lottieLayout.textView.getPaint()));
         ((ViewGroup.MarginLayoutParams) lottieLayout.textView.getLayoutParams()).rightMargin = AndroidUtilities.dp(12.0f);
         lottieLayout.setWrapWidth();
         return create(lottieLayout, 5000);
@@ -830,13 +834,13 @@ public final class BulletinFactory {
     public static Bulletin createMuteBulletin(BaseFragment baseFragment, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
         String formatPluralString;
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
-        LinkSpanDrawable.LinksTextView linksTextView = lottieLayout.textView;
+        TextView textView = lottieLayout.textView;
         if (z) {
             formatPluralString = LocaleController.formatPluralString("NotificationsMutedHintChats", i, new Object[0]);
         } else {
             formatPluralString = LocaleController.formatPluralString("NotificationsUnmutedHintChats", i, new Object[0]);
         }
-        linksTextView.setText(formatPluralString);
+        textView.setText(formatPluralString);
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_mute, "Body Main", "Body Top", "Line", "Curve Big", "Curve Small");
         } else {
@@ -906,6 +910,31 @@ public final class BulletinFactory {
 
     public static org.telegram.ui.Components.Bulletin createInviteSentBulletin(android.content.Context r3, android.widget.FrameLayout r4, int r5, long r6, int r8, int r9, int r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createInviteSentBulletin(android.content.Context, android.widget.FrameLayout, int, long, int, int, int):org.telegram.ui.Components.Bulletin");
+    }
+
+    public boolean showForwardedBulletinWithTag(long j, int i) {
+        SpannableStringBuilder replaceSingleTag;
+        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+            Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
+            if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+                if (i <= 1) {
+                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+                } else {
+                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+                }
+                lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
+                lottieLayoutWithReactions.textView.setText(replaceSingleTag);
+                lottieLayoutWithReactions.textView.setSingleLine(false);
+                lottieLayoutWithReactions.textView.setMaxLines(2);
+                Bulletin create = create(lottieLayoutWithReactions, 3500);
+                lottieLayoutWithReactions.setBulletin(create);
+                create.hideAfterBottomSheet(false);
+                create.show(true);
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     public static org.telegram.ui.Components.Bulletin createForwardedBulletin(android.content.Context r4, android.widget.FrameLayout r5, int r6, long r7, int r9, int r10, int r11) {
@@ -998,5 +1027,35 @@ public final class BulletinFactory {
         }
         lottieLayout.textView.setText(string);
         return Bulletin.make(baseFragment, lottieLayout, 1500);
+    }
+
+    public Bulletin createMessagesTaggedBulletin(int i, TLRPC$Document tLRPC$Document, Runnable runnable) {
+        String string;
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        lottieLayout.setAnimation(R.raw.tag_icon_3, 36, 36, new String[0]);
+        lottieLayout.removeView(lottieLayout.textView);
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(lottieLayout.getContext());
+        lottieLayout.textView = textViewEmojis;
+        textViewEmojis.setTypeface(Typeface.SANS_SERIF);
+        lottieLayout.textView.setTextSize(1, 15.0f);
+        lottieLayout.textView.setEllipsize(TextUtils.TruncateAt.END);
+        lottieLayout.textView.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+        TextPaint textPaint = new TextPaint();
+        textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+        SpannableString spannableString = new SpannableString("d");
+        spannableString.setSpan(new AnimatedEmojiSpan(tLRPC$Document, textPaint.getFontMetricsInt()), 0, spannableString.length(), 33);
+        TextView textView = lottieLayout.textView;
+        if (i > 1) {
+            string = LocaleController.formatPluralString("SavedTagMessagesTagged", i, new Object[0]);
+        } else {
+            string = LocaleController.getString(R.string.SavedTagMessageTagged);
+        }
+        textView.setText(new SpannableStringBuilder(string).append((CharSequence) " ").append((CharSequence) spannableString));
+        if (runnable != null) {
+            lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString(R.string.ViewAction)).setUndoAction(runnable));
+        }
+        lottieLayout.setTextColor(Theme.getColor(Theme.key_undo_infoColor, this.resourcesProvider));
+        lottieLayout.addView(lottieLayout.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 56.0f, 2.0f, 8.0f, 0.0f));
+        return create(lottieLayout, 2750);
     }
 }

@@ -4335,6 +4335,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                    }
+
+                    @Override
                     public String getAdminRank(long j) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                     }

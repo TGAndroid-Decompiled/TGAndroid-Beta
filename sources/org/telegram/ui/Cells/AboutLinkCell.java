@@ -105,6 +105,10 @@ public class AboutLinkCell extends FrameLayout {
         return false;
     }
 
+    protected int processColor(int i) {
+        return i;
+    }
+
     public AboutLinkCell(Context context, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         new Point();
@@ -203,6 +207,10 @@ public class AboutLinkCell extends FrameLayout {
         updateCollapse(true, true);
     }
 
+    public void updateColors() {
+        Theme.profile_aboutTextPaint.linkColor = processColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z;
@@ -299,7 +307,7 @@ public class AboutLinkCell extends FrameLayout {
         this.textY = dp2;
         canvas.translate(0.0f, dp2);
         try {
-            Theme.profile_aboutTextPaint.linkColor = Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider);
+            Theme.profile_aboutTextPaint.linkColor = processColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
             staticLayout = this.firstThreeLinesLayout;
         } catch (Exception e) {
             FileLog.e(e);
@@ -511,7 +519,8 @@ public class AboutLinkCell extends FrameLayout {
             if (clickableSpanArr.length == 0 || AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                 return null;
             }
-            LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanArr[0], this.parentFragment.getResourceProvider(), i3, i4);
+            LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanArr[0], this.resourcesProvider, i3, i4);
+            linkSpanDrawable.setColor(processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider)));
             int spanStart = spannable.getSpanStart(clickableSpanArr[0]);
             int spanEnd = spannable.getSpanEnd(clickableSpanArr[0]);
             LinkPath obtainNewPath = linkSpanDrawable.obtainNewPath();
@@ -575,9 +584,9 @@ public class AboutLinkCell extends FrameLayout {
             LoadingDrawable makeLoading = LinkSpanDrawable.LinkCollector.makeLoading(this.val$layout, this.val$pressedLink, this.val$yOffset);
             this.thisLoading = makeLoading;
             aboutLinkCell.currentLoading = makeLoading;
-            LoadingDrawable loadingDrawable = this.thisLoading;
-            int i = Theme.key_chat_linkSelectBackground;
-            loadingDrawable.setColors(Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 0.8f), Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 1.3f), Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 1.0f), Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 4.0f));
+            AboutLinkCell aboutLinkCell2 = AboutLinkCell.this;
+            int processColor = aboutLinkCell2.processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, aboutLinkCell2.resourcesProvider));
+            this.thisLoading.setColors(Theme.multAlpha(processColor, 0.8f), Theme.multAlpha(processColor, 1.3f), Theme.multAlpha(processColor, 1.0f), Theme.multAlpha(processColor, 4.0f));
             this.thisLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
             AboutLinkCell.this.links.addLoading(this.thisLoading);
         }

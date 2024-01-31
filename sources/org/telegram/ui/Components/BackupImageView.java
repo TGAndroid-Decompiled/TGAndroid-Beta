@@ -349,6 +349,10 @@ public class BackupImageView extends View {
         invalidate();
     }
 
+    public AnimatedEmojiDrawable getAnimatedEmojiDrawable() {
+        return this.animatedEmojiDrawable;
+    }
+
     public void animateToRoundRadius(int i) {
         if (getRoundRadius()[0] != i) {
             ValueAnimator valueAnimator = this.roundRadiusAnimator;

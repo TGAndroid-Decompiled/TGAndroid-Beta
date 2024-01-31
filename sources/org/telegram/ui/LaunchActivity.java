@@ -204,6 +204,7 @@ import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.BoostPagerBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.SearchTagsList;
 import org.telegram.ui.Components.SideMenultItemAnimator;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickersAlert;
@@ -286,6 +287,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private FrameLayout shadowTabletSide;
     private RecyclerListView sideMenu;
     private FrameLayout sideMenuContainer;
+    private boolean switchingAccount;
     private HashMap<String, String> systemLocaleStrings;
     private boolean tabletFullSize;
     private int[] tempLocation;
@@ -1541,6 +1543,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (i == UserConfig.selectedAccount || !UserConfig.isValidAccount(i)) {
             return;
         }
+        this.switchingAccount = true;
         ConnectionsManager.getInstance(this.currentAccount).setAppPaused(true, false);
         UserConfig.selectedAccount = i;
         UserConfig.getInstance(0).saveConfig(false);
@@ -1578,6 +1581,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             showTosActivity(i, UserConfig.getInstance(i).unacceptedTermsOfService);
         }
         updateCurrentConnectionState(this.currentAccount);
+        this.switchingAccount = false;
     }
 
     private void switchToAvailableAccountOrLogout() {
@@ -5379,32 +5383,32 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         PasscodeView passcodeView = this.passcodeView;
         if (passcodeView != null && passcodeView.getVisibility() == 0) {
             finish();
-            return;
-        }
-        if (ContentPreviewViewer.hasInstance() && ContentPreviewViewer.getInstance().isVisible()) {
-            ContentPreviewViewer.getInstance().closeWithMenu();
-        }
-        if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
-            SecretMediaViewer.getInstance().closePhoto(true, false);
-        } else if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
-            PhotoViewer.getInstance().closePhoto(true, false);
-        } else if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
-            ArticleViewer.getInstance().close(true, false);
-        } else if (this.drawerLayoutContainer.isDrawerOpened()) {
-            this.drawerLayoutContainer.closeDrawer(false);
-        } else if (AndroidUtilities.isTablet()) {
-            if (this.layersActionBarLayout.getView().getVisibility() == 0) {
-                this.layersActionBarLayout.onBackPressed();
-            } else if (this.rightActionBarLayout.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
-                BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
-                if (baseFragment.onBackPressed()) {
-                    baseFragment.finishFragment();
+        } else if (SearchTagsList.onBackPressedRenameTagAlert()) {
+        } else {
+            if (ContentPreviewViewer.hasInstance() && ContentPreviewViewer.getInstance().isVisible()) {
+                ContentPreviewViewer.getInstance().closeWithMenu();
+            } else if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
+                SecretMediaViewer.getInstance().closePhoto(true, false);
+            } else if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
+                PhotoViewer.getInstance().closePhoto(true, false);
+            } else if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
+                ArticleViewer.getInstance().close(true, false);
+            } else if (this.drawerLayoutContainer.isDrawerOpened()) {
+                this.drawerLayoutContainer.closeDrawer(false);
+            } else if (AndroidUtilities.isTablet()) {
+                if (this.layersActionBarLayout.getView().getVisibility() == 0) {
+                    this.layersActionBarLayout.onBackPressed();
+                } else if (this.rightActionBarLayout.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
+                    BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
+                    if (baseFragment.onBackPressed()) {
+                        baseFragment.finishFragment();
+                    }
+                } else {
+                    this.actionBarLayout.onBackPressed();
                 }
             } else {
                 this.actionBarLayout.onBackPressed();
             }
-        } else {
-            this.actionBarLayout.onBackPressed();
         }
     }
 
@@ -5759,7 +5763,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
         if (AndroidUtilities.isTablet()) {
-            if (iNavigationLayout == this.actionBarLayout && iNavigationLayout.getFragmentStack().size() <= 1) {
+            if (iNavigationLayout == this.actionBarLayout && iNavigationLayout.getFragmentStack().size() <= 1 && !this.switchingAccount) {
                 onFinish();
                 finish();
                 return false;

@@ -20,6 +20,7 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -51,18 +52,27 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.support.SparseLongArray;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.LaunchActivity;
 public class Bulletin {
     private static final HashMap<FrameLayout, Delegate> delegates = new HashMap<>();
     private static final HashMap<BaseFragment, Delegate> fragmentDelegates = new HashMap<>();
@@ -1237,13 +1247,17 @@ public class Bulletin {
             updatePosition();
         }
 
+        protected int getMeasuredBackgroundHeight() {
+            return getMeasuredHeight();
+        }
+
         @Override
         protected void dispatchDraw(Canvas canvas) {
             Delegate delegate;
             if (this.bulletin == null) {
                 return;
             }
-            this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+            this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (delegate = this.delegate) != null) {
                 float topOffset = delegate.getTopOffset(this.bulletin.tag) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
@@ -1516,10 +1530,206 @@ public class Bulletin {
         }
     }
 
+    public static class LottieLayoutWithReactions extends LottieLayout implements NotificationCenter.NotificationCenterDelegate {
+        private Bulletin bulletin;
+        private final BaseFragment fragment;
+        private final int messagesCount;
+        private SparseLongArray newMessagesByIds;
+        private ReactionsContainerLayout reactionsContainerLayout;
+
+        public LottieLayoutWithReactions(BaseFragment baseFragment, int i) {
+            super(baseFragment.getContext(), baseFragment.getResourceProvider());
+            this.fragment = baseFragment;
+            this.messagesCount = i;
+            init();
+        }
+
+        public void setBulletin(Bulletin bulletin) {
+            this.bulletin = bulletin;
+        }
+
+        public void init() {
+            this.textView.setLayoutParams(LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+            this.imageView.setLayoutParams(LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388659));
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(3, this.fragment, getContext(), this.fragment.getCurrentAccount(), this.fragment.getResourceProvider());
+            this.reactionsContainerLayout = anonymousClass1;
+            anonymousClass1.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
+            this.reactionsContainerLayout.setDelegate(new AnonymousClass2());
+            this.reactionsContainerLayout.setTop(true);
+            this.reactionsContainerLayout.setClipChildren(false);
+            this.reactionsContainerLayout.setClipToPadding(false);
+            this.reactionsContainerLayout.setVisibility(0);
+            this.reactionsContainerLayout.setBubbleOffset(-AndroidUtilities.dp(80.0f));
+            this.reactionsContainerLayout.setHint(LocaleController.getString("SavedTagReactionsHint", R.string.SavedTagReactionsHint));
+            addView(this.reactionsContainerLayout, LayoutHelper.createFrame(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
+            this.reactionsContainerLayout.setMessage(null, null);
+        }
+
+        public class AnonymousClass1 extends ReactionsContainerLayout {
+            AnonymousClass1(int i, BaseFragment baseFragment, Context context, int i2, Theme.ResourcesProvider resourcesProvider) {
+                super(i, baseFragment, context, i2, resourcesProvider);
+                LottieLayoutWithReactions.this = r7;
+            }
+
+            @Override
+            protected void onShownCustomEmojiReactionDialog() {
+                Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
+                if (visibleBulletin != null) {
+                    visibleBulletin.setCanHide(false);
+                }
+                LottieLayoutWithReactions.this.reactionsContainerLayout.getReactionsWindow().windowView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass1.this.lambda$onShownCustomEmojiReactionDialog$0(view);
+                    }
+                });
+            }
+
+            public void lambda$onShownCustomEmojiReactionDialog$0(View view) {
+                LottieLayoutWithReactions.this.hideReactionsDialog();
+                Bulletin.hideVisible();
+            }
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 0) {
+                    if (LottieLayoutWithReactions.this.bulletin != null) {
+                        LottieLayoutWithReactions.this.bulletin.setCanHide(false);
+                    }
+                } else if (motionEvent.getAction() == 1 && LottieLayoutWithReactions.this.bulletin != null) {
+                    LottieLayoutWithReactions.this.bulletin.setCanHide(true);
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            }
+        }
+
+        public class AnonymousClass2 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+            @Override
+            public boolean drawBackground() {
+                return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
+            }
+
+            @Override
+            public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
+                ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3, i, z);
+            }
+
+            @Override
+            public boolean needEnterText() {
+                return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
+            }
+
+            @Override
+            public void onEmojiWindowDismissed() {
+                ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
+            }
+
+            AnonymousClass2() {
+                LottieLayoutWithReactions.this = r1;
+            }
+
+            @Override
+            public void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+                if (LottieLayoutWithReactions.this.newMessagesByIds == null) {
+                    return;
+                }
+                boolean z3 = (LottieLayoutWithReactions.this.fragment instanceof ChatActivity) && ((ChatActivity) LottieLayoutWithReactions.this.fragment).getDialogId() == UserConfig.getInstance(LottieLayoutWithReactions.this.fragment.getCurrentAccount()).getClientUserId();
+                int i = 0;
+                for (int i2 = 0; i2 < LottieLayoutWithReactions.this.newMessagesByIds.size(); i2++) {
+                    int keyAt = LottieLayoutWithReactions.this.newMessagesByIds.keyAt(i2);
+                    TLRPC$Message tLRPC$Message = new TLRPC$Message();
+                    tLRPC$Message.dialog_id = LottieLayoutWithReactions.this.fragment.getUserConfig().getClientUserId();
+                    tLRPC$Message.id = keyAt;
+                    MessageObject messageObject = new MessageObject(LottieLayoutWithReactions.this.fragment.getCurrentAccount(), tLRPC$Message, false, false);
+                    ArrayList<ReactionsLayoutInBubble.VisibleReaction> arrayList = new ArrayList<>();
+                    arrayList.add(visibleReaction);
+                    LottieLayoutWithReactions.this.fragment.getSendMessagesHelper().sendReaction(messageObject, arrayList, visibleReaction, false, false, LottieLayoutWithReactions.this.fragment, null);
+                    i = tLRPC$Message.id;
+                }
+                LottieLayoutWithReactions.this.hideReactionsDialog();
+                Bulletin.hideVisible();
+                showTaggedReactionToast(visibleReaction, LottieLayoutWithReactions.this.fragment.getCurrentAccount(), i, !z3);
+            }
+
+            private void showTaggedReactionToast(final ReactionsLayoutInBubble.VisibleReaction visibleReaction, final int i, final int i2, final boolean z) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.this.lambda$showTaggedReactionToast$1(visibleReaction, z, i, i2);
+                    }
+                }, 300L);
+            }
+
+            public void lambda$showTaggedReactionToast$1(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
+                TLRPC$Document findDocument;
+                final BaseFragment lastFragment = LaunchActivity.getLastFragment();
+                long j = visibleReaction.documentId;
+                if (j == 0) {
+                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon);
+                    if (tLRPC$TL_availableReaction == null) {
+                        return;
+                    }
+                    findDocument = tLRPC$TL_availableReaction.activate_animation;
+                } else {
+                    findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j);
+                }
+                if (findDocument == null || lastFragment == null) {
+                    return;
+                }
+                BulletinFactory.of(lastFragment).createMessagesTaggedBulletin(LottieLayoutWithReactions.this.messagesCount, findDocument, z ? new Runnable() {
+                    @Override
+                    public final void run() {
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.lambda$showTaggedReactionToast$0(i, i2, lastFragment);
+                    }
+                } : null).show(true);
+            }
+
+            public static void lambda$showTaggedReactionToast$0(int i, int i2, BaseFragment baseFragment) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", UserConfig.getInstance(i).getClientUserId());
+                bundle.putInt("message_id", i2);
+                baseFragment.presentFragment(new ChatActivity(bundle));
+            }
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.savedMessagesForwarded);
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.savedMessagesForwarded);
+        }
+
+        public void hideReactionsDialog() {
+            if (this.reactionsContainerLayout.getReactionsWindow() != null) {
+                this.reactionsContainerLayout.dismissWindow();
+                if (this.reactionsContainerLayout.getReactionsWindow().containerView != null) {
+                    this.reactionsContainerLayout.getReactionsWindow().containerView.animate().alpha(0.0f).setDuration(180L).start();
+                }
+            }
+        }
+
+        @Override
+        protected int getMeasuredBackgroundHeight() {
+            return this.textView.getMeasuredHeight() + AndroidUtilities.dp(30.0f);
+        }
+
+        @Override
+        public void didReceivedNotification(int i, int i2, Object... objArr) {
+            if (i == NotificationCenter.savedMessagesForwarded) {
+                this.newMessagesByIds = (SparseLongArray) objArr[0];
+            }
+        }
+    }
+
     public static class LottieLayout extends ButtonLayout {
         public RLottieImageView imageView;
         private int textColor;
-        public LinkSpanDrawable.LinksTextView textView;
+        public TextView textView;
 
         public LottieLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
@@ -1528,6 +1738,10 @@ public class Bulletin {
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(this, context) {
+                {
+                    setDisablePaddingsOffset(true);
+                }
+
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(13.0f), false), bufferType);
@@ -1535,7 +1749,6 @@ public class Bulletin {
             };
             this.textView = linksTextView;
             NotificationCenter.listenEmojiLoading(linksTextView);
-            this.textView.setDisablePaddingsOffset(true);
             this.textView.setSingleLine();
             this.textView.setTypeface(Typeface.SANS_SERIF);
             this.textView.setTextSize(1, 15.0f);

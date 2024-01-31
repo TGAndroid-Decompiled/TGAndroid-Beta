@@ -192,6 +192,9 @@ public class ThanosEffect extends TextureView {
     }
 
     public void kill() {
+        if (this.destroyed) {
+            return;
+        }
         this.destroyed = true;
         Iterator<ToSet> it = this.toSet.iterator();
         while (it.hasNext()) {
@@ -293,7 +296,6 @@ public class ThanosEffect extends TextureView {
         private int gridSizeHandle;
         private int height;
         private final Runnable invalidate;
-        private boolean killed;
         private int longevityHandle;
         private int matrixHandle;
         private int offsetHandle;
@@ -338,7 +340,7 @@ public class ThanosEffect extends TextureView {
             } else if (i == 2) {
                 killInternal();
             } else if (i == 3) {
-                addAnimationInternal((Animation) message.obj);
+                lambda$animateGroup$2((Animation) message.obj);
             } else if (i != 4) {
                 if (i != 5) {
                     return;
@@ -360,7 +362,7 @@ public class ThanosEffect extends TextureView {
                 init();
                 if (!this.toAddAnimations.isEmpty()) {
                     while (i < this.toAddAnimations.size()) {
-                        addAnimationInternal(this.toAddAnimations.get(i));
+                        lambda$animateGroup$2(this.toAddAnimations.get(i));
                         i++;
                     }
                     this.toAddAnimations.clear();
@@ -418,16 +420,14 @@ public class ThanosEffect extends TextureView {
         }
 
         public void kill() {
-            if (this.killed) {
-                return;
-            }
-            try {
-                Handler handler = getHandler();
-                if (handler != null) {
-                    handler.sendMessage(handler.obtainMessage(2));
+            if (this.alive) {
+                try {
+                    Handler handler = getHandler();
+                    if (handler != null) {
+                        handler.sendMessage(handler.obtainMessage(2));
+                    }
+                } catch (Exception unused) {
                 }
-                this.killed = true;
-            } catch (Exception unused) {
             }
         }
 
@@ -618,29 +618,56 @@ public class ThanosEffect extends TextureView {
         }
 
         public void animateGroup(ArrayList<View> arrayList, Runnable runnable) {
-            if (this.alive) {
-                Animation animation = new Animation(this, arrayList, runnable);
-                Handler handler = getHandler();
-                this.running = true;
-                if (handler == null) {
-                    this.toAddAnimations.add(animation);
-                } else {
-                    handler.sendMessage(handler.obtainMessage(3, animation));
+            if (!this.alive) {
+                for (int i = 0; i < arrayList.size(); i++) {
+                    arrayList.get(i).setVisibility(8);
                 }
+                if (runnable != null) {
+                    AndroidUtilities.runOnUIThread(runnable);
+                }
+                Runnable runnable2 = this.destroy;
+                if (runnable2 != null) {
+                    AndroidUtilities.runOnUIThread(runnable2);
+                    this.destroy = null;
+                    return;
+                }
+                return;
             }
+            final Animation animation = new Animation(this, arrayList, runnable);
+            this.running = true;
+            postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ThanosEffect.DrawingThread.this.lambda$animateGroup$2(animation);
+                }
+            });
         }
 
         public void animate(View view, float f, Runnable runnable) {
-            if (this.alive) {
-                Animation animation = new Animation(view, f, runnable);
-                Handler handler = getHandler();
-                this.running = true;
-                if (handler == null) {
-                    this.toAddAnimations.add(animation);
-                } else {
-                    handler.sendMessage(handler.obtainMessage(3, animation));
+            if (!this.alive) {
+                if (view != null) {
+                    view.setVisibility(8);
                 }
+                if (runnable != null) {
+                    AndroidUtilities.runOnUIThread(runnable);
+                }
+                Runnable runnable2 = this.destroy;
+                if (runnable2 != null) {
+                    AndroidUtilities.runOnUIThread(runnable2);
+                    this.destroy = null;
+                    return;
+                }
+                return;
             }
+            final Animation animation = new Animation(view, f, runnable);
+            getHandler();
+            this.running = true;
+            postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ThanosEffect.DrawingThread.this.lambda$animate$3(animation);
+                }
+            });
         }
 
         public void cancel(View view) {
@@ -680,16 +707,39 @@ public class ThanosEffect extends TextureView {
             }
         }
 
-        public void animate(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-            if (this.alive) {
-                Animation animation = new Animation(matrix, bitmap, runnable, runnable2);
-                Handler handler = getHandler();
-                this.running = true;
-                if (handler == null) {
-                    this.toAddAnimations.add(animation);
-                } else {
-                    handler.sendMessage(handler.obtainMessage(3, animation));
+        public void animate(Matrix matrix, Bitmap bitmap, final Runnable runnable, final Runnable runnable2) {
+            if (!this.alive) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ThanosEffect.DrawingThread.lambda$animate$4(runnable, runnable2);
+                    }
+                });
+                Runnable runnable3 = this.destroy;
+                if (runnable3 != null) {
+                    AndroidUtilities.runOnUIThread(runnable3);
+                    this.destroy = null;
+                    return;
                 }
+                return;
+            }
+            final Animation animation = new Animation(matrix, bitmap, runnable, runnable2);
+            getHandler();
+            this.running = true;
+            postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ThanosEffect.DrawingThread.this.lambda$animate$5(animation);
+                }
+            });
+        }
+
+        public static void lambda$animate$4(Runnable runnable, Runnable runnable2) {
+            if (runnable != null) {
+                runnable.run();
+            }
+            if (runnable2 != null) {
+                AndroidUtilities.runOnUIThread(runnable2);
             }
         }
 
@@ -706,7 +756,7 @@ public class ThanosEffect extends TextureView {
             }
         }
 
-        private void addAnimationInternal(Animation animation) {
+        public void lambda$animateGroup$2(Animation animation) {
             GLES31.glGenTextures(1, animation.texture, 0);
             GLES20.glBindTexture(3553, animation.texture[0]);
             GLES20.glTexParameteri(3553, 10241, 9729);

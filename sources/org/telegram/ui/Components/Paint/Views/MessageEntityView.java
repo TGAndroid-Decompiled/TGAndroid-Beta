@@ -753,9 +753,9 @@ public class MessageEntityView extends EntityView {
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) {
-                MessageObject.GroupedMessagePosition groupedMessagePosition;
+                MessageObject.GroupedMessagePosition position;
                 MessageObject messageObject2 = MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
-                ((ChatMessageCell) viewHolder.itemView).setMessageObject(messageObject2, MessageEntityView.this.groupedMessages, MessageEntityView.this.groupedMessages != null, (MessageEntityView.this.groupedMessages == null || (groupedMessagePosition = MessageEntityView.this.groupedMessages.positions.get(messageObject2)) == null || groupedMessagePosition.minY == 0) ? false : true);
+                ((ChatMessageCell) viewHolder.itemView).setMessageObject(messageObject2, MessageEntityView.this.groupedMessages, MessageEntityView.this.groupedMessages != null, (MessageEntityView.this.groupedMessages == null || (position = MessageEntityView.this.groupedMessages.getPosition(messageObject2)) == null || position.minY == 0) ? false : true);
             }
 
             @Override
@@ -782,15 +782,15 @@ public class MessageEntityView extends EntityView {
                 byte b;
                 int size = (MessageEntityView.this.messageObjects.size() - 1) - i4;
                 if (MessageEntityView.this.groupedMessages != null && size >= 0 && size < MessageEntityView.this.messageObjects.size()) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = MessageEntityView.this.groupedMessages.positions.get(MessageEntityView.this.messageObjects.get(size));
-                    if (groupedMessagePosition != null && groupedMessagePosition.minX != groupedMessagePosition.maxX && (b = groupedMessagePosition.minY) == groupedMessagePosition.maxY && b != 0) {
+                    MessageObject.GroupedMessagePosition position = MessageEntityView.this.groupedMessages.getPosition(MessageEntityView.this.messageObjects.get(size));
+                    if (position != null && position.minX != position.maxX && (b = position.minY) == position.maxY && b != 0) {
                         int size2 = MessageEntityView.this.groupedMessages.posArray.size();
                         for (int i5 = 0; i5 < size2; i5++) {
-                            MessageObject.GroupedMessagePosition groupedMessagePosition2 = MessageEntityView.this.groupedMessages.posArray.get(i5);
-                            if (groupedMessagePosition2 != groupedMessagePosition) {
-                                byte b2 = groupedMessagePosition2.minY;
-                                byte b3 = groupedMessagePosition.minY;
-                                if (b2 <= b3 && groupedMessagePosition2.maxY >= b3) {
+                            MessageObject.GroupedMessagePosition groupedMessagePosition = MessageEntityView.this.groupedMessages.posArray.get(i5);
+                            if (groupedMessagePosition != position) {
+                                byte b2 = groupedMessagePosition.minY;
+                                byte b3 = position.minY;
+                                if (b2 <= b3 && groupedMessagePosition.maxY >= b3) {
                                     return true;
                                 }
                             }
@@ -807,9 +807,9 @@ public class MessageEntityView extends EntityView {
                 if (MessageEntityView.this.groupedMessages == null || size < 0 || size >= MessageEntityView.this.groupedMessages.messages.size()) {
                     return 1000;
                 }
-                MessageObject.GroupedMessagePosition groupedMessagePosition = MessageEntityView.this.groupedMessages.positions.get(MessageEntityView.this.groupedMessages.messages.get(size));
-                if (groupedMessagePosition != null) {
-                    return groupedMessagePosition.spanSize;
+                MessageObject.GroupedMessagePosition position = MessageEntityView.this.groupedMessages.getPosition(MessageEntityView.this.groupedMessages.messages.get(size));
+                if (position != null) {
+                    return position.spanSize;
                 }
                 return 1000;
             }

@@ -15,7 +15,7 @@ public class BlurredFrameLayout extends FrameLayout {
     protected Paint backgroundPaint;
     public boolean drawBlur;
     public boolean isTopView;
-    private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+    protected final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public BlurredFrameLayout(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
         super(context);

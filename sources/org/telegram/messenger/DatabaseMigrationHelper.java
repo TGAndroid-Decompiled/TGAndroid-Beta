@@ -1313,9 +1313,20 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 138").stepThis().dispose();
             i7 = 138;
         }
-        if (i7 == 138) {
-            sQLiteDatabase.executeFast("CREATE TABLE IF NOT EXISTS saved_reaction_tags (data BLOB);").stepThis().dispose();
-            sQLiteDatabase.executeFast("PRAGMA user_version = 139").stepThis().dispose();
+        if (i7 == 138 || i7 == 139 || i7 == 140 || i7 == 141) {
+            sQLiteDatabase.executeFast("DROP TABLE IF EXISTS tag_message_id;").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE tag_message_id(mid INTEGER, topic_id INTEGER, tag INTEGER, text TEXT);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS tag_idx_tag_message_id ON tag_message_id(tag);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS tag_text_idx_tag_message_id ON tag_message_id(tag, text);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS tag_topic_idx_tag_message_id ON tag_message_id(topic_id, tag);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS tag_topic_text_idx_tag_message_id ON tag_message_id(topic_id, tag, text);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 142").stepThis().dispose();
+            i7 = 142;
+        }
+        if (i7 == 142) {
+            sQLiteDatabase.executeFast("DROP TABLE IF EXISTS saved_reaction_tags;").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE saved_reaction_tags (topic_id INTEGER PRIMARY KEY, data BLOB);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 143").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1361,7 +1372,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 139) {
+        if (intValue != 143) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

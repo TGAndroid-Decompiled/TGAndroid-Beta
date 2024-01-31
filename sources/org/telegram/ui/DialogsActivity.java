@@ -186,6 +186,7 @@ import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerItemsEnterAnimator;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchViewPager;
+import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ViewPagerFixed;
@@ -403,6 +404,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private ArrayList<Long> selectedDialogs;
     private NumberTextView selectedDialogsCountTextView;
     private ActionBarPopupWindow sendPopupWindow;
+    private SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
     private int shiftDp;
     private boolean showSetPasswordConfirm;
     private String showingSuggestion;
@@ -2176,6 +2178,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getMessagesController().getStoriesController().loadStories();
         }
         getContactsController().loadGlobalPrivacySetting();
+        if (getMessagesController().savedViewAsChats) {
+            getMessagesController().getSavedMessagesController().preloadDialogs(true);
+        }
         return true;
     }
 

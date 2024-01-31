@@ -55,6 +55,11 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         this.backHeight = i2;
     }
 
+    public void setIconOffset(int i, int i2) {
+        this.offsetX = i;
+        this.offsetY = i2;
+    }
+
     public Drawable getIcon() {
         return this.icon;
     }

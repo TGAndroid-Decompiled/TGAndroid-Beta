@@ -197,7 +197,10 @@ public class WebviewActivity extends BaseFragment {
             this.progressView.setVisibility(4);
         } else if (i == 1) {
             this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-            this.actionBar.setItemsColor(Theme.getColor(Theme.key_player_actionBarItems), false);
+            ActionBar actionBar2 = this.actionBar;
+            int i2 = Theme.key_player_actionBarItems;
+            actionBar2.setItemsColor(Theme.getColor(i2), false);
+            this.actionBar.setItemsColor(Theme.getColor(i2), true);
             this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_player_actionBarSelector), false);
             this.actionBar.setTitleColor(Theme.getColor(Theme.key_player_actionBarTitle));
             this.actionBar.setSubtitleColor(Theme.getColor(Theme.key_player_actionBarSubtitle));
@@ -220,14 +223,14 @@ public class WebviewActivity extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 19) {
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 >= 19) {
             this.webView.setLayerType(2, null);
         }
-        if (i2 >= 17) {
+        if (i3 >= 17) {
             this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
         }
-        if (i2 >= 21) {
+        if (i3 >= 21) {
             this.webView.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
             if (this.type == 0) {

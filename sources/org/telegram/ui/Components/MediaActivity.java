@@ -6,6 +6,8 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.MotionEvent;
@@ -88,6 +90,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private StoriesTabsView tabsView;
     private FrameLayout[] titles;
     private FrameLayout titlesContainer;
+    private long topicId;
     private int type;
     private ActionBarMenuSubItem zoomInItem;
     private ActionBarMenuSubItem zoomOutItem;
@@ -111,12 +114,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     public boolean onFragmentCreate() {
         this.type = getArguments().getInt("type", 0);
         this.dialogId = getArguments().getLong("dialog_id");
+        this.topicId = getArguments().getLong("topic_id", 0L);
         int i = this.type;
         this.initialTab = getArguments().getInt("start_from", i == 2 ? 9 : i == 1 ? 8 : 0);
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().addObserver(this, NotificationCenter.storiesEnabledUpdate);
-        if (DialogObject.isUserDialog(this.dialogId)) {
+        if (DialogObject.isUserDialog(this.dialogId) && this.topicId == 0) {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.dialogId));
             if (UserObject.isUserSelf(user)) {
                 getMessagesController().loadUserInfo(user, false, this.classGuid);
@@ -155,7 +159,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     @Override
-    public android.view.View createView(android.content.Context r32) {
+    public android.view.View createView(android.content.Context r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -176,6 +180,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 if (i == 10) {
                     SharedMediaLayout sharedMediaLayout = MediaActivity.this.sharedMediaLayout;
                     sharedMediaLayout.showMediaCalendar(sharedMediaLayout.getClosestTab(), false);
+                } else if (i == 11) {
+                    MediaActivity.this.sharedMediaLayout.closeActionMode(true);
+                    MediaActivity.this.sharedMediaLayout.getSearchItem().openSearch(false);
                 }
             } else if (MediaActivity.this.actionModeMessageObjects != null) {
                 final ArrayList arrayList = new ArrayList();
@@ -658,10 +665,14 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     public void updateColors() {
+        if (this.sharedMediaLayout.getSearchOptionsItem() != null) {
+            this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
+        }
         this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         ActionBar actionBar = this.actionBar;
         int i = Theme.key_windowBackgroundWhiteBlackText;
         actionBar.setItemsColor(Theme.getColor(i), false);
+        this.actionBar.setItemsColor(Theme.getColor(i), true);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), false);
         this.actionBar.setTitleColor(Theme.getColor(i));
         this.nameTextView[0].setTextColor(Theme.getColor(i));

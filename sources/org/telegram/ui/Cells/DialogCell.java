@@ -1825,6 +1825,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     public String getMessageNameString() {
         TLRPC$Chat chat;
+        TLRPC$User tLRPC$User;
         String str;
         TLRPC$Message tLRPC$Message;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
@@ -1834,12 +1835,32 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         TLRPC$User user;
         TLRPC$Message tLRPC$Message3;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader3;
         MessageObject messageObject2 = this.message;
-        TLRPC$User tLRPC$User = null;
         if (messageObject2 == null) {
             return null;
         }
         long fromChatId = messageObject2.getFromChatId();
+        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+        if (!this.isSavedDialog && this.currentDialogId == clientUserId) {
+            long savedDialogId = this.message.getSavedDialogId();
+            if (savedDialogId == clientUserId) {
+                return null;
+            }
+            if (savedDialogId != UserObject.ANONYMOUS) {
+                TLRPC$Message tLRPC$Message4 = this.message.messageOwner;
+                if (tLRPC$Message4 != null && (tLRPC$MessageFwdHeader3 = tLRPC$Message4.fwd_from) != null) {
+                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader3.saved_from_id);
+                    if (peerDialogId == 0) {
+                        peerDialogId = DialogObject.getPeerDialogId(this.message.messageOwner.fwd_from.from_id);
+                    }
+                    if (peerDialogId > 0 && peerDialogId != savedDialogId) {
+                        return null;
+                    }
+                }
+                fromChatId = savedDialogId;
+            }
+        }
         if (this.isSavedDialog && (tLRPC$Message3 = this.message.messageOwner) != null && (tLRPC$MessageFwdHeader2 = tLRPC$Message3.fwd_from) != null) {
             fromChatId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader2.saved_from_id);
             if (fromChatId == 0) {
@@ -1851,27 +1872,37 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             chat = null;
         } else {
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
+            tLRPC$User = null;
         }
-        if (this.message.isOutOwner()) {
-            return LocaleController.getString("FromYou", R.string.FromYou);
-        }
-        if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
-        }
-        MessageObject messageObject3 = this.message;
-        if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
-            if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
-            } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
-                if (UserObject.isDeleted(tLRPC$User)) {
-                    return LocaleController.getString("HiddenName", R.string.HiddenName);
-                }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
-            } else {
+        if (this.currentDialogId == clientUserId) {
+            if (tLRPC$User != null) {
                 return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
             }
+            if (chat != null) {
+                return chat.title.replace("\n", BuildConfig.APP_CENTER_HASH);
+            }
+            return null;
+        } else if (this.message.isOutOwner()) {
+            return LocaleController.getString("FromYou", R.string.FromYou);
+        } else {
+            if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
+                return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
+            }
+            MessageObject messageObject3 = this.message;
+            if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
+                if (tLRPC$User == null) {
+                    return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
+                } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
+                    if (UserObject.isDeleted(tLRPC$User)) {
+                        return LocaleController.getString("HiddenName", R.string.HiddenName);
+                    }
+                    return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
+                } else {
+                    return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
+                }
+            }
+            return str2;
         }
-        return str2;
     }
 
     public SpannableStringBuilder getMessageStringFormatted(int i, String str, CharSequence charSequence, boolean z) {

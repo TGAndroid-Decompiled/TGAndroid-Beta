@@ -31,9 +31,8 @@ public class ChatMessagesMetadataController {
     }
 
     public void checkMessages(ChatActivity.ChatActivityAdapter chatActivityAdapter, int i, int i2, long j) {
-        ChatActivity chatActivity = this.chatActivity;
-        ArrayList<MessageObject> arrayList = chatActivity.messages;
-        if (chatActivity.isInScheduleMode() || i < 0 || i2 < 0) {
+        ArrayList<MessageObject> messages = chatActivityAdapter.getMessages();
+        if (this.chatActivity.isInScheduleMode() || i < 0 || i2 < 0) {
             return;
         }
         int i3 = chatActivityAdapter.messagesStartRow;
@@ -42,14 +41,14 @@ public class ChatMessagesMetadataController {
         if (i4 < 0) {
             i4 = 0;
         }
-        if (i5 > arrayList.size()) {
-            i5 = arrayList.size();
+        if (i5 > messages.size()) {
+            i5 = messages.size();
         }
         this.reactionsToCheck.clear();
         this.extendedMediaToCheck.clear();
         this.storiesToCheck.clear();
         while (i4 < i5) {
-            MessageObject messageObject = arrayList.get(i4);
+            MessageObject messageObject = messages.get(i4);
             if (this.chatActivity.getThreadMessage() != messageObject && messageObject.getId() > 0 && messageObject.messageOwner.action == null && j - messageObject.reactionsLastCheckTime > 15000) {
                 messageObject.reactionsLastCheckTime = j;
                 this.reactionsToCheck.add(messageObject);

@@ -77,7 +77,6 @@ public class SharedConfig {
     public static int fontSize = 0;
     public static boolean fontSizeIsDefault = false;
     public static boolean forceDisableTabletMode = false;
-    public static boolean forceLessData = false;
     public static boolean forwardingOptionsHintShown = false;
     private static String goodHevcEncoder = null;
     public static boolean hasCameraCache = false;
@@ -146,7 +145,6 @@ public class SharedConfig {
     public static int scheduledHintShows;
     public static long scheduledOrNoSoundHintSeenAt;
     public static int scheduledOrNoSoundHintShows;
-    public static int searchMessagesAsListHintShows;
     public static boolean searchMessagesAsListUsed;
     public static boolean showNotificationsForAllAccounts;
     public static boolean shuffleMusic;
@@ -805,14 +803,6 @@ public class SharedConfig {
         edit.apply();
     }
 
-    public static void increaseSearchAsListHintShows() {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        int i = searchMessagesAsListHintShows + 1;
-        searchMessagesAsListHintShows = i;
-        edit.putInt("searchMessagesAsListHintShows", i);
-        edit.apply();
-    }
-
     public static void setKeepMedia(int i) {
         keepMedia = i;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -1334,12 +1324,6 @@ public class SharedConfig {
     public static void updateEmojiInteractionsHintCount(int i) {
         emojiInteractionsHintCount = i;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putInt("emojiInteractionsHintCount", emojiInteractionsHintCount).apply();
-    }
-
-    public static void setForceLessData(boolean z) {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        forceLessData = z;
-        edit.putBoolean("forceLessData", z).apply();
     }
 
     public static void updateDayNightThemeSwitchHintCount(int i) {

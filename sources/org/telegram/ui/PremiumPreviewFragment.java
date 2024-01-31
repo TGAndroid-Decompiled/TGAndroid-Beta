@@ -202,6 +202,10 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return "wallpapers";
             case 23:
                 return "peer_colors";
+            case 24:
+                return "saved_tags";
+            case 25:
+                return "stories__quality";
             default:
                 return null;
         }
@@ -257,149 +261,163 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
                 c = 65535;
                 break;
+            case -1924078036:
+                if (str.equals("stories__quality")) {
+                    c = 3;
+                    break;
+                }
+                c = 65535;
+                break;
             case -1919626711:
                 if (str.equals("stories__save_stories_to_gallery")) {
-                    c = 3;
+                    c = 4;
                     break;
                 }
                 c = 65535;
                 break;
             case -1884266413:
                 if (str.equals("stories")) {
-                    c = 4;
+                    c = 5;
                     break;
                 }
                 c = 65535;
                 break;
             case -1761847571:
                 if (str.equals("peer_colors")) {
-                    c = 5;
+                    c = 6;
                     break;
                 }
                 c = 65535;
                 break;
             case -1755514268:
                 if (str.equals("voice_to_text")) {
-                    c = 6;
+                    c = 7;
                     break;
                 }
                 c = 65535;
                 break;
             case -1529105743:
                 if (str.equals("wallpapers")) {
-                    c = 7;
+                    c = '\b';
                     break;
                 }
                 c = 65535;
                 break;
             case -1425144150:
                 if (str.equals("animated_emoji")) {
-                    c = '\b';
+                    c = '\t';
                     break;
                 }
                 c = 65535;
                 break;
             case -1225497630:
                 if (str.equals("translations")) {
-                    c = '\t';
+                    c = '\n';
                     break;
                 }
                 c = 65535;
                 break;
             case -1040323278:
                 if (str.equals("no_ads")) {
-                    c = '\n';
+                    c = 11;
                     break;
                 }
                 c = 65535;
                 break;
             case -1023650261:
                 if (str.equals("more_upload")) {
-                    c = 11;
+                    c = '\f';
                     break;
                 }
                 c = 65535;
                 break;
             case -969043445:
                 if (str.equals("emoji_status")) {
-                    c = '\f';
+                    c = '\r';
                     break;
                 }
                 c = 65535;
                 break;
             case -730864243:
                 if (str.equals("profile_badge")) {
-                    c = '\r';
+                    c = 14;
                     break;
                 }
                 c = 65535;
                 break;
             case -448825858:
                 if (str.equals("faster_download")) {
-                    c = 14;
+                    c = 15;
                     break;
                 }
                 c = 65535;
                 break;
             case -165039170:
                 if (str.equals("premium_stickers")) {
-                    c = 15;
+                    c = 16;
                     break;
                 }
                 c = 65535;
                 break;
             case -96210874:
                 if (str.equals("double_limits")) {
-                    c = 16;
+                    c = 17;
                     break;
                 }
                 c = 65535;
                 break;
             case 234735554:
                 if (str.equals("stories__expiration_durations")) {
-                    c = 17;
+                    c = 18;
                     break;
                 }
                 c = 65535;
                 break;
             case 388416338:
                 if (str.equals("stories__stealth_mode")) {
-                    c = 18;
+                    c = 19;
                     break;
                 }
                 c = 65535;
                 break;
             case 705083174:
                 if (str.equals("stories__priority_order")) {
-                    c = 19;
+                    c = 20;
                     break;
                 }
                 c = 65535;
                 break;
             case 1080006662:
                 if (str.equals("stories__links_and_formatting")) {
-                    c = 20;
+                    c = 21;
                     break;
                 }
                 c = 65535;
                 break;
             case 1219849581:
                 if (str.equals("advanced_chat_management")) {
-                    c = 21;
+                    c = 22;
                     break;
                 }
                 c = 65535;
                 break;
             case 1438966047:
                 if (str.equals("stories__permanent_views_history")) {
-                    c = 22;
+                    c = 23;
+                    break;
+                }
+                c = 65535;
+                break;
+            case 1537309393:
+                if (str.equals("saved_tags")) {
+                    c = 24;
                     break;
                 }
                 c = 65535;
                 break;
             case 1832801148:
                 if (str.equals("app_icons")) {
-                    c = 23;
+                    c = 25;
                     break;
                 }
                 c = 65535;
@@ -416,46 +434,50 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             case 2:
                 return 21;
             case 3:
-                return 18;
+                return 25;
             case 4:
-                return 14;
+                return 18;
             case 5:
-                return 23;
+                return 14;
             case 6:
-                return 8;
+                return 23;
             case 7:
-                return 22;
+                return 8;
             case '\b':
-                return 11;
+                return 22;
             case '\t':
-                return 13;
+                return 11;
             case '\n':
-                return 3;
+                return 13;
             case 11:
-                return 1;
+                return 3;
             case '\f':
-                return 12;
+                return 1;
             case '\r':
-                return 6;
+                return 12;
             case 14:
-                return 2;
+                return 6;
             case 15:
-                return 5;
+                return 2;
             case 16:
-                return 0;
+                return 5;
             case 17:
-                return 17;
+                return 0;
             case 18:
-                return 15;
+                return 17;
             case 19:
-                return 20;
+                return 15;
             case 20:
-                return 19;
+                return 20;
             case 21:
-                return 9;
+                return 19;
             case 22:
-                return 16;
+                return 9;
             case 23:
+                return 16;
+            case 24:
+                return 24;
+            case 25:
                 return 10;
             default:
                 return -1;
@@ -808,11 +830,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         arrayList.add(new PremiumFeatureData(9, R.drawable.msg_premium_tools, LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement), LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagementDescription)));
         arrayList.add(new PremiumFeatureData(6, R.drawable.msg_premium_badge, LocaleController.getString(R.string.PremiumPreviewProfileBadge), LocaleController.getString(R.string.PremiumPreviewProfileBadgeDescription)));
         arrayList.add(new PremiumFeatureData(7, R.drawable.msg_premium_avatar, LocaleController.getString(R.string.PremiumPreviewAnimatedProfiles), LocaleController.getString(R.string.PremiumPreviewAnimatedProfilesDescription)));
+        arrayList.add(new PremiumFeatureData(24, R.drawable.premium_tags, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewTags2)), LocaleController.getString(R.string.PremiumPreviewTagsDescription2)));
         arrayList.add(new PremiumFeatureData(10, R.drawable.msg_premium_icons, LocaleController.getString(R.string.PremiumPreviewAppIcon), LocaleController.getString(R.string.PremiumPreviewAppIconDescription)));
         arrayList.add(new PremiumFeatureData(12, R.drawable.premium_status, LocaleController.getString(R.string.PremiumPreviewEmojiStatus), LocaleController.getString(R.string.PremiumPreviewEmojiStatusDescription)));
         arrayList.add(new PremiumFeatureData(13, R.drawable.msg_premium_translate, LocaleController.getString(R.string.PremiumPreviewTranslations), LocaleController.getString(R.string.PremiumPreviewTranslationsDescription)));
-        arrayList.add(new PremiumFeatureData(22, R.drawable.premium_wallpaper, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewWallpaper)), LocaleController.getString(R.string.PremiumPreviewWallpaperDescription)));
-        arrayList.add(new PremiumFeatureData(23, R.drawable.premium_colors, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewProfileColor)), LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
+        arrayList.add(new PremiumFeatureData(22, R.drawable.premium_wallpaper, LocaleController.getString(R.string.PremiumPreviewWallpaper), LocaleController.getString(R.string.PremiumPreviewWallpaperDescription)));
+        arrayList.add(new PremiumFeatureData(23, R.drawable.premium_colors, LocaleController.getString(R.string.PremiumPreviewProfileColor), LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
         if (messagesController.premiumFeaturesTypesToPosition.size() > 0) {
             while (i2 < arrayList.size()) {
                 if (messagesController.premiumFeaturesTypesToPosition.get(arrayList.get(i2).type, -1) == -1 && !BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1683,6 +1706,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
         int i = Theme.key_premiumGradientBackgroundOverlay;
         actionBar.setItemsColor(Theme.getColor(i), false);
+        this.actionBar.setItemsColor(Theme.getColor(i), true);
         this.actionBar.setItemsBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 60), false);
         this.particlesView.drawable.updateColors();
         BackgroundView backgroundView = this.backgroundView;

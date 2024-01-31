@@ -240,36 +240,24 @@ public class EditTextCaption extends EditTextBoldCursor {
                 }
             });
             this.creationLinkDialog.showDelayed(250L);
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams();
-            if (marginLayoutParams != null) {
-                if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
-                    ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
+        } else {
+            builder.show().setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public final void onShow(DialogInterface dialogInterface) {
+                    EditTextCaption.lambda$makeSelectedUrl$3(EditTextBoldCursor.this, dialogInterface);
                 }
-                int dp = AndroidUtilities.dp(24.0f);
-                marginLayoutParams.leftMargin = dp;
-                marginLayoutParams.rightMargin = dp;
-                marginLayoutParams.height = AndroidUtilities.dp(36.0f);
-                editTextBoldCursor.setLayoutParams(marginLayoutParams);
-            }
-            editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
-            return;
+            });
         }
-        builder.show().setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public final void onShow(DialogInterface dialogInterface) {
-                EditTextCaption.lambda$makeSelectedUrl$3(EditTextBoldCursor.this, dialogInterface);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams();
+        if (marginLayoutParams != null) {
+            if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
+                ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
             }
-        });
-        ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams();
-        if (marginLayoutParams2 != null) {
-            if (marginLayoutParams2 instanceof FrameLayout.LayoutParams) {
-                ((FrameLayout.LayoutParams) marginLayoutParams2).gravity = 1;
-            }
-            int dp2 = AndroidUtilities.dp(24.0f);
-            marginLayoutParams2.leftMargin = dp2;
-            marginLayoutParams2.rightMargin = dp2;
-            marginLayoutParams2.height = AndroidUtilities.dp(36.0f);
-            editTextBoldCursor.setLayoutParams(marginLayoutParams2);
+            int dp = AndroidUtilities.dp(24.0f);
+            marginLayoutParams.leftMargin = dp;
+            marginLayoutParams.rightMargin = dp;
+            marginLayoutParams.height = AndroidUtilities.dp(36.0f);
+            editTextBoldCursor.setLayoutParams(marginLayoutParams);
         }
         editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
     }

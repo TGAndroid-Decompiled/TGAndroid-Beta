@@ -275,7 +275,7 @@ public class TextCell extends FrameLayout {
     public void updateColors() {
         this.textView.setTextColor(processColor(Theme.getColor(this.textView.getTag() instanceof Integer ? ((Integer) this.textView.getTag()).intValue() : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)));
         if (this.imageView.getTag() instanceof Integer) {
-            this.imageView.setColorFilter(new PorterDuffColorFilter(processColor(Theme.getColor(((Integer) this.imageView.getTag()).intValue(), this.resourcesProvider)), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(((Integer) this.imageView.getTag()).intValue(), this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         }
         this.subtitleView.setTextColor(processColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider)));
         AnimatedTextView animatedTextView = this.valueTextView;
@@ -288,7 +288,7 @@ public class TextCell extends FrameLayout {
         this.textView.setTextColor(processColor(Theme.getColor(i2, this.resourcesProvider)));
         this.textView.setTag(Integer.valueOf(i2));
         if (i >= 0) {
-            this.imageView.setColorFilter(new PorterDuffColorFilter(processColor(Theme.getColor(i, this.resourcesProvider)), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
             this.imageView.setTag(Integer.valueOf(i));
         }
     }

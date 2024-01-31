@@ -11,6 +11,7 @@ import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
@@ -71,6 +72,7 @@ public class CounterView extends View {
         private int countWidth;
         private int countWidthOld;
         int currentCount;
+        CharSequence currentText;
         private boolean drawBackground;
         public float horizontalPadding;
         int lastH;
@@ -155,9 +157,17 @@ public class CounterView extends View {
         }
 
         public void setCount(int i, boolean z) {
+            setText(getStringOfCCount(i), z, i, false);
+        }
+
+        public void setText(CharSequence charSequence, boolean z) {
+            setText(charSequence, z, 1, true);
+        }
+
+        public void setText(CharSequence charSequence, boolean z, int i, boolean z2) {
             View view;
             View view2;
-            if (i == this.currentCount) {
+            if (TextUtils.equals(charSequence, this.currentText)) {
                 return;
             }
             ValueAnimator valueAnimator = this.countAnimator;
@@ -167,9 +177,10 @@ public class CounterView extends View {
             if (i > 0 && this.updateVisibility && (view2 = this.parent) != null) {
                 view2.setVisibility(0);
             }
-            boolean z2 = Math.abs(i - this.currentCount) > 99 ? false : z;
-            if (!z2) {
+            boolean z3 = Math.abs(i - this.currentCount) > 99 ? false : z;
+            if (!z3) {
                 this.currentCount = i;
+                this.currentText = charSequence;
                 if (i == 0) {
                     if (!this.updateVisibility || (view = this.parent) == null) {
                         return;
@@ -177,9 +188,8 @@ public class CounterView extends View {
                     view.setVisibility(8);
                     return;
                 }
-                String stringOfCCount = getStringOfCCount(i);
-                this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(stringOfCCount)));
-                this.countLayout = new StaticLayout(stringOfCCount, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence.toString())));
+                this.countLayout = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
                 View view3 = this.parent;
                 if (view3 != null) {
                     view3.invalidate();
@@ -187,8 +197,7 @@ public class CounterView extends View {
                 }
                 return;
             }
-            String stringOfCCount2 = getStringOfCCount(i);
-            if (z2) {
+            if (z3) {
                 ValueAnimator valueAnimator2 = this.countAnimator;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
@@ -199,7 +208,7 @@ public class CounterView extends View {
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        CounterView.CounterDrawable.this.lambda$setCount$0(valueAnimator3);
+                        CounterView.CounterDrawable.this.lambda$setText$0(valueAnimator3);
                     }
                 });
                 this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -234,13 +243,13 @@ public class CounterView extends View {
                     this.countAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
                 }
                 if (this.countLayout != null) {
-                    String stringOfCCount3 = getStringOfCCount(this.currentCount);
-                    if (stringOfCCount3.length() == stringOfCCount2.length()) {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(stringOfCCount3);
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(stringOfCCount2);
-                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(stringOfCCount2);
-                        for (int i2 = 0; i2 < stringOfCCount3.length(); i2++) {
-                            if (stringOfCCount3.charAt(i2) == stringOfCCount2.charAt(i2)) {
+                    CharSequence charSequence2 = this.currentText;
+                    if (charSequence2.length() == charSequence.length() && !z2) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence2);
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence);
+                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        for (int i2 = 0; i2 < charSequence2.length(); i2++) {
+                            if (charSequence2.charAt(i2) == charSequence.charAt(i2)) {
                                 int i3 = i2 + 1;
                                 spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i3, 0);
                                 spannableStringBuilder2.setSpan(new EmptyStubSpan(), i2, i3, 0);
@@ -248,7 +257,7 @@ public class CounterView extends View {
                                 spannableStringBuilder3.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
                             }
                         }
-                        int max = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(stringOfCCount3)));
+                        int max = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence2.toString())));
                         this.countOldLayout = new StaticLayout(spannableStringBuilder, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
                         this.countAnimationStableLayout = new StaticLayout(spannableStringBuilder3, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
                         this.countAnimationInLayout = new StaticLayout(spannableStringBuilder2, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
@@ -261,17 +270,18 @@ public class CounterView extends View {
                 this.countAnimator.start();
             }
             if (i > 0) {
-                this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(stringOfCCount2)));
-                this.countLayout = new StaticLayout(stringOfCCount2, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence.toString())));
+                this.countLayout = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             }
             this.currentCount = i;
+            this.currentText = charSequence;
             View view4 = this.parent;
             if (view4 != null) {
                 view4.invalidate();
             }
         }
 
-        public void lambda$setCount$0(ValueAnimator valueAnimator) {
+        public void lambda$setText$0(ValueAnimator valueAnimator) {
             this.countChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             View view = this.parent;
             if (view != null) {

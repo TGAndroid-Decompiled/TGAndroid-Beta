@@ -704,6 +704,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         this.fireworksOverlay.start();
         this.fireworksOverlay.performHapticFeedback(3);
         this.headerView.boostCounterView.setCount(this.canApplyBoost.boostCount, true);
+        this.recyclerListView.smoothScrollToPosition(0);
     }
 
     private void sendInviteMessages() {
@@ -1046,7 +1047,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     linearLayout = headerCell;
                     break;
                 case 4:
-                    linearLayout = new GroupCreateUserCell(context, 1, 8, false);
+                    linearLayout = new GroupCreateUserCell(context, 1, 0, false);
                     break;
                 case 5:
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, null);

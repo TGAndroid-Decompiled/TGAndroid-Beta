@@ -63,7 +63,7 @@ import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 import org.telegram.ui.GroupStickersActivity;
 public class GroupStickersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    private long chatId;
+    private final long chatId;
     private FrameLayout emptyFrameView;
     private StickerEmptyView emptyView;
     private int headerRow;

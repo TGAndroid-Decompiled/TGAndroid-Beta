@@ -209,7 +209,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         updateStories(true, false);
     }
 
-    public void updateStories(boolean r17, boolean r18) {
+    public void updateStories(boolean r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.ProfileStoriesView.updateStories(boolean, boolean):void");
     }
 

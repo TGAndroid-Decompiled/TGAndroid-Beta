@@ -410,11 +410,15 @@ public class StickerSetCell extends FrameLayout {
                 return;
             }
             this.sideButtons.setVisibility(z ? 0 : 4);
-            if (z) {
+            if (!z) {
+                this.sideButtons.setAlpha(0.0f);
+                this.sideButtons.setScaleX(0.1f);
+                this.sideButtons.setScaleY(0.1f);
                 return;
             }
-            this.sideButtons.setScaleX(0.1f);
-            this.sideButtons.setScaleY(0.1f);
+            this.sideButtons.setAlpha(1.0f);
+            this.sideButtons.setScaleX(1.0f);
+            this.sideButtons.setScaleY(1.0f);
         } else if (i == 3) {
             if (z2) {
                 this.optionsButton.animate().cancel();
@@ -437,11 +441,15 @@ public class StickerSetCell extends FrameLayout {
                 return;
             }
             this.optionsButton.setVisibility(z ? 0 : 4);
-            if (z) {
+            if (!z) {
+                this.optionsButton.setAlpha(0.0f);
+                this.optionsButton.setScaleX(0.1f);
+                this.optionsButton.setScaleY(0.1f);
                 return;
             }
-            this.optionsButton.setScaleX(0.1f);
-            this.optionsButton.setScaleY(0.1f);
+            this.optionsButton.setAlpha(1.0f);
+            this.optionsButton.setScaleX(1.0f);
+            this.optionsButton.setScaleY(1.0f);
         }
     }
 

@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildConfig;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.Stories.MessageMediaStoryFull;
 import org.telegram.ui.Stories.MessageMediaStoryFull_old;
@@ -14,7 +14,6 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public String currency;
     public String description;
     public TLRPC$Document document;
-    public Boolean documentExists;
     public TLRPC$MessageExtendedMedia extended_media;
     public String first_name;
     public int flags;
@@ -652,7 +651,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     }
 
     public TLRPC$Document getDocument() {
-        if (this.alt_document != null && ApplicationLoader.useLessData()) {
+        if (this.alt_document != null && !MessagesController.isStoryQualityFull()) {
             return this.alt_document;
         }
         return this.document;

@@ -1,11 +1,11 @@
 package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 public class BackDrawable extends Drawable {
     private boolean alwaysClose;
@@ -21,7 +21,6 @@ public class BackDrawable extends Drawable {
     private int color = -1;
     private int rotatedColor = -9079435;
     private float animationTime = 300.0f;
-    private boolean rotated = true;
 
     @Override
     public int getOpacity() {
@@ -98,7 +97,7 @@ public class BackDrawable extends Drawable {
             this.lastFrameTime = System.currentTimeMillis();
             invalidateSelf();
         }
-        this.paint.setColor(Color.rgb(Color.red(this.color) + (this.rotated ? (int) ((Color.red(this.rotatedColor) - Color.red(this.color)) * this.currentRotation) : 0), Color.green(this.color) + (this.rotated ? (int) ((Color.green(this.rotatedColor) - Color.green(this.color)) * this.currentRotation) : 0), Color.blue(this.color) + (this.rotated ? (int) ((Color.blue(this.rotatedColor) - Color.blue(this.color)) * this.currentRotation) : 0)));
+        this.paint.setColor(ColorUtils.blendARGB(this.color, this.rotatedColor, this.currentRotation));
         canvas.save();
         canvas.translate(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2);
         int i = this.arrowRotation;

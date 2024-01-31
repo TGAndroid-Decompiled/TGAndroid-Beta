@@ -542,17 +542,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
                 @Override
                 public void onShowSubMenu() {
-                    int i3;
-                    String str;
-                    ActionBarMenuSubItem actionBarMenuSubItem = PhotoPickerActivity.this.showAsListItem;
-                    if (PhotoPickerActivity.this.listSort) {
-                        i3 = R.string.ShowAsGrid;
-                        str = "ShowAsGrid";
-                    } else {
-                        i3 = R.string.ShowAsList;
-                        str = "ShowAsList";
-                    }
-                    actionBarMenuSubItem.setText(LocaleController.getString(str, i3));
+                    PhotoPickerActivity.this.showAsListItem.setText(PhotoPickerActivity.this.listSort ? LocaleController.getString(R.string.ShowAsGrid) : LocaleController.getString("ShowAsList", R.string.ShowAsList));
                     PhotoPickerActivity.this.showAsListItem.setIcon(PhotoPickerActivity.this.listSort ? R.drawable.msg_media : R.drawable.msg_list);
                 }
             });

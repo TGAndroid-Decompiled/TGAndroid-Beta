@@ -101,10 +101,8 @@ public class AlertDialogDecor extends AlertDialog {
         view.setBackgroundColor(Theme.multAlpha(-16777216, attributes.dimAmount));
         frameLayout.addView(this.dimView, new FrameLayout.LayoutParams(-1, -1));
         final FrameLayout frameLayout2 = new FrameLayout(getContext());
-        frameLayout2.addView(this.contentView, new FrameLayout.LayoutParams(-1, -2));
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(attributes.width, -2);
-        layoutParams.gravity = 17;
-        frameLayout.addView(frameLayout2, layoutParams);
+        frameLayout2.addView(this.contentView, new FrameLayout.LayoutParams(-1, -2, 17));
+        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
         this.rootView = frameLayout;
         getDecorView().addView(this.rootView);
         ViewCompat.requestApplyInsets(this.rootView);

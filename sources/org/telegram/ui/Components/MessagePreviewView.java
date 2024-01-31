@@ -423,15 +423,15 @@ public class MessagePreviewView extends FrameLayout {
                 MessageObject messageObject = Page.this.messages.previewMessages.get(i);
                 MessageObject.GroupedMessages validGroupedMessage = Page.this.getValidGroupedMessage(messageObject);
                 if (validGroupedMessage != null) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = validGroupedMessage.positions.get(messageObject);
-                    if (groupedMessagePosition.minX != groupedMessagePosition.maxX && (b = groupedMessagePosition.minY) == groupedMessagePosition.maxY && b != 0) {
+                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject);
+                    if (position.minX != position.maxX && (b = position.minY) == position.maxY && b != 0) {
                         int size = validGroupedMessage.posArray.size();
                         for (int i2 = 0; i2 < size; i2++) {
-                            MessageObject.GroupedMessagePosition groupedMessagePosition2 = validGroupedMessage.posArray.get(i2);
-                            if (groupedMessagePosition2 != groupedMessagePosition) {
-                                byte b2 = groupedMessagePosition2.minY;
-                                byte b3 = groupedMessagePosition.minY;
-                                if (b2 <= b3 && groupedMessagePosition2.maxY >= b3) {
+                            MessageObject.GroupedMessagePosition groupedMessagePosition = validGroupedMessage.posArray.get(i2);
+                            if (groupedMessagePosition != position) {
+                                byte b2 = groupedMessagePosition.minY;
+                                byte b3 = position.minY;
+                                if (b2 <= b3 && groupedMessagePosition.maxY >= b3) {
                                     return true;
                                 }
                             }
@@ -1256,6 +1256,11 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                    }
+
+                    @Override
                     public String getAdminRank(long j) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                     }
@@ -1614,6 +1619,11 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                        }
+
+                        @Override
                         public String getAdminRank(long j) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                         }
@@ -1820,7 +1830,7 @@ public class MessagePreviewView extends FrameLayout {
         public MessageObject.GroupedMessages getValidGroupedMessage(MessageObject messageObject) {
             if (messageObject.getGroupId() != 0) {
                 MessageObject.GroupedMessages groupedMessages = this.messages.groupedMessagesMap.get(messageObject.getGroupId());
-                if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.positions.get(messageObject) != null)) {
+                if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
                     return groupedMessages;
                 }
                 return null;

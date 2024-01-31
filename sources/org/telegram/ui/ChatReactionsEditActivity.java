@@ -202,7 +202,8 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                     textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(chatReactionsEditActivity.currentChat) ? LocaleController.getString("EnableReactionsChannelInfo", R.string.EnableReactionsChannelInfo) : LocaleController.getString("EnableReactionsGroupInfo", R.string.EnableReactionsGroupInfo));
                     return;
                 }
-                int i4 = chatReactionsEditActivity.selectedType;
+                textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(chatReactionsEditActivity.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                int i4 = ChatReactionsEditActivity.this.selectedType;
                 if (i4 == 1) {
                     textInfoPrivacyCell.setText(LocaleController.getString("EnableSomeReactionsInfo", R.string.EnableSomeReactionsInfo));
                 } else if (i4 == 0) {

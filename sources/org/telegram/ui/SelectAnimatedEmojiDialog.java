@@ -543,13 +543,15 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 
         @Override
         public boolean onItemClick(final View view, int i, float f, float f2) {
-            int i2;
-            int i3;
+            int i2 = this.val$type;
+            if (i2 == 11) {
+                return false;
+            }
             boolean z = view instanceof ImageViewEmoji;
-            if (!z || ((i3 = this.val$type) != 1 && i3 != 8)) {
+            if (!z || (i2 != 1 && i2 != 8)) {
                 if (z) {
                     ImageViewEmoji imageViewEmoji = (ImageViewEmoji) view;
-                    if (imageViewEmoji.span != null && ((i2 = this.val$type) == 0 || i2 == 9 || i2 == 10)) {
+                    if (imageViewEmoji.span != null && (i2 == 0 || i2 == 9 || i2 == 10)) {
                         SelectAnimatedEmojiDialog.this.selectStatusDateDialog = new SelectStatusDurationDialog(this.val$context, SelectAnimatedEmojiDialog.this.dismiss, SelectAnimatedEmojiDialog.this, imageViewEmoji, this.val$resourcesProvider) {
                             {
                                 SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = SelectAnimatedEmojiDialog.this;
@@ -676,13 +678,13 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 } else {
                     onEmojiClick(imageViewEmoji, imageViewEmoji.span);
                 }
-                if (i == 1) {
+                if (i == 1 || i == 11) {
                     return;
                 }
                 performHapticFeedback(3, 1);
             } else if (view instanceof ImageView) {
                 onEmojiClick(view, null);
-                if (i == 1) {
+                if (i == 1 || i == 11) {
                     return;
                 }
                 performHapticFeedback(3, 1);
@@ -692,7 +694,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 }
             } else {
                 expand(i2, (EmojiPackExpand) view);
-                if (i == 1) {
+                if (i == 1 || i == 11) {
                     return;
                 }
                 performHapticFeedback(3, 1);
@@ -1455,7 +1457,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     linkedHashSet.add(Long.valueOf(Long.parseLong(((MediaDataController.KeywordResult) arrayList2.get(i)).emoji.substring(9))));
                 } else {
                     int i2 = this.type;
-                    if ((i2 == 1 || i2 == 2) && (tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) hashMap.get(((MediaDataController.KeywordResult) arrayList2.get(i)).emoji)) != null) {
+                    if ((i2 == 1 || i2 == 11 || i2 == 2) && (tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) hashMap.get(((MediaDataController.KeywordResult) arrayList2.get(i)).emoji)) != null) {
                         arrayList.add(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tLRPC$TL_availableReaction));
                     }
                 }
@@ -1576,7 +1578,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         }
         this.emojiSearchGridView.scrollToPosition(0);
         int i = this.type;
-        if (i == 1 || i == 2) {
+        if (i == 1 || i == 11 || i == 2) {
             if (!arrayList.isEmpty()) {
                 this.searchResult.addAll(arrayList);
             } else {
@@ -2016,10 +2018,10 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 
     public void clearRecent() {
         onRecentClearedListener onrecentclearedlistener;
-        if (this.type != 1 || (onrecentclearedlistener = this.onRecentClearedListener) == null) {
-            return;
+        int i = this.type;
+        if ((i == 1 || i == 11) && (onrecentclearedlistener = this.onRecentClearedListener) != null) {
+            onrecentclearedlistener.onRecentCleared();
         }
-        onrecentclearedlistener.onRecentCleared();
     }
 
     public class HeaderView extends FrameLayout {
@@ -2728,7 +2730,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             return;
         }
         MediaDataController.getInstance(i2).checkStickers(5);
-        if (i == 1 || i == 2 || i == 6) {
+        if (i == 1 || i == 11 || i == 2 || i == 6) {
             MediaDataController.getInstance(i2).checkReactions();
         } else if (i == 9 || i == 10) {
             if (MessagesController.getInstance(i2).getMainSettings().getBoolean("resetemojipacks", true)) {
@@ -3914,7 +3916,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 return;
             }
             int i = 2;
-            if (SelectAnimatedEmojiDialog.this.type == 1 || SelectAnimatedEmojiDialog.this.type == 2 || SelectAnimatedEmojiDialog.this.type == 0 || SelectAnimatedEmojiDialog.this.type == 4) {
+            if (SelectAnimatedEmojiDialog.this.type == 1 || SelectAnimatedEmojiDialog.this.type == 11 || SelectAnimatedEmojiDialog.this.type == 2 || SelectAnimatedEmojiDialog.this.type == 0 || SelectAnimatedEmojiDialog.this.type == 4) {
                 int i2 = SelectAnimatedEmojiDialog.this.type;
                 if (i2 == 0) {
                     i = 1;

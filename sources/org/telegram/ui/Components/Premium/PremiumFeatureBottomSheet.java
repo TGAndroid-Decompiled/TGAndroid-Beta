@@ -458,8 +458,6 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             if (i == 4) {
                 this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.UnlockPremiumReactions));
                 this.premiumButtonView.setIcon(R.raw.unlock_icon);
-            } else if (i == 3 || i == 2 || i == 9 || i == 8) {
-                this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.AboutTelegramPremium));
             } else if (i == 10) {
                 this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.UnlockPremiumIcons));
                 this.premiumButtonView.setIcon(R.raw.unlock_icon);
@@ -502,14 +500,17 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         actionBar.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         this.actionBar.setTitleColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
-        this.actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
+        ActionBar actionBar2 = this.actionBar;
+        int i = Theme.key_actionBarActionModeDefaultIcon;
+        actionBar2.setItemsColor(getThemedColor(i), false);
+        this.actionBar.setItemsColor(getThemedColor(i), true);
         this.actionBar.setCastShadows(true);
         this.actionBar.setExtraHeight(AndroidUtilities.dp(2.0f));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
                     PremiumFeatureBottomSheet.this.dismiss();
                 }
             }
@@ -641,46 +642,51 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 if (PremiumFeatureBottomSheet.this.onlySelectedType) {
                     if (PremiumFeatureBottomSheet.this.startType != 4) {
                         if (PremiumFeatureBottomSheet.this.startType != 3) {
-                            if (PremiumFeatureBottomSheet.this.startType != 10) {
-                                if (PremiumFeatureBottomSheet.this.startType != 2) {
-                                    if (PremiumFeatureBottomSheet.this.startType != 9) {
-                                        if (PremiumFeatureBottomSheet.this.startType != 8) {
-                                            if (PremiumFeatureBottomSheet.this.startType != 13) {
-                                                if (PremiumFeatureBottomSheet.this.startType != 22) {
-                                                    if (PremiumFeatureBottomSheet.this.startType == 23) {
-                                                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewProfileColor));
-                                                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
+                            if (PremiumFeatureBottomSheet.this.startType != 24) {
+                                if (PremiumFeatureBottomSheet.this.startType != 10) {
+                                    if (PremiumFeatureBottomSheet.this.startType != 2) {
+                                        if (PremiumFeatureBottomSheet.this.startType != 9) {
+                                            if (PremiumFeatureBottomSheet.this.startType != 8) {
+                                                if (PremiumFeatureBottomSheet.this.startType != 13) {
+                                                    if (PremiumFeatureBottomSheet.this.startType != 22) {
+                                                        if (PremiumFeatureBottomSheet.this.startType == 23) {
+                                                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewProfileColor));
+                                                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
+                                                        } else {
+                                                            this.title.setText(premiumFeatureData.title);
+                                                            this.description.setText(AndroidUtilities.replaceTags(premiumFeatureData.description));
+                                                        }
                                                     } else {
-                                                        this.title.setText(premiumFeatureData.title);
-                                                        this.description.setText(AndroidUtilities.replaceTags(premiumFeatureData.description));
+                                                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewWallpaper));
+                                                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewWallpaperDescription)));
                                                     }
                                                 } else {
-                                                    this.title.setText(LocaleController.getString(R.string.PremiumPreviewWallpaper));
-                                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewWallpaperDescription)));
+                                                    this.title.setText(LocaleController.getString(R.string.PremiumPreviewTranslations));
+                                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewTranslationsDescription)));
                                                 }
                                             } else {
-                                                this.title.setText(LocaleController.getString(R.string.PremiumPreviewTranslations));
-                                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewTranslationsDescription)));
+                                                this.title.setText(LocaleController.getString(R.string.PremiumPreviewVoiceToText));
+                                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewVoiceToTextDescription2)));
                                             }
                                         } else {
-                                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewVoiceToText));
-                                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewVoiceToTextDescription2)));
+                                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement));
+                                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagementDescription2)));
                                         }
                                     } else {
-                                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement));
-                                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagementDescription2)));
+                                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewDownloadSpeed));
+                                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewDownloadSpeedDescription2)));
                                     }
                                 } else {
-                                    this.title.setText(LocaleController.getString(R.string.PremiumPreviewDownloadSpeed));
-                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewDownloadSpeedDescription2)));
+                                    this.title.setText(LocaleController.getString("PremiumPreviewAppIcon", R.string.PremiumPreviewAppIcon));
+                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString("PremiumPreviewAppIconDescription2", R.string.PremiumPreviewAppIconDescription2)));
                                 }
                             } else {
-                                this.title.setText(LocaleController.getString("PremiumPreviewAppIcon", R.string.PremiumPreviewAppIcon));
-                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString("PremiumPreviewAppIconDescription2", R.string.PremiumPreviewAppIconDescription2)));
+                                this.title.setText(LocaleController.getString(R.string.PremiumPreviewTags));
+                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewTagsDescription)));
                             }
                         } else {
-                            this.title.setText(LocaleController.getString("PremiumPreviewNoAds", R.string.PremiumPreviewNoAds));
-                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString("PremiumPreviewNoAdsDescription2", R.string.PremiumPreviewNoAdsDescription2)));
+                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewNoAds));
+                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewNoAdsDescription2)));
                         }
                     } else {
                         this.title.setText(LocaleController.getString("AdditionalReactions", R.string.AdditionalReactions));

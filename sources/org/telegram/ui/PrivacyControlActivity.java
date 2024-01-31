@@ -559,6 +559,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
+                public boolean doNotShowLoadingReply(MessageObject messageObject2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject2);
+                }
+
+                @Override
                 public String getAdminRank(long j) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                 }
@@ -1109,12 +1114,14 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             final TLRPC$TL_account_setGlobalPrivacySettings tLRPC$TL_account_setGlobalPrivacySettings = new TLRPC$TL_account_setGlobalPrivacySettings();
             tLRPC$TL_account_setGlobalPrivacySettings.settings = new TLRPC$TL_globalPrivacySettings();
             final TLRPC$TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
-            TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings = tLRPC$TL_account_setGlobalPrivacySettings.settings;
-            tLRPC$TL_globalPrivacySettings.archive_and_mute_new_noncontact_peers = globalPrivacySettings.archive_and_mute_new_noncontact_peers;
-            tLRPC$TL_globalPrivacySettings.keep_archived_folders = globalPrivacySettings.keep_archived_folders;
-            tLRPC$TL_globalPrivacySettings.keep_archived_unmuted = globalPrivacySettings.keep_archived_unmuted;
-            tLRPC$TL_globalPrivacySettings.new_noncontact_peers_require_premium = this.currentType == 2;
-            tLRPC$TL_globalPrivacySettings.hide_read_marks = globalPrivacySettings.hide_read_marks;
+            if (globalPrivacySettings != null) {
+                TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings = tLRPC$TL_account_setGlobalPrivacySettings.settings;
+                tLRPC$TL_globalPrivacySettings.archive_and_mute_new_noncontact_peers = globalPrivacySettings.archive_and_mute_new_noncontact_peers;
+                tLRPC$TL_globalPrivacySettings.keep_archived_folders = globalPrivacySettings.keep_archived_folders;
+                tLRPC$TL_globalPrivacySettings.keep_archived_unmuted = globalPrivacySettings.keep_archived_unmuted;
+                tLRPC$TL_globalPrivacySettings.hide_read_marks = globalPrivacySettings.hide_read_marks;
+            }
+            tLRPC$TL_account_setGlobalPrivacySettings.settings.new_noncontact_peers_require_premium = this.currentType == 2;
             getConnectionsManager().sendRequest(tLRPC$TL_account_setGlobalPrivacySettings, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1247,7 +1254,9 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             showErrorAlert();
             return;
         }
-        tLRPC$TL_globalPrivacySettings.new_noncontact_peers_require_premium = tLRPC$TL_account_setGlobalPrivacySettings.settings.new_noncontact_peers_require_premium;
+        if (tLRPC$TL_globalPrivacySettings != null) {
+            tLRPC$TL_globalPrivacySettings.new_noncontact_peers_require_premium = tLRPC$TL_account_setGlobalPrivacySettings.settings.new_noncontact_peers_require_premium;
+        }
         finishFragment();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);
     }
@@ -1323,7 +1332,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
 
     private void checkPrivacy() {
         int i = 2;
-        boolean z = false;
         if (this.rulesType == 10) {
             TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
             i = (globalPrivacySettings == null || !globalPrivacySettings.new_noncontact_peers_require_premium) ? 0 : 0;
@@ -1336,6 +1344,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         this.currentPlus = new ArrayList<>();
         this.currentMinus = new ArrayList<>();
         ArrayList<TLRPC$PrivacyRule> privacyRules = ContactsController.getInstance(this.currentAccount).getPrivacyRules(this.rulesType);
+        boolean z = true;
         if (privacyRules == null || privacyRules.size() == 0) {
             this.currentType = 1;
         } else {
@@ -1413,15 +1422,13 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             }
             this.initialRulesSubType = this.currentSubType;
         }
-        updateRows(false);
         if (this.rulesType == 0) {
             TLRPC$TL_globalPrivacySettings globalPrivacySettings2 = getContactsController().getGlobalPrivacySettings();
-            if (globalPrivacySettings2 != null && globalPrivacySettings2.hide_read_marks) {
-                z = true;
-            }
+            z = (globalPrivacySettings2 == null || !globalPrivacySettings2.hide_read_marks) ? false : false;
             this.currentReadValue = z;
             this.selectedReadValue = z;
         }
+        updateRows(false);
     }
 
     private boolean hasChanges() {

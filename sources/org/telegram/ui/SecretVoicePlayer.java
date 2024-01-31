@@ -740,6 +740,11 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
+                public boolean doNotShowLoadingReply(MessageObject messageObject2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject2);
+                }
+
+                @Override
                 public String getAdminRank(long j) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                 }

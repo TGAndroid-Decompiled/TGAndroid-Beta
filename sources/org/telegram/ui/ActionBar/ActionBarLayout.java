@@ -575,7 +575,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.debugBlackScreenRunnable = new Runnable() {
             @Override
             public final void run() {
-                ActionBarLayout.this.lambda$new$8();
+                ActionBarLayout.this.lambda$new$9();
             }
         };
         this.parentActivity = (Activity) context;
@@ -1781,6 +1781,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.fragmentsStack.add(i, baseFragment);
                 onFragmentStackChanged("addFragmentToStack");
             }
+            if (!this.useAlphaAnimations) {
+                setVisibility(0);
+                View view2 = this.backgroundView;
+                if (view2 != null) {
+                    view2.setVisibility(0);
+                }
+            }
             return true;
         }
         return false;
@@ -2194,6 +2201,19 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         while (this.fragmentsStack.size() > 0) {
             removeFragmentFromStackInternal(this.fragmentsStack.get(0), false);
         }
+        View view = this.backgroundView;
+        if (view != null) {
+            view.animate().alpha(0.0f).setDuration(180L).withEndAction(new Runnable() {
+                @Override
+                public final void run() {
+                    ActionBarLayout.this.lambda$removeAllFragments$6();
+                }
+            }).start();
+        }
+    }
+
+    public void lambda$removeAllFragments$6() {
+        this.backgroundView.setVisibility(8);
     }
 
     @Keep
@@ -2311,7 +2331,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ActionBarLayout.this.lambda$animateThemedValues$6(size, themeAnimationSettings, runnable);
+                ActionBarLayout.this.lambda$animateThemedValues$7(size, themeAnimationSettings, runnable);
             }
         };
         if (size >= 1 && themeAnimationSettings.applyTheme && themeAnimationSettings.applyTrulyTheme) {
@@ -2336,7 +2356,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         runnable2.run();
     }
 
-    public void lambda$animateThemedValues$6(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
+    public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
         BaseFragment baseFragment;
         Runnable runnable2;
         boolean z = false;
@@ -2739,7 +2759,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         return null;
     }
 
-    public void lambda$new$8() {
+    public void lambda$new$9() {
         if (this.attached && getLastFragment() != null && this.containerView.getChildCount() == 0) {
             if (BuildVars.DEBUG_VERSION) {
                 FileLog.e(new RuntimeException(TextUtils.join(", ", this.lastActions)));

@@ -27,7 +27,7 @@ public class TLRPC$TL_messages_getSearchCounters extends TLObject {
         abstractSerializedData.writeInt32(465367808);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
-        if ((this.flags & 2) != 0) {
+        if ((this.flags & 4) != 0) {
             this.saved_peer_id.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {

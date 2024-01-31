@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
+import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
@@ -50,6 +51,7 @@ public class MessagePrivateSeenView extends FrameLayout {
     private final Runnable dismiss;
     public boolean isPremiumLocked;
     private final TextView loadingView;
+    private final int messageDiff;
     private final int messageId;
     float minWidth;
     private final TextView premiumTextView;
@@ -61,9 +63,11 @@ public class MessagePrivateSeenView extends FrameLayout {
         super(context);
         this.isPremiumLocked = false;
         this.minWidth = -1.0f;
-        this.currentAccount = messageObject.currentAccount;
+        int i = messageObject.currentAccount;
+        this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
         this.dismiss = runnable;
+        this.messageDiff = ConnectionsManager.getInstance(i).getCurrentTime() - messageObject.messageOwner.date;
         this.dialogId = messageObject.getDialogId();
         this.messageId = messageObject.getId();
         ImageView imageView = new ImageView(context);
@@ -75,8 +79,8 @@ public class MessagePrivateSeenView extends FrameLayout {
         this.loadingView = textView;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
         spannableStringBuilder.setSpan(new LoadingSpan(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), resourcesProvider), 0, spannableStringBuilder.length() - 1, 17);
-        int i = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.7f));
+        int i2 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.multAlpha(Theme.getColor(i2, resourcesProvider), 0.7f));
         textView.setText(spannableStringBuilder);
         textView.setTextSize(1, 13.0f);
         addView(textView, LayoutHelper.createFrame(96, -2.0f, 19, 40.0f, -1.0f, 8.0f, 0.0f));
@@ -87,13 +91,13 @@ public class MessagePrivateSeenView extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 19, 38.0f, 0.0f, 8.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        textView2.setTextColor(Theme.getColor(i, resourcesProvider));
+        textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 19, 0, -1, 0, 0));
         TextView textView3 = new TextView(context);
         this.premiumTextView = textView3;
         textView3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), Theme.multAlpha(Theme.getColor(Theme.key_divider, resourcesProvider), 0.75f)));
-        textView3.setTextColor(Theme.getColor(i, resourcesProvider));
+        textView3.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView3.setTextSize(1, 11.0f);
         textView3.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.33f));
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 19, 4, 0, 0, 0));
@@ -359,26 +363,43 @@ public class MessagePrivateSeenView extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         View view = (View) getParent();
-        View.MeasureSpec.getSize(i);
-        View.MeasureSpec.getMode(i);
+        int size = View.MeasureSpec.getSize(i);
+        int mode = View.MeasureSpec.getMode(i);
         if (this.minWidth < 0.0f) {
             this.minWidth = 0.0f;
-            float max = Math.max(0.0f, AndroidUtilities.dp(144.0f));
+            long currentTimeMillis = System.currentTimeMillis();
+            float max = Math.max(this.minWidth, AndroidUtilities.dp(144.0f));
             this.minWidth = max;
             float max2 = Math.max(max, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)));
             this.minWidth = max2;
             TextPaint paint = this.valueTextView.getPaint();
             float max3 = Math.max(max2, AndroidUtilities.dp(64.0f) + paint.measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))));
             this.minWidth = max3;
-            float max4 = Math.max(max3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, "99:99")));
+            float max4 = Math.max(max3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
             this.minWidth = max4;
-            float max5 = Math.max(max4, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, "99:99")));
-            this.minWidth = max5;
-            this.minWidth = Math.max(max5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadDateTimeAt, "99.99.99", "99:99")));
+            if (this.messageDiff > 86400) {
+                this.minWidth = Math.max(max4, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+            }
+            if (this.messageDiff > 172800) {
+                float f = this.minWidth;
+                TextPaint paint2 = this.valueTextView.getPaint();
+                int i3 = R.string.PmReadDateTimeAt;
+                float max5 = Math.max(f, AndroidUtilities.dp(48.0f) + paint2.measureText(LocaleController.formatString(i3, LocaleController.getInstance().formatterDayMonth.format(new Date(currentTimeMillis)), LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+                this.minWidth = max5;
+                this.minWidth = Math.max(max5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().formatterYear.format(new Date(currentTimeMillis)), LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+            }
         }
+        int i4 = 1073741824;
         if (view != null && view.getWidth() > 0) {
-            view.getWidth();
+            size = view.getWidth();
+            mode = 1073741824;
         }
-        super.onMeasure(i, i2);
+        float f2 = this.minWidth;
+        if (size < f2 || mode == Integer.MIN_VALUE) {
+            size = (int) f2;
+        } else {
+            i4 = mode;
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, i4), i2);
     }
 }

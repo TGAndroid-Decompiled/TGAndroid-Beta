@@ -14,6 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 public class PremiumLockIconView extends ImageView {
@@ -26,6 +27,7 @@ public class PremiumLockIconView extends ImageView {
     private float[] colorFloat;
     boolean colorRetrieved;
     int currentColor;
+    AnimatedEmojiDrawable emojiDrawable;
     ImageReceiver imageReceiver;
     private boolean locked;
     Paint oldShaderPaint;
@@ -108,7 +110,18 @@ public class PremiumLockIconView extends ImageView {
                 this.waitingImage = false;
                 setColor(AndroidUtilities.getDominantColor(this.imageReceiver.getBitmap()));
             } else {
-                invalidate();
+                AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
+                if (animatedEmojiDrawable != null) {
+                    int dominantColor = AnimatedEmojiDrawable.getDominantColor(animatedEmojiDrawable);
+                    if (dominantColor != 0) {
+                        this.waitingImage = false;
+                        setColor(dominantColor);
+                    } else {
+                        invalidate();
+                    }
+                } else {
+                    invalidate();
+                }
             }
         }
         Paint paint = this.paint;
@@ -163,6 +176,14 @@ public class PremiumLockIconView extends ImageView {
     public void setImageReceiver(ImageReceiver imageReceiver) {
         this.imageReceiver = imageReceiver;
         if (imageReceiver != null) {
+            this.waitingImage = true;
+            invalidate();
+        }
+    }
+
+    public void setAnimatedEmojiDrawable(AnimatedEmojiDrawable animatedEmojiDrawable) {
+        this.emojiDrawable = animatedEmojiDrawable;
+        if (animatedEmojiDrawable != null) {
             this.waitingImage = true;
             invalidate();
         }

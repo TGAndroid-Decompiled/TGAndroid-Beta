@@ -2084,6 +2084,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+            }
+
+            @Override
             public String getAdminRank(long j) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
             }

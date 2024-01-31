@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_photoPathSize;
+import org.telegram.tgnet.TLRPC$TL_photoSize;
 import org.telegram.tgnet.TLRPC$TL_wallPaper;
 import org.telegram.tgnet.TLRPC$ThemeSettings;
 import org.telegram.tgnet.TLRPC$WallPaper;
@@ -62,7 +63,7 @@ public class DocumentObject {
             TLRPC$PhotoSize tLRPC$PhotoSize = arrayList.get(i4);
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
                 tLRPC$TL_photoPathSize = (TLRPC$TL_photoPathSize) tLRPC$PhotoSize;
-            } else {
+            } else if (tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) {
                 i2 = tLRPC$PhotoSize.w;
                 i3 = tLRPC$PhotoSize.h;
             }

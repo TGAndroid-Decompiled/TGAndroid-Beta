@@ -262,7 +262,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         ChatActivity chatActivity3 = this.parentFragment;
         if (chatActivity3 != null && (chatActivity3.getChatMode() == 0 || this.parentFragment.getChatMode() == 3)) {
-            if ((!this.parentFragment.isThreadChat() || this.parentFragment.isTopic) && !UserObject.isReplyUser(this.parentFragment.getCurrentUser()) && this.parentFragment.getChatMode() != 3) {
+            if ((!this.parentFragment.isThreadChat() || this.parentFragment.isTopic) && !UserObject.isReplyUser(this.parentFragment.getCurrentUser())) {
                 setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -494,11 +494,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     }
 
     public void openProfile(boolean z) {
-        openProfile(z, true);
+        openProfile(z, true, false);
     }
 
-    public void openProfile(boolean r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAvatarContainer.openProfile(boolean, boolean):void");
+    public void openProfile(boolean r11, boolean r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAvatarContainer.openProfile(boolean, boolean, boolean):void");
     }
 
     public void setOccupyStatusBar(boolean z) {

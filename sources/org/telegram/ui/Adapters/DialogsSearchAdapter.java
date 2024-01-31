@@ -514,7 +514,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
                 this.reqId = 0;
             }
-            if (TextUtils.isEmpty(str)) {
+            if (TextUtils.isEmpty(str) || this.delegate.getSearchForumDialogId() != 0) {
                 this.filteredRecentQuery = null;
                 this.searchResultMessages.clear();
                 this.searchForumResultMessages.clear();
@@ -1229,12 +1229,13 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         if (i != this.lastSearchId) {
             return;
         }
-        if (this.needMessagesSearch != 2 && (i2 = this.dialogsType) != 6 && i2 != 5) {
+        if (this.needMessagesSearch != 2 && (i2 = this.dialogsType) != 6 && i2 != 5 && this.delegate.getSearchForumDialogId() == 0) {
             SearchAdapterHelper searchAdapterHelper = this.searchAdapterHelper;
-            boolean z = i2 != 4;
-            boolean z2 = (i2 == 4 || i2 == 11) ? false : true;
-            boolean z3 = i2 == 2 || i2 == 1;
-            boolean z4 = i2 == 0;
+            int i3 = this.dialogsType;
+            boolean z = i3 != 4;
+            boolean z2 = (i3 == 4 || i3 == 11) ? false : true;
+            boolean z3 = i3 == 2 || i3 == 1;
+            boolean z4 = i3 == 0;
             DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = this.delegate;
             str3 = str2;
             searchAdapterHelper.queryServerSearch(str, true, z, true, z2, z3, 0L, z4, 0, i, dialogsSearchAdapterDelegate != null ? dialogsSearchAdapterDelegate.getSearchForumDialogId() : 0L);

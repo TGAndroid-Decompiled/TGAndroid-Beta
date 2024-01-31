@@ -64,6 +64,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.ConnectionsManager;
@@ -466,6 +467,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 TLRPC$EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(dialogId)));
                 if (encryptedChat != null && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(encryptedChat.user_id))) != null) {
                     this.actionBar.setTitle(ContactsController.formatName(user.first_name, user.last_name));
+                }
+            } else if (dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                if (playingMessageObject.getSavedDialogId() == UserObject.ANONYMOUS) {
+                    this.actionBar.setTitle(LocaleController.getString(R.string.AnonymousForward));
+                } else {
+                    this.actionBar.setTitle(LocaleController.getString(R.string.SavedMessages));
                 }
             } else if (DialogObject.isUserDialog(dialogId)) {
                 TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));

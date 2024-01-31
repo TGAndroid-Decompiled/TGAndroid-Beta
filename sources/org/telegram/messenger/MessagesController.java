@@ -228,6 +228,7 @@ import org.telegram.tgnet.TLRPC$TL_messageActionChatEditPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageActionChatJoinedByRequest;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
+import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_messageService;
 import org.telegram.tgnet.TLRPC$TL_messageViews;
 import org.telegram.tgnet.TLRPC$TL_messages_addChatUser;
@@ -298,6 +299,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_toggleDialogPin;
 import org.telegram.tgnet.TLRPC$TL_messages_toggleNoForwards;
 import org.telegram.tgnet.TLRPC$TL_messages_unpinAllMessages;
 import org.telegram.tgnet.TLRPC$TL_messages_updatePinnedMessage;
+import org.telegram.tgnet.TLRPC$TL_messages_updateSavedReactionTag;
 import org.telegram.tgnet.TLRPC$TL_peerChannel;
 import org.telegram.tgnet.TLRPC$TL_peerChat;
 import org.telegram.tgnet.TLRPC$TL_peerNotifySettings;
@@ -641,7 +643,6 @@ public class MessagesController extends BaseController implements NotificationCe
     public LongSparseLongArray loadedFullChats;
     private HashSet<Long> loadedFullParticipants;
     private LongSparseLongArray loadedFullUsers;
-    private boolean loadedReactionTags;
     public boolean loadingBlockedPeers;
     private LongSparseIntArray loadingChannelAdmins;
     private SparseBooleanArray loadingDialogs;
@@ -654,6 +655,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private boolean loadingNotificationSignUpSettings;
     private LongSparseArray<Boolean> loadingPeerSettings;
     private SparseIntArray loadingPinnedDialogs;
+    private HashSet<Long> loadingReactionTags;
     private boolean loadingRemoteFilters;
     private boolean loadingSuggestedFilters;
     private boolean loadingUnreadDialogs;
@@ -719,7 +721,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean qrLoginCamera;
     public int quoteLengthMax;
     public int ratingDecay;
-    private TLRPC$TL_messages_savedReactionsTags reactionTags;
+    private LongSparseArray<TLRPC$TL_messages_savedReactionsTags> reactionTags;
     public int reactionsInChatMax;
     public int reactionsUserMaxDefault;
     public int reactionsUserMaxPremium;
@@ -758,6 +760,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int savedGifsLimitDefault;
     public int savedGifsLimitPremium;
     public SavedMessagesController savedMessagesController;
+    public boolean savedViewAsChats;
     public int secretWebpagePreview;
     public DialogFilter[] selectedDialogFilter;
     private LongSparseArray<SendAsPeersInfo> sendAsPeers;
@@ -791,6 +794,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int storyCaptionLengthLimitPremium;
     public int storyExpiringLimitDefault;
     public int storyExpiringLimitPremium;
+    public boolean storyQualityFull;
     public String storyVenueSearchBot;
     public boolean suggestContacts;
     public boolean suggestStickersApiOnly;
@@ -1915,7 +1919,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.loadingPinnedDialogs = new SparseIntArray();
         this.faqSearchArray = new ArrayList<>();
         this.suggestContacts = true;
-        this.themeCheckRunnable = MessagesController$$ExternalSyntheticLambda266.INSTANCE;
+        this.themeCheckRunnable = MessagesController$$ExternalSyntheticLambda279.INSTANCE;
         this.passwordCheckRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -2152,6 +2156,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.boostsChannelLevelMax = this.mainPreferences.getInt("boostsChannelLevelMax", 100);
         this.savedDialogsPinnedLimitDefault = this.mainPreferences.getInt("savedDialogsPinnedLimitDefault", 4);
         this.savedDialogsPinnedLimitPremium = this.mainPreferences.getInt("savedDialogsPinnedLimitPremium", 6);
+        this.storyQualityFull = this.mainPreferences.getBoolean("storyQualityFull", true);
+        this.savedViewAsChats = this.mainPreferences.getBoolean("savedViewAsChats", false);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -4163,6 +4169,10 @@ public class MessagesController extends BaseController implements NotificationCe
         } else if (i == NotificationCenter.currentUserPremiumStatusChanged) {
             loadAppConfig(false);
             getContactsController().reloadContactsStatusesMaybe(true);
+            if ((!this.storyQualityFull || getUserConfig().isPremium()) && !getUserConfig().isPremium()) {
+                return;
+            }
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyQualityUpdate, new Object[0]);
         }
     }
 
@@ -7768,6 +7778,9 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$deleteDialog$124(long j, int i, boolean z, TLRPC$InputPeer tLRPC$InputPeer, long j2, int i2) {
+        if (j == getUserConfig().getClientUserId()) {
+            getSavedMessagesController().deleteAllDialogs();
+        }
         deleteDialog(j, 2, i, Math.max(0, i2), z, tLRPC$InputPeer, j2);
         checkIfFolderEmpty(1);
     }
@@ -8536,7 +8549,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.proxyDialogAddress = null;
                 this.nextPromoInfoCheckTime = getConnectionsManager().getCurrentTime() + 3600;
                 getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda23(this));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda36(this));
             }
         }
     }
@@ -16483,146 +16496,387 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void updateSavedReactionTags(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z) {
-        String str;
-        if (this.reactionTags != null) {
-            int i = 0;
-            boolean z2 = false;
-            boolean z3 = false;
-            while (i < this.reactionTags.tags.size()) {
-                TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = this.reactionTags.tags.get(i);
-                if (visibleReaction.isSame(tLRPC$TL_savedReactionTag.reaction)) {
-                    int i2 = tLRPC$TL_savedReactionTag.count;
-                    int max = Math.max(0, (z ? 1 : -1) + i2);
-                    tLRPC$TL_savedReactionTag.count = max;
-                    if (max <= 0) {
-                        this.reactionTags.tags.remove(i);
-                        i--;
-                    } else if (max == i2) {
-                        z2 = true;
+    public boolean processDeletedReactionTags(TLRPC$Message tLRPC$Message) {
+        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
+        if (tLRPC$Message == null || DialogObject.getPeerDialogId(tLRPC$Message.peer_id) != getUserConfig().getClientUserId() || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null || !tLRPC$TL_messageReactions.reactions_as_tags || tLRPC$TL_messageReactions.results == null) {
+            return false;
+        }
+        long savedDialogId = MessageObject.getSavedDialogId(getUserConfig().getClientUserId(), tLRPC$Message);
+        boolean z = false;
+        for (int i = 0; i < tLRPC$Message.reactions.results.size(); i++) {
+            if (updateSavedReactionTags(savedDialogId, ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Message.reactions.results.get(i).reaction), false, false)) {
+                z = true;
+            }
+        }
+        return z;
+    }
+
+    public boolean updateSavedReactionTags(long j, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+        if (this.reactionTags == null) {
+            return false;
+        }
+        int i = 0;
+        boolean z3 = false;
+        while (i < 2) {
+            long j2 = i == 0 ? 0L : j;
+            boolean z4 = true;
+            if (i != 1 || j2 != 0) {
+                TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags = this.reactionTags.get(j2);
+                if (tLRPC$TL_messages_savedReactionsTags == null) {
+                    if (j2 != 0) {
+                        LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+                        tLRPC$TL_messages_savedReactionsTags = new TLRPC$TL_messages_savedReactionsTags();
+                        longSparseArray.put(j2, tLRPC$TL_messages_savedReactionsTags);
                     }
-                    z2 = true;
+                }
+                int i2 = 0;
+                boolean z5 = false;
+                boolean z6 = false;
+                while (i2 < tLRPC$TL_messages_savedReactionsTags.tags.size()) {
+                    TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = tLRPC$TL_messages_savedReactionsTags.tags.get(i2);
+                    if (visibleReaction.isSame(tLRPC$TL_savedReactionTag.reaction)) {
+                        int i3 = tLRPC$TL_savedReactionTag.count;
+                        int max = Math.max(0, (z ? 1 : -1) + i3);
+                        tLRPC$TL_savedReactionTag.count = max;
+                        if (max <= 0) {
+                            if (TextUtils.isEmpty(getSavedTagName(tLRPC$TL_savedReactionTag.reaction))) {
+                                tLRPC$TL_messages_savedReactionsTags.tags.remove(i2);
+                                i2--;
+                            }
+                        } else if (max == i3) {
+                            z5 = true;
+                        }
+                        z3 = true;
+                        z5 = true;
+                        z6 = true;
+                    }
+                    i2++;
+                }
+                if (z5 || !z) {
+                    z4 = z6;
+                } else {
+                    TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2 = new TLRPC$TL_savedReactionTag();
+                    tLRPC$TL_savedReactionTag2.reaction = visibleReaction.toTLReaction();
+                    tLRPC$TL_savedReactionTag2.count = 1;
+                    tLRPC$TL_messages_savedReactionsTags.tags.add(tLRPC$TL_savedReactionTag2);
                     z3 = true;
+                }
+                if (z2 && z4) {
+                    updateSavedReactionTags(j2);
                 }
                 i++;
             }
-            if (!z2 && z) {
-                TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2 = new TLRPC$TL_savedReactionTag();
-                tLRPC$TL_savedReactionTag2.reaction = visibleReaction.toTLReaction();
-                tLRPC$TL_savedReactionTag2.count = 1;
-                this.reactionTags.tags.add(tLRPC$TL_savedReactionTag2);
-                z3 = true;
+            i++;
+        }
+        return z3;
+    }
+
+    public void updateSavedReactionTags(HashSet<Long> hashSet) {
+        updateSavedReactionTags(0L);
+        Iterator<Long> it = hashSet.iterator();
+        while (it.hasNext()) {
+            updateSavedReactionTags(it.next().longValue());
+        }
+    }
+
+    public void updateSavedReactionTags(long j) {
+        String str;
+        long m;
+        long m2;
+        LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+        if (longSparseArray == null) {
+            return;
+        }
+        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(j);
+        if (tLRPC$TL_messages_savedReactionsTags == null) {
+            if (j == 0) {
+                return;
             }
-            if (z3) {
-                Collections.sort(this.reactionTags.tags, new Comparator() {
-                    @Override
-                    public final int compare(Object obj, Object obj2) {
-                        int lambda$updateSavedReactionTags$410;
-                        lambda$updateSavedReactionTags$410 = MessagesController.lambda$updateSavedReactionTags$410((TLRPC$TL_savedReactionTag) obj, (TLRPC$TL_savedReactionTag) obj2);
-                        return lambda$updateSavedReactionTags$410;
-                    }
-                });
-                long j = 0;
-                for (int i3 = 0; i3 < this.reactionTags.tags.size(); i3++) {
-                    TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag3 = this.reactionTags.tags.get(i3);
-                    if (tLRPC$TL_savedReactionTag3.count > 0) {
-                        TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_savedReactionTag3.reaction;
-                        if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
-                            j = MediaDataController.calcHash(j, Long.parseLong(Utilities.MD5(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon).substring(0, 16), 16));
-                        } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
-                            j = MediaDataController.calcHash(j, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
-                        }
-                        if ((tLRPC$TL_savedReactionTag3.flags & 1) != 0 && (str = tLRPC$TL_savedReactionTag3.title) != null) {
-                            j = MediaDataController.calcHash(j, Long.parseLong(Utilities.MD5(str).substring(0, 16), 16));
-                        }
-                        j = MediaDataController.calcHash(j, tLRPC$TL_savedReactionTag3.count);
-                    }
+            LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray2 = this.reactionTags;
+            TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags2 = new TLRPC$TL_messages_savedReactionsTags();
+            longSparseArray2.put(j, tLRPC$TL_messages_savedReactionsTags2);
+            tLRPC$TL_messages_savedReactionsTags = tLRPC$TL_messages_savedReactionsTags2;
+        }
+        Collections.sort(tLRPC$TL_messages_savedReactionsTags.tags, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$updateSavedReactionTags$410;
+                lambda$updateSavedReactionTags$410 = MessagesController.this.lambda$updateSavedReactionTags$410((TLRPC$TL_savedReactionTag) obj, (TLRPC$TL_savedReactionTag) obj2);
+                return lambda$updateSavedReactionTags$410;
+            }
+        });
+        long j2 = 0;
+        for (int i = 0; i < tLRPC$TL_messages_savedReactionsTags.tags.size(); i++) {
+            TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = tLRPC$TL_messages_savedReactionsTags.tags.get(i);
+            if (tLRPC$TL_savedReactionTag.count > 0) {
+                TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_savedReactionTag.reaction;
+                if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
+                    m2 = MessagesController$$ExternalSyntheticBackport3.m(r9, 0, Utilities.MD5(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon).substring(0, 16).length(), 16);
+                    j2 = MediaDataController.calcHash(j2, m2);
+                } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+                    j2 = MediaDataController.calcHash(j2, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
                 }
-                TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags = this.reactionTags;
-                tLRPC$TL_messages_savedReactionsTags.hash = j;
-                saveSavedReactionsTags(tLRPC$TL_messages_savedReactionsTags);
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, new Object[0]);
+                if (j == 0 && (1 & tLRPC$TL_savedReactionTag.flags) != 0 && (str = tLRPC$TL_savedReactionTag.title) != null) {
+                    m = MessagesController$$ExternalSyntheticBackport7.m(r8, 0, Utilities.MD5(str).substring(0, 16).length(), 16);
+                    j2 = MediaDataController.calcHash(j2, m);
+                }
+                j2 = MediaDataController.calcHash(j2, tLRPC$TL_savedReactionTag.count);
             }
         }
+        tLRPC$TL_messages_savedReactionsTags.hash = j2;
+        saveSavedReactionsTags(j, tLRPC$TL_messages_savedReactionsTags);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, Long.valueOf(j));
     }
 
-    public static int lambda$updateSavedReactionTags$410(TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag, TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2) {
-        return tLRPC$TL_savedReactionTag2.count - tLRPC$TL_savedReactionTag.count;
-    }
-
-    public TLRPC$TL_messages_savedReactionsTags getSavedReactionTags() {
-        if (this.loadedReactionTags) {
-            return this.reactionTags;
+    public int lambda$updateSavedReactionTags$410(TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag, TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2) {
+        int compare;
+        int i = tLRPC$TL_savedReactionTag.count;
+        int i2 = tLRPC$TL_savedReactionTag2.count;
+        if (i == i2) {
+            compare = Long.compare(getTagLongId(tLRPC$TL_savedReactionTag2.reaction) ^ Long.MIN_VALUE, getTagLongId(tLRPC$TL_savedReactionTag.reaction) ^ Long.MIN_VALUE);
+            return compare;
         }
-        this.loadedReactionTags = true;
+        return i2 - i;
+    }
+
+    public String getSavedTagName(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags;
+        LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+        if (longSparseArray == null || (tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(0L)) == null) {
+            return null;
+        }
+        for (int i = 0; i < tLRPC$TL_messages_savedReactionsTags.tags.size(); i++) {
+            if (visibleReaction.isSame(tLRPC$TL_messages_savedReactionsTags.tags.get(i).reaction)) {
+                return tLRPC$TL_messages_savedReactionsTags.tags.get(i).title;
+            }
+        }
+        return null;
+    }
+
+    public int getSavedTagCount(long j, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags;
+        LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+        if (longSparseArray == null || (tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(j)) == null) {
+            return 0;
+        }
+        for (int i = 0; i < tLRPC$TL_messages_savedReactionsTags.tags.size(); i++) {
+            if (visibleReaction.isSame(tLRPC$TL_messages_savedReactionsTags.tags.get(i).reaction)) {
+                return tLRPC$TL_messages_savedReactionsTags.tags.get(i).count;
+            }
+        }
+        return 0;
+    }
+
+    public String getSavedTagName(TLRPC$Reaction tLRPC$Reaction) {
+        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags;
+        LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+        if (longSparseArray == null || (tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(0L)) == null) {
+            return null;
+        }
+        for (int i = 0; i < tLRPC$TL_messages_savedReactionsTags.tags.size(); i++) {
+            if (ReactionsLayoutInBubble.reactionsEqual(tLRPC$Reaction, tLRPC$TL_messages_savedReactionsTags.tags.get(i).reaction)) {
+                return tLRPC$TL_messages_savedReactionsTags.tags.get(i).title;
+            }
+        }
+        return null;
+    }
+
+    public void renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction visibleReaction, String str) {
+        TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags;
+        boolean z;
+        String str2;
+        long m;
+        long m2;
+        LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+        if (longSparseArray == null || (tLRPC$TL_messages_savedReactionsTags = longSparseArray.get(0L)) == null) {
+            return;
+        }
+        int i = 0;
+        while (true) {
+            if (i >= tLRPC$TL_messages_savedReactionsTags.tags.size()) {
+                z = false;
+                break;
+            }
+            TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = tLRPC$TL_messages_savedReactionsTags.tags.get(i);
+            if (!visibleReaction.isSame(tLRPC$TL_savedReactionTag.reaction)) {
+                i++;
+            } else if (TextUtils.isEmpty(str)) {
+                z = tLRPC$TL_savedReactionTag.title != null;
+                tLRPC$TL_savedReactionTag.flags &= -2;
+                tLRPC$TL_savedReactionTag.title = null;
+            } else {
+                z = !TextUtils.equals(tLRPC$TL_savedReactionTag.title, str);
+                tLRPC$TL_savedReactionTag.flags |= 1;
+                tLRPC$TL_savedReactionTag.title = str;
+            }
+        }
+        if (z) {
+            TLRPC$TL_messages_updateSavedReactionTag tLRPC$TL_messages_updateSavedReactionTag = new TLRPC$TL_messages_updateSavedReactionTag();
+            tLRPC$TL_messages_updateSavedReactionTag.reaction = visibleReaction.toTLReaction();
+            if (!TextUtils.isEmpty(str)) {
+                tLRPC$TL_messages_updateSavedReactionTag.flags |= 1;
+                tLRPC$TL_messages_updateSavedReactionTag.title = str;
+            }
+            getConnectionsManager().sendRequest(tLRPC$TL_messages_updateSavedReactionTag, null);
+            Collections.sort(tLRPC$TL_messages_savedReactionsTags.tags, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$renameSavedReactionTag$411;
+                    lambda$renameSavedReactionTag$411 = MessagesController.this.lambda$renameSavedReactionTag$411((TLRPC$TL_savedReactionTag) obj, (TLRPC$TL_savedReactionTag) obj2);
+                    return lambda$renameSavedReactionTag$411;
+                }
+            });
+            long j = 0;
+            for (int i2 = 0; i2 < tLRPC$TL_messages_savedReactionsTags.tags.size(); i2++) {
+                TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2 = tLRPC$TL_messages_savedReactionsTags.tags.get(i2);
+                if (tLRPC$TL_savedReactionTag2.count > 0) {
+                    TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_savedReactionTag2.reaction;
+                    if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
+                        m2 = MessagesController$$ExternalSyntheticBackport4.m(r6, 0, Utilities.MD5(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon).substring(0, 16).length(), 16);
+                        j = MediaDataController.calcHash(j, m2);
+                    } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+                        j = MediaDataController.calcHash(j, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
+                    }
+                    if ((tLRPC$TL_savedReactionTag2.flags & 1) != 0 && (str2 = tLRPC$TL_savedReactionTag2.title) != null) {
+                        m = MessagesController$$ExternalSyntheticBackport5.m(r6, 0, Utilities.MD5(str2).substring(0, 16).length(), 16);
+                        j = MediaDataController.calcHash(j, m);
+                    }
+                    j = MediaDataController.calcHash(j, tLRPC$TL_savedReactionTag2.count);
+                }
+            }
+            tLRPC$TL_messages_savedReactionsTags.hash = j;
+            saveSavedReactionsTags(0L, tLRPC$TL_messages_savedReactionsTags);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, 0L);
+        }
+    }
+
+    public int lambda$renameSavedReactionTag$411(TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag, TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag2) {
+        int compare;
+        int i = tLRPC$TL_savedReactionTag.count;
+        int i2 = tLRPC$TL_savedReactionTag2.count;
+        if (i == i2) {
+            compare = Long.compare(getTagLongId(tLRPC$TL_savedReactionTag2.reaction) ^ Long.MIN_VALUE, getTagLongId(tLRPC$TL_savedReactionTag.reaction) ^ Long.MIN_VALUE);
+            return compare;
+        }
+        return i2 - i;
+    }
+
+    private long getTagLongId(TLRPC$Reaction tLRPC$Reaction) {
+        long m;
+        if (tLRPC$Reaction == null) {
+            return 0L;
+        }
+        long j = tLRPC$Reaction.tag_long_id;
+        if (j != 0) {
+            return j;
+        }
+        if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
+            m = MessagesController$$ExternalSyntheticBackport6.m(r0, 0, Utilities.MD5(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon).substring(0, 16).length(), 16);
+            tLRPC$Reaction.tag_long_id = m;
+            return m;
+        } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+            long j2 = ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id;
+            tLRPC$Reaction.tag_long_id = j2;
+            return j2;
+        } else {
+            return 0L;
+        }
+    }
+
+    public TLRPC$TL_messages_savedReactionsTags getSavedReactionTags(long j) {
+        return getSavedReactionTags(j, false);
+    }
+
+    public TLRPC$TL_messages_savedReactionsTags getSavedReactionTags(final long j, boolean z) {
+        HashSet<Long> hashSet = this.loadingReactionTags;
+        if (hashSet != null && hashSet.contains(Long.valueOf(j)) && !z) {
+            LongSparseArray<TLRPC$TL_messages_savedReactionsTags> longSparseArray = this.reactionTags;
+            if (longSparseArray == null) {
+                return null;
+            }
+            return longSparseArray.get(j);
+        }
+        if (this.loadingReactionTags == null) {
+            this.loadingReactionTags = new HashSet<>();
+        }
+        this.loadingReactionTags.add(Long.valueOf(j));
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$getSavedReactionTags$414();
+                MessagesController.this.lambda$getSavedReactionTags$415(j);
             }
         });
         return null;
     }
 
-    public void lambda$getSavedReactionTags$414() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getSavedReactionTags$414():void");
+    public void lambda$getSavedReactionTags$415(final long r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getSavedReactionTags$415(long):void");
     }
 
-    public void lambda$getSavedReactionTags$413(TLRPC$messages_SavedReactionTags tLRPC$messages_SavedReactionTags) {
+    public void lambda$getSavedReactionTags$414(TLRPC$messages_SavedReactionTags tLRPC$messages_SavedReactionTags, final long j) {
+        if (this.reactionTags == null) {
+            this.reactionTags = new LongSparseArray<>();
+        }
         boolean z = tLRPC$messages_SavedReactionTags instanceof TLRPC$TL_messages_savedReactionsTags;
         if (z) {
-            this.reactionTags = (TLRPC$TL_messages_savedReactionsTags) tLRPC$messages_SavedReactionTags;
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, new Object[0]);
+            this.reactionTags.put(j, (TLRPC$TL_messages_savedReactionsTags) tLRPC$messages_SavedReactionTags);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, Long.valueOf(j));
         }
         TLRPC$TL_messages_getSavedReactionTags tLRPC$TL_messages_getSavedReactionTags = new TLRPC$TL_messages_getSavedReactionTags();
         if (z) {
             tLRPC$TL_messages_getSavedReactionTags.hash = tLRPC$messages_SavedReactionTags.hash;
         }
+        if (j != 0) {
+            tLRPC$TL_messages_getSavedReactionTags.flags |= 1;
+            tLRPC$TL_messages_getSavedReactionTags.peer = getInputPeer(j);
+        }
         getConnectionsManager().sendRequest(tLRPC$TL_messages_getSavedReactionTags, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagesController.this.lambda$getSavedReactionTags$412(tLObject, tLRPC$TL_error);
+                MessagesController.this.lambda$getSavedReactionTags$413(j, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$getSavedReactionTags$412(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$getSavedReactionTags$413(final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$getSavedReactionTags$411(tLObject);
+                MessagesController.this.lambda$getSavedReactionTags$412(tLObject, j);
             }
         });
     }
 
-    public void lambda$getSavedReactionTags$411(TLObject tLObject) {
+    public void lambda$getSavedReactionTags$412(TLObject tLObject, long j) {
         if (tLObject instanceof TLRPC$TL_messages_savedReactionsTags) {
-            this.reactionTags = (TLRPC$TL_messages_savedReactionsTags) tLObject;
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, new Object[0]);
-            saveSavedReactionsTags(this.reactionTags);
+            TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags = (TLRPC$TL_messages_savedReactionsTags) tLObject;
+            this.reactionTags.put(j, tLRPC$TL_messages_savedReactionsTags);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedReactionTagsUpdate, Long.valueOf(j));
+            saveSavedReactionsTags(j, tLRPC$TL_messages_savedReactionsTags);
         }
     }
 
-    private void saveSavedReactionsTags(final TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags) {
+    private void saveSavedReactionsTags(final long j, final TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags) {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$saveSavedReactionsTags$415(tLRPC$TL_messages_savedReactionsTags);
+                MessagesController.this.lambda$saveSavedReactionsTags$416(j, tLRPC$TL_messages_savedReactionsTags);
             }
         });
     }
 
-    public void lambda$saveSavedReactionsTags$415(TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags) {
+    public void lambda$saveSavedReactionsTags$416(long j, TLRPC$TL_messages_savedReactionsTags tLRPC$TL_messages_savedReactionsTags) {
         SQLiteDatabase database = getMessagesStorage().getDatabase();
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                database.executeFast("DELETE FROM saved_reaction_tags WHERE 1").stepThis().dispose();
-                sQLitePreparedStatement = database.executeFast("REPLACE INTO saved_reaction_tags VALUES(?)");
+                database.executeFast("DELETE FROM saved_reaction_tags WHERE topic_id = " + j).stepThis().dispose();
+                sQLitePreparedStatement = database.executeFast("REPLACE INTO saved_reaction_tags VALUES(?, ?)");
                 sQLitePreparedStatement.requery();
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$TL_messages_savedReactionsTags.getObjectSize());
                 tLRPC$TL_messages_savedReactionsTags.serializeToStream(nativeByteBuffer);
-                sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
+                sQLitePreparedStatement.bindLong(1, j);
+                sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
                 FileLog.e(e);
@@ -16651,7 +16905,7 @@ public class MessagesController extends BaseController implements NotificationCe
             getConnectionsManager().sendRequest(tLRPC$TL_help_getPeerColors, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessagesController.this.lambda$checkPeerColors$417(tLObject, tLRPC$TL_error);
+                    MessagesController.this.lambda$checkPeerColors$418(tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -16666,42 +16920,67 @@ public class MessagesController extends BaseController implements NotificationCe
             getConnectionsManager().sendRequest(tLRPC$TL_help_getPeerProfileColors, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessagesController.this.lambda$checkPeerColors$419(tLObject, tLRPC$TL_error);
+                    MessagesController.this.lambda$checkPeerColors$420(tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$checkPeerColors$417(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkPeerColors$418(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject instanceof TLRPC$TL_help_peerColors) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesController.this.lambda$checkPeerColors$416(tLObject);
+                    MessagesController.this.lambda$checkPeerColors$417(tLObject);
                 }
             });
         }
     }
 
-    public void lambda$checkPeerColors$416(TLObject tLObject) {
+    public void lambda$checkPeerColors$417(TLObject tLObject) {
         this.peerColors = PeerColors.fromTL(0, (TLRPC$TL_help_peerColors) tLObject);
         this.mainPreferences.edit().putString("peerColors", this.peerColors.toString()).apply();
     }
 
-    public void lambda$checkPeerColors$419(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkPeerColors$420(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject instanceof TLRPC$TL_help_peerColors) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesController.this.lambda$checkPeerColors$418(tLObject);
+                    MessagesController.this.lambda$checkPeerColors$419(tLObject);
                 }
             });
         }
     }
 
-    public void lambda$checkPeerColors$418(TLObject tLObject) {
+    public void lambda$checkPeerColors$419(TLObject tLObject) {
         this.profilePeerColors = PeerColors.fromTL(1, (TLRPC$TL_help_peerColors) tLObject);
         this.mainPreferences.edit().putString("profilePeerColors", this.profilePeerColors.toString()).apply();
+    }
+
+    public void setStoryQuality(boolean z) {
+        if (this.storyQualityFull != z) {
+            SharedPreferences.Editor edit = this.mainPreferences.edit();
+            this.storyQualityFull = z;
+            edit.putBoolean("storyQualityFull", z).apply();
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyQualityUpdate, new Object[0]);
+        }
+    }
+
+    public void setSavedViewAs(boolean z) {
+        if (this.savedViewAsChats != z) {
+            SharedPreferences.Editor edit = this.mainPreferences.edit();
+            this.savedViewAsChats = z;
+            edit.putBoolean("savedViewAsChats", z).apply();
+        }
+    }
+
+    public boolean isStoryQualityFullOnAccount() {
+        return getUserConfig().isPremium() && this.storyQualityFull;
+    }
+
+    public static boolean isStoryQualityFull() {
+        return getInstance(UserConfig.selectedAccount).isStoryQualityFullOnAccount();
     }
 
     public boolean isUserPremiumBlocked(long j) {
@@ -16766,21 +17045,21 @@ public class MessagesController extends BaseController implements NotificationCe
         getConnectionsManager().sendRequest(tLRPC$TL_users_getIsPremiumRequiredToContact, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagesController.this.lambda$requestIsUserPremiumBlocked$421(arrayList, tLObject, tLRPC$TL_error);
+                MessagesController.this.lambda$requestIsUserPremiumBlocked$422(arrayList, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$requestIsUserPremiumBlocked$421(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestIsUserPremiumBlocked$422(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$requestIsUserPremiumBlocked$420(tLObject, arrayList);
+                MessagesController.this.lambda$requestIsUserPremiumBlocked$421(tLObject, arrayList);
             }
         });
     }
 
-    public void lambda$requestIsUserPremiumBlocked$420(TLObject tLObject, ArrayList arrayList) {
+    public void lambda$requestIsUserPremiumBlocked$421(TLObject tLObject, ArrayList arrayList) {
         boolean z;
         if (tLObject instanceof TLRPC$Vector) {
             ArrayList<Object> arrayList2 = ((TLRPC$Vector) tLObject).objects;

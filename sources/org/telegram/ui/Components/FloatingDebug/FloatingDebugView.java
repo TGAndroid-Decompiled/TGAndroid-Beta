@@ -35,7 +35,6 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -539,12 +538,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     public static void lambda$getBuiltInDebugItems$4() {
         SharedConfig.drawActionBarShadow = !SharedConfig.drawActionBarShadow;
         SharedConfig.saveDebugConfig();
-        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), new Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                ((View) obj).invalidate();
-            }
-        });
+        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), FloatingDebugView$$ExternalSyntheticLambda3.INSTANCE);
     }
 
     public void lambda$getBuiltInDebugItems$5() {

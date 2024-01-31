@@ -134,12 +134,12 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             MatrixParticlesDrawable matrixParticlesDrawable = new MatrixParticlesDrawable();
             this.matrixParticlesDrawable = matrixParticlesDrawable;
             matrixParticlesDrawable.init();
-        } else if (i2 == 6 || i2 == 9 || i2 == 3 || i2 == 7 || i2 == 11 || i2 == 4) {
+        } else if (i2 == 6 || i2 == 9 || i2 == 3 || i2 == 7 || i2 == 11 || i2 == 4 || i2 == 24) {
             StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(40);
             this.starDrawable = drawable;
             drawable.speedScale = 3.0f;
             drawable.type = i2;
-            if (i2 == 3) {
+            if (i2 == 3 || i2 == 24) {
                 drawable.size1 = 14;
                 drawable.size2 = 18;
                 drawable.size3 = 18;
@@ -343,7 +343,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             StarParticlesView.Drawable drawable = this.starDrawable;
             if (drawable != null) {
                 int i5 = this.type;
-                if (i5 == 6 || i5 == 9 || i5 == 3 || i5 == 7 || i5 == 11 || i5 == 4) {
+                if (i5 == 6 || i5 == 9 || i5 == 3 || i5 == 7 || i5 == 24 || i5 == 11 || i5 == 4) {
                     drawable.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     this.starDrawable.rect.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
                 } else {
