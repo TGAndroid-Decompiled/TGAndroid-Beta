@@ -67,6 +67,7 @@ public class CounterView extends View {
         private StaticLayout countAnimationStableLayout;
         private ValueAnimator countAnimator;
         private StaticLayout countLayout;
+        private float countLayoutWidth;
         float countLeft;
         private StaticLayout countOldLayout;
         private int countWidth;
@@ -189,7 +190,9 @@ public class CounterView extends View {
                     return;
                 }
                 this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence.toString())));
-                this.countLayout = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.countLayout = staticLayout;
+                this.countLayoutWidth = staticLayout.getLineCount() >= 1 ? this.countLayout.getLineWidth(0) : 0.0f;
                 View view3 = this.parent;
                 if (view3 != null) {
                     view3.invalidate();
@@ -271,7 +274,9 @@ public class CounterView extends View {
             }
             if (i > 0) {
                 this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence.toString())));
-                this.countLayout = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                StaticLayout staticLayout2 = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.countLayout = staticLayout2;
+                this.countLayoutWidth = staticLayout2.getLineCount() >= 1 ? this.countLayout.getLineWidth(0) : 0.0f;
             }
             this.currentCount = i;
             this.currentText = charSequence;
@@ -287,6 +292,10 @@ public class CounterView extends View {
             if (view != null) {
                 view.invalidate();
             }
+        }
+
+        public int getCurrentWidth() {
+            return (int) Math.ceil(this.countLayoutWidth);
         }
 
         private String getStringOfCCount(int i) {

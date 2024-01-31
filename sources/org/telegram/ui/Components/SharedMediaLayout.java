@@ -2526,6 +2526,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesUpdated);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
+        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.dialogsNeedReload);
         SearchTagsList searchTagsList = this.searchTagsList;
         if (searchTagsList != null) {
             searchTagsList.detach();
@@ -5512,6 +5513,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 DialogCell dialogCell = (DialogCell) view;
                 SavedMessagesController.SavedDialog savedDialog = this.dialogs.get(i);
                 dialogCell.setDialog(savedDialog.dialogId, savedDialog.message, savedDialog.getDate(), false, false);
+                dialogCell.isSavedDialogCell = true;
                 dialogCell.setChecked(this.selectedDialogs.contains(Long.valueOf(savedDialog.dialogId)), false);
                 dialogCell.useSeparator = i + 1 < getItemCount();
             }

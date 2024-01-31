@@ -353,10 +353,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             public void selectedPhotosChanged() {
             }
 
-            {
-                ImageUpdater.this = this;
-            }
-
             @Override
             public void actionButtonPressed(boolean z, boolean z2, int i) {
                 if (hashMap.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
@@ -458,10 +454,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 @Override
                 public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
                     ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
-                }
-
-                {
-                    ImageUpdater.this = this;
                 }
 
                 @Override
@@ -725,10 +717,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoAlbumPickerActivity photoAlbumPickerActivity = new PhotoAlbumPickerActivity(this.canSelectVideo ? PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR_VIDEO : PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR, false, false, null);
         photoAlbumPickerActivity.setAllowSearchImages(this.searchAvailable);
         photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
-            {
-                ImageUpdater.this = this;
-            }
-
             @Override
             public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i2) {
                 ImageUpdater.this.didSelectPhotos(arrayList);
@@ -798,10 +786,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             @Override
             public boolean canScrollAway() {
                 return false;
-            }
-
-            {
-                ImageUpdater.this = this;
             }
 
             @Override

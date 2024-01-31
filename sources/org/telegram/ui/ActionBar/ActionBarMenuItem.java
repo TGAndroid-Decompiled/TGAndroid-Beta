@@ -1146,13 +1146,15 @@ public class ActionBarMenuItem extends FrameLayout {
             });
             TransitionManager.beginDelayedTransition(this.searchFilterLayout, transitionSet);
         }
-        int i = 0;
-        while (i < this.searchFilterLayout.getChildCount()) {
-            if (!arrayList.remove(((SearchFilterView) this.searchFilterLayout.getChildAt(i)).getFilter())) {
-                this.searchFilterLayout.removeViewAt(i);
-                i--;
+        if (this.searchFilterLayout != null) {
+            int i = 0;
+            while (i < this.searchFilterLayout.getChildCount()) {
+                if (!arrayList.remove(((SearchFilterView) this.searchFilterLayout.getChildAt(i)).getFilter())) {
+                    this.searchFilterLayout.removeViewAt(i);
+                    i--;
+                }
+                i++;
             }
-            i++;
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) arrayList.get(i2);

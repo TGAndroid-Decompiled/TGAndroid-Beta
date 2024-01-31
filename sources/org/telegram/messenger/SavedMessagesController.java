@@ -1112,7 +1112,7 @@ public class SavedMessagesController {
 
     public void hasSavedMessages(final long j, Utilities.Callback<Boolean> callback) {
         SavedDialog findSavedDialog = findSavedDialog(j);
-        if (findSavedDialog != null && findSavedDialog.messagesCount > 0) {
+        if (findSavedDialog != null && findSavedDialog.messagesCount > 0 && findSavedDialog.messagesCountLoaded) {
             if (callback != null) {
                 callback.run(Boolean.TRUE);
                 return;
@@ -1121,7 +1121,10 @@ public class SavedMessagesController {
         }
         ArrayList<Utilities.Callback<Boolean>> arrayList = this.checkMessagesCallbacks.get(j);
         if (arrayList != null) {
-            arrayList.add(callback);
+            if (callback != null) {
+                arrayList.add(callback);
+                return;
+            }
             return;
         }
         ArrayList<Utilities.Callback<Boolean>> arrayList2 = new ArrayList<>();

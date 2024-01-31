@@ -169,7 +169,7 @@ public class ReactionsLayoutInBubble {
                 reactionButton.height = AndroidUtilities.dp(26.0f);
                 CounterView.CounterDrawable counterDrawable = reactionButton.counterDrawable;
                 if (counterDrawable != null && (reactionButton.count > 1 || reactionButton.hasName)) {
-                    reactionButton.width = (int) (reactionButton.width + counterDrawable.textPaint.measureText(reactionButton.countText) + AndroidUtilities.dp(8.0f));
+                    reactionButton.width += counterDrawable.getCurrentWidth() + AndroidUtilities.dp(8.0f);
                 }
             } else {
                 reactionButton.width = AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(4.0f);
@@ -178,7 +178,7 @@ public class ReactionsLayoutInBubble {
                     reactionButton.width = (int) (reactionButton.width + AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(20.0f) * 1) + ((reactionButton.users.size() > 1 ? reactionButton.users.size() - 1 : 0) * AndroidUtilities.dp(20.0f) * 0.8f) + AndroidUtilities.dp(1.0f));
                     reactionButton.avatarsDrawable.height = AndroidUtilities.dp(26.0f);
                 } else {
-                    reactionButton.width = (int) (reactionButton.width + reactionButton.counterDrawable.textPaint.measureText(reactionButton.countText) + AndroidUtilities.dp(8.0f));
+                    reactionButton.width += reactionButton.counterDrawable.getCurrentWidth() + AndroidUtilities.dp(8.0f);
                 }
                 reactionButton.height = AndroidUtilities.dp(26.0f);
             }
@@ -607,7 +607,7 @@ public class ReactionsLayoutInBubble {
             if (this.hasName && drawTextWithCounter()) {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.textDrawable;
                 animatedTextDrawable2.setText(Emoji.replaceEmoji(this.name, animatedTextDrawable2.getPaint().getFontMetricsInt(), false), false);
-                this.countText = Integer.toString(tLRPC$ReactionCount.count);
+                Integer.toString(tLRPC$ReactionCount.count);
                 this.counterDrawable.setCount(this.count, false);
             } else {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = this.textDrawable;
@@ -616,11 +616,10 @@ public class ReactionsLayoutInBubble {
                 }
                 if (this.hasName) {
                     String str = this.name;
-                    this.countText = str;
                     CounterView.CounterDrawable counterDrawable2 = this.counterDrawable;
                     counterDrawable2.setText(Emoji.replaceEmoji(str, counterDrawable2.textPaint.getFontMetricsInt(), false), false);
                 } else {
-                    this.countText = Integer.toString(tLRPC$ReactionCount.count);
+                    Integer.toString(tLRPC$ReactionCount.count);
                     this.counterDrawable.setCount(this.count, false);
                 }
             }

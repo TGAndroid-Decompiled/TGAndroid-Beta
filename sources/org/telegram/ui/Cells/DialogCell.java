@@ -219,9 +219,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public boolean inPreviewMode;
     private float innerProgress;
     private BounceInterpolator interpolator;
-    private boolean isDialogCell;
+    public boolean isDialogCell;
     private boolean isForum;
     public boolean isSavedDialog;
+    public boolean isSavedDialogCell;
     private boolean isSelected;
     private boolean isSliding;
     private boolean isTopic;
