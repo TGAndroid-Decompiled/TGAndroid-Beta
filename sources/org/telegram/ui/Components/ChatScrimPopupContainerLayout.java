@@ -24,13 +24,21 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
     }
 
     @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
+        int i3 = i;
+        int i4 = this.maxHeight;
+        int makeMeasureSpec = i4 != 0 ? View.MeasureSpec.makeMeasureSpec(i4, Integer.MIN_VALUE) : i2;
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsLayout;
         if (reactionsContainerLayout != null && this.popupWindowLayout != null) {
             reactionsContainerLayout.getLayoutParams().width = -2;
             ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = 0;
             this.popupLayoutLeftOffset = 0.0f;
-            super.onMeasure(i, i2);
+            super.onMeasure(i3, makeMeasureSpec);
             int measuredWidth = this.reactionsLayout.getMeasuredWidth();
             if (this.popupWindowLayout.getSwipeBack() != null && this.popupWindowLayout.getSwipeBack().getMeasuredWidth() > measuredWidth) {
                 measuredWidth = this.popupWindowLayout.getSwipeBack().getMeasuredWidth();
@@ -38,7 +46,10 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
             if (this.popupWindowLayout.getMeasuredWidth() > measuredWidth) {
                 measuredWidth = this.popupWindowLayout.getMeasuredWidth();
             }
-            int makeMeasureSpec = this.reactionsLayout.showCustomEmojiReaction() ? View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824) : i;
+            if (this.reactionsLayout.showCustomEmojiReaction()) {
+                i3 = View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824);
+            }
+            this.reactionsLayout.measureHint();
             int totalWidth = this.reactionsLayout.getTotalWidth();
             View childAt = (this.popupWindowLayout.getSwipeBack() != null ? this.popupWindowLayout.getSwipeBack() : this.popupWindowLayout).getChildAt(0);
             int measuredWidth2 = childAt.getMeasuredWidth() + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(36.0f);
@@ -55,8 +66,8 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
             } else if (totalWidth > measuredWidth2) {
                 int dp = ((measuredWidth2 - AndroidUtilities.dp(16.0f)) / AndroidUtilities.dp(36.0f)) + 1;
                 int dp2 = (AndroidUtilities.dp(36.0f) * dp) + AndroidUtilities.dp(8.0f);
-                if (AndroidUtilities.dp(24.0f) + hintTextWidth > dp2) {
-                    dp2 = AndroidUtilities.dp(24.0f) + hintTextWidth;
+                if (hintTextWidth + AndroidUtilities.dp(24.0f) > dp2) {
+                    dp2 = hintTextWidth + AndroidUtilities.dp(24.0f);
                 }
                 if (dp2 <= totalWidth && dp != this.reactionsLayout.getItemsCount()) {
                     totalWidth = dp2;
@@ -70,17 +81,17 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
                 if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth3 > measuredWidth) {
                     measuredWidth3 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.dp(8.0f);
                 }
-                r3 = measuredWidth3 >= 0 ? measuredWidth3 : 0;
-                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = r3;
+                r5 = measuredWidth3 >= 0 ? measuredWidth3 : 0;
+                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = r5;
                 this.popupLayoutLeftOffset = 0.0f;
                 updatePopupTranslation();
             } else {
                 float measuredWidth4 = (measuredWidth - childAt.getMeasuredWidth()) * 0.25f;
                 this.popupLayoutLeftOffset = measuredWidth4;
                 ReactionsContainerLayout reactionsContainerLayout2 = this.reactionsLayout;
-                int i3 = (int) (reactionsContainerLayout2.bigCircleOffset - measuredWidth4);
-                reactionsContainerLayout2.bigCircleOffset = i3;
-                if (i3 < AndroidUtilities.dp(36.0f)) {
+                int i5 = (int) (reactionsContainerLayout2.bigCircleOffset - measuredWidth4);
+                reactionsContainerLayout2.bigCircleOffset = i5;
+                if (i5 < AndroidUtilities.dp(36.0f)) {
                     this.popupLayoutLeftOffset = 0.0f;
                     this.reactionsLayout.bigCircleOffset = AndroidUtilities.dp(36.0f);
                 }
@@ -94,14 +105,14 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
                     this.bottomView.getLayoutParams().width = -1;
                 }
                 if (this.popupWindowLayout.getSwipeBack() != null) {
-                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r3 + AndroidUtilities.dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r5 + AndroidUtilities.dp(36.0f);
                 } else {
                     ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f);
                 }
             }
-            super.onMeasure(makeMeasureSpec, i2);
+            super.onMeasure(i3, makeMeasureSpec);
         } else {
-            super.onMeasure(i, i2);
+            super.onMeasure(i3, makeMeasureSpec);
         }
         this.maxHeight = getMeasuredHeight();
     }

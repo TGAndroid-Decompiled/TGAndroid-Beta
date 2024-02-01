@@ -1817,8 +1817,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         if ((ChatActivity.this.chatMode == 3 && ChatActivity.this.getSavedDialogId() == ChatActivity.this.getUserConfig().getClientUserId()) || (ChatActivity.this.chatMode == 0 && ((ChatActivity.this.threadMessageId == 0 || ChatActivity.this.isTopic) && !UserObject.isReplyUser(ChatActivity.this.currentUser) && ChatActivity.this.reportType < 0))) {
                             ChatActivity.this.editTextItem.setVisibility(0);
                             ChatActivity.this.checkEditTextItemMenu();
-                            ChatActivity.this.headerItem.setVisibility(8);
-                            ChatActivity.this.attachItem.setVisibility(8);
+                            if (ChatActivity.this.headerItem != null) {
+                                ChatActivity.this.headerItem.setVisibility(8);
+                            }
+                            if (ChatActivity.this.attachItem != null) {
+                                ChatActivity.this.attachItem.setVisibility(8);
+                            }
                         } else {
                             ValueAnimator ofFloat = ValueAnimator.ofFloat(AndroidUtilities.dp(48.0f), 0.0f);
                             ofFloat.setDuration(220L);
@@ -1855,12 +1859,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if ((ChatActivity.this.chatMode == 3 && ChatActivity.this.getSavedDialogId() == ChatActivity.this.getUserConfig().getClientUserId()) || (ChatActivity.this.chatMode == 0 && ((ChatActivity.this.threadMessageId == 0 || ChatActivity.this.isTopic) && !UserObject.isReplyUser(ChatActivity.this.currentUser) && ChatActivity.this.reportType < 0))) {
                         ChatActivity.this.editTextItem.setVisibility(8);
                         if (!ChatActivity.this.chatActivityEnterView.hasText() || !TextUtils.isEmpty(ChatActivity.this.chatActivityEnterView.getSlowModeTimer())) {
-                            ChatActivity.this.headerItem.setVisibility(0);
-                            ChatActivity.this.attachItem.setVisibility(8);
+                            if (ChatActivity.this.headerItem != null) {
+                                ChatActivity.this.headerItem.setVisibility(0);
+                            }
+                            if (ChatActivity.this.attachItem != null) {
+                                ChatActivity.this.attachItem.setVisibility(8);
+                                return;
+                            }
                             return;
                         }
-                        ChatActivity.this.headerItem.setVisibility(8);
-                        ChatActivity.this.attachItem.setVisibility(0);
+                        if (ChatActivity.this.headerItem != null) {
+                            ChatActivity.this.headerItem.setVisibility(8);
+                        }
+                        if (ChatActivity.this.attachItem != null) {
+                            ChatActivity.this.attachItem.setVisibility(0);
+                            return;
+                        }
                         return;
                     }
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(48.0f));
@@ -16701,7 +16715,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     l = null;
                 }
                 TLRPC$Message draftMessage = (draft == null || (tLRPC$InputReplyTo = draft.reply_to) == null || tLRPC$InputReplyTo.reply_to_msg_id == 0) ? null : getMediaDataController().getDraftMessage(this.dialog_id, l != null ? l.longValue() : this.threadMessageId);
-                if (this.chatActivityEnterView.getFieldText() == null || (this.chatMode == 0 && getUserConfig().getClientUserId() == getDialogId() && this.appliedDraftDate < draft.date)) {
+                if (this.chatActivityEnterView.getFieldText() == null || (this.chatMode == 0 && getUserConfig().getClientUserId() == getDialogId() && draft != null && this.appliedDraftDate < draft.date)) {
                     if (draft != null) {
                         this.appliedDraftDate = draft.date;
                         this.chatActivityEnterView.setWebPage(null, !draft.no_webpage);

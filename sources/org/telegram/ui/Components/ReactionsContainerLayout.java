@@ -84,6 +84,7 @@ import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Stories.recorder.HintView2;
 public class ReactionsContainerLayout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final Property<ReactionsContainerLayout, Float> TRANSITION_PROGRESS_VALUE = new Property<ReactionsContainerLayout, Float>(Float.class, "transitionProgress") {
         @Override
@@ -117,7 +118,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public final float durationScale;
     private float flipVerticalProgress;
     BaseFragment fragment;
-    private boolean hasHint;
+    public boolean hasHint;
+    private boolean hintMeasured;
     public TextView hintView;
     public int hintViewHeight;
     public int hintViewWidth;
@@ -1384,18 +1386,45 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             addView(this.hintView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 6.0f, 0.0f, 0.0f));
         }
         this.hintView.setText(charSequence);
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.hintView.getPaint(), (int) (AndroidUtilities.displaySize.x * 0.7f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.hintMeasured = false;
+        ((FrameLayout.LayoutParams) this.nextRecentReaction.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
+        ((FrameLayout.LayoutParams) this.recyclerListView.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
+    }
+
+    public void measureHint() {
+        if (this.hintMeasured || !this.hasHint || getMeasuredWidth() <= 0) {
+            return;
+        }
+        int min = Math.min(AndroidUtilities.dp(320.0f), getMeasuredWidth() - AndroidUtilities.dp(16.0f));
+        StaticLayout staticLayout = new StaticLayout(this.hintView.getText(), this.hintView.getPaint(), min, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.hintViewHeight = staticLayout.getHeight();
         this.hintViewWidth = 0;
-        for (int i2 = 0; i2 < staticLayout.getLineCount(); i2++) {
-            this.hintViewWidth = Math.max(this.hintViewWidth, (int) Math.ceil(staticLayout.getLineWidth(i2)));
+        for (int i = 0; i < staticLayout.getLineCount(); i++) {
+            this.hintViewWidth = Math.max(this.hintViewWidth, (int) Math.ceil(staticLayout.getLineWidth(i)));
         }
-        if (staticLayout.getLineCount() > 1) {
-            this.hintViewWidth += AndroidUtilities.dp(64.0f);
+        if (staticLayout.getLineCount() > 1 && !this.hintView.getText().toString().contains("\n")) {
+            int cutInFancyHalf = HintView2.cutInFancyHalf(this.hintView.getText(), this.hintView.getPaint());
+            StaticLayout staticLayout2 = new StaticLayout(this.hintView.getText(), this.hintView.getPaint(), cutInFancyHalf, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.hintViewHeight = staticLayout2.getHeight();
+            this.hintViewWidth = 0;
+            for (int i2 = 0; i2 < staticLayout2.getLineCount(); i2++) {
+                this.hintViewWidth = Math.max(this.hintViewWidth, (int) Math.ceil(staticLayout2.getLineWidth(i2)));
+            }
+            this.hintView.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
+            this.hintView.setWidth(AndroidUtilities.dp(48.0f) + cutInFancyHalf);
+        } else {
+            this.hintView.setWidth(AndroidUtilities.dp(16.0f) + min);
         }
         int max = Math.max(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(7.0f) + this.hintViewHeight);
+        int i3 = this.type;
+        if (i3 == 1 || i3 == 2) {
+            max = AndroidUtilities.dp(20.0f);
+        } else {
+            getLayoutParams().height = AndroidUtilities.dp(52.0f) + max + AndroidUtilities.dp(22.0f);
+        }
         ((FrameLayout.LayoutParams) this.nextRecentReaction.getLayoutParams()).topMargin = max;
         ((FrameLayout.LayoutParams) this.recyclerListView.getLayoutParams()).topMargin = max;
+        this.hintMeasured = true;
     }
 
     public void setTop(boolean z) {
