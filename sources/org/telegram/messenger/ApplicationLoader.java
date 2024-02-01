@@ -68,7 +68,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public boolean isStandalone() {
+    protected boolean isStandalone() {
         return false;
     }
 

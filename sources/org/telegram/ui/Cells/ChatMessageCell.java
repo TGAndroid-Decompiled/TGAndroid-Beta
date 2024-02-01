@@ -2124,7 +2124,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     private boolean checkInstantButtonMotionEvent(MotionEvent motionEvent) {
-        if (this.currentMessageObject.isSponsored() || (this.drawInstantView && this.currentMessageObject.type != 0)) {
+        if (this.currentMessageObject.isSponsored() || this.currentMessageObject.isUnsupported() || (this.drawInstantView && this.currentMessageObject.type != 0)) {
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
             if (motionEvent.getAction() == 0) {
@@ -5010,7 +5010,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (Build.VERSION.SDK_INT < 21) {
             return;
         }
-        if (this.psaHintPressed) {
+        if (this.currentMessageObject.isUnsupported()) {
+            themedColor = getThemedColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outPreviewInstantText : Theme.key_chat_inPreviewInstantText);
+        } else if (this.psaHintPressed) {
             themedColor = getThemedColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outViews : Theme.key_chat_inViews);
         } else {
             ReplyMessageLine replyMessageLine = this.linkLine;
@@ -5182,6 +5184,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     str = LocaleController.getString("BoostingHowItWork", R.string.BoostingHowItWork);
                 } else if (i == 20) {
                     str = LocaleController.getString(R.string.OpenGift);
+                } else if (i == 21) {
+                    str = LocaleController.getString(R.string.AppUpdate);
                 } else {
                     str = LocaleController.getString(R.string.InstantView);
                 }

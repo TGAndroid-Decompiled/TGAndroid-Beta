@@ -3920,7 +3920,6 @@
     <string name="UnpinnedDialogsCount_zero">%1$d개의 대화 고정해제됨</string>
     <string name="UnreadMessages">읽지 않은 메시지</string>
     <string name="UnsupportedAttachment">지원하지 않는 형식입니다</string>
-    <string name="UnsupportedMedia">이 메시지는 현재 사용하고 있는 텔레그램 버전에서 지원되지 않습니다.\n메시지를 보시려면 http://telegram.org/update 에서 앱을 업데이트하세요.</string>
     <string name="Unvote">투표 취소</string>
     <string name="Update">업데이트</string>
     <string name="UpdateApp">앱 업데이트</string>

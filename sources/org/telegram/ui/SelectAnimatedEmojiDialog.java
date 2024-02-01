@@ -2768,7 +2768,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         updateRows(z, z2, true);
     }
 
-    public void updateRows(boolean r28, boolean r29, boolean r30) {
+    public void updateRows(boolean r29, boolean r30, boolean r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SelectAnimatedEmojiDialog.updateRows(boolean, boolean, boolean):void");
     }
 

@@ -76,6 +76,7 @@ import org.telegram.ui.Components.ProfileGalleryView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.TypefaceSpan;
+import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
@@ -203,7 +204,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         if (this.emptyView == null) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 16, this.fragment.getResourceProvider());
             this.emptyView = stickerEmptyView;
-            TextView textView = stickerEmptyView.title;
+            SpoilersTextView spoilersTextView = stickerEmptyView.title;
             if (this.isChannel) {
                 i = R.string.NoSubscribeRequests;
                 str = "NoSubscribeRequests";
@@ -211,7 +212,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 i = R.string.NoMemberRequests;
                 str = "NoMemberRequests";
             }
-            textView.setText(LocaleController.getString(str, i));
+            spoilersTextView.setText(LocaleController.getString(str, i));
             LinkSpanDrawable.LinksTextView linksTextView = this.emptyView.subtitle;
             if (this.isChannel) {
                 i2 = R.string.NoSubscribeRequestsDescription;

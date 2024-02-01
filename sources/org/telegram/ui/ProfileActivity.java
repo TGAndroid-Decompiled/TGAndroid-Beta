@@ -4504,7 +4504,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else if (i == 8) {
                 SharedConfig.toggleRoundCamera16to9();
             } else if (i == 9) {
-                ((LaunchActivity) ProfileActivity.this.getParentActivity()).checkAppUpdate(true);
+                ((LaunchActivity) ProfileActivity.this.getParentActivity()).checkAppUpdate(true, null);
             } else if (i == 10) {
                 ProfileActivity.this.getMessagesStorage().readAllDialogs(-1);
             } else if (i == 11) {

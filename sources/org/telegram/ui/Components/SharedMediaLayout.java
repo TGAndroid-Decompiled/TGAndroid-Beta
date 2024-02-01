@@ -5731,7 +5731,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             if (!z || !this.cachedMessages.isEmpty()) {
                 for (int i3 = 0; i3 < SharedMediaLayout.this.mediaPages.length; i3++) {
                     if (SharedMediaLayout.this.mediaPages[i3].selectedType == 11 && this.messages.isEmpty() && this.dialogs.isEmpty()) {
-                        SharedMediaLayout.this.mediaPages[i3].emptyView.title.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.lastQuery));
+                        SharedMediaLayout.this.mediaPages[i3].emptyView.title.setText((this.lastReaction == null || !TextUtils.isEmpty(this.lastQuery)) ? LocaleController.formatString(R.string.NoResultFoundFor, this.lastQuery) : AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.NoResultFoundForTag), this.lastReaction.toCharSequence(SharedMediaLayout.this.mediaPages[i3].emptyView.title.getPaint().getFontMetricsInt())));
                         SharedMediaLayout.this.mediaPages[i3].emptyView.showProgress(false, true);
                     }
                 }

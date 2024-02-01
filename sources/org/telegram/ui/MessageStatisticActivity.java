@@ -393,7 +393,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         this.listView.setEmptyView(this.emptyView);
         this.avatarContainer = new ChatAvatarContainer(context, null, false) {
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
                 messageStatisticActivity.thumbImage.setImageCoords(messageStatisticActivity.avatarContainer.getAvatarImageView().getX(), MessageStatisticActivity.this.avatarContainer.getAvatarImageView().getY(), MessageStatisticActivity.this.avatarContainer.getAvatarImageView().getWidth(), MessageStatisticActivity.this.avatarContainer.getAvatarImageView().getHeight());

@@ -22,6 +22,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.spoilers.SpoilersTextView;
 public class StickerEmptyView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private boolean animateLayoutChange;
     int colorKey1;
@@ -38,7 +39,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
     private int stickerType;
     public BackupImageView stickerView;
     public final LinkSpanDrawable.LinksTextView subtitle;
-    public final TextView title;
+    public final SpoilersTextView title;
 
     public StickerEmptyView(Context context, View view, int i) {
         this(context, view, i, null);
@@ -92,14 +93,14 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                 StickerEmptyView.this.lambda$new$0(view2);
             }
         });
-        TextView textView = new TextView(context);
-        this.title = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        SpoilersTextView spoilersTextView = new SpoilersTextView(context);
+        this.title = spoilersTextView;
+        spoilersTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTag(Integer.valueOf(i2));
-        textView.setTextColor(getThemedColor(i2));
-        textView.setTextSize(1, 20.0f);
-        textView.setGravity(17);
+        spoilersTextView.setTag(Integer.valueOf(i2));
+        spoilersTextView.setTextColor(getThemedColor(i2));
+        spoilersTextView.setTextSize(1, 20.0f);
+        spoilersTextView.setGravity(17);
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         this.subtitle = linksTextView;
         int i3 = Theme.key_windowBackgroundWhiteGrayText;
@@ -109,7 +110,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setGravity(17);
         this.linearLayout.addView(this.stickerView, LayoutHelper.createLinear(117, 117, 1));
-        this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 12, 0, 0));
+        this.linearLayout.addView(spoilersTextView, LayoutHelper.createLinear(-2, -2, 1, 0, 12, 0, 0));
         this.linearLayout.addView(linksTextView, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
         addView(this.linearLayout, LayoutHelper.createFrame(-2, -2.0f, 17, 46.0f, 0.0f, 46.0f, 30.0f));
         if (view == null) {

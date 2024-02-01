@@ -161,10 +161,6 @@ public class CounterView extends View {
             setText(getStringOfCCount(i), z, i, false);
         }
 
-        public void setText(CharSequence charSequence, boolean z) {
-            setText(charSequence, z, 1, true);
-        }
-
         public void setText(CharSequence charSequence, boolean z, int i, boolean z2) {
             View view;
             View view2;

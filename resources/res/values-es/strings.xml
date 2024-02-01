@@ -3920,7 +3920,6 @@
     <string name="UnpinnedDialogsCount_zero">%1$d chats desfijados</string>
     <string name="UnreadMessages">Mensajes no leídos</string>
     <string name="UnsupportedAttachment">Adjunto no compatible</string>
-    <string name="UnsupportedMedia">Tu versión de Telegram no es compatible con este mensaje. Actualiza tu app para verlo: https://telegram.org/update</string>
     <string name="Unvote">Retractar voto</string>
     <string name="Update">ACTUALIZAR</string>
     <string name="UpdateApp">Actualizar app</string>

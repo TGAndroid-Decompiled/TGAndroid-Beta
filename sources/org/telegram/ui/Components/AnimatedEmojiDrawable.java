@@ -538,7 +538,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                         }
 
                         @Override
-                        protected boolean setImageBitmapByKey(Drawable drawable, String str2, int i2, boolean z2, int i3) {
+                        public boolean setImageBitmapByKey(Drawable drawable, String str2, int i2, boolean z2, int i3) {
                             AnimatedEmojiDrawable.this.invalidate();
                             return super.setImageBitmapByKey(drawable, str2, i2, z2, i3);
                         }
@@ -648,7 +648,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 }
                 this.imageReceiver.setAspectFit(true);
                 int i8 = this.cacheType;
-                if (i8 == 12 || i8 == 8 || i8 == 6 || i8 == 5) {
+                if (i8 == 12 || i8 == 18 || i8 == 8 || i8 == 6 || i8 == 5) {
                     this.imageReceiver.setAllowStartAnimation(false);
                     this.imageReceiver.setAllowStartLottieAnimation(false);
                     this.imageReceiver.setAutoRepeat(0);

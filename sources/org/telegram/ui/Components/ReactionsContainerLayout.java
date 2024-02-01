@@ -1811,10 +1811,16 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     this.pressedBackupImageView.getImageReceiver().clearImage();
                     this.loopImageView.getImageReceiver().clearImage();
                     AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, ReactionsContainerLayout.this.currentAccount, this.currentReaction.documentId);
-                    animatedEmojiDrawable.setColorFilter(Theme.getAnimatedEmojiColorFilter(ReactionsContainerLayout.this.resourcesProvider));
                     this.pressedBackupImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable);
                     AnimatedEmojiDrawable animatedEmojiDrawable2 = new AnimatedEmojiDrawable(3, ReactionsContainerLayout.this.currentAccount, this.currentReaction.documentId);
-                    animatedEmojiDrawable2.setColorFilter(Theme.getAnimatedEmojiColorFilter(ReactionsContainerLayout.this.resourcesProvider));
+                    if (ReactionsContainerLayout.this.type == 1 || ReactionsContainerLayout.this.type == 2) {
+                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                    } else {
+                        int i2 = Theme.key_dialogBackground;
+                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                    }
                     this.loopImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable2);
                     PremiumLockIconView premiumLockIconView4 = this.lockIconView;
                     if (premiumLockIconView4 != null) {

@@ -3920,7 +3920,6 @@
     <string name="UnpinnedDialogsCount_zero">%1$d chat tolte</string>
     <string name="UnreadMessages">Messaggi non letti</string>
     <string name="UnsupportedAttachment">Allegato non supportato</string>
-    <string name="UnsupportedMedia">Questo messaggio non è supportato dalla tua versione di Telegram. Aggiorna l\'app per visualizzarlo: https://telegram.org/update</string>
     <string name="Unvote">Ritira voto</string>
     <string name="Update">AGGIORNA</string>
     <string name="UpdateApp">Aggiorna App</string>

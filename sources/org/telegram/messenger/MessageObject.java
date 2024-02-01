@@ -718,6 +718,10 @@ public class MessageObject {
         return ((messageObject != null && (messageObject.messageOwner instanceof TLRPC$TL_messageEmpty)) || (tLRPC$MessageReplyHeader = (tLRPC$Message = this.messageOwner).reply_to) == null || tLRPC$MessageReplyHeader.story_id == 0 || (tLRPC$Message.flags & 8) == 0) ? false : true;
     }
 
+    public boolean isUnsupported() {
+        return getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaUnsupported;
+    }
+
     public boolean isExpiredStory() {
         int i = this.type;
         return (i == 23 || i == 24) && (this.messageOwner.media.storyItem instanceof TL_stories$TL_storyItemDeleted);
@@ -3743,7 +3747,7 @@ public class MessageObject {
         if (charSequence == null) {
             return false;
         }
-        if (this.isRestrictedMessage) {
+        if (this.isRestrictedMessage || (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaUnsupported)) {
             ArrayList arrayList2 = new ArrayList();
             TLRPC$TL_messageEntityItalic tLRPC$TL_messageEntityItalic = new TLRPC$TL_messageEntityItalic();
             tLRPC$TL_messageEntityItalic.offset = 0;
