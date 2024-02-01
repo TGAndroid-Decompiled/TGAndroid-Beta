@@ -22390,41 +22390,42 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void didPressChannelRecommendation(final ChatMessageCell chatMessageCell, final TLRPC$Chat tLRPC$Chat, boolean z) {
-            if (tLRPC$Chat != null) {
-                if (((BaseFragment) ChatActivity.this).parentLayout == null || !((BaseFragment) ChatActivity.this).parentLayout.isInPreviewMode()) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", tLRPC$Chat.id);
-                    if (z) {
-                        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ChatActivity.this.getContext(), R.drawable.popup_fixed_alert, ChatActivity.this.getResourceProvider(), 2);
-                        actionBarPopupWindowLayout.setBackgroundColor(ChatActivity.this.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
-                        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(ChatActivity.this.getParentActivity(), false, false);
-                        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.OpenChannel2), R.drawable.msg_channel);
-                        actionBarMenuSubItem.setMinimumWidth(160);
-                        actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view) {
-                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$12(view);
-                            }
-                        });
-                        actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
-                        ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(ChatActivity.this.getParentActivity(), false, false);
-                        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.ProfileJoinChannel), R.drawable.msg_addbot);
-                        actionBarMenuSubItem2.setMinimumWidth(160);
-                        actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view) {
-                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$14(tLRPC$Chat, chatMessageCell, view);
-                            }
-                        });
-                        actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
-                        ChatActivity chatActivity = new ChatActivity(bundle);
-                        chatActivity.allowExpandPreviewByClick = true;
-                        ChatActivity.this.presentFragmentAsPreviewWithMenu(chatActivity, actionBarPopupWindowLayout);
-                        ChatActivity.this.checkShowBlur(true);
-                        return;
-                    }
-                    ChatActivity.this.presentFragment(new ChatActivity(bundle));
+            if (ChatActivity.this.getContext() == null || tLRPC$Chat == null) {
+                return;
+            }
+            if (((BaseFragment) ChatActivity.this).parentLayout == null || !((BaseFragment) ChatActivity.this).parentLayout.isInPreviewMode()) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", tLRPC$Chat.id);
+                if (z) {
+                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ChatActivity.this.getContext(), R.drawable.popup_fixed_alert, ChatActivity.this.getResourceProvider(), 2);
+                    actionBarPopupWindowLayout.setBackgroundColor(ChatActivity.this.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
+                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(ChatActivity.this.getParentActivity(), false, false);
+                    actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.OpenChannel2), R.drawable.msg_channel);
+                    actionBarMenuSubItem.setMinimumWidth(160);
+                    actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$12(view);
+                        }
+                    });
+                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
+                    ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(ChatActivity.this.getParentActivity(), false, false);
+                    actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.ProfileJoinChannel), R.drawable.msg_addbot);
+                    actionBarMenuSubItem2.setMinimumWidth(160);
+                    actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$14(tLRPC$Chat, chatMessageCell, view);
+                        }
+                    });
+                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
+                    ChatActivity chatActivity = new ChatActivity(bundle);
+                    chatActivity.allowExpandPreviewByClick = true;
+                    ChatActivity.this.presentFragmentAsPreviewWithMenu(chatActivity, actionBarPopupWindowLayout);
+                    ChatActivity.this.checkShowBlur(true);
+                    return;
                 }
+                ChatActivity.this.presentFragment(new ChatActivity(bundle));
             }
         }
 
@@ -24277,8 +24278,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             });
             this.switchingFromTopics = true;
-            this.actionBar.invalidate();
-            this.contentView.invalidate();
+            ActionBar actionBar = this.actionBar;
+            if (actionBar != null) {
+                actionBar.invalidate();
+            }
+            ChatActivityFragmentView chatActivityFragmentView = this.contentView;
+            if (chatActivityFragmentView != null) {
+                chatActivityFragmentView.invalidate();
+            }
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.fragmentTransition = animatorSet2;
             animatorSet2.addListener(new AnonymousClass141(z, runnable));
