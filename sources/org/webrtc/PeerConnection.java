@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.webrtc.DataChannel;
 import org.webrtc.MediaStreamTrack;
@@ -277,7 +278,7 @@ public class PeerConnection {
 
         @Deprecated
         public IceServer(String str) {
-            this(str, "", "");
+            this(str, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
         }
 
         @Deprecated
@@ -287,7 +288,7 @@ public class PeerConnection {
 
         @Deprecated
         public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy) {
-            this(str, str2, str3, tlsCertPolicy, "");
+            this(str, str2, str3, tlsCertPolicy, BuildConfig.APP_CENTER_HASH);
         }
 
         @Deprecated
@@ -363,10 +364,10 @@ public class PeerConnection {
             private String username;
 
             private Builder(List<String> list) {
-                this.username = "";
-                this.password = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
+                this.password = BuildConfig.APP_CENTER_HASH;
                 this.tlsCertPolicy = TlsCertPolicy.TLS_CERT_POLICY_SECURE;
-                this.hostname = "";
+                this.hostname = BuildConfig.APP_CENTER_HASH;
                 if (list == null || list.isEmpty()) {
                     throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
                 }

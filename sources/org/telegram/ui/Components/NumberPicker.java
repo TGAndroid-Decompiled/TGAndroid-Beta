@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
@@ -924,7 +925,7 @@ public class NumberPicker extends LinearLayout {
         }
         int i2 = this.mMinValue;
         if (i < i2 || i > this.mMaxValue) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         } else {
             String[] strArr = this.mDisplayedValues;
             if (strArr != null) {

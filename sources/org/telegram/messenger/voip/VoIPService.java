@@ -79,6 +79,7 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -2578,7 +2579,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tLRPC$TL_upload_getFile.location = tLRPC$TL_inputGroupCallStream;
         if (i2 == 0) {
             sb = new StringBuilder();
-            sb.append("");
+            sb.append(BuildConfig.APP_CENTER_HASH);
             sb.append(j);
         } else {
             sb = new StringBuilder();
@@ -2658,7 +2659,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public void lambda$createGroupInstance$46(int i, long j, int i2) {
         String str;
         if (i == 0) {
-            str = "" + j;
+            str = BuildConfig.APP_CENTER_HASH + j;
         } else {
             str = i + "_" + j + "_" + i2;
         }
@@ -3407,7 +3408,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public String getDebugString() {
         NativeInstance[] nativeInstanceArr = this.tgVoip;
-        return nativeInstanceArr[0] != null ? nativeInstanceArr[0].getDebugInfo() : "";
+        return nativeInstanceArr[0] != null ? nativeInstanceArr[0].getDebugInfo() : BuildConfig.APP_CENTER_HASH;
     }
 
     public long getCallDuration() {
@@ -5078,7 +5079,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private PhoneAccountHandle addAccountToTelecomManager() {
         TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         ComponentName componentName = new ComponentName(this, TelegramConnectionService.class);
-        PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(componentName, "" + currentUser.id);
+        PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(componentName, BuildConfig.APP_CENTER_HASH + currentUser.id);
         ((TelecomManager) getSystemService("telecom")).registerPhoneAccount(new PhoneAccount.Builder(phoneAccountHandle, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(LiteMode.FLAG_AUTOPLAY_GIFS).setIcon(Icon.createWithResource(this, R.drawable.ic_launcher_dr)).setHighlightColor(-13851168).addSupportedUriScheme("sip").build());
         return phoneAccountHandle;
     }

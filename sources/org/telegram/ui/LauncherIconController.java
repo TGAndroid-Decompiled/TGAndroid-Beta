@@ -50,10 +50,6 @@ public class LauncherIconController {
         public final boolean premium;
         public final int title;
 
-        private static LauncherIcon[] $values() {
-            return new LauncherIcon[]{DEFAULT, VINTAGE, AQUA, PREMIUM, TURBO, NOX};
-        }
-
         public static LauncherIcon valueOf(String str) {
             return (LauncherIcon) Enum.valueOf(LauncherIcon.class, str);
         }
@@ -65,13 +61,19 @@ public class LauncherIconController {
         static {
             int i = R.drawable.icon_background_sa;
             int i2 = R.mipmap.icon_foreground_sa;
-            DEFAULT = new LauncherIcon("DEFAULT", 0, "DefaultIcon", i, i2, R.string.AppIconDefault);
-            VINTAGE = new LauncherIcon("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage);
-            AQUA = new LauncherIcon("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i2, R.string.AppIconAqua);
-            PREMIUM = new LauncherIcon("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true);
-            TURBO = new LauncherIcon("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true);
-            NOX = new LauncherIcon("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i2, R.string.AppIconNox, true);
-            $VALUES = $values();
+            LauncherIcon launcherIcon = new LauncherIcon("DEFAULT", 0, "DefaultIcon", i, i2, R.string.AppIconDefault);
+            DEFAULT = launcherIcon;
+            LauncherIcon launcherIcon2 = new LauncherIcon("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage);
+            VINTAGE = launcherIcon2;
+            LauncherIcon launcherIcon3 = new LauncherIcon("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i2, R.string.AppIconAqua);
+            AQUA = launcherIcon3;
+            LauncherIcon launcherIcon4 = new LauncherIcon("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true);
+            PREMIUM = launcherIcon4;
+            LauncherIcon launcherIcon5 = new LauncherIcon("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true);
+            TURBO = launcherIcon5;
+            LauncherIcon launcherIcon6 = new LauncherIcon("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i2, R.string.AppIconNox, true);
+            NOX = launcherIcon6;
+            $VALUES = new LauncherIcon[]{launcherIcon, launcherIcon2, launcherIcon3, launcherIcon4, launcherIcon5, launcherIcon6};
         }
 
         public ComponentName getComponentName(Context context) {

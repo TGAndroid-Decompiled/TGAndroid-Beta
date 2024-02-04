@@ -282,7 +282,7 @@ public class MessagePreviewParams {
             this.linkMessage = null;
         } else {
             if (charSequence == null) {
-                charSequence = "";
+                charSequence = BuildConfig.APP_CENTER_HASH;
             }
             Messages messages = this.linkMessage;
             boolean z3 = messages == null || z2;
@@ -438,7 +438,7 @@ public class MessagePreviewParams {
 
     private static String normalizePath(String str) {
         if (str == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         if (str.endsWith("/")) {
             return str;

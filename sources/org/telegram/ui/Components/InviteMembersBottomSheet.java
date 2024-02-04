@@ -1054,7 +1054,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 InviteMembersBottomSheet inviteMembersBottomSheet;
                 InviteMembersBottomSheet inviteMembersBottomSheet2 = InviteMembersBottomSheet.this;
                 InviteMembersBottomSheet.this.spansScrollView.setTranslationY((inviteMembersBottomSheet2.scrollOffsetY - ((BottomSheet) inviteMembersBottomSheet2).backgroundPaddingTop) + AndroidUtilities.dp(6.0f) + AndroidUtilities.dp(64.0f));
@@ -1102,7 +1102,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     @Override
-    public void search(String str) {
+    protected void search(String str) {
         this.searchAdapter.searchDialogs(str);
     }
 

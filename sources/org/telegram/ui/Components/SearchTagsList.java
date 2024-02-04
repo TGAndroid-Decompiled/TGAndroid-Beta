@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -442,9 +443,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                     this.limitCount = 12 - charSequence.length();
                     this.limit.cancelAnimation();
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                    String str = "";
-                    if (this.limitCount <= 4) {
-                        str = "" + this.limitCount;
+                    int i5 = this.limitCount;
+                    String str = BuildConfig.APP_CENTER_HASH;
+                    if (i5 <= 4) {
+                        str = BuildConfig.APP_CENTER_HASH + this.limitCount;
                     }
                     animatedTextDrawable.setText(str);
                 }
@@ -493,7 +495,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
         editTextBoldCursor.setTextSize(1, 18.0f);
         if (savedTagName == null) {
-            savedTagName = "";
+            savedTagName = BuildConfig.APP_CENTER_HASH;
         }
         editTextBoldCursor.setText(savedTagName);
         int i2 = Theme.key_dialogTextBlack;
@@ -939,7 +941,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             } else {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = reactionButton3.textDrawable;
                 if (animatedTextDrawable2 != null) {
-                    animatedTextDrawable2.setText("", !z);
+                    animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH, !z);
                 }
             }
             this.reactionButton.countText = Integer.toString(item.count);

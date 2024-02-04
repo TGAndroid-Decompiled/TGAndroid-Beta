@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -378,7 +379,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 0);
                 this.checkBoxCell = checkBoxCell;
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", R.string.SharePhoneNumberWith)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)), "", true, false);
+                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", R.string.SharePhoneNumberWith)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)), BuildConfig.APP_CENTER_HASH, true, false);
                 this.checkBoxCell.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
                 this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -398,7 +399,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             int i8 = Theme.key_windowBackgroundWhiteBlueButton;
             textCell.setColors(i7, i8);
             int i9 = R.raw.photo_suggest_icon;
-            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i9, "" + i9, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i9, BuildConfig.APP_CENTER_HASH + i9, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             textCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
             textCell.imageView.setAnimation(rLottieDrawable);
             textCell.setOnClickListener(new View.OnClickListener() {
@@ -413,7 +414,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             textCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textCell2.setColors(i7, i8);
             int i10 = R.raw.camera_outline;
-            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i10, "" + i10, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i10, BuildConfig.APP_CENTER_HASH + i10, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             textCell2.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
             textCell2.imageView.setAnimation(rLottieDrawable2);
             textCell2.setOnClickListener(new View.OnClickListener() {

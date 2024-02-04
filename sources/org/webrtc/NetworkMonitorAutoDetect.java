@@ -22,6 +22,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.telegram.messenger.BuildConfig;
 import org.webrtc.NetworkChangeDetector;
 import org.webrtc.NetworkMonitorAutoDetect;
 public class NetworkMonitorAutoDetect extends BroadcastReceiver implements NetworkChangeDetector {
@@ -296,7 +297,7 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             WifiInfo wifiInfo;
             String ssid;
             Intent registerReceiver = this.context.registerReceiver(null, new IntentFilter("android.net.wifi.STATE_CHANGE"));
-            return (registerReceiver == null || (wifiInfo = (WifiInfo) registerReceiver.getParcelableExtra("wifiInfo")) == null || (ssid = wifiInfo.getSSID()) == null) ? "" : ssid;
+            return (registerReceiver == null || (wifiInfo = (WifiInfo) registerReceiver.getParcelableExtra("wifiInfo")) == null || (ssid = wifiInfo.getSSID()) == null) ? BuildConfig.APP_CENTER_HASH : ssid;
         }
     }
 
@@ -544,7 +545,7 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
     }
 
     private String getWifiSSID(NetworkState networkState) {
-        return getConnectionType(networkState) != NetworkChangeDetector.ConnectionType.CONNECTION_WIFI ? "" : this.wifiManagerDelegate.getWifiSSID();
+        return getConnectionType(networkState) != NetworkChangeDetector.ConnectionType.CONNECTION_WIFI ? BuildConfig.APP_CENTER_HASH : this.wifiManagerDelegate.getWifiSSID();
     }
 
     @Override

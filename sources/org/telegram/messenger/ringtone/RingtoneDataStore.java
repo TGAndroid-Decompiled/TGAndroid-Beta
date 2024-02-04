@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationBadge;
@@ -112,8 +113,8 @@ public class RingtoneDataStore {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         this.userRingtones.clear();
         for (int i2 = 0; i2 < i; i2++) {
-            String string = sharedPreferences.getString("tone_document" + i2, "");
-            String string2 = sharedPreferences.getString("tone_local_path" + i2, "");
+            String string = sharedPreferences.getString("tone_document" + i2, BuildConfig.APP_CENTER_HASH);
+            String string2 = sharedPreferences.getString("tone_local_path" + i2, BuildConfig.APP_CENTER_HASH);
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
             try {
                 TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);

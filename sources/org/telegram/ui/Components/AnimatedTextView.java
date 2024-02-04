@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 public class AnimatedTextView extends View {
@@ -206,7 +207,7 @@ public class AnimatedTextView extends View {
         public void setText(CharSequence charSequence, boolean z, boolean z2) {
             z = (this.currentText == null || charSequence == null) ? false : false;
             if (charSequence == null) {
-                charSequence = "";
+                charSequence = BuildConfig.APP_CENTER_HASH;
             }
             final int i = this.overrideFullWidth;
             if (i <= 0) {

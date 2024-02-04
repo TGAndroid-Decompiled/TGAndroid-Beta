@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -260,7 +261,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         this.hint.setTranslationY((-Math.min(AndroidUtilities.dp(34.0f), getEditTextHeight())) - AndroidUtilities.dp(14.0f));
         this.hint.setText(replaceTags);
         int i2 = i > 0 ? R.raw.fire_on : R.raw.fire_off;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
         rLottieDrawable.start();
         this.hint.setIcon(rLottieDrawable);
         this.hint.show();

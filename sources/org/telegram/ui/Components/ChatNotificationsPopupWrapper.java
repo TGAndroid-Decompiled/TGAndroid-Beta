@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -130,7 +131,7 @@ public class ChatNotificationsPopupWrapper {
                 ChatNotificationsPopupWrapper.this.lambda$new$7(callback, view);
             }
         });
-        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, "", false, resourcesProvider);
+        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, BuildConfig.APP_CENTER_HASH, false, resourcesProvider);
         this.muteUnmuteButton = addItem5;
         addItem5.setOnClickListener(new View.OnClickListener() {
             @Override

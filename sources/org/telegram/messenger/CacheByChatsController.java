@@ -87,7 +87,7 @@ public class CacheByChatsController {
         ArrayList<KeepMediaException> arrayList = new ArrayList<>();
         HashSet hashSet = new HashSet();
         SharedPreferences preferences = UserConfig.getInstance(this.currentAccount).getPreferences();
-        String string = preferences.getString("keep_media_exceptions_" + i, "");
+        String string = preferences.getString("keep_media_exceptions_" + i, BuildConfig.APP_CENTER_HASH);
         if (TextUtils.isEmpty(string)) {
             return arrayList;
         }

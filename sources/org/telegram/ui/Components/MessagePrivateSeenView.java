@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -201,7 +202,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(i3, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
-        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : "";
+        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : BuildConfig.APP_CENTER_HASH;
         if (z) {
             i2 = premiumFeaturesBlocked ? R.string.PremiumLastSeenText1Locked : R.string.PremiumLastSeenText1;
         } else {

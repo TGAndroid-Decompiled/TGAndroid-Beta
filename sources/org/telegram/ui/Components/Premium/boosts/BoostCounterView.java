@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -33,7 +34,7 @@ public class BoostCounterView extends View {
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
         animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setText("");
+        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
         animatedTextDrawable.setGravity(17);
         Paint paint = new Paint(1);
         this.bgPaint = paint;

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -320,7 +321,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                     }
                     return;
                 }
-                textInfoPrivacyCell.setText("");
+                textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             }
         }

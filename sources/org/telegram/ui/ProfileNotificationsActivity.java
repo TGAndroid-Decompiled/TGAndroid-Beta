@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -751,7 +752,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         if (i != ProfileNotificationsActivity.this.ledInfoRow) {
                             if (i == ProfileNotificationsActivity.this.priorityInfoRow) {
                                 if (ProfileNotificationsActivity.this.priorityRow == -1) {
-                                    textInfoPrivacyCell.setText("");
+                                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                                 } else {
                                     textInfoPrivacyCell.setText(LocaleController.getString("PriorityInfo", R.string.PriorityInfo));
                                 }

@@ -291,9 +291,9 @@ public class SharedConfig {
         hashSet.add("c2.exynos.hevc.encoder");
         hevcEncoderWhitelist.add("OMX.Exynos.HEVC.Encoder".toLowerCase());
         pushType = 2;
-        pushString = "";
-        pushStringStatus = "";
-        passcodeHash = "";
+        pushString = BuildConfig.APP_CENTER_HASH;
+        pushStringStatus = BuildConfig.APP_CENTER_HASH;
+        passcodeHash = BuildConfig.APP_CENTER_HASH;
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
         useFingerprint = true;
@@ -302,7 +302,7 @@ public class SharedConfig {
         photoViewerBlur = true;
         stealthModeSendMessageConfirm = 2;
         lastLocalId = -210000;
-        passportConfigJson = "";
+        passportConfigJson = BuildConfig.APP_CENTER_HASH;
         sync = new Object();
         localIdSync = new Object();
         mapPreviewType = 2;
@@ -352,7 +352,7 @@ public class SharedConfig {
                     continue;
                 }
             }
-            goodHevcEncoder = "";
+            goodHevcEncoder = BuildConfig.APP_CENTER_HASH;
         }
         if (TextUtils.isEmpty(goodHevcEncoder)) {
             return null;
@@ -386,16 +386,16 @@ public class SharedConfig {
             this.password = str3;
             this.secret = str4;
             if (str == null) {
-                this.address = "";
+                this.address = BuildConfig.APP_CENTER_HASH;
             }
             if (str3 == null) {
-                this.password = "";
+                this.password = BuildConfig.APP_CENTER_HASH;
             }
             if (str2 == null) {
-                this.username = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
             }
             if (str4 == null) {
-                this.secret = "";
+                this.secret = BuildConfig.APP_CENTER_HASH;
             }
         }
 
@@ -432,7 +432,7 @@ public class SharedConfig {
                 edit.putBoolean("saveIncomingPhotos", saveIncomingPhotos);
                 edit.putString("passcodeHash1", passcodeHash);
                 byte[] bArr = passcodeSalt;
-                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : "");
+                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : BuildConfig.APP_CENTER_HASH);
                 edit.putBoolean("appLocked", appLocked);
                 edit.putInt("passcodeType", passcodeType);
                 edit.putLong("passcodeRetryInMs", passcodeRetryInMs);
@@ -446,7 +446,7 @@ public class SharedConfig {
                 edit.putInt("pushType", pushType);
                 edit.putBoolean("pushStatSent", pushStatSent);
                 byte[] bArr2 = pushAuthKey;
-                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : "");
+                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : BuildConfig.APP_CENTER_HASH);
                 edit.putInt("lastLocalId", lastLocalId);
                 edit.putString("passportConfigJson", passportConfigJson);
                 edit.putInt("passportConfigHash", passportConfigHash);
@@ -460,7 +460,7 @@ public class SharedConfig {
                 edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
                 edit.putBoolean("replyingOptionsHintShown", replyingOptionsHintShown);
                 edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
-                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
+                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : BuildConfig.APP_CENTER_HASH);
                 edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
                 edit.putInt("proxyRotationTimeout", proxyRotationTimeout);
                 TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
@@ -656,7 +656,7 @@ public class SharedConfig {
         passcodeRetryInMs = 0L;
         lastUptimeMillis = 0L;
         badPasscodeTries = 0;
-        passcodeHash = "";
+        passcodeHash = BuildConfig.APP_CENTER_HASH;
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
         lastPauseTime = 0;
@@ -1117,10 +1117,10 @@ public class SharedConfig {
             return;
         }
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        String string = sharedPreferences.getString("proxy_ip", "");
-        String string2 = sharedPreferences.getString("proxy_user", "");
-        String string3 = sharedPreferences.getString("proxy_pass", "");
-        String string4 = sharedPreferences.getString("proxy_secret", "");
+        String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
+        String string2 = sharedPreferences.getString("proxy_user", BuildConfig.APP_CENTER_HASH);
+        String string3 = sharedPreferences.getString("proxy_pass", BuildConfig.APP_CENTER_HASH);
+        String string4 = sharedPreferences.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
         int i = sharedPreferences.getInt("proxy_port", 1080);
         proxyListLoaded = true;
         proxyList.clear();
@@ -1182,20 +1182,20 @@ public class SharedConfig {
         for (int i = size - 1; i >= 0; i--) {
             ProxyInfo proxyInfo = (ProxyInfo) arrayList.get(i);
             String str = proxyInfo.address;
-            String str2 = "";
+            String str2 = BuildConfig.APP_CENTER_HASH;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             serializedData.writeString(str);
             serializedData.writeInt32(proxyInfo.port);
             String str3 = proxyInfo.username;
             if (str3 == null) {
-                str3 = "";
+                str3 = BuildConfig.APP_CENTER_HASH;
             }
             serializedData.writeString(str3);
             String str4 = proxyInfo.password;
             if (str4 == null) {
-                str4 = "";
+                str4 = BuildConfig.APP_CENTER_HASH;
             }
             serializedData.writeString(str4);
             String str5 = proxyInfo.secret;
@@ -1247,16 +1247,16 @@ public class SharedConfig {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             boolean z = globalMainSettings.getBoolean("proxy_enabled", false);
             SharedPreferences.Editor edit = globalMainSettings.edit();
-            edit.putString("proxy_ip", "");
-            edit.putString("proxy_pass", "");
-            edit.putString("proxy_user", "");
-            edit.putString("proxy_secret", "");
+            edit.putString("proxy_ip", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_pass", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_user", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_secret", BuildConfig.APP_CENTER_HASH);
             edit.putInt("proxy_port", 1080);
             edit.putBoolean("proxy_enabled", false);
             edit.putBoolean("proxy_enabled_calls", false);
             edit.apply();
             if (z) {
-                ConnectionsManager.setProxySettings(false, "", 0, "", "", "");
+                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 0, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
             }
         }
         proxyList.remove(proxyInfo);

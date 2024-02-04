@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -244,7 +245,7 @@ public class ThemeEditorView {
             }
 
             public void lambda$new$0(View view) {
-                this.searchEditText.setText("");
+                this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
                 AndroidUtilities.showKeyboard(this.searchEditText);
             }
 
@@ -517,13 +518,13 @@ public class ThemeEditorView {
                 if (!EditorAlert.this.ignoreTextChange) {
                     EditorAlert.this.ignoreTextChange = true;
                     EditTextBoldCursor editTextBoldCursor = this.colorEditText[0];
-                    editTextBoldCursor.setText("" + red);
+                    editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH + red);
                     EditTextBoldCursor editTextBoldCursor2 = this.colorEditText[1];
-                    editTextBoldCursor2.setText("" + green);
+                    editTextBoldCursor2.setText(BuildConfig.APP_CENTER_HASH + green);
                     EditTextBoldCursor editTextBoldCursor3 = this.colorEditText[2];
-                    editTextBoldCursor3.setText("" + blue);
+                    editTextBoldCursor3.setText(BuildConfig.APP_CENTER_HASH + blue);
                     EditTextBoldCursor editTextBoldCursor4 = this.colorEditText[3];
-                    editTextBoldCursor4.setText("" + alpha);
+                    editTextBoldCursor4.setText(BuildConfig.APP_CENTER_HASH + alpha);
                     for (int i2 = 0; i2 < 4; i2++) {
                         EditTextBoldCursor[] editTextBoldCursorArr = this.colorEditText;
                         editTextBoldCursorArr[i2].setSelection(editTextBoldCursorArr[i2].length());
@@ -1044,7 +1045,7 @@ public class ThemeEditorView {
 
             public CharSequence generateSearchName(String str, String str2) {
                 if (TextUtils.isEmpty(str)) {
-                    return "";
+                    return BuildConfig.APP_CENTER_HASH;
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 String trim = str.trim();
