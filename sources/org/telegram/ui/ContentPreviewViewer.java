@@ -267,6 +267,7 @@ public class ContentPreviewViewer {
                 return;
             }
             ContentPreviewViewer.this.closeOnDismiss = true;
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert3, ContentPreviewViewer.this.resourcesProvider);
             if (ContentPreviewViewer.this.currentContentType == 0) {
                 if (!MessageObject.isPremiumSticker(ContentPreviewViewer.this.currentDocument) || AccountInstance.getInstance(ContentPreviewViewer.this.currentAccount).getUserConfig().isPremium()) {
                     boolean isStickerInFavorites = MediaDataController.getInstance(ContentPreviewViewer.this.currentAccount).isStickerInFavorites(ContentPreviewViewer.this.currentDocument);
@@ -319,12 +320,11 @@ public class ContentPreviewViewer {
                     for (int i9 = 0; i9 < arrayList3.size(); i9++) {
                         iArr[i9] = ((Integer) arrayList3.get(i9)).intValue();
                     }
-                    View$OnClickListenerC00371 view$OnClickListenerC00371 = new View$OnClickListenerC00371(arrayList2, isStickerInFavorites);
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert3, ContentPreviewViewer.this.resourcesProvider);
+                    View$OnClickListenerC00401 view$OnClickListenerC00401 = new View$OnClickListenerC00401(arrayList2, isStickerInFavorites);
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i10)).intValue(), (CharSequence) arrayList.get(i10), false, ContentPreviewViewer.this.resourcesProvider);
                         addItem.setTag(Integer.valueOf(i10));
-                        addItem.setOnClickListener(view$OnClickListenerC00371);
+                        addItem.setOnClickListener(view$OnClickListenerC00401);
                     }
                     ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                         {
@@ -366,12 +366,13 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
                     contentPreviewViewer.popupWindow.showAtLocation(contentPreviewViewer.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) / 2.0f), max);
                     ContentPreviewViewer.this.containerView.performHapticFeedback(0);
+                } else {
+                    ContentPreviewViewer.this.showUnlockPremiumView();
+                    ContentPreviewViewer.this.menuVisible = true;
+                    ContentPreviewViewer.this.containerView.invalidate();
+                    ContentPreviewViewer.this.containerView.performHapticFeedback(0);
                     return;
                 }
-                ContentPreviewViewer.this.showUnlockPremiumView();
-                ContentPreviewViewer.this.menuVisible = true;
-                ContentPreviewViewer.this.containerView.invalidate();
-                ContentPreviewViewer.this.containerView.performHapticFeedback(0);
             } else if (ContentPreviewViewer.this.currentContentType != 2 || ContentPreviewViewer.this.delegate == null) {
                 if (ContentPreviewViewer.this.delegate != null) {
                     ArrayList arrayList4 = new ArrayList();
@@ -415,7 +416,6 @@ public class ContentPreviewViewer {
                     for (int i11 = 0; i11 < arrayList6.size(); i11++) {
                         iArr2[i11] = ((Integer) arrayList6.get(i11)).intValue();
                     }
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
                     View.OnClickListener onClickListener = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -423,14 +423,14 @@ public class ContentPreviewViewer {
                         }
                     };
                     for (int i12 = 0; i12 < arrayList4.size(); i12++) {
-                        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout2, ((Integer) arrayList6.get(i12)).intValue(), (CharSequence) arrayList4.get(i12), false, ContentPreviewViewer.this.resourcesProvider);
+                        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList6.get(i12)).intValue(), (CharSequence) arrayList4.get(i12), false, ContentPreviewViewer.this.resourcesProvider);
                         addItem2.setTag(Integer.valueOf(i12));
                         addItem2.setOnClickListener(onClickListener);
                         if (z && i12 == arrayList4.size() - 1) {
                             addItem2.setColors(ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedBold), ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedRegular));
                         }
                     }
-                    ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout2, -2, -2) {
+                    ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                         {
                             AnonymousClass1.this = this;
                         }
@@ -453,7 +453,7 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer.this.popupWindow.setClippingEnabled(true);
                     ContentPreviewViewer.this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
                     ContentPreviewViewer.this.popupWindow.setFocusable(true);
-                    actionBarPopupWindowLayout2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+                    actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                     ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
                     ContentPreviewViewer.this.popupWindow.getContentView().setFocusableInTouchMode(true);
                     if (Build.VERSION.SDK_INT >= 21 && ContentPreviewViewer.this.lastInsets != null) {
@@ -468,7 +468,7 @@ public class ContentPreviewViewer {
                     int i13 = i + (min2 / 2);
                     int dp = ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0;
                     ContentPreviewViewer contentPreviewViewer2 = ContentPreviewViewer.this;
-                    contentPreviewViewer2.popupWindow.showAtLocation(contentPreviewViewer2.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout2.getMeasuredWidth()) / 2.0f), (int) (((int) (f + Math.max(i13 + dp, ((ContentPreviewViewer.this.containerView.getHeight() - i2) - ContentPreviewViewer.this.keyboardHeight) / 2) + i3)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY)));
+                    contentPreviewViewer2.popupWindow.showAtLocation(contentPreviewViewer2.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) / 2.0f), (int) (((int) (f + Math.max(i13 + dp, ((ContentPreviewViewer.this.containerView.getHeight() - i2) - ContentPreviewViewer.this.keyboardHeight) / 2) + i3)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY)));
                     ContentPreviewViewer.this.containerView.performHapticFeedback(0);
                     if (ContentPreviewViewer.this.moveY != 0.0f) {
                         if (ContentPreviewViewer.this.finalMoveY == 0.0f) {
@@ -534,7 +534,6 @@ public class ContentPreviewViewer {
                 for (int i14 = 0; i14 < arrayList9.size(); i14++) {
                     iArr3[i14] = ((Integer) arrayList9.get(i14)).intValue();
                 }
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout3 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
                 View.OnClickListener onClickListener2 = new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -543,16 +542,20 @@ public class ContentPreviewViewer {
                 };
                 int i15 = 0;
                 while (i15 < arrayList7.size()) {
-                    ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(i15 == 0, i15 == arrayList7.size() - 1, actionBarPopupWindowLayout3, ((Integer) arrayList9.get(i15)).intValue(), (CharSequence) arrayList7.get(i15), false, ContentPreviewViewer.this.resourcesProvider);
-                    if (((Integer) arrayList8.get(i15)).intValue() == 4) {
+                    ArrayList arrayList10 = arrayList9;
+                    ArrayList arrayList11 = arrayList8;
+                    ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(i15 == 0, i15 == arrayList7.size() - 1, actionBarPopupWindowLayout, ((Integer) arrayList9.get(i15)).intValue(), (CharSequence) arrayList7.get(i15), false, ContentPreviewViewer.this.resourcesProvider);
+                    if (((Integer) arrayList11.get(i15)).intValue() == 4) {
                         addItem3.setIconColor(ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedRegular));
                         addItem3.setTextColor(ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedBold));
                     }
                     addItem3.setTag(Integer.valueOf(i15));
                     addItem3.setOnClickListener(onClickListener2);
                     i15++;
+                    arrayList8 = arrayList11;
+                    arrayList9 = arrayList10;
                 }
-                ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout3, -2, -2) {
+                ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                     {
                         AnonymousClass1.this = this;
                     }
@@ -575,7 +578,7 @@ public class ContentPreviewViewer {
                 ContentPreviewViewer.this.popupWindow.setClippingEnabled(true);
                 ContentPreviewViewer.this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
                 ContentPreviewViewer.this.popupWindow.setFocusable(true);
-                actionBarPopupWindowLayout3.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+                actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                 ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
                 ContentPreviewViewer.this.popupWindow.getContentView().setFocusableInTouchMode(true);
                 if (Build.VERSION.SDK_INT >= 21 && ContentPreviewViewer.this.lastInsets != null) {
@@ -590,8 +593,8 @@ public class ContentPreviewViewer {
                 int i16 = i4 + (min3 / 2);
                 int dp2 = ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0;
                 ContentPreviewViewer contentPreviewViewer4 = ContentPreviewViewer.this;
-                contentPreviewViewer4.popupWindow.showAtLocation(contentPreviewViewer4.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout3.getMeasuredWidth()) / 2.0f), (int) (((int) (f2 + Math.max(i16 + dp2, ((ContentPreviewViewer.this.containerView.getHeight() - i5) - ContentPreviewViewer.this.keyboardHeight) / 2) + i6)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY)));
-                ActionBarPopupWindow.startAnimation(actionBarPopupWindowLayout3);
+                contentPreviewViewer4.popupWindow.showAtLocation(contentPreviewViewer4.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) / 2.0f), (int) (((int) (f2 + Math.max(i16 + dp2, ((ContentPreviewViewer.this.containerView.getHeight() - i5) - ContentPreviewViewer.this.keyboardHeight) / 2) + i6)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY)));
+                ActionBarPopupWindow.startAnimation(actionBarPopupWindowLayout);
                 ContentPreviewViewer.this.containerView.performHapticFeedback(0);
                 if (ContentPreviewViewer.this.moveY != 0.0f) {
                     if (ContentPreviewViewer.this.finalMoveY == 0.0f) {
@@ -611,13 +614,21 @@ public class ContentPreviewViewer {
                     ofFloat2.start();
                 }
             }
+            int i17 = 0;
+            while (i17 < actionBarPopupWindowLayout.getItemsCount()) {
+                View itemAt = actionBarPopupWindowLayout.getItemAt(i17);
+                if (itemAt instanceof ActionBarMenuSubItem) {
+                    ((ActionBarMenuSubItem) itemAt).updateSelectorBackground(i17 == 0, i17 == actionBarPopupWindowLayout.getItemsCount() - 1, 8);
+                }
+                i17++;
+            }
         }
 
-        class View$OnClickListenerC00371 implements View.OnClickListener {
+        class View$OnClickListenerC00401 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            View$OnClickListenerC00371(ArrayList arrayList, boolean z) {
+            View$OnClickListenerC00401(ArrayList arrayList, boolean z) {
                 AnonymousClass1.this = r1;
                 this.val$actions = arrayList;
                 this.val$inFavs = z;

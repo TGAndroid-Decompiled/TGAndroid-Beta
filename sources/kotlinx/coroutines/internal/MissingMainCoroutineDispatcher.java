@@ -5,7 +5,6 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.MainCoroutineDispatcher;
-import org.telegram.messenger.BuildConfig;
 public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatcher implements Delay {
     private final Throwable cause;
     private final String errorHint;
@@ -27,7 +26,7 @@ public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatche
     }
 
     @Override
-    public Void mo151dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public Void mo152dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         missing();
         throw new KotlinNothingValueException();
     }
@@ -39,7 +38,7 @@ public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatche
             throw new KotlinNothingValueException();
         }
         String str = this.errorHint;
-        String str2 = BuildConfig.APP_CENTER_HASH;
+        String str2 = "";
         if (str != null && (stringPlus = Intrinsics.stringPlus(". ", str)) != null) {
             str2 = stringPlus;
         }
@@ -51,7 +50,7 @@ public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatche
         StringBuilder sb = new StringBuilder();
         sb.append("Dispatchers.Main[missing");
         Throwable th = this.cause;
-        sb.append(th != null ? Intrinsics.stringPlus(", cause=", th) : BuildConfig.APP_CENTER_HASH);
+        sb.append(th != null ? Intrinsics.stringPlus(", cause=", th) : "");
         sb.append(']');
         return sb.toString();
     }

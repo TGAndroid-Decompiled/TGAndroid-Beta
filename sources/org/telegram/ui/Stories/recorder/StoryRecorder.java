@@ -75,7 +75,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
@@ -2350,13 +2349,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (visibleBulletin == null || visibleBulletin.tag != 2) {
                 int i = MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitPremium;
                 int round = Math.round(i / MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitDefault);
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", round, BuildConfig.APP_CENTER_HASH + i));
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", round, "" + i));
                 int indexOf = replaceTags.toString().indexOf("__");
                 if (indexOf >= 0) {
-                    replaceTags.replace(indexOf, indexOf + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                    replaceTags.replace(indexOf, indexOf + 2, (CharSequence) "");
                     int indexOf2 = replaceTags.toString().indexOf("__");
                     if (indexOf2 >= 0) {
-                        replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                        replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
                         replaceTags.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider)), indexOf, indexOf2, 33);
                         replaceTags.setSpan(new ClickableSpan() {
                             {
@@ -3722,7 +3721,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             storyEntry2.repostPeerName = append;
         } else {
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$Peer)));
-            String str = chat == null ? BuildConfig.APP_CENTER_HASH : chat.title;
+            String str = chat == null ? "" : chat.title;
             StoryEntry storyEntry3 = this.outputEntry;
             append = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) str);
             storyEntry3.repostPeerName = append;
@@ -4437,7 +4436,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(this.outputEntry.repostPeer)));
                     avatarSpan.setChat(chat);
                     spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) "  ");
-                    spannableStringBuilder.append((CharSequence) (chat != null ? chat.title : BuildConfig.APP_CENTER_HASH));
+                    spannableStringBuilder.append((CharSequence) (chat != null ? chat.title : ""));
                 }
                 this.titleTextView.setText(spannableStringBuilder);
             } else {
@@ -6252,7 +6251,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     public ImageView getThemeButton() {
         if (this.themeButton == null) {
             int i = R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             this.themeButtonDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             StoryEntry storyEntry = this.outputEntry;

@@ -24,7 +24,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
@@ -202,7 +201,7 @@ public class StoriesIntro extends FrameLayout {
             this.textBounds = new Rect();
             this.header = str;
             this.subHeader = str2;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
             this.lottieDrawable = rLottieDrawable;
             rLottieDrawable.setAutoRepeat(1);
             rLottieDrawable.setMasterParent(this);

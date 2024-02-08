@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -461,7 +460,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             this.actionButton.animate().alpha(1.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator2).start();
             if (this.selectedEmojisMap.isEmpty()) {
                 this.selectAnimatedEmojiDialog.clearSelectedDocuments();
-                this.editText.setText(BuildConfig.APP_CENTER_HASH);
+                this.editText.setText("");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 int i2 = 0;
                 for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : this.allAvailableReactions) {

@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
@@ -78,15 +77,10 @@ public class DialogsHintCell extends FrameLayout {
         this.closeView.setVisibility(8);
     }
 
-    public void setChristmasStyle(View.OnClickListener onClickListener) {
+    public void setOnCloseListener(View.OnClickListener onClickListener) {
         this.chevronView.setVisibility(4);
         this.closeView.setVisibility(0);
         this.closeView.setOnClickListener(onClickListener);
-        Emoji.EmojiDrawable emojiDrawable = Emoji.getEmojiDrawable("🎄");
-        if (emojiDrawable != null) {
-            emojiDrawable.setBounds(AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f), Emoji.drawImgSize + AndroidUtilities.dp(2.0f), Emoji.drawImgSize - AndroidUtilities.dp(2.0f));
-            this.titleView.setCompoundDrawables(null, null, emojiDrawable, null);
-        }
     }
 
     @Override

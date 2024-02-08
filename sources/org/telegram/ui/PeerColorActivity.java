@@ -37,7 +37,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
@@ -375,7 +374,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     }
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(Page.this.getContext(), Page.this.clearRow >= 0 ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 } else if (i == page2.shadowRow) {
-                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
+                    textInfoPrivacyCell.setText("");
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(Page.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 }
             }
@@ -1080,7 +1079,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         });
         this.actionBarContainer.addView(this.backButton, LayoutHelper.createFrame(54, 54, 19));
         int i2 = R.raw.sun;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.sunDrawable = rLottieDrawable;
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         if (!this.isDark) {
@@ -1521,7 +1520,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 return;
             }
             String str = tLRPC$User.first_name;
-            String trim = str == null ? BuildConfig.APP_CENTER_HASH : str.trim();
+            String trim = str == null ? "" : str.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -2182,7 +2181,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         public ProfilePreview(Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            CharSequence userName;
+            String userName;
             ImageReceiver imageReceiver = new ImageReceiver(this);
             this.imageReceiver = imageReceiver;
             AvatarDrawable avatarDrawable = new AvatarDrawable();
@@ -2227,7 +2226,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             imageReceiver.setRoundRadius(AndroidUtilities.dp(54.0f));
             if (z) {
                 TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
-                userName = chat == null ? BuildConfig.APP_CENTER_HASH : chat.title;
+                userName = chat == null ? "" : chat.title;
                 avatarDrawable.setInfo(i, chat);
                 imageReceiver.setForUserOrChat(chat, avatarDrawable);
             } else {

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -239,7 +238,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-                    headerCell.setText(LocaleController.getString("VoipChatDisplayedAs", R.string.VoipChatDisplayedAs).replace(":", BuildConfig.APP_CENTER_HASH));
+                    headerCell.setText(LocaleController.getString("VoipChatDisplayedAs", R.string.VoipChatDisplayedAs).replace(":", ""));
                 }
             }
 

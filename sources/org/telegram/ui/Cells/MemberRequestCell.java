@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
@@ -144,7 +143,7 @@ public class MemberRequestCell extends FrameLayout {
         if (tLRPC$User2 != null) {
             this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
         } else {
-            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.statusTextView.setText("");
         }
     }
 

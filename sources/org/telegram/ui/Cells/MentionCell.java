@@ -8,11 +8,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -53,7 +51,6 @@ public class MentionCell extends LinearLayout {
             }
         };
         this.nameTextView = textView;
-        NotificationCenter.listenEmojiLoading(textView);
         textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         textView.setTextSize(1, 15.0f);
         textView.setSingleLine(true);
@@ -70,6 +67,11 @@ public class MentionCell extends LinearLayout {
         addView(textView2, LayoutHelper.createLinear(-2, -2, 16, 12, 0, 8, 0));
     }
 
+    public void invalidateEmojis() {
+        this.nameTextView.invalidate();
+        this.usernameTextView.invalidate();
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
@@ -78,8 +80,8 @@ public class MentionCell extends LinearLayout {
     public void setUser(TLRPC$User tLRPC$User) {
         resetEmojiSuggestion();
         if (tLRPC$User == null) {
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.usernameTextView.setText("");
             this.imageView.setImageDrawable(null);
             return;
         }
@@ -95,7 +97,7 @@ public class MentionCell extends LinearLayout {
             TextView textView = this.usernameTextView;
             textView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
         } else {
-            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.usernameTextView.setText("");
         }
         this.imageView.setVisibility(0);
         this.usernameTextView.setVisibility(0);
@@ -120,8 +122,8 @@ public class MentionCell extends LinearLayout {
     public void setChat(TLRPC$Chat tLRPC$Chat) {
         resetEmojiSuggestion();
         if (tLRPC$Chat == null) {
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.usernameTextView.setText("");
             this.imageView.setImageDrawable(null);
             return;
         }
@@ -138,7 +140,7 @@ public class MentionCell extends LinearLayout {
             TextView textView = this.usernameTextView;
             textView.setText("@" + publicUsername);
         } else {
-            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.usernameTextView.setText("");
         }
         this.imageView.setVisibility(0);
         this.usernameTextView.setVisibility(0);

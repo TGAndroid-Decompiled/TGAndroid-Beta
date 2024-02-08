@@ -26,7 +26,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StaticLayoutEx;
@@ -97,7 +96,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
     }
 
     public CharSequence ellipsize(CharSequence charSequence) {
-        return charSequence == null ? BuildConfig.APP_CENTER_HASH : TextUtils.ellipsize(charSequence, this.textPaint, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
+        return charSequence == null ? "" : TextUtils.ellipsize(charSequence, this.textPaint, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
     }
 
     public void removeNotification(String str) {

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -145,7 +144,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             MentionsAdapter.this.lastKnownLocation = location;
             MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
+            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, "");
         }
 
         @Override
@@ -586,7 +585,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public String getContextBotName() {
         TLRPC$User tLRPC$User = this.foundContextBot;
-        return tLRPC$User != null ? tLRPC$User.username : BuildConfig.APP_CENTER_HASH;
+        return tLRPC$User != null ? tLRPC$User.username : "";
     }
 
     public void processFoundUser(TLRPC$User tLRPC$User) {
@@ -648,7 +647,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (mentionsAdapterDelegate != null) {
             mentionsAdapterDelegate.onContextSearch(true);
         }
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
     }
 
     public void lambda$processFoundUser$2(boolean[] zArr, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
@@ -767,7 +766,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     return;
                 }
                 MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, BuildConfig.APP_CENTER_HASH);
+                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, "");
                 return;
             }
             MentionsAdapter.this.searchingContextUsername = this.val$username;
@@ -828,7 +827,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.lastKnownLocation = location;
         location.setLatitude(-1000.0d);
         this.lastKnownLocation.setLongitude(-1000.0d);
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
     }
 
     private void checkLocationPermissionsOrStart() {
@@ -899,7 +898,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             sb.append("_");
             sb.append(tLRPC$User.id);
             sb.append("_");
-            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? BuildConfig.APP_CENTER_HASH : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
+            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? "" : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
             final String sb2 = sb.toString();
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             RequestDelegate requestDelegate = new RequestDelegate() {
@@ -981,7 +980,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 } else {
                     this.searchResultBotContext.addAll(tLRPC$TL_messages_botResults.results);
                     if (tLRPC$TL_messages_botResults.results.isEmpty()) {
-                        this.nextQueryOffset = BuildConfig.APP_CENTER_HASH;
+                        this.nextQueryOffset = "";
                     }
                     z2 = true;
                 }
@@ -1325,7 +1324,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             if (arrayList7.get(i) != null) {
                 Object[] objArr = new Object[2];
                 objArr[0] = this.searchResultCommands.get(i);
-                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : BuildConfig.APP_CENTER_HASH;
+                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "";
                 return String.format("%s@%s", objArr);
             }
             return String.format("%s", this.searchResultCommands.get(i));

@@ -23,7 +23,6 @@ import org.json.JSONObject;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -351,7 +350,7 @@ public class BoostRepository {
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.currency = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.currency = "";
         Iterator<TLObject> it = list2.iterator();
         while (it.hasNext()) {
             tLRPC$TL_inputStorePaymentPremiumGiveaway.countries_iso2.add(((TLRPC$TL_help_country) it.next()).iso2);
@@ -865,7 +864,7 @@ public class BoostRepository {
         TLRPC$ChannelParticipantsFilter tLRPC$TL_channelParticipantsRecent = str == null ? new TLRPC$TL_channelParticipantsRecent() : new TLRPC$TL_channelParticipantsSearch();
         tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsRecent;
         if (str == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         tLRPC$TL_channelParticipantsRecent.q = str;
         tLRPC$TL_channels_getParticipants.offset = i2;

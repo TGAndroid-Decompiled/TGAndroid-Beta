@@ -20,7 +20,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
@@ -32,7 +31,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -56,6 +54,7 @@ import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSynth
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.LaunchActivity;
 public class SearchTagsList extends BlurredFrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static AlertDialog currentDialog;
     private ValueAnimator actionBarTagsAnimator;
@@ -405,9 +404,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
     public static void openRenameTagAlert(Context context, final int i, final TLRPC$Reaction tLRPC$Reaction, final Theme.ResourcesProvider resourcesProvider, boolean z) {
         Object builder;
         ?? r1;
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
         Activity findActivity = AndroidUtilities.findActivity(context);
         final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
-        boolean z2 = (currentFocus instanceof EditText) && !z;
+        boolean z2 = (lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) && !z;
         final ?? r14 = new AlertDialog[1];
         if (z2) {
             builder = new AlertDialogDecor.Builder(context, resourcesProvider);
@@ -443,10 +443,9 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                     this.limitCount = 12 - charSequence.length();
                     this.limit.cancelAnimation();
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                    int i5 = this.limitCount;
-                    String str = BuildConfig.APP_CENTER_HASH;
-                    if (i5 <= 4) {
-                        str = BuildConfig.APP_CENTER_HASH + this.limitCount;
+                    String str = "";
+                    if (this.limitCount <= 4) {
+                        str = "" + this.limitCount;
                     }
                     animatedTextDrawable.setText(str);
                 }
@@ -495,7 +494,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
         editTextBoldCursor.setTextSize(1, 18.0f);
         if (savedTagName == null) {
-            savedTagName = BuildConfig.APP_CENTER_HASH;
+            savedTagName = "";
         }
         editTextBoldCursor.setText(savedTagName);
         int i2 = Theme.key_dialogTextBlack;
@@ -941,7 +940,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             } else {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = reactionButton3.textDrawable;
                 if (animatedTextDrawable2 != null) {
-                    animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH, !z);
+                    animatedTextDrawable2.setText("", !z);
                 }
             }
             this.reactionButton.countText = Integer.toString(item.count);

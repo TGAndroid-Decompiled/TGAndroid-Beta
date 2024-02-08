@@ -3,7 +3,6 @@ package kotlin.jvm.internal;
 import kotlin.reflect.KClass;
 import kotlin.reflect.KDeclarationContainer;
 import kotlin.reflect.KProperty0;
-import org.telegram.messenger.BuildConfig;
 public class Reflection {
     private static final KClass[] EMPTY_K_CLASS_ARRAY;
     private static final ReflectionFactory factory;
@@ -22,7 +21,7 @@ public class Reflection {
     }
 
     public static KDeclarationContainer getOrCreateKotlinPackage(Class cls) {
-        return factory.getOrCreateKotlinPackage(cls, BuildConfig.APP_CENTER_HASH);
+        return factory.getOrCreateKotlinPackage(cls, "");
     }
 
     public static KClass getOrCreateKotlinClass(Class cls) {

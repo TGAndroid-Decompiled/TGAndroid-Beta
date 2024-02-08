@@ -37,7 +37,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -820,7 +819,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("ChatsLeaveAlert", R.string.ChatsLeaveAlert, new Object[0])));
         }
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("RevokeButton", R.string.RevokeButton), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.VoipGroupLeave), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 LimitReachedBottomSheet.this.lambda$leaveFromSelectedGroups$15(arrayList, user, dialogInterface, i);
@@ -1516,8 +1515,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             limitParams.premiumLimit = 0;
             limitParams.icon = R.drawable.msg_limit_links;
             limitParams.descriptionStr = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 0, Integer.valueOf(limitParams.premiumLimit));
-            limitParams.descriptionStrPremium = BuildConfig.APP_CENTER_HASH;
-            limitParams.descriptionStrLocked = BuildConfig.APP_CENTER_HASH;
+            limitParams.descriptionStrPremium = "";
+            limitParams.descriptionStrLocked = "";
         } else if (i == 14) {
             limitParams.defaultLimit = MessagesController.getInstance(i2).storyExpiringLimitDefault;
             limitParams.premiumLimit = MessagesController.getInstance(i2).storyExpiringLimitPremium;
@@ -1712,7 +1711,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
             tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel((TLRPC$Chat) arrayList.get(i2));
-            tLRPC$TL_channels_updateUsername.username = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_channels_updateUsername.username = "";
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1956,42 +1955,38 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 this.imageView.setImageResource(this.feature.iconResId);
                 this.textView.setVisibility(0);
                 BoostFeature boostFeature2 = this.feature;
-                String str = boostFeature2.textKeyPlural;
-                String str2 = BuildConfig.APP_CENTER_HASH;
-                if (str != null) {
+                if (boostFeature2.textKeyPlural != null) {
                     String string = LocaleController.getString(this.feature.textKeyPlural + "_" + LocaleController.getStringParamForNumber(this.feature.countPlural));
                     if (string == null || string.startsWith("LOC_ERR")) {
                         string = LocaleController.getString(this.feature.textKeyPlural + "_other");
                     }
                     if (string == null) {
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                     int indexOf = string.indexOf("%d");
                     if (indexOf >= 0) {
                         spannableStringBuilder = new SpannableStringBuilder(string);
-                        SpannableString spannableString = new SpannableString(this.feature.countPlural + BuildConfig.APP_CENTER_HASH);
+                        SpannableString spannableString = new SpannableString(this.feature.countPlural + "");
                         spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
                         spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                     }
                     this.textView.setText(spannableStringBuilder);
                 } else {
                     String string2 = LocaleController.getString(boostFeature2.textKey);
-                    if (string2 != null) {
-                        str2 = string2;
-                    }
+                    String str = string2 != null ? string2 : "";
                     if (this.feature.countValue != null) {
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str2);
-                        int indexOf2 = str2.indexOf("%s");
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
+                        int indexOf2 = str.indexOf("%s");
                         if (indexOf2 >= 0) {
-                            spannableStringBuilder2 = new SpannableStringBuilder(str2);
+                            spannableStringBuilder2 = new SpannableStringBuilder(str);
                             SpannableString spannableString2 = new SpannableString(this.feature.countValue);
                             spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString2.length(), 33);
                             spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                         }
                         this.textView.setText(spannableStringBuilder2);
                     } else {
-                        this.textView.setText(str2);
+                        this.textView.setText(str);
                     }
                 }
                 this.levelLayout.setVisibility(8);

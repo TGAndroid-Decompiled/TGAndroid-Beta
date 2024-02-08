@@ -27,6 +27,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private ImageView rightIcon;
     private int selectorColor;
+    int selectorRad;
     private TextView subtextView;
     private int textColor;
     private TextView textView;
@@ -50,6 +51,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
 
     public ActionBarMenuSubItem(Context context, int i, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.selectorRad = 6;
         this.itemHeight = 48;
         this.resourcesProvider = resourcesProvider;
         this.top = z;
@@ -275,8 +277,18 @@ public class ActionBarMenuSubItem extends FrameLayout {
         updateBackground();
     }
 
+    public void updateSelectorBackground(boolean z, boolean z2, int i) {
+        if (this.top == z && this.bottom == z2 && this.selectorRad == i) {
+            return;
+        }
+        this.top = z;
+        this.bottom = z2;
+        this.selectorRad = i;
+        updateBackground();
+    }
+
     public void updateBackground() {
-        setBackground(Theme.createRadSelectorDrawable(this.selectorColor, this.top ? 6 : 0, this.bottom ? 6 : 0));
+        setBackground(Theme.createRadSelectorDrawable(this.selectorColor, this.top ? this.selectorRad : 0, this.bottom ? this.selectorRad : 0));
     }
 
     private int getThemedColor(int i) {

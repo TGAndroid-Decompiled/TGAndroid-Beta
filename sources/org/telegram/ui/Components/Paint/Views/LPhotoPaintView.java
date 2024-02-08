@@ -55,7 +55,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -1196,7 +1195,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
-        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), BuildConfig.APP_CENTER_HASH, this.colorSwatch, this.selectedTextType);
+        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
         float f = paintingSize.width;
         textPaintView.setMinMaxFontSize((int) ((f / 9.0f) * 0.5f), (int) ((f / 9.0f) * 2.0f), new Runnable() {
             @Override

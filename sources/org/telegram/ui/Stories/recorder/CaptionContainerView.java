@@ -33,7 +33,6 @@ import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -80,6 +79,7 @@ public class CaptionContainerView extends FrameLayout {
     private final ButtonBounce bounce;
     private final RectF bounds;
     protected final BlurringShader.StoryBlurDrawer captionBlur;
+    private final RectF clickBounds;
     private int codePointCount;
     private RadialGradient collapseGradient;
     private Matrix collapseGradientMatrix;
@@ -243,6 +243,7 @@ public class CaptionContainerView extends FrameLayout {
         this.ignoreDraw = false;
         this.rectF = new RectF();
         this.bounds = new RectF();
+        this.clickBounds = new RectF();
         this.collapsedT = new AnimatedFloat(this, 500L, cubicBezierInterpolator);
         this.resourcesProvider = resourcesProvider;
         this.rootView = frameLayout;
@@ -444,7 +445,7 @@ public class CaptionContainerView extends FrameLayout {
             CaptionContainerView.this.codePointCount = Character.codePointCount(editable, 0, editable.length());
             int captionLimit = CaptionContainerView.this.getCaptionLimit();
             if (CaptionContainerView.this.codePointCount + 25 > captionLimit) {
-                str = BuildConfig.APP_CENTER_HASH + (captionLimit - CaptionContainerView.this.codePointCount);
+                str = "" + (captionLimit - CaptionContainerView.this.codePointCount);
             } else {
                 str = null;
             }
@@ -511,7 +512,7 @@ public class CaptionContainerView extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.ignoreTouches || ((motionEvent.getAction() == 0 && ignoreTouches(motionEvent.getX(), motionEvent.getY())) || !(this.bounds.contains(motionEvent.getX(), motionEvent.getY()) || this.keyboardShown))) {
+        if (this.ignoreTouches || ((motionEvent.getAction() == 0 && ignoreTouches(motionEvent.getX(), motionEvent.getY())) || !(this.clickBounds.contains(motionEvent.getX(), motionEvent.getY()) || this.keyboardShown))) {
             return false;
         }
         if (motionEvent.getAction() == 0 && !this.keyboardShown) {
@@ -886,11 +887,11 @@ public class CaptionContainerView extends FrameLayout {
         }
         this.hasReply = true;
         if (charSequence == null) {
-            charSequence = BuildConfig.APP_CENTER_HASH;
+            charSequence = "";
         }
         this.replyTitle = new Text(charSequence, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         if (charSequence2 == null) {
-            charSequence2 = BuildConfig.APP_CENTER_HASH;
+            charSequence2 = "";
         }
         this.replyText = new Text(charSequence2, 14.0f);
     }
@@ -1103,7 +1104,7 @@ public class CaptionContainerView extends FrameLayout {
 
     public void clear() {
         this.ignoreTextChange = true;
-        this.editText.setText(BuildConfig.APP_CENTER_HASH);
+        this.editText.setText("");
     }
 
     public void setText(CharSequence charSequence) {
@@ -1371,9 +1372,9 @@ public class CaptionContainerView extends FrameLayout {
 
         public void setValue(int i, boolean z, boolean z2) {
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-            animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z2);
+            animatedTextDrawable.setText("" + i, z2);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.activeTextDrawable;
-            animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH + i, z2);
+            animatedTextDrawable2.setText("" + i, z2);
             this.filled = z;
             if (!z2) {
                 this.fillT.set(z, true);

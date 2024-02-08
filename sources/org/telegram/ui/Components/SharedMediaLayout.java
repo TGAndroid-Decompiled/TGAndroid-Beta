@@ -42,7 +42,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -51,7 +50,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
@@ -94,19 +92,12 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterDocument;
 import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterMusic;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterPhotoVideo;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterPhotos;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterRoundVoice;
 import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterUrl;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterVideo;
 import org.telegram.tgnet.TLRPC$TL_inputUserEmpty;
 import org.telegram.tgnet.TLRPC$TL_messages_getCommonChats;
-import org.telegram.tgnet.TLRPC$TL_messages_getSearchResultsPositions;
 import org.telegram.tgnet.TLRPC$TL_messages_messages;
 import org.telegram.tgnet.TLRPC$TL_messages_messagesSlice;
 import org.telegram.tgnet.TLRPC$TL_messages_search;
-import org.telegram.tgnet.TLRPC$TL_messages_searchResultsPositions;
-import org.telegram.tgnet.TLRPC$TL_searchResultPosition;
 import org.telegram.tgnet.TLRPC$TL_webPageEmpty;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
@@ -312,6 +303,13 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         void scrollToSharedMedia();
 
         void updateSelectedMediaTabText();
+    }
+
+    public static class Period {
+        int date;
+        public String formatedDate;
+        int maxId;
+        public int startOffset;
     }
 
     public interface SharedMediaPreloaderDelegate {
@@ -1113,21 +1111,6 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public static class Period {
-        int date;
-        public String formatedDate;
-        int maxId;
-        public int startOffset;
-
-        public Period(TLRPC$TL_searchResultPosition tLRPC$TL_searchResultPosition) {
-            int i = tLRPC$TL_searchResultPosition.date;
-            this.date = i;
-            this.maxId = tLRPC$TL_searchResultPosition.msg_id;
-            this.startOffset = tLRPC$TL_searchResultPosition.offset;
-            this.formatedDate = LocaleController.formatYearMont(i, true);
-        }
-    }
-
     public boolean hasInternet() {
         return this.profileActivity.getConnectionsManager().getConnectionState() == 3;
     }
@@ -1510,7 +1493,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                                                         public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                             if (this.firstCreateView) {
                                                                 if (this.searchItem != null) {
-                                                                    lambda$openSearchWithText$283(BuildConfig.APP_CENTER_HASH);
+                                                                    lambda$openSearchWithText$282("");
                                                                     this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                                 }
                                                                 SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -2582,117 +2565,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         if (this.topicId != 0) {
             return;
         }
-        int i = 0;
-        while (true) {
-            int[] iArr = supportedFastScrollTypes;
-            if (i >= iArr.length) {
-                return;
-            }
-            final int i2 = iArr[i];
-            if ((this.sharedMediaData[i2].fastScrollDataLoaded && !z) || DialogObject.isEncryptedDialog(this.dialog_id)) {
-                return;
-            }
-            this.sharedMediaData[i2].fastScrollDataLoaded = false;
-            TLRPC$TL_messages_getSearchResultsPositions tLRPC$TL_messages_getSearchResultsPositions = new TLRPC$TL_messages_getSearchResultsPositions();
-            if (i2 == 0) {
-                SharedMediaData[] sharedMediaDataArr = this.sharedMediaData;
-                if (sharedMediaDataArr[i2].filterType == 1) {
-                    tLRPC$TL_messages_getSearchResultsPositions.filter = new TLRPC$TL_inputMessagesFilterPhotos();
-                } else if (sharedMediaDataArr[i2].filterType == 2) {
-                    tLRPC$TL_messages_getSearchResultsPositions.filter = new TLRPC$TL_inputMessagesFilterVideo();
-                } else {
-                    tLRPC$TL_messages_getSearchResultsPositions.filter = new TLRPC$TL_inputMessagesFilterPhotoVideo();
-                }
-            } else if (i2 == 1) {
-                tLRPC$TL_messages_getSearchResultsPositions.filter = new TLRPC$TL_inputMessagesFilterDocument();
-            } else if (i2 == 2) {
-                tLRPC$TL_messages_getSearchResultsPositions.filter = new TLRPC$TL_inputMessagesFilterRoundVoice();
-            } else {
-                tLRPC$TL_messages_getSearchResultsPositions.filter = new TLRPC$TL_inputMessagesFilterMusic();
-            }
-            tLRPC$TL_messages_getSearchResultsPositions.limit = 100;
-            tLRPC$TL_messages_getSearchResultsPositions.peer = this.profileActivity.getMessagesController().getInputPeer(this.dialog_id);
-            if (this.topicId != 0 && this.profileActivity.getUserConfig().getClientUserId() == this.dialog_id) {
-                tLRPC$TL_messages_getSearchResultsPositions.flags |= 4;
-                tLRPC$TL_messages_getSearchResultsPositions.saved_peer_id = this.profileActivity.getMessagesController().getInputPeer(this.topicId);
-            }
-            final int i3 = this.sharedMediaData[i2].requestIndex;
-            ConnectionsManager.getInstance(this.profileActivity.getCurrentAccount()).bindRequestToGuid(ConnectionsManager.getInstance(this.profileActivity.getCurrentAccount()).sendRequest(tLRPC$TL_messages_getSearchResultsPositions, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SharedMediaLayout.this.lambda$loadFastScrollData$17(i3, i2, tLObject, tLRPC$TL_error);
-                }
-            }), this.profileActivity.getClassGuid());
-            i++;
-        }
-    }
-
-    public void lambda$loadFastScrollData$17(final int i, final int i2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SharedMediaLayout.this.lambda$loadFastScrollData$16(tLRPC$TL_error, i, i2, tLObject);
-            }
-        });
-    }
-
-    public void lambda$loadFastScrollData$16(final TLRPC$TL_error tLRPC$TL_error, final int i, final int i2, final TLObject tLObject) {
-        NotificationCenter.getInstance(this.profileActivity.getCurrentAccount()).doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                SharedMediaLayout.this.lambda$loadFastScrollData$15(tLRPC$TL_error, i, i2, tLObject);
-            }
-        });
-    }
-
-    public void lambda$loadFastScrollData$15(TLRPC$TL_error tLRPC$TL_error, int i, int i2, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
-            return;
-        }
-        SharedMediaData[] sharedMediaDataArr = this.sharedMediaData;
-        if (i != sharedMediaDataArr[i2].requestIndex) {
-            return;
-        }
-        TLRPC$TL_messages_searchResultsPositions tLRPC$TL_messages_searchResultsPositions = (TLRPC$TL_messages_searchResultsPositions) tLObject;
-        sharedMediaDataArr[i2].fastScrollPeriods.clear();
-        int size = tLRPC$TL_messages_searchResultsPositions.positions.size();
-        int i3 = 0;
-        for (int i4 = 0; i4 < size; i4++) {
-            TLRPC$TL_searchResultPosition tLRPC$TL_searchResultPosition = tLRPC$TL_messages_searchResultsPositions.positions.get(i4);
-            if (tLRPC$TL_searchResultPosition.date != 0) {
-                this.sharedMediaData[i2].fastScrollPeriods.add(new Period(tLRPC$TL_searchResultPosition));
+        int[] iArr = supportedFastScrollTypes;
+        if (iArr.length > 0) {
+            if (!this.sharedMediaData[iArr[0]].fastScrollDataLoaded || z) {
+                DialogObject.isEncryptedDialog(this.dialog_id);
             }
         }
-        Collections.sort(this.sharedMediaData[i2].fastScrollPeriods, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$loadFastScrollData$14;
-                lambda$loadFastScrollData$14 = SharedMediaLayout.lambda$loadFastScrollData$14((SharedMediaLayout.Period) obj, (SharedMediaLayout.Period) obj2);
-                return lambda$loadFastScrollData$14;
-            }
-        });
-        this.sharedMediaData[i2].setTotalCount(tLRPC$TL_messages_searchResultsPositions.count);
-        SharedMediaData[] sharedMediaDataArr2 = this.sharedMediaData;
-        sharedMediaDataArr2[i2].fastScrollDataLoaded = true;
-        if (!sharedMediaDataArr2[i2].fastScrollPeriods.isEmpty()) {
-            while (true) {
-                MediaPage[] mediaPageArr = this.mediaPages;
-                if (i3 >= mediaPageArr.length) {
-                    break;
-                }
-                if (mediaPageArr[i3].selectedType == i2) {
-                    MediaPage[] mediaPageArr2 = this.mediaPages;
-                    mediaPageArr2[i3].fastScrollEnabled = true;
-                    updateFastScrollVisibility(mediaPageArr2[i3], true);
-                }
-                i3++;
-            }
-        }
-        this.photoVideoAdapter.notifyDataSetChanged();
-    }
-
-    public static int lambda$loadFastScrollData$14(Period period, Period period2) {
-        return period2.date - period.date;
     }
 
     public static void showFastScrollHint(final MediaPage mediaPage, SharedMediaData[] sharedMediaDataArr, boolean z) {
@@ -2765,7 +2643,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         arrayList.add(Long.valueOf(j));
                     }
                 }
-                String str = BuildConfig.APP_CENTER_HASH;
+                String str = "";
                 if (arrayList.isEmpty()) {
                     z = false;
                 } else {
@@ -3007,6 +2885,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         } else {
             this.searchAlpha = getSearchAlpha(0.0f);
             updateSearchItemIcon(0.0f);
+        }
+        if (this.searching && getSelectedTab() == 11) {
+            return false;
         }
         updateOptionsSearch();
         getParent().requestDisallowInterceptTouchEvent(true);
@@ -4389,11 +4270,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -4488,7 +4369,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             emptyStubView.emptyTextView.setText(LocaleController.getString("NoGroupsInCommon", R.string.NoGroupsInCommon));
         } else if (i == 7) {
             emptyStubView.emptyImageView.setImageDrawable(null);
-            emptyStubView.emptyTextView.setText(BuildConfig.APP_CENTER_HASH);
+            emptyStubView.emptyTextView.setText("");
         }
         return emptyStubView;
     }
@@ -4649,11 +4530,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -5934,7 +5815,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             int i = R.raw.contact_check;
             int i2 = R.string.YouJoinedChannel;
             Object[] objArr = new Object[1];
-            objArr[0] = tLRPC$Chat == null ? BuildConfig.APP_CENTER_HASH : tLRPC$Chat.title;
+            objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
             of.createSimpleBulletin(i, LocaleController.formatString(i2, objArr)).show();
         }
 
@@ -6018,7 +5899,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     SharedMediaLayout.MoreRecommendationsCell.lambda$new$1(runnable);
                 }
             });
-            SpannableString spannableString2 = new SpannableString(BuildConfig.APP_CENTER_HASH + MessagesController.getInstance(i).recommendedChannelsLimitPremium);
+            SpannableString spannableString2 = new SpannableString("" + MessagesController.getInstance(i).recommendedChannelsLimitPremium);
             spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString2.length(), 33);
             linksTextView.setText(AndroidUtilities.replaceCharSequence("%s", premiumText, spannableString2));
             addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));

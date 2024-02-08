@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -741,7 +740,7 @@ public abstract class TLRPC$User extends TLObject {
                             abstractSerializedData2.writeInt32(this.bot_info_version);
                         }
                         if ((this.flags & 262144) != 0) {
-                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
+                            abstractSerializedData2.writeString("");
                         }
                         if ((this.flags & 524288) != 0) {
                             abstractSerializedData2.writeString(this.bot_inline_placeholder);
@@ -1268,7 +1267,7 @@ public abstract class TLRPC$User extends TLObject {
                             abstractSerializedData2.writeInt32(this.bot_info_version);
                         }
                         if ((this.flags & 262144) != 0) {
-                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
+                            abstractSerializedData2.writeString("");
                         }
                         if ((this.flags & 524288) != 0) {
                             abstractSerializedData2.writeString(this.bot_inline_placeholder);

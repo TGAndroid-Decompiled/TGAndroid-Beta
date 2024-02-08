@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.R;
 import org.telegram.ui.Cells.DialogCell;
@@ -739,7 +738,7 @@ public class SimpleTextView extends View {
 
     public CharSequence getText() {
         CharSequence charSequence = this.text;
-        return charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence;
+        return charSequence == null ? "" : charSequence;
     }
 
     public int getLineCount() {

@@ -200,7 +200,7 @@ public class SavedMessagesController {
                 str2 = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(savedDialog.dialogId)));
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-savedDialog.dialogId));
-                str2 = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
+                str2 = chat != null ? chat.title : "";
             }
             if (str2 != null) {
                 String translitSafe2 = AndroidUtilities.translitSafe(str2.toLowerCase());
@@ -601,13 +601,15 @@ public class SavedMessagesController {
                 }
             }
             if (savedDialog != null) {
-                int max = Math.max(0, savedDialog.messagesCount - valueAt.size());
-                int i5 = savedDialog.messagesCount;
-                if (max != i5) {
-                    savedDialog.messagesCount = Math.max(0, i5 - valueAt.size());
-                    z = true;
+                if (savedDialog.messagesCountLoaded) {
+                    int max = Math.max(0, savedDialog.messagesCount - valueAt.size());
+                    int i5 = savedDialog.messagesCount;
+                    if (max != i5) {
+                        savedDialog.messagesCount = Math.max(0, i5 - valueAt.size());
+                        z = true;
+                    }
                 }
-                if (savedDialog.messagesCount <= 0) {
+                if (savedDialog.messagesCountLoaded && savedDialog.messagesCount <= 0) {
                     removeDialog(savedDialog.dialogId);
                 } else if (savedDialog.top_message_id <= i2) {
                     arrayList.add(savedDialog);

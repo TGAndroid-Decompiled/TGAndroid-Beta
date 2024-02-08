@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
@@ -718,7 +717,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         @Override
         public void needAddBot(TLRPC$User tLRPC$User) {
-            ChatUsersActivity.this.openRightsEdit(tLRPC$User.id, null, null, null, BuildConfig.APP_CENTER_HASH, true, 0, false);
+            ChatUsersActivity.this.openRightsEdit(tLRPC$User.id, null, null, null, "", true, 0, false);
         }
     }
 
@@ -1299,7 +1298,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             int i4 = tLRPC$ChatParticipant.date;
             j = j2;
             z2 = ChatObject.canAddAdmins(this.currentChat);
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
             i = i4;
             tLRPC$TL_chatAdminRights = null;
             tLRPC$TL_chatBannedRights = null;
@@ -1520,7 +1519,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createMenuForParticipant$19(long j) {
-        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), BuildConfig.APP_CENTER_HASH, !this.isChannel, this, false, false, null, null);
+        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
         removeParticipants(j);
     }
 
@@ -1671,7 +1670,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     public String formatUserPermissions(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
         if (tLRPC$TL_chatBannedRights == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         StringBuilder sb = new StringBuilder();
         boolean z = tLRPC$TL_chatBannedRights.view_messages;
@@ -1891,7 +1890,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         } else if (i3 == 3) {
             tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsBanned();
         }
-        tLRPC$TL_channels_getParticipants.filter.q = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_channels_getParticipants.filter.q = "";
         tLRPC$TL_channels_getParticipants.offset = i;
         tLRPC$TL_channels_getParticipants.limit = i2;
         return arrayList;
@@ -2773,6 +2772,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     public void setSendMediaEnabled(boolean z) {
         TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.defaultBannedRights;
         tLRPC$TL_chatBannedRights.send_media = !z;
+        tLRPC$TL_chatBannedRights.send_gifs = !z;
+        tLRPC$TL_chatBannedRights.send_inline = !z;
+        tLRPC$TL_chatBannedRights.send_games = !z;
         tLRPC$TL_chatBannedRights.send_photos = !z;
         tLRPC$TL_chatBannedRights.send_videos = !z;
         tLRPC$TL_chatBannedRights.send_stickers = !z;

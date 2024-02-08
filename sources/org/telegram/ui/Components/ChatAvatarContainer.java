@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -180,7 +179,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.onLongClick = new Runnable() {
             @Override
             public final void run() {
-                ChatAvatarContainer.this.lambda$new$4();
+                ChatAvatarContainer.this.lambda$new$3();
             }
         };
         this.rightDrawableIsScamOrVerified = false;
@@ -306,14 +305,6 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             }
         }
         this.emojiStatusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.titleTextView, AndroidUtilities.dp(24.0f));
-        setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public final boolean onLongClick(View view) {
-                boolean lambda$new$3;
-                lambda$new$3 = ChatAvatarContainer.this.lambda$new$3(view);
-                return lambda$new$3;
-            }
-        });
     }
 
     public class AnonymousClass1 extends BackupImageView {
@@ -327,11 +318,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.val$baseFragment = baseFragment;
             this.val$avatarClickable = z;
             this.val$resourcesProvider = resourcesProvider;
-            this.params = new C00211(true);
+            this.params = new C00241(true);
         }
 
-        public class C00211 extends StoriesUtilities.AvatarStoryParams {
-            C00211(boolean z) {
+        public class C00241 extends StoriesUtilities.AvatarStoryParams {
+            C00241(boolean z) {
                 super(z);
             }
 
@@ -341,7 +332,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     @Override
                     public final boolean findView(long j2, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
                         boolean lambda$openStory$0;
-                        lambda$openStory$0 = ChatAvatarContainer.AnonymousClass1.C00211.this.lambda$openStory$0(j2, i, i2, i3, transitionViewHolder);
+                        lambda$openStory$0 = ChatAvatarContainer.AnonymousClass1.C00241.this.lambda$openStory$0(j2, i, i2, i3, transitionViewHolder);
                         return lambda$openStory$0;
                     }
 
@@ -432,15 +423,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         openProfile(false);
     }
 
-    public boolean lambda$new$3(View view) {
-        if (canSearch()) {
-            openSearch();
-            return true;
-        }
-        return false;
-    }
-
-    public void lambda$new$4() {
+    public void lambda$new$3() {
         this.pressed = false;
         this.bounce.setPressed(false);
         if (canSearch()) {
@@ -636,7 +619,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAvatarContainer.this.lambda$fadeOutToLessWidth$5();
+                ChatAvatarContainer.this.lambda$fadeOutToLessWidth$4();
             }
         }).start();
         addView(simpleTextView);
@@ -663,14 +646,14 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         simpleTextView2.animate().alpha(0.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAvatarContainer.this.lambda$fadeOutToLessWidth$6();
+                ChatAvatarContainer.this.lambda$fadeOutToLessWidth$5();
             }
         }).start();
         addView(simpleTextView2);
         setClipChildren(false);
     }
 
-    public void lambda$fadeOutToLessWidth$5() {
+    public void lambda$fadeOutToLessWidth$4() {
         SimpleTextView simpleTextView = this.titleTextLargerCopyView.get();
         if (simpleTextView != null) {
             removeView(simpleTextView);
@@ -678,7 +661,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void lambda$fadeOutToLessWidth$6() {
+    public void lambda$fadeOutToLessWidth$5() {
         SimpleTextView simpleTextView = this.subtitleTextLargerCopyView.get();
         if (simpleTextView != null) {
             removeView(simpleTextView);
@@ -970,9 +953,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
         CharSequence printingString = MessagesController.getInstance(this.currentAccount).getPrintingString(this.parentFragment.getDialogId(), this.parentFragment.getThreadId(), false);
-        String str = BuildConfig.APP_CENTER_HASH;
+        String str = "";
         if (printingString != null) {
-            printingString = TextUtils.replace(printingString, new String[]{"..."}, new String[]{BuildConfig.APP_CENTER_HASH});
+            printingString = TextUtils.replace(printingString, new String[]{"..."}, new String[]{""});
         }
         boolean z2 = true;
         if (printingString == null || printingString.length() == 0 || (ChatObject.isChannel(currentChat) && !currentChat.megagroup)) {

@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -44,6 +44,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.PaddedListAdapter;
+import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Cells.StickerCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.ContentPreviewViewer;
@@ -726,7 +727,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 delegate.replaceText(resultStartPosition, resultLength, "@" + UserObject.getPublicUsername(tLRPC$User) + " ", false);
             } else {
                 SpannableString spannableString = new SpannableString(UserObject.getFirstName(tLRPC$User, false) + " ");
-                spannableString.setSpan(new URLSpanUserMention(BuildConfig.APP_CENTER_HASH + tLRPC$User.id, 3), 0, spannableString.length(), 33);
+                spannableString.setSpan(new URLSpanUserMention("" + tLRPC$User.id, 3), 0, spannableString.length(), 33);
                 delegate.replaceText(resultStartPosition, resultLength, spannableString, false);
             }
         } else if (item instanceof String) {
@@ -950,7 +951,20 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.emojiLoaded) {
-            getListView().invalidateViews();
+            AndroidUtilities.forEachViews((RecyclerView) this.listView, (Consumer<View>) new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    MentionsContainerView.lambda$didReceivedNotification$6((View) obj);
+                }
+            });
+        }
+    }
+
+    public static void lambda$didReceivedNotification$6(View view) {
+        if (view instanceof MentionCell) {
+            ((MentionCell) view).invalidateEmojis();
+        } else {
+            view.invalidate();
         }
     }
 }

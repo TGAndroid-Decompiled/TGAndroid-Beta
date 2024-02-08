@@ -1155,22 +1155,29 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     }
                 }
             }
-        } else {
             for (int i4 = 0; i4 < topReactions.size(); i4++) {
                 ReactionsLayoutInBubble.VisibleReaction fromTLReaction3 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(topReactions.get(i4));
-                if (!hashSet2.contains(fromTLReaction3) && (this.type == 3 || UserConfig.getInstance(this.currentAccount).isPremium() || fromTLReaction3.documentId == 0)) {
+                if (!hashSet2.contains(fromTLReaction3)) {
                     hashSet2.add(fromTLReaction3);
                     list.add(fromTLReaction3);
+                }
+            }
+        } else {
+            for (int i5 = 0; i5 < topReactions.size(); i5++) {
+                ReactionsLayoutInBubble.VisibleReaction fromTLReaction4 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(topReactions.get(i5));
+                if (!hashSet2.contains(fromTLReaction4) && (this.type == 3 || UserConfig.getInstance(this.currentAccount).isPremium() || fromTLReaction4.documentId == 0)) {
+                    hashSet2.add(fromTLReaction4);
+                    list.add(fromTLReaction4);
                 }
             }
         }
         if (this.type != 3 || UserConfig.getInstance(this.currentAccount).isPremium()) {
             ArrayList<TLRPC$Reaction> recentReactions = MediaDataController.getInstance(this.currentAccount).getRecentReactions();
-            for (int i5 = 0; i5 < recentReactions.size(); i5++) {
-                ReactionsLayoutInBubble.VisibleReaction fromTLReaction4 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(recentReactions.get(i5));
-                if (!hashSet2.contains(fromTLReaction4)) {
-                    hashSet2.add(fromTLReaction4);
-                    list.add(fromTLReaction4);
+            for (int i6 = 0; i6 < recentReactions.size(); i6++) {
+                ReactionsLayoutInBubble.VisibleReaction fromTLReaction5 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(recentReactions.get(i6));
+                if (!hashSet2.contains(fromTLReaction5)) {
+                    hashSet2.add(fromTLReaction5);
+                    list.add(fromTLReaction5);
                 }
             }
             List<TLRPC$TL_availableReaction> enabledReactionsList2 = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();

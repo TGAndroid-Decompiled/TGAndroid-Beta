@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -288,6 +289,8 @@ public class MediaDataController extends BaseController {
     private String doubleTapReaction;
     private LongSparseArray<LongSparseArray<TLRPC$Message>> draftMessages;
     private SharedPreferences draftPreferences;
+    public LongSparseArray<DraftVoice> draftVoices;
+    private boolean draftVoicesLoaded;
     private LongSparseArray<LongSparseArray<TLRPC$DraftMessage>> drafts;
     private LongSparseArray<Integer> draftsFolderIds;
     private ArrayList<TLRPC$EmojiStatus>[] emojiStatuses;
@@ -535,6 +538,8 @@ public class MediaDataController extends BaseController {
         this.recentReactions = new ArrayList<>();
         this.topReactions = new ArrayList<>();
         this.savedReactions = new ArrayList<>();
+        this.draftVoicesLoaded = false;
+        this.draftVoices = new LongSparseArray<>();
         if (this.currentAccount == 0) {
             this.draftPreferences = ApplicationLoader.applicationContext.getSharedPreferences("drafts", 0);
         } else {
@@ -2106,9 +2111,9 @@ public class MediaDataController extends BaseController {
             executeFast.requery();
             executeFast.bindString(1, "s_" + tLRPC$TL_messages_stickerSet.set.id);
             executeFast.bindInteger(2, 6);
-            executeFast.bindString(3, BuildConfig.APP_CENTER_HASH);
-            executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
-            executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
+            executeFast.bindString(3, "");
+            executeFast.bindString(4, "");
+            executeFast.bindString(5, "");
             executeFast.bindInteger(6, 0);
             executeFast.bindInteger(7, 0);
             executeFast.bindInteger(8, 0);
@@ -2136,7 +2141,7 @@ public class MediaDataController extends BaseController {
         if (charSequence == null) {
             return null;
         }
-        String replace = charSequence.toString().replace("️", BuildConfig.APP_CENTER_HASH);
+        String replace = charSequence.toString().replace("️", "");
         ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = getStickerSets(4);
         int size = stickerSets.size();
         for (int i = 0; i < size; i++) {
@@ -2212,7 +2217,7 @@ public class MediaDataController extends BaseController {
 
     public String getEmojiForSticker(long j) {
         String str = this.stickersByEmoji.get(j);
-        return str != null ? str : BuildConfig.APP_CENTER_HASH;
+        return str != null ? str : "";
     }
 
     public static boolean canShowAttachMenuBotForTarget(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
@@ -2482,11 +2487,11 @@ public class MediaDataController extends BaseController {
             while (i7 < size && i7 != i3) {
                 TLRPC$Document tLRPC$Document = (TLRPC$Document) arrayList.get(i7);
                 executeFast.requery();
-                executeFast.bindString(1, BuildConfig.APP_CENTER_HASH + tLRPC$Document.id);
+                executeFast.bindString(1, "" + tLRPC$Document.id);
                 executeFast.bindInteger(i4, i6);
-                executeFast.bindString(i5, BuildConfig.APP_CENTER_HASH);
-                executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
-                executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(i5, "");
+                executeFast.bindString(4, "");
+                executeFast.bindString(5, "");
                 executeFast.bindInteger(6, 0);
                 executeFast.bindInteger(7, 0);
                 executeFast.bindInteger(8, 0);
@@ -2604,7 +2609,7 @@ public class MediaDataController extends BaseController {
         }
         for (int i3 = 0; i3 < tLRPC$TL_messages_stickerSet.packs.size(); i3++) {
             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i3);
-            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", BuildConfig.APP_CENTER_HASH);
+            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", "");
             tLRPC$TL_stickerPack.emoticon = replace;
             ArrayList<TLRPC$Document> arrayList = this.allStickers.get(replace);
             if (arrayList == null) {
@@ -3925,7 +3930,7 @@ public class MediaDataController extends BaseController {
                         while (i7 < tLRPC$TL_messages_stickerSet.packs.size()) {
                             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i7);
                             if (tLRPC$TL_stickerPack != null && (str = tLRPC$TL_stickerPack.emoticon) != null) {
-                                String replace = str.replace("️", BuildConfig.APP_CENTER_HASH);
+                                String replace = str.replace("️", "");
                                 tLRPC$TL_stickerPack.emoticon = replace;
                                 ArrayList arrayList4 = (ArrayList) hashMap2.get(replace);
                                 if (arrayList4 == null) {
@@ -5338,7 +5343,7 @@ public class MediaDataController extends BaseController {
                             str = "INNER JOIN tag_message_id t ON m.mid = t.mid";
                             str2 = "t.tag = " + j + " AND";
                         } else {
-                            str = BuildConfig.APP_CENTER_HASH;
+                            str = "";
                             str2 = str;
                         }
                         if (this.val$max_id != 0) {
@@ -6264,7 +6269,7 @@ public class MediaDataController extends BaseController {
         tLRPC$TL_messages_search.peer = getMessagesController().getInputPeer(j);
         tLRPC$TL_messages_search.limit = 40;
         tLRPC$TL_messages_search.offset_id = i;
-        tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_messages_search.q = "";
         tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterPinned();
         getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
             @Override
@@ -7224,7 +7229,7 @@ public class MediaDataController extends BaseController {
                             int i8 = (charAt == ' ' || charAt == '\n') ? 1 : 0;
                             int i9 = i + 3;
                             int indexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i9);
-                            String substring = (indexOf2 < 0 || indexOf2 - i9 <= 0) ? BuildConfig.APP_CENTER_HASH : charSequenceArr[0].toString().substring(i9, indexOf2);
+                            String substring = (indexOf2 < 0 || indexOf2 - i9 <= 0) ? "" : charSequenceArr[0].toString().substring(i9, indexOf2);
                             CharSequence substring2 = substring(charSequenceArr[0], 0, i - i8);
                             int length = i9 + substring.length() + (!substring.isEmpty());
                             if (length >= 0 && length < charSequenceArr[0].length() && length <= indexOf) {
@@ -7261,10 +7266,7 @@ public class MediaDataController extends BaseController {
                                     TLRPC$MessageEntity tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityPre();
                                     tLRPC$TL_messageEntityPre.offset = (i8 ^ 1) + i;
                                     tLRPC$TL_messageEntityPre.length = (((indexOf - i) - 3) - (substring.length() + (!substring.isEmpty()))) + (i8 ^ 1);
-                                    if (TextUtils.isEmpty(substring) || substring.trim().length() == 0) {
-                                        substring = BuildConfig.APP_CENTER_HASH;
-                                    }
-                                    tLRPC$TL_messageEntityPre.language = substring;
+                                    tLRPC$TL_messageEntityPre.language = (TextUtils.isEmpty(substring) || substring.trim().length() == 0) ? "" : "";
                                     arrayList.add(tLRPC$TL_messageEntityPre);
                                     i2 -= 6;
                                 }
@@ -7659,7 +7661,7 @@ public class MediaDataController extends BaseController {
         }
         TLRPC$DraftMessage tLRPC$DraftMessage = tLRPC$TL_draftMessage;
         tLRPC$DraftMessage.date = (int) (System.currentTimeMillis() / 1000);
-        tLRPC$DraftMessage.message = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
+        tLRPC$DraftMessage.message = charSequence == null ? "" : charSequence.toString();
         tLRPC$DraftMessage.no_webpage = z;
         if (tLRPC$Message2 != null) {
             TLRPC$TL_inputReplyToMessage tLRPC$TL_inputReplyToMessage = new TLRPC$TL_inputReplyToMessage();
@@ -7826,7 +7828,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (j2 == 0) {
-                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
             } else {
                 this.draftPreferences.edit().remove("t_" + j + "_" + j2).remove("rt_" + j + "_" + j2).commit();
             }
@@ -7846,7 +7848,7 @@ public class MediaDataController extends BaseController {
                 tLRPC$DraftMessage.serializeToStream(serializedData);
                 if (j2 == 0) {
                     sb2 = new StringBuilder();
-                    sb2.append(BuildConfig.APP_CENTER_HASH);
+                    sb2.append("");
                     sb2.append(j);
                 } else {
                     sb2 = new StringBuilder();
@@ -8103,7 +8105,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (j2 == 0) {
-                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
                 getMessagesController().sortDialogs(null);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
                 return;
@@ -9095,7 +9097,7 @@ public class MediaDataController extends BaseController {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme(this.currentAccount)));
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
             try {
                 EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(this.currentAccount, TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 if (createPreviewFullTheme.items.size() >= 4) {
@@ -9547,7 +9549,7 @@ public class MediaDataController extends BaseController {
         ArrayList<TLRPC$Reaction> arrayList = new ArrayList<>(i);
         if (i > 0) {
             for (int i2 = 0; i2 < i; i2++) {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, BuildConfig.APP_CENTER_HASH)));
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, "")));
                 try {
                     arrayList.add(TLRPC$Reaction.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 } catch (Throwable th) {
@@ -9636,6 +9638,127 @@ public class MediaDataController extends BaseController {
             edit.putString("restrictedstatuses", Utilities.bytesToHex(serializedData.toByteArray()));
             edit.putLong("restrictedstatuses_last_check", System.currentTimeMillis());
             edit.apply();
+        }
+    }
+
+    private void loadDraftVoiceMessages() {
+        if (this.draftVoicesLoaded) {
+            return;
+        }
+        Context context = ApplicationLoader.applicationContext;
+        Set<Map.Entry<String, ?>> entrySet = context.getSharedPreferences("voicedrafts_" + this.currentAccount, 0).getAll().entrySet();
+        this.draftVoices.clear();
+        for (Map.Entry<String, ?> entry : entrySet) {
+            String key = entry.getKey();
+            DraftVoice fromString = DraftVoice.fromString((String) entry.getValue());
+            if (fromString != null) {
+                this.draftVoices.put(Long.parseLong(key), fromString);
+            }
+        }
+        this.draftVoicesLoaded = true;
+    }
+
+    public void toggleDraftVoiceOnce(long j, long j2, boolean z) {
+        DraftVoice draftVoice = getDraftVoice(j, j2);
+        if (draftVoice == null || draftVoice.once == z) {
+            return;
+        }
+        draftVoice.once = z;
+        Context context = ApplicationLoader.applicationContext;
+        SharedPreferences.Editor edit = context.getSharedPreferences("voicedrafts_" + this.currentAccount, 0).edit();
+        edit.putString(Objects.hash(Long.valueOf(j), Long.valueOf(j2)) + "", draftVoice.toString()).apply();
+    }
+
+    public void pushDraftVoiceMessage(long j, long j2, DraftVoice draftVoice) {
+        Context context = ApplicationLoader.applicationContext;
+        SharedPreferences sharedPreferences = context.getSharedPreferences("voicedrafts_" + this.currentAccount, 0);
+        long hash = (long) Objects.hash(Long.valueOf(j), Long.valueOf(j2));
+        sharedPreferences.edit().remove(hash + "").apply();
+        this.draftVoices.remove(hash);
+    }
+
+    public DraftVoice getDraftVoice(long j, long j2) {
+        loadDraftVoiceMessages();
+        return this.draftVoices.get(Objects.hash(Long.valueOf(j), Long.valueOf(j2)));
+    }
+
+    public static class DraftVoice {
+        public long id;
+        public boolean once;
+        public String path;
+        public short[] recordSamples;
+        public long recordTimeCount;
+        public long samplesCount;
+        public int writedFrame;
+
+        public static DraftVoice of(MediaController mediaController, String str, boolean z) {
+            if (mediaController.recordingAudio == null) {
+                return null;
+            }
+            DraftVoice draftVoice = new DraftVoice();
+            draftVoice.path = str;
+            draftVoice.samplesCount = mediaController.samplesCount;
+            draftVoice.writedFrame = mediaController.writedFrame;
+            draftVoice.recordTimeCount = mediaController.recordTimeCount;
+            draftVoice.id = mediaController.recordingAudio.id;
+            draftVoice.recordSamples = mediaController.recordSamples;
+            draftVoice.once = z;
+            return draftVoice;
+        }
+
+        public String toString() {
+            char[] cArr = new char[this.recordSamples.length];
+            int i = 0;
+            while (true) {
+                short[] sArr = this.recordSamples;
+                if (i < sArr.length) {
+                    cArr[i] = (char) sArr[i];
+                    i++;
+                } else {
+                    return this.path + "\n" + this.samplesCount + "\n" + this.writedFrame + "\n" + this.recordTimeCount + "\n" + (this.once ? 1 : 0) + "\n" + new String(cArr);
+                }
+            }
+        }
+
+        public static DraftVoice fromString(String str) {
+            if (str == null) {
+                return null;
+            }
+            try {
+                String[] split = str.split("\n");
+                if (split.length < 6) {
+                    return null;
+                }
+                DraftVoice draftVoice = new DraftVoice();
+                int i = 0;
+                draftVoice.path = split[0];
+                boolean z = true;
+                draftVoice.samplesCount = Long.parseLong(split[1]);
+                draftVoice.writedFrame = Integer.parseInt(split[2]);
+                draftVoice.recordTimeCount = Long.parseLong(split[3]);
+                if (Integer.parseInt(split[4]) == 0) {
+                    z = false;
+                }
+                draftVoice.once = z;
+                int length = split.length - 5;
+                String[] strArr = new String[length];
+                for (int i2 = 0; i2 < length; i2++) {
+                    strArr[i2] = split[i2 + 5];
+                }
+                String join = TextUtils.join("\n", strArr);
+                draftVoice.recordSamples = new short[join.length()];
+                while (true) {
+                    short[] sArr = draftVoice.recordSamples;
+                    if (i >= sArr.length) {
+                        return draftVoice;
+                    }
+                    sArr[i] = (short) join.charAt(i);
+                    i++;
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+                return null;
+            }
         }
     }
 }

@@ -28,7 +28,6 @@ import android.widget.Button;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -123,7 +122,7 @@ public class AcceptDeclineView extends View {
         this.cancelDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         int i3 = R.raw.call_accept;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.callAcceptDrawable = rLottieDrawable;
         rLottieDrawable.setAutoRepeat(1);
         this.callAcceptDrawable.setCustomEndFrame(90);

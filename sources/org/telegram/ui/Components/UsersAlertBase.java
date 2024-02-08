@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -325,7 +324,7 @@ public class UsersAlertBase extends BottomSheet {
         }
 
         public void lambda$new$0(View view) {
-            this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchEditText.setText("");
             AndroidUtilities.showKeyboard(this.searchEditText);
         }
 

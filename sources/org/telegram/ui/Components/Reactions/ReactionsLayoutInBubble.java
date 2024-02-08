@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
@@ -626,7 +625,7 @@ public class ReactionsLayoutInBubble {
             } else {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = this.textDrawable;
                 if (animatedTextDrawable3 != null) {
-                    animatedTextDrawable3.setText(BuildConfig.APP_CENTER_HASH, false);
+                    animatedTextDrawable3.setText("", false);
                 }
                 Integer.toString(tLRPC$ReactionCount.count);
                 this.counterDrawable.setCount(this.count, false);
@@ -994,7 +993,7 @@ public class ReactionsLayoutInBubble {
 
         public static VisibleReaction fromEmojicon(String str) {
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             VisibleReaction visibleReaction = new VisibleReaction();
             if (str.startsWith("animated_")) {

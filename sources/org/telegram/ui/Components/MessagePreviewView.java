@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
@@ -718,7 +717,7 @@ public class MessagePreviewView extends FrameLayout {
                     return;
                 }
                 this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
-                this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : BuildConfig.APP_CENTER_HASH, z);
+                this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : "", z);
                 return;
             }
             ActionBar actionBar = this.actionBar;
@@ -2406,13 +2405,13 @@ public class MessagePreviewView extends FrameLayout {
         }
 
         public RLottieToggleDrawable(MessagePreviewView messagePreviewView, View view, int i, int i2) {
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.state1 = rLottieDrawable;
             rLottieDrawable.setMasterParent(view);
             this.state1.setAllowDecodeSingleFrame(true);
             this.state1.setPlayInDirectionOfCustomEndFrame(true);
             this.state1.setAutoRepeat(0);
-            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.state2 = rLottieDrawable2;
             rLottieDrawable2.setMasterParent(view);
             this.state2.setAllowDecodeSingleFrame(true);

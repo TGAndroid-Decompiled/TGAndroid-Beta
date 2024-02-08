@@ -29,7 +29,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -233,7 +232,7 @@ public class HintView2 extends View {
     }
 
     public HintView2 setIcon(int i) {
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
         rLottieDrawable.start();
         return setIcon(rLottieDrawable);
     }

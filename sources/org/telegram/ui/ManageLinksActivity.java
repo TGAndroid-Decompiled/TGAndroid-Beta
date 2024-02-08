@@ -32,7 +32,6 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -1174,7 +1173,7 @@ public class ManageLinksActivity extends BaseFragment {
                 } else if (i5 > 0 && tLRPC$TL_chatInviteExported.expired && tLRPC$TL_chatInviteExported.revoked) {
                     formatPluralString = LocaleController.formatPluralString("PeopleJoined", tLRPC$TL_chatInviteExported.usage, new Object[0]) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", tLRPC$TL_chatInviteExported.usage_limit - tLRPC$TL_chatInviteExported.usage, new Object[0]);
                 } else {
-                    formatPluralString = i4 > 0 ? LocaleController.formatPluralString("PeopleJoined", i4, new Object[0]) : BuildConfig.APP_CENTER_HASH;
+                    formatPluralString = i4 > 0 ? LocaleController.formatPluralString("PeopleJoined", i4, new Object[0]) : "";
                     if (tLRPC$TL_chatInviteExported.requested > 0) {
                         if (tLRPC$TL_chatInviteExported.usage > 0) {
                             formatPluralString = formatPluralString + ", ";

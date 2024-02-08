@@ -32,7 +32,6 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -1786,7 +1785,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     PrivacyControlActivity.this.setAvatarCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                     PrivacyControlActivity privacyControlActivity = PrivacyControlActivity.this;
                     int i2 = R.raw.camera_outline;
-                    privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                    privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                     PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
                     PrivacyControlActivity.this.setAvatarCell.imageView.setAnimation(PrivacyControlActivity.this.cameraDrawable);
                     PrivacyControlActivity.this.setAvatarCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));

@@ -71,7 +71,6 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -1996,7 +1995,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.useTranscribeButton && (!this.isPlayingRound || getVideoTranscriptionProgress() > 0.0f || this.wasTranscriptionOpen) && (transcribeButton = this.transcribeButton) != null && transcribeButton.onTouch(motionEvent.getAction(), motionEvent.getX(), motionEvent.getY());
     }
 
-    private boolean checkLinkPreviewMotionEvent(android.view.MotionEvent r19) {
+    private boolean checkLinkPreviewMotionEvent(android.view.MotionEvent r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.checkLinkPreviewMotionEvent(android.view.MotionEvent):boolean");
     }
 
@@ -3919,7 +3918,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.commentAvatarDrawables[i].setInfo(this.currentAccount, tLRPC$Chat);
             this.commentAvatarImages[i].setForUserOrChat(tLRPC$Chat, this.commentAvatarDrawables[i]);
         } else {
-            this.commentAvatarDrawables[i].setInfo(j, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+            this.commentAvatarDrawables[i].setInfo(j, "", "");
         }
     }
 
@@ -7269,7 +7268,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return tLRPC$TL_sponsoredWebPage.site_name;
         }
         TLRPC$ChatInvite tLRPC$ChatInvite = messageObject2.sponsoredChatInvite;
-        return (tLRPC$ChatInvite == null || (str2 = tLRPC$ChatInvite.title) == null) ? (tLRPC$ChatInvite == null || (tLRPC$Chat = tLRPC$ChatInvite.chat) == null || (str = tLRPC$Chat.title) == null) ? BuildConfig.APP_CENTER_HASH : str : str2;
+        return (tLRPC$ChatInvite == null || (str2 = tLRPC$ChatInvite.title) == null) ? (tLRPC$ChatInvite == null || (tLRPC$Chat = tLRPC$ChatInvite.chat) == null || (str = tLRPC$Chat.title) == null) ? "" : str : str2;
     }
 
     private Object getAuthorStatus() {
@@ -10031,6 +10030,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             rectF.set(this.radialProgress.getProgressRect());
             rectF.inset(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f));
             canvas.saveLayerAlpha(rectF, (int) (this.radialProgressAlpha * 255.0f), 31);
+        } else {
+            canvas.save();
+            int i = this.currentMessageObject.type;
+            if (this.drawPhotoImage && (i == 3 || i == 1 || i == 8)) {
+                canvas.clipRect(this.photoImage.getImageX(), this.photoImage.getImageY(), this.photoImage.getImageX2(), this.photoImage.getImageY2());
+            }
         }
         if (this.currentMessageObject.needDrawBluredPreview()) {
             drawPhotoBlurRect(canvas, this.radialProgress.getProgressRect());
@@ -10075,8 +10080,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.oncePeriod.setCenterXY(centerX, centerY);
             this.oncePeriod.draw(canvas, 1.0f);
             canvas.restore();
-            canvas.restore();
         }
+        canvas.restore();
     }
 
     protected void drawPhotoBlurRect(Canvas canvas, RectF rectF) {
@@ -10610,12 +10615,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         spannableStringBuilder.append((CharSequence) LocaleController.formatPluralString("AccDescrNumberOfReplies", ChatMessageCell.this.getRepliesCount(), new Object[0]));
                     }
                     if (ChatMessageCell.this.currentMessageObject.messageOwner.reactions != null && ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results != null) {
-                        int size = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size();
-                        String str4 = BuildConfig.APP_CENTER_HASH;
-                        if (size == 1) {
+                        String str4 = "";
+                        if (ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size() == 1) {
                             TLRPC$ReactionCount tLRPC$ReactionCount2 = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.get(0);
                             TLRPC$Reaction tLRPC$Reaction = tLRPC$ReactionCount2.reaction;
-                            String str5 = tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon : BuildConfig.APP_CENTER_HASH;
+                            String str5 = tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon : "";
                             int i7 = tLRPC$ReactionCount2.count;
                             if (i7 == 1) {
                                 spannableStringBuilder.append((CharSequence) "\n");
@@ -10639,11 +10643,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             }
                         } else {
                             spannableStringBuilder.append((CharSequence) LocaleController.getString("Reactions", R.string.Reactions)).append((CharSequence) ": ");
-                            int size2 = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size();
-                            for (int i8 = 0; i8 < size2; i8++) {
+                            int size = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size();
+                            for (int i8 = 0; i8 < size; i8++) {
                                 TLRPC$Reaction tLRPC$Reaction2 = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.get(i8).reaction;
-                                spannableStringBuilder.append((CharSequence) (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon : BuildConfig.APP_CENTER_HASH)).append((CharSequence) " ").append((CharSequence) (tLRPC$ReactionCount.count + BuildConfig.APP_CENTER_HASH));
-                                if (i8 + 1 < size2) {
+                                spannableStringBuilder.append((CharSequence) (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon : "")).append((CharSequence) " ").append((CharSequence) (tLRPC$ReactionCount.count + ""));
+                                if (i8 + 1 < size) {
                                     spannableStringBuilder.append(charSequence2);
                                 }
                             }

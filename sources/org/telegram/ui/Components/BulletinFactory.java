@@ -102,6 +102,10 @@ public final class BulletinFactory {
         private final int localeRes;
         private final boolean plural;
 
+        private static FileType[] $values() {
+            return new FileType[]{PHOTO, PHOTOS, VIDEO, VIDEOS, MEDIA, PHOTO_TO_DOWNLOADS, VIDEO_TO_DOWNLOADS, GIF, GIF_TO_DOWNLOADS, AUDIO, AUDIOS, UNKNOWN, UNKNOWNS};
+        }
+
         public static FileType valueOf(String str) {
             return (FileType) Enum.valueOf(FileType.class, str);
         }
@@ -113,37 +117,24 @@ public final class BulletinFactory {
         static {
             int i = R.string.PhotoSavedHint;
             Icon icon = Icon.SAVED_TO_GALLERY;
-            FileType fileType = new FileType("PHOTO", 0, "PhotoSavedHint", i, icon);
-            PHOTO = fileType;
-            FileType fileType2 = new FileType("PHOTOS", 1, "PhotosSavedHint", icon);
-            PHOTOS = fileType2;
-            FileType fileType3 = new FileType("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, icon);
-            VIDEO = fileType3;
-            FileType fileType4 = new FileType("VIDEOS", 3, "VideosSavedHint", icon);
-            VIDEOS = fileType4;
-            FileType fileType5 = new FileType("MEDIA", 4, "MediaSavedHint", icon);
-            MEDIA = fileType5;
+            PHOTO = new FileType("PHOTO", 0, "PhotoSavedHint", i, icon);
+            PHOTOS = new FileType("PHOTOS", 1, "PhotosSavedHint", icon);
+            VIDEO = new FileType("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, icon);
+            VIDEOS = new FileType("VIDEOS", 3, "VideosSavedHint", icon);
+            MEDIA = new FileType("MEDIA", 4, "MediaSavedHint", icon);
             int i2 = R.string.PhotoSavedToDownloadsHint;
             Icon icon2 = Icon.SAVED_TO_DOWNLOADS;
-            FileType fileType6 = new FileType("PHOTO_TO_DOWNLOADS", 5, "PhotoSavedToDownloadsHint", i2, icon2);
-            PHOTO_TO_DOWNLOADS = fileType6;
-            FileType fileType7 = new FileType("VIDEO_TO_DOWNLOADS", 6, "VideoSavedToDownloadsHint", R.string.VideoSavedToDownloadsHint, icon2);
-            VIDEO_TO_DOWNLOADS = fileType7;
-            FileType fileType8 = new FileType("GIF", 7, "GifSavedHint", R.string.GifSavedHint, Icon.SAVED_TO_GIFS);
-            GIF = fileType8;
-            FileType fileType9 = new FileType("GIF_TO_DOWNLOADS", 8, "GifSavedToDownloadsHint", R.string.GifSavedToDownloadsHint, icon2);
-            GIF_TO_DOWNLOADS = fileType9;
+            PHOTO_TO_DOWNLOADS = new FileType("PHOTO_TO_DOWNLOADS", 5, "PhotoSavedToDownloadsHint", i2, icon2);
+            VIDEO_TO_DOWNLOADS = new FileType("VIDEO_TO_DOWNLOADS", 6, "VideoSavedToDownloadsHint", R.string.VideoSavedToDownloadsHint, icon2);
+            GIF = new FileType("GIF", 7, "GifSavedHint", R.string.GifSavedHint, Icon.SAVED_TO_GIFS);
+            GIF_TO_DOWNLOADS = new FileType("GIF_TO_DOWNLOADS", 8, "GifSavedToDownloadsHint", R.string.GifSavedToDownloadsHint, icon2);
             int i3 = R.string.AudioSavedHint;
             Icon icon3 = Icon.SAVED_TO_MUSIC;
-            FileType fileType10 = new FileType("AUDIO", 9, "AudioSavedHint", i3, icon3);
-            AUDIO = fileType10;
-            FileType fileType11 = new FileType("AUDIOS", 10, "AudiosSavedHint", icon3);
-            AUDIOS = fileType11;
-            FileType fileType12 = new FileType("UNKNOWN", 11, "FileSavedHint", R.string.FileSavedHint, icon2);
-            UNKNOWN = fileType12;
-            FileType fileType13 = new FileType("UNKNOWNS", 12, "FilesSavedHint", icon2);
-            UNKNOWNS = fileType13;
-            $VALUES = new FileType[]{fileType, fileType2, fileType3, fileType4, fileType5, fileType6, fileType7, fileType8, fileType9, fileType10, fileType11, fileType12, fileType13};
+            AUDIO = new FileType("AUDIO", 9, "AudioSavedHint", i3, icon3);
+            AUDIOS = new FileType("AUDIOS", 10, "AudiosSavedHint", icon3);
+            UNKNOWN = new FileType("UNKNOWN", 11, "FileSavedHint", R.string.FileSavedHint, icon2);
+            UNKNOWNS = new FileType("UNKNOWNS", 12, "FilesSavedHint", icon2);
+            $VALUES = $values();
         }
 
         private FileType(String str, int i, String str2, int i2, Icon icon) {

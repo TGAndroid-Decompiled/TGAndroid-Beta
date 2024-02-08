@@ -36,6 +36,7 @@ import org.telegram.tgnet.TLRPC$TL_upload_reuploadCdnFile;
 import org.telegram.tgnet.TLRPC$TL_upload_webFile;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Storage.CacheModel;
 public class FileLoadOperation {
@@ -66,6 +67,7 @@ public class FileLoadOperation {
     private byte[] cdnIv;
     private byte[] cdnKey;
     private byte[] cdnToken;
+    private volatile boolean closeFilePartsStreamOnWriteEnd;
     public int currentAccount;
     private int currentDownloadChunkSize;
     private int currentMaxDownloadRequests;
@@ -154,6 +156,7 @@ public class FileLoadOperation {
     private boolean ungzip;
     private WebFile webFile;
     private TLRPC$InputWebFileLocation webLocation;
+    private volatile boolean writingToFilePartsStream;
     public static volatile DispatchQueue filesQueue = new DispatchQueue("writeFileQueue");
     private static final Object lockObject = new Object();
 
@@ -293,6 +296,7 @@ public class FileLoadOperation {
         this.state = 0;
         updateParams();
         this.parentObject = obj;
+        this.isStory = obj instanceof TL_stories$TL_storyItem;
         this.fileMetadata = FileLoader.getFileMetadataFromParent(this.currentAccount, obj);
         this.isStream = imageLocation.imageType == 2;
         if (imageLocation.isEncrypted()) {
@@ -623,6 +627,9 @@ public class FileLoadOperation {
                 if (this.fileWriteRunnable != null) {
                     filesQueue.cancelRunnable(this.fileWriteRunnable);
                 }
+                synchronized (this) {
+                    this.writingToFilePartsStream = true;
+                }
                 DispatchQueue dispatchQueue = filesQueue;
                 Runnable runnable = new Runnable() {
                     @Override
@@ -674,6 +681,16 @@ public class FileLoadOperation {
             }
             randomAccessFile.seek(0L);
             this.filePartsStream.write(filesQueueByteBuffer.buf, 0, i);
+            this.writingToFilePartsStream = false;
+            if (this.closeFilePartsStreamOnWriteEnd) {
+                try {
+                    this.filePartsStream.getChannel().close();
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                }
+                this.filePartsStream.close();
+                this.filePartsStream = null;
+            }
             this.totalTime += System.currentTimeMillis() - currentTimeMillis;
         }
     }
@@ -1123,13 +1140,17 @@ public class FileLoadOperation {
         try {
             if (this.filePartsStream != null) {
                 synchronized (this) {
-                    try {
-                        this.filePartsStream.getChannel().close();
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    if (!this.writingToFilePartsStream) {
+                        try {
+                            this.filePartsStream.getChannel().close();
+                        } catch (Exception e7) {
+                            FileLog.e(e7);
+                        }
+                        this.filePartsStream.close();
+                        this.filePartsStream = null;
+                    } else {
+                        this.closeFilePartsStreamOnWriteEnd = true;
                     }
-                    this.filePartsStream.close();
-                    this.filePartsStream = null;
                 }
             }
         } catch (Exception e8) {
@@ -1480,6 +1501,7 @@ public class FileLoadOperation {
             MessageObject messageObject = (MessageObject) obj;
             if (messageObject.getId() < 0 && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && (tLRPC$WebPage = tLRPC$MessageMedia.webpage) != null) {
                 this.parentObject = tLRPC$WebPage;
+                this.isStory = false;
             }
         }
         if (BuildVars.LOGS_ENABLED) {
