@@ -33,6 +33,7 @@ public class EmojiThemes {
     public String emoji;
     public ArrayList<ThemeItem> items = new ArrayList<>();
     public boolean showAsDefaultStub;
+    public boolean showAsRemovedStub;
     public TLRPC$WallPaper wallpaper;
 
     public EmojiThemes(int i) {
@@ -56,6 +57,10 @@ public class EmojiThemes {
         this.items.add(themeItem2);
     }
 
+    public boolean isAnyStub() {
+        return this.showAsDefaultStub || this.showAsRemovedStub;
+    }
+
     public static EmojiThemes createPreviewFullTheme(int i, TLRPC$TL_theme tLRPC$TL_theme) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = tLRPC$TL_theme.emoticon;
@@ -72,6 +77,19 @@ public class EmojiThemes {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "❌";
         emojiThemes.showAsDefaultStub = true;
+        ThemeItem themeItem = new ThemeItem();
+        themeItem.themeInfo = getDefaultThemeInfo(true);
+        emojiThemes.items.add(themeItem);
+        ThemeItem themeItem2 = new ThemeItem();
+        themeItem2.themeInfo = getDefaultThemeInfo(false);
+        emojiThemes.items.add(themeItem2);
+        return emojiThemes;
+    }
+
+    public static EmojiThemes createChatThemesRemoved(int i) {
+        EmojiThemes emojiThemes = new EmojiThemes(i);
+        emojiThemes.emoji = "❌";
+        emojiThemes.showAsRemovedStub = true;
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = getDefaultThemeInfo(true);
         emojiThemes.items.add(themeItem);

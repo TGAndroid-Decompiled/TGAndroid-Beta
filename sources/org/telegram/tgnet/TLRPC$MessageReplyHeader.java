@@ -5,6 +5,7 @@ import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$MessageReplyHeader extends TLObject {
     public int flags;
     public boolean forum_topic;
+    public TLRPC$Peer peer;
     public boolean quote;
     public ArrayList<TLRPC$MessageEntity> quote_entities = new ArrayList<>();
     public int quote_offset;
@@ -17,16 +18,31 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
     public boolean reply_to_scheduled;
     public int reply_to_top_id;
     public int story_id;
-    public long user_id;
 
     public static TLRPC$MessageReplyHeader TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$MessageReplyHeader tLRPC$TL_messageReplyStoryHeader;
+        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader;
         switch (i) {
             case -1667711039:
-                tLRPC$TL_messageReplyStoryHeader = new TLRPC$TL_messageReplyStoryHeader();
+                tLRPC$MessageReplyHeader = new TLRPC$TL_messageReplyStoryHeader() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                        this.peer = tLRPC$TL_peerUser;
+                        tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt64(z2);
+                        this.story_id = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1667711039);
+                        TLRPC$Peer tLRPC$Peer = this.peer;
+                        abstractSerializedData2.writeInt64(tLRPC$Peer == null ? 0L : tLRPC$Peer.user_id);
+                        abstractSerializedData2.writeInt32(this.story_id);
+                    }
+                };
                 break;
             case -1495959709:
-                tLRPC$TL_messageReplyStoryHeader = new TLRPC$TL_messageReplyHeader() {
+                tLRPC$MessageReplyHeader = new TLRPC$TL_messageReplyHeader() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -61,10 +77,13 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                 };
                 break;
             case -1346631205:
-                tLRPC$TL_messageReplyStoryHeader = new TLRPC$TL_messageReplyHeader();
+                tLRPC$MessageReplyHeader = new TLRPC$TL_messageReplyHeader();
+                break;
+            case 240843065:
+                tLRPC$MessageReplyHeader = new TLRPC$TL_messageReplyStoryHeader();
                 break;
             case 1029445267:
-                tLRPC$TL_messageReplyStoryHeader = new TLRPC$TL_messageReplyHeader() {
+                tLRPC$MessageReplyHeader = new TLRPC$TL_messageReplyHeader() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -140,7 +159,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                 };
                 break;
             case 1860946621:
-                tLRPC$TL_messageReplyStoryHeader = new TLRPC$TL_messageReplyHeader() {
+                tLRPC$MessageReplyHeader = new TLRPC$TL_messageReplyHeader() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -225,15 +244,15 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                 };
                 break;
             default:
-                tLRPC$TL_messageReplyStoryHeader = null;
+                tLRPC$MessageReplyHeader = null;
                 break;
         }
-        if (tLRPC$TL_messageReplyStoryHeader == null && z) {
+        if (tLRPC$MessageReplyHeader == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in MessageReplyHeader", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_messageReplyStoryHeader != null) {
-            tLRPC$TL_messageReplyStoryHeader.readParams(abstractSerializedData, z);
+        if (tLRPC$MessageReplyHeader != null) {
+            tLRPC$MessageReplyHeader.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_messageReplyStoryHeader;
+        return tLRPC$MessageReplyHeader;
     }
 }

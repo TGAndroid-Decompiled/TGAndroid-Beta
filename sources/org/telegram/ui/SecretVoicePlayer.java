@@ -594,6 +594,11 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
+                public void didPressBoostCounter(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell6);
+                }
+
+                @Override
                 public void didPressBotButton(ChatMessageCell chatMessageCell6, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell6, tLRPC$KeyboardButton);
                 }

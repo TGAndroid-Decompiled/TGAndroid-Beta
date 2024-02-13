@@ -92,7 +92,7 @@ public class ChatMessagesMetadataController {
                 TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
                 if (tLRPC$MessageReplyHeader != null) {
                     tL_stories$StoryItem = tLRPC$Message.replyStory;
-                    tL_stories$StoryItem.dialogId = tLRPC$MessageReplyHeader.user_id;
+                    tL_stories$StoryItem.dialogId = DialogObject.getPeerDialogId(tLRPC$MessageReplyHeader.peer);
                 }
             }
             final long j2 = tL_stories$StoryItem.dialogId;

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
@@ -36,6 +37,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -917,10 +919,22 @@ public class TranscribeButton {
         }
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(messageObject.currentAccount);
         MessagesController messagesController = MessagesController.getInstance(messageObject.currentAccount);
+        if (isFreeTranscribeInChat(messageObject)) {
+            return true;
+        }
         if (messagesController.transcribeAudioTrialWeeklyNumber <= 0 || messageObject.getDuration() > messagesController.transcribeAudioTrialDurationMax) {
             return false;
         }
         return messagesController.transcribeAudioTrialCooldownUntil == 0 || connectionsManager.getCurrentTime() > messagesController.transcribeAudioTrialCooldownUntil || messagesController.transcribeAudioTrialCurrentNumber > 0;
+    }
+
+    public static boolean isFreeTranscribeInChat(MessageObject messageObject) {
+        if (messageObject == null || messageObject.messageOwner == null) {
+            return false;
+        }
+        MessagesController messagesController = MessagesController.getInstance(messageObject.currentAccount);
+        TLRPC$Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
+        return ChatObject.isMegagroup(chat) && chat.level >= messagesController.groupTranscribeLevelMin;
     }
 
     public static int getTranscribeTrialCount(int i) {
@@ -936,8 +950,7 @@ public class TranscribeButton {
     }
 
     public static boolean showTranscribeLock(MessageObject messageObject) {
-        TLRPC$Message tLRPC$Message;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !TextUtils.isEmpty(tLRPC$Message.voiceTranscription)) {
+        if (messageObject == null || messageObject.messageOwner == null || isFreeTranscribeInChat(messageObject) || !TextUtils.isEmpty(messageObject.messageOwner.voiceTranscription)) {
             return false;
         }
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(messageObject.currentAccount);

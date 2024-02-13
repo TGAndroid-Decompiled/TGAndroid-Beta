@@ -1115,6 +1115,11 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public void didPressBotButton(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell2, tLRPC$KeyboardButton);
                     }
@@ -1470,6 +1475,11 @@ public class MessagePreviewView extends FrameLayout {
                         @Override
                         public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
+                        }
+
+                        @Override
+                        public void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell2);
                         }
 
                         @Override

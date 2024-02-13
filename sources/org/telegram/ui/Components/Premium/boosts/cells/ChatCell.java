@@ -7,6 +7,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -15,6 +16,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 @SuppressLint({"ViewConstructor"})
 public class ChatCell extends BaseCell {
+    private TLRPC$Chat chat;
     private ChatDeleteListener chatDeleteListener;
     private final ImageView deleteImageView;
     private boolean removable;
@@ -50,16 +52,28 @@ public class ChatCell extends BaseCell {
         this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public void setChat(final TLRPC$Chat tLRPC$Chat, int i, boolean z) {
+    public TLRPC$Chat getChat() {
+        return this.chat;
+    }
+
+    public void setChat(final TLRPC$Chat tLRPC$Chat, int i, boolean z, int i2) {
+        String string;
         this.removable = z;
+        this.chat = tLRPC$Chat;
         this.avatarDrawable.setInfo(tLRPC$Chat);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
         this.titleTextView.setText(Emoji.replaceEmoji(tLRPC$Chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
         if (z) {
-            setSubtitle(null);
+            if (i2 >= 1) {
+                string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+            } else {
+                string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            }
+            setSubtitle(string);
         } else {
-            setSubtitle(LocaleController.formatPluralString("BoostingChannelWillReceiveBoost", i, new Object[0]));
+            setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
         }
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         setDivider(true);
@@ -87,11 +101,18 @@ public class ChatCell extends BaseCell {
         this.chatDeleteListener = chatDeleteListener;
     }
 
-    public void setCounter(int i) {
+    public void setCounter(int i, int i2) {
+        String string;
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat);
         if (this.removable) {
-            setSubtitle(null);
-        } else {
-            setSubtitle(LocaleController.formatPluralString("BoostingChannelWillReceiveBoost", i, new Object[0]));
+            if (i2 >= 1) {
+                string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+            } else {
+                string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            }
+            setSubtitle(string);
+            return;
         }
+        setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
     }
 }

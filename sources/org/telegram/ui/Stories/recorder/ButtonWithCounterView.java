@@ -24,8 +24,9 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Loadable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-public class ButtonWithCounterView extends FrameLayout {
+public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private float countAlpha;
     private final AnimatedFloat countAlphaAnimated;
     private ValueAnimator countAnimator;
@@ -262,6 +263,7 @@ public class ButtonWithCounterView extends FrameLayout {
         invalidate();
     }
 
+    @Override
     public void setLoading(final boolean z) {
         if (this.loading != z) {
             ValueAnimator valueAnimator = this.loadingAnimator;
@@ -299,6 +301,7 @@ public class ButtonWithCounterView extends FrameLayout {
         invalidate();
     }
 
+    @Override
     public boolean isLoading() {
         return this.loading;
     }

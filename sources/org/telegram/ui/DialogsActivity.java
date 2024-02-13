@@ -3506,6 +3506,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     return;
                 }
             } else {
+                TLRPC$Chat chat = DialogsActivity.this.getMessagesController().getChat(Long.valueOf(-j));
                 final String sharedPrefKey = NotificationsController.getSharedPrefKey(j, 0L);
                 boolean z = !NotificationsCustomSettingsActivity.areStoriesNotMuted(((BaseFragment) DialogsActivity.this).currentAccount, j);
                 DialogsActivity.this.filterOptions.addIf(j > 0, R.drawable.msg_discussion, LocaleController.getString("SendMessage", R.string.SendMessage), new Runnable() {
@@ -3518,7 +3519,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     public final void run() {
                         DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$4(j);
                     }
-                }).addIf(j < 0, R.drawable.msg_channel, LocaleController.getString("OpenChannel2", R.string.OpenChannel2), new Runnable() {
+                }).addIf(j < 0, R.drawable.msg_channel, LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(chat) ? R.string.OpenChannel2 : R.string.OpenGroup2), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$5(j);

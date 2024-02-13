@@ -32,6 +32,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ButtonBounce;
@@ -57,6 +58,7 @@ public class HintView2 extends View {
     private Paint cutSelectorPaint;
     private int direction;
     private long duration;
+    private AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans;
     private boolean firstDraw;
     private boolean hideByTouch;
     private final Runnable hideRunnable;
@@ -587,6 +589,13 @@ public class HintView2 extends View {
         this.textLayoutWidth = Math.max(0.0f, f2 - f);
         this.textLayoutHeight = this.textLayout.getHeight();
         this.textLayoutLeft = f;
+        this.emojiGroupedSpans = AnimatedEmojiSpan.update(0, this, this.emojiGroupedSpans, this.textLayout);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        AnimatedEmojiSpan.release(this, this.emojiGroupedSpans);
     }
 
     protected void drawBgPath(Canvas canvas) {
@@ -703,6 +712,7 @@ public class HintView2 extends View {
                 invalidate();
             }
             this.textLayout.draw(canvas);
+            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.textLayout, this.emojiGroupedSpans, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
         } else {
             CharSequence charSequence = this.textToSet;

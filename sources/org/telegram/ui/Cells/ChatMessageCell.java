@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
@@ -175,6 +176,7 @@ import org.telegram.ui.Components.MessageBackgroundDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.MsgClockDrawable;
 import org.telegram.ui.Components.Point;
+import org.telegram.ui.Components.Premium.boosts.BoostCounterSpan;
 import org.telegram.ui.Components.Premium.boosts.cells.msg.GiveawayMessageCell;
 import org.telegram.ui.Components.Premium.boosts.cells.msg.GiveawayResultsMessageCell;
 import org.telegram.ui.Components.QuoteHighlight;
@@ -256,6 +258,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private ImageReceiver blurredPhotoImage;
     private int blurredViewBottomOffset;
     private int blurredViewTopOffset;
+    private RectF boostCounterBounds;
+    private Drawable boostCounterLayoutSelector;
+    private boolean boostCounterPressed;
+    private int boostCounterSelectorColor;
+    private BoostCounterSpan boostCounterSpan;
     private Path botButtonPath;
     private float[] botButtonRadii;
     private ArrayList<BotButton> botButtons;
@@ -1097,6 +1104,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
         boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan);
 
+        void didPressBoostCounter(ChatMessageCell chatMessageCell);
+
         void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton);
 
         void didPressCancelSendButton(ChatMessageCell chatMessageCell);
@@ -1226,6 +1235,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
             public static boolean $default$didPressAnimatedEmoji(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
                 return false;
+            }
+
+            public static void $default$didPressBoostCounter(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell) {
             }
 
             public static void $default$didPressBotButton(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
@@ -1871,6 +1883,42 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             i = spannable.getSpanEnd(characterStyle);
         }
         return new int[]{i2, i};
+    }
+
+    private boolean checkAdminMotionEvent(MotionEvent motionEvent) {
+        RectF rectF;
+        ChatMessageCellDelegate chatMessageCellDelegate;
+        Drawable drawable;
+        boolean z = false;
+        if (this.adminLayout == null || (rectF = this.boostCounterBounds) == null || (this.currentUser == null && this.currentChat == null)) {
+            this.boostCounterPressed = false;
+            return false;
+        }
+        boolean contains = rectF.contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0) {
+            SpannableString spannableString = new SpannableString(this.adminLayout.getText());
+            BoostCounterSpan[] boostCounterSpanArr = (BoostCounterSpan[]) spannableString.getSpans(0, spannableString.length(), BoostCounterSpan.class);
+            if (contains && boostCounterSpanArr != null && boostCounterSpanArr.length > 0) {
+                z = true;
+            }
+            this.boostCounterPressed = z;
+            if (z && (drawable = this.boostCounterLayoutSelector) != null) {
+                if (Build.VERSION.SDK_INT >= 21) {
+                    drawable.setHotspot((int) motionEvent.getX(), (int) motionEvent.getY());
+                }
+                this.boostCounterLayoutSelector.setState(this.pressedState);
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent.getAction() == 1 && this.boostCounterPressed && (chatMessageCellDelegate = this.delegate) != null) {
+                chatMessageCellDelegate.didPressBoostCounter(this);
+            }
+            Drawable drawable2 = this.boostCounterLayoutSelector;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
+            }
+            this.boostCounterPressed = false;
+        }
+        return this.boostCounterPressed;
     }
 
     private boolean checkNameMotionEvent(MotionEvent motionEvent) {
@@ -4073,6 +4121,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (drawable3 != null) {
             drawable3.setState(StateSet.NOTHING);
         }
+        Drawable drawable4 = this.boostCounterLayoutSelector;
+        if (drawable4 != null) {
+            drawable4.setState(StateSet.NOTHING);
+        }
         resetCodeSelectors();
         ButtonBounce buttonBounce = this.replyBounce;
         if (buttonBounce != null) {
@@ -4140,9 +4192,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     }
                     i3++;
                 }
-                Drawable drawable4 = this.linkPreviewSelector;
-                if (drawable4 != null) {
-                    drawable4.setState(StateSet.NOTHING);
+                Drawable drawable5 = this.linkPreviewSelector;
+                if (drawable5 != null) {
+                    drawable5.setState(StateSet.NOTHING);
                 }
             }
             ButtonBounce buttonBounce2 = this.linkPreviewBounce;
@@ -5178,7 +5230,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     str = LocaleController.getString("OpenLink").toUpperCase();
                 } else if (i == 17) {
                     str = LocaleController.getString("ViewStory").toUpperCase();
-                } else if (i == 18) {
+                } else if (i == 18 || i == 22) {
                     str = LocaleController.getString("BoostLinkButton", R.string.BoostLinkButton);
                 } else if (i == 19) {
                     str = LocaleController.getString("BoostingHowItWork", R.string.BoostingHowItWork);
@@ -7201,7 +7253,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r52) {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r53) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 

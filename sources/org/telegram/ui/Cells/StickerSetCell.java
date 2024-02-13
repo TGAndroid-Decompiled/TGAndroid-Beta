@@ -37,12 +37,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.Easings;
@@ -53,7 +55,9 @@ import org.telegram.ui.Components.RadialProgressView;
 public class StickerSetCell extends FrameLayout {
     private TextView addButtonView;
     private CheckBox2 checkBox;
+    private ImageView deleteView;
     private boolean emojis;
+    private boolean groupSearch;
     private BackupImageView imageView;
     private boolean needDivider;
     private final int option;
@@ -220,6 +224,18 @@ public class StickerSetCell extends FrameLayout {
         this.valueTextView.setSingleLine(true);
         this.valueTextView.setGravity(LayoutHelper.getAbsoluteGravityStart());
         addView(this.valueTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388611, 71.0f, 32.0f, 70.0f, 0.0f));
+        if (i == 3) {
+            ImageView imageView5 = new ImageView(context);
+            this.deleteView = imageView5;
+            imageView5.setImageResource(R.drawable.msg_close);
+            this.deleteView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            this.deleteView.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), PorterDuff.Mode.SRC_IN);
+            this.deleteView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector)));
+            this.deleteView.setVisibility(8);
+            ImageView imageView6 = this.deleteView;
+            boolean z3 = LocaleController.isRTL;
+            addView(imageView6, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 3 : 5) | 16, z3 ? 4.0f : 0.0f, 0.0f, z3 ? 0.0f : 4.0f, 0.0f));
+        }
         updateButtonState(0, false);
     }
 
@@ -284,6 +300,7 @@ public class StickerSetCell extends FrameLayout {
         ImageLocation forSticker;
         this.needDivider = z;
         this.stickersSet = tLRPC$TL_messages_stickerSet;
+        this.groupSearch = z2;
         this.imageView.setVisibility(0);
         RadialProgressView radialProgressView = this.progressView;
         if (radialProgressView != null) {
@@ -359,13 +376,40 @@ public class StickerSetCell extends FrameLayout {
         } else {
             this.valueTextView.setText(LocaleController.formatPluralString(tLRPC$TL_messages_stickerSet.set.emojis ? "EmojiCount" : "Stickers", 0, new Object[0]));
             this.imageView.setImageDrawable(null);
+            if (tLRPC$TL_messages_stickerSet.set.thumb_document_id != 0) {
+                AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(tLRPC$TL_messages_stickerSet.set.thumb_document_id, new AnimatedEmojiDrawable.ReceivedDocument() {
+                    @Override
+                    public final void run(TLRPC$Document tLRPC$Document3) {
+                        StickerSetCell.this.lambda$setStickersSet$5(tLRPC$Document3);
+                    }
+                });
+            }
         }
-        if (z2) {
+        if (this.groupSearch) {
             TextView textView = this.valueTextView;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(tLRPC$TL_messages_stickerSet.set.emojis ? "t.me/addemoji/" : "t.me/addstickers/");
             sb3.append(tLRPC$TL_messages_stickerSet.set.short_name);
             textView.setText(sb3.toString());
+        }
+    }
+
+    public void lambda$setStickersSet$5(final TLRPC$Document tLRPC$Document) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StickerSetCell.this.lambda$setStickersSet$4(tLRPC$Document);
+            }
+        });
+    }
+
+    public void lambda$setStickersSet$4(TLRPC$Document tLRPC$Document) {
+        if (this.stickersSet.documents.isEmpty()) {
+            TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.stickersSet;
+            if (tLRPC$TL_messages_stickerSet.set.thumb_document_id == tLRPC$Document.id) {
+                tLRPC$TL_messages_stickerSet.documents.add(tLRPC$Document);
+                setStickersSet(this.stickersSet, this.needDivider, this.groupSearch);
+            }
         }
     }
 
@@ -381,44 +425,21 @@ public class StickerSetCell extends FrameLayout {
         return i == 3 ? this.optionsButton.getVisibility() == 0 : this.emojis && this.sideButtons.getVisibility() == 0;
     }
 
+    public void setDeleteAction(View.OnClickListener onClickListener) {
+        ImageView imageView = this.deleteView;
+        if (imageView != null) {
+            imageView.setVisibility(onClickListener == null ? 8 : 0);
+            this.deleteView.setOnClickListener(onClickListener);
+        }
+    }
+
     public void setChecked(final boolean z, boolean z2) {
         int i = this.option;
         if (i == 1) {
             this.checkBox.setChecked(z, z2);
             return;
         }
-        if (this.emojis) {
-            if (z2) {
-                this.sideButtons.animate().cancel();
-                this.sideButtons.animate().setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (z) {
-                            return;
-                        }
-                        StickerSetCell.this.sideButtons.setVisibility(4);
-                    }
-
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        if (z) {
-                            StickerSetCell.this.sideButtons.setVisibility(0);
-                        }
-                    }
-                }).alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.1f).scaleY(z ? 1.0f : 0.1f).setDuration(150L).start();
-                return;
-            }
-            this.sideButtons.setVisibility(z ? 0 : 4);
-            if (!z) {
-                this.sideButtons.setAlpha(0.0f);
-                this.sideButtons.setScaleX(0.1f);
-                this.sideButtons.setScaleY(0.1f);
-                return;
-            }
-            this.sideButtons.setAlpha(1.0f);
-            this.sideButtons.setScaleX(1.0f);
-            this.sideButtons.setScaleY(1.0f);
-        } else if (i == 3) {
+        if (i == 3) {
             if (z2) {
                 this.optionsButton.animate().cancel();
                 this.optionsButton.animate().setListener(new AnimatorListenerAdapter() {
@@ -449,6 +470,37 @@ public class StickerSetCell extends FrameLayout {
             this.optionsButton.setAlpha(1.0f);
             this.optionsButton.setScaleX(1.0f);
             this.optionsButton.setScaleY(1.0f);
+        } else if (this.emojis) {
+            if (z2) {
+                this.sideButtons.animate().cancel();
+                this.sideButtons.animate().setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        if (z) {
+                            return;
+                        }
+                        StickerSetCell.this.sideButtons.setVisibility(4);
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        if (z) {
+                            StickerSetCell.this.sideButtons.setVisibility(0);
+                        }
+                    }
+                }).alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.1f).scaleY(z ? 1.0f : 0.1f).setDuration(150L).start();
+                return;
+            }
+            this.sideButtons.setVisibility(z ? 0 : 4);
+            if (!z) {
+                this.sideButtons.setAlpha(0.0f);
+                this.sideButtons.setScaleX(0.1f);
+                this.sideButtons.setScaleY(0.1f);
+                return;
+            }
+            this.sideButtons.setAlpha(1.0f);
+            this.sideButtons.setScaleX(1.0f);
+            this.sideButtons.setScaleY(1.0f);
         }
     }
 
@@ -471,7 +523,7 @@ public class StickerSetCell extends FrameLayout {
                 duration.setInterpolator(interpolator).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        StickerSetCell.this.lambda$setReorderable$4(z);
+                        StickerSetCell.this.lambda$setReorderable$6(z);
                     }
                 }).start();
                 if (this.emojis) {
@@ -479,7 +531,7 @@ public class StickerSetCell extends FrameLayout {
                     this.sideButtons.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(interpolator).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            StickerSetCell.this.lambda$setReorderable$5(z);
+                            StickerSetCell.this.lambda$setReorderable$7(z);
                         }
                     }).start();
                     return;
@@ -488,7 +540,7 @@ public class StickerSetCell extends FrameLayout {
                 this.optionsButton.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(interpolator).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        StickerSetCell.this.lambda$setReorderable$6(z);
+                        StickerSetCell.this.lambda$setReorderable$8(z);
                     }
                 }).start();
                 return;
@@ -511,20 +563,20 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public void lambda$setReorderable$4(boolean z) {
+    public void lambda$setReorderable$6(boolean z) {
         if (z) {
             return;
         }
         this.reorderButton.setVisibility(8);
     }
 
-    public void lambda$setReorderable$5(boolean z) {
+    public void lambda$setReorderable$7(boolean z) {
         if (z) {
             this.sideButtons.setVisibility(8);
         }
     }
 
-    public void lambda$setReorderable$6(boolean z) {
+    public void lambda$setReorderable$8(boolean z) {
         if (z) {
             this.optionsButton.setVisibility(8);
         }
@@ -596,14 +648,14 @@ public class StickerSetCell extends FrameLayout {
             this.premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StickerSetCell.this.lambda$updateButtonState$7(view);
+                    StickerSetCell.this.lambda$updateButtonState$9(view);
                 }
             });
         } else if (i == 2) {
             this.premiumButtonView.setButton(LocaleController.getString("Restore", R.string.Restore), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StickerSetCell.this.lambda$updateButtonState$8(view);
+                    StickerSetCell.this.lambda$updateButtonState$10(view);
                 }
             });
         }
@@ -698,11 +750,11 @@ public class StickerSetCell extends FrameLayout {
         updateRightMargin();
     }
 
-    public void lambda$updateButtonState$7(View view) {
+    public void lambda$updateButtonState$9(View view) {
         onPremiumButtonClick();
     }
 
-    public void lambda$updateButtonState$8(View view) {
+    public void lambda$updateButtonState$10(View view) {
         onPremiumButtonClick();
     }
 

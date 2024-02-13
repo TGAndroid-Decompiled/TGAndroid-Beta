@@ -2,10 +2,10 @@ package org.telegram.ui.Components.Premium.boosts.cells;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_premiumGiftCodeOption;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -59,11 +59,10 @@ public class DurationWithDiscountCell extends DurationCell {
     }
 
     public void setDuration(TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption2, int i, boolean z, boolean z2) {
-        String formatString;
         this.option = tLRPC$TL_premiumGiftCodeOption;
         long j = tLRPC$TL_premiumGiftCodeOption.amount;
         String str = tLRPC$TL_premiumGiftCodeOption.currency;
-        this.titleTextView.setText(LocaleController.formatPluralString("Months", tLRPC$TL_premiumGiftCodeOption.months, new Object[0]));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatPluralString("Months", tLRPC$TL_premiumGiftCodeOption.months, new Object[0]));
         double d = tLRPC$TL_premiumGiftCodeOption.amount;
         double d2 = tLRPC$TL_premiumGiftCodeOption.months;
         Double.isNaN(d);
@@ -74,16 +73,12 @@ public class DurationWithDiscountCell extends DurationCell {
         Double.isNaN(d4);
         Double.isNaN(d5);
         int i2 = (int) ((1.0d - (d3 / (d4 / d5))) * 100.0d);
-        if (i > 1) {
-            formatString = BillingController.getInstance().formatCurrency(j / i, str.toString()) + " x " + i;
-        } else {
-            formatString = LocaleController.formatString(R.string.PricePerMonth, BillingController.getInstance().formatCurrency(j / tLRPC$TL_premiumGiftCodeOption.months, str.toString()));
-        }
         if (i2 > 0) {
-            setSubtitle(DiscountSpan.applySpan(formatString, i2));
+            this.titleTextView.setText(spannableStringBuilder.append(DiscountSpan.applySpan("", i2)));
         } else {
-            setSubtitle(formatString);
+            this.titleTextView.setText(spannableStringBuilder);
         }
+        setSubtitle(null);
         SimpleTextView simpleTextView = this.totalTextView;
         BillingController billingController = BillingController.getInstance();
         if (i <= 0) {

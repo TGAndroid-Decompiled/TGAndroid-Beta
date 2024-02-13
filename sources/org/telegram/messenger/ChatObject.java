@@ -175,6 +175,29 @@ public class ChatObject {
         return canSendPhoto(tLRPC$Chat) || canSendVideo(tLRPC$Chat) || canSendRoundVideo(tLRPC$Chat) || canSendVoice(tLRPC$Chat) || canSendDocument(tLRPC$Chat) || canSendMusic(tLRPC$Chat) || canSendStickers(tLRPC$Chat);
     }
 
+    public static boolean isIgnoredChatRestrictionsForBoosters(TLRPC$ChatFull tLRPC$ChatFull) {
+        int i;
+        return tLRPC$ChatFull != null && (i = tLRPC$ChatFull.boosts_unrestrict) > 0 && tLRPC$ChatFull.boosts_applied - i >= 0;
+    }
+
+    public static boolean isIgnoredChatRestrictionsForBoosters(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat != null) {
+            return isIgnoredChatRestrictionsForBoosters(MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(tLRPC$Chat.id));
+        }
+        return false;
+    }
+
+    public static boolean isPossibleRemoveChatRestrictionsByBoosts(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat != null) {
+            return isPossibleRemoveChatRestrictionsByBoosts(MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(tLRPC$Chat.id));
+        }
+        return false;
+    }
+
+    public static boolean isPossibleRemoveChatRestrictionsByBoosts(TLRPC$ChatFull tLRPC$ChatFull) {
+        return tLRPC$ChatFull != null && tLRPC$ChatFull.boosts_unrestrict > 0;
+    }
+
     public static String getAllowedSendString(TLRPC$Chat tLRPC$Chat) {
         StringBuilder sb = new StringBuilder();
         if (canSendPhoto(tLRPC$Chat)) {
@@ -1694,6 +1717,18 @@ public class ChatObject {
         return isChannel(tLRPC$Chat) && !isMegagroup(tLRPC$Chat);
     }
 
+    public static boolean isBoostSupported(TLRPC$Chat tLRPC$Chat) {
+        return isChannelAndNotMegaGroup(tLRPC$Chat) || isMegagroup(tLRPC$Chat);
+    }
+
+    public static boolean isBoosted(TLRPC$ChatFull tLRPC$ChatFull) {
+        return tLRPC$ChatFull != null && tLRPC$ChatFull.boosts_applied > 0;
+    }
+
+    public static boolean isGroupAndSupportBoost(TLRPC$Chat tLRPC$Chat) {
+        return isMegagroup(tLRPC$Chat);
+    }
+
     public static boolean isForum(TLRPC$Chat tLRPC$Chat) {
         return tLRPC$Chat != null && tLRPC$Chat.forum;
     }
@@ -1725,46 +1760,79 @@ public class ChatObject {
     }
 
     public static boolean canSendStickers(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 8);
     }
 
     public static boolean canSendEmbed(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 9);
     }
 
     public static boolean canSendPhoto(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 16);
     }
 
     public static boolean canSendVideo(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 17);
     }
 
     public static boolean canSendMusic(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 18);
     }
 
     public static boolean canSendDocument(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 19);
     }
 
     public static boolean canSendVoice(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 20);
     }
 
     public static boolean canSendRoundVideo(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 21);
     }
 
     public static boolean canSendPolls(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 10);
     }
 
     public static boolean canSendMessages(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 6);
     }
 
     public static boolean canSendPlain(TLRPC$Chat tLRPC$Chat) {
+        if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
+            return true;
+        }
         return canUserDoAction(tLRPC$Chat, 22);
     }
 

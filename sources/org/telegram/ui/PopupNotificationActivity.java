@@ -230,6 +230,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
+            public boolean checkCanRemoveRestrictionsByBoosts() {
+                return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$checkCanRemoveRestrictionsByBoosts(this);
+            }
+
+            @Override
             public void didPressAttachButton() {
             }
 

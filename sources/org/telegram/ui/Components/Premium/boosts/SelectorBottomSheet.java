@@ -267,7 +267,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             }, null);
             updateList(true, false);
             if (chat != null && !ChatObject.isPublic(chat) && this.selectedIds.contains(Long.valueOf(j))) {
-                BoostDialogs.showPrivateChannelAlert(getBaseFragment().getContext(), this.resourcesProvider, new Runnable() {
+                BoostDialogs.showPrivateChannelAlert(chat, getBaseFragment().getContext(), this.resourcesProvider, new Runnable() {
                     @Override
                     public final void run() {
                         SelectorBottomSheet.this.lambda$new$3(j);
@@ -588,10 +588,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         String formatPluralStringComma;
         int i = this.type;
         if (i == 1) {
-            formatPluralStringComma = LocaleController.formatPluralStringComma("Subscribers", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
+            formatPluralStringComma = LocaleController.formatPluralStringComma(ChatObject.isChannelAndNotMegaGroup(this.currentChat) ? "Subscribers" : "Members", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
             this.sectionCell.setLayerHeight(32);
         } else if (i == 2) {
-            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
+            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToGroupChannelPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
             this.sectionCell.setLayerHeight(32);
         } else if (i != 3) {
             formatPluralStringComma = "";
@@ -608,7 +608,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (i == 1) {
             string = LocaleController.getString("BoostingSelectUpToWarningUsers", R.string.BoostingSelectUpToWarningUsers);
         } else if (i == 2) {
-            string = LocaleController.formatPluralString("BoostingSelectUpToWarningChannelsPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
+            string = LocaleController.formatPluralString("BoostingSelectUpToWarningChannelsGroupsPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
         } else {
             string = i != 3 ? "" : LocaleController.formatPluralString("BoostingSelectUpToWarningCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
         }
@@ -814,7 +814,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             if (i != 2) {
                 return i != 3 ? "" : LocaleController.getString("BoostingSelectCountry", R.string.BoostingSelectCountry);
             }
-            return LocaleController.getString("BoostingAddChannel", R.string.BoostingAddChannel);
+            return LocaleController.getString("BoostingAddChannelOrGroup", R.string.BoostingAddChannelOrGroup);
         }
         return LocaleController.getString("GiftPremium", R.string.GiftPremium);
     }

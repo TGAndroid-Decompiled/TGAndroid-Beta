@@ -101,7 +101,7 @@ public class RoundVideoRecorder extends FrameLayout {
         if (this.recordingStarted > 0) {
             return;
         }
-        CameraController.getInstance().recordVideo(this.cameraView.getCameraSession(), this.file, false, new CameraController.VideoTakeCallback() {
+        CameraController.getInstance().recordVideo(this.cameraView.getCameraSessionObject(), this.file, false, new CameraController.VideoTakeCallback() {
             @Override
             public final void onFinishVideoRecording(String str, long j) {
                 RoundVideoRecorder.this.lambda$new$0(str, j);

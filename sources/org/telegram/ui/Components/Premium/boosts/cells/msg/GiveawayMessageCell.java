@@ -210,7 +210,7 @@ public class GiveawayMessageCell {
         this.parentView.invalidate();
     }
 
-    public void setMessageContent(org.telegram.messenger.MessageObject r20, int r21, int r22) {
+    public void setMessageContent(org.telegram.messenger.MessageObject r21, int r22, int r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.msg.GiveawayMessageCell.setMessageContent(org.telegram.messenger.MessageObject, int, int):void");
     }
 

@@ -9,8 +9,8 @@ public class ChannelBoostUtilities {
         long j2 = -j;
         TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(j2));
         if (!TextUtils.isEmpty(ChatObject.getPublicUsername(chat))) {
-            return "https://t.me/" + ChatObject.getPublicUsername(chat) + "?boost";
+            return "https://t.me/boost/" + ChatObject.getPublicUsername(chat);
         }
-        return "https://t.me/c/" + j2 + "?boost";
+        return "https://t.me/boost/?c=" + j2;
     }
 }

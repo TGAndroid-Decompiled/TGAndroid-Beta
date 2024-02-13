@@ -335,14 +335,14 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
 
                 @Override
-                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                     Page.this.listView.invalidate();
                 }
 
                 @Override
-                protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                public void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                 }
@@ -2766,10 +2766,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 if (i <= 0) {
                     i = tLRPC$Chat.participants_count;
                 }
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
                 if (i >= 1) {
-                    lowerCase = LocaleController.formatPluralString("Subscribers", i, new Object[0]);
+                    lowerCase = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i, new Object[0]);
                 } else {
-                    lowerCase = LocaleController.getString(R.string.DiscussChannel);
+                    lowerCase = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
                 }
             } else if (!ChatObject.isChannel(tLRPC$Chat) || tLRPC$Chat.megagroup) {
                 if (i >= 1) {

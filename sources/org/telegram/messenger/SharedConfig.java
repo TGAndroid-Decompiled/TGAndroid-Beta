@@ -165,6 +165,7 @@ public class SharedConfig {
     public static int textSelectionHintShows;
     public static boolean translateChats;
     public static boolean updateStickersOrderOnSend;
+    public static boolean useCamera2;
     public static boolean useFingerprint;
     public static boolean useSurfaceInStories;
     public static boolean useSystemEmoji;
@@ -1487,6 +1488,13 @@ public class SharedConfig {
     public static void toggleRoundCamera() {
         bigCameraForRound = !bigCameraForRound;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("bigCameraForRound", bigCameraForRound).apply();
+    }
+
+    public static void toggleUseCamera2() {
+        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
+        boolean z = !useCamera2;
+        useCamera2 = z;
+        edit.putBoolean("useCamera2", z).apply();
     }
 
     @Deprecated

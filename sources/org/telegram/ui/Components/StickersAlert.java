@@ -1535,7 +1535,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
             this.layoutManager.setSpanCount(this.adapter.stickersPerRow);
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2 = this.stickerSet;
-            if (tLRPC$TL_messages_stickerSet2 != null && (tLRPC$StickerSet7 = tLRPC$TL_messages_stickerSet2.set) != null && tLRPC$StickerSet7.emojis && !UserConfig.getInstance(this.currentAccount).isPremium()) {
+            if (tLRPC$TL_messages_stickerSet2 != null && (tLRPC$StickerSet7 = tLRPC$TL_messages_stickerSet2.set) != null && tLRPC$StickerSet7.emojis && !UserConfig.getInstance(this.currentAccount).isPremium() && this.customButtonDelegate == null) {
                 if (this.stickerSet.documents != null) {
                     for (int i2 = 0; i2 < this.stickerSet.documents.size(); i2++) {
                         if (!MessageObject.isFreeEmoji(this.stickerSet.documents.get(i2))) {

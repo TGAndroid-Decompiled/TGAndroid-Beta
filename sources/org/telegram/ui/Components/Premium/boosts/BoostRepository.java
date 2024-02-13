@@ -139,7 +139,7 @@ public class BoostRepository {
         ArrayList<TLRPC$Dialog> allDialogs = messagesController.getAllDialogs();
         for (int i = 0; i < allDialogs.size(); i++) {
             TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i);
-            if (DialogObject.isChatDialog(tLRPC$Dialog.id) && ChatObject.isChannelAndNotMegaGroup(messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id)))) {
+            if (DialogObject.isChatDialog(tLRPC$Dialog.id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id)))) {
                 long j2 = tLRPC$Dialog.id;
                 if ((-j2) != j) {
                     arrayList.add(messagesController.getInputPeer(j2));
@@ -843,7 +843,7 @@ public class BoostRepository {
             for (int i = 0; i < tLRPC$TL_contacts_found.chats.size(); i++) {
                 TLRPC$Chat tLRPC$Chat = tLRPC$TL_contacts_found.chats.get(i);
                 TLRPC$InputPeer inputPeer = MessagesController.getInputPeer(tLRPC$Chat);
-                if (tLRPC$Chat.id != j && ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
+                if (tLRPC$Chat.id != j && ChatObject.isBoostSupported(tLRPC$Chat)) {
                     arrayList.add(inputPeer);
                 }
             }
@@ -969,9 +969,8 @@ public class BoostRepository {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_payments_getGiveawayInfo tLRPC$TL_payments_getGiveawayInfo = new TLRPC$TL_payments_getGiveawayInfo();
-        UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
         tLRPC$TL_payments_getGiveawayInfo.msg_id = messageObject.getId();
-        tLRPC$TL_payments_getGiveawayInfo.peer = messagesController.getInputPeer(messageObject.getFromChatId());
+        tLRPC$TL_payments_getGiveawayInfo.peer = messagesController.getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
         connectionsManager.sendRequest(tLRPC$TL_payments_getGiveawayInfo, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1052,7 +1051,7 @@ public class BoostRepository {
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 BoostRepository.lambda$applyBoost$48(Utilities.Callback.this, messagesController, callback, tLObject, tLRPC$TL_error);
             }
-        }, 1024);
+        }, 66);
     }
 
     public static void lambda$applyBoost$48(final Utilities.Callback callback, final MessagesController messagesController, final Utilities.Callback callback2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

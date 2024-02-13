@@ -2629,6 +2629,10 @@ public class ActionBarMenuItem extends FrameLayout {
         return lazilyAddSubItem(i, i2, null, charSequence, true, false);
     }
 
+    public Item lazilyAddSubItem(int i, Drawable drawable, CharSequence charSequence) {
+        return lazilyAddSubItem(i, 0, drawable, charSequence, true, false);
+    }
+
     public Item lazilyAddSubItem(int i, int i2, Drawable drawable, CharSequence charSequence, boolean z, boolean z2) {
         return putLazyItem(Item.asSubItem(i, i2, drawable, charSequence, z, z2));
     }

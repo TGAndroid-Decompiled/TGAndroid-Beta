@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
@@ -20,6 +23,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.Components.Premium.boosts.cells.AddChannelCell;
 import org.telegram.ui.Components.Premium.boosts.cells.BoostTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.BoostTypeSingleCell;
@@ -38,22 +42,49 @@ import org.telegram.ui.Components.SlideChooseView;
 public class BoostAdapter extends AdapterWithDiffUtils {
     private EnterPrizeCell.AfterTextChangedListener afterTextChangedListener;
     private ChatCell.ChatDeleteListener chatDeleteListener;
+    private TLRPC$Chat currentChat;
     private HeaderCell headerCell;
-    private List<Item> items = new ArrayList();
     private RecyclerListView recyclerListView;
     private final Theme.ResourcesProvider resourcesProvider;
     private SlideChooseView.Callback sliderCallback;
+    private List<Item> items = new ArrayList();
+    private HashMap<Long, Integer> chatsParticipantsCount = new HashMap<>();
 
     public BoostAdapter(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
+        BoostRepository.loadParticipantsCount(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                BoostAdapter.this.lambda$new$0((HashMap) obj);
+            }
+        });
     }
 
-    public void setItems(List<Item> list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
+    public void lambda$new$0(HashMap hashMap) {
+        this.chatsParticipantsCount.clear();
+        this.chatsParticipantsCount.putAll(hashMap);
+    }
+
+    public void setItems(TLRPC$Chat tLRPC$Chat, List<Item> list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
         this.items = list;
+        this.currentChat = tLRPC$Chat;
         this.recyclerListView = recyclerListView;
         this.sliderCallback = callback;
         this.chatDeleteListener = chatDeleteListener;
         this.afterTextChangedListener = afterTextChangedListener;
+    }
+
+    private int getParticipantsCount(TLRPC$Chat tLRPC$Chat) {
+        Integer num;
+        int i;
+        TLRPC$ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(tLRPC$Chat.id);
+        if (chatFull == null || (i = chatFull.participants_count) <= 0) {
+            if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
+                return num.intValue();
+            }
+            return tLRPC$Chat.participants_count;
+        }
+        return i;
     }
 
     public void updateBoostCounter(int i) {
@@ -63,7 +94,8 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 ((SubtitleWithCounterCell) childAt).updateCounter(true, i);
             }
             if (childAt instanceof ChatCell) {
-                ((ChatCell) childAt).setCounter(i);
+                ChatCell chatCell = (ChatCell) childAt;
+                chatCell.setCounter(i, getParticipantsCount(chatCell.getChat()));
             }
         }
         notifyItemChanged(8);
@@ -227,7 +259,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         if (itemViewType == 0) {
             HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
             this.headerCell = headerCell;
-            headerCell.setBoostViaGifsText();
+            headerCell.setBoostViaGifsText(this.currentChat);
         } else if (itemViewType == 2) {
             ((BoostTypeCell) viewHolder.itemView).setType(item.subType, item.intValue, (TLRPC$User) item.user, item.selectable);
         } else if (itemViewType == 5) {
@@ -247,12 +279,15 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                     TLRPC$InputPeer tLRPC$InputPeer = item.peer;
                     if (tLRPC$InputPeer != null) {
                         if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
-                            chatCell.setChat(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id)), item.intValue, item.boolValue);
+                            TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
+                            chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount(chat));
                         } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
-                            chatCell.setChat(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id)), item.intValue, item.boolValue);
+                            TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
+                            chatCell.setChat(chat2, item.intValue, item.boolValue, getParticipantsCount(chat2));
                         }
                     } else {
-                        chatCell.setChat(item.chat, item.intValue, item.boolValue);
+                        TLRPC$Chat tLRPC$Chat = item.chat;
+                        chatCell.setChat(tLRPC$Chat, item.intValue, item.boolValue, getParticipantsCount(tLRPC$Chat));
                     }
                     chatCell.setChatDeleteListener(this.chatDeleteListener);
                     return;
@@ -260,7 +295,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                     ((DateEndCell) viewHolder.itemView).setDate(item.longValue);
                     return;
                 case 11:
-                    ((ParticipantsTypeCell) viewHolder.itemView).setType(item.subType, item.selectable, item.boolValue, (List) item.user);
+                    ((ParticipantsTypeCell) viewHolder.itemView).setType(item.subType, item.selectable, item.boolValue, (List) item.user, this.currentChat);
                     return;
                 case 12:
                     ((DurationCell) viewHolder.itemView).setDuration(item.object, item.intValue, item.intValue2, item.longValue, item.text, item.boolValue, item.selectable);

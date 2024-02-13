@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Reactions;
 
 import android.graphics.Paint;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -128,17 +127,7 @@ public class ReactionsUtils {
     }
 
     public static void lambda$showLimitReachedDialogForReactions$0(BaseFragment baseFragment, long j) {
-        long j2 = -j;
-        TLRPC$Chat chat = baseFragment.getMessagesController().getChat(Long.valueOf(j2));
-        Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", j2);
-        bundle.putBoolean("is_megagroup", chat.megagroup);
-        bundle.putBoolean("start_from_boosts", true);
-        TLRPC$ChatFull chatFull = baseFragment.getMessagesController().getChatFull(j2);
-        if (chatFull == null || !chatFull.can_view_stats) {
-            bundle.putBoolean("only_boosts", true);
-        }
-        baseFragment.presentFragment(new StatisticActivity(bundle));
+        baseFragment.presentFragment(StatisticActivity.create(baseFragment.getMessagesController().getChat(Long.valueOf(-j))));
     }
 
     public static SpannableString createSpannableText(AnimatedEmojiSpan animatedEmojiSpan, String str) {

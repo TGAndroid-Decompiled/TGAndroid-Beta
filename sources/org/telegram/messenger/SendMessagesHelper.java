@@ -286,7 +286,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public TLRPC$InputReplyTo createReplyInput(TL_stories$StoryItem tL_stories$StoryItem) {
         TLRPC$TL_inputReplyToStory tLRPC$TL_inputReplyToStory = new TLRPC$TL_inputReplyToStory();
         tLRPC$TL_inputReplyToStory.story_id = tL_stories$StoryItem.id;
-        tLRPC$TL_inputReplyToStory.user_id = getMessagesController().getInputUser(tL_stories$StoryItem.dialogId);
+        tLRPC$TL_inputReplyToStory.peer = getMessagesController().getInputPeer(tL_stories$StoryItem.dialogId);
         return tLRPC$TL_inputReplyToStory;
     }
 

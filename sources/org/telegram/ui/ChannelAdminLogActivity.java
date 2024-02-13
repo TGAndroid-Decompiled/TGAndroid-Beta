@@ -1976,6 +1976,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public void didPressBoostCounter(ChatMessageCell chatMessageCell) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell);
+            }
+
+            @Override
             public void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell, tLRPC$KeyboardButton);
             }

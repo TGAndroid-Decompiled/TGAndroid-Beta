@@ -3,8 +3,10 @@ package org.telegram.ui.Components.Premium.boosts.cells;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import java.util.List;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_help_country;
 import org.telegram.ui.ActionBar.Theme;
 @SuppressLint({"ViewConstructor"})
@@ -27,12 +29,13 @@ public class ParticipantsTypeCell extends BaseCell {
         return this.selectedType;
     }
 
-    public void setType(int i, boolean z, boolean z2, List<TLRPC$TL_help_country> list) {
+    public void setType(int i, boolean z, boolean z2, List<TLRPC$TL_help_country> list, TLRPC$Chat tLRPC$Chat) {
         this.selectedType = i;
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
         if (i == TYPE_ALL) {
-            this.titleTextView.setText(LocaleController.formatString("BoostingAllSubscribers", R.string.BoostingAllSubscribers, new Object[0]));
+            this.titleTextView.setText(LocaleController.formatString(isChannelAndNotMegaGroup ? R.string.BoostingAllSubscribers : R.string.BoostingAllMembers, new Object[0]));
         } else if (i == TYPE_NEW) {
-            this.titleTextView.setText(LocaleController.formatString("BoostingNewSubscribers", R.string.BoostingNewSubscribers, new Object[0]));
+            this.titleTextView.setText(LocaleController.formatString(isChannelAndNotMegaGroup ? R.string.BoostingNewSubscribers : R.string.BoostingNewMembers, new Object[0]));
         }
         this.radioButton.setChecked(z, false);
         setDivider(z2);

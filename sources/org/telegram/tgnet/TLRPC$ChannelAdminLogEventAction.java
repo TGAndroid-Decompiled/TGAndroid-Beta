@@ -147,6 +147,9 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
             case 1147126836:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeBackgroundEmoji();
                 break;
+            case 1188577451:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeEmojiStickerSet();
+                break;
             case 1401984889:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleSlowMode();
                 break;

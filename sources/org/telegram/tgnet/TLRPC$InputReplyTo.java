@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 public abstract class TLRPC$InputReplyTo extends TLObject {
     public int flags;
+    public TLRPC$InputPeer peer;
     public ArrayList<TLRPC$MessageEntity> quote_entities = new ArrayList<>();
     public int quote_offset;
     public String quote_text;
@@ -10,10 +11,9 @@ public abstract class TLRPC$InputReplyTo extends TLObject {
     public TLRPC$InputPeer reply_to_peer_id;
     public int story_id;
     public int top_msg_id;
-    public TLRPC$InputUser user_id;
 
     public static TLRPC$InputReplyTo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$InputReplyTo tLRPC$TL_inputReplyToMessage = i != 121554949 ? i != 363917955 ? i != 583071445 ? null : new TLRPC$TL_inputReplyToMessage() : new TLRPC$TL_inputReplyToStory() : new TLRPC$TL_inputReplyToMessage() {
+        TLRPC$InputReplyTo tLRPC$TL_inputReplyToStory = i != 121554949 ? i != 583071445 ? i != 1484862010 ? null : new TLRPC$TL_inputReplyToStory() : new TLRPC$TL_inputReplyToMessage() : new TLRPC$TL_inputReplyToMessage() {
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                 this.flags = abstractSerializedData2.readInt32(z2);
@@ -70,12 +70,12 @@ public abstract class TLRPC$InputReplyTo extends TLObject {
                 }
             }
         };
-        if (tLRPC$TL_inputReplyToMessage == null && z) {
+        if (tLRPC$TL_inputReplyToStory == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in InputReplyTo", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_inputReplyToMessage != null) {
-            tLRPC$TL_inputReplyToMessage.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_inputReplyToStory != null) {
+            tLRPC$TL_inputReplyToStory.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_inputReplyToMessage;
+        return tLRPC$TL_inputReplyToStory;
     }
 }

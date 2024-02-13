@@ -309,6 +309,10 @@ public class TextCell extends FrameLayout {
     }
 
     public void setLockLevel(boolean z, int i) {
+        if (i <= 0) {
+            this.textView.setRightDrawable((Drawable) null);
+            return;
+        }
         this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), z, i, this.resourcesProvider));
         this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
     }

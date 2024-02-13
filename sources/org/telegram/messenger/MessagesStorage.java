@@ -7165,12 +7165,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(173);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(174);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(173);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(174);
             tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
         }
     }
@@ -7313,8 +7313,10 @@ public class MessagesStorage extends BaseController {
         TLRPC$Peer tLRPC$Peer;
         TLRPC$Peer tLRPC$Peer2;
         TLRPC$WebPage tLRPC$WebPage;
+        TLRPC$Peer tLRPC$Peer3;
         TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader;
         TL_stories$StoryItem tL_stories$StoryItem;
+        TLRPC$Peer tLRPC$Peer4;
         long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
         if (DialogObject.isUserDialog(fromChatId)) {
             if (!arrayList.contains(Long.valueOf(fromChatId))) {
@@ -7427,18 +7429,22 @@ public class MessagesStorage extends BaseController {
                         }
                     }
                 }
+                TL_stories$StoryItem tL_stories$StoryItem3 = tLRPC$Message.media.storyItem;
+                if (tL_stories$StoryItem3 != null && (tLRPC$Peer4 = tL_stories$StoryItem3.from_id) != null) {
+                    addLoadPeerInfo(tLRPC$Peer4, arrayList, arrayList2);
+                }
             }
             TLRPC$MessageMedia tLRPC$MessageMedia6 = tLRPC$Message.media;
             if ((tLRPC$MessageMedia6 instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = tLRPC$MessageMedia6.webpage) != null && tLRPC$WebPage.attributes != null) {
                 for (int i5 = 0; i5 < tLRPC$Message.media.webpage.attributes.size(); i5++) {
                     if (tLRPC$Message.media.webpage.attributes.get(i5) instanceof TLRPC$TL_webPageAttributeStory) {
                         TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory = (TLRPC$TL_webPageAttributeStory) tLRPC$Message.media.webpage.attributes.get(i5);
-                        TL_stories$StoryItem tL_stories$StoryItem3 = tLRPC$TL_webPageAttributeStory.storyItem;
-                        if (tL_stories$StoryItem3 != null && (tL_stories$StoryFwdHeader = tL_stories$StoryItem3.fwd_from) != null) {
+                        TL_stories$StoryItem tL_stories$StoryItem4 = tLRPC$TL_webPageAttributeStory.storyItem;
+                        if (tL_stories$StoryItem4 != null && (tL_stories$StoryFwdHeader = tL_stories$StoryItem4.fwd_from) != null) {
                             addLoadPeerInfo(tL_stories$StoryFwdHeader.from, arrayList, arrayList2);
                         }
-                        TL_stories$StoryItem tL_stories$StoryItem4 = tLRPC$TL_webPageAttributeStory.storyItem;
-                        if (tL_stories$StoryItem4 != null && tL_stories$StoryItem4.media_areas != null) {
+                        TL_stories$StoryItem tL_stories$StoryItem5 = tLRPC$TL_webPageAttributeStory.storyItem;
+                        if (tL_stories$StoryItem5 != null && tL_stories$StoryItem5.media_areas != null) {
                             for (int i6 = 0; i6 < tLRPC$TL_webPageAttributeStory.storyItem.media_areas.size(); i6++) {
                                 if (tLRPC$TL_webPageAttributeStory.storyItem.media_areas.get(i6) instanceof TL_stories$TL_mediaAreaChannelPost) {
                                     long j8 = ((TL_stories$TL_mediaAreaChannelPost) tLRPC$TL_webPageAttributeStory.storyItem.media_areas.get(i6)).channel_id;
@@ -7448,12 +7454,16 @@ public class MessagesStorage extends BaseController {
                                 }
                             }
                         }
+                        TL_stories$StoryItem tL_stories$StoryItem6 = tLRPC$TL_webPageAttributeStory.storyItem;
+                        if (tL_stories$StoryItem6 != null && (tLRPC$Peer3 = tL_stories$StoryItem6.from_id) != null) {
+                            addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
+                        }
                     }
                 }
             }
-            TLRPC$Peer tLRPC$Peer3 = tLRPC$Message.media.peer;
-            if (tLRPC$Peer3 != null) {
-                addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
+            TLRPC$Peer tLRPC$Peer5 = tLRPC$Message.media.peer;
+            if (tLRPC$Peer5 != null) {
+                addLoadPeerInfo(tLRPC$Peer5, arrayList, arrayList2);
             }
         }
         TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;

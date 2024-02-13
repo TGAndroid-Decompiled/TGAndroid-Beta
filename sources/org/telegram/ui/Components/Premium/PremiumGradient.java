@@ -3,6 +3,7 @@ package org.telegram.ui.Components.Premium;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -143,6 +144,7 @@ public class PremiumGradient {
         final int[] colors;
         public float cx;
         public float cy;
+        public boolean darkColors;
         public boolean exactly;
         Matrix matrix;
         public final Paint paint;
@@ -201,15 +203,24 @@ public class PremiumGradient {
             this.shader.setLocalMatrix(this.matrix);
         }
 
+        protected int getThemeColorByKey(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
+        }
+
+        private int getColor(int i) {
+            int themeColorByKey = getThemeColorByKey(i);
+            return this.darkColors ? Color.argb(Color.alpha(themeColorByKey), Color.red(themeColorByKey) - 15, Color.green(themeColorByKey) - 15, Color.blue(themeColorByKey) - 15) : themeColorByKey;
+        }
+
         public void chekColors() {
-            int color = Theme.getColor(this.colorKey1, this.resourcesProvider);
-            int color2 = Theme.getColor(this.colorKey2, this.resourcesProvider);
+            int color = getColor(this.colorKey1);
+            int color2 = getColor(this.colorKey2);
             int i = this.colorKey3;
-            int color3 = i < 0 ? 0 : Theme.getColor(i, this.resourcesProvider);
+            int color3 = i < 0 ? 0 : getColor(i);
             int i2 = this.colorKey4;
-            int color4 = i2 < 0 ? 0 : Theme.getColor(i2, this.resourcesProvider);
+            int color4 = i2 < 0 ? 0 : getColor(i2);
             int i3 = this.colorKey5;
-            int color5 = i3 < 0 ? 0 : Theme.getColor(i3, this.resourcesProvider);
+            int color5 = i3 < 0 ? 0 : getColor(i3);
             int[] iArr = this.colors;
             if (iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
                 return;

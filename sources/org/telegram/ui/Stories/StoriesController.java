@@ -2,7 +2,6 @@ package org.telegram.ui.Stories;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import androidx.collection.LongSparseArray;
@@ -28,6 +27,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
@@ -1303,7 +1303,7 @@ public class StoriesController {
 
     public void lambda$deleteStory$13(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
-            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda5(this));
+            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda6(this));
         }
     }
 
@@ -1351,7 +1351,7 @@ public class StoriesController {
     }
 
     public void lambda$deleteStories$14(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda5(this));
+        AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda6(this));
     }
 
     public void updateStoriesPinned(long j, ArrayList<TL_stories$StoryItem> arrayList, boolean z, final Utilities.Callback<Boolean> callback) {
@@ -2301,7 +2301,7 @@ public class StoriesController {
         }
 
         public void lambda$sendUploadedRequest$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda5(StoriesController.this));
+            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda6(StoriesController.this));
         }
 
         public void lambda$sendUploadedRequest$4(TL_stories$TL_updateStory tL_stories$TL_updateStory) {
@@ -3404,91 +3404,91 @@ public class StoriesController {
         checkStoryError(tLRPC$TL_error);
     }
 
-    public void canSendStoryFor(final long j, final Consumer<Boolean> consumer, final boolean z, final Theme.ResourcesProvider resourcesProvider) {
+    public void canSendStoryFor(final long j, final Consumer<Boolean> consumer, final boolean z, Theme.ResourcesProvider resourcesProvider) {
         TL_stories$TL_stories_canSendStory tL_stories$TL_stories_canSendStory = new TL_stories$TL_stories_canSendStory();
         tL_stories$TL_stories_canSendStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_canSendStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoriesController.this.lambda$canSendStoryFor$32(z, j, consumer, resourcesProvider, tLObject, tLRPC$TL_error);
+                StoriesController.this.lambda$canSendStoryFor$33(z, j, consumer, tLObject, tLRPC$TL_error);
             }
         }, 1024);
     }
 
-    public void lambda$canSendStoryFor$32(final boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$canSendStoryFor$33(final boolean z, final long j, final Consumer consumer, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.this.lambda$canSendStoryFor$31(tLRPC$TL_error, z, j, consumer, resourcesProvider);
+                StoriesController.this.lambda$canSendStoryFor$32(tLRPC$TL_error, z, j, consumer);
             }
         });
     }
 
-    public void lambda$canSendStoryFor$31(TLRPC$TL_error tLRPC$TL_error, boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider) {
+    public void lambda$canSendStoryFor$32(TLRPC$TL_error tLRPC$TL_error, boolean z, final long j, final Consumer consumer) {
         if (tLRPC$TL_error != null) {
-            if (tLRPC$TL_error.text.contains("BOOSTS_REQUIRED")) {
-                if (z) {
-                    MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(j, new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            StoriesController.this.lambda$canSendStoryFor$30(consumer, resourcesProvider, j, (TL_stories$TL_premium_boostsStatus) obj);
-                        }
-                    });
-                    return;
-                } else {
-                    consumer.accept(Boolean.FALSE);
-                    return;
+            if (!tLRPC$TL_error.text.contains("BOOSTS_REQUIRED")) {
+                BulletinFactory global = BulletinFactory.global();
+                if (global != null) {
+                    global.createErrorBulletin(tLRPC$TL_error.text);
                 }
+                consumer.accept(Boolean.FALSE);
+                return;
+            } else if (z) {
+                final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+                messagesController.getBoostsController().getBoostsStats(j, new Consumer() {
+                    @Override
+                    public final void accept(Object obj) {
+                        StoriesController.this.lambda$canSendStoryFor$31(consumer, messagesController, j, (TL_stories$TL_premium_boostsStatus) obj);
+                    }
+                });
+                return;
+            } else {
+                consumer.accept(Boolean.FALSE);
+                return;
             }
-            BulletinFactory global = BulletinFactory.global();
-            if (global != null) {
-                global.createErrorBulletin(tLRPC$TL_error.text);
-            }
-            consumer.accept(Boolean.FALSE);
-            return;
         }
         consumer.accept(Boolean.TRUE);
     }
 
-    public void lambda$canSendStoryFor$30(Consumer consumer, Theme.ResourcesProvider resourcesProvider, final long j, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$canSendStoryFor$31(final Consumer consumer, MessagesController messagesController, final long j, final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
         if (tL_stories$TL_premium_boostsStatus == null) {
             consumer.accept(Boolean.FALSE);
             return;
         }
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(lastFragment, lastFragment.getContext(), 18, this.currentAccount, resourcesProvider);
-        limitReachedBottomSheet.setBoostsStats(tL_stories$TL_premium_boostsStatus, false);
-        limitReachedBottomSheet.setDialogId(j);
-        if (canPostStories(j)) {
-            limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
-                @Override
-                public final void run() {
-                    StoriesController.this.lambda$canSendStoryFor$29(j);
-                }
-            });
+        messagesController.getBoostsController().userCanBoostChannel(j, tL_stories$TL_premium_boostsStatus, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                StoriesController.this.lambda$canSendStoryFor$30(consumer, j, tL_stories$TL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
+            }
+        });
+        consumer.accept(Boolean.FALSE);
+    }
+
+    public void lambda$canSendStoryFor$30(Consumer consumer, final long j, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+        if (canApplyBoost == null) {
+            consumer.accept(Boolean.FALSE);
+            return;
         }
-        limitReachedBottomSheet.show();
+        LimitReachedBottomSheet.openBoostsForPostingStories(LaunchActivity.getLastFragment(), j, canApplyBoost, tL_stories$TL_premium_boostsStatus, canPostStories(j) ? new Runnable() {
+            @Override
+            public final void run() {
+                StoriesController.this.lambda$canSendStoryFor$29(j);
+            }
+        } : null);
         consumer.accept(Boolean.FALSE);
     }
 
     public void lambda$canSendStoryFor$29(long j) {
-        long j2 = -j;
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j2));
-        Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", j2);
-        bundle.putBoolean("is_megagroup", chat.megagroup);
-        bundle.putBoolean("start_from_boosts", true);
-        bundle.putBoolean("only_boosts", true);
-        StatisticActivity statisticActivity = new StatisticActivity(bundle);
+        BaseFragment create = StatisticActivity.create(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null) {
             if (StoryRecorder.isVisible()) {
                 BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
                 bottomSheetParams.transitionFromLeft = true;
-                lastFragment.showAsSheet(statisticActivity, bottomSheetParams);
+                lastFragment.showAsSheet(create, bottomSheetParams);
                 return;
             }
-            lastFragment.presentFragment(statisticActivity);
+            lastFragment.presentFragment(create);
         }
     }
 
@@ -3547,21 +3547,21 @@ public class StoriesController {
         }, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoriesController.this.lambda$loadSendAs$34(tLObject, tLRPC$TL_error);
+                StoriesController.this.lambda$loadSendAs$35(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadSendAs$34(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadSendAs$35(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.this.lambda$loadSendAs$33(tLObject);
+                StoriesController.this.lambda$loadSendAs$34(tLObject);
             }
         });
     }
 
-    public void lambda$loadSendAs$33(TLObject tLObject) {
+    public void lambda$loadSendAs$34(TLObject tLObject) {
         this.sendAs.clear();
         this.sendAs.add(new TLRPC$TL_inputPeerSelf());
         if (tLObject instanceof TLRPC$TL_messages_chats) {
@@ -3589,7 +3589,7 @@ public class StoriesController {
     public boolean canPostStories(long j) {
         TLRPC$Chat chat;
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
-        if (j >= 0 || (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j))) == null || !ChatObject.isChannelAndNotMegaGroup(chat)) {
+        if (j >= 0 || (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j))) == null || !ChatObject.isBoostSupported(chat)) {
             return false;
         }
         return chat.creator || ((tLRPC$TL_chatAdminRights = chat.admin_rights) != null && tLRPC$TL_chatAdminRights.post_stories);

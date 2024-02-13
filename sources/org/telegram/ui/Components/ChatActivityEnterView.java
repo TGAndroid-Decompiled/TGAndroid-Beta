@@ -433,7 +433,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private boolean sendButtonVisible;
     private boolean sendByEnter;
     private Drawable sendDrawable;
-    private boolean sendPlainEnabled;
+    public boolean sendPlainEnabled;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout sendPopupLayout;
     private ActionBarPopupWindow sendPopupWindow;
     private android.graphics.Rect sendRect;
@@ -456,7 +456,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private SlideTextView slideText;
     private float slideToCancelLockProgress;
     private float slideToCancelProgress;
-    private SimpleTextView slowModeButton;
+    private SlowModeBtn slowModeButton;
     private int slowModeTimer;
     private boolean smoothKeyboard;
     private float snapAnimationProgress;
@@ -501,6 +501,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public final class CC {
             public static void $default$bottomPanelTranslationYChanged(ChatActivityEnterViewDelegate chatActivityEnterViewDelegate, float f) {
+            }
+
+            public static boolean $default$checkCanRemoveRestrictionsByBoosts(ChatActivityEnterViewDelegate chatActivityEnterViewDelegate) {
+                return false;
             }
 
             public static int $default$getContentViewHeight(ChatActivityEnterViewDelegate chatActivityEnterViewDelegate) {
@@ -561,6 +565,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
 
         void bottomPanelTranslationYChanged(float f);
+
+        boolean checkCanRemoveRestrictionsByBoosts();
 
         void didPressAttachButton();
 
@@ -791,6 +797,99 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             int i = Theme.key_chat_recordedVoiceProgress;
             seekBarWaveform.setColors(chatActivityEnterView.getThemedColor(i), ChatActivityEnterView.this.getThemedColor(Theme.key_chat_recordedVoiceProgressInner), ChatActivityEnterView.this.getThemedColor(i));
             ChatActivityEnterView.this.seekBarWaveform.draw(canvas, this);
+        }
+    }
+
+    public static class SlowModeBtn extends FrameLayout {
+        private final RectF bgRect;
+        private final Drawable closeDrawable;
+        private final Paint gradientPaint;
+        private boolean isPremiumMode;
+        private final SimpleTextView textView;
+
+        public SlowModeBtn(Context context) {
+            super(context);
+            this.bgRect = new RectF();
+            this.gradientPaint = new Paint(1);
+            this.isPremiumMode = true;
+            SimpleTextView simpleTextView = new SimpleTextView(context);
+            this.textView = simpleTextView;
+            addView(simpleTextView, LayoutHelper.createFrame(-1, -1.0f));
+            setWillNotDraw(false);
+            Drawable drawable = ContextCompat.getDrawable(context, R.drawable.msg_mini_close_tooltip);
+            this.closeDrawable = drawable;
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            setClipToPadding(false);
+            setClipChildren(false);
+            ScaleStateListAnimator.apply(this);
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            this.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        }
+
+        public void setTextSize(int i) {
+            this.textView.setTextSize(i);
+            invalidate();
+        }
+
+        public void setTextColor(int i) {
+            this.textView.setTextColor(i);
+            invalidate();
+        }
+
+        public void setGravity(int i) {
+            this.textView.setGravity(i);
+            invalidate();
+        }
+
+        public void setText(CharSequence charSequence) {
+            this.textView.setText(charSequence);
+            invalidate();
+        }
+
+        public void setPremiumMode(boolean z) {
+            this.isPremiumMode = z;
+            invalidate();
+        }
+
+        public CharSequence getText() {
+            return this.textView.getText();
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            if (this.isPremiumMode) {
+                canvas.save();
+                int dp = AndroidUtilities.dp(26.0f);
+                canvas.translate(0.0f, ((getMeasuredHeight() - dp) / 2.0f) - AndroidUtilities.dp(1.0f));
+                float f = dp;
+                this.bgRect.set(0.0f, 0.0f, getMeasuredWidth() - getPaddingEnd(), f);
+                float f2 = f / 2.0f;
+                canvas.drawRoundRect(this.bgRect, f2, f2, this.gradientPaint);
+                canvas.translate(((getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f)) - this.closeDrawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
+                this.closeDrawable.draw(canvas);
+                canvas.restore();
+            }
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            if ((view instanceof SimpleTextView) && this.isPremiumMode) {
+                SimpleTextView simpleTextView = (SimpleTextView) view;
+                canvas.save();
+                canvas.scale(0.8f, 0.8f);
+                canvas.translate(-AndroidUtilities.dp(16.0f), AndroidUtilities.dp(5.0f));
+                int color = simpleTextView.getTextPaint().getColor();
+                simpleTextView.getTextPaint().setColor(-1);
+                boolean drawChild = super.drawChild(canvas, view, j);
+                simpleTextView.getTextPaint().setColor(color);
+                canvas.restore();
+                return drawChild;
+            }
+            return super.drawChild(canvas, view, j);
         }
     }
 
@@ -2797,18 +2896,18 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return onSendLongClick;
             }
         });
-        SimpleTextView simpleTextView = new SimpleTextView(activity);
-        this.slowModeButton = simpleTextView;
-        simpleTextView.setTextSize(18);
+        SlowModeBtn slowModeBtn = new SlowModeBtn(activity);
+        this.slowModeButton = slowModeBtn;
+        slowModeBtn.setTextSize(18);
         this.slowModeButton.setVisibility(4);
         this.slowModeButton.setSoundEffectsEnabled(false);
         this.slowModeButton.setScaleX(0.1f);
         this.slowModeButton.setScaleY(0.1f);
         this.slowModeButton.setAlpha(0.0f);
-        this.slowModeButton.setPadding(0, 0, AndroidUtilities.dp(13.0f), 0);
+        this.slowModeButton.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
         this.slowModeButton.setGravity(21);
         this.slowModeButton.setTextColor(getThemedColor(i3));
-        this.sendButtonContainer.addView(this.slowModeButton, LayoutHelper.createFrame(64, 48, 53));
+        this.sendButtonContainer.addView(this.slowModeButton, LayoutHelper.createFrame(74, 48, 53));
         this.slowModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -2849,7 +2948,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     showPopup(1, 0);
                     EmojiView emojiView = this.emojiView;
                     EditTextCaption editTextCaption = this.messageEditText;
-                    emojiView.onOpen((editTextCaption == null || editTextCaption.length() <= 0) ? false : false);
+                    boolean z2 = editTextCaption != null && editTextCaption.length() > 0;
+                    ChatActivity chatActivity = this.parentFragment;
+                    emojiView.onOpen(z2, (chatActivity == null || !chatActivity.groupEmojiPackHintWasVisible()) ? false : false);
                     return;
                 }
                 if (this.searchingType != 0) {
@@ -3167,10 +3268,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void lambda$new$5(View view) {
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
-        if (chatActivityEnterViewDelegate != null) {
-            SimpleTextView simpleTextView = this.slowModeButton;
-            chatActivityEnterViewDelegate.onUpdateSlowModeButton(simpleTextView, true, simpleTextView.getText());
+        if (chatActivityEnterViewDelegate == null || chatActivityEnterViewDelegate.checkCanRemoveRestrictionsByBoosts()) {
+            return;
         }
+        ChatActivityEnterViewDelegate chatActivityEnterViewDelegate2 = this.delegate;
+        SlowModeBtn slowModeBtn = this.slowModeButton;
+        chatActivityEnterViewDelegate2.onUpdateSlowModeButton(slowModeBtn, true, slowModeBtn.getText());
     }
 
     public boolean lambda$new$6(View view) {
@@ -4045,7 +4148,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     public void showRestrictedHint() {
-        if (DialogObject.isChatDialog(this.dialog_id)) {
+        ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
+        if ((chatActivityEnterViewDelegate == null || !chatActivityEnterViewDelegate.checkCanRemoveRestrictionsByBoosts()) && DialogObject.isChatDialog(this.dialog_id)) {
             BulletinFactory.of(this.parentFragment).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.formatString("SendPlainTextRestrictionHint", R.string.SendPlainTextRestrictionHint, ChatObject.getAllowedSendString(this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id)))), 3).show();
         }
     }
@@ -4536,7 +4640,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
             if (!ChatActivityEnterView.this.stickersDragging && ChatActivityEnterView.this.stickersExpansionAnim == null) {
-                if (!ChatActivityEnterView.this.sendPlainEnabled && !ChatActivityEnterView.this.isEditingMessage()) {
+                ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+                if (!chatActivityEnterView.sendPlainEnabled && !chatActivityEnterView.isEditingMessage()) {
                     if (this.canvasButton == null) {
                         CanvasButton canvasButton = new CanvasButton(this);
                         this.canvasButton = canvasButton;
@@ -4772,7 +4877,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         @Override
         public boolean requestFocus(int i, android.graphics.Rect rect) {
-            if (ChatActivityEnterView.this.sendPlainEnabled || ChatActivityEnterView.this.isEditingMessage()) {
+            ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+            if (chatActivityEnterView.sendPlainEnabled || chatActivityEnterView.isEditingMessage()) {
                 return super.requestFocus(i, rect);
             }
             return false;
@@ -5198,7 +5304,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.updateSlowModeRunnable = null;
         TLRPC$ChatFull tLRPC$ChatFull = this.info;
         if (tLRPC$ChatFull != null && tLRPC$ChatFull.slowmode_seconds != 0 && tLRPC$ChatFull.slowmode_next_send_date <= currentTime && ((isUploadingMessageIdDialog = SendMessagesHelper.getInstance(this.currentAccount).isUploadingMessageIdDialog(this.dialog_id)) || SendMessagesHelper.getInstance(this.currentAccount).isSendingMessageIdDialog(this.dialog_id))) {
-            if (!ChatObject.hasAdminRights(this.accountInstance.getMessagesController().getChat(Long.valueOf(this.info.id)))) {
+            if (!ChatObject.hasAdminRights(this.accountInstance.getMessagesController().getChat(Long.valueOf(this.info.id))) && !ChatObject.isIgnoredChatRestrictionsForBoosters(this.info)) {
                 i = this.info.slowmode_seconds;
                 this.slowModeTimer = isUploadingMessageIdDialog ? ConnectionsManager.DEFAULT_DATACENTER_ID : 2147483646;
             }
@@ -5218,8 +5324,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.slowModeButton.setText(AndroidUtilities.formatDurationNoHours(Math.max(1, i), false));
             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
             if (chatActivityEnterViewDelegate != null) {
-                SimpleTextView simpleTextView = this.slowModeButton;
-                chatActivityEnterViewDelegate.onUpdateSlowModeButton(simpleTextView, false, simpleTextView.getText());
+                SlowModeBtn slowModeBtn = this.slowModeButton;
+                chatActivityEnterViewDelegate.onUpdateSlowModeButton(slowModeBtn, false, slowModeBtn.getText());
             }
             Runnable runnable = new Runnable() {
                 @Override
@@ -5709,7 +5815,6 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (tLRPC$Chat != null) {
             this.audioVideoButtonContainer.setAlpha((ChatObject.canSendVoice(tLRPC$Chat) || (ChatObject.canSendRoundVideo(tLRPC$Chat) && this.hasRecordVideo)) ? 1.0f : 0.5f);
             this.stickersEnabled = ChatObject.canSendStickers(tLRPC$Chat);
-            this.sendPlainEnabled = ChatObject.canSendPlain(tLRPC$Chat);
             boolean canSendPlain = ChatObject.canSendPlain(tLRPC$Chat);
             this.sendPlainEnabled = canSendPlain;
             boolean z2 = (this.stickersEnabled || canSendPlain) ? false : true;
@@ -5717,7 +5822,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.emojiButtonAlpha = z2 ? 0.5f : 1.0f;
             updateEmojiButtonParams();
             if (!this.emojiButtonRestricted && (emojiView = this.emojiView) != null) {
-                emojiView.setStickersBanned(!ChatObject.canSendPlain(tLRPC$Chat), !ChatObject.canSendStickers(tLRPC$Chat), tLRPC$Chat.id);
+                emojiView.setStickersBanned(!this.sendPlainEnabled, !this.stickersEnabled, -this.dialog_id);
             }
             this.sendRoundEnabled = ChatObject.canSendRoundVideo(tLRPC$Chat);
             this.sendVoiceEnabled = ChatObject.canSendVoice(tLRPC$Chat);
@@ -5911,6 +6016,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
             emojiView.setChatInfo(tLRPC$ChatFull);
+        }
+        SlowModeBtn slowModeBtn = this.slowModeButton;
+        if (slowModeBtn != null) {
+            slowModeBtn.setPremiumMode(ChatObject.isPossibleRemoveChatRestrictionsByBoosts(tLRPC$ChatFull));
+        }
+        if (ChatObject.isIgnoredChatRestrictionsForBoosters(tLRPC$ChatFull)) {
+            return;
         }
         setSlowModeTimer(tLRPC$ChatFull.slowmode_next_send_date);
     }
@@ -6552,7 +6664,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public static boolean checkPremiumAnimatedEmoji(int r10, long r11, final org.telegram.ui.ActionBar.BaseFragment r13, android.widget.FrameLayout r14, java.lang.CharSequence r15) {
+    public static boolean checkPremiumAnimatedEmoji(int r17, long r18, final org.telegram.ui.ActionBar.BaseFragment r20, android.widget.FrameLayout r21, java.lang.CharSequence r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.checkPremiumAnimatedEmoji(int, long, org.telegram.ui.ActionBar.BaseFragment, android.widget.FrameLayout, java.lang.CharSequence):boolean");
     }
 
@@ -7893,8 +8005,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         } else if (this.slowModeTimer > 0 && !isInScheduleMode()) {
             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate2 = this.delegate;
             if (chatActivityEnterViewDelegate2 != null) {
-                SimpleTextView simpleTextView = this.slowModeButton;
-                chatActivityEnterViewDelegate2.onUpdateSlowModeButton(simpleTextView, true, simpleTextView.getText());
+                SlowModeBtn slowModeBtn = this.slowModeButton;
+                chatActivityEnterViewDelegate2.onUpdateSlowModeButton(slowModeBtn, true, slowModeBtn.getText());
             }
         } else {
             if (messageObject != null && DialogObject.isChatDialog(this.dialog_id)) {
@@ -9095,6 +9207,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return ChatActivityEnterView.this.stickersTabOpen && (ChatActivityEnterView.this.stickersExpanded || (editTextCaption = ChatActivityEnterView.this.messageEditText) == null || editTextCaption.length() <= 0) && ChatActivityEnterView.this.emojiView.areThereAnyStickers() && !ChatActivityEnterView.this.waitingForKeyboardOpen;
             }
         });
+        EmojiView emojiView3 = this.emojiView;
+        if (emojiView3 != null) {
+            emojiView3.setStickersBanned(!this.sendPlainEnabled, !this.stickersEnabled, -this.dialog_id);
+        }
         attachEmojiView();
         checkChannelRights();
     }
@@ -9516,8 +9632,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.slowModeTimer > 0 && !isInScheduleMode()) {
             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
             if (chatActivityEnterViewDelegate != null) {
-                SimpleTextView simpleTextView = this.slowModeButton;
-                chatActivityEnterViewDelegate.onUpdateSlowModeButton(simpleTextView, true, simpleTextView.getText());
+                SlowModeBtn slowModeBtn = this.slowModeButton;
+                chatActivityEnterViewDelegate.onUpdateSlowModeButton(slowModeBtn, true, slowModeBtn.getText());
                 return;
             }
             return;
@@ -10536,7 +10652,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     chatActivityEnterViewAnimatedIconView2.invalidate();
                 }
             } else if (i == NotificationCenter.messageReceivedByServer) {
-                if (((Boolean) objArr[6]).booleanValue() || ((Long) objArr[3]).longValue() != this.dialog_id || (tLRPC$ChatFull = this.info) == null || tLRPC$ChatFull.slowmode_seconds == 0 || (chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(this.info.id))) == null || ChatObject.hasAdminRights(chat)) {
+                if (((Boolean) objArr[6]).booleanValue() || ((Long) objArr[3]).longValue() != this.dialog_id || (tLRPC$ChatFull = this.info) == null || tLRPC$ChatFull.slowmode_seconds == 0 || (chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(this.info.id))) == null || ChatObject.hasAdminRights(chat) || ChatObject.isIgnoredChatRestrictionsForBoosters(chat)) {
                     return;
                 }
                 TLRPC$ChatFull tLRPC$ChatFull2 = this.info;

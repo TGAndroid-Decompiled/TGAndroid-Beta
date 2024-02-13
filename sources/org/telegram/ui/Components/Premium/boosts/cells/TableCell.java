@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -204,6 +205,8 @@ public class TableCell extends FrameLayout {
         Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date)));
         this.reasonTextView.setTextColor(Theme.getColor(tLRPC$TL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
+        final TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_payments_checkedGiftCode.from_id)));
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "**");
@@ -222,12 +225,11 @@ public class TableCell extends FrameLayout {
                 }
             });
         } else {
-            this.reasonTextView.setText(LocaleController.getString("BoostingYouWereSelected", R.string.BoostingYouWereSelected));
+            this.reasonTextView.setText(LocaleController.getString(isChannelAndNotMegaGroup ? R.string.BoostingYouWereSelected : R.string.BoostingYouWereSelectedGroup));
             this.reasonTextView.setOnClickListener(null);
         }
         int i = tLRPC$TL_payments_checkedGiftCode.months;
         this.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i, new Object[0])));
-        final TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_payments_checkedGiftCode.from_id)));
         if (chat != null) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) "**");

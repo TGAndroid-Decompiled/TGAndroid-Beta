@@ -18,12 +18,14 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
+import org.telegram.ui.Components.StatusBadgeComponent;
 @SuppressLint({"ViewConstructor"})
 public class SelectorUserCell extends BaseCell {
     private TL_stories$TL_myBoost boost;
     private TLRPC$Chat chat;
     private final CheckBox2 checkBox;
     private final boolean[] isOnline;
+    StatusBadgeComponent statusBadgeComponent;
     private TLRPC$User user;
 
     @Override
@@ -34,6 +36,7 @@ public class SelectorUserCell extends BaseCell {
     public SelectorUserCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context, resourcesProvider);
         this.isOnline = new boolean[1];
+        this.statusBadgeComponent = new StatusBadgeComponent(this);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.radioButton.setVisibility(8);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
@@ -48,6 +51,18 @@ public class SelectorUserCell extends BaseCell {
         addView(checkBox2);
         checkBox2.setChecked(false, false);
         checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.statusBadgeComponent.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.statusBadgeComponent.onDetachedFromWindow();
     }
 
     public TLRPC$User getUser() {
@@ -94,6 +109,7 @@ public class SelectorUserCell extends BaseCell {
         setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, tLRPC$User, zArr));
         this.subtitleTextView.setTextColor(Theme.getColor(this.isOnline[0] ? Theme.key_dialogTextBlue2 : Theme.key_dialogTextGray3, this.resourcesProvider));
         this.checkBox.setAlpha(1.0f);
+        this.titleTextView.setRightDrawable(this.statusBadgeComponent.updateDrawable(tLRPC$User, Theme.getColor(Theme.key_chats_verifiedBackground), false));
     }
 
     public void setChat(TLRPC$Chat tLRPC$Chat, int i) {
@@ -107,10 +123,11 @@ public class SelectorUserCell extends BaseCell {
         if (i <= 0) {
             i = tLRPC$Chat.participants_count;
         }
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
         if (i >= 1) {
-            string = LocaleController.formatPluralString("Subscribers", i, new Object[0]);
+            string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i, new Object[0]);
         } else {
-            string = LocaleController.getString(R.string.DiscussChannel);
+            string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
         }
         setSubtitle(string);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));

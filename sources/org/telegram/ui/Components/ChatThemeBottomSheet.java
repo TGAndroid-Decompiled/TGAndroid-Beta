@@ -64,7 +64,6 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$TL_account_getWallPaper;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputWallPaperSlug;
@@ -1126,16 +1125,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
     }
 
     public void lambda$applySelectedTheme$13() {
-        TLRPC$Chat chat = this.chatActivity.getMessagesController().getChat(Long.valueOf(-this.chatActivity.getDialogId()));
-        Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", -this.chatActivity.getDialogId());
-        bundle.putBoolean("is_megagroup", chat.megagroup);
-        bundle.putBoolean("start_from_boosts", true);
-        TLRPC$ChatFull chatFull = this.chatActivity.getMessagesController().getChatFull(-this.chatActivity.getDialogId());
-        if (chatFull == null || !chatFull.can_view_stats) {
-            bundle.putBoolean("only_boosts", true);
-        }
-        showAsSheet(new StatisticActivity(bundle));
+        showAsSheet(StatisticActivity.create(this.chatActivity.getMessagesController().getChat(Long.valueOf(-this.chatActivity.getDialogId()))));
     }
 
     public boolean hasChanges() {

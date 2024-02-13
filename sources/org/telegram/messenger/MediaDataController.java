@@ -7757,7 +7757,7 @@ public class MediaDataController extends BaseController {
         if (z) {
             return MessageObject.peersEqual(tLRPC$InputReplyTo.reply_to_peer_id, tLRPC$InputReplyTo2.reply_to_peer_id) && TextUtils.equals(tLRPC$InputReplyTo.quote_text, tLRPC$InputReplyTo2.quote_text) && tLRPC$InputReplyTo.reply_to_msg_id == tLRPC$InputReplyTo2.reply_to_msg_id;
         } else if (tLRPC$InputReplyTo instanceof TLRPC$TL_inputReplyToStory) {
-            return tLRPC$InputReplyTo.user_id == tLRPC$InputReplyTo2.user_id && tLRPC$InputReplyTo.story_id == tLRPC$InputReplyTo2.story_id;
+            return MessageObject.peersEqual(tLRPC$InputReplyTo.peer, tLRPC$InputReplyTo2.peer) && tLRPC$InputReplyTo.story_id == tLRPC$InputReplyTo2.story_id;
         } else {
             return true;
         }
@@ -7766,7 +7766,7 @@ public class MediaDataController extends BaseController {
     private static TLRPC$InputReplyTo toInputReplyTo(int i, TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader) {
         if (tLRPC$MessageReplyHeader instanceof TLRPC$TL_messageReplyStoryHeader) {
             TLRPC$TL_inputReplyToStory tLRPC$TL_inputReplyToStory = new TLRPC$TL_inputReplyToStory();
-            tLRPC$TL_inputReplyToStory.user_id = MessagesController.getInstance(i).getInputUser(tLRPC$MessageReplyHeader.user_id);
+            tLRPC$TL_inputReplyToStory.peer = MessagesController.getInstance(i).getInputPeer(tLRPC$MessageReplyHeader.peer);
             tLRPC$TL_inputReplyToStory.story_id = tLRPC$MessageReplyHeader.story_id;
             return tLRPC$TL_inputReplyToStory;
         } else if (tLRPC$MessageReplyHeader instanceof TLRPC$TL_messageReplyHeader) {
@@ -9670,11 +9670,16 @@ public class MediaDataController extends BaseController {
     }
 
     public void pushDraftVoiceMessage(long j, long j2, DraftVoice draftVoice) {
-        Context context = ApplicationLoader.applicationContext;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("voicedrafts_" + this.currentAccount, 0);
-        long hash = (long) Objects.hash(Long.valueOf(j), Long.valueOf(j2));
-        sharedPreferences.edit().remove(hash + "").apply();
-        this.draftVoices.remove(hash);
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("voicedrafts_" + this.currentAccount, 0);
+        long hash = Objects.hash(Long.valueOf(j), Long.valueOf(j2));
+        String str = hash + "";
+        if (draftVoice == null) {
+            sharedPreferences.edit().remove(str).apply();
+            this.draftVoices.remove(hash);
+            return;
+        }
+        sharedPreferences.edit().putString(str, draftVoice.toString()).apply();
+        this.draftVoices.put(hash, draftVoice);
     }
 
     public DraftVoice getDraftVoice(long j, long j2) {

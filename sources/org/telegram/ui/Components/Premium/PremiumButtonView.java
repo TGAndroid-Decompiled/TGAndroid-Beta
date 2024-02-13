@@ -21,9 +21,10 @@ import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Loadable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
-public class PremiumButtonView extends FrameLayout {
+public class PremiumButtonView extends FrameLayout implements Loadable {
     public FrameLayout buttonLayout;
     public AnimatedTextView buttonTextView;
     AnimatedFloat counterOffset;
@@ -153,6 +154,10 @@ public class PremiumButtonView extends FrameLayout {
         }
     }
 
+    public boolean isShowOverlay() {
+        return this.showOverlay;
+    }
+
     public RLottieImageView getIconView() {
         return this.iconView;
     }
@@ -166,6 +171,7 @@ public class PremiumButtonView extends FrameLayout {
         super.onMeasure(i, i2);
     }
 
+    @Override
     public void setLoading(final boolean z) {
         if (this.loading != z) {
             ValueAnimator valueAnimator = this.loadingAnimator;
@@ -211,6 +217,7 @@ public class PremiumButtonView extends FrameLayout {
         }
     }
 
+    @Override
     public boolean isLoading() {
         return this.loading;
     }

@@ -19,6 +19,7 @@ import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import androidx.collection.LongSparseArray;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
@@ -138,6 +139,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int delayResults;
     private ChatUsersActivityDelegate delegate;
     private ActionBarMenuItem doneItem;
+    private int dontRestrictBoostersInfoRow;
+    private int dontRestrictBoostersRow;
+    private int dontRestrictBoostersSliderRow;
     private int embedLinksRow;
     private StickerEmptyView emptyView;
     private boolean firstLoaded;
@@ -153,6 +157,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private String initialBannedRights;
     private int initialSlowmode;
     private boolean isChannel;
+    private boolean isEnabledNotRestrictBoosters;
     private boolean isForum;
     private LinearLayoutManager layoutManager;
     private RecyclerListView listView;
@@ -164,6 +169,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int manageTopicsRow;
     private int membersHeaderRow;
     private boolean needOpenSearch;
+    private int notRestrictBoosters;
     private boolean openTransitionStarted;
     private ArrayList<TLObject> participants;
     private int participantsDivider2Row;
@@ -312,7 +318,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.isForum = ChatObject.isForum(this.currentChat);
     }
 
-    private void updateRows() {
+    public void updateRows() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.updateRows():void");
     }
 
@@ -1571,6 +1577,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     int currentSlowmode = getCurrentSlowmode();
                     this.initialSlowmode = currentSlowmode;
                     this.selectedSlowmode = currentSlowmode;
+                    int i3 = this.info.boosts_unrestrict;
+                    this.isEnabledNotRestrictBoosters = i3 > 0;
+                    this.notRestrictBoosters = i3;
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -1630,7 +1639,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public boolean checkDiscard() {
-        if (ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights) && this.initialSlowmode == this.selectedSlowmode) {
+        if (ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights) && this.initialSlowmode == this.selectedSlowmode && !hasNotRestrictBoostersChanges()) {
             return true;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
@@ -1810,6 +1819,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             this.info.flags |= 131072;
             getMessagesController().setChannelSlowMode(this.chatId, this.info.slowmode_seconds);
         }
+        if (hasNotRestrictBoostersChanges()) {
+            boolean z = this.isEnabledNotRestrictBoosters && isNotRestrictBoostersVisible();
+            if (z && this.notRestrictBoosters == 0) {
+                getMessagesController().setBoostsToUnblockRestrictions(this.chatId, 1);
+            } else if (!z && this.notRestrictBoosters != 0) {
+                getMessagesController().setBoostsToUnblockRestrictions(this.chatId, 0);
+            } else {
+                getMessagesController().setBoostsToUnblockRestrictions(this.chatId, this.notRestrictBoosters);
+            }
+        }
         finishFragment();
     }
 
@@ -1821,12 +1840,47 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
+    private boolean hasNotRestrictBoostersChanges() {
+        boolean z = this.isEnabledNotRestrictBoosters && isNotRestrictBoostersVisible();
+        TLRPC$ChatFull tLRPC$ChatFull = this.info;
+        if (tLRPC$ChatFull != null) {
+            int i = tLRPC$ChatFull.boosts_unrestrict;
+            int i2 = this.notRestrictBoosters;
+            if (i != i2) {
+                return true;
+            }
+            if (z && i2 == 0) {
+                return true;
+            }
+            if (!z && i2 != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNotRestrictBoostersVisible() {
+        TLRPC$Chat tLRPC$Chat = this.currentChat;
+        if (tLRPC$Chat.megagroup && !tLRPC$Chat.gigagroup && ChatObject.canUserDoAdminAction(tLRPC$Chat, 13)) {
+            if (this.selectedSlowmode <= 0) {
+                TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.defaultBannedRights;
+                if (tLRPC$TL_chatBannedRights.send_plain || tLRPC$TL_chatBannedRights.send_media || tLRPC$TL_chatBannedRights.send_photos || tLRPC$TL_chatBannedRights.send_videos || tLRPC$TL_chatBannedRights.send_stickers || tLRPC$TL_chatBannedRights.send_audios || tLRPC$TL_chatBannedRights.send_docs || tLRPC$TL_chatBannedRights.send_voices || tLRPC$TL_chatBannedRights.send_roundvideos || tLRPC$TL_chatBannedRights.embed_links || tLRPC$TL_chatBannedRights.send_polls) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     public void setInfo(TLRPC$ChatFull tLRPC$ChatFull) {
         this.info = tLRPC$ChatFull;
         if (tLRPC$ChatFull != null) {
             int currentSlowmode = getCurrentSlowmode();
             this.initialSlowmode = currentSlowmode;
             this.selectedSlowmode = currentSlowmode;
+            int i = this.info.boosts_unrestrict;
+            this.isEnabledNotRestrictBoosters = i > 0;
+            this.notRestrictBoosters = i;
         }
     }
 
@@ -2572,15 +2626,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             SlideChooseView slideChooseView;
-            int i2 = 2;
-            int i3 = 7;
+            SlideChooseView slideChooseView2;
+            int i2 = 7;
+            int i3 = 2;
             switch (i) {
                 case 0:
                     Context context = this.mContext;
                     if (ChatUsersActivity.this.type != 0 && ChatUsersActivity.this.type != 3) {
-                        i3 = 6;
+                        i2 = 6;
                     }
-                    ManageChatUserCell manageChatUserCell = new ManageChatUserCell(context, i3, (ChatUsersActivity.this.type == 0 || ChatUsersActivity.this.type == 3) ? 6 : 6, ChatUsersActivity.this.selectType == 0);
+                    ManageChatUserCell manageChatUserCell = new ManageChatUserCell(context, i2, (ChatUsersActivity.this.type == 0 || ChatUsersActivity.this.type == 3) ? 6 : 6, ChatUsersActivity.this.selectType == 0);
                     manageChatUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     manageChatUserCell.setDelegate(new ManageChatUserCell.ManageChatUserCellDelegate() {
                         @Override
@@ -2590,7 +2645,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                             return lambda$onCreateViewHolder$0;
                         }
                     });
-                    slideChooseView = manageChatUserCell;
+                    slideChooseView2 = manageChatUserCell;
+                    slideChooseView = slideChooseView2;
                     break;
                 case 1:
                     slideChooseView = new TextInfoPrivacyCell(this.mContext);
@@ -2637,13 +2693,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     break;
                 case 9:
                 default:
-                    SlideChooseView slideChooseView2 = new SlideChooseView(this.mContext);
-                    slideChooseView2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    SlideChooseView slideChooseView3 = new SlideChooseView(this.mContext);
+                    slideChooseView3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     int i4 = ChatUsersActivity.this.selectedSlowmode;
                     int i5 = R.string.SlowmodeSeconds;
                     int i6 = R.string.SlowmodeMinutes;
-                    slideChooseView2.setOptions(i4, LocaleController.getString("SlowmodeOff", R.string.SlowmodeOff), LocaleController.formatString("SlowmodeSeconds", i5, 10), LocaleController.formatString("SlowmodeSeconds", i5, 30), LocaleController.formatString("SlowmodeMinutes", i6, 1), LocaleController.formatString("SlowmodeMinutes", i6, 5), LocaleController.formatString("SlowmodeMinutes", i6, 15), LocaleController.formatString("SlowmodeHours", R.string.SlowmodeHours, 1));
-                    slideChooseView2.setCallback(new SlideChooseView.Callback() {
+                    slideChooseView3.setOptions(i4, LocaleController.getString("SlowmodeOff", R.string.SlowmodeOff), LocaleController.formatString("SlowmodeSeconds", i5, 10), LocaleController.formatString("SlowmodeSeconds", i5, 30), LocaleController.formatString("SlowmodeMinutes", i6, 1), LocaleController.formatString("SlowmodeMinutes", i6, 5), LocaleController.formatString("SlowmodeMinutes", i6, 15), LocaleController.formatString("SlowmodeHours", R.string.SlowmodeHours, 1));
+                    slideChooseView3.setCallback(new SlideChooseView.Callback() {
                         @Override
                         public final void onOptionSelected(int i7) {
                             ChatUsersActivity.ListAdapter.this.lambda$onCreateViewHolder$1(i7);
@@ -2654,6 +2710,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                             SlideChooseView.Callback.CC.$default$onTouchEnd(this);
                         }
                     });
+                    slideChooseView2 = slideChooseView3;
                     slideChooseView = slideChooseView2;
                     break;
                 case 10:
@@ -2683,6 +2740,25 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     checkBoxCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     slideChooseView = checkBoxCell;
                     break;
+                case 15:
+                    SlideChooseView slideChooseView4 = new SlideChooseView(this.mContext);
+                    slideChooseView4.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    Context context2 = ChatUsersActivity.this.getContext();
+                    int i7 = R.drawable.mini_boost_profile_badge2;
+                    slideChooseView4.setOptions(ChatUsersActivity.this.notRestrictBoosters > 0 ? ChatUsersActivity.this.notRestrictBoosters - 1 : 0, new Drawable[]{ContextCompat.getDrawable(ChatUsersActivity.this.getContext(), R.drawable.mini_boost_profile_badge), ContextCompat.getDrawable(context2, i7), ContextCompat.getDrawable(ChatUsersActivity.this.getContext(), i7), ContextCompat.getDrawable(ChatUsersActivity.this.getContext(), i7), ContextCompat.getDrawable(ChatUsersActivity.this.getContext(), i7)}, "1", "2", "3", "4", "5");
+                    slideChooseView4.setCallback(new SlideChooseView.Callback() {
+                        @Override
+                        public final void onOptionSelected(int i8) {
+                            ChatUsersActivity.ListAdapter.this.lambda$onCreateViewHolder$2(i8);
+                        }
+
+                        @Override
+                        public void onTouchEnd() {
+                            SlideChooseView.Callback.CC.$default$onTouchEnd(this);
+                        }
+                    });
+                    slideChooseView = slideChooseView4;
+                    break;
             }
             return new RecyclerListView.Holder(slideChooseView);
         }
@@ -2691,8 +2767,18 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (ChatUsersActivity.this.info == null) {
                 return;
             }
+            boolean z = (ChatUsersActivity.this.selectedSlowmode > 0 && i == 0) || (ChatUsersActivity.this.selectedSlowmode == 0 && i > 0);
             ChatUsersActivity.this.selectedSlowmode = i;
+            if (z) {
+                DiffCallback saveState = ChatUsersActivity.this.saveState();
+                ChatUsersActivity.this.updateRows();
+                ChatUsersActivity.this.updateListAnimated(saveState);
+            }
             ChatUsersActivity.this.listViewAdapter.notifyItemChanged(ChatUsersActivity.this.slowmodeInfoRow);
+        }
+
+        public void lambda$onCreateViewHolder$2(int i) {
+            ChatUsersActivity.this.notRestrictBoosters = i + 1;
         }
 
         @Override
@@ -2720,7 +2806,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 if (i == ChatUsersActivity.this.restricted1SectionRow || i == ChatUsersActivity.this.permissionsSectionRow || i == ChatUsersActivity.this.slowmodeRow || i == ChatUsersActivity.this.gigaHeaderRow) {
                     return 5;
                 }
-                if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow) {
+                if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow) {
                     return 1;
                 }
                 if (i == ChatUsersActivity.this.blockedEmptyRow) {
@@ -2729,7 +2815,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 if (i == ChatUsersActivity.this.removedUsersRow) {
                     return 6;
                 }
-                if (i == ChatUsersActivity.this.changeInfoRow || i == ChatUsersActivity.this.addUsersRow || i == ChatUsersActivity.this.pinMessagesRow || i == ChatUsersActivity.this.sendMessagesRow || i == ChatUsersActivity.this.sendStickersRow || i == ChatUsersActivity.this.embedLinksRow || i == ChatUsersActivity.this.manageTopicsRow) {
+                if (i == ChatUsersActivity.this.changeInfoRow || i == ChatUsersActivity.this.addUsersRow || i == ChatUsersActivity.this.pinMessagesRow || i == ChatUsersActivity.this.sendMessagesRow || i == ChatUsersActivity.this.sendStickersRow || i == ChatUsersActivity.this.embedLinksRow || i == ChatUsersActivity.this.manageTopicsRow || i == ChatUsersActivity.this.dontRestrictBoostersRow) {
                     return 7;
                 }
                 if (i == ChatUsersActivity.this.membersHeaderRow || i == ChatUsersActivity.this.contactsHeaderRow || i == ChatUsersActivity.this.botHeaderRow || i == ChatUsersActivity.this.loadingHeaderRow) {
@@ -2750,7 +2836,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 if (ChatUsersActivity.this.isExpandableSendMediaRow(i)) {
                     return 13;
                 }
-                return i == ChatUsersActivity.this.sendMediaRow ? 14 : 0;
+                if (i == ChatUsersActivity.this.sendMediaRow) {
+                    return 14;
+                }
+                return i == ChatUsersActivity.this.dontRestrictBoostersSliderRow ? 15 : 0;
             }
             return 0;
         }
@@ -2785,6 +2874,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         tLRPC$TL_chatBannedRights.embed_links = !z;
         tLRPC$TL_chatBannedRights.send_polls = !z;
         AndroidUtilities.updateVisibleRows(this.listView);
+        DiffCallback saveState = saveState();
+        updateRows();
+        updateListAnimated(saveState);
     }
 
     public boolean isExpandableSendMediaRow(int i) {
@@ -2937,10 +3029,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             int i9 = i8 + 1;
             put(i9, ChatUsersActivity.this.slowmodeInfoRow, sparseIntArray);
             int i10 = i9 + 1;
-            put(i10, ChatUsersActivity.this.loadingProgressRow, sparseIntArray);
+            put(i10, ChatUsersActivity.this.dontRestrictBoostersRow, sparseIntArray);
             int i11 = i10 + 1;
-            put(i11, ChatUsersActivity.this.loadingUserCellRow, sparseIntArray);
-            put(i11 + 1, ChatUsersActivity.this.loadingHeaderRow, sparseIntArray);
+            put(i11, ChatUsersActivity.this.dontRestrictBoostersSliderRow, sparseIntArray);
+            int i12 = i11 + 1;
+            put(i12, ChatUsersActivity.this.dontRestrictBoostersInfoRow, sparseIntArray);
+            int i13 = i12 + 1;
+            put(i13, ChatUsersActivity.this.loadingProgressRow, sparseIntArray);
+            int i14 = i13 + 1;
+            put(i14, ChatUsersActivity.this.loadingUserCellRow, sparseIntArray);
+            put(i14 + 1, ChatUsersActivity.this.loadingHeaderRow, sparseIntArray);
         }
 
         private void put(int i, int i2, SparseIntArray sparseIntArray) {

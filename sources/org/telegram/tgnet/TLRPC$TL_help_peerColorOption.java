@@ -5,10 +5,11 @@ public class TLRPC$TL_help_peerColorOption extends TLObject {
     public TLRPC$help_PeerColorSet colors;
     public TLRPC$help_PeerColorSet dark_colors;
     public int flags;
+    public int group_min_level;
     public boolean hidden;
 
     public static TLRPC$TL_help_peerColorOption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (-276549461 != i) {
+        if (-1377014082 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_help_peerColorOption", Integer.valueOf(i)));
             }
@@ -34,11 +35,14 @@ public class TLRPC$TL_help_peerColorOption extends TLObject {
         if ((this.flags & 8) != 0) {
             this.channel_min_level = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 16) != 0) {
+            this.group_min_level = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-276549461);
+        abstractSerializedData.writeInt32(-1377014082);
         int i = this.hidden ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
@@ -51,6 +55,9 @@ public class TLRPC$TL_help_peerColorOption extends TLObject {
         }
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeInt32(this.channel_min_level);
+        }
+        if ((this.flags & 16) != 0) {
+            abstractSerializedData.writeInt32(this.group_min_level);
         }
     }
 }

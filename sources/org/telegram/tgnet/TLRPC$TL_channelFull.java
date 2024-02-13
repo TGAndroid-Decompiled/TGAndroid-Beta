@@ -151,11 +151,20 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         if ((this.flags2 & 128) != 0) {
             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            this.boosts_applied = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            this.boosts_unrestrict = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags2 & 1024) != 0) {
+            this.emojiset = TLRPC$StickerSet.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(254528367);
+        abstractSerializedData.writeInt32(1153455271);
         int i = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.can_set_username ? i | 64 : i & (-65);
@@ -293,6 +302,15 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         }
         if ((this.flags2 & 128) != 0) {
             this.wallpaper.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            abstractSerializedData.writeInt32(this.boosts_applied);
+        }
+        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            abstractSerializedData.writeInt32(this.boosts_unrestrict);
+        }
+        if ((this.flags2 & 1024) != 0) {
+            this.emojiset.serializeToStream(abstractSerializedData);
         }
     }
 }

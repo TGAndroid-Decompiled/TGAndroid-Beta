@@ -1709,7 +1709,7 @@ public class PreviewView extends FrameLayout {
     }
 
     public static Drawable getBackgroundDrawableFromTheme(int i, final EmojiThemes emojiThemes, int i2, final boolean z, boolean z2) {
-        if (emojiThemes.showAsDefaultStub) {
+        if (emojiThemes.isAnyStub()) {
             Drawable drawable = Theme.createBackgroundDrawable(EmojiThemes.getDefaultThemeInfo(z), emojiThemes.getPreviewColors(i, z ? 1 : 0), emojiThemes.getWallpaperLink(z ? 1 : 0), i2, false).wallpaper;
             return new ColorDrawable(-16777216);
         }

@@ -65,7 +65,7 @@ public class DiscountSpan extends ReplacementSpan {
         }
         this.bgPaint.setColor(i6);
         this.textPaint.setColor(AndroidUtilities.computePerceivedBrightness(i6) > 0.721f ? -16777216 : -1);
-        float dp = f + AndroidUtilities.dp(6.0f);
+        float dp = f + AndroidUtilities.dp(10.0f);
         float dp2 = (i4 - this.height) + AndroidUtilities.dp(2.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(dp, dp2, this.width + dp, this.height + dp2);

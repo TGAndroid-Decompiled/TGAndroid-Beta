@@ -59,13 +59,17 @@ public class StarParticlesView extends View {
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int measuredWidth = getMeasuredWidth() << (getMeasuredHeight() + 16);
-        this.drawable.rect.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
+        this.drawable.rect.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
         this.drawable.rect.offset((getMeasuredWidth() - this.drawable.rect.width()) / 2.0f, (getMeasuredHeight() - this.drawable.rect.height()) / 2.0f);
         this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         if (this.size != measuredWidth) {
             this.size = measuredWidth;
             this.drawable.resetPositions();
         }
+    }
+
+    protected int getStarsRectWidth() {
+        return AndroidUtilities.dp(140.0f);
     }
 
     @Override
@@ -315,11 +319,7 @@ public class StarParticlesView extends View {
                             mainGradientPaint.setPathEffect(null);
                             mainGradientPaint.setAlpha(255);
                         } else {
-                            if (this.type == 100) {
-                                paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 200));
-                            } else {
-                                paint.setColor(Theme.getColor(this.colorKey, this.resourcesProvider));
-                            }
+                            paint.setColor(getPathColor());
                             if (this.roundEffect) {
                                 paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
                             }
@@ -331,6 +331,13 @@ public class StarParticlesView extends View {
                     }
                 }
             }
+        }
+
+        protected int getPathColor() {
+            if (this.type == 100) {
+                return ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 200);
+            }
+            return Theme.getColor(this.colorKey, this.resourcesProvider);
         }
 
         public void resetPositions() {

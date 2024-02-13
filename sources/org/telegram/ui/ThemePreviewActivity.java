@@ -91,7 +91,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
@@ -1386,16 +1385,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     public void lambda$applyWallpaperBackground$19() {
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
-        Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", -this.dialogId);
-        bundle.putBoolean("is_megagroup", chat.megagroup);
-        bundle.putBoolean("start_from_boosts", true);
-        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
-        if (chatFull == null || !chatFull.can_view_stats) {
-            bundle.putBoolean("only_boosts", true);
-        }
-        presentFragment(new StatisticActivity(bundle));
+        presentFragment(StatisticActivity.create(getMessagesController().getChat(Long.valueOf(-this.dialogId))));
     }
 
     public void onColorsRotate() {
@@ -4186,6 +4176,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
+                    }
+
+                    @Override
+                    public void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell2);
                     }
 
                     @Override

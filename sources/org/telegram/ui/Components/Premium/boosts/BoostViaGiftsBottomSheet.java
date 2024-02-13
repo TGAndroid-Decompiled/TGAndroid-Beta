@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -147,8 +148,9 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 BoostViaGiftsBottomSheet.this.lambda$new$2(baseFragment, view, i2);
             }
         });
-        this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-        this.adapter.setItems(arrayList, this.recyclerListView, new SlideChooseView.Callback() {
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+        this.currentChat = chat;
+        this.adapter.setItems(chat, arrayList, this.recyclerListView, new SlideChooseView.Callback() {
             @Override
             public final void onOptionSelected(int i2) {
                 BoostViaGiftsBottomSheet.this.lambda$new$3(i2);
@@ -500,13 +502,14 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             this.items.add(BoostAdapter.Item.asBoost(BoostTypeCell.TYPE_SPECIFIC_USERS, this.selectedUsers.size(), this.selectedUsers.size() > 0 ? this.selectedUsers.get(0) : null, this.selectedBoostType));
         }
         this.items.add(BoostAdapter.Item.asDivider());
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.currentChat);
         if (this.selectedBoostType == BoostTypeCell.TYPE_GIVEAWAY) {
             if (!isPreparedGiveaway()) {
                 this.items.add(BoostAdapter.Item.asSubTitleWithCounter(LocaleController.getString("BoostingQuantityPrizes", R.string.BoostingQuantityPrizes), getSelectedSliderValueWithBoosts()));
                 this.items.add(BoostAdapter.Item.asSlider(this.sliderValues, this.selectedSliderIndex));
                 this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString("BoostingChooseHowMany", R.string.BoostingChooseHowMany), false));
             }
-            this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString("BoostingChannelsIncludedGiveaway", R.string.BoostingChannelsIncludedGiveaway)));
+            this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString("BoostingChannelsGroupsIncludedGiveaway", R.string.BoostingChannelsGroupsIncludedGiveaway)));
             if (isPreparedGiveaway()) {
                 this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, this.prepaidGiveaway.quantity * BoostRepository.giveawayBoostsPerPremium()));
             } else {
@@ -523,11 +526,11 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             if (this.selectedChats.size() < BoostRepository.giveawayAddPeersMax()) {
                 this.items.add(BoostAdapter.Item.asAddChannel());
             }
-            this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString("BoostingChooseChannelsNeedToJoin", R.string.BoostingChooseChannelsNeedToJoin), false));
+            this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString("BoostingChooseChannelsGroupsNeedToJoin", R.string.BoostingChooseChannelsGroupsNeedToJoin), false));
             this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString("BoostingEligibleUsers", R.string.BoostingEligibleUsers)));
             this.items.add(BoostAdapter.Item.asParticipants(ParticipantsTypeCell.TYPE_ALL, this.selectedParticipantsType, true, this.selectedCountries));
             this.items.add(BoostAdapter.Item.asParticipants(ParticipantsTypeCell.TYPE_NEW, this.selectedParticipantsType, false, this.selectedCountries));
-            this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString("BoostingChooseLimitGiveaway", R.string.BoostingChooseLimitGiveaway), false));
+            this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(isChannelAndNotMegaGroup ? R.string.BoostingChooseLimitGiveaway : R.string.BoostingChooseLimitGiveawayGroups), false));
         }
         if (!isPreparedGiveaway()) {
             this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString("BoostingDurationOfPremium", R.string.BoostingDurationOfPremium)));
@@ -569,10 +572,14 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString("BoostingDateWhenGiveawayEnds", R.string.BoostingDateWhenGiveawayEnds)));
             this.items.add(BoostAdapter.Item.asDateEnd(this.selectedEndDate));
             if (!isPreparedGiveaway()) {
-                this.items.add(BoostAdapter.Item.asDivider(LocaleController.formatPluralString("BoostingChooseRandom", getSelectedSliderValue(), new Object[0]), false));
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChooseRandom" : "BoostingChooseRandomGroup", getSelectedSliderValue(), new Object[0]), false));
             } else {
                 ArrayList<BoostAdapter.Item> arrayList3 = this.items;
-                arrayList3.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BoostingChooseRandom", this.prepaidGiveaway.quantity, new Object[0]) + "\n\n" + LocaleController.getString("BoostingStoriesFeaturesAndTerms", R.string.BoostingStoriesFeaturesAndTerms), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                StringBuilder sb = new StringBuilder();
+                sb.append(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChooseRandom" : "BoostingChooseRandomGroup", this.prepaidGiveaway.quantity, new Object[0]));
+                sb.append("\n\n");
+                sb.append(LocaleController.getString("BoostingStoriesFeaturesAndTerms", R.string.BoostingStoriesFeaturesAndTerms));
+                arrayList3.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(sb.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
                         BoostViaGiftsBottomSheet.this.lambda$updateRows$24();

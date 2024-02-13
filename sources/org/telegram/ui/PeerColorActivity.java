@@ -1409,7 +1409,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         private PeerColorDrawable color2Drawable;
         private final int currentAccount;
         private final Drawable drawable;
-        private final boolean isChannel;
+        private final boolean isChannelOrGroup;
+        private final boolean isGroup;
         private LevelLock lock;
         private boolean needDivider;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -1420,30 +1421,39 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         public ChangeNameColorCell(int i, long j, Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             int i2;
+            int i3;
             this.userTextBackgroundPaint = new Paint(1);
             this.userTextColorKey = -1;
+            MessagesController messagesController = MessagesController.getInstance(i);
+            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
             this.currentAccount = i;
             boolean z = j < 0;
-            this.isChannel = z;
+            this.isChannelOrGroup = z;
+            boolean z2 = z && !ChatObject.isChannelAndNotMegaGroup(chat);
+            this.isGroup = z2;
             this.resourcesProvider = resourcesProvider;
-            Drawable mutate = context.getResources().getDrawable(R.drawable.msg_palette).mutate();
+            Drawable mutate = context.getResources().getDrawable(R.drawable.menu_edit_appearance).mutate();
             this.drawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            CharSequence string = LocaleController.getString(z ? R.string.ChangeChannelNameColor2 : R.string.ChangeUserNameColor);
-            if (z && MessagesController.getInstance(i).getMainSettings().getInt("boostingappearance", 0) < 3) {
-                MessagesController messagesController = MessagesController.getInstance(i);
-                int i3 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            if (z) {
+                i2 = z2 ? R.string.ChangeGroupAppearance : R.string.ChangeChannelNameColor2;
+            } else {
+                i2 = R.string.ChangeUserNameColor;
+            }
+            CharSequence string = LocaleController.getString(i2);
+            if (z && !z2 && MessagesController.getInstance(i).getMainSettings().getInt("boostingappearance", 0) < 3) {
+                int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
                 MessagesController.PeerColors peerColors = messagesController.peerColors;
                 if (peerColors != null) {
                     int min = Math.min((int) ConnectionsManager.DEFAULT_DATACENTER_ID, peerColors.maxLevel());
                     int max = Math.max(0, messagesController.peerColors.maxLevel());
-                    i3 = Math.min(min, messagesController.peerColors.minLevel());
-                    i2 = Math.max(max, messagesController.peerColors.minLevel());
+                    i4 = Math.min(min, messagesController.peerColors.minLevel());
+                    i3 = Math.max(max, messagesController.peerColors.minLevel());
                 } else {
-                    i2 = 0;
+                    i3 = 0;
                 }
-                int min2 = Math.min(i3, messagesController.channelBgIconLevelMin);
-                int min3 = Math.min(i2, messagesController.channelBgIconLevelMin);
+                int min2 = Math.min(i4, messagesController.channelBgIconLevelMin);
+                int min3 = Math.min(i3, messagesController.channelBgIconLevelMin);
                 MessagesController.PeerColors peerColors2 = messagesController.profilePeerColors;
                 if (peerColors2 != null) {
                     int min4 = Math.min(min2, peerColors2.maxLevel());
@@ -1459,10 +1469,9 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 int max5 = Math.max(max4, messagesController.channelWallpaperLevelMin);
                 int min8 = Math.min(min7, messagesController.channelCustomWallpaperLevelMin);
                 int max6 = Math.max(max5, messagesController.channelCustomWallpaperLevelMin);
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
-                int i4 = chat != null ? chat.level : 0;
-                if (i4 < max6) {
-                    this.lock = new LevelLock(context, true, Math.max(i4, min8), resourcesProvider);
+                int i5 = chat != null ? chat.level : 0;
+                if (i5 < max6) {
+                    this.lock = new LevelLock(context, true, Math.max(i5, min8), resourcesProvider);
                 }
             }
             if (z && this.lock == null) {
@@ -1474,8 +1483,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         public void updateColors() {
             int i;
-            this.drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.isChannel ? Theme.key_windowBackgroundWhiteGrayIcon : Theme.key_windowBackgroundWhiteBlueText4, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
-            this.buttonText.setColor(Theme.getColor(this.isChannel ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_windowBackgroundWhiteBlueText4, this.resourcesProvider));
+            this.drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.isChannelOrGroup ? Theme.key_windowBackgroundWhiteGrayIcon : Theme.key_windowBackgroundWhiteBlueText4, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+            this.buttonText.setColor(Theme.getColor(this.isChannelOrGroup ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_windowBackgroundWhiteBlueText4, this.resourcesProvider));
             if (this.userText == null || this.userTextBackgroundPaint == null || (i = this.userTextColorKey) == -1) {
                 return;
             }
@@ -1574,19 +1583,25 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 this.lock.setBounds(width, 0, width, getHeight());
                 this.lock.draw(canvas);
             }
-            if (this.color1Drawable != null && this.color2Drawable != null) {
+            boolean z = this.isGroup;
+            if (z && this.color2Drawable != null) {
                 int dp = LocaleController.isRTL ? AndroidUtilities.dp(58.0f) : getMeasuredWidth() - AndroidUtilities.dp(24.0f);
                 this.color2Drawable.setBounds(dp - AndroidUtilities.dp(11.0f), (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2, dp, (getMeasuredHeight() + AndroidUtilities.dp(11.0f)) / 2);
+                this.color2Drawable.stroke(AndroidUtilities.dpf2(3.0f), Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                this.color2Drawable.draw(canvas);
+            } else if (this.color1Drawable != null && this.color2Drawable != null) {
+                int dp2 = LocaleController.isRTL ? AndroidUtilities.dp(58.0f) : getMeasuredWidth() - AndroidUtilities.dp(24.0f);
+                this.color2Drawable.setBounds(dp2 - AndroidUtilities.dp(11.0f), (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2, dp2, (getMeasuredHeight() + AndroidUtilities.dp(11.0f)) / 2);
                 PeerColorDrawable peerColorDrawable = this.color2Drawable;
                 float dpf2 = AndroidUtilities.dpf2(3.0f);
                 int i = Theme.key_windowBackgroundWhite;
                 peerColorDrawable.stroke(dpf2, Theme.getColor(i, this.resourcesProvider));
                 this.color2Drawable.draw(canvas);
-                int dp2 = dp - AndroidUtilities.dp(18.0f);
-                this.color1Drawable.setBounds(dp2 - AndroidUtilities.dp(11.0f), (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2, dp2, (getMeasuredHeight() + AndroidUtilities.dp(11.0f)) / 2);
+                int dp3 = dp2 - AndroidUtilities.dp(18.0f);
+                this.color1Drawable.setBounds(dp3 - AndroidUtilities.dp(11.0f), (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2, dp3, (getMeasuredHeight() + AndroidUtilities.dp(11.0f)) / 2);
                 this.color1Drawable.stroke(AndroidUtilities.dpf2(3.0f), Theme.getColor(i, this.resourcesProvider));
                 this.color1Drawable.draw(canvas);
-            } else if (this.userText != null) {
+            } else if (this.userText != null && !z) {
                 int measuredWidth3 = (int) ((getMeasuredWidth() - AndroidUtilities.dp(116.0f)) - Math.min(this.buttonText.getWidth() + (this.lock == null ? 0 : levelLock.getIntrinsicWidth() + AndroidUtilities.dp(12.0f)), getMeasuredWidth() - AndroidUtilities.dp(164.0f)));
                 int min = (int) Math.min(this.userText.getWidth(), measuredWidth3);
                 RectF rectF = AndroidUtilities.rectTmp;
@@ -2166,18 +2181,18 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public static class ProfilePreview extends FrameLayout {
-        private final AvatarDrawable avatarDrawable;
+        protected final AvatarDrawable avatarDrawable;
         private final int currentAccount;
         private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
-        private final ImageReceiver imageReceiver;
+        protected final ImageReceiver imageReceiver;
         private final boolean isChannel;
         private int lastColorId;
         private final RectF rectF;
         private final Theme.ResourcesProvider resourcesProvider;
         private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable statusEmoji;
         private final StoriesUtilities.StoryGradientTools storyGradient;
-        private final SimpleTextView subtitleView;
-        private final SimpleTextView titleView;
+        protected final SimpleTextView subtitleView;
+        protected final SimpleTextView titleView;
 
         public ProfilePreview(Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
             super(context);

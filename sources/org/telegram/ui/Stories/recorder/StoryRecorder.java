@@ -3245,7 +3245,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
 
         public void lambda$onVideoRecordStart$3(final boolean z, final Runnable runnable) {
-            CameraController.getInstance().recordVideo(StoryRecorder.this.cameraView.getCameraSession(), StoryRecorder.this.outputFile, false, new CameraController.VideoTakeCallback() {
+            CameraController.getInstance().recordVideo(StoryRecorder.this.cameraView.getCameraSessionObject(), StoryRecorder.this.outputFile, false, new CameraController.VideoTakeCallback() {
                 @Override
                 public final void onFinishVideoRecording(String str, long j) {
                     StoryRecorder.AnonymousClass12.this.lambda$startRecording$5(str, j);
@@ -5489,7 +5489,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (dualCameraView == null || dualCameraView.getCameraSession() == null) {
             return null;
         }
-        if (this.cameraView.isFrontface() && this.cameraView.getCameraSession().availableFlashModes.isEmpty()) {
+        if (this.cameraView.isFrontface() && !this.cameraView.getCameraSession().hasFlashModes()) {
             checkFrontfaceFlashModes();
             return this.frontfaceFlashModes.get(this.frontfaceFlashMode);
         }
@@ -5501,7 +5501,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (dualCameraView == null || dualCameraView.getCameraSession() == null) {
             return null;
         }
-        if (this.cameraView.isFrontface() && this.cameraView.getCameraSession().availableFlashModes.isEmpty()) {
+        if (this.cameraView.isFrontface() && !this.cameraView.getCameraSession().hasFlashModes()) {
             checkFrontfaceFlashModes();
             ArrayList<String> arrayList = this.frontfaceFlashModes;
             return arrayList.get(this.frontfaceFlashMode + 1 >= arrayList.size() ? 0 : this.frontfaceFlashMode + 1);
@@ -5514,7 +5514,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (dualCameraView == null || dualCameraView.getCameraSession() == null) {
             return;
         }
-        if (this.cameraView.isFrontface() && this.cameraView.getCameraSession().availableFlashModes.isEmpty()) {
+        if (this.cameraView.isFrontface() && !this.cameraView.getCameraSession().hasFlashModes()) {
             int indexOf = this.frontfaceFlashModes.indexOf(str);
             if (indexOf >= 0) {
                 this.frontfaceFlashMode = indexOf;

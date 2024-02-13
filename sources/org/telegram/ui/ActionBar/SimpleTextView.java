@@ -1175,7 +1175,7 @@ public class SimpleTextView extends View {
         return this.rightDrawableY;
     }
 
-    private int getMaxTextWidth() {
+    public int getMaxTextWidth() {
         Drawable drawable;
         Drawable drawable2;
         int i = 0;
