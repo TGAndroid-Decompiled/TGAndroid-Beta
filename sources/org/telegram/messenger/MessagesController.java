@@ -9257,6 +9257,8 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void loadMessagesInternal(final long j, final long j2, final boolean z, final int i, final int i2, final int i3, boolean z2, final int i4, final int i5, final int i6, final int i7, final int i8, final long j3, final int i9, final int i10, final int i11, final int i12, final boolean z3, final int i13, boolean z4, final boolean z5, final boolean z6, MessageLoaderLogger messageLoaderLogger, long j4) {
         int i14;
+        MessagesController messagesController;
+        TLRPC$TL_forumTopic findTopic;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("load messages in chat " + j + " topic_id " + j3 + " count " + i + " max_id " + i2 + " cache " + z2 + " mindate = " + i4 + " guid " + i5 + " load_type " + i6 + " last_message_id " + i7 + " mode " + i8 + " index " + i9 + " firstUnread " + i10 + " unread_count " + i11 + " last_date " + i12 + " queryFromServer " + z3 + " isTopic " + z6);
         }
@@ -9349,49 +9351,45 @@ public class MessagesController extends BaseController implements NotificationCe
                     MessagesController.this.lambda$loadMessagesInternal$164(j, i, i2, i3, j2, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6, tLRPC$TL_messages_getSavedHistory, tLObject, tLRPC$TL_error);
                 }
             }), i5);
+        } else if (z4 && z6 && i6 == 2 && i7 == 0 && (findTopic = this.topicsController.findTopic(-j, j3)) != null) {
+            loadMessagesInternal(j, j2, z, i, i2, i3, false, i4, i5, i6, findTopic.top_message, i8, j3, i9, i10, findTopic.unread_count, i12, z3, findTopic.unread_mentions_count, false, z5, z6, messageLoaderLogger2, 0L);
+        } else if (i8 != 0) {
         } else {
-            if (z4 && z6 && i6 == 2 && i7 == 0) {
-                TLRPC$TL_forumTopic findTopic = this.topicsController.findTopic(-j, j3);
-                if (findTopic != null) {
-                    loadMessagesInternal(j, j2, z, i, i2, i3, false, i4, i5, i6, findTopic.top_message, 0, j3, i9, i10, findTopic.unread_count, i12, z3, findTopic.unread_mentions_count, false, z5, z6, messageLoaderLogger2, 0L);
-                    return;
-                }
-                i14 = i6;
-            } else {
-                i14 = i6;
-            }
-            if (i8 != 0) {
-                return;
-            }
             final TLRPC$TL_messages_getReplies tLRPC$TL_messages_getReplies = new TLRPC$TL_messages_getReplies();
             tLRPC$TL_messages_getReplies.peer = getInputPeer(j);
             tLRPC$TL_messages_getReplies.msg_id = (int) j3;
             tLRPC$TL_messages_getReplies.offset_date = i3;
-            if (i14 == 4) {
-                tLRPC$TL_messages_getReplies.add_offset = (-i) + 5;
-            } else if (i14 == 3) {
-                tLRPC$TL_messages_getReplies.add_offset = (-i) / 2;
-            } else if (i14 == 1) {
-                tLRPC$TL_messages_getReplies.add_offset = (-i) - 1;
-            } else if (i14 == 2 && i2 != 0) {
-                tLRPC$TL_messages_getReplies.add_offset = (-i) + 10;
-            } else if (j < 0 && i2 != 0) {
-                if (ChatObject.isChannel(getChat(Long.valueOf(-j)))) {
-                    tLRPC$TL_messages_getReplies.add_offset = -1;
-                    tLRPC$TL_messages_getReplies.limit++;
-                }
-                tLRPC$TL_messages_getReplies.limit = i;
-                tLRPC$TL_messages_getReplies.offset_id = i2;
-                tLRPC$TL_messages_getReplies.hash = j4;
-                System.currentTimeMillis();
-                getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_getReplies, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MessagesController.this.lambda$loadMessagesInternal$166(i, i2, i3, i10, i6, j, j2, i5, i7, i11, i12, i8, j3, i9, z3, i13, z5, z6, tLRPC$TL_messages_getReplies, tLObject, tLRPC$TL_error);
+            if (i6 == 4) {
+                i14 = i;
+                tLRPC$TL_messages_getReplies.add_offset = (-i14) + 5;
+            } else {
+                i14 = i;
+                if (i6 == 3) {
+                    tLRPC$TL_messages_getReplies.add_offset = (-i14) / 2;
+                } else if (i6 == 1) {
+                    tLRPC$TL_messages_getReplies.add_offset = (-i14) - 1;
+                } else if (i6 == 2 && i2 != 0) {
+                    tLRPC$TL_messages_getReplies.add_offset = (-i14) + 10;
+                } else if (j < 0 && i2 != 0) {
+                    messagesController = this;
+                    if (ChatObject.isChannel(messagesController.getChat(Long.valueOf(-j)))) {
+                        tLRPC$TL_messages_getReplies.add_offset = -1;
+                        tLRPC$TL_messages_getReplies.limit++;
                     }
-                }), i5);
+                    tLRPC$TL_messages_getReplies.limit = i14;
+                    tLRPC$TL_messages_getReplies.offset_id = i2;
+                    tLRPC$TL_messages_getReplies.hash = j4;
+                    System.currentTimeMillis();
+                    getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_getReplies, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            MessagesController.this.lambda$loadMessagesInternal$166(i, i2, i3, i10, i6, j, j2, i5, i7, i11, i12, i8, j3, i9, z3, i13, z5, z6, tLRPC$TL_messages_getReplies, tLObject, tLRPC$TL_error);
+                        }
+                    }), i5);
+                }
             }
-            tLRPC$TL_messages_getReplies.limit = i;
+            messagesController = this;
+            tLRPC$TL_messages_getReplies.limit = i14;
             tLRPC$TL_messages_getReplies.offset_id = i2;
             tLRPC$TL_messages_getReplies.hash = j4;
             System.currentTimeMillis();

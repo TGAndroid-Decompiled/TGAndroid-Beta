@@ -418,6 +418,12 @@ public class ActionBarPopupWindow extends PopupWindow {
             return this.linearLayout.getChildCount();
         }
 
+        public int precalculateHeight() {
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE);
+            this.linearLayout.measure(makeMeasureSpec, makeMeasureSpec);
+            return this.linearLayout.getMeasuredHeight();
+        }
+
         public void removeInnerViews() {
             this.linearLayout.removeAllViews();
         }

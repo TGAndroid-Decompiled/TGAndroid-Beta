@@ -266,6 +266,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_messages_acceptUrlAuth;
 import org.telegram.tgnet.TLRPC$TL_messages_botApp;
+import org.telegram.tgnet.TLRPC$TL_messages_checkChatInvite;
 import org.telegram.tgnet.TLRPC$TL_messages_discussionMessage;
 import org.telegram.tgnet.TLRPC$TL_messages_editMessage;
 import org.telegram.tgnet.TLRPC$TL_messages_getAttachMenuBot;
@@ -9546,7 +9547,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             getMessagesController().sendBotStart(this.currentUser, str);
             return;
         }
+        this.sentBotStart = true;
+        MessagesController messagesController = getMessagesController();
+        TLRPC$User tLRPC$User = this.currentUser;
         this.botUser = str;
+        messagesController.sendBotStart(tLRPC$User, str);
         updateBottomOverlay();
     }
 
@@ -22910,7 +22915,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             } else {
                 if (messageObject.isSponsored()) {
                     ChatActivity.this.logSponsoredClicked(messageObject);
-                    Bundle bundle3 = new Bundle();
+                    final Bundle bundle3 = new Bundle();
                     if (messageObject.sponsoredBotApp != null) {
                         TLRPC$TL_messages_getBotApp tLRPC$TL_messages_getBotApp = new TLRPC$TL_messages_getBotApp();
                         TLRPC$TL_inputBotAppShortName tLRPC$TL_inputBotAppShortName = new TLRPC$TL_inputBotAppShortName();
@@ -22932,12 +22937,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         Browser.openUrl(ChatActivity.this.getContext(), messageObject.sponsoredWebPage.url, true, false);
                         return;
                     } else if (messageObject.sponsoredChatInvite != null) {
-                        ChatActivity chatActivity2 = ChatActivity.this;
-                        Context context = ChatActivity.this.getContext();
-                        TLRPC$ChatInvite tLRPC$ChatInvite = messageObject.sponsoredChatInvite;
-                        String str2 = messageObject.sponsoredChatInviteHash;
-                        ChatActivity chatActivity3 = ChatActivity.this;
-                        chatActivity2.showDialog(new JoinGroupAlert(context, tLRPC$ChatInvite, str2, chatActivity3, chatActivity3.themeDelegate));
+                        TLRPC$TL_messages_checkChatInvite tLRPC$TL_messages_checkChatInvite = new TLRPC$TL_messages_checkChatInvite();
+                        tLRPC$TL_messages_checkChatInvite.hash = messageObject.sponsoredChatInviteHash;
+                        ConnectionsManager.getInstance(((BaseFragment) ChatActivity.this).currentAccount).sendRequest(tLRPC$TL_messages_checkChatInvite, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$23(bundle3, messageObject, tLObject, tLRPC$TL_error);
+                            }
+                        }, 2);
                         return;
                     } else {
                         long peerId = MessageObject.getPeerId(messageObject.messageOwner.from_id);
@@ -22954,9 +22961,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         if (i3 != 0) {
                             bundle3.putInt("message_id", i3);
                         }
-                        String str3 = messageObject.botStartParam;
-                        if (str3 != null) {
-                            bundle3.putString("inline_query", str3);
+                        String str2 = messageObject.botStartParam;
+                        if (str2 != null) {
+                            bundle3.putString("inline_query", str2);
                         }
                         if (ChatActivity.this.getMessagesController().checkCanOpenChat(bundle3, ChatActivity.this)) {
                             ChatActivity.this.presentFragment(new ChatActivity(bundle3));
@@ -23094,6 +23101,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (tLRPC$TL_messages_botApp.inactive) {
                 botWebViewSheet.showJustAddedBulletin();
             }
+        }
+
+        public void lambda$didPressInstantButton$23(final Bundle bundle, final MessageObject messageObject, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$22(tLRPC$TL_error, tLObject, bundle, messageObject);
+                }
+            });
+        }
+
+        public void lambda$didPressInstantButton$22(org.telegram.tgnet.TLRPC$TL_error r8, org.telegram.tgnet.TLObject r9, android.os.Bundle r10, org.telegram.messenger.MessageObject r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.lambda$didPressInstantButton$22(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject, android.os.Bundle, org.telegram.messenger.MessageObject):void");
         }
 
         public class AnonymousClass9 extends Browser.Progress {
