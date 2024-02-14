@@ -6558,21 +6558,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     ChatActivityEnterView.this.lambda$sendMessageInternal$35();
                 }
             }, 100L);
-            return;
-        }
-        long j = 0;
-        if (this.audioToSend != null) {
+            this.millisecondsRecorded = 0L;
+        } else if (this.audioToSend != null) {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null && playingMessageObject == this.audioToSendMessageObject) {
                 MediaController.getInstance().cleanupPlayer(true, true);
             }
             MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
-            long j2 = this.dialog_id;
+            long j = this.dialog_id;
             ChatActivity chatActivity2 = this.parentFragment;
-            if (chatActivity2 != null && chatActivity2.isTopic) {
-                j = chatActivity2.getTopicId();
-            }
-            mediaDataController.pushDraftVoiceMessage(j2, j, null);
+            mediaDataController.pushDraftVoiceMessage(j, (chatActivity2 == null || !chatActivity2.isTopic) ? 0L : chatActivity2.getTopicId(), null);
             SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(this.audioToSend, null, this.audioToSendPath, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, null, null, null, z, i, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, null, null, false);
             applyStoryToSendMessageParams(of);
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
@@ -6588,48 +6583,49 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     ChatActivityEnterView.this.lambda$sendMessageInternal$36();
                 }
             }, 100L);
-            return;
-        }
-        EditTextCaption editTextCaption = this.messageEditText;
-        final String text = editTextCaption == null ? "" : editTextCaption.getText();
-        ChatActivity chatActivity3 = this.parentFragment;
-        if (chatActivity3 != null && (currentChat = chatActivity3.getCurrentChat()) != null && currentChat.slowmode_enabled && !ChatObject.hasAdminRights(currentChat)) {
-            if (text.length() > this.accountInstance.getMessagesController().maxMessageLength) {
-                AlertsCreator.showSimpleAlert(this.parentFragment, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendErrorTooLong", R.string.SlowmodeSendErrorTooLong), this.resourcesProvider);
-                return;
-            } else if (this.forceShowSendButton && text.length() > 0) {
-                AlertsCreator.showSimpleAlert(this.parentFragment, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendError", R.string.SlowmodeSendError), this.resourcesProvider);
-                return;
-            }
-        }
-        if (checkPremiumAnimatedEmoji(this.currentAccount, this.dialog_id, this.parentFragment, null, text)) {
-            return;
-        }
-        if (processSendingText(text, z, i)) {
-            if (this.delegate.hasForwardingMessages() || ((i != 0 && !isInScheduleMode()) || isInScheduleMode())) {
-                EditTextCaption editTextCaption2 = this.messageEditText;
-                if (editTextCaption2 != null) {
-                    editTextCaption2.setText("");
-                }
-                ChatActivityEnterViewDelegate chatActivityEnterViewDelegate5 = this.delegate;
-                if (chatActivityEnterViewDelegate5 != null) {
-                    chatActivityEnterViewDelegate5.onMessageSend(text, z, i);
-                }
-            } else {
-                this.messageTransitionIsRunning = false;
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatActivityEnterView.this.lambda$sendMessageInternal$37(text, z, i);
-                    }
-                };
-                this.moveToSendStateRunnable = runnable;
-                AndroidUtilities.runOnUIThread(runnable, 200L);
-            }
-            this.lastTypingTimeSend = 0L;
-        } else if (!this.forceShowSendButton || (chatActivityEnterViewDelegate = this.delegate) == null) {
+            this.millisecondsRecorded = 0L;
         } else {
-            chatActivityEnterViewDelegate.onMessageSend(null, z, i);
+            EditTextCaption editTextCaption = this.messageEditText;
+            final String text = editTextCaption == null ? "" : editTextCaption.getText();
+            ChatActivity chatActivity3 = this.parentFragment;
+            if (chatActivity3 != null && (currentChat = chatActivity3.getCurrentChat()) != null && currentChat.slowmode_enabled && !ChatObject.hasAdminRights(currentChat)) {
+                if (text.length() > this.accountInstance.getMessagesController().maxMessageLength) {
+                    AlertsCreator.showSimpleAlert(this.parentFragment, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendErrorTooLong", R.string.SlowmodeSendErrorTooLong), this.resourcesProvider);
+                    return;
+                } else if (this.forceShowSendButton && text.length() > 0) {
+                    AlertsCreator.showSimpleAlert(this.parentFragment, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendError", R.string.SlowmodeSendError), this.resourcesProvider);
+                    return;
+                }
+            }
+            if (checkPremiumAnimatedEmoji(this.currentAccount, this.dialog_id, this.parentFragment, null, text)) {
+                return;
+            }
+            if (processSendingText(text, z, i)) {
+                if (this.delegate.hasForwardingMessages() || ((i != 0 && !isInScheduleMode()) || isInScheduleMode())) {
+                    EditTextCaption editTextCaption2 = this.messageEditText;
+                    if (editTextCaption2 != null) {
+                        editTextCaption2.setText("");
+                    }
+                    ChatActivityEnterViewDelegate chatActivityEnterViewDelegate5 = this.delegate;
+                    if (chatActivityEnterViewDelegate5 != null) {
+                        chatActivityEnterViewDelegate5.onMessageSend(text, z, i);
+                    }
+                } else {
+                    this.messageTransitionIsRunning = false;
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            ChatActivityEnterView.this.lambda$sendMessageInternal$37(text, z, i);
+                        }
+                    };
+                    this.moveToSendStateRunnable = runnable;
+                    AndroidUtilities.runOnUIThread(runnable, 200L);
+                }
+                this.lastTypingTimeSend = 0L;
+            } else if (!this.forceShowSendButton || (chatActivityEnterViewDelegate = this.delegate) == null) {
+            } else {
+                chatActivityEnterViewDelegate.onMessageSend(null, z, i);
+            }
         }
     }
 
@@ -10890,7 +10886,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.stickersExpansionProgress = 1.0f;
                     setTranslationY(-(this.stickersExpandedHeight - i));
                     this.emojiView.setTranslationY(-(this.stickersExpandedHeight - i));
-                    this.stickersArrow.setAnimationProgress(1.0f);
+                    AnimatedArrowDrawable animatedArrowDrawable = this.stickersArrow;
+                    if (animatedArrowDrawable != null) {
+                        animatedArrowDrawable.setAnimationProgress(1.0f);
+                    }
                 }
             } else {
                 if (z4) {
@@ -10951,7 +10950,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.sizeNotifierLayout.requestLayout();
                     this.sizeNotifierLayout.setForeground(null);
                     this.sizeNotifierLayout.setWillNotDraw(false);
-                    this.stickersArrow.setAnimationProgress(0.0f);
+                    AnimatedArrowDrawable animatedArrowDrawable2 = this.stickersArrow;
+                    if (animatedArrowDrawable2 != null) {
+                        animatedArrowDrawable2.setAnimationProgress(0.0f);
+                    }
                 }
             }
             ImageView imageView = this.expandStickersButton;

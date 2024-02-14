@@ -767,6 +767,9 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
     }
 
     private void resetHeader(boolean z) {
+        if (getContext() == null) {
+            return;
+        }
         if (this.limitPreviewView == null) {
             LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.filled_limit_boost, 0, 0, this.resourceProvider);
             this.limitPreviewView = limitPreviewView;
@@ -777,6 +780,9 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     return BoostsActivity.this.setDarkGradientLocation(f, f2);
                 }
             });
+        }
+        if (this.limitPreviewView.getParent() != null) {
+            ((ViewGroup) this.limitPreviewView.getParent()).removeView(this.limitPreviewView);
         }
         TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
         if (tL_stories$TL_premium_boostsStatus != null) {

@@ -1818,16 +1818,16 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     this.pressedBackupImageView.getImageReceiver().clearImage();
                     this.loopImageView.getImageReceiver().clearImage();
                     AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, ReactionsContainerLayout.this.currentAccount, this.currentReaction.documentId);
-                    this.pressedBackupImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable);
                     AnimatedEmojiDrawable animatedEmojiDrawable2 = new AnimatedEmojiDrawable(3, ReactionsContainerLayout.this.currentAccount, this.currentReaction.documentId);
                     if (ReactionsContainerLayout.this.type == 1 || ReactionsContainerLayout.this.type == 2) {
-                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                     } else {
-                        int i2 = Theme.key_dialogBackground;
-                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
-                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                        int i2 = Theme.key_windowBackgroundWhiteBlueIcon;
+                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ReactionsContainerLayout.this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ReactionsContainerLayout.this.resourcesProvider), PorterDuff.Mode.SRC_IN));
                     }
+                    this.pressedBackupImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable);
                     this.loopImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable2);
                     PremiumLockIconView premiumLockIconView4 = this.lockIconView;
                     if (premiumLockIconView4 != null) {

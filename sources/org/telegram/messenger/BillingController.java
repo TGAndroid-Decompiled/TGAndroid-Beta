@@ -56,6 +56,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private final Map<String, Consumer<BillingResult>> resultListeners = new HashMap();
     private final List<String> requestingTokens = Collections.synchronizedList(new ArrayList());
     private final Map<String, Integer> currencyExpMap = new HashMap();
+    private int triesLeft = 0;
 
     public static void lambda$consumeGiftPurchase$4(BillingResult billingResult, String str) {
     }
@@ -135,6 +136,13 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         }
         billingClientEmpty = true;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+    }
+
+    private void switchBackFromInvoice() {
+        if (billingClientEmpty) {
+            billingClientEmpty = false;
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+        }
     }
 
     public boolean isReady() {
@@ -342,12 +350,8 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         FileLog.d("Billing: Setup finished with result " + billingResult);
         if (billingResult.getResponseCode() == 0) {
             this.isDisconnected = false;
-            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new ProductDetailsResponseListener() {
-                @Override
-                public final void onProductDetailsResponse(BillingResult billingResult2, List list) {
-                    BillingController.this.lambda$onBillingSetupFinished$6(billingResult2, list);
-                }
-            });
+            this.triesLeft = 3;
+            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
             queryPurchases("inapp", new PurchasesResponseListener() {
                 @Override
                 public final void onQueryPurchasesResponse(BillingResult billingResult2, List list) {
@@ -366,12 +370,10 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         }
     }
 
-    public void lambda$onBillingSetupFinished$6(BillingResult billingResult, List list) {
+    public void onQueriedPremiumProductDetails(BillingResult billingResult, List<ProductDetails> list) {
         FileLog.d("Billing: Query product details finished " + billingResult + ", " + list);
         if (billingResult.getResponseCode() == 0) {
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                ProductDetails productDetails = (ProductDetails) it.next();
+            for (ProductDetails productDetails : list) {
                 if (productDetails.getProductId().equals(PREMIUM_PRODUCT_ID)) {
                     PREMIUM_PRODUCT_DETAILS = productDetails;
                 }
@@ -379,11 +381,16 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (PREMIUM_PRODUCT_DETAILS == null) {
                 switchToInvoice();
                 return;
-            } else {
-                NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
-                return;
             }
+            switchBackFromInvoice();
+            NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+            return;
         }
         switchToInvoice();
+        int i = this.triesLeft - 1;
+        this.triesLeft = i;
+        if (i > 0) {
+            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+        }
     }
 }

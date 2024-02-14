@@ -6154,17 +6154,25 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             } else {
                 TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(PeerStoriesView.this.currentAccount, visibleReaction2.documentId);
                 String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(findDocument, null);
-                SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(findAnimatedEmojiEmoticon, PeerStoriesView.this.dialogId);
-                of2.entities = new ArrayList<>();
-                TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
-                tLRPC$TL_messageEntityCustomEmoji.document_id = visibleReaction2.documentId;
-                tLRPC$TL_messageEntityCustomEmoji.offset = 0;
-                tLRPC$TL_messageEntityCustomEmoji.length = findAnimatedEmojiEmoticon.length();
-                of2.entities.add(tLRPC$TL_messageEntityCustomEmoji);
-                PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
-                of2.replyToStoryItem = peerStoriesView4.currentStory.storyItem;
-                SendMessagesHelper.getInstance(peerStoriesView4.currentAccount).sendMessage(of2);
-                tLRPC$Document = findDocument;
+                if (findAnimatedEmojiEmoticon != null) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(findAnimatedEmojiEmoticon, PeerStoriesView.this.dialogId);
+                    of2.entities = new ArrayList<>();
+                    TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
+                    tLRPC$TL_messageEntityCustomEmoji.document_id = visibleReaction2.documentId;
+                    tLRPC$TL_messageEntityCustomEmoji.offset = 0;
+                    tLRPC$TL_messageEntityCustomEmoji.length = findAnimatedEmojiEmoticon.length();
+                    of2.entities.add(tLRPC$TL_messageEntityCustomEmoji);
+                    PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
+                    of2.replyToStoryItem = peerStoriesView4.currentStory.storyItem;
+                    SendMessagesHelper.getInstance(peerStoriesView4.currentAccount).sendMessage(of2);
+                    tLRPC$Document = findDocument;
+                } else {
+                    if (PeerStoriesView.this.reactionsContainerLayout.getReactionsWindow() != null) {
+                        PeerStoriesView.this.reactionsContainerLayout.getReactionsWindow().dismissWithAlpha();
+                    }
+                    PeerStoriesView.this.closeKeyboardOrEmoji();
+                    return;
+                }
             }
             PeerStoriesView peerStoriesView5 = PeerStoriesView.this;
             BulletinFactory.of(peerStoriesView5.storyContainer, peerStoriesView5.resourcesProvider).createEmojiBulletin(tLRPC$Document, LocaleController.getString("ReactionSent", R.string.ReactionSent), LocaleController.getString("ViewInChat", R.string.ViewInChat), new Runnable() {

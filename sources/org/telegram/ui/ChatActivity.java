@@ -6272,7 +6272,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void setFilterMessages(boolean z, boolean z2, boolean z3) {
         ChatActivityAdapter chatActivityAdapter = this.chatAdapter;
-        if (chatActivityAdapter.isFiltered == z) {
+        if (chatActivityAdapter == null || chatActivityAdapter.isFiltered == z) {
             return;
         }
         chatActivityAdapter.isFiltered = z;
@@ -15597,16 +15597,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private void checkGroupEmojiPackHint() {
         TLRPC$ChatFull chatFull;
+        TLRPC$TL_messages_stickerSet groupStickerSetById;
         if (this.groupEmojiPackHint != null || !ChatObject.isMegagroup(this.currentChat) || (chatFull = getMessagesController().getChatFull(this.currentChat.id)) == null || chatFull.emojiset == null || this.chatActivityEnterView == null || getContext() == null || MessagesController.getGlobalMainSettings().getBoolean("groupEmojiPackHintShown", false)) {
             return;
         }
         TLRPC$StickerSet tLRPC$StickerSet = chatFull.emojiset;
         long j = tLRPC$StickerSet.thumb_document_id;
-        if (j == 0) {
-            TLRPC$TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet);
-            if (!groupStickerSetById.documents.isEmpty()) {
-                j = groupStickerSetById.documents.get(0).id;
-            }
+        if (j == 0 && (groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet)) != null && !groupStickerSetById.documents.isEmpty()) {
+            j = groupStickerSetById.documents.get(0).id;
         }
         if (j == 0) {
             return;
@@ -17914,7 +17912,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 FrameLayout frameLayout2 = new FrameLayout(getContext());
                 this.emptyViewContainer = frameLayout2;
                 frameLayout2.setVisibility(4);
-                this.contentView.addView(this.emptyViewContainer, LayoutHelper.createFrame(-1, -2, 17));
+                this.contentView.addView(this.emptyViewContainer, 3, LayoutHelper.createFrame(-1, -2, 17));
             } else {
                 frameLayout.removeAllViews();
             }
