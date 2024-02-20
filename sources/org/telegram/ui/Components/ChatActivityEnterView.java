@@ -812,7 +812,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             super(context);
             this.bgRect = new RectF();
             this.gradientPaint = new Paint(1);
-            this.isPremiumMode = true;
+            this.isPremiumMode = false;
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView = simpleTextView;
             addView(simpleTextView, LayoutHelper.createFrame(-1, -1.0f));
@@ -7793,13 +7793,18 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     public void setSlowModeButtonVisible(boolean z) {
+        int i;
         this.slowModeButton.setVisibility(z ? 0 : 8);
-        int dp = z ? AndroidUtilities.dp(16.0f) : 0;
+        if (z) {
+            i = AndroidUtilities.dp(this.slowModeButton.isPremiumMode ? 26.0f : 16.0f);
+        } else {
+            i = 0;
+        }
         EditTextCaption editTextCaption = this.messageEditText;
-        if (editTextCaption == null || editTextCaption.getPaddingRight() == dp) {
+        if (editTextCaption == null || editTextCaption.getPaddingRight() == i) {
             return;
         }
-        this.messageEditText.setPadding(0, AndroidUtilities.dp(11.0f), dp, AndroidUtilities.dp(12.0f));
+        this.messageEditText.setPadding(0, AndroidUtilities.dp(11.0f), i, AndroidUtilities.dp(12.0f));
     }
 
     private void updateFieldRight(int i) {

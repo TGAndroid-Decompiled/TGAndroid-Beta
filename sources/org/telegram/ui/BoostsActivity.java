@@ -381,7 +381,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             }
             this.items.add(new ItemInternal(this, 1, LocaleController.getString("LinkForBoosting", R.string.LinkForBoosting)));
             this.items.add(new ItemInternal(this, 3, this.boostsStatus.boost_url));
-            if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(this.currentChat) && ChatObject.canPost(this.currentChat)) {
+            if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(this.currentChat)) {
                 this.items.add(new ItemInternal(this, 6, LocaleController.getString(isChannel() ? R.string.BoostingShareThisLink : R.string.BoostingShareThisLinkGroup)));
                 this.items.add(new ItemInternal(this, 10, true));
                 this.items.add(new ItemInternal(this, 6, LocaleController.getString(isChannel() ? R.string.BoostingGetMoreBoosts : R.string.BoostingGetMoreBoostsGroup)));
@@ -674,18 +674,23 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             if ((baseFragment2 instanceof ProfileActivity) || (baseFragment2 instanceof ChatActivity)) {
                 BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
             }
+        } else if (i == NotificationCenter.chatWasBoostedByUser && this.dialogId == ((Long) objArr[2]).longValue()) {
+            this.boostsStatus = (TL_stories$TL_premium_boostsStatus) objArr[0];
+            this.canApplyBoost = (ChannelBoostsController.CanApplyBoost) objArr[1];
         }
     }
 
     @Override
     public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.boostByChannelCreated);
+        getNotificationCenter().addObserver(this, NotificationCenter.chatWasBoostedByUser);
         return super.onFragmentCreate();
     }
 
     @Override
     public void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.boostByChannelCreated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.chatWasBoostedByUser);
         super.onFragmentDestroy();
     }
 
@@ -838,7 +843,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             LinearLayout linearLayout = new LinearLayout(getContext());
             linearLayout.setOrientation(0);
             linearLayout.addView(headerButtonView, LayoutHelper.createLinear(-2, -2, 6.0f, 0.0f, 6.0f, 0.0f));
-            if (MessagesController.getInstance(BoostsActivity.this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(BoostsActivity.this.currentChat) && ChatObject.canPost(BoostsActivity.this.currentChat)) {
+            if (MessagesController.getInstance(BoostsActivity.this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(BoostsActivity.this.currentChat)) {
                 linearLayout.addView(headerButtonView2, LayoutHelper.createLinear(-2, -2, 6.0f, 0.0f, 6.0f, 0.0f));
             }
             linearLayout.addView(headerButtonView3, LayoutHelper.createLinear(-2, -2, 6.0f, 0.0f, 6.0f, 0.0f));
@@ -872,6 +877,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             BoostsActivity boostsActivity2 = BoostsActivity.this;
             LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(boostsActivity, context, 30, boostsActivity2.currentAccount, boostsActivity2.getResourceProvider());
             limitReachedBottomSheet.setBoostsStats(BoostsActivity.this.boostsStatus, true);
+            limitReachedBottomSheet.setDialogId(BoostsActivity.this.dialogId);
             BoostsActivity.this.showDialog(limitReachedBottomSheet);
         }
     }

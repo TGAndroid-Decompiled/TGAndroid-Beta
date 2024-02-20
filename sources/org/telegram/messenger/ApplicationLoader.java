@@ -21,12 +21,16 @@ import android.view.ViewGroup;
 import androidx.multidex.MultiDex;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
+import java.util.ArrayList;
+import org.json.JSONObject;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
+import org.telegram.tgnet.TLRPC$Update;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.Components.ForegroundDetector;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.LauncherIconController;
@@ -64,6 +68,18 @@ public class ApplicationLoader extends Application {
     protected void checkForUpdatesInternal() {
     }
 
+    public boolean checkRequestPermissionResult(int i, String[] strArr, int[] iArr) {
+        return false;
+    }
+
+    public boolean consumePush(int i, JSONObject jSONObject) {
+        return false;
+    }
+
+    public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
+        return false;
+    }
+
     protected boolean isHuaweiBuild() {
         return false;
     }
@@ -79,8 +95,23 @@ public class ApplicationLoader extends Application {
         return null;
     }
 
+    public boolean onSuggestionClick(String str) {
+        return false;
+    }
+
+    public boolean onSuggestionFill(String str, String[] strArr, boolean[] zArr) {
+        return false;
+    }
+
     public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
         return false;
+    }
+
+    public TLRPC$Update parseTLUpdate(int i) {
+        return null;
+    }
+
+    public void processUpdate(int i, TLRPC$Update tLRPC$Update) {
     }
 
     public boolean showUpdateAppPopup(Context context, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, int i) {

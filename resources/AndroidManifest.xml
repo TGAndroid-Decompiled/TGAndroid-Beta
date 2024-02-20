@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="44009" android:versionName="10.8.0" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.web" platformBuildVersionCode="33" platformBuildVersionName="13">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="44049" android:versionName="10.8.1" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.web" platformBuildVersionCode="33" platformBuildVersionName="13">
     <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="33"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
@@ -15,6 +15,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <permission android:name="org.telegram.messenger.web.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     <supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:resizeable="true" android:xlargeScreens="true"/>
     <uses-feature android:glEsVersion="0x20000" android:required="true"/>
     <uses-feature android:name="android.hardware.telephony" android:required="false"/>
@@ -46,7 +49,6 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
@@ -58,7 +60,6 @@
     <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"/>
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
@@ -106,6 +107,7 @@
                 <action android:name="com.google.android.gms.measurement.UPLOAD"/>
             </intent-filter>
         </receiver>
+        <receiver android:name="org.telegram.messenger.SMSResultService" android:exported="false"/>
         <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="false" android:exported="false"/>
         <service android:name="org.telegram.messenger.GoogleVoiceClientService" android:exported="true"/>
         <activity android:name="org.telegram.messenger.GoogleVoiceClientActivity" android:exported="true">

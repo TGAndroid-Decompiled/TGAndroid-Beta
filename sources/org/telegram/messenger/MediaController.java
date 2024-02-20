@@ -3567,14 +3567,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void lambda$toggleRecordingPause$31(final boolean z) {
-        if (this.recordingAudio == null || this.recordingAudioFile == null) {
+        AudioRecord audioRecord = this.audioRecorder;
+        if (audioRecord == null || this.recordingAudio == null || this.recordingAudioFile == null) {
             return;
         }
         boolean z2 = !this.audioRecorderPaused;
         this.audioRecorderPaused = z2;
         if (z2) {
             this.sendAfterDone = 4;
-            this.audioRecorder.stop();
+            audioRecord.stop();
             this.audioRecorder.release();
             this.audioRecorder = null;
             this.recordQueue.postRunnable(new Runnable() {
@@ -4373,12 +4374,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     inputStream.close();
                 } catch (Exception e2) {
                     FileLog.e(e2);
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
                 }
             } catch (Exception e3) {
                 FileLog.e(e3);
-                if (inputStream != null) {
-                    inputStream.close();
-                }
             }
             return false;
         } catch (Throwable th) {

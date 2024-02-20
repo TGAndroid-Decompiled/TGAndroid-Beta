@@ -293,9 +293,9 @@ public class TextCell extends FrameLayout {
         }
     }
 
-    public void setText(String str, boolean z) {
+    public void setText(CharSequence charSequence, boolean z) {
         this.imageLeft = 21;
-        this.textView.setText(str);
+        this.textView.setText(charSequence);
         this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;
@@ -365,6 +365,10 @@ public class TextCell extends FrameLayout {
         this.imageLeft = i;
     }
 
+    public void setTextAndValue(String str, String str2, boolean z) {
+        setTextAndValue(str, str2, false, z);
+    }
+
     public void setTextAndValue(String str, String str2, boolean z, boolean z2) {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
@@ -383,6 +387,12 @@ public class TextCell extends FrameLayout {
         if (r5 != null) {
             r5.setVisibility(8);
         }
+    }
+
+    public void setValue(String str, boolean z) {
+        AnimatedTextView animatedTextView = this.valueTextView;
+        this.valueText = str;
+        animatedTextView.setText(TextUtils.ellipsize(str, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END), z);
     }
 
     public void setTextAndValueAndColorfulIcon(String str, CharSequence charSequence, boolean z, int i, int i2, boolean z2) {

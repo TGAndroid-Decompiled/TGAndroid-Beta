@@ -70,6 +70,7 @@ public abstract class BaseFragment {
     protected int currentAccount = UserConfig.selectedAccount;
     protected boolean hasOwnBackground = false;
     protected boolean isPaused = true;
+    protected boolean inTransitionAnimation = false;
     protected int classGuid = ConnectionsManager.generateClassGuid();
 
     public static class BottomSheetParams {
@@ -176,9 +177,6 @@ public abstract class BaseFragment {
     }
 
     public void onSlideProgress(boolean z, float f) {
-    }
-
-    public void onTransitionAnimationEnd(boolean z, boolean z2) {
     }
 
     public void onTransitionAnimationProgress(boolean z, float f) {
@@ -644,9 +642,14 @@ public abstract class BaseFragment {
     }
 
     public void onTransitionAnimationStart(boolean z, boolean z2) {
+        this.inTransitionAnimation = true;
         if (z) {
             this.fragmentBeginToShow = true;
         }
+    }
+
+    public void onTransitionAnimationEnd(boolean z, boolean z2) {
+        this.inTransitionAnimation = false;
     }
 
     public void onBecomeFullyVisible() {

@@ -2905,6 +2905,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.pinnedInfoDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.topicsDidLoaded);
+        getNotificationCenter().removeObserver(this, NotificationCenter.chatWasBoostedByUser);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didApplyNewTheme);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.goingToPreviewTheme);
@@ -14204,6 +14205,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public boolean isSkeletonVisible() {
+        FrameLayout frameLayout;
         if (this.justCreatedTopic || this.justCreatedChat || this.currentUser != null || this.chatListView == null || !SharedConfig.animationsEnabled() || !getLiteModeChat()) {
             return false;
         }
@@ -14222,6 +14224,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         boolean[] zArr = this.endReached;
         boolean z = (!zArr[0] || (!(this.mergeDialogId == 0 || zArr[1]) || this.messages.isEmpty())) && this.loading && f > this.chatListViewPaddingTop && (!this.messages.isEmpty() ? i2 == 0 : !this.animateProgressViewTo);
+        if (z && this.inTransitionAnimation && (frameLayout = this.emptyViewContainer) != null && frameLayout.getVisibility() == 0 && this.emptyViewContainer.getChildCount() > 0) {
+            return false;
+        }
         if (!z && this.startMessageAppearTransitionMs == 0) {
             checkDispatchHideSkeletons(this.fragmentBeginToShow);
         }

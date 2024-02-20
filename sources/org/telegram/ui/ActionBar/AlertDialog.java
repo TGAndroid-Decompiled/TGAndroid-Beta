@@ -1510,6 +1510,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             return this;
         }
 
+        public Builder setTopImage(int i, int i2) {
+            this.alertDialog.topResId = i;
+            this.alertDialog.topBackgroundColor = i2;
+            return this;
+        }
+
         public Builder setTopView(View view) {
             this.alertDialog.topView = view;
             return this;

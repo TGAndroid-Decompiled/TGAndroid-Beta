@@ -539,7 +539,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                         }
 
                         @Override
-                        public boolean setImageBitmapByKey(Drawable drawable, String str2, int i2, boolean z2, int i3) {
+                        protected boolean setImageBitmapByKey(Drawable drawable, String str2, int i2, boolean z2, int i3) {
                             AnimatedEmojiDrawable.this.invalidate();
                             return super.setImageBitmapByKey(drawable, str2, i2, z2, i3);
                         }
@@ -1139,6 +1139,16 @@ public class AnimatedEmojiDrawable extends Drawable {
 
         public void set(TLRPC$Document tLRPC$Document, boolean z) {
             set(tLRPC$Document, this.cacheType, z);
+        }
+
+        public void removeOldDrawable() {
+            Drawable[] drawableArr = this.drawables;
+            if (drawableArr[1] != null) {
+                if (drawableArr[1] instanceof AnimatedEmojiDrawable) {
+                    ((AnimatedEmojiDrawable) drawableArr[1]).removeView(this);
+                }
+                this.drawables[1] = null;
+            }
         }
 
         public void set(TLRPC$Document tLRPC$Document, int i, boolean z) {

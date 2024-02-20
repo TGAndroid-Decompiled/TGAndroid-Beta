@@ -81,10 +81,10 @@ public class DrawerActionCell extends FrameLayout {
         this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
     }
 
-    public void setTextAndIcon(int i, String str, int i2) {
+    public void setTextAndIcon(int i, CharSequence charSequence, int i2) {
         this.currentId = i;
         try {
-            this.textView.setText(str);
+            this.textView.setText(charSequence);
             this.imageView.setImageResource(i2);
         } catch (Throwable th) {
             FileLog.e(th);

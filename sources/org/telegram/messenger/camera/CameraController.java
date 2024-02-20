@@ -779,8 +779,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     }
 
     public void lambda$recordVideo$14(Camera camera, CameraSession cameraSession, boolean z, File file, CameraInfo cameraInfo, VideoTakeCallback videoTakeCallback, Runnable runnable) {
-        try {
-            if (camera != null) {
+        if (camera != null) {
+            try {
                 try {
                     Camera.Parameters parameters = camera.getParameters();
                     parameters.setFlashMode(cameraSession.getCurrentFlashMode().equals("on") ? "torch" : "off");
@@ -817,9 +817,9 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                     this.recorder = null;
                     FileLog.e(e2);
                 }
+            } catch (Exception e3) {
+                FileLog.e(e3);
             }
-        } catch (Exception e3) {
-            FileLog.e(e3);
         }
     }
 

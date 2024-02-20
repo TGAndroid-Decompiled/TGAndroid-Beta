@@ -2419,13 +2419,17 @@ public class LocaleController {
     }
 
     public static String formatSmallDateChat(long j) {
+        return formatSmallDateChat(j, false);
+    }
+
+    public static String formatSmallDateChat(long j, boolean z) {
         try {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
             int i = calendar.get(1);
             long j2 = j * 1000;
             calendar.setTimeInMillis(j2);
-            if (i == calendar.get(1)) {
+            if (!z && i == calendar.get(1)) {
                 return getInstance().formatterDayMonth.format(j2);
             }
             return getInstance().formatterDayMonth.format(j2) + ", " + calendar.get(1);
