@@ -1,0 +1,11 @@
+.idea/*
+pbeta-test.iml
+sources/com/*
+sources/android/*
+sources/p008j$/
+sources/androidx/
+resources/META-INF/
+resources/fabric/
+resources/com
+sources/j$/
+.DS_Store
