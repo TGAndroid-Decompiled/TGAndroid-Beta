@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_action_text">#75ade5</color>
+    <color name="widget_divider">#000000</color>
+    <color name="widget_edit_text">#8d949b</color>
+    <color name="widget_name">#ffffff</color>
+    <color name="widget_text">#7e8b98</color>
+    <color name="widget_time">#74808b</color>
+</resources>

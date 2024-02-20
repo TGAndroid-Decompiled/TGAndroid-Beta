@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:ordering="together">
+    <objectAnimator android:interpolator="@drawable/res_0x7f080012_fingerprint_dialog_error_to_fp__17" android:duration="67" android:startOffset="0" android:valueFrom="1" android:valueTo="1.1" android:valueType="floatType" android:propertyName="scaleX"/>
+    <objectAnimator android:interpolator="@drawable/res_0x7f080013_fingerprint_dialog_error_to_fp__18" android:duration="67" android:startOffset="0" android:valueFrom="1" android:valueTo="1.1" android:valueType="floatType" android:propertyName="scaleY"/>
+    <objectAnimator android:interpolator="@drawable/res_0x7f080014_fingerprint_dialog_error_to_fp__19" android:duration="100" android:startOffset="67" android:valueFrom="1.1" android:valueTo="0" android:valueType="floatType" android:propertyName="scaleX"/>
+    <objectAnimator android:interpolator="@drawable/res_0x7f080016_fingerprint_dialog_error_to_fp__20" android:duration="100" android:startOffset="67" android:valueFrom="1.1" android:valueTo="0" android:valueType="floatType" android:propertyName="scaleY"/>
+</set>

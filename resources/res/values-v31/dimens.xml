@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_widget_background_corner_radius">@android:dimen/accessibility_magnification_indicator_width</dimen>
+</resources>

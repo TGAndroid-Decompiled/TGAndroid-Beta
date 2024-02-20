@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:theme="@style/Theme.TMessages.AppWidget" android:id="@+id/contacts_widget_item1" android:background="@drawable/list_selector_ex" android:layout_width="0dp" android:layout_height="86dp" android:layout_weight="0.5">
+    <ImageView android:gravity="start" android:layout_gravity="center" android:id="@+id/contacts_widget_item_avatar1" android:layout_width="48dp" android:layout_height="48dp" android:layout_marginBottom="10dp" android:src="?attr/widgetPreviewImage"/>
+    <TextView android:textSize="12dp" android:textColor="@color/widget_name" android:ellipsize="end" android:gravity="center" android:layout_gravity="center" android:id="@+id/contacts_widget_item_text1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="6dp" android:layout_marginTop="28dp" android:layout_marginRight="6dp" android:text="?attr/widgetPreviewTitle" android:singleLine="true"/>
+    <FrameLayout android:layout_gravity="center" android:id="@+id/contacts_widget_item_badge_bg1" android:background="@drawable/widgets_light_badgebg" android:padding="1dp" android:visibility="?attr/widgetPreviewDot" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="4dp" android:layout_marginBottom="27dp">
+        <TextView android:layout_gravity="center" android:id="@+id/contacts_widget_item_badge1" android:text="2" style="@style/TMessages.AppWidget.Badge"/>
+    </FrameLayout>
+</FrameLayout>
