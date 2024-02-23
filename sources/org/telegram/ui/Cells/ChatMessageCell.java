@@ -7225,10 +7225,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
         } else if (tLRPC$MessageFwdHeader != null && (tLRPC$MessageFwdHeader.from_id instanceof TLRPC$TL_peerUser) && (tLRPC$MessageFwdHeader.imported || this.currentMessageObject.getDialogId() == clientUserId)) {
             this.currentUser = messagesController.getUser(Long.valueOf(tLRPC$MessageFwdHeader.from_id.user_id));
-        } else if (tLRPC$MessageFwdHeader != null && !TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name) && (tLRPC$MessageFwdHeader.imported || this.currentMessageObject.getDialogId() == clientUserId)) {
+        } else if (tLRPC$MessageFwdHeader != null && !TextUtils.isEmpty(tLRPC$MessageFwdHeader.saved_from_name) && (tLRPC$MessageFwdHeader.imported || this.currentMessageObject.getDialogId() == clientUserId)) {
             TLRPC$TL_user tLRPC$TL_user = new TLRPC$TL_user();
             this.currentUser = tLRPC$TL_user;
-            tLRPC$TL_user.first_name = tLRPC$MessageFwdHeader.from_name;
+            tLRPC$TL_user.first_name = tLRPC$MessageFwdHeader.saved_from_name;
+        } else if (tLRPC$MessageFwdHeader != null && !TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name) && (tLRPC$MessageFwdHeader.imported || this.currentMessageObject.getDialogId() == clientUserId)) {
+            TLRPC$TL_user tLRPC$TL_user2 = new TLRPC$TL_user();
+            this.currentUser = tLRPC$TL_user2;
+            tLRPC$TL_user2.first_name = tLRPC$MessageFwdHeader.from_name;
         } else {
             long fromChatId = this.currentMessageObject.getFromChatId();
             if (DialogObject.isEncryptedDialog(this.currentMessageObject.getDialogId())) {

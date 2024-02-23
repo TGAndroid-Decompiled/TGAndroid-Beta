@@ -396,12 +396,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             throw null;
         }
 
-        public static SourceView fromAvatarImage(final ProfileActivity.AvatarImageView avatarImageView) {
+        public static SourceView fromAvatarImage(final ProfileActivity.AvatarImageView avatarImageView, boolean z) {
             if (avatarImageView == null || avatarImageView.getRootView() == null) {
                 return null;
             }
             float scaleX = ((View) avatarImageView.getParent()).getScaleX();
             float imageWidth = avatarImageView.getImageReceiver().getImageWidth() * scaleX;
+            float f = z ? 0.32f * imageWidth : imageWidth;
             SourceView sourceView = new SourceView() {
                 @Override
                 protected void show() {
@@ -425,7 +426,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             float imageY = iArr[1] + fArr[1] + (avatarImageView.getImageReceiver().getImageY() * scaleX);
             sourceView.screenRect.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
             sourceView.backgroundImageReceiver = avatarImageView.getImageReceiver();
-            sourceView.rounding = (imageWidth / 2.0f) * 2.0f;
+            sourceView.rounding = f;
             return sourceView;
         }
 

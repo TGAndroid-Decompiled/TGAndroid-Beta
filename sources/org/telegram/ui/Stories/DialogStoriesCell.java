@@ -937,6 +937,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             this.bounceScale = 1.0f;
             this.failT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
             avatarStoryParams.isArchive = DialogStoriesCell.this.type == 1;
+            avatarStoryParams.isDialogStoriesCell = true;
             this.avatarImage.setInvalidateAll(true);
             this.avatarImage.setAllowLoadingOnAttachedOnly(true);
             FrameLayout frameLayout = new FrameLayout(getContext());

@@ -330,8 +330,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             ((ViewGroup) this.premiumButtonView.getParent()).removeView(this.premiumButtonView);
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
             this.boostToUnlockGroupBtn = buttonWithCounterView;
-            buttonWithCounterView.setText(LocaleController.getString(R.string.BoostGroup), false);
-            this.boostToUnlockGroupBtn.withCounterIcon();
+            buttonWithCounterView.withCounterIcon();
+            this.boostToUnlockGroupBtn.setText(LocaleController.getString(R.string.BoostGroup), false);
             this.boostToUnlockGroupBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -393,7 +393,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         final Context context = frameLayout.getContext();
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
         this.boostMiniBtn = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.BoostBtn), false);
+        buttonWithCounterView.setFlickeringLoading(true);
+        this.boostMiniBtn.setText(LocaleController.getString(R.string.BoostBtn), false);
         this.boostMiniBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -796,7 +797,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     private boolean onBoostSuccess() {
-        NotificationCenter.getInstance(this.currentAccount).postNotificationNameOnUIThread(NotificationCenter.chatWasBoostedByUser, this.boostsStatus);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationNameOnUIThread(NotificationCenter.chatWasBoostedByUser, this.boostsStatus, this.canApplyBoost.copy(), Long.valueOf(this.dialogId));
         if (this.boostToUnlockGroupBtn != null) {
             int neededBoostsForUnlockGroup = getNeededBoostsForUnlockGroup();
             if (neededBoostsForUnlockGroup == 0) {

@@ -79,7 +79,7 @@ public final class BulletinFactory {
             createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text).show();
             return;
         }
-        createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError)).show();
+        createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
     }
 
     public static final class FileType {

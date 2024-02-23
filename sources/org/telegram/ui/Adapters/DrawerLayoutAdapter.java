@@ -280,6 +280,10 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 this.items.add(new Item(16, LocaleController.getString("ProfileMyStories", R.string.ProfileMyStories), R.drawable.msg_menu_stories));
                 z = true;
             }
+            ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
+            if (applicationLoader != null && applicationLoader.extendDrawer(this.items)) {
+                z = true;
+            }
             TLRPC$TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
             if (attachMenuBots != null && attachMenuBots.bots != null) {
                 boolean z2 = z;
@@ -316,6 +320,20 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             return 1;
         }
         return j < j2 ? -1 : 0;
+    }
+
+    public boolean click(View view, int i) {
+        Item item;
+        View.OnClickListener onClickListener;
+        int i2 = i - 2;
+        if (this.accountsShown) {
+            i2 -= getAccountRowsCount();
+        }
+        if (i2 < 0 || i2 >= this.items.size() || (item = this.items.get(i2)) == null || (onClickListener = item.listener) == null) {
+            return false;
+        }
+        onClickListener.onClick(view);
+        return true;
     }
 
     public int getId(int i) {
@@ -355,14 +373,16 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
 
     public static class Item {
         TLRPC$TL_attachMenuBot bot;
+        public boolean error;
         public int icon;
         public int id;
-        public String text;
+        View.OnClickListener listener;
+        public CharSequence text;
 
-        public Item(int i, String str, int i2) {
+        public Item(int i, CharSequence charSequence, int i2) {
             this.icon = i2;
             this.id = i;
-            this.text = str;
+            this.text = charSequence;
         }
 
         public Item(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
@@ -377,6 +397,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             } else {
                 drawerActionCell.setTextAndIcon(this.id, this.text, this.icon);
             }
+            drawerActionCell.setError(this.error);
         }
     }
 }

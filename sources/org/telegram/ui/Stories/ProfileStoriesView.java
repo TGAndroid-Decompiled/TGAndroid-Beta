@@ -6,8 +6,10 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -20,10 +22,12 @@ import androidx.annotation.Keep;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
@@ -54,8 +58,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private boolean expandRightPad;
     private final AnimatedFloat expandRightPadAnimated;
     private float expandY;
+    private final Matrix forumRoundRectMatrix;
+    private final Path forumRoundRectPath;
+    private final PathMeasure forumRoundRectPathMeasure;
+    private final Path forumSegmentPath;
     private float fragmentTransitionProgress;
     private final StoriesUtilities.StoryGradientTools gradientTools;
+    private final boolean isTopic;
     private StoriesController.UploadingStory lastUploadingStory;
     private float left;
     private StoryCircle mainCircle;
@@ -144,7 +153,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         }
     }
 
-    public ProfileStoriesView(Context context, int i, long j, View view, ProfileActivity.AvatarImageView avatarImageView, Theme.ResourcesProvider resourcesProvider) {
+    public ProfileStoriesView(Context context, int i, long j, boolean z, View view, ProfileActivity.AvatarImageView avatarImageView, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         Paint paint = new Paint(1);
         this.readPaint = paint;
@@ -168,6 +177,10 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.segmentsUnreadCountAnimated = new AnimatedFloat(this, 0L, 240L, cubicBezierInterpolator);
         this.progressToUploading = new AnimatedFloat(this, 0L, 150L, CubicBezierInterpolator.DEFAULT);
         this.newStoryBounceT = 1.0f;
+        this.forumRoundRectPath = new Path();
+        this.forumRoundRectMatrix = new Matrix();
+        this.forumRoundRectPathMeasure = new PathMeasure();
+        this.forumSegmentPath = new Path();
         this.expandRightPadAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.provider = new AnonymousClass3();
@@ -179,6 +192,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         };
         this.currentAccount = i;
         this.dialogId = j;
+        this.isTopic = z;
         this.avatarContainer = view;
         this.avatarImage = avatarImageView;
         this.storiesController = MessagesController.getInstance(i).getStoriesController();
@@ -294,7 +308,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r30) {
+    protected void dispatchDraw(android.graphics.Canvas r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.ProfileStoriesView.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -377,12 +391,38 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         return null;
     }
 
+    private void drawArc(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {
+        if (ChatObject.isForum(UserConfig.selectedAccount, this.dialogId)) {
+            float height = rectF.height() * 0.32f;
+            if (Math.abs(f2) == 360.0f) {
+                canvas.drawRoundRect(rectF, height, height, paint);
+                return;
+            }
+            float f3 = f + f2;
+            float f4 = (((int) f3) / 90) * 90;
+            float f5 = (-199.0f) + f4;
+            this.forumRoundRectPath.rewind();
+            this.forumRoundRectPath.addRoundRect(rectF, height, height, Path.Direction.CW);
+            this.forumRoundRectMatrix.reset();
+            this.forumRoundRectMatrix.postRotate(f4, rectF.centerX(), rectF.centerY());
+            this.forumRoundRectPath.transform(this.forumRoundRectMatrix);
+            this.forumRoundRectPathMeasure.setPath(this.forumRoundRectPath, false);
+            float length = this.forumRoundRectPathMeasure.getLength();
+            this.forumSegmentPath.reset();
+            this.forumRoundRectPathMeasure.getSegment(((f3 - f5) / 360.0f) * length, length * (((f3 - f2) - f5) / 360.0f), this.forumSegmentPath, true);
+            this.forumSegmentPath.rLineTo(0.0f, 0.0f);
+            canvas.drawPath(this.forumSegmentPath, paint);
+            return;
+        }
+        canvas.drawArc(rectF, f, f2, z, paint);
+    }
+
     private void drawArcs(Canvas canvas, StoryCircle storyCircle, StoryCircle storyCircle2, StoryCircle storyCircle3, Paint paint) {
         double degrees;
         double degrees2;
         StoryCircle storyCircle4 = storyCircle;
         if (storyCircle4 == null && storyCircle3 == null) {
-            canvas.drawArc(storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
+            drawArc(canvas, storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
         } else if (storyCircle4 == null || storyCircle3 == null) {
             if (storyCircle4 == null && storyCircle3 == null) {
                 return;
@@ -395,13 +435,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             float centerX2 = storyCircle2.borderRect.centerX();
             float width2 = storyCircle2.borderRect.width() / 2.0f;
             if (Math.abs(centerX - centerX2) > width + width2) {
-                canvas.drawArc(storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
+                drawArc(canvas, storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
             } else if (centerX > centerX2) {
                 float degrees3 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX - width) + (centerX2 + width2)) / 2.0f) - centerX2) / width2));
-                canvas.drawArc(storyCircle2.borderRect, degrees3, 360.0f - (2.0f * degrees3), false, paint);
+                drawArc(canvas, storyCircle2.borderRect, degrees3, 360.0f - (2.0f * degrees3), false, paint);
             } else {
                 float degrees4 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX + width) + (centerX2 - width2)) / 2.0f) - centerX2) / width2));
-                canvas.drawArc(storyCircle2.borderRect, degrees4 + 180.0f, 360.0f - (degrees4 * 2.0f), false, paint);
+                drawArc(canvas, storyCircle2.borderRect, degrees4 + 180.0f, 360.0f - (degrees4 * 2.0f), false, paint);
             }
         } else {
             float centerX3 = storyCircle4.borderRect.centerX();
@@ -426,16 +466,16 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             float f2 = (float) degrees2;
             if (z && z2) {
                 float max = Math.max(f, f2);
-                canvas.drawArc(storyCircle2.borderRect, max, 360.0f - (2.0f * max), false, paint);
+                drawArc(canvas, storyCircle2.borderRect, max, 360.0f - (2.0f * max), false, paint);
             } else if (z) {
-                canvas.drawArc(storyCircle2.borderRect, f2 + 180.0f, 180.0f - (f + f2), false, paint);
-                canvas.drawArc(storyCircle2.borderRect, f, (180.0f - f2) - f, false, paint);
+                drawArc(canvas, storyCircle2.borderRect, f2 + 180.0f, 180.0f - (f + f2), false, paint);
+                drawArc(canvas, storyCircle2.borderRect, f, (180.0f - f2) - f, false, paint);
             } else if (z2) {
-                canvas.drawArc(storyCircle2.borderRect, f + 180.0f, 180.0f - (f2 + f), false, paint);
-                canvas.drawArc(storyCircle2.borderRect, f2, (180.0f - f2) - f, false, paint);
+                drawArc(canvas, storyCircle2.borderRect, f + 180.0f, 180.0f - (f2 + f), false, paint);
+                drawArc(canvas, storyCircle2.borderRect, f2, (180.0f - f2) - f, false, paint);
             } else {
                 float max2 = Math.max(f, f2);
-                canvas.drawArc(storyCircle2.borderRect, max2 + 180.0f, 360.0f - (max2 * 2.0f), false, paint);
+                drawArc(canvas, storyCircle2.borderRect, max2 + 180.0f, 360.0f - (max2 * 2.0f), false, paint);
             }
         }
     }
@@ -518,6 +558,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 transitionViewHolder.clipBottom = AndroidUtilities.displaySize.y;
                 transitionViewHolder.clipParent = (View) ProfileStoriesView.this.getParent();
                 transitionViewHolder.radialProgressUpload = ProfileStoriesView.this.radialProgress;
+                transitionViewHolder.checkParentScale = true;
                 return true;
             }
             int i4 = 0;

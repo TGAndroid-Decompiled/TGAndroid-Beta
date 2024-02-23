@@ -6,6 +6,7 @@ import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -68,6 +69,8 @@ import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$contacts_Contacts;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.Components.Bulletin;
 public class ContactsController extends BaseController {
     private static volatile ContactsController[] Instance = new ContactsController[4];
     public static final int PRIVACY_RULES_TYPE_ADDED_BY_PHONE = 7;
@@ -2143,6 +2146,60 @@ public class ContactsController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsDidLoad, new Object[0]);
     }
 
+    public void deleteContactsUndoable(Context context, BaseFragment baseFragment, final ArrayList<TLRPC$User> arrayList) {
+        if (arrayList == null || arrayList.isEmpty()) {
+            return;
+        }
+        final HashMap hashMap = new HashMap();
+        int size = arrayList.size();
+        for (int i = 0; i < size; i++) {
+            TLRPC$User tLRPC$User = arrayList.get(i);
+            TLRPC$TL_contact tLRPC$TL_contact = this.contactsDict.get(Long.valueOf(tLRPC$User.id));
+            tLRPC$User.contact = false;
+            this.contacts.remove(tLRPC$TL_contact);
+            this.contactsDict.remove(Long.valueOf(tLRPC$User.id));
+            hashMap.put(tLRPC$User, tLRPC$TL_contact);
+        }
+        buildContactsSectionsArrays(false);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsDidLoad, new Object[0]);
+        Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(context, baseFragment.getResourceProvider());
+        simpleLayout.setTimer();
+        simpleLayout.textView.setText(LocaleController.formatPluralString("ContactsDeletedUndo", hashMap.size(), new Object[0]));
+        Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, true, true, baseFragment.getResourceProvider());
+        undoButton.setUndoAction(new Runnable() {
+            @Override
+            public final void run() {
+                ContactsController.this.lambda$deleteContactsUndoable$52(hashMap);
+            }
+        });
+        undoButton.setDelayedAction(new Runnable() {
+            @Override
+            public final void run() {
+                ContactsController.this.lambda$deleteContactsUndoable$53(arrayList);
+            }
+        });
+        simpleLayout.setButton(undoButton);
+        Bulletin.make(baseFragment, simpleLayout, 5000).show();
+    }
+
+    public void lambda$deleteContactsUndoable$52(HashMap hashMap) {
+        for (Map.Entry entry : hashMap.entrySet()) {
+            TLRPC$User tLRPC$User = (TLRPC$User) entry.getKey();
+            TLRPC$TL_contact tLRPC$TL_contact = (TLRPC$TL_contact) entry.getValue();
+            tLRPC$User.contact = true;
+            this.contacts.add(tLRPC$TL_contact);
+            this.contactsDict.put(Long.valueOf(tLRPC$User.id), tLRPC$TL_contact);
+        }
+        buildContactsSectionsArrays(true);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsDidLoad, new Object[0]);
+    }
+
+    public void lambda$deleteContactsUndoable$53(ArrayList arrayList) {
+        deleteContact(arrayList, false);
+    }
+
     public void deleteContact(final ArrayList<TLRPC$User> arrayList, final boolean z) {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
@@ -2164,12 +2221,12 @@ public class ContactsController extends BaseController {
         getConnectionsManager().sendRequest(tLRPC$TL_contacts_deleteContacts, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ContactsController.this.lambda$deleteContact$54(arrayList2, arrayList, z, str, tLObject, tLRPC$TL_error);
+                ContactsController.this.lambda$deleteContact$56(arrayList2, arrayList, z, str, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$deleteContact$54(ArrayList arrayList, final ArrayList arrayList2, final boolean z, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$deleteContact$56(ArrayList arrayList, final ArrayList arrayList2, final boolean z, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         int indexOf;
         if (tLRPC$TL_error != null) {
             return;
@@ -2179,7 +2236,7 @@ public class ContactsController extends BaseController {
         Utilities.phoneBookQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.this.lambda$deleteContact$52(arrayList2);
+                ContactsController.this.lambda$deleteContact$54(arrayList2);
             }
         });
         for (int i = 0; i < arrayList2.size(); i++) {
@@ -2195,19 +2252,19 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.this.lambda$deleteContact$53(arrayList2, z, str);
+                ContactsController.this.lambda$deleteContact$55(arrayList2, z, str);
             }
         });
     }
 
-    public void lambda$deleteContact$52(ArrayList arrayList) {
+    public void lambda$deleteContact$54(ArrayList arrayList) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             deleteContactFromPhoneBook(((TLRPC$User) it.next()).id);
         }
     }
 
-    public void lambda$deleteContact$53(ArrayList arrayList, boolean z, String str) {
+    public void lambda$deleteContact$55(ArrayList arrayList, boolean z, String str) {
         Iterator it = arrayList.iterator();
         boolean z2 = false;
         while (it.hasNext()) {
@@ -2256,23 +2313,23 @@ public class ContactsController extends BaseController {
         }, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ContactsController.this.lambda$reloadContactsStatuses$56(edit, tLObject, tLRPC$TL_error);
+                ContactsController.this.lambda$reloadContactsStatuses$58(edit, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$reloadContactsStatuses$56(final SharedPreferences.Editor editor, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$reloadContactsStatuses$58(final SharedPreferences.Editor editor, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ContactsController.this.lambda$reloadContactsStatuses$55(editor, tLObject);
+                    ContactsController.this.lambda$reloadContactsStatuses$57(editor, tLObject);
                 }
             });
         }
     }
 
-    public void lambda$reloadContactsStatuses$55(SharedPreferences.Editor editor, TLObject tLObject) {
+    public void lambda$reloadContactsStatuses$57(SharedPreferences.Editor editor, TLObject tLObject) {
         editor.remove("needGetStatuses").commit();
         TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
         if (!tLRPC$Vector.objects.isEmpty()) {
@@ -2320,22 +2377,22 @@ public class ContactsController extends BaseController {
             }, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ContactsController.this.lambda$loadGlobalPrivacySetting$58(tLObject, tLRPC$TL_error);
+                    ContactsController.this.lambda$loadGlobalPrivacySetting$60(tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$loadGlobalPrivacySetting$58(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadGlobalPrivacySetting$60(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.this.lambda$loadGlobalPrivacySetting$57(tLRPC$TL_error, tLObject);
+                ContactsController.this.lambda$loadGlobalPrivacySetting$59(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadGlobalPrivacySetting$57(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$loadGlobalPrivacySetting$59(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error == null) {
             this.globalPrivacySettings = (TLRPC$TL_globalPrivacySettings) tLObject;
             this.loadingGlobalSettings = 2;
@@ -2361,7 +2418,7 @@ public class ContactsController extends BaseController {
             }, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ContactsController.this.lambda$loadPrivacySettings$60(tLObject, tLRPC$TL_error);
+                    ContactsController.this.lambda$loadPrivacySettings$62(tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -2409,7 +2466,7 @@ public class ContactsController extends BaseController {
                     getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            ContactsController.this.lambda$loadPrivacySettings$62(i, tLObject, tLRPC$TL_error);
+                            ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -2421,16 +2478,16 @@ public class ContactsController extends BaseController {
         }
     }
 
-    public void lambda$loadPrivacySettings$60(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadPrivacySettings$62(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.this.lambda$loadPrivacySettings$59(tLRPC$TL_error, tLObject);
+                ContactsController.this.lambda$loadPrivacySettings$61(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadPrivacySettings$59(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$loadPrivacySettings$61(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error == null) {
             this.deleteAccountTTL = ((TLRPC$TL_accountDaysTTL) tLObject).days;
             this.loadingDeleteInfo = 2;
@@ -2440,16 +2497,16 @@ public class ContactsController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);
     }
 
-    public void lambda$loadPrivacySettings$62(final int i, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadPrivacySettings$64(final int i, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.this.lambda$loadPrivacySettings$61(tLRPC$TL_error, tLObject, i);
+                ContactsController.this.lambda$loadPrivacySettings$63(tLRPC$TL_error, tLObject, i);
             }
         });
     }
 
-    public void lambda$loadPrivacySettings$61(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i) {
+    public void lambda$loadPrivacySettings$63(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i) {
         if (tLRPC$TL_error == null) {
             TLRPC$TL_account_privacyRules tLRPC$TL_account_privacyRules = (TLRPC$TL_account_privacyRules) tLObject;
             getMessagesController().putUsers(tLRPC$TL_account_privacyRules.users, false);

@@ -17,7 +17,6 @@ import android.media.ImageReader;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.util.Log;
 import android.view.Surface;
 import java.io.File;
 import java.util.ArrayList;
@@ -196,7 +195,6 @@ public class Camera2Session {
         @Override
         public void onOpened(CameraDevice cameraDevice) {
             Camera2Session.this.cameraDevice = cameraDevice;
-            Log.i("lolkek", "open camera took " + (System.currentTimeMillis() - Camera2Session.this.lastTime));
             Camera2Session.this.lastTime = System.currentTimeMillis();
             FileLog.d("Camera2Session camera #" + this.val$cameraId + " opened");
             Camera2Session.this.checkOpen();
@@ -236,10 +234,6 @@ public class Camera2Session {
         public void onConfigured(CameraCaptureSession cameraCaptureSession) {
             Camera2Session.this.captureSession = cameraCaptureSession;
             FileLog.e("Camera2Session camera #" + this.val$cameraId + " capture session configured");
-            StringBuilder sb = new StringBuilder();
-            sb.append("configure capture took ");
-            sb.append(System.currentTimeMillis() - Camera2Session.this.lastTime);
-            Log.i("lolkek", sb.toString());
             Camera2Session.this.lastTime = System.currentTimeMillis();
             try {
                 Camera2Session.this.updateCaptureRequest();
@@ -343,7 +337,6 @@ public class Camera2Session {
         if (!isInitiated() || this.captureRequestBuilder == null || this.cameraDevice == null || this.sensorSize == null) {
             return;
         }
-        Log.i("lolkek", "camera2session setZoom(" + f + "), maxZoom = " + this.maxZoom);
         this.currentZoom = Utilities.clamp(f, this.maxZoom, 1.0f);
         updateCaptureRequest();
         try {

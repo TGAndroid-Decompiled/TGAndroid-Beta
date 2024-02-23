@@ -351,7 +351,11 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         if (billingResult.getResponseCode() == 0) {
             this.isDisconnected = false;
             this.triesLeft = 3;
-            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+            try {
+                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
             queryPurchases("inapp", new PurchasesResponseListener() {
                 @Override
                 public final void onQueryPurchasesResponse(BillingResult billingResult2, List list) {
@@ -390,7 +394,20 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         int i = this.triesLeft - 1;
         this.triesLeft = i;
         if (i > 0) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    BillingController.this.lambda$onQueriedPremiumProductDetails$6();
+                }
+            }, i == 2 ? 1000L : 10000L);
+        }
+    }
+
+    public void lambda$onQueriedPremiumProductDetails$6() {
+        try {
             queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

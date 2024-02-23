@@ -1030,6 +1030,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         boolean z2 = ((float) (emojiCell.getTop() + emojiCell.getHeight())) > ((float) this.listView.getMeasuredHeight()) / 2.0f;
         int min = (int) Math.min(AndroidUtilities.dp(330.0f), AndroidUtilities.displaySize.y * 0.75f);
         int min2 = (int) Math.min(AndroidUtilities.dp(324.0f), AndroidUtilities.displaySize.x * 0.95f);
+        emojiCell.imageDrawable.removeOldDrawable();
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = emojiCell.imageDrawable;
         if (emojiCell.imageDrawable != null) {
             emojiCell.imageDrawable.play();
@@ -1597,7 +1598,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.infoLayout = linearLayout;
                 linearLayout.setOrientation(0);
-                this.infoLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.multAlpha(-16777216, 0.15f), Theme.multAlpha(-16777216, 0.35f)));
+                this.infoLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.multAlpha(-16777216, 0.065f), -16777216));
                 this.infoLayout.setGravity(17);
                 this.infoLayout.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                 TextView textView = new TextView(context);
@@ -2671,7 +2672,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatWasBoostedByUser) {
-            updateBoostsAndLevels((TL_stories$TL_premium_boostsStatus) objArr[0]);
+            if (this.dialogId == ((Long) objArr[2]).longValue()) {
+                updateBoostsAndLevels((TL_stories$TL_premium_boostsStatus) objArr[0]);
+            }
         } else if (i != NotificationCenter.boostByChannelCreated || ((Boolean) objArr[1]).booleanValue()) {
         } else {
             getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {

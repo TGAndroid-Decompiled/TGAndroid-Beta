@@ -25,6 +25,7 @@ import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Loadable;
+import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private float countAlpha;
@@ -38,6 +39,8 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private ValueAnimator enabledAnimator;
     private float enabledT;
     private final boolean filled;
+    private boolean flickeringLoading;
+    private LoadingDrawable flickeringLoadingDrawable;
     private int globalAlpha;
     private int lastCount;
     private boolean loading;
@@ -123,6 +126,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         animatedTextDrawable3.setText("");
         animatedTextDrawable3.setGravity(1);
         setWillNotDraw(false);
+    }
+
+    public void setColor(int i) {
+        if (this.filled) {
+            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), i));
+        }
     }
 
     public void updateColors() {
@@ -266,6 +275,11 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     @Override
     public void setLoading(final boolean z) {
         if (this.loading != z) {
+            if (this.flickeringLoading) {
+                this.loading = z;
+                invalidate();
+                return;
+            }
             ValueAnimator valueAnimator = this.loadingAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -299,6 +313,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     public void lambda$setLoading$3(ValueAnimator valueAnimator) {
         this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
+    }
+
+    public void setFlickeringLoading(boolean z) {
+        this.flickeringLoading = z;
     }
 
     @Override
@@ -393,14 +411,45 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     @Override
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        return this.text == drawable || this.subText == drawable || this.countText == drawable || super.verifyDrawable(drawable);
+        return this.flickeringLoadingDrawable == drawable || this.text == drawable || this.subText == drawable || this.countText == drawable || super.verifyDrawable(drawable);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         boolean z;
         this.rippleView.draw(canvas);
+        if (this.flickeringLoading) {
+            if (this.loading) {
+                if (this.flickeringLoadingDrawable == null) {
+                    LoadingDrawable loadingDrawable = new LoadingDrawable(this.resourcesProvider);
+                    this.flickeringLoadingDrawable = loadingDrawable;
+                    loadingDrawable.setCallback(this);
+                    this.flickeringLoadingDrawable.setGradientScale(2.0f);
+                    this.flickeringLoadingDrawable.setAppearByGradient(true);
+                    this.flickeringLoadingDrawable.strokePaint.setStrokeWidth(0.0f);
+                    this.flickeringLoadingDrawable.setColors(Theme.multAlpha(-1, 0.02f), Theme.multAlpha(-1, 0.375f));
+                }
+                this.flickeringLoadingDrawable.resetDisappear();
+                this.flickeringLoadingDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                this.flickeringLoadingDrawable.setRadiiDp(8.0f);
+                this.flickeringLoadingDrawable.draw(canvas);
+            } else {
+                LoadingDrawable loadingDrawable2 = this.flickeringLoadingDrawable;
+                if (loadingDrawable2 != null) {
+                    loadingDrawable2.disappear();
+                    this.flickeringLoadingDrawable.draw(canvas);
+                    if (this.flickeringLoadingDrawable.isDisappeared()) {
+                        this.flickeringLoadingDrawable.reset();
+                    }
+                }
+            }
+        }
         if (this.loadingT > 0.0f) {
             if (this.loadingDrawable == null) {
                 this.loadingDrawable = new CircularProgressDrawable(this.text.getTextColor());

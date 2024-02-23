@@ -1,12 +1,14 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.tl.TL_stories$TL_updateReadStories;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStoriesStealthMode;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
 public abstract class TLRPC$Update extends TLObject {
     public static TLRPC$Update TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Update tLRPC$TL_updateTheme;
+        ApplicationLoader applicationLoader;
         switch (i) {
             case -2112423005:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateTheme();
@@ -626,6 +628,9 @@ public abstract class TLRPC$Update extends TLObject {
             default:
                 tLRPC$TL_updateTheme = null;
                 break;
+        }
+        if (tLRPC$TL_updateTheme == null && (applicationLoader = ApplicationLoader.applicationLoaderInstance) != null) {
+            tLRPC$TL_updateTheme = applicationLoader.parseTLUpdate(i);
         }
         if (tLRPC$TL_updateTheme == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in Update", Integer.valueOf(i)));

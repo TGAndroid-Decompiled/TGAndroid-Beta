@@ -5388,7 +5388,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
             TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
             if (tL_stories$StoryItem != null && (tLRPC$MessageMedia = tL_stories$StoryItem.media) != null && tLRPC$MessageMedia.getDocument() != null) {
-                return MessageObject.isVideoDocument(this.storyItem.media.getDocument());
+                TLRPC$Document document = this.storyItem.media.getDocument();
+                return MessageObject.isVideoDocument(document) || "video/mp4".equals(document.mime_type);
             }
             TL_stories$StoryItem tL_stories$StoryItem2 = this.storyItem;
             if (tL_stories$StoryItem2 == null || tL_stories$StoryItem2.media != null || (str = tL_stories$StoryItem2.attachPath) == null) {

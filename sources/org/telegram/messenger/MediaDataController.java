@@ -9060,7 +9060,7 @@ public class MediaDataController extends BaseController {
         runnable2.run();
     }
 
-    public void lambda$fillWithAnimatedEmoji$216(java.lang.Integer r22, java.util.ArrayList r23, boolean r24, boolean r25, java.util.ArrayList[] r26, java.lang.Runnable r27) {
+    public void lambda$fillWithAnimatedEmoji$216(java.lang.Integer r23, java.util.ArrayList r24, boolean r25, boolean r26, java.util.ArrayList[] r27, java.lang.Runnable r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fillWithAnimatedEmoji$216(java.lang.Integer, java.util.ArrayList, boolean, boolean, java.util.ArrayList[], java.lang.Runnable):void");
     }
 

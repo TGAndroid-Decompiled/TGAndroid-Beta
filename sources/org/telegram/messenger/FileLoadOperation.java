@@ -877,11 +877,11 @@ public class FileLoadOperation {
         return start(this.stream, this.streamOffset, this.streamPriority);
     }
 
-    public boolean start(org.telegram.messenger.FileLoadOperationStream r29, final long r30, final boolean r32) {
+    public boolean start(final org.telegram.messenger.FileLoadOperationStream r29, final long r30, final boolean r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.start(org.telegram.messenger.FileLoadOperationStream, long, boolean):boolean");
     }
 
-    public void lambda$start$7(boolean z, long j, boolean z2) {
+    public void lambda$start$7(boolean z, long j, FileLoadOperationStream fileLoadOperationStream, boolean z2) {
         if (this.streamListeners == null) {
             this.streamListeners = new ArrayList<>();
         }
@@ -908,6 +908,9 @@ public class FileLoadOperation {
         } else {
             int i2 = this.currentDownloadChunkSize;
             this.streamStartOffset = (j / i2) * i2;
+        }
+        if (!this.streamListeners.contains(fileLoadOperationStream)) {
+            this.streamListeners.add(fileLoadOperationStream);
         }
         if (z2) {
             if (this.preloadedBytesRanges != null && getDownloadedLengthFromOffsetInternal(this.notLoadedBytesRanges, this.streamStartOffset, 1L) == 0 && this.preloadedBytesRanges.get(Long.valueOf(this.streamStartOffset)) != null) {
