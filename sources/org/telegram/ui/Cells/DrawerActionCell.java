@@ -26,6 +26,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.FilterCreateActivity;
 public class DrawerActionCell extends FrameLayout {
+    private boolean currentError;
     private int currentId;
     private BackupImageView imageView;
     private RectF rect;
@@ -50,23 +51,28 @@ public class DrawerActionCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        boolean z;
         int dp;
         int measuredWidth;
         super.onDraw(canvas);
-        if (this.currentId == 8) {
+        boolean z2 = this.currentError;
+        if (z2 || this.currentId != 8) {
+            z = z2;
+        } else {
             Set<String> set = MessagesController.getInstance(UserConfig.selectedAccount).pendingSuggestions;
-            if (set.contains("VALIDATE_PHONE_NUMBER") || set.contains("VALIDATE_PASSWORD")) {
-                int dp2 = AndroidUtilities.dp(12.5f);
-                this.rect.set(((getMeasuredWidth() - AndroidUtilities.dp(9.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, measuredWidth + dp + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
-                Theme.chat_docBackPaint.setColor(Theme.getColor(Theme.key_chats_archiveBackground));
-                RectF rectF = this.rect;
-                float f = AndroidUtilities.density;
-                canvas.drawRoundRect(rectF, f * 11.5f, f * 11.5f, Theme.chat_docBackPaint);
-                float intrinsicWidth = Theme.dialogs_errorDrawable.getIntrinsicWidth() / 2;
-                float intrinsicHeight = Theme.dialogs_errorDrawable.getIntrinsicHeight() / 2;
-                Theme.dialogs_errorDrawable.setBounds((int) (this.rect.centerX() - intrinsicWidth), (int) (this.rect.centerY() - intrinsicHeight), (int) (this.rect.centerX() + intrinsicWidth), (int) (this.rect.centerY() + intrinsicHeight));
-                Theme.dialogs_errorDrawable.draw(canvas);
-            }
+            z = set.contains("VALIDATE_PHONE_NUMBER") || set.contains("VALIDATE_PASSWORD");
+        }
+        if (z) {
+            int dp2 = AndroidUtilities.dp(12.5f);
+            this.rect.set(((getMeasuredWidth() - AndroidUtilities.dp(9.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, measuredWidth + dp + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
+            Theme.chat_docBackPaint.setColor(Theme.getColor(z2 ? Theme.key_text_RedBold : Theme.key_chats_archiveBackground));
+            RectF rectF = this.rect;
+            float f = AndroidUtilities.density;
+            canvas.drawRoundRect(rectF, f * 11.5f, f * 11.5f, Theme.chat_docBackPaint);
+            float intrinsicWidth = Theme.dialogs_errorDrawable.getIntrinsicWidth() / 2;
+            float intrinsicHeight = Theme.dialogs_errorDrawable.getIntrinsicHeight() / 2;
+            Theme.dialogs_errorDrawable.setBounds((int) (this.rect.centerX() - intrinsicWidth), (int) (this.rect.centerY() - intrinsicHeight), (int) (this.rect.centerX() + intrinsicWidth), (int) (this.rect.centerY() + intrinsicHeight));
+            Theme.dialogs_errorDrawable.draw(canvas);
         }
     }
 
@@ -79,6 +85,11 @@ public class DrawerActionCell extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
+    }
+
+    public void setError(boolean z) {
+        this.currentError = z;
+        invalidate();
     }
 
     public void setTextAndIcon(int i, CharSequence charSequence, int i2) {

@@ -42,7 +42,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoriesController;
 public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
-    private LongSparseArray<?> checkedMap;
     DialogStoriesCell dialogStoriesCell;
     private boolean disableSections;
     BaseFragment fragment;
@@ -56,7 +55,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     private boolean needPhonebook;
     private ArrayList<TLRPC$TL_contact> onlineContacts;
     private int onlyUsers;
-    private boolean scrolling;
+    private LongSparseArray<TLRPC$User> selectedContacts;
     private int sortType;
     private int currentAccount = UserConfig.selectedAccount;
     public ArrayList<TL_stories$PeerStories> userStories = new ArrayList<>();
@@ -67,11 +66,12 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     public void setStories(ArrayList<TL_stories$PeerStories> arrayList, boolean z) {
     }
 
-    public ContactsAdapter(Context context, BaseFragment baseFragment, int i, boolean z, LongSparseArray<TLRPC$User> longSparseArray, int i2, boolean z2) {
+    public ContactsAdapter(Context context, BaseFragment baseFragment, int i, boolean z, LongSparseArray<TLRPC$User> longSparseArray, LongSparseArray<TLRPC$User> longSparseArray2, int i2, boolean z2) {
         this.mContext = context;
         this.onlyUsers = i;
         this.needPhonebook = z;
         this.ignoreUsers = longSparseArray;
+        this.selectedContacts = longSparseArray2;
         this.isAdmin = i2 != 0;
         this.isChannel = i2 == 2;
         this.hasGps = z2;
@@ -460,13 +460,10 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             }
             TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList.get(i2).user_id));
             userCell2.setData(user2, null, null, 0);
-            LongSparseArray<?> longSparseArray = this.checkedMap;
+            userCell2.setChecked(this.selectedContacts.indexOfKey(user2.id) >= 0, false);
+            LongSparseArray<TLRPC$User> longSparseArray = this.ignoreUsers;
             if (longSparseArray != null) {
-                userCell2.setChecked(longSparseArray.indexOfKey(user2.id) >= 0, !this.scrolling);
-            }
-            LongSparseArray<TLRPC$User> longSparseArray2 = this.ignoreUsers;
-            if (longSparseArray2 != null) {
-                if (longSparseArray2.indexOfKey(user2.id) >= 0) {
+                if (longSparseArray.indexOfKey(user2.id) >= 0) {
                     userCell2.setAlpha(0.5f);
                 } else {
                     userCell2.setAlpha(1.0f);

@@ -43,7 +43,6 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     private boolean allowSelf;
     private boolean allowUsernameSearch;
     private long channelId;
-    private LongSparseArray<?> checkedMap;
     private LongSparseArray<TLRPC$User> ignoreUsers;
     private Context mContext;
     private boolean onlyMutual;
@@ -52,6 +51,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     private int searchPointer;
     private int searchReqId;
     private Timer searchTimer;
+    private LongSparseArray<TLRPC$User> selectedUsers;
     int unregistredContactsHeaderRow;
     private boolean useUserCell;
     private ArrayList<Object> searchResult = new ArrayList<>();
@@ -62,9 +62,10 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         throw null;
     }
 
-    public SearchAdapter(Context context, LongSparseArray<TLRPC$User> longSparseArray, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, int i) {
+    public SearchAdapter(Context context, LongSparseArray<TLRPC$User> longSparseArray, LongSparseArray<TLRPC$User> longSparseArray2, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, int i) {
         this.mContext = context;
         this.ignoreUsers = longSparseArray;
+        this.selectedUsers = longSparseArray2;
         this.onlyMutual = z2;
         this.allowUsernameSearch = z;
         this.allowChats = z3;
@@ -383,11 +384,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 profileSearchCell = new ProfileSearchCell(this.mContext);
             }
         } else if (this.useUserCell) {
-            UserCell userCell = new UserCell(this.mContext, 1, 1, false);
-            if (this.checkedMap != null) {
-                userCell.setChecked(false, false);
-            }
-            profileSearchCell = userCell;
+            profileSearchCell = new UserCell(this.mContext, 1, 1, false);
         } else {
             profileSearchCell = new ProfileSearchCell(this.mContext);
         }
@@ -401,7 +398,6 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         String str;
         CharSequence charSequence;
         int itemViewType = viewHolder.getItemViewType();
-        boolean z2 = false;
         if (itemViewType != 0) {
             if (itemViewType == 1) {
                 GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
@@ -436,8 +432,9 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
                 str = tLRPC$User.username;
-                j = tLRPC$User.id;
+                long j2 = tLRPC$User.id;
                 z = tLRPC$User.self;
+                j = j2;
             } else if (tLObject instanceof TLRPC$Chat) {
                 TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
                 str = ChatObject.getPublicUsername(tLRPC$Chat);
@@ -491,19 +488,13 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             if (this.useUserCell) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 userCell.setData(tLObject, charSequence2, charSequence, 0);
-                LongSparseArray<?> longSparseArray = this.checkedMap;
-                if (longSparseArray != null) {
-                    userCell.setChecked(longSparseArray.indexOfKey(j) >= 0, false);
-                    return;
-                }
+                userCell.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
                 return;
             }
             ProfileSearchCell profileSearchCell2 = (ProfileSearchCell) viewHolder.itemView;
             profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : charSequence2, charSequence, false, z);
-            if (i != getItemCount() - 1 && i != this.searchResult.size() - 1) {
-                z2 = true;
-            }
-            profileSearchCell2.useSeparator = z2;
+            profileSearchCell2.useSeparator = (i == getItemCount() - 1 || i == this.searchResult.size() - 1) ? false : true;
+            profileSearchCell2.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
         }
     }
 

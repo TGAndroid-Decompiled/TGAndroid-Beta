@@ -30,6 +30,7 @@ import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 public class AvatarDrawable extends Drawable {
+    public static final int[][] advancedGradients = {new int[]{-636796, -1090751, -612560, -35006}, new int[]{-693938, -690388, -11246, -22717}, new int[]{-8160001, -5217281, -36183, -1938945}, new int[]{-16133536, -10560448, -4070106, -8331477}, new int[]{-10569989, -14692629, -12191817, -14683687}, new int[]{-11694593, -13910017, -14622003, -15801871}, new int[]{-439392, -304000, -19910, -98718}};
     private GradientTools advancedGradient;
     private int alpha;
     private float archivedAvatarProgress;
@@ -365,28 +366,59 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor) {
+        setInfo(j, str, str2, str3, num, peerColor, false);
+    }
+
+    public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor, boolean z) {
         MessagesController.PeerColors peerColors;
-        this.hasGradient = true;
-        this.hasAdvancedGradient = false;
         this.invalidateTextLayout = true;
+        if (z) {
+            this.hasGradient = false;
+            this.hasAdvancedGradient = true;
+            if (this.advancedGradient == null) {
+                this.advancedGradient = new GradientTools();
+            }
+        } else {
+            this.hasGradient = true;
+            this.hasAdvancedGradient = false;
+        }
         if (peerColor != null) {
-            this.color = peerColor.getAvatarColor1();
-            this.color2 = peerColor.getAvatarColor2();
+            if (z) {
+                int[] iArr = advancedGradients[getPeerColorIndex(peerColor.getAvatarColor1())];
+                this.advancedGradient.setColors(iArr[0], iArr[1], iArr[2], iArr[3]);
+            } else {
+                this.color = peerColor.getAvatarColor1();
+                this.color2 = peerColor.getAvatarColor2();
+            }
         } else if (num != null) {
             if (num.intValue() >= 14) {
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 if (messagesController != null && (peerColors = messagesController.peerColors) != null && peerColors.getColor(num.intValue()) != null) {
                     int color1 = messagesController.peerColors.getColor(num.intValue()).getColor1();
-                    this.color = getThemedColor(Theme.keys_avatar_background[getPeerColorIndex(color1)]);
-                    this.color2 = getThemedColor(Theme.keys_avatar_background2[getPeerColorIndex(color1)]);
+                    if (z) {
+                        int[] iArr2 = advancedGradients[getPeerColorIndex(color1)];
+                        this.advancedGradient.setColors(iArr2[0], iArr2[1], iArr2[2], iArr2[3]);
+                    } else {
+                        this.color = getThemedColor(Theme.keys_avatar_background[getPeerColorIndex(color1)]);
+                        this.color2 = getThemedColor(Theme.keys_avatar_background2[getPeerColorIndex(color1)]);
+                    }
+                } else if (z) {
+                    int[] iArr3 = advancedGradients[getColorIndex(num.intValue())];
+                    this.advancedGradient.setColors(iArr3[0], iArr3[1], iArr3[2], iArr3[3]);
                 } else {
                     this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(num.intValue())]);
                     this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(num.intValue())]);
                 }
+            } else if (z) {
+                int[] iArr4 = advancedGradients[getColorIndex(num.intValue())];
+                this.advancedGradient.setColors(iArr4[0], iArr4[1], iArr4[2], iArr4[3]);
             } else {
                 this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(num.intValue())]);
                 this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(num.intValue())]);
             }
+        } else if (z) {
+            int[] iArr5 = advancedGradients[getColorIndex(j)];
+            this.advancedGradient.setColors(iArr5[0], iArr5[1], iArr5[2], iArr5[3]);
         } else {
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(j)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(j)]);

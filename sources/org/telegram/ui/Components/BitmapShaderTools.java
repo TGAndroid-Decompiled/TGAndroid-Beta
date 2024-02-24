@@ -36,7 +36,7 @@ public class BitmapShaderTools {
         this.paint = paint;
         this.bounds = new RectF();
         this.matrix = new Matrix();
-        Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, i), Math.max(1, i2), Bitmap.Config.ARGB_8888);
         this.bitmap = createBitmap;
         this.canvas = new Canvas(createBitmap);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;

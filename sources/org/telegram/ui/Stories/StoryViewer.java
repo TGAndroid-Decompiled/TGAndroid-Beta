@@ -744,7 +744,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void dispatchDraw(android.graphics.Canvas r18) {
+        public void dispatchDraw(android.graphics.Canvas r17) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryViewer.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -2483,6 +2483,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         public float alpha = 1.0f;
         public ImageReceiver avatarImage;
         public Paint bgPaint;
+        public boolean checkParentScale;
         public float clipBottom;
         public View clipParent;
         public float clipTop;
@@ -2494,6 +2495,18 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         public int storyId;
         public ImageReceiver storyImage;
         public View view;
+
+        public Integer getAvatarImageRoundRadius() {
+            View view;
+            if (this.avatarImage != null) {
+                float f = 1.0f;
+                if (this.checkParentScale && (view = this.view) != null && view.getParent() != null) {
+                    f = ((ViewGroup) this.view.getParent()).getScaleY();
+                }
+                return Integer.valueOf((int) (this.avatarImage.getRoundRadius()[0] * f));
+            }
+            return null;
+        }
 
         public void clear() {
             this.view = null;

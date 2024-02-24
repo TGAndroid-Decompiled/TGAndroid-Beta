@@ -463,6 +463,9 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     private void fillAreaView(RectF rectF, boolean z) {
         final float f;
         final boolean z2;
+        if (this.state == null) {
+            return;
+        }
         int i = 0;
         final float[] fArr = {1.0f};
         float max = Math.max(rectF.width() / this.areaView.getCropWidth(), rectF.height() / this.areaView.getCropHeight());

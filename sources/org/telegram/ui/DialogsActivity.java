@@ -73,7 +73,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FilesMigrationService;
@@ -175,7 +174,6 @@ import org.telegram.ui.Components.NumberTextView;
 import org.telegram.ui.Components.PacmanAnimation;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.ProxyDrawable;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -3986,117 +3984,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void updateDialogsHint() {
-        final String str;
-        if (this.dialogsHintCell == null || this.fragmentView == null || getContext() == null) {
-            return;
-        }
-        if (isInPreviewMode()) {
-            this.dialogsHintCellVisible = false;
-            this.dialogsHintCell.setVisibility(8);
-            updateAuthHintCellVisibility(false);
-        } else if (!getMessagesController().getUnconfirmedAuthController().auths.isEmpty() && this.folderId == 0 && this.initialDialogsType == 0) {
-            this.dialogsHintCellVisible = false;
-            this.dialogsHintCell.setVisibility(8);
-            if (this.authHintCell == null) {
-                UnconfirmedAuthHintCell unconfirmedAuthHintCell = new UnconfirmedAuthHintCell(getContext());
-                this.authHintCell = unconfirmedAuthHintCell;
-                ((ContentView) this.fragmentView).addView(unconfirmedAuthHintCell);
-            }
-            this.authHintCell.set(this, this.currentAccount);
-            updateAuthHintCellVisibility(true);
-        } else if (isPremiumChristmasHintVisible()) {
-            this.dialogsHintCellVisible = true;
-            this.dialogsHintCell.setVisibility(0);
-            this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    UserSelectorBottomSheet.open();
-                }
-            });
-            this.dialogsHintCell.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumEventAdsTitle", R.string.GiftPremiumEventAdsTitle), Theme.key_windowBackgroundWhiteValueText, 2, null), null, false), LocaleController.formatString("BoostingPremiumChristmasSubTitle", R.string.BoostingPremiumChristmasSubTitle, new Object[0]));
-            this.dialogsHintCell.setOnCloseListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$30(view);
-                }
-            });
-            updateAuthHintCellVisibility(false);
-        } else if (isPremiumRestoreHintVisible()) {
-            this.dialogsHintCellVisible = true;
-            this.dialogsHintCell.setVisibility(0);
-            this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$32(view);
-                }
-            });
-            this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.RestorePremiumHintTitle, MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false)), Theme.key_windowBackgroundWhiteValueText, 2, null), LocaleController.getString(R.string.RestorePremiumHintMessage));
-            updateAuthHintCellVisibility(false);
-        } else if (isPremiumHintVisible()) {
-            this.dialogsHintCellVisible = true;
-            this.dialogsHintCell.setVisibility(0);
-            this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$34(view);
-                }
-            });
-            this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(this.isPremiumHintUpgrade ? R.string.SaveOnAnnualPremiumTitle : R.string.UpgradePremiumTitle, MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false)), Theme.key_windowBackgroundWhiteValueText, 2, null), LocaleController.getString(this.isPremiumHintUpgrade ? R.string.UpgradePremiumMessage : R.string.SaveOnAnnualPremiumMessage));
-            updateAuthHintCellVisibility(false);
-        } else if (isCacheHintVisible()) {
-            this.dialogsHintCellVisible = true;
-            this.dialogsHintCell.setVisibility(0);
-            this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$36(view);
-                }
-            });
-            this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.ClearStorageHintTitle, AndroidUtilities.formatFileSize(this.cacheSize.longValue())), Theme.key_windowBackgroundWhiteValueText, 2, null), LocaleController.getString(R.string.ClearStorageHintMessage));
-            updateAuthHintCellVisibility(false);
-        } else if (this.folderId == 0 && ApplicationLoader.applicationLoaderInstance != null) {
-            String[] strArr = new String[2];
-            boolean[] zArr = new boolean[1];
-            Iterator<String> it = MessagesController.getInstance(this.currentAccount).pendingSuggestions.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    str = null;
-                    break;
-                }
-                str = it.next();
-                if (ApplicationLoader.applicationLoaderInstance.onSuggestionFill(str, strArr, zArr)) {
-                    break;
-                }
-            }
-            if (str != null) {
-                this.dialogsHintCellVisible = true;
-                this.dialogsHintCell.setVisibility(0);
-                this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        DialogsActivity.lambda$updateDialogsHint$37(str, view);
-                    }
-                });
-                this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(strArr[0], Theme.key_windowBackgroundWhiteValueText, 2, null), AndroidUtilities.replaceTags(strArr[1]));
-                if (zArr[0]) {
-                    this.dialogsHintCell.setOnCloseListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            DialogsActivity.this.lambda$updateDialogsHint$39(str, view);
-                        }
-                    });
-                }
-                updateAuthHintCellVisibility(false);
-                return;
-            }
-            this.dialogsHintCellVisible = false;
-            this.dialogsHintCell.setVisibility(8);
-            updateAuthHintCellVisibility(false);
-        } else {
-            this.dialogsHintCellVisible = false;
-            this.dialogsHintCell.setVisibility(8);
-            updateAuthHintCellVisibility(false);
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.updateDialogsHint():void");
     }
 
     public void lambda$updateDialogsHint$30(View view) {

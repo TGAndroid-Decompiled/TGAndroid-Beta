@@ -51,10 +51,12 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     public TL_smsjobs$TL_smsjobs_status currentStatus;
     public TL_smsjobs$TL_smsjobs_eligibleToJoin isEligible;
     private SharedPreferences journalPrefs;
+    private int lastErrorId;
     private boolean loadedIsEligible;
     private boolean loadedStatus;
     private boolean loadingIsEligible;
     private boolean loadingStatus;
+    private int seenErrorId;
     public SIM selectedSimCard;
     private int updateSettingsReqId;
     private static volatile SMSJobController[] Instance = new SMSJobController[4];
@@ -101,16 +103,18 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.newSuggestionsAvailable) {
-            if (this.currentState != 0) {
-                checkIsEligible(true);
+            int i3 = this.currentState;
+            if (i3 != 0 && i3 != 3) {
+                checkIsEligible(true, null);
             }
             invalidateStatus();
         }
     }
 
     public boolean isAvailable() {
-        if (this.currentState != 0) {
-            checkIsEligible(false);
+        int i = this.currentState;
+        if (i != 0 && i != 3) {
+            checkIsEligible(false, null);
             loadStatus(false);
         }
         if (this.currentState != 0) {
@@ -119,8 +123,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         return false;
     }
 
-    public void checkIsEligible(boolean z) {
-        if ((!this.loadedIsEligible || z) && !this.loadingIsEligible) {
+    public void checkIsEligible(boolean z, final Utilities.Callback<TL_smsjobs$TL_smsjobs_eligibleToJoin> callback) {
+        if (!this.loadedIsEligible || z) {
+            if (this.loadingIsEligible && callback == null) {
+                return;
+            }
             this.loadingIsEligible = true;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
                 @Override
@@ -140,22 +147,22 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             }, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SMSJobController.this.lambda$checkIsEligible$1(tLObject, tLRPC$TL_error);
+                    SMSJobController.this.lambda$checkIsEligible$1(callback, tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$checkIsEligible$1(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkIsEligible$1(final Utilities.Callback callback, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$checkIsEligible$0(tLObject, tLRPC$TL_error);
+                SMSJobController.this.lambda$checkIsEligible$0(tLObject, tLRPC$TL_error, callback);
             }
         });
     }
 
-    public void lambda$checkIsEligible$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkIsEligible$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback) {
         this.loadingIsEligible = false;
         this.loadedIsEligible = true;
         if (tLObject instanceof TL_smsjobs$TL_smsjobs_eligibleToJoin) {
@@ -169,6 +176,9 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.smsJobStatusUpdate, new Object[0]);
+        if (callback != null) {
+            callback.run(this.isEligible);
+        }
     }
 
     public void loadStatus(boolean z) {
@@ -306,8 +316,8 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
             BulletinFactory.global().createErrorBulletin(LocaleController.getString((int) R.string.UnknownError)).show();
         } else {
-            getInstance(this.currentAccount).setState(3);
-            getInstance(this.currentAccount).loadStatus(true);
+            setState(3);
+            loadStatus(true);
             Context context = LaunchActivity.instance;
             if (context == null) {
                 context = ApplicationLoader.applicationContext;
@@ -342,6 +352,8 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
     private void loadCacheStatus() {
         this.currentState = MessagesController.getMainSettings(this.currentAccount).getInt("smsjobs_state", 0);
+        this.lastErrorId = MessagesController.getMainSettings(this.currentAccount).getInt("smsjobs_error", 0);
+        this.seenErrorId = MessagesController.getMainSettings(this.currentAccount).getInt("smsjobs_seen_error", 0);
         String string = MessagesController.getMainSettings(this.currentAccount).getString("smsjobs_status", null);
         if (string != null) {
             try {
@@ -985,7 +997,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             BulletinFactory.global().createErrorBulletin(LocaleController.getString((int) R.string.UnknownError)).show();
         } else {
             getInstance(this.currentAccount).loadStatus(true);
-            getInstance(this.currentAccount).checkIsEligible(true);
+            getInstance(this.currentAccount).checkIsEligible(true, null);
         }
     }
 
@@ -1047,6 +1059,21 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 return lambda$readJournal$16;
             }
         });
+        int i = 0;
+        if (MessagesController.getMainSettings(this.currentAccount).getBoolean("smsjobs_checked_journal", false)) {
+            return;
+        }
+        while (true) {
+            if (i >= this.journal.size()) {
+                break;
+            } else if (!TextUtils.isEmpty(this.journal.get(i).error)) {
+                registerError();
+                break;
+            } else {
+                i++;
+            }
+        }
+        MessagesController.getMainSettings(this.currentAccount).edit().putBoolean("smsjobs_checked_journal", true).apply();
     }
 
     public static int lambda$readJournal$16(JobEntry jobEntry, JobEntry jobEntry2) {
@@ -1067,6 +1094,10 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         this.journal.add(0, jobEntry);
         this.journalPrefs.edit().putString(jobEntry.job_id, jobEntry.toString()).apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.smsJobStatusUpdate, new Object[0]);
+        if (TextUtils.isEmpty(str3)) {
+            return;
+        }
+        registerError();
     }
 
     public static String getCountryFromPhoneNumber(Context context, String str) {
@@ -1165,6 +1196,38 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             jobEntry.date = Utilities.parseInt((CharSequence) split[2]).intValue();
             jobEntry.country = split[3];
             return jobEntry;
+        }
+    }
+
+    public boolean hasError() {
+        return this.lastErrorId > this.seenErrorId;
+    }
+
+    public void registerError() {
+        boolean hasError = hasError();
+        SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
+        int i = this.lastErrorId + 1;
+        this.lastErrorId = i;
+        edit.putInt("smsjobs_error", i).apply();
+        if (hasError() != hasError) {
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.smsJobStatusUpdate, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+        }
+    }
+
+    public void seenError() {
+        if (this.seenErrorId < this.lastErrorId) {
+            boolean hasError = hasError();
+            SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
+            int i = this.lastErrorId;
+            this.seenErrorId = i;
+            edit.putInt("smsjobs_seen_error", i).apply();
+            if (hasError() != hasError) {
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.smsJobStatusUpdate, new Object[0]);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+            }
         }
     }
 }

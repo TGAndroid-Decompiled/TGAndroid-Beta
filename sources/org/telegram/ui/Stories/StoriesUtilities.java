@@ -2,7 +2,10 @@ package org.telegram.ui.Stories;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -88,6 +91,10 @@ public class StoriesUtilities {
         }
     };
     private static final RectF forumRect = new RectF();
+    private static final Path forumRoundRectPath = new Path();
+    private static final Matrix forumRoundRectMatrix = new Matrix();
+    private static final PathMeasure forumRoundRectPathMeasure = new PathMeasure();
+    private static final Path forumSegmentPath = new Path();
 
     public static void drawAvatarWithStory(long j, Canvas canvas, ImageReceiver imageReceiver, AvatarStoryParams avatarStoryParams) {
         drawAvatarWithStory(j, canvas, imageReceiver, UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId() != j && MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(j), avatarStoryParams);
@@ -196,27 +203,41 @@ public class StoriesUtilities {
 
     private static void drawSegment(Canvas canvas, RectF rectF, Paint paint, float f, float f2, AvatarStoryParams avatarStoryParams, boolean z) {
         if (z) {
-            RectF rectF2 = forumRect;
-            rectF2.set(rectF);
-            rectF2.inset(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
+            float height = rectF.height() * 0.32f;
+            float f3 = ((((int) f) / 90) * 90) + 90;
+            float f4 = (-199.0f) + f3;
+            Path path = forumRoundRectPath;
+            path.rewind();
+            path.addRoundRect(rectF, height, height, Path.Direction.CW);
+            Matrix matrix = forumRoundRectMatrix;
+            matrix.reset();
+            matrix.postRotate(f3, rectF.centerX(), rectF.centerY());
+            path.transform(matrix);
+            PathMeasure pathMeasure = forumRoundRectPathMeasure;
+            pathMeasure.setPath(path, false);
+            float length = pathMeasure.getLength();
+            Path path2 = forumSegmentPath;
+            path2.reset();
+            pathMeasure.getSegment(((f - f4) / 360.0f) * length, length * ((f2 - f4) / 360.0f), path2, true);
+            path2.rLineTo(0.0f, 0.0f);
+            canvas.drawPath(path2, paint);
             return;
         }
         boolean z2 = avatarStoryParams.isFirst;
         if (!z2 && !avatarStoryParams.isLast) {
             if (f < 90.0f) {
-                float f3 = avatarStoryParams.progressToArc;
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f3) / 2.0f, f3 / 2.0f);
+                float f5 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f5) / 2.0f, f5 / 2.0f);
                 return;
             }
-            float f4 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f4) / 2.0f) + 180.0f, (f4 / 2.0f) + 180.0f);
-        } else if (avatarStoryParams.isLast) {
-            float f5 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f5) / 2.0f) + 180.0f, (f5 / 2.0f) + 180.0f);
-        } else if (z2) {
             float f6 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f6) / 2.0f, f6 / 2.0f);
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f6) / 2.0f) + 180.0f, (f6 / 2.0f) + 180.0f);
+        } else if (avatarStoryParams.isLast) {
+            float f7 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f7) / 2.0f) + 180.0f, (f7 / 2.0f) + 180.0f);
+        } else if (z2) {
+            float f8 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f8) / 2.0f, f8 / 2.0f);
         } else {
             canvas.drawArc(rectF, f, f2 - f, false, paint);
         }
@@ -691,6 +712,7 @@ public class StoriesUtilities {
         public int globalState;
         boolean inc;
         public boolean isArchive;
+        public boolean isDialogStoriesCell;
         public boolean isFirst;
         public boolean isLast;
         private final boolean isStoryCell;

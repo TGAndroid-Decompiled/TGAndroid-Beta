@@ -32,7 +32,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -45,7 +45,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private TextView adminTextView;
     protected AvatarDrawable avatarDrawable;
     public BackupImageView avatarImageView;
-    private CheckBox checkBox;
+    private CheckBox2 checkBox;
     private CheckBoxSquare checkBoxBig;
     private int currentAccount;
     private int currentDrawable;
@@ -197,13 +197,14 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             boolean z8 = LocaleController.isRTL;
             addView(checkBoxSquare, LayoutHelper.createFrame(18, 18.0f, (z8 ? 3 : 5) | 16, z8 ? 19.0f : 0.0f, 0.0f, z8 ? 0.0f : 19.0f, 0.0f));
         } else if (i2 == 1) {
-            CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
-            this.checkBox = checkBox;
-            checkBox.setVisibility(4);
-            this.checkBox.setColor(Theme.getColor(Theme.key_checkbox, resourcesProvider), Theme.getColor(Theme.key_checkboxCheck, resourcesProvider));
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
+            this.checkBox = checkBox2;
+            checkBox2.setDrawUnchecked(false);
+            this.checkBox.setDrawBackgroundAsArc(3);
+            this.checkBox.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             View view6 = this.checkBox;
             boolean z9 = LocaleController.isRTL;
-            addView(view6, LayoutHelper.createFrame(22, 22.0f, (z9 ? 5 : 3) | 48, z9 ? 0.0f : i + 37, 40.0f, z9 ? i + 37 : 0.0f, 0.0f));
+            addView(view6, LayoutHelper.createFrame(24, 24.0f, (z9 ? 5 : 3) | 48, z9 ? 0.0f : i + 37, 36.0f, z9 ? i + 37 : 0.0f, 0.0f));
         }
         if (z) {
             TextView textView2 = new TextView(context);
@@ -240,9 +241,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.statusTextView.getLayoutParams();
         layoutParams3.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : i + 64);
         layoutParams3.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 64 : 28.0f);
-        CheckBox checkBox = this.checkBox;
-        if (checkBox != null) {
-            FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) checkBox.getLayoutParams();
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) checkBox2.getLayoutParams();
             layoutParams4.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : i + 37);
             layoutParams4.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 37 : 0.0f);
         }
@@ -396,9 +397,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public void setChecked(boolean z, boolean z2) {
-        CheckBox checkBox = this.checkBox;
-        if (checkBox != null) {
-            if (checkBox.getVisibility() != 0) {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            if (checkBox2.getVisibility() != 0) {
                 this.checkBox.setVisibility(0);
             }
             this.checkBox.setChecked(z, z2);
@@ -459,8 +460,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             return;
         }
-        CheckBox checkBox = this.checkBox;
-        if (checkBox == null || checkBox.getVisibility() != 0) {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 == null || checkBox2.getVisibility() != 0) {
             return;
         }
         accessibilityNodeInfo.setCheckable(true);

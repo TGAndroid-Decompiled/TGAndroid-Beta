@@ -99,7 +99,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public boolean onSuggestionFill(String str, String[] strArr, boolean[] zArr) {
+    public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
         return false;
     }
 

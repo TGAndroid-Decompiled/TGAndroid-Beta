@@ -2782,17 +2782,19 @@ public class StoriesController {
                 return;
             }
             this.saving = true;
+            final ArrayList<MessageObject> arrayList = new ArrayList<>();
+            fill(arrayList, true, true);
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesList.this.lambda$saveCache$8(messagesStorage);
+                    StoriesController.StoriesList.this.lambda$saveCache$8(arrayList, messagesStorage);
                 }
             });
         }
 
-        public void lambda$saveCache$8(org.telegram.messenger.MessagesStorage r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$saveCache$8(org.telegram.messenger.MessagesStorage):void");
+        public void lambda$saveCache$8(java.util.ArrayList r10, org.telegram.messenger.MessagesStorage r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$saveCache$8(java.util.ArrayList, org.telegram.messenger.MessagesStorage):void");
         }
 
         public void lambda$saveCache$7() {

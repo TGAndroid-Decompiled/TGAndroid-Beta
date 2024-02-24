@@ -390,7 +390,16 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (ChatAvatarContainer.this.storiesForceState != null) {
                     this.params.forceState = ChatAvatarContainer.this.storiesForceState.intValue();
                 }
-                StoriesUtilities.drawAvatarWithStory(ChatAvatarContainer.this.parentFragment != null ? ChatAvatarContainer.this.parentFragment.getDialogId() : 0L, canvas, this.imageReceiver, this.params);
+                long j = 0;
+                if (ChatAvatarContainer.this.parentFragment != null) {
+                    j = ChatAvatarContainer.this.parentFragment.getDialogId();
+                } else {
+                    BaseFragment baseFragment = this.val$baseFragment;
+                    if (baseFragment instanceof TopicsFragment) {
+                        j = ((TopicsFragment) baseFragment).getDialogId();
+                    }
+                }
+                StoriesUtilities.drawAvatarWithStory(j, canvas, this.imageReceiver, this.params);
                 return;
             }
             super.onDraw(canvas);
@@ -1149,7 +1158,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         BackupImageView backupImageView = this.avatarImageView;
         if (backupImageView != null) {
             backupImageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
-            this.avatarImageView.setRoundRadius(AndroidUtilities.dp((tLRPC$Chat == null || !tLRPC$Chat.forum) ? 21.0f : 16.0f));
+            this.avatarImageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(tLRPC$Chat) ? ChatObject.hasStories(tLRPC$Chat) ? 11.0f : 16.0f : 21.0f));
         }
     }
 
@@ -1216,7 +1225,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (backupImageView != null) {
                     backupImageView.setForUserOrChat(currentChat, this.avatarDrawable);
                 }
-                this.avatarImageView.setRoundRadius(AndroidUtilities.dp(currentChat.forum ? 16.0f : 21.0f));
+                this.avatarImageView.setRoundRadius(AndroidUtilities.dp(currentChat.forum ? ChatObject.hasStories(currentChat) ? 11.0f : 16.0f : 21.0f));
                 return;
             }
             return;

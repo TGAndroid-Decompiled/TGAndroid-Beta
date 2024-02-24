@@ -1599,7 +1599,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.infoLayout = linearLayout;
                 linearLayout.setOrientation(0);
-                this.infoLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.multAlpha(-16777216, 0.15f), Theme.multAlpha(-16777216, 0.35f)));
+                this.infoLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.multAlpha(-16777216, 0.065f), -16777216));
                 this.infoLayout.setGravity(17);
                 this.infoLayout.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                 TextView textView = new TextView(context);

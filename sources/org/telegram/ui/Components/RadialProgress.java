@@ -2,7 +2,10 @@ package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -29,6 +32,7 @@ public class RadialProgress {
     private boolean previousMiniWithRound;
     private boolean previousWithRound;
     private Paint progressPaint;
+    private boolean roundRectProgress;
     private long lastUpdateTime = 0;
     private float radOffset = 0.0f;
     private float currentProgress = 0.0f;
@@ -44,6 +48,10 @@ public class RadialProgress {
     private boolean alphaForMiniPrevious = true;
     private float overrideAlpha = 1.0f;
     private Paint overridePaint = null;
+    private final Path roundProgressRectPath = new Path();
+    private final Matrix roundProgressRectMatrix = new Matrix();
+    private final PathMeasure roundProgressRectPathMeasure = new PathMeasure();
+    private final Path roundRectProgressPath = new Path();
 
     public float getAnimatedProgress() {
         return this.animatedProgressValue;
@@ -347,14 +355,48 @@ public class RadialProgress {
             float f7 = rectF6.left;
             int i4 = this.diff;
             rectF5.set(f7 + i4, rectF6.top + i4, rectF6.right - i4, rectF6.bottom - i4);
-            canvas.drawArc(this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, paint2);
+            drawArc(canvas, this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, paint2);
             updateAnimation(true);
             return;
         }
         updateAnimation(false);
     }
 
+    private void drawArc(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {
+        if (this.roundRectProgress) {
+            float height = rectF.height() * 0.32f;
+            if (Math.abs(f2) == 360.0f) {
+                canvas.drawRoundRect(rectF, height, height, paint);
+                return;
+            }
+            float f3 = ((((int) f) / 90) * 90) + 90;
+            float f4 = (-199.0f) + f3;
+            float f5 = ((f + f2) - f4) / 360.0f;
+            this.roundProgressRectPath.rewind();
+            this.roundProgressRectPath.addRoundRect(rectF, height, height, Path.Direction.CW);
+            this.roundProgressRectMatrix.reset();
+            this.roundProgressRectMatrix.postRotate(f3, rectF.centerX(), rectF.centerY());
+            this.roundProgressRectPath.transform(this.roundProgressRectMatrix);
+            this.roundProgressRectPathMeasure.setPath(this.roundProgressRectPath, false);
+            float length = this.roundProgressRectPathMeasure.getLength();
+            this.roundRectProgressPath.reset();
+            this.roundProgressRectPathMeasure.getSegment(((f - f4) / 360.0f) * length, length * f5, this.roundRectProgressPath, true);
+            this.roundRectProgressPath.rLineTo(0.0f, 0.0f);
+            canvas.drawPath(this.roundRectProgressPath, paint);
+            if (f5 > 1.0f) {
+                drawArc(canvas, rectF, f + 90.0f, f2 - 90.0f, z, paint);
+                return;
+            }
+            return;
+        }
+        canvas.drawArc(rectF, f, f2, z, paint);
+    }
+
     public void setPaint(Paint paint) {
         this.overridePaint = paint;
+    }
+
+    public void setRoundRectProgress(boolean z) {
+        this.roundRectProgress = z;
     }
 }

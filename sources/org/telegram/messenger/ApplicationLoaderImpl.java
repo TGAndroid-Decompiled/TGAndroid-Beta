@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.ArrayList;
 import org.json.JSONObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -19,6 +21,7 @@ import org.telegram.tgnet.TLRPC$TL_boolFalse;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.tgnet.TLRPC$Update;
+import org.telegram.tgnet.TL_smsjobs$TL_smsjobs_eligibleToJoin;
 import org.telegram.tgnet.TL_smsjobs$TL_smsjobs_join;
 import org.telegram.tgnet.TL_smsjobs$TL_updateSmsJob;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -134,12 +137,16 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             if (MessagesController.getGlobalMainSettings().getBoolean("newppsms", true)) {
                 string = PremiumPreviewFragment.applyNewSpan(string.toString());
             }
-            arrayList.add(new DrawerLayoutAdapter.Item(93, string, R.drawable.left_sms).onClick(new View.OnClickListener() {
+            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, R.drawable.left_sms).onClick(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     ApplicationLoaderImpl.lambda$extendDrawer$3(view);
                 }
-            }));
+            });
+            if (SMSStatsActivity.isAirplaneMode(LaunchActivity.instance) || SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
+                onClick.withError();
+            }
+            arrayList.add(onClick);
         }
         return true;
     }
@@ -222,23 +229,67 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public boolean onSuggestionFill(String str, String[] strArr, boolean[] zArr) {
-        if ("PREMIUM_SMSJOBS".equals(str) && SMSJobController.getInstance(UserConfig.selectedAccount).currentState != 3) {
-            strArr[0] = LocaleController.getString((int) R.string.SmsJobsPremiumHintTitle);
-            strArr[1] = LocaleController.getString((int) R.string.SmsJobsPremiumHintMessage);
+    public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
+        if (str == null && SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
+            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString((int) R.string.SmsJobsErrorHintTitle));
+            charSequenceArr[1] = LocaleController.getString((int) R.string.SmsJobsErrorHintMessage);
+            zArr[0] = false;
+            return true;
+        } else if ("PREMIUM_SMSJOBS".equals(str) && SMSJobController.getInstance(UserConfig.selectedAccount).currentState != 3) {
+            charSequenceArr[0] = LocaleController.getString((int) R.string.SmsJobsPremiumHintTitle);
+            charSequenceArr[1] = LocaleController.getString((int) R.string.SmsJobsPremiumHintMessage);
             zArr[0] = true;
             return true;
+        } else {
+            return super.onSuggestionFill(str, charSequenceArr, zArr);
         }
-        return super.onSuggestionFill(str, strArr, zArr);
     }
 
     @Override
     public boolean onSuggestionClick(String str) {
-        if ("PREMIUM_SMSJOBS".equals(str)) {
-            SMSSubscribeSheet.show(LaunchActivity.instance, SMSJobController.getInstance(UserConfig.selectedAccount).isEligible, null, null);
+        if (str == null) {
+            BaseFragment lastFragment = LaunchActivity.getLastFragment();
+            if (lastFragment != null) {
+                SMSJobController.getInstance(UserConfig.selectedAccount).seenError();
+                final SMSStatsActivity sMSStatsActivity = new SMSStatsActivity();
+                lastFragment.presentFragment(sMSStatsActivity);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ApplicationLoaderImpl.lambda$onSuggestionClick$4(SMSStatsActivity.this);
+                    }
+                }, 800L);
+            }
             return true;
+        } else if ("PREMIUM_SMSJOBS".equals(str)) {
+            SMSJobController sMSJobController = SMSJobController.getInstance(UserConfig.selectedAccount);
+            TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin = sMSJobController.isEligible;
+            if (tL_smsjobs$TL_smsjobs_eligibleToJoin != null) {
+                SMSSubscribeSheet.show(LaunchActivity.instance, tL_smsjobs$TL_smsjobs_eligibleToJoin, null, null);
+            } else {
+                sMSJobController.checkIsEligible(true, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        ApplicationLoaderImpl.lambda$onSuggestionClick$5((TL_smsjobs$TL_smsjobs_eligibleToJoin) obj);
+                    }
+                });
+            }
+            return true;
+        } else {
+            return false;
         }
-        return false;
+    }
+
+    public static void lambda$onSuggestionClick$4(SMSStatsActivity sMSStatsActivity) {
+        sMSStatsActivity.showDialog(new SMSStatsActivity.SMSHistorySheet(sMSStatsActivity));
+    }
+
+    public static void lambda$onSuggestionClick$5(TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin) {
+        if (tL_smsjobs$TL_smsjobs_eligibleToJoin == null) {
+            MessagesController.getInstance(UserConfig.selectedAccount).removeSuggestion(0L, "PREMIUM_SMSJOBS");
+        } else {
+            SMSSubscribeSheet.show(LaunchActivity.instance, tL_smsjobs$TL_smsjobs_eligibleToJoin, null, null);
+        }
     }
 
     @Override

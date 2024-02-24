@@ -35,7 +35,7 @@ public class VideoPlayerHolderBase {
     public Bitmap playerStubBitmap;
     public Paint playerStubPaint;
     public float progress;
-    volatile boolean released;
+    public volatile boolean released;
     private volatile boolean seeking;
     long startTime;
     public boolean stubAvailable;

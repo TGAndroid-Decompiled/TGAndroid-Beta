@@ -2859,26 +2859,26 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             NativeByteBuffer nativeByteBuffer2 = null;
             try {
                 nativeByteBuffer = new NativeByteBuffer(tLRPC$InputPeer.getObjectSize() + tLRPC$TL_inputMediaGame.getObjectSize() + 4 + 8);
-            } catch (Exception e) {
-                e = e;
-            }
-            try {
-                nativeByteBuffer.writeInt32(3);
-                nativeByteBuffer.writeInt64(j);
-                tLRPC$InputPeer.serializeToStream(nativeByteBuffer);
-                tLRPC$TL_inputMediaGame.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(3);
+                    nativeByteBuffer.writeInt64(j);
+                    tLRPC$InputPeer.serializeToStream(nativeByteBuffer);
+                    tLRPC$TL_inputMediaGame.serializeToStream(nativeByteBuffer);
+                } catch (Exception e) {
+                    e = e;
+                    nativeByteBuffer2 = nativeByteBuffer;
+                    FileLog.e(e);
+                    nativeByteBuffer = nativeByteBuffer2;
+                    j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
+                    getConnectionsManager().sendRequest(tLRPC$TL_messages_sendMedia, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            SendMessagesHelper.this.lambda$sendGame$31(j2, tLObject, tLRPC$TL_error);
+                        }
+                    });
+                }
             } catch (Exception e2) {
                 e = e2;
-                nativeByteBuffer2 = nativeByteBuffer;
-                FileLog.e(e);
-                nativeByteBuffer = nativeByteBuffer2;
-                j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                getConnectionsManager().sendRequest(tLRPC$TL_messages_sendMedia, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        SendMessagesHelper.this.lambda$sendGame$31(j2, tLObject, tLRPC$TL_error);
-                    }
-                });
             }
             j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }

@@ -62,7 +62,7 @@ public class ActionBar extends FrameLayout {
     private String actionModeTag;
     private View actionModeTop;
     private View actionModeTranslationView;
-    private boolean actionModeVisible;
+    protected boolean actionModeVisible;
     private boolean addToContainer;
     private SimpleTextView additionalSubtitleTextView;
     private boolean allowOverlayTitle;

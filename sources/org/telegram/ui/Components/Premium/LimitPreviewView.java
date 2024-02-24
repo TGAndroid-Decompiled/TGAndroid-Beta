@@ -406,7 +406,10 @@ public class LimitPreviewView extends LinearLayout {
 
     public void setPremiumLocked() {
         this.limitsContainer.setVisibility(8);
-        this.limitIcon.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(3.0f));
+        CounterView counterView = this.limitIcon;
+        if (counterView != null) {
+            counterView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(3.0f));
+        }
         this.premiumLocked = true;
     }
 

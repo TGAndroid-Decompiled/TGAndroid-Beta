@@ -3857,25 +3857,30 @@ public class MessageObject {
 
     public boolean needDrawShareButton() {
         int i;
+        TLRPC$Message tLRPC$Message;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         if (this.isRepostPreview) {
             return false;
         }
         if (this.isSaved) {
             long j = UserConfig.getInstance(this.currentAccount).clientUserId;
             long savedDialogId = getSavedDialogId(j, this.messageOwner);
-            return (savedDialogId == j || savedDialogId == UserObject.ANONYMOUS) ? false : true;
+            if (savedDialogId == j || savedDialogId == UserObject.ANONYMOUS || (tLRPC$Message = this.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null) {
+                return false;
+            }
+            return (tLRPC$MessageFwdHeader.from_id == null && tLRPC$MessageFwdHeader.saved_from_id == null) ? false : true;
         } else if (this.type == 27 || isSponsored() || this.hasCode || this.preview || this.scheduled || this.eventId != 0) {
             return false;
         } else {
-            TLRPC$Message tLRPC$Message = this.messageOwner;
-            if (tLRPC$Message.noforwards) {
+            TLRPC$Message tLRPC$Message2 = this.messageOwner;
+            if (tLRPC$Message2.noforwards) {
                 return false;
             }
-            if (tLRPC$Message.fwd_from == null || isOutOwner() || this.messageOwner.fwd_from.saved_from_peer == null || getDialogId() != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            if (tLRPC$Message2.fwd_from == null || isOutOwner() || this.messageOwner.fwd_from.saved_from_peer == null || getDialogId() != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 int i2 = this.type;
                 if (i2 != 13 && i2 != 15 && i2 != 19) {
-                    TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = this.messageOwner.fwd_from;
-                    if (tLRPC$MessageFwdHeader != null && (tLRPC$MessageFwdHeader.from_id instanceof TLRPC$TL_peerChannel) && !isOutOwner()) {
+                    TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2 = this.messageOwner.fwd_from;
+                    if (tLRPC$MessageFwdHeader2 != null && (tLRPC$MessageFwdHeader2.from_id instanceof TLRPC$TL_peerChannel) && !isOutOwner()) {
                         return true;
                     }
                     if (isFromUser()) {
@@ -3901,16 +3906,16 @@ public class MessageObject {
                             return ChatObject.isChannel(tLRPC$Chat) && tLRPC$Chat.megagroup && ChatObject.isPublic(tLRPC$Chat) && !(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaContact) && !(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGeo);
                         }
                     } else {
-                        TLRPC$Message tLRPC$Message2 = this.messageOwner;
-                        if ((tLRPC$Message2.from_id instanceof TLRPC$TL_peerChannel) || tLRPC$Message2.post) {
-                            if ((getMedia(tLRPC$Message2) instanceof TLRPC$TL_messageMediaWebPage) && !isOutOwner()) {
+                        TLRPC$Message tLRPC$Message3 = this.messageOwner;
+                        if ((tLRPC$Message3.from_id instanceof TLRPC$TL_peerChannel) || tLRPC$Message3.post) {
+                            if ((getMedia(tLRPC$Message3) instanceof TLRPC$TL_messageMediaWebPage) && !isOutOwner()) {
                                 return true;
                             }
                             if (isSupergroup()) {
                                 return false;
                             }
-                            TLRPC$Message tLRPC$Message3 = this.messageOwner;
-                            if (tLRPC$Message3.peer_id.channel_id != 0 && ((tLRPC$Message3.via_bot_id == 0 && tLRPC$Message3.reply_to == null) || ((i = this.type) != 13 && i != 15))) {
+                            TLRPC$Message tLRPC$Message4 = this.messageOwner;
+                            if (tLRPC$Message4.peer_id.channel_id != 0 && ((tLRPC$Message4.via_bot_id == 0 && tLRPC$Message4.reply_to == null) || ((i = this.type) != 13 && i != 15))) {
                                 return true;
                             }
                         }
