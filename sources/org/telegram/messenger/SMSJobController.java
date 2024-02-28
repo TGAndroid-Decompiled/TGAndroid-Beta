@@ -249,11 +249,12 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         setState(i2);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.smsJobStatusUpdate, new Object[0]);
+        SMSJobsNotification.check();
     }
 
     public void invalidateStatus() {
         this.loadedStatus = false;
-        if (this.atStatisticsPage) {
+        if (this.atStatisticsPage || ApplicationLoader.mainInterfacePaused) {
             loadStatus(false);
         }
     }
@@ -273,7 +274,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 if (i == -1) {
                     this.selectedSimCard = sIMs.get(0);
                 } else {
-                    this.selectedSimCard = null;
+                    this.selectedSimCard = sIMs.get(0);
                     for (int i2 = 0; i2 < sIMs.size(); i2++) {
                         if (sIMs.get(i2).id == i) {
                             this.selectedSimCard = sIMs.get(i2);
@@ -379,6 +380,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         if (this.currentState == 3) {
             MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "PREMIUM_SMSJOBS");
         }
+        SMSJobsNotification.check();
     }
 
     public int getState() {
@@ -835,7 +837,9 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
     private static void sendSMS(Context context, SIM sim, String str, String str2, Utilities.Callback2<Boolean, String> callback2, Utilities.Callback2<Boolean, String> callback22) {
         SmsManager smsManager;
-        if (sim != null && Build.VERSION.SDK_INT >= 22) {
+        if (sim != null && Build.VERSION.SDK_INT >= 31) {
+            smsManager = ((SmsManager) context.getSystemService(SmsManager.class)).createForSubscriptionId(sim.id);
+        } else if (sim != null && Build.VERSION.SDK_INT >= 22) {
             smsManager = SmsManager.getSmsManagerForSubscriptionId(sim.id);
         } else {
             smsManager = SmsManager.getDefault();
@@ -874,10 +878,10 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             this.phone_number = null;
         }
 
-        public SIM(int i, String str) {
+        public SIM(int i, int i2, String str) {
             this.id = i;
-            this.slot = i;
-            this.name = "SIM" + (i + 1);
+            this.slot = i2;
+            this.name = "SIM" + (i2 + 1);
             this.iccId = null;
             this.country = str;
             this.carrier = null;
@@ -930,30 +934,27 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     private static ArrayList<SIM> getSIMs(Context context) {
         ArrayList<SIM> arrayList = new ArrayList<>();
         int i = Build.VERSION.SDK_INT;
-        int i2 = 0;
-        if (i >= 30) {
+        if (i >= 22) {
             SubscriptionManager from = SubscriptionManager.from(context);
-            List<SubscriptionInfo> completeActiveSubscriptionInfoList = from.getCompleteActiveSubscriptionInfoList();
+            List<SubscriptionInfo> completeActiveSubscriptionInfoList = i >= 30 ? from.getCompleteActiveSubscriptionInfoList() : null;
+            if ((completeActiveSubscriptionInfoList == null || completeActiveSubscriptionInfoList.isEmpty()) && i >= 28) {
+                completeActiveSubscriptionInfoList = from.getAccessibleSubscriptionInfoList();
+            }
+            if (completeActiveSubscriptionInfoList == null || completeActiveSubscriptionInfoList.isEmpty()) {
+                completeActiveSubscriptionInfoList = from.getActiveSubscriptionInfoList();
+            }
             if (completeActiveSubscriptionInfoList != null) {
-                while (i2 < completeActiveSubscriptionInfoList.size()) {
+                for (int i2 = 0; i2 < completeActiveSubscriptionInfoList.size(); i2++) {
                     SIM from2 = SIM.from(from, completeActiveSubscriptionInfoList.get(i2));
                     if (from2 != null) {
                         arrayList.add(from2);
                     }
-                    i2++;
                 }
             }
-        } else if (i >= 26) {
+        } else {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
-            while (i2 < 4) {
-                try {
-                    if (telephonyManager.getSimState(i2) == 5) {
-                        arrayList.add(new SIM(i2, null));
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                i2++;
+            if (telephonyManager.getSimState() == 5) {
+                arrayList.add(new SIM(0, 0, telephonyManager.getSimCountryIso()));
             }
         }
         return arrayList;
@@ -979,6 +980,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 SMSJobController.this.lambda$leave$13(tLObject, tLRPC$TL_error);
             }
         });
+        SMSJobsNotification.check();
     }
 
     public void lambda$leave$13(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

@@ -53,6 +53,7 @@ import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Cells.TextSelectionHelper.SelectableView;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.CornerPath;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 public abstract class TextSelectionHelper<Cell extends SelectableView> {
@@ -112,7 +113,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     protected Paint selectionHandlePaint;
     protected Path selectionHandlePath;
     protected Paint selectionPaint;
-    protected Path selectionPath;
+    protected CornerPath selectionPath;
     public int selectionStart;
     protected boolean showActionsAsPopupAlways;
     private final Runnable showActionsRunnable;
@@ -243,7 +244,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         new PathWithSavedBottom();
         this.selectionPaint = new Paint(1);
         this.selectionHandlePaint = new Paint(1);
-        this.selectionPath = new Path();
+        this.selectionPath = new CornerPath();
         this.selectionHandlePath = new Path();
         new PathCopyTo(this.selectionPath);
         this.selectionStart = -1;
@@ -484,6 +485,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         float dp = AndroidUtilities.dp(6.0f);
         this.cornerRadius = dp;
         paint.setPathEffect(new CornerPathEffect(dp));
+        this.selectionPath.setRectsUnionDiffDelta(1.0f);
     }
 
     public void setInvalidateParent() {
@@ -1406,9 +1408,9 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
         int lineTop2 = layout.getLineTop(i);
         int lineBottom = layout.getLineBottom(i);
-        Path path = this.selectionPath;
+        CornerPath cornerPath = this.selectionPath;
         float f4 = this.cornerRadius;
-        path.addRect(((int) layout.getPrimaryHorizontal(i2)) - (f4 / 2.0f), lineTop2, ((int) layout.getPrimaryHorizontal(i3)) + (f4 / 4.0f), lineBottom, Path.Direction.CW);
+        cornerPath.addRect(((int) layout.getPrimaryHorizontal(i2)) - (f4 / 2.0f), lineTop2, ((int) layout.getPrimaryHorizontal(i3)) + (f4 / 4.0f), lineBottom, Path.Direction.CW);
     }
 
     protected void fillLayoutForOffset(int i, LayoutBlock layoutBlock) {

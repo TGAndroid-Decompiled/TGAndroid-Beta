@@ -308,4 +308,24 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         }
         return false;
     }
+
+    @Override
+    public boolean onPause() {
+        super.onPause();
+        return SMSJobsNotification.check();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SMSJobsNotification.check();
+    }
+
+    @Override
+    public BaseFragment openSettings(int i) {
+        if (i == 13 && SMSJobController.getInstance(UserConfig.selectedAccount).getState() == 3) {
+            return new SMSStatsActivity();
+        }
+        return null;
+    }
 }

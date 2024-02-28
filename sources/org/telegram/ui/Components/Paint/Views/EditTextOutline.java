@@ -15,6 +15,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.CornerPath;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public class EditTextOutline extends EditTextBoldCursor {
     public RectF framePadding;
@@ -28,7 +29,7 @@ public class EditTextOutline extends EditTextBoldCursor {
     private float mStrokeWidth;
     private boolean mUpdateCachedBitmap;
     private Paint paint;
-    private Path path;
+    private CornerPath path;
     private TextPaint textPaint;
 
     public EditTextOutline(Context context) {
@@ -36,7 +37,7 @@ public class EditTextOutline extends EditTextBoldCursor {
         this.mCanvas = new Canvas();
         this.textPaint = new TextPaint(1);
         this.paint = new Paint(1);
-        this.path = new Path();
+        this.path = new CornerPath();
         this.mStrokeColor = 0;
         setInputType(getInputType() | 131072 | 524288);
         this.mUpdateCachedBitmap = true;
@@ -277,6 +278,7 @@ public class EditTextOutline extends EditTextBoldCursor {
                 }
                 i++;
             }
+            this.path.closeRects();
             setFrameRoundRadius(textSize);
             canvas.drawPath(this.path, this.paint);
             canvas.restore();

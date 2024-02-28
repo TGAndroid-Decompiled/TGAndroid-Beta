@@ -330,16 +330,14 @@ public class LimitPreviewView extends LinearLayout {
     public void lambda$onLayout$0(boolean z, float f, float f2, float f3, float f4, boolean z2, float f5, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float min = Math.min(1.0f, floatValue);
-        if (z) {
-            if (floatValue > 1.0f) {
-                if (!this.wasHaptic) {
-                    this.wasHaptic = true;
-                    this.limitIcon.performHapticFeedback(3);
-                }
-                this.limitIcon.setRotation(this.limitIconRotation + ((floatValue - 1.0f) * 60.0f));
-            } else {
-                this.limitIcon.setRotation(this.limitIconRotation);
+        if (floatValue > 1.0f && z) {
+            if (!this.wasHaptic) {
+                this.wasHaptic = true;
+                this.limitIcon.performHapticFeedback(3);
             }
+            this.limitIcon.setRotation(this.limitIconRotation + ((floatValue - 1.0f) * 60.0f));
+        } else if (!this.animatingRotation) {
+            this.limitIcon.setRotation(this.limitIconRotation);
         }
         if (valueAnimator == this.arrowAnimator) {
             float f6 = 1.0f - min;

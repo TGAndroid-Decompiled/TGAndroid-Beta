@@ -3567,13 +3567,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void lambda$toggleRecordingPause$31(final boolean z) {
-        AudioRecord audioRecord = this.audioRecorder;
-        if (audioRecord == null || this.recordingAudio == null || this.recordingAudioFile == null) {
+        if (this.recordingAudio == null || this.recordingAudioFile == null) {
             return;
         }
         boolean z2 = !this.audioRecorderPaused;
         this.audioRecorderPaused = z2;
         if (z2) {
+            AudioRecord audioRecord = this.audioRecorder;
+            if (audioRecord == null) {
+                return;
+            }
             this.sendAfterDone = 4;
             audioRecord.stop();
             this.audioRecorder.release();

@@ -21,7 +21,7 @@ public class CanvasButton {
     private static final int[] pressedState = {16842910, 16842919};
     boolean buttonPressed;
     private Runnable delegate;
-    Path drawingPath;
+    CornerPath drawingPath;
     private boolean longPressEnabled;
     Runnable longPressRunnable;
     Paint maskPaint;
@@ -118,11 +118,11 @@ public class CanvasButton {
             return;
         }
         if (!this.pathCreated) {
-            Path path = this.drawingPath;
-            if (path == null) {
-                this.drawingPath = new Path();
+            CornerPath cornerPath = this.drawingPath;
+            if (cornerPath == null) {
+                this.drawingPath = new CornerPath(2);
             } else {
-                path.rewind();
+                cornerPath.rewind();
             }
             int i3 = 0;
             int i4 = 0;
@@ -162,12 +162,13 @@ public class CanvasButton {
                 }
                 i2 = i8;
             }
+            this.drawingPath.closeRects();
             this.pathCreated = true;
         }
         paint.setPathEffect(this.pathEffect);
-        Path path2 = this.drawingPath;
-        if (path2 != null) {
-            canvas.drawPath(path2, paint);
+        CornerPath cornerPath2 = this.drawingPath;
+        if (cornerPath2 != null) {
+            canvas.drawPath(cornerPath2, paint);
         }
     }
 

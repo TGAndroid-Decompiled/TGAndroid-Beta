@@ -309,6 +309,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
     }
 
     public void updateItems() {
+        int simsCount;
         int state = SMSJobController.getInstance(this.currentAccount).getState();
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
@@ -321,7 +322,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
         if (state == 3 && !SMSJobController.getInstance(this.currentAccount).journal.isEmpty()) {
             this.items.add(Item.asButton(5, R.drawable.menu_sms_history, LocaleController.getString((int) R.string.SmsHistory)).setError(SMSJobController.getInstance(this.currentAccount).hasError()));
         }
-        if (state == 3 && SMSJobController.getInstance(this.currentAccount).simsCount() > 1) {
+        if (state == 3 && ((simsCount = SMSJobController.getInstance(this.currentAccount).simsCount()) > 1 || (simsCount == 1 && Build.VERSION.SDK_INT < 22))) {
             this.items.add(Item.asButton(4, R.drawable.menu_storage_path, LocaleController.getString((int) R.string.SmsActiveSim)));
         }
         this.items.add(Item.asShadow(null));

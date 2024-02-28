@@ -298,7 +298,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             loadInactiveChannels();
         }
         updatePremiumButtonText();
-        if (i == 19 || i == 31 || i == 18) {
+        if (i == 31 || isBoostingForAdminPossible()) {
             FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
             this.fireworksOverlay = fireworksOverlay;
             this.container.addView(fireworksOverlay, LayoutHelper.createFrame(-1, -1.0f));
@@ -830,7 +830,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         TransitionManager.beginDelayedTransition(this.headerView, transitionSet);
         this.headerView.recreateTitleAndDescription();
         this.headerView.title.setText(getBoostsTitleString());
-        this.headerView.description.setText(AndroidUtilities.replaceTags(getBoostsDescriptionString(false)));
+        this.headerView.description.setText(AndroidUtilities.replaceTags(getBoostDescriptionStringAfterBoost()));
         updateButton();
         this.fireworksOverlay.start();
         this.fireworksOverlay.performHapticFeedback(3);
@@ -1514,8 +1514,12 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public boolean isMiniBoostBtnForAdminAvailable() {
+        return isBoostingForAdminPossible() && ChatObject.hasAdminRights(getChat());
+    }
+
+    private boolean isBoostingForAdminPossible() {
         int i = this.type;
-        return (i == 19 || i == 18) && ChatObject.hasAdminRights(getChat());
+        return i == 19 || i == 18 || i == 20 || i == 24 || i == 25 || i == 29 || i == 22 || i == 26 || i == 27 || i == 23;
     }
 
     public String getBoostLink() {
@@ -1673,6 +1677,45 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     private int getNeededBoostsForUnlockGroup() {
         TLRPC$ChatFull chatFull = getChatFull();
         return Math.max(chatFull.boosts_unrestrict - chatFull.boosts_applied, 0);
+    }
+
+    private String getBoostDescriptionStringAfterBoost() {
+        String str;
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        boolean isGroup = isGroup();
+        int i = this.type;
+        if (i == 20) {
+            str = LocaleController.formatString(isGroup ? R.string.GroupNeedBoostsForColorDescription : R.string.ChannelNeedBoostsForColorDescription, Integer.valueOf(channelColorLevelMin()));
+        } else if (i == 24) {
+            str = LocaleController.formatString(isGroup ? R.string.GroupNeedBoostsForProfileColorDescription : R.string.ChannelNeedBoostsForProfileColorDescription, Integer.valueOf(channelColorLevelMin()));
+        } else if (i == 29) {
+            str = LocaleController.formatString(R.string.GroupNeedBoostsForCustomEmojiPackDescription, Integer.valueOf(messagesController.groupEmojiStickersLevelMin));
+        } else if (i == 25) {
+            int i2 = isGroup ? R.string.GroupNeedBoostsForEmojiStatusDescription : R.string.ChannelNeedBoostsForEmojiStatusDescription;
+            Object[] objArr = new Object[1];
+            objArr[0] = Integer.valueOf(isGroup ? messagesController.groupEmojiStatusLevelMin : messagesController.channelEmojiStatusLevelMin);
+            str = LocaleController.formatString(i2, objArr);
+        } else if (i == 26) {
+            str = LocaleController.formatString(isGroup ? R.string.GroupNeedBoostsForReplyIconDescription : R.string.ChannelNeedBoostsForReplyIconDescription, Integer.valueOf(messagesController.channelBgIconLevelMin));
+        } else if (i == 27) {
+            int i3 = isGroup ? R.string.GroupNeedBoostsForProfileIconDescription : R.string.ChannelNeedBoostsForProfileIconDescription;
+            Object[] objArr2 = new Object[1];
+            objArr2[0] = Integer.valueOf(isGroup ? messagesController.groupProfileBgIconLevelMin : messagesController.channelProfileIconLevelMin);
+            str = LocaleController.formatString(i3, objArr2);
+        } else if (i == 22) {
+            int i4 = isGroup ? R.string.GroupNeedBoostsForWallpaperDescription : R.string.ChannelNeedBoostsForWallpaperDescription;
+            Object[] objArr3 = new Object[1];
+            objArr3[0] = Integer.valueOf(isGroup ? messagesController.groupWallpaperLevelMin : messagesController.channelWallpaperLevelMin);
+            str = LocaleController.formatString(i4, objArr3);
+        } else if (i == 23) {
+            int i5 = isGroup ? R.string.GroupNeedBoostsForCustomWallpaperDescription : R.string.ChannelNeedBoostsForCustomWallpaperDescription;
+            Object[] objArr4 = new Object[1];
+            objArr4[0] = Integer.valueOf(isGroup ? messagesController.groupCustomWallpaperLevelMin : messagesController.channelCustomWallpaperLevelMin);
+            str = LocaleController.formatString(i5, objArr4);
+        } else {
+            str = null;
+        }
+        return str != null ? str : getBoostsDescriptionString(false);
     }
 
     public String getBoostsDescriptionString(boolean z) {
@@ -2120,9 +2163,9 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     private void setupBoostFeatures() {
-        int i;
         this.boostFeatures = new ArrayList<>();
         TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
+        int i = 10;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         if (messagesController != null) {
             MessagesController.PeerColors peerColors = messagesController.peerColors;
@@ -2134,11 +2177,9 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             } else {
                 i = Math.max(Math.max(Math.max(Math.max(Math.max(max2, messagesController.channelBgIconLevelMin), messagesController.channelProfileIconLevelMin), messagesController.channelEmojiStatusLevelMin), messagesController.channelWallpaperLevelMin), messagesController.channelCustomWallpaperLevelMin);
             }
-        } else {
-            i = 10;
         }
         ArrayList<BoostFeature> arrayList = null;
-        for (int i2 = tL_stories$TL_premium_boostsStatus != null ? tL_stories$TL_premium_boostsStatus.level + 1 : 1; i2 <= i; i2++) {
+        for (int i2 = this.type != 30 ? tL_stories$TL_premium_boostsStatus != null ? tL_stories$TL_premium_boostsStatus.level + 1 : 1 : 1; i2 <= i; i2++) {
             ArrayList<BoostFeature> boostFeaturesForLevel = boostFeaturesForLevel(i2);
             if (arrayList == null || !BoostFeature.arraysEqual(arrayList, boostFeaturesForLevel)) {
                 ArrayList<BoostFeature> arrayList2 = this.boostFeatures;
@@ -2146,10 +2187,6 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 this.boostFeatures.addAll(boostFeaturesForLevel);
                 arrayList = boostFeaturesForLevel;
             }
-        }
-        if (this.type == 30 && this.boostFeatures.isEmpty()) {
-            this.boostFeatures.add(new BoostFeature.BoostFeatureLevel(10, true));
-            this.boostFeatures.addAll(boostFeaturesForLevel(10));
         }
     }
 

@@ -112,7 +112,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.Text;
@@ -207,6 +206,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         return false;
     }
 
+    protected void openBoostDialog(int i) {
+    }
+
     public int minLevelRequired() {
         int i = 0;
         if (this.currentReplyColor != this.selectedReplyColor) {
@@ -232,13 +234,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         if (!DialogObject.emojiStatusesEqual(this.currentStatusEmoji, this.selectedStatusEmoji)) {
             i = Math.max(i, getEmojiStatusLevelMin());
         }
-        if (ChatThemeController.wallpaperEquals(this.currentWallpaper, this.selectedWallpaper)) {
-            return i;
-        }
-        if (!TextUtils.isEmpty(ChatThemeController.getWallpaperEmoticon(this.selectedWallpaper))) {
-            return Math.max(i, getWallpaperLevelMin());
-        }
-        return Math.max(i, getCustomWallpaperLevelMin());
+        return !ChatThemeController.wallpaperEquals(this.currentWallpaper, this.selectedWallpaper) ? Math.max(i, getWallpaperLevelMin()) : i;
     }
 
     protected int getProfileIconLevelMin() {
@@ -611,10 +607,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 int emojiStickersLevelMin = getEmojiStickersLevelMin();
                 TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
                 if (tL_stories$TL_premium_boostsStatus != null && tL_stories$TL_premium_boostsStatus.level < emojiStickersLevelMin) {
-                    LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), 29, this.currentAccount, getResourceProvider());
-                    limitReachedBottomSheet.setBoostsStats(this.boostsStatus, true);
-                    limitReachedBottomSheet.setDialogId(this.dialogId);
-                    showDialog(limitReachedBottomSheet);
+                    openBoostDialog(29);
                     return;
                 }
                 GroupStickersActivity groupStickersActivity = new GroupStickersActivity(-this.dialogId, true);

@@ -778,6 +778,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private LongSparseIntArray shortPollOnlines;
     public boolean showFiltersTooltip;
     public int smallQueueMaxActiveOperations;
+    public boolean smsjobsStickyNotificationEnabled;
     private DialogFilter sortingDialogFilter;
     private LongSparseArray<SponsoredMessagesInfo> sponsoredMessages;
     private int statusRequest;
@@ -2059,6 +2060,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.saveGifsWithStickers = this.mainPreferences.getBoolean("saveGifsWithStickers", false);
         this.filtersEnabled = this.mainPreferences.getBoolean("filtersEnabled", false);
         this.getfileExperimentalParams = this.mainPreferences.getBoolean("getfileExperimentalParams", false);
+        this.smsjobsStickyNotificationEnabled = this.mainPreferences.getBoolean("smsjobsStickyNotificationEnabled", false);
         this.showFiltersTooltip = this.mainPreferences.getBoolean("showFiltersTooltip", false);
         this.autoarchiveAvailable = this.mainPreferences.getBoolean("autoarchiveAvailable", false);
         this.groupCallVideoMaxParticipants = this.mainPreferences.getInt("groipCallVideoMaxParticipants", 30);
@@ -3593,7 +3595,8 @@ public class MessagesController extends BaseController implements NotificationCe
     private void resetAppConfig() {
         this.getfileExperimentalParams = false;
         this.collectDeviceStats = false;
-        this.mainPreferences.edit().remove("getfileExperimentalParams").apply();
+        this.smsjobsStickyNotificationEnabled = false;
+        this.mainPreferences.edit().remove("getfileExperimentalParams").remove("smsjobsStickyNotificationEnabled").apply();
     }
 
     private boolean savePremiumFeaturesPreviewOrder(SharedPreferences.Editor editor, ArrayList<TLRPC$JSONValue> arrayList) {

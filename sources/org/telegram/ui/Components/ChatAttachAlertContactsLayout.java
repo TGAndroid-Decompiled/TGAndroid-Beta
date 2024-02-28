@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Objects;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildConfig;
@@ -35,6 +37,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -49,18 +52,31 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     private FillLastLinearLayoutManager layoutManager;
     private ShareAdapter listAdapter;
     private RecyclerListView listView;
+    private boolean multipleSelectionAllowed;
     private ShareSearchAdapter searchAdapter;
     private SearchField searchField;
+    private HashMap<ListItemID, Object> selectedContacts;
+    private ArrayList<ListItemID> selectedContactsOrder;
+    private boolean sendPressed;
     private View shadow;
     private AnimatorSet shadowAnimation;
 
     public interface PhonebookShareAlertDelegate {
+
+        public final class CC {
+            public static void $default$didSelectContacts(PhonebookShareAlertDelegate phonebookShareAlertDelegate, ArrayList arrayList, String str, boolean z, int i) {
+            }
+        }
+
         void didSelectContact(TLRPC$User tLRPC$User, boolean z, int i);
+
+        void didSelectContacts(ArrayList<TLRPC$User> arrayList, String str, boolean z, int i);
     }
 
     public static class UserCell extends FrameLayout {
         private AvatarDrawable avatarDrawable;
         private BackupImageView avatarImageView;
+        private CheckBox2 checkBox;
         private int currentAccount;
         private int currentId;
         private CharSequence currentName;
@@ -119,6 +135,14 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             SimpleTextView simpleTextView4 = this.statusTextView;
             boolean z3 = LocaleController.isRTL;
             addView(simpleTextView4, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 28.0f : 72.0f, 36.0f, z3 ? 72.0f : 28.0f, 0.0f));
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
+            this.checkBox = checkBox2;
+            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            this.checkBox.setDrawUnchecked(false);
+            this.checkBox.setDrawBackgroundAsArc(3);
+            CheckBox2 checkBox22 = this.checkBox;
+            boolean z4 = LocaleController.isRTL;
+            addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 44.0f, 37.0f, z4 ? 44.0f : 0.0f, 0.0f));
         }
 
         public void setCurrentId(int i) {
@@ -160,6 +184,13 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                     ChatAttachAlertContactsLayout.UserCell.this.lambda$setData$0(run);
                 }
             });
+        }
+
+        public void setChecked(boolean z, boolean z2) {
+            if (this.checkBox.getVisibility() != 0) {
+                this.checkBox.setVisibility(0);
+            }
+            this.checkBox.setChecked(z, z2);
         }
 
         public void lambda$setData$0(CharSequence charSequence) {
@@ -226,8 +257,51 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
+    public static class ListItemID {
+        private final long id;
+        private final Type type;
+
+        public enum Type {
+            USER,
+            CONTACT
+        }
+
+        public static ListItemID of(Object obj) {
+            if (obj instanceof ContactsController.Contact) {
+                return new ListItemID(Type.CONTACT, ((ContactsController.Contact) obj).contact_id);
+            }
+            if (obj instanceof TLRPC$User) {
+                return new ListItemID(Type.USER, ((TLRPC$User) obj).id);
+            }
+            return null;
+        }
+
+        public ListItemID(Type type, long j) {
+            this.type = type;
+            this.id = j;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || ListItemID.class != obj.getClass()) {
+                return false;
+            }
+            ListItemID listItemID = (ListItemID) obj;
+            return this.id == listItemID.id && this.type == listItemID.type;
+        }
+
+        public int hashCode() {
+            return Objects.hash(this.type, Long.valueOf(this.id));
+        }
+    }
+
     public ChatAttachAlertContactsLayout(ChatAttachAlert chatAttachAlert, Context context, final Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
+        this.selectedContacts = new HashMap<>();
+        this.selectedContactsOrder = new ArrayList<>();
+        this.sendPressed = false;
         this.searchAdapter = new ShareSearchAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
@@ -313,6 +387,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         this.layoutManager.setBind(false);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
+        this.listView.setClipToPadding(false);
+        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         RecyclerListView recyclerListView3 = this.listView;
         ShareAdapter shareAdapter = new ShareAdapter(context);
@@ -331,6 +407,14 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 ChatAttachAlertContactsLayout chatAttachAlertContactsLayout = ChatAttachAlertContactsLayout.this;
                 chatAttachAlertContactsLayout.parentAlert.updateLayout(chatAttachAlertContactsLayout, true, i2);
                 ChatAttachAlertContactsLayout.this.updateEmptyViewPosition();
+            }
+        });
+        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+            @Override
+            public final boolean onItemClick(View view, int i) {
+                boolean lambda$new$2;
+                lambda$new$2 = ChatAttachAlertContactsLayout.this.lambda$new$2(view, i);
+                return lambda$new$2;
             }
         });
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
@@ -366,6 +450,10 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (item != null) {
+            if (!this.selectedContacts.isEmpty()) {
+                addOrRemoveSelectedContact((UserCell) view, item);
+                return;
+            }
             if (item instanceof ContactsController.Contact) {
                 ContactsController.Contact contact2 = (ContactsController.Contact) item;
                 TLRPC$User tLRPC$User = contact2.user;
@@ -398,6 +486,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 public final void didSelectContact(TLRPC$User tLRPC$User3, boolean z, int i2) {
                     ChatAttachAlertContactsLayout.this.lambda$new$0(tLRPC$User3, z, i2);
                 }
+
+                @Override
+                public void didSelectContacts(ArrayList arrayList, String str7, boolean z, int i2) {
+                    ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate.CC.$default$didSelectContacts(this, arrayList, str7, z, i2);
+                }
             });
             phonebookShareAlert.show();
         }
@@ -406,6 +499,72 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     public void lambda$new$0(TLRPC$User tLRPC$User, boolean z, int i) {
         this.parentAlert.dismiss(true);
         this.delegate.didSelectContact(tLRPC$User, z, i);
+    }
+
+    public boolean lambda$new$2(View view, int i) {
+        Object item;
+        RecyclerView.Adapter adapter = this.listView.getAdapter();
+        ShareSearchAdapter shareSearchAdapter = this.searchAdapter;
+        if (adapter == shareSearchAdapter) {
+            item = shareSearchAdapter.getItem(i);
+        } else {
+            item = this.listAdapter.getItem(i);
+        }
+        if (item != null) {
+            addOrRemoveSelectedContact((UserCell) view, item);
+            return true;
+        }
+        return false;
+    }
+
+    public void addOrRemoveSelectedContact(UserCell userCell, Object obj) {
+        boolean z = false;
+        if (this.selectedContacts.isEmpty() && !this.multipleSelectionAllowed) {
+            showErrorBox(LocaleController.formatString("AttachContactsSlowMode", R.string.AttachContactsSlowMode, new Object[0]));
+            return;
+        }
+        ListItemID of = ListItemID.of(obj);
+        if (this.selectedContacts.containsKey(of)) {
+            this.selectedContacts.remove(of);
+            this.selectedContactsOrder.remove(of);
+        } else {
+            this.selectedContacts.put(of, obj);
+            this.selectedContactsOrder.add(of);
+            z = true;
+        }
+        userCell.setChecked(z, true);
+        this.parentAlert.updateCountButton(z ? 1 : 2);
+    }
+
+    public void setMultipleSelectionAllowed(boolean z) {
+        this.multipleSelectionAllowed = z;
+    }
+
+    @Override
+    int getSelectedItemsCount() {
+        return this.selectedContacts.size();
+    }
+
+    private void showErrorBox(String str) {
+        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
+    }
+
+    private org.telegram.tgnet.TLRPC$User prepareContact(java.lang.Object r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.prepareContact(java.lang.Object):org.telegram.tgnet.TLRPC$User");
+    }
+
+    @Override
+    void sendSelectedItems(boolean z, int i) {
+        if ((this.selectedContacts.size() == 0 && this.delegate == null) || this.sendPressed) {
+            return;
+        }
+        this.sendPressed = true;
+        ArrayList<TLRPC$User> arrayList = new ArrayList<>(this.selectedContacts.size());
+        Iterator<ListItemID> it = this.selectedContactsOrder.iterator();
+        while (it.hasNext()) {
+            arrayList.add(prepareContact(this.selectedContacts.get(it.next())));
+        }
+        this.delegate.didSelectContacts(arrayList, this.parentAlert.commentTextView.getText().toString(), z, i);
     }
 
     @Override
@@ -467,7 +626,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
         if (this.listView.getPaddingTop() != i3) {
             this.ignoreLayout = true;
-            this.listView.setPadding(0, i3, 0, 0);
+            this.listView.setPadding(0, i3, 0, AndroidUtilities.dp(48.0f));
             this.ignoreLayout = false;
         }
     }
@@ -698,6 +857,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                         }
                     }, z);
                 }
+                userCell.setChecked(ChatAttachAlertContactsLayout.this.selectedContacts.containsKey(ListItemID.of(item)), false);
             }
         }
 
@@ -874,6 +1034,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                         }
                     }, z);
                 }
+                userCell.setChecked(ChatAttachAlertContactsLayout.this.selectedContacts.containsKey(ListItemID.of(item)), false);
             }
         }
 
@@ -911,7 +1072,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatAttachAlertContactsLayout.this.lambda$getThemeDescriptions$2();
+                ChatAttachAlertContactsLayout.this.lambda$getThemeDescriptions$3();
             }
 
             @Override
@@ -948,7 +1109,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$2() {
+    public void lambda$getThemeDescriptions$3() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

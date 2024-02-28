@@ -30,6 +30,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.tgnet.TLRPC$Update;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.Components.ForegroundDetector;
 import org.telegram.ui.IUpdateLayout;
@@ -95,6 +96,13 @@ public class ApplicationLoader extends Application {
         return null;
     }
 
+    public boolean onPause() {
+        return false;
+    }
+
+    public void onResume() {
+    }
+
     public boolean onSuggestionClick(String str) {
         return false;
     }
@@ -105,6 +113,10 @@ public class ApplicationLoader extends Application {
 
     public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
         return false;
+    }
+
+    public BaseFragment openSettings(int i) {
+        return null;
     }
 
     public TLRPC$Update parseTLUpdate(int i) {

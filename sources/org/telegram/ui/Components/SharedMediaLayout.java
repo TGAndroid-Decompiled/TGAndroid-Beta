@@ -1510,7 +1510,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                                                         public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                             if (this.firstCreateView) {
                                                                 if (this.searchItem != null) {
-                                                                    lambda$openSearchWithText$286(BuildConfig.APP_CENTER_HASH);
+                                                                    lambda$openSearchWithText$287(BuildConfig.APP_CENTER_HASH);
                                                                     this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                                 }
                                                                 SearchTagsList searchTagsList = this.actionBarSearchTags;

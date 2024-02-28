@@ -18,7 +18,7 @@ public class QuoteHighlight extends Path {
     private Rect lastRect;
     private float minX;
     public final Paint paint;
-    private final Path path;
+    private final CornerPath path;
     private final ArrayList<Rect> rectangles;
     public final int start;
     private final AnimatedFloat t;
@@ -41,7 +41,7 @@ public class QuoteHighlight extends Path {
         int i4;
         Paint paint = new Paint(1);
         this.paint = paint;
-        this.path = new Path();
+        this.path = new CornerPath();
         this.rectangles = new ArrayList<>();
         this.t = new AnimatedFloat(0.0f, new Runnable() {
             @Override
@@ -142,6 +142,7 @@ public class QuoteHighlight extends Path {
             Rect rect2 = this.rectangles.get(i);
             this.path.addRect(AndroidUtilities.lerp(rect.left - f, rect2.left, f4), AndroidUtilities.lerp(rect2.first ? rect.top - f2 : rect2.prevTop, rect2.top, f4), AndroidUtilities.lerp(rect.right - f, rect2.right, f4), AndroidUtilities.lerp(rect2.last ? rect.bottom - f2 : rect2.nextBottom, rect2.bottom, f4), Path.Direction.CW);
         }
+        this.path.closeRects();
         int alpha = this.paint.getAlpha();
         this.paint.setAlpha((int) (alpha * f3));
         canvas.drawPath(this.path, this.paint);

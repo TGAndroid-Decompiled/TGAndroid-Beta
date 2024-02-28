@@ -8,6 +8,6 @@ public final class PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1 i
 
     @Override
     public final void run() {
-        PremiumPreviewGiftLinkBottomSheet.m1815$r8$lambda$gPTyfxhyLe9fhVpbRc7LRzrrl4(this.f$0);
+        PremiumPreviewGiftLinkBottomSheet.m1814$r8$lambda$gPTyfxhyLe9fhVpbRc7LRzrrl4(this.f$0);
     }
 }
