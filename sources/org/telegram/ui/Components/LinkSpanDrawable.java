@@ -98,6 +98,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         } else {
             linkPath = new LinkPath(true);
         }
+        linkPath.setUseCornerPathImplementation(!this.isLite);
         linkPath.reset();
         this.mPathes.add(linkPath);
         this.mPathesCount = this.mPathes.size();
@@ -188,6 +189,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         float f3 = 1.0f - f;
         this.mSelectionPaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.dp(5.0f));
         for (int i3 = 0; i3 < this.mPathesCount; i3++) {
+            this.mPathes.get(i3).closeRects();
             canvas.drawPath(this.mPathes.get(i3), this.mSelectionPaint);
         }
         this.mRipplePaint.setAlpha((int) (this.mRippleAlpha * 0.8f * f2));

@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
@@ -46,7 +45,6 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -93,7 +91,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private INavigationLayout.INavigationLayoutDelegate delegate;
     private DrawerLayoutContainer drawerLayoutContainer;
     private List<BaseFragment> fragmentsStack;
-    public boolean highlightActionButtons;
     private boolean inActionMode;
     private boolean inBubbleMode;
     private boolean inPreviewMode;
@@ -272,15 +269,14 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         removeFragmentFromStack(baseFragment, false);
     }
 
+    @Override
+    public void setHighlightActionButtons(boolean z) {
+    }
+
     static float access$1216(ActionBarLayout actionBarLayout, float f) {
         float f2 = actionBarLayout.animationProgress + f;
         actionBarLayout.animationProgress = f2;
         return f2;
-    }
-
-    @Override
-    public void setHighlightActionButtons(boolean z) {
-        this.highlightActionButtons = z;
     }
 
     public boolean storyViewerAttached() {
@@ -296,16 +292,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public class LayoutContainer extends FrameLayout {
-        private boolean allowToPressByHover;
         private int backgroundColor;
         private Paint backgroundPaint;
         private int fragmentPanTranslationOffset;
         private boolean isKeyboardVisible;
-        float lastY;
-        private float pressX;
-        private float pressY;
         private Rect rect;
-        float startY;
         private boolean wasPortrait;
 
         public LayoutContainer(Context context) {
@@ -465,100 +456,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             this.fragmentPanTranslationOffset = i;
             invalidate();
         }
-
-        public void processMenuButtonsTouch(MotionEvent motionEvent) {
-            if (motionEvent.getAction() == 0) {
-                this.startY = motionEvent.getY();
-            }
-            if (ActionBarLayout.this.isInPreviewMode() && ActionBarLayout.this.previewMenu == null) {
-                this.lastY = motionEvent.getY();
-                if (motionEvent.getAction() == 1) {
-                    ActionBarLayout.this.finishPreviewFragment();
-                    return;
-                } else if (motionEvent.getAction() == 2) {
-                    float f = this.startY - this.lastY;
-                    ActionBarLayout.this.movePreviewFragment(f);
-                    if (f < 0.0f) {
-                        this.startY = this.lastY;
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
-            }
-            if (motionEvent.getAction() == 0) {
-                this.pressX = motionEvent.getX();
-                this.pressY = motionEvent.getY();
-                this.allowToPressByHover = false;
-            } else if ((motionEvent.getAction() == 2 || motionEvent.getAction() == 1) && ActionBarLayout.this.previewMenu != null && ActionBarLayout.this.highlightActionButtons) {
-                if (!this.allowToPressByHover && Math.sqrt(Math.pow(this.pressX - motionEvent.getX(), 2.0d) + Math.pow(this.pressY - motionEvent.getY(), 2.0d)) > AndroidUtilities.dp(30.0f)) {
-                    this.allowToPressByHover = true;
-                }
-                if (this.allowToPressByHover && (ActionBarLayout.this.previewMenu.getSwipeBack() == null || !ActionBarLayout.this.previewMenu.getSwipeBack().isForegroundOpen())) {
-                    for (int i = 0; i < ActionBarLayout.this.previewMenu.getItemsCount(); i++) {
-                        ActionBarMenuSubItem actionBarMenuSubItem = (ActionBarMenuSubItem) ActionBarLayout.this.previewMenu.getItemAt(i);
-                        if (actionBarMenuSubItem != null) {
-                            Drawable background = actionBarMenuSubItem.getBackground();
-                            Rect rect = AndroidUtilities.rectTmp2;
-                            actionBarMenuSubItem.getGlobalVisibleRect(rect);
-                            boolean contains = rect.contains((int) motionEvent.getX(), (int) motionEvent.getY());
-                            boolean z = background.getState().length == 2;
-                            if (motionEvent.getAction() == 2) {
-                                if (contains != z) {
-                                    background.setState(contains ? new int[]{16842919, 16842910} : new int[0]);
-                                    if (contains) {
-                                        try {
-                                            actionBarMenuSubItem.performHapticFeedback(9, 1);
-                                        } catch (Exception unused) {
-                                        }
-                                    }
-                                }
-                            } else if (motionEvent.getAction() == 1 && contains) {
-                                actionBarMenuSubItem.performClick();
-                            }
-                        }
-                    }
-                }
-            }
-            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (ActionBarLayout.this.previewMenu != null && ActionBarLayout.this.highlightActionButtons) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(Build.VERSION.SDK_INT >= 19 ? Theme.moveUpDrawable.getAlpha() : 255, 0.0f);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ActionBarLayout.LayoutContainer.this.lambda$processMenuButtonsTouch$0(valueAnimator);
-                        }
-                    });
-                    ofFloat.setDuration(150L);
-                    CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-                    ofFloat.setInterpolator(cubicBezierInterpolator);
-                    ofFloat.start();
-                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(ActionBarLayout.this.containerView, View.TRANSLATION_Y, 0.0f);
-                    ofFloat2.setDuration(150L);
-                    ofFloat2.setInterpolator(cubicBezierInterpolator);
-                    ofFloat2.start();
-                }
-                ActionBarLayout.this.highlightActionButtons = false;
-            }
-        }
-
-        public void lambda$processMenuButtonsTouch$0(ValueAnimator valueAnimator) {
-            Theme.moveUpDrawable.setAlpha(((Float) valueAnimator.getAnimatedValue()).intValue());
-            if (ActionBarLayout.this.drawerLayoutContainer != null) {
-                ActionBarLayout.this.drawerLayoutContainer.invalidate();
-            }
-            LayoutContainer layoutContainer = ActionBarLayout.this.containerView;
-            if (layoutContainer != null) {
-                layoutContainer.invalidate();
-            }
-            ActionBarLayout.this.invalidate();
-        }
     }
 
     public ActionBarLayout(Context context) {
         super(context);
-        this.highlightActionButtons = false;
         this.decelerateInterpolator = new DecelerateInterpolator(1.5f);
         this.overshootInterpolator = new OvershootInterpolator(1.02f);
         this.accelerateDecelerateInterpolator = new AccelerateDecelerateInterpolator();

@@ -207,7 +207,7 @@ public class GroupColorActivity extends ChannelColorActivity {
         }
 
         public void lambda$onGlobalLayout$0(View view) {
-            GroupColorActivity.this.openBoostDialog();
+            GroupColorActivity.this.openBoostDialog(19);
         }
     }
 
@@ -280,7 +280,8 @@ public class GroupColorActivity extends ChannelColorActivity {
         });
     }
 
-    public void openBoostDialog() {
+    @Override
+    protected void openBoostDialog(final int i) {
         if (this.boostsStatus == null || this.isLoading) {
             return;
         }
@@ -288,17 +289,17 @@ public class GroupColorActivity extends ChannelColorActivity {
         MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                GroupColorActivity.this.lambda$openBoostDialog$0((ChannelBoostsController.CanApplyBoost) obj);
+                GroupColorActivity.this.lambda$openBoostDialog$0(i, (ChannelBoostsController.CanApplyBoost) obj);
             }
         });
     }
 
-    public void lambda$openBoostDialog$0(ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$openBoostDialog$0(int i, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         if (canApplyBoost == null || getContext() == null) {
             this.isLoading = false;
             return;
         }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), 19, this.currentAccount, this.resourceProvider) {
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), i, this.currentAccount, this.resourceProvider) {
             @Override
             public void onOpenAnimationEnd() {
                 GroupColorActivity.this.isLoading = false;

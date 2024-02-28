@@ -4450,7 +4450,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         for (PasscodeView passcodeView2 : this.overlayPasscodeViews) {
             passcodeView2.onPause();
         }
-        ConnectionsManager.getInstance(this.currentAccount).setAppPaused(true, false);
+        ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
+        ConnectionsManager.getInstance(this.currentAccount).setAppPaused(!(applicationLoader != null ? applicationLoader.onPause() : false), false);
         if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
             PhotoViewer.getInstance().onPause();
         }
@@ -4654,6 +4655,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         invalidateTabletMode();
         SpoilerEffect2.pause(false);
+        ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
+        if (applicationLoader != null) {
+            applicationLoader.onResume();
+        }
     }
 
     public static void lambda$onResume$128() {

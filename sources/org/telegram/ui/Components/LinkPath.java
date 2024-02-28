@@ -7,7 +7,7 @@ import android.os.Build;
 import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
-public class LinkPath extends Path {
+public class LinkPath extends CornerPath {
     private static CornerPathEffect roundedEffect;
     private static int roundedEffectRadius;
     private int baselineShift;
@@ -42,10 +42,12 @@ public class LinkPath extends Path {
     }
 
     public LinkPath() {
+        this.useCornerPathImplementation = false;
     }
 
     public LinkPath(boolean z) {
         this.useRoundRect = z;
+        this.useCornerPathImplementation = false;
     }
 
     public void setCurrentLayout(Layout layout, int i, float f) {

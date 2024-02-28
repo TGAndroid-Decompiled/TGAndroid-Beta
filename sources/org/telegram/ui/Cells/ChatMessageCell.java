@@ -4834,18 +4834,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 resetUrlPaths();
                 try {
                     LinkPath obtainNewUrlPath = obtainNewUrlPath();
+                    obtainNewUrlPath.setUseCornerPathImplementation(true);
                     obtainNewUrlPath.setCurrentLayout(textLayoutBlock.textLayout, i, 0.0f);
                     textLayoutBlock.textLayout.getSelectionPath(i, i2, obtainNewUrlPath);
+                    obtainNewUrlPath.closeRects();
                     float f = textLayoutBlock.height + textLayoutBlock.padBottom;
                     if (i2 >= textLayoutBlock.charactersOffset + i3) {
                         for (int i5 = i4 + 1; i5 < arrayList.size(); i5++) {
                             MessageObject.TextLayoutBlock textLayoutBlock2 = arrayList.get(i5);
                             int i6 = textLayoutBlock2.charactersEnd - textLayoutBlock2.charactersOffset;
                             LinkPath obtainNewUrlPath2 = obtainNewUrlPath();
+                            obtainNewUrlPath2.setUseCornerPathImplementation(true);
                             float f2 = f + textLayoutBlock2.padTop;
                             obtainNewUrlPath2.setCurrentLayout(textLayoutBlock2.textLayout, 0, f2);
                             f = f2 + textLayoutBlock2.height + textLayoutBlock2.padBottom;
                             textLayoutBlock2.textLayout.getSelectionPath(0, i2 - textLayoutBlock2.charactersOffset, obtainNewUrlPath2);
+                            obtainNewUrlPath2.closeRects();
                             if (i2 < (textLayoutBlock.charactersOffset + i6) - 1) {
                                 break;
                             }
