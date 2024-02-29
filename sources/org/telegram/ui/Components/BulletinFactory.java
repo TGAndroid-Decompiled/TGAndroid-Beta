@@ -82,6 +82,10 @@ public final class BulletinFactory {
         createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
     }
 
+    public static void showError(TLRPC$TL_error tLRPC$TL_error) {
+        global().createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+    }
+
     public static final class FileType {
         private static final FileType[] $VALUES;
         public static final FileType AUDIO;

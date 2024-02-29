@@ -29,6 +29,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_BotResults;
 import org.telegram.ui.Components.RecyclerListView;
 public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdapter {
+    public final boolean biz;
     private int currentRequestNum;
     private BaseLocationAdapterDelegate delegate;
     private long dialogId;
@@ -50,8 +51,9 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         void didLoadSearchResult(ArrayList<TLRPC$TL_messageMediaVenue> arrayList);
     }
 
-    public BaseLocationAdapter(boolean z) {
+    public BaseLocationAdapter(boolean z, boolean z2) {
         this.stories = z;
+        this.biz = z2;
     }
 
     public void destroy() {
@@ -113,7 +115,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         this.searchingUser = true;
         TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
         if (this.stories) {
-            str = MessagesController.getInstance(this.currentAccount).venueSearchBot;
+            str = MessagesController.getInstance(this.currentAccount).storyVenueSearchBot;
         } else {
             str = MessagesController.getInstance(this.currentAccount).venueSearchBot;
         }
@@ -178,7 +180,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 this.searched = true;
                 MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
                 if (this.stories) {
-                    str2 = MessagesController.getInstance(this.currentAccount).venueSearchBot;
+                    str2 = MessagesController.getInstance(this.currentAccount).storyVenueSearchBot;
                 } else {
                     str2 = MessagesController.getInstance(this.currentAccount).venueSearchBot;
                 }
@@ -207,7 +209,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 } else {
                     tLRPC$TL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
                 }
-                if (!TextUtils.isEmpty(str) && this.stories) {
+                if (!TextUtils.isEmpty(str) && (this.stories || this.biz)) {
                     this.searchingLocations = true;
                     final Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     Utilities.globalQueue.postRunnable(new Runnable() {
@@ -233,7 +235,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         }
     }
 
-    public void lambda$searchPlacesWithQuery$5(java.util.Locale r25, java.lang.String r26, final android.location.Location r27, final java.lang.String r28) {
+    public void lambda$searchPlacesWithQuery$5(java.util.Locale r26, java.lang.String r27, final android.location.Location r28, final java.lang.String r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, android.location.Location, java.lang.String):void");
     }
 

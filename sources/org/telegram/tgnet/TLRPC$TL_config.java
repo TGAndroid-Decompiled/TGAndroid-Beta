@@ -127,7 +127,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 1024) != 0) {
             this.venue_search_username = abstractSerializedData.readString(z);
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.img_search_username = abstractSerializedData.readString(z);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -212,7 +212,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeString(this.venue_search_username);
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.img_search_username);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {

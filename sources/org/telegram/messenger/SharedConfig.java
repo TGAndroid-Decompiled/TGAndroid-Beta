@@ -548,7 +548,7 @@ public class SharedConfig {
     }
 
     public static boolean isAutoplayGifs() {
-        return LiteMode.isEnabled(LiteMode.FLAG_AUTOPLAY_GIFS);
+        return LiteMode.isEnabled(2048);
     }
 
     public static boolean isPassportConfigLoaded() {
@@ -940,7 +940,7 @@ public class SharedConfig {
     }
 
     public static void toggleAutoplayGifs() {
-        LiteMode.toggleFlag(LiteMode.FLAG_AUTOPLAY_GIFS);
+        LiteMode.toggleFlag(2048);
     }
 
     public static void setUseThreeLinesLayout(boolean z) {

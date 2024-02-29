@@ -31,7 +31,7 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
                 this.entities.add(TLdeserialize);
             }
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.via_bot_name = abstractSerializedData.readString(z);
         }
         if ((this.flags & 8) != 0) {
@@ -62,7 +62,7 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
                 this.entities.get(i2).serializeToStream(abstractSerializedData);
             }
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.via_bot_name);
         }
         if ((this.flags & 8) != 0) {

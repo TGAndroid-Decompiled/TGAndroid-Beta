@@ -44,7 +44,7 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
         this.pin_messages = (readInt32 & 128) != 0;
         this.add_admins = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
         this.anonymous = (readInt32 & 1024) != 0;
-        this.manage_call = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.manage_call = (readInt32 & 2048) != 0;
         this.other = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.manage_topics = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
         this.post_stories = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -73,7 +73,7 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
         this.flags = i8;
         int i9 = this.anonymous ? i8 | 1024 : i8 & (-1025);
         this.flags = i9;
-        int i10 = this.manage_call ? i9 | LiteMode.FLAG_AUTOPLAY_GIFS : i9 & (-2049);
+        int i10 = this.manage_call ? i9 | 2048 : i9 & (-2049);
         this.flags = i10;
         int i11 = this.other ? i10 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i10 & (-4097);
         this.flags = i11;

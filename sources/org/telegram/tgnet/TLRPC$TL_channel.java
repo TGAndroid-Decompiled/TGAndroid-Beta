@@ -13,7 +13,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.verified = (readInt32 & 128) != 0;
         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.signatures = (readInt32 & 2048) != 0;
         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.scam = (524288 & readInt32) != 0;
         this.has_link = (1048576 & readInt32) != 0;
@@ -120,7 +120,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.flags = i5;
         int i6 = this.restricted ? i5 | LiteMode.FLAG_CALLS_ANIMATIONS : i5 & (-513);
         this.flags = i6;
-        int i7 = this.signatures ? i6 | LiteMode.FLAG_AUTOPLAY_GIFS : i6 & (-2049);
+        int i7 = this.signatures ? i6 | 2048 : i6 & (-2049);
         this.flags = i7;
         int i8 = this.min ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i7 & (-4097);
         this.flags = i8;

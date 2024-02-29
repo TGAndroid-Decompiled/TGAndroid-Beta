@@ -9,7 +9,7 @@ public class TLRPC$TL_user extends TLRPC$User {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.self = (readInt32 & 1024) != 0;
-        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.contact = (readInt32 & 2048) != 0;
         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -124,7 +124,7 @@ public class TLRPC$TL_user extends TLRPC$User {
         abstractSerializedData.writeInt32(559694904);
         int i = this.self ? this.flags | 1024 : this.flags & (-1025);
         this.flags = i;
-        int i2 = this.contact ? i | LiteMode.FLAG_AUTOPLAY_GIFS : i & (-2049);
+        int i2 = this.contact ? i | 2048 : i & (-2049);
         this.flags = i2;
         int i3 = this.mutual_contact ? i2 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i2 & (-4097);
         this.flags = i3;

@@ -10,6 +10,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
     public ArrayList<TLRPC$TL_inputSingleMedia> multi_media = new ArrayList<>();
     public boolean noforwards;
     public TLRPC$InputPeer peer;
+    public TLRPC$InputQuickReplyShortcut quick_reply_shortcut;
     public TLRPC$InputReplyTo reply_to;
     public int schedule_date;
     public TLRPC$InputPeer send_as;
@@ -23,7 +24,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1164872071);
+        abstractSerializedData.writeInt32(211175177);
         int i = this.silent ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);
@@ -52,6 +53,9 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 131072) != 0) {
+            this.quick_reply_shortcut.serializeToStream(abstractSerializedData);
         }
     }
 }

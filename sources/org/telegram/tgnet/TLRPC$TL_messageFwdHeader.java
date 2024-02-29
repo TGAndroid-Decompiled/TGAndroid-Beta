@@ -7,7 +7,7 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.imported = (readInt32 & 128) != 0;
-        this.saved_out = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.saved_out = (readInt32 & 2048) != 0;
         if ((readInt32 & 1) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -46,7 +46,7 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
         abstractSerializedData.writeInt32(1313731771);
         int i = this.imported ? this.flags | 128 : this.flags & (-129);
         this.flags = i;
-        int i2 = this.saved_out ? i | LiteMode.FLAG_AUTOPLAY_GIFS : i & (-2049);
+        int i2 = this.saved_out ? i | 2048 : i & (-2049);
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
         if ((this.flags & 1) != 0) {

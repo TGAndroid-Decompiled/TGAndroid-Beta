@@ -7795,7 +7795,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if ((!this.autoPlayingMedia || !MediaController.getInstance().isPlayingMessageAndReadyToDraw(this.currentMessageObject) || this.isRoundVideo) && !this.transitionParams.animateBackgroundBoundsInner && ((messageObject = this.currentMessageObject) == null || !messageObject.preview)) {
             drawOverlays(canvas);
         }
-        if ((this.drawTime || !this.mediaBackground) && !this.forceNotDrawTime && !this.transitionParams.animateBackgroundBoundsInner && (!this.enterTransitionInProgress || this.currentMessageObject.isVoice())) {
+        if ((this.drawTime || !this.mediaBackground) && !this.forceNotDrawTime && !this.transitionParams.animateBackgroundBoundsInner && ((!this.enterTransitionInProgress || this.currentMessageObject.isVoice()) && (!this.currentMessageObject.isQuickReply() || this.currentMessageObject.isSendError()))) {
             drawTime(canvas, 1.0f, false);
         }
         if ((this.controlsAlpha != 1.0f || this.timeAlpha != 1.0f) && this.currentMessageObject.type != 5) {
@@ -9472,133 +9472,113 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     i6 = 0;
                 }
                 rectF.set(dp3, dp4, f18 + AndroidUtilities.dp(i4 + i6), max + dp4);
-                if (this.currentMessageObject.hasMediaSpoilers() && this.currentMessageObject.type != 5) {
-                    this.rectPath.rewind();
-                    float f19 = dp2;
-                    this.rectPath.addRoundRect(this.rect, f19, f19, Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(this.rectPath);
-                    ImageReceiver imageReceiver = this.currentMessageObject.needDrawBluredPreview() ? this.photoImage : this.blurredPhotoImage;
-                    float alpha2 = imageReceiver.getAlpha();
-                    imageReceiver.setAlpha(0.5f * alpha2);
-                    imageReceiver.draw(canvas);
-                    imageReceiver.setAlpha(alpha2);
-                    canvas.restore();
-                    Paint themedPaint2 = getThemedPaint("paintChatTimeBackground");
-                    int alpha3 = themedPaint2.getAlpha();
-                    themedPaint2.setAlpha((int) (alpha3 * this.controlsAlpha * 0.4f));
-                    canvas.drawRoundRect(this.rect, f19, f19, themedPaint2);
-                    themedPaint2.setAlpha(alpha3);
-                    themedPaint.setAlpha(alpha);
-                    float f20 = -staticLayout.getLineLeft(0);
-                    if (this.currentMessageObject.shouldDrawReactions() && this.reactionsLayoutInBubble.isSmall) {
-                        updateReactionLayoutPosition();
-                        this.reactionsLayoutInBubble.draw(canvas, this.transitionParams.animateChangeProgress, null);
+                if (!this.currentMessageObject.isQuickReply()) {
+                    if (this.currentMessageObject.hasMediaSpoilers() && this.currentMessageObject.type != 5) {
+                        this.rectPath.rewind();
+                        float f19 = dp2;
+                        this.rectPath.addRoundRect(this.rect, f19, f19, Path.Direction.CW);
+                        canvas.save();
+                        canvas.clipPath(this.rectPath);
+                        ImageReceiver imageReceiver = this.currentMessageObject.needDrawBluredPreview() ? this.photoImage : this.blurredPhotoImage;
+                        float alpha2 = imageReceiver.getAlpha();
+                        imageReceiver.setAlpha(0.5f * alpha2);
+                        imageReceiver.draw(canvas);
+                        imageReceiver.setAlpha(alpha2);
+                        canvas.restore();
+                        Paint themedPaint2 = getThemedPaint("paintChatTimeBackground");
+                        int alpha3 = themedPaint2.getAlpha();
+                        themedPaint2.setAlpha((int) (alpha3 * this.controlsAlpha * 0.4f));
+                        canvas.drawRoundRect(this.rect, f19, f19, themedPaint2);
+                        themedPaint2.setAlpha(alpha3);
                     }
-                    if ((ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup) && (this.currentMessageObject.messageOwner.flags & 1024) == 0 && this.repliesLayout == null && !this.isPinned) {
-                        str = "paintChatTimeBackground";
-                        i7 = i5;
-                        c = 4;
-                        c2 = 7;
-                    } else {
-                        float lineWidth = f20 + (this.timeWidth - staticLayout.getLineWidth(0));
-                        ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
-                        if (reactionsLayoutInBubble2.isSmall && !reactionsLayoutInBubble2.isEmpty) {
-                            lineWidth -= reactionsLayoutInBubble2.width;
-                        }
-                        float f21 = lineWidth;
-                        int createStatusDrawableParams = this.transitionParams.createStatusDrawableParams();
-                        int i11 = this.transitionParams.lastStatusDrawableParams;
-                        if (i11 >= 0 && i11 != createStatusDrawableParams && !this.statusDrawableAnimationInProgress) {
-                            createStatusDrawableAnimator(i11, createStatusDrawableParams, z);
-                        }
-                        boolean z6 = this.statusDrawableAnimationInProgress;
-                        if (z6) {
-                            createStatusDrawableParams = this.animateToStatusDrawableParams;
-                        }
-                        boolean z7 = (createStatusDrawableParams & 4) != 0;
-                        boolean z8 = (createStatusDrawableParams & 8) != 0;
-                        if (z6) {
-                            int i12 = this.animateFromStatusDrawableParams;
-                            boolean z9 = (i12 & 4) != 0;
-                            int i13 = i5;
-                            boolean z10 = (i12 & 8) != 0;
-                            float f22 = i13;
-                            f8 = f21;
-                            c = 4;
-                            float f23 = f9;
-                            i7 = i13;
-                            str = "paintChatTimeBackground";
-                            c2 = 7;
-                            drawClockOrErrorLayout(canvas, z9, z10, f13, f23, f22, f15, 1.0f - this.statusDrawableProgress, z2);
-                            drawClockOrErrorLayout(canvas, z7, z8, f13, f23, f22, f15, this.statusDrawableProgress, z2);
-                            if (!this.currentMessageObject.isOutOwner()) {
-                                if (!z9 && !z10) {
-                                    drawViewsAndRepliesLayout(canvas, f13, f9, f22, f15, 1.0f - this.statusDrawableProgress, z2);
-                                }
-                                if (!z7 && !z8) {
-                                    drawViewsAndRepliesLayout(canvas, f13, f9, f22, f15, this.statusDrawableProgress, z2);
-                                }
-                            }
-                        } else {
-                            str = "paintChatTimeBackground";
-                            f8 = f21;
-                            i7 = i5;
-                            c = 4;
-                            c2 = 7;
-                            if (!this.currentMessageObject.isOutOwner() && !z7 && !z8) {
-                                drawViewsAndRepliesLayout(canvas, f13, f9, i7, f15, 1.0f, z2);
-                            }
-                            drawClockOrErrorLayout(canvas, z7, z8, f13, f9, i7, f15, 1.0f, z2);
-                        }
-                        if (this.currentMessageObject.isOutOwner()) {
-                            drawViewsAndRepliesLayout(canvas, f13, f9, i7, f15, 1.0f, z2);
-                        }
-                        TransitionParams transitionParams3 = this.transitionParams;
-                        transitionParams3.lastStatusDrawableParams = transitionParams3.createStatusDrawableParams();
-                        if (z7 && z && getParent() != null) {
-                            ((View) getParent()).invalidate();
-                        }
-                        f20 = f8;
+                    applyServiceShaderMatrix();
+                    float f20 = dp2;
+                    canvas.drawRoundRect(this.rect, f20, f20, themedPaint);
+                    if (themedPaint == getThemedPaint("paintChatActionBackground") && hasGradientService()) {
+                        int alpha4 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
+                        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha4 * this.timeAlpha * f7));
+                        canvas.drawRoundRect(this.rect, f20, f20, Theme.chat_actionBackgroundGradientDarkenPaint);
+                        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(alpha4);
                     }
-                    canvas.save();
-                    float f24 = f16 + f20;
-                    this.drawTimeX = f24;
-                    float dp5 = (f17 - AndroidUtilities.dp(7.3f)) - staticLayout.getHeight();
-                    this.drawTimeY = dp5;
-                    canvas.translate(f24, dp5);
-                    SpoilerEffect.layoutDrawMaybe(staticLayout, canvas);
-                    canvas.restore();
-                    Theme.chat_timePaint.setAlpha(255);
-                    i3 = i7;
-                }
-                applyServiceShaderMatrix();
-                float f25 = dp2;
-                canvas.drawRoundRect(this.rect, f25, f25, themedPaint);
-                if (themedPaint == getThemedPaint("paintChatActionBackground") && hasGradientService()) {
-                    int alpha4 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
-                    Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha4 * this.timeAlpha * f7));
-                    canvas.drawRoundRect(this.rect, f25, f25, Theme.chat_actionBackgroundGradientDarkenPaint);
-                    Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(alpha4);
                 }
                 themedPaint.setAlpha(alpha);
-                float f202 = -staticLayout.getLineLeft(0);
-                if (this.currentMessageObject.shouldDrawReactions()) {
+                float f21 = -staticLayout.getLineLeft(0);
+                if (this.currentMessageObject.shouldDrawReactions() && this.reactionsLayoutInBubble.isSmall) {
                     updateReactionLayoutPosition();
                     this.reactionsLayoutInBubble.draw(canvas, this.transitionParams.animateChangeProgress, null);
                 }
-                if (ChatObject.isChannel(this.currentChat)) {
+                if ((!ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup) && (this.currentMessageObject.messageOwner.flags & 1024) == 0 && this.repliesLayout == null && !this.isPinned) {
+                    str = "paintChatTimeBackground";
+                    i7 = i5;
+                    c = 4;
+                    c2 = 7;
+                } else {
+                    float lineWidth = f21 + (this.timeWidth - staticLayout.getLineWidth(0));
+                    ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
+                    if (reactionsLayoutInBubble2.isSmall && !reactionsLayoutInBubble2.isEmpty) {
+                        lineWidth -= reactionsLayoutInBubble2.width;
+                    }
+                    float f22 = lineWidth;
+                    int createStatusDrawableParams = this.transitionParams.createStatusDrawableParams();
+                    int i11 = this.transitionParams.lastStatusDrawableParams;
+                    if (i11 >= 0 && i11 != createStatusDrawableParams && !this.statusDrawableAnimationInProgress) {
+                        createStatusDrawableAnimator(i11, createStatusDrawableParams, z);
+                    }
+                    boolean z6 = this.statusDrawableAnimationInProgress;
+                    if (z6) {
+                        createStatusDrawableParams = this.animateToStatusDrawableParams;
+                    }
+                    boolean z7 = (createStatusDrawableParams & 4) != 0;
+                    boolean z8 = (createStatusDrawableParams & 8) != 0;
+                    if (z6) {
+                        int i12 = this.animateFromStatusDrawableParams;
+                        boolean z9 = (i12 & 4) != 0;
+                        int i13 = i5;
+                        boolean z10 = (i12 & 8) != 0;
+                        float f23 = i13;
+                        f8 = f22;
+                        c = 4;
+                        float f24 = f9;
+                        i7 = i13;
+                        str = "paintChatTimeBackground";
+                        c2 = 7;
+                        drawClockOrErrorLayout(canvas, z9, z10, f13, f24, f23, f15, 1.0f - this.statusDrawableProgress, z2);
+                        drawClockOrErrorLayout(canvas, z7, z8, f13, f24, f23, f15, this.statusDrawableProgress, z2);
+                        if (!this.currentMessageObject.isOutOwner()) {
+                            if (!z9 && !z10) {
+                                drawViewsAndRepliesLayout(canvas, f13, f9, f23, f15, 1.0f - this.statusDrawableProgress, z2);
+                            }
+                            if (!z7 && !z8) {
+                                drawViewsAndRepliesLayout(canvas, f13, f9, f23, f15, this.statusDrawableProgress, z2);
+                            }
+                        }
+                    } else {
+                        str = "paintChatTimeBackground";
+                        f8 = f22;
+                        i7 = i5;
+                        c = 4;
+                        c2 = 7;
+                        if (!this.currentMessageObject.isOutOwner() && !z7 && !z8) {
+                            drawViewsAndRepliesLayout(canvas, f13, f9, i7, f15, 1.0f, z2);
+                        }
+                        drawClockOrErrorLayout(canvas, z7, z8, f13, f9, i7, f15, 1.0f, z2);
+                    }
+                    if (this.currentMessageObject.isOutOwner()) {
+                        drawViewsAndRepliesLayout(canvas, f13, f9, i7, f15, 1.0f, z2);
+                    }
+                    TransitionParams transitionParams3 = this.transitionParams;
+                    transitionParams3.lastStatusDrawableParams = transitionParams3.createStatusDrawableParams();
+                    if (z7 && z && getParent() != null) {
+                        ((View) getParent()).invalidate();
+                    }
+                    f21 = f8;
                 }
-                str = "paintChatTimeBackground";
-                i7 = i5;
-                c = 4;
-                c2 = 7;
                 canvas.save();
-                float f242 = f16 + f202;
-                this.drawTimeX = f242;
-                float dp52 = (f17 - AndroidUtilities.dp(7.3f)) - staticLayout.getHeight();
-                this.drawTimeY = dp52;
-                canvas.translate(f242, dp52);
+                float f25 = f16 + f21;
+                this.drawTimeX = f25;
+                float dp5 = (f17 - AndroidUtilities.dp(7.3f)) - staticLayout.getHeight();
+                this.drawTimeY = dp5;
+                canvas.translate(f25, dp5);
                 SpoilerEffect.layoutDrawMaybe(staticLayout, canvas);
                 canvas.restore();
                 Theme.chat_timePaint.setAlpha(255);

@@ -62,8 +62,16 @@ public class Utilities {
         void run(T t, T2 t2, T3 t3, T4 t4);
     }
 
+    public interface Callback4Return<T, T2, T3, T4, ReturnType> {
+        ReturnType run(T t, T2 t2, T3 t3, T4 t4);
+    }
+
     public interface Callback5<T, T2, T3, T4, T5> {
         void run(T t, T2 t2, T3 t3, T4 t4, T5 t5);
+    }
+
+    public interface Callback5Return<T, T2, T3, T4, T5, ReturnType> {
+        ReturnType run(T t, T2 t2, T3 t3, T4 t4, T5 t5);
     }
 
     public interface CallbackReturn<Arg, ReturnType> {

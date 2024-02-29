@@ -87,7 +87,7 @@ public class SessionBottomSheet extends BottomSheet {
         if ((tLRPC$TL_authorization.flags & 1) != 0) {
             formatDateTime = LocaleController.getString("Online", R.string.Online);
         } else {
-            formatDateTime = LocaleController.formatDateTime(tLRPC$TL_authorization.date_active);
+            formatDateTime = LocaleController.formatDateTime(tLRPC$TL_authorization.date_active, true);
         }
         textView2.setText(formatDateTime);
         StringBuilder sb = new StringBuilder();

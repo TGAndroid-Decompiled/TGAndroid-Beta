@@ -152,4 +152,8 @@ public class LayoutHelper {
         layoutParams.bottomMargin = AndroidUtilities.dp(f6);
         return layoutParams;
     }
+
+    public static LinearLayout.LayoutParams createLinearRelatively(float f, float f2, int i) {
+        return new LinearLayout.LayoutParams(getSize(f), getSize(f2), getAbsoluteGravity(i));
+    }
 }

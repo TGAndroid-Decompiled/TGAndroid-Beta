@@ -108,7 +108,7 @@ public class ChatAttachRestrictedLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(4.0f);
     }
 

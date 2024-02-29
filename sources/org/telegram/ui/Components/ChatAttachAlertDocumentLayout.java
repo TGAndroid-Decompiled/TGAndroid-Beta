@@ -142,7 +142,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    int needsActionBar() {
+    public int needsActionBar() {
         return 1;
     }
 
@@ -736,7 +736,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void onDestroy() {
+    public void onDestroy() {
         try {
             if (this.receiverRegistered) {
                 ApplicationLoader.applicationContext.unregisterReceiver(this.receiver);
@@ -751,7 +751,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void onMenuItemClick(int i) {
+    public void onMenuItemClick(int i) {
         if (i == 6) {
             SharedConfig.toggleSortFilesByName();
             this.sortByName = SharedConfig.sortFilesByName;
@@ -792,7 +792,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(5.0f);
     }
 
@@ -802,7 +802,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    int getButtonsHideOffset() {
+    public int getButtonsHideOffset() {
         return AndroidUtilities.dp(62.0f);
     }
 
@@ -815,7 +815,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void scrollToTop() {
+    public void scrollToTop() {
         this.listView.smoothScrollToPosition(0);
     }
 
@@ -825,7 +825,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i) {
         if ((this.selectedFiles.size() == 0 && this.selectedMessages.size() == 0) || this.delegate == null || this.sendPressed) {
             return;
         }
@@ -1105,7 +1105,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         this.selectedFiles.clear();
         this.selectedMessages.clear();
         this.searchAdapter.currentSearchFilters.clear();
@@ -2114,7 +2114,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    ArrayList<ThemeDescription> getThemeDescriptions() {
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.searchItem.getSearchField(), ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, Theme.key_dialogTextBlack));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_dialogScrollGlow));

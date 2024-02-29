@@ -31,6 +31,7 @@ import org.telegram.ui.Components.Premium.StarParticlesView;
 public class GLIconTextureView extends TextureView implements TextureView.SurfaceTextureListener {
     ArrayList<Integer> animationIndexes;
     int animationPointer;
+    private final int animationsCount;
     AnimatorSet animatorSet;
     boolean attached;
     ValueAnimator backAnimation;
@@ -68,6 +69,10 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
     }
 
     public GLIconTextureView(Context context, int i) {
+        this(context, i, 0);
+    }
+
+    public GLIconTextureView(Context context, int i, int i2) {
         super(context);
         this.isRunning = false;
         this.paused = true;
@@ -107,14 +112,15 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                 GLIconTextureView.this.lambda$new$3(valueAnimator);
             }
         };
+        this.animationsCount = i2 == 1 ? 1 : 5;
         setOpaque(false);
-        setRenderer(new GLIconRenderer(context, i));
+        setRenderer(new GLIconRenderer(context, i, i2));
         initialize(context);
         GestureDetector gestureDetector = new GestureDetector(context, new AnonymousClass1());
         this.gestureDetector = gestureDetector;
         gestureDetector.setIsLongpressEnabled(true);
-        for (int i2 = 0; i2 < 5; i2++) {
-            this.animationIndexes.add(Integer.valueOf(i2));
+        for (int i3 = 0; i3 < this.animationsCount; i3++) {
+            this.animationIndexes.add(Integer.valueOf(i3));
         }
         Collections.shuffle(this.animationIndexes);
     }
@@ -332,17 +338,18 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                     GLIconTextureView.this.rendererChanged = false;
                 }
                 if (!GLIconTextureView.this.shouldSleep()) {
-                    currentTimeMillis = System.currentTimeMillis();
-                    GLIconTextureView.this.drawSingleFrame();
+                    long currentTimeMillis2 = System.currentTimeMillis();
+                    GLIconTextureView.this.drawSingleFrame(((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
+                    currentTimeMillis = currentTimeMillis2;
                 }
                 try {
                     if (GLIconTextureView.this.shouldSleep()) {
                         Thread.sleep(100L);
                     } else {
-                        long currentTimeMillis2 = System.currentTimeMillis();
+                        long currentTimeMillis3 = System.currentTimeMillis();
                         while (true) {
-                            if (currentTimeMillis2 - currentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis) {
-                                currentTimeMillis2 = System.currentTimeMillis();
+                            if (currentTimeMillis3 - currentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis) {
+                                currentTimeMillis3 = System.currentTimeMillis();
                             }
                         }
                     }
@@ -361,11 +368,12 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         }
     }
 
-    public synchronized void drawSingleFrame() {
+    public synchronized void drawSingleFrame(float f) {
         checkCurrent();
         GLIconRenderer gLIconRenderer = this.mRenderer;
         if (gLIconRenderer != null) {
-            gLIconRenderer.onDrawFrame(this.mGl);
+            gLIconRenderer.setDeltaTime(f);
+            this.mRenderer.onDrawFrame(this.mGl);
         }
         checkGlError();
         this.mEgl.eglSwapBuffers(this.mEglDisplay, this.mEglSurface);
@@ -556,7 +564,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             if (intValue == 0) {
                 pullAnimation();
             } else if (intValue == 1) {
-                slowFlipAination();
+                slowFlipAnimation();
             } else if (intValue == 2) {
                 sleepAnimation();
             } else {
@@ -565,7 +573,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         }
     }
 
-    private void slowFlipAination() {
+    private void slowFlipAnimation() {
         this.animatorSet = new AnimatorSet();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mRenderer.angleX, 360.0f);
         ofFloat.addUpdateListener(this.xUpdater);
@@ -589,30 +597,48 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         int abs = Math.abs(Utilities.random.nextInt() % 4);
         this.animatorSet = new AnimatorSet();
         if (abs == 0) {
-            float f = 48;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mRenderer.angleY, f);
-            ofFloat.addUpdateListener(this.yUpdater);
-            ofFloat.setDuration(2300L);
-            ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f, 0.0f);
-            ofFloat2.addUpdateListener(this.yUpdater);
-            ofFloat2.setDuration(500L);
-            ofFloat2.setStartDelay(2300L);
-            ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
-            this.animatorSet.playTogether(ofFloat, ofFloat2);
-        } else {
-            float f2 = abs == 2 ? -485 : 485;
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(this.mRenderer.angleY, f2);
-            ofFloat3.addUpdateListener(this.xUpdater);
-            ofFloat3.setDuration(3000L);
-            ofFloat3.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f2, 0.0f);
-            ofFloat4.addUpdateListener(this.xUpdater);
-            ofFloat4.setDuration(1000L);
-            ofFloat4.setStartDelay(3000L);
-            ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
-            this.animatorSet.playTogether(ofFloat3, ofFloat4);
+            GLIconRenderer gLIconRenderer = this.mRenderer;
+            if (gLIconRenderer.model.type != 1) {
+                float f = 48;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(gLIconRenderer.angleY, f);
+                ofFloat.addUpdateListener(this.yUpdater);
+                ofFloat.setDuration(2300L);
+                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f, 0.0f);
+                ofFloat2.addUpdateListener(this.yUpdater);
+                ofFloat2.setDuration(500L);
+                ofFloat2.setStartDelay(2300L);
+                ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
+                this.animatorSet.playTogether(ofFloat, ofFloat2);
+                this.animatorSet.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        super.onAnimationEnd(animator);
+                        GLIconTextureView gLIconTextureView = GLIconTextureView.this;
+                        gLIconTextureView.mRenderer.angleX = 0.0f;
+                        gLIconTextureView.animatorSet = null;
+                        gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                    }
+                });
+                this.animatorSet.start();
+            }
         }
+        GLIconRenderer gLIconRenderer2 = this.mRenderer;
+        int i = gLIconRenderer2.model.type == 1 ? 360 : 485;
+        if (abs == 2) {
+            i = -i;
+        }
+        float f2 = i;
+        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(gLIconRenderer2.angleY, f2);
+        ofFloat3.addUpdateListener(this.xUpdater);
+        ofFloat3.setDuration(3000L);
+        ofFloat3.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f2, 0.0f);
+        ofFloat4.addUpdateListener(this.xUpdater);
+        ofFloat4.setDuration(1000L);
+        ofFloat4.setStartDelay(3000L);
+        ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
+        this.animatorSet.playTogether(ofFloat3, ofFloat4);
         this.animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {

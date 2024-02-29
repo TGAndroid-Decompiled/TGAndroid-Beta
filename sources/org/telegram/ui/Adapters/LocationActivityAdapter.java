@@ -49,6 +49,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     private boolean myLocationDenied;
     private boolean needEmptyView;
     private int overScrollHeight;
+    private String overrideAddressName;
     private Location previousFetchedLocation;
     private final Theme.ResourcesProvider resourcesProvider;
     private SendLocationCell sendLocationCell;
@@ -59,8 +60,13 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     protected void onDirectionClick() {
     }
 
-    public LocationActivityAdapter(Context context, int i, long j, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
-        super(z2);
+    public void setAddressNameOverride(String str) {
+        this.overrideAddressName = str;
+        updateCell();
+    }
+
+    public LocationActivityAdapter(Context context, int i, long j, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2, boolean z3) {
+        super(z2, z3);
         this.currentAccount = UserConfig.selectedAccount;
         this.shareLiveLocationPotistion = -1;
         this.currentLiveLocations = new ArrayList<>();
@@ -169,11 +175,29 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
 
     private void updateCell() {
         String str;
+        String string;
         SendLocationCell sendLocationCell = this.sendLocationCell;
         if (sendLocationCell != null) {
+            int i = this.locationType;
+            if (i == 8) {
+                if (!TextUtils.isEmpty(this.overrideAddressName)) {
+                    string = this.overrideAddressName;
+                } else if (!TextUtils.isEmpty(this.addressName)) {
+                    string = this.addressName;
+                } else if (this.fetchingLocation) {
+                    string = LocaleController.getString("Loading", R.string.Loading);
+                } else {
+                    string = LocaleController.getString(R.string.UnknownLocation);
+                }
+                this.sendLocationCell.setText(LocaleController.getString(R.string.SetThisLocation), string);
+                this.sendLocationCell.setHasLocation(true);
+                return;
+            }
             str = "";
-            if (this.locationType == 4 || this.customLocation != null) {
-                if (!TextUtils.isEmpty(this.addressName)) {
+            if (i == 4 || this.customLocation != null) {
+                if (!TextUtils.isEmpty(this.overrideAddressName)) {
+                    str = this.overrideAddressName;
+                } else if (!TextUtils.isEmpty(this.addressName)) {
                     str = this.addressName;
                 } else {
                     Location location = this.customLocation;
@@ -197,7 +221,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 }
                 this.sendLocationCell.setHasLocation(true);
             } else if (this.gpsLocation != null) {
-                sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), LocaleController.formatString("AccurateTo", R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
+                sendLocationCell.setText(LocaleController.getString(R.string.SendLocation), LocaleController.formatString(R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
                 this.sendLocationCell.setHasLocation(true);
             } else {
                 sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), this.myLocationDenied ? "" : LocaleController.getString("Loading", R.string.Loading));
@@ -206,12 +230,20 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         }
     }
 
+    public String getAddressName() {
+        return this.addressName;
+    }
+
     @Override
     public void onLocationAddressAvailable(String str, String str2, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue2, Location location) {
         this.fetchingLocation = false;
         this.previousFetchedLocation = location;
-        this.addressName = str;
         int i = this.locationType;
+        if (i == 8) {
+            this.addressName = str2;
+        } else {
+            this.addressName = str;
+        }
         if (i == 7 && this.askingForMyLocation) {
             this.city = null;
             this.street = null;
@@ -237,36 +269,45 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     public void fetchLocationAddress() {
-        if (this.locationType == 4) {
+        int i = this.locationType;
+        if (i == 8) {
             Location location = this.customLocation;
             if (location == null && (location = this.gpsLocation) == null) {
                 return;
             }
-            Location location2 = this.previousFetchedLocation;
-            if (location2 == null || location2.distanceTo(location) > 100.0f) {
+            this.fetchingLocation = true;
+            updateCell();
+            LocationController.fetchLocationAddress(location, this.biz ? 1 : 0, this);
+        } else if (i == 4) {
+            Location location2 = this.customLocation;
+            if (location2 == null && (location2 = this.gpsLocation) == null) {
+                return;
+            }
+            Location location3 = this.previousFetchedLocation;
+            if (location3 == null || location3.distanceTo(location2) > 100.0f) {
                 this.addressName = null;
             }
             this.fetchingLocation = true;
             updateCell();
-            LocationController.fetchLocationAddress(location, this);
-            return;
-        }
-        Location location3 = this.customLocation;
-        if (location3 != null) {
-            Location location4 = this.previousFetchedLocation;
-            if (location4 == null || location4.distanceTo(location3) > 20.0f) {
-                this.addressName = null;
+            LocationController.fetchLocationAddress(location2, this);
+        } else {
+            Location location4 = this.customLocation;
+            if (location4 != null) {
+                Location location5 = this.previousFetchedLocation;
+                if (location5 == null || location5.distanceTo(location4) > 20.0f) {
+                    this.addressName = null;
+                }
+                this.fetchingLocation = true;
+                updateCell();
+                LocationController.fetchLocationAddress(location4, this);
             }
-            this.fetchingLocation = true;
-            updateCell();
-            LocationController.fetchLocationAddress(location3, this);
         }
     }
 
     @Override
     public int getItemCount() {
         int i = this.locationType;
-        if (i == 6 || i == 5 || i == 4) {
+        if (i == 6 || i == 5 || i == 4 || this.biz) {
             return 2;
         }
         if (this.currentMessageObject != null) {
@@ -325,7 +366,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             case 7:
                 Context context = this.mContext;
                 int i2 = this.locationType;
-                view = new SharingLiveLocationCell(context, true, (i2 == 4 || i2 == 5) ? 16 : 54, this.resourcesProvider);
+                view = new SharingLiveLocationCell(context, true, (i2 == 4 || i2 == 5 || i2 == 3) ? 16 : 54, this.resourcesProvider);
                 break;
             case 8:
                 LocationDirectionCell locationDirectionCell = new LocationDirectionCell(this.mContext, this.resourcesProvider);
@@ -393,7 +434,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             int i3 = this.locationType;
             if (i3 == 0) {
                 i2 = i - 4;
-            } else if (i3 == 7) {
+            } else if (i3 == 7 || i3 == 8) {
                 i2 = i - 4;
                 if (this.street != null) {
                     i2--;

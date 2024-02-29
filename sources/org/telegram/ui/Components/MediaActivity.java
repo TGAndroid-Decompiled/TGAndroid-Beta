@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,9 +11,7 @@ import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +46,6 @@ import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.Stories.recorder.StoryRecorder;
 public class MediaActivity extends BaseFragment implements SharedMediaLayout.SharedMediaPreloaderDelegate, FloatingDebugProvider, NotificationCenter.NotificationCenterDelegate {
     private SparseArray<MessageObject> actionModeMessageObjects;
     private Runnable applyBulletin;
@@ -65,14 +61,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private boolean filterPhotos;
     private boolean filterVideos;
     private final boolean[] firstSubtitleCheck;
-    private AnimatorSet floatingAnimator;
-    private ImageView floatingButton;
-    private FrameLayout floatingButtonContainer;
-    private float floatingButtonHideProgress;
-    private float floatingButtonTranslation;
-    private float floatingButtonTranslation1;
-    private float floatingButtonTranslation2;
-    private boolean floatingHidden;
     private int initialTab;
     private int lastTab;
     private SimpleTextView[] nameTextView;
@@ -153,13 +141,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                     sharedMediaLayout.setUserInfo(tLRPC$UserFull);
                 }
             }
-        } else if ((i == NotificationCenter.currentUserPremiumStatusChanged || i == NotificationCenter.storiesEnabledUpdate) && !getMessagesController().storiesEnabled()) {
-            hideFloatingButton(true, true);
+        } else if (i != NotificationCenter.currentUserPremiumStatusChanged) {
+            int i3 = NotificationCenter.storiesEnabledUpdate;
         }
     }
 
     @Override
-    public android.view.View createView(android.content.Context r36) {
+    public android.view.View createView(android.content.Context r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -375,10 +363,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.applyBulletin = null;
     }
 
-    public void lambda$createView$11(View view) {
-        StoryRecorder.getInstance(getParentActivity(), getCurrentAccount()).open(StoryRecorder.SourceView.fromFloatingButton(this.floatingButtonContainer));
-    }
-
     @Override
     public boolean onBackPressed() {
         if (closeStoryViewer()) {
@@ -444,7 +428,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 } else {
                     showSubtitle(1, false, true);
                 }
-                hideFloatingButton(closestTab != 9 || this.sharedMediaLayout.getStoriesCount(9) > 0, true);
             }
             if (this.optionsItem != null) {
                 SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
@@ -455,7 +438,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 this.optionsItem.animate().alpha(z2 ? 0.0f : 1.0f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaActivity.this.lambda$updateMediaCount$12(z2);
+                        MediaActivity.this.lambda$updateMediaCount$11(z2);
                     }
                 }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
             }
@@ -513,7 +496,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
     }
 
-    public void lambda$updateMediaCount$12(boolean z) {
+    public void lambda$updateMediaCount$11(boolean z) {
         if (z) {
             this.optionsItem.setVisibility(8);
         }
@@ -525,69 +508,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     public long getDialogId() {
         return this.dialogId;
-    }
-
-    private void updateFloatingButtonOffset() {
-        FrameLayout frameLayout = this.floatingButtonContainer;
-        if (frameLayout == null) {
-            return;
-        }
-        frameLayout.setTranslationY(this.floatingButtonTranslation + this.floatingButtonTranslation1 + this.floatingButtonTranslation2);
-    }
-
-    private void hideFloatingButton(boolean z, boolean z2) {
-        if (this.floatingButtonContainer == null) {
-            return;
-        }
-        if (!getMessagesController().storiesEnabled()) {
-            z = true;
-        }
-        if (this.floatingHidden == z) {
-            return;
-        }
-        this.floatingHidden = z;
-        AnimatorSet animatorSet = this.floatingAnimator;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        if (z2) {
-            this.floatingButtonContainer.setVisibility(0);
-            this.floatingAnimator = new AnimatorSet();
-            float[] fArr = new float[2];
-            fArr[0] = this.floatingButtonHideProgress;
-            fArr[1] = this.floatingHidden ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    MediaActivity.this.lambda$hideFloatingButton$13(valueAnimator);
-                }
-            });
-            ofFloat.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (MediaActivity.this.floatingHidden) {
-                        MediaActivity.this.floatingButtonContainer.setVisibility(8);
-                    }
-                }
-            });
-            this.floatingAnimator.playTogether(ofFloat);
-            this.floatingAnimator.setDuration(300L);
-            this.floatingAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-            this.floatingButtonContainer.setClickable(!z);
-            this.floatingAnimator.start();
-            return;
-        }
-        this.floatingButtonHideProgress = z ? 1.0f : 0.0f;
-        this.floatingButtonTranslation = AndroidUtilities.dp(100.0f) * this.floatingButtonHideProgress;
-        updateFloatingButtonOffset();
-        this.floatingButtonContainer.setVisibility(z ? 8 : 0);
-    }
-
-    public void lambda$hideFloatingButton$13(ValueAnimator valueAnimator) {
-        this.floatingButtonHideProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.floatingButtonTranslation = AndroidUtilities.dp(100.0f) * this.floatingButtonHideProgress;
-        updateFloatingButtonOffset();
     }
 
     private void showSubtitle(final int i, final boolean z, boolean z2) {
@@ -615,7 +535,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        MediaActivity.this.lambda$showSubtitle$14(i, valueAnimator);
+                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator);
                     }
                 });
                 this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
@@ -646,7 +566,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
     }
 
-    public void lambda$showSubtitle$14(int i, ValueAnimator valueAnimator) {
+    public void lambda$showSubtitle$12(int i, ValueAnimator valueAnimator) {
         this.subtitleT[i] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.nameTextView[i].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, this.subtitleT[i]));
         this.nameTextView[i].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, this.subtitleT[i]));
@@ -725,13 +645,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         debugItemArr[0] = new FloatingDebugController.DebugItem(sb.toString(), new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.this.lambda$onGetDebugItems$15();
+                MediaActivity.this.lambda$onGetDebugItems$13();
             }
         });
         return Arrays.asList(debugItemArr);
     }
 
-    public void lambda$onGetDebugItems$15() {
+    public void lambda$onGetDebugItems$13() {
         ShapeDetector.setLearning(getContext(), !ShapeDetector.isLearning(getContext()));
     }
 

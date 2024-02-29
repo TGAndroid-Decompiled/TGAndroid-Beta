@@ -540,7 +540,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    int getSelectedItemsCount() {
+    public int getSelectedItemsCount() {
         return this.selectedContacts.size();
     }
 
@@ -553,7 +553,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i) {
         if ((this.selectedContacts.size() == 0 && this.delegate == null) || this.sendPressed) {
             return;
         }
@@ -567,7 +567,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void scrollToTop() {
+    public void scrollToTop() {
         this.listView.smoothScrollToPosition(0);
     }
 
@@ -591,7 +591,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(4.0f);
     }
 
@@ -714,12 +714,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    void onDestroy() {
+    public void onDestroy() {
         NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.contactsDidLoad);
     }
 
     @Override
-    void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         this.layoutManager.scrollToPositionWithOffset(0, 0);
     }
 

@@ -286,15 +286,16 @@ public class CaptionContainerView extends FrameLayout {
             public void createEmojiView() {
                 super.createEmojiView();
                 EmojiView emojiView = getEmojiView();
-                if (emojiView == null || CaptionContainerView.this.getEditTextStyle() != 2) {
-                    return;
-                }
-                emojiView.shouldLightenBackground = false;
-                emojiView.fixBottomTabContainerTranslation = false;
-                emojiView.setShouldDrawBackground(false);
-                if (CaptionContainerView.this instanceof CaptionPhotoViewer) {
-                    emojiView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-                    emojiView.emojiCacheType = 3;
+                if (emojiView != null) {
+                    if (CaptionContainerView.this.getEditTextStyle() == 2 || CaptionContainerView.this.getEditTextStyle() == 3) {
+                        emojiView.shouldLightenBackground = false;
+                        emojiView.fixBottomTabContainerTranslation = false;
+                        emojiView.setShouldDrawBackground(false);
+                        if (CaptionContainerView.this instanceof CaptionPhotoViewer) {
+                            emojiView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
+                            emojiView.emojiCacheType = 3;
+                        }
+                    }
                 }
             }
 

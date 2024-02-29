@@ -1327,6 +1327,34 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("DROP TABLE IF EXISTS saved_reaction_tags;").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE TABLE saved_reaction_tags (topic_id INTEGER PRIMARY KEY, data BLOB);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 143").stepThis().dispose();
+            i7 = 143;
+        }
+        if (i7 == 143) {
+            sQLiteDatabase.executeFast("ALTER TABLE dialog_filter ADD COLUMN color INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 144").stepThis().dispose();
+            i7 = 144;
+        }
+        if (i7 == 144) {
+            sQLiteDatabase.executeFast("PRAGMA user_version = 145").stepThis().dispose();
+            i7 = 145;
+        }
+        if (i7 == 145) {
+            sQLiteDatabase.executeFast("CREATE TABLE business_replies(topic_id INTEGER PRIMARY KEY, name TEXT, order_value INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 146").stepThis().dispose();
+            i7 = 146;
+        }
+        if (i7 == 146) {
+            sQLiteDatabase.executeFast("CREATE TABLE quick_replies_messages(mid INTEGER, topic_id INTEGER, send_state INTEGER, date INTEGER, data BLOB, ttl INTEGER, replydata BLOB, reply_to_message_id INTEGER, PRIMARY KEY(mid, topic_id))").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS send_state_idx_quick_replies_messages ON quick_replies_messages(mid, send_state, date);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS topic_date_idx_quick_replies_messages ON quick_replies_messages(topic_id, date);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reply_to_idx_quick_replies_messages ON quick_replies_messages(mid, reply_to_message_id);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_quick_replies_messages ON quick_replies_messages(reply_to_message_id, mid);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 147").stepThis().dispose();
+            i7 = 147;
+        }
+        if (i7 == 147) {
+            sQLiteDatabase.executeFast("ALTER TABLE business_replies ADD COLUMN count INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 148").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1372,7 +1400,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 143) {
+        if (intValue != 148) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

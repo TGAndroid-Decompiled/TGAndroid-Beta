@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.SurfaceTexture;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
@@ -18,7 +17,6 @@ import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.io.File;
 import java.net.URLEncoder;
@@ -33,6 +31,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_help_premiumPromo;
@@ -41,7 +40,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.HelloParticles;
 import org.telegram.ui.Components.Premium.StarParticlesView;
-import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.PremiumPreviewFragment;
 public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, NotificationCenter.NotificationCenterDelegate {
@@ -74,8 +72,11 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     private final SvgHelper.SvgDrawable svgIcon;
     TextureView textureView;
     int type;
-    VideoPlayer videoPlayer;
+    VideoPlayerHolderBase videoPlayerBase;
     boolean visible;
+
+    public static void lambda$stopVideoPlayer$2() {
+    }
 
     public void checkVideo() {
         File file = this.file;
@@ -391,9 +392,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         drawable.onDraw(canvas);
                     } else if (this.speedLinesDrawable != null) {
                         float f2 = 0.2f;
-                        VideoPlayer videoPlayer = this.videoPlayer;
-                        if (videoPlayer != null) {
-                            float clamp = Utilities.clamp(((float) videoPlayer.getCurrentPosition()) / ((float) this.videoPlayer.getDuration()), 1.0f, 0.0f);
+                        VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
+                        if (videoPlayerHolderBase != null) {
+                            float clamp = Utilities.clamp(((float) videoPlayerHolderBase.getCurrentPosition()) / ((float) this.videoPlayerBase.getDuration()), 1.0f, 0.0f);
                             float[] fArr = speedScaleVideoTimestamps;
                             float length = 1.0f / (fArr.length - 1);
                             int i = (int) (clamp / length);
@@ -570,61 +571,31 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
 
     private void runVideoPlayer() {
         Uri uri;
-        if ((this.file != null || SharedConfig.streamMedia) && this.videoPlayer == null) {
+        if ((this.file != null || SharedConfig.streamMedia) && this.videoPlayerBase == null) {
             this.aspectRatioFrameLayout.setAspectRatio(this.aspectRatio, 0);
-            VideoPlayer videoPlayer = new VideoPlayer();
-            this.videoPlayer = videoPlayer;
-            videoPlayer.setTextureView(this.textureView);
-            this.videoPlayer.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
-                @Override
-                public void onError(VideoPlayer videoPlayer2, Exception exc) {
-                }
-
-                @Override
-                public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
-                    VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
-                }
-
-                @Override
-                public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
-                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
-                }
-
-                @Override
-                public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
-                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
-                }
-
-                @Override
-                public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-                    return false;
-                }
-
-                @Override
-                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-                }
-
-                @Override
-                public void onVideoSizeChanged(int i, int i2, int i3, float f) {
-                }
-
+            VideoPlayerHolderBase videoPlayerHolderBase = new VideoPlayerHolderBase() {
                 @Override
                 public void onStateChanged(boolean z, int i) {
+                    VideoPlayerHolderBase videoPlayerHolderBase2 = VideoScreenPreview.this.videoPlayerBase;
+                    if (videoPlayerHolderBase2 == null) {
+                        return;
+                    }
                     if (i == 4) {
-                        VideoScreenPreview.this.videoPlayer.seekTo(0L);
-                        VideoScreenPreview.this.videoPlayer.play();
+                        videoPlayerHolderBase2.seekTo(0L);
+                        VideoScreenPreview.this.videoPlayerBase.play();
                     } else if (i == 1) {
-                        VideoScreenPreview.this.videoPlayer.play();
+                        videoPlayerHolderBase2.play();
                     }
                 }
 
                 @Override
                 public void onRenderedFirstFrame() {
                     VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
-                    if (videoScreenPreview.firstFrameRendered) {
+                    TextureView textureView = videoScreenPreview.textureView;
+                    if (textureView == null || videoScreenPreview.firstFrameRendered) {
                         return;
                     }
-                    videoScreenPreview.textureView.setAlpha(0.0f);
+                    textureView.setAlpha(0.0f);
                     VideoScreenPreview.this.textureView.animate().alpha(1.0f).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
@@ -634,7 +605,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         }
                     }).setDuration(200L);
                 }
-            });
+            };
+            this.videoPlayerBase = videoPlayerHolderBase;
+            videoPlayerHolderBase.with(this.textureView);
             File file = this.file;
             if (file != null && file.exists()) {
                 uri = Uri.fromFile(this.file);
@@ -672,24 +645,27 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             if (uri == null) {
                 return;
             }
-            this.videoPlayer.preparePlayer(uri, "other");
-            this.videoPlayer.setPlayWhenReady(true);
+            this.videoPlayerBase.preparePlayer(uri, false, 1.0f);
             if (!this.firstFrameRendered) {
                 this.imageReceiver.stopAnimation();
                 this.textureView.setAlpha(0.0f);
             }
-            this.videoPlayer.seekTo(this.lastFrameTime + 60);
-            this.videoPlayer.play();
+            this.videoPlayerBase.seekTo(this.lastFrameTime + 60);
+            this.videoPlayerBase.play();
         }
     }
 
     private void stopVideoPlayer() {
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer != null) {
-            this.lastFrameTime = videoPlayer.getCurrentPosition();
-            this.videoPlayer.setTextureView(null);
-            this.videoPlayer.releasePlayer(true);
-            this.videoPlayer = null;
+        VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
+        if (videoPlayerHolderBase != null) {
+            this.lastFrameTime = videoPlayerHolderBase.getCurrentPosition();
+            this.videoPlayerBase.release(new Runnable() {
+                @Override
+                public final void run() {
+                    VideoScreenPreview.lambda$stopVideoPlayer$2();
+                }
+            });
+            this.videoPlayerBase = null;
         }
     }
 }

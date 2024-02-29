@@ -195,7 +195,7 @@ public class LiteMode {
                     i = (globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false)) ? true : true ? i | 1024 : i & (-1025);
                 }
                 if (globalMainSettings.contains("autoplay_gif")) {
-                    i = globalMainSettings.getBoolean("autoplay_gif", true) ? i | FLAG_AUTOPLAY_GIFS : i & (-2049);
+                    i = globalMainSettings.getBoolean("autoplay_gif", true) ? i | 2048 : i & (-2049);
                 }
                 if (globalMainSettings.contains("chatBlur")) {
                     i = globalMainSettings.getBoolean("chatBlur", true) ? i | FLAG_CHAT_BLUR : i & (-257);

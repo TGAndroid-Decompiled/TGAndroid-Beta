@@ -3,7 +3,7 @@ package org.telegram.ui;
 import androidx.core.util.Consumer;
 import java.util.List;
 import org.telegram.ui.Components.ReactedUsersListView;
-public final class ChatActivity$$ExternalSyntheticLambda132 implements Consumer {
+public final class ChatActivity$$ExternalSyntheticLambda133 implements Consumer {
     public final ReactedUsersListView f$0;
 
     @Override

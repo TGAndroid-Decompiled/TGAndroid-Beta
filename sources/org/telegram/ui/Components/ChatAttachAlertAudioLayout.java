@@ -256,7 +256,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void onDestroy() {
+    public void onDestroy() {
         onHide();
         NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidReset);
         NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidStart);
@@ -310,7 +310,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void scrollToTop() {
+    public void scrollToTop() {
         this.listView.smoothScrollToPosition(0);
     }
 
@@ -334,7 +334,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(4.0f);
     }
 
@@ -388,7 +388,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         this.layoutManager.scrollToPositionWithOffset(0, 0);
         this.listAdapter.notifyDataSetChanged();
     }
@@ -496,7 +496,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i) {
         if (this.selectedAudios.size() == 0 || this.delegate == null || this.sendPressed) {
             return;
         }

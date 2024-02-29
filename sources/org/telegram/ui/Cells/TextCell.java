@@ -93,7 +93,7 @@ public class TextCell extends FrameLayout {
         simpleTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView2.setImportantForAccessibility(2);
         addView(simpleTextView2, LayoutHelper.createFrame(-2, -1.0f));
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, true);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
         this.valueTextView = animatedTextView;
         animatedTextView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue2 : Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
         animatedTextView.setPadding(0, AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f));
@@ -336,7 +336,7 @@ public class TextCell extends FrameLayout {
     }
 
     public void setTextAndIcon(String str, Drawable drawable, boolean z) {
-        this.offsetFromImage = 68;
+        this.offsetFromImage = 71;
         this.imageLeft = 18;
         this.textView.setText(str);
         this.textView.setRightDrawable((Drawable) null);
@@ -365,6 +365,10 @@ public class TextCell extends FrameLayout {
         this.imageLeft = i;
     }
 
+    public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        setTextAndValue(charSequence, charSequence2, false, z);
+    }
+
     public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
@@ -383,6 +387,18 @@ public class TextCell extends FrameLayout {
         if (r5 != null) {
             r5.setVisibility(8);
         }
+    }
+
+    public void setValue(String str, boolean z) {
+        CharSequence ellipsize;
+        AnimatedTextView animatedTextView = this.valueTextView;
+        if (str == null) {
+            ellipsize = "";
+        } else {
+            this.valueText = str;
+            ellipsize = TextUtils.ellipsize(str, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END);
+        }
+        animatedTextView.setText(ellipsize, z);
     }
 
     public void setTextAndValueAndColorfulIcon(String str, CharSequence charSequence, boolean z, int i, int i2, boolean z2) {

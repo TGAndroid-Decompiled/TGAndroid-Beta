@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda280;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda283;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -383,6 +383,8 @@ public class Theme {
     public static RLottieDrawable dialogs_swipeUnpinDrawable;
     public static RLottieDrawable dialogs_swipeUnreadDrawable;
     public static Paint dialogs_tabletSeletedPaint;
+    public static Paint dialogs_tagPaint;
+    public static TextPaint dialogs_tagTextPaint;
     public static TextPaint dialogs_timePaint;
     public static RLottieDrawable dialogs_unarchiveDrawable;
     public static Drawable dialogs_unmuteDrawable;
@@ -450,6 +452,7 @@ public class Theme {
     public static final int key_avatar_backgroundArchivedHidden;
     public static final int key_avatar_backgroundBlue;
     public static final int key_avatar_backgroundCyan;
+    public static final int key_avatar_backgroundGray;
     public static final int key_avatar_backgroundGreen;
     public static final int key_avatar_backgroundInProfileBlue;
     public static final int key_avatar_backgroundOrange;
@@ -1213,7 +1216,7 @@ public class Theme {
     private static boolean[] loadingRemoteThemes = new boolean[4];
     private static int[] lastLoadingThemesTime = new int[4];
     private static long[] remoteThemesHash = new long[4];
-    public static Drawable[] avatarDrawables = new Drawable[20];
+    public static Drawable[] avatarDrawables = new Drawable[22];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
     public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
@@ -1479,7 +1482,7 @@ public class Theme {
                         if (this.currentType != 2) {
                             motionBackground[c].setPostInvalidateParent(true);
                         }
-                        motionBackground[c].setRoundRadius(AndroidUtilities.dp(1.0f));
+                        motionBackground[c].setRoundRadius(dp(1.0f));
                     }
                     i11 = -1;
                     motionBackground[c].setColors(color, i7, i8, i9, this.crosfadeFromBitmap);
@@ -1502,7 +1505,7 @@ public class Theme {
                         if (this.currentType != 2) {
                             motionBackground[c].setPostInvalidateParent(true);
                         }
-                        motionBackground[c].setRoundRadius(AndroidUtilities.dp(1.0f));
+                        motionBackground[c].setRoundRadius(dp(1.0f));
                     }
                     motionBackground[c].setColors(color, i7, i8, i9);
                     this.gradientShader = motionBackground[c].getBitmapShader();
@@ -1567,7 +1570,7 @@ public class Theme {
             int i = this.overrideRoundRadius;
             boolean z = false;
             if (i == 0) {
-                i = this.overrideRounding > 0.0f ? 0 : AndroidUtilities.dp(SharedConfig.bubbleRadius);
+                i = this.overrideRounding > 0.0f ? 0 : dp(SharedConfig.bubbleRadius);
             }
             boolean z2 = this.isTopNear;
             char c2 = 3;
@@ -1675,7 +1678,7 @@ public class Theme {
             if (this.gradientShader == null && !this.isSelected && this.crossfadeFromDrawable == null) {
                 return null;
             }
-            int dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
+            int dp = dp(SharedConfig.bubbleRadius);
             boolean z = this.isTopNear;
             boolean z2 = false;
             if (z && this.isBottomNear) {
@@ -5136,7 +5139,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda280.INSTANCE, 2100L);
+                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda283.INSTANCE, 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -6195,6 +6198,8 @@ public class Theme {
             avatarDrawables[17] = resources.getDrawable(R.drawable.large_repost_story);
             avatarDrawables[18] = resources.getDrawable(R.drawable.large_hidden);
             avatarDrawables[19] = resources.getDrawable(R.drawable.large_notes);
+            avatarDrawables[20] = resources.getDrawable(R.drawable.filled_folder_new);
+            avatarDrawables[21] = resources.getDrawable(R.drawable.filled_folder_existing);
             RLottieDrawable rLottieDrawable = dialogs_archiveAvatarDrawable;
             if (rLottieDrawable != null) {
                 rLottieDrawable.setCallback(null);
@@ -6311,6 +6316,7 @@ public class Theme {
             dialogs_countPaint = new Paint(1);
             dialogs_reactionsCountPaint = new Paint(1);
             dialogs_onlineCirclePaint = new Paint(1);
+            dialogs_tagPaint = new Paint(1);
         }
         dialogs_countTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
     }
@@ -6350,6 +6356,9 @@ public class Theme {
             textPaint5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             dialogs_onlinePaint = new TextPaint(1);
             dialogs_offlinePaint = new TextPaint(1);
+            TextPaint textPaint6 = new TextPaint(1);
+            dialogs_tagTextPaint = textPaint6;
+            textPaint6.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             dialogs_tabletSeletedPaint = new Paint();
             dialogs_pinnedPaint = new Paint(1);
             dialogs_countGrayPaint = new Paint(1);
@@ -6400,6 +6409,7 @@ public class Theme {
         dialogs_archiveTextPaintSmall.setTextSize(AndroidUtilities.dp(11.0f));
         dialogs_onlinePaint.setTextSize(AndroidUtilities.dp(15.0f));
         dialogs_offlinePaint.setTextSize(AndroidUtilities.dp(15.0f));
+        dialogs_tagTextPaint.setTextSize(AndroidUtilities.dp(10.0f));
         dialogs_searchNamePaint.setTextSize(AndroidUtilities.dp(16.0f));
         dialogs_searchNameEncryptedPaint.setTextSize(AndroidUtilities.dp(16.0f));
     }

@@ -621,7 +621,7 @@ public class MediaDataController extends BaseController {
                     getMessagesStorage().checkSQLException(e);
                 }
             }
-            getMessagesStorage().loadReplyMessages(longSparseArray, longSparseArray2, arrayList2, arrayList3, false);
+            getMessagesStorage().loadReplyMessages(longSparseArray, longSparseArray2, arrayList2, arrayList3, 0);
         } catch (Exception e2) {
             FileLog.e(e2);
         }
@@ -1800,6 +1800,7 @@ public class MediaDataController extends BaseController {
         }
         if (tLRPC$Document != null) {
             backupImageView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f, 1.0f, null), 0, tLRPC$Document);
+            backupImageView.invalidate();
         }
     }
 
@@ -4751,7 +4752,7 @@ public class MediaDataController extends BaseController {
                     }
                 };
                 if (z2) {
-                    loadReplyMessagesForMessages(arrayList, j2, false, this.lastReplyMessageId, runnable, i2);
+                    loadReplyMessagesForMessages(arrayList, j2, 0, this.lastReplyMessageId, runnable, i2);
                 } else {
                     runnable.run();
                 }
@@ -6489,8 +6490,8 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void loadReplyMessagesForMessages(java.util.ArrayList<org.telegram.messenger.MessageObject> r18, final long r19, final boolean r21, long r22, final java.lang.Runnable r24, final int r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadReplyMessagesForMessages(java.util.ArrayList, long, boolean, long, java.lang.Runnable, int):void");
+    public void loadReplyMessagesForMessages(java.util.ArrayList<org.telegram.messenger.MessageObject> r19, final long r20, int r22, long r23, final java.lang.Runnable r25, final int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadReplyMessagesForMessages(java.util.ArrayList, long, int, long, java.lang.Runnable, int):void");
     }
 
     public void lambda$loadReplyMessagesForMessages$163(ArrayList arrayList, final long j, LongSparseArray longSparseArray, Runnable runnable) {
@@ -7979,7 +7980,7 @@ public class MediaDataController extends BaseController {
                     } catch (Exception e) {
                         getMessagesStorage().checkSQLException(e);
                     }
-                    getMessagesStorage().loadReplyMessages(longSparseArray, longSparseArray2, arrayList, arrayList2, false);
+                    getMessagesStorage().loadReplyMessages(longSparseArray, longSparseArray2, arrayList, arrayList2, 0);
                 }
                 tLRPC$Message = tLRPC$Message2;
             } else {

@@ -79,7 +79,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             this.available_min_id = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.folder_id = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -241,7 +241,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             abstractSerializedData.writeInt32(this.available_min_id);
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {

@@ -79,6 +79,7 @@ public class NumberPicker extends LinearLayout {
     private boolean mWrapSelectorWheelSetting;
     private final Theme.ResourcesProvider resourcesProvider;
     private int textOffset;
+    private int thisGravity;
 
     public interface Formatter {
         String format(int i);
@@ -672,21 +673,41 @@ public class NumberPicker extends LinearLayout {
     }
 
     @Override
+    public void setGravity(int i) {
+        this.thisGravity = i;
+        super.setGravity(i);
+    }
+
+    @Override
     public void onDraw(Canvas canvas) {
+        float width;
         int i;
         int i2;
         float measuredHeight;
         boolean z;
         int i3;
-        float right = ((getRight() - getLeft()) / 2) + this.textOffset;
-        float f = this.mCurrentScrollOffset;
+        int i4 = this.thisGravity;
+        int i5 = 3;
+        if (i4 == 5) {
+            this.mSelectorWheelPaint.setTextAlign(Paint.Align.RIGHT);
+            width = getWidth();
+        } else if (i4 == 3) {
+            this.mSelectorWheelPaint.setTextAlign(Paint.Align.LEFT);
+            width = 0.0f;
+        } else {
+            this.mSelectorWheelPaint.setTextAlign(Paint.Align.CENTER);
+            width = getWidth() / 2.0f;
+        }
+        float f = width + this.textOffset;
+        float f2 = this.mCurrentScrollOffset;
         int[] iArr = this.mSelectorIndices;
-        for (int i4 = 0; i4 < iArr.length; i4++) {
-            String str = this.mSelectorIndexToStringCache.get(iArr[i4]);
-            if (str != null && (i4 != this.SELECTOR_MIDDLE_ITEM_INDEX || this.mInputText.getVisibility() != 0)) {
-                if (this.SELECTOR_WHEEL_ITEM_COUNT > 3) {
+        int i6 = 0;
+        while (i6 < iArr.length) {
+            String str = this.mSelectorIndexToStringCache.get(iArr[i6]);
+            if (str != null && (i6 != this.SELECTOR_MIDDLE_ITEM_INDEX || this.mInputText.getVisibility() != 0)) {
+                if (this.SELECTOR_WHEEL_ITEM_COUNT > i5) {
                     float measuredHeight2 = getMeasuredHeight() * 0.5f;
-                    float textSize = f - (this.mSelectorWheelPaint.getTextSize() / 2.0f);
+                    float textSize = f2 - (this.mSelectorWheelPaint.getTextSize() / 2.0f);
                     if (textSize < getMeasuredHeight() / 2.0f) {
                         measuredHeight = textSize / measuredHeight2;
                         z = true;
@@ -701,23 +722,25 @@ public class NumberPicker extends LinearLayout {
                     }
                     canvas.save();
                     canvas.translate(0.0f, textSize2);
-                    canvas.scale((0.2f * interpolation) + 0.8f, interpolation, right, textSize);
+                    canvas.scale((0.2f * interpolation) + 0.8f, interpolation, f, textSize);
                     if (interpolation < 0.1f) {
                         i3 = this.mSelectorWheelPaint.getAlpha();
                         this.mSelectorWheelPaint.setAlpha((int) ((i3 * interpolation) / 0.1f));
                     } else {
                         i3 = -1;
                     }
-                    canvas.drawText(str, right, f, this.mSelectorWheelPaint);
+                    canvas.drawText(str, f, f2, this.mSelectorWheelPaint);
                     canvas.restore();
                     if (i3 != -1) {
                         this.mSelectorWheelPaint.setAlpha(i3);
                     }
                 } else {
-                    canvas.drawText(str, right, f, this.mSelectorWheelPaint);
+                    canvas.drawText(str, f, f2, this.mSelectorWheelPaint);
                 }
             }
-            f += this.mSelectorElementHeight;
+            f2 += this.mSelectorElementHeight;
+            i6++;
+            i5 = 3;
         }
         if (this.drawDividers) {
             canvas.drawRect(0.0f, this.mTopSelectionDividerTop, getRight(), this.mSelectionDividerHeight + i, this.mSelectionDivider);

@@ -21,9 +21,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -41,12 +44,13 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     private boolean ignoreLayout;
     private RecyclerListView listView;
     private int scrollOffsetY;
+    private final ArrayList<Long> selectedDialogs;
     private View shadow;
     private AnimatorSet shadowAnimation;
     private TextView titleTextView;
 
     public interface FiltersListBottomSheetDelegate {
-        void didSelectFilter(MessagesController.DialogFilter dialogFilter);
+        void didSelectFilter(MessagesController.DialogFilter dialogFilter, boolean z);
     }
 
     @Override
@@ -56,7 +60,16 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
 
     public FiltersListBottomSheet(DialogsActivity dialogsActivity, ArrayList<Long> arrayList) {
         super(dialogsActivity.getParentActivity(), false);
-        this.dialogFilters = getCanAddDialogFilters(dialogsActivity, arrayList);
+        this.selectedDialogs = arrayList;
+        this.dialogFilters = new ArrayList<>(dialogsActivity.getMessagesController().dialogFilters);
+        int i = 0;
+        while (i < this.dialogFilters.size()) {
+            if (this.dialogFilters.get(i).isDefault()) {
+                this.dialogFilters.remove(i);
+                i--;
+            }
+            i++;
+        }
         Activity parentActivity = dialogsActivity.getParentActivity();
         FrameLayout frameLayout = new FrameLayout(parentActivity) {
             private boolean fullHeight;
@@ -78,36 +91,36 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             }
 
             @Override
-            protected void onMeasure(int i, int i2) {
-                int size = View.MeasureSpec.getSize(i2);
+            protected void onMeasure(int i2, int i3) {
+                int size = View.MeasureSpec.getSize(i3);
                 if (Build.VERSION.SDK_INT >= 21) {
                     FiltersListBottomSheet.this.ignoreLayout = true;
                     setPadding(((BottomSheet) FiltersListBottomSheet.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, ((BottomSheet) FiltersListBottomSheet.this).backgroundPaddingLeft, 0);
                     FiltersListBottomSheet.this.ignoreLayout = false;
                 }
                 int dp = AndroidUtilities.dp(48.0f) + (AndroidUtilities.dp(48.0f) * FiltersListBottomSheet.this.adapter.getItemCount()) + ((BottomSheet) FiltersListBottomSheet.this).backgroundPaddingTop + AndroidUtilities.statusBarHeight;
-                int i3 = size / 5;
-                double d = i3;
+                int i4 = size / 5;
+                double d = i4;
                 Double.isNaN(d);
-                int i4 = ((double) dp) < d * 3.2d ? 0 : i3 * 2;
-                if (i4 != 0 && dp < size) {
-                    i4 -= size - dp;
+                int i5 = ((double) dp) < d * 3.2d ? 0 : i4 * 2;
+                if (i5 != 0 && dp < size) {
+                    i5 -= size - dp;
                 }
-                if (i4 == 0) {
-                    i4 = ((BottomSheet) FiltersListBottomSheet.this).backgroundPaddingTop;
+                if (i5 == 0) {
+                    i5 = ((BottomSheet) FiltersListBottomSheet.this).backgroundPaddingTop;
                 }
-                if (FiltersListBottomSheet.this.listView.getPaddingTop() != i4) {
+                if (FiltersListBottomSheet.this.listView.getPaddingTop() != i5) {
                     FiltersListBottomSheet.this.ignoreLayout = true;
-                    FiltersListBottomSheet.this.listView.setPadding(AndroidUtilities.dp(10.0f), i4, AndroidUtilities.dp(10.0f), 0);
+                    FiltersListBottomSheet.this.listView.setPadding(AndroidUtilities.dp(10.0f), i5, AndroidUtilities.dp(10.0f), 0);
                     FiltersListBottomSheet.this.ignoreLayout = false;
                 }
                 this.fullHeight = dp >= size;
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(dp, size), 1073741824));
+                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.min(dp, size), 1073741824));
             }
 
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                super.onLayout(z, i, i2, i3, i4);
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
                 FiltersListBottomSheet.this.updateLayout();
             }
 
@@ -141,8 +154,8 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.containerView = frameLayout;
         frameLayout.setWillNotDraw(false);
         ViewGroup viewGroup = this.containerView;
-        int i = this.backgroundPaddingLeft;
-        viewGroup.setPadding(i, 0, i, 0);
+        int i2 = this.backgroundPaddingLeft;
+        viewGroup.setPadding(i2, 0, i2, 0);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
         layoutParams.topMargin = AndroidUtilities.dp(48.0f);
         View view = new View(parentActivity);
@@ -174,14 +187,14 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.listView.setGlowColor(Theme.getColor(Theme.key_dialogScrollGlow));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 FiltersListBottomSheet.this.updateLayout();
             }
         });
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view2, int i2) {
-                FiltersListBottomSheet.this.lambda$new$0(view2, i2);
+            public final void onItemClick(View view2, int i3) {
+                FiltersListBottomSheet.this.lambda$new$0(view2, i3);
             }
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
@@ -194,16 +207,16 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.titleTextView.setLinkTextColor(Theme.getColor(Theme.key_dialogTextLink));
         this.titleTextView.setHighlightColor(Theme.getColor(Theme.key_dialogLinkSelection));
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.titleTextView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        this.titleTextView.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         this.titleTextView.setGravity(16);
-        this.titleTextView.setText(LocaleController.getString("FilterChoose", R.string.FilterChoose));
+        this.titleTextView.setText(LocaleController.getString(R.string.FilterChoose));
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 0.0f, 40.0f, 0.0f));
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
     }
 
     public void lambda$new$0(View view, int i) {
-        this.delegate.didSelectFilter(this.adapter.getItem(i));
+        this.delegate.didSelectFilter(this.adapter.getItem(i), view instanceof BottomSheet.BottomSheetCell ? ((BottomSheet.BottomSheetCell) view).isChecked() : false);
         dismiss();
     }
 
@@ -291,13 +304,21 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        RecyclerListView recyclerListView;
-        if (i != NotificationCenter.emojiLoaded || (recyclerListView = this.listView) == null) {
-            return;
+        if (i == NotificationCenter.emojiLoaded) {
+            AndroidUtilities.forEachViews((RecyclerView) this.listView, (Consumer<View>) new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    FiltersListBottomSheet.lambda$didReceivedNotification$1((View) obj);
+                }
+            });
         }
-        int childCount = recyclerListView.getChildCount();
-        for (int i3 = 0; i3 < childCount; i3++) {
-            this.listView.getChildAt(i3).invalidate();
+    }
+
+    public static void lambda$didReceivedNotification$1(View view) {
+        if (view instanceof BottomSheet.BottomSheetCell) {
+            ((BottomSheet.BottomSheetCell) view).getTextView().invalidate();
+        } else {
+            view.invalidate();
         }
     }
 
@@ -412,7 +433,14 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
                         i2 = R.drawable.msg_folders;
                     }
                 }
-                bottomSheetCell.setTextAndIcon(dialogFilter.name, i2);
+                bottomSheetCell.setTextAndIcon(Emoji.replaceEmoji(dialogFilter.name, bottomSheetCell.getTextView().getPaint().getFontMetricsInt(), false), 0, new FolderDrawable(FiltersListBottomSheet.this.getContext(), i2, dialogFilter.color), false);
+                boolean z = true;
+                for (int i5 = 0; i5 < FiltersListBottomSheet.this.selectedDialogs.size(); i5++) {
+                    if (!dialogFilter.includesDialog(AccountInstance.getInstance(((BottomSheet) FiltersListBottomSheet.this).currentAccount), ((Long) FiltersListBottomSheet.this.selectedDialogs.get(i5)).longValue())) {
+                        z = false;
+                    }
+                }
+                bottomSheetCell.setChecked(z);
                 return;
             }
             bottomSheetCell.getImageView().setColorFilter((ColorFilter) null);

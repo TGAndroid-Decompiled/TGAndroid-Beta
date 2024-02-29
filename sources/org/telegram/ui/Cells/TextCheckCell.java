@@ -53,6 +53,7 @@ public class TextCheckCell extends FrameLayout {
     private boolean isAnimatingToThumbInsteadOfTouch;
     private boolean isMultiline;
     private boolean isRTL;
+    public int itemId;
     private float lastTouchX;
     private boolean needDivider;
     private int padding;
@@ -280,12 +281,14 @@ public class TextCheckCell extends FrameLayout {
 
     @Override
     public void setBackgroundColor(int i) {
-        clearAnimation();
-        this.animatedColorBackground = 0;
-        super.setBackgroundColor(i);
+        if (this.animatedColorBackground != i) {
+            clearAnimation();
+            this.animatedColorBackground = 0;
+            super.setBackgroundColor(i);
+        }
     }
 
-    public void setBackgroundColorAnimated(boolean z, int i) {
+    public void setBackgroundColorAnimated(boolean z, final int i) {
         ObjectAnimator objectAnimator = this.animator;
         if (objectAnimator != null) {
             objectAnimator.cancel();
@@ -307,9 +310,8 @@ public class TextCheckCell extends FrameLayout {
         ofFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                TextCheckCell textCheckCell = TextCheckCell.this;
-                textCheckCell.setBackgroundColor(textCheckCell.animatedColorBackground);
                 TextCheckCell.this.animatedColorBackground = 0;
+                TextCheckCell.this.setBackgroundColor(i);
                 TextCheckCell.this.invalidate();
             }
         });

@@ -630,7 +630,7 @@ public final class Format implements Bundleable {
             if ((format.roleFlags & 1024) != 0) {
                 arrayList2.add("describes-music");
             }
-            if ((format.roleFlags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+            if ((format.roleFlags & 2048) != 0) {
                 arrayList2.add("enhanced-intelligibility");
             }
             if ((format.roleFlags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {

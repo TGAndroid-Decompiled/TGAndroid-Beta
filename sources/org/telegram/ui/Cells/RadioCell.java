@@ -82,8 +82,8 @@ public class RadioCell extends FrameLayout {
         this.textView.setTextColor(i);
     }
 
-    public void setText(String str, boolean z, boolean z2) {
-        this.textView.setText(str);
+    public void setText(CharSequence charSequence, boolean z, boolean z2) {
+        this.textView.setText(charSequence);
         this.radioButton.setChecked(z, false);
         this.needDivider = z2;
         setWillNotDraw(!z2);

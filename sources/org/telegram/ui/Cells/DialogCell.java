@@ -93,6 +93,7 @@ import org.telegram.ui.Components.BubbleCounterPath;
 import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.DialogCellTags;
 import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.Forum.ForumBubbleDrawable;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -109,6 +110,8 @@ import org.telegram.ui.Stories.StoryViewer;
 public class DialogCell extends BaseCell implements StoriesListPlaceProvider.AvatarOverlaysView {
     private int[] adaptiveEmojiColor;
     private ColorFilter[] adaptiveEmojiColorFilter;
+    public int addForumHeightForTags;
+    public int addHeightForTags;
     private int animateFromStatusDrawableParams;
     private int animateToStatusDrawableParams;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
@@ -311,6 +314,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int swipeMessageTextId;
     private StaticLayout swipeMessageTextLayout;
     private int swipeMessageWidth;
+    public DialogCellTags tags;
+    private int tagsLeft;
+    private int tagsRight;
     private Paint thumbBackgroundPaint;
     private ImageReceiver[] thumbImage;
     private boolean[] thumbImageSeen;
@@ -527,6 +533,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.messagePaddingStart = 72;
         this.heightDefault = 72;
         this.heightThreeLines = 78;
+        this.addHeightForTags = 3;
+        this.addForumHeightForTags = 11;
         this.chekBoxPaddingTop = 42.0f;
         int i2 = 0;
         StoriesUtilities.AvatarStoryParams avatarStoryParams = new StoriesUtilities.AvatarStoryParams(false) {
@@ -630,6 +638,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         this.dialogsType = i;
         showPremiumBlocked(i == 3);
+        if (this.tags == null) {
+            this.tags = new DialogCellTags();
+        }
         this.folderId = i2;
         this.messageId = 0;
         if (update(0, false)) {
@@ -832,7 +843,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
         }
         if (this.isTopic) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? this.heightThreeLines : this.heightDefault) + (this.useSeparator ? 1 : 0));
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? this.heightThreeLines : this.heightDefault) + ((!hasTags() || ((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) && !isForumCell())) ? 0 : isForumCell() ? this.addForumHeightForTags : this.addHeightForTags)) + (this.useSeparator ? 1 : 0));
             checkTwoLinesForName();
         }
         setMeasuredDimension(View.MeasureSpec.getSize(i), computeHeight());
@@ -841,24 +852,42 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private int computeHeight() {
-        if (!isForumCell() || this.isTransitionSupport || this.collapsed) {
-            return getCollapsedHeight();
+        if (isForumCell() && !this.isTransitionSupport && !this.collapsed) {
+            int dp = AndroidUtilities.dp((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? 86.0f : 91.0f);
+            if (this.useSeparator) {
+                dp++;
+            }
+            return hasTags() ? dp + AndroidUtilities.dp(this.addForumHeightForTags) : dp;
         }
-        return AndroidUtilities.dp((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? 86.0f : (this.useSeparator ? 1 : 0) + 91);
+        return getCollapsedHeight();
     }
 
     private int getCollapsedHeight() {
-        return AndroidUtilities.dp((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? this.heightThreeLines : this.heightDefault) + (this.useSeparator ? 1 : 0) + (this.twoLinesForName ? AndroidUtilities.dp(20.0f) : 0);
+        int dp = AndroidUtilities.dp((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? this.heightThreeLines : this.heightDefault);
+        if (this.useSeparator) {
+            dp++;
+        }
+        if (this.twoLinesForName) {
+            dp += AndroidUtilities.dp(20.0f);
+        }
+        if (hasTags()) {
+            if ((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) && !isForumCell()) {
+                return dp;
+            }
+            return dp + AndroidUtilities.dp(isForumCell() ? this.addForumHeightForTags : this.addHeightForTags);
+        }
+        return dp;
     }
 
     private void checkTwoLinesForName() {
         this.twoLinesForName = false;
-        if (this.isTopic) {
+        if (!this.isTopic || hasTags()) {
+            return;
+        }
+        buildLayout();
+        if (this.nameIsEllipsized) {
+            this.twoLinesForName = true;
             buildLayout();
-            if (this.nameIsEllipsized) {
-                this.twoLinesForName = true;
-                buildLayout();
-            }
         }
     }
 
@@ -966,6 +995,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             spannableStringBuilder.append((CharSequence) LocaleController.formatPluralString("Stories", max, new Object[0]));
         }
         return Emoji.replaceEmoji((CharSequence) spannableStringBuilder, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt(), AndroidUtilities.dp(17.0f), false);
+    }
+
+    public boolean hasTags() {
+        DialogCellTags dialogCellTags = this.tags;
+        return (dialogCellTags == null || dialogCellTags.isEmpty()) ? false : true;
     }
 
     public void buildLayout() {
@@ -1189,7 +1223,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return update(i, true);
     }
 
-    public boolean update(int r33, boolean r34) {
+    public boolean update(int r36, boolean r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.update(int, boolean):boolean");
     }
 

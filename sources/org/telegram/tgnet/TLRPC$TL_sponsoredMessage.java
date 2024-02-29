@@ -78,7 +78,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
                 this.entities.add(TLdeserialize);
             }
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.button_text = abstractSerializedData.readString(z);
         }
         if ((this.flags & 128) != 0) {
@@ -128,7 +128,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
                 this.entities.get(i3).serializeToStream(abstractSerializedData);
             }
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.button_text);
         }
         if ((this.flags & 128) != 0) {

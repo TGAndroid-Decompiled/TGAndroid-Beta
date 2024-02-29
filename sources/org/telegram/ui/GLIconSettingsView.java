@@ -11,6 +11,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColorPicker;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
+import org.telegram.ui.Components.Premium.GLIcon.Icon3D;
 import org.telegram.ui.Components.SeekBarView;
 public class GLIconSettingsView extends LinearLayout {
     public static float smallStarsSize = 1.0f;
@@ -46,10 +47,14 @@ public class GLIconSettingsView extends LinearLayout {
 
             @Override
             public void onSeekBarDrag(boolean z, float f) {
-                gLIconRenderer.star.spec1 = f * 2.0f;
+                Icon3D icon3D = gLIconRenderer.model;
+                if (icon3D != null) {
+                    icon3D.spec1 = f * 2.0f;
+                }
             }
         });
-        seekBarView.setProgress(gLIconRenderer.star.spec1 / 2.0f);
+        Icon3D icon3D = gLIconRenderer.model;
+        seekBarView.setProgress(icon3D == null ? 0.0f : icon3D.spec1 / 2.0f);
         seekBarView.setReportChanges(true);
         addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
         TextView textView2 = new TextView(context);
@@ -79,10 +84,14 @@ public class GLIconSettingsView extends LinearLayout {
 
             @Override
             public void onSeekBarDrag(boolean z, float f) {
-                gLIconRenderer.star.spec2 = f * 2.0f;
+                Icon3D icon3D2 = gLIconRenderer.model;
+                if (icon3D2 != null) {
+                    icon3D2.spec2 = f * 2.0f;
+                }
             }
         });
-        seekBarView2.setProgress(gLIconRenderer.star.spec2 / 2.0f);
+        Icon3D icon3D2 = gLIconRenderer.model;
+        seekBarView2.setProgress(icon3D2 == null ? 0.0f : icon3D2.spec2 / 2.0f);
         seekBarView2.setReportChanges(true);
         addView(seekBarView2, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
         TextView textView3 = new TextView(context);
@@ -117,7 +126,10 @@ public class GLIconSettingsView extends LinearLayout {
 
                     @Override
                     public void setColor(int i4, int i5, boolean z) {
-                        gLIconRenderer.star.specColor = i4;
+                        Icon3D icon3D3 = gLIconRenderer.model;
+                        if (icon3D3 != null) {
+                            icon3D3.specColor = i4;
+                        }
                     }
                 }) {
                     @Override
@@ -125,7 +137,8 @@ public class GLIconSettingsView extends LinearLayout {
                         super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                     }
                 };
-                colorPicker.setColor(gLIconRenderer.star.specColor, 0);
+                Icon3D icon3D3 = gLIconRenderer.model;
+                colorPicker.setColor(icon3D3 != null ? icon3D3.specColor : 0, 0);
                 colorPicker.setType(-1, true, 1, 1, false, 0, false);
                 BottomSheet bottomSheet = new BottomSheet(context, false);
                 bottomSheet.setCustomView(colorPicker);
@@ -161,10 +174,14 @@ public class GLIconSettingsView extends LinearLayout {
 
             @Override
             public void onSeekBarDrag(boolean z, float f) {
-                gLIconRenderer.star.diffuse = f;
+                Icon3D icon3D3 = gLIconRenderer.model;
+                if (icon3D3 != null) {
+                    icon3D3.diffuse = f;
+                }
             }
         });
-        seekBarView3.setProgress(gLIconRenderer.star.diffuse);
+        Icon3D icon3D3 = gLIconRenderer.model;
+        seekBarView3.setProgress(icon3D3 == null ? 0.0f : icon3D3.diffuse);
         seekBarView3.setReportChanges(true);
         addView(seekBarView3, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
         TextView textView5 = new TextView(context);
@@ -194,10 +211,14 @@ public class GLIconSettingsView extends LinearLayout {
 
             @Override
             public void onSeekBarDrag(boolean z, float f) {
-                gLIconRenderer.star.normalSpec = f * 2.0f;
+                Icon3D icon3D4 = gLIconRenderer.model;
+                if (icon3D4 != null) {
+                    icon3D4.normalSpec = f * 2.0f;
+                }
             }
         });
-        seekBarView4.setProgress(gLIconRenderer.star.normalSpec / 2.0f);
+        Icon3D icon3D4 = gLIconRenderer.model;
+        seekBarView4.setProgress(icon3D4 != null ? icon3D4.normalSpec / 2.0f : 0.0f);
         seekBarView4.setReportChanges(true);
         addView(seekBarView4, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
         TextView textView6 = new TextView(context);
@@ -230,9 +251,11 @@ public class GLIconSettingsView extends LinearLayout {
 
                     @Override
                     public void setColor(int i4, int i5, boolean z) {
-                        if (i5 == 0) {
-                            gLIconRenderer.star.normalSpecColor = i4;
+                        Icon3D icon3D5;
+                        if (i5 != 0 || (icon3D5 = gLIconRenderer.model) == null) {
+                            return;
                         }
+                        icon3D5.normalSpecColor = i4;
                     }
                 }) {
                     @Override
@@ -240,7 +263,8 @@ public class GLIconSettingsView extends LinearLayout {
                         super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                     }
                 };
-                colorPicker.setColor(gLIconRenderer.star.normalSpecColor, 0);
+                Icon3D icon3D5 = gLIconRenderer.model;
+                colorPicker.setColor(icon3D5 == null ? 0 : icon3D5.normalSpecColor, 0);
                 colorPicker.setType(-1, true, 1, 1, false, 0, false);
                 BottomSheet bottomSheet = new BottomSheet(context, false);
                 bottomSheet.setCustomView(colorPicker);

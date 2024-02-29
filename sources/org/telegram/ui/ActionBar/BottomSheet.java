@@ -744,8 +744,10 @@ public class BottomSheet extends Dialog {
     }
 
     public static class BottomSheetCell extends FrameLayout {
+        private boolean checked;
         int currentType;
         private ImageView imageView;
+        private ImageView imageView2;
         public boolean isSelected;
         private final Theme.ResourcesProvider resourcesProvider;
         private TextView textView;
@@ -767,6 +769,11 @@ public class BottomSheet extends Dialog {
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
             addView(this.imageView, LayoutHelper.createFrame(56, 48, (LocaleController.isRTL ? 5 : 3) | 16));
+            ImageView imageView2 = new ImageView(context);
+            this.imageView2 = imageView2;
+            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            this.imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_radioBackgroundChecked, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            addView(this.imageView2, LayoutHelper.createFrame(56, 48, (LocaleController.isRTL ? 3 : 5) | 16));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setLines(1);
@@ -843,6 +850,16 @@ public class BottomSheet extends Dialog {
             }
             this.imageView.setVisibility(4);
             this.textView.setPadding(AndroidUtilities.dp(z ? 21.0f : 16.0f), 0, AndroidUtilities.dp(z ? 21.0f : 16.0f), 0);
+        }
+
+        public void setChecked(boolean z) {
+            ImageView imageView = this.imageView2;
+            this.checked = z;
+            imageView.setImageResource(z ? R.drawable.checkbig : 0);
+        }
+
+        public boolean isChecked() {
+            return this.checked;
         }
 
         public TextView getTextView() {

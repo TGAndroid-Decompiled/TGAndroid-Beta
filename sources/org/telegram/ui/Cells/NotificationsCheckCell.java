@@ -131,21 +131,21 @@ public class NotificationsCheckCell extends FrameLayout {
         }
     }
 
-    public void setTextAndValueAndCheck(String str, CharSequence charSequence, boolean z, boolean z2) {
-        setTextAndValueAndCheck(str, charSequence, z, 0, false, z2);
+    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
+        setTextAndValueAndCheck(charSequence, charSequence2, z, 0, false, z2);
     }
 
-    public void setTextAndValueAndCheck(String str, CharSequence charSequence, boolean z, int i, boolean z2) {
-        setTextAndValueAndCheck(str, charSequence, z, i, false, z2);
+    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2) {
+        setTextAndValueAndCheck(charSequence, charSequence2, z, i, false, z2);
     }
 
-    public void setTextAndValueAndCheck(String str, CharSequence charSequence, boolean z, int i, boolean z2, boolean z3) {
-        setTextAndValueAndIconAndCheck(str, charSequence, 0, z, i, z2, z3);
+    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2, boolean z3) {
+        setTextAndValueAndIconAndCheck(charSequence, charSequence2, 0, z, i, z2, z3);
     }
 
-    public void setTextAndValueAndIconAndCheck(String str, CharSequence charSequence, int i, boolean z, int i2, boolean z2, boolean z3) {
-        this.textView.setText(str);
-        this.valueTextView.setText(charSequence);
+    public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3) {
+        this.textView.setText(charSequence);
+        this.valueTextView.setText(charSequence2);
         ImageView imageView = this.imageView;
         if (imageView != null) {
             imageView.setImageResource(i);
@@ -154,21 +154,29 @@ public class NotificationsCheckCell extends FrameLayout {
         this.checkBox.setChecked(z, i2, this.animationsEnabled);
         this.valueTextView.setVisibility(0);
         this.needDivider = z3;
-        this.isMultiline = z2;
-        if (z2) {
+        setMultiline(z2);
+        this.checkBox.setContentDescription(charSequence);
+    }
+
+    public void setMultiline(boolean z) {
+        this.isMultiline = z;
+        if (z) {
             this.valueTextView.setLines(0);
             this.valueTextView.setMaxLines(0);
             this.valueTextView.setSingleLine(false);
             this.valueTextView.setEllipsize(null);
             this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
-        } else {
-            this.valueTextView.setLines(1);
-            this.valueTextView.setMaxLines(1);
-            this.valueTextView.setSingleLine(true);
-            this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-            this.valueTextView.setPadding(0, 0, 0, 0);
+            return;
         }
-        this.checkBox.setContentDescription(str);
+        this.valueTextView.setLines(1);
+        this.valueTextView.setMaxLines(1);
+        this.valueTextView.setSingleLine(true);
+        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.valueTextView.setPadding(0, 0, 0, 0);
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.valueTextView.setText(charSequence);
     }
 
     public void setDrawLine(boolean z) {

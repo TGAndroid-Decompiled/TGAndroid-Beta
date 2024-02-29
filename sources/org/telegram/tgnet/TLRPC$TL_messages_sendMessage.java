@@ -12,6 +12,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
     public boolean no_webpage;
     public boolean noforwards;
     public TLRPC$InputPeer peer;
+    public TLRPC$InputQuickReplyShortcut quick_reply_shortcut;
     public long random_id;
     public TLRPC$ReplyMarkup reply_markup;
     public TLRPC$InputReplyTo reply_to;
@@ -27,7 +28,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(671943023);
+        abstractSerializedData.writeInt32(-537394132);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.silent ? i | 32 : i & (-33);
@@ -65,6 +66,9 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 131072) != 0) {
+            this.quick_reply_shortcut.serializeToStream(abstractSerializedData);
         }
     }
 }

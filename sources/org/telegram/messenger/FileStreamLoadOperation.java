@@ -120,6 +120,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
                 }
             }
         }
+        FileLog.e("FileStreamLoadOperation " + this.document.id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
         return this.bytesRemaining;
     }
 
@@ -132,7 +133,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public int read(byte[] r13, int r14, int r15) throws java.io.IOException {
+    public int read(byte[] r15, int r16, int r17) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 
@@ -143,6 +144,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
 
     @Override
     public void close() {
+        FileLog.e("FileStreamLoadOperation " + this.document.id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {
             fileLoadOperation.removeStreamListener(this);
@@ -171,6 +173,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
 
     @Override
     public void newDataAvailable() {
+        FileLog.e("FileStreamLoadOperation " + this.document.id + " newDataAvailable me=" + this);
         CountDownLatch countDownLatch = this.countDownLatch;
         if (countDownLatch != null) {
             countDownLatch.countDown();
