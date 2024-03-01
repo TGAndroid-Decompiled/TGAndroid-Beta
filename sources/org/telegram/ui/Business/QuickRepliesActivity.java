@@ -627,7 +627,9 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
 
     public static void lambda$openRenameReplyAlert$8(View view, DialogInterface dialogInterface) {
         currentDialog = null;
-        view.requestFocus();
+        if (view != null) {
+            view.requestFocus();
+        }
     }
 
     public static void lambda$openRenameReplyAlert$9(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {

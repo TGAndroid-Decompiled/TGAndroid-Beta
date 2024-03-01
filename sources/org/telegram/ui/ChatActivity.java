@@ -21804,7 +21804,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             String str;
             ChatActivity.this.createSearchContainer();
             if (ChatActivity.this.searchingUserMessages != null || ChatActivity.this.searchingChatMessages != null) {
-                ChatActivity.this.searchUserButton.callOnClick();
+                if (ChatActivity.this.searchUserButton != null) {
+                    ChatActivity.this.searchUserButton.callOnClick();
+                    return;
+                }
                 return;
             }
             if (ChatActivity.this.searchingForUser) {

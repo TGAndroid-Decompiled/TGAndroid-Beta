@@ -70,6 +70,7 @@ public class LocaleController {
     public FastDateFormat formatterBannedUntil;
     public FastDateFormat formatterBannedUntilThisYear;
     public FastDateFormat formatterBoostExpired;
+    public FastDateFormat formatterConstDay;
     public FastDateFormat formatterDay;
     public FastDateFormat formatterDayMonth;
     public FastDateFormat formatterGiveawayCard;
@@ -2774,6 +2775,9 @@ public class LocaleController {
             str = "formatterDay12H";
         }
         this.formatterDay = createFormatter(locale2, getStringInternal(str, i), is24HourFormat ? "HH:mm" : "h:mm a");
+        Locale locale3 = (lowerCase.toLowerCase().equals("ar") || lowerCase.toLowerCase().equals("ko")) ? locale : Locale.US;
+        boolean z = is24HourFormat;
+        this.formatterConstDay = createFormatter(locale3, z ? "HH:mm" : "h:mm a", z ? "HH:mm" : "h:mm a");
         if (is24HourFormat) {
             i2 = R.string.formatterStats24H;
             str2 = "formatterStats24H";

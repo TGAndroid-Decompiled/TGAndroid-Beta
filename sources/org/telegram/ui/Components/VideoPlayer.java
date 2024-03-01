@@ -960,7 +960,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.videoPlayerReady = false;
         this.mixedAudio = false;
         this.currentUri = uri;
-        String scheme = uri.getScheme();
+        String scheme = uri != null ? uri.getScheme() : null;
         if (scheme != null && !scheme.startsWith("file")) {
             z = true;
         }

@@ -447,7 +447,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             }
                             StoryViewer storyViewer3 = StoryViewer.this;
                             storyViewer3.swipeToReplyProgress = Utilities.clamp(storyViewer3.swipeToReplyOffset / f3, 1.0f, 0.0f);
-                            StoryViewer.this.storiesViewPager.getCurrentPeerView().invalidate();
+                            if (StoryViewer.this.storiesViewPager.getCurrentPeerView() != null) {
+                                StoryViewer.this.storiesViewPager.getCurrentPeerView().invalidate();
+                            }
                             StoryViewer storyViewer4 = StoryViewer.this;
                             if (storyViewer4.swipeToReplyOffset >= 0.0f) {
                                 return true;
@@ -464,7 +466,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                                 storyViewer5.selfStoriesViewsOffset = f4 + f2;
                             }
                             Bulletin.hideVisible(storyViewer5.windowView);
-                            StoryViewer.this.storiesViewPager.getCurrentPeerView().invalidate();
+                            if (StoryViewer.this.storiesViewPager.getCurrentPeerView() != null) {
+                                StoryViewer.this.storiesViewPager.getCurrentPeerView().invalidate();
+                            }
                             StoryViewer.this.containerView.invalidate();
                             StoryViewer storyViewer6 = StoryViewer.this;
                             if (storyViewer6.selfStoriesViewsOffset >= 0.0f) {
@@ -2203,11 +2207,15 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void presentFragment(BaseFragment baseFragment) {
-        if (this.ATTACH_TO_FRAGMENT) {
-            LaunchActivity.getLastFragment().presentFragment(baseFragment);
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
             return;
         }
-        LaunchActivity.getLastFragment().presentFragment(baseFragment);
+        if (this.ATTACH_TO_FRAGMENT) {
+            lastFragment.presentFragment(baseFragment);
+            return;
+        }
+        lastFragment.presentFragment(baseFragment);
         close(false);
     }
 

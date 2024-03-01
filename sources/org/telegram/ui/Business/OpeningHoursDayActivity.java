@@ -123,7 +123,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
         }
         if (!this.periods.isEmpty() && !is24()) {
             ArrayList<OpeningHoursActivity.Period> arrayList = this.periods;
-            if (arrayList.get(arrayList.size() - 1).end >= 1439) {
+            if (arrayList.get(arrayList.size() - 1).end >= this.max - 2) {
                 return false;
             }
         }
@@ -155,12 +155,13 @@ public class OpeningHoursDayActivity extends BaseFragment {
                 if (is24()) {
                     this.periods.clear();
                 }
-                int clamp = Utilities.clamp(480, this.max, this.min);
+                int clamp = Utilities.clamp(480, this.max - 1, this.min);
                 this.periods.add(new OpeningHoursActivity.Period(clamp, Utilities.clamp(1200, this.max, clamp + 1)));
             } else {
                 ArrayList<OpeningHoursActivity.Period> arrayList = this.periods;
                 int i4 = arrayList.get(arrayList.size() - 1).end;
-                this.periods.add(new OpeningHoursActivity.Period(Utilities.clamp(i4 + 30, this.max, this.min), Utilities.clamp((i4 + 1560) / 2, this.max, this.min)));
+                int clamp2 = Utilities.clamp(i4 + 30, this.max - 1, this.min);
+                this.periods.add(new OpeningHoursActivity.Period(clamp2, Utilities.clamp((i4 + 1560) / 2, this.max, clamp2 + 1)));
             }
             Runnable runnable2 = this.whenApplied;
             if (runnable2 != null) {

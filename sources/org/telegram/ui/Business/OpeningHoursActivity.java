@@ -193,15 +193,26 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         for (int i2 = 0; i2 < arrayList2.size(); i2++) {
             TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen = (TLRPC$TL_businessWeeklyOpen) arrayList2.get(i2);
             TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen2 = new TLRPC$TL_businessWeeklyOpen();
+            if (i != 0) {
+                int i3 = tLRPC$TL_businessWeeklyOpen.start_minute;
+                int i4 = i3 % 1440;
+                int i5 = tLRPC$TL_businessWeeklyOpen.end_minute;
+                int i6 = (i5 - i3) + i4;
+                if (i4 == 0 && (i6 == 1440 || i6 == 1439)) {
+                    tLRPC$TL_businessWeeklyOpen2.start_minute = i3;
+                    tLRPC$TL_businessWeeklyOpen2.end_minute = i5;
+                    arrayList3.add(tLRPC$TL_businessWeeklyOpen2);
+                }
+            }
             tLRPC$TL_businessWeeklyOpen2.start_minute = tLRPC$TL_businessWeeklyOpen.start_minute + i;
             tLRPC$TL_businessWeeklyOpen2.end_minute = tLRPC$TL_businessWeeklyOpen.end_minute + i;
             arrayList3.add(tLRPC$TL_businessWeeklyOpen2);
-            int i3 = tLRPC$TL_businessWeeklyOpen2.start_minute;
-            if (i3 < 0) {
-                int i4 = tLRPC$TL_businessWeeklyOpen2.end_minute;
-                if (i4 < 0) {
-                    tLRPC$TL_businessWeeklyOpen2.start_minute = i3 + 10080;
-                    tLRPC$TL_businessWeeklyOpen2.end_minute = i4 + 10080;
+            int i7 = tLRPC$TL_businessWeeklyOpen2.start_minute;
+            if (i7 < 0) {
+                int i8 = tLRPC$TL_businessWeeklyOpen2.end_minute;
+                if (i8 < 0) {
+                    tLRPC$TL_businessWeeklyOpen2.start_minute = i7 + 10080;
+                    tLRPC$TL_businessWeeklyOpen2.end_minute = i8 + 10080;
                 } else {
                     tLRPC$TL_businessWeeklyOpen2.start_minute = 0;
                     TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen3 = new TLRPC$TL_businessWeeklyOpen();
@@ -210,11 +221,11 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                     arrayList3.add(tLRPC$TL_businessWeeklyOpen3);
                 }
             } else {
-                int i5 = tLRPC$TL_businessWeeklyOpen2.end_minute;
-                if (i5 > 10080) {
-                    if (i3 > 10080) {
-                        tLRPC$TL_businessWeeklyOpen2.start_minute = i3 - 10080;
-                        tLRPC$TL_businessWeeklyOpen2.end_minute = i5 - 10080;
+                int i9 = tLRPC$TL_businessWeeklyOpen2.end_minute;
+                if (i9 > 10080) {
+                    if (i7 > 10080) {
+                        tLRPC$TL_businessWeeklyOpen2.start_minute = i7 - 10080;
+                        tLRPC$TL_businessWeeklyOpen2.end_minute = i9 - 10080;
                     } else {
                         tLRPC$TL_businessWeeklyOpen2.end_minute = 10079;
                         TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen4 = new TLRPC$TL_businessWeeklyOpen();
@@ -387,7 +398,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             int i2 = i % 60;
             Calendar calendar = Calendar.getInstance();
             calendar.set(0, 0, 0, ((i - i2) / 60) % 24, i2);
-            String format = LocaleController.getInstance().formatterDay.format(calendar.getTime());
+            String format = LocaleController.getInstance().formatterConstDay.format(calendar.getTime());
             return (i <= 1440 || !z) ? format : LocaleController.formatString(R.string.BusinessHoursNextDay, format);
         }
     }

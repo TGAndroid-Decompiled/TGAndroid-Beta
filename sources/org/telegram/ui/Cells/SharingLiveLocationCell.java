@@ -55,6 +55,7 @@ public class SharingLiveLocationCell extends FrameLayout {
     private LocationController.SharingLocationInfo currentInfo;
     private TextView distanceTextView;
     private int distanceTextViewHeight;
+    private boolean distanceTextViewSingle;
     private Runnable invalidateRunnable;
     private double lastLat;
     private double lastLong;
@@ -106,6 +107,7 @@ public class SharingLiveLocationCell extends FrameLayout {
             TextView textView = new TextView(context);
             this.distanceTextView = textView;
             textView.setSingleLine();
+            this.distanceTextViewSingle = true;
             this.distanceTextView.setTextSize(1, 14.0f);
             this.distanceTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
             this.distanceTextView.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -125,10 +127,7 @@ public class SharingLiveLocationCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        int dp = AndroidUtilities.dp(this.distanceTextView != null ? 66.0f : 54.0f);
-        TextView textView = this.distanceTextView;
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(dp + ((textView == null || textView.isSingleLine()) ? 0 : (-AndroidUtilities.dp(20.0f)) + this.distanceTextViewHeight), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.distanceTextView != null ? 66.0f : 54.0f) + ((this.distanceTextView == null || this.distanceTextViewSingle) ? 0 : (-AndroidUtilities.dp(20.0f)) + this.distanceTextViewHeight), 1073741824));
     }
 
     @Override
@@ -168,7 +167,9 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.nameTextView.setText(str2);
         this.location.setLatitude(tLRPC$TL_channelLocation.geo_point.lat);
         this.location.setLongitude(tLRPC$TL_channelLocation.geo_point._long);
-        this.distanceTextView.setSingleLine(true);
+        TextView textView = this.distanceTextView;
+        this.distanceTextViewSingle = true;
+        textView.setSingleLine(true);
         this.distanceTextView.setText(str);
     }
 
@@ -254,14 +255,18 @@ public class SharingLiveLocationCell extends FrameLayout {
             combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.avatarImageView.setImageDrawable(combinedDrawable);
             this.nameTextView.setText(Emoji.replaceEmoji(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), this.nameTextView.getPaint().getFontMetricsInt(), false));
-            this.distanceTextView.setSingleLine(false);
+            TextView textView = this.distanceTextView;
+            this.distanceTextViewSingle = false;
+            textView.setSingleLine(false);
             String str2 = messageObject.messageOwner.media.address;
             this.distanceTextViewHeight = new StaticLayout(str2, this.distanceTextView.getPaint(), AndroidUtilities.displaySize.x - AndroidUtilities.dp(this.padding + 73), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false).getHeight();
             this.distanceTextView.setText(str2);
             requestLayout();
             return;
         }
-        this.distanceTextView.setSingleLine(true);
+        TextView textView2 = this.distanceTextView;
+        this.distanceTextViewSingle = true;
+        textView2.setSingleLine(true);
         long fromChatId = messageObject.getFromChatId();
         if (messageObject.isForwarded()) {
             fromChatId = MessageObject.getPeerId(messageObject.messageOwner.fwd_from.from_id);

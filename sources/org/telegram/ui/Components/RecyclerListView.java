@@ -2302,7 +2302,11 @@ public class RecyclerListView extends RecyclerView {
             recyclerItemsEnterAnimator.dispatchDraw();
         }
         if (this.drawSelection && this.drawSelectorBehind && !this.selectorRect.isEmpty()) {
-            this.selectorDrawable.setBounds(this.selectorRect);
+            if (this.translateSelector && this.selectorView != null) {
+                this.selectorDrawable.setBounds(this.selectorView.getLeft(), this.selectorView.getTop(), this.selectorView.getRight(), this.selectorView.getBottom() - (getAdapter() instanceof SelectionAdapter ? ((SelectionAdapter) getAdapter()).getSelectionBottomPadding(this.selectorView) : 0));
+            } else {
+                this.selectorDrawable.setBounds(this.selectorRect);
+            }
             canvas.save();
             if (this.translateSelector && (consumer2 = this.selectorTransformer) != null) {
                 consumer2.accept(canvas);
@@ -2316,7 +2320,11 @@ public class RecyclerListView extends RecyclerView {
         }
         super.dispatchDraw(canvas);
         if (this.drawSelection && !this.drawSelectorBehind && !this.selectorRect.isEmpty()) {
-            this.selectorDrawable.setBounds(this.selectorRect);
+            if (this.translateSelector && this.selectorView != null) {
+                this.selectorDrawable.setBounds(this.selectorView.getLeft(), this.selectorView.getTop(), this.selectorView.getRight(), this.selectorView.getBottom() - (getAdapter() instanceof SelectionAdapter ? ((SelectionAdapter) getAdapter()).getSelectionBottomPadding(this.selectorView) : 0));
+            } else {
+                this.selectorDrawable.setBounds(this.selectorRect);
+            }
             canvas.save();
             if (this.translateSelector && (consumer = this.selectorTransformer) != null) {
                 consumer.accept(canvas);

@@ -7321,7 +7321,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$putMessages$215(int r52, org.telegram.tgnet.TLRPC$messages_Messages r53, long r54, long r56, int r58, int r59, boolean r60) {
+    public void lambda$putMessages$215(int r51, org.telegram.tgnet.TLRPC$messages_Messages r52, long r53, long r55, int r57, int r58, boolean r59) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$215(int, org.telegram.tgnet.TLRPC$messages_Messages, long, long, int, int, boolean):void");
     }
 
@@ -8190,7 +8190,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$updateUnreadReactionsCount$238(long r8, boolean r10, long r11, int r13) {
+    public void lambda$updateUnreadReactionsCount$238(long r9, boolean r11, long r12, int r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCount$238(long, boolean, long, int):void");
     }
 

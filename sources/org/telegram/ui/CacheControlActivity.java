@@ -742,48 +742,48 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     public static int countDirJava(String str, int i) {
         File[] listFiles;
         File file = new File(str);
-        if (file.exists()) {
-            int i2 = 0;
-            for (File file2 : file.listFiles()) {
-                String name = file2.getName();
-                if (!".".equals(name)) {
-                    if (i > 0 && name.length() >= 4) {
-                        String lowerCase = name.toLowerCase();
-                        boolean z = true;
-                        boolean z2 = lowerCase.endsWith(".mp3") || lowerCase.endsWith(".m4a");
-                        boolean z3 = lowerCase.endsWith(".tgs") || lowerCase.endsWith(".webm");
-                        if (!lowerCase.endsWith(".tmp") && !lowerCase.endsWith(".temp") && !lowerCase.endsWith(".preload")) {
-                            z = false;
-                        }
-                        if (z2) {
-                            if (i == LISTDIR_DOCTYPE_OTHER_THAN_MUSIC) {
-                            }
-                        }
-                        if (!z2) {
-                            if (i == LISTDIR_DOCTYPE_MUSIC) {
-                            }
-                        }
-                        if (z3) {
-                            if (i == LISTDIR_DOCTYPE2_OTHER) {
-                            }
-                        }
-                        if (!z3) {
-                            if (i == LISTDIR_DOCTYPE2_EMOJI) {
-                            }
-                        }
-                        if (z) {
-                            if (i == LISTDIR_DOCTYPE2_OTHER) {
-                            }
-                        }
-                        if (!z && i == LISTDIR_DOCTYPE2_TEMP) {
+        if (!file.exists() || (listFiles = file.listFiles()) == null) {
+            return 0;
+        }
+        int i2 = 0;
+        for (File file2 : listFiles) {
+            String name = file2.getName();
+            if (!".".equals(name)) {
+                if (i > 0 && name.length() >= 4) {
+                    String lowerCase = name.toLowerCase();
+                    boolean z = true;
+                    boolean z2 = lowerCase.endsWith(".mp3") || lowerCase.endsWith(".m4a");
+                    boolean z3 = lowerCase.endsWith(".tgs") || lowerCase.endsWith(".webm");
+                    if (!lowerCase.endsWith(".tmp") && !lowerCase.endsWith(".temp") && !lowerCase.endsWith(".preload")) {
+                        z = false;
+                    }
+                    if (z2) {
+                        if (i == LISTDIR_DOCTYPE_OTHER_THAN_MUSIC) {
                         }
                     }
-                    i2 = file2.isDirectory() ? i2 + countDirJava(str + "/" + name, i) : i2 + 1;
+                    if (!z2) {
+                        if (i == LISTDIR_DOCTYPE_MUSIC) {
+                        }
+                    }
+                    if (z3) {
+                        if (i == LISTDIR_DOCTYPE2_OTHER) {
+                        }
+                    }
+                    if (!z3) {
+                        if (i == LISTDIR_DOCTYPE2_EMOJI) {
+                        }
+                    }
+                    if (z) {
+                        if (i == LISTDIR_DOCTYPE2_OTHER) {
+                        }
+                    }
+                    if (!z && i == LISTDIR_DOCTYPE2_TEMP) {
+                    }
                 }
+                i2 = file2.isDirectory() ? i2 + countDirJava(str + "/" + name, i) : i2 + 1;
             }
-            return i2;
         }
-        return 0;
+        return i2;
     }
 
     public static void cleanDirJava(String str, int i, int[] iArr, Utilities.Callback<Float> callback) {
