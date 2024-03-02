@@ -1116,7 +1116,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         if (messagesController.businessFeaturesTypesToPosition.size() > 0) {
             int i2 = 0;
             while (i2 < arrayList.size()) {
-                if (messagesController.businessFeaturesTypesToPosition.get(arrayList.get(i2).type, -1) == -1) {
+                if (messagesController.businessFeaturesTypesToPosition.get(arrayList.get(i2).type, -1) == -1 && !BuildVars.DEBUG_PRIVATE_VERSION) {
                     arrayList.remove(i2);
                     i2--;
                 }

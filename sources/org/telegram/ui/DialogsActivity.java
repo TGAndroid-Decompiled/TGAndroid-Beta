@@ -6571,7 +6571,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public static void lambda$showChatPreview$68(ChatActivity[] chatActivityArr, int i) {
-        if (chatActivityArr[0] == null || chatActivityArr[0].getFragmentView() == null) {
+        if (chatActivityArr[0] == null || chatActivityArr[0].getFragmentView() == null || !chatActivityArr[0].isInPreviewMode()) {
             return;
         }
         ViewGroup.LayoutParams layoutParams = chatActivityArr[0].getFragmentView().getLayoutParams();

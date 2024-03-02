@@ -2,10 +2,10 @@ package org.telegram.messenger;
 
 import android.os.Build;
 public class NativeLoader {
-    private static final String LIB_NAME = "tmessages.47";
-    private static final String LIB_SO_NAME = "libtmessages.47.so";
-    private static final int LIB_VERSION = 47;
-    private static final String LOCALE_LIB_SO_NAME = "libtmessages.47loc.so";
+    private static final String LIB_NAME = "tmessages.48";
+    private static final String LIB_SO_NAME = "libtmessages.48.so";
+    private static final int LIB_VERSION = 48;
+    private static final String LOCALE_LIB_SO_NAME = "libtmessages.48loc.so";
     public static StringBuilder log = new StringBuilder();
     private static volatile boolean nativeLoaded = false;
 

@@ -2468,8 +2468,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         };
         this.listView = clippedListView;
-        clippedListView.setTranslateSelector(r14);
-        this.listView.setVerticalScrollBarEnabled(r12);
+        clippedListView.setVerticalScrollBarEnabled(r12);
         AnonymousClass10 anonymousClass10 = new AnonymousClass10();
         this.listView.setItemAnimator(anonymousClass10);
         anonymousClass10.setMoveDelay(0L);
@@ -9744,11 +9743,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             switch (i) {
                 case 1:
                     headerCell = new HeaderCell(this.mContext, 23, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 2:
                 case 19:
                     TextDetailCell textDetailCell2 = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 19);
                     textDetailCell2.setContentDescriptionValueFirst(true);
+                    textDetailCell2.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     textDetailCell = textDetailCell2;
                     headerCell = textDetailCell;
                     break;
@@ -9777,6 +9778,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             return ProfileActivity.this.applyPeerColor(i2, false);
                         }
                     };
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 4:
                     headerCell = new TextCell(this.mContext, ProfileActivity.this.resourcesProvider) {
@@ -9785,9 +9787,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             return ProfileActivity.this.applyPeerColor(i2, false);
                         }
                     };
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 5:
                     headerCell = new DividerCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     headerCell.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f), 0, 0);
                     break;
                 case 6:
@@ -9797,12 +9801,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             return ProfileActivity.this.applyPeerColor(i2, false);
                         }
                     };
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 7:
                     headerCell = new ShadowSectionCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 8:
                     headerCell = new UserCell(this.mContext, ProfileActivity.this.addMemberRow == -1 ? 9 : 6, 0, true, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 9:
                 case 10:
@@ -9914,15 +9920,19 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     break;
                 case 17:
                     headerCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 18:
                     headerCell = new ProfilePremiumCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 20:
                     headerCell = new TextCheckCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 21:
                     headerCell = new ProfileLocationCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 22:
                     headerCell = new ProfileHoursCell(this.mContext, ProfileActivity.this.resourcesProvider);
@@ -9957,6 +9967,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         public void lambda$onBindViewHolder$1(View view) {
             ProfileActivity profileActivity = ProfileActivity.this;
             profileActivity.hoursShownMine = !profileActivity.hoursShownMine;
+            if (!ProfileActivity.this.hoursExpanded) {
+                ProfileActivity.this.hoursExpanded = true;
+            }
             ProfileActivity.this.saveScrollPosition();
             view.requestLayout();
             ProfileActivity.this.listAdapter.notifyItemChanged(ProfileActivity.this.bizHoursRow);

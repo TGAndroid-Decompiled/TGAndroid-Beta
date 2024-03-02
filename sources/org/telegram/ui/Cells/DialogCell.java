@@ -2128,11 +2128,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         CanvasButton canvasButton;
+        int i;
         if (this.rightFragmentOpenedProgress == 0.0f && !this.isTopic && this.storyParams.checkOnTouchEvent(motionEvent, this)) {
             return true;
         }
         DialogCellDelegate dialogCellDelegate = this.delegate;
-        if ((dialogCellDelegate == null || dialogCellDelegate.canClickButtonInside()) && this.lastTopicMessageUnread && (canvasButton = this.canvasButton) != null && this.buttonLayout != null && this.dialogsType == 0 && canvasButton.checkTouchEvent(motionEvent)) {
+        if ((dialogCellDelegate == null || dialogCellDelegate.canClickButtonInside()) && this.lastTopicMessageUnread && (canvasButton = this.canvasButton) != null && this.buttonLayout != null && (((i = this.dialogsType) == 0 || i == 7 || i == 8) && canvasButton.checkTouchEvent(motionEvent))) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

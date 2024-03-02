@@ -7262,7 +7262,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r53) {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r51) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 
@@ -8945,7 +8945,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return !TextUtils.equals(this.lastPostAuthor, this.currentMessageObject.messageOwner.post_author);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r42, float r43) {
+    public void drawNamesLayout(android.graphics.Canvas r44, float r45) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 
@@ -11785,7 +11785,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public int getNameStatusX() {
-        float f = this.nameX;
+        float f = this.nameX + this.nameOffsetX;
         int i = this.viaNameWidth;
         return (int) (f + (i > 0 ? i - AndroidUtilities.dp(32.0f) : this.nameLayoutWidth) + AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(20.0f) / 2));
     }

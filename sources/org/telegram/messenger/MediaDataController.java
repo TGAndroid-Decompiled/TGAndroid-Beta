@@ -7481,6 +7481,30 @@ public class MediaDataController extends BaseController {
                     }
                 });
             }
+            while (parsePattern.length() > 0 && (parsePattern.charAt(0) == '\n' || parsePattern.charAt(0) == ' ')) {
+                int i18 = 1;
+                parsePattern = parsePattern.subSequence(1, parsePattern.length());
+                int i19 = 0;
+                while (i19 < arrayList.size()) {
+                    TLRPC$MessageEntity tLRPC$MessageEntity = arrayList.get(i19);
+                    int i20 = tLRPC$MessageEntity.offset;
+                    if (i20 == 0) {
+                        tLRPC$MessageEntity.length -= i18;
+                    }
+                    tLRPC$MessageEntity.offset = Math.max(0, i20 - 1);
+                    i19++;
+                    i18 = 1;
+                }
+            }
+            while (parsePattern.length() > 0 && (parsePattern.charAt(parsePattern.length() - 1) == '\n' || parsePattern.charAt(parsePattern.length() - 1) == ' ')) {
+                parsePattern = parsePattern.subSequence(0, parsePattern.length() - 1);
+                for (int i21 = 0; i21 < arrayList.size(); i21++) {
+                    TLRPC$MessageEntity tLRPC$MessageEntity2 = arrayList.get(i21);
+                    if (tLRPC$MessageEntity2.offset + tLRPC$MessageEntity2.length > parsePattern.length()) {
+                        tLRPC$MessageEntity2.length--;
+                    }
+                }
+            }
             charSequenceArr[0] = parsePattern;
         }
         return arrayList;

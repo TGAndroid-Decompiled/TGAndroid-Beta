@@ -104,7 +104,7 @@ public class BoostDialogs {
             return;
         }
         if (str.contains("PREMIUM_SUB_ACTIVE_UNTIL_")) {
-            String format = LocaleController.getInstance().formatterBoostExpired.format(new Date(Integer.parseInt(tLRPC$TL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
+            String format = LocaleController.getInstance().formatterBoostExpired.format(new Date(Long.parseLong(tLRPC$TL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
             SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), Theme.key_undo_cancelColor, 0, runnable);
             BulletinFactory of = BulletinFactory.of(frameLayout, resourcesProvider);
             int i = R.raw.chats_infotip;
