@@ -59,6 +59,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -1344,7 +1345,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         public void lambda$onClick$1() {
             try {
-                SharedMediaLayout.this.profileActivity.getMediaDataController().installShortcut(SharedMediaLayout.this.profileActivity.getUserConfig().getClientUserId());
+                SharedMediaLayout.this.profileActivity.getMediaDataController().installShortcut(SharedMediaLayout.this.profileActivity.getUserConfig().getClientUserId(), MediaDataController.SHORTCUT_TYPE_USER_OR_CHAT);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -6829,33 +6830,36 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             return null;
         }
         MediaPage[] mediaPageArr = this.mediaPages;
-        if (mediaPageArr[0] == null || this.allowStoriesSingleColumn) {
-            return null;
-        }
-        int i = mediaPageArr[0].selectedType;
-        this.changeColumnsTab = i;
-        int i2 = (i == 8 || i == 9) ? 1 : 0;
-        int nextMediaColumnsCount = getNextMediaColumnsCount(i2, this.mediaColumnsCount[i2], false);
-        if (this.mediaZoomOutItem != null && nextMediaColumnsCount == getNextMediaColumnsCount(i2, nextMediaColumnsCount, false)) {
-            this.mediaZoomOutItem.setEnabled(false);
-            this.mediaZoomOutItem.animate().alpha(0.5f).start();
-        }
-        if (this.mediaColumnsCount[i2] != nextMediaColumnsCount) {
-            ActionBarMenuSubItem actionBarMenuSubItem = this.mediaZoomInItem;
-            if (actionBarMenuSubItem != null && !actionBarMenuSubItem.isEnabled()) {
-                this.mediaZoomInItem.setEnabled(true);
-                this.mediaZoomInItem.animate().alpha(1.0f).start();
+        if (mediaPageArr[0] != null) {
+            if (this.allowStoriesSingleColumn && (mediaPageArr[0].selectedType == 8 || this.mediaPages[0].selectedType == 9)) {
+                return null;
             }
-            if (i2 != 0) {
-                if (getStoriesCount(this.mediaPages[0].selectedType) >= 5) {
-                    SharedConfig.setStoriesColumnsCount(nextMediaColumnsCount);
+            int i = this.mediaPages[0].selectedType;
+            this.changeColumnsTab = i;
+            int i2 = (i == 8 || i == 9) ? 1 : 0;
+            int nextMediaColumnsCount = getNextMediaColumnsCount(i2, this.mediaColumnsCount[i2], false);
+            if (this.mediaZoomOutItem != null && nextMediaColumnsCount == getNextMediaColumnsCount(i2, nextMediaColumnsCount, false)) {
+                this.mediaZoomOutItem.setEnabled(false);
+                this.mediaZoomOutItem.animate().alpha(0.5f).start();
+            }
+            if (this.mediaColumnsCount[i2] != nextMediaColumnsCount) {
+                ActionBarMenuSubItem actionBarMenuSubItem = this.mediaZoomInItem;
+                if (actionBarMenuSubItem != null && !actionBarMenuSubItem.isEnabled()) {
+                    this.mediaZoomInItem.setEnabled(true);
+                    this.mediaZoomInItem.animate().alpha(1.0f).start();
                 }
-            } else {
-                SharedConfig.setMediaColumnsCount(nextMediaColumnsCount);
+                if (i2 != 0) {
+                    if (getStoriesCount(this.mediaPages[0].selectedType) >= 5) {
+                        SharedConfig.setStoriesColumnsCount(nextMediaColumnsCount);
+                    }
+                } else {
+                    SharedConfig.setMediaColumnsCount(nextMediaColumnsCount);
+                }
+                animateToMediaColumnsCount(nextMediaColumnsCount);
             }
-            animateToMediaColumnsCount(nextMediaColumnsCount);
+            return Boolean.valueOf(nextMediaColumnsCount != getNextMediaColumnsCount(i2, nextMediaColumnsCount, false));
         }
-        return Boolean.valueOf(nextMediaColumnsCount != getNextMediaColumnsCount(i2, nextMediaColumnsCount, false));
+        return null;
     }
 
     public boolean canZoomIn() {
@@ -6870,10 +6874,13 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
     public boolean canZoomOut() {
         MediaPage[] mediaPageArr = this.mediaPages;
-        if (mediaPageArr == null || mediaPageArr[0] == null || this.allowStoriesSingleColumn) {
+        if (mediaPageArr == null || mediaPageArr[0] == null) {
             return false;
         }
-        int i = (mediaPageArr[0].selectedType == 8 || this.mediaPages[0].selectedType == 9) ? 1 : 0;
+        if (this.allowStoriesSingleColumn && (mediaPageArr[0].selectedType == 8 || this.mediaPages[0].selectedType == 9)) {
+            return false;
+        }
+        int i = (this.mediaPages[0].selectedType == 8 || this.mediaPages[0].selectedType == 9) ? 1 : 0;
         int[] iArr = this.mediaColumnsCount;
         return iArr[i] != getNextMediaColumnsCount(i, iArr[i], false);
     }

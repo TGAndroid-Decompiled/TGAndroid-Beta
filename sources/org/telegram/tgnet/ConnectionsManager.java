@@ -11,6 +11,7 @@ import android.util.Base64;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -107,7 +108,7 @@ public class ConnectionsManager extends BaseController {
     private boolean isUpdating;
     private long lastPauseTime;
     private AtomicInteger lastRequestToken;
-    private final HashMap<Integer, RequestCallbacks> requestCallbacks;
+    private final ConcurrentHashMap<Integer, RequestCallbacks> requestCallbacks;
 
     public static native void native_applyDatacenterAddress(int i, int i2, String str, int i3);
 
@@ -273,7 +274,7 @@ public class ConnectionsManager extends BaseController {
         this.lastPauseTime = System.currentTimeMillis();
         this.appPaused = true;
         this.lastRequestToken = new AtomicInteger(1);
-        this.requestCallbacks = new HashMap<>();
+        this.requestCallbacks = new ConcurrentHashMap<>();
         this.connectionState = native_getConnectionState(this.currentAccount);
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i != 0) {

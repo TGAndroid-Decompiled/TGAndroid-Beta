@@ -1330,7 +1330,7 @@ public class DatabaseMigrationHelper {
             i7 = 143;
         }
         if (i7 == 143) {
-            sQLiteDatabase.executeFast("ALTER TABLE dialog_filter ADD COLUMN color INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("ALTER TABLE dialog_filter ADD COLUMN color INTEGER default -1").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 144").stepThis().dispose();
             i7 = 144;
         }
@@ -1355,6 +1355,11 @@ public class DatabaseMigrationHelper {
         if (i7 == 147) {
             sQLiteDatabase.executeFast("ALTER TABLE business_replies ADD COLUMN count INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 148").stepThis().dispose();
+            i7 = 148;
+        }
+        if (i7 == 148) {
+            sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN edit_date INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 149").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1400,7 +1405,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 148) {
+        if (intValue != 149) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

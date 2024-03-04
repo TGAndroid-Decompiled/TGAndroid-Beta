@@ -1798,7 +1798,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 if (i2 == i3) {
                     CameraView.this.scaleX = 1.0f;
                     CameraView.this.scaleY = 1.0f;
-                } else if (i2 > i3) {
+                } else if (i2 <= i3) {
                     CameraView.this.scaleX = 1.0f;
                     CameraView cameraView = CameraView.this;
                     cameraView.scaleY = i2 / cameraView.surfaceHeight;

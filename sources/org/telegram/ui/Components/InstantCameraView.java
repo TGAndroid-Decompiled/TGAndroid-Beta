@@ -124,6 +124,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     private CameraSession cameraSession;
     private int[] cameraTexture;
     private float cameraTextureAlpha;
+    private volatile boolean cameraTextureAvailable;
     private CameraGLThread cameraThread;
     private boolean cancelled;
     private int currentAccount;
@@ -223,7 +224,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     public void setIsMessageTransition(boolean z) {
     }
 
-    static float access$3316(InstantCameraView instantCameraView, float f) {
+    static float access$3416(InstantCameraView instantCameraView, float f) {
         float f2 = instantCameraView.cameraTextureAlpha + f;
         instantCameraView.cameraTextureAlpha = f2;
         return f2;
@@ -1790,6 +1791,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void lambda$initGL$0(int i, SurfaceTexture surfaceTexture) {
+            InstantCameraView.this.cameraTextureAvailable = true;
             requestRender(i == 0, i == 1);
         }
 
@@ -1809,6 +1811,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     this.cameraSurface[i] = null;
                 }
             }
+            InstantCameraView.this.cameraTextureAvailable = false;
             if (this.eglSurface != null && (eGLContext = this.eglContext) != null) {
                 if (!eGLContext.equals(this.egl10.eglGetCurrentContext()) || !this.eglSurface.equals(this.egl10.eglGetCurrentSurface(12377))) {
                     EGL10 egl10 = this.egl10;
@@ -2223,6 +2226,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         private boolean started;
         private Surface surface;
         private final Object sync;
+        private int texelSizeHandle;
         private int textureHandle;
         private int textureMatrixHandle;
         private int vertexMatrixHandle;
@@ -3093,6 +3097,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 this.alphaHandle = GLES20.glGetUniformLocation(this.drawProgram, "alpha");
                 this.vertexMatrixHandle = GLES20.glGetUniformLocation(this.drawProgram, "uMVPMatrix");
                 this.textureMatrixHandle = GLES20.glGetUniformLocation(this.drawProgram, "uSTMatrix");
+                this.texelSizeHandle = GLES20.glGetUniformLocation(this.drawProgram, "texelSize");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

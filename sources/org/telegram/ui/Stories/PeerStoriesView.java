@@ -2636,13 +2636,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        public void updateRecordInterface(int i, boolean z) {
+        protected void updateRecordInterface(int i, boolean z) {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
 
         @Override
-        public void isRecordingStateChanged() {
+        protected void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }
@@ -5681,6 +5681,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     private void updateViewOffsets() {
         float f;
         ReactionsContainerLayout reactionsContainerLayout;
+        Paint paint;
         float progressToDismiss = this.delegate.getProgressToDismiss();
         this.progressToHideInterface.set(this.isLongPressed ? 1.0f : 0.0f);
         int i = this.lastOpenedKeyboardHeight;
@@ -5706,16 +5707,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             chatActivityEnterView3.checkAnimation();
         }
         ChatActivityEnterView chatActivityEnterView4 = this.chatActivityEnterView;
-        boolean z = chatActivityEnterView4 != null && chatActivityEnterView4.isPopupShowing();
+        boolean z = true;
+        boolean z2 = chatActivityEnterView4 != null && chatActivityEnterView4.isPopupShowing();
         float hideInterfaceAlpha = getHideInterfaceAlpha();
         if (this.BIG_SCREEN) {
             this.inputBackgroundPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(-16777216, -1, 0.13f), ColorUtils.setAlphaComponent(-16777216, 170), this.progressToKeyboard));
-            Paint paint = this.inputBackgroundPaint;
-            paint.setAlpha((int) (paint.getAlpha() * (1.0f - this.progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT)));
+            this.inputBackgroundPaint.setAlpha((int) (paint.getAlpha() * (1.0f - this.progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT)));
         } else {
             this.inputBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (140.0f * hideInterfaceAlpha * (1.0f - this.outT))));
         }
-        if (!this.forceUpdateOffsets && this.progressToReply == this.storyViewer.swipeToReplyProgress && this.progressToHideInterface.get() == this.prevToHideProgress && this.lastAnimatingKeyboardHeight == this.animatingKeyboardHeight && f == this.progressToKeyboard && progressToDismiss == this.progressToDismiss && f2 == this.progressToRecording.get() && !z && f4 == this.progressToStickerExpanded.get() && f3 == this.progressToTextA.get()) {
+        if (!this.forceUpdateOffsets && this.progressToReply == this.storyViewer.swipeToReplyProgress && this.progressToHideInterface.get() == this.prevToHideProgress && this.lastAnimatingKeyboardHeight == this.animatingKeyboardHeight && f == this.progressToKeyboard && progressToDismiss == this.progressToDismiss && f2 == this.progressToRecording.get() && !z2 && f4 == this.progressToStickerExpanded.get() && f3 == this.progressToTextA.get()) {
             return;
         }
         this.forceUpdateOffsets = false;
@@ -5807,7 +5808,12 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
         ChatActivityEnterView chatActivityEnterView7 = this.chatActivityEnterView;
         if (chatActivityEnterView7 != null) {
-            chatActivityEnterView7.setHorizontalPadding(AndroidUtilities.dp(10.0f), this.progressToKeyboard, this.allowShare);
+            float dp2 = AndroidUtilities.dp(10.0f);
+            float f11 = this.progressToKeyboard;
+            if (!this.allowShare && !this.isGroup) {
+                z = false;
+            }
+            chatActivityEnterView7.setHorizontalPadding(dp2, f11, z);
             if (this.chatActivityEnterView.getEmojiView() != null) {
                 this.chatActivityEnterView.getEmojiView().setAlpha(this.progressToKeyboard);
             }
@@ -5820,6 +5826,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
+        ReactionsContainerLayout reactionsContainerLayout;
+        ReactionsContainerLayout reactionsContainerLayout2;
         if (view == this.mentionContainer) {
             canvas.save();
             canvas.clipRect(0.0f, this.mentionContainer.getY(), getMeasuredWidth(), this.mentionContainer.getY() + this.mentionContainer.getMeasuredHeight());
@@ -5830,12 +5838,18 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (view == chatActivityEnterView) {
             this.sharedResources.rect1.set(0.0f, this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop(), getMeasuredWidth() + AndroidUtilities.dp(20.0f), getMeasuredHeight());
-            int i = 0;
-            int dp = this.allowShare ? AndroidUtilities.dp(46.0f) : 0;
-            if (this.allowRepost && this.isChannel) {
-                i = AndroidUtilities.dp(46.0f);
+            float dp = AndroidUtilities.dp(40.0f);
+            if (this.allowShare) {
+                dp += AndroidUtilities.dp(46.0f);
             }
-            this.sharedResources.rect2.set(AndroidUtilities.dp(10.0f), (this.chatActivityEnterView.getBottom() - AndroidUtilities.dp(48.0f)) + this.chatActivityEnterView.getTranslationY() + AndroidUtilities.dp(2.0f), (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - ((dp + i) + AndroidUtilities.dp(40.0f)), (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
+            if (this.allowRepost && this.isChannel) {
+                dp += AndroidUtilities.dp(46.0f);
+            }
+            FrameLayout frameLayout = this.likeButtonContainer;
+            if (frameLayout != null && frameLayout.getVisibility() == 0) {
+                dp = (dp - AndroidUtilities.dp(40.0f)) + this.likeButtonContainer.getLayoutParams().width;
+            }
+            this.sharedResources.rect2.set(AndroidUtilities.dp(10.0f), (this.chatActivityEnterView.getBottom() - AndroidUtilities.dp(48.0f)) + this.chatActivityEnterView.getTranslationY() + AndroidUtilities.dp(2.0f), (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - dp, (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
             if (this.chatActivityEnterView.getMeasuredHeight() > AndroidUtilities.dp(50.0f)) {
                 this.chatActivityEnterView.getEditField().setTranslationY((1.0f - this.progressToKeyboard) * (this.chatActivityEnterView.getMeasuredHeight() - AndroidUtilities.dp(50.0f)));
             } else {
@@ -5864,16 +5878,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             canvas.restore();
             return drawChild3;
         } else {
-            ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
-            if (view == reactionsContainerLayout && this.chatActivityEnterView != null) {
+            if (view == this.reactionsContainerLayout && this.chatActivityEnterView != null) {
                 view.setTranslationY(((-reactionsContainerLayout.getMeasuredHeight()) + (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop())) - AndroidUtilities.dp(18.0f));
                 if (this.progressToKeyboard > 0.0f) {
                     this.sharedResources.dimPaint.setAlpha((int) (this.progressToKeyboard * 125.0f));
                     canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop(), this.sharedResources.dimPaint);
                 }
             } else {
-                ReactionsContainerLayout reactionsContainerLayout2 = this.likesReactionLayout;
-                if (view == reactionsContainerLayout2) {
+                if (view == this.likesReactionLayout) {
                     view.setTranslationY((((-(reactionsContainerLayout2.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
                 }
             }

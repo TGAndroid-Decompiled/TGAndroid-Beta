@@ -3,13 +3,12 @@ package org.telegram.ui.Components.Premium;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,11 +18,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
@@ -34,7 +30,6 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.GradientTools;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.FeaturesPageView;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
@@ -45,49 +40,12 @@ public class FeaturesPageView extends BaseListPageView {
     ArrayList<Item> items;
     public final int type;
 
-    public FeaturesPageView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider);
-        this.items = new ArrayList<>();
-        this.type = i;
-        ArrayList arrayList = new ArrayList();
-        if (i == 0) {
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_order, LocaleController.getString("PremiumStoriesPriority", R.string.PremiumStoriesPriority), LocaleController.getString("PremiumStoriesPriorityDescription", R.string.PremiumStoriesPriorityDescription), 20));
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_stealth, LocaleController.getString("PremiumStoriesStealth", R.string.PremiumStoriesStealth), LocaleController.getString("PremiumStoriesStealthDescription", R.string.PremiumStoriesStealthDescription), 15));
-            arrayList.add(new Item(this, 1, R.drawable.menu_quality_hd, LocaleController.getString(R.string.PremiumStoriesQuality), LocaleController.getString(R.string.PremiumStoriesQualityDescription), 25));
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_views, LocaleController.getString("PremiumStoriesViews", R.string.PremiumStoriesViews), LocaleController.getString("PremiumStoriesViewsDescription", R.string.PremiumStoriesViewsDescription), 16));
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_timer, LocaleController.getString("PremiumStoriesExpiration", R.string.PremiumStoriesExpiration), LocaleController.getString("PremiumStoriesExpirationDescription", R.string.PremiumStoriesExpirationDescription), 17));
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_save, LocaleController.getString("PremiumStoriesSaveToGallery", R.string.PremiumStoriesSaveToGallery), LocaleController.getString("PremiumStoriesSaveToGalleryDescription", R.string.PremiumStoriesSaveToGalleryDescription), 18));
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_caption, LocaleController.getString("PremiumStoriesCaption", R.string.PremiumStoriesCaption), LocaleController.getString("PremiumStoriesCaptionDescription", R.string.PremiumStoriesCaptionDescription), 21));
-            arrayList.add(new Item(this, 1, R.drawable.msg_stories_link, LocaleController.getString("PremiumStoriesFormatting", R.string.PremiumStoriesFormatting), LocaleController.getString("PremiumStoriesFormattingDescription", R.string.PremiumStoriesFormattingDescription), 19));
-        } else if (i == 1) {
-            arrayList.add(new Item(this, 1, R.drawable.menu_premium_location, LocaleController.getString(R.string.PremiumBusinessLocation), LocaleController.getString(R.string.PremiumBusinessLocationDescription), 29));
-            arrayList.add(new Item(this, 1, R.drawable.menu_premium_clock, LocaleController.getString(R.string.PremiumBusinessOpeningHours), LocaleController.getString(R.string.PremiumBusinessOpeningHoursDescription), 30));
-            arrayList.add(new Item(this, 1, R.drawable.menu_quickreply, LocaleController.getString(R.string.PremiumBusinessQuickReplies), LocaleController.getString(R.string.PremiumBusinessQuickRepliesDescription), 31));
-            arrayList.add(new Item(this, 1, R.drawable.menu_feature_status, LocaleController.getString(R.string.PremiumBusinessGreetingMessages), LocaleController.getString(R.string.PremiumBusinessGreetingMessagesDescription), 32));
-            arrayList.add(new Item(this, 1, R.drawable.menu_premium_away, LocaleController.getString(R.string.PremiumBusinessAwayMessages), LocaleController.getString(R.string.PremiumBusinessAwayMessagesDescription), 33));
-            arrayList.add(new Item(this, 1, R.drawable.menu_premium_chatbot, LocaleController.getString(R.string.PremiumBusinessChatbots), LocaleController.getString(R.string.PremiumBusinessChatbotsDescription), 34));
-        }
-        final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        Collections.sort(arrayList, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$new$0;
-                lambda$new$0 = FeaturesPageView.lambda$new$0(MessagesController.this, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
-                return lambda$new$0;
-            }
-        });
-        this.items.add(new Item(0));
-        this.items.addAll(arrayList);
-        this.items.add(new Item(2));
-        this.bitmap = Bitmap.createBitmap(this.items.size(), 1, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(this.bitmap);
-        Paint paint = new Paint();
-        paint.setShader(new LinearGradient(0.0f, 0.0f, this.bitmap.getWidth(), 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, (float[]) null, Shader.TileMode.CLAMP));
-        canvas.drawRect(0.0f, 0.0f, this.bitmap.getWidth(), this.bitmap.getHeight(), paint);
+    public FeaturesPageView(android.content.Context r25, int r26, org.telegram.ui.ActionBar.Theme.ResourcesProvider r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.FeaturesPageView.<init>(android.content.Context, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    public static int lambda$new$0(MessagesController messagesController, Item item, Item item2) {
-        return messagesController.premiumFeaturesTypesToPosition.get(item.order, ConnectionsManager.DEFAULT_DATACENTER_ID) - messagesController.premiumFeaturesTypesToPosition.get(item2.order, ConnectionsManager.DEFAULT_DATACENTER_ID);
+    public static int lambda$new$0(SparseIntArray sparseIntArray, Item item, Item item2) {
+        return sparseIntArray.get(item.order, ConnectionsManager.DEFAULT_DATACENTER_ID) - sparseIntArray.get(item2.order, ConnectionsManager.DEFAULT_DATACENTER_ID);
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -580,7 +579,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             zArr[0] = true;
             AndroidUtilities.cancelRunOnUIThread(this.timerCallback);
             FileLog.d("[smsjob] sms job " + this.jobId + " sent callback: success=" + z + ", reason=" + str);
-            if (this.finished || z) {
+            if (this.finished) {
                 return;
             }
             this.finished = true;
@@ -670,17 +669,14 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 FileLog.e(e);
             }
         }
-        Log.i("lolkek", "readPending " + pending.size());
         readCachedPending = true;
     }
 
     public static void savePending() {
         if (pending.isEmpty()) {
-            Log.i("lolkek", "savePending empty");
             MessagesController.getGlobalMainSettings().edit().remove("smsjobs_pending").apply();
             return;
         }
-        Log.i("lolkek", "savePending " + pending.size());
         try {
             int size = pending.size() * 8;
             for (PendingSMS pendingSMS : pending.values()) {
@@ -1421,7 +1417,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 jobEntry.error = TextUtils.isEmpty(split[1]) ? null : split[1];
                 jobEntry.date = Utilities.parseInt((CharSequence) split[2]).intValue();
                 jobEntry.country = split[3];
-                jobEntry.state = split.length >= 4 ? Utilities.parseInt((CharSequence) split[4]).intValue() : 0;
+                jobEntry.state = split.length >= 5 ? Utilities.parseInt((CharSequence) split[4]).intValue() : 0;
                 return jobEntry;
             }
             return null;
