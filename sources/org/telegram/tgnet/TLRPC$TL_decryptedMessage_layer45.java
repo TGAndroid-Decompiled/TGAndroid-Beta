@@ -28,7 +28,7 @@ public class TLRPC$TL_decryptedMessage_layer45 extends TLRPC$TL_decryptedMessage
                 this.entities.add(TLdeserialize);
             }
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.via_bot_name = abstractSerializedData.readString(z);
         }
         if ((this.flags & 8) != 0) {
@@ -54,7 +54,7 @@ public class TLRPC$TL_decryptedMessage_layer45 extends TLRPC$TL_decryptedMessage
                 this.entities.get(i).serializeToStream(abstractSerializedData);
             }
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.via_bot_name);
         }
         if ((this.flags & 8) != 0) {

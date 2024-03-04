@@ -101,7 +101,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    int needsActionBar() {
+    public int needsActionBar() {
         return 1;
     }
 
@@ -391,13 +391,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    void onHideShowProgress(float f) {
+    public void onHideShowProgress(float f) {
         ActionBarMenuItem actionBarMenuItem = this.parentAlert.doneItem;
         actionBarMenuItem.setAlpha((actionBarMenuItem.isEnabled() ? 1.0f : 0.5f) * f);
     }
 
     @Override
-    void onMenuItemClick(int i) {
+    public void onMenuItemClick(int i) {
         if (i == 40) {
             if (this.quizPoll && this.parentAlert.doneItem.getAlpha() != 1.0f) {
                 int i2 = 0;
@@ -488,7 +488,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(17.0f);
     }
 
@@ -509,7 +509,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    int getButtonsHideOffset() {
+    public int getButtonsHideOffset() {
         return AndroidUtilities.dp(70.0f);
     }
 
@@ -522,7 +522,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    void scrollToTop() {
+    public void scrollToTop() {
         this.listView.smoothScrollToPosition(1);
     }
 
@@ -684,7 +684,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         try {
             this.parentAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {

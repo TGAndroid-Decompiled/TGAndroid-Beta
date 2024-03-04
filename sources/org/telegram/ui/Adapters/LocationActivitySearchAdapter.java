@@ -30,8 +30,8 @@ public class LocationActivitySearchAdapter extends BaseLocationAdapter {
         this.myLocationDenied = z;
     }
 
-    public LocationActivitySearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-        super(z);
+    public LocationActivitySearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
+        super(z, z2);
         this.myLocationDenied = false;
         this.mContext = context;
         this.resourcesProvider = resourcesProvider;

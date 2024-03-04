@@ -514,7 +514,7 @@ public class SecretChatHelper extends BaseController {
                 messageObject.wasJustSent = true;
                 ArrayList<MessageObject> arrayList = new ArrayList<>();
                 arrayList.add(messageObject);
-                getMessagesController().updateInterfaceWithMessages(tLRPC$Message.dialog_id, arrayList, false);
+                getMessagesController().updateInterfaceWithMessages(tLRPC$Message.dialog_id, arrayList, 0);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
             TLRPC$Message tLRPC$Message2 = tLRPC$Message;
@@ -538,7 +538,7 @@ public class SecretChatHelper extends BaseController {
                 messageObject.wasJustSent = true;
                 ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                 arrayList2.add(messageObject);
-                getMessagesController().updateInterfaceWithMessages(tLRPC$Message.dialog_id, arrayList2, false);
+                getMessagesController().updateInterfaceWithMessages(tLRPC$Message.dialog_id, arrayList2, 0);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
             TLRPC$Message tLRPC$Message2 = tLRPC$Message;
@@ -819,7 +819,7 @@ public class SecretChatHelper extends BaseController {
             });
             return;
         }
-        getMessagesStorage().markMessageAsSendError(tLRPC$Message, false);
+        getMessagesStorage().markMessageAsSendError(tLRPC$Message, 0);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -832,7 +832,7 @@ public class SecretChatHelper extends BaseController {
         if (isSecretInvisibleMessage(tLRPC$Message)) {
             tLRPC$messages_SentEncryptedMessage.date = 0;
         }
-        getMessagesStorage().updateMessageStateAndId(tLRPC$Message.random_id, 0L, Integer.valueOf(tLRPC$Message.id), tLRPC$Message.id, tLRPC$messages_SentEncryptedMessage.date, false, 0);
+        getMessagesStorage().updateMessageStateAndId(tLRPC$Message.random_id, 0L, Integer.valueOf(tLRPC$Message.id), tLRPC$Message.id, tLRPC$messages_SentEncryptedMessage.date, false, 0, 0);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

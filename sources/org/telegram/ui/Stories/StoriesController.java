@@ -1612,6 +1612,9 @@ public class StoriesController {
                 }
                 arrayList.add(Integer.valueOf(tL_stories$PeerStories.stories.get(i).id));
             }
+            if (arrayList != null && arrayList.size() > 14) {
+                break;
+            }
         }
         if (arrayList != null) {
             this.loadingAllStories.add(Long.valueOf(j));
@@ -2355,13 +2358,13 @@ public class StoriesController {
                     String str = this.path;
                     StoryEntry storyEntry = this.entry;
                     i = i2;
-                    SendMessagesHelper.prepareSendingVideo(accountInstance, str, null, longValue, null, null, null, null, entities, 0, null, !storyEntry.silent, storyEntry.scheduleDate, false, false, charSequence2);
+                    SendMessagesHelper.prepareSendingVideo(accountInstance, str, null, longValue, null, null, null, null, entities, 0, null, !storyEntry.silent, storyEntry.scheduleDate, false, false, charSequence2, null, 0);
                 } else {
                     i = i2;
                     AccountInstance accountInstance2 = AccountInstance.getInstance(StoriesController.this.currentAccount);
                     String str2 = this.path;
                     StoryEntry storyEntry2 = this.entry;
-                    SendMessagesHelper.prepareSendingPhoto(accountInstance2, str2, null, null, longValue, null, null, null, null, entities, null, null, 0, null, null, !storyEntry2.silent, storyEntry2.scheduleDate, false, charSequence2);
+                    SendMessagesHelper.prepareSendingPhoto(accountInstance2, str2, null, null, longValue, null, null, null, null, entities, null, null, 0, null, null, !storyEntry2.silent, storyEntry2.scheduleDate, 0, false, charSequence2, null, 0);
                 }
                 i2 = i + 1;
             }

@@ -115,6 +115,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private DialogInterface.OnClickListener onClickListener;
     private DialogInterface.OnDismissListener onDismissListener;
     private ViewTreeObserver.OnScrollChangedListener onScrollChangedListener;
+    private Utilities.Callback<Runnable> overridenDissmissListener;
     private DialogInterface.OnClickListener positiveButtonListener;
     private CharSequence positiveButtonText;
     private FrameLayout progressViewContainer;
@@ -1300,6 +1301,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     @Override
     public void dismiss() {
         Bitmap bitmap;
+        Utilities.Callback<Runnable> callback = this.overridenDissmissListener;
+        if (callback != null) {
+            this.overridenDissmissListener = null;
+            callback.run(new AlertDialog$$ExternalSyntheticLambda6(this));
+            return;
+        }
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         DialogInterface.OnDismissListener onDismissListener = this.onDismissListener;
         if (onDismissListener != null) {
@@ -1636,6 +1643,11 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         public Builder setOnPreDismissListener(DialogInterface.OnDismissListener onDismissListener) {
             this.alertDialog.onDismissListener = onDismissListener;
+            return this;
+        }
+
+        public Builder overrideDismissListener(Utilities.Callback<Runnable> callback) {
+            this.alertDialog.overridenDissmissListener = callback;
             return this;
         }
 

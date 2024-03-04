@@ -10,6 +10,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Xml;
+import j$.util.DesugarTimeZone;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -69,6 +70,7 @@ public class LocaleController {
     public FastDateFormat formatterBannedUntil;
     public FastDateFormat formatterBannedUntilThisYear;
     public FastDateFormat formatterBoostExpired;
+    public FastDateFormat formatterConstDay;
     public FastDateFormat formatterDay;
     public FastDateFormat formatterDayMonth;
     public FastDateFormat formatterGiveawayCard;
@@ -2611,7 +2613,7 @@ public class LocaleController {
         }
     }
 
-    public static String formatDateTime(long j) {
+    public static String formatDateTime(long j, boolean z) {
         long j2 = j * 1000;
         try {
             Calendar calendar = Calendar.getInstance();
@@ -2620,7 +2622,20 @@ public class LocaleController {
             calendar.setTimeInMillis(j2);
             int i3 = calendar.get(6);
             int i4 = calendar.get(1);
-            return (i3 == i && i2 == i4) ? formatString("TodayAtFormattedWithToday", R.string.TodayAtFormattedWithToday, getInstance().formatterDay.format(new Date(j2))) : (i3 + 1 == i && i2 == i4) ? formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().chatDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))) : formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().chatFullDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2)));
+            return (i3 == i && i2 == i4 && z) ? formatString("TodayAtFormattedWithToday", R.string.TodayAtFormattedWithToday, getInstance().formatterDay.format(new Date(j2))) : (i3 + 1 == i && i2 == i4 && z) ? formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().chatDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))) : formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().chatFullDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2)));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "LOC_ERR";
+        }
+    }
+
+    public static String formatShortDateTime(long j) {
+        long j2 = j * 1000;
+        try {
+            if (Math.abs(System.currentTimeMillis() - j2) < 31536000000L) {
+                return getInstance().formatterScheduleDay.format(new Date(j2)) + ", " + getInstance().formatterDay.format(new Date(j2));
+            }
+            return getInstance().formatterScheduleYear.format(new Date(j2)) + ", " + getInstance().formatterDay.format(new Date(j2));
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";
@@ -2760,6 +2775,9 @@ public class LocaleController {
             str = "formatterDay12H";
         }
         this.formatterDay = createFormatter(locale2, getStringInternal(str, i), is24HourFormat ? "HH:mm" : "h:mm a");
+        Locale locale3 = (lowerCase.toLowerCase().equals("ar") || lowerCase.toLowerCase().equals("ko")) ? locale : Locale.US;
+        boolean z = is24HourFormat;
+        this.formatterConstDay = createFormatter(locale3, z ? "HH:mm" : "h:mm a", z ? "HH:mm" : "h:mm a");
         if (is24HourFormat) {
             i2 = R.string.formatterStats24H;
             str2 = "formatterStats24H";
@@ -4272,5 +4290,21 @@ public class LocaleController {
         }
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("lngpack_patched_" + str, true).apply();
+    }
+
+    public static String getTimeZoneName(String str, boolean z) {
+        TimeZone timeZone = DesugarTimeZone.getTimeZone(str);
+        if (timeZone == null) {
+            return BuildConfig.APP_CENTER_HASH;
+        }
+        String displayName = timeZone.getDisplayName(true, 0, getInstance().getCurrentLocale());
+        if (z) {
+            String displayName2 = timeZone.getDisplayName(true, 1, getInstance().getCurrentLocale());
+            if (TextUtils.equals(displayName2, displayName)) {
+                return displayName;
+            }
+            return displayName2 + ", " + displayName;
+        }
+        return displayName;
     }
 }

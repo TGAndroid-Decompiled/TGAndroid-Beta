@@ -1626,6 +1626,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         private ColorButton[] buttons;
         private final int currentAccount;
         private final Paint dividerPaint;
+        private boolean lock;
         private boolean needDivider;
         private Utilities.Callback<Integer> onColorClick;
         final int[] order;
@@ -1636,9 +1637,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         public class ColorButton {
             private final ButtonBounce bounce;
+            private Paint closePaint;
+            private Path closePath;
+            private boolean hasClose;
             private boolean hasColor2;
             private boolean hasColor3;
             public int id;
+            private Drawable lockDrawable;
             private boolean selected;
             private final AnimatedFloat selectedT;
             private final Paint paint1 = new Paint(1);
@@ -1658,6 +1663,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 this.hasColor3 = false;
                 this.hasColor2 = false;
                 this.paint1.setColor(i);
+            }
+
+            public void setClose(boolean z) {
+                this.hasClose = z;
             }
 
             public void set(MessagesController.PeerColor peerColor) {
@@ -1739,6 +1748,36 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     PeerColorGrid.this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, PeerColorGrid.this.resourcesProvider));
                     canvas.drawCircle(this.bounds.centerX(), this.bounds.centerY(), Math.min(this.bounds.height() / 2.0f, this.bounds.width() / 2.0f) + (PeerColorGrid.this.backgroundPaint.getStrokeWidth() * AndroidUtilities.lerp(0.5f, -2.0f, f)), PeerColorGrid.this.backgroundPaint);
                 }
+                if (this.hasClose) {
+                    if (PeerColorGrid.this.lock) {
+                        if (this.lockDrawable == null) {
+                            Drawable drawable = PeerColorGrid.this.getContext().getResources().getDrawable(R.drawable.msg_mini_lock3);
+                            this.lockDrawable = drawable;
+                            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                        }
+                        this.lockDrawable.setBounds((int) (this.bounds.centerX() - ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 1.2f)), (int) (this.bounds.centerY() - ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 1.2f)), (int) (this.bounds.centerX() + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 1.2f)), (int) (this.bounds.centerY() + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 1.2f)));
+                        this.lockDrawable.draw(canvas);
+                    } else {
+                        if (this.closePath == null) {
+                            this.closePath = new Path();
+                        }
+                        if (this.closePaint == null) {
+                            Paint paint = new Paint(1);
+                            this.closePaint = paint;
+                            paint.setColor(-1);
+                            this.closePaint.setStyle(Paint.Style.STROKE);
+                            this.closePaint.setStrokeCap(Paint.Cap.ROUND);
+                        }
+                        this.closePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+                        this.closePath.rewind();
+                        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(4.0f), f);
+                        this.closePath.moveTo(this.bounds.centerX() - lerp, this.bounds.centerY() - lerp);
+                        this.closePath.lineTo(this.bounds.centerX() + lerp, this.bounds.centerY() + lerp);
+                        this.closePath.moveTo(this.bounds.centerX() + lerp, this.bounds.centerY() - lerp);
+                        this.closePath.lineTo(this.bounds.centerX() - lerp, this.bounds.centerY() + lerp);
+                        canvas.drawPath(this.closePath, this.closePaint);
+                    }
+                }
                 canvas.restore();
             }
 
@@ -1752,7 +1791,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             Paint paint = new Paint(1);
             this.backgroundPaint = paint;
             paint.setStyle(Paint.Style.STROKE);
-            this.order = new int[]{5, 3, 1, 0, 2, 4, 6};
+            this.order = new int[]{5, 3, 1, 0, 2, 4, 6, -1};
             this.dividerPaint = new Paint(1);
             this.needDivider = true;
             this.selectedColorId = 0;
@@ -1761,26 +1800,44 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.resourcesProvider = resourcesProvider;
         }
 
+        public void setCloseAsLock(boolean z) {
+            this.lock = z;
+        }
+
         public void updateColors() {
+            int i;
             if (this.buttons == null) {
                 return;
             }
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
             MessagesController.PeerColors peerColors = this.type == 0 ? messagesController.peerColors : messagesController.profilePeerColors;
-            int i = 0;
+            int i2 = 0;
             while (true) {
                 ColorButton[] colorButtonArr = this.buttons;
-                if (i < colorButtonArr.length) {
-                    if (i < 7 && this.type == 0) {
-                        ColorButton colorButton = colorButtonArr[i];
+                if (i2 < colorButtonArr.length) {
+                    int i3 = this.type;
+                    if (i3 == 2) {
+                        colorButtonArr[i2].id = this.order[i2];
+                        colorButtonArr[i2].setClose(colorButtonArr[i2].id < 0);
+                        ColorButton colorButton = this.buttons[i2];
                         int[] iArr = this.order;
-                        colorButton.id = iArr[i];
-                        colorButtonArr[i].set(Theme.getColor(Theme.keys_avatar_nameInMessage[iArr[i]], this.resourcesProvider));
-                    } else if (peerColors != null && i >= 0 && i < peerColors.colors.size()) {
-                        this.buttons[i].id = peerColors.colors.get(i).id;
-                        this.buttons[i].set(peerColors.colors.get(i));
+                        if (iArr[i2] < 0) {
+                            i = Theme.key_avatar_backgroundGray;
+                        } else {
+                            int[] iArr2 = Theme.keys_avatar_nameInMessage;
+                            i = iArr2[iArr[i2] % iArr2.length];
+                        }
+                        colorButton.set(Theme.getColor(i, this.resourcesProvider));
+                    } else if (i2 < 7 && i3 == 0) {
+                        ColorButton colorButton2 = colorButtonArr[i2];
+                        int[] iArr3 = this.order;
+                        colorButton2.id = iArr3[i2];
+                        colorButtonArr[i2].set(Theme.getColor(Theme.keys_avatar_nameInMessage[iArr3[i2]], this.resourcesProvider));
+                    } else if (peerColors != null && i2 >= 0 && i2 < peerColors.colors.size()) {
+                        this.buttons[i2].id = peerColors.colors.get(i2).id;
+                        this.buttons[i2].set(peerColors.colors.get(i2));
                     }
-                    i++;
+                    i2++;
                 } else {
                     invalidate();
                     return;
@@ -1791,42 +1848,67 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         @Override
         protected void onMeasure(int i, int i2) {
             int i3;
+            int i4;
             int size = View.MeasureSpec.getSize(i);
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
             MessagesController.PeerColors peerColors = this.type == 0 ? messagesController.peerColors : messagesController.profilePeerColors;
             int size2 = peerColors == null ? 0 : peerColors.colors.size();
-            int i4 = this.type == 0 ? 7 : 8;
+            int i5 = this.type;
+            int i6 = 8;
+            int i7 = 2;
+            if (i5 == 2) {
+                size2 = 8;
+            }
+            if (i5 != 2 && i5 == 0) {
+                i6 = 7;
+            }
             float f = size;
-            float f2 = i4;
-            float f3 = i4 + 1;
+            float f2 = i6;
+            float f3 = i6 + 1;
             float min = Math.min(AndroidUtilities.dp(54.0f), f / ((f3 * 0.28947f) + f2));
             float min2 = Math.min(0.28947f * min, AndroidUtilities.dp(8.0f));
             float min3 = Math.min(0.31578946f * min, AndroidUtilities.dp(11.33f));
-            setMeasuredDimension(size, (int) (((size2 / i4) * min) + ((i3 + 1) * min3)));
+            setMeasuredDimension(size, (int) (((size2 / i6) * min) + ((i3 + 1) * min3)));
             ColorButton[] colorButtonArr = this.buttons;
             if (colorButtonArr == null || colorButtonArr.length != size2) {
                 this.buttons = new ColorButton[size2];
-                for (int i5 = 0; i5 < size2; i5++) {
-                    this.buttons[i5] = new ColorButton();
-                    if (peerColors != null && i5 >= 0 && i5 < peerColors.colors.size()) {
-                        this.buttons[i5].id = peerColors.colors.get(i5).id;
-                        this.buttons[i5].set(peerColors.colors.get(i5));
+                int i8 = 0;
+                while (i8 < size2) {
+                    this.buttons[i8] = new ColorButton();
+                    if (this.type == i7) {
+                        ColorButton[] colorButtonArr2 = this.buttons;
+                        colorButtonArr2[i8].id = this.order[i8];
+                        colorButtonArr2[i8].setClose(colorButtonArr2[i8].id < 0);
+                        ColorButton colorButton = this.buttons[i8];
+                        int[] iArr = this.order;
+                        if (iArr[i8] < 0) {
+                            i4 = Theme.key_avatar_backgroundGray;
+                        } else {
+                            int[] iArr2 = Theme.keys_avatar_nameInMessage;
+                            i4 = iArr2[iArr[i8] % iArr2.length];
+                        }
+                        colorButton.set(Theme.getColor(i4, this.resourcesProvider));
+                    } else if (peerColors != null && i8 >= 0 && i8 < peerColors.colors.size()) {
+                        this.buttons[i8].id = peerColors.colors.get(i8).id;
+                        this.buttons[i8].set(peerColors.colors.get(i8));
                     }
+                    i8++;
+                    i7 = 2;
                 }
             }
             float f4 = ((f - ((f2 * min) + (f3 * min2))) / 2.0f) + min2;
             if (this.buttons != null) {
                 float f5 = f4;
                 float f6 = min3;
-                for (int i6 = 0; i6 < this.buttons.length; i6++) {
+                for (int i9 = 0; i9 < this.buttons.length; i9++) {
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(f5, f6, f5 + min, f6 + min);
-                    this.buttons[i6].layout(rectF);
+                    this.buttons[i9].layout(rectF);
                     rectF.inset((-min2) / 2.0f, (-min3) / 2.0f);
-                    this.buttons[i6].layoutClickBounds(rectF);
-                    ColorButton[] colorButtonArr2 = this.buttons;
-                    colorButtonArr2[i6].setSelected(colorButtonArr2[i6].id == this.selectedColorId, false);
-                    if (i6 % i4 == i4 - 1) {
+                    this.buttons[i9].layoutClickBounds(rectF);
+                    ColorButton[] colorButtonArr3 = this.buttons;
+                    colorButtonArr3[i9].setSelected(colorButtonArr3[i9].id == this.selectedColorId, false);
+                    if (i9 % i6 == i6 - 1) {
                         f6 += min + min3;
                         f5 = f4;
                     } else {

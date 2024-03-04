@@ -14,6 +14,8 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     int color1;
     int color2;
     Context context;
+    private float dt;
+    public boolean forceNight;
     public float gradientScaleX;
     public float gradientScaleY;
     public float gradientStartX;
@@ -21,8 +23,10 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     public boolean isDarkBackground;
     private int mHeight;
     private int mWidth;
-    public Star3DIcon star;
+    public Icon3D model;
+    boolean night;
     private final int style;
+    private final int type;
     public float angleX = 0.0f;
     public float angleX2 = 0.0f;
     public float angleY = 0.0f;
@@ -33,9 +37,10 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     public int colorKey1 = Theme.key_premiumStartGradient1;
     public int colorKey2 = Theme.key_premiumStartGradient2;
 
-    public GLIconRenderer(Context context, int i) {
+    public GLIconRenderer(Context context, int i, int i2) {
         this.context = context;
         this.style = i;
+        this.type = i2;
         updateColors();
     }
 
@@ -57,21 +62,25 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        Star3DIcon star3DIcon = this.star;
-        if (star3DIcon != null) {
-            star3DIcon.destroy();
+        Icon3D icon3D = this.model;
+        if (icon3D != null) {
+            icon3D.destroy();
         }
-        Star3DIcon star3DIcon2 = new Star3DIcon(this.context);
-        this.star = star3DIcon2;
+        Icon3D icon3D2 = new Icon3D(this.context, this.type);
+        this.model = icon3D2;
         Bitmap bitmap = this.backgroundBitmap;
         if (bitmap != null) {
-            star3DIcon2.setBackground(bitmap);
+            icon3D2.setBackground(bitmap);
         }
         if (this.isDarkBackground) {
-            Star3DIcon star3DIcon3 = this.star;
-            star3DIcon3.spec1 = 1.0f;
-            star3DIcon3.spec2 = 0.2f;
+            Icon3D icon3D3 = this.model;
+            icon3D3.spec1 = 1.0f;
+            icon3D3.spec2 = 0.2f;
         }
+    }
+
+    public void setDeltaTime(float f) {
+        this.dt = f;
     }
 
     @Override
@@ -86,11 +95,12 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMM(this.mMVPMatrix, 0, this.mViewMatrix, 0, this.mRotationMatrix, 0);
         float[] fArr = this.mMVPMatrix;
         Matrix.multiplyMM(fArr, 0, this.mProjectionMatrix, 0, fArr, 0);
-        Star3DIcon star3DIcon = this.star;
-        if (star3DIcon != null) {
-            star3DIcon.gradientColor1 = this.color1;
-            star3DIcon.gradientColor2 = this.color2;
-            star3DIcon.draw(this.mMVPMatrix, this.mRotationMatrix, this.mWidth, this.mHeight, this.gradientStartX, this.gradientScaleX, this.gradientStartY, this.gradientScaleY);
+        Icon3D icon3D = this.model;
+        if (icon3D != null) {
+            icon3D.night = this.night;
+            icon3D.gradientColor1 = this.color1;
+            icon3D.gradientColor2 = this.color2;
+            icon3D.draw(this.mMVPMatrix, this.mRotationMatrix, this.mWidth, this.mHeight, this.gradientStartX, this.gradientScaleX, this.gradientStartY, this.gradientScaleY, this.dt);
         }
     }
 
@@ -103,17 +113,21 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     }
 
     public void setBackground(Bitmap bitmap) {
-        Star3DIcon star3DIcon = this.star;
-        if (star3DIcon != null) {
-            star3DIcon.setBackground(bitmap);
+        Icon3D icon3D = this.model;
+        if (icon3D != null) {
+            icon3D.setBackground(bitmap);
         }
         this.backgroundBitmap = bitmap;
     }
 
     public void updateColors() {
+        boolean z = false;
+        this.night = this.forceNight || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) < 0.5d;
         this.color1 = Theme.getColor(this.colorKey1);
         this.color2 = Theme.getColor(this.colorKey2);
-        boolean z = true;
-        this.isDarkBackground = (this.style != 1 || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) >= 0.5d) ? false : false;
+        if (this.style == 1 && ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) < 0.5d) {
+            z = true;
+        }
+        this.isDarkBackground = z;
     }
 }

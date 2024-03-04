@@ -38,7 +38,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         if ((this.flags & 64) != 0) {
             this.pinned_msg_id = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.folder_id = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -103,7 +103,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         if ((this.flags & 64) != 0) {
             abstractSerializedData.writeInt32(this.pinned_msg_id);
         }
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {

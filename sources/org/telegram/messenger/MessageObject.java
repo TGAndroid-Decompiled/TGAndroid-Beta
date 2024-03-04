@@ -60,6 +60,7 @@ import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$ForumTopic;
 import org.telegram.tgnet.TLRPC$InputPeer;
+import org.telegram.tgnet.TLRPC$InputQuickReplyShortcut;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
 import org.telegram.tgnet.TLRPC$Message;
@@ -108,6 +109,8 @@ import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
+import org.telegram.tgnet.TLRPC$TL_inputQuickReplyShortcut;
+import org.telegram.tgnet.TLRPC$TL_inputQuickReplyShortcutId;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetID;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
@@ -199,6 +202,7 @@ import org.telegram.tgnet.TLRPC$WebPageAttribute;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -269,6 +273,7 @@ public class MessageObject {
     public StringBuilder botButtonsLayout;
     public String botStartParam;
     public float bufferedProgress;
+    public boolean business;
     public Boolean cachedIsSupergroup;
     public boolean cancelEditing;
     public CharSequence caption;
@@ -380,6 +385,7 @@ public class MessageObject {
     public String previousMessage;
     public ArrayList<TLRPC$MessageEntity> previousMessageEntities;
     public boolean putInDownloadsStore;
+    public String quick_reply_shortcut;
     private byte[] randomWaveform;
     public boolean reactionsChanged;
     public long reactionsLastCheckTime;
@@ -449,6 +455,13 @@ public class MessageObject {
         return true;
     }
 
+    public int getChatMode() {
+        if (this.scheduled) {
+            return 1;
+        }
+        return isQuickReply() ? 5 : 0;
+    }
+
     public static boolean hasUnreadReactions(TLRPC$Message tLRPC$Message) {
         if (tLRPC$Message == null) {
             return false;
@@ -491,29 +504,36 @@ public class MessageObject {
     }
 
     public static long getTopicId(int i, TLRPC$Message tLRPC$Message, boolean z) {
-        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader;
+        int i2;
         long clientUserId = UserConfig.getInstance(i).getClientUserId();
-        if (!z && tLRPC$Message != null && i >= 0 && DialogObject.getPeerDialogId(tLRPC$Message.peer_id) == clientUserId) {
+        if ((tLRPC$Message.flags & 1073741824) != 0 && DialogObject.getPeerDialogId(tLRPC$Message.peer_id) == clientUserId) {
+            i2 = tLRPC$Message.quick_reply_shortcut_id;
+        } else if (!z && i >= 0 && DialogObject.getPeerDialogId(tLRPC$Message.peer_id) == clientUserId) {
             return getSavedDialogId(clientUserId, tLRPC$Message);
-        }
-        if (tLRPC$Message == null || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionTopicCreate)) {
-            if (tLRPC$Message == null || (tLRPC$MessageReplyHeader = tLRPC$Message.reply_to) == null || !tLRPC$MessageReplyHeader.forum_topic) {
-                return z ? 1L : 0L;
-            } else if ((tLRPC$Message instanceof TLRPC$TL_messageService) && !(tLRPC$Message.action instanceof TLRPC$TL_messageActionPinMessage)) {
-                int i2 = tLRPC$MessageReplyHeader.reply_to_msg_id;
-                if (i2 == 0) {
-                    i2 = tLRPC$MessageReplyHeader.reply_to_top_id;
-                }
-                return i2;
+        } else {
+            TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
+            if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionTopicCreate) {
+                i2 = tLRPC$Message.id;
             } else {
-                int i3 = tLRPC$MessageReplyHeader.reply_to_top_id;
-                if (i3 == 0) {
-                    i3 = tLRPC$MessageReplyHeader.reply_to_msg_id;
+                TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
+                if (tLRPC$MessageReplyHeader == null || !tLRPC$MessageReplyHeader.forum_topic) {
+                    return z ? 1L : 0L;
+                } else if ((tLRPC$Message instanceof TLRPC$TL_messageService) && !(tLRPC$MessageAction instanceof TLRPC$TL_messageActionPinMessage)) {
+                    int i3 = tLRPC$MessageReplyHeader.reply_to_msg_id;
+                    if (i3 == 0) {
+                        i3 = tLRPC$MessageReplyHeader.reply_to_top_id;
+                    }
+                    return i3;
+                } else {
+                    int i4 = tLRPC$MessageReplyHeader.reply_to_top_id;
+                    if (i4 == 0) {
+                        i4 = tLRPC$MessageReplyHeader.reply_to_msg_id;
+                    }
+                    return i4;
                 }
-                return i3;
             }
         }
-        return tLRPC$Message.id;
+        return i2;
     }
 
     public static boolean isTopicActionMessage(MessageObject messageObject) {
@@ -1662,7 +1682,7 @@ public class MessageObject {
         }
     }
 
-    private void checkBigAnimatedEmoji() {
+    protected void checkBigAnimatedEmoji() {
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int i;
         this.emojiAnimatedSticker = null;
@@ -5544,6 +5564,10 @@ public class MessageObject {
                     }
                     return str;
                 } else if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) && tLRPC$DocumentAttribute.round_message) {
+                    if (isQuickReply()) {
+                        int i2 = R.string.BusinessInReplies;
+                        return LocaleController.formatString(i2, "/" + getQuickReplyDisplayName());
+                    }
                     return LocaleController.formatDateAudio(this.messageOwner.date, true);
                 }
             }
@@ -5726,7 +5750,7 @@ public class MessageObject {
     }
 
     public boolean canForwardMessage() {
-        return ((this.messageOwner instanceof TLRPC$TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
+        return (isQuickReply() || (this.messageOwner instanceof TLRPC$TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
     }
 
     public boolean canEditMedia() {
@@ -6849,5 +6873,96 @@ public class MessageObject {
             return indexOf == -1 ? lastIndexOf : (lastIndexOf != -1 && indexOf - i >= i - lastIndexOf) ? lastIndexOf : indexOf;
         }
         return i;
+    }
+
+    public void applyQuickReply(String str, int i) {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message == null) {
+            return;
+        }
+        if (i != 0) {
+            tLRPC$Message.flags |= 1073741824;
+            tLRPC$Message.quick_reply_shortcut_id = i;
+            TLRPC$TL_inputQuickReplyShortcutId tLRPC$TL_inputQuickReplyShortcutId = new TLRPC$TL_inputQuickReplyShortcutId();
+            tLRPC$TL_inputQuickReplyShortcutId.shortcut_id = i;
+            this.messageOwner.quick_reply_shortcut = tLRPC$TL_inputQuickReplyShortcutId;
+        } else if (str != null) {
+            TLRPC$TL_inputQuickReplyShortcut tLRPC$TL_inputQuickReplyShortcut = new TLRPC$TL_inputQuickReplyShortcut();
+            tLRPC$TL_inputQuickReplyShortcut.shortcut = str;
+            this.messageOwner.quick_reply_shortcut = tLRPC$TL_inputQuickReplyShortcut;
+        } else {
+            tLRPC$Message.flags &= -1073741825;
+            tLRPC$Message.quick_reply_shortcut_id = 0;
+            tLRPC$Message.quick_reply_shortcut = null;
+        }
+    }
+
+    public static int getQuickReplyId(TLRPC$Message tLRPC$Message) {
+        if (tLRPC$Message == null) {
+            return 0;
+        }
+        if ((tLRPC$Message.flags & 1073741824) != 0) {
+            return tLRPC$Message.quick_reply_shortcut_id;
+        }
+        TLRPC$InputQuickReplyShortcut tLRPC$InputQuickReplyShortcut = tLRPC$Message.quick_reply_shortcut;
+        if (tLRPC$InputQuickReplyShortcut instanceof TLRPC$TL_inputQuickReplyShortcutId) {
+            return ((TLRPC$TL_inputQuickReplyShortcutId) tLRPC$InputQuickReplyShortcut).shortcut_id;
+        }
+        return 0;
+    }
+
+    public static int getQuickReplyId(int i, TLRPC$Message tLRPC$Message) {
+        QuickRepliesController.QuickReply findReply;
+        if (tLRPC$Message == null) {
+            return 0;
+        }
+        if ((tLRPC$Message.flags & 1073741824) != 0) {
+            return tLRPC$Message.quick_reply_shortcut_id;
+        }
+        TLRPC$InputQuickReplyShortcut tLRPC$InputQuickReplyShortcut = tLRPC$Message.quick_reply_shortcut;
+        if (tLRPC$InputQuickReplyShortcut instanceof TLRPC$TL_inputQuickReplyShortcutId) {
+            return ((TLRPC$TL_inputQuickReplyShortcutId) tLRPC$InputQuickReplyShortcut).shortcut_id;
+        }
+        String quickReplyName = getQuickReplyName(tLRPC$Message);
+        if (quickReplyName == null || (findReply = QuickRepliesController.getInstance(i).findReply(quickReplyName)) == null) {
+            return 0;
+        }
+        return findReply.id;
+    }
+
+    public int getQuickReplyId() {
+        return getQuickReplyId(this.messageOwner);
+    }
+
+    public static String getQuickReplyName(TLRPC$Message tLRPC$Message) {
+        if (tLRPC$Message == null) {
+            return null;
+        }
+        TLRPC$InputQuickReplyShortcut tLRPC$InputQuickReplyShortcut = tLRPC$Message.quick_reply_shortcut;
+        if (tLRPC$InputQuickReplyShortcut instanceof TLRPC$TL_inputQuickReplyShortcut) {
+            return ((TLRPC$TL_inputQuickReplyShortcut) tLRPC$InputQuickReplyShortcut).shortcut;
+        }
+        return null;
+    }
+
+    public String getQuickReplyName() {
+        return getQuickReplyName(this.messageOwner);
+    }
+
+    public String getQuickReplyDisplayName() {
+        String quickReplyName = getQuickReplyName();
+        if (quickReplyName != null) {
+            return quickReplyName;
+        }
+        QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply(getQuickReplyId());
+        return findReply != null ? findReply.name : BuildConfig.APP_CENTER_HASH;
+    }
+
+    public static boolean isQuickReply(TLRPC$Message tLRPC$Message) {
+        return (tLRPC$Message == null || ((tLRPC$Message.flags & 1073741824) == 0 && tLRPC$Message.quick_reply_shortcut == null)) ? false : true;
+    }
+
+    public boolean isQuickReply() {
+        return isQuickReply(this.messageOwner);
     }
 }

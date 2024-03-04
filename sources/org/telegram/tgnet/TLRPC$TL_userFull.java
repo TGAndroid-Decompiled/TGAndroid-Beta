@@ -21,6 +21,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.wallpaper_overridden = (268435456 & readInt32) != 0;
         this.contact_require_premium = (536870912 & readInt32) != 0;
         this.read_dates_private = (readInt32 & 1073741824) != 0;
+        this.flags2 = abstractSerializedData.readInt32(z);
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
@@ -43,7 +44,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             this.pinned_msg_id = abstractSerializedData.readInt32(z);
         }
         this.common_chats_count = abstractSerializedData.readInt32(z);
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             this.folder_id = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -84,11 +85,23 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags2 & 1) != 0) {
+            this.business_work_hours = TLRPC$TL_businessWorkHours.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 2) != 0) {
+            this.business_location = TLRPC$TL_businessLocation.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 4) != 0) {
+            this.business_greeting_message = TLRPC$TL_businessGreetingMessage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 8) != 0) {
+            this.business_away_message = TLRPC$TL_businessAwayMessage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1179571092);
+        abstractSerializedData.writeInt32(587153029);
         int i = this.blocked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.phone_calls_available ? i | 16 : i & (-17);
@@ -116,6 +129,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
         this.flags = i13;
         abstractSerializedData.writeInt32(i13);
+        abstractSerializedData.writeInt32(this.flags2);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
@@ -138,7 +152,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             abstractSerializedData.writeInt32(this.pinned_msg_id);
         }
         abstractSerializedData.writeInt32(this.common_chats_count);
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -169,6 +183,18 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         }
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             this.stories.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 1) != 0) {
+            this.business_work_hours.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 2) != 0) {
+            this.business_location.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 4) != 0) {
+            this.business_greeting_message.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 8) != 0) {
+            this.business_away_message.serializeToStream(abstractSerializedData);
         }
     }
 }

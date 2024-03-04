@@ -80,12 +80,12 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     private Drawable videoPlayImage;
 
     @Override
-    int needsActionBar() {
+    public int needsActionBar() {
         return 1;
     }
 
     @Override
-    boolean shouldHideBottomButtons() {
+    public boolean shouldHideBottomButtons() {
         return true;
     }
 
@@ -221,7 +221,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    void onShow(final ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public void onShow(final ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         this.shown = true;
         if (attachAlertLayout instanceof ChatAttachAlertPhotoLayout) {
             this.photoLayout = (ChatAttachAlertPhotoLayout) attachAlertLayout;
@@ -290,7 +290,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    int getSelectedItemsCount() {
+    public int getSelectedItemsCount() {
         return this.groupsView.getPhotosCount();
     }
 
@@ -315,12 +315,12 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(56.0f);
     }
 
     @Override
-    void applyCaption(CharSequence charSequence) {
+    public void applyCaption(CharSequence charSequence) {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.photoLayout;
         if (chatAttachAlertPhotoLayout != null) {
             chatAttachAlertPhotoLayout.applyCaption(charSequence);
@@ -489,7 +489,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    void scrollToTop() {
+    public void scrollToTop() {
         this.listView.smoothScrollToPosition(0);
     }
 
@@ -508,7 +508,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    void onMenuItemClick(int i) {
+    public void onMenuItemClick(int i) {
         try {
             this.parentAlert.getPhotoLayout().onMenuItemClick(i);
         } catch (Exception unused) {
@@ -563,7 +563,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    void onSelectedItemsCountChanged(int i) {
+    public void onSelectedItemsCountChanged(int i) {
         if (i > 1) {
             this.parentAlert.selectedMenuItem.showSubItem(0);
         } else {

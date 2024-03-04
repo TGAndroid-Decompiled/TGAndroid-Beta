@@ -109,7 +109,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -152,7 +152,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -434,7 +434,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
@@ -501,7 +501,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
@@ -762,7 +762,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.call_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -820,7 +820,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.call_msg_id);
                         }
                     }
@@ -864,7 +864,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -939,7 +939,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -1045,7 +1045,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1189,7 +1189,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1322,7 +1322,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1434,7 +1434,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1548,7 +1548,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1695,7 +1695,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1891,7 +1891,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -1984,7 +1984,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -2047,7 +2047,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -2087,7 +2087,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -2169,7 +2169,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -2254,7 +2254,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -2351,7 +2351,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -2494,7 +2494,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -2591,7 +2591,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -2628,7 +2628,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -2759,7 +2759,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.pts = abstractSerializedData2.readInt32(z2);
@@ -2823,7 +2823,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         abstractSerializedData2.writeInt32(this.pts);
@@ -2869,7 +2869,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -2904,7 +2904,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -2990,7 +2990,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -3143,7 +3143,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -3276,7 +3276,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -3348,7 +3348,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -3512,7 +3512,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -3544,7 +3544,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                     }
@@ -3817,7 +3817,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -3923,7 +3923,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -4028,7 +4028,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -4108,7 +4108,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -4242,7 +4242,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -4354,7 +4354,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -4437,7 +4437,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -4499,7 +4499,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -4566,7 +4566,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -4612,7 +4612,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -4668,7 +4668,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -4714,7 +4714,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & 64) != 0) {
                             abstractSerializedData2.writeInt32(this.pinned_msg_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
@@ -4801,7 +4801,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -4910,7 +4910,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5018,7 +5018,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5149,7 +5149,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5274,7 +5274,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5402,7 +5402,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5532,7 +5532,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5682,7 +5682,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -5934,7 +5934,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             this.available_min_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -6024,7 +6024,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
                             abstractSerializedData2.writeInt32(this.available_min_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {

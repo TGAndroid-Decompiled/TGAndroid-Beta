@@ -17,7 +17,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         this.close_friends = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
         this.min = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
         this.noforwards = (readInt32 & 1024) != 0;
-        this.edited = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.edited = (readInt32 & 2048) != 0;
         this.contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.selected_contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
         this.out = (readInt32 & 65536) != 0;
@@ -106,7 +106,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         this.flags = i4;
         int i5 = this.noforwards ? i4 | 1024 : i4 & (-1025);
         this.flags = i5;
-        int i6 = this.edited ? i5 | LiteMode.FLAG_AUTOPLAY_GIFS : i5 & (-2049);
+        int i6 = this.edited ? i5 | 2048 : i5 & (-2049);
         this.flags = i6;
         int i7 = this.contacts ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i6 & (-4097);
         this.flags = i7;

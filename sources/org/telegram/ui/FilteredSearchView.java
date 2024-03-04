@@ -67,6 +67,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.FiltersView;
+import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.DialogCell;
@@ -480,6 +481,10 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         int i2;
         if (messageObject == null || messageObject.messageOwner == null) {
             return BuildConfig.APP_CENTER_HASH;
+        }
+        if (messageObject.isQuickReply()) {
+            QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(messageObject.currentAccount).findReply(messageObject.getQuickReplyId());
+            return findReply == null ? BuildConfig.APP_CENTER_HASH : findReply.name;
         }
         SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
         if (spannableStringBuilderArr[i] == null) {

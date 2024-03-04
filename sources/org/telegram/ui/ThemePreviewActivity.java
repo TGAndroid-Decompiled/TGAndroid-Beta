@@ -4933,7 +4933,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         ArrayList<MessageObject> arrayList = new ArrayList<>();
         arrayList.add(new MessageObject(this.currentAccount, tLRPC$TL_messageService, false, false));
         new ArrayList().add(tLRPC$TL_messageService);
-        MessagesController.getInstance(this.currentAccount).updateInterfaceWithMessages(this.dialogId, arrayList, false);
+        MessagesController.getInstance(this.currentAccount).updateInterfaceWithMessages(this.dialogId, arrayList, 0);
     }
 
     public class BackgroundView extends BackupImageView {

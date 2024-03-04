@@ -139,7 +139,7 @@ public class RecyclerListView extends RecyclerView {
     private boolean stoppedAllHeavyOperations;
     private int topBottomSelectorRadius;
     private int touchSlop;
-    private boolean translateSelector;
+    private int translateSelector;
     public boolean useLayoutPositionOnClick;
     boolean useRelativePositions;
 
@@ -226,6 +226,9 @@ public class RecyclerListView extends RecyclerView {
 
     public boolean canHighlightChildAt(View view, float f, float f2) {
         return true;
+    }
+
+    protected void emptyViewUpdated(boolean z, boolean z2) {
     }
 
     public ViewParent getTouchParent() {
@@ -1113,6 +1116,7 @@ public class RecyclerListView extends RecyclerView {
         this.hideIfEmpty = true;
         this.selectorType = 2;
         this.selectorRect = new android.graphics.Rect();
+        this.translateSelector = -1;
         this.scrollEnabled = true;
         this.lastX = Float.MAX_VALUE;
         this.lastY = Float.MAX_VALUE;
@@ -1250,17 +1254,19 @@ public class RecyclerListView extends RecyclerView {
                     recyclerListView.selectorRect.setEmpty();
                 }
                 RecyclerListView.this.checkSection(false);
-                if (i2 == 0 || RecyclerListView.this.fastScroll == null) {
-                    return;
+                if (i2 != 0 && RecyclerListView.this.fastScroll != null) {
+                    RecyclerListView.this.fastScroll.showFloatingDate();
                 }
-                RecyclerListView.this.fastScroll.showFloatingDate();
+                if (RecyclerListView.this.pendingHighlightPosition != null) {
+                    RecyclerListView recyclerListView3 = RecyclerListView.this;
+                    recyclerListView3.highlightRowInternal(recyclerListView3.pendingHighlightPosition, 700, false);
+                }
             }
         });
         addOnItemTouchListener(new RecyclerListViewItemClickListener(context));
     }
 
     public void drawSectionBackground(Canvas canvas, int i, int i2, int i3) {
-        int childAdapterPosition;
         if (i2 < i) {
             return;
         }
@@ -1268,9 +1274,13 @@ public class RecyclerListView extends RecyclerView {
         int i5 = Integer.MIN_VALUE;
         for (int i6 = 0; i6 < getChildCount(); i6++) {
             View childAt = getChildAt(i6);
-            if (childAt != null && (childAdapterPosition = getChildAdapterPosition(childAt)) >= i && childAdapterPosition <= i2) {
-                i4 = Math.min((int) childAt.getY(), i4);
-                i5 = Math.max(((int) childAt.getY()) + childAt.getHeight(), i5);
+            if (childAt != null) {
+                int childAdapterPosition = getChildAdapterPosition(childAt);
+                int top = childAt.getTop();
+                if (childAdapterPosition >= i && childAdapterPosition <= i2) {
+                    i4 = Math.min(top, i4);
+                    i5 = Math.max((int) (top + (childAt.getHeight() * childAt.getAlpha())), i5);
+                }
             }
         }
         if (i4 < i5) {
@@ -1782,7 +1792,7 @@ public class RecyclerListView extends RecyclerView {
         }
     }
 
-    private void highlightRowInternal(IntReturnCallback intReturnCallback, int i, boolean z) {
+    public void highlightRowInternal(IntReturnCallback intReturnCallback, int i, boolean z) {
         Runnable runnable = this.removeHighlighSelectionRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -1798,7 +1808,7 @@ public class RecyclerListView extends RecyclerView {
         }
         int layoutPosition = findViewHolderForAdapterPosition.getLayoutPosition();
         this.highlightPosition = layoutPosition;
-        positionSelector(layoutPosition, findViewHolderForAdapterPosition.itemView);
+        positionSelector(layoutPosition, findViewHolderForAdapterPosition.itemView, false, -1.0f, -1.0f, true);
         Drawable drawable = this.selectorDrawable;
         if (drawable != null) {
             Drawable current = drawable.getCurrent();
@@ -1818,6 +1828,7 @@ public class RecyclerListView extends RecyclerView {
             invalidateDrawable(this.selectorDrawable);
         }
         if (i > 0) {
+            this.pendingHighlightPosition = null;
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
@@ -1889,7 +1900,9 @@ public class RecyclerListView extends RecyclerView {
         }
         boolean emptyViewIsVisible = emptyViewIsVisible();
         int i = emptyViewIsVisible ? 0 : 8;
-        if ((this.animateEmptyView && SharedConfig.animationsEnabled()) ? false : false) {
+        z = (this.animateEmptyView && SharedConfig.animationsEnabled()) ? false : false;
+        emptyViewUpdated(emptyViewIsVisible, z);
+        if (z) {
             if (this.emptyViewAnimateToVisibility != i) {
                 this.emptyViewAnimateToVisibility = i;
                 if (i == 0) {
@@ -2021,7 +2034,7 @@ public class RecyclerListView extends RecyclerView {
     }
 
     public void positionSelector(int i, View view) {
-        positionSelector(i, view, false, -1.0f, -1.0f);
+        positionSelector(i, view, false, -1.0f, -1.0f, false);
     }
 
     public void updateSelector() {
@@ -2034,7 +2047,7 @@ public class RecyclerListView extends RecyclerView {
         invalidate();
     }
 
-    private void positionSelector(int i, View view, boolean z, float f, float f2) {
+    private void positionSelector(int i, View view, boolean z, float f, float f2, boolean z2) {
         Runnable runnable = this.removeHighlighSelectionRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -2044,7 +2057,7 @@ public class RecyclerListView extends RecyclerView {
         if (this.selectorDrawable == null) {
             return;
         }
-        boolean z2 = i != this.selectorPosition;
+        boolean z3 = i != this.selectorPosition;
         int selectionBottomPadding = getAdapter() instanceof SelectionAdapter ? ((SelectionAdapter) getAdapter()).getSelectionBottomPadding(view) : 0;
         if (i != -1) {
             this.selectorPosition = i;
@@ -2060,13 +2073,13 @@ public class RecyclerListView extends RecyclerView {
         if (this.isChildViewEnabled != isEnabled) {
             this.isChildViewEnabled = isEnabled;
         }
-        if (z2) {
+        if (z3) {
             this.selectorDrawable.setVisible(false, false);
             this.selectorDrawable.setState(StateSet.NOTHING);
         }
         setListSelectorColor(getSelectorColor(i));
         this.selectorDrawable.setBounds(this.selectorRect);
-        if (z2 && getVisibility() == 0) {
+        if (z3 && getVisibility() == 0) {
             this.selectorDrawable.setVisible(true, false);
         }
         if (Build.VERSION.SDK_INT < 21 || !z) {
@@ -2275,41 +2288,64 @@ public class RecyclerListView extends RecyclerView {
     }
 
     public void setTranslateSelector(boolean z) {
-        this.translateSelector = z;
+        this.translateSelector = z ? -2 : -1;
+    }
+
+    public void setTranslateSelectorPosition(int i) {
+        if (i <= 0) {
+            i = -1;
+        }
+        this.translateSelector = i;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         View view;
-        View view2;
         Consumer<Canvas> consumer;
-        View view3;
+        View view2;
         Consumer<Canvas> consumer2;
+        View view3;
         RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = this.itemsEnterAnimator;
         if (recyclerItemsEnterAnimator != null) {
             recyclerItemsEnterAnimator.dispatchDraw();
         }
         if (this.drawSelection && this.drawSelectorBehind && !this.selectorRect.isEmpty()) {
-            this.selectorDrawable.setBounds(this.selectorRect);
+            int i = this.translateSelector;
+            if ((i == -2 || i == this.selectorPosition) && this.selectorView != null) {
+                this.selectorDrawable.setBounds(this.selectorView.getLeft(), this.selectorView.getTop(), this.selectorView.getRight(), this.selectorView.getBottom() - (getAdapter() instanceof SelectionAdapter ? ((SelectionAdapter) getAdapter()).getSelectionBottomPadding(this.selectorView) : 0));
+            } else {
+                this.selectorDrawable.setBounds(this.selectorRect);
+            }
             canvas.save();
-            if (this.translateSelector && (consumer2 = this.selectorTransformer) != null) {
+            int i2 = this.translateSelector;
+            if ((i2 == -2 || i2 == this.selectorPosition) && (consumer2 = this.selectorTransformer) != null) {
                 consumer2.accept(canvas);
             }
-            if (this.translateSelector && (view3 = this.selectorView) != null) {
+            int i3 = this.translateSelector;
+            if ((i3 == -2 || i3 == this.selectorPosition) && (view3 = this.selectorView) != null) {
                 canvas.translate(view3.getX() - this.selectorRect.left, this.selectorView.getY() - this.selectorRect.top);
+                this.selectorDrawable.setAlpha((int) (this.selectorView.getAlpha() * 255.0f));
             }
             this.selectorDrawable.draw(canvas);
             canvas.restore();
         }
         super.dispatchDraw(canvas);
         if (this.drawSelection && !this.drawSelectorBehind && !this.selectorRect.isEmpty()) {
-            this.selectorDrawable.setBounds(this.selectorRect);
+            int i4 = this.translateSelector;
+            if ((i4 == -2 || i4 == this.selectorPosition) && this.selectorView != null) {
+                this.selectorDrawable.setBounds(this.selectorView.getLeft(), this.selectorView.getTop(), this.selectorView.getRight(), this.selectorView.getBottom() - (getAdapter() instanceof SelectionAdapter ? ((SelectionAdapter) getAdapter()).getSelectionBottomPadding(this.selectorView) : 0));
+            } else {
+                this.selectorDrawable.setBounds(this.selectorRect);
+            }
             canvas.save();
-            if (this.translateSelector && (consumer = this.selectorTransformer) != null) {
+            int i5 = this.translateSelector;
+            if ((i5 == -2 || i5 == this.selectorPosition) && (consumer = this.selectorTransformer) != null) {
                 consumer.accept(canvas);
             }
-            if (this.translateSelector && (view2 = this.selectorView) != null) {
+            int i6 = this.translateSelector;
+            if ((i6 == -2 || i6 == this.selectorPosition) && (view2 = this.selectorView) != null) {
                 canvas.translate(view2.getX() - this.selectorRect.left, this.selectorView.getY() - this.selectorRect.top);
+                this.selectorDrawable.setAlpha((int) (this.selectorView.getAlpha() * 255.0f));
             }
             this.selectorDrawable.draw(canvas);
             canvas.restore();
@@ -2318,20 +2354,20 @@ public class RecyclerListView extends RecyclerView {
         if (frameLayout != null) {
             frameLayout.draw(canvas);
         }
-        int i = this.sectionsType;
-        if (i == 1) {
+        int i7 = this.sectionsType;
+        if (i7 == 1) {
             if (this.sectionsAdapter == null || this.headers.isEmpty()) {
                 return;
             }
-            for (int i2 = 0; i2 < this.headers.size(); i2++) {
-                View view4 = this.headers.get(i2);
+            for (int i8 = 0; i8 < this.headers.size(); i8++) {
+                View view4 = this.headers.get(i8);
                 int save = canvas.save();
                 canvas.translate(LocaleController.isRTL ? getWidth() - view4.getWidth() : 0.0f, ((Integer) view4.getTag()).intValue());
                 canvas.clipRect(0, 0, getWidth(), view4.getMeasuredHeight());
                 view4.draw(canvas);
                 canvas.restoreToCount(save);
             }
-        } else if (i == 2 && this.sectionsAdapter != null && (view = this.pinnedHeader) != null && view.getAlpha() != 0.0f) {
+        } else if (i7 == 2 && this.sectionsAdapter != null && (view = this.pinnedHeader) != null && view.getAlpha() != 0.0f) {
             int save2 = canvas.save();
             canvas.translate(LocaleController.isRTL ? getWidth() - this.pinnedHeader.getWidth() : 0.0f, ((Integer) this.pinnedHeader.getTag()).intValue());
             Drawable drawable = this.pinnedHeaderShadowDrawable;

@@ -58,7 +58,7 @@ public abstract class BaseFragment {
     protected boolean inBubbleMode;
     protected boolean inMenuMode;
     protected boolean inPreviewMode;
-    private boolean isFinished;
+    protected boolean isFinished;
     public StoryViewer overlayStoryViewer;
     protected Dialog parentDialog;
     protected INavigationLayout parentLayout;

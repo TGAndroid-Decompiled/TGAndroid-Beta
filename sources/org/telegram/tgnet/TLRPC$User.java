@@ -62,7 +62,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -162,7 +162,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(-1885878744);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -263,7 +263,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -332,7 +332,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(-1820043071);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -410,7 +410,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -518,7 +518,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(-1414139616);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -646,7 +646,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -694,7 +694,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(-787638374);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -765,7 +765,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -884,7 +884,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(-346018011);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -1046,7 +1046,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -1086,7 +1086,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(585404530);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -1164,7 +1164,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -1217,7 +1217,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(773059779);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -1286,7 +1286,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -1357,7 +1357,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(1073147056);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;
@@ -1463,7 +1463,7 @@ public abstract class TLRPC$User extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.self = (readInt32 & 1024) != 0;
-                        this.contact = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
                         this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -1538,7 +1538,7 @@ public abstract class TLRPC$User extends TLObject {
                         abstractSerializedData2.writeInt32(1570352622);
                         int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
                         this.flags = i2;
-                        int i3 = this.contact ? i2 | LiteMode.FLAG_AUTOPLAY_GIFS : i2 & (-2049);
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
                         this.flags = i3;
                         int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
                         this.flags = i4;

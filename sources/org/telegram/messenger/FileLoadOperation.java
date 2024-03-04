@@ -46,6 +46,7 @@ public class FileLoadOperation {
     private static int globalRequestPointer = 0;
     private static final int preloadMaxBytes = 2097152;
     private static final int stateCanceled = 4;
+    private static final int stateCancelling = 5;
     private static final int stateDownloading = 1;
     private static final int stateFailed = 2;
     private static final int stateFinished = 3;
@@ -60,6 +61,7 @@ public class FileLoadOperation {
     private File cacheFilePreload;
     private File cacheFileTemp;
     private File cacheIvTemp;
+    private ArrayList<RequestInfo> cancelledRequestInfos;
     private byte[] cdnCheckBytes;
     private int cdnChunkCheckSize;
     private int cdnDatacenterId;
@@ -177,6 +179,7 @@ public class FileLoadOperation {
     }
 
     public void setStream(final FileLoadOperationStream fileLoadOperationStream, boolean z, long j) {
+        FileLog.e("FileLoadOperation " + getFileName() + " setStream(" + fileLoadOperationStream + ")");
         this.stream = fileLoadOperationStream;
         this.streamOffset = j;
         this.streamPriority = z;
@@ -229,6 +232,8 @@ public class FileLoadOperation {
     }
 
     public static class RequestInfo {
+        public boolean cancelled;
+        public boolean cancelling;
         public int chunkSize;
         public int connectionType;
         private boolean forceSmallChunk;
@@ -833,11 +838,11 @@ public class FileLoadOperation {
     }
 
     public void lambda$removeStreamListener$5(FileLoadOperationStream fileLoadOperationStream) {
-        ArrayList<FileLoadOperationStream> arrayList = this.streamListeners;
-        if (arrayList == null) {
+        if (this.streamListeners == null) {
             return;
         }
-        arrayList.remove(fileLoadOperationStream);
+        FileLog.e("FileLoadOperation " + getFileName() + " removing stream listener " + this.stream);
+        this.streamListeners.remove(fileLoadOperationStream);
     }
 
     private void copyNotLoadedRanges() {
@@ -865,7 +870,7 @@ public class FileLoadOperation {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("debug_loading:" + this.cacheFileFinal.getName() + " pause operation, clear requests");
             }
-            clearOperaion(null, false);
+            clearOperation(null, false, true);
             return;
         }
         for (int i = 0; i < this.requestInfos.size(); i++) {
@@ -911,6 +916,7 @@ public class FileLoadOperation {
         }
         if (!this.streamListeners.contains(fileLoadOperationStream)) {
             this.streamListeners.add(fileLoadOperationStream);
+            FileLog.e("FileLoadOperation " + getFileName() + " start, adding stream " + fileLoadOperationStream);
         }
         if (z2) {
             if (this.preloadedBytesRanges != null && getDownloadedLengthFromOffsetInternal(this.notLoadedBytesRanges, this.streamStartOffset, 1L) == 0 && this.preloadedBytesRanges.get(Long.valueOf(this.streamStartOffset)) != null) {
@@ -959,10 +965,10 @@ public class FileLoadOperation {
     }
 
     public void setIsPreloadVideoOperation(final boolean z) {
-        boolean z2 = this.isPreloadVideoOperation;
-        if (z2 != z) {
+        if (this.isPreloadVideoOperation != z) {
             if (!z || this.totalBytesCount > 2097152) {
-                if (!z && z2) {
+                FileLog.e("setIsPreloadVideoOperation " + z + " file=" + this.fileName);
+                if (!z && this.isPreloadVideoOperation) {
                     if (this.state == 3) {
                         this.isPreloadVideoOperation = z;
                         this.state = 0;
@@ -989,7 +995,7 @@ public class FileLoadOperation {
 
     public void lambda$setIsPreloadVideoOperation$10(boolean z) {
         this.requestedBytesCount = 0L;
-        clearOperaion(null, true);
+        clearOperation(null, true, true);
         this.isPreloadVideoOperation = z;
         startDownloadRequest(-1);
     }
@@ -1010,15 +1016,20 @@ public class FileLoadOperation {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoadOperation.this.lambda$cancel$11(z);
+                FileLoadOperation.this.lambda$cancel$12(z);
             }
         });
     }
 
-    public void lambda$cancel$11(boolean z) {
+    public void lambda$cancel$12(boolean z) {
         if (this.state != 3 && this.state != 2) {
-            cancelRequests();
-            onFail(false, 1);
+            this.state = 5;
+            cancelRequests(new Runnable() {
+                @Override
+                public final void run() {
+                    FileLoadOperation.this.lambda$cancel$11();
+                }
+            });
         }
         if (z) {
             File file = this.cacheFileFinal;
@@ -1075,25 +1086,58 @@ public class FileLoadOperation {
         }
     }
 
-    private void cancelRequests() {
+    public void lambda$cancel$11() {
+        if (this.state == 5) {
+            onFail(false, 1);
+        }
+    }
+
+    private void cancelRequests(final Runnable runnable) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("cancelRequests");
+        sb.append(runnable != null ? " with callback" : BuildConfig.APP_CENTER_HASH);
+        FileLog.d(sb.toString());
         if (this.requestInfos != null) {
-            int[] iArr = new int[2];
+            final int[] iArr = new int[1];
+            int[] iArr2 = new int[2];
             int i = 0;
             for (int i2 = 0; i2 < this.requestInfos.size(); i2++) {
-                RequestInfo requestInfo = this.requestInfos.get(i2);
+                final RequestInfo requestInfo = this.requestInfos.get(i2);
                 if (requestInfo.requestToken != 0) {
-                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true);
+                    requestInfo.cancelling = true;
+                    if (runnable == null) {
+                        requestInfo.cancelled = true;
+                        FileLog.d("cancelRequests cancel " + requestInfo.requestToken);
+                        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true);
+                    } else {
+                        iArr[0] = iArr[0] + 1;
+                        FileLog.d("cancelRequests cancel " + requestInfo.requestToken + " with callback");
+                        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true, new Runnable() {
+                            @Override
+                            public final void run() {
+                                FileLoadOperation.lambda$cancelRequests$13(FileLoadOperation.RequestInfo.this, iArr, runnable);
+                            }
+                        });
+                    }
                     char c = requestInfo.connectionType == 2 ? (char) 0 : (char) 1;
-                    iArr[c] = iArr[c] + requestInfo.chunkSize;
+                    iArr2[c] = iArr2[c] + requestInfo.chunkSize;
                 }
             }
             while (i < 2) {
                 int i3 = i == 0 ? 2 : ConnectionsManager.ConnectionTypeDownload2;
-                if (iArr[i] > 1048576) {
+                if (iArr2[i] > 1048576) {
                     ConnectionsManager.getInstance(this.currentAccount).discardConnection(this.isCdn ? this.cdnDatacenterId : this.datacenterId, i3);
                 }
                 i++;
             }
+        }
+    }
+
+    public static void lambda$cancelRequests$13(RequestInfo requestInfo, int[] iArr, Runnable runnable) {
+        requestInfo.cancelled = true;
+        iArr[0] = iArr[0] - 1;
+        if (iArr[0] == 0) {
+            runnable.run();
         }
     }
 
@@ -1187,54 +1231,53 @@ public class FileLoadOperation {
     }
 
     private void onFinishLoadingFile(final boolean z, int i, boolean z2) {
-        if (this.state != 1) {
-            return;
-        }
-        this.state = 3;
-        notifyStreamListeners();
-        cleanup();
-        if (this.isPreloadVideoOperation || z2) {
-            this.preloadFinished = true;
-            if (BuildVars.DEBUG_VERSION) {
-                if (i == 1) {
-                    FileLog.d("file already exist " + this.cacheFileTemp);
-                } else {
-                    FileLog.d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.downloadedBytes + " of " + this.totalBytesCount + " prefSize=" + this.preloadPrefixSize);
+        if (this.state == 1 || this.state == 5) {
+            this.state = 3;
+            notifyStreamListeners();
+            cleanup();
+            if (this.isPreloadVideoOperation || z2) {
+                this.preloadFinished = true;
+                if (BuildVars.DEBUG_VERSION) {
+                    if (i == 1) {
+                        FileLog.d("file already exist " + this.cacheFileTemp);
+                    } else {
+                        FileLog.d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.downloadedBytes + " of " + this.totalBytesCount + " prefSize=" + this.preloadPrefixSize);
+                    }
                 }
+                if (this.fileMetadata != null) {
+                    if (this.cacheFileTemp != null) {
+                        FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileTemp)));
+                    }
+                    if (this.cacheFileParts != null) {
+                        FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileParts)));
+                    }
+                }
+                this.delegate.didPreFinishLoading(this, this.cacheFileFinal);
+                this.delegate.didFinishLoadingFile(this, this.cacheFileFinal);
+                return;
             }
-            if (this.fileMetadata != null) {
-                if (this.cacheFileTemp != null) {
-                    FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileTemp)));
+            final File file = this.cacheIvTemp;
+            final File file2 = this.cacheFileParts;
+            final File file3 = this.cacheFilePreload;
+            final File file4 = this.cacheFileTemp;
+            filesQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    FileLoadOperation.this.lambda$onFinishLoadingFile$17(file, file2, file3, file4, z);
                 }
-                if (this.cacheFileParts != null) {
-                    FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileParts)));
-                }
-            }
+            });
+            this.cacheIvTemp = null;
+            this.cacheFileParts = null;
+            this.cacheFilePreload = null;
             this.delegate.didPreFinishLoading(this, this.cacheFileFinal);
-            this.delegate.didFinishLoadingFile(this, this.cacheFileFinal);
-            return;
         }
-        final File file = this.cacheIvTemp;
-        final File file2 = this.cacheFileParts;
-        final File file3 = this.cacheFilePreload;
-        final File file4 = this.cacheFileTemp;
-        filesQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FileLoadOperation.this.lambda$onFinishLoadingFile$15(file, file2, file3, file4, z);
-            }
-        });
-        this.cacheIvTemp = null;
-        this.cacheFileParts = null;
-        this.cacheFilePreload = null;
-        this.delegate.didPreFinishLoading(this, this.cacheFileFinal);
     }
 
-    public void lambda$onFinishLoadingFile$15(java.io.File r5, java.io.File r6, java.io.File r7, java.io.File r8, final boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.lambda$onFinishLoadingFile$15(java.io.File, java.io.File, java.io.File, java.io.File, boolean):void");
+    public void lambda$onFinishLoadingFile$17(java.io.File r5, java.io.File r6, java.io.File r7, java.io.File r8, final boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.lambda$onFinishLoadingFile$17(java.io.File, java.io.File, java.io.File, java.io.File, boolean):void");
     }
 
-    public void lambda$onFinishLoadingFile$12(boolean z) {
+    public void lambda$onFinishLoadingFile$14(boolean z) {
         try {
             onFinishLoadingFile(z, 0, false);
         } catch (Exception unused) {
@@ -1242,11 +1285,11 @@ public class FileLoadOperation {
         }
     }
 
-    public void lambda$onFinishLoadingFile$13() {
+    public void lambda$onFinishLoadingFile$15() {
         onFail(false, 0);
     }
 
-    public void lambda$onFinishLoadingFile$14(boolean z) {
+    public void lambda$onFinishLoadingFile$16(boolean z) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("finished downloading file to " + this.cacheFileFinal + " time = " + (System.currentTimeMillis() - this.startTime) + " dc = " + this.datacenterId + " size = " + AndroidUtilities.formatFileSize(this.totalBytesCount));
         }
@@ -1343,12 +1386,12 @@ public class FileLoadOperation {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_upload_getCdnFileHashes, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FileLoadOperation.this.lambda$requestFileOffsets$16(tLObject, tLRPC$TL_error);
+                FileLoadOperation.this.lambda$requestFileOffsets$18(tLObject, tLRPC$TL_error);
             }
         }, null, null, 0, this.datacenterId, 1, true);
     }
 
-    public void lambda$requestFileOffsets$16(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestFileOffsets$18(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error != null) {
             onFail(false, 0);
             return;
@@ -1390,7 +1433,7 @@ public class FileLoadOperation {
         }
     }
 
-    protected boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r47, org.telegram.tgnet.TLRPC$TL_error r48) {
+    protected boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r42, org.telegram.tgnet.TLRPC$TL_error r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.processRequestResult(org.telegram.messenger.FileLoadOperation$RequestInfo, org.telegram.tgnet.TLRPC$TL_error):boolean");
     }
 
@@ -1413,7 +1456,7 @@ public class FileLoadOperation {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoadOperation.this.lambda$onFail$17(i);
+                    FileLoadOperation.this.lambda$onFail$19(i);
                 }
             });
             return;
@@ -1425,7 +1468,7 @@ public class FileLoadOperation {
         notifyStreamListeners();
     }
 
-    public void lambda$onFail$17(int i) {
+    public void lambda$onFail$19(int i) {
         FileLoadOperationDelegate fileLoadOperationDelegate = this.delegate;
         if (fileLoadOperationDelegate != null) {
             fileLoadOperationDelegate.didFailedLoadingFile(this, i);
@@ -1433,12 +1476,12 @@ public class FileLoadOperation {
         notifyStreamListeners();
     }
 
-    private void clearOperaion(RequestInfo requestInfo, boolean z) {
+    private void clearOperation(RequestInfo requestInfo, boolean z, boolean z2) {
         int[] iArr = new int[2];
         long j = Long.MAX_VALUE;
         int i = 0;
         while (i < this.requestInfos.size()) {
-            RequestInfo requestInfo2 = this.requestInfos.get(i);
+            final RequestInfo requestInfo2 = this.requestInfos.get(i);
             long min = Math.min(requestInfo2.offset, j);
             if (this.isPreloadVideoOperation) {
                 this.requestedPreloadedBytesRanges.remove(Long.valueOf(requestInfo2.offset));
@@ -1446,7 +1489,19 @@ public class FileLoadOperation {
                 removePart(this.notRequestedBytesRanges, requestInfo2.offset, requestInfo2.offset + requestInfo2.chunkSize);
             }
             if (requestInfo != requestInfo2 && requestInfo2.requestToken != 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true);
+                requestInfo2.cancelling = true;
+                if (!z2) {
+                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true);
+                    requestInfo2.cancelled = true;
+                } else {
+                    this.cancelledRequestInfos.add(requestInfo2);
+                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true, new Runnable() {
+                        @Override
+                        public final void run() {
+                            FileLoadOperation.this.lambda$clearOperation$20(requestInfo2);
+                        }
+                    });
+                }
             }
             i++;
             j = min;
@@ -1490,6 +1545,11 @@ public class FileLoadOperation {
         }
     }
 
+    public void lambda$clearOperation$20(RequestInfo requestInfo) {
+        this.cancelledRequestInfos.remove(requestInfo);
+        requestInfo.cancelled = true;
+    }
+
     private void requestReference(RequestInfo requestInfo) {
         TLRPC$Message tLRPC$Message;
         TLRPC$MessageMedia tLRPC$MessageMedia;
@@ -1497,7 +1557,7 @@ public class FileLoadOperation {
         if (this.requestingReference) {
             return;
         }
-        clearOperaion(null, false);
+        clearOperation(null, false, false);
         this.requestingReference = true;
         Object obj = this.parentObject;
         if (obj instanceof MessageObject) {
@@ -1517,119 +1577,155 @@ public class FileLoadOperation {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.startDownloadRequest(int):void");
     }
 
-    public void lambda$startDownloadRequest$18(RequestInfo requestInfo) {
+    public void lambda$startDownloadRequest$21(RequestInfo requestInfo) {
         processRequestResult(requestInfo, null);
         requestInfo.response.freeResources();
     }
 
-    public void lambda$startDownloadRequest$20(final RequestInfo requestInfo, int i, final int i2, TLObject tLObject, TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$startDownloadRequest$23(final RequestInfo requestInfo, int i, final int i2, TLObject tLObject, TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
         byte[] bArr;
-        if (this.requestInfos.contains(requestInfo)) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("debug_loading: " + this.cacheFileFinal.getName() + " time=" + (System.currentTimeMillis() - requestInfo.requestStartTime) + " dcId=" + i + " cdn=" + this.isCdn + " conType=" + i2 + " reqId" + requestInfo.requestToken);
+        if (requestInfo.cancelled) {
+            FileLog.e("received chunk but definitely cancelled offset=" + requestInfo.offset + " size=" + requestInfo.chunkSize + " token=" + requestInfo.requestToken);
+            return;
+        }
+        if (requestInfo.cancelling) {
+            FileLog.e("received cancelled chunk after cancelRequests! offset=" + requestInfo.offset + " size=" + requestInfo.chunkSize + " token=" + requestInfo.requestToken);
+        }
+        if (!this.requestInfos.contains(requestInfo)) {
+            if (!this.cancelledRequestInfos.contains(requestInfo)) {
+                return;
             }
-            if (requestInfo == this.priorityRequestInfo) {
-                if (BuildVars.DEBUG_VERSION) {
-                    FileLog.d("frame get request completed " + this.priorityRequestInfo.offset);
-                }
-                this.priorityRequestInfo = null;
-            }
-            if (tLRPC$TL_error != null) {
-                if (tLRPC$TL_error.code == -2000) {
-                    this.requestInfos.remove(requestInfo);
-                    this.requestedBytesCount -= requestInfo.chunkSize;
-                    removePart(this.notRequestedBytesRanges, requestInfo.offset, requestInfo.offset + requestInfo.chunkSize);
-                    return;
-                } else if (FileRefController.isFileRefError(tLRPC$TL_error.text)) {
-                    requestReference(requestInfo);
-                    return;
-                } else if ((tLObject instanceof TLRPC$TL_upload_getCdnFile) && tLRPC$TL_error.text.equals("FILE_TOKEN_INVALID")) {
-                    this.isCdn = false;
-                    clearOperaion(requestInfo, false);
-                    startDownloadRequest(i2);
-                    return;
-                }
-            }
-            if (tLObject2 instanceof TLRPC$TL_upload_fileCdnRedirect) {
-                TLRPC$TL_upload_fileCdnRedirect tLRPC$TL_upload_fileCdnRedirect = (TLRPC$TL_upload_fileCdnRedirect) tLObject2;
-                if (!tLRPC$TL_upload_fileCdnRedirect.file_hashes.isEmpty()) {
-                    if (this.cdnHashes == null) {
-                        this.cdnHashes = new HashMap<>();
-                    }
-                    for (int i3 = 0; i3 < tLRPC$TL_upload_fileCdnRedirect.file_hashes.size(); i3++) {
-                        TLRPC$TL_fileHash tLRPC$TL_fileHash = tLRPC$TL_upload_fileCdnRedirect.file_hashes.get(i3);
-                        this.cdnHashes.put(Long.valueOf(tLRPC$TL_fileHash.offset), tLRPC$TL_fileHash);
+            int i3 = 0;
+            boolean z = false;
+            while (i3 < this.requestInfos.size()) {
+                RequestInfo requestInfo2 = this.requestInfos.get(i3);
+                if (requestInfo2 != null && requestInfo2 != requestInfo && requestInfo2.offset == requestInfo.offset && requestInfo2.chunkSize == requestInfo.chunkSize) {
+                    FileLog.e("received cancelled chunk faster than new one! received=" + requestInfo.requestToken + " new=" + requestInfo2.requestToken);
+                    if (!z) {
+                        this.requestInfos.set(i3, requestInfo);
+                        z = true;
+                    } else {
+                        this.requestInfos.remove(i3);
+                        i3--;
                     }
                 }
-                byte[] bArr2 = tLRPC$TL_upload_fileCdnRedirect.encryption_iv;
-                if (bArr2 == null || (bArr = tLRPC$TL_upload_fileCdnRedirect.encryption_key) == null || bArr2.length != 16 || bArr.length != 32) {
-                    TLRPC$TL_error tLRPC$TL_error2 = new TLRPC$TL_error();
-                    tLRPC$TL_error2.text = "bad redirect response";
-                    tLRPC$TL_error2.code = 400;
-                    processRequestResult(requestInfo, tLRPC$TL_error2);
-                    return;
-                }
-                this.isCdn = true;
-                if (this.notCheckedCdnRanges == null) {
-                    ArrayList<Range> arrayList = new ArrayList<>();
-                    this.notCheckedCdnRanges = arrayList;
-                    arrayList.add(new Range(0L, this.maxCdnParts));
-                }
-                this.cdnDatacenterId = tLRPC$TL_upload_fileCdnRedirect.dc_id;
-                this.cdnIv = tLRPC$TL_upload_fileCdnRedirect.encryption_iv;
-                this.cdnKey = tLRPC$TL_upload_fileCdnRedirect.encryption_key;
-                this.cdnToken = tLRPC$TL_upload_fileCdnRedirect.file_token;
-                clearOperaion(requestInfo, false);
+                i3++;
+            }
+        }
+        int i4 = 0;
+        while (i4 < this.cancelledRequestInfos.size()) {
+            RequestInfo requestInfo3 = this.cancelledRequestInfos.get(i4);
+            if (requestInfo3 != null && requestInfo3 != requestInfo && requestInfo3.offset == requestInfo.offset && requestInfo3.chunkSize == requestInfo.chunkSize) {
+                FileLog.e("received new chunk faster than cancelled one! received=" + requestInfo.requestToken + " cancelled=" + requestInfo3.requestToken);
+                this.cancelledRequestInfos.remove(i4);
+                i4 += -1;
+            }
+            i4++;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("debug_loading: " + this.cacheFileFinal.getName() + " time=" + (System.currentTimeMillis() - requestInfo.requestStartTime) + " dcId=" + i + " cdn=" + this.isCdn + " conType=" + i2 + " reqId" + requestInfo.requestToken);
+        }
+        if (requestInfo == this.priorityRequestInfo) {
+            if (BuildVars.DEBUG_VERSION) {
+                FileLog.d("frame get request completed " + this.priorityRequestInfo.offset);
+            }
+            this.priorityRequestInfo = null;
+        }
+        if (tLRPC$TL_error != null) {
+            if (tLRPC$TL_error.code == -2000) {
+                this.requestInfos.remove(requestInfo);
+                this.requestedBytesCount -= requestInfo.chunkSize;
+                removePart(this.notRequestedBytesRanges, requestInfo.offset, requestInfo.offset + requestInfo.chunkSize);
+                return;
+            } else if (FileRefController.isFileRefError(tLRPC$TL_error.text)) {
+                requestReference(requestInfo);
+                return;
+            } else if ((tLObject instanceof TLRPC$TL_upload_getCdnFile) && tLRPC$TL_error.text.equals("FILE_TOKEN_INVALID")) {
+                this.isCdn = false;
+                clearOperation(requestInfo, false, false);
                 startDownloadRequest(i2);
-            } else if (tLObject2 instanceof TLRPC$TL_upload_cdnFileReuploadNeeded) {
-                if (this.reuploadingCdn) {
-                    return;
-                }
-                clearOperaion(requestInfo, false);
-                this.reuploadingCdn = true;
-                TLRPC$TL_upload_reuploadCdnFile tLRPC$TL_upload_reuploadCdnFile = new TLRPC$TL_upload_reuploadCdnFile();
-                tLRPC$TL_upload_reuploadCdnFile.file_token = this.cdnToken;
-                tLRPC$TL_upload_reuploadCdnFile.request_token = ((TLRPC$TL_upload_cdnFileReuploadNeeded) tLObject2).request_token;
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_upload_reuploadCdnFile, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject3, TLRPC$TL_error tLRPC$TL_error3) {
-                        FileLoadOperation.this.lambda$startDownloadRequest$19(i2, requestInfo, tLObject3, tLRPC$TL_error3);
-                    }
-                }, null, null, 0, this.datacenterId, 1, true);
-            } else {
-                if (tLObject2 instanceof TLRPC$TL_upload_file) {
-                    requestInfo.response = (TLRPC$TL_upload_file) tLObject2;
-                } else if (tLObject2 instanceof TLRPC$TL_upload_webFile) {
-                    requestInfo.responseWeb = (TLRPC$TL_upload_webFile) tLObject2;
-                    if (this.totalBytesCount == 0 && requestInfo.responseWeb.size != 0) {
-                        this.totalBytesCount = requestInfo.responseWeb.size;
-                    }
-                } else {
-                    requestInfo.responseCdn = (TLRPC$TL_upload_cdnFile) tLObject2;
-                }
-                if (tLObject2 != null) {
-                    int i4 = this.currentType;
-                    if (i4 == 50331648) {
-                        StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 3, tLObject2.getObjectSize() + 4);
-                    } else if (i4 == 33554432) {
-                        StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 2, tLObject2.getObjectSize() + 4);
-                    } else if (i4 == 16777216) {
-                        StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 4, tLObject2.getObjectSize() + 4);
-                    } else if (i4 == 67108864) {
-                        String str = this.ext;
-                        if (str != null && (str.toLowerCase().endsWith("mp3") || this.ext.toLowerCase().endsWith("m4a"))) {
-                            StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 7, tLObject2.getObjectSize() + 4);
-                        } else {
-                            StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 5, tLObject2.getObjectSize() + 4);
-                        }
-                    }
-                }
-                processRequestResult(requestInfo, tLRPC$TL_error);
+                return;
             }
+        }
+        if (tLObject2 instanceof TLRPC$TL_upload_fileCdnRedirect) {
+            TLRPC$TL_upload_fileCdnRedirect tLRPC$TL_upload_fileCdnRedirect = (TLRPC$TL_upload_fileCdnRedirect) tLObject2;
+            if (!tLRPC$TL_upload_fileCdnRedirect.file_hashes.isEmpty()) {
+                if (this.cdnHashes == null) {
+                    this.cdnHashes = new HashMap<>();
+                }
+                for (int i5 = 0; i5 < tLRPC$TL_upload_fileCdnRedirect.file_hashes.size(); i5++) {
+                    TLRPC$TL_fileHash tLRPC$TL_fileHash = tLRPC$TL_upload_fileCdnRedirect.file_hashes.get(i5);
+                    this.cdnHashes.put(Long.valueOf(tLRPC$TL_fileHash.offset), tLRPC$TL_fileHash);
+                }
+            }
+            byte[] bArr2 = tLRPC$TL_upload_fileCdnRedirect.encryption_iv;
+            if (bArr2 == null || (bArr = tLRPC$TL_upload_fileCdnRedirect.encryption_key) == null || bArr2.length != 16 || bArr.length != 32) {
+                TLRPC$TL_error tLRPC$TL_error2 = new TLRPC$TL_error();
+                tLRPC$TL_error2.text = "bad redirect response";
+                tLRPC$TL_error2.code = 400;
+                processRequestResult(requestInfo, tLRPC$TL_error2);
+                return;
+            }
+            this.isCdn = true;
+            if (this.notCheckedCdnRanges == null) {
+                ArrayList<Range> arrayList = new ArrayList<>();
+                this.notCheckedCdnRanges = arrayList;
+                arrayList.add(new Range(0L, this.maxCdnParts));
+            }
+            this.cdnDatacenterId = tLRPC$TL_upload_fileCdnRedirect.dc_id;
+            this.cdnIv = tLRPC$TL_upload_fileCdnRedirect.encryption_iv;
+            this.cdnKey = tLRPC$TL_upload_fileCdnRedirect.encryption_key;
+            this.cdnToken = tLRPC$TL_upload_fileCdnRedirect.file_token;
+            clearOperation(requestInfo, false, false);
+            startDownloadRequest(i2);
+        } else if (tLObject2 instanceof TLRPC$TL_upload_cdnFileReuploadNeeded) {
+            if (this.reuploadingCdn) {
+                return;
+            }
+            clearOperation(requestInfo, false, false);
+            this.reuploadingCdn = true;
+            TLRPC$TL_upload_reuploadCdnFile tLRPC$TL_upload_reuploadCdnFile = new TLRPC$TL_upload_reuploadCdnFile();
+            tLRPC$TL_upload_reuploadCdnFile.file_token = this.cdnToken;
+            tLRPC$TL_upload_reuploadCdnFile.request_token = ((TLRPC$TL_upload_cdnFileReuploadNeeded) tLObject2).request_token;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_upload_reuploadCdnFile, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject3, TLRPC$TL_error tLRPC$TL_error3) {
+                    FileLoadOperation.this.lambda$startDownloadRequest$22(i2, requestInfo, tLObject3, tLRPC$TL_error3);
+                }
+            }, null, null, 0, this.datacenterId, 1, true);
+        } else {
+            if (tLObject2 instanceof TLRPC$TL_upload_file) {
+                requestInfo.response = (TLRPC$TL_upload_file) tLObject2;
+            } else if (tLObject2 instanceof TLRPC$TL_upload_webFile) {
+                requestInfo.responseWeb = (TLRPC$TL_upload_webFile) tLObject2;
+                if (this.totalBytesCount == 0 && requestInfo.responseWeb.size != 0) {
+                    this.totalBytesCount = requestInfo.responseWeb.size;
+                }
+            } else {
+                requestInfo.responseCdn = (TLRPC$TL_upload_cdnFile) tLObject2;
+            }
+            if (tLObject2 != null) {
+                int i6 = this.currentType;
+                if (i6 == 50331648) {
+                    StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 3, tLObject2.getObjectSize() + 4);
+                } else if (i6 == 33554432) {
+                    StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 2, tLObject2.getObjectSize() + 4);
+                } else if (i6 == 16777216) {
+                    StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 4, tLObject2.getObjectSize() + 4);
+                } else if (i6 == 67108864) {
+                    String str = this.ext;
+                    if (str != null && (str.toLowerCase().endsWith("mp3") || this.ext.toLowerCase().endsWith("m4a"))) {
+                        StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 7, tLObject2.getObjectSize() + 4);
+                    } else {
+                        StatsController.getInstance(this.currentAccount).incrementReceivedBytesCount(tLObject2.networkType, 5, tLObject2.getObjectSize() + 4);
+                    }
+                }
+            }
+            processRequestResult(requestInfo, tLRPC$TL_error);
         }
     }
 
-    public void lambda$startDownloadRequest$19(int i, RequestInfo requestInfo, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$startDownloadRequest$22(int i, RequestInfo requestInfo, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         this.reuploadingCdn = false;
         if (tLRPC$TL_error == null) {
             TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
@@ -1645,7 +1741,7 @@ public class FileLoadOperation {
             startDownloadRequest(i);
         } else if (tLRPC$TL_error.text.equals("FILE_TOKEN_INVALID") || tLRPC$TL_error.text.equals("REQUEST_TOKEN_INVALID")) {
             this.isCdn = false;
-            clearOperaion(requestInfo, false);
+            clearOperation(requestInfo, false, false);
             startDownloadRequest(i);
         } else {
             onFail(false, 0);

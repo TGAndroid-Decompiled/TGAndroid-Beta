@@ -540,7 +540,7 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     public void lambda$createView$2(Context context, View view) {
-        AlertsCreator.createDatePickerDialog(context, -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
+        AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i) {
                 LinkEditActivity.this.lambda$createView$1(z, i);

@@ -92,7 +92,7 @@ public abstract class TLRPC$Updates extends TLObject {
                         if ((this.flags & 4) != 0) {
                             this.fwd_from = TLRPC$MessageFwdHeader.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.via_bot_id = abstractSerializedData2.readInt64(z2);
                         }
                         if ((this.flags & 8) != 0) {
@@ -141,7 +141,7 @@ public abstract class TLRPC$Updates extends TLObject {
                         if ((this.flags & 4) != 0) {
                             this.fwd_from = TLRPC$MessageFwdHeader.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                        if ((this.flags & 2048) != 0) {
                             this.via_bot_id = abstractSerializedData2.readInt64(z2);
                         }
                         if ((this.flags & 8) != 0) {

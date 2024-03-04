@@ -96,7 +96,7 @@ public class FileLoaderPriorityQueue {
             FileLoadOperation fileLoadOperation = i3 > 0 ? this.allOperations.get(i3 - 1) : null;
             FileLoadOperation fileLoadOperation2 = this.allOperations.get(i3);
             if (i3 > 0 && !z) {
-                if (this.type == i && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576) {
+                if (this.type == i && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
                     z = true;
                 }
                 if (i4 > 0 && fileLoadOperation2.getPriority() == 0) {

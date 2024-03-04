@@ -11,7 +11,7 @@ public class TLRPC$TL_groupCall extends TLRPC$GroupCall {
         this.join_date_asc = (readInt32 & 64) != 0;
         this.schedule_start_subscribed = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
         this.can_start_video = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-        this.record_video_active = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.record_video_active = (readInt32 & 2048) != 0;
         this.rtmp_stream = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.listeners_hidden = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
         this.id = abstractSerializedData.readInt64(z);
@@ -49,7 +49,7 @@ public class TLRPC$TL_groupCall extends TLRPC$GroupCall {
         this.flags = i4;
         int i5 = this.can_start_video ? i4 | LiteMode.FLAG_CALLS_ANIMATIONS : i4 & (-513);
         this.flags = i5;
-        int i6 = this.record_video_active ? i5 | LiteMode.FLAG_AUTOPLAY_GIFS : i5 & (-2049);
+        int i6 = this.record_video_active ? i5 | 2048 : i5 & (-2049);
         this.flags = i6;
         int i7 = this.rtmp_stream ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i6 & (-4097);
         this.flags = i7;

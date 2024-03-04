@@ -138,6 +138,7 @@ public class ThemeColors {
         iArr[Theme.key_avatar_backgroundCyan] = -10761245;
         iArr[Theme.key_avatar_backgroundBlue] = -10702854;
         iArr[Theme.key_avatar_backgroundPink] = -30036;
+        iArr[Theme.key_avatar_backgroundGray] = -6181963;
         iArr[Theme.key_avatar_background2Red] = -2862522;
         iArr[Theme.key_avatar_background2Orange] = -622282;
         iArr[Theme.key_avatar_background2Violet] = -9674273;

@@ -76,7 +76,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -146,7 +146,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -224,7 +224,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -315,7 +315,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -429,7 +429,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -527,7 +527,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -622,7 +622,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -717,7 +717,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -826,7 +826,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.id = abstractSerializedData2.readInt32(z3);
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
@@ -863,7 +863,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i8;
                         int i9 = this.restricted ? i8 | LiteMode.FLAG_CALLS_ANIMATIONS : i8 & (-513);
                         this.flags = i9;
-                        int i10 = this.signatures ? i9 | LiteMode.FLAG_AUTOPLAY_GIFS : i9 & (-2049);
+                        int i10 = this.signatures ? i9 | 2048 : i9 & (-2049);
                         this.flags = i10;
                         int i11 = this.min ? i10 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i10 & (-4097);
                         this.flags = i11;
@@ -897,7 +897,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -998,7 +998,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -1096,7 +1096,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.id = abstractSerializedData2.readInt32(z3);
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
@@ -1142,7 +1142,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -1185,7 +1185,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -1252,7 +1252,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -1401,7 +1401,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.id = abstractSerializedData2.readInt32(z3);
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
@@ -1446,7 +1446,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i7;
                         int i8 = this.restricted ? i7 | LiteMode.FLAG_CALLS_ANIMATIONS : i7 & (-513);
                         this.flags = i8;
-                        int i9 = this.signatures ? i8 | LiteMode.FLAG_AUTOPLAY_GIFS : i8 & (-2049);
+                        int i9 = this.signatures ? i8 | 2048 : i8 & (-2049);
                         this.flags = i9;
                         int i10 = this.min ? i9 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i9 & (-4097);
                         this.flags = i10;
@@ -1486,7 +1486,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -1590,7 +1590,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -1694,7 +1694,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -1800,7 +1800,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -2020,7 +2020,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.id = abstractSerializedData2.readInt32(z3);
                         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
@@ -2066,7 +2066,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;
@@ -2111,7 +2111,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.id = abstractSerializedData2.readInt32(z3);
                         this.access_hash = abstractSerializedData2.readInt64(z3);
                         this.title = abstractSerializedData2.readString(z3);
@@ -2145,7 +2145,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i8;
                         int i9 = this.restricted ? i8 | LiteMode.FLAG_CALLS_ANIMATIONS : i8 & (-513);
                         this.flags = i9;
-                        int i10 = this.signatures ? i9 | LiteMode.FLAG_AUTOPLAY_GIFS : i9 & (-2049);
+                        int i10 = this.signatures ? i9 | 2048 : i9 & (-2049);
                         this.flags = i10;
                         abstractSerializedData2.writeInt32(i10);
                         abstractSerializedData2.writeInt32((int) this.id);
@@ -2175,7 +2175,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.verified = (readInt32 & 128) != 0;
                         this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.restricted = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
-                        this.signatures = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.signatures = (readInt32 & 2048) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.scam = (524288 & readInt32) != 0;
                         this.has_link = (1048576 & readInt32) != 0;
@@ -2224,7 +2224,7 @@ public abstract class TLRPC$Chat extends TLObject {
                         this.flags = i6;
                         int i7 = this.restricted ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
                         this.flags = i7;
-                        int i8 = this.signatures ? i7 | LiteMode.FLAG_AUTOPLAY_GIFS : i7 & (-2049);
+                        int i8 = this.signatures ? i7 | 2048 : i7 & (-2049);
                         this.flags = i8;
                         int i9 = this.min ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
                         this.flags = i9;

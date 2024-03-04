@@ -30,7 +30,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     Consumer<Object> wallpaperConsumer;
 
     @Override
-    int needsActionBar() {
+    public int needsActionBar() {
         return 1;
     }
 
@@ -130,7 +130,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     }
 
     @Override
-    void scrollToTop() {
+    public void scrollToTop() {
         this.gridView.smoothScrollToPosition(0);
     }
 
@@ -158,7 +158,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     }
 
     @Override
-    int getFirstOffset() {
+    public int getFirstOffset() {
         return getListTopPadding() + AndroidUtilities.dp(56.0f);
     }
 
@@ -232,7 +232,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     }
 
     @Override
-    void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         try {
             this.parentAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {

@@ -57,6 +57,7 @@ public class LocationController extends BaseController implements NotificationCe
     private static final int LOCATION_ACQUIRE_TIME = 10000;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final int SEND_NEW_LOCATION_TIME = 2000;
+    public static final int TYPE_BIZ = 1;
     private static final long UPDATE_INTERVAL = 1000;
     private static final int WATCH_LOCATION_TIMEOUT = 65000;
     private ILocationServiceProvider.IMapApiClient apiClient;
@@ -1222,7 +1223,11 @@ public class LocationController extends BaseController implements NotificationCe
         return i;
     }
 
-    public static void fetchLocationAddress(final Location location, final LocationFetchCallback locationFetchCallback) {
+    public static void fetchLocationAddress(Location location, LocationFetchCallback locationFetchCallback) {
+        fetchLocationAddress(location, 0, locationFetchCallback);
+    }
+
+    public static void fetchLocationAddress(final Location location, final int i, final LocationFetchCallback locationFetchCallback) {
         final Locale systemDefaultLocale;
         if (locationFetchCallback == null) {
             return;
@@ -1245,15 +1250,15 @@ public class LocationController extends BaseController implements NotificationCe
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                LocationController.lambda$fetchLocationAddress$31(systemDefaultLocale, location, locationFetchCallback);
+                LocationController.lambda$fetchLocationAddress$31(systemDefaultLocale, location, i, locationFetchCallback);
             }
         };
         dispatchQueue.postRunnable(runnable2, 300L);
         callbacks.put(locationFetchCallback, runnable2);
     }
 
-    public static void lambda$fetchLocationAddress$31(java.util.Locale r20, final android.location.Location r21, final org.telegram.messenger.LocationController.LocationFetchCallback r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.lambda$fetchLocationAddress$31(java.util.Locale, android.location.Location, org.telegram.messenger.LocationController$LocationFetchCallback):void");
+    public static void lambda$fetchLocationAddress$31(java.util.Locale r18, final android.location.Location r19, int r20, final org.telegram.messenger.LocationController.LocationFetchCallback r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.lambda$fetchLocationAddress$31(java.util.Locale, android.location.Location, int, org.telegram.messenger.LocationController$LocationFetchCallback):void");
     }
 
     public static void lambda$fetchLocationAddress$30(LocationFetchCallback locationFetchCallback, String str, String str2, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue2, Location location) {

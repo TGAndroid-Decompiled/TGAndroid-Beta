@@ -9,6 +9,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import androidx.core.util.Consumer;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -566,14 +567,10 @@ public class GoogleMapsProvider implements IMapsProvider {
 
     public static final class GoogleMapView implements IMapsProvider.IMapView {
         private IMapsProvider.ITouchInterceptor dispatchInterceptor;
+        private GLSurfaceView glSurfaceView;
         private IMapsProvider.ITouchInterceptor interceptInterceptor;
         private MapView mapView;
         private Runnable onLayoutListener;
-
-        @Override
-        public GLSurfaceView getGlSurfaceView() {
-            return IMapsProvider.IMapView.CC.$default$getGlSurfaceView(this);
-        }
 
         public class AnonymousClass1 extends MapView {
             AnonymousClass1(Context context) {
@@ -651,18 +648,36 @@ public class GoogleMapsProvider implements IMapsProvider {
             return this.mapView;
         }
 
-        public static void lambda$getMapAsync$0(Consumer consumer, GoogleMap googleMap) {
-            consumer.accept(new GoogleMapImpl(googleMap));
-        }
-
         @Override
         public void getMapAsync(final Consumer<IMapsProvider.IMap> consumer) {
             this.mapView.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public final void onMapReady(GoogleMap googleMap) {
-                    GoogleMapsProvider.GoogleMapView.lambda$getMapAsync$0(Consumer.this, googleMap);
+                    GoogleMapsProvider.GoogleMapView.this.lambda$getMapAsync$0(consumer, googleMap);
                 }
             });
+        }
+
+        public void lambda$getMapAsync$0(Consumer consumer, GoogleMap googleMap) {
+            consumer.accept(new GoogleMapImpl(googleMap));
+            findGlSurfaceView(this.mapView);
+        }
+
+        @Override
+        public GLSurfaceView getGlSurfaceView() {
+            return this.glSurfaceView;
+        }
+
+        private void findGlSurfaceView(View view) {
+            if (view instanceof GLSurfaceView) {
+                this.glSurfaceView = (GLSurfaceView) view;
+            }
+            if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    findGlSurfaceView(viewGroup.getChildAt(i));
+                }
+            }
         }
 
         @Override

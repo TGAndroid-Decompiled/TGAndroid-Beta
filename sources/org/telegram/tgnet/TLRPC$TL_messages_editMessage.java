@@ -11,6 +11,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
     public String message;
     public boolean no_webpage;
     public TLRPC$InputPeer peer;
+    public int quick_reply_shortcut_id;
     public TLRPC$ReplyMarkup reply_markup;
     public int schedule_date;
 
@@ -21,7 +22,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1224152952);
+        abstractSerializedData.writeInt32(-539934715);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.invert_media ? i | 65536 : i & (-65537);
@@ -29,7 +30,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
         abstractSerializedData.writeInt32(i2);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.id);
-        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+        if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.message);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -48,6 +49,9 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
         }
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
+        }
+        if ((this.flags & 131072) != 0) {
+            abstractSerializedData.writeInt32(this.quick_reply_shortcut_id);
         }
     }
 }

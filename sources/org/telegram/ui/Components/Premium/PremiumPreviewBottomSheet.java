@@ -154,7 +154,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.currentAccount = i;
         this.giftTier = giftTier;
         this.dummyCell = new PremiumFeatureCell(getContext());
-        PremiumPreviewFragment.fillPremiumFeaturesList(this.premiumFeatures, i);
+        PremiumPreviewFragment.fillPremiumFeaturesList(this.premiumFeatures, i, false);
         if (this.giftTier != null || UserConfig.getInstance(i).isPremium()) {
             this.buttonContainer.setVisibility(8);
         }

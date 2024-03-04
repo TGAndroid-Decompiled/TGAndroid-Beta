@@ -11,20 +11,24 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildConfig;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -75,7 +79,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     ViewPager viewPager;
 
     public boolean isFullscreenType(int i) {
-        return i == 0 || i == 14;
+        return i == 0 || i == 14 || i == 28;
     }
 
     public PremiumFeatureBottomSheet(BaseFragment baseFragment, int i, boolean z) {
@@ -83,14 +87,14 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     }
 
     public PremiumFeatureBottomSheet(BaseFragment baseFragment, int i, boolean z, PremiumPreviewFragment.SubscriptionTier subscriptionTier) {
-        this(baseFragment, baseFragment.getContext(), baseFragment.getCurrentAccount(), i, z, subscriptionTier);
+        this(baseFragment, baseFragment.getContext(), baseFragment.getCurrentAccount(), false, i, z, subscriptionTier);
     }
 
     public PremiumFeatureBottomSheet(BaseFragment baseFragment, Context context, int i, int i2, boolean z) {
-        this(baseFragment, context, i, i2, z, null);
+        this(baseFragment, context, i, false, i2, z, null);
     }
 
-    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, int i2, final boolean z, PremiumPreviewFragment.SubscriptionTier subscriptionTier) {
+    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier) {
         super(context, false, getResourceProvider(baseFragment));
         this.premiumFeatures = new ArrayList<>();
         this.gradientAlpha = 255;
@@ -101,7 +105,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.selectedTier = subscriptionTier;
         fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
         this.startType = i2;
-        this.onlySelectedType = z;
+        this.onlySelectedType = z2;
         this.svgIcon = SvgHelper.getDrawable(RLottieDrawable.readRes(null, R.raw.star_loader));
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
@@ -114,7 +118,12 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 super.onMeasure(i3, i4);
             }
         };
-        PremiumPreviewFragment.fillPremiumFeaturesList(this.premiumFeatures, i);
+        if (z || i2 == 35) {
+            PremiumPreviewFragment.fillBusinessFeaturesList(this.premiumFeatures, i, false);
+            PremiumPreviewFragment.fillBusinessFeaturesList(this.premiumFeatures, i, true);
+        } else {
+            PremiumPreviewFragment.fillPremiumFeaturesList(this.premiumFeatures, i, false);
+        }
         int i3 = 0;
         while (true) {
             if (i3 >= this.premiumFeatures.size()) {
@@ -126,7 +135,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 i3++;
             }
         }
-        if (z) {
+        if (z2) {
             this.premiumFeatures.clear();
             this.premiumFeatures.add(this.premiumFeatures.get(i3));
             i3 = 0;
@@ -173,6 +182,27 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         });
         frameLayout.addView(this.content, LayoutHelper.createLinear(-1, -2, 1, 0, 16, 0, 0));
         ViewPager viewPager = new ViewPager(getContext()) {
+            long lastTapTime;
+            private Scroller scroller;
+            private boolean smoothScroll;
+
+            {
+                try {
+                    Field declaredField = ViewPager.class.getDeclaredField("mScroller");
+                    declaredField.setAccessible(true);
+                    Scroller scroller = new Scroller(getContext()) {
+                        @Override
+                        public void startScroll(int i4, int i5, int i6, int i7, int i8) {
+                            super.startScroll(i4, i5, i6, i7, (AnonymousClass3.this.smoothScroll ? 3 : 1) * i8);
+                        }
+                    };
+                    this.scroller = scroller;
+                    declaredField.set(this, scroller);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+
             @Override
             public void onMeasure(int i4, int i5) {
                 int dp = AndroidUtilities.dp(100.0f);
@@ -183,9 +213,38 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(dp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
             }
 
+            private boolean processTap(MotionEvent motionEvent, boolean z3) {
+                Scroller scroller;
+                if (motionEvent.getAction() == 0) {
+                    this.lastTapTime = System.currentTimeMillis();
+                    return true;
+                }
+                if (motionEvent.getAction() == 1) {
+                    if (System.currentTimeMillis() - this.lastTapTime <= ViewConfiguration.getTapTimeout() && (scroller = this.scroller) != null && scroller.isFinished()) {
+                        this.smoothScroll = true;
+                        if (motionEvent.getX() > getWidth() * 0.45f) {
+                            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
+                            if (premiumFeatureBottomSheet.selectedPosition + 1 < premiumFeatureBottomSheet.premiumFeatures.size()) {
+                                setCurrentItem(PremiumFeatureBottomSheet.this.selectedPosition + 1, true);
+                            }
+                        } else {
+                            int i4 = PremiumFeatureBottomSheet.this.selectedPosition;
+                            if (i4 - 1 >= 0) {
+                                setCurrentItem(i4 - 1, true);
+                            }
+                        }
+                        this.smoothScroll = false;
+                    }
+                } else if (motionEvent.getAction() == 3) {
+                    this.lastTapTime = -1L;
+                }
+                return false;
+            }
+
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 try {
+                    processTap(motionEvent, true);
                     return super.onInterceptTouchEvent(motionEvent);
                 } catch (Exception unused) {
                     return false;
@@ -197,7 +256,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 if (PremiumFeatureBottomSheet.this.enterAnimationIsRunning) {
                     return false;
                 }
-                return super.onTouchEvent(motionEvent);
+                return super.onTouchEvent(motionEvent) || processTap(motionEvent, false);
             }
         };
         this.viewPager = viewPager;
@@ -240,7 +299,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         linearLayout.addView(frameLayout);
         linearLayout.setOrientation(1);
         bottomPagesView.setColor(Theme.key_chats_unreadCounterMuted, Theme.key_chats_actionBackground);
-        if (!z) {
+        if (!z2) {
             linearLayout.addView(bottomPagesView, LayoutHelper.createLinear(this.premiumFeatures.size() * 11, 5, 1, 0, 0, 0, 10));
         }
         PremiumButtonView premiumButtonView = new PremiumButtonView(getContext(), true, this.resourcesProvider);
@@ -248,7 +307,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumFeatureBottomSheet.this.lambda$new$1(baseFragment, z, premiumFeatureData, view);
+                PremiumFeatureBottomSheet.this.lambda$new$1(baseFragment, z2, premiumFeatureData, view);
             }
         });
         this.premiumButtonView.overlayTextView.setOnClickListener(new View.OnClickListener() {
@@ -376,6 +435,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 PremiumFeatureBottomSheet.this.actionBar.requestLayout();
             } else if (PremiumFeatureBottomSheet.this.premiumFeatures.get(i).type == 14) {
                 PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
+                PremiumFeatureBottomSheet.this.actionBar.requestLayout();
+            } else if (PremiumFeatureBottomSheet.this.premiumFeatures.get(i).type == 28) {
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
                 PremiumFeatureBottomSheet.this.actionBar.requestLayout();
             }
             checkPage();
@@ -521,10 +583,13 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         if (this.premiumFeatures.get(this.selectedPosition).type == 14) {
             this.actionBar.setTitle(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
             this.actionBar.requestLayout();
-            return;
+        } else if (this.premiumFeatures.get(this.selectedPosition).type == 28) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
+            this.actionBar.requestLayout();
+        } else {
+            this.actionBar.setTitle(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
+            this.actionBar.requestLayout();
         }
-        this.actionBar.setTitle(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
-        this.actionBar.requestLayout();
     }
 
     @Override
@@ -638,7 +703,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
 
         void setFeatureDate(PremiumPreviewFragment.PremiumFeatureData premiumFeatureData) {
             int i = premiumFeatureData.type;
-            if (i != 0 && i != 14) {
+            if (i != 0 && i != 14 && i != 28) {
                 if (PremiumFeatureBottomSheet.this.onlySelectedType) {
                     if (PremiumFeatureBottomSheet.this.startType != 4) {
                         if (PremiumFeatureBottomSheet.this.startType != 3) {
@@ -721,9 +786,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
             });
             return doubleLimitsPageView;
-        } else if (i2 == 14) {
-            StoriesPageView storiesPageView = new StoriesPageView(context, this.resourcesProvider);
-            storiesPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        } else if (i2 == 14 || i2 == 28) {
+            FeaturesPageView featuresPageView = new FeaturesPageView(context, i2 == 28 ? 1 : 0, this.resourcesProvider);
+            featuresPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                     super.onScrolled(recyclerView, i3, i4);
@@ -731,7 +796,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                     PremiumFeatureBottomSheet.this.checkTopOffset();
                 }
             });
-            return storiesPageView;
+            return featuresPageView;
         } else if (i2 == 5) {
             return new PremiumStickersPreviewRecycler(this, context, this.currentAccount) {
                 @Override

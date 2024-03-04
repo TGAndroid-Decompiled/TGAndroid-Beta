@@ -50,7 +50,6 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.net.IDN;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -2637,13 +2636,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        protected void updateRecordInterface(int i, boolean z) {
+        public void updateRecordInterface(int i, boolean z) {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
 
         @Override
-        protected void isRecordingStateChanged() {
+        public void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }
@@ -2933,7 +2932,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         mentionsContainerView.withDelegate(new MentionsContainerView.Delegate() {
             @Override
             public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
-                SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tLRPC$TL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj);
+                SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tLRPC$TL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj, null, 0);
                 PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tLRPC$TL_document);
                 PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
                 PeerStoriesView.this.afterMessageSend();
@@ -2962,7 +2961,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 hashMap.put("query_id", BuildConfig.APP_CENTER_HASH + tLRPC$BotInlineResult.query_id);
                 hashMap.put("bot", BuildConfig.APP_CENTER_HASH + contextBotId);
                 hashMap.put("bot_name", PeerStoriesView.this.mentionContainer.getAdapter().getContextBotName());
-                SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, z, i);
+                SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, z, i, null, 0);
                 PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
                 PeerStoriesView.this.afterMessageSend();
                 MediaDataController.getInstance(PeerStoriesView.this.currentAccount).increaseInlineRaiting(contextBotId);
@@ -3139,10 +3138,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                                         photoEntry.reset();
                                     }
                                 }
-                                SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, i == i3 || z3, z, null, z2, i2, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null);
+                                SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, i == i3 || z3, z, null, z2, i2, 0, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null, null, 0);
                                 i5++;
-                                selectedPhotosOrder = selectedPhotosOrder;
                                 selectedPhotos = selectedPhotos;
+                                selectedPhotosOrder = selectedPhotosOrder;
                                 i4 = 0;
                                 i3 = 4;
                             }
@@ -3171,7 +3170,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     if (tL_stories$StoryItem == null || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
                         return;
                     }
-                    SendMessagesHelper.prepareSendingAudioDocuments(peerStoriesView.getAccountInstance(), arrayList, charSequence != null ? charSequence : null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, z, i, null);
+                    SendMessagesHelper.prepareSendingAudioDocuments(peerStoriesView.getAccountInstance(), arrayList, charSequence != null ? charSequence : null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, z, i, null, null, 0);
                     PeerStoriesView.this.afterMessageSend();
                 }
 
@@ -3201,7 +3200,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     if (tL_stories$StoryItem == null || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
                         return;
                     }
-                    SendMessagesHelper.prepareSendingDocuments(peerStoriesView.getAccountInstance(), arrayList, arrayList, null, str, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, null, z, i, null);
+                    SendMessagesHelper.prepareSendingDocuments(peerStoriesView.getAccountInstance(), arrayList, arrayList, null, str, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, null, z, i, null, null, 0);
                     PeerStoriesView.this.afterMessageSend();
                 }
 
@@ -3269,7 +3268,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -4501,85 +4500,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    private void requestVideoPlayer(long j) {
-        TLRPC$Document tLRPC$Document;
-        Uri uri;
-        TLRPC$Document tLRPC$Document2;
-        if (this.isActive) {
-            if (this.currentStory.isVideo()) {
-                if (this.currentStory.getLocalPath() != null && new File(this.currentStory.getLocalPath()).exists()) {
-                    Uri fromFile = Uri.fromFile(new File(this.currentStory.getLocalPath()));
-                    this.videoDuration = 0L;
-                    uri = fromFile;
-                    tLRPC$Document = null;
-                } else {
-                    TL_stories$StoryItem tL_stories$StoryItem = this.currentStory.storyItem;
-                    if (tL_stories$StoryItem != null) {
-                        tL_stories$StoryItem.dialogId = this.dialogId;
-                        try {
-                            tLRPC$Document2 = tL_stories$StoryItem.media.getDocument();
-                            try {
-                                TL_stories$StoryItem tL_stories$StoryItem2 = this.currentStory.storyItem;
-                                if (tL_stories$StoryItem2.fileReference == 0) {
-                                    tL_stories$StoryItem2.fileReference = FileLoader.getInstance(this.currentAccount).getFileReference(this.currentStory.storyItem);
-                                }
-                                StringBuilder sb = new StringBuilder();
-                                sb.append("?account=");
-                                sb.append(this.currentAccount);
-                                sb.append("&id=");
-                                sb.append(tLRPC$Document2.id);
-                                sb.append("&hash=");
-                                sb.append(tLRPC$Document2.access_hash);
-                                sb.append("&dc=");
-                                sb.append(tLRPC$Document2.dc_id);
-                                sb.append("&size=");
-                                sb.append(tLRPC$Document2.size);
-                                sb.append("&mime=");
-                                sb.append(URLEncoder.encode(tLRPC$Document2.mime_type, "UTF-8"));
-                                sb.append("&rid=");
-                                sb.append(this.currentStory.storyItem.fileReference);
-                                sb.append("&name=");
-                                sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(tLRPC$Document2), "UTF-8"));
-                                sb.append("&reference=");
-                                byte[] bArr = tLRPC$Document2.file_reference;
-                                if (bArr == null) {
-                                    bArr = new byte[0];
-                                }
-                                sb.append(Utilities.bytesToHex(bArr));
-                                sb.append("&sid=");
-                                sb.append(this.currentStory.storyItem.id);
-                                sb.append("&did=");
-                                sb.append(this.currentStory.storyItem.dialogId);
-                                Uri parse = Uri.parse("tg://" + FileLoader.getAttachFileName(tLRPC$Document2) + sb.toString());
-                                this.videoDuration = (long) (MessageObject.getDocumentDuration(tLRPC$Document2) * 1000.0d);
-                                uri = parse;
-                                tLRPC$Document = tLRPC$Document2;
-                            } catch (Exception unused) {
-                                tLRPC$Document = tLRPC$Document2;
-                                uri = null;
-                                this.delegate.requestPlayer(tLRPC$Document, uri, j, this.playerSharedScope);
-                                this.storyContainer.invalidate();
-                                return;
-                            }
-                        } catch (Exception unused2) {
-                            tLRPC$Document2 = null;
-                        }
-                    } else {
-                        tLRPC$Document = null;
-                        uri = null;
-                    }
-                }
-                this.delegate.requestPlayer(tLRPC$Document, uri, j, this.playerSharedScope);
-                this.storyContainer.invalidate();
-                return;
-            }
-            this.delegate.requestPlayer(null, null, 0L, this.playerSharedScope);
-            VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
-            videoPlayerSharedScope.renderView = null;
-            videoPlayerSharedScope.firstFrameRendered = false;
-            return;
-        }
-        this.playerSharedScope.renderView = null;
+    private void requestVideoPlayer(long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.requestVideoPlayer(long):void");
     }
 
     public boolean switchToNext(boolean z) {
@@ -4922,7 +4844,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    private void sendUriAsDocument(android.net.Uri r19) {
+    private void sendUriAsDocument(android.net.Uri r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.sendUriAsDocument(android.net.Uri):void");
     }
 
@@ -5992,14 +5914,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 tL_stories$StoryItem.dialogId = peerStoriesView.dialogId;
                 if (photoEntry.isVideo) {
                     if (videoEditedInfo != null) {
-                        SendMessagesHelper.prepareSendingVideo(PeerStoriesView.this.getAccountInstance(), photoEntry.path, videoEditedInfo, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.ttl, null, z, i, z2, photoEntry.hasSpoiler, photoEntry.caption);
+                        SendMessagesHelper.prepareSendingVideo(PeerStoriesView.this.getAccountInstance(), photoEntry.path, videoEditedInfo, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.ttl, null, z, i, z2, photoEntry.hasSpoiler, photoEntry.caption, null, 0);
                     } else {
-                        SendMessagesHelper.prepareSendingVideo(PeerStoriesView.this.getAccountInstance(), photoEntry.path, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.ttl, null, z, i, z2, photoEntry.hasSpoiler, photoEntry.caption);
+                        SendMessagesHelper.prepareSendingVideo(PeerStoriesView.this.getAccountInstance(), photoEntry.path, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.ttl, null, z, i, z2, photoEntry.hasSpoiler, photoEntry.caption, null, 0);
                     }
                 } else if (photoEntry.imagePath != null) {
-                    SendMessagesHelper.prepareSendingPhoto(PeerStoriesView.this.getAccountInstance(), photoEntry.imagePath, photoEntry.thumbPath, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z, i, z2, photoEntry.caption);
+                    SendMessagesHelper.prepareSendingPhoto(PeerStoriesView.this.getAccountInstance(), photoEntry.imagePath, photoEntry.thumbPath, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z, i, 0, z2, photoEntry.caption, null, 0);
                 } else if (photoEntry.path != null) {
-                    SendMessagesHelper.prepareSendingPhoto(PeerStoriesView.this.getAccountInstance(), photoEntry.path, photoEntry.thumbPath, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z, i, z2, photoEntry.caption);
+                    SendMessagesHelper.prepareSendingPhoto(PeerStoriesView.this.getAccountInstance(), photoEntry.path, photoEntry.thumbPath, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z, i, 0, z2, photoEntry.caption, null, 0);
                 }
                 PeerStoriesView.this.afterMessageSend();
             }

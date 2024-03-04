@@ -9,6 +9,7 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
     public int flags;
     public TLRPC$InputPeer from_peer;
     public boolean noforwards;
+    public TLRPC$InputQuickReplyShortcut quick_reply_shortcut;
     public int schedule_date;
     public TLRPC$InputPeer send_as;
     public boolean silent;
@@ -25,14 +26,14 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-966673468);
+        abstractSerializedData.writeInt32(-721186296);
         int i = this.silent ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);
         this.flags = i2;
         int i3 = this.with_my_score ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
         this.flags = i3;
-        int i4 = this.drop_author ? i3 | LiteMode.FLAG_AUTOPLAY_GIFS : i3 & (-2049);
+        int i4 = this.drop_author ? i3 | 2048 : i3 & (-2049);
         this.flags = i4;
         int i5 = this.drop_media_captions ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i4 & (-4097);
         this.flags = i5;
@@ -61,6 +62,9 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 131072) != 0) {
+            this.quick_reply_shortcut.serializeToStream(abstractSerializedData);
         }
     }
 }

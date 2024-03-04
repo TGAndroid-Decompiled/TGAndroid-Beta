@@ -45,6 +45,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.PaddedListAdapter;
+import org.telegram.ui.Business.QuickRepliesActivity;
 import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Cells.StickerCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -964,6 +965,8 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
     public static void lambda$didReceivedNotification$6(View view) {
         if (view instanceof MentionCell) {
             ((MentionCell) view).invalidateEmojis();
+        } else if (view instanceof QuickRepliesActivity.QuickReplyView) {
+            ((QuickRepliesActivity.QuickReplyView) view).invalidateEmojis();
         } else {
             view.invalidate();
         }

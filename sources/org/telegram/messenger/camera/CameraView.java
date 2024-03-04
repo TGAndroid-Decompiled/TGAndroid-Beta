@@ -148,6 +148,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     private int[] position;
     private Size[] previewSize;
     File recordFile;
+    private float scaleX;
+    private float scaleY;
     private Integer shape;
     private volatile float shapeValue;
     private volatile int surfaceHeight;
@@ -223,9 +225,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.blurredStubView.setVisibility(0);
         this.flipHalfReached = false;
         this.flipping = true;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.flipAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        this.flipAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+        TextureView textureView = this.textureView;
+        textureView.setCameraDistance(textureView.getMeasuredHeight() * 4.0f);
+        ImageView imageView = this.blurredStubView;
+        imageView.setCameraDistance(imageView.getMeasuredHeight() * 4.0f);
+        this.flipAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             {
                 CameraView.this = this;
             }
@@ -441,7 +446,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.info = new CameraInfo[2];
         this.txform = new Matrix();
         this.matrix = new Matrix();
-        this.useCamera2 = Build.VERSION.SDK_INT >= 21 && SharedConfig.useCamera2;
+        this.useCamera2 = false;
         this.cameraSession = new CameraSessionWrapper[2];
         this.focusProgress = 1.0f;
         this.outerPaint = new Paint(1);
@@ -1416,10 +1421,17 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                 if (BuildVars.LOGS_ENABLED) {
                                     FileLog.e("gl initied");
                                 }
+                                updateScale(0);
+                                float f = (1.0f / CameraView.this.scaleX) / 2.0f;
+                                float f2 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                                float f3 = 0.5f - f;
+                                float f4 = 0.5f - f2;
+                                float f5 = f + 0.5f;
+                                float f6 = f2 + 0.5f;
                                 CameraView.this.vertexBuffer = ByteBuffer.allocateDirect(this.verticesData.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
                                 CameraView.this.vertexBuffer.put(this.verticesData).position(0);
                                 CameraView.this.textureBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
-                                CameraView.this.textureBuffer.put(new float[]{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f}).position(0);
+                                CameraView.this.textureBuffer.put(new float[]{f3, f4, f5, f4, f3, f6, f5, f6}).position(0);
                                 this.cameraSurface[0] = new SurfaceTexture(CameraView.this.cameraTexture[0][0]);
                                 this.cameraSurface[0].setOnFrameAvailableListener(new CameraView$CameraGLThread$$ExternalSyntheticLambda0(this));
                                 if (this.initDual) {
@@ -1642,6 +1654,15 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         this.ignoreCamera1Upd = false;
                     }
                     CameraView.this.createCamera(this.cameraSurface[i4], i4);
+                    updateScale(i4);
+                    float f = (1.0f / CameraView.this.scaleX) / 2.0f;
+                    float f2 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                    float f3 = 0.5f - f;
+                    float f4 = 0.5f - f2;
+                    float f5 = f + 0.5f;
+                    float f6 = f2 + 0.5f;
+                    CameraView.this.textureBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
+                    CameraView.this.textureBuffer.put(new float[]{f3, f4, f5, f4, f3, f6, f5, f6}).position(0);
                     if (i4 == 1) {
                         this.dualAppeared = false;
                         synchronized (CameraView.this.layoutLock) {
@@ -1725,9 +1746,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     requestRender(true, true);
                     return;
                 case 9:
-                    float f = this.shapeTo + 1.0f;
-                    this.shapeTo = f;
-                    CameraView.this.lastShapeTo = f;
+                    float f7 = this.shapeTo + 1.0f;
+                    this.shapeTo = f7;
+                    CameraView.this.lastShapeTo = f7;
                     requestRender(false, false);
                     return;
                 case 10:
@@ -1764,6 +1785,29 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     return;
                 default:
                     return;
+            }
+        }
+
+        private void updateScale(int i) {
+            if (CameraView.this.previewSize[i] != null) {
+                int width = CameraView.this.previewSize[i].getWidth();
+                int height = CameraView.this.previewSize[i].getHeight();
+                float min = CameraView.this.surfaceWidth / Math.min(width, height);
+                int i2 = (int) (width * min);
+                int i3 = (int) (height * min);
+                if (i2 == i3) {
+                    CameraView.this.scaleX = 1.0f;
+                    CameraView.this.scaleY = 1.0f;
+                } else if (i2 > i3) {
+                    CameraView.this.scaleX = 1.0f;
+                    CameraView cameraView = CameraView.this;
+                    cameraView.scaleY = i2 / cameraView.surfaceHeight;
+                } else {
+                    CameraView cameraView2 = CameraView.this;
+                    cameraView2.scaleX = i3 / cameraView2.surfaceWidth;
+                    CameraView.this.scaleY = 1.0f;
+                }
+                FileLog.d("CameraView camera scaleX = " + CameraView.this.scaleX + " scaleY = " + CameraView.this.scaleY);
             }
         }
 
@@ -1908,11 +1952,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (i != 0) {
                 z = !z;
             }
-            Camera2Session create = Camera2Session.create(false, z, this.surfaceWidth, this.surfaceHeight);
+            Camera2Session create = Camera2Session.create(z, this.surfaceWidth, this.surfaceHeight);
             if (create == null) {
                 return;
             }
             this.cameraSession[i] = CameraSessionWrapper.of(create);
+            this.previewSize[i] = new Size(create.getPreviewWidth(), create.getPreviewHeight());
             cameraGLThread.setCurrentSession(this.cameraSession[i], i);
             create.whenDone(new Runnable() {
                 @Override
@@ -2419,7 +2464,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 if (minBufferSize <= 0) {
                     minBufferSize = 3584;
                 }
-                int i = 49152 < minBufferSize ? ((minBufferSize / LiteMode.FLAG_AUTOPLAY_GIFS) + 1) * LiteMode.FLAG_AUTOPLAY_GIFS * 2 : 49152;
+                int i = 49152 < minBufferSize ? ((minBufferSize / 2048) + 1) * 2048 * 2 : 49152;
                 for (int i2 = 0; i2 < 3; i2++) {
                     this.buffers.add(new InstantCameraView.AudioBufferInfo());
                 }
@@ -2527,9 +2572,16 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     throw new RuntimeException("eglMakeCurrent failed");
                 }
                 GLES20.glBlendFunc(770, 771);
+                float f = (1.0f / CameraView.this.scaleX) / 2.0f;
+                float f2 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                float f3 = 0.5f - f;
+                float f4 = 0.5f - f2;
+                float f5 = f + 0.5f;
+                float f6 = f2 + 0.5f;
+                float[] fArr = {f3, f4, f5, f4, f3, f6, f5, f6};
                 FloatBuffer asFloatBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
                 this.textureBuffer = asFloatBuffer;
-                asFloatBuffer.put(new float[]{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f}).position(0);
+                asFloatBuffer.put(fArr).position(0);
                 int loadShader = CameraView.this.loadShader(35633, RLottieDrawable.readRes(null, R.raw.camera_vert));
                 int loadShader2 = CameraView.this.loadShader(35632, RLottieDrawable.readRes(null, R.raw.camera_frag));
                 if (loadShader == 0 || loadShader2 == 0) {

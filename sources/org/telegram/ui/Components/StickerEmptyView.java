@@ -23,8 +23,10 @@ import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class StickerEmptyView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private boolean animateLayoutChange;
+    public final ButtonWithCounterView button;
     int colorKey1;
     int currentAccount;
     int keyboardSize;
@@ -109,9 +111,13 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         linksTextView.setLinkTextColor(getThemedColor(Theme.key_windowBackgroundWhiteLinkText));
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setGravity(17);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        this.button = buttonWithCounterView;
+        buttonWithCounterView.setVisibility(8);
         this.linearLayout.addView(this.stickerView, LayoutHelper.createLinear(117, 117, 1));
         this.linearLayout.addView(spoilersTextView, LayoutHelper.createLinear(-2, -2, 1, 0, 12, 0, 0));
         this.linearLayout.addView(linksTextView, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
+        this.linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 1, 28, 16, 28, 0));
         addView(this.linearLayout, LayoutHelper.createFrame(-2, -2.0f, 17, 46.0f, 0.0f, 46.0f, 30.0f));
         if (view == null) {
             RadialProgressView radialProgressView = new RadialProgressView(context, resourcesProvider);

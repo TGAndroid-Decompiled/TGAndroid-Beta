@@ -179,19 +179,19 @@ public abstract class TLRPC$PageBlock extends TLObject {
             case -372860542:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockPhoto() {
                     @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(-372860542);
-                        abstractSerializedData2.writeInt64(this.photo_id);
-                        this.caption.text.serializeToStream(abstractSerializedData2);
-                    }
-
-                    @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.photo_id = abstractSerializedData2.readInt64(z2);
                         TLRPC$TL_pageCaption tLRPC$TL_pageCaption = new TLRPC$TL_pageCaption();
                         this.caption = tLRPC$TL_pageCaption;
                         tLRPC$TL_pageCaption.text = TLRPC$RichText.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.caption.credit = new TLRPC$TL_textEmpty();
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-372860542);
+                        abstractSerializedData2.writeInt64(this.photo_id);
+                        this.caption.text.serializeToStream(abstractSerializedData2);
                     }
                 };
                 break;

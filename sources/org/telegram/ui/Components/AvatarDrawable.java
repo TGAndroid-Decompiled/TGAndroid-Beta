@@ -243,11 +243,11 @@ public class AvatarDrawable extends Drawable {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(4L)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(4L)]);
-        } else if (i == 6) {
+        } else if (i == 6 || i == 23) {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(3L)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(3L)]);
-        } else if (i == 7) {
+        } else if (i == 7 || i == 24) {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(1L)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(1L)]);
@@ -584,6 +584,10 @@ public class AvatarDrawable extends Drawable {
                 drawable = Theme.avatarDrawables[18];
             } else if (i4 == 22) {
                 drawable = Theme.avatarDrawables[19];
+            } else if (i4 == 23) {
+                drawable = Theme.avatarDrawables[21];
+            } else if (i4 == 24) {
+                drawable = Theme.avatarDrawables[20];
             } else {
                 drawable = Theme.avatarDrawables[9];
             }

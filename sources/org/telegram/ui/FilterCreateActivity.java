@@ -26,6 +26,7 @@ import android.text.style.ImageSpan;
 import android.text.style.ReplacementSpan;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -85,6 +86,7 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
@@ -97,10 +99,12 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.QRCodeBottomSheet;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.FilterCreateActivity;
+import org.telegram.ui.PeerColorActivity;
 import org.telegram.ui.UsersSelectActivity;
 public class FilterCreateActivity extends BaseFragment {
     private ListAdapter adapter;
@@ -110,6 +114,7 @@ public class FilterCreateActivity extends BaseFragment {
     private ActionBarMenuItem doneItem;
     private boolean excludeExpanded;
     private MessagesController.DialogFilter filter;
+    private HeaderCellColorPreview folderTagsHeader;
     private boolean hasUserChanged;
     private boolean includeExpanded;
     private ArrayList<TL_chatlists$TL_exportedChatlistInvite> invites;
@@ -119,6 +124,7 @@ public class FilterCreateActivity extends BaseFragment {
     private boolean nameChangedManually;
     private int nameRow;
     private ArrayList<Long> newAlwaysShow;
+    private int newFilterColor;
     private int newFilterFlags;
     private String newFilterName;
     private ArrayList<Long> newNeverShow;
@@ -189,12 +195,15 @@ public class FilterCreateActivity extends BaseFragment {
             while (getMessagesController().dialogFiltersById.get(this.filter.id) != null) {
                 this.filter.id++;
             }
-            this.filter.name = BuildConfig.APP_CENTER_HASH;
+            MessagesController.DialogFilter dialogFilter3 = this.filter;
+            dialogFilter3.name = BuildConfig.APP_CENTER_HASH;
+            dialogFilter3.color = (int) (Math.random() * 8.0d);
             this.creatingNew = true;
         }
-        MessagesController.DialogFilter dialogFilter3 = this.filter;
-        this.newFilterName = dialogFilter3.name;
-        this.newFilterFlags = dialogFilter3.flags;
+        MessagesController.DialogFilter dialogFilter4 = this.filter;
+        this.newFilterName = dialogFilter4.name;
+        this.newFilterFlags = dialogFilter4.flags;
+        this.newFilterColor = dialogFilter4.color;
         ArrayList<Long> arrayList2 = new ArrayList<>(this.filter.alwaysShow);
         this.newAlwaysShow = arrayList2;
         if (arrayList != null) {
@@ -310,20 +319,20 @@ public class FilterCreateActivity extends BaseFragment {
         this.items.add(ItemInner.asShadow(LocaleController.getString("FilterIncludeInfo", R.string.FilterIncludeInfo)));
         if (!this.filter.isChatlist()) {
             this.items.add(ItemInner.asHeader(LocaleController.getString("FilterExclude", R.string.FilterExclude)));
-            this.items.add(ItemInner.asButton(R.drawable.msg2_chats_add, LocaleController.getString("FilterRemoveChats", R.string.FilterRemoveChats), false).whenClicked(new View.OnClickListener() {
+            this.items.add(ItemInner.asButton(R.drawable.msg2_chats_add, LocaleController.getString(R.string.FilterRemoveChats), false).whenClicked(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     FilterCreateActivity.this.lambda$updateRows$4(view);
                 }
             }));
             if ((this.newFilterFlags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) != 0) {
-                this.items.add(ItemInner.asChat(false, LocaleController.getString("FilterMuted", R.string.FilterMuted), "muted", MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED));
+                this.items.add(ItemInner.asChat(false, LocaleController.getString(R.string.FilterMuted), "muted", MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED));
             }
             if ((this.newFilterFlags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
-                this.items.add(ItemInner.asChat(false, LocaleController.getString("FilterRead", R.string.FilterRead), "read", MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ));
+                this.items.add(ItemInner.asChat(false, LocaleController.getString(R.string.FilterRead), "read", MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ));
             }
             if ((this.newFilterFlags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) != 0) {
-                this.items.add(ItemInner.asChat(false, LocaleController.getString("FilterArchived", R.string.FilterArchived), "archived", MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED));
+                this.items.add(ItemInner.asChat(false, LocaleController.getString(R.string.FilterArchived), "archived", MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED));
             }
             if (!this.newNeverShow.isEmpty()) {
                 int size2 = (this.excludeExpanded || this.newNeverShow.size() < 8) ? this.newNeverShow.size() : Math.min(5, this.newNeverShow.size());
@@ -340,6 +349,11 @@ public class FilterCreateActivity extends BaseFragment {
                 }
             }
             this.items.add(ItemInner.asShadow(LocaleController.getString("FilterExcludeInfo", R.string.FilterExcludeInfo)));
+        }
+        if (getMessagesController().folderTags || !getUserConfig().isPremium()) {
+            this.items.add(new ItemInner(9, false));
+            this.items.add(new ItemInner(10, false));
+            this.items.add(ItemInner.asShadow(LocaleController.getString(R.string.FolderTagColorInfo)));
         }
         if (this.invites.isEmpty()) {
             this.items.add(ItemInner.asHeader(LocaleController.getString("FilterShareFolder", R.string.FilterShareFolder), true));
@@ -946,10 +960,17 @@ public class FilterCreateActivity extends BaseFragment {
                         }
                     }
                 }
-                if (string == null || string.length() <= 12) {
-                    str = string;
+                if (string != null && string.length() > 12) {
+                    string = BuildConfig.APP_CENTER_HASH;
                 }
-                this.newFilterName = str;
+                this.newFilterName = string;
+                HeaderCellColorPreview headerCellColorPreview = this.folderTagsHeader;
+                if (headerCellColorPreview != null) {
+                    if (string != null) {
+                        str = string;
+                    }
+                    headerCellColorPreview.setPreviewText(str.toUpperCase(), false);
+                }
                 RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.nameRow);
                 if (findViewHolderForAdapterPosition != null) {
                     this.adapter.onViewAttachedToWindow(findViewHolderForAdapterPosition);
@@ -1080,7 +1101,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     private void save(boolean z, final Runnable runnable) {
-        saveFilterToServer(this.filter, this.newFilterFlags, this.newFilterName, this.newAlwaysShow, this.newNeverShow, this.newPinned, this.creatingNew, false, this.hasUserChanged, true, z, this, new Runnable() {
+        saveFilterToServer(this.filter, this.newFilterFlags, this.newFilterName, this.newFilterColor, this.newAlwaysShow, this.newNeverShow, this.newPinned, this.creatingNew, false, this.hasUserChanged, true, z, this, new Runnable() {
             @Override
             public final void run() {
                 FilterCreateActivity.this.lambda$save$23(runnable);
@@ -1099,7 +1120,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
     }
 
-    private static void processAddFilter(MessagesController.DialogFilter dialogFilter, int i, String str, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, boolean z, boolean z2, boolean z3, boolean z4, BaseFragment baseFragment, Runnable runnable) {
+    private static void processAddFilter(MessagesController.DialogFilter dialogFilter, int i, String str, int i2, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, boolean z, boolean z2, boolean z3, boolean z4, BaseFragment baseFragment, Runnable runnable) {
         if (dialogFilter.flags != i || z3) {
             dialogFilter.pendingUnreadCount = -1;
             if (z4) {
@@ -1108,6 +1129,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         dialogFilter.flags = i;
         dialogFilter.name = str;
+        dialogFilter.color = i2;
         dialogFilter.neverShow = arrayList2;
         dialogFilter.alwaysShow = arrayList;
         if (z) {
@@ -1120,8 +1142,8 @@ public class FilterCreateActivity extends BaseFragment {
             TLRPC$TL_messages_updateDialogFiltersOrder tLRPC$TL_messages_updateDialogFiltersOrder = new TLRPC$TL_messages_updateDialogFiltersOrder();
             ArrayList<MessagesController.DialogFilter> dialogFilters = baseFragment.getMessagesController().getDialogFilters();
             int size = dialogFilters.size();
-            for (int i2 = 0; i2 < size; i2++) {
-                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilters.get(i2).id));
+            for (int i3 = 0; i3 < size; i3++) {
+                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilters.get(i3).id));
             }
             baseFragment.getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, null);
         }
@@ -1130,14 +1152,15 @@ public class FilterCreateActivity extends BaseFragment {
         }
     }
 
-    public static void saveFilterToServer(final MessagesController.DialogFilter dialogFilter, final int i, final String str, final ArrayList<Long> arrayList, final ArrayList<Long> arrayList2, final LongSparseIntArray longSparseIntArray, final boolean z, final boolean z2, final boolean z3, final boolean z4, final boolean z5, final BaseFragment baseFragment, final Runnable runnable) {
+    public static void saveFilterToServer(final MessagesController.DialogFilter dialogFilter, final int i, final String str, final int i2, final ArrayList<Long> arrayList, final ArrayList<Long> arrayList2, LongSparseIntArray longSparseIntArray, final boolean z, final boolean z2, final boolean z3, final boolean z4, final boolean z5, final BaseFragment baseFragment, final Runnable runnable) {
         AlertDialog alertDialog;
         ArrayList<TLRPC$InputPeer> arrayList3;
         ArrayList<Long> arrayList4;
+        final LongSparseIntArray longSparseIntArray2 = longSparseIntArray;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        int i2 = 3;
+        int i3 = 3;
         if (z5) {
             alertDialog = new AlertDialog(baseFragment.getParentActivity(), 3);
             alertDialog.setCanCancel(false);
@@ -1147,7 +1170,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         TLRPC$TL_messages_updateDialogFilter tLRPC$TL_messages_updateDialogFilter = new TLRPC$TL_messages_updateDialogFilter();
         tLRPC$TL_messages_updateDialogFilter.id = dialogFilter.id;
-        int i3 = 1;
+        int i4 = 1;
         tLRPC$TL_messages_updateDialogFilter.flags |= 1;
         TLRPC$TL_dialogFilter tLRPC$TL_dialogFilter = new TLRPC$TL_dialogFilter();
         tLRPC$TL_messages_updateDialogFilter.filter = tLRPC$TL_dialogFilter;
@@ -1161,12 +1184,19 @@ public class FilterCreateActivity extends BaseFragment {
         tLRPC$TL_dialogFilter.exclude_archived = (i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) != 0;
         tLRPC$TL_dialogFilter.id = dialogFilter.id;
         tLRPC$TL_dialogFilter.title = str;
+        if (i2 < 0) {
+            tLRPC$TL_dialogFilter.flags &= -134217729;
+            tLRPC$TL_dialogFilter.color = 0;
+        } else {
+            tLRPC$TL_dialogFilter.flags |= 134217728;
+            tLRPC$TL_dialogFilter.color = i2;
+        }
         MessagesController messagesController = baseFragment.getMessagesController();
         ArrayList<Long> arrayList5 = new ArrayList<>();
         if (longSparseIntArray.size() != 0) {
             int size = longSparseIntArray.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                long keyAt = longSparseIntArray.keyAt(i4);
+            for (int i5 = 0; i5 < size; i5++) {
+                long keyAt = longSparseIntArray2.keyAt(i5);
                 if (!DialogObject.isEncryptedDialog(keyAt)) {
                     arrayList5.add(Long.valueOf(keyAt));
                 }
@@ -1180,12 +1210,12 @@ public class FilterCreateActivity extends BaseFragment {
                 }
             });
         }
-        int i5 = 0;
-        while (i5 < i2) {
-            if (i5 == 0) {
+        int i6 = 0;
+        while (i6 < i3) {
+            if (i6 == 0) {
                 arrayList3 = tLRPC$TL_messages_updateDialogFilter.filter.include_peers;
                 arrayList4 = arrayList;
-            } else if (i5 == i3) {
+            } else if (i6 == i4) {
                 arrayList3 = tLRPC$TL_messages_updateDialogFilter.filter.exclude_peers;
                 arrayList4 = arrayList2;
             } else {
@@ -1193,9 +1223,10 @@ public class FilterCreateActivity extends BaseFragment {
                 arrayList4 = arrayList5;
             }
             int size2 = arrayList4.size();
-            for (int i6 = 0; i6 < size2; i6++) {
-                long longValue = arrayList4.get(i6).longValue();
-                if ((i5 != 0 || longSparseIntArray.indexOfKey(longValue) < 0) && !DialogObject.isEncryptedDialog(longValue)) {
+            int i7 = 0;
+            while (i7 < size2) {
+                long longValue = arrayList4.get(i7).longValue();
+                if ((i6 != 0 || longSparseIntArray2.indexOfKey(longValue) < 0) && !DialogObject.isEncryptedDialog(longValue)) {
                     if (longValue > 0) {
                         TLRPC$User user = messagesController.getUser(Long.valueOf(longValue));
                         if (user != null) {
@@ -1221,22 +1252,25 @@ public class FilterCreateActivity extends BaseFragment {
                         }
                     }
                 }
+                i7++;
+                longSparseIntArray2 = longSparseIntArray;
             }
-            i5++;
-            i2 = 3;
-            i3 = 1;
+            i6++;
+            longSparseIntArray2 = longSparseIntArray;
+            i3 = 3;
+            i4 = 1;
         }
         final AlertDialog alertDialog2 = alertDialog;
         baseFragment.getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFilter, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FilterCreateActivity.lambda$saveFilterToServer$26(z5, alertDialog2, dialogFilter, i, str, arrayList, arrayList2, z, z2, z3, z4, baseFragment, runnable, tLObject, tLRPC$TL_error);
+                FilterCreateActivity.lambda$saveFilterToServer$26(z5, alertDialog2, dialogFilter, i, str, i2, arrayList, arrayList2, z, z2, z3, z4, baseFragment, runnable, tLObject, tLRPC$TL_error);
             }
         });
         if (z5) {
             return;
         }
-        processAddFilter(dialogFilter, i, str, arrayList, arrayList2, z, z2, z3, z4, baseFragment, null);
+        processAddFilter(dialogFilter, i, str, i2, arrayList, arrayList2, z, z2, z3, z4, baseFragment, null);
     }
 
     public static int lambda$saveFilterToServer$24(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
@@ -1248,16 +1282,16 @@ public class FilterCreateActivity extends BaseFragment {
         return i < i2 ? -1 : 0;
     }
 
-    public static void lambda$saveFilterToServer$26(final boolean z, final AlertDialog alertDialog, final MessagesController.DialogFilter dialogFilter, final int i, final String str, final ArrayList arrayList, final ArrayList arrayList2, final boolean z2, final boolean z3, final boolean z4, final boolean z5, final BaseFragment baseFragment, final Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$saveFilterToServer$26(final boolean z, final AlertDialog alertDialog, final MessagesController.DialogFilter dialogFilter, final int i, final String str, final int i2, final ArrayList arrayList, final ArrayList arrayList2, final boolean z2, final boolean z3, final boolean z4, final boolean z5, final BaseFragment baseFragment, final Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FilterCreateActivity.lambda$saveFilterToServer$25(z, alertDialog, dialogFilter, i, str, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
+                FilterCreateActivity.lambda$saveFilterToServer$25(z, alertDialog, dialogFilter, i, str, i2, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
             }
         });
     }
 
-    public static void lambda$saveFilterToServer$25(boolean z, AlertDialog alertDialog, MessagesController.DialogFilter dialogFilter, int i, String str, ArrayList arrayList, ArrayList arrayList2, boolean z2, boolean z3, boolean z4, boolean z5, BaseFragment baseFragment, Runnable runnable) {
+    public static void lambda$saveFilterToServer$25(boolean z, AlertDialog alertDialog, MessagesController.DialogFilter dialogFilter, int i, String str, int i2, ArrayList arrayList, ArrayList arrayList2, boolean z2, boolean z3, boolean z4, boolean z5, BaseFragment baseFragment, Runnable runnable) {
         if (!z) {
             if (runnable != null) {
                 runnable.run();
@@ -1272,7 +1306,7 @@ public class FilterCreateActivity extends BaseFragment {
                 FileLog.e(e);
             }
         }
-        processAddFilter(dialogFilter, i, str, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
+        processAddFilter(dialogFilter, i, str, i2, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
     }
 
     @Override
@@ -1288,8 +1322,12 @@ public class FilterCreateActivity extends BaseFragment {
         if (this.filter.neverShow.size() != this.newNeverShow.size()) {
             this.hasUserChanged = true;
         }
+        MessagesController.DialogFilter dialogFilter = this.filter;
+        if (dialogFilter.color != this.newFilterColor) {
+            this.hasUserChanged = true;
+        }
         if (!this.hasUserChanged) {
-            Collections.sort(this.filter.alwaysShow);
+            Collections.sort(dialogFilter.alwaysShow);
             Collections.sort(this.newAlwaysShow);
             if (!this.filter.alwaysShow.equals(this.newAlwaysShow)) {
                 this.hasUserChanged = true;
@@ -1478,7 +1516,7 @@ public class FilterCreateActivity extends BaseFragment {
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int itemViewType = viewHolder.getItemViewType();
-            return (itemViewType == 3 || itemViewType == 0 || itemViewType == 2 || itemViewType == 5) ? false : true;
+            return (itemViewType == 3 || itemViewType == 0 || itemViewType == 2 || itemViewType == 5 || itemViewType == 9) ? false : true;
         }
 
         @Override
@@ -1532,6 +1570,9 @@ public class FilterCreateActivity extends BaseFragment {
                             if (!TextUtils.equals(obj, FilterCreateActivity.this.newFilterName)) {
                                 FilterCreateActivity.this.nameChangedManually = !TextUtils.isEmpty(obj);
                                 FilterCreateActivity.this.newFilterName = obj;
+                                if (FilterCreateActivity.this.folderTagsHeader != null) {
+                                    FilterCreateActivity.this.folderTagsHeader.setPreviewText((FilterCreateActivity.this.newFilterName == null ? BuildConfig.APP_CENTER_HASH : FilterCreateActivity.this.newFilterName).toUpperCase(), true);
+                                }
                             }
                             RecyclerView.ViewHolder findViewHolderForAdapterPosition = FilterCreateActivity.this.listView.findViewHolderForAdapterPosition(FilterCreateActivity.this.nameRow);
                             if (findViewHolderForAdapterPosition != null) {
@@ -1584,6 +1625,14 @@ public class FilterCreateActivity extends BaseFragment {
                     headerCell = new CreateLinkCell(this.mContext);
                     headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
+                case 9:
+                    headerCell = new HeaderCellColorPreview(this.mContext);
+                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
+                case 10:
+                    headerCell = new PeerColorActivity.PeerColorGrid(FilterCreateActivity.this.getContext(), 2, ((BaseFragment) FilterCreateActivity.this).currentAccount, ((BaseFragment) FilterCreateActivity.this).resourceProvider);
+                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
             }
             return new RecyclerListView.Holder(headerCell);
         }
@@ -1620,75 +1669,114 @@ public class FilterCreateActivity extends BaseFragment {
             }
             int i2 = i + 1;
             boolean z = i2 < FilterCreateActivity.this.items.size() && !((ItemInner) FilterCreateActivity.this.items.get(i2)).isShadow();
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType == 0) {
-                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                if (itemInner.newSpan) {
-                    headerCell.setText(FilterCreateActivity.withNew(0, itemInner.text, false));
-                } else {
-                    headerCell.setText(itemInner.text);
-                }
-            } else if (itemViewType != 1) {
-                if (itemViewType == 3) {
-                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                } else if (itemViewType == 4) {
-                    ButtonCell buttonCell = (ButtonCell) viewHolder.itemView;
-                    buttonCell.setRed(itemInner.isRed);
-                    buttonCell.set(itemInner.iconResId, itemInner.text, z);
-                } else if (itemViewType == 6) {
-                    ((TextInfoPrivacyCell) viewHolder.itemView).setText(itemInner.text);
-                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                } else if (itemViewType == 7) {
-                    ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
-                } else if (itemViewType != 8) {
-                } else {
-                    FilterCreateActivity.this.createLinkCell = (CreateLinkCell) viewHolder.itemView;
-                    FilterCreateActivity.this.createLinkCell.setDivider(z);
-                }
-            } else {
-                UserCell userCell = (UserCell) viewHolder.itemView;
-                if (itemInner.chatType != null) {
-                    userCell.setData(itemInner.chatType, itemInner.text, null, 0, z);
-                    return;
-                }
-                long j = itemInner.did;
-                if (j > 0) {
-                    TLRPC$User user = FilterCreateActivity.this.getMessagesController().getUser(Long.valueOf(j));
-                    if (user != null) {
-                        if (user.bot) {
-                            string2 = LocaleController.getString("Bot", R.string.Bot);
-                        } else if (user.contact) {
-                            string2 = LocaleController.getString("FilterContact", R.string.FilterContact);
-                        } else {
-                            string2 = LocaleController.getString("FilterNonContact", R.string.FilterNonContact);
+            switch (viewHolder.getItemViewType()) {
+                case 0:
+                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                    if (itemInner.newSpan) {
+                        headerCell.setText(FilterCreateActivity.withNew(0, itemInner.text, false));
+                        return;
+                    } else {
+                        headerCell.setText(itemInner.text);
+                        return;
+                    }
+                case 1:
+                    UserCell userCell = (UserCell) viewHolder.itemView;
+                    if (itemInner.chatType != null) {
+                        userCell.setData(itemInner.chatType, itemInner.text, null, 0, z);
+                        return;
+                    }
+                    long j = itemInner.did;
+                    if (j > 0) {
+                        TLRPC$User user = FilterCreateActivity.this.getMessagesController().getUser(Long.valueOf(j));
+                        if (user != null) {
+                            if (user.bot) {
+                                string2 = LocaleController.getString("Bot", R.string.Bot);
+                            } else if (user.contact) {
+                                string2 = LocaleController.getString("FilterContact", R.string.FilterContact);
+                            } else {
+                                string2 = LocaleController.getString("FilterNonContact", R.string.FilterNonContact);
+                            }
+                            userCell.setData(user, null, string2, 0, z);
+                            return;
                         }
-                        userCell.setData(user, null, string2, 0, z);
+                        return;
+                    }
+                    TLRPC$Chat chat = FilterCreateActivity.this.getMessagesController().getChat(Long.valueOf(-j));
+                    if (chat != null) {
+                        if (chat.participants_count != 0) {
+                            if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                                string = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
+                            } else {
+                                string = LocaleController.formatPluralStringComma("Members", chat.participants_count);
+                            }
+                        } else if (!ChatObject.isPublic(chat)) {
+                            if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                                string = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate);
+                            } else {
+                                string = LocaleController.getString("MegaPrivate", R.string.MegaPrivate);
+                            }
+                        } else if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                            string = LocaleController.getString("ChannelPublic", R.string.ChannelPublic);
+                        } else {
+                            string = LocaleController.getString("MegaPublic", R.string.MegaPublic);
+                        }
+                        userCell.setData(chat, null, string, 0, z);
                         return;
                     }
                     return;
-                }
-                TLRPC$Chat chat = FilterCreateActivity.this.getMessagesController().getChat(Long.valueOf(-j));
-                if (chat != null) {
-                    if (chat.participants_count != 0) {
-                        if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                            string = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
-                        } else {
-                            string = LocaleController.formatPluralStringComma("Members", chat.participants_count);
+                case 2:
+                case 5:
+                default:
+                    return;
+                case 3:
+                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    return;
+                case 4:
+                    ButtonCell buttonCell = (ButtonCell) viewHolder.itemView;
+                    buttonCell.setRed(itemInner.isRed);
+                    buttonCell.set(itemInner.iconResId, itemInner.text, z);
+                    return;
+                case 6:
+                    ((TextInfoPrivacyCell) viewHolder.itemView).setText(itemInner.text);
+                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    return;
+                case 7:
+                    ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
+                    return;
+                case 8:
+                    FilterCreateActivity.this.createLinkCell = (CreateLinkCell) viewHolder.itemView;
+                    FilterCreateActivity.this.createLinkCell.setDivider(z);
+                    return;
+                case 9:
+                    FilterCreateActivity.this.folderTagsHeader = (HeaderCellColorPreview) viewHolder.itemView;
+                    FilterCreateActivity.this.folderTagsHeader.setPreviewText((FilterCreateActivity.this.newFilterName == null ? BuildConfig.APP_CENTER_HASH : FilterCreateActivity.this.newFilterName).toUpperCase(), false);
+                    FilterCreateActivity.this.folderTagsHeader.setPreviewColor(FilterCreateActivity.this.getUserConfig().isPremium() ? FilterCreateActivity.this.newFilterColor : -1, false);
+                    FilterCreateActivity.this.folderTagsHeader.setText(LocaleController.getString(R.string.FolderTagColor));
+                    return;
+                case 10:
+                    final PeerColorActivity.PeerColorGrid peerColorGrid = (PeerColorActivity.PeerColorGrid) viewHolder.itemView;
+                    peerColorGrid.setCloseAsLock(!FilterCreateActivity.this.getUserConfig().isPremium());
+                    peerColorGrid.setSelected(FilterCreateActivity.this.getUserConfig().isPremium() ? FilterCreateActivity.this.newFilterColor : -1, false);
+                    peerColorGrid.setOnColorClick(new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            FilterCreateActivity.ListAdapter.this.lambda$onBindViewHolder$1(peerColorGrid, (Integer) obj);
                         }
-                    } else if (!ChatObject.isPublic(chat)) {
-                        if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                            string = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate);
-                        } else {
-                            string = LocaleController.getString("MegaPrivate", R.string.MegaPrivate);
-                        }
-                    } else if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                        string = LocaleController.getString("ChannelPublic", R.string.ChannelPublic);
-                    } else {
-                        string = LocaleController.getString("MegaPublic", R.string.MegaPublic);
-                    }
-                    userCell.setData(chat, null, string, 0, z);
-                }
+                    });
+                    return;
             }
+        }
+
+        public void lambda$onBindViewHolder$1(PeerColorActivity.PeerColorGrid peerColorGrid, Integer num) {
+            if (FilterCreateActivity.this.getUserConfig().isPremium()) {
+                peerColorGrid.setSelected(FilterCreateActivity.this.newFilterColor = num.intValue(), true);
+                if (FilterCreateActivity.this.folderTagsHeader != null) {
+                    FilterCreateActivity.this.folderTagsHeader.setPreviewColor(!FilterCreateActivity.this.getUserConfig().isPremium() ? -1 : FilterCreateActivity.this.newFilterColor, true);
+                }
+                FilterCreateActivity.this.checkDoneButton(true);
+                return;
+            }
+            FilterCreateActivity.this.showDialog(new PremiumFeatureBottomSheet(FilterCreateActivity.this, 35, true));
         }
 
         @Override
@@ -2840,5 +2928,90 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
         return true;
+    }
+
+    public class HeaderCellColorPreview extends HeaderCell {
+        private final AnimatedColor animatedColor;
+        private int currentColor;
+        public final TextView noTag;
+        private boolean noTagShown;
+        public final AnimatedTextView previewView;
+
+        public HeaderCellColorPreview(Context context) {
+            super(context, Theme.key_windowBackgroundWhiteBlueHeader, 22, 15, false, ((BaseFragment) r19).resourceProvider);
+            FilterCreateActivity.this = r19;
+            TextView textView = new TextView(getContext());
+            this.noTag = textView;
+            textView.setTextSize(1, 14.0f);
+            textView.setTextColor(r19.getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
+            textView.setText(LocaleController.getString(r19.getUserConfig().isPremium() ? R.string.FolderTagNoColor : R.string.FolderTagNoColorPremium));
+            textView.setGravity(5);
+            int i = (LocaleController.isRTL ? 3 : 5) | 48;
+            int i2 = this.padding;
+            addView(textView, LayoutHelper.createFrame(-1, -1.0f, i, i2, 16.66f, i2, this.bottomMargin));
+            textView.setAlpha(0.0f);
+            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true, r19) {
+                private final Paint backgroundPaint = new Paint(1);
+
+                {
+                    HeaderCellColorPreview.this = this;
+                }
+
+                @Override
+                protected void dispatchDraw(Canvas canvas) {
+                    int i3 = HeaderCellColorPreview.this.animatedColor.set(HeaderCellColorPreview.this.currentColor);
+                    setTextColor(i3);
+                    this.backgroundPaint.setColor(Theme.multAlpha(i3, Theme.isCurrentThemeDark() ? 0.2f : 0.1f));
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set((getWidth() - getDrawable().getCurrentWidth()) - AndroidUtilities.dpf2(9.32f), (getHeight() - AndroidUtilities.dpf2(14.66f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dpf2(14.66f)) / 2.0f);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.backgroundPaint);
+                    super.dispatchDraw(canvas);
+                }
+            };
+            this.previewView = animatedTextView;
+            this.animatedColor = new AnimatedColor(animatedTextView, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            animatedTextView.setTextSize(AndroidUtilities.dp(10.0f));
+            animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextView.setGravity(5);
+            animatedTextView.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
+            int i3 = LocaleController.isRTL ? 3 : 5;
+            int i4 = this.padding;
+            addView(animatedTextView, LayoutHelper.createFrame(-1, -1.0f, i3 | 48, i4, 16.66f, i4, this.bottomMargin));
+        }
+
+        public void setPreviewColor(int i, boolean z) {
+            this.noTag.setText(LocaleController.getString(FilterCreateActivity.this.getUserConfig().isPremium() ? R.string.FolderTagNoColor : R.string.FolderTagNoColorPremium));
+            int i2 = 0;
+            boolean z2 = i < 0;
+            if (!z2) {
+                FilterCreateActivity filterCreateActivity = FilterCreateActivity.this;
+                int[] iArr = Theme.keys_avatar_nameInMessage;
+                i2 = filterCreateActivity.getThemedColor(iArr[i % iArr.length]);
+            }
+            this.currentColor = i2;
+            if (!z) {
+                this.animatedColor.set(i2, true);
+            }
+            if (z2 != this.noTagShown) {
+                this.noTagShown = z2;
+                ViewPropertyAnimator duration = this.noTag.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(320L);
+                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+                duration.setInterpolator(cubicBezierInterpolator).start();
+                this.previewView.animate().alpha(z2 ? 0.0f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
+            }
+        }
+
+        public void setPreviewText(String str, boolean z) {
+            boolean z2 = false;
+            if (str.length() > 12) {
+                str = str.substring(0, 12);
+            }
+            AnimatedTextView animatedTextView = this.previewView;
+            CharSequence replaceEmoji = Emoji.replaceEmoji(str, animatedTextView.getPaint().getFontMetricsInt(), false);
+            if (z && !LocaleController.isRTL) {
+                z2 = true;
+            }
+            animatedTextView.setText(replaceEmoji, z2);
+        }
     }
 }

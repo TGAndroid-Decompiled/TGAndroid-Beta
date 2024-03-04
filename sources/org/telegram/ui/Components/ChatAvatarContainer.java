@@ -195,9 +195,12 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         boolean z3 = (chatActivity == null || chatActivity.getChatMode() != 0 || UserObject.isReplyUser(this.parentFragment.getCurrentUser())) ? false : true;
         this.avatarImageView = new AnonymousClass1(context, baseFragment, z3, resourcesProvider);
         if (z2 || (baseFragment instanceof TopicsFragment)) {
-            this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(baseFragment);
             ChatActivity chatActivity2 = this.parentFragment;
-            if (chatActivity2 != null && (chatActivity2.isThreadChat() || this.parentFragment.getChatMode() == 2)) {
+            if (chatActivity2 == null || chatActivity2.getChatMode() != 5) {
+                this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(baseFragment);
+            }
+            ChatActivity chatActivity3 = this.parentFragment;
+            if (chatActivity3 != null && (chatActivity3.isThreadChat() || this.parentFragment.getChatMode() == 2 || this.parentFragment.getChatMode() == 5)) {
                 this.avatarImageView.setVisibility(8);
             }
         }
@@ -278,8 +281,8 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 this.timeItem.setContentDescription(LocaleController.getString("AccAutoDeleteTimer", R.string.AccAutoDeleteTimer));
             }
         }
-        ChatActivity chatActivity3 = this.parentFragment;
-        if (chatActivity3 != null && (chatActivity3.getChatMode() == 0 || this.parentFragment.getChatMode() == 3)) {
+        ChatActivity chatActivity4 = this.parentFragment;
+        if (chatActivity4 != null && (chatActivity4.getChatMode() == 0 || this.parentFragment.getChatMode() == 3)) {
             if ((!this.parentFragment.isThreadChat() || this.parentFragment.isTopic) && !UserObject.isReplyUser(this.parentFragment.getCurrentUser())) {
                 setOnClickListener(new View.OnClickListener() {
                     @Override

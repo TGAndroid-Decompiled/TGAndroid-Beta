@@ -66,6 +66,8 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
+import org.telegram.ui.Business.QuickRepliesActivity;
+import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.BotSwitchCell;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.MentionCell;
@@ -106,6 +108,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private String nextQueryOffset;
     private boolean noUserName;
     private ChatActivity parentFragment;
+    private ArrayList<QuickRepliesController.QuickReply> quickReplies;
+    private String quickRepliesQuery;
     private final Theme.ResourcesProvider resourcesProvider;
     private int resultLength;
     private int resultStartPosition;
@@ -445,6 +449,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         MediaDataController.KeywordResult keywordResult;
         String str;
         String str2;
+        if (obj instanceof QuickRepliesController.QuickReply) {
+            return false;
+        }
         if (obj == obj2) {
             return true;
         }
@@ -462,7 +469,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
         if ((obj instanceof MediaDataController.KeywordResult) && (obj2 instanceof MediaDataController.KeywordResult) && (str = (keywordResult = (MediaDataController.KeywordResult) obj).keyword) != null) {
             MediaDataController.KeywordResult keywordResult2 = (MediaDataController.KeywordResult) obj2;
-            return str.equals(keywordResult2.keyword) && (str2 = keywordResult.emoji) != null && str2.equals(keywordResult2.emoji);
+            if (str.equals(keywordResult2.keyword) && (str2 = keywordResult.emoji) != null && str2.equals(keywordResult2.emoji)) {
+                return true;
+            }
         }
         return false;
     }
@@ -995,6 +1004,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 this.searchResultUsernames = null;
                 this.searchResultUsernamesMap = null;
                 this.searchResultCommands = null;
+                this.quickReplies = null;
                 this.searchResultSuggestions = null;
                 this.searchResultCommandsHelp = null;
                 this.searchResultCommandsUsers = null;
@@ -1122,6 +1132,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.searchResultUsernames = null;
         this.searchResultUsernamesMap = null;
         this.searchResultCommands = null;
+        this.quickReplies = null;
         this.searchResultCommandsHelp = null;
         this.searchResultCommandsUsers = null;
         notifyDataSetChanged();
@@ -1219,13 +1230,15 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             if (arrayList4 != null) {
                 return arrayList4.size();
             }
-            ArrayList<String> arrayList5 = this.searchResultCommands;
-            if (arrayList5 != null) {
-                return arrayList5.size();
+            if (this.searchResultCommands != null || this.quickReplies != null) {
+                ArrayList<QuickRepliesController.QuickReply> arrayList5 = this.quickReplies;
+                int size2 = arrayList5 == null ? 0 : arrayList5.size();
+                ArrayList<String> arrayList6 = this.searchResultCommands;
+                return size2 + (arrayList6 != null ? arrayList6.size() : 0);
             }
-            ArrayList<MediaDataController.KeywordResult> arrayList6 = this.searchResultSuggestions;
-            if (arrayList6 != null) {
-                return arrayList6.size();
+            ArrayList<MediaDataController.KeywordResult> arrayList7 = this.searchResultSuggestions;
+            if (arrayList7 != null) {
+                return arrayList7.size();
             }
             return 0;
         }
@@ -1238,13 +1251,14 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             return 4;
         }
         if (this.foundContextBot == null || this.inlineMediaEnabled) {
-            if (this.searchResultBotContext != null) {
-                if (i == 0) {
-                    return (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? 1 : 2;
-                }
+            if (this.searchResultBotContext == null) {
+                ArrayList<QuickRepliesController.QuickReply> arrayList = this.quickReplies;
+                return (arrayList == null || i < 0 || i >= arrayList.size()) ? 0 : 5;
+            } else if (i == 0) {
+                return (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? 1 : 2;
+            } else {
                 return 1;
             }
-            return 0;
         }
         return 3;
     }
@@ -1316,21 +1330,33 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             return this.searchResultSuggestions.get(i);
         }
-        ArrayList<String> arrayList6 = this.searchResultCommands;
-        if (arrayList6 == null || i < 0 || i >= arrayList6.size()) {
-            return null;
-        }
-        ArrayList<TLRPC$User> arrayList7 = this.searchResultCommandsUsers;
-        if (arrayList7 != null && (this.botsCount != 1 || (this.info instanceof TLRPC$TL_channelFull))) {
-            if (arrayList7.get(i) != null) {
-                Object[] objArr = new Object[2];
-                objArr[0] = this.searchResultCommands.get(i);
-                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : BuildConfig.APP_CENTER_HASH;
-                return String.format("%s@%s", objArr);
+        ArrayList<QuickRepliesController.QuickReply> arrayList6 = this.quickReplies;
+        if (arrayList6 != null || this.searchResultCommands != null) {
+            if (arrayList6 != null) {
+                if (i >= 0 && i < arrayList6.size()) {
+                    return this.quickReplies.get(i);
+                }
+                ArrayList<QuickRepliesController.QuickReply> arrayList7 = this.quickReplies;
+                if (arrayList7 != null) {
+                    i -= arrayList7.size();
+                }
             }
-            return String.format("%s", this.searchResultCommands.get(i));
+            ArrayList<String> arrayList8 = this.searchResultCommands;
+            if (arrayList8 != null && i >= 0 && i < arrayList8.size()) {
+                ArrayList<TLRPC$User> arrayList9 = this.searchResultCommandsUsers;
+                if (arrayList9 != null && (this.botsCount != 1 || (this.info instanceof TLRPC$TL_channelFull))) {
+                    if (arrayList9.get(i) != null) {
+                        Object[] objArr = new Object[2];
+                        objArr[0] = this.searchResultCommands.get(i);
+                        objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : BuildConfig.APP_CENTER_HASH;
+                        return String.format("%s@%s", objArr);
+                    }
+                    return String.format("%s", this.searchResultCommands.get(i));
+                }
+                return this.searchResultCommands.get(i);
+            }
         }
-        return this.searchResultCommands.get(i);
+        return null;
     }
 
     public boolean isLongClickEnabled() {
@@ -1390,6 +1416,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             textView.setTextSize(1, 14.0f);
             textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             contextLinkCell = textView;
+        } else if (i == 5) {
+            contextLinkCell = new QuickRepliesActivity.QuickReplyView(this.mContext, false, this.resourcesProvider);
         } else {
             contextLinkCell = new StickerCell(this.mContext, this.resourcesProvider);
         }
@@ -1417,6 +1445,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
                 }
             }
+        } else if (itemViewType == 5) {
+            QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
+            ArrayList<QuickRepliesController.QuickReply> arrayList = this.quickReplies;
+            if (arrayList == null || i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            quickReplyView.set(this.quickReplies.get(i), this.quickRepliesQuery, false);
         } else if (this.searchResultBotContext != null) {
             boolean z = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true;
             if (viewHolder.getItemViewType() != 2) {
@@ -1431,29 +1466,29 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
         } else {
             MentionCell mentionCell = (MentionCell) viewHolder.itemView;
-            ArrayList<TLObject> arrayList = this.searchResultUsernames;
-            if (arrayList != null) {
-                TLObject tLObject = arrayList.get(i);
+            ArrayList<TLObject> arrayList2 = this.searchResultUsernames;
+            if (arrayList2 != null) {
+                TLObject tLObject = arrayList2.get(i);
                 if (tLObject instanceof TLRPC$User) {
                     mentionCell.setUser((TLRPC$User) tLObject);
                 } else if (tLObject instanceof TLRPC$Chat) {
                     mentionCell.setChat((TLRPC$Chat) tLObject);
                 }
             } else {
-                ArrayList<String> arrayList2 = this.searchResultHashtags;
-                if (arrayList2 != null) {
-                    mentionCell.setText(arrayList2.get(i));
+                ArrayList<String> arrayList3 = this.searchResultHashtags;
+                if (arrayList3 != null) {
+                    mentionCell.setText(arrayList3.get(i));
                 } else {
-                    ArrayList<MediaDataController.KeywordResult> arrayList3 = this.searchResultSuggestions;
-                    if (arrayList3 != null) {
-                        mentionCell.setEmojiSuggestion(arrayList3.get(i));
+                    ArrayList<MediaDataController.KeywordResult> arrayList4 = this.searchResultSuggestions;
+                    if (arrayList4 != null) {
+                        mentionCell.setEmojiSuggestion(arrayList4.get(i));
                     } else {
-                        ArrayList<String> arrayList4 = this.searchResultCommands;
-                        if (arrayList4 != null) {
-                            String str = arrayList4.get(i);
+                        ArrayList<String> arrayList5 = this.searchResultCommands;
+                        if (arrayList5 != null) {
+                            String str = arrayList5.get(i);
                             String str2 = this.searchResultCommandsHelp.get(i);
-                            ArrayList<TLRPC$User> arrayList5 = this.searchResultCommandsUsers;
-                            mentionCell.setBotCommand(str, str2, arrayList5 != null ? arrayList5.get(i) : null);
+                            ArrayList<TLRPC$User> arrayList6 = this.searchResultCommandsUsers;
+                            mentionCell.setBotCommand(str, str2, arrayList6 != null ? arrayList6.get(i) : null);
                         }
                     }
                 }

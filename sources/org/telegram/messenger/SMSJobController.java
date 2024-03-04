@@ -10,6 +10,7 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SMSJobController;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
@@ -45,6 +47,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     public static final int STATE_NONE = 0;
     public static final int STATE_NO_SIM = 2;
     private static HashMap<Integer, PendingSMS> pending;
+    private static boolean readCachedPending;
     public boolean atStatisticsPage;
     public final int currentAccount;
     public int currentState;
@@ -69,6 +72,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
+        readCachedPending = false;
         pending = new HashMap<>();
     }
 
@@ -97,7 +101,17 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         Context context = ApplicationLoader.applicationContext;
         this.journalPrefs = context.getSharedPreferences("smsjobs_journal_" + i, 0);
         loadCacheStatus();
-        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.newSuggestionsAvailable);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                SMSJobController.this.lambda$new$0();
+            }
+        });
+    }
+
+    public void lambda$new$0() {
+        readPending();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.newSuggestionsAvailable);
     }
 
     @Override
@@ -147,22 +161,22 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             }, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SMSJobController.this.lambda$checkIsEligible$1(callback, tLObject, tLRPC$TL_error);
+                    SMSJobController.this.lambda$checkIsEligible$2(callback, tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$checkIsEligible$1(final Utilities.Callback callback, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkIsEligible$2(final Utilities.Callback callback, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$checkIsEligible$0(tLObject, tLRPC$TL_error, callback);
+                SMSJobController.this.lambda$checkIsEligible$1(tLObject, tLRPC$TL_error, callback);
             }
         });
     }
 
-    public void lambda$checkIsEligible$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback) {
+    public void lambda$checkIsEligible$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, Utilities.Callback callback) {
         this.loadingIsEligible = false;
         this.loadedIsEligible = true;
         if (tLObject instanceof TL_smsjobs$TL_smsjobs_eligibleToJoin) {
@@ -205,22 +219,22 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             }, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SMSJobController.this.lambda$loadStatus$3(tLObject, tLRPC$TL_error);
+                    SMSJobController.this.lambda$loadStatus$4(tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$loadStatus$3(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStatus$4(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$loadStatus$2(tLObject, tLRPC$TL_error);
+                SMSJobController.this.lambda$loadStatus$3(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadStatus$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStatus$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = this.currentStatus;
         TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin = this.isEligible;
         int i = this.currentState;
@@ -297,21 +311,21 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                SMSJobController.this.lambda$checkSelectedSIMCard$5(tLObject, tLRPC$TL_error);
+                SMSJobController.this.lambda$checkSelectedSIMCard$6(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$checkSelectedSIMCard$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkSelectedSIMCard$6(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$checkSelectedSIMCard$4(tLRPC$TL_error, tLObject);
+                SMSJobController.this.lambda$checkSelectedSIMCard$5(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$checkSelectedSIMCard$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$checkSelectedSIMCard$5(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
@@ -412,22 +426,22 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_smsjobs$TL_smsjobs_getSmsJob, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SMSJobController.this.lambda$processJobUpdate$7(str, tLObject, tLRPC$TL_error);
+                    SMSJobController.this.lambda$processJobUpdate$8(str, tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$processJobUpdate$7(final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processJobUpdate$8(final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$processJobUpdate$6(tLObject, str);
+                SMSJobController.this.lambda$processJobUpdate$7(tLObject, str);
             }
         });
     }
 
-    public void lambda$processJobUpdate$6(TLObject tLObject, String str) {
+    public void lambda$processJobUpdate$7(TLObject tLObject, String str) {
         if (tLObject instanceof TL_smsjobs$TL_smsJob) {
             runJob((TL_smsjobs$TL_smsJob) tLObject);
             return;
@@ -436,7 +450,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         this.loadingJobs.remove(str);
     }
 
-    private void runJob(final TL_smsjobs$TL_smsJob tL_smsjobs$TL_smsJob) {
+    private void runJob(TL_smsjobs$TL_smsJob tL_smsjobs$TL_smsJob) {
         String str;
         String str2;
         String str3;
@@ -446,7 +460,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         } else {
             str = "+" + tL_smsjobs$TL_smsJob.phone_number;
         }
-        final String str4 = str;
+        String str4 = str;
         StringBuilder sb = new StringBuilder();
         sb.append("[smsjob] running sms job ");
         sb.append(tL_smsjobs$TL_smsJob.job_id);
@@ -464,43 +478,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         }
         sb.append(str3);
         FileLog.d(sb.toString());
-        final boolean[] zArr = new boolean[1];
-        sendSMS(ApplicationLoader.applicationContext, this.selectedSimCard, str4, tL_smsjobs$TL_smsJob.text, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                SMSJobController.this.lambda$runJob$8(tL_smsjobs$TL_smsJob, zArr, str4, (Boolean) obj, (String) obj2);
-            }
-        }, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                SMSJobController.this.lambda$runJob$9(tL_smsjobs$TL_smsJob, zArr, str4, (Boolean) obj, (String) obj2);
-            }
-        });
+        pushToJournal(tL_smsjobs$TL_smsJob.job_id, 1, str4, null);
+        sendSMS(ApplicationLoader.applicationContext, this.currentAccount, tL_smsjobs$TL_smsJob.job_id, this.selectedSimCard, str4, tL_smsjobs$TL_smsJob.text);
     }
 
-    public void lambda$runJob$8(TL_smsjobs$TL_smsJob tL_smsjobs$TL_smsJob, boolean[] zArr, String str, Boolean bool, String str2) {
-        FileLog.d("[smsjob] sms job " + tL_smsjobs$TL_smsJob.job_id + " sent callback: success=" + bool + ", reason=" + str2);
-        if (zArr[0] || bool.booleanValue()) {
-            return;
-        }
-        zArr[0] = true;
-        finishJob(tL_smsjobs$TL_smsJob.job_id, str, str2);
-    }
-
-    public void lambda$runJob$9(TL_smsjobs$TL_smsJob tL_smsjobs$TL_smsJob, boolean[] zArr, String str, Boolean bool, String str2) {
-        FileLog.d("[smsjob] sms job " + tL_smsjobs$TL_smsJob.job_id + " delivered callback: success=" + bool + ", reason=" + str2);
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        String str3 = tL_smsjobs$TL_smsJob.job_id;
-        if (bool.booleanValue()) {
-            str2 = null;
-        }
-        finishJob(str3, str, str2);
-    }
-
-    private void finishJob(final String str, final String str2, final String str3) {
+    public void finishJob(final String str, final String str2, final String str3) {
         FileLog.d("[smsjob] finished sms job " + str + ", error=" + str3);
         TL_smsjobs$TL_smsjobs_finishJob tL_smsjobs$TL_smsjobs_finishJob = new TL_smsjobs$TL_smsjobs_finishJob();
         tL_smsjobs$TL_smsjobs_finishJob.job_id = str;
@@ -513,21 +495,21 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_smsjobs$TL_smsjobs_finishJob, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                SMSJobController.this.lambda$finishJob$11(str, str2, str3, tLObject, tLRPC$TL_error);
+                SMSJobController.this.lambda$finishJob$10(str, str2, str3, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$finishJob$11(final String str, final String str2, final String str3, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$finishJob$10(final String str, final String str2, final String str3, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$finishJob$10(tLObject, str, tLRPC$TL_error, str2, str3);
+                SMSJobController.this.lambda$finishJob$9(tLObject, str, tLRPC$TL_error, str2, str3);
             }
         });
     }
 
-    public void lambda$finishJob$10(TLObject tLObject, String str, TLRPC$TL_error tLRPC$TL_error, String str2, String str3) {
+    public void lambda$finishJob$9(TLObject tLObject, String str, TLRPC$TL_error tLRPC$TL_error, String str2, String str3) {
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             FileLog.d("[smsjob] finished sms job " + str + ", received true");
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
@@ -535,25 +517,189 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         } else if (tLRPC$TL_error != null) {
             FileLog.d("[smsjob] finished sms job " + str + ", received error " + tLRPC$TL_error.code + " " + tLRPC$TL_error.text);
         }
-        pushToJournal(str, str2, str3);
+        pushToJournal(str, 0, str2, str3);
         invalidateStatus();
     }
 
-    public static class PendingSMS {
-        public final int id;
-        public final boolean[] received = new boolean[2];
-        public final Utilities.Callback2<Boolean, String> whenDelivered;
-        public final Utilities.Callback2<Boolean, String> whenSent;
+    public static class PendingSMS extends TLObject {
+        public int currentAccount;
+        public boolean finished;
+        public int id;
+        public String jobId;
+        public String phone;
+        public final boolean[] received;
+        public long sentTime;
+        public int simId;
+        public String text;
+        private Runnable timerCallback;
+        public int triesLeft;
 
-        public PendingSMS(int i, Utilities.Callback2<Boolean, String> callback2, Utilities.Callback2<Boolean, String> callback22) {
+        private PendingSMS() {
+            this.received = new boolean[2];
+            this.finished = false;
+            this.triesLeft = 2;
+            this.sentTime = System.currentTimeMillis();
+        }
+
+        public PendingSMS(int i, int i2, String str, SIM sim, String str2, String str3) {
+            this.received = new boolean[2];
+            this.finished = false;
+            this.triesLeft = 2;
+            this.sentTime = System.currentTimeMillis();
             this.id = i;
-            this.whenSent = callback2;
-            this.whenDelivered = callback22;
+            this.currentAccount = i2;
+            this.jobId = str;
+            this.simId = sim == null ? -1 : sim.id;
+            this.phone = str2;
+            this.text = str3;
+        }
+
+        public void setup() {
+            long currentTimeMillis = (this.sentTime + 120000) - System.currentTimeMillis();
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    SMSJobController.PendingSMS.this.lambda$setup$0();
+                }
+            };
+            this.timerCallback = runnable;
+            AndroidUtilities.runOnUIThread(runnable, Math.max(0L, currentTimeMillis));
+        }
+
+        public void lambda$setup$0() {
+            whenSent(false, "2MIN_TIMEOUT");
+            SMSJobController.pending.remove(Integer.valueOf(this.id));
+            SMSJobController.savePending();
+        }
+
+        public void whenSent(boolean z, String str) {
+            boolean[] zArr = this.received;
+            if (zArr[0]) {
+                return;
+            }
+            zArr[0] = true;
+            AndroidUtilities.cancelRunOnUIThread(this.timerCallback);
+            FileLog.d("[smsjob] sms job " + this.jobId + " sent callback: success=" + z + ", reason=" + str);
+            if (this.finished || z) {
+                return;
+            }
+            this.finished = true;
+            SMSJobController sMSJobController = SMSJobController.getInstance(this.currentAccount);
+            String str2 = this.jobId;
+            String str3 = this.phone;
+            if (z) {
+                str = null;
+            }
+            sMSJobController.finishJob(str2, str3, str);
+        }
+
+        public void whenDelivered(boolean z, String str) {
+            boolean[] zArr = this.received;
+            if (zArr[1]) {
+                return;
+            }
+            zArr[1] = true;
+            AndroidUtilities.cancelRunOnUIThread(this.timerCallback);
+            FileLog.d("[smsjob] sms job " + this.jobId + " delivered callback: success=" + z + ", reason=" + str);
+            if (this.finished) {
+                return;
+            }
+            this.finished = true;
+            SMSJobController sMSJobController = SMSJobController.getInstance(this.currentAccount);
+            String str2 = this.jobId;
+            String str3 = this.phone;
+            if (z) {
+                str = null;
+            }
+            sMSJobController.finishJob(str2, str3, str);
+        }
+
+        @Override
+        public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+            abstractSerializedData.writeInt32(137904659);
+            abstractSerializedData.writeInt32(this.id);
+            abstractSerializedData.writeInt32(this.currentAccount);
+            abstractSerializedData.writeString(this.jobId);
+            abstractSerializedData.writeInt32(this.simId);
+            abstractSerializedData.writeString(this.phone);
+            abstractSerializedData.writeString(this.text);
+            boolean[] zArr = this.received;
+            abstractSerializedData.writeInt32((zArr[1] ? 2 : 0) | (zArr[0] ? 1 : 0) | 0 | (this.finished ? 4 : 0));
+            abstractSerializedData.writeInt32(this.triesLeft);
+            abstractSerializedData.writeInt64(this.sentTime);
+        }
+
+        @Override
+        public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+            this.id = abstractSerializedData.readInt32(z);
+            this.currentAccount = abstractSerializedData.readInt32(z);
+            this.jobId = abstractSerializedData.readString(z);
+            this.simId = abstractSerializedData.readInt32(z);
+            this.phone = abstractSerializedData.readString(z);
+            this.text = abstractSerializedData.readString(z);
+            int readInt32 = abstractSerializedData.readInt32(z);
+            boolean[] zArr = this.received;
+            zArr[0] = (readInt32 & 1) != 0;
+            zArr[1] = (readInt32 & 2) != 0;
+            this.finished = (readInt32 & 4) != 0;
+            this.triesLeft = abstractSerializedData.readInt32(z);
+            this.sentTime = abstractSerializedData.readInt64(z);
+        }
+    }
+
+    private static void readPending() {
+        if (readCachedPending) {
+            return;
+        }
+        String string = MessagesController.getGlobalMainSettings().getString("smsjobs_pending", null);
+        if (string != null) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+                int readInt32 = serializedData.readInt32(true);
+                for (int i = 0; i < readInt32; i++) {
+                    int readInt322 = serializedData.readInt32(true);
+                    if (readInt322 != 137904659) {
+                        throw new RuntimeException("pending parse unknown magic " + readInt322);
+                    }
+                    PendingSMS pendingSMS = new PendingSMS();
+                    pendingSMS.readParams(serializedData, true);
+                    pendingSMS.setup();
+                    pending.put(Integer.valueOf(pendingSMS.id), pendingSMS);
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        Log.i("lolkek", "readPending " + pending.size());
+        readCachedPending = true;
+    }
+
+    public static void savePending() {
+        if (pending.isEmpty()) {
+            Log.i("lolkek", "savePending empty");
+            MessagesController.getGlobalMainSettings().edit().remove("smsjobs_pending").apply();
+            return;
+        }
+        Log.i("lolkek", "savePending " + pending.size());
+        try {
+            int size = pending.size() * 8;
+            for (PendingSMS pendingSMS : pending.values()) {
+                size += pendingSMS.getObjectSize();
+            }
+            SerializedData serializedData = new SerializedData(size);
+            serializedData.writeInt32(pending.size());
+            for (PendingSMS pendingSMS2 : pending.values()) {
+                pendingSMS2.serializeToStream(serializedData);
+            }
+            MessagesController.getGlobalMainSettings().edit().putString("smsjobs_pending", Utilities.bytesToHex(serializedData.toByteArray())).apply();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     public static void receivedSMSIntent(Intent intent, int i) {
         boolean z;
+        int i2;
         if (intent == null) {
             return;
         }
@@ -577,6 +723,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         sb2.append(", ");
         sb2.append(booleanExtra ? "sent" : booleanExtra2 ? "delivered" : "null");
         FileLog.d(sb2.toString());
+        if (i == 101 && (i2 = pendingSMS.triesLeft) > 0) {
+            pendingSMS.triesLeft = i2 - 1;
+            resendPending(pendingSMS);
+            return;
+        }
         String str = null;
         switch (i) {
             case -1:
@@ -714,6 +865,10 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 str = "RESULT_NO_DEFAULT_SMS_APP";
                 z = false;
                 break;
+            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+                str = "RESULT_USER_NOT_ALLOWED";
+                z = false;
+                break;
             default:
                 switch (i) {
                     case 100:
@@ -822,20 +977,23 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 z = false;
                 break;
         }
-        if (booleanExtra && !pendingSMS.received[0]) {
-            pendingSMS.whenSent.run(Boolean.valueOf(z), str);
-            pendingSMS.received[0] = true;
-        } else if (booleanExtra2 && !pendingSMS.received[1]) {
-            pendingSMS.whenDelivered.run(Boolean.valueOf(z), str);
-            pendingSMS.received[1] = true;
+        int intExtra2 = intent.getIntExtra("errorCode", -1);
+        if (intExtra2 != -1) {
+            str = str + "_" + intExtra2;
+        }
+        if (booleanExtra) {
+            pendingSMS.whenSent(z, str);
+        } else if (booleanExtra2) {
+            pendingSMS.whenDelivered(z, str);
         }
         boolean[] zArr = pendingSMS.received;
         if (zArr[0] && zArr[1]) {
             pending.remove(Integer.valueOf(intExtra));
+            savePending();
         }
     }
 
-    private static void sendSMS(Context context, SIM sim, String str, String str2, Utilities.Callback2<Boolean, String> callback2, Utilities.Callback2<Boolean, String> callback22) {
+    private static void sendSMS(Context context, int i, String str, SIM sim, String str2, String str3) {
         SmsManager smsManager;
         if (sim != null && Build.VERSION.SDK_INT >= 31) {
             smsManager = ((SmsManager) context.getSystemService(SmsManager.class)).createForSubscriptionId(sim.id);
@@ -854,9 +1012,56 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         intent2.putExtra("delivered", true);
         intent2.putExtra("tg_sms_id", random);
         PendingIntent broadcast2 = PendingIntent.getBroadcast(context, 0, intent2, 167772160);
-        pending.put(Integer.valueOf(random), new PendingSMS(random, callback2, callback22));
+        PendingSMS pendingSMS = new PendingSMS(random, i, str, sim, str2, str3);
+        pendingSMS.setup();
+        pending.put(Integer.valueOf(random), pendingSMS);
+        savePending();
         FileLog.d("[smsjob] sending sms with id " + random);
-        smsManager2.sendTextMessage(str, null, str2, broadcast, broadcast2);
+        try {
+            smsManager2.sendTextMessage(str2, null, str3, broadcast, broadcast2);
+            FileLog.d("[smsjob] sent sms with id " + random);
+        } catch (Throwable th) {
+            FileLog.e("[smsjob] failed to send sms with id " + random + ", caught error", th);
+            pendingSMS.whenSent(false, th.getMessage());
+        }
+    }
+
+    private static void resendPending(PendingSMS pendingSMS) {
+        SmsManager smsManager;
+        Context context = ApplicationLoader.applicationContext;
+        if (context == null) {
+            context = LaunchActivity.instance;
+        }
+        if (context == null) {
+            FileLog.d("[smsjob] resending failed: no context; with id " + pendingSMS.id);
+            pendingSMS.whenSent(false, "RESENDING_NULL_CONTEXT");
+            return;
+        }
+        int i = pendingSMS.simId;
+        if (i != -1 && Build.VERSION.SDK_INT >= 31) {
+            smsManager = ((SmsManager) context.getSystemService(SmsManager.class)).createForSubscriptionId(pendingSMS.simId);
+        } else if (i != -1 && Build.VERSION.SDK_INT >= 22) {
+            smsManager = SmsManager.getSmsManagerForSubscriptionId(i);
+        } else {
+            smsManager = SmsManager.getDefault();
+        }
+        SmsManager smsManager2 = smsManager;
+        Intent intent = new Intent(context, SMSResultService.class);
+        intent.putExtra("sent", true);
+        intent.putExtra("tg_sms_id", pendingSMS.id);
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, intent, 167772160);
+        Intent intent2 = new Intent(context, SMSResultService.class);
+        intent2.putExtra("delivered", true);
+        intent2.putExtra("tg_sms_id", pendingSMS.id);
+        PendingIntent broadcast2 = PendingIntent.getBroadcast(context, 0, intent2, 167772160);
+        FileLog.d("[smsjob] resending sms with id " + pendingSMS.id);
+        try {
+            smsManager2.sendTextMessage(pendingSMS.phone, null, pendingSMS.text, broadcast, broadcast2);
+            FileLog.d("[smsjob] resent sms with id " + pendingSMS.id);
+        } catch (Throwable th) {
+            FileLog.e("[smsjob] failed to resend sms with id " + pendingSMS.id + ", caught error", th);
+            pendingSMS.whenSent(false, th.getMessage());
+        }
     }
 
     public static class SIM {
@@ -977,22 +1182,22 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         }, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                SMSJobController.this.lambda$leave$13(tLObject, tLRPC$TL_error);
+                SMSJobController.this.lambda$leave$12(tLObject, tLRPC$TL_error);
             }
         });
         SMSJobsNotification.check();
     }
 
-    public void lambda$leave$13(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$leave$12(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$leave$12(tLRPC$TL_error, tLObject);
+                SMSJobController.this.lambda$leave$11(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$leave$12(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$leave$11(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
@@ -1018,23 +1223,23 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_smsjobs$TL_smsjobs_updateSettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                SMSJobController.this.lambda$toggleAllowInternational$15(r2, z, tLObject, tLRPC$TL_error);
+                SMSJobController.this.lambda$toggleAllowInternational$14(r2, z, tLObject, tLRPC$TL_error);
             }
         });
         final int[] iArr = {sendRequest};
         this.updateSettingsReqId = sendRequest;
     }
 
-    public void lambda$toggleAllowInternational$15(final int[] iArr, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$toggleAllowInternational$14(final int[] iArr, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SMSJobController.this.lambda$toggleAllowInternational$14(iArr, z);
+                SMSJobController.this.lambda$toggleAllowInternational$13(iArr, z);
             }
         });
     }
 
-    public void lambda$toggleAllowInternational$14(int[] iArr, boolean z) {
+    public void lambda$toggleAllowInternational$13(int[] iArr, boolean z) {
         if (iArr[0] != this.updateSettingsReqId) {
             return;
         }
@@ -1056,9 +1261,9 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         Collections.sort(this.journal, new Comparator() {
             @Override
             public final int compare(Object obj2, Object obj3) {
-                int lambda$readJournal$16;
-                lambda$readJournal$16 = SMSJobController.lambda$readJournal$16((SMSJobController.JobEntry) obj2, (SMSJobController.JobEntry) obj3);
-                return lambda$readJournal$16;
+                int lambda$readJournal$15;
+                lambda$readJournal$15 = SMSJobController.lambda$readJournal$15((SMSJobController.JobEntry) obj2, (SMSJobController.JobEntry) obj3);
+                return lambda$readJournal$15;
             }
         });
         int i = 0;
@@ -1078,7 +1283,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         MessagesController.getMainSettings(this.currentAccount).edit().putBoolean("smsjobs_checked_journal", true).apply();
     }
 
-    public static int lambda$readJournal$16(JobEntry jobEntry, JobEntry jobEntry2) {
+    public static int lambda$readJournal$15(JobEntry jobEntry, JobEntry jobEntry2) {
         return jobEntry2.date - jobEntry.date;
     }
 
@@ -1087,13 +1292,31 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         this.journalPrefs.edit().clear().apply();
     }
 
-    private void pushToJournal(String str, String str2, String str3) {
-        JobEntry jobEntry = new JobEntry();
+    private void pushToJournal(String str, int i, String str2, String str3) {
+        JobEntry jobEntry;
+        int i2 = 0;
+        while (true) {
+            if (i2 >= this.journal.size()) {
+                jobEntry = null;
+                break;
+            } else if (TextUtils.equals(this.journal.get(i2).job_id, str)) {
+                jobEntry = this.journal.get(i2);
+                break;
+            } else {
+                i2++;
+            }
+        }
+        if (jobEntry == null) {
+            ArrayList<JobEntry> arrayList = this.journal;
+            JobEntry jobEntry2 = new JobEntry();
+            arrayList.add(0, jobEntry2);
+            jobEntry = jobEntry2;
+        }
+        jobEntry.state = i;
         jobEntry.job_id = str;
         jobEntry.error = str3;
         jobEntry.date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
         jobEntry.country = getCountryFromPhoneNumber(ApplicationLoader.applicationContext, str2);
-        this.journal.add(0, jobEntry);
         this.journalPrefs.edit().putString(jobEntry.job_id, jobEntry.toString()).apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.smsJobStatusUpdate, new Object[0]);
         if (TextUtils.isEmpty(str3)) {
@@ -1170,6 +1393,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         public int date;
         public String error;
         public String job_id;
+        public int state;
 
         public String toString() {
             StringBuilder sb = new StringBuilder();
@@ -1184,20 +1408,23 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             sb.append(this.date);
             sb.append(",");
             sb.append(this.country);
+            sb.append(",");
+            sb.append(this.state);
             return sb.toString();
         }
 
         public static JobEntry fromString(String str) {
             String[] split = str.split(",");
-            if (split.length != 4) {
-                return null;
+            if (split.length == 4 || split.length == 5) {
+                JobEntry jobEntry = new JobEntry();
+                jobEntry.job_id = split[0];
+                jobEntry.error = TextUtils.isEmpty(split[1]) ? null : split[1];
+                jobEntry.date = Utilities.parseInt((CharSequence) split[2]).intValue();
+                jobEntry.country = split[3];
+                jobEntry.state = split.length >= 4 ? Utilities.parseInt((CharSequence) split[4]).intValue() : 0;
+                return jobEntry;
             }
-            JobEntry jobEntry = new JobEntry();
-            jobEntry.job_id = split[0];
-            jobEntry.error = TextUtils.isEmpty(split[1]) ? null : split[1];
-            jobEntry.date = Utilities.parseInt((CharSequence) split[2]).intValue();
-            jobEntry.country = split[3];
-            return jobEntry;
+            return null;
         }
     }
 

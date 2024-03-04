@@ -94,7 +94,7 @@ public class TextCell extends FrameLayout {
         simpleTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView2.setImportantForAccessibility(2);
         addView(simpleTextView2, LayoutHelper.createFrame(-2, -1.0f));
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, true);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
         this.valueTextView = animatedTextView;
         animatedTextView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue2 : Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
         animatedTextView.setPadding(0, AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f));
@@ -337,7 +337,7 @@ public class TextCell extends FrameLayout {
     }
 
     public void setTextAndIcon(String str, Drawable drawable, boolean z) {
-        this.offsetFromImage = 68;
+        this.offsetFromImage = 71;
         this.imageLeft = 18;
         this.textView.setText(str);
         this.textView.setRightDrawable((Drawable) null);

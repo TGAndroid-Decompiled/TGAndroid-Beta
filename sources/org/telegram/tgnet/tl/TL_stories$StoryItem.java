@@ -62,7 +62,7 @@ public abstract class TL_stories$StoryItem extends TLObject {
                         this.close_friends = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
                         this.noforwards = (readInt32 & 1024) != 0;
-                        this.edited = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.edited = (readInt32 & 2048) != 0;
                         this.contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.selected_contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.out = (readInt32 & 65536) != 0;
@@ -148,7 +148,7 @@ public abstract class TL_stories$StoryItem extends TLObject {
                         this.flags = i5;
                         int i6 = this.noforwards ? i5 | 1024 : i5 & (-1025);
                         this.flags = i6;
-                        int i7 = this.edited ? i6 | LiteMode.FLAG_AUTOPLAY_GIFS : i6 & (-2049);
+                        int i7 = this.edited ? i6 | 2048 : i6 & (-2049);
                         this.flags = i7;
                         int i8 = this.contacts ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i7 & (-4097);
                         this.flags = i8;
@@ -235,7 +235,7 @@ public abstract class TL_stories$StoryItem extends TLObject {
                         this.close_friends = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
                         this.noforwards = (readInt32 & 1024) != 0;
-                        this.edited = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.edited = (readInt32 & 2048) != 0;
                         this.contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.selected_contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.out = (readInt32 & 65536) != 0;
@@ -318,7 +318,7 @@ public abstract class TL_stories$StoryItem extends TLObject {
                         this.flags = i5;
                         int i6 = this.noforwards ? i5 | 1024 : i5 & (-1025);
                         this.flags = i6;
-                        int i7 = this.edited ? i6 | LiteMode.FLAG_AUTOPLAY_GIFS : i6 & (-2049);
+                        int i7 = this.edited ? i6 | 2048 : i6 & (-2049);
                         this.flags = i7;
                         int i8 = this.contacts ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i7 & (-4097);
                         this.flags = i8;
@@ -381,7 +381,7 @@ public abstract class TL_stories$StoryItem extends TLObject {
                         this.close_friends = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
                         this.min = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
                         this.noforwards = (readInt32 & 1024) != 0;
-                        this.edited = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+                        this.edited = (readInt32 & 2048) != 0;
                         this.contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
                         this.selected_contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -443,7 +443,7 @@ public abstract class TL_stories$StoryItem extends TLObject {
                         this.flags = i5;
                         int i6 = this.noforwards ? i5 | 1024 : i5 & (-1025);
                         this.flags = i6;
-                        int i7 = this.edited ? i6 | LiteMode.FLAG_AUTOPLAY_GIFS : i6 & (-2049);
+                        int i7 = this.edited ? i6 | 2048 : i6 & (-2049);
                         this.flags = i7;
                         int i8 = this.contacts ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i7 & (-4097);
                         this.flags = i8;

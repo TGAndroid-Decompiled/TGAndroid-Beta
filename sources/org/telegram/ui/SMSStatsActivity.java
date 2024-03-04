@@ -1032,7 +1032,12 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 } else {
                     this.countryTextView.setText(BuildConfig.APP_CENTER_HASH);
                 }
-                if (TextUtils.isEmpty(jobEntry.error)) {
+                if (jobEntry.state == 1) {
+                    this.statusTextView.setTextColor(Theme.getColor(Theme.key_avatar_nameInMessageOrange));
+                    this.statusTextView.setText(LocaleController.getString((int) R.string.SmsHistoryStatusPending));
+                    this.errorTextView.setVisibility(8);
+                    this.errorDescriptionTextView.setVisibility(8);
+                } else if (TextUtils.isEmpty(jobEntry.error)) {
                     this.statusTextView.setTextColor(Theme.getColor(Theme.key_avatar_nameInMessageGreen));
                     this.statusTextView.setText(LocaleController.getString((int) R.string.SmsHistoryStatusSuccess));
                     this.errorTextView.setVisibility(8);
@@ -1044,7 +1049,16 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                     this.errorTextView.setText(jobEntry.error);
                     String string = LocaleController.getString("SmsDescr" + jobEntry.error);
                     if (string == null || string.startsWith("LOC_ERR")) {
-                        this.errorDescriptionTextView.setVisibility(8);
+                        int lastIndexOf = jobEntry.error.lastIndexOf("_");
+                        if (lastIndexOf >= 0) {
+                            string = LocaleController.getString("SmsDescr" + jobEntry.error.substring(0, lastIndexOf));
+                        }
+                        if (string == null || string.startsWith("LOC_ERR")) {
+                            this.errorDescriptionTextView.setVisibility(8);
+                        } else {
+                            this.errorDescriptionTextView.setText(string);
+                            this.errorDescriptionTextView.setVisibility(0);
+                        }
                     } else {
                         this.errorDescriptionTextView.setText(string);
                         this.errorDescriptionTextView.setVisibility(0);

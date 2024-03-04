@@ -35,7 +35,7 @@ public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
         this.demote = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
         this.info = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
         this.settings = (readInt32 & 1024) != 0;
-        this.pinned = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
+        this.pinned = (readInt32 & 2048) != 0;
         this.edit = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.delete = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
         this.group_call = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
@@ -67,7 +67,7 @@ public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
         this.flags = i10;
         int i11 = this.settings ? i10 | 1024 : i10 & (-1025);
         this.flags = i11;
-        int i12 = this.pinned ? i11 | LiteMode.FLAG_AUTOPLAY_GIFS : i11 & (-2049);
+        int i12 = this.pinned ? i11 | 2048 : i11 & (-2049);
         this.flags = i12;
         int i13 = this.edit ? i12 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i12 & (-4097);
         this.flags = i13;
