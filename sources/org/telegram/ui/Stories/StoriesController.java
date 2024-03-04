@@ -609,7 +609,7 @@ public class StoriesController {
                 i3++;
             }
             if (!tL_stories$PeerStories.stories.isEmpty()) {
-                this.allStoriesMap.put(peerDialogId, tL_stories$PeerStories);
+                putToAllStories(peerDialogId, tL_stories$PeerStories);
                 int i4 = 0;
                 while (i4 < 2) {
                     ArrayList<TL_stories$PeerStories> arrayList = i4 == 0 ? this.hiddenListStories : this.dialogListStories;
@@ -775,7 +775,7 @@ public class StoriesController {
                 if (!z2) {
                     TL_stories$TL_peerStories tL_stories$TL_peerStories = new TL_stories$TL_peerStories();
                     tL_stories$TL_peerStories.peer = MessagesController.getInstance(this.currentAccount).getPeer(j);
-                    this.allStoriesMap.put(j, tL_stories$TL_peerStories);
+                    putToAllStories(j, tL_stories$TL_peerStories);
                     this.dialogListStories.add(0, tL_stories$TL_peerStories);
                     loadAllStoriesForDialog(j);
                 }
@@ -857,7 +857,7 @@ public class StoriesController {
 
     private void applyNewStories(TL_stories$PeerStories tL_stories$PeerStories) {
         long peerDialogId = DialogObject.getPeerDialogId(tL_stories$PeerStories.peer);
-        this.allStoriesMap.put(peerDialogId, tL_stories$PeerStories);
+        putToAllStories(peerDialogId, tL_stories$PeerStories);
         if (peerDialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
             applyToList(tL_stories$PeerStories);
@@ -867,6 +867,31 @@ public class StoriesController {
         }
         FileLog.d("StoriesController applyNewStories " + peerDialogId);
         updateStoriesInLists(peerDialogId, tL_stories$PeerStories.stories);
+    }
+
+    private void putToAllStories(long j, TL_stories$PeerStories tL_stories$PeerStories) {
+        ArrayList<TL_stories$StoryItem> arrayList;
+        ArrayList<TL_stories$StoryItem> arrayList2;
+        TL_stories$PeerStories tL_stories$PeerStories2 = this.allStoriesMap.get(j);
+        if (tL_stories$PeerStories2 != null && (arrayList = tL_stories$PeerStories2.stories) != null && !arrayList.isEmpty() && tL_stories$PeerStories != null && (arrayList2 = tL_stories$PeerStories.stories) != null && !arrayList2.isEmpty()) {
+            for (int i = 0; i < tL_stories$PeerStories.stories.size(); i++) {
+                if (tL_stories$PeerStories.stories.get(i) instanceof TL_stories$TL_storyItemSkipped) {
+                    int i2 = tL_stories$PeerStories.stories.get(i).id;
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= tL_stories$PeerStories2.stories.size()) {
+                            break;
+                        }
+                        if (tL_stories$PeerStories2.stories.get(i3).id == i2 && (tL_stories$PeerStories2.stories.get(i3) instanceof TL_stories$TL_storyItem)) {
+                            tL_stories$PeerStories.stories.set(i, tL_stories$PeerStories2.stories.get(i3));
+                            break;
+                        }
+                        i3++;
+                    }
+                }
+            }
+        }
+        this.allStoriesMap.put(j, tL_stories$PeerStories);
     }
 
     public static TL_stories$StoryItem applyStoryUpdate(TL_stories$StoryItem tL_stories$StoryItem, TL_stories$StoryItem tL_stories$StoryItem2) {
@@ -1752,7 +1777,7 @@ public class StoriesController {
     }
 
     public void putStories(long j, TL_stories$PeerStories tL_stories$PeerStories) {
-        this.allStoriesMap.put(j, tL_stories$PeerStories);
+        putToAllStories(j, tL_stories$PeerStories);
         if (j > 0) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
             if (isContactOrService(user) || user.self) {

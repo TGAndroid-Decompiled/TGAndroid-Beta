@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="44569" android:versionName="10.9.0" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.beta" platformBuildVersionCode="33" platformBuildVersionName="13">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="44629" android:versionName="10.9.1" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.beta" platformBuildVersionCode="33" platformBuildVersionName="13">
     <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="33"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
@@ -276,6 +276,7 @@
             </intent-filter>
         </activity>
         <activity android:name="org.telegram.messenger.OpenChatReceiver" android:exported="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
+        <activity android:name="org.telegram.messenger.OpenAttachedMenuBotReceiver" android:exported="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
         <activity android:theme="@style/Theme.TMessages.PopupNotification" android:name="org.telegram.ui.PopupNotificationActivity" android:taskAffinity="" android:excludeFromRecents="true" android:launchMode="singleTask" android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|navigation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize|stateHidden" android:resizeableActivity="false"/>
         <activity android:theme="@style/Theme.TMessages.Transparent" android:name="org.telegram.ui.VoIPPermissionActivity" android:taskAffinity="org.telegram.messenger.beta.voip" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
         <activity android:theme="@style/Theme.TMessages.TransparentWithAlerts" android:name="org.telegram.ui.VoIPFeedbackActivity" android:taskAffinity="org.telegram.messenger.beta.voip_feedback" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>

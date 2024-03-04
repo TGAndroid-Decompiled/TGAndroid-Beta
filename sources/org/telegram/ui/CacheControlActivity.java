@@ -793,47 +793,48 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             iArr = new int[]{0};
         }
         File file = new File(str);
-        if (file.exists()) {
-            for (File file2 : file.listFiles()) {
-                String name = file2.getName();
-                if (!".".equals(name)) {
-                    if (i > 0 && name.length() >= 4) {
-                        String lowerCase = name.toLowerCase();
-                        boolean z = lowerCase.endsWith(".mp3") || lowerCase.endsWith(".m4a");
-                        boolean z2 = lowerCase.endsWith(".tgs") || lowerCase.endsWith(".webm");
-                        boolean z3 = lowerCase.endsWith(".tmp") || lowerCase.endsWith(".temp") || lowerCase.endsWith(".preload");
-                        if (z) {
-                            if (i == LISTDIR_DOCTYPE_OTHER_THAN_MUSIC) {
-                            }
-                        }
-                        if (!z) {
-                            if (i == LISTDIR_DOCTYPE_MUSIC) {
-                            }
-                        }
-                        if (z2) {
-                            if (i == LISTDIR_DOCTYPE2_OTHER) {
-                            }
-                        }
-                        if (!z2) {
-                            if (i == LISTDIR_DOCTYPE2_EMOJI) {
-                            }
-                        }
-                        if (z3) {
-                            if (i == LISTDIR_DOCTYPE2_OTHER) {
-                            }
-                        }
-                        if (!z3 && i == LISTDIR_DOCTYPE2_TEMP) {
+        if (!file.exists() || (listFiles = file.listFiles()) == null) {
+            return;
+        }
+        for (File file2 : listFiles) {
+            String name = file2.getName();
+            if (!".".equals(name)) {
+                if (i > 0 && name.length() >= 4) {
+                    String lowerCase = name.toLowerCase();
+                    boolean z = lowerCase.endsWith(".mp3") || lowerCase.endsWith(".m4a");
+                    boolean z2 = lowerCase.endsWith(".tgs") || lowerCase.endsWith(".webm");
+                    boolean z3 = lowerCase.endsWith(".tmp") || lowerCase.endsWith(".temp") || lowerCase.endsWith(".preload");
+                    if (z) {
+                        if (i == LISTDIR_DOCTYPE_OTHER_THAN_MUSIC) {
                         }
                     }
-                    if (file2.isDirectory()) {
-                        if (!"drafts".equals(file2.getName())) {
-                            cleanDirJava(str + "/" + name, i, iArr, callback);
+                    if (!z) {
+                        if (i == LISTDIR_DOCTYPE_MUSIC) {
                         }
-                    } else {
-                        file2.delete();
-                        iArr[0] = iArr[0] + 1;
-                        callback.run(Float.valueOf(iArr[0] / countDirJava));
                     }
+                    if (z2) {
+                        if (i == LISTDIR_DOCTYPE2_OTHER) {
+                        }
+                    }
+                    if (!z2) {
+                        if (i == LISTDIR_DOCTYPE2_EMOJI) {
+                        }
+                    }
+                    if (z3) {
+                        if (i == LISTDIR_DOCTYPE2_OTHER) {
+                        }
+                    }
+                    if (!z3 && i == LISTDIR_DOCTYPE2_TEMP) {
+                    }
+                }
+                if (file2.isDirectory()) {
+                    if (!"drafts".equals(file2.getName())) {
+                        cleanDirJava(str + "/" + name, i, iArr, callback);
+                    }
+                } else {
+                    file2.delete();
+                    iArr[0] = iArr[0] + 1;
+                    callback.run(Float.valueOf(iArr[0] / countDirJava));
                 }
             }
         }

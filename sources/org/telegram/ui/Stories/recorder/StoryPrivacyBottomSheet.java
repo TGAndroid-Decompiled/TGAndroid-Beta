@@ -3494,7 +3494,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     while (i2 < tLRPC$TL_privacyValueAllowUsers.users.size()) {
                         long longValue2 = tLRPC$TL_privacyValueAllowUsers.users.get(i2).longValue();
                         TLRPC$InputUser inputUser2 = messagesController2.getInputUser(longValue2);
-                        if (!(inputUser2 instanceof TLRPC$TL_inputUserEmpty)) {
+                        if (inputUser2 != null && !(inputUser2 instanceof TLRPC$TL_inputUserEmpty)) {
                             tLRPC$TL_inputPrivacyValueAllowUsers.users.add(inputUser2);
                             this.selectedUserIds.add(Long.valueOf(longValue2));
                             this.selectedInputUsers.add(inputUser2);
@@ -3858,7 +3858,14 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 return tLRPC$User.close_friend;
             } else {
                 if (i == 3) {
-                    return this.selectedUserIds.contains(Long.valueOf(tLRPC$User.id));
+                    if (this.selectedUserIds.contains(Long.valueOf(tLRPC$User.id))) {
+                        return true;
+                    }
+                    for (ArrayList<Long> arrayList : this.selectedUserIdsByGroup.values()) {
+                        if (arrayList.contains(Long.valueOf(tLRPC$User.id))) {
+                            return true;
+                        }
+                    }
                 }
                 return false;
             }

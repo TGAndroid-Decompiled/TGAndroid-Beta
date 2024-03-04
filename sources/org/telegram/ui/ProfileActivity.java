@@ -3408,7 +3408,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     } else {
                         j = -ProfileActivity.this.chatId;
                     }
-                    ProfileActivity.this.getMediaDataController().installShortcut(j);
+                    ProfileActivity.this.getMediaDataController().installShortcut(j, MediaDataController.SHORTCUT_TYPE_USER_OR_CHAT);
                 } catch (Exception e2) {
                     FileLog.e(e2);
                 }

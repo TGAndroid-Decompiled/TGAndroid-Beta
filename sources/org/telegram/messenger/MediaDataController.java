@@ -17,6 +17,7 @@ import android.text.style.URLSpan;
 import android.util.Pair;
 import android.util.SparseArray;
 import androidx.collection.LongSparseArray;
+import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import com.android.billingclient.api.ProductDetails;
 import j$.util.concurrent.ConcurrentHashMap;
@@ -258,6 +259,8 @@ public class MediaDataController extends BaseController {
     public static final int MEDIA_TYPES_COUNT = 8;
     public static final int MEDIA_URL = 3;
     public static final int MEDIA_VIDEOS_ONLY = 7;
+    public static int SHORTCUT_TYPE_ATTACHED_BOT = 0;
+    public static int SHORTCUT_TYPE_USER_OR_CHAT = 0;
     public static final int TYPE_EMOJI = 4;
     public static final int TYPE_EMOJIPACKS = 5;
     public static final int TYPE_FAVE = 2;
@@ -434,6 +437,8 @@ public class MediaDataController extends BaseController {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
+        SHORTCUT_TYPE_USER_OR_CHAT = 0;
+        SHORTCUT_TYPE_ATTACHED_BOT = 1;
         entityComparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
@@ -980,6 +985,10 @@ public class MediaDataController extends BaseController {
 
     public void lambda$processLoadedMenuBots$5() {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.attachMenuBotsDidLoad, new Object[0]);
+    }
+
+    public boolean isMenuBotsUpdatedLocal() {
+        return this.menuBotsUpdatedLocal;
     }
 
     public void updateAttachMenuBotsInCache() {
@@ -6244,12 +6253,39 @@ public class MediaDataController extends BaseController {
         return intent;
     }
 
-    public void installShortcut(long r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.installShortcut(long):void");
+    private Intent createIntrnalAttachedBotShortcutIntent(long j, int i) {
+        if (j != 0 && i == 3) {
+            Intent intent = new Intent(ApplicationLoader.applicationContext, OpenAttachedMenuBotReceiver.class);
+            if (DialogObject.isUserDialog(j)) {
+                intent.putExtra("botId", j);
+                intent.putExtra("currentAccount", this.currentAccount);
+                intent.setAction(OpenAttachedMenuBotReceiver.ACTION + j);
+                intent.addFlags(ConnectionsManager.FileTypeFile);
+                return intent;
+            }
+        }
+        return null;
     }
 
-    public void uninstallShortcut(long r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.uninstallShortcut(long):void");
+    public void installShortcut(long r18, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.installShortcut(long, int):void");
+    }
+
+    public void uninstallShortcut(long r7, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.uninstallShortcut(long, int):void");
+    }
+
+    public boolean isShortcutAdded(long j, int i) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            String str = (i == SHORTCUT_TYPE_USER_OR_CHAT ? "sdid_" : "bdid_") + j;
+            List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getShortcuts(ApplicationLoader.applicationContext, 4);
+            for (int i2 = 0; i2 < shortcuts.size(); i2++) {
+                if (shortcuts.get(i2).getId().equals(str)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static int lambda$static$152(TLRPC$MessageEntity tLRPC$MessageEntity, TLRPC$MessageEntity tLRPC$MessageEntity2) {

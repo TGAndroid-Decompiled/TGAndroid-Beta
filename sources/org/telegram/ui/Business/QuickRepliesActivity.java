@@ -785,7 +785,11 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             }
             if (quickReply.topMessage != null) {
                 spannableStringBuilder.append((CharSequence) " ");
-                CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(quickReply.topMessage.messageText), this.textView.getPaint().getFontMetricsInt(), false);
+                CharSequence charSequence = quickReply.topMessage.caption;
+                if (TextUtils.isEmpty(charSequence)) {
+                    charSequence = quickReply.topMessage.messageText;
+                }
+                CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), this.textView.getPaint().getFontMetricsInt(), false);
                 TLRPC$Message tLRPC$Message = quickReply.topMessage.messageOwner;
                 if (tLRPC$Message != null) {
                     MessageObject.replaceAnimatedEmoji(replaceEmoji, tLRPC$Message.entities, this.textView.getPaint().getFontMetricsInt());

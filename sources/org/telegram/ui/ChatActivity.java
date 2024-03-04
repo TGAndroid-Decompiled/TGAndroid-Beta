@@ -3276,7 +3276,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.toggleMute(false);
             } else if (i == 24) {
                 try {
-                    ChatActivity.this.getMediaDataController().installShortcut(ChatActivity.this.currentUser.id);
+                    ChatActivity.this.getMediaDataController().installShortcut(ChatActivity.this.currentUser.id, MediaDataController.SHORTCUT_TYPE_USER_OR_CHAT);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

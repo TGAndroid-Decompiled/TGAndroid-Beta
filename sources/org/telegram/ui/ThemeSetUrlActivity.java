@@ -28,7 +28,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
@@ -444,7 +443,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 builder.getDismissRunnable().run();
             }
         };
-        linearLayout.addView(themesHorizontalListCell, LayoutHelper.createLinear(-1, MessagesStorage.LAST_DB_VERSION, 0.0f, 7.0f, 0.0f, 1.0f));
+        linearLayout.addView(themesHorizontalListCell, LayoutHelper.createLinear(-1, 148, 0.0f, 7.0f, 0.0f, 1.0f));
         themesHorizontalListCell.scrollToCurrentTheme(this.fragmentView.getMeasuredWidth(), false);
         showDialog(builder.create());
     }

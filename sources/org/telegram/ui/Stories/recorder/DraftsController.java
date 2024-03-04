@@ -570,7 +570,7 @@ public class DraftsController {
             this.mediaEntities = storyEntry.mediaEntities;
             this.stickers = storyEntry.stickers;
             File file6 = storyEntry.filterFile;
-            this.filterFilePath = file6 == null ? "" : file6.toString();
+            this.filterFilePath = file6 != null ? file6.toString() : "";
             this.filterState = storyEntry.filterState;
             this.period = storyEntry.period;
             this.isError = storyEntry.isError;
@@ -584,7 +584,7 @@ public class DraftsController {
             this.audioRight = storyEntry.audioRight;
             this.audioVolume = storyEntry.audioVolume;
             File file7 = storyEntry.round;
-            this.roundPath = file7 != null ? file7.getAbsolutePath() : "";
+            this.roundPath = file7 != null ? file7.getAbsolutePath() : null;
             this.roundThumb = storyEntry.roundThumb;
             this.roundDuration = storyEntry.roundDuration;
             this.roundOffset = storyEntry.roundOffset;
@@ -809,7 +809,7 @@ public class DraftsController {
             } else {
                 new TLRPC$TL_inputPeerSelf().serializeToStream(abstractSerializedData);
             }
-            if (this.roundPath == null) {
+            if (TextUtils.isEmpty(this.roundPath)) {
                 abstractSerializedData.writeInt32(1450380236);
             } else {
                 abstractSerializedData.writeInt32(-745541182);
