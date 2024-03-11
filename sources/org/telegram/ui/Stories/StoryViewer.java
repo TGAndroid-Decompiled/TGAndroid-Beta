@@ -261,27 +261,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void setSpeed(float f) {
-        VideoPlayerHolder videoPlayerHolder;
         currentSpeed = f;
-        VideoPlayerHolder videoPlayerHolder2 = this.playerHolder;
-        if (videoPlayerHolder2 != null) {
-            videoPlayerHolder2.setSpeed(f);
-            StoryViewer storyViewer = null;
-            BaseFragment baseFragment = this.fragment;
-            if (baseFragment != null) {
-                StoryViewer storyViewer2 = baseFragment.overlayStoryViewer;
-                if (storyViewer2 != this) {
-                    storyViewer = storyViewer2;
-                } else {
-                    StoryViewer storyViewer3 = baseFragment.storyViewer;
-                    if (storyViewer3 != this) {
-                        storyViewer = storyViewer3;
-                    }
-                }
-            }
-            if (storyViewer == null || (videoPlayerHolder = storyViewer.playerHolder) == null) {
-                return;
-            }
+        VideoPlayerHolder videoPlayerHolder = this.playerHolder;
+        if (videoPlayerHolder != null) {
             videoPlayerHolder.setSpeed(f);
         }
     }
@@ -1714,7 +1696,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public boolean isPaused() {
-        return this.isPopupVisible || this.isTranslating || this.isBulletinVisible || this.isCaption || this.isWaiting || this.isInTouchMode || this.keyboardVisible || this.currentDialog != null || this.allowTouchesByViewpager || this.isClosed || this.isRecording || this.progressToOpen != 1.0f || this.selfStoriesViewsOffset != 0.0f || this.isHintVisible || (this.isSwiping && this.USE_SURFACE_VIEW) || this.isOverlayVisible || this.isInTextSelectionMode || this.isLikesReactions || this.progressToDismiss != 0.0f || this.storiesIntro != null;
+        BaseFragment baseFragment;
+        return this.isPopupVisible || this.isTranslating || this.isBulletinVisible || this.isCaption || this.isWaiting || this.isInTouchMode || this.keyboardVisible || this.currentDialog != null || this.allowTouchesByViewpager || this.isClosed || this.isRecording || this.progressToOpen != 1.0f || this.selfStoriesViewsOffset != 0.0f || this.isHintVisible || (this.isSwiping && this.USE_SURFACE_VIEW) || this.isOverlayVisible || this.isInTextSelectionMode || this.isLikesReactions || this.progressToDismiss != 0.0f || this.storiesIntro != null || !(!this.ATTACH_TO_FRAGMENT || (baseFragment = this.fragment) == null || baseFragment.getLastStoryViewer() == this);
     }
 
     public void updatePlayingMode() {
@@ -2105,6 +2088,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void release() {
+        ArrayList<StoryViewer> arrayList;
         this.lastUri = null;
         setInTouchMode(false);
         allowScreenshots(true);
@@ -2120,6 +2104,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         MessagesController.getInstance(this.currentAccount).getStoriesController().stopAllPollers();
         if (this.ATTACH_TO_FRAGMENT) {
             lockOrientation(false);
+            BaseFragment baseFragment = this.fragment;
+            if (baseFragment != null && (arrayList = baseFragment.storyViewerStack) != null) {
+                arrayList.remove(this);
+            }
         }
         globalInstances.remove(this);
         this.doOnAnimationReadyRunnables.clear();

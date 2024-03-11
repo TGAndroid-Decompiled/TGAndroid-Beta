@@ -1330,7 +1330,7 @@ public class DatabaseMigrationHelper {
             i7 = 143;
         }
         if (i7 == 143) {
-            sQLiteDatabase.executeFast("ALTER TABLE dialog_filter ADD COLUMN color INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("ALTER TABLE dialog_filter ADD COLUMN color INTEGER default -1").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 144").stepThis().dispose();
             i7 = 144;
         }

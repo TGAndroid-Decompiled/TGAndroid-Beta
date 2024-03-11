@@ -281,14 +281,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     public boolean storyViewerAttached() {
         BaseFragment baseFragment;
-        StoryViewer storyViewer;
         if (this.fragmentsStack.isEmpty()) {
             baseFragment = null;
         } else {
             List<BaseFragment> list = this.fragmentsStack;
             baseFragment = list.get(list.size() - 1);
         }
-        return (baseFragment == null || (storyViewer = baseFragment.storyViewer) == null || !storyViewer.attachedToParent()) ? false : true;
+        return (baseFragment == null || baseFragment.getLastStoryViewer() == null || !baseFragment.getLastStoryViewer().attachedToParent()) ? false : true;
     }
 
     public class LayoutContainer extends FrameLayout {
@@ -311,35 +310,35 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             int i;
             int i2;
             BaseFragment baseFragment = !ActionBarLayout.this.fragmentsStack.isEmpty() ? (BaseFragment) ActionBarLayout.this.fragmentsStack.get(ActionBarLayout.this.fragmentsStack.size() - 1) : null;
-            if (ActionBarLayout.this.storyViewerAttached() && baseFragment.storyViewer.isFullyVisible() && !baseFragment.isStoryViewer(view)) {
-                return true;
-            }
-            if (view instanceof ActionBar) {
-                return super.drawChild(canvas, view, j);
-            }
-            int childCount = getChildCount();
-            int i3 = 0;
-            while (true) {
-                if (i3 >= childCount) {
-                    break;
+            if (!ActionBarLayout.this.storyViewerAttached() || baseFragment == null || baseFragment.getLastStoryViewer() == null || !baseFragment.getLastStoryViewer().isFullyVisible() || baseFragment.getLastStoryViewer().windowView == view) {
+                if (view instanceof ActionBar) {
+                    return super.drawChild(canvas, view, j);
                 }
-                View childAt = getChildAt(i3);
-                if (childAt == view || !(childAt instanceof ActionBar) || childAt.getVisibility() != 0) {
-                    i3++;
-                } else if (((ActionBar) childAt).getCastShadows()) {
-                    i = childAt.getMeasuredHeight();
-                    i2 = (int) childAt.getY();
+                int childCount = getChildCount();
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= childCount) {
+                        break;
+                    }
+                    View childAt = getChildAt(i3);
+                    if (childAt == view || !(childAt instanceof ActionBar) || childAt.getVisibility() != 0) {
+                        i3++;
+                    } else if (((ActionBar) childAt).getCastShadows()) {
+                        i = childAt.getMeasuredHeight();
+                        i2 = (int) childAt.getY();
+                    }
                 }
+                i = 0;
+                i2 = 0;
+                boolean drawChild = super.drawChild(canvas, view, j);
+                if (i != 0 && ActionBarLayout.headerShadowDrawable != null) {
+                    int i4 = i2 + i;
+                    ActionBarLayout.headerShadowDrawable.setBounds(0, i4, getMeasuredWidth(), ActionBarLayout.headerShadowDrawable.getIntrinsicHeight() + i4);
+                    ActionBarLayout.headerShadowDrawable.draw(canvas);
+                }
+                return drawChild;
             }
-            i = 0;
-            i2 = 0;
-            boolean drawChild = super.drawChild(canvas, view, j);
-            if (i != 0 && ActionBarLayout.headerShadowDrawable != null) {
-                int i4 = i2 + i;
-                ActionBarLayout.headerShadowDrawable.setBounds(0, i4, getMeasuredWidth(), ActionBarLayout.headerShadowDrawable.getIntrinsicHeight() + i4);
-                ActionBarLayout.headerShadowDrawable.draw(canvas);
-            }
-            return drawChild;
+            return true;
         }
 
         @Override
@@ -2710,11 +2709,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getLastFragment() != null && getLastFragment().overlayStoryViewer != null && getLastFragment().overlayStoryViewer.attachedToParent()) {
-            return getLastFragment().overlayStoryViewer.windowView.dispatchTouchEvent(motionEvent);
-        }
-        if (getLastFragment() != null && getLastFragment().storyViewer != null && getLastFragment().storyViewer.attachedToParent()) {
-            return getLastFragment().storyViewer.windowView.dispatchTouchEvent(motionEvent);
+        if (getLastFragment() != null && getLastFragment().getLastStoryViewer() != null && getLastFragment().getLastStoryViewer().attachedToParent()) {
+            return getLastFragment().getLastStoryViewer().windowView.dispatchTouchEvent(motionEvent);
         }
         return super.dispatchTouchEvent(motionEvent);
     }

@@ -287,6 +287,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         rect.left = dp2;
         this.shadow.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_messagePanelShadow), PorterDuff.Mode.MULTIPLY));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
+            {
+                ReactionsContainerLayout.this = this;
+            }
+
             @Override
             public boolean drawChild(Canvas canvas, View view, long j) {
                 if (ReactionsContainerLayout.this.pressedReaction != null && (view instanceof ReactionHolderView) && ((ReactionHolderView) view).currentReaction.equals(ReactionsContainerLayout.this.pressedReaction)) {
@@ -311,6 +315,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         recyclerListView.setClipChildren(false);
         recyclerListView.setClipToPadding(false);
         this.linearLayoutManager = new LinearLayoutManager(context, 0, false) {
+            {
+                ReactionsContainerLayout.this = this;
+            }
+
             @Override
             public int scrollHorizontallyBy(int i3, RecyclerView.Recycler recycler, RecyclerView.State state) {
                 int i4;
@@ -363,6 +371,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         };
         recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            {
+                ReactionsContainerLayout.this = this;
+            }
+
             @Override
             public void getItemOffsets(android.graphics.Rect rect2, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 super.getItemOffsets(rect2, view, recyclerView, state);
@@ -394,6 +406,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         recyclerListView.setAdapter(anonymousClass5);
         recyclerListView.addOnScrollListener(new LeftRightShadowsListener());
         recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            {
+                ReactionsContainerLayout.this = this;
+            }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 if (recyclerView.getChildCount() > 2) {
@@ -421,6 +437,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         });
         recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            {
+                ReactionsContainerLayout.this = this;
+            }
+
             @Override
             public void getItemOffsets(android.graphics.Rect rect2, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
@@ -471,6 +491,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         AnonymousClass5(Context context, int i) {
+            ReactionsContainerLayout.this = r1;
             this.val$context = context;
             this.val$type = i;
         }
@@ -1206,6 +1227,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             duration.setInterpolator(new OvershootInterpolator(0.5f));
         }
         duration.addListener(new AnimatorListenerAdapter() {
+            {
+                ReactionsContainerLayout.this = this;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 super.onAnimationEnd(animator);
@@ -1456,6 +1481,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         private boolean rightVisible;
 
         private LeftRightShadowsListener() {
+            ReactionsContainerLayout.this = r1;
         }
 
         @Override
@@ -1583,10 +1609,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
         ReactionHolderView(Context context, boolean z) {
             super(context);
+            ReactionsContainerLayout.this = r3;
             this.preloadImageReceiver = new ImageReceiver();
             this.sideScale = 1.0f;
             this.drawSelected = true;
             this.playRunnable = new Runnable() {
+                {
+                    ReactionHolderView.this = this;
+                }
+
                 @Override
                 public void run() {
                     if (ReactionHolderView.this.enterImageView.getImageReceiver().getLottieAnimation() != null && !ReactionHolderView.this.enterImageView.getImageReceiver().getLottieAnimation().isRunning() && !ReactionHolderView.this.enterImageView.getImageReceiver().getLottieAnimation().isGeneratingCache()) {
@@ -1596,6 +1627,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             };
             this.longPressRunnable = new Runnable() {
+                {
+                    ReactionHolderView.this = this;
+                }
+
                 @Override
                 public void run() {
                     ReactionHolderView.this.performHapticFeedback(0);
@@ -1607,8 +1642,12 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             };
             this.touchable = true;
-            this.enterImageView = new AnonymousClass2(context, ReactionsContainerLayout.this);
-            this.loopImageView = new BackupImageView(context, ReactionsContainerLayout.this) {
+            this.enterImageView = new AnonymousClass2(context, r3);
+            this.loopImageView = new BackupImageView(context, r3) {
+                {
+                    ReactionHolderView.this = this;
+                }
+
                 @Override
                 public void onDraw(Canvas canvas) {
                     ReactionHolderView.this.checkPlayLoopImage();
@@ -1649,7 +1688,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             };
             this.enterImageView.getImageReceiver().setAutoRepeat(0);
             this.enterImageView.getImageReceiver().setAllowStartLottieAnimation(false);
-            this.pressedBackupImageView = new BackupImageView(context, ReactionsContainerLayout.this) {
+            this.pressedBackupImageView = new BackupImageView(context, r3) {
+                {
+                    ReactionHolderView.this = this;
+                }
+
                 @Override
                 public void onDraw(Canvas canvas) {
                     AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -1680,6 +1723,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         public class AnonymousClass2 extends BackupImageView {
             AnonymousClass2(Context context, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context);
+                ReactionHolderView.this = r1;
             }
 
             @Override
@@ -2062,6 +2106,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.cancelPressedAnimation = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                {
+                    ReactionsContainerLayout.this = this;
+                }
+
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     ReactionsContainerLayout.this.cancelPressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -2071,6 +2119,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             });
             this.cancelPressedAnimation.addListener(new AnimatorListenerAdapter() {
+                {
+                    ReactionsContainerLayout.this = this;
+                }
+
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     super.onAnimationEnd(animator);
@@ -2145,6 +2197,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
         public InternalImageView(Context context) {
             super(context);
+            ReactionsContainerLayout.this = r1;
         }
 
         public void play(int i, boolean z) {
@@ -2196,6 +2249,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
         public CustomReactionsContainer(Context context) {
             super(context);
+            ReactionsContainerLayout.this = r1;
             this.backgroundPaint = new Paint(1);
         }
 

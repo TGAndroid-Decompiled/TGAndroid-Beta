@@ -222,7 +222,7 @@ public class Emoji {
         CompoundEmoji.CompoundEmojiDrawable compoundEmojiDrawable;
         DrawableInfo drawableInfo = getDrawableInfo(charSequence);
         if (drawableInfo != null) {
-            SimpleEmojiDrawable simpleEmojiDrawable = new SimpleEmojiDrawable(drawableInfo);
+            SimpleEmojiDrawable simpleEmojiDrawable = new SimpleEmojiDrawable(drawableInfo, endsWithRightArrow(charSequence));
             int i = drawImgSize;
             simpleEmojiDrawable.setBounds(0, 0, i, i);
             return simpleEmojiDrawable;
@@ -235,8 +235,15 @@ public class Emoji {
         }
     }
 
+    public static boolean endsWithRightArrow(CharSequence charSequence) {
+        return charSequence != null && charSequence.length() > 2 && charSequence.charAt(charSequence.length() - 2) == 8205 && charSequence.charAt(charSequence.length() - 1) == 10145;
+    }
+
     private static DrawableInfo getDrawableInfo(CharSequence charSequence) {
         CharSequence charSequence2;
+        if (endsWithRightArrow(charSequence)) {
+            charSequence = charSequence.subSequence(0, charSequence.length() - 2);
+        }
         DrawableInfo drawableInfo = rects.get(charSequence);
         return (drawableInfo != null || (charSequence2 = EmojiData.emojiAliasMap.get(charSequence)) == null) ? drawableInfo : rects.get(charSequence2);
     }
@@ -281,6 +288,7 @@ public class Emoji {
         private static Paint paint = new Paint(2);
         private static Rect rect = new Rect();
         private DrawableInfo info;
+        private boolean invert;
 
         @Override
         public int getOpacity() {
@@ -291,8 +299,9 @@ public class Emoji {
         public void setColorFilter(ColorFilter colorFilter) {
         }
 
-        public SimpleEmojiDrawable(DrawableInfo drawableInfo) {
+        public SimpleEmojiDrawable(DrawableInfo drawableInfo, boolean z) {
             this.info = drawableInfo;
+            this.invert = z;
         }
 
         public DrawableInfo getDrawableInfo() {
@@ -331,9 +340,16 @@ public class Emoji {
             if (canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
                 return;
             }
+            if (this.invert) {
+                canvas.save();
+                canvas.scale(-1.0f, 1.0f, bounds.centerX(), bounds.centerY());
+            }
             Bitmap[][] bitmapArr = Emoji.emojiBmp;
             DrawableInfo drawableInfo2 = this.info;
             canvas.drawBitmap(bitmapArr[drawableInfo2.page][drawableInfo2.page2], (Rect) null, bounds, paint);
+            if (this.invert) {
+                canvas.restore();
+            }
         }
 
         @Override

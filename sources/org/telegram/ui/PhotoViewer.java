@@ -147,6 +147,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -174,6 +175,7 @@ import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
+import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$PageBlock;
 import org.telegram.tgnet.TLRPC$Photo;
@@ -7680,14 +7682,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         Object obj = this.imagesArrLocals.get(this.currentIndex);
         CharSequence text = this.captionEdit.getText();
+        CharSequence[] charSequenceArr = {text};
         if (this.hasCaptionForAllMedia && !TextUtils.equals(this.captionForAllMedia, text) && this.placeProvider.getPhotoIndex(this.currentIndex) != 0 && this.placeProvider.getSelectedCount() > 0) {
             this.hasCaptionForAllMedia = false;
         }
-        this.captionForAllMedia = text;
+        ArrayList<TLRPC$MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, supportsSendingNewEntities());
+        this.captionForAllMedia = charSequenceArr[0];
         if (obj instanceof MediaController.PhotoEntry) {
-            ((MediaController.PhotoEntry) obj).caption = text;
+            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+            photoEntry.caption = charSequenceArr[0];
+            photoEntry.entities = entities;
         } else if (obj instanceof MediaController.SearchImage) {
-            ((MediaController.SearchImage) obj).caption = text;
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+            searchImage.caption = charSequenceArr[0];
+            searchImage.entities = entities;
         }
         if (text.length() != 0 && !this.placeProvider.isPhotoChecked(this.currentIndex)) {
             setPhotoChecked();

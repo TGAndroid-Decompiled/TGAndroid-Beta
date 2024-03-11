@@ -27,6 +27,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
@@ -165,6 +166,7 @@ import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugController;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugProvider;
 import org.telegram.ui.Components.FolderBottomSheet;
+import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
@@ -195,7 +197,6 @@ import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
-import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.UserListPoller;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
@@ -6356,8 +6357,58 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r21, int r22, androidx.recyclerview.widget.RecyclerView.Adapter r23, float r24, float r25) {
+    private void onItemClick(android.view.View r20, int r21, androidx.recyclerview.widget.RecyclerView.Adapter r22, float r23, float r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
+    }
+
+    public ChatActivity highlightFoundQuote(ChatActivity chatActivity, MessageObject messageObject) {
+        CharSequence charSequence;
+        boolean z;
+        if (messageObject != null && messageObject.hasHighlightedWords()) {
+            try {
+                if (!TextUtils.isEmpty(messageObject.caption)) {
+                    charSequence = messageObject.caption;
+                } else {
+                    charSequence = messageObject.messageText;
+                }
+                CharSequence highlightText = AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                if (highlightText instanceof SpannableStringBuilder) {
+                    SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) highlightText;
+                    ForegroundColorSpanThemable[] foregroundColorSpanThemableArr = (ForegroundColorSpanThemable[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), ForegroundColorSpanThemable.class);
+                    if (foregroundColorSpanThemableArr.length > 0) {
+                        int spanStart = spannableStringBuilder.getSpanStart(foregroundColorSpanThemableArr[0]);
+                        int spanEnd = spannableStringBuilder.getSpanEnd(foregroundColorSpanThemableArr[0]);
+                        for (int i = 1; i < foregroundColorSpanThemableArr.length; i++) {
+                            int spanStart2 = spannableStringBuilder.getSpanStart(foregroundColorSpanThemableArr[i]);
+                            int spanStart3 = spannableStringBuilder.getSpanStart(foregroundColorSpanThemableArr[i]);
+                            if (spanStart2 != spanEnd) {
+                                if (spanStart2 > spanEnd) {
+                                    int i2 = spanEnd;
+                                    while (true) {
+                                        if (i2 > spanStart2) {
+                                            z = true;
+                                            break;
+                                        } else if (!Character.isWhitespace(spannableStringBuilder.charAt(i2))) {
+                                            z = false;
+                                            break;
+                                        } else {
+                                            i2++;
+                                        }
+                                    }
+                                    if (!z) {
+                                    }
+                                }
+                            }
+                            spanEnd = spanStart3;
+                        }
+                        chatActivity.setHighlightQuote(messageObject.getId(), charSequence.subSequence(spanStart, spanEnd).toString(), spanStart);
+                    }
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        return chatActivity;
     }
 
     public void setOpenedDialogId(long j, long j2) {
@@ -10161,7 +10212,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public void updateStoriesVisibility(boolean z) {
         final boolean z2;
-        StoryViewer storyViewer;
         if (this.dialogStoriesCell == null || this.storiesVisibilityAnimator != null) {
             return;
         }
@@ -10170,7 +10220,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         int i = 0;
-        if (StoryRecorder.isVisible() || ((storyViewer = this.storyViewer) != null && storyViewer.isFullyVisible())) {
+        if (StoryRecorder.isVisible() || (getLastStoryViewer() != null && getLastStoryViewer().isFullyVisible())) {
             z = false;
         }
         boolean z3 = !isArchive() && getStoriesController().hasOnlySelfStories();

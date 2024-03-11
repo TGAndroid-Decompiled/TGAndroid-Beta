@@ -913,7 +913,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$8(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$87(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$86(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$9(TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage, LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
@@ -5704,7 +5704,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createFreeSpaceDialog$133(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$87(new CacheControlActivity());
+        launchActivity.lambda$runLinkRequest$86(new CacheControlActivity());
     }
 
     public static Dialog createPrioritySelectDialog(Activity activity, long j, int i, int i2, Runnable runnable) {

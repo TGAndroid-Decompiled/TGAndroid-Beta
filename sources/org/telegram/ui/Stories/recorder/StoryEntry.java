@@ -1019,6 +1019,7 @@ public class StoryEntry {
             long j3 = this.right * ((float) j) * 1000;
             videoEditedInfo.endTime = j3;
             videoEditedInfo.estimatedDuration = j3 - j2;
+            videoEditedInfo.volume = this.videoVolume;
             videoEditedInfo.muted = this.muted;
             videoEditedInfo.estimatedSize = iArr[5] + (((iArr[4] / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
             videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
@@ -1053,6 +1054,7 @@ public class StoryEntry {
             videoEditedInfo.endTime = -1L;
             videoEditedInfo.muted = true;
             videoEditedInfo.originalBitrate = -1;
+            videoEditedInfo.volume = 1.0f;
             videoEditedInfo.bitrate = -1;
             videoEditedInfo.framerate = 30;
             videoEditedInfo.estimatedSize = ((((float) this.duration) / 1000.0f) * extractRealEncoderBitrate) / 8.0f;

@@ -438,7 +438,6 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.SecretMediaViewer;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.TopicsFragment;
 public class MessagesController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
     public static int DIALOG_FILTER_FLAG_BOTS = 16;
@@ -15707,8 +15706,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             restrictionReason = getRestrictionReason(tLRPC$User.restriction_reason);
             if (i != 3 && tLRPC$User.bot) {
-                StoryViewer storyViewer = LaunchActivity.getLastFragment().storyViewer;
-                if (storyViewer == null || !storyViewer.isShown()) {
+                if (LaunchActivity.getLastFragment().getLastStoryViewer() == null) {
                     i = 1;
                     z = true;
                 } else {

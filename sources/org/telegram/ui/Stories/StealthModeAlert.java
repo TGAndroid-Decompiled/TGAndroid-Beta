@@ -222,9 +222,9 @@ public class StealthModeAlert extends BottomSheet {
 
     public static void showStealthModeEnabledBulletin() {
         BulletinFactory global;
-        StoryViewer storyViewer = LaunchActivity.getLastFragment().storyViewer;
-        if (storyViewer != null) {
-            global = BulletinFactory.of(storyViewer.windowView, storyViewer.getResourceProvider());
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment.getLastStoryViewer() != null) {
+            global = BulletinFactory.of(lastFragment.getLastStoryViewer().windowView, lastFragment.getLastStoryViewer().getResourceProvider());
         } else {
             global = BulletinFactory.global();
         }

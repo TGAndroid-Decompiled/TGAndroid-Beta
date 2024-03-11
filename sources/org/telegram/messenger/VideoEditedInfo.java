@@ -70,6 +70,7 @@ public class VideoEditedInfo {
     public boolean videoConvertFirstWrite;
     public long avatarStartTime = -1;
     public int framerate = 24;
+    public float volume = 1.0f;
     public long wallpaperPeerId = Long.MIN_VALUE;
     public boolean needUpdateProgress = false;
     public boolean shouldLimitFps = true;
@@ -395,7 +396,7 @@ public class VideoEditedInfo {
                 i += bArr2.length;
             }
             SerializedData serializedData = new SerializedData(i);
-            serializedData.writeInt32(8);
+            serializedData.writeInt32(9);
             serializedData.writeInt64(this.avatarStartTime);
             serializedData.writeInt32(this.originalBitrate);
             if (this.filterState != null) {
@@ -487,6 +488,7 @@ public class VideoEditedInfo {
             } else {
                 serializedData.writeByte(0);
             }
+            serializedData.writeFloat(this.volume);
             bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
             serializedData.cleanup();
         }
@@ -599,6 +601,9 @@ public class VideoEditedInfo {
                         }
                         if (readInt32 >= 8 && serializedData.readByte(false) != 0) {
                             this.blurPath = new String(serializedData.readByteArray(false));
+                        }
+                        if (readInt32 >= 9) {
+                            this.volume = serializedData.readFloat(false);
                         }
                         serializedData.cleanup();
                     }

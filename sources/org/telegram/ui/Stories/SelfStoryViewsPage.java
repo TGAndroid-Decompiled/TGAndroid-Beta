@@ -284,19 +284,13 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         if (tL_stories$StoryView instanceof TL_stories$TL_storyView) {
             storyViewer.presentFragment(ProfileActivity.of(tL_stories$StoryView.user_id));
         } else if (tL_stories$StoryView instanceof TL_stories$TL_storyViewPublicRepost) {
-            if (storyViewer.fragment.getOrCreateOverlayStoryViewer().isShowing) {
-                return;
-            }
-            storyViewer.fragment.getOrCreateOverlayStoryViewer().open(getContext(), ((TL_stories$TL_storyViewPublicRepost) item.view).story, StoriesListPlaceProvider.of(this.recyclerListView));
+            storyViewer.fragment.createOverlayStoryViewer().open(getContext(), ((TL_stories$TL_storyViewPublicRepost) item.view).story, StoriesListPlaceProvider.of(this.recyclerListView));
         } else {
             TL_stories$StoryReaction tL_stories$StoryReaction = item.reaction;
             if (tL_stories$StoryReaction instanceof TL_stories$TL_storyReaction) {
                 storyViewer.presentFragment(ProfileActivity.of(DialogObject.getPeerDialogId(tL_stories$StoryReaction.peer_id)));
             } else if (tL_stories$StoryReaction instanceof TL_stories$TL_storyReactionPublicRepost) {
-                if (storyViewer.fragment.getOrCreateOverlayStoryViewer().isShowing) {
-                    return;
-                }
-                storyViewer.fragment.getOrCreateOverlayStoryViewer().open(getContext(), ((TL_stories$TL_storyReactionPublicRepost) item.reaction).story, StoriesListPlaceProvider.of(this.recyclerListView));
+                storyViewer.fragment.createOverlayStoryViewer().open(getContext(), ((TL_stories$TL_storyReactionPublicRepost) item.reaction).story, StoriesListPlaceProvider.of(this.recyclerListView));
             } else if ((tL_stories$StoryReaction instanceof TL_stories$TL_storyReactionPublicForward) || (tL_stories$StoryView instanceof TL_stories$TL_storyViewPublicForward)) {
                 if (tL_stories$StoryReaction instanceof TL_stories$TL_storyReactionPublicForward) {
                     tLRPC$Message = tL_stories$StoryReaction.message;
@@ -797,11 +791,12 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         @Override
                         public void openStory(long j, Runnable runnable) {
                             BaseFragment lastFragment = LaunchActivity.getLastFragment();
-                            if (lastFragment == null || lastFragment.getOrCreateOverlayStoryViewer().isShowing) {
+                            if (lastFragment == null) {
                                 return;
                             }
-                            lastFragment.getOrCreateOverlayStoryViewer().doOnAnimationReady(runnable);
-                            lastFragment.getOrCreateOverlayStoryViewer().open(getContext(), j, StoriesListPlaceProvider.of(SelfStoryViewsPage.this.recyclerListView));
+                            StoryViewer createOverlayStoryViewer = lastFragment.createOverlayStoryViewer();
+                            createOverlayStoryViewer.doOnAnimationReady(runnable);
+                            createOverlayStoryViewer.open(getContext(), j, StoriesListPlaceProvider.of(SelfStoryViewsPage.this.recyclerListView));
                         }
                     };
                     break;

@@ -716,6 +716,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private float selectedBackgroundProgress;
     private Paint selectionOverlayPaint;
     private final Drawable[] selectorDrawable;
+    private int selectorDrawableColor;
     private int[] selectorDrawableMaskType;
     private AnimatorSet shakeAnimation;
     private ChatMessageSharedResources sharedResources;
@@ -6079,6 +6080,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (drawableArr[0] != null) {
                 this.selectorDrawableMaskType[0] = 0;
                 drawableArr[0].setBounds(imageX, (int) (this.photoImage.getImageY() - AndroidUtilities.dp(9.0f)), backgroundDrawableRight, AndroidUtilities.dp(38.0f) + i);
+                if (this.selectorDrawableColor != Theme.multAlpha(this.contactLine.getColor(), 0.1f)) {
+                    Drawable drawable = this.selectorDrawable[0];
+                    int multAlpha = Theme.multAlpha(this.contactLine.getColor(), 0.1f);
+                    this.selectorDrawableColor = multAlpha;
+                    Theme.setSelectorDrawableColor(drawable, multAlpha, true);
+                }
                 this.selectorDrawable[0].draw(canvas);
             }
         }
@@ -9876,6 +9883,37 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private void drawClockOrErrorLayout(android.graphics.Canvas r7, boolean r8, boolean r9, float r10, float r11, float r12, float r13, float r14, boolean r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawClockOrErrorLayout(android.graphics.Canvas, boolean, boolean, float, float, float, float, float, boolean):void");
+    }
+
+    public float getTimeY() {
+        int i;
+        int i2 = 0;
+        if (shouldDrawTimeOnMedia()) {
+            if (this.drawCommentButton) {
+                i2 = AndroidUtilities.dp(41.3f);
+            }
+        } else if (this.currentMessageObject.isSponsored()) {
+            i = -AndroidUtilities.dp(48.0f);
+            if (this.hasNewLineForTime) {
+                i -= AndroidUtilities.dp(4.0f);
+            }
+            return getTimeY(i);
+        } else if (this.drawCommentButton) {
+            i2 = AndroidUtilities.dp(43.0f);
+        }
+        i = -i2;
+        return getTimeY(i);
+    }
+
+    public float getTimeY(float f) {
+        if (shouldDrawTimeOnMedia() && this.documentAttachType != 7) {
+            return ((this.photoImage.getImageY2() + this.additionalTimeOffsetY) - AndroidUtilities.dp(7.3f)) - this.timeLayout.getHeight();
+        }
+        float dp = ((this.layoutHeight - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 6.5f)) - this.timeLayout.getHeight()) + f;
+        if (this.isRoundVideo) {
+            return dp - ((AndroidUtilities.dp(this.drawPinnedBottom ? 4.0f : 5.0f) + this.reactionsLayoutInBubble.getCurrentTotalHeight(this.transitionParams.animateChangeProgress)) * (1.0f - getVideoTranscriptionProgress()));
+        }
+        return dp;
     }
 
     private void drawViewsAndRepliesLayout(android.graphics.Canvas r25, float r26, float r27, float r28, float r29, float r30, boolean r31) {

@@ -298,11 +298,12 @@ public class VideoPlayerHolderBase {
         }
 
         public void lambda$onError$0(long j) {
-            if (VideoPlayerHolderBase.this.released) {
+            VideoPlayerHolderBase videoPlayerHolderBase;
+            Uri uri;
+            if (VideoPlayerHolderBase.this.released || (uri = (videoPlayerHolderBase = VideoPlayerHolderBase.this).uri) == null) {
                 return;
             }
-            VideoPlayerHolderBase videoPlayerHolderBase = VideoPlayerHolderBase.this;
-            videoPlayerHolderBase.videoPlayer.preparePlayer(videoPlayerHolderBase.uri, "other");
+            videoPlayerHolderBase.videoPlayer.preparePlayer(uri, "other");
             VideoPlayerHolderBase.this.videoPlayer.seekTo(j);
         }
 

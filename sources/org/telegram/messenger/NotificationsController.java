@@ -2743,10 +2743,11 @@ public class NotificationsController extends BaseController {
                 j = Math.min(j, ((Long) pair.second).longValue());
             }
         }
-        AndroidUtilities.cancelRunOnUIThread(this.checkStoryPushesRunnable);
+        DispatchQueue dispatchQueue = notificationsQueue;
+        dispatchQueue.cancelRunnable(this.checkStoryPushesRunnable);
         long currentTimeMillis = j - System.currentTimeMillis();
         if (j != Long.MAX_VALUE) {
-            AndroidUtilities.runOnUIThread(this.checkStoryPushesRunnable, Math.max(0L, currentTimeMillis));
+            dispatchQueue.postRunnable(this.checkStoryPushesRunnable, Math.max(0L, currentTimeMillis));
         }
     }
 }

@@ -59,13 +59,12 @@ public abstract class BaseFragment {
     protected boolean inMenuMode;
     protected boolean inPreviewMode;
     protected boolean isFinished;
-    public StoryViewer overlayStoryViewer;
     protected Dialog parentDialog;
     protected INavigationLayout parentLayout;
     private PreviewDelegate previewDelegate;
     private boolean removingFromStack;
     protected Theme.ResourcesProvider resourceProvider;
-    public StoryViewer storyViewer;
+    public ArrayList<StoryViewer> storyViewerStack;
     protected Dialog visibleDialog;
     protected int currentAccount = UserConfig.selectedAccount;
     protected boolean hasOwnBackground = false;
@@ -207,6 +206,29 @@ public abstract class BaseFragment {
         return false;
     }
 
+    public StoryViewer getLastStoryViewer() {
+        ArrayList<StoryViewer> arrayList = this.storyViewerStack;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            for (int size = this.storyViewerStack.size() - 1; size >= 0; size--) {
+                if (this.storyViewerStack.get(size).isShown()) {
+                    return this.storyViewerStack.get(size);
+                }
+            }
+        }
+        return null;
+    }
+
+    public void clearStoryViewers() {
+        ArrayList<StoryViewer> arrayList = this.storyViewerStack;
+        if (arrayList == null || arrayList.isEmpty()) {
+            return;
+        }
+        for (int size = this.storyViewerStack.size() - 1; size >= 0; size--) {
+            this.storyViewerStack.get(size).release();
+        }
+        this.storyViewerStack.clear();
+    }
+
     public BaseFragment() {
     }
 
@@ -299,16 +321,7 @@ public abstract class BaseFragment {
             }
             this.actionBar = null;
         }
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer != null) {
-            storyViewer.release();
-            this.storyViewer = null;
-        }
-        StoryViewer storyViewer2 = this.overlayStoryViewer;
-        if (storyViewer2 != null) {
-            storyViewer2.release();
-            this.overlayStoryViewer = null;
-        }
+        clearStoryViewers();
         this.parentLayout = null;
     }
 
@@ -337,16 +350,7 @@ public abstract class BaseFragment {
                 INavigationLayout iNavigationLayout2 = this.parentLayout;
                 if (iNavigationLayout2 != null && iNavigationLayout2.getView().getContext() != this.fragmentView.getContext()) {
                     this.fragmentView = null;
-                    StoryViewer storyViewer = this.storyViewer;
-                    if (storyViewer != null) {
-                        storyViewer.release();
-                        this.storyViewer = null;
-                    }
-                    StoryViewer storyViewer2 = this.overlayStoryViewer;
-                    if (storyViewer2 != null) {
-                        storyViewer2.release();
-                        this.overlayStoryViewer = null;
-                    }
+                    clearStoryViewers();
                 }
             }
             if (this.actionBar != null) {
@@ -473,14 +477,9 @@ public abstract class BaseFragment {
         if (actionBar != null) {
             actionBar.onResume();
         }
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer != null) {
-            storyViewer.onResume();
-            this.storyViewer.updatePlayingMode();
-        }
-        StoryViewer storyViewer2 = this.overlayStoryViewer;
-        if (storyViewer2 != null) {
-            storyViewer2.updatePlayingMode();
+        if (getLastStoryViewer() != null) {
+            getLastStoryViewer().onResume();
+            getLastStoryViewer().updatePlayingMode();
         }
     }
 
@@ -499,14 +498,9 @@ public abstract class BaseFragment {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer != null) {
-            storyViewer.onPause();
-            this.storyViewer.updatePlayingMode();
-        }
-        StoryViewer storyViewer2 = this.overlayStoryViewer;
-        if (storyViewer2 != null) {
-            storyViewer2.updatePlayingMode();
+        if (getLastStoryViewer() != null) {
+            getLastStoryViewer().onPause();
+            getLastStoryViewer().updatePlayingMode();
         }
     }
 
@@ -524,15 +518,16 @@ public abstract class BaseFragment {
     }
 
     public boolean closeStoryViewer() {
-        StoryViewer storyViewer = this.overlayStoryViewer;
-        if (storyViewer != null && storyViewer.isShown()) {
-            return this.overlayStoryViewer.onBackPressed();
-        }
-        StoryViewer storyViewer2 = this.storyViewer;
-        if (storyViewer2 == null || !storyViewer2.isShown()) {
+        ArrayList<StoryViewer> arrayList = this.storyViewerStack;
+        if (arrayList != null) {
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                if (this.storyViewerStack.get(size).isShown()) {
+                    return this.storyViewerStack.get(size).onBackPressed();
+                }
+            }
             return false;
         }
-        return this.storyViewer.onBackPressed();
+        return false;
     }
 
     public boolean isLastFragment() {
@@ -675,15 +670,14 @@ public abstract class BaseFragment {
     public Dialog showDialog(Dialog dialog, boolean z, final DialogInterface.OnDismissListener onDismissListener) {
         INavigationLayout iNavigationLayout;
         if (dialog != null && (iNavigationLayout = this.parentLayout) != null && !iNavigationLayout.isTransitionAnimationInProgress() && !this.parentLayout.isSwipeInProgress() && (z || !this.parentLayout.checkTransitionAnimation())) {
-            StoryViewer storyViewer = this.overlayStoryViewer;
-            if (storyViewer != null && storyViewer.isShown()) {
-                this.overlayStoryViewer.showDialog(dialog);
-                return dialog;
-            }
-            StoryViewer storyViewer2 = this.storyViewer;
-            if (storyViewer2 != null && storyViewer2.isShown()) {
-                this.storyViewer.showDialog(dialog);
-                return dialog;
+            ArrayList<StoryViewer> arrayList = this.storyViewerStack;
+            if (arrayList != null) {
+                for (int size = arrayList.size() - 1; size >= 0; size--) {
+                    if (this.storyViewerStack.get(size).isShown()) {
+                        this.storyViewerStack.get(size).showDialog(dialog);
+                        return dialog;
+                    }
+                }
             }
             try {
                 Dialog dialog2 = this.visibleDialog;
@@ -967,8 +961,16 @@ public abstract class BaseFragment {
 
     public int getNavigationBarColor() {
         int color = Theme.getColor(Theme.key_windowBackgroundGray, getResourceProvider());
-        StoryViewer storyViewer = this.storyViewer;
-        return (storyViewer == null || !storyViewer.attachedToParent()) ? color : this.storyViewer.getNavigationBarColor(color);
+        ArrayList<StoryViewer> arrayList = this.storyViewerStack;
+        if (arrayList != null) {
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                StoryViewer storyViewer = this.storyViewerStack.get(size);
+                if (storyViewer.attachedToParent()) {
+                    color = storyViewer.getNavigationBarColor(color);
+                }
+            }
+        }
+        return color;
     }
 
     public void setNavigationBarColor(int i) {
@@ -1007,8 +1009,7 @@ public abstract class BaseFragment {
 
     public boolean isLightStatusBar() {
         int color;
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer == null || !storyViewer.isShown()) {
+        if (getLastStoryViewer() == null || !getLastStoryViewer().isShown()) {
             if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
                 Theme.ResourcesProvider resourceProvider = getResourceProvider();
                 int i = Theme.key_actionBarDefault;
@@ -1045,66 +1046,64 @@ public abstract class BaseFragment {
     }
 
     public void attachStoryViewer(ActionBarLayout.LayoutContainer layoutContainer) {
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer != null && storyViewer.attachedToParent()) {
-            AndroidUtilities.removeFromParent(this.storyViewer.windowView);
-            layoutContainer.addView(this.storyViewer.windowView);
+        if (this.storyViewerStack != null) {
+            for (int i = 0; i < this.storyViewerStack.size(); i++) {
+                StoryViewer storyViewer = this.storyViewerStack.get(i);
+                if (storyViewer != null && storyViewer.attachedToParent()) {
+                    AndroidUtilities.removeFromParent(storyViewer.windowView);
+                    layoutContainer.addView(storyViewer.windowView);
+                }
+            }
         }
-        StoryViewer storyViewer2 = this.overlayStoryViewer;
-        if (storyViewer2 == null || !storyViewer2.attachedToParent()) {
-            return;
-        }
-        AndroidUtilities.removeFromParent(this.overlayStoryViewer.windowView);
-        layoutContainer.addView(this.overlayStoryViewer.windowView);
     }
 
     public void detachStoryViewer() {
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer != null && storyViewer.attachedToParent()) {
-            AndroidUtilities.removeFromParent(this.storyViewer.windowView);
+        if (this.storyViewerStack != null) {
+            for (int i = 0; i < this.storyViewerStack.size(); i++) {
+                StoryViewer storyViewer = this.storyViewerStack.get(i);
+                if (storyViewer != null && storyViewer.attachedToParent()) {
+                    AndroidUtilities.removeFromParent(storyViewer.windowView);
+                }
+            }
         }
-        StoryViewer storyViewer2 = this.overlayStoryViewer;
-        if (storyViewer2 == null || !storyViewer2.attachedToParent()) {
-            return;
-        }
-        AndroidUtilities.removeFromParent(this.overlayStoryViewer.windowView);
-    }
-
-    public boolean isStoryViewer(View view) {
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer == null || view != storyViewer.windowView) {
-            StoryViewer storyViewer2 = this.overlayStoryViewer;
-            return storyViewer2 != null && view == storyViewer2.windowView;
-        }
-        return true;
     }
 
     public void setKeyboardHeightFromParent(int i) {
-        StoryViewer storyViewer = this.storyViewer;
-        if (storyViewer != null) {
-            storyViewer.setKeyboardHeightFromParent(i);
-        }
-        StoryViewer storyViewer2 = this.overlayStoryViewer;
-        if (storyViewer2 != null) {
-            storyViewer2.setKeyboardHeightFromParent(i);
+        if (this.storyViewerStack != null) {
+            for (int i2 = 0; i2 < this.storyViewerStack.size(); i2++) {
+                StoryViewer storyViewer = this.storyViewerStack.get(i2);
+                if (storyViewer != null) {
+                    storyViewer.setKeyboardHeightFromParent(i);
+                }
+            }
         }
     }
 
     public StoryViewer getOrCreateStoryViewer() {
-        if (this.storyViewer == null) {
-            this.storyViewer = new StoryViewer(this);
+        if (this.storyViewerStack == null) {
+            this.storyViewerStack = new ArrayList<>();
+        }
+        if (this.storyViewerStack.isEmpty()) {
+            StoryViewer storyViewer = new StoryViewer(this);
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
-                this.storyViewer.fromBottomSheet = true;
+                storyViewer.fromBottomSheet = true;
             }
+            this.storyViewerStack.add(storyViewer);
         }
-        return this.storyViewer;
+        return this.storyViewerStack.get(0);
     }
 
-    public StoryViewer getOrCreateOverlayStoryViewer() {
-        if (this.overlayStoryViewer == null) {
-            this.overlayStoryViewer = new StoryViewer(this);
+    public StoryViewer createOverlayStoryViewer() {
+        if (this.storyViewerStack == null) {
+            this.storyViewerStack = new ArrayList<>();
         }
-        return this.overlayStoryViewer;
+        StoryViewer storyViewer = new StoryViewer(this);
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
+            storyViewer.fromBottomSheet = true;
+        }
+        this.storyViewerStack.add(storyViewer);
+        return storyViewer;
     }
 }

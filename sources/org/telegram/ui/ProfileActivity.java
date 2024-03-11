@@ -3478,6 +3478,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                     final boolean z = imageLocation.imageType == 2;
                     File pathToAttach = FileLoader.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).getPathToAttach(imageLocation.location, z ? "mp4" : null, true);
+                    if (z && !pathToAttach.exists()) {
+                        pathToAttach = new File(FileLoader.getDirectory(0), FileLoader.getAttachFileName(imageLocation.location, "mp4"));
+                    }
                     if (pathToAttach.exists()) {
                         MediaController.saveFile(pathToAttach.toString(), ProfileActivity.this.getParentActivity(), 0, null, null, new Utilities.Callback() {
                             @Override
@@ -5055,7 +5058,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 } else if (i == 23) {
                     SharedConfig.toggleSurfaceInStories();
                     while (i2 < ProfileActivity.this.getParentLayout().getFragmentStack().size()) {
-                        ProfileActivity.this.getParentLayout().getFragmentStack().get(i2).storyViewer = null;
+                        ProfileActivity.this.getParentLayout().getFragmentStack().get(i2).clearStoryViewers();
                         i2++;
                     }
                 } else if (i == 24) {
@@ -11280,7 +11283,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$24() {
-            ProfileActivity.this.presentFragment(new PrivacyUsersActivity());
+            ProfileActivity.this.presentFragment(new PrivacyUsersActivity().loadBlocked());
         }
 
         public void lambda$onCreateSearchArray$25() {

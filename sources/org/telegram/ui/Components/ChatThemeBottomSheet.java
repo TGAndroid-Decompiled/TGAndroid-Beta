@@ -1395,8 +1395,8 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public static void openGalleryForBackground(Activity activity, BaseFragment baseFragment, long j, final Theme.ResourcesProvider resourcesProvider, Utilities.Callback<TLRPC$WallPaper> callback, ThemePreviewActivity.DayNightSwitchDelegate dayNightSwitchDelegate, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
-        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(activity, baseFragment, false, false, false, resourcesProvider);
+    public static void openGalleryForBackground(Activity activity, BaseFragment baseFragment, long j, Theme.ResourcesProvider resourcesProvider, Utilities.Callback<TLRPC$WallPaper> callback, ThemePreviewActivity.DayNightSwitchDelegate dayNightSwitchDelegate, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+        ChatAttachAlert chatAttachAlert = new ChatAttachAlert(activity, baseFragment, false, false, false, resourcesProvider);
         chatAttachAlert.drawNavigationBar = true;
         chatAttachAlert.setupPhotoPicker(LocaleController.getString("ChooseBackground", R.string.ChooseBackground));
         chatAttachAlert.setDelegate(new AnonymousClass11(chatAttachAlert, tL_stories$TL_premium_boostsStatus, resourcesProvider, dayNightSwitchDelegate, j, callback, baseFragment));
@@ -1404,36 +1404,6 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         chatAttachAlert.init();
         chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
         chatAttachAlert.show();
-        FrameLayout frameLayout = new FrameLayout(activity) {
-            Paint paint = new Paint();
-
-            @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                this.paint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, this.paint);
-            }
-        };
-        final AnimatedTextView animatedTextView = new AnimatedTextView(activity, true, true, true);
-        animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
-        animatedTextView.setText(LocaleController.getString(R.string.SetColorAsBackground));
-        animatedTextView.setGravity(17);
-        int i = Theme.key_featuredStickers_addButton;
-        animatedTextView.setTextColor(Theme.getColor(i, resourcesProvider));
-        frameLayout.addView(animatedTextView, LayoutHelper.createFrame(-1, -2, 17));
-        frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(0.0f), Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), 76)));
-        frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ChatThemeBottomSheet.lambda$openGalleryForBackground$15(ChatAttachAlert.this, animatedTextView, view);
-            }
-        });
-        chatAttachAlert.sizeNotifierFrameLayout.addView(frameLayout, LayoutHelper.createFrame(-1, -2, 80));
     }
 
     class AnonymousClass11 implements ChatAttachAlert.ChatAttachViewDelegate {
@@ -1582,16 +1552,6 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public static void lambda$openGalleryForBackground$15(ChatAttachAlert chatAttachAlert, AnimatedTextView animatedTextView, View view) {
-        if (chatAttachAlert.getCurrentAttachLayout() == chatAttachAlert.getPhotoLayout()) {
-            animatedTextView.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
-            chatAttachAlert.openColorsLayout();
-            return;
-        }
-        animatedTextView.setText(LocaleController.getString(R.string.SetColorAsBackground));
-        chatAttachAlert.showLayout(chatAttachAlert.getPhotoLayout());
-    }
-
     public void openGalleryForBackground() {
         Activity parentActivity = this.chatActivity.getParentActivity();
         ChatActivity chatActivity = this.chatActivity;
@@ -1599,7 +1559,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.chatAttachAlert = chatAttachAlert;
         chatAttachAlert.drawNavigationBar = true;
         chatAttachAlert.setupPhotoPicker(LocaleController.getString("ChooseBackground", R.string.ChooseBackground));
-        this.chatAttachAlert.setDelegate(new AnonymousClass13());
+        this.chatAttachAlert.setDelegate(new AnonymousClass12());
         this.chatAttachAlert.setMaxSelectedPhotos(1, false);
         this.chatAttachAlert.init();
         this.chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
@@ -1632,13 +1592,13 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.chatAttachButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatThemeBottomSheet.this.lambda$openGalleryForBackground$16(view);
+                ChatThemeBottomSheet.this.lambda$openGalleryForBackground$15(view);
             }
         });
         this.chatAttachAlert.sizeNotifierFrameLayout.addView(this.chatAttachButton, LayoutHelper.createFrame(-1, -2, 80));
     }
 
-    public class AnonymousClass13 implements ChatAttachAlert.ChatAttachViewDelegate {
+    public class AnonymousClass12 implements ChatAttachAlert.ChatAttachViewDelegate {
         @Override
         public void didSelectBot(TLRPC$User tLRPC$User) {
             ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
@@ -1669,7 +1629,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
         }
 
-        AnonymousClass13() {
+        AnonymousClass12() {
         }
 
         @Override
@@ -1708,7 +1668,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                     themePreviewActivity.setDelegate(new ThemePreviewActivity.WallpaperActivityDelegate() {
                         @Override
                         public final void didSetNewBackground(TLRPC$WallPaper tLRPC$WallPaper) {
-                            ChatThemeBottomSheet.AnonymousClass13.this.lambda$didPressedButton$0(tLRPC$WallPaper);
+                            ChatThemeBottomSheet.AnonymousClass12.this.lambda$didPressedButton$0(tLRPC$WallPaper);
                         }
                     });
                     ChatThemeBottomSheet.this.showAsSheet(themePreviewActivity);
@@ -1736,7 +1696,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             themePreviewActivity.setDelegate(new ThemePreviewActivity.WallpaperActivityDelegate() {
                 @Override
                 public final void didSetNewBackground(TLRPC$WallPaper tLRPC$WallPaper) {
-                    ChatThemeBottomSheet.AnonymousClass13.this.lambda$onWallpaperSelected$1(tLRPC$WallPaper);
+                    ChatThemeBottomSheet.AnonymousClass12.this.lambda$onWallpaperSelected$1(tLRPC$WallPaper);
                 }
             });
             ChatThemeBottomSheet.this.showAsSheet(themePreviewActivity);
@@ -1748,7 +1708,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public void lambda$openGalleryForBackground$16(View view) {
+    public void lambda$openGalleryForBackground$15(View view) {
         if (this.chatAttachAlert.getCurrentAttachLayout() == this.chatAttachAlert.getPhotoLayout()) {
             this.chatAttachButtonText.setText(LocaleController.getString("ChooseBackgroundFromGallery", R.string.ChooseBackgroundFromGallery));
             this.chatAttachAlert.openColorsLayout();
@@ -1760,7 +1720,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         chatAttachAlert.showLayout(chatAttachAlert.getPhotoLayout());
     }
 
-    public void lambda$showAsSheet$21() {
+    public void lambda$showAsSheet$20() {
         if (isDismissed() || this.isApplyClicked) {
             return;
         }
@@ -1801,19 +1761,19 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         bottomSheetParams.onOpenAnimationFinished = new Runnable() {
             @Override
             public final void run() {
-                ChatThemeBottomSheet.lambda$showAsSheet$17();
+                ChatThemeBottomSheet.lambda$showAsSheet$16();
             }
         };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
             public final void run() {
-                ChatThemeBottomSheet.this.lambda$showAsSheet$18();
+                ChatThemeBottomSheet.this.lambda$showAsSheet$17();
             }
         };
         bottomSheetParams.onDismiss = new Runnable() {
             @Override
             public final void run() {
-                ChatThemeBottomSheet.this.lambda$showAsSheet$19();
+                ChatThemeBottomSheet.this.lambda$showAsSheet$18();
             }
         };
         bottomSheetParams.occupyNavigationBar = true;
@@ -1822,11 +1782,11 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         chatActivity.showAsSheet(baseFragment, bottomSheetParams);
     }
 
-    public static void lambda$showAsSheet$17() {
+    public static void lambda$showAsSheet$16() {
         PhotoViewer.getInstance().closePhoto(false, false);
     }
 
-    public void lambda$showAsSheet$19() {
+    public void lambda$showAsSheet$18() {
         this.overlayFragment = null;
     }
 
@@ -1866,19 +1826,19 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         bottomSheetParams.onOpenAnimationFinished = new Runnable() {
             @Override
             public final void run() {
-                ChatThemeBottomSheet.lambda$showAsSheet$20();
+                ChatThemeBottomSheet.lambda$showAsSheet$19();
             }
         };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
             public final void run() {
-                ChatThemeBottomSheet.this.lambda$showAsSheet$21();
+                ChatThemeBottomSheet.this.lambda$showAsSheet$20();
             }
         };
         bottomSheetParams.onDismiss = new Runnable() {
             @Override
             public final void run() {
-                ChatThemeBottomSheet.this.lambda$showAsSheet$22();
+                ChatThemeBottomSheet.this.lambda$showAsSheet$21();
             }
         };
         bottomSheetParams.occupyNavigationBar = true;
@@ -1886,11 +1846,11 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.chatActivity.showAsSheet(themePreviewActivity, bottomSheetParams);
     }
 
-    public static void lambda$showAsSheet$20() {
+    public static void lambda$showAsSheet$19() {
         PhotoViewer.getInstance().closePhoto(false, false);
     }
 
-    public void lambda$showAsSheet$22() {
+    public void lambda$showAsSheet$21() {
         this.overlayFragment = null;
     }
 

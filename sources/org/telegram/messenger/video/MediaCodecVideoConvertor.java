@@ -43,7 +43,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r89, boolean r90, int r91) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r90, boolean r91, int r92) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -214,6 +214,7 @@ public class MediaCodecVideoConvertor {
         public ArrayList<MixedSoundInfo> soundInfos = new ArrayList<>();
         long startTime;
         String videoPath;
+        float volume;
         long wallpaperPeerId;
 
         private ConvertVideoParams() {
@@ -248,6 +249,7 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.gradientTopColor = videoEditedInfo.gradientTopColor;
             convertVideoParams.gradientBottomColor = videoEditedInfo.gradientBottomColor;
             convertVideoParams.muted = videoEditedInfo.muted;
+            convertVideoParams.volume = videoEditedInfo.volume;
             convertVideoParams.isStory = videoEditedInfo.isStory;
             convertVideoParams.hdrInfo = videoEditedInfo.hdrInfo;
             convertVideoParams.isDark = videoEditedInfo.isDark;

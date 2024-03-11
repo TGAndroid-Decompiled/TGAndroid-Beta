@@ -1,10 +1,10 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
-public final class LaunchActivity$$ExternalSyntheticLambda109 implements Utilities.Callback {
+public final class LaunchActivity$$ExternalSyntheticLambda108 implements Utilities.Callback {
     public final LaunchActivity f$0;
 
-    public LaunchActivity$$ExternalSyntheticLambda109(LaunchActivity launchActivity) {
+    public LaunchActivity$$ExternalSyntheticLambda108(LaunchActivity launchActivity) {
         this.f$0 = launchActivity;
     }
 

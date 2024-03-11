@@ -3785,6 +3785,7 @@ public class MessageObject {
     }
 
     public void replaceEmojiToLottieFrame(CharSequence charSequence, int[] iArr) {
+        boolean z;
         if (charSequence instanceof Spannable) {
             Spannable spannable = (Spannable) charSequence;
             Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannable.getSpans(0, spannable.length(), Emoji.EmojiSpan.class);
@@ -3794,13 +3795,21 @@ public class MessageObject {
                     return;
                 }
                 for (int i = 0; i < emojiSpanArr.length; i++) {
-                    TLRPC$Document emojiAnimatedSticker = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker(emojiSpanArr[i].emoji);
+                    CharSequence charSequence2 = emojiSpanArr[i].emoji;
+                    if (Emoji.endsWithRightArrow(charSequence2)) {
+                        charSequence2 = charSequence2.subSequence(0, charSequence2.length() - 2);
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    TLRPC$Document emojiAnimatedSticker = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker(charSequence2);
                     if (emojiAnimatedSticker != null) {
                         int spanStart = spannable.getSpanStart(emojiSpanArr[i]);
                         int spanEnd = spannable.getSpanEnd(emojiSpanArr[i]);
                         spannable.removeSpan(emojiSpanArr[i]);
                         AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(emojiAnimatedSticker, emojiSpanArr[i].fontMetrics);
                         animatedEmojiSpan.standard = true;
+                        animatedEmojiSpan.invert = z;
                         spannable.setSpan(animatedEmojiSpan, spanStart, spanEnd, 33);
                     }
                 }

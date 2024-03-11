@@ -205,9 +205,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         frameLayout3.setBackgroundColor(getThemedColor(i3));
         EditTextBoldCursor editTextBoldCursor3 = this.editText;
         if (editTextBoldCursor3 != null) {
+            this.ignoreEditText = true;
             editTextBoldCursor3.setText(this.address);
             EditTextBoldCursor editTextBoldCursor4 = this.editText;
             editTextBoldCursor4.setSelection(editTextBoldCursor4.getText().length());
+            this.ignoreEditText = false;
         }
         this.mapPreview = new BackupImageView(context) {
             @Override
@@ -332,9 +334,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
         EditTextBoldCursor editTextBoldCursor = this.editText;
         if (editTextBoldCursor != null) {
+            this.ignoreEditText = true;
             editTextBoldCursor.setText(this.address);
             EditTextBoldCursor editTextBoldCursor2 = this.editText;
             editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            this.ignoreEditText = false;
         }
         updateMapPreview();
         UniversalRecyclerView universalRecyclerView = this.listView;

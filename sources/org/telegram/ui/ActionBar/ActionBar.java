@@ -734,6 +734,9 @@ public class ActionBar extends FrameLayout {
             this.actionModeExtraView = view;
             this.actionModeShowingView = view2;
             this.actionModeHidingViews = viewArr;
+            if (view != null) {
+                arrayList.add(ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0.0f));
+            }
             if (ColorUtils.calculateLuminance(this.actionModeColor) < 0.699999988079071d) {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
             } else {
@@ -829,6 +832,9 @@ public class ActionBar extends FrameLayout {
             this.actionModeTranslationView = view3;
         }
         this.actionModeExtraView = view;
+        if (view != null) {
+            view.setTranslationY(0.0f);
+        }
         this.actionModeShowingView = view2;
         this.actionModeHidingViews = viewArr;
         if (ColorUtils.calculateLuminance(this.actionModeColor) < 0.699999988079071d) {
@@ -909,6 +915,10 @@ public class ActionBar extends FrameLayout {
         View view2 = this.actionModeShowingView;
         if (view2 != null) {
             arrayList.add(ObjectAnimator.ofFloat(view2, View.ALPHA, 0.0f));
+        }
+        View view3 = this.actionModeExtraView;
+        if (view3 != null) {
+            arrayList.add(ObjectAnimator.ofFloat(view3, View.TRANSLATION_Y, view3.getMeasuredHeight()));
         }
         int i2 = this.actionBarColor;
         if (i2 == 0) {

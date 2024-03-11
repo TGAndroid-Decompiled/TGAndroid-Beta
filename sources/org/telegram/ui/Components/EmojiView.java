@@ -1834,7 +1834,6 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             @Override
             public boolean onItemClick(View view, int i14) {
                 String str;
-                boolean z8;
                 int i15;
                 if (view instanceof ImageViewEmoji) {
                     ImageViewEmoji imageViewEmoji = (ImageViewEmoji) view;
@@ -1850,44 +1849,42 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     } else {
                         String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
                         String str2 = imageViewEmoji.isRecent ? null : Emoji.emojiColor.get(replace);
-                        if (CompoundEmoji.isCompound(replace)) {
-                            z8 = true;
-                        } else {
-                            z8 = EmojiData.emojiColoredMap.contains(replace) ? false : false;
+                        boolean isCompound = CompoundEmoji.isCompound(replace);
+                        if (isCompound || EmojiData.emojiColoredMap.contains(replace)) {
+                            EmojiView.this.emojiTouchedView = imageViewEmoji;
+                            EmojiView emojiView = EmojiView.this;
+                            emojiView.emojiTouchedX = emojiView.emojiLastX;
+                            EmojiView emojiView2 = EmojiView.this;
+                            emojiView2.emojiTouchedY = emojiView2.emojiLastY;
+                            if (!isCompound) {
+                                EmojiView.this.colorPickerView.setSelection(CompoundEmoji.skinTones.indexOf(str2) + 1);
+                            } else {
+                                replace = EmojiView.addColorToCode(replace, str2);
+                            }
+                            EmojiView.this.colorPickerView.setEmoji(replace);
+                            int popupWidth = EmojiView.this.colorPickerView.getPopupWidth();
+                            int popupHeight = EmojiView.this.colorPickerView.getPopupHeight();
+                            imageViewEmoji.getLocationOnScreen(EmojiView.this.location);
+                            if (EmojiView.this.colorPickerView.isCompound()) {
+                                i15 = 0;
+                            } else {
+                                i15 = (EmojiView.this.emojiSize * EmojiView.this.colorPickerView.getSelection()) + AndroidUtilities.dp((EmojiView.this.colorPickerView.getSelection() * 4) - (AndroidUtilities.isTablet() ? 5 : 1));
+                            }
+                            if (EmojiView.this.location[0] - i15 < AndroidUtilities.dp(5.0f)) {
+                                i15 += (EmojiView.this.location[0] - i15) - AndroidUtilities.dp(5.0f);
+                            } else if ((EmojiView.this.location[0] - i15) + popupWidth > AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f)) {
+                                i15 += ((EmojiView.this.location[0] - i15) + popupWidth) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f));
+                            }
+                            int i16 = -i15;
+                            int top = imageViewEmoji.getTop() < 0 ? imageViewEmoji.getTop() : 0;
+                            EmojiView.this.colorPickerView.setupArrow((AndroidUtilities.dp(AndroidUtilities.isTablet() ? 30.0f : 22.0f) - i16) + ((int) AndroidUtilities.dpf2(0.5f)));
+                            EmojiView.this.colorPickerView.setFocusable(true);
+                            EmojiView.this.colorPickerView.showAsDropDown(view, i16, (((-view.getMeasuredHeight()) - popupHeight) + ((view.getMeasuredHeight() - EmojiView.this.emojiSize) / 2)) - top);
+                            EmojiView.this.pager.requestDisallowInterceptTouchEvent(true);
+                            EmojiView.this.emojiGridView.hideSelector(true);
+                            EmojiView.this.emojiGridView.clearTouchesFor(view);
+                            return true;
                         }
-                        EmojiView.this.emojiTouchedView = imageViewEmoji;
-                        EmojiView emojiView = EmojiView.this;
-                        emojiView.emojiTouchedX = emojiView.emojiLastX;
-                        EmojiView emojiView2 = EmojiView.this;
-                        emojiView2.emojiTouchedY = emojiView2.emojiLastY;
-                        if (!z8) {
-                            EmojiView.this.colorPickerView.setSelection(CompoundEmoji.skinTones.indexOf(str2) + 1);
-                        } else {
-                            replace = EmojiView.addColorToCode(replace, str2);
-                        }
-                        EmojiView.this.colorPickerView.setEmoji(replace);
-                        int popupWidth = EmojiView.this.colorPickerView.getPopupWidth();
-                        int popupHeight = EmojiView.this.colorPickerView.getPopupHeight();
-                        imageViewEmoji.getLocationOnScreen(EmojiView.this.location);
-                        if (EmojiView.this.colorPickerView.isCompound()) {
-                            i15 = 0;
-                        } else {
-                            i15 = (EmojiView.this.emojiSize * EmojiView.this.colorPickerView.getSelection()) + AndroidUtilities.dp((EmojiView.this.colorPickerView.getSelection() * 4) - (AndroidUtilities.isTablet() ? 5 : 1));
-                        }
-                        if (EmojiView.this.location[0] - i15 < AndroidUtilities.dp(5.0f)) {
-                            i15 += (EmojiView.this.location[0] - i15) - AndroidUtilities.dp(5.0f);
-                        } else if ((EmojiView.this.location[0] - i15) + popupWidth > AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f)) {
-                            i15 += ((EmojiView.this.location[0] - i15) + popupWidth) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f));
-                        }
-                        int i16 = -i15;
-                        int top = imageViewEmoji.getTop() < 0 ? imageViewEmoji.getTop() : 0;
-                        EmojiView.this.colorPickerView.setupArrow((AndroidUtilities.dp(AndroidUtilities.isTablet() ? 30.0f : 22.0f) - i16) + ((int) AndroidUtilities.dpf2(0.5f)));
-                        EmojiView.this.colorPickerView.setFocusable(true);
-                        EmojiView.this.colorPickerView.showAsDropDown(view, i16, (((-view.getMeasuredHeight()) - popupHeight) + ((view.getMeasuredHeight() - EmojiView.this.emojiSize) / 2)) - top);
-                        EmojiView.this.pager.requestDisallowInterceptTouchEvent(true);
-                        EmojiView.this.emojiGridView.hideSelector(true);
-                        EmojiView.this.emojiGridView.clearTouchesFor(view);
-                        return true;
                     }
                 }
                 return false;
@@ -4299,10 +4296,17 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     }
 
     public static String addColorToCode(String str, String str2) {
+        boolean z;
         if (CompoundEmoji.isHandshake(str) != null) {
             return CompoundEmoji.applyColor(str, str2);
         }
         String str3 = null;
+        if (Emoji.endsWithRightArrow(str)) {
+            str = str.substring(0, str.length() - 2);
+            z = true;
+        } else {
+            z = false;
+        }
         int length = str.length();
         if (length > 2 && str.charAt(str.length() - 2) == 8205) {
             str3 = str.substring(str.length() - 2);
@@ -4313,7 +4317,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
         String str4 = str + str2;
         if (str3 != null) {
-            return str4 + str3;
+            str4 = str4 + str3;
+        }
+        if (z) {
+            return str4 + "\u200d➡";
         }
         return str4;
     }
