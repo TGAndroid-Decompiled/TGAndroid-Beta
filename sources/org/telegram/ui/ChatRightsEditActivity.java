@@ -1314,6 +1314,7 @@ public class ChatRightsEditActivity extends BaseFragment {
 
     private void updateRows(boolean z) {
         int i;
+        int i2;
         int min = Math.min(this.transferOwnerShadowRow, this.transferOwnerRow);
         this.manageRow = -1;
         this.changeInfoRow = -1;
@@ -1359,231 +1360,233 @@ public class ChatRightsEditActivity extends BaseFragment {
         this.addBotButtonRow = -1;
         this.manageTopicsRow = -1;
         this.rowCount = 3;
-        int i2 = this.currentType;
-        if (i2 == 0 || i2 == 2) {
+        int i3 = this.currentType;
+        if (i3 == 0 || i3 == 2) {
             if (this.isChannel) {
-                int i3 = 3 + 1;
-                this.rowCount = i3;
-                this.changeInfoRow = 3;
-                int i4 = i3 + 1;
+                int i4 = 3 + 1;
                 this.rowCount = i4;
-                this.channelMessagesRow = i3;
+                this.changeInfoRow = 3;
+                int i5 = i4 + 1;
+                this.rowCount = i5;
+                this.channelMessagesRow = i4;
                 if (this.channelMessagesExpanded) {
-                    int i5 = i4 + 1;
-                    this.rowCount = i5;
-                    this.channelPostMessagesRow = i4;
                     int i6 = i5 + 1;
                     this.rowCount = i6;
-                    this.channelEditMessagesRow = i5;
-                    this.rowCount = i6 + 1;
-                    this.channelDeleteMessagesRow = i6;
+                    this.channelPostMessagesRow = i5;
+                    int i7 = i6 + 1;
+                    this.rowCount = i7;
+                    this.channelEditMessagesRow = i6;
+                    this.rowCount = i7 + 1;
+                    this.channelDeleteMessagesRow = i7;
                 }
-                int i7 = this.rowCount;
-                int i8 = i7 + 1;
-                this.rowCount = i8;
-                this.channelStoriesRow = i7;
+                int i8 = this.rowCount;
+                int i9 = i8 + 1;
+                this.rowCount = i9;
+                this.channelStoriesRow = i8;
                 if (this.channelStoriesExpanded) {
-                    int i9 = i8 + 1;
-                    this.rowCount = i9;
-                    this.channelPostStoriesRow = i8;
                     int i10 = i9 + 1;
                     this.rowCount = i10;
-                    this.channelEditStoriesRow = i9;
-                    this.rowCount = i10 + 1;
-                    this.channelDeleteStoriesRow = i10;
+                    this.channelPostStoriesRow = i9;
+                    int i11 = i10 + 1;
+                    this.rowCount = i11;
+                    this.channelEditStoriesRow = i10;
+                    this.rowCount = i11 + 1;
+                    this.channelDeleteStoriesRow = i11;
                 }
-                int i11 = this.rowCount;
-                int i12 = i11 + 1;
-                this.rowCount = i12;
-                this.addUsersRow = i11;
+                int i12 = this.rowCount;
                 int i13 = i12 + 1;
                 this.rowCount = i13;
-                this.startVoiceChatRow = i12;
-                this.rowCount = i13 + 1;
-                this.addAdminsRow = i13;
+                this.addUsersRow = i12;
+                int i14 = i13 + 1;
+                this.rowCount = i14;
+                this.startVoiceChatRow = i13;
+                this.rowCount = i14 + 1;
+                this.addAdminsRow = i14;
             } else {
-                if (i2 == 2) {
+                if (i3 == 2) {
                     this.rowCount = 3 + 1;
                     this.manageRow = 3;
                 }
-                int i14 = this.rowCount;
-                int i15 = i14 + 1;
-                this.rowCount = i15;
-                this.changeInfoRow = i14;
+                int i15 = this.rowCount;
                 int i16 = i15 + 1;
                 this.rowCount = i16;
-                this.deleteMessagesRow = i15;
+                this.changeInfoRow = i15;
                 int i17 = i16 + 1;
                 this.rowCount = i17;
-                this.banUsersRow = i16;
+                this.deleteMessagesRow = i16;
                 int i18 = i17 + 1;
                 this.rowCount = i18;
-                this.addUsersRow = i17;
+                this.banUsersRow = i17;
                 int i19 = i18 + 1;
                 this.rowCount = i19;
-                this.pinMessagesRow = i18;
-                int i20 = i19 + 1;
-                this.rowCount = i20;
-                this.channelStoriesRow = i19;
-                if (this.channelStoriesExpanded) {
+                this.addUsersRow = i18;
+                this.rowCount = i19 + 1;
+                this.pinMessagesRow = i19;
+                if (ChatObject.isChannel(this.currentChat)) {
+                    int i20 = this.rowCount;
                     int i21 = i20 + 1;
                     this.rowCount = i21;
-                    this.channelPostStoriesRow = i20;
-                    int i22 = i21 + 1;
-                    this.rowCount = i22;
-                    this.channelEditStoriesRow = i21;
-                    this.rowCount = i22 + 1;
-                    this.channelDeleteStoriesRow = i22;
+                    this.channelStoriesRow = i20;
+                    if (this.channelStoriesExpanded) {
+                        int i22 = i21 + 1;
+                        this.rowCount = i22;
+                        this.channelPostStoriesRow = i21;
+                        int i23 = i22 + 1;
+                        this.rowCount = i23;
+                        this.channelEditStoriesRow = i22;
+                        this.rowCount = i23 + 1;
+                        this.channelDeleteStoriesRow = i23;
+                    }
                 }
-                int i23 = this.rowCount;
-                int i24 = i23 + 1;
-                this.rowCount = i24;
-                this.startVoiceChatRow = i23;
+                int i24 = this.rowCount;
                 int i25 = i24 + 1;
                 this.rowCount = i25;
-                this.addAdminsRow = i24;
+                this.startVoiceChatRow = i24;
                 int i26 = i25 + 1;
                 this.rowCount = i26;
-                this.anonymousRow = i25;
+                this.addAdminsRow = i25;
+                int i27 = i26 + 1;
+                this.rowCount = i27;
+                this.anonymousRow = i26;
                 if (this.isForum) {
-                    this.rowCount = i26 + 1;
-                    this.manageTopicsRow = i26;
+                    this.rowCount = i27 + 1;
+                    this.manageTopicsRow = i27;
                 }
             }
-        } else if (i2 == 1) {
-            int i27 = 3 + 1;
-            this.rowCount = i27;
-            this.sendMessagesRow = 3;
-            int i28 = i27 + 1;
+        } else if (i3 == 1) {
+            int i28 = 3 + 1;
             this.rowCount = i28;
-            this.sendMediaRow = i27;
+            this.sendMessagesRow = 3;
+            int i29 = i28 + 1;
+            this.rowCount = i29;
+            this.sendMediaRow = i28;
             if (this.sendMediaExpanded) {
-                int i29 = i28 + 1;
-                this.rowCount = i29;
-                this.sendPhotosRow = i28;
                 int i30 = i29 + 1;
                 this.rowCount = i30;
-                this.sendVideosRow = i29;
+                this.sendPhotosRow = i29;
                 int i31 = i30 + 1;
                 this.rowCount = i31;
-                this.sendFilesRow = i30;
+                this.sendVideosRow = i30;
                 int i32 = i31 + 1;
                 this.rowCount = i32;
-                this.sendMusicRow = i31;
+                this.sendFilesRow = i31;
                 int i33 = i32 + 1;
                 this.rowCount = i33;
-                this.sendVoiceRow = i32;
+                this.sendMusicRow = i32;
                 int i34 = i33 + 1;
                 this.rowCount = i34;
-                this.sendRoundRow = i33;
+                this.sendVoiceRow = i33;
                 int i35 = i34 + 1;
                 this.rowCount = i35;
-                this.sendStickersRow = i34;
+                this.sendRoundRow = i34;
                 int i36 = i35 + 1;
                 this.rowCount = i36;
-                this.sendPollsRow = i35;
-                this.rowCount = i36 + 1;
-                this.embedLinksRow = i36;
+                this.sendStickersRow = i35;
+                int i37 = i36 + 1;
+                this.rowCount = i37;
+                this.sendPollsRow = i36;
+                this.rowCount = i37 + 1;
+                this.embedLinksRow = i37;
             }
-            int i37 = this.rowCount;
-            int i38 = i37 + 1;
-            this.rowCount = i38;
-            this.addUsersRow = i37;
+            int i38 = this.rowCount;
             int i39 = i38 + 1;
             this.rowCount = i39;
-            this.pinMessagesRow = i38;
+            this.addUsersRow = i38;
             int i40 = i39 + 1;
             this.rowCount = i40;
-            this.changeInfoRow = i39;
+            this.pinMessagesRow = i39;
+            int i41 = i40 + 1;
+            this.rowCount = i41;
+            this.changeInfoRow = i40;
             if (this.isForum) {
-                this.rowCount = i40 + 1;
-                this.manageTopicsRow = i40;
+                this.rowCount = i41 + 1;
+                this.manageTopicsRow = i41;
             }
-            int i41 = this.rowCount;
-            int i42 = i41 + 1;
-            this.rowCount = i42;
-            this.untilSectionRow = i41;
-            this.rowCount = i42 + 1;
-            this.untilDateRow = i42;
+            int i42 = this.rowCount;
+            int i43 = i42 + 1;
+            this.rowCount = i43;
+            this.untilSectionRow = i42;
+            this.rowCount = i43 + 1;
+            this.untilDateRow = i43;
         }
-        int i43 = this.rowCount;
+        int i44 = this.rowCount;
         if (this.canEdit) {
-            if (!this.isChannel && (i2 == 0 || (i2 == 2 && this.asAdmin))) {
-                int i44 = i43 + 1;
-                this.rowCount = i44;
-                this.rightsShadowRow = i43;
+            if (!this.isChannel && ((i2 = this.currentType) == 0 || (i2 == 2 && this.asAdmin))) {
                 int i45 = i44 + 1;
                 this.rowCount = i45;
-                this.rankHeaderRow = i44;
+                this.rightsShadowRow = i44;
                 int i46 = i45 + 1;
                 this.rowCount = i46;
-                this.rankRow = i45;
-                this.rowCount = i46 + 1;
-                this.rankInfoRow = i46;
+                this.rankHeaderRow = i45;
+                int i47 = i46 + 1;
+                this.rowCount = i47;
+                this.rankRow = i46;
+                this.rowCount = i47 + 1;
+                this.rankInfoRow = i47;
             }
             TLRPC$Chat tLRPC$Chat = this.currentChat;
-            if (tLRPC$Chat != null && tLRPC$Chat.creator && i2 == 0 && hasAllAdminRights() && !this.currentUser.bot) {
-                int i47 = this.rightsShadowRow;
-                if (i47 == -1) {
-                    int i48 = this.rowCount;
-                    this.rowCount = i48 + 1;
-                    this.transferOwnerShadowRow = i48;
+            if (tLRPC$Chat != null && tLRPC$Chat.creator && this.currentType == 0 && hasAllAdminRights() && !this.currentUser.bot) {
+                int i48 = this.rightsShadowRow;
+                if (i48 == -1) {
+                    int i49 = this.rowCount;
+                    this.rowCount = i49 + 1;
+                    this.transferOwnerShadowRow = i49;
                 }
-                int i49 = this.rowCount;
-                int i50 = i49 + 1;
-                this.rowCount = i50;
-                this.transferOwnerRow = i49;
-                if (i47 != -1) {
-                    this.rowCount = i50 + 1;
-                    this.transferOwnerShadowRow = i50;
+                int i50 = this.rowCount;
+                int i51 = i50 + 1;
+                this.rowCount = i51;
+                this.transferOwnerRow = i50;
+                if (i48 != -1) {
+                    this.rowCount = i51 + 1;
+                    this.transferOwnerShadowRow = i51;
                 }
             }
             if (this.initialIsSet) {
                 if (this.rightsShadowRow == -1) {
-                    int i51 = this.rowCount;
-                    this.rowCount = i51 + 1;
-                    this.rightsShadowRow = i51;
+                    int i52 = this.rowCount;
+                    this.rowCount = i52 + 1;
+                    this.rightsShadowRow = i52;
                 }
-                int i52 = this.rowCount;
-                int i53 = i52 + 1;
-                this.rowCount = i53;
-                this.removeAdminRow = i52;
-                this.rowCount = i53 + 1;
-                this.removeAdminShadowRow = i53;
+                int i53 = this.rowCount;
+                int i54 = i53 + 1;
+                this.rowCount = i54;
+                this.removeAdminRow = i53;
+                this.rowCount = i54 + 1;
+                this.removeAdminShadowRow = i54;
             }
-        } else if (i2 == 0) {
+        } else if (this.currentType == 0) {
             if (!this.isChannel && (!this.currentRank.isEmpty() || (this.currentChat.creator && UserObject.isUserSelf(this.currentUser)))) {
-                int i54 = this.rowCount;
-                int i55 = i54 + 1;
-                this.rowCount = i55;
-                this.rightsShadowRow = i54;
+                int i55 = this.rowCount;
                 int i56 = i55 + 1;
                 this.rowCount = i56;
-                this.rankHeaderRow = i55;
-                this.rowCount = i56 + 1;
-                this.rankRow = i56;
+                this.rightsShadowRow = i55;
+                int i57 = i56 + 1;
+                this.rowCount = i57;
+                this.rankHeaderRow = i56;
+                this.rowCount = i57 + 1;
+                this.rankRow = i57;
                 if (this.currentChat.creator && UserObject.isUserSelf(this.currentUser)) {
-                    int i57 = this.rowCount;
-                    this.rowCount = i57 + 1;
-                    this.rankInfoRow = i57;
-                } else {
                     int i58 = this.rowCount;
                     this.rowCount = i58 + 1;
-                    this.cantEditInfoRow = i58;
+                    this.rankInfoRow = i58;
+                } else {
+                    int i59 = this.rowCount;
+                    this.rowCount = i59 + 1;
+                    this.cantEditInfoRow = i59;
                 }
             } else {
-                int i59 = this.rowCount;
-                this.rowCount = i59 + 1;
-                this.cantEditInfoRow = i59;
+                int i60 = this.rowCount;
+                this.rowCount = i60 + 1;
+                this.cantEditInfoRow = i60;
             }
         } else {
-            this.rowCount = i43 + 1;
-            this.rightsShadowRow = i43;
+            this.rowCount = i44 + 1;
+            this.rightsShadowRow = i44;
         }
         if (this.currentType == 2) {
-            int i60 = this.rowCount;
-            this.rowCount = i60 + 1;
-            this.addBotButtonRow = i60;
+            int i61 = this.rowCount;
+            this.rowCount = i61 + 1;
+            this.addBotButtonRow = i61;
         }
         if (z) {
             if (min == -1 && (i = this.transferOwnerShadowRow) != -1) {

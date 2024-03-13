@@ -625,6 +625,14 @@ public class DualCameraView extends CameraView {
         return MessagesController.getGlobalMainSettings().getBoolean("dual_available", dualAvailableDefault(context, true));
     }
 
+    public static boolean roundDualAvailableStatic(Context context) {
+        return MessagesController.getGlobalMainSettings().getBoolean("rounddual_available", roundDualAvailableDefault(context));
+    }
+
+    public static boolean roundDualAvailableDefault(Context context) {
+        return SharedConfig.getDevicePerformanceClass() >= 2 && Camera.getNumberOfCameras() > 1 && SharedConfig.allowPreparingHevcPlayers() && context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent");
+    }
+
     private Matrix getSavedDualMatrix() {
         String string = MessagesController.getGlobalMainSettings().getString("dualmatrix", null);
         if (string == null) {

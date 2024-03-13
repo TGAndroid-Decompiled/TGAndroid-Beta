@@ -252,11 +252,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.previewSize = new org.telegram.messenger.camera.Size[2];
         this.aspectRatio = SharedConfig.roundCamera16to9 ? new org.telegram.messenger.camera.Size(16, 9) : new org.telegram.messenger.camera.Size(4, 3);
         int i = Build.VERSION.SDK_INT;
-        boolean z = i >= 21 && SharedConfig.useCamera2;
-        this.useCamera2 = z;
-        if (z) {
-            DualCameraView.dualAvailableStatic(ApplicationLoader.applicationContext);
-        }
+        this.useCamera2 = i >= 21 && SharedConfig.useCamera2;
         this.camera2Sessions = new Camera2Session[2];
         this.mMVPMatrix = new float[16];
         this.mSTMatrix = new float[16];
@@ -771,9 +767,9 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 FileLog.d("InstantCamera show round camera " + this.cameraFile.getAbsolutePath());
             }
             if (this.useCamera2) {
-                boolean dualAvailableStatic = DualCameraView.dualAvailableStatic(getContext());
-                this.bothCameras = dualAvailableStatic;
-                if (dualAvailableStatic) {
+                boolean roundDualAvailableStatic = DualCameraView.roundDualAvailableStatic(getContext());
+                this.bothCameras = roundDualAvailableStatic;
+                if (roundDualAvailableStatic) {
                     int i = 0;
                     while (i < 2) {
                         Camera2Session[] camera2SessionArr = this.camera2Sessions;

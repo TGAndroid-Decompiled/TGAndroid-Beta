@@ -108,8 +108,6 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     public void lambda$initCamera$4(final boolean z, final Runnable runnable) {
         String str;
         Camera.CameraInfo cameraInfo;
-        int i;
-        int i2;
         String str2;
         final CameraController cameraController = this;
         String str3 = "cameraCache";
@@ -130,14 +128,14 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                 if (string != null) {
                     SerializedData serializedData = new SerializedData(Base64.decode(string, 0));
                     int readInt32 = serializedData.readInt32(false);
-                    for (int i3 = 0; i3 < readInt32; i3++) {
+                    for (int i = 0; i < readInt32; i++) {
                         CameraInfo cameraInfo2 = new CameraInfo(serializedData.readInt32(false), serializedData.readInt32(false));
                         int readInt322 = serializedData.readInt32(false);
-                        for (int i4 = 0; i4 < readInt322; i4++) {
+                        for (int i2 = 0; i2 < readInt322; i2++) {
                             cameraInfo2.previewSizes.add(new Size(serializedData.readInt32(false), serializedData.readInt32(false)));
                         }
                         int readInt323 = serializedData.readInt32(false);
-                        for (int i5 = 0; i5 < readInt323; i5++) {
+                        for (int i3 = 0; i3 < readInt323; i3++) {
                             cameraInfo2.pictureSizes.add(new Size(serializedData.readInt32(false), serializedData.readInt32(false)));
                         }
                         arrayList.add(cameraInfo2);
@@ -149,65 +147,68 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                 } else {
                     int numberOfCameras = Camera.getNumberOfCameras();
                     Camera.CameraInfo cameraInfo3 = new Camera.CameraInfo();
-                    int i6 = 4;
-                    int i7 = 0;
-                    while (i7 < numberOfCameras) {
+                    int i4 = 4;
+                    int i5 = 0;
+                    while (i5 < numberOfCameras) {
                         try {
-                            Camera.getCameraInfo(i7, cameraInfo3);
-                            CameraInfo cameraInfo4 = new CameraInfo(i7, cameraInfo3.facing);
+                            Camera.getCameraInfo(i5, cameraInfo3);
+                            CameraInfo cameraInfo4 = new CameraInfo(i5, cameraInfo3.facing);
                             if (ApplicationLoader.mainInterfacePaused && ApplicationLoader.externalInterfacePaused) {
                                 throw new RuntimeException(str4);
                             }
                             Camera open = Camera.open(cameraInfo4.getCameraId());
                             Camera.Parameters parameters = open.getParameters();
                             List<Camera.Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
-                            int i8 = 0;
+                            int i6 = 0;
                             while (true) {
                                 cameraInfo = cameraInfo3;
-                                str = str4;
-                                if (i8 >= supportedPreviewSizes.size()) {
+                                if (i6 >= supportedPreviewSizes.size()) {
                                     break;
                                 }
-                                try {
-                                    Camera.Size size = supportedPreviewSizes.get(i8);
-                                    int i9 = size.width;
-                                    List<Camera.Size> list = supportedPreviewSizes;
-                                    if ((i9 != 1280 || size.height == 720) && (i2 = size.height) < 2160 && i9 < 2160) {
-                                        str2 = str3;
-                                        cameraInfo4.previewSizes.add(new Size(i9, i2));
-                                        if (BuildVars.LOGS_ENABLED) {
-                                            FileLog.d("preview size = " + size.width + " " + size.height);
+                                Camera.Size size = supportedPreviewSizes.get(i6);
+                                List<Camera.Size> list = supportedPreviewSizes;
+                                int i7 = size.height;
+                                str = str4;
+                                if (i7 < 2160) {
+                                    try {
+                                        int i8 = size.width;
+                                        if (i8 < 2160) {
+                                            str2 = str3;
+                                            cameraInfo4.previewSizes.add(new Size(i8, i7));
+                                            if (BuildVars.LOGS_ENABLED) {
+                                                FileLog.d("preview size = " + size.width + " " + size.height);
+                                            }
+                                            i6++;
+                                            cameraInfo3 = cameraInfo;
+                                            supportedPreviewSizes = list;
+                                            str4 = str;
+                                            str3 = str2;
                                         }
-                                        i8++;
-                                        cameraInfo3 = cameraInfo;
-                                        str4 = str;
-                                        supportedPreviewSizes = list;
-                                        str3 = str2;
+                                    } catch (Exception e) {
+                                        e = e;
+                                        cameraController = this;
+                                        FileLog.e(e, !str.equals(e.getMessage()));
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                CameraController.this.lambda$initCamera$3(z, e, runnable);
+                                            }
+                                        });
+                                        return;
                                     }
-                                    str2 = str3;
-                                    i8++;
-                                    cameraInfo3 = cameraInfo;
-                                    str4 = str;
-                                    supportedPreviewSizes = list;
-                                    str3 = str2;
-                                } catch (Exception e) {
-                                    e = e;
-                                    cameraController = this;
-                                    FileLog.e(e, !str.equals(e.getMessage()));
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            CameraController.this.lambda$initCamera$3(z, e, runnable);
-                                        }
-                                    });
-                                    return;
                                 }
+                                str2 = str3;
+                                i6++;
+                                cameraInfo3 = cameraInfo;
+                                supportedPreviewSizes = list;
+                                str4 = str;
+                                str3 = str2;
                             }
                             String str5 = str3;
+                            String str6 = str4;
                             List<Camera.Size> supportedPictureSizes = parameters.getSupportedPictureSizes();
-                            while (i < supportedPictureSizes.size()) {
-                                Camera.Size size2 = supportedPictureSizes.get(i);
-                                i = (size2.width == 1280 && size2.height != 720) ? i + 1 : 0;
+                            for (int i9 = 0; i9 < supportedPictureSizes.size(); i9++) {
+                                Camera.Size size2 = supportedPictureSizes.get(i9);
                                 if (!"samsung".equals(Build.MANUFACTURER) || !"jflteuc".equals(Build.PRODUCT) || size2.width < 2048) {
                                     cameraInfo4.pictureSizes.add(new Size(size2.width, size2.height));
                                     if (BuildVars.LOGS_ENABLED) {
@@ -219,10 +220,10 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             arrayList.add(cameraInfo4);
                             Collections.sort(cameraInfo4.previewSizes, cameraController$$ExternalSyntheticLambda18);
                             Collections.sort(cameraInfo4.pictureSizes, cameraController$$ExternalSyntheticLambda18);
-                            i6 += ((cameraInfo4.previewSizes.size() + cameraInfo4.pictureSizes.size()) * 8) + 8;
-                            i7++;
+                            i4 += ((cameraInfo4.previewSizes.size() + cameraInfo4.pictureSizes.size()) * 8) + 8;
+                            i5++;
                             cameraInfo3 = cameraInfo;
-                            str4 = str;
+                            str4 = str6;
                             str3 = str5;
                         } catch (Exception e2) {
                             e = e2;
@@ -238,9 +239,9 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             return;
                         }
                     }
-                    String str6 = str3;
+                    String str7 = str3;
                     str = str4;
-                    SerializedData serializedData2 = new SerializedData(i6);
+                    SerializedData serializedData2 = new SerializedData(i4);
                     serializedData2.writeInt32(arrayList.size());
                     for (int i10 = 0; i10 < numberOfCameras; i10++) {
                         CameraInfo cameraInfo5 = arrayList.get(i10);
@@ -261,7 +262,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             serializedData2.writeInt32(size6.mHeight);
                         }
                     }
-                    globalMainSettings.edit().putString(str6, Base64.encodeToString(serializedData2.toByteArray(), 0)).commit();
+                    globalMainSettings.edit().putString(str7, Base64.encodeToString(serializedData2.toByteArray(), 0)).commit();
                     serializedData2.cleanup();
                     cameraController = this;
                 }
