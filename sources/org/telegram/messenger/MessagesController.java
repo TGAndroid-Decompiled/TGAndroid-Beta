@@ -5429,7 +5429,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void loadChannelAdmins(final long j, boolean z) {
-        if (SystemClock.elapsedRealtime() - this.loadingChannelAdmins.get(j) < 60) {
+        if ((SystemClock.elapsedRealtime() / 1000) - this.loadingChannelAdmins.get(j) < 60) {
             return;
         }
         this.loadingChannelAdmins.put(j, (int) (SystemClock.elapsedRealtime() / 1000));

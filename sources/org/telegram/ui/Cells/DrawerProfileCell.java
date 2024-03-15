@@ -650,4 +650,19 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     public View getEmojiStatusDrawableParent() {
         return this.nameTextView;
     }
+
+    public void updateSunDrawable(boolean z) {
+        RLottieDrawable rLottieDrawable = sunDrawable;
+        if (rLottieDrawable != null) {
+            if (z) {
+                rLottieDrawable.setCustomEndFrame(36);
+            } else {
+                rLottieDrawable.setCustomEndFrame(0);
+            }
+        }
+        RLottieImageView rLottieImageView = this.darkThemeView;
+        if (rLottieImageView != null) {
+            rLottieImageView.playAnimation();
+        }
+    }
 }

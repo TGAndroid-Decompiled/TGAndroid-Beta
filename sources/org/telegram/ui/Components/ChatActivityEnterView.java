@@ -1521,6 +1521,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         }
                         ChatActivityEnterView.this.delegate.toggleVideoRecordingPause();
                     } else {
+                        if (ChatActivityEnterView.this.sendButtonVisible) {
+                            ChatActivityEnterView.this.calledRecordRunnable = true;
+                        }
                         MediaController.getInstance().toggleRecordingPause(ChatActivityEnterView.this.voiceOnce);
                         ChatActivityEnterView.this.delegate.needStartRecordAudio(0);
                         if (ChatActivityEnterView.this.slideText != null) {

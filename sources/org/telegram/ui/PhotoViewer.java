@@ -8522,6 +8522,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 PhotoViewer.this.videoHeight = (int) (f * f3);
                 PhotoViewer.this.aspectRatioFrameLayout.setAspectRatio(i2 == 0 ? 1.0f : f2 / f3, i3);
                 if (PhotoViewer.this.videoTextureView instanceof VideoEditTextureView) {
+                    ((VideoEditTextureView) PhotoViewer.this.videoTextureView).setHDRInfo(PhotoViewer.this.videoPlayer.getHDRStaticInfo(null));
                     ((VideoEditTextureView) PhotoViewer.this.videoTextureView).setVideoSize(i4, i2);
                     if (PhotoViewer.this.sendPhotoType == 1) {
                         PhotoViewer.this.setCropBitmap();

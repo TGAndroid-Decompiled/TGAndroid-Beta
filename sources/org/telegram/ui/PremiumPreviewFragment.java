@@ -1694,7 +1694,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 public void onLongPress() {
                     super.onLongPress();
                     PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
-                    if (premiumPreviewFragment.settingsView == null || BuildVars.DEBUG_PRIVATE_VERSION) {
+                    if (premiumPreviewFragment.settingsView == null && BuildVars.DEBUG_PRIVATE_VERSION) {
                         premiumPreviewFragment.settingsView = new FrameLayout(this.val$context);
                         ScrollView scrollView = new ScrollView(this.val$context);
                         scrollView.addView(new GLIconSettingsView(this.val$context, BackgroundView.this.imageView.mRenderer));

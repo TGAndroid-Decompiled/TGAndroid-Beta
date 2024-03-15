@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewParent;
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -225,6 +226,7 @@ public class WebviewActivity extends BaseFragment {
         int i3 = Build.VERSION.SDK_INT;
         if (i3 >= 19) {
             this.webView.setLayerType(2, null);
+            this.webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
         }
         if (i3 >= 17) {
             this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);

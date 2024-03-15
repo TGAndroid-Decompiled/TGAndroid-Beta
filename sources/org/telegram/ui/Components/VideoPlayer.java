@@ -3,7 +3,9 @@ package org.telegram.ui.Components;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
+import android.media.MediaFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Surface;
@@ -1519,11 +1521,23 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             hDRInfo = new StoryEntry.HDRInfo();
         }
         try {
-            ByteBuffer byteBuffer = ((MediaCodecRenderer) this.player.getRenderer(0)).codecOutputMediaFormat.getByteBuffer("hdr-static-info");
+            MediaFormat mediaFormat = ((MediaCodecRenderer) this.player.getRenderer(0)).codecOutputMediaFormat;
+            ByteBuffer byteBuffer = mediaFormat.getByteBuffer("hdr-static-info");
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
             if (byteBuffer.get() == 0) {
                 byteBuffer.getShort(17);
                 byteBuffer.getShort(19);
+            }
+            if (Build.VERSION.SDK_INT >= 24) {
+                if (mediaFormat.containsKey("color-transfer")) {
+                    hDRInfo.colorTransfer = mediaFormat.getInteger("color-transfer");
+                }
+                if (mediaFormat.containsKey("color-standard")) {
+                    hDRInfo.colorStandard = mediaFormat.getInteger("color-standard");
+                }
+                if (mediaFormat.containsKey("color-range")) {
+                    mediaFormat.getInteger("color-range");
+                }
             }
         } catch (Exception unused) {
         }

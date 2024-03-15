@@ -16,19 +16,20 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$GeoPoint;
@@ -106,7 +107,6 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        new LinearLayout(getContext()).setOrientation(0);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             AnimatedTextView.AnimatedTextDrawable limit;
             AnimatedColor limitColor = new AnimatedColor(this);
@@ -357,12 +357,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         if (this.geo != null) {
             view.setAlpha(0.0f);
             this.mapMarker.setTranslationY(-AndroidUtilities.dp(12.0f));
-            int measuredWidth = (int) ((this.mapPreview.getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : this.mapPreview.getMeasuredWidth()) / AndroidUtilities.density);
-            int i = this.currentAccount;
-            TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
-            String formapMapUrl = AndroidUtilities.formapMapUrl(i, tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, measuredWidth, 240, false, 15, -1);
+            int measuredWidth = this.mapPreview.getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : this.mapPreview.getMeasuredWidth();
+            float f = AndroidUtilities.density;
+            int i = (int) (measuredWidth / f);
+            int min = Math.min(2, (int) Math.ceil(f));
             BackupImageView backupImageView2 = this.mapPreview;
-            backupImageView2.setImage(formapMapUrl, measuredWidth + "_240", this.mapLoadingDrawable);
+            TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
+            ImageLocation forWebFile = ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, 0L, min * i, min * 240, 15, min));
+            backupImageView2.setImage(forWebFile, i + "_240", this.mapLoadingDrawable, 0, (Object) null);
             return;
         }
         backupImageView.setImageBitmap(null);

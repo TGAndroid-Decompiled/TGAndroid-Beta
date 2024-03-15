@@ -9707,7 +9707,7 @@ public class MediaDataController extends BaseController {
             return;
         }
         Context context = ApplicationLoader.applicationContext;
-        Set<Map.Entry<String, ?>> entrySet = context.getSharedPreferences("voicedrafts_" + this.currentAccount, 0).getAll().entrySet();
+        Set<Map.Entry<String, ?>> entrySet = context.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).getAll().entrySet();
         this.draftVoices.clear();
         for (Map.Entry<String, ?> entry : entrySet) {
             String key = entry.getKey();
@@ -9726,12 +9726,12 @@ public class MediaDataController extends BaseController {
         }
         draftVoice.once = z;
         Context context = ApplicationLoader.applicationContext;
-        SharedPreferences.Editor edit = context.getSharedPreferences("voicedrafts_" + this.currentAccount, 0).edit();
+        SharedPreferences.Editor edit = context.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).edit();
         edit.putString(Objects.hash(Long.valueOf(j), Long.valueOf(j2)) + "", draftVoice.toString()).apply();
     }
 
     public void pushDraftVoiceMessage(long j, long j2, DraftVoice draftVoice) {
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("voicedrafts_" + this.currentAccount, 0);
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0);
         long hash = Objects.hash(Long.valueOf(j), Long.valueOf(j2));
         String str = hash + "";
         if (draftVoice == null) {

@@ -43,7 +43,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r90, boolean r91, int r92) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r94, boolean r95, int r96) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -122,15 +122,15 @@ public class MediaCodecVideoConvertor {
         String readRes;
         if (z) {
             if (hDRInfo.getHDRType() == 1) {
-                readRes = RLottieDrawable.readRes(null, R.raw.yuv_hlg2rgb);
+                readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
             } else {
-                readRes = RLottieDrawable.readRes(null, R.raw.yuv_pq2rgb);
+                readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
             }
             String replace = readRes.replace("$dstWidth", i3 + ".0");
             String replace2 = replace.replace("$dstHeight", i4 + ".0");
-            return replace2 + "\nin vec2 vTextureCoord;\nout vec4 fragColor;\nvoid main() {\n    fragColor = TEX(vTextureCoord);\n}";
+            return replace2 + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
         }
-        return "#version 320 es\nprecision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nout vec4 fragColor;\nvoid main() {\nfragColor = texture(sTexture, vTextureCoord);\n}\n";
+        return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     }
 
     private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5) {

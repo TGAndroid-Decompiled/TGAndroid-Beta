@@ -153,8 +153,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.darkThemeDrawable.commitApplyLayerColors();
         this.darkThemeDrawable.setCustomEndFrame(Theme.getCurrentTheme().isDark() ? this.darkThemeDrawable.getFramesCount() - 1 : 0);
         this.darkThemeDrawable.setCurrentFrame(Theme.getCurrentTheme().isDark() ? this.darkThemeDrawable.getFramesCount() - 1 : 0, false);
-        Theme.getCurrentTheme().isDark();
-        rLottieImageView.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        rLottieImageView.setContentDescription(LocaleController.getString(Theme.getCurrentTheme().isDark() ? R.string.AccDescrSwitchToDayTheme : R.string.AccDescrSwitchToNightTheme));
         rLottieImageView.setAnimation(this.darkThemeDrawable);
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -297,7 +296,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         rLottieImageView.getLocationInWindow(r4);
         int[] iArr = {iArr[0] + (rLottieImageView.getMeasuredWidth() / 2), iArr[1] + (rLottieImageView.getMeasuredHeight() / 2)};
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), rLottieImageView);
-        rLottieImageView.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        rLottieImageView.setContentDescription(LocaleController.getString(z ? R.string.AccDescrSwitchToDayTheme : R.string.AccDescrSwitchToNightTheme));
     }
 
     public class AnonymousClass2 implements TextureView.SurfaceTextureListener {

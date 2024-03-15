@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$GeoPoint;
+import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC$TL_businessLocation;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -36,6 +36,7 @@ public class ProfileLocationCell extends LinearLayout {
         int i = Theme.key_windowBackgroundWhiteBlackText;
         int color = Theme.getColor(i, resourcesProvider);
         loadingDrawable.setColors(Theme.multAlpha(color, 0.05f), Theme.multAlpha(color, 0.15f), Theme.multAlpha(color, 0.1f), Theme.multAlpha(color, 0.3f));
+        loadingDrawable.setRadiiDp(4.0f);
         loadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
@@ -64,9 +65,8 @@ public class ProfileLocationCell extends LinearLayout {
     public void set(TLRPC$TL_businessLocation tLRPC$TL_businessLocation, boolean z) {
         if (tLRPC$TL_businessLocation != null) {
             this.textView1.setText(tLRPC$TL_businessLocation.address);
-            TLRPC$GeoPoint tLRPC$GeoPoint = tLRPC$TL_businessLocation.geo_point;
-            if (tLRPC$GeoPoint != null) {
-                this.imageReceiver.setImage(AndroidUtilities.formapMapUrl(UserConfig.selectedAccount, tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), false, 15, -1), "44_44", this.thumbDrawable, null, 0L);
+            if (tLRPC$TL_businessLocation.geo_point != null) {
+                this.imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$TL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.thumbDrawable, 0L, (String) null, (Object) null, 0);
             } else {
                 this.imageReceiver.setImageBitmap((Drawable) null);
             }
