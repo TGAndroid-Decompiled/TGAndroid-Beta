@@ -1971,6 +1971,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public void didPressAboutRevenueSharingAds() {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+            }
+
+            @Override
             public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell, animatedEmojiSpan);
             }
@@ -2046,6 +2051,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didPressSponsoredClose() {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+            }
+
+            @Override
+            public void didPressSponsoredInfo(ChatMessageCell chatMessageCell, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell, f, f2);
             }
 
             @Override

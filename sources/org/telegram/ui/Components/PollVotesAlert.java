@@ -698,7 +698,7 @@ public class PollVotesAlert extends BottomSheet {
         this.listView.setClipToPadding(false);
         this.listView.setLayoutManager(new LinearLayoutManager(this, getContext(), 1, false) {
             @Override
-            protected int getExtraLayoutSpace(RecyclerView.State state) {
+            public int getExtraLayoutSpace(RecyclerView.State state) {
                 return AndroidUtilities.dp(4000.0f);
             }
         });

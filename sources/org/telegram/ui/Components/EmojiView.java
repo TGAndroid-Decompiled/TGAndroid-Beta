@@ -117,6 +117,7 @@ import org.telegram.tgnet.TLRPC$TL_contacts_resolveUsername;
 import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
+import org.telegram.tgnet.TLRPC$TL_documentEmpty;
 import org.telegram.tgnet.TLRPC$TL_emojiList;
 import org.telegram.tgnet.TLRPC$TL_emojiStatus;
 import org.telegram.tgnet.TLRPC$TL_emojiStatusEmpty;
@@ -506,8 +507,38 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
     public class AnonymousClass2 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
+        public void addToFavoriteSelected(String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
+        }
+
+        @Override
+        public boolean canEditSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canEditSticker(this);
+        }
+
+        @Override
+        public void deleteSticker(TLRPC$Document tLRPC$Document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$deleteSticker(this, tLRPC$Document);
+        }
+
+        @Override
+        public void editSticker(TLRPC$Document tLRPC$Document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$editSticker(this, tLRPC$Document);
+        }
+
+        @Override
         public boolean isPhotoEditor() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
+        }
+
+        @Override
+        public boolean isReplacedSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isReplacedSticker(this);
+        }
+
+        @Override
+        public boolean isStickerEditor() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isStickerEditor(this);
         }
 
         @Override
@@ -531,8 +562,23 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
+        public void newStickerPackSelected(CharSequence charSequence, String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$newStickerPackSelected(this, charSequence, str);
+        }
+
+        @Override
         public void remove(SendMessagesHelper.ImportingSticker importingSticker) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$remove(this, importingSticker);
+        }
+
+        @Override
+        public void sendSticker() {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this);
+        }
+
+        @Override
+        public void stickerSetSelected(TLRPC$StickerSet tLRPC$StickerSet, String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$stickerSetSelected(this, tLRPC$StickerSet, str);
         }
 
         AnonymousClass2() {
@@ -5747,7 +5793,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
         MediaDataController.getInstance(this.currentAccount).addRecentSticker(0, null, tLRPC$Document, (int) (System.currentTimeMillis() / 1000), false);
         boolean isEmpty = this.recentStickers.isEmpty();
-        this.recentStickers = MediaDataController.getInstance(this.currentAccount).getRecentStickers(0);
+        this.recentStickers = MediaDataController.getInstance(this.currentAccount).getRecentStickers(0, true);
         StickersGridAdapter stickersGridAdapter = this.stickersGridAdapter;
         if (stickersGridAdapter != null) {
             stickersGridAdapter.notifyDataSetChanged();
@@ -6207,7 +6253,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
         int size = this.recentStickers.size();
         int size2 = this.favouriteStickers.size();
-        this.recentStickers = MediaDataController.getInstance(this.currentAccount).getRecentStickers(0);
+        this.recentStickers = MediaDataController.getInstance(this.currentAccount).getRecentStickers(0, true);
         this.favouriteStickers = MediaDataController.getInstance(this.currentAccount).getRecentStickers(2);
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
             this.premiumStickers = MediaDataController.getInstance(this.currentAccount).getRecentStickers(7);
@@ -6766,15 +6812,15 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             Object obj = this.cache.get(i);
             if (obj != null) {
                 if (obj instanceof TLRPC$Document) {
-                    return 0;
-                }
-                if (obj instanceof String) {
+                    return obj instanceof TLRPC$TL_documentEmpty ? 7 : 0;
+                } else if (obj instanceof String) {
                     if ("trend1".equals(obj)) {
                         return 5;
                     }
                     return "trend2".equals(obj) ? 6 : 3;
+                } else {
+                    return 2;
                 }
-                return 2;
             }
             return 1;
         }
@@ -6870,9 +6916,14 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             EmojiView.this.updateStickerTabs(false);
         }
 
+        public void lambda$onCreateViewHolder$4(View view, int i) {
+            EmojiView.this.openTrendingStickers((TLRPC$StickerSetCovered) view.getTag());
+        }
+
         @Override
         @SuppressLint({"NotifyDataSetChanged"})
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            FrameLayout frameLayout;
             StickerSetNameCell stickerSetNameCell;
             switch (i) {
                 case 0:
@@ -6905,12 +6956,14 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         }
                     });
                     stickerSetGroupInfoCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    stickerSetNameCell = stickerSetGroupInfoCell;
+                    frameLayout = stickerSetGroupInfoCell;
+                    stickerSetNameCell = frameLayout;
                     break;
                 case 4:
                     ?? view = new View(this.context);
                     view.setLayoutParams(new RecyclerView.LayoutParams(-1, EmojiView.this.searchFieldHeight));
-                    stickerSetNameCell = view;
+                    frameLayout = view;
+                    stickerSetNameCell = frameLayout;
                     break;
                 case 5:
                     StickerSetNameCell stickerSetNameCell3 = new StickerSetNameCell(this.context, false, EmojiView.this.resourcesProvider);
@@ -6940,7 +6993,31 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         }
                     });
                     trendingListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(52.0f)));
-                    stickerSetNameCell = trendingListView;
+                    frameLayout = trendingListView;
+                    stickerSetNameCell = frameLayout;
+                    break;
+                case 7:
+                    FrameLayout frameLayout2 = new FrameLayout(this.context);
+                    View view2 = new View(this.context);
+                    int dp = AndroidUtilities.dp(28.0f);
+                    EmojiView emojiView2 = EmojiView.this;
+                    int i2 = Theme.key_chat_emojiPanelIcon;
+                    Drawable createRoundRectDrawable = Theme.createRoundRectDrawable(dp, Theme.multAlpha(emojiView2.getThemedColor(i2), 0.12f));
+                    Drawable mutate = EmojiView.this.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
+                    mutate.setColorFilter(new PorterDuffColorFilter(EmojiView.this.getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(createRoundRectDrawable, mutate);
+                    combinedDrawable.setCustomSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                    combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+                    view2.setBackground(combinedDrawable);
+                    view2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view3) {
+                            EmojiView.StickersGridAdapter.this.lambda$onCreateViewHolder$5(view3);
+                        }
+                    });
+                    ScaleStateListAnimator.apply(view2);
+                    frameLayout2.addView(view2, LayoutHelper.createFrame(56, 56, 17));
+                    stickerSetNameCell = frameLayout2;
                     break;
                 default:
                     stickerSetNameCell = null;
@@ -6949,8 +7026,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             return new RecyclerListView.Holder(stickerSetNameCell);
         }
 
-        public void lambda$onCreateViewHolder$4(View view, int i) {
-            EmojiView.this.openTrendingStickers((TLRPC$StickerSetCovered) view.getTag());
+        public void lambda$onCreateViewHolder$5(View view) {
+            if (EmojiView.this.fragment instanceof ChatActivity) {
+                ((ChatActivity) EmojiView.this.fragment).openAttachMenuForCreatingSticker();
+            }
         }
 
         @Override
@@ -7040,16 +7119,30 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     stickerSetNameCell2.setText(LocaleController.getString("RecentStickers", R.string.RecentStickers), R.drawable.msg_close, LocaleController.getString(R.string.ClearRecentStickersAlertTitle));
                     return;
                 }
-                TLRPC$StickerSet tLRPC$StickerSet = ((TLRPC$TL_messages_stickerSet) obj2).set;
+                final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) obj2;
+                TLRPC$StickerSet tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set;
                 if (tLRPC$StickerSet != null) {
                     stickerSetNameCell2.setText(tLRPC$StickerSet.title, 0);
+                    if (!tLRPC$TL_messages_stickerSet.set.creator || StickersAlert.DISABLE_STICKER_EDITOR) {
+                        return;
+                    }
+                    stickerSetNameCell2.setEdit(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            EmojiView.StickersGridAdapter.this.lambda$onBindViewHolder$6(tLRPC$TL_messages_stickerSet, view);
+                        }
+                    });
                 }
             }
         }
 
+        public void lambda$onBindViewHolder$6(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, View view) {
+            EmojiView.this.delegate.onShowStickerSet(tLRPC$TL_messages_stickerSet.set, null);
+        }
+
         private void updateItems() {
-            ArrayList<TLRPC$Document> arrayList;
             Object obj;
+            ArrayList<TLRPC$Document> arrayList;
             int i;
             if (EmojiView.this.frozen) {
                 return;
@@ -7070,6 +7163,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             int i3 = -5;
             int i4 = -5;
             int i5 = 0;
+            boolean z = false;
             while (i4 < arrayList2.size()) {
                 if (i4 == i3) {
                     SparseArray<Object> sparseArray = this.cache;
@@ -7085,15 +7179,24 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         obj = "fav";
                     } else if (i4 == -2) {
                         arrayList = EmojiView.this.recentStickers;
+                        if (!arrayList.isEmpty() && !StickersAlert.DISABLE_STICKER_EDITOR) {
+                            z = true;
+                        }
                         this.packStartPosition.put("recent", Integer.valueOf(this.totalItems));
                         obj = "recent";
                     } else if (i4 != -1) {
                         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2 = (TLRPC$TL_messages_stickerSet) arrayList2.get(i4);
                         ArrayList<TLRPC$Document> arrayList3 = tLRPC$TL_messages_stickerSet2.documents;
+                        if (!z && !StickersAlert.DISABLE_STICKER_EDITOR) {
+                            ArrayList<TLRPC$Document> arrayList4 = new ArrayList<>(arrayList3);
+                            arrayList4.add(i2, new TLRPC$TL_documentEmpty());
+                            arrayList3 = arrayList4;
+                            z = true;
+                        }
                         this.packStartPosition.put(tLRPC$TL_messages_stickerSet2, Integer.valueOf(this.totalItems));
+                        obj = null;
                         tLRPC$TL_messages_stickerSet = tLRPC$TL_messages_stickerSet2;
                         arrayList = arrayList3;
-                        obj = null;
                     }
                     if (i4 == EmojiView.this.groupStickerPackNum) {
                         EmojiView.this.groupStickerPackPosition = this.totalItems;
@@ -7134,6 +7237,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                             }
                             this.positionToRow.put(this.totalItems + i11, i5 + 1 + (i10 / this.stickersPerRow));
                             i10 = i11;
+                            obj = obj;
                         }
                         int i13 = 0;
                         while (true) {

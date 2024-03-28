@@ -246,10 +246,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         if (SharedConfig.getDevicePerformanceClass() <= 0) {
             return;
         }
-        try {
-            performHapticFeedback(9, 1);
-        } catch (Exception unused) {
-        }
+        AndroidUtilities.vibrateCursor(this);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -259,10 +256,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public void lambda$vibrateNewStory$0() {
-        try {
-            performHapticFeedback(9, 1);
-        } catch (Exception unused) {
-        }
+        AndroidUtilities.vibrateCursor(this);
     }
 
     public void animateNewStory() {

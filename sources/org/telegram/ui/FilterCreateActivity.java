@@ -2585,7 +2585,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
 
         @Override
-        protected RecyclerListView.SelectionAdapter createAdapter() {
+        protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
             AdapterWithDiffUtils adapterWithDiffUtils = new AdapterWithDiffUtils() {
                 {
                     FilterInvitesBottomSheet.this = this;

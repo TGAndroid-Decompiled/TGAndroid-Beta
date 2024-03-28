@@ -407,6 +407,7 @@ public class MessageObject {
     public String sponsoredAdditionalInfo;
     public TLRPC$BotApp sponsoredBotApp;
     public String sponsoredButtonText;
+    public boolean sponsoredCanReport;
     public int sponsoredChannelPost;
     public TLRPC$ChatInvite sponsoredChatInvite;
     public String sponsoredChatInviteHash;
@@ -2695,7 +2696,7 @@ public class MessageObject {
         if (tLRPC$Message.message != null) {
             if ((tLRPC$Message.id < 0 || isEditing()) && (hashMap = this.messageOwner.params) != null) {
                 String str2 = hashMap.get("ve");
-                if (str2 != null && (isVideo() || isNewGif() || isRoundVideo())) {
+                if (str2 != null && (isVideo() || isNewGif() || isRoundVideo() || isVideoSticker())) {
                     VideoEditedInfo videoEditedInfo2 = new VideoEditedInfo();
                     this.videoEditedInfo = videoEditedInfo2;
                     if (!videoEditedInfo2.parseString(str2)) {
@@ -3104,6 +3105,10 @@ public class MessageObject {
 
     public static boolean isAnimatedStickerDocument(TLRPC$Document tLRPC$Document) {
         return tLRPC$Document != null && tLRPC$Document.mime_type.equals("video/webm");
+    }
+
+    public static boolean isStaticStickerDocument(TLRPC$Document tLRPC$Document) {
+        return tLRPC$Document != null && tLRPC$Document.mime_type.equals("image/webp");
     }
 
     public static boolean isGifDocument(WebFile webFile) {

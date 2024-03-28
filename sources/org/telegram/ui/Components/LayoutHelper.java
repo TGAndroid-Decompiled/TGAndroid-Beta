@@ -115,6 +115,13 @@ public class LayoutHelper {
         return layoutParams;
     }
 
+    public static LinearLayout.LayoutParams createLinear(int i, float f, int i2, int i3, int i4, int i5, int i6) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getSize(i), getSize(f));
+        layoutParams.setMargins(AndroidUtilities.dp(i3), AndroidUtilities.dp(i4), AndroidUtilities.dp(i5), AndroidUtilities.dp(i6));
+        layoutParams.gravity = i2;
+        return layoutParams;
+    }
+
     public static LinearLayout.LayoutParams createLinear(int i, int i2, float f, float f2, float f3, float f4) {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getSize(i), getSize(i2));
         layoutParams.setMargins(AndroidUtilities.dp(f), AndroidUtilities.dp(f2), AndroidUtilities.dp(f3), AndroidUtilities.dp(f4));

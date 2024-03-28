@@ -101,7 +101,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             TLRPC$TL_businessAwayMessage tLRPC$TL_businessAwayMessage = this.currentValue;
             businessRecipientsHelper2.setValue(tLRPC$TL_businessAwayMessage == null ? null : tLRPC$TL_businessAwayMessage.recipients);
         }
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, new Utilities.Callback2() {
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 AwayMessagesActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -111,7 +111,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 AwayMessagesActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
-        }, null, getResourceProvider());
+        }, null);
         this.listView = universalRecyclerView;
         frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
         setValue();
@@ -392,7 +392,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             return;
         }
         int i2 = uItem.id;
-        if (i2 == 2 || uItem.viewType == 13) {
+        if (i2 == 2 || uItem.viewType == 17) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);

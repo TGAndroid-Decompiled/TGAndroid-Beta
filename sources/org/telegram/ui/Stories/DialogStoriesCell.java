@@ -1001,12 +1001,15 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             }
             this.textView.setRightDrawable((Drawable) null);
             if (DialogStoriesCell.this.storiesController.isLastUploadingFailed(j)) {
-                this.textView.setText(LocaleController.getString("FailedStory", R.string.FailedStory));
+                this.textView.setTextSize(10);
+                this.textView.setText(LocaleController.getString(R.string.FailedStory));
                 this.isUploadingState = false;
             } else if (!Utilities.isNullOrEmpty(DialogStoriesCell.this.storiesController.getUploadingStories(j))) {
+                this.textView.setTextSize(10);
                 StoriesUtilities.applyUploadingStr(this.textView, true, false);
                 this.isUploadingState = true;
             } else if (DialogStoriesCell.this.storiesController.getEditingStory(j) != null) {
+                this.textView.setTextSize(10);
                 StoriesUtilities.applyUploadingStr(this.textView, true, false);
                 this.isUploadingState = true;
             } else if (this.isSelf) {
@@ -1049,28 +1052,28 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 }
                 AndroidUtilities.runOnUIThread(DialogStoriesCell.this.animationRunnable, 500L);
                 this.isUploadingState = false;
-                this.textView.setText(LocaleController.getString("MyStory", R.string.MyStory));
-            } else {
-                TLRPC$User tLRPC$User2 = this.user;
-                if (tLRPC$User2 != null) {
-                    String str = tLRPC$User2.first_name;
-                    String trim = str != null ? str.trim() : "";
-                    int indexOf = trim.indexOf(" ");
-                    if (indexOf > 0) {
-                        trim = trim.substring(0, indexOf);
-                    }
-                    if (this.user.verified) {
-                        if (this.verifiedDrawable == null) {
-                            this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
-                        }
-                        this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
-                        this.textView.setRightDrawable(this.verifiedDrawable);
-                        return;
+                this.textView.setTextSize(10);
+                this.textView.setText(LocaleController.getString(R.string.MyStory));
+            } else if (this.user != null) {
+                this.textView.setTextSize(11);
+                String str = this.user.first_name;
+                String trim = str != null ? str.trim() : "";
+                int indexOf = trim.indexOf(" ");
+                if (indexOf > 0) {
+                    trim = trim.substring(0, indexOf);
+                }
+                if (this.user.verified) {
+                    if (this.verifiedDrawable == null) {
+                        this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
                     }
                     this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
-                    this.textView.setRightDrawable((Drawable) null);
+                    this.textView.setRightDrawable(this.verifiedDrawable);
                     return;
                 }
+                this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
+                this.textView.setRightDrawable((Drawable) null);
+            } else {
+                this.textView.setTextSize(11);
                 this.textView.setText(Emoji.replaceEmoji(this.chat.title, this.textView.getPaint().getFontMetricsInt(), false));
                 this.textView.setRightDrawable((Drawable) null);
             }

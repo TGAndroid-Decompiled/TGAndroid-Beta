@@ -1521,7 +1521,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                                                         public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                             if (this.firstCreateView) {
                                                                 if (this.searchItem != null) {
-                                                                    lambda$openSearchWithText$289("");
+                                                                    lambda$openSearchWithText$304("");
                                                                     this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                                 }
                                                                 SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -2727,7 +2727,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         }
                     }
                 } else {
-                    this.profileActivity.showDialog(new LimitReachedBottomSheet(this.profileActivity, getContext(), 28, this.profileActivity.getCurrentAccount(), null));
+                    this.profileActivity.showDialog(new LimitReachedBottomSheet(this.profileActivity, getContext(), 33, this.profileActivity.getCurrentAccount(), null));
                 }
                 closeActionMode(true);
             }

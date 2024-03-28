@@ -3,6 +3,7 @@ package org.telegram.ui.Components.Paint.Views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -85,6 +86,11 @@ public class StickerView extends EntityView {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
                 StickerView.this.lambda$new$0(imageReceiver, z, z2, z3);
+            }
+
+            @Override
+            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
             }
 
             @Override

@@ -43,6 +43,14 @@ public abstract class TLRPC$PrivacyKey extends TLObject {
                     }
                 };
                 break;
+            case 536913176:
+                tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(536913176);
+                    }
+                };
+                break;
             case 961092808:
                 tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
                     @Override

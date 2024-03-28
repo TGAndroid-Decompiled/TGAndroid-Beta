@@ -48,13 +48,20 @@ public class BottomPagerTabs extends View {
         final TextPaint paint;
         final Drawable ripple;
 
-        public Tab(int i, int i2, CharSequence charSequence) {
+        public Tab customFrameInvert() {
+            this.customFrameInvert = true;
+            return this;
+        }
+
+        public Tab(int i, int i2, int i3, int i4, CharSequence charSequence) {
             TextPaint textPaint = new TextPaint(1);
             this.paint = textPaint;
             this.clickRect = new RectF();
             this.nonscrollingT = new AnimatedFloat(BottomPagerTabs.this, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.drawableColor = -1;
             this.i = i;
+            this.customEndFrameMid = i3;
+            this.customEndFrameEnd = i4;
             RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
             this.drawable = rLottieDrawable;
             rLottieDrawable.setMasterParent(BottomPagerTabs.this);
@@ -63,13 +70,13 @@ public class BottomPagerTabs extends View {
             rLottieDrawable.setAutoRepeat(0);
             textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-            int i3 = Theme.key_windowBackgroundWhiteBlackText;
-            textPaint.setColor(Theme.getColor(i3, BottomPagerTabs.this.resourcesProvider));
+            int i5 = Theme.key_windowBackgroundWhiteBlackText;
+            textPaint.setColor(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider));
             StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layout = staticLayout;
             this.layoutWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
             this.layoutLeft = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
-            this.ripple = Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i3, BottomPagerTabs.this.resourcesProvider), 0.1f), 7, AndroidUtilities.dp(16.0f));
+            this.ripple = Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider), 0.1f), 7, AndroidUtilities.dp(16.0f));
         }
 
         public void setActive(boolean z, boolean z2) {

@@ -4,17 +4,25 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.Objects;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
+import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesController;
+import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
+import org.telegram.ui.StatisticActivity;
 public class UItem extends AdapterWithDiffUtils.Item {
     public boolean accent;
+    public int backgroundKey;
     public String chatType;
     public boolean checked;
     public Runnable clickCallback;
     public long dialogId;
     public boolean enabled;
+    public boolean hideDivider;
     public int iconResId;
     public int id;
+    public boolean include;
     public Utilities.Callback<Integer> intCallback;
     public int intValue;
     public Object object;
@@ -23,6 +31,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public CharSequence text;
     public CharSequence textValue;
     public String[] texts;
+    public boolean transparent;
     public View view;
 
     public UItem(int i, boolean z) {
@@ -42,8 +51,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asTopView(CharSequence charSequence, String str, String str2) {
+    public static UItem asBlackHeader(CharSequence charSequence) {
         UItem uItem = new UItem(1, false);
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asTopView(CharSequence charSequence, String str, String str2) {
+        UItem uItem = new UItem(2, false);
         uItem.text = charSequence;
         uItem.subtext = str;
         uItem.textValue = str2;
@@ -51,21 +66,21 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asTopView(CharSequence charSequence, int i) {
-        UItem uItem = new UItem(1, false);
+        UItem uItem = new UItem(2, false);
         uItem.text = charSequence;
         uItem.iconResId = i;
         return uItem;
     }
 
     public static UItem asButton(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(2, false);
+        UItem uItem = new UItem(3, false);
         uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
     public static UItem asButton(int i, int i2, CharSequence charSequence) {
-        UItem uItem = new UItem(2, false);
+        UItem uItem = new UItem(3, false);
         uItem.id = i;
         uItem.iconResId = i2;
         uItem.text = charSequence;
@@ -73,36 +88,44 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asButton(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(2, false);
+        UItem uItem = new UItem(3, false);
         uItem.id = i;
         uItem.text = charSequence;
         uItem.textValue = charSequence2;
         return uItem;
     }
 
+    public static UItem asButton(int i, CharSequence charSequence, TLRPC$Document tLRPC$Document) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.object = tLRPC$Document;
+        return uItem;
+    }
+
     public static UItem asRippleCheck(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(7, false);
+        UItem uItem = new UItem(9, false);
         uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
     public static UItem asCheck(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(3, false);
+        UItem uItem = new UItem(4, false);
         uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
     public static UItem asRadio(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(8, false);
+        UItem uItem = new UItem(10, false);
         uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
     public static UItem asRadio(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(8, false);
+        UItem uItem = new UItem(10, false);
         uItem.id = i;
         uItem.text = charSequence;
         uItem.textValue = charSequence2;
@@ -110,7 +133,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asButtonCheck(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(4, false);
+        UItem uItem = new UItem(5, false);
         uItem.id = i;
         uItem.text = charSequence;
         uItem.subtext = charSequence2;
@@ -118,39 +141,60 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asShadow(CharSequence charSequence) {
-        UItem uItem = new UItem(6, false);
+        UItem uItem = new UItem(7, false);
         uItem.text = charSequence;
         return uItem;
     }
 
+    public static UItem asLargeShadow(CharSequence charSequence) {
+        UItem uItem = new UItem(8, false);
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asCenterShadow(CharSequence charSequence) {
+        UItem uItem = new UItem(7, false);
+        uItem.text = charSequence;
+        uItem.accent = true;
+        return uItem;
+    }
+
+    public static UItem asProceedOverview(ChannelMonetizationLayout.ProceedOverview proceedOverview) {
+        UItem uItem = new UItem(22, false);
+        uItem.object = proceedOverview;
+        return uItem;
+    }
+
     public static UItem asShadow(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(6, false);
+        UItem uItem = new UItem(7, false);
         uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
     public static UItem asFilterChat(boolean z, long j) {
-        UItem uItem = new UItem(9, false);
+        UItem uItem = new UItem(11, false);
+        uItem.include = z;
         uItem.dialogId = j;
         return uItem;
     }
 
     public static UItem asFilterChat(boolean z, CharSequence charSequence, String str, int i) {
-        UItem uItem = new UItem(9, false);
+        UItem uItem = new UItem(11, false);
+        uItem.include = z;
         uItem.text = charSequence;
         uItem.chatType = str;
         return uItem;
     }
 
     public static UItem asAddChat(Long l) {
-        UItem uItem = new UItem(10, false);
+        UItem uItem = new UItem(13, false);
         uItem.dialogId = l.longValue();
         return uItem;
     }
 
     public static UItem asSlideView(String[] strArr, int i, Utilities.Callback<Integer> callback) {
-        UItem uItem = new UItem(11, false);
+        UItem uItem = new UItem(14, false);
         uItem.texts = strArr;
         uItem.intValue = i;
         uItem.intCallback = callback;
@@ -158,14 +202,39 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asQuickReply(QuickRepliesController.QuickReply quickReply) {
-        UItem uItem = new UItem(12, false);
+        UItem uItem = new UItem(16, false);
         uItem.object = quickReply;
         return uItem;
     }
 
     public static UItem asLargeQuickReply(QuickRepliesController.QuickReply quickReply) {
-        UItem uItem = new UItem(13, false);
+        UItem uItem = new UItem(17, false);
         uItem.object = quickReply;
+        return uItem;
+    }
+
+    public static UItem asBusinessChatLink(BusinessLinksActivity.BusinessLinkWrapper businessLinkWrapper) {
+        UItem uItem = new UItem(27, false);
+        uItem.object = businessLinkWrapper;
+        return uItem;
+    }
+
+    public static UItem asChart(int i, int i2, StatisticActivity.ChartViewData chartViewData) {
+        UItem uItem = new UItem(i + 18, false);
+        uItem.intValue = i2;
+        uItem.object = chartViewData;
+        return uItem;
+    }
+
+    public static UItem asTransaction(TL_stats$BroadcastRevenueTransaction tL_stats$BroadcastRevenueTransaction) {
+        UItem uItem = new UItem(23, false);
+        uItem.object = tL_stats$BroadcastRevenueTransaction;
+        return uItem;
+    }
+
+    public static UItem asSpace(int i) {
+        UItem uItem = new UItem(26, false);
+        uItem.intValue = i;
         return uItem;
     }
 
@@ -176,6 +245,9 @@ public class UItem extends AdapterWithDiffUtils.Item {
 
     public UItem setChecked(boolean z) {
         this.checked = z;
+        if (this.viewType == 11) {
+            this.viewType = 12;
+        }
         return this;
     }
 
@@ -202,6 +274,6 @@ public class UItem extends AdapterWithDiffUtils.Item {
             return false;
         }
         UItem uItem = (UItem) obj;
-        return this.viewType == uItem.viewType && this.id == uItem.id && this.iconResId == uItem.iconResId && this.red == uItem.red && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Objects.equals(this.object, uItem.object);
+        return this.viewType == uItem.viewType && this.id == uItem.id && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.backgroundKey == uItem.backgroundKey && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Objects.equals(this.object, uItem.object);
     }
 }

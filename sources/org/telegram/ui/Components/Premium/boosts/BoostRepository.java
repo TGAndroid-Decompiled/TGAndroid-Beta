@@ -75,9 +75,9 @@ import org.telegram.tgnet.tl.TL_stories$TL_premium_applyBoost;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_myBoosts;
 import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Components.BotWebViewSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PaymentFormActivity;
+import org.telegram.ui.bots.BotWebViewSheet;
 public class BoostRepository {
     public static int prepareServerDate(long j) {
         if (j < System.currentTimeMillis() + 120000) {
@@ -695,7 +695,7 @@ public class BoostRepository {
         callback.run(new Pair(map, list));
     }
 
-    public static void loadGiftOptions(TLRPC$Chat tLRPC$Chat, final Utilities.Callback<List<TLRPC$TL_premiumGiftCodeOption>> callback) {
+    public static int loadGiftOptions(TLRPC$Chat tLRPC$Chat, final Utilities.Callback<List<TLRPC$TL_premiumGiftCodeOption>> callback) {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_payments_getPremiumGiftCodeOptions tLRPC$TL_payments_getPremiumGiftCodeOptions = new TLRPC$TL_payments_getPremiumGiftCodeOptions();
@@ -703,7 +703,7 @@ public class BoostRepository {
             tLRPC$TL_payments_getPremiumGiftCodeOptions.flags = 1;
             tLRPC$TL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
         }
-        connectionsManager.sendRequest(tLRPC$TL_payments_getPremiumGiftCodeOptions, new RequestDelegate() {
+        return connectionsManager.sendRequest(tLRPC$TL_payments_getPremiumGiftCodeOptions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 BoostRepository.lambda$loadGiftOptions$31(Utilities.Callback.this, tLObject, tLRPC$TL_error);

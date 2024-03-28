@@ -1117,22 +1117,22 @@ public class StoryEntry {
     }
 
     public static File makeCacheFile(int i, String str) {
-        TLRPC$TL_photoSize_layer127 tLRPC$TL_photoSize_layer127;
+        TLRPC$TL_videoSize_layer127 tLRPC$TL_videoSize_layer127;
         TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
         tLRPC$TL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
         tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         tLRPC$TL_fileLocationToBeDeprecated.file_reference = new byte[0];
-        if ("mp4".equals(str)) {
-            ?? tLRPC$TL_videoSize_layer127 = new TLRPC$TL_videoSize_layer127();
-            tLRPC$TL_videoSize_layer127.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_photoSize_layer127 = tLRPC$TL_videoSize_layer127;
+        if ("mp4".equals(str) || "webm".equals(str)) {
+            TLRPC$TL_videoSize_layer127 tLRPC$TL_videoSize_layer1272 = new TLRPC$TL_videoSize_layer127();
+            tLRPC$TL_videoSize_layer1272.location = tLRPC$TL_fileLocationToBeDeprecated;
+            tLRPC$TL_videoSize_layer127 = tLRPC$TL_videoSize_layer1272;
         } else {
-            TLRPC$TL_photoSize_layer127 tLRPC$TL_photoSize_layer1272 = new TLRPC$TL_photoSize_layer127();
-            tLRPC$TL_photoSize_layer1272.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_photoSize_layer127 = tLRPC$TL_photoSize_layer1272;
+            ?? tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
+            tLRPC$TL_photoSize_layer127.location = tLRPC$TL_fileLocationToBeDeprecated;
+            tLRPC$TL_videoSize_layer127 = tLRPC$TL_photoSize_layer127;
         }
-        return FileLoader.getInstance(i).getPathToAttach(tLRPC$TL_photoSize_layer127, str, true);
+        return FileLoader.getInstance(i).getPathToAttach(tLRPC$TL_videoSize_layer127, str, true);
     }
 
     public static class HDRInfo {

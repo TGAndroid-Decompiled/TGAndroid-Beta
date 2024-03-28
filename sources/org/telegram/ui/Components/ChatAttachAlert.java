@@ -116,8 +116,6 @@ import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimationProperties;
-import org.telegram.ui.Components.BotWebViewContainer;
-import org.telegram.ui.Components.BotWebViewMenuContainer;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
@@ -138,10 +136,13 @@ import org.telegram.ui.PhotoPickerSearchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.WebAppDisclaimerAlert;
+import org.telegram.ui.bots.BotWebViewContainer;
+import org.telegram.ui.bots.BotWebViewMenuContainer;
+import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 public class ChatAttachAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, BottomSheet.BottomSheetDelegateInterface {
     public final Property<AttachAlertLayout, Float> ATTACH_ALERT_LAYOUT_TRANSLATION;
     private final Property<ChatAttachAlert, Float> ATTACH_ALERT_PROGRESS;
-    protected ActionBar actionBar;
+    public ActionBar actionBar;
     private AnimatorSet actionBarAnimation;
     private View actionBarShadow;
     public boolean allowEnterCaption;
@@ -203,6 +204,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     public boolean isBizLocationPicker;
     public boolean isPhotoPicker;
     private boolean isSoundPicker;
+    public boolean isStickerMode;
     public boolean isStoryAudioPicker;
     public boolean isStoryLocationPicker;
     private ActionBarMenuSubItem[] itemCells;
@@ -477,7 +479,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             } else {
                 bundle.putLong("chat_id", -j);
             }
-            bundle.putString("inline_query_input", "@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+            bundle.putString("start_text", "@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
             ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
             BaseFragment baseFragment = chatAttachAlert.baseFragment;
             if (MessagesController.getInstance(chatAttachAlert.currentAccount).checkCanOpenChat(bundle, baseFragment)) {
@@ -1052,6 +1054,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     @Override
                     public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
                         ChatAttachAlert.AttachBotButton.AnonymousClass1.lambda$new$0(imageReceiver, z, z2, z3);
+                    }
+
+                    @Override
+                    public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                        ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
                     }
 
                     @Override
@@ -4662,6 +4669,25 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (chatAttachAlertPhotoLayout != null) {
             chatAttachAlertPhotoLayout.updateAvatarPicker();
         }
+    }
+
+    public void enableStickerMode() {
+        this.selectedTextView.setText(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto));
+        this.typeButtonsAvailable = false;
+        this.buttonsRecyclerView.setVisibility(8);
+        this.shadow.setVisibility(8);
+        this.avatarPicker = 1;
+        this.isPhotoPicker = true;
+        this.isStickerMode = true;
+    }
+
+    public void enableDefaultMode() {
+        this.typeButtonsAvailable = true;
+        this.buttonsRecyclerView.setVisibility(0);
+        this.shadow.setVisibility(0);
+        this.avatarPicker = 0;
+        this.isPhotoPicker = false;
+        this.isStickerMode = false;
     }
 
     public TextView getSelectedTextView() {

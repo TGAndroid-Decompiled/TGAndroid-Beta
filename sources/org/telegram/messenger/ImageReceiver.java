@@ -174,11 +174,16 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public interface ImageReceiverDelegate {
 
         public final class CC {
+            public static void $default$didSetImageBitmap(ImageReceiverDelegate imageReceiverDelegate, int i, String str, Drawable drawable) {
+            }
+
             public static void $default$onAnimationReady(ImageReceiverDelegate imageReceiverDelegate, ImageReceiver imageReceiver) {
             }
         }
 
         void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3);
+
+        void didSetImageBitmap(int i, String str, Drawable drawable);
 
         void onAnimationReady(ImageReceiver imageReceiver);
     }
@@ -1518,6 +1523,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public boolean hasImageSet() {
         return (this.currentImageDrawable == null && this.currentMediaDrawable == null && this.currentThumbDrawable == null && this.staticThumbDrawable == null && this.currentImageKey == null && this.currentMediaKey == null) ? false : true;
+    }
+
+    public boolean hasMediaSet() {
+        return this.currentMediaDrawable != null;
     }
 
     public boolean hasBitmapImage() {

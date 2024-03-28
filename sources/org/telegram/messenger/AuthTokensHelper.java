@@ -54,10 +54,14 @@ public class AuthTokensHelper {
         }
         ArrayList<TLRPC$TL_auth_authorization> arrayList = new ArrayList<>();
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i2, "")));
-            TLRPC$auth_Authorization TLdeserialize = TLRPC$auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-            if (TLdeserialize instanceof TLRPC$TL_auth_authorization) {
-                arrayList.add((TLRPC$TL_auth_authorization) TLdeserialize);
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i2, "")));
+                TLRPC$auth_Authorization TLdeserialize = TLRPC$auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (TLdeserialize instanceof TLRPC$TL_auth_authorization) {
+                    arrayList.add((TLRPC$TL_auth_authorization) TLdeserialize);
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         return arrayList;

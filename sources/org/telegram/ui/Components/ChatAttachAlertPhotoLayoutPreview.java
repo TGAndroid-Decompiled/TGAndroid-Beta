@@ -1431,6 +1431,11 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             }
 
                             @Override
+                            public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
+                            }
+
+                            @Override
                             public void onAnimationReady(ImageReceiver imageReceiver) {
                                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
                             }

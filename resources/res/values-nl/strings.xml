@@ -1804,7 +1804,6 @@
     <string name="GroupUserCantAdmin">Maximaal aantal beheerders bereikt.</string>
     <string name="GroupUserCantBot">Maximaal aantal bots bereikt.</string>
     <string name="GroupUserLeftError">Deze gebruiker heeft de groep verlaten. Opnieuw toevoegen kan alleen door wederzijdse contactpersonen.\n\nZolang deze gebruiker niet in de lijst met verwijderde gebruikers staat kan hij/zij altijd nog lid worden via de uitnodigingslink van de groep.</string>
-    <string name="GroupsAndChannels">Groepen</string>
     <string name="GroupsAndChannelsHelp">Wijzig wie je aan groepen en kanalen kan toevoegen.</string>
     <string name="GroupsInCommon">Gedeelde groepen</string>
     <string name="GroupsInCommonTitle">Gedeelde groepen</string>
@@ -4429,7 +4428,16 @@
     <string name="common_open_on_phone">Openen op telefoon</string>
     <string name="common_signin_button_text">Inloggen</string>
     <string name="common_signin_button_text_long">Inloggen met Google</string>
+    <string name="confirm_device_credential_password">Wachtwoord gebruiken</string>
+    <string name="default_error_msg">Onbekende fout</string>
     <string name="fcm_fallback_notification_channel_label">Overige</string>
+    <string name="fingerprint_dialog_touch_sensor">Raak de vingerafdruksensor aan</string>
+    <string name="fingerprint_error_hw_not_available">Hardware voor vingerafdruk niet beschikbaar.</string>
+    <string name="fingerprint_error_hw_not_present">Dit apparaat heeft geen vingerafdruksensor</string>
+    <string name="fingerprint_error_lockout">Te veel pogingen. Probeer het later opnieuw.</string>
+    <string name="fingerprint_error_no_fingerprints">Geen vingerafdrukken geregistreerd.</string>
+    <string name="fingerprint_error_user_canceled">Vingerafdrukverificatie geannuleerd door gebruiker.</string>
+    <string name="fingerprint_not_recognized">Niet herkend</string>
     <string name="formatDateAtTime">%1$s om %2$s</string>
     <string name="formatDateSchedule">d MMM</string>
     <string name="formatDateScheduleYear">d MMM yyyy</string>
@@ -4449,6 +4457,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd-MM-yy</string>
     <string name="formatterYearMax">dd-MM-yyyy</string>
+    <string name="generic_error_no_device_credential">Geen pincode, patroon of wachtwoord ingesteld.</string>
+    <string name="generic_error_no_keyguard">Dit apparaat ondersteunt geen pincode, patroon of wachtwoord.</string>
+    <string name="generic_error_user_canceled">Verificatie geannuleerd door gebruiker.</string>
     <string name="google_assistant_verification_channel_name">Assistent-verificatie</string>
     <string name="google_assistant_verification_notification_title">Google Assistent verzendt bericht</string>
     <string name="items_few">%1$d items</string>

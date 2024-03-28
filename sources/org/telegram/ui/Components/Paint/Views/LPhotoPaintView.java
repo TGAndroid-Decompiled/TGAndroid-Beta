@@ -142,7 +142,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private int emojiPadding;
     private EmojiView emojiView;
     public boolean emojiViewVisible;
-    private EntitiesContainerView entitiesView;
+    public EntitiesContainerView entitiesView;
     private ArrayList<PhotoFace> faces;
     private Bitmap facesBitmap;
     private boolean ignoreLayout;

@@ -191,10 +191,7 @@ public class SlideChooseView extends View {
 
     public void setOption(int i) {
         if (this.selectedIndex != i) {
-            try {
-                performHapticFeedback(9, 1);
-            } catch (Exception unused) {
-            }
+            AndroidUtilities.vibrateCursor(this);
         }
         this.selectedIndex = i;
         Callback callback = this.callback;

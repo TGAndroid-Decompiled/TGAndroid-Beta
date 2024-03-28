@@ -7,7 +7,7 @@ public class TLRPC$TL_channels_inviteToChannel extends TLObject {
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$Updates.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$TL_messages_invitedUsers.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override

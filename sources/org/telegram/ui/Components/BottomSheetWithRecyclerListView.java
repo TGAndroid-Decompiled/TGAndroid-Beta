@@ -37,7 +37,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         return false;
     }
 
-    protected abstract RecyclerListView.SelectionAdapter createAdapter();
+    protected abstract RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView);
 
     protected abstract CharSequence getTitle();
 
@@ -162,7 +162,8 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         }
         if (z2) {
             this.recyclerListView.setHasFixedSize(true);
-            this.recyclerListView.setAdapter(createAdapter());
+            RecyclerListView recyclerListView2 = this.recyclerListView;
+            recyclerListView2.setAdapter(createAdapter(recyclerListView2));
             setCustomView(frameLayout);
             frameLayout.addView(this.recyclerListView, LayoutHelper.createFrame(-1, -2.0f));
         } else {
@@ -214,7 +215,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     protected void resetAdapter(final Context context) {
-        final RecyclerListView.SelectionAdapter createAdapter = createAdapter();
+        final RecyclerListView.SelectionAdapter createAdapter = createAdapter(this.recyclerListView);
         this.recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {

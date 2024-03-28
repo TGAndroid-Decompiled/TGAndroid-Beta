@@ -1804,7 +1804,6 @@
     <string name="GroupUserCantAdmin">Spiacenti, troppi amministratori in questo gruppo.</string>
     <string name="GroupUserCantBot">Spiacenti, troppi bot in questo gruppo.</string>
     <string name="GroupUserLeftError">Spiacenti, se una persona non fa più parte di un gruppo, devi essere nei suoi contatti di Telegram per poterla riaggiungere.\n\nTieni presente che può comunque unirsi con il link d\'invito del gruppo purché non sia nell\'elenco Utenti rimossi.</string>
-    <string name="GroupsAndChannels">Gruppi</string>
     <string name="GroupsAndChannelsHelp">Scegli chi può aggiungerti a gruppi e canali.</string>
     <string name="GroupsInCommon">Gruppi in comune</string>
     <string name="GroupsInCommonTitle">Gruppi in comune</string>
@@ -4448,7 +4447,16 @@
     <string name="common_open_on_phone">Apri sul telefono</string>
     <string name="common_signin_button_text">Accedi</string>
     <string name="common_signin_button_text_long">Accedi con Google</string>
+    <string name="confirm_device_credential_password">Utilizza password</string>
+    <string name="default_error_msg">Errore sconosciuto</string>
     <string name="fcm_fallback_notification_channel_label">Varie</string>
+    <string name="fingerprint_dialog_touch_sensor">Tocca sensore impronte</string>
+    <string name="fingerprint_error_hw_not_available">Hardware per l\'impronta non disponibile.</string>
+    <string name="fingerprint_error_hw_not_present">Questo dispositivo non è dotato di sensore di impronte</string>
+    <string name="fingerprint_error_lockout">È stato effettuato un numero eccessivo di tentativi. Riprova più tardi.</string>
+    <string name="fingerprint_error_no_fingerprints">Nessuna impronta digitale registrata.</string>
+    <string name="fingerprint_error_user_canceled">Operazione di autenticazione dell\'impronta annullata dall\'utente.</string>
+    <string name="fingerprint_not_recognized">Non riconosciuta</string>
     <string name="formatDateAtTime">%1$s alle %2$s</string>
     <string name="formatDateSchedule">d MMM</string>
     <string name="formatDateScheduleYear">d MMM yyyy</string>
@@ -4468,6 +4476,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd.MM.yy</string>
     <string name="formatterYearMax">dd.MM.yyyy</string>
+    <string name="generic_error_no_device_credential">Non hai impostato PIN, sequenza o password.</string>
+    <string name="generic_error_no_keyguard">Questo dispositivo non supporta il PIN, la sequenza o la password.</string>
+    <string name="generic_error_user_canceled">Autenticazione annullata dall\'utente.</string>
     <string name="google_assistant_verification_channel_name">Assistant verifier</string>
     <string name="google_assistant_verification_notification_title">L\'Assistente Google sta inviando il messaggio</string>
     <string name="items_few">%1$d oggetti</string>

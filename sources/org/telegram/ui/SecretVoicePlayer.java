@@ -589,6 +589,11 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
+                public void didPressAboutRevenueSharingAds() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
                 public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell6, AnimatedEmojiSpan animatedEmojiSpan) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell6, animatedEmojiSpan);
                 }
@@ -691,6 +696,11 @@ public class SecretVoicePlayer extends Dialog {
                 @Override
                 public void didPressSponsoredClose() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                }
+
+                @Override
+                public void didPressSponsoredInfo(ChatMessageCell chatMessageCell6, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell6, f, f2);
                 }
 
                 @Override

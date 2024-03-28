@@ -581,7 +581,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new AnonymousClass1();
     }
 

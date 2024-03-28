@@ -84,6 +84,7 @@ import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_groupCall;
 import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputNotifyPeer;
+import org.telegram.tgnet.TLRPC$TL_messages_invitedUsers;
 import org.telegram.tgnet.TLRPC$TL_messages_search;
 import org.telegram.tgnet.TLRPC$TL_updates;
 import org.telegram.tgnet.TLRPC$User;
@@ -902,6 +903,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     public class AnonymousClass2 extends ActionBar.ActionBarMenuOnItemClick {
         final Context val$context;
 
+        public static void lambda$onItemClick$0() {
+        }
+
         AnonymousClass2(Context context) {
             this.val$context = context;
         }
@@ -961,7 +965,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                         inviteMembersBottomSheet.setDelegate(new GroupCreateActivity.ContactsAddActivityDelegate() {
                             @Override
                             public final void didSelectUsers(ArrayList arrayList, int i4) {
-                                TopicsFragment.AnonymousClass2.this.lambda$onItemClick$1(j, arrayList, i4);
+                                TopicsFragment.AnonymousClass2.this.lambda$onItemClick$2(j, arrayList, i4);
                             }
 
                             @Override
@@ -1009,7 +1013,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     topicsFragment4.deleteTopics(topicsFragment4.selectedTopics, new Runnable() {
                         @Override
                         public final void run() {
-                            TopicsFragment.AnonymousClass2.this.lambda$onItemClick$4();
+                            TopicsFragment.AnonymousClass2.this.lambda$onItemClick$5();
                         }
                     });
                     break;
@@ -1043,7 +1047,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     AlertsCreator.createClearOrDeleteDialogAlert(TopicsFragment.this, false, chat, null, false, true, false, new MessagesStorage.BooleanCallback() {
                         @Override
                         public final void run(boolean z) {
-                            TopicsFragment.AnonymousClass2.this.lambda$onItemClick$3(chat, z);
+                            TopicsFragment.AnonymousClass2.this.lambda$onItemClick$4(chat, z);
                         }
                     }, TopicsFragment.this.themeDelegate);
                     break;
@@ -1104,28 +1108,41 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             super.onItemClick(i);
         }
 
-        public void lambda$onItemClick$1(final long j, final ArrayList arrayList, int i) {
+        public void lambda$onItemClick$2(final long j, final ArrayList arrayList, int i) {
             final int size = arrayList.size();
             final int[] iArr = new int[1];
+            final TLRPC$TL_messages_invitedUsers tLRPC$TL_messages_invitedUsers = new TLRPC$TL_messages_invitedUsers();
+            tLRPC$TL_messages_invitedUsers.updates = new TLRPC$TL_updates();
             for (int i2 = 0; i2 < size; i2++) {
-                TopicsFragment.this.getMessagesController().addUserToChat(j, (TLRPC$User) arrayList.get(i2), i, null, TopicsFragment.this, new Runnable() {
+                TopicsFragment.this.getMessagesController().addUserToChat(j, (TLRPC$User) arrayList.get(i2), i, null, TopicsFragment.this, false, new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsFragment.AnonymousClass2.this.lambda$onItemClick$0(iArr, size, arrayList, j);
+                        TopicsFragment.AnonymousClass2.lambda$onItemClick$0();
+                    }
+                }, null, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        TopicsFragment.AnonymousClass2.this.lambda$onItemClick$1(tLRPC$TL_messages_invitedUsers, iArr, size, arrayList, j, (TLRPC$TL_messages_invitedUsers) obj);
                     }
                 });
             }
         }
 
-        public void lambda$onItemClick$0(int[] iArr, int i, ArrayList arrayList, long j) {
-            int i2 = iArr[0] + 1;
-            iArr[0] = i2;
-            if (i2 == i) {
-                BulletinFactory.of(TopicsFragment.this).createUsersAddedBulletin(arrayList, TopicsFragment.this.getMessagesController().getChat(Long.valueOf(j))).show();
+        public void lambda$onItemClick$1(TLRPC$TL_messages_invitedUsers tLRPC$TL_messages_invitedUsers, int[] iArr, int i, ArrayList arrayList, long j, TLRPC$TL_messages_invitedUsers tLRPC$TL_messages_invitedUsers2) {
+            if (tLRPC$TL_messages_invitedUsers2 != null) {
+                tLRPC$TL_messages_invitedUsers.missing_invitees.addAll(tLRPC$TL_messages_invitedUsers2.missing_invitees);
+            }
+            iArr[0] = iArr[0] + 1;
+            if (iArr[0] == i) {
+                if (tLRPC$TL_messages_invitedUsers.missing_invitees.isEmpty()) {
+                    BulletinFactory.of(TopicsFragment.this).createUsersAddedBulletin(arrayList, TopicsFragment.this.getMessagesController().getChat(Long.valueOf(j))).show();
+                    return;
+                }
+                AlertsCreator.checkRestrictedInviteUsers(((BaseFragment) TopicsFragment.this).currentAccount, TopicsFragment.this.getMessagesController().getChat(Long.valueOf(j)), tLRPC$TL_messages_invitedUsers);
             }
         }
 
-        public void lambda$onItemClick$3(TLRPC$Chat tLRPC$Chat, boolean z) {
+        public void lambda$onItemClick$4(TLRPC$Chat tLRPC$Chat, boolean z) {
             NotificationCenter notificationCenter = TopicsFragment.this.getNotificationCenter();
             TopicsFragment topicsFragment = TopicsFragment.this;
             int i = NotificationCenter.closeChats;
@@ -1135,7 +1152,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-tLRPC$Chat.id), null, tLRPC$Chat, Boolean.valueOf(z));
         }
 
-        public void lambda$onItemClick$4() {
+        public void lambda$onItemClick$5() {
             TopicsFragment.this.clearSelectedTopics();
         }
     }

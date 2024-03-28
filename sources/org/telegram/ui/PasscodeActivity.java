@@ -18,11 +18,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.biometric.BiometricManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -30,7 +30,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -606,7 +605,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         this.changePasscodeRow = i2;
         try {
             if (Build.VERSION.SDK_INT >= 23) {
-                if (FingerprintManagerCompat.from(ApplicationLoader.applicationContext).isHardwareDetected() && AndroidUtilities.isKeyguardSecure()) {
+                if (BiometricManager.from(getContext()).canAuthenticate(15) == 0 && AndroidUtilities.isKeyguardSecure()) {
                     int i3 = this.rowCount;
                     this.rowCount = i3 + 1;
                     this.fingerprintRow = i3;

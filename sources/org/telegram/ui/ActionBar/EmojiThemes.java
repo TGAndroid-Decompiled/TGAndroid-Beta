@@ -397,6 +397,11 @@ public class EmojiThemes {
             }
 
             @Override
+            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
+            }
+
+            @Override
             public void onAnimationReady(ImageReceiver imageReceiver2) {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
             }
@@ -464,6 +469,11 @@ public class EmojiThemes {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
                 EmojiThemes.lambda$loadWallpaperThumb$3(ResultCallback.this, j, wallpaperThumbFile, imageReceiver2, z, z2, z3);
+            }
+
+            @Override
+            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
             }
 
             @Override

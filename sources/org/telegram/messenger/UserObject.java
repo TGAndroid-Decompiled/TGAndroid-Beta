@@ -125,7 +125,22 @@ public class UserObject {
         } else if (!z && str.length() <= 2) {
             return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
         }
-        return !TextUtils.isEmpty(str) ? str : LocaleController.getString("HiddenName", R.string.HiddenName);
+        return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
+    }
+
+    public static String getForcedFirstName(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null || isDeleted(tLRPC$User)) {
+            return "DELETED";
+        }
+        String str = tLRPC$User.first_name;
+        if (TextUtils.isEmpty(str)) {
+            str = tLRPC$User.last_name;
+        }
+        if (str == null) {
+            return LocaleController.getString(R.string.HiddenName);
+        }
+        int indexOf = str.indexOf(" ");
+        return indexOf >= 0 ? str.substring(0, indexOf) : str;
     }
 
     public static boolean hasPhoto(TLRPC$User tLRPC$User) {

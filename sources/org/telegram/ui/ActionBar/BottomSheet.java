@@ -132,6 +132,7 @@ public class BottomSheet extends Dialog {
     private int tag;
     private CharSequence title;
     private TextView titleView;
+    public FrameLayout topBulletinContainer;
     private int touchSlop;
     private boolean transitionFromRight;
     public boolean useBackgroundTopPadding;

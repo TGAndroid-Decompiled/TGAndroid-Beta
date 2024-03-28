@@ -1,10 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_connectedBot extends TLObject {
-    public static int constructor = -404121113;
+    public static int constructor = -1123645951;
     public long bot_id;
     public boolean can_reply;
     public int flags;
-    public TLRPC$TL_businessRecipients recipients;
+    public TLRPC$TL_businessBotRecipients recipients;
 
     public static TLRPC$TL_connectedBot TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (i != constructor) {
@@ -24,7 +24,7 @@ public class TLRPC$TL_connectedBot extends TLObject {
         this.flags = readInt32;
         this.can_reply = (readInt32 & 1) != 0;
         this.bot_id = abstractSerializedData.readInt64(z);
-        this.recipients = TLRPC$TL_businessRecipients.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.recipients = TLRPC$TL_businessBotRecipients.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 
     @Override

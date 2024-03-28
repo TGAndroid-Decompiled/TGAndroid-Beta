@@ -656,7 +656,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         BoostAdapter boostAdapter = new BoostAdapter(this.resourcesProvider);
         this.adapter = boostAdapter;
         return boostAdapter;

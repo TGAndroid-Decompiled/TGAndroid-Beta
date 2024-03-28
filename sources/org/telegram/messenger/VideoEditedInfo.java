@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class VideoEditedInfo {
     public StoryEntry.HDRInfo hdrInfo;
     public boolean isDark;
     public boolean isPhoto;
+    public boolean isSticker;
     public boolean isStory;
     public byte[] iv;
     public byte[] key;
@@ -131,6 +133,7 @@ public class VideoEditedInfo {
         public float framesPerDraw;
         public float height;
         public boolean looped;
+        public Matrix matrix;
         public TL_stories$MediaArea mediaArea;
         public TLRPC$MessageMedia mediaGeo;
         public int[] metadata;
@@ -396,7 +399,7 @@ public class VideoEditedInfo {
                 i += bArr2.length;
             }
             SerializedData serializedData = new SerializedData(i);
-            serializedData.writeInt32(9);
+            serializedData.writeInt32(10);
             serializedData.writeInt64(this.avatarStartTime);
             serializedData.writeInt32(this.originalBitrate);
             if (this.filterState != null) {
@@ -489,6 +492,7 @@ public class VideoEditedInfo {
                 serializedData.writeByte(0);
             }
             serializedData.writeFloat(this.volume);
+            serializedData.writeBool(this.isSticker);
             bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
             serializedData.cleanup();
         }
@@ -604,6 +608,9 @@ public class VideoEditedInfo {
                         }
                         if (readInt32 >= 9) {
                             this.volume = serializedData.readFloat(false);
+                        }
+                        if (readInt32 >= 10) {
+                            this.isSticker = serializedData.readBool(false);
                         }
                         serializedData.cleanup();
                     }

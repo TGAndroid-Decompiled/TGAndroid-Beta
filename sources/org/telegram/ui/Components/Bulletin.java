@@ -146,12 +146,20 @@ public class Bulletin {
         void onTextLoaded(CharSequence charSequence);
     }
 
-    static boolean access$900() {
+    static boolean access$800() {
         return isTransitionsEnabled();
     }
 
     public static Bulletin make(FrameLayout frameLayout, Layout layout, int i) {
         return new Bulletin(null, frameLayout, layout, i);
+    }
+
+    public Bulletin setOnClickListener(View.OnClickListener onClickListener) {
+        Layout layout = this.layout;
+        if (layout != null) {
+            layout.setOnClickListener(onClickListener);
+        }
+        return this;
     }
 
     @SuppressLint({"RtlHardcoded"})
@@ -385,7 +393,7 @@ public class Bulletin {
                 if (Bulletin.this.currentDelegate != null) {
                     Bulletin.this.currentDelegate.onShow(Bulletin.this);
                 }
-                if (Bulletin.access$900()) {
+                if (Bulletin.access$800()) {
                     Bulletin.this.ensureLayoutTransitionCreated();
                     Bulletin.this.layout.transitionRunningEnter = true;
                     Bulletin.this.layout.delegate = Bulletin.this.currentDelegate;
@@ -519,8 +527,9 @@ public class Bulletin {
                     return;
                 }
             }
-            if (this.currentDelegate != null && !this.layout.top) {
-                this.currentDelegate.onBottomOffsetChange(0.0f);
+            Delegate delegate = this.currentDelegate;
+            if (delegate != null && !this.layout.top) {
+                delegate.onBottomOffsetChange(0.0f);
                 this.currentDelegate.onHide(this);
             }
             this.layout.onExitTransitionStart();
@@ -543,8 +552,9 @@ public class Bulletin {
     }
 
     public void lambda$hide$3() {
-        if (this.currentDelegate != null && !this.layout.top) {
-            this.currentDelegate.onBottomOffsetChange(0.0f);
+        Delegate delegate = this.currentDelegate;
+        if (delegate != null && !this.layout.top) {
+            delegate.onBottomOffsetChange(0.0f);
             this.currentDelegate.onHide(this);
         }
         Layout layout = this.layout;
@@ -561,10 +571,14 @@ public class Bulletin {
     }
 
     public void lambda$hide$4(Float f) {
-        if (this.currentDelegate == null || this.layout.top) {
-            return;
+        Delegate delegate = this.currentDelegate;
+        if (delegate != null) {
+            Layout layout = this.layout;
+            if (layout.top) {
+                return;
+            }
+            delegate.onBottomOffsetChange(layout.getHeight() - f.floatValue());
         }
-        this.currentDelegate.onBottomOffsetChange(this.layout.getHeight() - f.floatValue());
     }
 
     public void lambda$hide$5() {
@@ -605,7 +619,7 @@ public class Bulletin {
 
         protected abstract void onPressedStateChanged(boolean z);
 
-        static float access$1724(ParentLayout parentLayout, float f) {
+        static float access$1524(ParentLayout parentLayout, float f) {
             float f2 = parentLayout.translationX - f;
             parentLayout.translationX = f2;
             return f2;
@@ -641,7 +655,7 @@ public class Bulletin {
 
             @Override
             public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                this.val$layout.setTranslationX(ParentLayout.access$1724(ParentLayout.this, f));
+                this.val$layout.setTranslationX(ParentLayout.access$1524(ParentLayout.this, f));
                 if (ParentLayout.this.translationX == 0.0f || ((ParentLayout.this.translationX < 0.0f && ParentLayout.this.needLeftAlphaAnimation) || (ParentLayout.this.translationX > 0.0f && ParentLayout.this.needRightAlphaAnimation))) {
                     this.val$layout.setAlpha(1.0f - (Math.abs(ParentLayout.this.translationX) / this.val$layout.getWidth()));
                     return true;
@@ -829,7 +843,7 @@ public class Bulletin {
         Delegate delegate;
         public float inOutOffset;
         private final Theme.ResourcesProvider resourcesProvider;
-        private boolean top;
+        public boolean top;
         public boolean transitionRunningEnter;
         public boolean transitionRunningExit;
         private int wideScreenGravity;
@@ -899,6 +913,12 @@ public class Bulletin {
             updateSize();
             setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             setWillNotDraw(false);
+            ScaleStateListAnimator.apply(this, 0.02f, 1.5f);
+        }
+
+        @Override
+        protected boolean verifyDrawable(Drawable drawable) {
+            return this.background == drawable || super.verifyDrawable(drawable);
         }
 
         protected void setBackground(int i) {

@@ -184,31 +184,29 @@ public class NotificationsSettingsFacade {
         }
     }
 
-    public void setSettingsForDialog(TLRPC$Dialog tLRPC$Dialog, TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
-        SharedPreferences.Editor edit = getPreferences().edit();
+    public void setSettingsForDialog(SharedPreferences.Editor editor, TLRPC$Dialog tLRPC$Dialog, TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
         long peerId = MessageObject.getPeerId(tLRPC$Dialog.peer);
         if ((tLRPC$Dialog.notify_settings.flags & 2) != 0) {
-            edit.putBoolean(PROPERTY_SILENT + peerId, tLRPC$Dialog.notify_settings.silent);
+            editor.putBoolean(PROPERTY_SILENT + peerId, tLRPC$Dialog.notify_settings.silent);
         } else {
-            edit.remove(PROPERTY_SILENT + peerId);
+            editor.remove(PROPERTY_SILENT + peerId);
         }
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings2 = tLRPC$Dialog.notify_settings;
         if ((tLRPC$PeerNotifySettings2.flags & 4) != 0) {
             if (tLRPC$PeerNotifySettings2.mute_until > connectionsManager.getCurrentTime()) {
                 if (tLRPC$Dialog.notify_settings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
-                    edit.putInt(PROPERTY_NOTIFY + peerId, 2);
+                    editor.putInt(PROPERTY_NOTIFY + peerId, 2);
                     tLRPC$Dialog.notify_settings.mute_until = ConnectionsManager.DEFAULT_DATACENTER_ID;
-                } else {
-                    edit.putInt(PROPERTY_NOTIFY + peerId, 3);
-                    edit.putInt(PROPERTY_NOTIFY_UNTIL + peerId, tLRPC$Dialog.notify_settings.mute_until);
+                    return;
                 }
-            } else {
-                edit.putInt(PROPERTY_NOTIFY + peerId, 0);
+                editor.putInt(PROPERTY_NOTIFY + peerId, 3);
+                editor.putInt(PROPERTY_NOTIFY_UNTIL + peerId, tLRPC$Dialog.notify_settings.mute_until);
+                return;
             }
-        } else {
-            edit.remove(PROPERTY_NOTIFY + peerId);
+            editor.putInt(PROPERTY_NOTIFY + peerId, 0);
+            return;
         }
-        edit.apply();
+        editor.remove(PROPERTY_NOTIFY + peerId);
     }
 }

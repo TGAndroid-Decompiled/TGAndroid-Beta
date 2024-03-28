@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -15,6 +16,7 @@ import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
+import org.telegram.ui.Cells.ProfileChannelCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.ReactedUserHolderView;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
@@ -26,13 +28,14 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoryViewer;
 public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
-    int[] clipPoint = new int[2];
+    int[] clipPoint;
     public boolean hasPaginationParams;
     public boolean hiddedStories;
     private boolean isHiddenArchive;
     LoadNextInterface loadNextInterface;
     public boolean onlySelfStories;
     public boolean onlyUnreadStories;
+    private final ProfileChannelCell profileChannelCell;
     private final RecyclerListView recyclerListView;
 
     public interface AvatarOverlaysView {
@@ -55,14 +58,26 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         return new StoriesListPlaceProvider(recyclerListView, z);
     }
 
+    public static StoriesListPlaceProvider of(ProfileChannelCell profileChannelCell) {
+        return new StoriesListPlaceProvider(profileChannelCell);
+    }
+
     public StoriesListPlaceProvider with(LoadNextInterface loadNextInterface) {
         this.loadNextInterface = loadNextInterface;
         return this;
     }
 
     public StoriesListPlaceProvider(RecyclerListView recyclerListView, boolean z) {
+        this.clipPoint = new int[2];
         this.recyclerListView = recyclerListView;
         this.isHiddenArchive = z;
+        this.profileChannelCell = null;
+    }
+
+    public StoriesListPlaceProvider(ProfileChannelCell profileChannelCell) {
+        this.clipPoint = new int[2];
+        this.profileChannelCell = profileChannelCell;
+        this.recyclerListView = null;
     }
 
     @Override
@@ -91,16 +106,20 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         transitionViewHolder.storyImage = null;
         transitionViewHolder.drawAbove = null;
         RecyclerListView recyclerListView = this.recyclerListView;
-        if (recyclerListView == null) {
+        DialogStoriesCell dialogStoriesCell = (recyclerListView == null || !(recyclerListView.getParent() instanceof DialogStoriesCell)) ? null : (DialogStoriesCell) this.recyclerListView.getParent();
+        ViewGroup viewGroup = this.recyclerListView;
+        if (dialogStoriesCell != null && !dialogStoriesCell.isExpanded()) {
+            viewGroup = dialogStoriesCell.listViewMini;
+        }
+        ViewGroup viewGroup2 = this.profileChannelCell;
+        if (viewGroup2 != null) {
+            viewGroup = viewGroup2;
+        }
+        if (viewGroup == null) {
             return false;
         }
-        DialogStoriesCell dialogStoriesCell = recyclerListView.getParent() instanceof DialogStoriesCell ? (DialogStoriesCell) this.recyclerListView.getParent() : null;
-        RecyclerListView recyclerListView2 = this.recyclerListView;
-        if (dialogStoriesCell != null && !dialogStoriesCell.isExpanded()) {
-            recyclerListView2 = dialogStoriesCell.listViewMini;
-        }
-        for (int i4 = 0; i4 < recyclerListView2.getChildCount(); i4++) {
-            View childAt = recyclerListView2.getChildAt(i4);
+        for (int i4 = 0; i4 < viewGroup.getChildCount(); i4++) {
+            View childAt = viewGroup.getChildAt(i4);
             if (childAt instanceof DialogStoriesCell.StoryCell) {
                 DialogStoriesCell.StoryCell storyCell = (DialogStoriesCell.StoryCell) childAt;
                 if (storyCell.dialogId == j) {
@@ -168,11 +187,11 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     updateClip(transitionViewHolder);
                     return true;
                 }
-            } else if (childAt instanceof SharedPhotoVideoCell2) {
+            } else if ((childAt instanceof SharedPhotoVideoCell2) && this.recyclerListView != null) {
                 final SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) childAt;
                 MessageObject messageObject = sharedPhotoVideoCell2.getMessageObject();
                 if ((sharedPhotoVideoCell2.getStyle() == 1 && sharedPhotoVideoCell2.storyId == i2) || (messageObject != null && messageObject.isStory() && messageObject.getId() == i2 && messageObject.storyItem.dialogId == j)) {
-                    final RecyclerListView.FastScroll fastScroll = recyclerListView2.getFastScroll();
+                    final RecyclerListView.FastScroll fastScroll = this.recyclerListView.getFastScroll();
                     final int[] iArr = new int[2];
                     if (fastScroll != null) {
                         fastScroll.getLocationInWindow(iArr);

@@ -1531,8 +1531,121 @@ public class PreviewView extends FrameLayout {
         this.allowCropping = z;
     }
 
-    private boolean touchEvent(android.view.MotionEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.touchEvent(android.view.MotionEvent):boolean");
+    private boolean touchEvent(MotionEvent motionEvent) {
+        double d;
+        float f;
+        StoryEntry storyEntry;
+        if (this.allowCropping) {
+            boolean z = motionEvent.getPointerCount() > 1;
+            if (z) {
+                this.touch.x = (motionEvent.getX(0) + motionEvent.getX(1)) / 2.0f;
+                this.touch.y = (motionEvent.getY(0) + motionEvent.getY(1)) / 2.0f;
+                f = MathUtils.distance(motionEvent.getX(0), motionEvent.getY(0), motionEvent.getX(1), motionEvent.getY(1));
+                d = Math.atan2(motionEvent.getY(1) - motionEvent.getY(0), motionEvent.getX(1) - motionEvent.getX(0));
+            } else {
+                this.touch.x = motionEvent.getX(0);
+                this.touch.y = motionEvent.getY(0);
+                d = 0.0d;
+                f = 0.0f;
+            }
+            if (this.multitouch != z) {
+                PointF pointF = this.lastTouch;
+                PointF pointF2 = this.touch;
+                pointF.x = pointF2.x;
+                pointF.y = pointF2.y;
+                this.lastTouchDistance = f;
+                this.lastTouchRotation = d;
+                this.multitouch = z;
+            }
+            if (this.entry == null) {
+                return false;
+            }
+            float width = storyEntry.resultWidth / getWidth();
+            if (motionEvent.getActionMasked() == 0) {
+                this.rotationDiff = 0.0f;
+                this.snappedRotation = false;
+                this.doNotSpanRotation = false;
+                invalidate();
+                this.moving = true;
+                this.touchMatrix.set(this.entry.matrix);
+            }
+            if (motionEvent.getActionMasked() == 2 && this.moving && this.entry != null) {
+                PointF pointF3 = this.touch;
+                float f2 = pointF3.x * width;
+                float f3 = pointF3.y * width;
+                PointF pointF4 = this.lastTouch;
+                float f4 = pointF4.x * width;
+                float f5 = pointF4.y * width;
+                if (motionEvent.getPointerCount() > 1) {
+                    float f6 = this.lastTouchDistance;
+                    if (f6 != 0.0f) {
+                        float f7 = f / f6;
+                        this.touchMatrix.postScale(f7, f7, f2, f3);
+                    }
+                    float degrees = (float) Math.toDegrees(d - this.lastTouchRotation);
+                    float f8 = this.rotationDiff + degrees;
+                    this.rotationDiff = f8;
+                    if (!this.allowRotation) {
+                        boolean z2 = Math.abs(f8) > 20.0f;
+                        this.allowRotation = z2;
+                        if (!z2) {
+                            extractPointsData(this.touchMatrix);
+                            this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
+                        }
+                        if (!this.snappedRotation) {
+                            AndroidUtilities.vibrateCursor(this);
+                            this.snappedRotation = true;
+                        }
+                    }
+                    if (this.allowRotation) {
+                        this.touchMatrix.postRotate(degrees, f2, f3);
+                    }
+                    this.allowWithSingleTouch = true;
+                }
+                if (motionEvent.getPointerCount() > 1 || this.allowWithSingleTouch) {
+                    this.touchMatrix.postTranslate(f2 - f4, f3 - f5);
+                }
+                this.finalMatrix.set(this.touchMatrix);
+                this.matrix.set(this.touchMatrix);
+                extractPointsData(this.matrix);
+                float round = (Math.round(this.angle / 90.0f) * 90.0f) - this.angle;
+                if (this.allowRotation && !this.doNotSpanRotation) {
+                    if (Math.abs(round) < 3.5f) {
+                        this.finalMatrix.postRotate(round, this.cx, this.cy);
+                        if (!this.snappedRotation) {
+                            AndroidUtilities.vibrateCursor(this);
+                            this.snappedRotation = true;
+                        }
+                    } else {
+                        this.snappedRotation = false;
+                    }
+                }
+                this.entry.matrix.set(this.finalMatrix);
+                this.entry.editedMedia = true;
+                applyMatrix();
+                invalidate();
+            }
+            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                if (motionEvent.getPointerCount() <= 1) {
+                    this.allowWithSingleTouch = false;
+                    onEntityDraggedTop(false);
+                    onEntityDraggedBottom(false);
+                }
+                this.moving = false;
+                this.allowRotation = false;
+                this.rotationDiff = 0.0f;
+                this.snappedRotation = false;
+                invalidate();
+            }
+            PointF pointF5 = this.lastTouch;
+            PointF pointF6 = this.touch;
+            pointF5.x = pointF6.x;
+            pointF5.y = pointF6.y;
+            this.lastTouchDistance = f;
+            this.lastTouchRotation = d;
+            return true;
+        }
+        return false;
     }
 
     private boolean tapTouchEvent(MotionEvent motionEvent) {

@@ -534,7 +534,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new Adapter();
     }
 
@@ -615,7 +615,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                             AnimatedEmojiSpan.EmojiGroupedSpans stack;
 
                             @Override
-                            protected void onDetachedFromWindow() {
+                            public void onDetachedFromWindow() {
                                 super.onDetachedFromWindow();
                                 AnimatedEmojiSpan.release(this, this.stack);
                                 this.lastLayout = null;
@@ -634,7 +634,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                             }
 
                             @Override
-                            protected void onMeasure(int i4, int i5) {
+                            public void onMeasure(int i4, int i5) {
                                 super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(99999999, Integer.MIN_VALUE));
                             }
 

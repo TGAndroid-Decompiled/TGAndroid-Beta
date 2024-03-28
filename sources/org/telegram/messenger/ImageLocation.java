@@ -250,8 +250,10 @@ public class ImageLocation {
             return null;
         } else {
             ImageLocation forPhoto = getForPhoto(tLRPC$PhotoSize.location, tLRPC$PhotoSize.size, null, null, null, 1, tLRPC$Document.dc_id, inputStickerSet, tLRPC$PhotoSize.type);
-            if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) {
+            if (tLRPC$PhotoSize.type.equalsIgnoreCase("a")) {
                 forPhoto.imageType = 1;
+            } else if (tLRPC$PhotoSize.type.equalsIgnoreCase("v")) {
+                forPhoto.imageType = 2;
             }
             forPhoto.thumbVersion = i;
             return forPhoto;

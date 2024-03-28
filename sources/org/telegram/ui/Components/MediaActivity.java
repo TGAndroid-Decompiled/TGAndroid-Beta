@@ -660,10 +660,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
         @Override
         public BottomPagerTabs.Tab[] createTabs() {
-            BottomPagerTabs.Tab[] tabArr = {new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, LocaleController.getString("ProfileMyStoriesTab", R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, LocaleController.getString("ProfileStoriesArchiveTab", R.string.ProfileStoriesArchiveTab))};
-            tabArr[0].customEndFrameMid = 20;
-            tabArr[0].customEndFrameEnd = 40;
-            return tabArr;
+            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString("ProfileMyStoriesTab", R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString("ProfileStoriesArchiveTab", R.string.ProfileStoriesArchiveTab))};
         }
     }
 

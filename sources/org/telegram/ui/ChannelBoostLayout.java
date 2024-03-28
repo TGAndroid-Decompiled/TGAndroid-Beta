@@ -35,8 +35,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
-import org.telegram.tgnet.TLRPC$TL_statsPercentValue;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stats$TL_statsPercentValue;
 import org.telegram.tgnet.tl.TL_stories$TL_boost;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsList;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
@@ -251,10 +251,10 @@ public class ChannelBoostLayout extends FrameLayout {
                     StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
                     overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
                     ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
-                    TLRPC$TL_statsPercentValue tLRPC$TL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
-                    if (tLRPC$TL_statsPercentValue != null) {
-                        if (tLRPC$TL_statsPercentValue.total != 0.0d) {
-                            overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) tLRPC$TL_statsPercentValue.part) / ((float) d)) * 100.0f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                    TL_stats$TL_statsPercentValue tL_stats$TL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
+                    if (tL_stats$TL_statsPercentValue != null) {
+                        if (tL_stats$TL_statsPercentValue.total != 0.0d) {
+                            overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) tL_stats$TL_statsPercentValue.part) / ((float) d)) * 100.0f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                             overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                             TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = ChannelBoostLayout.this.boostsStatus;
                             overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus.next_level_boosts - tL_stories$TL_premium_boostsStatus.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));

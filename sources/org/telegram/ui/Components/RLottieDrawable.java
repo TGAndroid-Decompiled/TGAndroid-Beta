@@ -116,6 +116,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     protected Runnable uiRunnableNoFrame;
     private HashMap<Integer, Integer> vibrationPattern;
     protected boolean waitingForNextTask;
+    public Runnable whenCacheDone;
     protected final int width;
     protected static final Handler uiHandler = new Handler(Looper.getMainLooper());
     private static ThreadLocal<byte[]> readBufferLocal = new ThreadLocal<>();
@@ -351,6 +352,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 RLottieDrawable rLottieDrawable = RLottieDrawable.this;
                 rLottieDrawable.generatingCache = false;
                 rLottieDrawable.decodeFrameFinishedInternal();
+                Runnable runnable = RLottieDrawable.this.whenCacheDone;
+                if (runnable != null) {
+                    runnable.run();
+                    RLottieDrawable.this.whenCacheDone = null;
+                }
             }
         };
         this.loadFrameRunnable = new Runnable() {
@@ -457,6 +463,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 RLottieDrawable rLottieDrawable = RLottieDrawable.this;
                 rLottieDrawable.generatingCache = false;
                 rLottieDrawable.decodeFrameFinishedInternal();
+                Runnable runnable = RLottieDrawable.this.whenCacheDone;
+                if (runnable != null) {
+                    runnable.run();
+                    RLottieDrawable.this.whenCacheDone = null;
+                }
             }
         };
         this.loadFrameRunnable = new Runnable() {
@@ -595,6 +606,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 RLottieDrawable rLottieDrawable = RLottieDrawable.this;
                 rLottieDrawable.generatingCache = false;
                 rLottieDrawable.decodeFrameFinishedInternal();
+                Runnable runnable = RLottieDrawable.this.whenCacheDone;
+                if (runnable != null) {
+                    runnable.run();
+                    RLottieDrawable.this.whenCacheDone = null;
+                }
             }
         };
         this.loadFrameRunnable = new Runnable() {
@@ -788,6 +804,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 RLottieDrawable rLottieDrawable = RLottieDrawable.this;
                 rLottieDrawable.generatingCache = false;
                 rLottieDrawable.decodeFrameFinishedInternal();
+                Runnable runnable = RLottieDrawable.this.whenCacheDone;
+                if (runnable != null) {
+                    runnable.run();
+                    RLottieDrawable.this.whenCacheDone = null;
+                }
             }
         };
         this.loadFrameRunnable = new Runnable() {

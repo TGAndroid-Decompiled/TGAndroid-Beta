@@ -661,10 +661,7 @@ public class VideoPlayerSeekBar {
             StaticLayout[] staticLayoutArr3 = this.timestampLabel;
             staticLayoutArr3[1] = staticLayoutArr3[0];
             if (this.pressed) {
-                try {
-                    this.parentView.performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
+                AndroidUtilities.vibrateCursor(this.parentView);
             }
             if (size >= 0 && size < this.timestamps.size()) {
                 CharSequence charSequence = (CharSequence) this.timestamps.get(size).second;

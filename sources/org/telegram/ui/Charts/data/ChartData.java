@@ -17,18 +17,35 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ThemeColors;
 public class ChartData {
     public String[] daysLookup;
-    public ArrayList<Line> lines = new ArrayList<>();
-    public int maxValue = 0;
-    public int minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
-    public float oneDayPercentage = 0.0f;
+    public ArrayList<Line> lines;
+    public int maxValue;
+    public int minValue;
+    public float oneDayPercentage;
     protected long timeStep;
     public long[] x;
     public float[] xPercentage;
+    public float yRate;
+    public int yTickFormatter;
+    public int yTooltipFormatter;
 
     public ChartData() {
+        this.lines = new ArrayList<>();
+        this.maxValue = 0;
+        this.minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.oneDayPercentage = 0.0f;
+        this.yRate = 0.0f;
+        this.yTickFormatter = 0;
+        this.yTooltipFormatter = 0;
     }
 
     public ChartData(JSONObject jSONObject) throws JSONException {
+        this.lines = new ArrayList<>();
+        this.maxValue = 0;
+        this.minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.oneDayPercentage = 0.0f;
+        this.yRate = 0.0f;
+        this.yTickFormatter = 0;
+        this.yTooltipFormatter = 0;
         JSONArray jSONArray = jSONObject.getJSONArray("columns");
         jSONArray.length();
         for (int i = 0; i < jSONArray.length(); i++) {
@@ -72,6 +89,13 @@ public class ChartData {
         }
         JSONObject optJSONObject = jSONObject.optJSONObject("colors");
         JSONObject optJSONObject2 = jSONObject.optJSONObject("names");
+        try {
+            getFormatter(jSONObject.getString("xTickFormatter"));
+            this.yTickFormatter = getFormatter(jSONObject.getString("yTickFormatter"));
+            getFormatter(jSONObject.getString("xTooltipFormatter"));
+            this.yTooltipFormatter = getFormatter(jSONObject.getString("yTooltipFormatter"));
+        } catch (Exception unused) {
+        }
         Pattern compile = Pattern.compile("(.*)(#.*)");
         for (int i6 = 0; i6 < this.lines.size(); i6++) {
             Line line2 = this.lines.get(i6);
@@ -90,6 +114,10 @@ public class ChartData {
                 line2.name = optJSONObject2.getString(line2.id);
             }
         }
+    }
+
+    public int getFormatter(String str) {
+        return (!TextUtils.isEmpty(str) && str.contains("TON")) ? 1 : 0;
     }
 
     public void measure() {

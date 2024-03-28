@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -509,11 +508,9 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             Double.isNaN(width);
             Double.isNaN(centerX2);
             int min = (int) Math.min(d3, centerX2 + (cos2 * width));
-            if (min < 0) {
-                min = 0;
-            }
-            if (this.pieLegendView.getMeasuredWidth() + min > getMeasuredWidth() - AndroidUtilities.dp(16.0f)) {
-                min -= (this.pieLegendView.getMeasuredWidth() + min) - (getMeasuredWidth() - AndroidUtilities.dp(16.0f));
+            int i5 = min < 0 ? 0 : min;
+            if (this.pieLegendView.getMeasuredWidth() + i5 > getMeasuredWidth() - AndroidUtilities.dp(16.0f)) {
+                i5 -= (this.pieLegendView.getMeasuredWidth() + i5) - (getMeasuredWidth() - AndroidUtilities.dp(16.0f));
             }
             double centerY = this.rectF.centerY();
             double sin = Math.sin(Math.toRadians(d4));
@@ -525,11 +522,9 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             Double.isNaN(width);
             Double.isNaN(centerY2);
             int min2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(d5, centerY2 + (width * sin2)))) - AndroidUtilities.dp(50.0f);
-            this.pieLegendView.setTranslationX(min);
+            this.pieLegendView.setTranslationX(i5);
             this.pieLegendView.setTranslationY(min2);
-            if (!(Build.VERSION.SDK_INT >= 27 ? performHapticFeedback(9, 2) : false)) {
-                performHapticFeedback(3, 2);
-            }
+            AndroidUtilities.vibrateCursor(this);
         }
         moveLegend();
     }

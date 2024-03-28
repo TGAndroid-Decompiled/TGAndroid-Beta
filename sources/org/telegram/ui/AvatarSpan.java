@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.text.Spannable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -13,6 +14,18 @@ public class AvatarSpan extends ReplacementSpan {
     private final AvatarDrawable avatarDrawable;
     private final int currentAccount;
     private final ImageReceiver imageReceiver;
+    private View parent;
+    private final View.OnAttachStateChangeListener parentAttachListener = new View.OnAttachStateChangeListener() {
+        @Override
+        public void onViewAttachedToWindow(View view) {
+            AvatarSpan.this.imageReceiver.onAttachedToWindow();
+        }
+
+        @Override
+        public void onViewDetachedFromWindow(View view) {
+            AvatarSpan.this.imageReceiver.onDetachedFromWindow();
+        }
+    };
     private final Paint shadowPaint;
     private final int sz;
     private float translateX;
@@ -28,21 +41,37 @@ public class AvatarSpan extends ReplacementSpan {
         Paint paint = new Paint(1);
         this.shadowPaint = paint;
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
-        if (view != null && view.isAttachedToWindow()) {
-            imageReceiver.onAttachedToWindow();
-        }
-        if (view != null) {
-            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                @Override
-                public void onViewAttachedToWindow(View view2) {
-                    AvatarSpan.this.imageReceiver.onAttachedToWindow();
-                }
+        setParent(view);
+    }
 
-                @Override
-                public void onViewDetachedFromWindow(View view2) {
-                    AvatarSpan.this.imageReceiver.onDetachedFromWindow();
-                }
-            });
+    public void setParent(View view) {
+        View view2 = this.parent;
+        if (view2 == view) {
+            return;
+        }
+        if (view2 != null) {
+            view2.removeOnAttachStateChangeListener(this.parentAttachListener);
+            if (this.parent.isAttachedToWindow() && !view.isAttachedToWindow()) {
+                this.imageReceiver.onDetachedFromWindow();
+            }
+        }
+        View view3 = this.parent;
+        if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
+            this.imageReceiver.onAttachedToWindow();
+        }
+        this.parent = view;
+        this.imageReceiver.setParentView(view);
+        if (view != null) {
+            view.addOnAttachStateChangeListener(this.parentAttachListener);
+        }
+    }
+
+    public static void checkSpansParent(CharSequence charSequence, View view) {
+        if (charSequence != null && (charSequence instanceof Spannable)) {
+            Spannable spannable = (Spannable) charSequence;
+            for (AvatarSpan avatarSpan : (AvatarSpan[]) spannable.getSpans(0, spannable.length(), AvatarSpan.class)) {
+                avatarSpan.setParent(view);
+            }
         }
     }
 

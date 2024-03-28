@@ -76,7 +76,6 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     private RecyclerListView listView;
     private boolean loadedColors;
     private boolean orderChanged;
-    private boolean scrollingToBottom;
     private UndoView undoView;
     private ArrayList<ItemInner> oldItems = new ArrayList<>();
     private ArrayList<ItemInner> items = new ArrayList<>();
@@ -524,9 +523,6 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 FiltersSetupActivity.this.lambda$updateRows$0();
             }
         }) : LocaleController.getString(R.string.FolderShowTagsInfo)));
-        if (this.scrollingToBottom) {
-            z = false;
-        }
         ListAdapter listAdapter = this.adapter;
         if (listAdapter != null) {
             if (z) {
@@ -564,38 +560,6 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             });
         }
         super.onFragmentDestroy();
-    }
-
-    @Override
-    public void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (this.highlightTags) {
-            this.highlightTags = false;
-            this.scrollingToBottom = true;
-            this.listView.smoothScrollToPosition(this.adapter.getItemCount() - 1);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    FiltersSetupActivity.this.lambda$onBecomeFullyVisible$3();
-                }
-            }, 200L);
-        }
-    }
-
-    public void lambda$onBecomeFullyVisible$3() {
-        this.scrollingToBottom = false;
-        this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
-            @Override
-            public final int run() {
-                int lambda$onBecomeFullyVisible$2;
-                lambda$onBecomeFullyVisible$2 = FiltersSetupActivity.this.lambda$onBecomeFullyVisible$2();
-                return lambda$onBecomeFullyVisible$2;
-            }
-        });
-    }
-
-    public int lambda$onBecomeFullyVisible$2() {
-        return this.folderTagsPosition;
     }
 
     @Override
@@ -646,9 +610,20 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                FiltersSetupActivity.this.lambda$createView$6(context, view, i, f, f2);
+                FiltersSetupActivity.this.lambda$createView$4(context, view, i, f, f2);
             }
         });
+        if (this.highlightTags) {
+            updateRows(false);
+            this.highlightTags = false;
+            this.listView.scrollToPosition(this.adapter.getItemCount() - 1);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    FiltersSetupActivity.this.lambda$createView$6();
+                }
+            }, 200L);
+        }
         return this.fragmentView;
     }
 
@@ -681,7 +656,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$createView$6(Context context, View view, int i, float f, float f2) {
+    public void lambda$createView$4(Context context, View view, int i, float f, float f2) {
         ItemInner itemInner;
         if (i < 0 || i >= this.items.size() || (itemInner = this.items.get(i)) == null) {
             return;
@@ -698,7 +673,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(tLRPC$TL_messages_toggleDialogFilterTags, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    FiltersSetupActivity.this.lambda$createView$5(tLRPC$TL_messages_toggleDialogFilterTags, tLObject, tLRPC$TL_error);
+                    FiltersSetupActivity.this.lambda$createView$3(tLRPC$TL_messages_toggleDialogFilterTags, tLObject, tLRPC$TL_error);
                 }
             });
             ((TextCheckCell) view).setChecked(getMessagesController().folderTags);
@@ -725,21 +700,36 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$createView$5(final TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$3(final TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FiltersSetupActivity.this.lambda$createView$4(tLRPC$TL_messages_toggleDialogFilterTags);
+                FiltersSetupActivity.this.lambda$createView$2(tLRPC$TL_messages_toggleDialogFilterTags);
             }
         });
     }
 
-    public void lambda$createView$4(TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags) {
+    public void lambda$createView$2(TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags) {
         if (!tLRPC$TL_messages_toggleDialogFilterTags.enabled || this.loadedColors) {
             return;
         }
         getMessagesController().loadRemoteFilters(true);
         this.loadedColors = true;
+    }
+
+    public int lambda$createView$5() {
+        return this.folderTagsPosition;
+    }
+
+    public void lambda$createView$6() {
+        this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
+            @Override
+            public final int run() {
+                int lambda$createView$5;
+                lambda$createView$5 = FiltersSetupActivity.this.lambda$createView$5();
+                return lambda$createView$5;
+            }
+        });
     }
 
     public UndoView getUndoView() {
@@ -771,21 +761,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             }
             updateRows(true);
         } else if (i == NotificationCenter.suggestedFiltersLoaded) {
-            if (this.scrollingToBottom) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        FiltersSetupActivity.this.lambda$didReceivedNotification$7();
-                    }
-                }, 900L);
-            } else {
-                updateRows(true);
-            }
+            updateRows(true);
         }
-    }
-
-    public void lambda$didReceivedNotification$7() {
-        updateRows(true);
     }
 
     public static class ItemInner extends AdapterWithDiffUtils.Item {
@@ -1307,12 +1284,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         BulletinFactory.of(this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString("PremiumMore", R.string.PremiumMore), 5000, new Runnable() {
             @Override
             public final void run() {
-                FiltersSetupActivity.this.lambda$onDefaultTabMoved$8();
+                FiltersSetupActivity.this.lambda$onDefaultTabMoved$7();
             }
         }).show();
     }
 
-    public void lambda$onDefaultTabMoved$8() {
+    public void lambda$onDefaultTabMoved$7() {
         showDialog(new PremiumFeatureBottomSheet(this, 9, true));
     }
 

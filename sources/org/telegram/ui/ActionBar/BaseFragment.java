@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -65,7 +66,7 @@ public abstract class BaseFragment {
     private boolean removingFromStack;
     protected Theme.ResourcesProvider resourceProvider;
     public ArrayList<StoryViewer> storyViewerStack;
-    protected Dialog visibleDialog;
+    public Dialog visibleDialog;
     protected int currentAccount = UserConfig.selectedAccount;
     protected boolean hasOwnBackground = false;
     protected boolean isPaused = true;
@@ -216,6 +217,11 @@ public abstract class BaseFragment {
             }
         }
         return null;
+    }
+
+    public boolean hasStoryViewer() {
+        ArrayList<StoryViewer> arrayList = this.storyViewerStack;
+        return (arrayList == null || arrayList.isEmpty()) ? false : true;
     }
 
     public void clearStoryViewers() {
@@ -953,6 +959,11 @@ public abstract class BaseFragment {
 
     public int getThemedColor(int i) {
         return Theme.getColor(i, getResourceProvider());
+    }
+
+    public Paint getThemedPaint(String str) {
+        Paint paint = getResourceProvider() != null ? getResourceProvider().getPaint(str) : null;
+        return paint != null ? paint : Theme.getThemePaint(str);
     }
 
     public Drawable getThemedDrawable(String str) {

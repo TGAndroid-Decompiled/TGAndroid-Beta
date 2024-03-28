@@ -75,7 +75,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, new Utilities.Callback2() {
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 OpeningHoursActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -85,7 +85,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 OpeningHoursActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
-        }, null, getResourceProvider());
+        }, null);
         this.listView = universalRecyclerView;
         frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
         setValue();
@@ -176,6 +176,9 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                     break;
                 }
                 arrayListArr[i] = new ArrayList<>();
+                if (i >= 0 && i < 5) {
+                    this.value[i].add(new Period(0, 1439));
+                }
                 i++;
             }
         }
@@ -403,6 +406,21 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         }
     }
 
+    public static boolean is24x7(TLRPC$TL_businessWorkHours tLRPC$TL_businessWorkHours) {
+        if (tLRPC$TL_businessWorkHours == null || tLRPC$TL_businessWorkHours.weekly_open.isEmpty()) {
+            return false;
+        }
+        int i = 0;
+        for (int i2 = 0; i2 < tLRPC$TL_businessWorkHours.weekly_open.size(); i2++) {
+            TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen = tLRPC$TL_businessWorkHours.weekly_open.get(i2);
+            if (tLRPC$TL_businessWeeklyOpen.start_minute > i + 1) {
+                return false;
+            }
+            i = tLRPC$TL_businessWeeklyOpen.end_minute;
+        }
+        return i >= 10079;
+    }
+
     public static boolean isFull(ArrayList<Period> arrayList) {
         if (arrayList == null || arrayList.isEmpty()) {
             return false;
@@ -489,7 +507,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                     OpeningHoursActivity.this.lambda$onClick$3(view, (String) obj);
                 }
             }));
-        } else if (uItem.viewType == 4 && i2 >= 0 && i2 < this.value.length) {
+        } else if (uItem.viewType == 5 && i2 >= 0 && i2 < this.value.length) {
             if (!LocaleController.isRTL ? f < ((float) (view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) : f > ((float) AndroidUtilities.dp(76.0f))) {
                 if (this.value[uItem.id].isEmpty()) {
                     ((NotificationsCheckCell) view).setChecked(true);

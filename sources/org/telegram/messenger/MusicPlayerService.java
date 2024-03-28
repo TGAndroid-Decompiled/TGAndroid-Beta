@@ -91,6 +91,11 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             }
 
             @Override
+            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
+            }
+
+            @Override
             public void onAnimationReady(ImageReceiver imageReceiver2) {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
             }

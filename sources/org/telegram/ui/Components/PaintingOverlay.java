@@ -49,8 +49,8 @@ public class PaintingOverlay extends FrameLayout {
         super(context);
     }
 
-    public void setData(String str, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2) {
-        setEntities(arrayList, z, z2);
+    public void setData(String str, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2, boolean z3) {
+        setEntities(arrayList, z, z2, z3);
         if (str != null) {
             this.paintBitmap = BitmapFactory.decodeFile(str);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(this.paintBitmap);
@@ -152,8 +152,9 @@ public class PaintingOverlay extends FrameLayout {
         setBackground(null);
     }
 
-    public void setEntities(ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2) {
+    public void setEntities(ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2, boolean z3) {
         int i;
+        setClipChildren(z3);
         reset();
         this.mediaEntityViews = new HashMap<>();
         if (arrayList == null || arrayList.isEmpty()) {
@@ -175,8 +176,13 @@ public class PaintingOverlay extends FrameLayout {
                     if (z2) {
                         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                             @Override
-                            public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
-                                PaintingOverlay.lambda$setEntities$0(imageReceiver2, z3, z4, z5);
+                            public final void didSetImage(ImageReceiver imageReceiver2, boolean z4, boolean z5, boolean z6) {
+                                PaintingOverlay.lambda$setEntities$0(imageReceiver2, z4, z5, z6);
+                            }
+
+                            @Override
+                            public void didSetImageBitmap(int i3, String str, Drawable drawable) {
+                                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str, drawable);
                             }
 
                             @Override

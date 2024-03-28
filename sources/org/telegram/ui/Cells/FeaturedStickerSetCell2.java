@@ -283,7 +283,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                     forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document, tLRPC$StickerSetCovered.set.thumb_version);
                 }
                 ImageLocation imageLocation = forSticker;
-                if (z6 && MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) {
+                if (z6 && (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) || MessageObject.isVideoSticker(tLRPC$Document))) {
                     if (svgThumb != null) {
                         this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", svgThumb, 0, tLRPC$StickerSetCovered);
                     } else {

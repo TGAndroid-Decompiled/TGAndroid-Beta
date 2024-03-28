@@ -220,13 +220,13 @@ public class SliderView extends View {
             float f5 = this.minVolume;
             float f6 = f4 - f5 != 0.0f ? f5 + (this.value * (f4 - f5)) : 0.0f;
             if (z) {
-                try {
-                    if ((f6 <= f5 && f3 > f6) || (f6 >= f4 && f3 < f6)) {
+                if ((f6 <= f5 && f3 > f6) || (f6 >= f4 && f3 < f6)) {
+                    try {
                         performHapticFeedback(3, 1);
-                    } else if (Math.floor(f3 * 5.0f) != Math.floor(5.0f * f6)) {
-                        performHapticFeedback(9, 1);
+                    } catch (Exception unused) {
                     }
-                } catch (Exception unused) {
+                } else if (Math.floor(f3 * 5.0f) != Math.floor(5.0f * f6)) {
+                    AndroidUtilities.vibrateCursor(this);
                 }
             }
             updateText(f6);

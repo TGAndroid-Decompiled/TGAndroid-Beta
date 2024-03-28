@@ -2542,6 +2542,27 @@ public class ImageLoader {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC$PhotoSize, android.graphics.Bitmap, android.graphics.Bitmap$CompressFormat, boolean, int, int, float, float, float, int, boolean, boolean, boolean):org.telegram.tgnet.TLRPC$PhotoSize");
     }
 
+    public static class AnonymousClass7 {
+        static final int[] $SwitchMap$android$graphics$Bitmap$CompressFormat;
+
+        static {
+            int[] iArr = new int[Bitmap.CompressFormat.values().length];
+            $SwitchMap$android$graphics$Bitmap$CompressFormat = iArr;
+            try {
+                iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$android$graphics$Bitmap$CompressFormat[Bitmap.CompressFormat.WEBP_LOSSY.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$android$graphics$Bitmap$CompressFormat[Bitmap.CompressFormat.WEBP_LOSSLESS.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
+    }
+
     public static TLRPC$PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, int i, boolean z) {
         return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f, f2, i, z, 0, 0, false);
     }

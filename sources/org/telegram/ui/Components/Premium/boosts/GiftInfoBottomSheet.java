@@ -235,7 +235,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(this.resourcesProvider);
         this.adapter = anonymousClass2;
         return anonymousClass2;

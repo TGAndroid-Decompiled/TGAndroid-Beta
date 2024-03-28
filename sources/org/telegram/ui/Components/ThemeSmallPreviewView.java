@@ -304,6 +304,11 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                             }
 
                             @Override
+                            public void didSetImageBitmap(int i4, String str, Drawable drawable) {
+                                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i4, str, drawable);
+                            }
+
+                            @Override
                             public void onAnimationReady(ImageReceiver imageReceiver2) {
                                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
                             }

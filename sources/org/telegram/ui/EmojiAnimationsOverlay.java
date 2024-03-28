@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
@@ -691,6 +692,11 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     drawingObject.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                         @Override
                         public void didSetImage(ImageReceiver imageReceiver3, boolean z6, boolean z7, boolean z8) {
+                        }
+
+                        @Override
+                        public void didSetImageBitmap(int i8, String str2, Drawable drawable) {
+                            ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i8, str2, drawable);
                         }
 
                         @Override

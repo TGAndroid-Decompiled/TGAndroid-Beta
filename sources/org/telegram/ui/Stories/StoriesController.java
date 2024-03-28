@@ -1971,8 +1971,22 @@ public class StoriesController {
             return;
         }
         FileLog.d("StoriesController update stories from full peer " + j);
-        tL_stories$PeerStories2.stories.clear();
-        tL_stories$PeerStories2.stories.addAll(tL_stories$PeerStories.stories);
+        for (int i = 0; i < tL_stories$PeerStories2.stories.size(); i++) {
+            if (tL_stories$PeerStories2.stories.get(i) instanceof TL_stories$TL_storyItemSkipped) {
+                int i2 = tL_stories$PeerStories2.stories.get(i).id;
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= tL_stories$PeerStories.stories.size()) {
+                        break;
+                    }
+                    if (tL_stories$PeerStories.stories.get(i3).id == i2 && (tL_stories$PeerStories.stories.get(i3) instanceof TL_stories$TL_storyItem)) {
+                        tL_stories$PeerStories2.stories.set(i, tL_stories$PeerStories.stories.get(i3));
+                        break;
+                    }
+                    i3++;
+                }
+            }
+        }
     }
 
     public class UploadingStory implements NotificationCenter.NotificationCenterDelegate {

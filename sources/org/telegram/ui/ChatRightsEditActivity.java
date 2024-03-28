@@ -584,7 +584,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         recyclerListView.setClipChildren(this.currentType != 2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, context, 1, false) {
             @Override
-            protected int getExtraLayoutSpace(RecyclerView.State state) {
+            public int getExtraLayoutSpace(RecyclerView.State state) {
                 return 5000;
             }
         };
@@ -1281,7 +1281,7 @@ public class ChatRightsEditActivity extends BaseFragment {
 
     public void lambda$initTransfer$9(DialogInterface dialogInterface, int i) {
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-        twoStepVerificationActivity.setDelegate(new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
+        twoStepVerificationActivity.setDelegate(0, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
                 ChatRightsEditActivity.this.lambda$initTransfer$8(twoStepVerificationActivity, tLRPC$InputCheckPasswordSRP);
@@ -1627,7 +1627,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 11, this.currentAccount, getResourceProvider());
         ArrayList<TLRPC$User> arrayList = new ArrayList<>();
         arrayList.add(this.currentUser);
-        limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList);
+        limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList, null, null);
         limitReachedBottomSheet.show();
         return false;
     }

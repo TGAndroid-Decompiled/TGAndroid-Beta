@@ -2426,6 +2426,11 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     }
 
                     @Override
+                    public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                        ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
+                    }
+
+                    @Override
                     public void onAnimationReady(ImageReceiver imageReceiver) {
                         ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
                     }

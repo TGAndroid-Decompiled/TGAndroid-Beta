@@ -597,6 +597,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public String mimeType;
         public String path;
         public boolean validated;
+        public VideoEditedInfo videoEditedInfo;
 
         public void uploadMedia(int i, TLRPC$InputFile tLRPC$InputFile, Runnable runnable) {
             TLRPC$TL_messages_uploadMedia tLRPC$TL_messages_uploadMedia = new TLRPC$TL_messages_uploadMedia();
@@ -763,7 +764,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_stickers_createStickerSet.user_id = new TLRPC$TL_inputUserSelf();
             tLRPC$TL_stickers_createStickerSet.title = this.title;
             tLRPC$TL_stickers_createStickerSet.short_name = this.shortName;
-            tLRPC$TL_stickers_createStickerSet.animated = this.uploadMedia.get(0).animated;
             String str = this.software;
             if (str != null) {
                 tLRPC$TL_stickers_createStickerSet.software = str;
@@ -2829,7 +2829,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public void lambda$sendCallback$25(final boolean z, final MessageObject messageObject, final TLRPC$KeyboardButton tLRPC$KeyboardButton, final ChatActivity chatActivity, DialogInterface dialogInterface, int i) {
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-        twoStepVerificationActivity.setDelegate(new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
+        twoStepVerificationActivity.setDelegate(0, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
                 SendMessagesHelper.this.lambda$sendCallback$24(z, messageObject, tLRPC$KeyboardButton, twoStepVerificationActivity, chatActivity, tLRPC$InputCheckPasswordSRP);
@@ -3029,7 +3029,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 String str2 = messageObject2.messageOwner.attachPath;
                 TLRPC$Document document = messageObject2.getDocument();
                 if (str2 == null) {
-                    str2 = FileLoader.getDirectory(4) + "/" + document.id + ".mp4";
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(FileLoader.getDirectory(4));
+                    sb.append("/");
+                    sb.append(document.id);
+                    sb.append(".");
+                    sb.append(delayedMessage.videoEditedInfo.isSticker ? "webm" : "mp4");
+                    str2 = sb.toString();
                 }
                 putToDelayedMessages(str2, delayedMessage);
                 if (!delayedMessage.videoEditedInfo.alreadyScheduledConverting) {
@@ -3239,13 +3245,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         TLRPC$Document document6 = messageObject7.getDocument();
                         String str15 = messageObject7.messageOwner.attachPath;
                         if (str15 == null) {
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(FileLoader.getDirectory(4));
-                            sb.append("/");
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append(FileLoader.getDirectory(4));
+                            sb2.append("/");
                             messageObject = messageObject7;
-                            sb.append(document6.id);
-                            sb.append(".mp4");
-                            str15 = sb.toString();
+                            sb2.append(document6.id);
+                            sb2.append(".mp4");
+                            str15 = sb2.toString();
                         } else {
                             messageObject = messageObject7;
                         }
@@ -4524,7 +4530,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return tLRPC$TL_photo;
     }
 
-    private static int prepareSendingDocumentInternal(final org.telegram.messenger.AccountInstance r33, java.lang.String r34, java.lang.String r35, android.net.Uri r36, java.lang.String r37, final long r38, final org.telegram.messenger.MessageObject r40, final org.telegram.messenger.MessageObject r41, final org.telegram.tgnet.tl.TL_stories$StoryItem r42, final org.telegram.ui.ChatActivity.ReplyQuote r43, final java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r44, final org.telegram.messenger.MessageObject r45, long[] r46, boolean r47, java.lang.CharSequence r48, final boolean r49, final int r50, java.lang.Integer[] r51, boolean r52, final java.lang.String r53, final int r54) {
+    private static int prepareSendingDocumentInternal(final org.telegram.messenger.AccountInstance r32, java.lang.String r33, java.lang.String r34, android.net.Uri r35, java.lang.String r36, final long r37, final org.telegram.messenger.MessageObject r39, final org.telegram.messenger.MessageObject r40, final org.telegram.tgnet.tl.TL_stories$StoryItem r41, final org.telegram.ui.ChatActivity.ReplyQuote r42, final java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r43, final org.telegram.messenger.MessageObject r44, long[] r45, boolean r46, java.lang.CharSequence r47, final boolean r48, final int r49, java.lang.Integer[] r50, boolean r51, final java.lang.String r52, final int r53) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.prepareSendingDocumentInternal(org.telegram.messenger.AccountInstance, java.lang.String, java.lang.String, android.net.Uri, java.lang.String, long, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.tgnet.tl.TL_stories$StoryItem, org.telegram.ui.ChatActivity$ReplyQuote, java.util.ArrayList, org.telegram.messenger.MessageObject, long[], boolean, java.lang.CharSequence, boolean, int, java.lang.Integer[], boolean, java.lang.String, int):int");
     }
 
@@ -5106,7 +5112,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         });
     }
 
-    public static void lambda$prepareSendingMedia$91(java.util.ArrayList r67, final long r68, boolean r70, boolean r71, final org.telegram.messenger.AccountInstance r72, final org.telegram.messenger.MessageObject r73, final org.telegram.messenger.MessageObject r74, final org.telegram.messenger.MessageObject r75, final boolean r76, final int r77, final org.telegram.tgnet.tl.TL_stories$StoryItem r78, final org.telegram.ui.ChatActivity.ReplyQuote r79, final java.lang.String r80, final int r81, androidx.core.view.inputmethod.InputContentInfoCompat r82, final boolean r83) {
+    public static void lambda$prepareSendingMedia$91(java.util.ArrayList r70, final long r71, boolean r73, boolean r74, final org.telegram.messenger.AccountInstance r75, final org.telegram.messenger.MessageObject r76, final org.telegram.messenger.MessageObject r77, final org.telegram.messenger.MessageObject r78, final boolean r79, final int r80, final org.telegram.tgnet.tl.TL_stories$StoryItem r81, final org.telegram.ui.ChatActivity.ReplyQuote r82, final java.lang.String r83, final int r84, androidx.core.view.inputmethod.InputContentInfoCompat r85, final boolean r86) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingMedia$91(java.util.ArrayList, long, boolean, boolean, org.telegram.messenger.AccountInstance, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, org.telegram.tgnet.tl.TL_stories$StoryItem, org.telegram.ui.ChatActivity$ReplyQuote, java.lang.String, int, androidx.core.view.inputmethod.InputContentInfoCompat, boolean):void");
     }
 

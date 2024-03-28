@@ -76,7 +76,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
@@ -200,7 +200,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
     }
@@ -218,7 +218,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         this.actionBarLayout.onPause();
         ApplicationLoader.externalInterfacePaused = true;
@@ -230,7 +230,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         int i = this.currentAccount;
         if (i != -1) {
@@ -241,7 +241,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onActivityResult(int i, int i2, Intent intent) {
+    public void onActivityResult(int i, int i2, Intent intent) {
         super.onActivityResult(i, i2, intent);
         ThemeEditorView themeEditorView = ThemeEditorView.getInstance();
         if (themeEditorView != null) {
@@ -264,7 +264,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         this.actionBarLayout.onResume();
         ApplicationLoader.externalInterfacePaused = false;

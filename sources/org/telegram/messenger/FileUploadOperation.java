@@ -16,6 +16,7 @@ public class FileUploadOperation {
     private static final int minUploadChunkSize = 128;
     private static final int minUploadChunkSlowNetworkSize = 32;
     private long availableSize;
+    public volatile boolean caughtPremiumFloodWait;
     private int currentAccount;
     private long currentFileId;
     private int currentPartNum;
@@ -54,7 +55,7 @@ public class FileUploadOperation {
     private long uploadedBytesCount;
     private String uploadingFilePath;
     private int uploadChunkSize = 65536;
-    private SparseIntArray requestTokens = new SparseIntArray();
+    public final SparseIntArray requestTokens = new SparseIntArray();
     private SparseArray<UploadCachedResult> cachedResults = new SparseArray<>();
     private boolean[] recalculatedEstimatedSize = {false, false};
 

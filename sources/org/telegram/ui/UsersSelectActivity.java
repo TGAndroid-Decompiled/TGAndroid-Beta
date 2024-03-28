@@ -1083,10 +1083,10 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         public GroupCreateAdapter(Context context) {
             this.context = context;
-            if (UsersSelectActivity.this.type == 2) {
-                this.usersStartRow = (!UsersSelectActivity.this.doNotNewChats ? 1 : 0) + 5;
-            } else if (UsersSelectActivity.this.type == 0) {
-                if (!UsersSelectActivity.this.noChatTypes) {
+            if (!UsersSelectActivity.this.noChatTypes) {
+                if (UsersSelectActivity.this.type == 2) {
+                    this.usersStartRow = (!UsersSelectActivity.this.doNotNewChats ? 1 : 0) + 5;
+                } else if (UsersSelectActivity.this.type == 0) {
                     if (UsersSelectActivity.this.isInclude) {
                         this.usersStartRow = 7;
                     } else {
@@ -1173,19 +1173,19 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         @Override
         public int getItemCount() {
-            if (!this.searching) {
-                int i = 0;
-                if (UsersSelectActivity.this.type == 2) {
+            if (this.searching) {
+                return this.searchResult.size() + this.searchAdapterHelper.getLocalServerSearch().size() + this.searchAdapterHelper.getGlobalSearch().size();
+            }
+            UsersSelectActivity usersSelectActivity = UsersSelectActivity.this;
+            int i = 0;
+            if (!usersSelectActivity.noChatTypes) {
+                if (usersSelectActivity.type == 2) {
                     i = (!UsersSelectActivity.this.doNotNewChats ? 1 : 0) + 3;
                 } else if (UsersSelectActivity.this.type == 0) {
-                    UsersSelectActivity usersSelectActivity = UsersSelectActivity.this;
-                    if (!usersSelectActivity.noChatTypes) {
-                        i = usersSelectActivity.isInclude ? 7 : 5;
-                    }
+                    i = UsersSelectActivity.this.isInclude ? 7 : 5;
                 }
-                return i + this.contacts.size();
             }
-            return this.searchResult.size() + this.searchAdapterHelper.getLocalServerSearch().size() + this.searchAdapterHelper.getGlobalSearch().size();
+            return i + this.contacts.size();
         }
 
         @Override
@@ -1209,17 +1209,17 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             if (this.searching) {
                 return 1;
             }
-            if (UsersSelectActivity.this.type == 2) {
+            UsersSelectActivity usersSelectActivity = UsersSelectActivity.this;
+            if (usersSelectActivity.noChatTypes) {
+                if (i == 0) {
+                    return 2;
+                }
+            } else if (usersSelectActivity.type == 2) {
                 if (i == 0 || i == (!UsersSelectActivity.this.doNotNewChats ? 1 : 0) + 4) {
                     return 2;
                 }
             } else if (UsersSelectActivity.this.type == 0) {
-                UsersSelectActivity usersSelectActivity = UsersSelectActivity.this;
-                if (usersSelectActivity.noChatTypes) {
-                    if (i == 0) {
-                        return 2;
-                    }
-                } else if (usersSelectActivity.isInclude) {
+                if (UsersSelectActivity.this.isInclude) {
                     if (i == 0 || i == 6) {
                         return 2;
                     }

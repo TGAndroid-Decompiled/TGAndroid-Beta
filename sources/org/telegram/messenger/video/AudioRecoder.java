@@ -11,6 +11,7 @@ import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.video.audio_input.AudioInput;
 public class AudioRecoder {
     private static final int BYTES_PER_SHORT = 2;
@@ -70,7 +71,7 @@ public class AudioRecoder {
         }
     }
 
-    public boolean step(MP4Builder mP4Builder, int i) throws Exception {
+    public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) throws Exception {
         int dequeueInputBuffer;
         ShortBuffer asShortBuffer;
         if (!this.encoderInputDone && (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
@@ -106,7 +107,7 @@ public class AudioRecoder {
                 return this.encoderDone;
             }
             if (bufferInfo.size != 0) {
-                mP4Builder.writeSampleData(i, byteBuffer, bufferInfo, false);
+                muxer.writeSampleData(i, byteBuffer, bufferInfo, false);
             }
             if ((this.encoderOutputBufferInfo.flags & 4) != 0) {
                 this.encoderDone = true;

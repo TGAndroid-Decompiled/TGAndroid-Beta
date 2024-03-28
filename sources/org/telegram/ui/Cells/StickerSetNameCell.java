@@ -10,12 +10,16 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.ColorSpanUnderline;
@@ -23,6 +27,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 public class StickerSetNameCell extends FrameLayout {
     private ImageView buttonView;
+    private TextView editView;
     private boolean empty;
     private boolean isEmoji;
     public int position;
@@ -41,11 +46,14 @@ public class StickerSetNameCell extends FrameLayout {
 
     public StickerSetNameCell(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        FrameLayout.LayoutParams createFrame;
-        FrameLayout.LayoutParams createFrame2;
-        FrameLayout.LayoutParams createFrame3;
+        ViewGroup.LayoutParams createFrame;
+        ViewGroup.LayoutParams createFrame2;
+        ViewGroup.LayoutParams createFrame3;
         this.resourcesProvider = resourcesProvider;
         this.isEmoji = z;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
         TextView textView = new TextView(context);
         this.textView = textView;
         int i = Theme.key_chat_emojiPanelStickerSetName;
@@ -65,10 +73,23 @@ public class StickerSetNameCell extends FrameLayout {
         } else {
             createFrame = LayoutHelper.createFrame(-2, -2.0f, 51, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
         }
-        addView(this.textView, createFrame);
+        addView(linearLayout, createFrame);
+        linearLayout.addView(this.textView);
         TextView textView2 = new TextView(context);
-        this.urlTextView = textView2;
+        this.editView = textView2;
         textView2.setTextColor(getThemedColor(i));
+        this.editView.setTextSize(1, 11.0f);
+        this.editView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.editView.setEllipsize(TextUtils.TruncateAt.END);
+        this.editView.setPadding(AndroidUtilities.dp(6.33f), 0, AndroidUtilities.dp(6.33f), 0);
+        this.editView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(9.0f), Theme.multAlpha(getThemedColor(i), 0.1f), Theme.multAlpha(getThemedColor(i), 0.24f)));
+        this.editView.setGravity(17);
+        this.editView.setSingleLine(true);
+        linearLayout.addView(this.editView, LayoutHelper.createLinear(-2, -2, 5.33f, 0.66f, 0.0f, 0.0f));
+        this.editView.setVisibility(8);
+        TextView textView3 = new TextView(context);
+        this.urlTextView = textView3;
+        textView3.setTextColor(getThemedColor(i));
         this.urlTextView.setTextSize(1, 12.0f);
         this.urlTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.urlTextView.setSingleLine(true);
@@ -136,22 +157,29 @@ public class StickerSetNameCell extends FrameLayout {
             this.empty = true;
             this.textView.setText("");
             this.buttonView.setVisibility(4);
-            return;
-        }
-        this.empty = false;
-        if (i3 != 0) {
-            updateTextSearchSpan();
         } else {
-            TextView textView = this.textView;
-            textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false));
+            this.empty = false;
+            if (i3 != 0) {
+                updateTextSearchSpan();
+            } else {
+                TextView textView = this.textView;
+                textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false));
+            }
+            if (i != 0) {
+                this.buttonView.setImageResource(i);
+                this.buttonView.setContentDescription(charSequence2);
+                this.buttonView.setVisibility(0);
+            } else {
+                this.buttonView.setVisibility(4);
+            }
         }
-        if (i != 0) {
-            this.buttonView.setImageResource(i);
-            this.buttonView.setContentDescription(charSequence2);
-            this.buttonView.setVisibility(0);
-            return;
-        }
-        this.buttonView.setVisibility(4);
+        this.editView.setVisibility(8);
+    }
+
+    public void setEdit(View.OnClickListener onClickListener) {
+        this.editView.setVisibility(0);
+        this.editView.setText(LocaleController.getString(R.string.EditPack));
+        this.editView.setOnClickListener(onClickListener);
     }
 
     private void updateTextSearchSpan() {

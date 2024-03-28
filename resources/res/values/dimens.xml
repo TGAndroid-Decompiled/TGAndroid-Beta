@@ -92,6 +92,7 @@
     <dimen name="custom_notification_corner_radius">2dp</dimen>
     <dimen name="disabled_alpha_material_dark">0.3</dimen>
     <dimen name="disabled_alpha_material_light">0.26</dimen>
+    <dimen name="fingerprint_icon_size">64dp</dimen>
     <dimen name="highlight_alpha_material_colored">0.26</dimen>
     <dimen name="highlight_alpha_material_dark">0.2</dimen>
     <dimen name="highlight_alpha_material_light">0.12</dimen>

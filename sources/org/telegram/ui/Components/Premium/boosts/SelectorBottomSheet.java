@@ -717,7 +717,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else if (z) {
             this.sectionCell.setRightText(null);
         } else {
-            this.sectionCell.setRightText((String) null, (View.OnClickListener) null);
+            this.sectionCell.setRightText((CharSequence) null, (View.OnClickListener) null);
         }
     }
 
@@ -820,7 +820,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), this.resourcesProvider);
         this.selectorAdapter = selectorAdapter;
         return selectorAdapter;

@@ -550,7 +550,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), this.resourcesProvider);
         this.selectorAdapter = selectorAdapter;
         selectorAdapter.setGreenSelector(true);

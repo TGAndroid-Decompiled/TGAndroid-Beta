@@ -6,6 +6,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
     public String additional_info;
     public TLRPC$BotApp app;
     public String button_text;
+    public boolean can_report;
     public int channel_post;
     public TLRPC$ChatInvite chat_invite;
     public String chat_invite_hash;
@@ -38,6 +39,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         this.flags = readInt32;
         this.recommended = (readInt32 & 32) != 0;
         this.show_peer_photo = (readInt32 & 64) != 0;
+        this.can_report = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.random_id = abstractSerializedData.readByteArray(z);
         if ((this.flags & 8) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -96,7 +98,9 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         this.flags = i;
         int i2 = this.show_peer_photo ? i | 64 : i & (-65);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.can_report ? i2 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i2 & (-4097);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         abstractSerializedData.writeByteArray(this.random_id);
         if ((this.flags & 8) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
@@ -124,8 +128,8 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
             abstractSerializedData.writeInt32(481674261);
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
-            for (int i3 = 0; i3 < size; i3++) {
-                this.entities.get(i3).serializeToStream(abstractSerializedData);
+            for (int i4 = 0; i4 < size; i4++) {
+                this.entities.get(i4).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2048) != 0) {

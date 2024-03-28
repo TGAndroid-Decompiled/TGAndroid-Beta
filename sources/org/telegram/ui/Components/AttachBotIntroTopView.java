@@ -39,6 +39,11 @@ public class AttachBotIntroTopView extends View {
             }
 
             @Override
+            public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
+            }
+
+            @Override
             public void onAnimationReady(ImageReceiver imageReceiver2) {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
             }

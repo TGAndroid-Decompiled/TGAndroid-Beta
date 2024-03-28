@@ -96,20 +96,28 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         if (str == null || str.isEmpty()) {
             return String.valueOf(j);
         }
+        if ("TON".equalsIgnoreCase(str)) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("TON ");
+            double d = j;
+            Double.isNaN(d);
+            sb.append(d / 1.0E9d);
+            return sb.toString();
+        }
         Currency currency = Currency.getInstance(str);
         if (currency != null) {
             NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
             currencyInstance.setCurrency(currency);
             if (z) {
-                double d = j;
+                double d2 = j;
                 double pow = Math.pow(10.0d, i);
-                Double.isNaN(d);
-                return currencyInstance.format(Math.round(d / pow));
+                Double.isNaN(d2);
+                return currencyInstance.format(Math.round(d2 / pow));
             }
-            double d2 = j;
+            double d3 = j;
             double pow2 = Math.pow(10.0d, i);
-            Double.isNaN(d2);
-            return currencyInstance.format(d2 / pow2);
+            Double.isNaN(d3);
+            return currencyInstance.format(d3 / pow2);
         }
         return j + " " + str;
     }

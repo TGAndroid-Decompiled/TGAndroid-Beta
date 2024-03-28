@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -153,6 +154,7 @@ public class TextCheckCell extends FrameLayout {
     }
 
     public void setTextAndCheck(CharSequence charSequence, boolean z, boolean z2) {
+        AvatarSpan.checkSpansParent(charSequence, this);
         this.textView.setText(charSequence);
         this.isMultiline = false;
         this.checkBox.setVisibility(0);
@@ -214,6 +216,7 @@ public class TextCheckCell extends FrameLayout {
     }
 
     public void setTextAndValueAndCheck(String str, String str2, boolean z, boolean z2, boolean z3) {
+        AvatarSpan.checkSpansParent(str, this);
         this.textView.setText(str);
         this.valueTextView.setText(str2);
         this.checkBox.setVisibility(0);

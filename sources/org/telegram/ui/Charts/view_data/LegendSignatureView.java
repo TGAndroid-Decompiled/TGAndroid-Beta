@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +22,9 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.Charts.data.ChartData;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
@@ -33,6 +37,7 @@ public class LegendSignatureView extends FrameLayout {
     SimpleDateFormat format2;
     SimpleDateFormat format3;
     SimpleDateFormat format4;
+    private DecimalFormat formatterTON;
     Holder[] holdes;
     SimpleDateFormat hourFormat;
     TextView hourTime;
@@ -125,7 +130,7 @@ public class LegendSignatureView extends FrameLayout {
         }
     }
 
-    public void setData(int i, long j, ArrayList<LineViewData> arrayList, boolean z) {
+    public void setData(int i, long j, ArrayList<LineViewData> arrayList, boolean z, int i2) {
         TextView textView;
         int length = this.holdes.length;
         if (z && Build.VERSION.SDK_INT >= 19) {
@@ -146,37 +151,38 @@ public class LegendSignatureView extends FrameLayout {
                 this.hourTime.setText(this.hourFormat.format(Long.valueOf(j)));
             }
         }
-        int i2 = 0;
-        for (int i3 = 0; i3 < length; i3++) {
-            if (arrayList.get(i3).enabled) {
-                i2 += arrayList.get(i3).line.y[i];
+        int i3 = 0;
+        for (int i4 = 0; i4 < length; i4++) {
+            if (arrayList.get(i4).enabled) {
+                i3 += arrayList.get(i4).line.y[i];
             }
         }
-        for (int i4 = 0; i4 < length; i4++) {
-            Holder holder = this.holdes[i4];
-            if (!arrayList.get(i4).enabled) {
+        for (int i5 = 0; i5 < length; i5++) {
+            Holder holder = this.holdes[i5];
+            if (!arrayList.get(i5).enabled) {
                 holder.root.setVisibility(8);
             } else {
-                ChartData.Line line = arrayList.get(i4).line;
+                ChartData.Line line = arrayList.get(i5).line;
                 if (holder.root.getMeasuredHeight() == 0) {
                     holder.root.requestLayout();
                 }
                 holder.root.setVisibility(0);
-                holder.value.setText(formatWholeNumber(line.y[i]));
+                AnimatedEmojiSpan.TextViewEmojis textViewEmojis = holder.value;
+                textViewEmojis.setText(formatWholeNumber(line.y[i], i2, textViewEmojis));
                 holder.signature.setText(line.name);
-                int i5 = line.colorKey;
-                if (i5 >= 0 && Theme.hasThemeKey(i5)) {
+                int i6 = line.colorKey;
+                if (i6 >= 0 && Theme.hasThemeKey(i6)) {
                     holder.value.setTextColor(Theme.getColor(line.colorKey, this.resourcesProvider));
                 } else {
                     holder.value.setTextColor(Theme.getCurrentTheme().isDark() ? line.colorDark : line.color);
                 }
                 TextView textView2 = holder.signature;
-                int i6 = Theme.key_dialogTextBlack;
-                textView2.setTextColor(Theme.getColor(i6, this.resourcesProvider));
+                int i7 = Theme.key_dialogTextBlack;
+                textView2.setTextColor(Theme.getColor(i7, this.resourcesProvider));
                 if (this.showPercentage && (textView = holder.percentage) != null) {
                     textView.setVisibility(0);
-                    holder.percentage.setTextColor(Theme.getColor(i6, this.resourcesProvider));
-                    float f = arrayList.get(i4).line.y[i] / i2;
+                    holder.percentage.setTextColor(Theme.getColor(i7, this.resourcesProvider));
+                    float f = arrayList.get(i5).line.y[i] / i3;
                     if (f < 0.1f && f != 0.0f) {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%.1f%s", Float.valueOf(f * 100.0f), "%"));
                     } else {
@@ -186,8 +192,8 @@ public class LegendSignatureView extends FrameLayout {
             }
         }
         if (this.zoomEnabled) {
-            this.canGoZoom = i2 > 0;
-            this.chevron.setVisibility(i2 <= 0 ? 8 : 0);
+            this.canGoZoom = i3 > 0;
+            this.chevron.setVisibility(i3 <= 0 ? 8 : 0);
             return;
         }
         this.canGoZoom = false;
@@ -208,17 +214,36 @@ public class LegendSignatureView extends FrameLayout {
         return str;
     }
 
-    public String formatWholeNumber(int i) {
-        float f = i;
-        if (i < 10000) {
-            return String.format("%d", Integer.valueOf(i));
+    public CharSequence formatWholeNumber(int i, int i2, TextView textView) {
+        if (i2 != 1) {
+            float f = i;
+            if (i < 10000) {
+                return String.format("%d", Integer.valueOf(i));
+            }
+            int i3 = 0;
+            while (f >= 1000.0f && i3 < AndroidUtilities.numbersSignatureArray.length - 1) {
+                f /= 1000.0f;
+                i3++;
+            }
+            return String.format("%.2f", Float.valueOf(f)) + AndroidUtilities.numbersSignatureArray[i3];
         }
-        int i2 = 0;
-        while (f >= 10000.0f && i2 < AndroidUtilities.numbersSignatureArray.length - 1) {
-            f /= 1000.0f;
-            i2++;
+        if (this.formatterTON == null) {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+            decimalFormatSymbols.setDecimalSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+            this.formatterTON = decimalFormat;
+            decimalFormat.setMinimumFractionDigits(2);
+            this.formatterTON.setMaximumFractionDigits(6);
+            this.formatterTON.setGroupingUsed(false);
         }
-        return String.format("%.2f", Float.valueOf(f)) + AndroidUtilities.numbersSignatureArray[i2];
+        this.formatterTON.setMaximumFractionDigits(i > 1000000000 ? 2 : 6);
+        StringBuilder sb = new StringBuilder();
+        sb.append("TON ");
+        DecimalFormat decimalFormat2 = this.formatterTON;
+        double d = i;
+        Double.isNaN(d);
+        sb.append(decimalFormat2.format(d / 1.0E9d));
+        return ChannelMonetizationLayout.replaceTON(sb.toString(), textView.getPaint(), false);
     }
 
     public void showProgress(boolean z, boolean z2) {
@@ -250,7 +275,7 @@ public class LegendSignatureView extends FrameLayout {
         TextView percentage;
         final LinearLayout root;
         final TextView signature;
-        final TextView value;
+        final AnimatedEmojiSpan.TextViewEmojis value;
 
         Holder(LegendSignatureView legendSignatureView) {
             LinearLayout linearLayout = new LinearLayout(legendSignatureView.getContext());
@@ -267,17 +292,14 @@ public class LegendSignatureView extends FrameLayout {
             }
             TextView textView2 = new TextView(legendSignatureView.getContext());
             this.signature = textView2;
-            linearLayout.addView(textView2);
-            textView2.getLayoutParams().width = AndroidUtilities.dp(legendSignatureView.showPercentage ? 80.0f : 96.0f);
-            TextView textView3 = new TextView(legendSignatureView.getContext());
-            this.value = textView3;
-            linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2));
+            linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 20.0f, 0.0f));
+            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(legendSignatureView.getContext());
+            this.value = textViewEmojis;
+            linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-1, -2));
             textView2.setGravity(8388611);
-            textView3.setGravity(8388613);
-            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            textView3.setTextSize(1, 13.0f);
-            textView3.setMinEms(4);
-            textView3.setMaxEms(4);
+            textViewEmojis.setGravity(8388613);
+            textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textViewEmojis.setTextSize(1, 13.0f);
             textView2.setTextSize(1, 13.0f);
         }
     }

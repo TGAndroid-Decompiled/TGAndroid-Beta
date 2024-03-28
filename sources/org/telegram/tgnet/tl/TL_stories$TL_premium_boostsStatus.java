@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_statsPercentValue;
 public class TL_stories$TL_premium_boostsStatus extends TLObject {
     public static int constructor = 1230586490;
     public String boost_url;
@@ -14,7 +13,7 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
     public int level;
     public boolean my_boost;
     public int next_level_boosts;
-    public TLRPC$TL_statsPercentValue premium_audience;
+    public TL_stats$TL_statsPercentValue premium_audience;
     public ArrayList<TL_stories$TL_prepaidGiveaway> prepaid_giveaways = new ArrayList<>();
     public ArrayList<Integer> my_boost_slots = new ArrayList<>();
 
@@ -45,7 +44,7 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
             this.next_level_boosts = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & 2) != 0) {
-            this.premium_audience = TLRPC$TL_statsPercentValue.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.premium_audience = TL_stats$TL_statsPercentValue.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.boost_url = abstractSerializedData.readString(z);
         if ((this.flags & 8) != 0) {

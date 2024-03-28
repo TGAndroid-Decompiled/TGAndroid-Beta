@@ -874,7 +874,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             BoostsActivity boostsActivity = BoostsActivity.this;
             Context context = getContext();
             BoostsActivity boostsActivity2 = BoostsActivity.this;
-            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(boostsActivity, context, 30, boostsActivity2.currentAccount, boostsActivity2.getResourceProvider());
+            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(boostsActivity, context, 31, boostsActivity2.currentAccount, boostsActivity2.getResourceProvider());
             limitReachedBottomSheet.setBoostsStats(BoostsActivity.this.boostsStatus, true);
             limitReachedBottomSheet.setDialogId(BoostsActivity.this.dialogId);
             BoostsActivity.this.showDialog(limitReachedBottomSheet);

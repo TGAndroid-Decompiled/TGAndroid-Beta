@@ -72,7 +72,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
         });
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, new Utilities.Callback2() {
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 OpeningHoursDayActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -82,7 +82,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 OpeningHoursDayActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
-        }, null, getResourceProvider());
+        }, null);
         this.listView = universalRecyclerView;
         frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
         this.fragmentView = frameLayout;
@@ -168,7 +168,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
                 runnable2.run();
             }
             this.listView.adapter.update(true);
-        } else if (uItem.viewType != 2 || (i2 = i3 / 3) < 0 || i2 >= this.periods.size()) {
+        } else if (uItem.viewType != 3 || (i2 = i3 / 3) < 0 || i2 >= this.periods.size()) {
         } else {
             int i5 = i2 - 1;
             OpeningHoursActivity.Period period = i5 >= 0 ? this.periods.get(i5) : null;

@@ -213,7 +213,7 @@ public class CropRotationWheel extends FrameLayout {
                     if ((Math.abs(max - 45.0f) < 0.001f && Math.abs(this.rotation - 45.0f) >= 0.001f) || (Math.abs(max - (-45.0f)) < 0.001f && Math.abs(this.rotation - (-45.0f)) >= 0.001f)) {
                         performHapticFeedback(3, 1);
                     } else if (Math.floor(this.rotation / 2.5f) != Math.floor(max / 2.5f)) {
-                        performHapticFeedback(9, 1);
+                        AndroidUtilities.vibrateCursor(this);
                     }
                 } catch (Exception unused) {
                 }

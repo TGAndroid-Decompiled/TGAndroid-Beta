@@ -1390,7 +1390,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             } else if (z) {
                 this.sectionCell.setRightText(null);
             } else {
-                this.sectionCell.setRightText((String) null, (View.OnClickListener) null);
+                this.sectionCell.setRightText((CharSequence) null, (View.OnClickListener) null);
             }
         }
 
@@ -2583,14 +2583,15 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         private Paint arrowPaint;
         private Path arrowPath;
         private final AvatarDrawable avatarDrawable;
-        private final CheckBox2 checkBox;
+        public final CheckBox2 checkBox;
+        public long dialogId;
         private final Paint dividerPaint;
         private boolean drawArrow;
         private final BackupImageView imageView;
         private boolean[] isOnline;
         private boolean needCheck;
         private boolean needDivider;
-        private final RadioButton radioButton;
+        public final RadioButton radioButton;
         private final Theme.ResourcesProvider resourcesProvider;
         private boolean sendAs;
         private final SimpleTextView subtitleTextView;
@@ -2736,7 +2737,24 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.radioButton.setAlpha(f);
         }
 
+        public void set(Object obj) {
+            if (obj instanceof TLRPC$User) {
+                this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.titleTextView.setTranslationX(0.0f);
+                setUser((TLRPC$User) obj);
+            } else if (obj instanceof TLRPC$Chat) {
+                this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.titleTextView.setTranslationX(0.0f);
+                setChat((TLRPC$Chat) obj, 0);
+            } else if (obj instanceof String) {
+                this.titleTextView.setTypeface(null);
+                this.titleTextView.setTranslationX((-AndroidUtilities.dp(52.0f)) * (LocaleController.isRTL ? -1 : 1));
+                this.titleTextView.setText((String) obj);
+            }
+        }
+
         public void setUser(TLRPC$User tLRPC$User) {
+            this.dialogId = tLRPC$User == null ? 0L : tLRPC$User.id;
             this.avatarDrawable.setInfo(tLRPC$User);
             this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
             this.imageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
@@ -2757,6 +2775,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void setChat(TLRPC$Chat tLRPC$Chat, int i) {
             String lowerCase;
+            this.dialogId = tLRPC$Chat == null ? 0L : -tLRPC$Chat.id;
             this.avatarDrawable.setInfo(tLRPC$Chat);
             this.imageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(tLRPC$Chat) ? 12.0f : 20.0f));
             this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);

@@ -19,6 +19,9 @@ public class TLRPC$TL_message extends TLRPC$Message {
         this.pinned = (16777216 & readInt32) != 0;
         this.noforwards = (67108864 & readInt32) != 0;
         this.invert_media = (readInt32 & 134217728) != 0;
+        int readInt322 = abstractSerializedData.readInt32(z);
+        this.flags2 = readInt322;
+        this.offline = (readInt322 & 2) != 0;
         this.id = abstractSerializedData.readInt32(z);
         if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -35,6 +38,9 @@ public class TLRPC$TL_message extends TLRPC$Message {
         }
         if ((this.flags & 2048) != 0) {
             this.via_bot_id = abstractSerializedData.readInt64(z);
+        }
+        if ((this.flags2 & 1) != 0) {
+            this.via_business_bot_id = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 8) != 0) {
             this.reply_to = TLRPC$MessageReplyHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -55,15 +61,15 @@ public class TLRPC$TL_message extends TLRPC$Message {
             this.reply_markup = TLRPC$ReplyMarkup.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 128) != 0) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 != 481674261) {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            if (readInt323 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
                 return;
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt324; i++) {
                 TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize2 == null) {
                     return;
@@ -93,15 +99,15 @@ public class TLRPC$TL_message extends TLRPC$Message {
             this.reactions = TLRPC$MessageReactions.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 4194304) != 0) {
-            int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 != 481674261) {
+            int readInt325 = abstractSerializedData.readInt32(z);
+            if (readInt325 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                 }
                 return;
             }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt325; i2++) {
+            int readInt326 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt326; i2++) {
                 TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize3 == null) {
                     return;
@@ -119,7 +125,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1502839044);
+        abstractSerializedData.writeInt32(592953125);
         int i = this.out ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.mentioned ? i | 16 : i & (-17);
@@ -143,6 +149,9 @@ public class TLRPC$TL_message extends TLRPC$Message {
         int i11 = this.invert_media ? i10 | 134217728 : i10 & (-134217729);
         this.flags = i11;
         abstractSerializedData.writeInt32(i11);
+        int i12 = this.offline ? this.flags2 | 2 : this.flags2 & (-3);
+        this.flags2 = i12;
+        abstractSerializedData.writeInt32(i12);
         abstractSerializedData.writeInt32(this.id);
         if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
@@ -160,6 +169,9 @@ public class TLRPC$TL_message extends TLRPC$Message {
         if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeInt64(this.via_bot_id);
         }
+        if ((this.flags2 & 1) != 0) {
+            abstractSerializedData.writeInt64(this.via_business_bot_id);
+        }
         if ((this.flags & 8) != 0) {
             this.reply_to.serializeToStream(abstractSerializedData);
         }
@@ -175,8 +187,8 @@ public class TLRPC$TL_message extends TLRPC$Message {
             abstractSerializedData.writeInt32(481674261);
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
-            for (int i12 = 0; i12 < size; i12++) {
-                this.entities.get(i12).serializeToStream(abstractSerializedData);
+            for (int i13 = 0; i13 < size; i13++) {
+                this.entities.get(i13).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1024) != 0) {
@@ -204,8 +216,8 @@ public class TLRPC$TL_message extends TLRPC$Message {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i13 = 0; i13 < size2; i13++) {
-                this.restriction_reason.get(i13).serializeToStream(abstractSerializedData);
+            for (int i14 = 0; i14 < size2; i14++) {
+                this.restriction_reason.get(i14).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {

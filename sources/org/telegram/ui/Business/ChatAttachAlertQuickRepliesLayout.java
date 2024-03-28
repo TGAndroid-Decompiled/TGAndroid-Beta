@@ -24,15 +24,12 @@ import java.util.HashSet;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$TL_messages_sendQuickReplyMessages;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -232,7 +229,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                 super.onScrolled(i, i2);
             }
         };
-        NotificationCenter.getInstance(UserConfig.selectedAccount).listen(this.listView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
+        NotificationCenter.getInstance(UserConfig.selectedAccount).listenGlobal(this.listView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 ChatAttachAlertQuickRepliesLayout.this.lambda$new$1((Object[]) obj);
@@ -326,17 +323,9 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (item instanceof QuickRepliesController.QuickReply) {
-            int i2 = UserConfig.selectedAccount;
-            TLRPC$TL_messages_sendQuickReplyMessages tLRPC$TL_messages_sendQuickReplyMessages = new TLRPC$TL_messages_sendQuickReplyMessages();
             BaseFragment baseFragment = this.parentAlert.baseFragment;
             if (baseFragment instanceof ChatActivityInterface) {
-                TLRPC$InputPeer inputPeer = MessagesController.getInstance(i2).getInputPeer(((ChatActivityInterface) baseFragment).getDialogId());
-                tLRPC$TL_messages_sendQuickReplyMessages.peer = inputPeer;
-                if (inputPeer == null) {
-                    return;
-                }
-                tLRPC$TL_messages_sendQuickReplyMessages.shortcut_id = ((QuickRepliesController.QuickReply) item).id;
-                ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_messages_sendQuickReplyMessages, null);
+                QuickRepliesController.getInstance(UserConfig.selectedAccount).sendQuickReplyTo(((ChatActivityInterface) baseFragment).getDialogId(), (QuickRepliesController.QuickReply) item);
                 this.parentAlert.dismiss();
             }
         }

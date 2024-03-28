@@ -69,7 +69,7 @@ public class ActionBar extends FrameLayout {
     private boolean attached;
     private BackupImageView avatarSearchImageView;
     private Drawable backButtonDrawable;
-    private ImageView backButtonImageView;
+    public ImageView backButtonImageView;
     private INavigationLayout.BackButtonState backButtonState;
     Runnable backgroundUpdateListener;
     public Paint blurScrimPaint;

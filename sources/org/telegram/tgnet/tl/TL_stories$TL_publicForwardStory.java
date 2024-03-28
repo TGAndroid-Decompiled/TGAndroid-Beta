@@ -2,8 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$PublicForward;
-public class TL_stories$TL_publicForwardStory extends TLRPC$PublicForward {
+public class TL_stories$TL_publicForwardStory extends TL_stats$PublicForward {
     public TLRPC$Peer peer;
     public TL_stories$StoryItem story;
 

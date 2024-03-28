@@ -136,7 +136,7 @@ public class ViewPagerFixed extends FrameLayout {
     protected void onScrollEnd() {
     }
 
-    protected void onTabAnimationUpdate(boolean z) {
+    public void onTabAnimationUpdate(boolean z) {
     }
 
     protected void onTabPageSelected(int i) {
@@ -163,6 +163,10 @@ public class ViewPagerFixed extends FrameLayout {
 
     public float getAvailableTranslationX() {
         return AndroidUtilities.displaySize.x;
+    }
+
+    protected boolean canScrollForward(MotionEvent motionEvent) {
+        return canScroll(motionEvent);
     }
 
     public ViewPagerFixed(Context context) {

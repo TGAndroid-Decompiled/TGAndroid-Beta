@@ -238,7 +238,7 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
     }
 
     @Override
-    public void drawSignaturesToHorizontalLines(android.graphics.Canvas r18, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData r19) {
+    public void drawSignaturesToHorizontalLines(android.graphics.Canvas r22, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.DoubleLinearChartView.drawSignaturesToHorizontalLines(android.graphics.Canvas, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData):void");
     }
 
@@ -323,12 +323,14 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
     }
 
     @Override
-    protected ChartHorizontalLinesData createHorizontalLinesData(int i, int i2) {
+    protected ChartHorizontalLinesData createHorizontalLinesData(int i, int i2, int i3) {
+        float f;
         T t = this.chartData;
-        float f = 1.0f;
-        if (((DoubleLinearChartData) t).linesK.length >= 2) {
+        if (((DoubleLinearChartData) t).linesK.length < 2) {
+            f = 1.0f;
+        } else {
             f = ((DoubleLinearChartData) t).linesK[((DoubleLinearChartData) t).linesK[0] == 1.0f ? (char) 1 : (char) 0];
         }
-        return new ChartHorizontalLinesData(i, i2, this.useMinHeight, f);
+        return new ChartHorizontalLinesData(i, i2, this.useMinHeight, f, i3, this.signaturePaint, this.signaturePaint2);
     }
 }

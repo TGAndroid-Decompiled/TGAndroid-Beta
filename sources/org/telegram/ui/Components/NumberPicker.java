@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -601,6 +600,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void setMinValue(int i) {
+        OnScrollListener onScrollListener;
         this.mMinValueSet = true;
         if (this.mMinValue == i) {
             return;
@@ -622,6 +622,10 @@ public class NumberPicker extends LinearLayout {
         updateInputTextView();
         tryComputeMaxWidth();
         invalidate();
+        if (this.mScrollState != 0 || (onScrollListener = this.mOnScrollListener) == null) {
+            return;
+        }
+        onScrollListener.onScrollStateChange(this, 0);
     }
 
     public int getMaxValue() {
@@ -629,6 +633,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void setMaxValue(int i) {
+        OnScrollListener onScrollListener;
         this.mMaxValueSet = true;
         if (this.mMaxValue == i) {
             return;
@@ -650,6 +655,10 @@ public class NumberPicker extends LinearLayout {
         updateInputTextView();
         tryComputeMaxWidth();
         invalidate();
+        if (this.mScrollState != 0 || (onScrollListener = this.mOnScrollListener) == null) {
+            return;
+        }
+        onScrollListener.onScrollStateChange(this, 0);
     }
 
     public String[] getDisplayedValues() {
@@ -799,6 +808,7 @@ public class NumberPicker extends LinearLayout {
 
     private void setValueInternal(int i, boolean z) {
         int min;
+        OnScrollListener onScrollListener;
         if (this.mValue == i) {
             return;
         }
@@ -811,17 +821,18 @@ public class NumberPicker extends LinearLayout {
         this.mFantomValue = min;
         this.mValue = min;
         updateInputTextView();
-        if (Math.abs(i2 - min) > 0.9f && Build.VERSION.SDK_INT >= 27) {
-            try {
-                performHapticFeedback(9, 1);
-            } catch (Exception unused) {
-            }
+        if (Math.abs(i2 - min) > 0.9f) {
+            AndroidUtilities.vibrateCursor(this);
         }
         if (z) {
             notifyChange(i2, min);
         }
         initializeSelectorWheelIndices();
         invalidate();
+        if (this.mScrollState != 0 || (onScrollListener = this.mOnScrollListener) == null) {
+            return;
+        }
+        onScrollListener.onScrollStateChange(this, 0);
     }
 
     public void changeValueByOne(boolean z) {

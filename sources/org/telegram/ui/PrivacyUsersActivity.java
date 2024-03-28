@@ -44,8 +44,6 @@ import org.telegram.ui.PrivacyUsersActivity;
 public class PrivacyUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ContactsActivity.ContactsActivityDelegate {
     private int blockUserDetailRow;
     private int blockUserRow;
-    private boolean blockedUsersActivity;
-    private int currentType;
     private PrivacyActivityDelegate delegate;
     private int deleteAllRow;
     private EmptyTextProgressView emptyView;
@@ -55,32 +53,22 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     private RecyclerListView listView;
     private ListAdapter listViewAdapter;
     private int rowCount;
+    public int rulesType;
     private ArrayList<Long> uidArray;
     private int usersDetailRow;
     private int usersEndRow;
     private int usersHeaderRow;
     private int usersStartRow;
+    private int currentType = 1;
+    private boolean blockedUsersActivity = true;
 
     public interface PrivacyActivityDelegate {
         void didUpdateUserList(ArrayList<Long> arrayList, boolean z);
     }
 
-    public PrivacyUsersActivity() {
-        this.currentType = 1;
-        this.blockedUsersActivity = true;
-    }
-
     public PrivacyUsersActivity loadBlocked() {
         getMessagesController().getBlockedPeers(true);
         return this;
-    }
-
-    public PrivacyUsersActivity(int i, ArrayList<Long> arrayList, boolean z, boolean z2) {
-        this.uidArray = arrayList;
-        this.isAlwaysShare = z2;
-        this.isGroup = z;
-        this.blockedUsersActivity = false;
-        this.currentType = i;
     }
 
     @Override
@@ -236,11 +224,14 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             } else if (this.currentType == 2) {
                 bundle.putInt("chatAddType", 2);
             }
+            if (this.isAlwaysShare && this.rulesType == 1) {
+                bundle.putBoolean("allowPremium", true);
+            }
             GroupCreateActivity groupCreateActivity = new GroupCreateActivity(bundle);
             groupCreateActivity.setDelegate(new GroupCreateActivity.GroupCreateActivityDelegate() {
                 @Override
-                public final void didSelectUsers(ArrayList arrayList) {
-                    PrivacyUsersActivity.this.lambda$createView$2(arrayList);
+                public final void didSelectUsers(boolean z, ArrayList arrayList) {
+                    PrivacyUsersActivity.this.lambda$createView$2(z, arrayList);
                 }
             });
             presentFragment(groupCreateActivity);
@@ -273,7 +264,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$createView$2(ArrayList arrayList) {
+    public void lambda$createView$2(boolean z, ArrayList arrayList) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             Long l = (Long) it.next();
@@ -299,10 +290,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             showUnblockAlert(this.uidArray.get(i - i2), view);
         }
         return true;
-    }
-
-    public void setDelegate(PrivacyActivityDelegate privacyActivityDelegate) {
-        this.delegate = privacyActivityDelegate;
     }
 
     public void showUnblockAlert(final Long l, View view) {

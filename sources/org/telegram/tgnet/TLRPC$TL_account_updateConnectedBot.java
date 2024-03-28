@@ -1,11 +1,11 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_updateConnectedBot extends TLObject {
-    public static int constructor = -1674751363;
+    public static int constructor = 1138250269;
     public TLRPC$InputUser bot;
     public boolean can_reply;
     public boolean deleted;
     public int flags;
-    public TLRPC$TL_inputBusinessRecipients recipients;
+    public TLRPC$TL_inputBusinessBotRecipients recipients;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {

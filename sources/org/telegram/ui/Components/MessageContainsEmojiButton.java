@@ -103,7 +103,11 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
                 spannableStringBuilder.removeSpan(typefaceSpanArr[i3]);
                 spannableStringBuilder.setSpan(new BoldAndAccent(), spanStart, spanEnd, 33);
             }
-        } else if (arrayList.size() == 1) {
+        } else if (arrayList.size() != 1) {
+            if (i2 == 4) {
+                this.mainText = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StickersCheckStickersBotForMoreOptions), Theme.key_chat_messageLinkIn, 2, null, resourcesProvider);
+            }
+        } else {
             if (i2 == 0) {
                 string = LocaleController.getString("MessageContainsEmojiPack", R.string.MessageContainsEmojiPack);
             } else if (i2 == 3) {

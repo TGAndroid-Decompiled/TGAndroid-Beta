@@ -359,7 +359,7 @@ public class StickerSetCell extends FrameLayout {
             sb.append("50_50");
             sb.append(!isEnabled ? "_firstframe" : "");
             String sb2 = sb.toString();
-            if ((z4 && MessageObject.isAnimatedStickerDocument(tLRPC$Document2, true)) || MessageObject.isVideoSticker(tLRPC$Document2)) {
+            if (z4 && (MessageObject.isAnimatedStickerDocument(tLRPC$Document2, true) || MessageObject.isVideoSticker(tLRPC$Document2))) {
                 if (svgThumb != null) {
                     this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document2), sb2, svgThumb, 0, tLRPC$TL_messages_stickerSet);
                 } else {

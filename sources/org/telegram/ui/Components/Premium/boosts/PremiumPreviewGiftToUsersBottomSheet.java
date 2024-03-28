@@ -66,7 +66,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         if (lastFragment == null) {
             return;
         }
-        new PremiumPreviewGiftToUsersBottomSheet(lastFragment, UserConfig.selectedAccount, list, list2, lastFragment.getResourceProvider()).show();
+        lastFragment.showDialog(new PremiumPreviewGiftToUsersBottomSheet(lastFragment, UserConfig.selectedAccount, list, list2, lastFragment.getResourceProvider()));
     }
 
     public PremiumPreviewGiftToUsersBottomSheet(BaseFragment baseFragment, int i, List<TLRPC$User> list, List<TLRPC$TL_premiumGiftCodeOption> list2, Theme.ResourcesProvider resourcesProvider) {

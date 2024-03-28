@@ -127,6 +127,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean attachedToWindow;
     private AvatarDrawable avatarDrawable;
     public ImageReceiver avatarImage;
+    public int avatarStart;
     private int bottomClip;
     private Paint buttonBackgroundPaint;
     private boolean buttonCreated;
@@ -530,6 +531,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         super(context);
         this.drawArchive = true;
         this.drawAvatar = true;
+        this.avatarStart = 10;
         this.messagePaddingStart = 72;
         this.heightDefault = 72;
         this.heightThreeLines = 78;

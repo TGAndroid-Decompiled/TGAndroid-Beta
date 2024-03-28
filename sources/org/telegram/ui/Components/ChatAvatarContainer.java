@@ -51,6 +51,7 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.BusinessLinksController;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AutoDeletePopupWrapper;
@@ -195,11 +196,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.avatarImageView = new AnonymousClass1(context, baseFragment, z3, resourcesProvider);
         if (z2 || (baseFragment instanceof TopicsFragment)) {
             ChatActivity chatActivity2 = this.parentFragment;
-            if (chatActivity2 == null || chatActivity2.getChatMode() != 5) {
+            if (chatActivity2 == null || (chatActivity2.getChatMode() != 5 && this.parentFragment.getChatMode() != 6)) {
                 this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(baseFragment);
             }
             ChatActivity chatActivity3 = this.parentFragment;
-            if (chatActivity3 != null && (chatActivity3.isThreadChat() || this.parentFragment.getChatMode() == 2 || this.parentFragment.getChatMode() == 5)) {
+            if (chatActivity3 != null && (chatActivity3.isThreadChat() || this.parentFragment.getChatMode() == 2 || this.parentFragment.getChatMode() == 5 || this.parentFragment.getChatMode() == 6)) {
                 this.avatarImageView.setVisibility(8);
             }
         }
@@ -321,11 +322,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.val$baseFragment = baseFragment;
             this.val$avatarClickable = z;
             this.val$resourcesProvider = resourcesProvider;
-            this.params = new C00251(true);
+            this.params = new C00241(true);
         }
 
-        public class C00251 extends StoriesUtilities.AvatarStoryParams {
-            C00251(boolean z) {
+        public class C00241 extends StoriesUtilities.AvatarStoryParams {
+            C00241(boolean z) {
                 super(z);
             }
 
@@ -335,7 +336,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     @Override
                     public final boolean findView(long j2, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
                         boolean lambda$openStory$0;
-                        lambda$openStory$0 = ChatAvatarContainer.AnonymousClass1.C00251.this.lambda$openStory$0(j2, i, i2, i3, transitionViewHolder);
+                        lambda$openStory$0 = ChatAvatarContainer.AnonymousClass1.C00241.this.lambda$openStory$0(j2, i, i2, i3, transitionViewHolder);
                         return lambda$openStory$0;
                     }
 
@@ -955,7 +956,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         if (chatActivity == null) {
             return;
         }
-        TLRPC$User currentUser = chatActivity.getCurrentUser();
+        if (chatActivity.getChatMode() == 6) {
+            setSubtitle(BusinessLinksController.stripHttps(this.parentFragment.businessLink.link));
+            return;
+        }
+        TLRPC$User currentUser = this.parentFragment.getCurrentUser();
         if ((UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || this.parentFragment.getChatMode() != 0) && this.parentFragment.getChatMode() != 3) {
             if (getSubtitleTextView().getVisibility() != 8) {
                 getSubtitleTextView().setVisibility(8);

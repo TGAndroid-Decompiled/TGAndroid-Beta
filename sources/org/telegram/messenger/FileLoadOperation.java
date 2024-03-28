@@ -62,6 +62,7 @@ public class FileLoadOperation {
     private File cacheFileTemp;
     private File cacheIvTemp;
     private ArrayList<RequestInfo> cancelledRequestInfos;
+    public volatile boolean caughtPremiumFloodWait;
     private byte[] cdnCheckBytes;
     private int cdnChunkCheckSize;
     private int cdnDatacenterId;
@@ -132,7 +133,7 @@ public class FileLoadOperation {
     private FileLoaderPriorityQueue priorityQueue;
     private RequestInfo priorityRequestInfo;
     private int renameRetryCount;
-    private ArrayList<RequestInfo> requestInfos;
+    public ArrayList<RequestInfo> requestInfos;
     private long requestedBytesCount;
     private HashMap<Long, Integer> requestedPreloadedBytesRanges;
     private boolean requestingCdnOffsets;
@@ -239,7 +240,7 @@ public class FileLoadOperation {
         private boolean forceSmallChunk;
         private long offset;
         public long requestStartTime;
-        private int requestToken;
+        public int requestToken;
         private TLRPC$TL_upload_file response;
         private TLRPC$TL_upload_cdnFile responseCdn;
         private TLRPC$TL_upload_webFile responseWeb;
@@ -1505,10 +1506,7 @@ public class FileLoadOperation {
             }
             if (requestInfo != requestInfo2 && requestInfo2.requestToken != 0) {
                 requestInfo2.cancelling = true;
-                if (!z2) {
-                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true);
-                    requestInfo2.cancelled = true;
-                } else {
+                if (z2) {
                     this.cancelledRequestInfos.add(requestInfo2);
                     requestInfo2.whenCancelled = new Runnable() {
                         @Override
@@ -1522,6 +1520,9 @@ public class FileLoadOperation {
                             FileLoadOperation.lambda$clearOperation$22(FileLoadOperation.RequestInfo.this);
                         }
                     });
+                } else {
+                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true);
+                    requestInfo2.cancelled = true;
                 }
             }
             i++;

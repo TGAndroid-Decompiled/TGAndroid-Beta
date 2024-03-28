@@ -132,7 +132,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         return 0;
     }
 
-    protected Theme.ResourcesProvider getResourcesProvider() {
+    public Theme.ResourcesProvider getResourcesProvider() {
         return null;
     }
 

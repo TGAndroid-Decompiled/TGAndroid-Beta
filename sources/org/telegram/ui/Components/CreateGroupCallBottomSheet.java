@@ -178,7 +178,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
     }
 
     @Override
-    public RecyclerListView.SelectionAdapter createAdapter() {
+    public RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public int getItemViewType(int i) {

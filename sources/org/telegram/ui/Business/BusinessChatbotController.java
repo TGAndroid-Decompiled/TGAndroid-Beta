@@ -107,8 +107,10 @@ public class BusinessChatbotController {
         this.callbacks.clear();
     }
 
-    public void invalidate() {
+    public void invalidate(boolean z) {
         this.loaded = false;
-        load(null);
+        if (z) {
+            load(null);
+        }
     }
 }

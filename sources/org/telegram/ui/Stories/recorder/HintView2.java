@@ -29,6 +29,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -268,27 +269,38 @@ public class HintView2 extends View {
         }
         Spanned spanned = (Spanned) charSequence;
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spanned.getSpans(0, charSequence.length(), TypefaceSpan.class);
-        if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
-            return textPaint.measureText(charSequence.toString());
-        }
+        AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
         int i = 0;
-        for (int i2 = 0; i2 < typefaceSpanArr.length; i2++) {
-            int spanStart = spanned.getSpanStart(typefaceSpanArr[i2]);
-            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i2]);
-            int max = Math.max(i, spanStart);
-            if (max - i > 0) {
-                f += textPaint.measureText(spanned, i, max);
+        for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) spanned.getSpans(0, charSequence.length(), Emoji.EmojiSpan.class)) {
+            i += emojiSpan.size;
+        }
+        for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
+            i = (int) (i + animatedEmojiSpan.size);
+        }
+        if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
+            return textPaint.measureText(charSequence.toString()) + i;
+        }
+        int i2 = 0;
+        for (int i3 = 0; i3 < typefaceSpanArr.length; i3++) {
+            int spanStart = spanned.getSpanStart(typefaceSpanArr[i3]);
+            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i3]);
+            int max = Math.max(i2, spanStart);
+            if (max - i2 > 0) {
+                f += textPaint.measureText(spanned, i2, max);
             }
-            i = Math.max(max, spanEnd);
-            if (i - max > 0) {
+            i2 = Math.max(max, spanEnd);
+            if (i2 - max > 0) {
                 Typeface typeface = textPaint.getTypeface();
-                textPaint.setTypeface(typefaceSpanArr[i2].getTypeface());
-                f += textPaint.measureText(spanned, max, i);
+                textPaint.setTypeface(typefaceSpanArr[i3].getTypeface());
+                f += textPaint.measureText(spanned, max, i2);
                 textPaint.setTypeface(typeface);
             }
         }
-        int max2 = Math.max(i, charSequence.length());
-        return max2 - i > 0 ? f + textPaint.measureText(spanned, i, max2) : f;
+        int max2 = Math.max(i2, charSequence.length());
+        if (max2 - i2 > 0) {
+            f += textPaint.measureText(spanned, i2, max2);
+        }
+        return f + i;
     }
 
     public static int cutInFancyHalf(CharSequence charSequence, TextPaint textPaint) {

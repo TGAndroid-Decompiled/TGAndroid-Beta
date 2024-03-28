@@ -2,10 +2,9 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$StatsGraph;
 public class TL_stories$TL_stats_storyStats extends TLObject {
-    public TLRPC$StatsGraph reactions_by_emotion_graph;
-    public TLRPC$StatsGraph views_graph;
+    public TL_stats$StatsGraph reactions_by_emotion_graph;
+    public TL_stats$StatsGraph views_graph;
 
     public static TL_stories$TL_stats_storyStats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1355613820 != i) {
@@ -21,8 +20,8 @@ public class TL_stories$TL_stats_storyStats extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.views_graph = TLRPC$StatsGraph.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-        this.reactions_by_emotion_graph = TLRPC$StatsGraph.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.views_graph = TL_stats$StatsGraph.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.reactions_by_emotion_graph = TL_stats$StatsGraph.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 
     @Override

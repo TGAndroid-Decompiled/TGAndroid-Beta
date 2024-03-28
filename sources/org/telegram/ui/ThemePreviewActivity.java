@@ -4189,6 +4189,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didPressAboutRevenueSharingAds() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                    }
+
+                    @Override
                     public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
                     }
@@ -4291,6 +4296,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressSponsoredClose() {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                    }
+
+                    @Override
+                    public void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell2, f, f2);
                     }
 
                     @Override

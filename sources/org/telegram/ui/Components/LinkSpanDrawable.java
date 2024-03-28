@@ -25,6 +25,7 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LinkSpanDrawable;
 public class LinkSpanDrawable<S extends CharacterStyle> {
     private static final ArrayList<LinkPath> pathCache = new ArrayList<>();
@@ -405,6 +406,22 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             }
         }
 
+        public void clearLoading(boolean z) {
+            if (z) {
+                for (int i = 0; i < this.mLoadingCount; i++) {
+                    removeLoadingAt(i, true);
+                }
+            } else if (this.mLoadingCount > 0) {
+                for (int i2 = 0; i2 < this.mLoadingCount; i2++) {
+                    ((LoadingDrawable) this.mLoading.get(i2).first).reset();
+                    invalidate(this.mLoading.get(i2).second, false);
+                }
+                this.mLoading.clear();
+                this.mLoadingCount = 0;
+                invalidate();
+            }
+        }
+
         public void removeLinks(Object obj) {
             removeLinks(obj, true);
         }
@@ -474,6 +491,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
     }
 
     public static class LinksTextView extends TextView {
+        private CharacterStyle currentLinkLoading;
         private boolean disablePaddingsOffset;
         private boolean disablePaddingsOffsetX;
         private boolean disablePaddingsOffsetY;
@@ -483,9 +501,28 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         private OnLinkPress onPressListener;
         private LinkSpanDrawable<ClickableSpan> pressedLink;
         private Theme.ResourcesProvider resourcesProvider;
+        AnimatedEmojiSpan.EmojiGroupedSpans stack;
 
         public interface OnLinkPress {
             void run(ClickableSpan clickableSpan);
+        }
+
+        protected int processColor(int i) {
+            return i;
+        }
+
+        public void setLoading(CharacterStyle characterStyle) {
+            if (this.currentLinkLoading != characterStyle) {
+                this.links.clearLoading(true);
+                this.currentLinkLoading = characterStyle;
+                LoadingDrawable makeLoading = LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
+                if (makeLoading != null) {
+                    int processColor = processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider));
+                    makeLoading.setColors(Theme.multAlpha(processColor, 0.8f), Theme.multAlpha(processColor, 1.3f), Theme.multAlpha(processColor, 1.0f), Theme.multAlpha(processColor, 4.0f));
+                    makeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    this.links.addLoading(makeLoading);
+                }
+            }
         }
 
         public LinksTextView(Context context) {
@@ -620,6 +657,40 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                 canvas.restore();
             }
             super.onDraw(canvas);
+            float paddingTop = ((getGravity() & 16) == 0 || getLayout() == null) ? 0.0f : getPaddingTop() + ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f);
+            if (paddingTop != 0.0f || getPaddingLeft() != 0) {
+                canvas.save();
+                canvas.translate(getPaddingLeft(), paddingTop);
+            }
+            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, getLayout(), this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+            if (paddingTop == 0.0f && getPaddingLeft() == 0) {
+                return;
+            }
+            canvas.restore();
+        }
+
+        @Override
+        public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+            super.setText(charSequence, bufferType);
+            this.stack = AnimatedEmojiSpan.update(0, this, this.stack, getLayout());
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            this.stack = AnimatedEmojiSpan.update(0, this, this.stack, getLayout());
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            this.stack = AnimatedEmojiSpan.update(0, this, this.stack, getLayout());
+        }
+
+        @Override
+        public void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            AnimatedEmojiSpan.release(this, this.stack);
         }
     }
 

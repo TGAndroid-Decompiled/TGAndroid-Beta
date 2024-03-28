@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -40,7 +42,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     private RecyclerListView listView;
     private final Theme.ResourcesProvider resourcesProvider;
     private GraySectionCell topSectionCell;
-    private View.OnClickListener topSectionClickListener;
 
     public SelectorAdapter(Context context, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
@@ -64,7 +65,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     }
 
     public void setTopSectionClickListener(View.OnClickListener onClickListener) {
-        this.topSectionClickListener = onClickListener;
         GraySectionCell graySectionCell = this.topSectionCell;
         if (graySectionCell != null) {
             if (onClickListener == null) {
@@ -132,76 +132,76 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         Item item = list.get(i);
         int itemViewType = viewHolder.getItemViewType();
         boolean z = true;
-        if (itemViewType != 3) {
-            if (itemViewType == 6) {
-                SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
-                selectorCountryCell.setCountry(item.country, (i >= this.items.size() - 1 || (i2 = i + 1) >= this.items.size() - 1 || this.items.get(i2).viewType == 7) ? false : false);
-                selectorCountryCell.setChecked(item.checked, false);
-                return;
-            } else if (itemViewType == -1) {
-                int i3 = item.padHeight;
-                if (i3 < 0) {
-                    i3 = (int) (AndroidUtilities.displaySize.y * 0.3f);
-                }
-                viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, i3));
-                return;
-            } else if (itemViewType == 7) {
-                ((SelectorLetterCell) viewHolder.itemView).setLetter(item.text);
-                return;
-            } else if (itemViewType == 5) {
-                try {
-                    ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            } else if (itemViewType == 8) {
-                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
-                graySectionCell.setText(item.text);
-                if (this.topSectionClickListener == null) {
-                    graySectionCell.setRightText((String) null, (View.OnClickListener) null);
+        if (itemViewType == 3) {
+            SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
+            TLRPC$User tLRPC$User = item.user;
+            if (tLRPC$User != null) {
+                selectorUserCell.setUser(tLRPC$User);
+            } else {
+                TLRPC$Chat tLRPC$Chat = item.chat;
+                if (tLRPC$Chat != null) {
+                    selectorUserCell.setChat(tLRPC$Chat, getParticipantsCount(tLRPC$Chat));
                 } else {
-                    graySectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), this.topSectionClickListener);
-                }
-                this.topSectionCell = graySectionCell;
-                return;
-            } else {
-                return;
-            }
-        }
-        SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
-        TLRPC$User tLRPC$User = item.user;
-        if (tLRPC$User != null) {
-            selectorUserCell.setUser(tLRPC$User);
-        } else {
-            TLRPC$Chat tLRPC$Chat = item.chat;
-            if (tLRPC$Chat != null) {
-                selectorUserCell.setChat(tLRPC$Chat, getParticipantsCount(tLRPC$Chat));
-            } else {
-                TLRPC$InputPeer tLRPC$InputPeer = item.peer;
-                if (tLRPC$InputPeer != null) {
-                    if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerSelf) {
-                        selectorUserCell.setUser(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) {
-                        selectorUserCell.setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$InputPeer.user_id)));
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
-                        TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
-                        selectorUserCell.setChat(chat, getParticipantsCount(chat));
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
-                        TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
-                        selectorUserCell.setChat(chat2, getParticipantsCount(chat2));
+                    TLRPC$InputPeer tLRPC$InputPeer = item.peer;
+                    if (tLRPC$InputPeer != null) {
+                        if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerSelf) {
+                            selectorUserCell.setUser(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) {
+                            selectorUserCell.setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$InputPeer.user_id)));
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
+                            TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
+                            selectorUserCell.setChat(chat, getParticipantsCount(chat));
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
+                            TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
+                            selectorUserCell.setChat(chat2, getParticipantsCount(chat2));
+                        }
                     }
                 }
             }
+            selectorUserCell.setChecked(item.checked, false);
+            selectorUserCell.setCheckboxAlpha(1.0f, false);
+            int i3 = i + 1;
+            if (i3 < this.items.size() && this.items.get(i3).viewType != itemViewType) {
+                z = false;
+            }
+            selectorUserCell.setDivider(z);
+            if (i3 >= this.items.size() || this.items.get(i3).viewType != 7) {
+                return;
+            }
+            selectorUserCell.setDivider(false);
+        } else if (itemViewType == 6) {
+            SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
+            selectorCountryCell.setCountry(item.country, (i >= this.items.size() - 1 || (i2 = i + 1) >= this.items.size() - 1 || this.items.get(i2).viewType == 7) ? false : false);
+            selectorCountryCell.setChecked(item.checked, false);
+        } else if (itemViewType == -1) {
+            int i4 = item.padHeight;
+            if (i4 < 0) {
+                i4 = (int) (AndroidUtilities.displaySize.y * 0.3f);
+            }
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, i4));
+        } else if (itemViewType == 7) {
+            ((SelectorLetterCell) viewHolder.itemView).setLetter(item.text);
+        } else if (itemViewType == 5) {
+            try {
+                ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
+            } catch (Exception unused) {
+            }
+        } else if (itemViewType == 8) {
+            GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+            if (TextUtils.equals(graySectionCell.getText(), item.text)) {
+                CharSequence charSequence = item.subtext;
+                if (charSequence == null) {
+                    charSequence = "";
+                }
+                graySectionCell.setRightText(charSequence, true, item.callback);
+            } else {
+                graySectionCell.setText(Emoji.replaceWithRestrictedEmoji(item.text, graySectionCell.getTextView(), (Runnable) null));
+                if (!TextUtils.isEmpty(item.subtext)) {
+                    graySectionCell.setRightText(item.subtext, item.callback);
+                }
+            }
+            this.topSectionCell = graySectionCell;
         }
-        selectorUserCell.setChecked(item.checked, false);
-        selectorUserCell.setCheckboxAlpha(1.0f, false);
-        selectorUserCell.setDivider(i < this.items.size() + (-2));
-        int i4 = i + 1;
-        if (i4 >= this.items.size() || this.items.get(i4).viewType != 7) {
-            return;
-        }
-        selectorUserCell.setDivider(false);
     }
 
     @Override
@@ -281,12 +281,14 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     }
 
     public static class Item extends AdapterWithDiffUtils.Item {
+        public View.OnClickListener callback;
         public TLRPC$Chat chat;
         public boolean checked;
         public TLRPC$TL_help_country country;
         public int padHeight;
         public TLRPC$InputPeer peer;
-        public String text;
+        public CharSequence subtext;
+        public CharSequence text;
         public int type;
         public TLRPC$User user;
 
@@ -316,10 +318,16 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
-        public static Item asTopSection(String str) {
+        public static Item asTopSection(CharSequence charSequence) {
             Item item = new Item(8, false);
-            item.text = str;
+            item.text = charSequence;
             return item;
+        }
+
+        public Item withRightText(String str, View.OnClickListener onClickListener) {
+            this.subtext = str;
+            this.callback = onClickListener;
+            return this;
         }
 
         public static Item asCountry(TLRPC$TL_help_country tLRPC$TL_help_country, boolean z) {
@@ -336,6 +344,22 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             item.chat = null;
             item.checked = z;
             return item;
+        }
+
+        public long getDialogId() {
+            TLRPC$User tLRPC$User = this.user;
+            if (tLRPC$User != null) {
+                return tLRPC$User.id;
+            }
+            TLRPC$Chat tLRPC$Chat = this.chat;
+            if (tLRPC$Chat != null) {
+                return -tLRPC$Chat.id;
+            }
+            TLRPC$InputPeer tLRPC$InputPeer = this.peer;
+            if (tLRPC$InputPeer != null) {
+                return DialogObject.getPeerDialogId(tLRPC$InputPeer);
+            }
+            return 0L;
         }
 
         public static Item asNoUsers() {
@@ -355,10 +379,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
                 return false;
             }
             if (i != -1 || this.padHeight == item.padHeight) {
-                if (i != 3 || (this.user == item.user && this.chat == item.chat && this.peer == item.peer && this.type == item.type && this.checked == item.checked)) {
-                    if (i != 6 || (this.country == item.country && this.checked == item.checked)) {
-                        if (i != 7 || TextUtils.equals(this.text, item.text)) {
-                            return this.viewType != 8 || (TextUtils.equals(this.text, item.text) && this.checked == item.checked);
+                if (i != 3 || (getDialogId() == item.getDialogId() && this.type == item.type)) {
+                    int i2 = this.viewType;
+                    if (i2 != 6 || this.country == item.country) {
+                        if (i2 != 7 || TextUtils.equals(this.text, item.text)) {
+                            return this.viewType != 8 || TextUtils.equals(this.text, item.text);
                         }
                         return false;
                     }
@@ -367,6 +392,29 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
                 return false;
             }
             return false;
+        }
+
+        @Override
+        protected boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+            if (this == item) {
+                return true;
+            }
+            if (item == null || Item.class != item.getClass()) {
+                return false;
+            }
+            Item item2 = (Item) item;
+            if (this.checked != item2.checked) {
+                return false;
+            }
+            if (this.viewType == 8) {
+                if (TextUtils.equals(this.subtext, item2.subtext)) {
+                    if ((this.callback == null) == (item2.callback == null)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return true;
         }
     }
 }

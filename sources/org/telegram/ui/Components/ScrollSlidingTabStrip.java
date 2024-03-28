@@ -42,6 +42,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ScrollSlidingTabStrip;
@@ -664,6 +665,8 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
 
     public void setImages() {
         float dp;
+        int i;
+        String str;
         ImageLocation forSticker;
         ArrayList<TLRPC$PhotoSize> arrayList;
         float f = this.expandProgress;
@@ -680,8 +683,8 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             }
         }
         this.currentPlayingImagesTmp.clear();
-        for (int i = 0; i < this.currentPlayingImages.size(); i++) {
-            this.currentPlayingImagesTmp.put(this.currentPlayingImages.valueAt(i).index, this.currentPlayingImages.valueAt(i));
+        for (int i2 = 0; i2 < this.currentPlayingImages.size(); i2++) {
+            this.currentPlayingImagesTmp.put(this.currentPlayingImages.valueAt(i2).index, this.currentPlayingImages.valueAt(i2));
         }
         this.currentPlayingImages.clear();
         while (true) {
@@ -709,8 +712,20 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                             stickerTabView.svgThumb = DocumentObject.getSvgThumb((TLRPC$Document) tag3, Theme.key_emptyListPlaceholder, 0.2f);
                         }
                         forSticker = ImageLocation.getForDocument(tLRPC$Document);
+                        str = null;
                     } else if (tag3 instanceof TLRPC$PhotoSize) {
-                        forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) tag3, tLRPC$Document, tag4 instanceof TLRPC$TL_messages_stickerSet ? ((TLRPC$TL_messages_stickerSet) tag4).set.thumb_version : 0);
+                        TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) tag3;
+                        if (tag4 instanceof TLRPC$TL_messages_stickerSet) {
+                            TLRPC$StickerSet tLRPC$StickerSet = ((TLRPC$TL_messages_stickerSet) tag4).set;
+                            i = tLRPC$StickerSet.thumb_version;
+                            if (!stickerTabView.inited) {
+                                stickerTabView.svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSet.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
+                            }
+                        } else {
+                            i = 0;
+                        }
+                        str = tLRPC$PhotoSize.type;
+                        forSticker = ImageLocation.getForSticker(tLRPC$PhotoSize, tLRPC$Document, i);
                     }
                     if (!stickerTabView.inited && stickerTabView.svgThumb == null && tLRPC$Document != null) {
                         stickerTabView.svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_emptyListPlaceholder, 0.2f);
@@ -720,25 +735,31 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                         SvgHelper.SvgDrawable svgDrawable = stickerTabView.svgThumb;
                         BackupImageView backupImageView = stickerTabView.imageView;
                         boolean z = !LiteMode.isEnabled(1);
-                        String str = z ? "40_40_firstframe" : "40_40";
-                        if (!MessageObject.isVideoSticker(tLRPC$Document) || (arrayList = tLRPC$Document.thumbs) == null || arrayList.size() <= 0) {
-                            if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) {
-                                if (svgDrawable != null) {
-                                    backupImageView.setImage(forSticker, str, svgDrawable, 0, tag4);
+                        String str2 = z ? "40_40_firstframe" : "40_40";
+                        if ((str != null || !MessageObject.isVideoSticker(tLRPC$Document) || (arrayList = tLRPC$Document.thumbs) == null || arrayList.size() <= 0) && (str == null || !str.equalsIgnoreCase("v"))) {
+                            if (!(str == null && MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) && (str == null || !str.equalsIgnoreCase("a"))) {
+                                if (forSticker.imageType == 1) {
+                                    backupImageView.setImage(forSticker, str2, "tgs", svgDrawable, tag4);
                                 } else {
-                                    backupImageView.setImage(forSticker, str, forSticker, (String) null, 0, tag4);
+                                    backupImageView.setImage(forSticker, str2, "webp", svgDrawable, tag4);
                                 }
-                            } else if (forSticker.imageType == 1) {
-                                backupImageView.setImage(forSticker, str, "tgs", svgDrawable, tag4);
+                            } else if (svgDrawable != null) {
+                                backupImageView.setImage(forSticker, str2, svgDrawable, 0, tag4);
                             } else {
-                                backupImageView.setImage(forSticker, str, "webp", svgDrawable, tag4);
+                                backupImageView.setImage(forSticker, str2, forSticker, (String) null, 0, tag4);
                             }
-                        } else if (z) {
-                            backupImageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), "40_40", svgDrawable, 0, tag4);
+                        } else if (str == null) {
+                            if (z) {
+                                backupImageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), "40_40", svgDrawable, 0, tag4);
+                            } else if (svgDrawable != null) {
+                                backupImageView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, svgDrawable, 0, tag4);
+                            } else {
+                                backupImageView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, forSticker, (String) null, 0, tag4);
+                            }
                         } else if (svgDrawable != null) {
-                            backupImageView.setImage(ImageLocation.getForDocument(tLRPC$Document), str, svgDrawable, 0, tag4);
+                            backupImageView.setImage(forSticker, str2, svgDrawable, 0, tag4);
                         } else {
-                            backupImageView.setImage(ImageLocation.getForDocument(tLRPC$Document), str, forSticker, (String) null, 0, tag4);
+                            backupImageView.setImage(forSticker, str2, (ImageLocation) null, (String) null, 0, tag4);
                         }
                         stickerTabView.textView.setText(tag4 instanceof TLRPC$TL_messages_stickerSet ? ((TLRPC$TL_messages_stickerSet) tag4).set.title : null);
                     }
@@ -748,9 +769,9 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             }
             scrollX++;
         }
-        for (int i2 = 0; i2 < this.currentPlayingImagesTmp.size(); i2++) {
-            if (this.currentPlayingImagesTmp.valueAt(i2) != this.draggingView) {
-                this.currentPlayingImagesTmp.valueAt(i2).imageView.setImageDrawable(null);
+        for (int i3 = 0; i3 < this.currentPlayingImagesTmp.size(); i3++) {
+            if (this.currentPlayingImagesTmp.valueAt(i3) != this.draggingView) {
+                this.currentPlayingImagesTmp.valueAt(i3).imageView.setImageDrawable(null);
             }
         }
     }

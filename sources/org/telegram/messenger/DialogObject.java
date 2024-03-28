@@ -1,5 +1,8 @@
 package org.telegram.messenger;
 
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
@@ -11,6 +14,7 @@ import org.telegram.tgnet.TLRPC$TL_dialog;
 import org.telegram.tgnet.TLRPC$TL_dialogFolder;
 import org.telegram.tgnet.TLRPC$TL_emojiStatus;
 import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
+import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -201,5 +205,33 @@ public class DialogObject {
 
     public static boolean emojiStatusesEqual(TLRPC$EmojiStatus tLRPC$EmojiStatus, TLRPC$EmojiStatus tLRPC$EmojiStatus2) {
         return getEmojiStatusDocumentId(tLRPC$EmojiStatus) == getEmojiStatusDocumentId(tLRPC$EmojiStatus2) && getEmojiStatusUntil(tLRPC$EmojiStatus) == getEmojiStatusUntil(tLRPC$EmojiStatus2);
+    }
+
+    public static TLRPC$TL_username findUsername(String str, TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null) {
+            return null;
+        }
+        return findUsername(str, tLRPC$User.usernames);
+    }
+
+    public static TLRPC$TL_username findUsername(String str, TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            return null;
+        }
+        return findUsername(str, tLRPC$Chat.usernames);
+    }
+
+    public static TLRPC$TL_username findUsername(String str, ArrayList<TLRPC$TL_username> arrayList) {
+        if (arrayList == null) {
+            return null;
+        }
+        Iterator<TLRPC$TL_username> it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC$TL_username next = it.next();
+            if (next != null && TextUtils.equals(next.username, str)) {
+                return next;
+            }
+        }
+        return null;
     }
 }

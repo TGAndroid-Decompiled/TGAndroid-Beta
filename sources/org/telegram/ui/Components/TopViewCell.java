@@ -31,7 +31,7 @@ public class TopViewCell extends LinearLayout {
         addView(backupImageView, LayoutHelper.createLinear(90, 90, 17, 0, 9, 0, 9));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
             @Override
-            protected void onMeasure(int i, int i2) {
+            public void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
                 if (TopViewCell.this.maxWidth > 0 && TopViewCell.this.maxWidth < size) {
                     size = TopViewCell.this.maxWidth;
@@ -49,13 +49,6 @@ public class TopViewCell extends LinearLayout {
     }
 
     public void lambda$new$0(View view) {
-        RLottieDrawable lottieAnimation = this.imageView.getImageReceiver().getLottieAnimation();
-        if (lottieAnimation != null) {
-            if (lottieAnimation.getCurrentFrame() < lottieAnimation.getFramesCount() - 20) {
-                return;
-            }
-            lottieAnimation.setProgress(0.0f);
-        }
         this.imageView.getImageReceiver().startAnimation();
     }
 
@@ -68,6 +61,7 @@ public class TopViewCell extends LinearLayout {
             BackupImageView backupImageView = this.imageView;
             this.lastIconResId = i;
             backupImageView.setImageDrawable(new RLottieDrawable(i, "" + i, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f)));
+            this.imageView.getImageReceiver().setAutoRepeat(2);
         }
     }
 

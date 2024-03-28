@@ -46,6 +46,7 @@ public class AvatarsDrawable {
     float transitionProgress = 1.0f;
     private Paint paint = new Paint(1);
     private Paint xRefP = new Paint(1);
+    public int strokeWidth = AndroidUtilities.dp(1.67f);
     private float overrideSizeStepFactor = 0.8f;
     private float overrideAlpha = 1.0f;
     public long transitionDuration = 220;
@@ -261,11 +262,13 @@ public class AvatarsDrawable {
         for (int i = 0; i < 3; i++) {
             this.currentStates[i] = new DrawingState();
             this.currentStates[i].imageReceiver = new ImageReceiver(view);
+            this.currentStates[i].imageReceiver.setInvalidateAll(true);
             this.currentStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
             this.currentStates[i].avatarDrawable = new AvatarDrawable();
             this.currentStates[i].avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));
             this.animatingStates[i] = new DrawingState();
             this.animatingStates[i].imageReceiver = new ImageReceiver(view);
+            this.animatingStates[i].imageReceiver.setInvalidateAll(true);
             this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
             this.animatingStates[i].avatarDrawable = new AvatarDrawable();
             this.animatingStates[i].avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
@@ -23,8 +22,12 @@ public class TextDetailCell extends FrameLayout {
     private boolean multiline;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
-    private final TextView textView;
+    public final LinkSpanDrawable.LinksTextView textView;
     public final LinkSpanDrawable.LinksTextView valueTextView;
+
+    protected int processColor(int i) {
+        return i;
+    }
 
     public TextDetailCell(Context context) {
         this(context, null);
@@ -37,38 +40,65 @@ public class TextDetailCell extends FrameLayout {
     public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        TextView textView = new TextView(context);
-        this.textView = textView;
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        textView.setTextSize(1, 16.0f);
-        textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setImportantForAccessibility(2);
-        addView(textView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 8.0f, 23.0f, 0.0f));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-        this.valueTextView = linksTextView;
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
+            @Override
+            protected int processColor(int i) {
+                return TextDetailCell.this.processColor(i);
+            }
+
+            @Override
+            public int overrideColor() {
+                return processColor(super.overrideColor());
+            }
+        };
+        this.textView = linksTextView;
         linksTextView.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
                 TextDetailCell.this.lambda$new$0(clickableSpan);
             }
         });
+        linksTextView.setTextSize(1, 16.0f);
+        linksTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+        linksTextView.setLines(1);
+        linksTextView.setMaxLines(1);
+        linksTextView.setSingleLine(true);
+        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
+        linksTextView.setImportantForAccessibility(2);
+        linksTextView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f));
+        addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 17.0f, 6.0f, 17.0f, 0.0f));
+        LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
+            @Override
+            protected int processColor(int i) {
+                return TextDetailCell.this.processColor(i);
+            }
+
+            @Override
+            public int overrideColor() {
+                return processColor(super.overrideColor());
+            }
+        };
+        this.valueTextView = linksTextView2;
+        linksTextView2.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
+            @Override
+            public final void run(ClickableSpan clickableSpan) {
+                TextDetailCell.this.lambda$new$1(clickableSpan);
+            }
+        });
         this.multiline = z;
         if (z) {
             setMinimumHeight(AndroidUtilities.dp(60.0f));
         } else {
-            linksTextView.setLines(1);
-            linksTextView.setSingleLine(true);
+            linksTextView2.setLines(1);
+            linksTextView2.setSingleLine(true);
         }
-        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        linksTextView.setTextSize(1, 13.0f);
-        linksTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        linksTextView.setImportantForAccessibility(2);
-        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 33.0f, 23.0f, 10.0f));
+        linksTextView2.setTextSize(1, 13.0f);
+        linksTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
+        linksTextView2.setImportantForAccessibility(2);
+        linksTextView2.setEllipsize(TextUtils.TruncateAt.END);
+        linksTextView2.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
+        addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+        updateColors();
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         imageView.setImportantForAccessibility(2);
@@ -82,13 +112,27 @@ public class TextDetailCell extends FrameLayout {
                 performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
+            clickableSpan.onClick(this.textView);
+        }
+    }
+
+    public void lambda$new$1(ClickableSpan clickableSpan) {
+        if (clickableSpan != null) {
+            try {
+                performHapticFeedback(0, 1);
+            } catch (Exception unused) {
+            }
             clickableSpan.onClick(this.valueTextView);
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.valueTextView.hit(((int) motionEvent.getX()) - this.valueTextView.getLeft(), ((int) motionEvent.getY()) - this.valueTextView.getTop()) != null) {
+        boolean z = this.valueTextView.hit(((int) motionEvent.getX()) - this.valueTextView.getLeft(), ((int) motionEvent.getY()) - this.valueTextView.getTop()) != null;
+        if (!z) {
+            z = this.textView.hit(((int) motionEvent.getX()) - this.textView.getLeft(), ((int) motionEvent.getY()) - this.textView.getTop()) != null;
+        }
+        if (z) {
             return true;
         }
         return super.onTouchEvent(motionEvent);
@@ -135,6 +179,14 @@ public class TextDetailCell extends FrameLayout {
         this.textView.requestLayout();
     }
 
+    public boolean hasImage() {
+        return this.imageView.getDrawable() != null;
+    }
+
+    public ImageView getImageView() {
+        return this.imageView;
+    }
+
     public void setImageClickListener(View.OnClickListener onClickListener) {
         this.imageView.setOnClickListener(onClickListener);
         if (onClickListener == null) {
@@ -175,5 +227,16 @@ public class TextDetailCell extends FrameLayout {
         }
         sb.append((Object) text);
         accessibilityNodeInfo.setText(sb.toString());
+    }
+
+    public void updateColors() {
+        LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+        int i = Theme.key_chat_messageLinkIn;
+        linksTextView.setLinkTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
+        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+        this.textView.invalidate();
+        this.valueTextView.setLinkTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
+        this.valueTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider));
+        this.valueTextView.invalidate();
     }
 }

@@ -11,26 +11,41 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesActivity;
 import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.DialogRadioCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.NotificationsCheckCell;
+import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Cells.TextRightIconCell;
 import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.ChannelMonetizationLayout;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
+import org.telegram.ui.StatisticActivity;
+import org.telegram.ui.Stories.recorder.HintView2;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 public class UniversalAdapter extends AdapterWithDiffUtils {
     private boolean allowReorder;
+    private BaseChartView.SharedUiComponents chartSharedUI;
+    private final int classGuid;
     private final Context context;
     private final int currentAccount;
     private Section currentReorderSection;
     private Section currentWhiteSection;
     private final Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> fillItems;
+    private final RecyclerListView listView;
     private Utilities.Callback2<Integer, ArrayList<UItem>> onReordered;
     private boolean orderChanged;
     private int orderChangedId;
@@ -40,9 +55,15 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     private final ArrayList<Section> whiteSections = new ArrayList<>();
     private final ArrayList<Section> reorderSections = new ArrayList<>();
 
-    public UniversalAdapter(Context context, int i, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Theme.ResourcesProvider resourcesProvider) {
+    private boolean isShadow(int i) {
+        return i == 7 || i == 8;
+    }
+
+    public UniversalAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Theme.ResourcesProvider resourcesProvider) {
+        this.listView = recyclerListView;
         this.context = context;
         this.currentAccount = i;
+        this.classGuid = i2;
         this.fillItems = callback2;
         this.resourcesProvider = resourcesProvider;
         update(false);
@@ -184,11 +205,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view;
-        View view2;
-        View view3;
         switch (i) {
             case -1:
-                view2 = new FrameLayout(this, this.context) {
+                view = new FrameLayout(this, this.context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), i3);
@@ -198,20 +217,25 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 0:
                 View headerCell = new HeaderCell(this.context, this.resourcesProvider);
                 headerCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view2 = headerCell;
+                view = headerCell;
                 break;
             case 1:
-                view2 = new TopViewCell(this.context, this.resourcesProvider);
+                View headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, false, this.resourcesProvider);
+                headerCell2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = headerCell2;
                 break;
             case 2:
-                View textCell = new TextCell(this.context, this.resourcesProvider);
-                textCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view2 = textCell;
+                view = new TopViewCell(this.context, this.resourcesProvider);
                 break;
             case 3:
-            case 7:
+                View textCell = new TextCell(this.context, this.resourcesProvider);
+                textCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = textCell;
+                break;
+            case 4:
+            case 9:
                 TextCheckCell textCheckCell = new TextCheckCell(this.context, this.resourcesProvider);
-                if (i == 7) {
+                if (i == 9) {
                     textCheckCell.setDrawCheckRipple(true);
                     textCheckCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
                     textCheckCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -219,54 +243,105 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 }
                 textCheckCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = textCheckCell;
-                view2 = view;
                 break;
-            case 4:
             case 5:
-                View notificationsCheckCell = new NotificationsCheckCell(this.context, 21, 60, i == 5, this.resourcesProvider);
+            case 6:
+                View notificationsCheckCell = new NotificationsCheckCell(this.context, 21, 60, i == 6, this.resourcesProvider);
                 notificationsCheckCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = notificationsCheckCell;
-                view2 = view;
                 break;
-            case 6:
-            default:
-                view2 = new TextInfoPrivacyCell(this.context, this.resourcesProvider);
-                break;
+            case 7:
             case 8:
-                View dialogRadioCell = new DialogRadioCell(this.context);
-                dialogRadioCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view2 = dialogRadioCell;
-                break;
-            case 9:
-                UserCell userCell = new UserCell(this.context, 6, 0, false);
-                userCell.setSelfAsSavedMessages(true);
-                userCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view3 = userCell;
-                view2 = view3;
+            default:
+                view = new TextInfoPrivacyCell(this.context, this.resourcesProvider);
                 break;
             case 10:
-                UserCell userCell2 = new UserCell(this.context, 6, 0, false, true);
-                userCell2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view2 = userCell2;
+                View dialogRadioCell = new DialogRadioCell(this.context);
+                dialogRadioCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = dialogRadioCell;
                 break;
             case 11:
-                View slideChooseView = new SlideChooseView(this.context, this.resourcesProvider);
-                slideChooseView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view2 = slideChooseView;
-                break;
             case 12:
-                View quickReplyView = new QuickRepliesActivity.QuickReplyView(this.context, this.onReordered != null, this.resourcesProvider);
-                quickReplyView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view3 = quickReplyView;
-                view2 = view3;
+                UserCell userCell = new UserCell(this.context, 6, i == 12 ? 3 : 0, false);
+                userCell.setSelfAsSavedMessages(true);
+                userCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = userCell;
                 break;
             case 13:
+                UserCell userCell2 = new UserCell(this.context, 6, 0, false, true);
+                userCell2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = userCell2;
+                break;
+            case 14:
+                View slideChooseView = new SlideChooseView(this.context, this.resourcesProvider);
+                slideChooseView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = slideChooseView;
+                break;
+            case 15:
+                View slideIntChooseView = new SlideIntChooseView(this.context, this.resourcesProvider);
+                slideIntChooseView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = slideIntChooseView;
+                break;
+            case 16:
+                View quickReplyView = new QuickRepliesActivity.QuickReplyView(this.context, this.onReordered != null, this.resourcesProvider);
+                quickReplyView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = quickReplyView;
+                break;
+            case 17:
                 View largeQuickReplyView = new QuickRepliesActivity.LargeQuickReplyView(this.context, this.resourcesProvider);
                 largeQuickReplyView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                view2 = largeQuickReplyView;
+                view = largeQuickReplyView;
+                break;
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+                if (this.chartSharedUI == null) {
+                    this.chartSharedUI = new BaseChartView.SharedUiComponents();
+                }
+                View universalChartCell = new StatisticActivity.UniversalChartCell(this.context, this.currentAccount, i - 18, this.chartSharedUI, this.classGuid);
+                universalChartCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = universalChartCell;
+                break;
+            case 22:
+                View proceedOverviewCell = new ChannelMonetizationLayout.ProceedOverviewCell(this.context, this.resourcesProvider);
+                proceedOverviewCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = proceedOverviewCell;
+                break;
+            case 23:
+                View transactionCell = new ChannelMonetizationLayout.TransactionCell(this.context, this.resourcesProvider);
+                transactionCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = transactionCell;
+                break;
+            case 24:
+                HeaderCell headerCell3 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 8, 10, false, this.resourcesProvider);
+                headerCell3.setTextSize(20.0f);
+                headerCell3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = headerCell3;
+                break;
+            case 25:
+                StoryPrivacyBottomSheet.UserCell userCell3 = new StoryPrivacyBottomSheet.UserCell(this.context, this.resourcesProvider);
+                userCell3.setIsSendAs(false, false);
+                userCell3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = userCell3;
+                break;
+            case 26:
+                View view2 = new View(this.context);
+                view2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = view2;
+                break;
+            case 27:
+                View businessLinkView = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
+                businessLinkView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = businessLinkView;
+                break;
+            case 28:
+                View textRightIconCell = new TextRightIconCell(this.context, this.resourcesProvider);
+                textRightIconCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                view = textRightIconCell;
                 break;
         }
-        return new RecyclerListView.Holder(view2);
+        return new RecyclerListView.Holder(view);
     }
 
     @Override
@@ -281,12 +356,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     private boolean hasDivider(int i) {
         UItem item = getItem(i);
         UItem item2 = getItem(i + 1);
-        if (item != null && item2 != null) {
-            if ((item2.viewType != 6) == (item.viewType != 6)) {
-                return true;
-            }
-        }
-        return false;
+        return (item == null || item.hideDivider || item2 == null || isShadow(item2.viewType) != isShadow(item.viewType)) ? false : true;
     }
 
     @Override
@@ -300,11 +370,10 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         }
         int itemViewType = viewHolder.getItemViewType();
         boolean hasDivider = hasDivider(i);
-        boolean z = false;
         switch (itemViewType) {
             case -1:
                 FrameLayout frameLayout = (FrameLayout) viewHolder.itemView;
-                if (frameLayout.getChildCount() == (item.view == null ? 0 : 1) && frameLayout.getChildAt(0) == item.view) {
+                if (frameLayout.getChildCount() == (item.view != null) && frameLayout.getChildAt(0) == item.view) {
                     return;
                 }
                 frameLayout.removeAllViews();
@@ -316,96 +385,119 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 }
                 return;
             case 0:
-                ((HeaderCell) viewHolder.itemView).setText(item.text);
-                return;
             case 1:
-                TopViewCell topViewCell = (TopViewCell) viewHolder.itemView;
-                int i3 = item.iconResId;
+            case 24:
+                ((HeaderCell) viewHolder.itemView).setText(item.text);
+                int i3 = item.backgroundKey;
                 if (i3 != 0) {
-                    topViewCell.setEmoji(i3);
+                    viewHolder.itemView.setBackgroundColor(getThemedColor(i3));
+                    return;
+                }
+                return;
+            case 2:
+                TopViewCell topViewCell = (TopViewCell) viewHolder.itemView;
+                int i4 = item.iconResId;
+                if (i4 != 0) {
+                    topViewCell.setEmoji(i4);
                 } else {
                     topViewCell.setEmoji(item.subtext.toString(), item.textValue.toString());
                 }
                 topViewCell.setText(item.text);
                 return;
-            case 2:
+            case 3:
                 TextCell textCell = (TextCell) viewHolder.itemView;
-                if (TextUtils.isEmpty(item.textValue)) {
-                    int i4 = item.iconResId;
-                    if (i4 == 0) {
-                        textCell.setText(item.text, hasDivider);
-                    } else {
-                        textCell.setTextAndIcon(item.text, i4, hasDivider);
-                    }
-                } else {
+                Object obj = item.object;
+                if (obj instanceof TLRPC$Document) {
+                    textCell.setTextAndSticker(item.text, (TLRPC$Document) obj, hasDivider);
+                } else if (TextUtils.isEmpty(item.textValue)) {
                     int i5 = item.iconResId;
                     if (i5 == 0) {
+                        textCell.setText(item.text, hasDivider);
+                    } else {
+                        textCell.setTextAndIcon(item.text, i5, hasDivider);
+                    }
+                } else {
+                    int i6 = item.iconResId;
+                    if (i6 == 0) {
                         textCell.setTextAndValue(item.text, item.textValue, hasDivider);
                     } else {
-                        textCell.setTextAndValueAndIcon(item.text, item.textValue, i5, hasDivider);
+                        textCell.setTextAndValueAndIcon(item.text, item.textValue, i6, hasDivider);
                     }
                 }
                 if (item.accent) {
-                    int i6 = Theme.key_windowBackgroundWhiteBlueText4;
-                    textCell.setColors(i6, i6);
-                    return;
+                    int i7 = Theme.key_windowBackgroundWhiteBlueText4;
+                    textCell.setColors(i7, i7);
                 } else if (item.red) {
                     textCell.setColors(Theme.key_text_RedBold, Theme.key_text_RedRegular);
-                    return;
                 } else {
                     textCell.setColors(Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_windowBackgroundWhiteBlackText);
+                }
+                int i8 = item.backgroundKey;
+                if (i8 != 0) {
+                    textCell.setBackgroundColor(getThemedColor(i8));
                     return;
                 }
-            case 3:
-            case 7:
+                return;
+            case 4:
+            case 9:
                 TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
                 if (textCheckCell.itemId == item.id) {
                     textCheckCell.setChecked(item.checked);
                 }
                 textCheckCell.setTextAndCheck(item.text, item.checked, hasDivider);
                 textCheckCell.itemId = item.id;
-                if (itemViewType == 7) {
+                if (itemViewType == 9) {
                     viewHolder.itemView.setBackgroundColor(Theme.getColor(item.checked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
                     return;
                 }
                 return;
-            case 4:
+            case 5:
                 NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
                 notificationsCheckCell.setTextAndValueAndCheck(item.text, item.subtext, item.checked, hasDivider);
                 CharSequence charSequence = item.subtext;
-                if (charSequence != null && charSequence.toString().contains("\n")) {
-                    z = true;
-                }
-                notificationsCheckCell.setMultiline(z);
-                return;
-            case 5:
-                ((NotificationsCheckCell) viewHolder.itemView).setTextAndValueAndCheck(item.text, item.subtext, item.checked, hasDivider);
+                notificationsCheckCell.setMultiline((charSequence == null || !charSequence.toString().contains("\n")) ? false : false);
                 return;
             case 6:
+                ((NotificationsCheckCell) viewHolder.itemView).setTextAndValueAndCheck(item.text, item.subtext, item.checked, hasDivider);
+                return;
+            case 7:
+            case 8:
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 if (TextUtils.isEmpty(item.text)) {
-                    textInfoPrivacyCell.setFixedSize(12);
+                    textInfoPrivacyCell.setFixedSize(itemViewType == 8 ? 220 : 12);
                     textInfoPrivacyCell.setText("");
                 } else {
                     textInfoPrivacyCell.setFixedSize(0);
                     textInfoPrivacyCell.setText(item.text);
                 }
-                boolean z2 = (item3 == null || item3.viewType == itemViewType) ? false : true;
-                if (item2 != null && item2.viewType != itemViewType) {
-                    z = true;
+                if (item.accent) {
+                    textInfoPrivacyCell.setTextGravity(17);
+                    textInfoPrivacyCell.getTextView().setWidth(Math.min(HintView2.cutInFancyHalf(textInfoPrivacyCell.getText(), textInfoPrivacyCell.getTextView().getPaint()), AndroidUtilities.displaySize.x - AndroidUtilities.dp(60.0f)));
+                    textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f));
+                } else {
+                    textInfoPrivacyCell.setTextGravity(8388611);
+                    textInfoPrivacyCell.getTextView().setMinWidth(0);
+                    textInfoPrivacyCell.getTextView().setMaxWidth(AndroidUtilities.displaySize.x);
+                    textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
                 }
-                if (z2 && z) {
+                boolean z = (item3 == null || isShadow(item3.viewType)) ? false : true;
+                r7 = (item2 == null || isShadow(item2.viewType)) ? false : false;
+                if (z && r7) {
                     i2 = R.drawable.greydivider;
-                } else if (z2) {
-                    i2 = R.drawable.greydivider_bottom;
                 } else if (z) {
+                    i2 = R.drawable.greydivider_bottom;
+                } else if (r7) {
                     i2 = R.drawable.greydivider_top;
                 } else {
                     i2 = R.drawable.field_carret_empty;
                 }
+                int i9 = item.backgroundKey;
+                if (i9 != 0) {
+                    textInfoPrivacyCell.setBackgroundColor(getThemedColor(i9));
+                }
                 textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.context, i2, Theme.key_windowBackgroundGrayShadow, this.resourcesProvider));
                 return;
-            case 8:
+            case 10:
                 DialogRadioCell dialogRadioCell = (DialogRadioCell) viewHolder.itemView;
                 if (dialogRadioCell.itemId == item.id) {
                     dialogRadioCell.setChecked(item.checked, true);
@@ -420,22 +512,28 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 }
                 dialogRadioCell.itemId = item.id;
                 return;
-            case 9:
-                ((UserCell) viewHolder.itemView).setFromUItem(this.currentAccount, item, hasDivider);
-                return;
-            case 10:
+            case 11:
+            case 12:
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 userCell.setFromUItem(this.currentAccount, item, hasDivider);
-                userCell.setAddButtonVisible(!item.checked);
-                userCell.setCloseIcon(item.clickCallback);
+                if (itemViewType == 12) {
+                    userCell.setChecked(item.checked, false);
+                    return;
+                }
                 return;
-            case 11:
+            case 13:
+                UserCell userCell2 = (UserCell) viewHolder.itemView;
+                userCell2.setFromUItem(this.currentAccount, item, hasDivider);
+                userCell2.setAddButtonVisible(!item.checked);
+                userCell2.setCloseIcon(item.clickCallback);
+                return;
+            case 14:
                 SlideChooseView slideChooseView = (SlideChooseView) viewHolder.itemView;
                 slideChooseView.setOptions(item.intValue, item.texts);
                 slideChooseView.setCallback(new SlideChooseView.Callback() {
                     @Override
-                    public final void onOptionSelected(int i7) {
-                        UniversalAdapter.lambda$onBindViewHolder$0(UItem.this, i7);
+                    public final void onOptionSelected(int i10) {
+                        UniversalAdapter.lambda$onBindViewHolder$0(UItem.this, i10);
                     }
 
                     @Override
@@ -444,22 +542,80 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                 });
                 return;
-            case 12:
+            case 15:
+                ((SlideIntChooseView) viewHolder.itemView).set(item.intValue, (SlideIntChooseView.Options) item.object, item.intCallback);
+                return;
+            case 16:
                 QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
                 quickReplyView.setChecked(item.checked, false);
                 quickReplyView.setReorder(this.allowReorder);
-                Object obj = item.object;
-                if (obj instanceof QuickRepliesController.QuickReply) {
-                    quickReplyView.set((QuickRepliesController.QuickReply) obj, null, hasDivider);
+                Object obj2 = item.object;
+                if (obj2 instanceof QuickRepliesController.QuickReply) {
+                    quickReplyView.set((QuickRepliesController.QuickReply) obj2, null, hasDivider);
                     return;
                 }
                 return;
-            case 13:
+            case 17:
                 QuickRepliesActivity.LargeQuickReplyView largeQuickReplyView = (QuickRepliesActivity.LargeQuickReplyView) viewHolder.itemView;
                 largeQuickReplyView.setChecked(item.checked, false);
-                Object obj2 = item.object;
-                if (obj2 instanceof QuickRepliesController.QuickReply) {
-                    largeQuickReplyView.set((QuickRepliesController.QuickReply) obj2, hasDivider);
+                Object obj3 = item.object;
+                if (obj3 instanceof QuickRepliesController.QuickReply) {
+                    largeQuickReplyView.set((QuickRepliesController.QuickReply) obj3, hasDivider);
+                    return;
+                }
+                return;
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+                ((StatisticActivity.UniversalChartCell) viewHolder.itemView).set(item.intValue, (StatisticActivity.ChartViewData) item.object, new Utilities.Callback0Return() {
+                    @Override
+                    public final Object run() {
+                        StatisticActivity.BaseChartCell lambda$onBindViewHolder$1;
+                        lambda$onBindViewHolder$1 = UniversalAdapter.this.lambda$onBindViewHolder$1(item);
+                        return lambda$onBindViewHolder$1;
+                    }
+                });
+                return;
+            case 22:
+                ((ChannelMonetizationLayout.ProceedOverviewCell) viewHolder.itemView).set((ChannelMonetizationLayout.ProceedOverview) item.object);
+                return;
+            case 23:
+                ((ChannelMonetizationLayout.TransactionCell) viewHolder.itemView).set((TL_stats$BroadcastRevenueTransaction) item.object, hasDivider);
+                return;
+            case 25:
+                StoryPrivacyBottomSheet.UserCell userCell3 = (StoryPrivacyBottomSheet.UserCell) viewHolder.itemView;
+                long j = userCell3.dialogId;
+                Object obj4 = item.object;
+                boolean z2 = j == (obj4 instanceof TLRPC$User ? ((TLRPC$User) obj4).id : obj4 instanceof TLRPC$Chat ? -((TLRPC$Chat) obj4).id : 0L);
+                userCell3.setIsSendAs(false, true);
+                userCell3.set(item.object);
+                userCell3.checkBox.setVisibility(8);
+                userCell3.radioButton.setVisibility(0);
+                userCell3.setChecked(item.checked, z2);
+                userCell3.setDivider(hasDivider);
+                return;
+            case 26:
+                if (item.transparent) {
+                    viewHolder.itemView.setBackgroundColor(0);
+                }
+                viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, item.intValue));
+                return;
+            case 27:
+                BusinessLinksActivity.BusinessLinkView businessLinkView = (BusinessLinksActivity.BusinessLinkView) viewHolder.itemView;
+                Object obj5 = item.object;
+                if (obj5 instanceof BusinessLinksActivity.BusinessLinkWrapper) {
+                    businessLinkView.set((BusinessLinksActivity.BusinessLinkWrapper) obj5, hasDivider);
+                    return;
+                }
+                return;
+            case 28:
+                TextRightIconCell textRightIconCell = (TextRightIconCell) viewHolder.itemView;
+                textRightIconCell.setTextAndIcon(item.text, item.iconResId);
+                textRightIconCell.setDivider(hasDivider);
+                int i10 = item.backgroundKey;
+                if (i10 != 0) {
+                    textRightIconCell.setBackgroundColor(getThemedColor(i10));
                     return;
                 }
                 return;
@@ -475,13 +631,47 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         }
     }
 
+    public StatisticActivity.BaseChartCell lambda$onBindViewHolder$1(UItem uItem) {
+        View findViewByItemObject = findViewByItemObject(uItem.object);
+        if (findViewByItemObject instanceof StatisticActivity.UniversalChartCell) {
+            return (StatisticActivity.UniversalChartCell) findViewByItemObject;
+        }
+        return null;
+    }
+
+    private View findViewByItemObject(Object obj) {
+        int i = 0;
+        while (true) {
+            if (i >= getItemCount()) {
+                i = -1;
+                break;
+            }
+            UItem item = getItem(i);
+            if (item != null && item.object == obj) {
+                break;
+            }
+            i++;
+        }
+        if (i == -1) {
+            return null;
+        }
+        for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
+            View childAt = this.listView.getChildAt(i2);
+            int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition != -1 && childAdapterPosition == i) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
         updateReorder(viewHolder, this.allowReorder);
     }
 
     public void updateReorder(RecyclerView.ViewHolder viewHolder, boolean z) {
-        if (viewHolder != null && viewHolder.getItemViewType() == 12) {
+        if (viewHolder != null && viewHolder.getItemViewType() == 16) {
             ((QuickRepliesActivity.QuickReplyView) viewHolder.itemView).setReorder(z);
         }
     }
@@ -495,7 +685,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         int itemViewType = viewHolder.getItemViewType();
         UItem item = getItem(viewHolder.getAdapterPosition());
-        return (itemViewType == 2 || itemViewType == 4 || itemViewType == 5 || itemViewType == 3 || itemViewType == 8 || itemViewType == 9 || itemViewType == 13 || itemViewType == 12) && (item == null || item.enabled);
+        return (itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 28 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 27 || itemViewType == 23 || itemViewType == 25) && (item == null || item.enabled);
     }
 
     public UItem getItem(int i) {

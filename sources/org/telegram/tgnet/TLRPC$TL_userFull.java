@@ -26,7 +26,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
         }
-        this.settings = TLRPC$TL_peerSettings.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.settings = TLRPC$PeerSettings.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 2097152) != 0) {
             this.personal_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -97,11 +97,21 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags2 & 8) != 0) {
             this.business_away_message = TLRPC$TL_businessAwayMessage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags2 & 16) != 0) {
+            this.business_intro = TLRPC$TL_businessIntro.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 32) != 0) {
+            this.birthday = TLRPC$TL_birthday.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 64) != 0) {
+            this.personal_channel_id = abstractSerializedData.readInt64(z);
+            this.personal_channel_message = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(587153029);
+        abstractSerializedData.writeInt32(-862357728);
         int i = this.blocked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.phone_calls_available ? i | 16 : i & (-17);
@@ -195,6 +205,16 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         }
         if ((this.flags2 & 8) != 0) {
             this.business_away_message.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 16) != 0) {
+            this.business_intro.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 32) != 0) {
+            this.birthday.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 64) != 0) {
+            abstractSerializedData.writeInt64(this.personal_channel_id);
+            abstractSerializedData.writeInt32(this.personal_channel_message);
         }
     }
 }

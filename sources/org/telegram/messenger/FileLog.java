@@ -7,10 +7,16 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
@@ -24,9 +30,11 @@ public class FileLog {
     private static volatile FileLog Instance = null;
     public static boolean databaseIsMalformed = false;
     private static HashSet<String> excludeRequests = null;
+    private static ExclusionStrategy exclusionStrategy = null;
     private static Gson gson = null;
     private static boolean gsonDisabled = false;
     private static final String mtproto_tag = "MTProto";
+    private static HashSet<String> privateFields = null;
     private static final String tag = "tmessages";
     private boolean initied;
     private OutputStreamWriter streamWriter = null;
@@ -107,7 +115,7 @@ public class FileLog {
         }
     }
 
-    public static void dumpUnparsedMessage(TLObject tLObject, final long j) {
+    public static void dumpUnparsedMessage(TLObject tLObject, final long j, final int i) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
             try {
                 checkGson();
@@ -122,7 +130,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$dumpUnparsedMessage$1(currentTimeMillis, sb2, j);
+                        FileLog.lambda$dumpUnparsedMessage$1(currentTimeMillis, j, i, sb2);
                     }
                 });
             } catch (Throwable unused) {
@@ -130,14 +138,14 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpUnparsedMessage$1(long j, String str, long j2) {
+    public static void lambda$dumpUnparsedMessage$1(long j, long j2, int i, String str) {
         try {
-            getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j));
+            getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j) + " msgId=" + j2 + " account=" + i);
             getInstance().tlStreamWriter.write("\n");
             getInstance().tlStreamWriter.write(str);
             getInstance().tlStreamWriter.write("\n\n");
             getInstance().tlStreamWriter.flush();
-            Log.d(mtproto_tag, "msgId=" + j2);
+            Log.d(mtproto_tag, "msgId=" + j2 + " account=" + i);
             Log.d(mtproto_tag, str);
             Log.d(mtproto_tag, " ");
         } catch (Exception e) {
@@ -151,27 +159,29 @@ public class FileLog {
 
     private static void checkGson() {
         if (gson == null) {
-            final HashSet hashSet = new HashSet();
+            HashSet<String> hashSet = new HashSet<>();
+            privateFields = hashSet;
             hashSet.add("message");
-            hashSet.add("phone");
-            hashSet.add("about");
-            hashSet.add("status_text");
-            hashSet.add("bytes");
-            hashSet.add("secret");
-            hashSet.add("stripped_thumb");
-            hashSet.add("strippedBitmap");
-            hashSet.add("networkType");
-            hashSet.add("disableFree");
-            hashSet.add("mContext");
-            hashSet.add("priority");
+            privateFields.add("phone");
+            privateFields.add("about");
+            privateFields.add("status_text");
+            privateFields.add("bytes");
+            privateFields.add("secret");
+            privateFields.add("stripped_thumb");
+            privateFields.add("strippedBitmap");
+            privateFields.add("networkType");
+            privateFields.add("disableFree");
+            privateFields.add("mContext");
+            privateFields.add("priority");
+            privateFields.add("constructor");
             HashSet<String> hashSet2 = new HashSet<>();
             excludeRequests = hashSet2;
             hashSet2.add("TL_upload_getFile");
             excludeRequests.add("TL_upload_getWebFile");
-            ExclusionStrategy exclusionStrategy = new ExclusionStrategy() {
+            exclusionStrategy = new ExclusionStrategy() {
                 @Override
                 public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-                    return hashSet.contains(fieldAttributes.getName());
+                    return FileLog.privateFields.contains(fieldAttributes.getName());
                 }
 
                 @Override
@@ -179,7 +189,50 @@ public class FileLog {
                     return cls.isInstance(DispatchQueue.class) || cls.isInstance(AnimatedFileDrawable.class) || cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
                 }
             };
-            gson = new GsonBuilder().addSerializationExclusionStrategy(exclusionStrategy).registerTypeAdapterFactory(RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy)).create();
+            gson = new GsonBuilder().addSerializationExclusionStrategy(exclusionStrategy).registerTypeAdapterFactory(RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy)).registerTypeHierarchyAdapter(TLObject.class, new TLObjectDeserializer()).create();
+        }
+    }
+
+    public static class TLObjectDeserializer implements JsonSerializer<TLObject> {
+        private TLObjectDeserializer() {
+        }
+
+        @Override
+        public JsonElement serialize(TLObject tLObject, Type type, JsonSerializationContext jsonSerializationContext) {
+            Field[] fields;
+            JsonObject jsonObject = new JsonObject();
+            String name = tLObject.getClass().getName();
+            if (name.startsWith("org.telegram.tgnet.")) {
+                name = name.substring(19);
+            }
+            jsonObject.addProperty("_", name);
+            try {
+                for (Field field : tLObject.getClass().getFields()) {
+                    if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
+                        field.setAccessible(true);
+                        try {
+                            Object obj = field.get(tLObject);
+                            if (obj != null) {
+                                Class<?> cls = obj.getClass();
+                                if (!cls.isInstance(DispatchQueue.class)) {
+                                    if (!cls.isInstance(AnimatedFileDrawable.class)) {
+                                        if (!cls.isInstance(ColorStateList.class)) {
+                                            if (cls.isInstance(Context.class)) {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            jsonObject.add(field.getName(), jsonSerializationContext.serialize(obj));
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+            return jsonObject;
         }
     }
 

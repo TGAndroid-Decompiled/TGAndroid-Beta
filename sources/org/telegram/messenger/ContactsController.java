@@ -50,6 +50,7 @@ import org.telegram.tgnet.TLRPC$TL_globalPrivacySettings;
 import org.telegram.tgnet.TLRPC$TL_help_inviteText;
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyAbout;
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyAddedByPhone;
+import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyBirthday;
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyChatInvite;
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyForwards;
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyPhoneCall;
@@ -75,8 +76,9 @@ public class ContactsController extends BaseController {
     private static volatile ContactsController[] Instance = new ContactsController[4];
     public static final int PRIVACY_RULES_TYPE_ADDED_BY_PHONE = 7;
     public static final int PRIVACY_RULES_TYPE_BIO = 9;
+    public static final int PRIVACY_RULES_TYPE_BIRTHDAY = 11;
     public static final int PRIVACY_RULES_TYPE_CALLS = 2;
-    public static final int PRIVACY_RULES_TYPE_COUNT = 10;
+    public static final int PRIVACY_RULES_TYPE_COUNT = 12;
     public static final int PRIVACY_RULES_TYPE_FORWARDS = 5;
     public static final int PRIVACY_RULES_TYPE_INVITE = 1;
     public static final int PRIVACY_RULES_TYPE_LASTSEEN = 0;
@@ -89,6 +91,7 @@ public class ContactsController extends BaseController {
     private static Locale cachedCollatorLocale;
     private ArrayList<TLRPC$PrivacyRule> addedByPhonePrivacyRules;
     private ArrayList<TLRPC$PrivacyRule> bioPrivacyRules;
+    private ArrayList<TLRPC$PrivacyRule> birthdayPrivacyRules;
     private ArrayList<TLRPC$PrivacyRule> callPrivacyRules;
     private int completedRequestsCount;
     public ArrayList<TLRPC$TL_contact> contacts;
@@ -273,7 +276,7 @@ public class ContactsController extends BaseController {
         this.lastContactsVersions = "";
         this.delayedContactsUpdate = new ArrayList<>();
         this.sectionsToReplace = new HashMap<>();
-        this.loadingPrivacyInfo = new int[10];
+        this.loadingPrivacyInfo = new int[12];
         this.projectionPhones = new String[]{"lookup", "data1", "data2", "data3", "display_name", "account_type"};
         this.projectionNames = new String[]{"lookup", "data2", "data3", "data5"};
         this.contactsBook = new HashMap<>();
@@ -365,6 +368,7 @@ public class ContactsController extends BaseController {
         this.p2pPrivacyRules = null;
         this.profilePhotoPrivacyRules = null;
         this.bioPrivacyRules = null;
+        this.birthdayPrivacyRules = null;
         this.forwardsPrivacyRules = null;
         this.phonePrivacyRules = null;
         Utilities.globalQueue.postRunnable(new Runnable() {
@@ -2433,42 +2437,104 @@ public class ContactsController extends BaseController {
                     switch (i) {
                         case 0:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyStatusTimestamp();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 1:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyChatInvite();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 2:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyPhoneCall();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 3:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyPhoneP2P();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 4:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyProfilePhoto();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 5:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyForwards();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 6:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyPhoneNumber();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 7:
-                        default:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyAddedByPhone();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 8:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyVoiceMessages();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                         case 9:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyAbout();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
+                            break;
+                        case 11:
+                            tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyBirthday();
+                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                                }
+                            });
                             break;
                     }
-                    getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                        }
-                    });
                 }
                 i++;
             } else {
@@ -2534,6 +2600,7 @@ public class ContactsController extends BaseController {
                     this.phonePrivacyRules = tLRPC$TL_account_privacyRules.rules;
                     break;
                 case 7:
+                case 10:
                 default:
                     this.addedByPhonePrivacyRules = tLRPC$TL_account_privacyRules.rules;
                     break;
@@ -2542,6 +2609,9 @@ public class ContactsController extends BaseController {
                     break;
                 case 9:
                     this.bioPrivacyRules = tLRPC$TL_account_privacyRules.rules;
+                    break;
+                case 11:
+                    this.birthdayPrivacyRules = tLRPC$TL_account_privacyRules.rules;
                     break;
             }
             this.loadingPrivacyInfo[i] = 2;
@@ -2597,8 +2667,11 @@ public class ContactsController extends BaseController {
                 return this.voiceMessagesRules;
             case 9:
                 return this.bioPrivacyRules;
+            case 10:
             default:
                 return null;
+            case 11:
+                return this.birthdayPrivacyRules;
         }
     }
 
@@ -2633,6 +2706,9 @@ public class ContactsController extends BaseController {
                 break;
             case 9:
                 this.bioPrivacyRules = arrayList;
+                break;
+            case 11:
+                this.birthdayPrivacyRules = arrayList;
                 break;
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);

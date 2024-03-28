@@ -167,6 +167,7 @@ import org.telegram.ui.Cells.TextDetailSettingsCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EllipsizeSpanAnimator;
 import org.telegram.ui.Components.ForegroundColorSpanThemable;
@@ -200,6 +201,7 @@ public class AndroidUtilities {
     public static final int REPLACING_TAG_TYPE_BOLD = 1;
     public static final int REPLACING_TAG_TYPE_LINK = 0;
     public static final int REPLACING_TAG_TYPE_LINKBOLD = 2;
+    public static final int REPLACING_TAG_TYPE_LINK_NBSP = 3;
     public static final String STICKERS_PLACEHOLDER_PACK_NAME = "tg_placeholders_android";
     public static final String STICKERS_PLACEHOLDER_PACK_NAME_2 = "tg_superplaceholders_android_2";
     public static final String TYPEFACE_COURIER_NEW_BOLD = "fonts/courier_new_bold.ttf";
@@ -515,15 +517,19 @@ public class AndroidUtilities {
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replace);
         if (indexOf >= 0) {
-            if (i2 == 0 || i2 == 2) {
+            if (i2 == 3) {
+                int i5 = indexOf + i3;
+                spannableStringBuilder.replace(indexOf, i5, replaceMultipleCharSequence(" ", spannableStringBuilder.subSequence(indexOf, i5), " "));
+            }
+            if (i2 == 0 || i2 == 3 || i2 == 2) {
                 spannableStringBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void updateDrawState(TextPaint textPaint) {
                         super.updateDrawState(textPaint);
                         textPaint.setUnderlineText(false);
-                        int i5 = i;
-                        if (i5 >= 0) {
-                            textPaint.setColor(Theme.getColor(i5, resourcesProvider));
+                        int i6 = i;
+                        if (i6 >= 0) {
+                            textPaint.setColor(Theme.getColor(i6, resourcesProvider));
                         }
                         if (i2 == 2) {
                             textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -589,6 +595,22 @@ public class AndroidUtilities {
             }, indexOf, i2 + indexOf, 0);
         }
         return spannableStringBuilder;
+    }
+
+    public static CharSequence replaceArrows(CharSequence charSequence, boolean z) {
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_forumarrow, 0);
+        coloredImageSpan.setScale(0.88f, 0.88f);
+        coloredImageSpan.translate(-dp(2.6666667f), 0.0f);
+        coloredImageSpan.spaceScaleX = 0.8f;
+        if (z) {
+            coloredImageSpan.useLinkPaintColor = z;
+        }
+        SpannableString spannableString = new SpannableString(" >");
+        spannableString.setSpan(coloredImageSpan, spannableString.length() - 1, spannableString.length(), 33);
+        CharSequence replaceMultipleCharSequence = replaceMultipleCharSequence(" >", charSequence, spannableString);
+        SpannableString spannableString2 = new SpannableString(">");
+        spannableString2.setSpan(coloredImageSpan, 0, 1, 33);
+        return replaceMultipleCharSequence(">", replaceMultipleCharSequence, spannableString2);
     }
 
     public static void recycleBitmaps(List<Bitmap> list) {
@@ -4615,10 +4637,10 @@ public class AndroidUtilities {
         } else {
             spannableStringBuilder = new SpannableStringBuilder(charSequence);
         }
-        int indexOf = TextUtils.indexOf(charSequence, str);
+        int indexOf = TextUtils.indexOf(charSequence, str, 0);
         while (indexOf >= 0) {
             spannableStringBuilder.replace(indexOf, str.length() + indexOf, charSequence2);
-            indexOf = TextUtils.indexOf(spannableStringBuilder, str);
+            indexOf = TextUtils.indexOf(spannableStringBuilder, str, indexOf + 1);
         }
         return spannableStringBuilder;
     }
@@ -5021,5 +5043,71 @@ public class AndroidUtilities {
             }
         }
         return isHonor.booleanValue();
+    }
+
+    public static CharSequence withLearnMore(CharSequence charSequence, final Runnable runnable) {
+        SpannableString spannableString = new SpannableString(LocaleController.getString(R.string.LearnMoreArrow));
+        spannableString.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textPaint.setUnderlineText(false);
+                textPaint.setColor(textPaint.linkColor);
+            }
+        }, 0, spannableString.length(), 33);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        spannableStringBuilder.append((CharSequence) " ");
+        spannableStringBuilder.append((CharSequence) spannableString);
+        return replaceArrows(spannableStringBuilder, true);
+    }
+
+    public static View findChildViewUnder(ViewGroup viewGroup, float f, float f2) {
+        if (viewGroup != null && viewGroup.getVisibility() == 0) {
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt != null && childAt.getVisibility() == 0) {
+                    if (childAt instanceof ViewGroup) {
+                        View findChildViewUnder = findChildViewUnder((ViewGroup) childAt, f - childAt.getLeft(), f2 - childAt.getTop());
+                        if (findChildViewUnder != null) {
+                            return findChildViewUnder;
+                        }
+                    } else if (f >= childAt.getX() && f <= childAt.getX() + childAt.getWidth() && f2 >= childAt.getY() && f <= childAt.getY() + childAt.getHeight()) {
+                        return childAt;
+                    }
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static void vibrateCursor(View view) {
+        if (view != null) {
+            try {
+                if (view.getContext() != null && Build.VERSION.SDK_INT >= 26 && ((Vibrator) view.getContext().getSystemService("vibrator")).hasAmplitudeControl()) {
+                    view.performHapticFeedback(9, 1);
+                }
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    public static void vibrate(View view) {
+        if (view != null) {
+            try {
+                if (view.getContext() != null && Build.VERSION.SDK_INT >= 26 && ((Vibrator) view.getContext().getSystemService("vibrator")).hasAmplitudeControl()) {
+                    view.performHapticFeedback(3, 1);
+                }
+            } catch (Exception unused) {
+            }
+        }
     }
 }

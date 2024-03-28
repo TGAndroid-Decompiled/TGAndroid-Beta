@@ -27,8 +27,8 @@ public class SelectorLetterCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
-    public void setLetter(String str) {
-        this.textView.setText(str);
+    public void setLetter(CharSequence charSequence) {
+        this.textView.setText(charSequence);
     }
 
     private int getThemedColor(int i) {

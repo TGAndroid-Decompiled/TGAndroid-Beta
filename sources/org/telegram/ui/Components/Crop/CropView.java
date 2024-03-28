@@ -705,8 +705,12 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         if (videoEditTextureView != null) {
             return videoEditTextureView.getVideoWidth();
         }
+        Bitmap bitmap = this.bitmap;
+        if (bitmap == null) {
+            return 1;
+        }
         int i = this.bitmapRotation;
-        return (i == 90 || i == 270) ? this.bitmap.getHeight() : this.bitmap.getWidth();
+        return (i == 90 || i == 270) ? bitmap.getHeight() : bitmap.getWidth();
     }
 
     public int getCurrentHeight() {
@@ -714,8 +718,12 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         if (videoEditTextureView != null) {
             return videoEditTextureView.getVideoHeight();
         }
+        Bitmap bitmap = this.bitmap;
+        if (bitmap == null) {
+            return 1;
+        }
         int i = this.bitmapRotation;
-        return (i == 90 || i == 270) ? this.bitmap.getWidth() : this.bitmap.getHeight();
+        return (i == 90 || i == 270) ? bitmap.getWidth() : bitmap.getHeight();
     }
 
     public boolean isMirrored() {

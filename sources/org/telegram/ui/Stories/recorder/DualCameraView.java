@@ -310,6 +310,7 @@ public class DualCameraView extends CameraView {
         double d;
         float f;
         boolean z;
+        Matrix matrix;
         float width;
         float f2;
         Runnable runnable;
@@ -349,9 +350,9 @@ public class DualCameraView extends CameraView {
                 this.rotationDiff = 0.0f;
                 this.snappedRotation = false;
                 this.doNotSpanRotation = false;
-                Matrix matrix = this.touchMatrix;
+                Matrix matrix2 = this.touchMatrix;
                 PointF pointF5 = this.touch;
-                this.down = isPointInsideDual(matrix, pointF5.x, pointF5.y);
+                this.down = isPointInsideDual(matrix2, pointF5.x, pointF5.y);
             }
             if (motionEvent.getAction() == 2 && this.down) {
                 if (MathUtils.distance(f3, f4, f5, f6) > AndroidUtilities.dp(2.0f) && (runnable = this.longpressRunnable) != null) {
@@ -375,6 +376,7 @@ public class DualCameraView extends CameraView {
                         f7 = width / f2;
                         this.touchMatrix.postScale(f7, f7, f3, f4);
                     }
+                    matrix = dualPosition;
                     float degrees = (float) Math.toDegrees(d - this.lastTouchRotation);
                     float f8 = this.rotationDiff + degrees;
                     this.rotationDiff = f8;
@@ -386,16 +388,15 @@ public class DualCameraView extends CameraView {
                             this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
                         }
                         if (!this.snappedRotation) {
-                            try {
-                                performHapticFeedback(9, 1);
-                            } catch (Exception unused) {
-                            }
+                            AndroidUtilities.vibrateCursor(this);
                             this.snappedRotation = true;
                         }
                     }
                     if (this.allowRotation) {
                         this.touchMatrix.postRotate(degrees, f3, f4);
                     }
+                } else {
+                    matrix = dualPosition;
                 }
                 this.touchMatrix.postTranslate(f3 - f5, f4 - f6);
                 this.finalMatrix.set(this.touchMatrix);
@@ -405,10 +406,7 @@ public class DualCameraView extends CameraView {
                     if (Math.abs(round) < 5.0f) {
                         this.finalMatrix.postRotate(round, this.cx, this.cy);
                         if (!this.snappedRotation) {
-                            try {
-                                performHapticFeedback(9, 1);
-                            } catch (Exception unused2) {
-                            }
+                            AndroidUtilities.vibrateCursor(this);
                             this.snappedRotation = true;
                         }
                     } else {
@@ -428,7 +426,7 @@ public class DualCameraView extends CameraView {
                     this.finalMatrix.postTranslate(0.0f, (getHeight() - AndroidUtilities.dp(150.0f)) - this.cy);
                 }
                 this.finalMatrix.postConcat(this.toGL);
-                dualPosition.set(this.finalMatrix);
+                matrix.set(this.finalMatrix);
                 updateDualPosition();
                 float f11 = this.cy;
                 boolean z5 = Math.min(f11, f11 - (this.h / 2.0f)) < ((float) AndroidUtilities.dp(66.0f));

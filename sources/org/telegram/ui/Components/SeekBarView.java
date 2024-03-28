@@ -84,6 +84,9 @@ public class SeekBarView extends FrameLayout {
             public static int $default$getStepsCount(SeekBarViewDelegate seekBarViewDelegate) {
                 return 0;
             }
+
+            public static void $default$onSeekBarPressed(SeekBarViewDelegate seekBarViewDelegate, boolean z) {
+            }
         }
 
         CharSequence getContentDescription();
@@ -341,10 +344,7 @@ public class SeekBarView extends FrameLayout {
         if (i > 1) {
             int round = Math.round((i - 1) * f);
             if (!z && round != this.lastValue) {
-                try {
-                    performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
+                AndroidUtilities.vibrateCursor(this);
             }
             this.lastValue = round;
         }
@@ -693,10 +693,7 @@ public class SeekBarView extends FrameLayout {
             StaticLayout[] staticLayoutArr3 = this.timestampLabel;
             staticLayoutArr3[1] = staticLayoutArr3[0];
             if (this.pressed) {
-                try {
-                    performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
+                AndroidUtilities.vibrateCursor(this);
             }
             if (size >= 0 && size < this.timestamps.size()) {
                 CharSequence charSequence = (CharSequence) this.timestamps.get(size).second;

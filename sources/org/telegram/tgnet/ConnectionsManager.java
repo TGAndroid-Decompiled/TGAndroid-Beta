@@ -47,7 +47,10 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BaseController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.EmuDetector;
+import org.telegram.messenger.FileLoadOperation;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FileUploadOperation;
 import org.telegram.messenger.KeepAliveJob;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -97,6 +100,7 @@ public class ConnectionsManager extends BaseController {
     private static HashMap<String, ResolvedDomain> dnsCache;
     private static int lastClassGuid;
     private static long lastDnsRequestTime;
+    public static long lastPremiumFloodWaitShown;
     private static HashMap<String, ResolveHostByNameTask> resolvingHostnameTasks = new HashMap<>();
     private static final BlockingQueue<Runnable> sPoolWorkQueue;
     private static final ThreadFactory sThreadFactory;
@@ -197,6 +201,7 @@ public class ConnectionsManager extends BaseController {
         dnsCache = new HashMap<>();
         lastClassGuid = 1;
         Instance = new ConnectionsManager[4];
+        lastPremiumFloodWaitShown = 0L;
     }
 
     public void setForceTryIpV6(boolean z) {
@@ -319,7 +324,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 176, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 177, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -809,7 +814,7 @@ public class ConnectionsManager extends BaseController {
             wrap.reused = true;
             int readInt32 = wrap.readInt32(true);
             final TLObject TLdeserialize = TLClassStore.Instance().TLdeserialize(wrap, readInt32, true);
-            FileLog.dumpUnparsedMessage(TLdeserialize, j2);
+            FileLog.dumpUnparsedMessage(TLdeserialize, j2, i);
             if (TLdeserialize instanceof TLRPC$Updates) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("java received " + TLdeserialize);
@@ -1761,6 +1766,40 @@ public class ConnectionsManager extends BaseController {
             DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(this.currentAccount);
             dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             AsyncTask unused = ConnectionsManager.currentTask = dnsTxtLoadTask;
+        }
+    }
+
+    public static void onPremiumFloodWait(final int i, final int i2, final boolean z) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.lambda$onPremiumFloodWait$19(i, z, i2);
+            }
+        });
+    }
+
+    public static void lambda$onPremiumFloodWait$19(int i, boolean z, int i2) {
+        boolean z2;
+        if (UserConfig.selectedAccount != i) {
+            return;
+        }
+        if (z) {
+            FileUploadOperation findUploadOperationByRequestToken = FileLoader.getInstance(i).findUploadOperationByRequestToken(i2);
+            if (findUploadOperationByRequestToken != null) {
+                z2 = !findUploadOperationByRequestToken.caughtPremiumFloodWait;
+                findUploadOperationByRequestToken.caughtPremiumFloodWait = true;
+            }
+            z2 = false;
+        } else {
+            FileLoadOperation findLoadOperationByRequestToken = FileLoader.getInstance(i).findLoadOperationByRequestToken(i2);
+            if (findLoadOperationByRequestToken != null) {
+                z2 = !findLoadOperationByRequestToken.caughtPremiumFloodWait;
+                findLoadOperationByRequestToken.caughtPremiumFloodWait = true;
+            }
+            z2 = false;
+        }
+        if (z2) {
+            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
         }
     }
 }

@@ -1095,7 +1095,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 ChatAttachAlert chatAttachAlert2 = this.parentAlert;
                 photoViewer.setMaxSelectedPhotos(chatAttachAlert2.maxSelectedPhotos, chatAttachAlert2.allowOrder);
                 ChatAttachAlert chatAttachAlert3 = this.parentAlert;
-                if (chatAttachAlert3.avatarPicker != 0) {
+                if (chatAttachAlert3.isPhotoPicker && chatAttachAlert3.isStickerMode) {
+                    chatActivity = (ChatActivity) chatAttachAlert3.baseFragment;
+                    i2 = 11;
+                } else if (chatAttachAlert3.avatarPicker != 0) {
                     chatActivity = null;
                     i2 = 1;
                 } else {
@@ -1153,17 +1156,22 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     public void lambda$new$2(int i, BaseFragment baseFragment, ArrayList arrayList, int i2, ChatActivity chatActivity) {
         int i3;
-        if (this.parentAlert.isPhotoPicker) {
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        if (!chatAttachAlert.isPhotoPicker || chatAttachAlert.isStickerMode) {
+            i3 = i;
+        } else {
             PhotoViewer.getInstance().setParentActivity(baseFragment);
             PhotoViewer.getInstance().setMaxSelectedPhotos(0, false);
             i3 = 3;
-        } else {
-            i3 = i;
         }
         PhotoViewer.getInstance().openPhotoForSelect(arrayList, i2, i3, false, this.photoViewerProvider, chatActivity);
         PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
-        if (this.parentAlert.isPhotoPicker) {
+        ChatAttachAlert chatAttachAlert2 = this.parentAlert;
+        if (chatAttachAlert2.isPhotoPicker && !chatAttachAlert2.isStickerMode) {
             PhotoViewer.getInstance().closePhotoAfterSelect = false;
+        }
+        if (this.parentAlert.isStickerMode) {
+            PhotoViewer.getInstance().enableStickerMode(null);
         }
         if (captionForAllMedia()) {
             PhotoViewer.getInstance().setCaption(this.parentAlert.getCommentTextView().getText());
@@ -1950,8 +1958,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             ChatAttachAlert chatAttachAlert = this.parentAlert;
             photoViewer.setMaxSelectedPhotos(chatAttachAlert.maxSelectedPhotos, chatAttachAlert.allowOrder);
             ChatAttachAlert chatAttachAlert2 = this.parentAlert;
-            int i2 = chatAttachAlert2.avatarPicker;
-            if (i2 != 0) {
+            if (chatAttachAlert2.isPhotoPicker && chatAttachAlert2.isStickerMode) {
+                chatActivity = (ChatActivity) chatAttachAlert2.baseFragment;
+                i = 11;
+            } else if (chatAttachAlert2.avatarPicker != 0) {
                 chatActivity = null;
                 i = 1;
             } else {
@@ -1964,7 +1974,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     i = 5;
                 }
             }
-            if (i2 != 0) {
+            if (chatAttachAlert2.avatarPicker != 0) {
                 ArrayList<Object> arrayList = new ArrayList<>();
                 arrayList.add(photoEntry);
                 allPhotosArray = arrayList;
@@ -1978,6 +1988,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
             PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new AnonymousClass15(z), chatActivity);
             PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
+            if (this.parentAlert.isStickerMode) {
+                PhotoViewer.getInstance().enableStickerMode(null);
+                PhotoViewer.getInstance().prepareSegmentImage();
+            }
         }
     }
 
@@ -4242,7 +4256,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             int itemViewType = viewHolder.getItemViewType();
-            int i2 = 0;
+            r1 = 1;
+            r1 = 1;
+            int i2 = 1;
             if (itemViewType != 0) {
                 if (itemViewType != 1) {
                     if (itemViewType != 3) {
@@ -4250,7 +4266,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     PhotoAttachPermissionCell photoAttachPermissionCell = (PhotoAttachPermissionCell) viewHolder.itemView;
                     photoAttachPermissionCell.setItemSize(ChatAttachAlertPhotoLayout.this.itemSize);
-                    photoAttachPermissionCell.setType((this.needCamera && ChatAttachAlertPhotoLayout.this.noCameraPermissions && i == 0) ? 1 : 1);
+                    if (this.needCamera && ChatAttachAlertPhotoLayout.this.noCameraPermissions && i == 0) {
+                        i2 = 0;
+                    }
+                    photoAttachPermissionCell.setType(i2);
                     return;
                 }
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
@@ -4279,6 +4298,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
             if (ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker != 0) {
                 photoAttachPhotoCell.getCheckBox().setVisibility(8);
+            } else {
+                photoAttachPhotoCell.getCheckBox().setVisibility(0);
             }
             MediaController.PhotoEntry photoEntryAtPosition = ChatAttachAlertPhotoLayout.this.getPhotoEntryAtPosition(i);
             if (photoEntryAtPosition == null) {
@@ -4320,7 +4341,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     return new RecyclerListView.Holder(new AvatarConstructorPreviewCell(this.mContext, ChatAttachAlertPhotoLayout.this.parentAlert.forUser) {
                         @Override
-                        public void onMeasure(int i2, int i3) {
+                        protected void onMeasure(int i2, int i3) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(ChatAttachAlertPhotoLayout.this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(ChatAttachAlertPhotoLayout.this.itemSize, 1073741824));
                         }
                     });

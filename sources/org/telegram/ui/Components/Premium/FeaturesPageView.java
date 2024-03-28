@@ -215,13 +215,13 @@ public class FeaturesPageView extends BaseListPageView {
                 textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
                 textView2.setText(LocaleController.getString(R.string.TelegramBusiness));
                 textView2.setGravity(17);
-                addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 150.0f, 0.0f, 0.0f));
+                addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 14.0f);
                 textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, FeaturesPageView.this.resourcesProvider));
                 textView3.setText(LocaleController.getString(R.string.TelegramBusinessSubtitle2));
                 textView3.setGravity(17);
-                addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 183.0f, 0.0f, 20.0f));
+                addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
             }
         }
 

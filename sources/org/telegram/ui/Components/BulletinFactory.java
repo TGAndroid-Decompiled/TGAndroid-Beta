@@ -220,6 +220,7 @@ public final class BulletinFactory {
         lottieLayout.textView.setMaxLines(4);
         TextView textView = lottieLayout.textView;
         textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), lottieLayout.textView.getPaint()));
+        lottieLayout.textView.setLineSpacing(AndroidUtilities.dp(1.33f), 1.0f);
         ((ViewGroup.MarginLayoutParams) lottieLayout.textView.getLayoutParams()).rightMargin = AndroidUtilities.dp(12.0f);
         lottieLayout.setWrapWidth();
         return create(lottieLayout, 5000);
@@ -334,12 +335,16 @@ public final class BulletinFactory {
     }
 
     public Bulletin createUndoBulletin(CharSequence charSequence, Runnable runnable, Runnable runnable2) {
+        return createUndoBulletin(charSequence, false, runnable, runnable2);
+    }
+
+    public Bulletin createUndoBulletin(CharSequence charSequence, boolean z, Runnable runnable, Runnable runnable2) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.textView.setText(charSequence);
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(2);
         lottieLayout.setTimer();
-        lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
+        lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, z, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
         return create(lottieLayout, 5000);
     }
 
@@ -903,6 +908,15 @@ public final class BulletinFactory {
 
     public static org.telegram.ui.Components.Bulletin createInviteSentBulletin(android.content.Context r3, android.widget.FrameLayout r4, int r5, long r6, int r8, int r9, int r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createInviteSentBulletin(android.content.Context, android.widget.FrameLayout, int, long, int, int, int):org.telegram.ui.Components.Bulletin");
+    }
+
+    public Bulletin createAdReportedBulletin(CharSequence charSequence) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
+        lottieLayout.setAnimation(R.raw.ic_admin, "Shield");
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setMaxLines(3);
+        lottieLayout.textView.setText(charSequence);
+        return Bulletin.make(this.fragment, lottieLayout, 2750);
     }
 
     public boolean showForwardedBulletinWithTag(long j, int i) {

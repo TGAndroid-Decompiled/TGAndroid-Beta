@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -836,6 +837,54 @@ public class FileLoader extends BaseController {
         if (remove != null) {
             remove.getQueue().cancel(remove);
         }
+    }
+
+    public FileUploadOperation findUploadOperationByRequestToken(int i) {
+        for (FileUploadOperation fileUploadOperation : this.uploadOperationPaths.values()) {
+            if (fileUploadOperation != null) {
+                for (int i2 = 0; i2 < fileUploadOperation.requestTokens.size(); i2++) {
+                    if (fileUploadOperation.requestTokens.valueAt(i2) == i) {
+                        return fileUploadOperation;
+                    }
+                }
+                continue;
+            }
+        }
+        return null;
+    }
+
+    public boolean checkUploadCaughtPremiumFloodWait(String str) {
+        FileUploadOperation fileUploadOperation;
+        if (str == null || (fileUploadOperation = this.uploadOperationPaths.get(str)) == null || !fileUploadOperation.caughtPremiumFloodWait) {
+            return false;
+        }
+        fileUploadOperation.caughtPremiumFloodWait = false;
+        return true;
+    }
+
+    public FileLoadOperation findLoadOperationByRequestToken(int i) {
+        ArrayList<FileLoadOperation.RequestInfo> arrayList;
+        for (FileLoadOperation fileLoadOperation : this.loadOperationPaths.values()) {
+            if (fileLoadOperation != null && (arrayList = fileLoadOperation.requestInfos) != null) {
+                Iterator<FileLoadOperation.RequestInfo> it = arrayList.iterator();
+                while (it.hasNext()) {
+                    if (it.next().requestToken == i) {
+                        return fileLoadOperation;
+                    }
+                }
+                continue;
+            }
+        }
+        return null;
+    }
+
+    public boolean checkLoadCaughtPremiumFloodWait(String str) {
+        FileLoadOperation fileLoadOperation;
+        if (str == null || (fileLoadOperation = this.loadOperationPaths.get(str)) == null || !fileLoadOperation.caughtPremiumFloodWait) {
+            return false;
+        }
+        fileLoadOperation.caughtPremiumFloodWait = false;
+        return true;
     }
 
     public boolean isLoadingFile(String str) {

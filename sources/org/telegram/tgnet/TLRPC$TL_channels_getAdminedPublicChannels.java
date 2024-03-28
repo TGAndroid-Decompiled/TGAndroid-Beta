@@ -3,6 +3,7 @@ public class TLRPC$TL_channels_getAdminedPublicChannels extends TLObject {
     public boolean by_location;
     public boolean check_limit;
     public int flags;
+    public boolean for_personal;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -16,6 +17,8 @@ public class TLRPC$TL_channels_getAdminedPublicChannels extends TLObject {
         this.flags = i;
         int i2 = this.check_limit ? i | 2 : i & (-3);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.for_personal ? i2 | 4 : i2 & (-5);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
     }
 }

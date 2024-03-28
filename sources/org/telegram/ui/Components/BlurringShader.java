@@ -569,7 +569,7 @@ public class BlurringShader {
         }
 
         public Bitmap getBitmap(final Bitmap bitmap, final String str, final int i, final int i2, final boolean z) {
-            if (bitmap == null) {
+            if (bitmap == null || bitmap.isRecycled()) {
                 return null;
             }
             if (TextUtils.equals(this.thumbKey, str)) {
@@ -600,6 +600,9 @@ public class BlurringShader {
         public void lambda$getBitmap$1(final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
             int i3;
             int i4;
+            if (bitmap == null || bitmap.isRecycled()) {
+                return;
+            }
             float width = bitmap.getWidth() / bitmap.getHeight();
             int round = (int) Math.round(Math.sqrt(width * 324.0f));
             int round2 = (int) Math.round(Math.sqrt(324.0f / width));

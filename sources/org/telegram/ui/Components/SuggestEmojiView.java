@@ -40,6 +40,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
+import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$TL_emojiStatus;
 import org.telegram.tgnet.TLRPC$TL_emojiStatusEmpty;
 import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
@@ -87,13 +88,33 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
     public class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
+        public void addToFavoriteSelected(String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
+        }
+
+        @Override
         public boolean can() {
             return true;
         }
 
         @Override
+        public boolean canEditSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canEditSticker(this);
+        }
+
+        @Override
         public boolean canSchedule() {
             return false;
+        }
+
+        @Override
+        public void deleteSticker(TLRPC$Document tLRPC$Document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$deleteSticker(this, tLRPC$Document);
+        }
+
+        @Override
+        public void editSticker(TLRPC$Document tLRPC$Document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$editSticker(this, tLRPC$Document);
         }
 
         @Override
@@ -117,6 +138,16 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
+        public boolean isReplacedSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isReplacedSticker(this);
+        }
+
+        @Override
+        public boolean isStickerEditor() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isStickerEditor(this);
+        }
+
+        @Override
         public boolean needMenu() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needMenu(this);
         }
@@ -134,6 +165,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         @Override
         public boolean needRemoveFromRecent(TLRPC$Document tLRPC$Document) {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needRemoveFromRecent(this, tLRPC$Document);
+        }
+
+        @Override
+        public void newStickerPackSelected(CharSequence charSequence, String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$newStickerPackSelected(this, charSequence, str);
         }
 
         @Override
@@ -161,8 +197,18 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
+        public void sendSticker() {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this);
+        }
+
+        @Override
         public void sendSticker(TLRPC$Document tLRPC$Document, String str, Object obj, boolean z, int i) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, tLRPC$Document, str, obj, z, i);
+        }
+
+        @Override
+        public void stickerSetSelected(TLRPC$StickerSet tLRPC$StickerSet, String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$stickerSetSelected(this, tLRPC$StickerSet, str);
         }
 
         AnonymousClass1() {

@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda283;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda285;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -229,6 +229,7 @@ public class Theme {
     public static TextPaint chat_locationTitlePaint;
     public static Drawable chat_lockIconDrawable;
     public static Paint chat_messageBackgroundSelectedPaint;
+    public static Drawable chat_moreIconDrawable;
     private static AudioVisualizerDrawable chat_msgAudioVisualizeDrawable;
     public static TextPaint chat_msgBotButtonPaint;
     public static Drawable chat_msgCallDownGreenDrawable;
@@ -312,6 +313,7 @@ public class Theme {
     public static Paint chat_textSearchSelectionPaint;
     public static Paint chat_timeBackgroundPaint;
     public static TextPaint chat_timePaint;
+    public static TextPaint chat_titleLabelTextPaint;
     public static TextPaint chat_topicTextPaint;
     public static TextPaint chat_unlockExtendedMediaTextPaint;
     public static Paint chat_urlPaint;
@@ -4536,8 +4538,16 @@ public class Theme {
             return filledRect(Theme.getColor(defaultBackgroundColorKey), 0.0f);
         }
 
+        public static Drawable filledRectByKey(int i) {
+            return filledRect(Theme.getColor(i));
+        }
+
         public static Drawable filledRectByKey(int i, float... fArr) {
             return filledRect(Theme.getColor(i), fArr);
+        }
+
+        public static Drawable filledRect(int i) {
+            return createRect(i, calcRippleColor(i), new float[0]);
         }
 
         public static Drawable filledRect(int i, float... fArr) {
@@ -4835,6 +4845,24 @@ public class Theme {
         stateListDrawable.addState(new int[]{16842919}, new ColorDrawable(i));
         stateListDrawable.addState(new int[]{16842913}, new ColorDrawable(i));
         stateListDrawable.addState(StateSet.WILD_CARD, new ColorDrawable(0));
+        return stateListDrawable;
+    }
+
+    public static Drawable createRadSelectorDrawable(int i, int i2, int i3, int i4) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            maskPaint.setColor(-1);
+            float f = i3;
+            float f2 = i4;
+            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), createRoundRectDrawable(AndroidUtilities.dp(f), AndroidUtilities.dp(f2), i), new RippleRadMaskDrawable(f, f2));
+        }
+        float f3 = i3;
+        float f4 = i4;
+        Drawable createRoundRectDrawable = createRoundRectDrawable(AndroidUtilities.dp(f3), AndroidUtilities.dp(f4), i);
+        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{createRoundRectDrawable, createRoundRectDrawable(AndroidUtilities.dp(f3), AndroidUtilities.dp(f4), i2)});
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[]{16842919}, layerDrawable);
+        stateListDrawable.addState(new int[]{16842913}, layerDrawable);
+        stateListDrawable.addState(StateSet.WILD_CARD, createRoundRectDrawable);
         return stateListDrawable;
     }
 
@@ -5139,7 +5167,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda283.INSTANCE, 2100L);
+                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda285.INSTANCE, 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -6517,6 +6545,7 @@ public class Theme {
                 textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 chat_replyTextPaint = new TextPaint(1);
                 chat_quoteTextPaint = new TextPaint(1);
+                chat_titleLabelTextPaint = new TextPaint(1);
                 TextPaint textPaint4 = new TextPaint(1);
                 chat_topicTextPaint = textPaint4;
                 textPaint4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -6556,6 +6585,7 @@ public class Theme {
                     float f2 = f - 1.0f;
                     chat_quoteTextPaint.setTextSize(AndroidUtilities.dp(f2));
                     chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
+                    chat_titleLabelTextPaint.setTextSize(AndroidUtilities.dp(f - 2.0f));
                     chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
                     chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
                     chat_msgTextCodePaint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 1), SharedConfig.fontSize - 2)));
@@ -6639,6 +6669,7 @@ public class Theme {
             TextPaint textPaint12 = new TextPaint(1);
             chat_topicTextPaint = textPaint12;
             textPaint12.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            chat_titleLabelTextPaint = new TextPaint(1);
             chat_commentTextPaint = new TextPaint(1);
             TextPaint textPaint13 = new TextPaint(1);
             chat_instantViewPaint = textPaint13;
@@ -6819,6 +6850,7 @@ public class Theme {
             chat_shareIconDrawable = resources.getDrawable(R.drawable.filled_button_share).mutate();
             chat_replyIconDrawable = resources.getDrawable(R.drawable.filled_button_reply);
             chat_closeIconDrawable = resources.getDrawable(R.drawable.msg_voiceclose).mutate();
+            chat_moreIconDrawable = resources.getDrawable(R.drawable.media_more).mutate();
             chat_goIconDrawable = resources.getDrawable(R.drawable.filled_open_message);
             int dp = AndroidUtilities.dp(2.0f);
             RectF rectF = new RectF();
@@ -6941,6 +6973,7 @@ public class Theme {
             addChatDrawable("drawableMsgStickerViews", chat_msgStickerViewsDrawable, i31);
             addChatDrawable("drawableReplyIcon", chat_replyIconDrawable, i24);
             addChatDrawable("drawableCloseIcon", chat_closeIconDrawable, i24);
+            addChatDrawable("drawableMoreIcon", chat_moreIconDrawable, i24);
             addChatDrawable("drawableShareIcon", chat_shareIconDrawable, i24);
             addChatDrawable("drawableMuteIcon", chat_muteIconDrawable, key_chat_muteIcon);
             addChatDrawable("drawableLockIcon", chat_lockIconDrawable, key_chat_lockIcon);

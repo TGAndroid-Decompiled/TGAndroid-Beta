@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -46,6 +47,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 @SuppressLint({"NewApi"})
 public class PhotoFilterView extends FrameLayout implements FilterShaders.FilterShadersDelegate, StoryRecorder.Touchable {
+    private Bitmap bitmapMask;
     private Bitmap bitmapToEdit;
     private float blurAngle;
     private PhotoFilterBlurControl blurControl;
@@ -84,6 +86,9 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private boolean inBubbleMode;
     private boolean isMirrored;
     private MediaController.SavedFilterState lastState;
+    private final Matrix maskMatrix;
+    private final Paint maskPaint;
+    private final android.graphics.Rect maskRect;
     private int orientation;
     private boolean ownLayout;
     private boolean ownsTextureView;
@@ -265,8 +270,12 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
     }
 
-    public PhotoFilterView(android.content.Context r25, org.telegram.ui.Components.VideoEditTextureView r26, android.graphics.Bitmap r27, int r28, org.telegram.messenger.MediaController.SavedFilterState r29, org.telegram.ui.Components.PaintingOverlay r30, int r31, boolean r32, boolean r33, org.telegram.ui.Components.BlurringShader.BlurManager r34, org.telegram.ui.ActionBar.Theme.ResourcesProvider r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterView.<init>(android.content.Context, org.telegram.ui.Components.VideoEditTextureView, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.PaintingOverlay, int, boolean, boolean, org.telegram.ui.Components.BlurringShader$BlurManager, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public PhotoFilterView(Context context, VideoEditTextureView videoEditTextureView, Bitmap bitmap, int i, MediaController.SavedFilterState savedFilterState, PaintingOverlay paintingOverlay, int i2, boolean z, boolean z2, BlurringShader.BlurManager blurManager, Theme.ResourcesProvider resourcesProvider) {
+        this(context, videoEditTextureView, bitmap, null, i, savedFilterState, paintingOverlay, i2, z, z2, blurManager, resourcesProvider);
+    }
+
+    public PhotoFilterView(android.content.Context r26, org.telegram.ui.Components.VideoEditTextureView r27, android.graphics.Bitmap r28, android.graphics.Bitmap r29, int r30, org.telegram.messenger.MediaController.SavedFilterState r31, org.telegram.ui.Components.PaintingOverlay r32, int r33, boolean r34, boolean r35, org.telegram.ui.Components.BlurringShader.BlurManager r36, org.telegram.ui.ActionBar.Theme.ResourcesProvider r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterView.<init>(android.content.Context, org.telegram.ui.Components.VideoEditTextureView, android.graphics.Bitmap, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.PaintingOverlay, int, boolean, boolean, org.telegram.ui.Components.BlurringShader$BlurManager, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
     public void lambda$new$0(FilterGLThread filterGLThread) {
@@ -737,6 +746,19 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         if (this.paintingOverlay != null && view == this.textureView) {
             canvas.save();
             canvas.translate(this.textureView.getLeft(), this.textureView.getTop());
+            if (this.bitmapMask != null && this.textureView.getVisibility() == 0) {
+                this.maskRect.set(0, 0, this.textureView.getMeasuredWidth(), this.textureView.getMeasuredHeight());
+                if (this.orientation != 0) {
+                    this.maskMatrix.reset();
+                    this.maskMatrix.postRotate(this.orientation, this.bitmapMask.getWidth() / 2.0f, this.bitmapMask.getHeight() / 2.0f);
+                    float height = (this.bitmapMask.getHeight() - this.bitmapMask.getWidth()) / 2.0f;
+                    this.maskMatrix.postTranslate(height, -height);
+                    this.maskMatrix.postScale(this.maskRect.width() / this.bitmapMask.getHeight(), this.maskRect.height() / this.bitmapMask.getWidth());
+                    canvas.drawBitmap(this.bitmapMask, this.maskMatrix, this.maskPaint);
+                } else {
+                    canvas.drawBitmap(this.bitmapMask, (android.graphics.Rect) null, this.maskRect, this.maskPaint);
+                }
+            }
             float measuredWidth = this.textureView.getMeasuredWidth() / this.paintingOverlay.getMeasuredWidth();
             canvas.scale(measuredWidth, measuredWidth);
             this.paintingOverlay.draw(canvas);
@@ -1187,10 +1209,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                             this.lastVibrateValue = clamp;
                         } else {
                             if (Math.abs(round - round3) > (SharedConfig.getDevicePerformanceClass() == 2 ? 5 : 10)) {
-                                try {
-                                    performHapticFeedback(9, 1);
-                                } catch (Exception unused2) {
-                                }
+                                AndroidUtilities.vibrateCursor(this);
                                 this.lastVibrateValue = clamp;
                             }
                         }

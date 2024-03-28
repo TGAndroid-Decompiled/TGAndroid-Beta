@@ -392,6 +392,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean drawRadialCheckBackground;
     private boolean drawSelectionBackground;
     private int drawSideButton;
+    private int drawSideButton2;
     private boolean drawTime;
     private float drawTimeX;
     private float drawTimeY;
@@ -510,6 +511,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean isSpoilerRevealing;
     public boolean isThreadChat;
     private boolean isThreadPost;
+    private boolean isTitleLabelPressed;
     private boolean isUpdating;
     private int keyboardHeight;
     private long lastAnimationTime;
@@ -640,6 +642,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private AnimatedEmojiSpan pressedEmoji;
     private LinkSpanDrawable pressedLink;
     private int pressedLinkType;
+    private int pressedSideButton;
     private int[] pressedState;
     private int pressedVoteButton;
     private CharacterStyle progressLoadingLink;
@@ -721,9 +724,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private AnimatorSet shakeAnimation;
     private ChatMessageSharedResources sharedResources;
     public boolean shouldCheckVisibleOnScreen;
+    private Path sideButtonPath1;
+    private Path sideButtonPath2;
+    private float[] sideButtonPathCorners1;
+    private float[] sideButtonPathCorners2;
     private boolean sideButtonPressed;
     private float sideStartX;
     private float sideStartY;
+    public int signWidth;
     private StaticLayout siteNameLayout;
     private float siteNameLayoutWidth;
     private float siteNameLeft;
@@ -742,16 +750,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public int textY;
     private float timeAlpha;
     private int timeAudioX;
-    private StaticLayout timeLayout;
+    public StaticLayout timeLayout;
     private boolean timePressed;
     private int timeTextWidth;
     private boolean timeWasInvisible;
     public int timeWidth;
     private int timeWidthAudio;
-    protected int timeX;
+    public int timeX;
     private TimerParticles timerParticles;
     private AnimatedFloat timerParticlesAlpha;
     private float timerTransitionProgress;
+    private ButtonBounce titleLabelBounce;
+    private StaticLayout titleLabelLayout;
+    private float titleLabelLayoutHeight;
+    private float titleLabelLayoutWidth;
+    private float titleLabelX;
+    private float titleLabelY;
     private StaticLayout titleLayout;
     private int titleLayoutLeft;
     private int titleLayoutWidth;
@@ -821,6 +835,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private boolean intersect(float f, float f2, float f3, float f4) {
         return f <= f3 ? f2 >= f3 : f <= f4;
+    }
+
+    @Override
+    public void didSetImageBitmap(int i, String str, Drawable drawable) {
+        ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
     }
 
     protected boolean isWidthAdaptive() {
@@ -1103,6 +1122,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
         boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, float f, float f2);
 
+        void didPressAboutRevenueSharingAds();
+
         boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan);
 
         void didPressBoostCounter(ChatMessageCell chatMessageCell);
@@ -1144,6 +1165,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         void didPressSideButton(ChatMessageCell chatMessageCell);
 
         void didPressSponsoredClose();
+
+        void didPressSponsoredInfo(ChatMessageCell chatMessageCell, float f, float f2);
 
         void didPressTime(ChatMessageCell chatMessageCell);
 
@@ -1234,6 +1257,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 return false;
             }
 
+            public static void $default$didPressAboutRevenueSharingAds(ChatMessageCellDelegate chatMessageCellDelegate) {
+            }
+
             public static boolean $default$didPressAnimatedEmoji(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
                 return false;
             }
@@ -1296,6 +1322,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
 
             public static void $default$didPressSponsoredClose(ChatMessageCellDelegate chatMessageCellDelegate) {
+            }
+
+            public static void $default$didPressSponsoredInfo(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, float f, float f2) {
             }
 
             public static void $default$didPressTime(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell) {
@@ -2348,6 +2377,39 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return false;
     }
 
+    private boolean checkTitleLabelMotion(MotionEvent motionEvent) {
+        if (this.currentMessageObject.isSponsored() && this.currentMessageObject.sponsoredCanReport) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            if (motionEvent.getAction() == 0) {
+                float f = x;
+                if (f >= this.titleLabelX - AndroidUtilities.dp(6.0f) && f <= this.titleLabelX + this.titleLabelLayoutWidth + AndroidUtilities.dp(6.0f)) {
+                    float f2 = y;
+                    if (f2 >= this.titleLabelY - AndroidUtilities.dp(2.0f) && f2 <= this.titleLabelY + this.titleLabelLayoutHeight + AndroidUtilities.dp(2.0f)) {
+                        ButtonBounce buttonBounce = this.titleLabelBounce;
+                        if (buttonBounce != null) {
+                            buttonBounce.setPressed(true);
+                        }
+                        this.isTitleLabelPressed = true;
+                        return true;
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 && this.isTitleLabelPressed) {
+                ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+                if (chatMessageCellDelegate != null) {
+                    chatMessageCellDelegate.didPressAboutRevenueSharingAds();
+                }
+                ButtonBounce buttonBounce2 = this.titleLabelBounce;
+                if (buttonBounce2 != null) {
+                    buttonBounce2.setPressed(false);
+                }
+                playSoundEffect(0);
+                this.isTitleLabelPressed = false;
+            }
+        }
+        return false;
+    }
+
     private void invalidateWithParent() {
         if (this.currentMessagesGroup != null && getParent() != null) {
             ((ViewGroup) getParent()).invalidate();
@@ -2948,7 +3010,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r20) {
+    public boolean onTouchEvent(android.view.MotionEvent r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
@@ -3955,7 +4017,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContent(org.telegram.messenger.MessageObject r74, org.telegram.messenger.MessageObject.GroupedMessages r75, boolean r76, boolean r77) {
+    private void setMessageContent(org.telegram.messenger.MessageObject r68, org.telegram.messenger.MessageObject.GroupedMessages r69, boolean r70, boolean r71) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContent(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean):void");
     }
 
@@ -4131,6 +4193,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (buttonBounce != null) {
             buttonBounce.setPressed(false);
         }
+        ButtonBounce buttonBounce2 = this.titleLabelBounce;
+        if (buttonBounce2 != null) {
+            buttonBounce2.setPressed(false);
+        }
         MessageTopicButton messageTopicButton = this.topicButton;
         if (messageTopicButton != null) {
             messageTopicButton.resetClick();
@@ -4167,6 +4233,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         this.linkPreviewPressed = false;
         this.sideButtonPressed = false;
+        this.pressedSideButton = 0;
         this.imagePressed = false;
         this.timePressed = false;
         this.gamePreviewPressed = false;
@@ -4198,9 +4265,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     drawable5.setState(StateSet.NOTHING);
                 }
             }
-            ButtonBounce buttonBounce2 = this.linkPreviewBounce;
-            if (buttonBounce2 != null) {
-                buttonBounce2.setPressed(false);
+            ButtonBounce buttonBounce3 = this.linkPreviewBounce;
+            if (buttonBounce3 != null) {
+                buttonBounce3.setPressed(false);
             }
             invalidate();
         }
@@ -6025,7 +6092,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         runnable.run();
     }
 
-    public void drawLinkPreview(android.graphics.Canvas r49, float r50) {
+    public void drawLinkPreview(android.graphics.Canvas r47, float r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawLinkPreview(android.graphics.Canvas, float):void");
     }
 
@@ -7147,7 +7214,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.allowAssistant = z;
     }
 
-    private void measureTime(org.telegram.messenger.MessageObject r18) {
+    private void measureTime(org.telegram.messenger.MessageObject r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.measureTime(org.telegram.messenger.MessageObject):void");
     }
 
@@ -8759,9 +8826,47 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 }
                 RectF rectF = this.rect;
                 float f3 = this.sideStartX;
-                rectF.set(f3, this.sideStartY, AndroidUtilities.dp(32.0f) + f3, this.sideStartY + AndroidUtilities.dp(32.0f));
+                rectF.set(f3, this.sideStartY, AndroidUtilities.dp(32.0f) + f3, this.sideStartY + AndroidUtilities.dp(this.drawSideButton2 == 5 ? 64.0f : 32.0f));
                 applyServiceShaderMatrix();
-                canvas.drawRoundRect(this.rect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), getThemedPaint(this.sideButtonPressed ? "paintChatActionBackgroundSelected" : "paintChatActionBackground"));
+                if (this.drawSideButton == 4 && this.drawSideButton2 == 5 && this.sideButtonPressed) {
+                    Path path = this.sideButtonPath1;
+                    if (path == null) {
+                        this.sideButtonPath1 = new Path();
+                    } else {
+                        path.rewind();
+                    }
+                    Path path2 = this.sideButtonPath2;
+                    if (path2 == null) {
+                        this.sideButtonPath2 = new Path();
+                    } else {
+                        path2.rewind();
+                    }
+                    if (this.sideButtonPathCorners1 == null) {
+                        this.sideButtonPathCorners1 = r2;
+                        float dp7 = AndroidUtilities.dp(16.0f);
+                        float[] fArr = {dp7, dp7, dp7, dp7};
+                    }
+                    if (this.sideButtonPathCorners2 == null) {
+                        this.sideButtonPathCorners2 = r2;
+                        float dp8 = AndroidUtilities.dp(16.0f);
+                        float[] fArr2 = {0.0f, 0.0f, 0.0f, 0.0f, dp8, dp8, dp8, dp8};
+                    }
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    float f4 = this.sideStartX;
+                    rectF2.set(f4, this.sideStartY, AndroidUtilities.dp(32.0f) + f4, this.sideStartY + AndroidUtilities.dp(32.0f));
+                    this.sideButtonPath1.addRoundRect(rectF2, this.sideButtonPathCorners1, Path.Direction.CW);
+                    rectF2.set(this.sideStartX, this.sideStartY + AndroidUtilities.dp(32.0f), this.sideStartX + AndroidUtilities.dp(32.0f), this.sideStartY + AndroidUtilities.dp(64.0f));
+                    this.sideButtonPath2.addRoundRect(rectF2, this.sideButtonPathCorners2, Path.Direction.CW);
+                    if (this.pressedSideButton == 4) {
+                        canvas.drawPath(this.sideButtonPath1, getThemedPaint("paintChatActionBackgroundSelected"));
+                        canvas.drawPath(this.sideButtonPath2, getThemedPaint("paintChatActionBackground"));
+                    } else {
+                        canvas.drawPath(this.sideButtonPath1, getThemedPaint("paintChatActionBackground"));
+                        canvas.drawPath(this.sideButtonPath2, getThemedPaint("paintChatActionBackgroundSelected"));
+                    }
+                } else {
+                    canvas.drawRoundRect(this.rect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), getThemedPaint(this.sideButtonPressed ? "paintChatActionBackgroundSelected" : "paintChatActionBackground"));
+                }
                 if (hasGradientService()) {
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
                 }
@@ -8771,26 +8876,34 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     BaseCell.setDrawableBounds(themedDrawable, (this.sideStartX + AndroidUtilities.dp(16.0f)) - (themedDrawable.getIntrinsicWidth() / 2.0f), (this.sideStartY + AndroidUtilities.dp(16.0f)) - (themedDrawable.getIntrinsicHeight() / 2.0f));
                     themedDrawable.draw(canvas);
                 } else if (i == 4) {
-                    int dp7 = (int) (this.sideStartX + AndroidUtilities.dp(16.0f));
-                    int dp8 = (int) (this.sideStartY + AndroidUtilities.dp(16.0f));
+                    int dp9 = (int) (this.sideStartX + AndroidUtilities.dp(16.0f));
+                    int dp10 = (int) (this.sideStartY + AndroidUtilities.dp(16.0f));
                     Drawable themedDrawable2 = getThemedDrawable("drawableCloseIcon");
                     int intrinsicWidth = themedDrawable2.getIntrinsicWidth() / 2;
                     int intrinsicHeight = themedDrawable2.getIntrinsicHeight() / 2;
-                    themedDrawable2.setBounds(dp7 - intrinsicWidth, dp8 - intrinsicHeight, dp7 + intrinsicWidth, dp8 + intrinsicHeight);
+                    themedDrawable2.setBounds(dp9 - intrinsicWidth, dp10 - intrinsicHeight, intrinsicWidth + dp9, intrinsicHeight + dp10);
                     BaseCell.setDrawableBounds(themedDrawable2, this.sideStartX + AndroidUtilities.dp(4.0f), this.sideStartY + AndroidUtilities.dp(4.0f));
                     canvas.save();
                     canvas.scale(0.65f, 0.65f, themedDrawable2.getBounds().centerX(), themedDrawable2.getBounds().centerY());
                     themedDrawable2.draw(canvas);
                     canvas.restore();
+                    if (this.drawSideButton2 == 5) {
+                        Drawable themedDrawable3 = getThemedDrawable("drawableMoreIcon");
+                        int intrinsicWidth2 = themedDrawable3.getIntrinsicWidth() / 2;
+                        int intrinsicHeight2 = themedDrawable3.getIntrinsicHeight() / 2;
+                        themedDrawable3.setBounds(dp9 - intrinsicWidth2, dp10 - intrinsicHeight2, dp9 + intrinsicWidth2, dp10 + intrinsicHeight2);
+                        BaseCell.setDrawableBounds(themedDrawable3, this.sideStartX + AndroidUtilities.dp(4.0f), this.sideStartY + AndroidUtilities.dp(34.0f));
+                        themedDrawable3.draw(canvas);
+                    }
                 } else {
-                    int dp9 = (int) (this.sideStartX + AndroidUtilities.dp(16.0f));
-                    int dp10 = (int) (this.sideStartY + AndroidUtilities.dp(16.0f));
-                    Drawable themedDrawable3 = getThemedDrawable("drawableShareIcon");
-                    int intrinsicWidth2 = themedDrawable3.getIntrinsicWidth() / 2;
-                    int intrinsicHeight2 = themedDrawable3.getIntrinsicHeight() / 2;
-                    themedDrawable3.setBounds(dp9 - intrinsicWidth2, dp10 - intrinsicHeight2, dp9 + intrinsicWidth2, dp10 + intrinsicHeight2);
-                    BaseCell.setDrawableBounds(themedDrawable3, this.sideStartX + AndroidUtilities.dp(4.0f), this.sideStartY + AndroidUtilities.dp(4.0f));
-                    themedDrawable3.draw(canvas);
+                    int dp11 = (int) (this.sideStartX + AndroidUtilities.dp(16.0f));
+                    int dp12 = (int) (this.sideStartY + AndroidUtilities.dp(16.0f));
+                    Drawable themedDrawable4 = getThemedDrawable("drawableShareIcon");
+                    int intrinsicWidth3 = themedDrawable4.getIntrinsicWidth() / 2;
+                    int intrinsicHeight3 = themedDrawable4.getIntrinsicHeight() / 2;
+                    themedDrawable4.setBounds(dp11 - intrinsicWidth3, dp12 - intrinsicHeight3, dp11 + intrinsicWidth3, dp12 + intrinsicHeight3);
+                    BaseCell.setDrawableBounds(themedDrawable4, this.sideStartX + AndroidUtilities.dp(4.0f), this.sideStartY + AndroidUtilities.dp(4.0f));
+                    themedDrawable4.draw(canvas);
                 }
             }
         }
@@ -9336,8 +9449,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         float f7;
         int dp2;
         boolean z5;
-        float imageY2;
         int i4;
+        float imageY2;
         int i5;
         int i6;
         int i7;
@@ -9346,6 +9459,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         float currentWidth;
         TextPaint textPaint;
         int i8;
+        boolean z6 = z;
         if (((!this.drawTime || this.groupPhotoInvisible) && shouldDrawTimeOnMedia()) || staticLayout == null) {
             return;
         }
@@ -9451,40 +9565,47 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     dp2 = Math.min(AndroidUtilities.dp(8.0f), Math.max(roundRadius[2], roundRadius[3]));
                     z5 = SharedConfig.bubbleRadius >= 10;
                 } else {
-                    dp2 = AndroidUtilities.dp(4.0f);
+                    int dp3 = AndroidUtilities.dp(4.0f);
+                    MessageObject messageObject4 = this.currentMessageObject;
+                    dp2 = dp3 + ((messageObject4 == null || !messageObject4.isAnyKindOfSticker()) ? 0 : AndroidUtilities.dp(8.0f));
                     z5 = false;
                 }
-                float dp3 = f15 - AndroidUtilities.dp(z5 ? 6.0f : 4.0f);
+                MessageObject messageObject5 = this.currentMessageObject;
+                float dp4 = f15 + ((messageObject5 == null || !messageObject5.isAnyKindOfSticker()) ? 0 : AndroidUtilities.dp(-6.0f));
+                float dp5 = dp4 - AndroidUtilities.dp(z5 ? 6.0f : 4.0f);
+                MessageObject messageObject6 = this.currentMessageObject;
+                float dp6 = (messageObject6 == null || !messageObject6.isAnyKindOfSticker()) ? 0.0f : AndroidUtilities.dp(2.0f);
                 if (this.documentAttachType != 7 || ((messageObject = this.currentMessageObject) != null && messageObject.isRoundOnce())) {
+                    i4 = i9;
                     imageY2 = this.photoImage.getImageY2() + this.additionalTimeOffsetY;
                 } else {
+                    i4 = i9;
                     imageY2 = f13 - ((AndroidUtilities.dp(this.drawPinnedBottom ? 4.0f : 5.0f) + this.reactionsLayoutInBubble.getCurrentTotalHeight(this.transitionParams.animateChangeProgress)) * (1.0f - getVideoTranscriptionProgress()));
                 }
                 float f17 = imageY2;
-                float dp4 = f17 - AndroidUtilities.dp(23.0f);
+                float dp7 = f17 - AndroidUtilities.dp(23.0f);
                 float max = Math.max(AndroidUtilities.dp(17.0f), Theme.chat_timePaint.getTextSize() + AndroidUtilities.dp(5.0f));
                 RectF rectF = this.rect;
-                float f18 = dp3 + f3;
+                float f18 = dp5 - dp6;
+                float f19 = dp6 + dp5 + f3;
                 if (z5) {
-                    i4 = 12;
+                    i5 = 12;
                     z3 = z5;
                 } else {
                     z3 = z5;
-                    i4 = 8;
+                    i5 = 8;
                 }
                 if (this.currentMessageObject.isOutOwner()) {
-                    i5 = i9;
                     i6 = (this.currentMessageObject.type == 19 ? 4 : 0) + 20;
                 } else {
-                    i5 = i9;
                     i6 = 0;
                 }
-                rectF.set(dp3, dp4, f18 + AndroidUtilities.dp(i4 + i6), max + dp4);
+                rectF.set(f18, dp7, f19 + AndroidUtilities.dp(i5 + i6), max + dp7);
                 if (!this.currentMessageObject.isQuickReply()) {
                     if (this.currentMessageObject.hasMediaSpoilers() && this.currentMessageObject.type != 5) {
                         this.rectPath.rewind();
-                        float f19 = dp2;
-                        this.rectPath.addRoundRect(this.rect, f19, f19, Path.Direction.CW);
+                        float f20 = dp2;
+                        this.rectPath.addRoundRect(this.rect, f20, f20, Path.Direction.CW);
                         canvas.save();
                         canvas.clipPath(this.rectPath);
                         ImageReceiver imageReceiver = this.currentMessageObject.needDrawBluredPreview() ? this.photoImage : this.blurredPhotoImage;
@@ -9496,97 +9617,103 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         Paint themedPaint2 = getThemedPaint("paintChatTimeBackground");
                         int alpha3 = themedPaint2.getAlpha();
                         themedPaint2.setAlpha((int) (alpha3 * this.controlsAlpha * 0.4f));
-                        canvas.drawRoundRect(this.rect, f19, f19, themedPaint2);
+                        canvas.drawRoundRect(this.rect, f20, f20, themedPaint2);
                         themedPaint2.setAlpha(alpha3);
                     }
                     applyServiceShaderMatrix();
-                    float f20 = dp2;
-                    canvas.drawRoundRect(this.rect, f20, f20, themedPaint);
+                    float f21 = dp2;
+                    canvas.drawRoundRect(this.rect, f21, f21, themedPaint);
                     if (themedPaint == getThemedPaint("paintChatActionBackground") && hasGradientService()) {
                         int alpha4 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
                         Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha4 * this.timeAlpha * f7));
-                        canvas.drawRoundRect(this.rect, f20, f20, Theme.chat_actionBackgroundGradientDarkenPaint);
+                        canvas.drawRoundRect(this.rect, f21, f21, Theme.chat_actionBackgroundGradientDarkenPaint);
                         Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(alpha4);
                     }
                 }
                 themedPaint.setAlpha(alpha);
-                float f21 = -staticLayout.getLineLeft(0);
+                float f22 = -staticLayout.getLineLeft(0);
+                MessageObject messageObject7 = this.currentMessageObject;
+                float dp8 = f22 + ((messageObject7 == null || !messageObject7.isAnyKindOfSticker()) ? 0 : AndroidUtilities.dp(-6.0f));
                 if (this.currentMessageObject.shouldDrawReactions() && this.reactionsLayoutInBubble.isSmall) {
                     updateReactionLayoutPosition();
                     this.reactionsLayoutInBubble.draw(canvas, this.transitionParams.animateChangeProgress, null);
                 }
                 if ((!ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup) && (this.currentMessageObject.messageOwner.flags & 1024) == 0 && this.repliesLayout == null && !this.isPinned) {
+                    z6 = z;
                     str = "paintChatTimeBackground";
-                    i7 = i5;
+                    i7 = i4;
                     c = 4;
                     c2 = 7;
                 } else {
-                    float lineWidth = f21 + (this.timeWidth - staticLayout.getLineWidth(0));
+                    float lineWidth = dp8 + (this.timeWidth - staticLayout.getLineWidth(0));
                     ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
                     if (reactionsLayoutInBubble2.isSmall && !reactionsLayoutInBubble2.isEmpty) {
                         lineWidth -= reactionsLayoutInBubble2.width;
                     }
-                    float f22 = lineWidth;
+                    float f23 = lineWidth;
                     int createStatusDrawableParams = this.transitionParams.createStatusDrawableParams();
                     int i11 = this.transitionParams.lastStatusDrawableParams;
-                    if (i11 >= 0 && i11 != createStatusDrawableParams && !this.statusDrawableAnimationInProgress) {
-                        createStatusDrawableAnimator(i11, createStatusDrawableParams, z);
+                    if (i11 < 0 || i11 == createStatusDrawableParams || this.statusDrawableAnimationInProgress) {
+                        z6 = z;
+                    } else {
+                        z6 = z;
+                        createStatusDrawableAnimator(i11, createStatusDrawableParams, z6);
                     }
-                    boolean z6 = this.statusDrawableAnimationInProgress;
-                    if (z6) {
+                    boolean z7 = this.statusDrawableAnimationInProgress;
+                    if (z7) {
                         createStatusDrawableParams = this.animateToStatusDrawableParams;
                     }
-                    boolean z7 = (createStatusDrawableParams & 4) != 0;
-                    boolean z8 = (createStatusDrawableParams & 8) != 0;
-                    if (z6) {
+                    boolean z8 = (createStatusDrawableParams & 4) != 0;
+                    boolean z9 = (createStatusDrawableParams & 8) != 0;
+                    if (z7) {
                         int i12 = this.animateFromStatusDrawableParams;
-                        boolean z9 = (i12 & 4) != 0;
-                        int i13 = i5;
-                        boolean z10 = (i12 & 8) != 0;
-                        float f23 = i13;
-                        f8 = f22;
+                        boolean z10 = (i12 & 4) != 0;
+                        int i13 = i4;
+                        boolean z11 = (i12 & 8) != 0;
+                        float f24 = i13;
+                        f8 = f23;
                         c = 4;
-                        float f24 = f9;
+                        float f25 = f9;
                         i7 = i13;
                         str = "paintChatTimeBackground";
                         c2 = 7;
-                        drawClockOrErrorLayout(canvas, z9, z10, f13, f24, f23, f15, 1.0f - this.statusDrawableProgress, z2);
-                        drawClockOrErrorLayout(canvas, z7, z8, f13, f24, f23, f15, this.statusDrawableProgress, z2);
+                        drawClockOrErrorLayout(canvas, z10, z11, f13, f25, f24, dp4, 1.0f - this.statusDrawableProgress, z2);
+                        drawClockOrErrorLayout(canvas, z8, z9, f13, f25, f24, dp4, this.statusDrawableProgress, z2);
                         if (!this.currentMessageObject.isOutOwner()) {
-                            if (!z9 && !z10) {
-                                drawViewsAndRepliesLayout(canvas, f13, f9, f23, f15, 1.0f - this.statusDrawableProgress, z2);
+                            if (!z10 && !z11) {
+                                drawViewsAndRepliesLayout(canvas, f13, f9, f24, dp4, 1.0f - this.statusDrawableProgress, z2);
                             }
-                            if (!z7 && !z8) {
-                                drawViewsAndRepliesLayout(canvas, f13, f9, f23, f15, this.statusDrawableProgress, z2);
+                            if (!z8 && !z9) {
+                                drawViewsAndRepliesLayout(canvas, f13, f9, f24, dp4, this.statusDrawableProgress, z2);
                             }
                         }
                     } else {
                         str = "paintChatTimeBackground";
-                        f8 = f22;
-                        i7 = i5;
+                        f8 = f23;
+                        i7 = i4;
                         c = 4;
                         c2 = 7;
-                        if (!this.currentMessageObject.isOutOwner() && !z7 && !z8) {
-                            drawViewsAndRepliesLayout(canvas, f13, f9, i7, f15, 1.0f, z2);
+                        if (!this.currentMessageObject.isOutOwner() && !z8 && !z9) {
+                            drawViewsAndRepliesLayout(canvas, f13, f9, i7, dp4, 1.0f, z2);
                         }
-                        drawClockOrErrorLayout(canvas, z7, z8, f13, f9, i7, f15, 1.0f, z2);
+                        drawClockOrErrorLayout(canvas, z8, z9, f13, f9, i7, dp4, 1.0f, z2);
                     }
                     if (this.currentMessageObject.isOutOwner()) {
-                        drawViewsAndRepliesLayout(canvas, f13, f9, i7, f15, 1.0f, z2);
+                        drawViewsAndRepliesLayout(canvas, f13, f9, i7, dp4, 1.0f, z2);
                     }
                     TransitionParams transitionParams3 = this.transitionParams;
                     transitionParams3.lastStatusDrawableParams = transitionParams3.createStatusDrawableParams();
-                    if (z7 && z && getParent() != null) {
+                    if (z8 && z6 && getParent() != null) {
                         ((View) getParent()).invalidate();
                     }
-                    f21 = f8;
+                    dp8 = f8;
                 }
                 canvas.save();
-                float f25 = f16 + f21;
-                this.drawTimeX = f25;
-                float dp5 = (f17 - AndroidUtilities.dp(7.3f)) - staticLayout.getHeight();
-                this.drawTimeY = dp5;
-                canvas.translate(f25, dp5);
+                float f26 = f16 + dp8;
+                this.drawTimeX = f26;
+                float dp9 = (f17 - AndroidUtilities.dp(7.3f)) - staticLayout.getHeight();
+                this.drawTimeY = dp9;
+                canvas.translate(f26, dp9);
                 SpoilerEffect.layoutDrawMaybe(staticLayout, canvas);
                 canvas.restore();
                 Theme.chat_timePaint.setAlpha(255);
@@ -9604,68 +9731,68 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     i2 = -(this.drawCommentButton ? AndroidUtilities.dp(43.0f) : 0);
                 }
                 int i14 = i2;
-                float f26 = -staticLayout.getLineLeft(0);
+                float f27 = -staticLayout.getLineLeft(0);
                 if (this.currentMessageObject.shouldDrawReactions() && this.reactionsLayoutInBubble.isSmall) {
                     updateReactionLayoutPosition();
                     this.reactionsLayoutInBubble.draw(canvas, this.transitionParams.animateChangeProgress, null);
                 }
                 if ((ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) || (this.currentMessageObject.messageOwner.flags & 1024) != 0 || this.repliesLayout != null || this.transitionParams.animateReplies || this.isPinned || this.transitionParams.animatePinned) {
-                    float lineWidth2 = f26 + (f3 - staticLayout.getLineWidth(0));
+                    float lineWidth2 = f27 + (f3 - staticLayout.getLineWidth(0));
                     ReactionsLayoutInBubble reactionsLayoutInBubble3 = this.reactionsLayoutInBubble;
                     if (reactionsLayoutInBubble3.isSmall && !reactionsLayoutInBubble3.isEmpty) {
                         lineWidth2 -= reactionsLayoutInBubble3.width;
                     }
-                    float f27 = lineWidth2;
+                    float f28 = lineWidth2;
                     int createStatusDrawableParams2 = this.transitionParams.createStatusDrawableParams();
                     int i15 = this.transitionParams.lastStatusDrawableParams;
                     if (i15 >= 0 && i15 != createStatusDrawableParams2 && !this.statusDrawableAnimationInProgress) {
-                        createStatusDrawableAnimator(i15, createStatusDrawableParams2, z);
+                        createStatusDrawableAnimator(i15, createStatusDrawableParams2, z6);
                     }
-                    boolean z11 = this.statusDrawableAnimationInProgress;
-                    if (z11) {
+                    boolean z12 = this.statusDrawableAnimationInProgress;
+                    if (z12) {
                         createStatusDrawableParams2 = this.animateToStatusDrawableParams;
                     }
-                    boolean z12 = (createStatusDrawableParams2 & 4) != 0;
-                    boolean z13 = (createStatusDrawableParams2 & 8) != 0;
-                    if (z11) {
+                    boolean z13 = (createStatusDrawableParams2 & 4) != 0;
+                    boolean z14 = (createStatusDrawableParams2 & 8) != 0;
+                    if (z12) {
                         int i16 = this.animateFromStatusDrawableParams;
-                        boolean z14 = (i16 & 4) != 0;
-                        boolean z15 = (i16 & 8) != 0;
-                        float f28 = i14;
-                        float f29 = f9;
-                        drawClockOrErrorLayout(canvas, z14, z15, f13, f29, f28, f15, 1.0f - this.statusDrawableProgress, z2);
-                        drawClockOrErrorLayout(canvas, z12, z13, f13, f29, f28, f15, this.statusDrawableProgress, z2);
+                        boolean z15 = (i16 & 4) != 0;
+                        boolean z16 = (i16 & 8) != 0;
+                        float f29 = i14;
+                        float f30 = f9;
+                        drawClockOrErrorLayout(canvas, z15, z16, f13, f30, f29, f15, 1.0f - this.statusDrawableProgress, z2);
+                        drawClockOrErrorLayout(canvas, z13, z14, f13, f30, f29, f15, this.statusDrawableProgress, z2);
                         if (!this.currentMessageObject.isOutOwner()) {
-                            if (!z14 && !z15) {
-                                drawViewsAndRepliesLayout(canvas, f13, f9, f28, f15, 1.0f - this.statusDrawableProgress, z2);
+                            if (!z15 && !z16) {
+                                drawViewsAndRepliesLayout(canvas, f13, f9, f29, f15, 1.0f - this.statusDrawableProgress, z2);
                             }
-                            if (!z12 && !z13) {
-                                drawViewsAndRepliesLayout(canvas, f13, f9, f28, f15, this.statusDrawableProgress, z2);
+                            if (!z13 && !z14) {
+                                drawViewsAndRepliesLayout(canvas, f13, f9, f29, f15, this.statusDrawableProgress, z2);
                             }
                         }
                     } else {
-                        if (!this.currentMessageObject.isOutOwner() && !z12 && !z13) {
+                        if (!this.currentMessageObject.isOutOwner() && !z13 && !z14) {
                             drawViewsAndRepliesLayout(canvas, f13, f9, i14, f15, 1.0f, z2);
                         }
-                        drawClockOrErrorLayout(canvas, z12, z13, f13, f9, i14, f15, 1.0f, z2);
+                        drawClockOrErrorLayout(canvas, z13, z14, f13, f9, i14, f15, 1.0f, z2);
                     }
                     if (this.currentMessageObject.isOutOwner()) {
                         drawViewsAndRepliesLayout(canvas, f13, f9, i14, f15, 1.0f, z2);
                     }
                     TransitionParams transitionParams4 = this.transitionParams;
                     transitionParams4.lastStatusDrawableParams = transitionParams4.createStatusDrawableParams();
-                    if (z12 && z && getParent() != null) {
+                    if (z13 && z6 && getParent() != null) {
                         ((View) getParent()).invalidate();
                     }
-                    f26 = f27;
+                    f27 = f28;
                 }
                 canvas.save();
-                float f30 = 6.5f;
+                float f31 = 6.5f;
                 if (this.transitionParams.animateEditedEnter) {
                     TransitionParams transitionParams5 = this.transitionParams;
                     if (transitionParams5.animateChangeProgress != 1.0f) {
                         if (transitionParams5.animateEditedLayout != null) {
-                            canvas.translate(f16 + f26, ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 7.5f)) - staticLayout.getHeight()) + i14);
+                            canvas.translate(f16 + f27, ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 7.5f)) - staticLayout.getHeight()) + i14);
                             int alpha5 = Theme.chat_timePaint.getAlpha();
                             Theme.chat_timePaint.setAlpha((int) (alpha5 * this.transitionParams.animateChangeProgress));
                             this.transitionParams.animateEditedLayout.draw(canvas);
@@ -9674,14 +9801,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         } else {
                             int alpha6 = Theme.chat_timePaint.getAlpha();
                             canvas.save();
-                            float f31 = i14;
-                            canvas.translate(this.transitionParams.animateFromTimeX + f26, ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 6.5f)) - staticLayout.getHeight()) + f31);
-                            float f32 = alpha6;
-                            Theme.chat_timePaint.setAlpha((int) ((1.0f - this.transitionParams.animateChangeProgress) * f32));
+                            float f32 = i14;
+                            canvas.translate(this.transitionParams.animateFromTimeX + f27, ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 6.5f)) - staticLayout.getHeight()) + f32);
+                            float f33 = alpha6;
+                            Theme.chat_timePaint.setAlpha((int) ((1.0f - this.transitionParams.animateChangeProgress) * f33));
                             SpoilerEffect.layoutDrawMaybe(this.transitionParams.animateTimeLayout, canvas);
                             canvas.restore();
-                            canvas.translate(f16 + f26, ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 7.5f)) - staticLayout.getHeight()) + f31);
-                            Theme.chat_timePaint.setAlpha((int) (f32 * this.transitionParams.animateChangeProgress));
+                            canvas.translate(f16 + f27, ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 7.5f)) - staticLayout.getHeight()) + f32);
+                            Theme.chat_timePaint.setAlpha((int) (f33 * this.transitionParams.animateChangeProgress));
                             SpoilerEffect.layoutDrawMaybe(staticLayout, canvas);
                             Theme.chat_timePaint.setAlpha(alpha6);
                         }
@@ -9690,11 +9817,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         z3 = false;
                     }
                 }
-                float f33 = f16 + f26;
-                this.drawTimeX = f33;
-                float dp6 = ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 7.5f)) - staticLayout.getHeight()) + i14;
-                this.drawTimeY = dp6;
-                canvas.translate(f33, dp6);
+                float f34 = f16 + f27;
+                this.drawTimeX = f34;
+                float dp10 = ((f13 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 7.5f)) - staticLayout.getHeight()) + i14;
+                this.drawTimeY = dp10;
+                canvas.translate(f34, dp10);
                 SpoilerEffect.layoutDrawMaybe(staticLayout, canvas);
                 canvas.restore();
                 i3 = i14;
@@ -9704,15 +9831,15 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 int createStatusDrawableParams3 = this.transitionParams.createStatusDrawableParams();
                 int i17 = this.transitionParams.lastStatusDrawableParams;
                 if (i17 >= 0 && i17 != createStatusDrawableParams3 && !this.statusDrawableAnimationInProgress) {
-                    createStatusDrawableAnimator(i17, createStatusDrawableParams3, z);
+                    createStatusDrawableAnimator(i17, createStatusDrawableParams3, z6);
                 }
                 if (this.statusDrawableAnimationInProgress) {
                     createStatusDrawableParams3 = this.animateToStatusDrawableParams;
                 }
-                boolean z16 = (createStatusDrawableParams3 & 1) != 0;
-                boolean z17 = (createStatusDrawableParams3 & 2) != 0;
-                boolean z18 = (createStatusDrawableParams3 & 4) != 0;
-                boolean z19 = (createStatusDrawableParams3 & 8) != 0;
+                boolean z17 = (createStatusDrawableParams3 & 1) != 0;
+                boolean z18 = (createStatusDrawableParams3 & 2) != 0;
+                boolean z19 = (createStatusDrawableParams3 & 4) != 0;
+                boolean z20 = (createStatusDrawableParams3 & 8) != 0;
                 if (this.transitionYOffsetForDrawables != 0.0f) {
                     canvas.save();
                     canvas.translate(0.0f, this.transitionYOffsetForDrawables);
@@ -9722,37 +9849,37 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 }
                 if (this.statusDrawableAnimationInProgress) {
                     int i18 = this.animateFromStatusDrawableParams;
-                    boolean z20 = (i18 & 1) != 0;
-                    boolean z21 = (i18 & 2) != 0;
-                    boolean z22 = (i18 & 4) != 0;
-                    boolean z23 = (i18 & 8) != 0;
-                    if (!z22 && z21 && z17 && !z20 && z16) {
+                    boolean z21 = (i18 & 1) != 0;
+                    boolean z22 = (i18 & 2) != 0;
+                    boolean z23 = (i18 & 4) != 0;
+                    boolean z24 = (i18 & 8) != 0;
+                    if (!z23 && z22 && z18 && !z21 && z17) {
                         f6 = 0.0f;
                         c3 = 5;
-                        drawStatusDrawable(canvas, z16, z17, z18, z19, f9, z3, i3, f13, this.statusDrawableProgress, true, z2);
+                        drawStatusDrawable(canvas, z17, z18, z19, z20, f9, z3, i3, f13, this.statusDrawableProgress, true, z2);
                     } else {
                         f6 = 0.0f;
                         c3 = 5;
-                        float f34 = i3;
-                        boolean z24 = z21;
+                        float f35 = i3;
                         boolean z25 = z22;
                         boolean z26 = z23;
-                        float f35 = f9;
-                        boolean z27 = z3;
-                        drawStatusDrawable(canvas, z20, z24, z25, z26, f35, z27, f34, f13, 1.0f - this.statusDrawableProgress, false, z2);
-                        drawStatusDrawable(canvas, z16, z17, z18, z19, f35, z27, f34, f13, this.statusDrawableProgress, false, z2);
+                        boolean z27 = z24;
+                        float f36 = f9;
+                        boolean z28 = z3;
+                        drawStatusDrawable(canvas, z21, z25, z26, z27, f36, z28, f35, f13, 1.0f - this.statusDrawableProgress, false, z2);
+                        drawStatusDrawable(canvas, z17, z18, z19, z20, f36, z28, f35, f13, this.statusDrawableProgress, false, z2);
                     }
                 } else {
                     f6 = 0.0f;
                     c3 = 5;
-                    drawStatusDrawable(canvas, z16, z17, z18, z19, f9, z3, i3, f13, 1.0f, false, z2);
+                    drawStatusDrawable(canvas, z17, z18, z19, z20, f9, z3, i3, f13, 1.0f, false, z2);
                 }
                 if (z4) {
                     canvas.restore();
                 }
                 TransitionParams transitionParams6 = this.transitionParams;
                 transitionParams6.lastStatusDrawableParams = transitionParams6.createStatusDrawableParams();
-                if (z && z18 && getParent() != null) {
+                if (z6 && z19 && getParent() != null) {
                     ((View) getParent()).invalidate();
                 }
             } else {
@@ -9769,18 +9896,18 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 rectF2.set(this.photoImage.getImageX(), this.photoImage.getImageY(), this.photoImage.getImageX2(), this.photoImage.getImageY2());
                 int[] roundRadius2 = this.photoImage.getRoundRadius();
                 float[] fArr = this.unlockSpoilerRadii;
-                float f36 = roundRadius2[0];
-                fArr[1] = f36;
-                fArr[0] = f36;
-                float f37 = roundRadius2[1];
-                fArr[3] = f37;
-                fArr[2] = f37;
-                float f38 = roundRadius2[2];
-                fArr[c3] = f38;
-                fArr[c] = f38;
-                float f39 = roundRadius2[3];
-                fArr[c2] = f39;
-                fArr[6] = f39;
+                float f37 = roundRadius2[0];
+                fArr[1] = f37;
+                fArr[0] = f37;
+                float f38 = roundRadius2[1];
+                fArr[3] = f38;
+                fArr[2] = f38;
+                float f39 = roundRadius2[2];
+                fArr[c3] = f39;
+                fArr[c] = f39;
+                float f40 = roundRadius2[3];
+                fArr[c2] = f40;
+                fArr[6] = f40;
                 this.unlockSpoilerPath.addRoundRect(rectF2, fArr, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(this.unlockSpoilerPath);
@@ -9924,9 +10051,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         float imageY2;
         int dp;
         int dp2;
+        int i;
         Drawable themedDrawable;
         Drawable drawable;
-        int i;
+        int i2;
         MessageObject messageObject;
         boolean z8 = (f4 == 1.0f || z6) ? false : true;
         float f5 = (f4 * 0.5f) + 0.5f;
@@ -9937,25 +10065,27 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             imageY2 = f3 - ((AndroidUtilities.dp(this.drawPinnedBottom ? 4.0f : 5.0f) + this.reactionsLayoutInBubble.getCurrentTotalHeight(this.transitionParams.animateChangeProgress)) * (1.0f - getVideoTranscriptionProgress()));
         }
         float dp3 = imageY2 - AndroidUtilities.dp(8.5f);
+        MessageObject messageObject2 = this.currentMessageObject;
+        float dp4 = (messageObject2 == null || !messageObject2.isAnyKindOfSticker()) ? 0.0f : AndroidUtilities.dp(-6.0f);
         if (z3) {
             MsgClockDrawable msgClockDrawable = Theme.chat_msgClockDrawable;
             if (shouldDrawTimeOnMedia()) {
                 if (this.currentMessageObject.shouldDrawWithoutBackground()) {
-                    i = getThemedColor(Theme.key_chat_serviceText);
-                    BaseCell.setDrawableBounds(msgClockDrawable, (this.layoutWidth - AndroidUtilities.dp(z5 ? 24.0f : 22.0f)) - msgClockDrawable.getIntrinsicWidth(), (dp3 - msgClockDrawable.getIntrinsicHeight()) + f2);
+                    i2 = getThemedColor(Theme.key_chat_serviceText);
+                    BaseCell.setDrawableBounds(msgClockDrawable, ((this.layoutWidth - AndroidUtilities.dp(z5 ? 24.0f : 22.0f)) - msgClockDrawable.getIntrinsicWidth()) + dp4, (dp3 - msgClockDrawable.getIntrinsicHeight()) + f2);
                     msgClockDrawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
                 } else {
-                    i = getThemedColor(Theme.key_chat_mediaSentClock);
-                    BaseCell.setDrawableBounds(msgClockDrawable, (this.layoutWidth - AndroidUtilities.dp(z5 ? 24.0f : 22.0f)) - msgClockDrawable.getIntrinsicWidth(), (dp3 - msgClockDrawable.getIntrinsicHeight()) + f2);
+                    i2 = getThemedColor(Theme.key_chat_mediaSentClock);
+                    BaseCell.setDrawableBounds(msgClockDrawable, ((this.layoutWidth - AndroidUtilities.dp(z5 ? 24.0f : 22.0f)) - msgClockDrawable.getIntrinsicWidth()) + dp4, (dp3 - msgClockDrawable.getIntrinsicHeight()) + f2);
                     msgClockDrawable.setAlpha((int) (f6 * 255.0f));
                 }
             } else {
                 int themedColor = getThemedColor(Theme.key_chat_outSentClock);
                 BaseCell.setDrawableBounds(msgClockDrawable, (this.layoutWidth - AndroidUtilities.dp(18.5f)) - msgClockDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp(8.5f)) - msgClockDrawable.getIntrinsicHeight()) + f2);
                 msgClockDrawable.setAlpha((int) (f6 * 255.0f));
-                i = themedColor;
+                i2 = themedColor;
             }
-            msgClockDrawable.setColor(i);
+            msgClockDrawable.setColor(i2);
             if (z8) {
                 canvas.save();
                 canvas.scale(f5, f5, msgClockDrawable.getBounds().centerX(), msgClockDrawable.getBounds().centerY());
@@ -9979,9 +10109,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         if (z6) {
                             canvas.translate(AndroidUtilities.dp(4.8f) * (1.0f - f4), 0.0f);
                         }
-                        BaseCell.setDrawableBounds(drawable, (this.layoutWidth - AndroidUtilities.dp(z5 ? 28.3f : 26.3f)) - drawable.getIntrinsicWidth(), (dp3 - drawable.getIntrinsicHeight()) + f2);
+                        BaseCell.setDrawableBounds(drawable, ((this.layoutWidth - AndroidUtilities.dp(z5 ? 28.3f : 26.3f)) - drawable.getIntrinsicWidth()) + dp4, (dp3 - drawable.getIntrinsicHeight()) + f2);
                     } else {
-                        BaseCell.setDrawableBounds(drawable, (this.layoutWidth - AndroidUtilities.dp(z5 ? 23.5f : 21.5f)) - drawable.getIntrinsicWidth(), (dp3 - drawable.getIntrinsicHeight()) + f2);
+                        BaseCell.setDrawableBounds(drawable, ((this.layoutWidth - AndroidUtilities.dp(z5 ? 23.5f : 21.5f)) - drawable.getIntrinsicWidth()) + dp4, (dp3 - drawable.getIntrinsicHeight()) + f2);
                     }
                     drawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
                 } else {
@@ -10017,10 +10147,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         canvas.translate(AndroidUtilities.dp(4.0f) * (1.0f - f4), 0.0f);
                     }
                     themedDrawable = getThemedDrawable(z7 ? "drawableMsgOutCheckReadSelected" : "drawableMsgOutCheckRead");
-                    BaseCell.setDrawableBounds(themedDrawable, (this.layoutWidth - AndroidUtilities.dp(22.5f)) - themedDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - themedDrawable.getIntrinsicHeight()) + f2);
+                    BaseCell.setDrawableBounds(themedDrawable, ((this.layoutWidth - AndroidUtilities.dp(22.5f)) - themedDrawable.getIntrinsicWidth()) + dp4, ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - themedDrawable.getIntrinsicHeight()) + f2);
                 } else {
                     themedDrawable = getThemedDrawable(z7 ? "drawableMsgOutCheckSelected" : "drawableMsgOutCheck");
-                    BaseCell.setDrawableBounds(themedDrawable, (this.layoutWidth - AndroidUtilities.dp(18.5f)) - themedDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - themedDrawable.getIntrinsicHeight()) + f2);
+                    BaseCell.setDrawableBounds(themedDrawable, ((this.layoutWidth - AndroidUtilities.dp(18.5f)) - themedDrawable.getIntrinsicWidth()) + dp4, ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - themedDrawable.getIntrinsicHeight()) + f2);
                 }
                 themedDrawable.setAlpha((int) (f6 * 255.0f));
                 if (z8) {
@@ -10040,7 +10170,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (z) {
             if (shouldDrawTimeOnMedia()) {
                 Drawable themedDrawable2 = this.currentMessageObject.shouldDrawWithoutBackground() ? getThemedDrawable("drawableMsgStickerHalfCheck") : Theme.chat_msgMediaHalfCheckDrawable;
-                BaseCell.setDrawableBounds(themedDrawable2, (this.layoutWidth - AndroidUtilities.dp(z5 ? 23.5f : 21.5f)) - themedDrawable2.getIntrinsicWidth(), (dp3 - themedDrawable2.getIntrinsicHeight()) + f2);
+                BaseCell.setDrawableBounds(themedDrawable2, ((this.layoutWidth - AndroidUtilities.dp(z5 ? 23.5f : 21.5f)) - themedDrawable2.getIntrinsicWidth()) + dp4, (dp3 - themedDrawable2.getIntrinsicHeight()) + f2);
                 themedDrawable2.setAlpha((int) (this.timeAlpha * 255.0f * f6));
                 if (z8 || z6) {
                     canvas.save();
@@ -10053,11 +10183,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 themedDrawable2.setAlpha(255);
             } else {
                 Drawable themedDrawable3 = getThemedDrawable(z7 ? "drawableMsgOutHalfCheckSelected" : "drawableMsgOutHalfCheck");
-                float dp4 = (this.layoutWidth - AndroidUtilities.dp(18.0f)) - themedDrawable3.getIntrinsicWidth();
+                float dp5 = (this.layoutWidth - AndroidUtilities.dp(18.0f)) - themedDrawable3.getIntrinsicWidth();
                 if (!this.pinnedBottom && !this.pinnedTop) {
                     f7 = 8.0f;
                 }
-                BaseCell.setDrawableBounds(themedDrawable3, dp4, ((f3 - AndroidUtilities.dp(f7)) - themedDrawable3.getIntrinsicHeight()) + f2);
+                BaseCell.setDrawableBounds(themedDrawable3, dp5, ((f3 - AndroidUtilities.dp(f7)) - themedDrawable3.getIntrinsicHeight()) + f2);
                 themedDrawable3.setAlpha((int) (f6 * 255.0f));
                 if (z8 || z6) {
                     canvas.save();
@@ -10079,12 +10209,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 dp2 = AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 22.0f : 21.0f);
             }
             float f8 = (f3 - dp2) + f2;
-            this.rect.set(dp, f8, AndroidUtilities.dp(14.0f) + dp, AndroidUtilities.dp(14.0f) + f8);
+            this.rect.set((int) (dp + dp4), f8, AndroidUtilities.dp(14.0f) + i, AndroidUtilities.dp(14.0f) + f8);
             int alpha = Theme.chat_msgErrorPaint.getAlpha();
             Theme.chat_msgErrorPaint.setAlpha((int) (alpha * f6));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), Theme.chat_msgErrorPaint);
             Theme.chat_msgErrorPaint.setAlpha(alpha);
-            BaseCell.setDrawableBounds(Theme.chat_msgErrorDrawable, dp + AndroidUtilities.dp(6.0f), f8 + AndroidUtilities.dp(2.0f));
+            BaseCell.setDrawableBounds(Theme.chat_msgErrorDrawable, i + AndroidUtilities.dp(6.0f), f8 + AndroidUtilities.dp(2.0f));
             Theme.chat_msgErrorDrawable.setAlpha((int) (f6 * 255.0f));
             if (z8) {
                 canvas.save();
@@ -11664,17 +11794,16 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             ChatMessageCell chatMessageCell4 = ChatMessageCell.this;
             this.lastTimeX = chatMessageCell4.timeX;
             this.lastTimeLayout = chatMessageCell4.timeLayout;
-            ChatMessageCell chatMessageCell5 = ChatMessageCell.this;
-            this.lastTimeWidth = chatMessageCell5.timeWidth;
-            this.lastShouldDrawTimeOnMedia = chatMessageCell5.shouldDrawTimeOnMedia();
+            this.lastTimeWidth = chatMessageCell4.timeWidth;
+            this.lastShouldDrawTimeOnMedia = chatMessageCell4.shouldDrawTimeOnMedia();
             this.lastTopOffset = ChatMessageCell.this.getTopMediaOffset();
             this.lastShouldDrawMenuDrawable = ChatMessageCell.this.shouldDrawMenuDrawable();
             this.lastLocatinIsExpired = ChatMessageCell.this.locationExpired;
             this.lastIsPlayingRound = ChatMessageCell.this.isPlayingRound;
-            ChatMessageCell chatMessageCell6 = ChatMessageCell.this;
-            this.lastDrawingTextY = chatMessageCell6.textY;
-            int i = chatMessageCell6.textX;
-            this.lastDrawingLinkPreviewY = chatMessageCell6.linkPreviewY;
+            ChatMessageCell chatMessageCell5 = ChatMessageCell.this;
+            this.lastDrawingTextY = chatMessageCell5.textY;
+            int i = chatMessageCell5.textX;
+            this.lastDrawingLinkPreviewY = chatMessageCell5.linkPreviewY;
             this.lastDrawnForwardedNameLayout[0] = ChatMessageCell.this.forwardedNameLayout[0];
             this.lastDrawnForwardedNameLayout[1] = ChatMessageCell.this.forwardedNameLayout[1];
             this.lastDrawnForwardedName = (ChatMessageCell.this.currentMessageObject == null || !ChatMessageCell.this.currentMessageObject.needDrawForwarded()) ? false : false;
@@ -11688,17 +11817,17 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
             this.lastTextXOffset = ChatMessageCell.this.currentMessageObject != null ? ChatMessageCell.this.currentMessageObject.textXOffset : 0.0f;
             this.lastDrawingReplyTextHeight = ChatMessageCell.this.replyTextHeight;
+            ChatMessageCell chatMessageCell6 = ChatMessageCell.this;
+            this.lastDrawnReplyTextLayout = chatMessageCell6.replyTextLayout;
+            this.lastReplyTextXOffset = chatMessageCell6.replyTextOffset;
+            chatMessageCell6.reactionsLayoutInBubble.recordDrawingState();
             ChatMessageCell chatMessageCell7 = ChatMessageCell.this;
-            this.lastDrawnReplyTextLayout = chatMessageCell7.replyTextLayout;
-            this.lastReplyTextXOffset = chatMessageCell7.replyTextOffset;
-            chatMessageCell7.reactionsLayoutInBubble.recordDrawingState();
-            ChatMessageCell chatMessageCell8 = ChatMessageCell.this;
-            if (chatMessageCell8.replyNameLayout != null) {
-                this.lastDrawReplyY = chatMessageCell8.replyStartY;
+            if (chatMessageCell7.replyNameLayout != null) {
+                this.lastDrawReplyY = chatMessageCell7.replyStartY;
             } else {
                 this.lastDrawReplyY = 0.0f;
             }
-            this.lastDrawNameLayout = chatMessageCell8.drawNameLayout;
+            this.lastDrawNameLayout = chatMessageCell7.drawNameLayout;
         }
 
         public void recordDrawingStatePreview() {
@@ -11874,5 +12003,46 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return false;
         }
         return tLRPC$TL_messageReactions.reactions_as_tags;
+    }
+
+    public String getFilename() {
+        int i;
+        int i2;
+        MessageObject messageObject = this.currentMessageObject;
+        int i3 = messageObject.type;
+        if (i3 == 1) {
+            TLRPC$PhotoSize tLRPC$PhotoSize = this.currentPhotoObject;
+            if (tLRPC$PhotoSize == null) {
+                return null;
+            }
+            return FileLoader.getAttachFileName(tLRPC$PhotoSize);
+        }
+        if (i3 == 8 || (i2 = this.documentAttachType) == 7 || i2 == 4 || i2 == 8 || i3 == 9 || i2 == 3 || i2 == 5) {
+            if (messageObject.useCustomPhoto) {
+                return null;
+            }
+            if (messageObject.attachPathExists && !TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
+                return this.currentMessageObject.messageOwner.attachPath;
+            }
+            if (!this.currentMessageObject.isSendError() || (i = this.documentAttachType) == 3 || i == 5) {
+                return this.currentMessageObject.getFileName();
+            }
+        } else if (i2 != 0) {
+            return FileLoader.getAttachFileName(this.documentAttach);
+        } else {
+            TLRPC$PhotoSize tLRPC$PhotoSize2 = this.currentPhotoObject;
+            if (tLRPC$PhotoSize2 != null) {
+                return FileLoader.getAttachFileName(tLRPC$PhotoSize2);
+            }
+        }
+        return null;
+    }
+
+    public boolean checkLoadCaughtPremiumFloodWait() {
+        return FileLoader.getInstance(this.currentAccount).checkLoadCaughtPremiumFloodWait(getFilename());
+    }
+
+    public boolean checkUploadCaughtPremiumFloodWait() {
+        return FileLoader.getInstance(this.currentAccount).checkUploadCaughtPremiumFloodWait(getFilename());
     }
 }

@@ -28,6 +28,7 @@ public class GroupCreateSpan extends View {
     private boolean deleting;
     private boolean drawAvatarBackground;
     private ImageReceiver imageReceiver;
+    public boolean isFlag;
     private String key;
     private long lastUpdateTime;
     private StaticLayout nameLayout;
@@ -57,7 +58,7 @@ public class GroupCreateSpan extends View {
         this(context, obj, contact, false, resourcesProvider);
     }
 
-    public GroupCreateSpan(android.content.Context r31, java.lang.Object r32, org.telegram.messenger.ContactsController.Contact r33, boolean r34, org.telegram.ui.ActionBar.Theme.ResourcesProvider r35) {
+    public GroupCreateSpan(android.content.Context r28, java.lang.Object r29, org.telegram.messenger.ContactsController.Contact r30, boolean r31, org.telegram.ui.ActionBar.Theme.ResourcesProvider r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCreateSpan.<init>(android.content.Context, java.lang.Object, org.telegram.messenger.ContactsController$Contact, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

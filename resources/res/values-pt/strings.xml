@@ -53,6 +53,18 @@
     <string name="call_notification_incoming_text">Chamada recebida</string>
     <string name="call_notification_ongoing_text">Chamada em andamento</string>
     <string name="call_notification_screening_text">Filtrando uma ligação recebida</string>
+    <string name="confirm_device_credential_password">Usar senha</string>
+    <string name="default_error_msg">Erro desconhecido</string>
+    <string name="fingerprint_dialog_touch_sensor">Toque no sensor de digital</string>
+    <string name="fingerprint_error_hw_not_available">Hardware de impressão digital não disponível.</string>
+    <string name="fingerprint_error_hw_not_present">Este dispositivo não tem um sensor de impressão digital</string>
+    <string name="fingerprint_error_lockout">Muitas tentativas. Tente novamente mais tarde.</string>
+    <string name="fingerprint_error_no_fingerprints">Nenhuma impressão digital registrada.</string>
+    <string name="fingerprint_error_user_canceled">Operação de impressão digital cancelada pelo usuário.</string>
+    <string name="fingerprint_not_recognized">Não reconhecido</string>
+    <string name="generic_error_no_device_credential">Nenhum PIN, padrão ou senha configurado.</string>
+    <string name="generic_error_no_keyguard">Este dispositivo não é compatível com PIN, padrão ou senha.</string>
+    <string name="generic_error_user_canceled">Autenticação cancelada pelo usuário.</string>
     <string name="search_menu_title">Pesquisar</string>
     <string name="status_bar_notification_info_overflow">999+</string>
 </resources>

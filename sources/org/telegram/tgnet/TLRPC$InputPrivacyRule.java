@@ -35,6 +35,9 @@ public abstract class TLRPC$InputPrivacyRule extends TLObject {
             case 793067081:
                 tLRPC$TL_inputPrivacyValueAllowChatParticipants = new TLRPC$TL_inputPrivacyValueAllowCloseFriends();
                 break;
+            case 2009975281:
+                tLRPC$TL_inputPrivacyValueAllowChatParticipants = new TLRPC$TL_inputPrivacyValueAllowPremium();
+                break;
             default:
                 tLRPC$TL_inputPrivacyValueAllowChatParticipants = null;
                 break;

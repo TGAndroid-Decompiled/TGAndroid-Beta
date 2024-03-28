@@ -137,6 +137,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private ArrayList<Integer> lineHeights;
     private ArrayList<Integer> lineWidths;
     private LoadingDrawable loadingDrawable;
+    private int overriddenMaxWidth;
     private int overrideBackground;
     private Paint overrideBackgroundPaint;
     private int overrideText;
@@ -375,6 +376,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             }
 
             @Override
+            public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
+            }
+
+            @Override
             public void onAnimationReady(ImageReceiver imageReceiver) {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
             }
@@ -524,7 +530,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         View view = this.rippleView;
         RectF rectF = this.giftButtonRect;
         view.layout((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
@@ -674,12 +680,20 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
+    public void setOverrideTextMaxWidth(int i) {
+        this.overriddenMaxWidth = i;
+    }
+
     private void createLayout(CharSequence charSequence, int i) {
         TextPaint textPaint;
         ChatActionCellDelegate chatActionCellDelegate;
         int dp = i - AndroidUtilities.dp(30.0f);
         if (dp < 0) {
             return;
+        }
+        int i2 = this.overriddenMaxWidth;
+        if (i2 > 0) {
+            dp = Math.min(i2, dp);
         }
         this.invalidatePath = true;
         MessageObject messageObject = this.currentMessageObject;
@@ -696,14 +710,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.textWidth = 0;
         try {
             int lineCount = this.textLayout.getLineCount();
-            for (int i2 = 0; i2 < lineCount; i2++) {
+            for (int i3 = 0; i3 < lineCount; i3++) {
                 try {
-                    float lineWidth = this.textLayout.getLineWidth(i2);
+                    float lineWidth = this.textLayout.getLineWidth(i3);
                     float f = dp;
                     if (lineWidth > f) {
                         lineWidth = f;
                     }
-                    this.textHeight = (int) Math.max(this.textHeight, Math.ceil(this.textLayout.getLineBottom(i2)));
+                    this.textHeight = (int) Math.max(this.textHeight, Math.ceil(this.textLayout.getLineBottom(i3)));
                     this.textWidth = (int) Math.max(this.textWidth, Math.ceil(lineWidth));
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -720,8 +734,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.spoilers.clear();
         if (charSequence instanceof Spannable) {
             StaticLayout staticLayout = this.textLayout;
-            int i3 = this.textX;
-            SpoilerEffect.addSpoilers(this, staticLayout, i3, i3 + this.textWidth, (Spannable) charSequence, this.spoilersPool, this.spoilers, null);
+            int i4 = this.textX;
+            SpoilerEffect.addSpoilers(this, staticLayout, i4, i4 + this.textWidth, (Spannable) charSequence, this.spoilersPool, this.spoilers, null);
         }
     }
 

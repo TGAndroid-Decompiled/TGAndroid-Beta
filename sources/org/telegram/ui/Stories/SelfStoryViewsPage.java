@@ -1414,30 +1414,41 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
 
         private void applyLocalFilter() {
             String str;
+            String str2;
+            String str3;
             if (this.isChannel) {
                 return;
             }
             this.views.clear();
             FiltersState filtersState = this.state;
             if (filtersState.contactsOnly || !TextUtils.isEmpty(filtersState.searchQuery)) {
-                String str2 = null;
+                String str4 = null;
                 if (TextUtils.isEmpty(this.state.searchQuery)) {
                     str = null;
+                    str2 = null;
+                    str3 = null;
                 } else {
-                    str2 = this.state.searchQuery.trim().toLowerCase();
-                    str = LocaleController.getInstance().getTranslitString(str2);
+                    str4 = this.state.searchQuery.trim().toLowerCase();
+                    str = LocaleController.getInstance().getTranslitString(str4);
+                    str2 = " " + str4;
+                    str3 = " " + str;
                 }
                 for (int i = 0; i < this.originalViews.size(); i++) {
                     TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.originalViews.get(i).user_id));
-                    boolean z = !this.state.contactsOnly || (user != null && user.contact);
-                    if (z && str2 != null) {
+                    boolean z = true;
+                    boolean z2 = !this.state.contactsOnly || (user != null && user.contact);
+                    if (z2 && str4 != null) {
                         String lowerCase = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
                         String publicUsername = UserObject.getPublicUsername(user);
-                        if (!lowerCase.contains(str2) && !lowerCase.contains(str) && (publicUsername == null || (!publicUsername.contains(str2) && !publicUsername.contains(str)))) {
+                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                        if ((lowerCase == null || (!lowerCase.startsWith(str4) && !lowerCase.contains(str2))) && ((translitSafe == null || (!translitSafe.startsWith(str) && !translitSafe.contains(str3))) && (publicUsername == null || (!publicUsername.startsWith(str) && !publicUsername.contains(str3))))) {
                             z = false;
                         }
+                        if (!z) {
+                            z2 = false;
+                        }
                     }
-                    if (z) {
+                    if (z2) {
                         this.views.add(this.originalViews.get(i));
                     }
                 }

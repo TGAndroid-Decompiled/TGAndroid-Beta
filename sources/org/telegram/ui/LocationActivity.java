@@ -580,7 +580,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                     this.actionBar.setTitle(LocaleController.getString("AttachLiveLocation", R.string.AttachLiveLocation));
                     ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_other, getResourceProvider());
                     this.otherItem = addItem;
-                    addItem.addSubItem(6, R.drawable.navigate, LocaleController.getString("GetDirections", R.string.GetDirections));
+                    addItem.addSubItem(6, R.drawable.filled_directions, LocaleController.getString("GetDirections", R.string.GetDirections));
                 } else {
                     String str = this.messageObject.messageOwner.media.title;
                     if (str != null && str.length() > 0) {
@@ -1348,7 +1348,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context);
                 ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem((Context) getParentActivity(), true, true, getResourceProvider());
                 actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(200.0f));
-                actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("GetDirections", R.string.GetDirections), R.drawable.navigate);
+                actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("GetDirections", R.string.GetDirections), R.drawable.filled_directions);
                 actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {

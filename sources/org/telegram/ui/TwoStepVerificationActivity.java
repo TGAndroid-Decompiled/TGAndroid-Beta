@@ -82,6 +82,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     private byte[] currentSecret;
     private long currentSecretId;
     private TwoStepVerificationActivityDelegate delegate;
+    private int delegateType;
     private boolean destroyed;
     private EmptyTextProgressView emptyView;
     private FrameLayout floatingButtonContainer;
@@ -515,7 +516,8 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         this.currentPassword = tLRPC$account_Password;
     }
 
-    public void setDelegate(TwoStepVerificationActivityDelegate twoStepVerificationActivityDelegate) {
+    public void setDelegate(int i, TwoStepVerificationActivityDelegate twoStepVerificationActivityDelegate) {
+        this.delegateType = i;
         this.delegate = twoStepVerificationActivityDelegate;
     }
 

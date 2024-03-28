@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -28,6 +30,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Message;
@@ -38,6 +41,7 @@ import org.telegram.ui.Cells.SharedDocumentCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
 public class SearchDownloadsContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     DownloadsAdapter adapter;
     boolean checkingFilesExist;
@@ -83,7 +87,13 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.parentFragment = baseFragment;
         this.parentActivity = baseFragment.getParentActivity();
         this.currentAccount = i;
-        this.recyclerListView = new BlurredRecyclerView(getContext());
+        this.recyclerListView = new BlurredRecyclerView(getContext()) {
+            @Override
+            public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
+                SearchDownloadsContainer.this.checkItemsFloodWait();
+            }
+        };
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.recyclerListView);
         addView(this.recyclerListView);
         this.recyclerListView.setLayoutManager(new LinearLayoutManager(this, baseFragment.getParentActivity()) {
@@ -99,6 +109,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                 if (i2 == 1) {
                     AndroidUtilities.hideKeyboard(SearchDownloadsContainer.this.parentActivity.getCurrentFocus());
                 }
+                SearchDownloadsContainer.this.checkItemsFloodWait();
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -587,6 +598,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.premiumFloodWaitReceived);
         if (getVisibility() == 0) {
             DownloadController.getInstance(this.currentAccount).clearUnviewedDownloads();
         }
@@ -598,6 +610,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.onDownloadingFilesChanged);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.premiumFloodWaitReceived);
     }
 
     @Override
@@ -607,6 +620,8 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                 DownloadController.getInstance(this.currentAccount).clearUnviewedDownloads();
             }
             update(true);
+        } else if (i == NotificationCenter.premiumFloodWaitReceived) {
+            checkItemsFloodWait();
         }
     }
 
@@ -699,5 +714,65 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             super.clearView(recyclerView, viewHolder);
             viewHolder.itemView.setPressed(false);
         }
+    }
+
+    public void checkItemsFloodWait() {
+        MessageObject message;
+        if (UserConfig.getInstance(this.currentAccount).isPremium() || this.recyclerListView == null) {
+            return;
+        }
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            try {
+                View childAt = this.recyclerListView.getChildAt(i);
+                if ((childAt instanceof Cell) && (message = ((Cell) childAt).sharedDocumentCell.getMessage()) != null) {
+                    if (FileLoader.getInstance(this.currentAccount).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
+                        showPremiumFloodWaitBulletin(false);
+                        return;
+                    } else if (FileLoader.getInstance(this.currentAccount).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
+                        showPremiumFloodWaitBulletin(true);
+                        return;
+                    }
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
+
+    public void showPremiumFloodWaitBulletin(final boolean z) {
+        float f;
+        if (this.parentFragment == null || !this.recyclerListView.isAttachedToWindow()) {
+            return;
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown < MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupNotifyPeriod * 1000) {
+            return;
+        }
+        ConnectionsManager.lastPremiumFloodWaitShown = currentTimeMillis;
+        if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+            return;
+        }
+        if (z) {
+            f = MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupUpload;
+        } else {
+            f = MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupDownload;
+        }
+        double round = Math.round(f * 10.0f);
+        Double.isNaN(round);
+        SpannableString spannableString = new SpannableString(Double.toString(round / 10.0d).replaceAll("\\.0$", ""));
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+        if (this.parentFragment.hasStoryViewer()) {
+            return;
+        }
+        BulletinFactory.of(this.parentFragment).createSimpleBulletin(R.raw.speed_limit, LocaleController.getString(z ? R.string.UploadSpeedLimited : R.string.DownloadSpeedLimited), AndroidUtilities.replaceCharSequence("%d", AndroidUtilities.premiumText(LocaleController.getString(z ? R.string.UploadSpeedLimitedMessage : R.string.DownloadSpeedLimitedMessage), new Runnable() {
+            @Override
+            public final void run() {
+                SearchDownloadsContainer.this.lambda$showPremiumFloodWaitBulletin$6(z);
+            }
+        }), spannableString)).setDuration(8000).show(false);
+    }
+
+    public void lambda$showPremiumFloodWaitBulletin$6(boolean z) {
+        this.parentFragment.presentFragment(new PremiumPreviewFragment(z ? "upload_speed" : "download_speed"));
     }
 }

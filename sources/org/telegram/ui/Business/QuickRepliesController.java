@@ -25,6 +25,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_account_updateBusinessAwayMessage;
 import org.telegram.tgnet.TLRPC$TL_account_updateBusinessGreetingMessage;
@@ -32,9 +33,12 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_deleteQuickReplyShortcut;
 import org.telegram.tgnet.TLRPC$TL_messages_editQuickReplyShortcut;
 import org.telegram.tgnet.TLRPC$TL_messages_getQuickReplies;
+import org.telegram.tgnet.TLRPC$TL_messages_getQuickReplyMessages;
+import org.telegram.tgnet.TLRPC$TL_messages_messages;
 import org.telegram.tgnet.TLRPC$TL_messages_quickReplies;
 import org.telegram.tgnet.TLRPC$TL_messages_quickRepliesNotModified;
 import org.telegram.tgnet.TLRPC$TL_messages_reorderQuickReplies;
+import org.telegram.tgnet.TLRPC$TL_messages_sendQuickReplyMessages;
 import org.telegram.tgnet.TLRPC$TL_quickReply;
 import org.telegram.tgnet.TLRPC$TL_updateDeleteQuickReply;
 import org.telegram.tgnet.TLRPC$TL_updateDeleteQuickReplyMessages;
@@ -202,8 +206,8 @@ public class QuickRepliesController {
 
     public void lambda$load$0(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
         this.loading = false;
-        MessagesController.getInstance(this.currentAccount).putUsers(arrayList, false);
-        MessagesController.getInstance(this.currentAccount).putChats(arrayList2, false);
+        MessagesController.getInstance(this.currentAccount).putUsers(arrayList, true);
+        MessagesController.getInstance(this.currentAccount).putChats(arrayList2, true);
         this.replies.clear();
         this.replies.addAll(arrayList3);
         if (runnable != null) {
@@ -642,8 +646,8 @@ public class QuickRepliesController {
     }
 
     public void lambda$updateTopMessage$15(ArrayList arrayList, ArrayList arrayList2, QuickReply quickReply, MessageObject messageObject) {
-        MessagesController.getInstance(this.currentAccount).putUsers(arrayList, false);
-        MessagesController.getInstance(this.currentAccount).putChats(arrayList2, false);
+        MessagesController.getInstance(this.currentAccount).putUsers(arrayList, true);
+        MessagesController.getInstance(this.currentAccount).putChats(arrayList2, true);
         quickReply.topMessage = messageObject;
         if (messageObject != null) {
             messageObject.applyQuickReply(quickReply.name, quickReply.id);
@@ -919,5 +923,75 @@ public class QuickRepliesController {
 
     public boolean hasReplies() {
         return !this.replies.isEmpty();
+    }
+
+    public void sendQuickReplyTo(long j, final QuickReply quickReply) {
+        if (quickReply == null) {
+            return;
+        }
+        final TLRPC$TL_messages_sendQuickReplyMessages tLRPC$TL_messages_sendQuickReplyMessages = new TLRPC$TL_messages_sendQuickReplyMessages();
+        TLRPC$InputPeer inputPeer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tLRPC$TL_messages_sendQuickReplyMessages.peer = inputPeer;
+        if (inputPeer == null) {
+            return;
+        }
+        tLRPC$TL_messages_sendQuickReplyMessages.shortcut_id = quickReply.id;
+        final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+        messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                QuickRepliesController.this.lambda$sendQuickReplyTo$27(messagesStorage, quickReply, tLRPC$TL_messages_sendQuickReplyMessages);
+            }
+        });
+    }
+
+    public void lambda$sendQuickReplyTo$27(org.telegram.messenger.MessagesStorage r7, final org.telegram.ui.Business.QuickRepliesController.QuickReply r8, final org.telegram.tgnet.TLRPC$TL_messages_sendQuickReplyMessages r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesController.lambda$sendQuickReplyTo$27(org.telegram.messenger.MessagesStorage, org.telegram.ui.Business.QuickRepliesController$QuickReply, org.telegram.tgnet.TLRPC$TL_messages_sendQuickReplyMessages):void");
+    }
+
+    public void lambda$sendQuickReplyTo$26(final ArrayList arrayList, QuickReply quickReply, final TLRPC$TL_messages_sendQuickReplyMessages tLRPC$TL_messages_sendQuickReplyMessages) {
+        if (arrayList.isEmpty() || arrayList.size() < quickReply.getMessagesCount()) {
+            final TLRPC$TL_messages_getQuickReplyMessages tLRPC$TL_messages_getQuickReplyMessages = new TLRPC$TL_messages_getQuickReplyMessages();
+            tLRPC$TL_messages_getQuickReplyMessages.shortcut_id = quickReply.id;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getQuickReplyMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    QuickRepliesController.this.lambda$sendQuickReplyTo$25(arrayList, tLRPC$TL_messages_sendQuickReplyMessages, tLRPC$TL_messages_getQuickReplyMessages, tLObject, tLRPC$TL_error);
+                }
+            });
+            return;
+        }
+        tLRPC$TL_messages_sendQuickReplyMessages.id = arrayList;
+        for (int i = 0; i < arrayList.size(); i++) {
+            tLRPC$TL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_sendQuickReplyMessages, null);
+    }
+
+    public void lambda$sendQuickReplyTo$25(final ArrayList arrayList, final TLRPC$TL_messages_sendQuickReplyMessages tLRPC$TL_messages_sendQuickReplyMessages, final TLRPC$TL_messages_getQuickReplyMessages tLRPC$TL_messages_getQuickReplyMessages, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                QuickRepliesController.this.lambda$sendQuickReplyTo$24(tLObject, arrayList, tLRPC$TL_messages_sendQuickReplyMessages, tLRPC$TL_messages_getQuickReplyMessages, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$sendQuickReplyTo$24(TLObject tLObject, ArrayList arrayList, TLRPC$TL_messages_sendQuickReplyMessages tLRPC$TL_messages_sendQuickReplyMessages, TLRPC$TL_messages_getQuickReplyMessages tLRPC$TL_messages_getQuickReplyMessages, TLRPC$TL_error tLRPC$TL_error) {
+        if (tLObject instanceof TLRPC$TL_messages_messages) {
+            ArrayList<TLRPC$Message> arrayList2 = ((TLRPC$TL_messages_messages) tLObject).messages;
+            arrayList.clear();
+            Iterator<TLRPC$Message> it = arrayList2.iterator();
+            while (it.hasNext()) {
+                arrayList.add(Integer.valueOf(it.next().id));
+            }
+            tLRPC$TL_messages_sendQuickReplyMessages.id = arrayList;
+            for (int i = 0; i < arrayList.size(); i++) {
+                tLRPC$TL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getQuickReplyMessages, null);
+            return;
+        }
+        FileLog.e("received " + tLObject + " " + tLRPC$TL_error + " on getQuickReplyMessages when trying to send quick reply");
     }
 }

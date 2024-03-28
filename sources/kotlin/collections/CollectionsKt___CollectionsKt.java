@@ -21,15 +21,17 @@ public class CollectionsKt___CollectionsKt extends CollectionsKt___CollectionsJv
 
     public static <T> List<T> toList(Iterable<? extends T> iterable) {
         List<T> optimizeReadOnlyList;
+        List<T> listOf;
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (iterable instanceof Collection) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
             if (size != 0) {
-                if (size != 1) {
-                    return toMutableList(collection);
+                if (size == 1) {
+                    listOf = CollectionsKt__CollectionsJVMKt.listOf(iterable instanceof List ? ((List) iterable).get(0) : iterable.iterator().next());
+                    return listOf;
                 }
-                return CollectionsKt__CollectionsJVMKt.listOf(iterable instanceof List ? ((List) iterable).get(0) : iterable.iterator().next());
+                return toMutableList(collection);
             }
             return CollectionsKt__CollectionsKt.emptyList();
         }

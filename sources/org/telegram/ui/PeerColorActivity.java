@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
@@ -1401,6 +1402,19 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         public int getIntrinsicHeight() {
             return AndroidUtilities.dp(18.33f);
         }
+    }
+
+    public static CharSequence withLevelLock(CharSequence charSequence, int i) {
+        if (i <= 0) {
+            return charSequence;
+        }
+        Context context = ApplicationLoader.applicationContext;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        spannableStringBuilder.append((CharSequence) "  L");
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(new LevelLock(context, i, null));
+        coloredImageSpan.setTranslateY(AndroidUtilities.dp(1.0f));
+        spannableStringBuilder.setSpan(coloredImageSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
     }
 
     public static class ChangeNameColorCell extends View {

@@ -33,6 +33,7 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.stories_hidden = (readInt322 & 8) != 0;
         this.stories_unavailable = (readInt322 & 16) != 0;
         this.contact_require_premium = (readInt322 & 1024) != 0;
+        this.bot_business = (readInt322 & 2048) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
@@ -169,7 +170,9 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.flags2 = i22;
         int i23 = this.contact_require_premium ? i22 | 1024 : i22 & (-1025);
         this.flags2 = i23;
-        abstractSerializedData.writeInt32(i23);
+        int i24 = this.bot_business ? i23 | 2048 : i23 & (-2049);
+        this.flags2 = i24;
+        abstractSerializedData.writeInt32(i24);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
@@ -199,8 +202,8 @@ public class TLRPC$TL_user extends TLRPC$User {
             abstractSerializedData.writeInt32(481674261);
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
-            for (int i24 = 0; i24 < size; i24++) {
-                this.restriction_reason.get(i24).serializeToStream(abstractSerializedData);
+            for (int i25 = 0; i25 < size; i25++) {
+                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 524288) != 0) {
@@ -216,8 +219,8 @@ public class TLRPC$TL_user extends TLRPC$User {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.usernames.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i25 = 0; i25 < size2; i25++) {
-                this.usernames.get(i25).serializeToStream(abstractSerializedData);
+            for (int i26 = 0; i26 < size2; i26++) {
+                this.usernames.get(i26).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags2 & 32) != 0) {

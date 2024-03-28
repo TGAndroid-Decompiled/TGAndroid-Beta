@@ -1804,7 +1804,6 @@
     <string name="GroupUserCantAdmin">Desculpe, há muitos administradores neste grupo.</string>
     <string name="GroupUserCantBot">Desculpe, há bots demais neste grupo.</string>
     <string name="GroupUserLeftError">Desculpe, se uma pessoa não faz mais parte de um grupo, você precisa estar nos contatos do Telegram dela para conseguir adicioná-la de volta ao grupo.\n\nNote que ainda é possível que essa pessoa entre usando um link de convite do grupo desde que não esteja na lista de Usuários Removidos.</string>
-    <string name="GroupsAndChannels">Grupos e Canais</string>
     <string name="GroupsAndChannelsHelp">Altera quem pode te adicionar em grupos ou canais.</string>
     <string name="GroupsInCommon">Grupos em Comum</string>
     <string name="GroupsInCommonTitle">Grupos em Comum</string>
@@ -4429,7 +4428,16 @@
     <string name="common_open_on_phone">Abrir no smartphone</string>
     <string name="common_signin_button_text">Fazer login</string>
     <string name="common_signin_button_text_long">Fazer login com o Google</string>
+    <string name="confirm_device_credential_password">Usar senha</string>
+    <string name="default_error_msg">Erro desconhecido</string>
     <string name="fcm_fallback_notification_channel_label">Diversos</string>
+    <string name="fingerprint_dialog_touch_sensor">Toque no sensor de digital</string>
+    <string name="fingerprint_error_hw_not_available">Hardware de impressão digital não disponível.</string>
+    <string name="fingerprint_error_hw_not_present">Este dispositivo não tem um sensor de impressão digital</string>
+    <string name="fingerprint_error_lockout">Muitas tentativas. Tente novamente mais tarde.</string>
+    <string name="fingerprint_error_no_fingerprints">Nenhuma impressão digital registrada.</string>
+    <string name="fingerprint_error_user_canceled">Operação de impressão digital cancelada pelo usuário.</string>
+    <string name="fingerprint_not_recognized">Não reconhecido</string>
     <string name="formatDateAtTime">%1$s, %2$s</string>
     <string name="formatDateSchedule">d \'de\' MMM</string>
     <string name="formatDateScheduleYear">d \'de\' MMM \'de\' yyyy</string>
@@ -4449,6 +4457,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd.MM.yy</string>
     <string name="formatterYearMax">dd.MM.yyyy</string>
+    <string name="generic_error_no_device_credential">Nenhum PIN, padrão ou senha configurado.</string>
+    <string name="generic_error_no_keyguard">Este dispositivo não é compatível com PIN, padrão ou senha.</string>
+    <string name="generic_error_user_canceled">Autenticação cancelada pelo usuário.</string>
     <string name="google_assistant_verification_channel_name">Verificador do Assistente</string>
     <string name="google_assistant_verification_notification_title">O Google Assistente está enviando a mensagem</string>
     <string name="items_few">%1$d itens</string>

@@ -116,8 +116,11 @@ public class OKLCH {
         double[] rgb2oklch = rgb2oklch(rgb(i2));
         double[] rgb2oklch2 = rgb2oklch(rgb(i));
         rgb2oklch2[2] = rgb2oklch[2];
-        if (Double.isNaN(rgb2oklch[2])) {
+        if (Double.isNaN(rgb2oklch[2]) || rgb2oklch[1] < 0.07999999821186066d) {
             rgb2oklch2[1] = rgb2oklch[1];
+            if (!Theme.isCurrentThemeDark() && rgb2oklch2[0] < 0.800000011920929d) {
+                rgb2oklch2[0] = Utilities.clamp(rgb2oklch2[0] - 0.1d, 1.0d, 0.0d);
+            }
         }
         return ColorUtils.setAlphaComponent(rgb(oklch2rgb(rgb2oklch2)), Color.alpha(i));
     }

@@ -268,9 +268,6 @@ public abstract class TLRPC$Update extends TLObject {
             case -1020437742:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDeleteChannelMessages();
                 break;
-            case -856651050:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateGroupInvitePrivacyForbidden();
-                break;
             case -761649164:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelMessageForwards();
                 break;

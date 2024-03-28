@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
@@ -25,6 +26,7 @@ public class ColoredImageSpan extends ReplacementSpan {
     private int topOffset;
     private float translateX;
     private float translateY;
+    public boolean useLinkPaintColor;
     boolean usePaintColor;
     private final int verticalAlignment;
 
@@ -42,6 +44,7 @@ public class ColoredImageSpan extends ReplacementSpan {
 
     public ColoredImageSpan(Drawable drawable, int i) {
         this.usePaintColor = true;
+        this.useLinkPaintColor = false;
         this.topOffset = 0;
         this.alpha = 1.0f;
         this.spaceScaleX = 1.0f;
@@ -101,7 +104,9 @@ public class ColoredImageSpan extends ReplacementSpan {
         } else {
             int i6 = this.overrideColor;
             if (i6 == 0) {
-                if (this.usePaintColor) {
+                if (this.useLinkPaintColor && (paint instanceof TextPaint)) {
+                    i6 = ((TextPaint) paint).linkColor;
+                } else if (this.usePaintColor) {
                     i6 = paint.getColor();
                 } else {
                     i6 = Theme.getColor(this.colorKey);
@@ -137,9 +142,8 @@ public class ColoredImageSpan extends ReplacementSpan {
             if (f2 != 1.0f || this.scaleY != 1.0f) {
                 canvas.scale(f2, this.scaleY, 0.0f, drawable3.getBounds().centerY());
             }
-            float f3 = this.alpha;
-            if (f3 != 1.0f) {
-                this.drawable.setAlpha((int) (f3 * 255.0f));
+            if (this.alpha != 1.0f || paint.getAlpha() != 255) {
+                this.drawable.setAlpha((int) (this.alpha * paint.getAlpha()));
             }
             this.drawable.draw(canvas);
         }

@@ -1044,7 +1044,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {

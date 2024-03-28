@@ -55,7 +55,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public int getItemViewType(int i) {
