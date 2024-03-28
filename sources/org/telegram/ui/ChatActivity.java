@@ -17293,7 +17293,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return messageObject.messageOwner.reply_markup.rows.get(0).buttons.get(0);
     }
 
-    public void lambda$updateMessagesVisiblePart$135(boolean r35, int r36) {
+    public void lambda$updateMessagesVisiblePart$135(boolean r34, int r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$updateMessagesVisiblePart$135(boolean, int):void");
     }
 
@@ -18848,7 +18848,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private void createEmptyView(boolean z) {
         TLRPC$TL_businessIntro tLRPC$TL_businessIntro;
-        TLRPC$UserFull tLRPC$UserFull;
         String string;
         TLRPC$TL_businessIntro tLRPC$TL_businessIntro2;
         TLRPC$User tLRPC$User;
@@ -18890,7 +18889,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 this.emptyViewContainer.addView(this.businessLinksEmptyView, LayoutHelper.createFrame(-2, -2, 17));
             } else {
                 boolean z2 = false;
-                if (((i >= 0 || this.preloadedGreetingsSticker != null) && this.currentUser != null && !this.userBlocked) || ((tLRPC$UserFull = this.userInfo) != null && tLRPC$UserFull.contact_require_premium && !getUserConfig().isPremium())) {
+                if (((i >= 0 || this.preloadedGreetingsSticker != null) && this.currentUser != null && !this.userBlocked) || (this.userInfo != null && getDialogId() != getUserConfig().getClientUserId() && this.userInfo.contact_require_premium && !getUserConfig().isPremium())) {
                     ChatGreetingsView chatGreetingsView = new ChatGreetingsView(getContext(), this.currentUser, i, this.currentAccount, this.preloadedGreetingsSticker, this.themeDelegate) {
                         @Override
                         protected void onLayout(boolean z3, int i3, int i4, int i5, int i6) {
@@ -18899,8 +18898,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         }
                     };
                     this.greetingsViewContainer = chatGreetingsView;
-                    TLRPC$UserFull tLRPC$UserFull2 = this.userInfo;
-                    if (tLRPC$UserFull2 != null && tLRPC$UserFull2.contact_require_premium && !getUserConfig().isPremium()) {
+                    if (this.userInfo != null && getDialogId() != getUserConfig().getClientUserId() && this.userInfo.contact_require_premium && !getUserConfig().isPremium()) {
                         z2 = true;
                     }
                     chatGreetingsView.setPremiumLock(z2, this.dialog_id);
@@ -18916,8 +18914,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     this.emptyViewContent.setGravity(17);
                     this.emptyViewContent.addView(this.greetingsViewContainer, LayoutHelper.createFrame(-2, -2, 17));
                     this.emptyViewContainer.addView(this.emptyViewContent, LayoutHelper.createFrame(-1, -2, 17));
-                    TLRPC$UserFull tLRPC$UserFull3 = this.userInfo;
-                    if (tLRPC$UserFull3 != null && (tLRPC$TL_businessIntro = tLRPC$UserFull3.business_intro) != null) {
+                    TLRPC$UserFull tLRPC$UserFull = this.userInfo;
+                    if (tLRPC$UserFull != null && (tLRPC$TL_businessIntro = tLRPC$UserFull.business_intro) != null) {
                         this.greetingsViewContainer.setPreview(tLRPC$TL_businessIntro.title, tLRPC$TL_businessIntro.description);
                         this.greetingsViewContainer.setSticker(this.userInfo.business_intro.sticker);
                     }
@@ -18961,8 +18959,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 }
                             };
                             this.greetingsViewContainer = chatGreetingsView2;
-                            TLRPC$UserFull tLRPC$UserFull4 = this.userInfo;
-                            if (tLRPC$UserFull4 != null && tLRPC$UserFull4.contact_require_premium && !getUserConfig().isPremium()) {
+                            if (this.userInfo != null && getDialogId() != getUserConfig().getClientUserId() && this.userInfo.contact_require_premium && !getUserConfig().isPremium()) {
                                 z2 = true;
                             }
                             chatGreetingsView2.setPremiumLock(z2, this.dialog_id);
@@ -18972,8 +18969,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                     ChatActivity.this.lambda$createEmptyView$256(tLRPC$Document);
                                 }
                             });
-                            TLRPC$UserFull tLRPC$UserFull5 = this.userInfo;
-                            if (tLRPC$UserFull5 != null && (tLRPC$TL_businessIntro2 = tLRPC$UserFull5.business_intro) != null) {
+                            TLRPC$UserFull tLRPC$UserFull2 = this.userInfo;
+                            if (tLRPC$UserFull2 != null && (tLRPC$TL_businessIntro2 = tLRPC$UserFull2.business_intro) != null) {
                                 this.greetingsViewContainer.setPreview(tLRPC$TL_businessIntro2.title, tLRPC$TL_businessIntro2.description);
                                 this.greetingsViewContainer.setSticker(this.userInfo.business_intro.sticker);
                             }
@@ -19060,8 +19057,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void updateGreetInfo() {
-        TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-        showGreetInfo((tLRPC$UserFull == null || tLRPC$UserFull.business_intro == null || (tLRPC$UserFull != null && tLRPC$UserFull.contact_require_premium && !getUserConfig().isPremium())) ? false : true);
+        TLRPC$UserFull tLRPC$UserFull;
+        showGreetInfo((getDialogId() == getUserConfig().getClientUserId() || (tLRPC$UserFull = this.userInfo) == null || tLRPC$UserFull.business_intro == null || (tLRPC$UserFull != null && tLRPC$UserFull.contact_require_premium && !getUserConfig().isPremium())) ? false : true);
     }
 
     private void showGreetInfo(boolean z) {
@@ -27294,7 +27291,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private void invalidatePremiumBlocked() {
         TLRPC$User tLRPC$User;
-        if (getUserConfig().isPremium() || (tLRPC$User = this.currentUser) == null || !tLRPC$User.contact_require_premium || this.messages.isEmpty() == getMessagesController().isUserPremiumBlocked(getDialogId())) {
+        if (getDialogId() == getUserConfig().getClientUserId() || getUserConfig().isPremium() || (tLRPC$User = this.currentUser) == null || !tLRPC$User.contact_require_premium || this.messages.isEmpty() == getMessagesController().isUserPremiumBlocked(getDialogId())) {
             return;
         }
         getMessagesController().invalidateUserPremiumBlocked(getDialogId(), this.classGuid);

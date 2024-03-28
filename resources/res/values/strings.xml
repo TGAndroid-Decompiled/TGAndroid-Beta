@@ -4630,7 +4630,7 @@
     <string name="MonetizationInfoFeature3Name">Flexible withdrawals</string>
     <string name="MonetizationInfoFeature3Text">You can withdraw your TON any time.</string>
     <string name="MonetizationInfoTONLink">https://telegram.org/privacy</string>
-    <string name="MonetizationInfoTONText">TON is a blockchain platform and cryptocurrency that Telegram uses for its high speed and low commisions on transactions. **Learn More &gt;**</string>
+    <string name="MonetizationInfoTONText">**TON** is a blockchain platform and cryptocurrency that Telegram uses for its high speed and low commisions on transactions.</string>
     <string name="MonetizationInfoTONTitle">What is �� TON?</string>
     <string name="MonetizationInfoTitle">Earn From Your Channel</string>
     <string name="MonetizationMoreTransactions_one">Show %d more transaction</string>

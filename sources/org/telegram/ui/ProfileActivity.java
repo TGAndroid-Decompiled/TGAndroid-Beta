@@ -13728,13 +13728,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void createBirthdayEffect() {
-        ProfileBirthdayEffect.BirthdayEffectFetcher birthdayEffectFetcher;
-        if (this.fragmentView == null || !this.fullyVisible || (birthdayEffectFetcher = this.birthdayFetcher) == null) {
+        if (this.fragmentView == null || !this.fullyVisible || this.birthdayFetcher == null || getContext() == null) {
             return;
         }
         ProfileBirthdayEffect profileBirthdayEffect = this.birthdayEffect;
         if (profileBirthdayEffect != null) {
-            profileBirthdayEffect.updateFetcher(birthdayEffectFetcher);
+            profileBirthdayEffect.updateFetcher(this.birthdayFetcher);
             this.birthdayEffect.invalidate();
             return;
         }

@@ -5058,7 +5058,6 @@ public class AndroidUtilities {
 
             @Override
             public void updateDrawState(TextPaint textPaint) {
-                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textPaint.setUnderlineText(false);
                 textPaint.setColor(textPaint.linkColor);
             }
