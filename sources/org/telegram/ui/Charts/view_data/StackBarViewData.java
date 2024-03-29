@@ -17,7 +17,7 @@ public class StackBarViewData extends LineViewData {
     }
 
     public StackBarViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
-        super(line);
+        super(line, false);
         Paint paint = new Paint();
         this.unselectedPaint = paint;
         this.blendColor = 0;

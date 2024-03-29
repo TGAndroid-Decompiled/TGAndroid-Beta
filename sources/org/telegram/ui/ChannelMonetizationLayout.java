@@ -619,9 +619,8 @@ public class ChannelMonetizationLayout extends FrameLayout {
         int i = chatFull != null ? chatFull.stats_dc : -1;
         arrayList.add(UItem.asCenterShadow(this.titleInfo));
         StatisticActivity.ChartViewData chartViewData = this.impressionsChart;
-        boolean z = false;
         if (chartViewData != null && !chartViewData.isEmpty) {
-            arrayList.add(UItem.asChart(0, i, chartViewData));
+            arrayList.add(UItem.asChart(5, i, chartViewData));
             arrayList.add(UItem.asShadow(-1, null));
         }
         StatisticActivity.ChartViewData chartViewData2 = this.revenueChart;
@@ -641,6 +640,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
             arrayList.add(UItem.asCustom(this.balanceLayout));
             arrayList.add(UItem.asShadow(-4, this.balanceInfo));
         }
+        boolean z = false;
         if (!this.transactions.isEmpty() || this.transactionsTotalCount > 0) {
             arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.MonetizationTransactions)));
             Iterator<TL_stats$BroadcastRevenueTransaction> it = this.transactions.iterator();
@@ -785,15 +785,15 @@ public class ChannelMonetizationLayout extends FrameLayout {
         return replaceTON(charSequence, textPaint, 1.0f, true);
     }
 
-    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, boolean z) {
-        return replaceTON(charSequence, textPaint, 1.0f, z);
+    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, boolean z) {
+        return replaceTON(charSequence, textPaint, f, 0.0f, z);
     }
 
-    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, boolean z) {
+    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, float f2, boolean z) {
         if (tonString == null) {
             tonString = new HashMap<>();
         }
-        int i = textPaint.getFontMetricsInt().bottom * (z ? 1 : -1);
+        int i = textPaint.getFontMetricsInt().bottom * (z ? 1 : -1) * ((int) (100.0f * f));
         SpannableString spannableString = tonString.get(Integer.valueOf(i));
         if (spannableString == null) {
             spannableString = new SpannableString("T");
@@ -804,7 +804,8 @@ public class ChannelMonetizationLayout extends FrameLayout {
                 spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
             } else {
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_ton);
-                coloredImageSpan.setTranslateY(-AndroidUtilities.dp(0.66f));
+                coloredImageSpan.setScale(f, f);
+                coloredImageSpan.setTranslateY(f2);
                 coloredImageSpan.spaceScaleX = 0.95f;
                 spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
             }

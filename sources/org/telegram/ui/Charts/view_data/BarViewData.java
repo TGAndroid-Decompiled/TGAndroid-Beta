@@ -7,7 +7,7 @@ public class BarViewData extends LineViewData {
     public final Paint unselectedPaint;
 
     public BarViewData(ChartData.Line line) {
-        super(line);
+        super(line, false);
         Paint paint = new Paint();
         this.unselectedPaint = paint;
         this.blendColor = 0;

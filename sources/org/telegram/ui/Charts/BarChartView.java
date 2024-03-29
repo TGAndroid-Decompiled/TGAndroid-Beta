@@ -27,45 +27,64 @@ public class BarChartView extends BaseChartView<ChartData, BarViewData> {
 
     @Override
     protected void drawPickerChart(Canvas canvas) {
+        int i;
+        int i2;
+        float f;
+        int i3;
         int measuredHeight = getMeasuredHeight();
-        int i = BaseChartView.PICKER_PADDING;
-        int i2 = measuredHeight - i;
-        int measuredHeight2 = (getMeasuredHeight() - this.pikerHeight) - i;
+        int i4 = BaseChartView.PICKER_PADDING;
+        int i5 = measuredHeight - i4;
+        int measuredHeight2 = (getMeasuredHeight() - this.pikerHeight) - i4;
         int size = this.lines.size();
         if (this.chartData != 0) {
-            for (int i3 = 0; i3 < size; i3++) {
-                BarViewData barViewData = (BarViewData) this.lines.get(i3);
+            int i6 = 0;
+            while (i6 < size) {
+                BarViewData barViewData = (BarViewData) this.lines.get(i6);
                 if (barViewData.enabled || barViewData.alpha != 0.0f) {
                     barViewData.bottomLinePath.reset();
                     float[] fArr = this.chartData.xPercentage;
                     int length = fArr.length;
-                    float f = 1.0f;
                     float f2 = fArr.length < 2 ? 1.0f : fArr[1] * this.pickerWidth;
-                    int[] iArr = barViewData.line.y;
+                    long[] jArr = barViewData.line.y;
                     float f3 = barViewData.alpha;
-                    int i4 = 0;
-                    int i5 = 0;
-                    while (i4 < length) {
-                        if (iArr[i4] >= 0) {
+                    int i7 = 0;
+                    int i8 = 0;
+                    while (i7 < length) {
+                        if (jArr[i7] < 0) {
+                            i2 = i7;
+                            i3 = i6;
+                        } else {
                             T t = this.chartData;
-                            float f4 = t.xPercentage[i4] * this.pickerWidth;
-                            float f5 = (f - ((iArr[i4] / (BaseChartView.ANIMATE_PICKER_SIZES ? this.pickerMaxHeight : t.maxValue)) * f3)) * (i2 - measuredHeight2);
+                            float f4 = t.xPercentage[i7] * this.pickerWidth;
+                            if (BaseChartView.ANIMATE_PICKER_SIZES) {
+                                f = this.pickerMaxHeight;
+                                i2 = i7;
+                            } else {
+                                i2 = i7;
+                                f = (float) t.maxValue;
+                            }
+                            i3 = i6;
+                            float f5 = (1.0f - ((((float) jArr[i2]) / f) * f3)) * (i5 - measuredHeight2);
                             float[] fArr2 = barViewData.linesPath;
-                            int i6 = i5 + 1;
-                            fArr2[i5] = f4;
-                            int i7 = i6 + 1;
-                            fArr2[i6] = f5;
-                            int i8 = i7 + 1;
-                            fArr2[i7] = f4;
-                            i5 = i8 + 1;
-                            fArr2[i8] = getMeasuredHeight() - this.chartBottom;
+                            int i9 = i8 + 1;
+                            fArr2[i8] = f4;
+                            int i10 = i9 + 1;
+                            fArr2[i9] = f5;
+                            int i11 = i10 + 1;
+                            fArr2[i10] = f4;
+                            i8 = i11 + 1;
+                            fArr2[i11] = getMeasuredHeight() - this.chartBottom;
                         }
-                        i4++;
-                        f = 1.0f;
+                        i6 = i3;
+                        i7 = i2 + 1;
                     }
+                    i = i6;
                     barViewData.paint.setStrokeWidth(f2 + 2.0f);
-                    canvas.drawLines(barViewData.linesPath, 0, i5, barViewData.paint);
+                    canvas.drawLines(barViewData.linesPath, 0, i8, barViewData.paint);
+                } else {
+                    i = i6;
                 }
+                i6 = i + 1;
             }
         }
     }

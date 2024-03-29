@@ -16,18 +16,18 @@ public class ChartHorizontalLinesData {
     private DecimalFormat formatterTON;
     private StaticLayout[] layouts;
     private StaticLayout[] layouts2;
-    public int[] values;
+    public long[] values;
     public CharSequence[] valuesStr;
     public CharSequence[] valuesStr2;
 
-    public ChartHorizontalLinesData(int r17, int r18, boolean r19, float r20, int r21, android.text.TextPaint r22, android.text.TextPaint r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.view_data.ChartHorizontalLinesData.<init>(int, int, boolean, float, int, android.text.TextPaint, android.text.TextPaint):void");
+    public ChartHorizontalLinesData(long r23, long r25, boolean r27, float r28, int r29, android.text.TextPaint r30, android.text.TextPaint r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.view_data.ChartHorizontalLinesData.<init>(long, long, boolean, float, int, android.text.TextPaint, android.text.TextPaint):void");
     }
 
     public CharSequence format(int i, TextPaint textPaint, long j, int i2) {
         if (i2 == 1) {
             if (i == 1) {
-                return BillingController.getInstance().formatCurrency(j, "USD");
+                return "~" + BillingController.getInstance().formatCurrency(j, "USD");
             }
             if (this.formatterTON == null) {
                 DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
@@ -45,20 +45,20 @@ public class ChartHorizontalLinesData {
             double d = j;
             Double.isNaN(d);
             sb.append(decimalFormat2.format(d / 1.0E9d));
-            return ChannelMonetizationLayout.replaceTON(sb.toString(), textPaint, false);
+            return ChannelMonetizationLayout.replaceTON(sb.toString(), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
         }
         return AndroidUtilities.formatWholeNumber((int) j, 0);
     }
 
-    public static int lookupHeight(int i) {
-        if (i > 100) {
-            i = round(i);
+    public static int lookupHeight(long j) {
+        if (j > 100) {
+            j = round(j);
         }
-        return ((int) Math.ceil(i / 5.0f)) * 5;
+        return ((int) Math.ceil(((float) j) / 5.0f)) * 5;
     }
 
-    private static int round(int i) {
-        return ((float) (i / 5)) % 10.0f == 0.0f ? i : ((i / 10) + 1) * 10;
+    private static long round(long j) {
+        return ((float) (j / 5)) % 10.0f == 0.0f ? j : ((j / 10) + 1) * 10;
     }
 
     public void drawText(Canvas canvas, int i, int i2, float f, float f2, TextPaint textPaint) {

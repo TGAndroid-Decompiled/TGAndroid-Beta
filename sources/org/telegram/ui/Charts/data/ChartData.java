@@ -13,13 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ThemeColors;
 public class ChartData {
     public String[] daysLookup;
     public ArrayList<Line> lines;
-    public int maxValue;
-    public int minValue;
+    public long maxValue;
+    public long minValue;
     public float oneDayPercentage;
     protected long timeStep;
     public long[] x;
@@ -30,8 +29,8 @@ public class ChartData {
 
     public ChartData() {
         this.lines = new ArrayList<>();
-        this.maxValue = 0;
-        this.minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.maxValue = 0L;
+        this.minValue = Long.MAX_VALUE;
         this.oneDayPercentage = 0.0f;
         this.yRate = 0.0f;
         this.yTickFormatter = 0;
@@ -40,8 +39,8 @@ public class ChartData {
 
     public ChartData(JSONObject jSONObject) throws JSONException {
         this.lines = new ArrayList<>();
-        this.maxValue = 0;
-        this.minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.maxValue = 0L;
+        this.minValue = Long.MAX_VALUE;
         this.oneDayPercentage = 0.0f;
         this.yRate = 0.0f;
         this.yTickFormatter = 0;
@@ -64,24 +63,24 @@ public class ChartData {
                 this.lines.add(line);
                 int length2 = jSONArray2.length() - 1;
                 line.id = jSONArray2.getString(0);
-                line.y = new int[length2];
+                line.y = new long[length2];
                 int i4 = 0;
                 while (i4 < length2) {
                     int i5 = i4 + 1;
-                    line.y[i4] = jSONArray2.getInt(i5);
-                    int[] iArr = line.y;
-                    if (iArr[i4] > line.maxValue) {
-                        line.maxValue = iArr[i4];
+                    line.y[i4] = jSONArray2.getLong(i5);
+                    long[] jArr = line.y;
+                    if (jArr[i4] > line.maxValue) {
+                        line.maxValue = jArr[i4];
                     }
-                    if (iArr[i4] < line.minValue) {
-                        line.minValue = iArr[i4];
+                    if (jArr[i4] < line.minValue) {
+                        line.minValue = jArr[i4];
                     }
                     i4 = i5;
                 }
             }
-            long[] jArr = this.x;
-            if (jArr.length > 1) {
-                this.timeStep = jArr[1] - jArr[0];
+            long[] jArr2 = this.x;
+            if (jArr2.length > 1) {
+                this.timeStep = jArr2[1] - jArr2[0];
             } else {
                 this.timeStep = 86400000L;
             }
@@ -253,9 +252,9 @@ public class ChartData {
         public String id;
         public String name;
         public SegmentTree segmentTree;
-        public int[] y;
-        public int maxValue = 0;
-        public int minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        public long[] y;
+        public long maxValue = 0;
+        public long minValue = Long.MAX_VALUE;
         public int color = -16777216;
         public int colorDark = -1;
 

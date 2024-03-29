@@ -5446,7 +5446,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle bundle) {
+    public void onSaveInstanceState(Bundle bundle) {
         try {
             super.onSaveInstanceState(bundle);
             BaseFragment baseFragment = null;

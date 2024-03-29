@@ -2141,7 +2141,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             showColorList(false);
         } else if (this.emojiViewVisible) {
             hideEmojiPopup(true);
-        } else if (this.editingText) {
+        } else if (this.editingText && this.currentEntityView != null) {
             selectEntity(null);
         } else if (!hasChanges()) {
             runnable.run();

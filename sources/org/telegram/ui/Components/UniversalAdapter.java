@@ -296,6 +296,8 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 19:
             case 20:
             case 21:
+            case 22:
+            case 23:
                 if (this.chartSharedUI == null) {
                     this.chartSharedUI = new BaseChartView.SharedUiComponents();
                 }
@@ -303,39 +305,39 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 universalChartCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = universalChartCell;
                 break;
-            case 22:
+            case 24:
                 View proceedOverviewCell = new ChannelMonetizationLayout.ProceedOverviewCell(this.context, this.resourcesProvider);
                 proceedOverviewCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = proceedOverviewCell;
                 break;
-            case 23:
+            case 25:
                 View transactionCell = new ChannelMonetizationLayout.TransactionCell(this.context, this.resourcesProvider);
                 transactionCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = transactionCell;
                 break;
-            case 24:
+            case 26:
                 HeaderCell headerCell3 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 8, 10, false, this.resourcesProvider);
                 headerCell3.setTextSize(20.0f);
                 headerCell3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = headerCell3;
                 break;
-            case 25:
+            case 27:
                 StoryPrivacyBottomSheet.UserCell userCell3 = new StoryPrivacyBottomSheet.UserCell(this.context, this.resourcesProvider);
                 userCell3.setIsSendAs(false, false);
                 userCell3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = userCell3;
                 break;
-            case 26:
+            case 28:
                 View view2 = new View(this.context);
                 view2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = view2;
                 break;
-            case 27:
+            case 29:
                 View businessLinkView = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
                 businessLinkView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = businessLinkView;
                 break;
-            case 28:
+            case R.styleable.AppCompatTheme_actionModeTheme:
                 View textRightIconCell = new TextRightIconCell(this.context, this.resourcesProvider);
                 textRightIconCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 view = textRightIconCell;
@@ -386,7 +388,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 return;
             case 0:
             case 1:
-            case 24:
+            case 26:
                 ((HeaderCell) viewHolder.itemView).setText(item.text);
                 int i3 = item.backgroundKey;
                 if (i3 != 0) {
@@ -568,6 +570,8 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 19:
             case 20:
             case 21:
+            case 22:
+            case 23:
                 ((StatisticActivity.UniversalChartCell) viewHolder.itemView).set(item.intValue, (StatisticActivity.ChartViewData) item.object, new Utilities.Callback0Return() {
                     @Override
                     public final Object run() {
@@ -577,13 +581,13 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                 });
                 return;
-            case 22:
+            case 24:
                 ((ChannelMonetizationLayout.ProceedOverviewCell) viewHolder.itemView).set((ChannelMonetizationLayout.ProceedOverview) item.object);
                 return;
-            case 23:
+            case 25:
                 ((ChannelMonetizationLayout.TransactionCell) viewHolder.itemView).set((TL_stats$BroadcastRevenueTransaction) item.object, hasDivider);
                 return;
-            case 25:
+            case 27:
                 StoryPrivacyBottomSheet.UserCell userCell3 = (StoryPrivacyBottomSheet.UserCell) viewHolder.itemView;
                 long j = userCell3.dialogId;
                 Object obj4 = item.object;
@@ -595,13 +599,13 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 userCell3.setChecked(item.checked, z2);
                 userCell3.setDivider(hasDivider);
                 return;
-            case 26:
+            case 28:
                 if (item.transparent) {
                     viewHolder.itemView.setBackgroundColor(0);
                 }
                 viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, item.intValue));
                 return;
-            case 27:
+            case 29:
                 BusinessLinksActivity.BusinessLinkView businessLinkView = (BusinessLinksActivity.BusinessLinkView) viewHolder.itemView;
                 Object obj5 = item.object;
                 if (obj5 instanceof BusinessLinksActivity.BusinessLinkWrapper) {
@@ -609,7 +613,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     return;
                 }
                 return;
-            case 28:
+            case R.styleable.AppCompatTheme_actionModeTheme:
                 TextRightIconCell textRightIconCell = (TextRightIconCell) viewHolder.itemView;
                 textRightIconCell.setTextAndIcon(item.text, item.iconResId);
                 textRightIconCell.setDivider(hasDivider);
@@ -685,7 +689,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         int itemViewType = viewHolder.getItemViewType();
         UItem item = getItem(viewHolder.getAdapterPosition());
-        return (itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 28 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 27 || itemViewType == 23 || itemViewType == 25) && (item == null || item.enabled);
+        return (itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 30 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 29 || itemViewType == 25 || itemViewType == 27) && (item == null || item.enabled);
     }
 
     public UItem getItem(int i) {

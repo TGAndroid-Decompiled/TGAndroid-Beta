@@ -5,7 +5,7 @@ import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Charts.data.ChartData;
 public class StackLinearViewData extends LineViewData {
     public StackLinearViewData(ChartData.Line line) {
-        super(line);
+        super(line, false);
         this.paint.setStyle(Paint.Style.FILL);
         if (BaseChartView.USE_LINES) {
             this.paint.setAntiAlias(false);

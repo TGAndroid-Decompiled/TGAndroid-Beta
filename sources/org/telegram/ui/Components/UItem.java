@@ -160,7 +160,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asProceedOverview(ChannelMonetizationLayout.ProceedOverview proceedOverview) {
-        UItem uItem = new UItem(22, false);
+        UItem uItem = new UItem(24, false);
         uItem.object = proceedOverview;
         return uItem;
     }
@@ -214,7 +214,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asBusinessChatLink(BusinessLinksActivity.BusinessLinkWrapper businessLinkWrapper) {
-        UItem uItem = new UItem(27, false);
+        UItem uItem = new UItem(29, false);
         uItem.object = businessLinkWrapper;
         return uItem;
     }
@@ -227,13 +227,13 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asTransaction(TL_stats$BroadcastRevenueTransaction tL_stats$BroadcastRevenueTransaction) {
-        UItem uItem = new UItem(23, false);
+        UItem uItem = new UItem(25, false);
         uItem.object = tL_stats$BroadcastRevenueTransaction;
         return uItem;
     }
 
     public static UItem asSpace(int i) {
-        UItem uItem = new UItem(26, false);
+        UItem uItem = new UItem(28, false);
         uItem.intValue = i;
         return uItem;
     }

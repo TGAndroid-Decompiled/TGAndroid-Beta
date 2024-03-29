@@ -103,6 +103,7 @@ import org.telegram.ui.Charts.BarChartView;
 import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Charts.ChartPickerDelegate;
 import org.telegram.ui.Charts.DoubleLinearChartView;
+import org.telegram.ui.Charts.LinearBarChartView;
 import org.telegram.ui.Charts.LinearChartView;
 import org.telegram.ui.Charts.PieChartView;
 import org.telegram.ui.Charts.StackBarChartView;
@@ -1866,13 +1867,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.checkboxContainer = new FrameLayout(this, context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
-                    super.onMeasure(i2, i3);
+                    int size = View.MeasureSpec.getSize(i2);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i3);
                     int childCount = getChildCount();
                     int measuredHeight = childCount > 0 ? getChildAt(0).getMeasuredHeight() : 0;
                     int i4 = 0;
                     int i5 = 0;
                     for (int i6 = 0; i6 < childCount; i6++) {
-                        if (getChildAt(i6).getMeasuredWidth() + i5 > getMeasuredWidth()) {
+                        if (getChildAt(i6).getMeasuredWidth() + i5 > size) {
                             i4 += getChildAt(i6).getMeasuredHeight();
                             i5 = 0;
                         }
@@ -1925,6 +1927,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 this.chartView = stackLinearChartView;
                 stackLinearChartView.legendSignatureView.showPercentage = true;
                 this.zoomedChartView = new PieChartView(getContext());
+            } else if (i == 5) {
+                this.chartView = new LinearBarChartView(getContext());
+                LinearBarChartView linearBarChartView = new LinearBarChartView(getContext());
+                this.zoomedChartView = linearBarChartView;
+                linearBarChartView.legendSignatureView.useHour = true;
             } else {
                 this.chartView = new LinearChartView(getContext());
                 LinearChartView linearChartView2 = new LinearChartView(getContext());
@@ -1971,7 +1978,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.chartView.setHeader(this.chartHeaderView);
             linearLayout.addView(this.chartHeaderView, LayoutHelper.createFrame(-1, 52.0f));
             linearLayout.addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f));
-            linearLayout.addView(this.checkboxContainer, LayoutHelper.createFrame(-1, -2.0f, 0, 16.0f, 0.0f, 16.0f, 0.0f));
+            linearLayout.addView(this.checkboxContainer, LayoutHelper.createFrame(-1, -2.0f, 7, 16.0f, 0.0f, 16.0f, 0.0f));
             if (this.chartType == 4) {
                 frameLayout.setClipChildren(false);
                 frameLayout.setClipToPadding(false);
@@ -2167,17 +2174,17 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.zoomedChartView.setVisibility(0);
             this.zoomedChartView.transitionParams = transitionParams;
             this.chartView.transitionParams = transitionParams;
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
-            int i2 = 0;
-            for (int i3 = 0; i3 < this.data.chartData.lines.size(); i3++) {
-                if (this.data.chartData.lines.get(i3).y[binarySearch] > i2) {
-                    i2 = this.data.chartData.lines.get(i3).y[binarySearch];
+            long j2 = 0;
+            long j3 = 2147483647L;
+            for (int i = 0; i < this.data.chartData.lines.size(); i++) {
+                if (this.data.chartData.lines.get(i).y[binarySearch] > j2) {
+                    j2 = this.data.chartData.lines.get(i).y[binarySearch];
                 }
-                if (this.data.chartData.lines.get(i3).y[binarySearch] < i) {
-                    i = this.data.chartData.lines.get(i3).y[binarySearch];
+                if (this.data.chartData.lines.get(i).y[binarySearch] < j3) {
+                    j3 = this.data.chartData.lines.get(i).y[binarySearch];
                 }
             }
-            float f = i + (i2 - i);
+            float f = ((float) j3) + ((float) (j2 - j3));
             BaseChartView baseChartView3 = this.chartView;
             float f2 = baseChartView3.currentMinHeight;
             final float f3 = (f - f2) / (baseChartView3.currentMaxHeight - f2);

@@ -355,7 +355,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             for (int i = 0; i < this.listView.getChildCount(); i++) {
                 View childAt = this.listView.getChildAt(i);
                 int position = this.listView.layoutManager.getPosition(childAt);
-                if (position >= 0 && position < this.listView.adapter.getItemCount() && (item = this.listView.adapter.getItem(position)) != null && item.viewType == 26) {
+                if (position >= 0 && position < this.listView.adapter.getItemCount() && (item = this.listView.adapter.getItem(position)) != null && item.viewType == 28) {
                     paddingTop = this.contentView.getPaddingTop() + childAt.getY();
                 }
             }
@@ -370,7 +370,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                     break;
                 }
                 View childAt = this.listView.getChildAt(i);
-                if (this.listView.adapter.getItem(this.listView.layoutManager.getPosition(childAt)).viewType == 26) {
+                if (this.listView.adapter.getItem(this.listView.layoutManager.getPosition(childAt)).viewType == 28) {
                     f = this.contentView.getPaddingTop() + childAt.getY();
                     break;
                 }
@@ -420,7 +420,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                 arrayList.add(asCustom);
                 measuredHeight += 40;
                 for (int i = 0; i < this.option.options.size(); i++) {
-                    UItem uItem = new UItem(28, false);
+                    UItem uItem = new UItem(30, false);
                     uItem.text = this.option.options.get(i).text;
                     uItem.backgroundKey = Theme.key_dialogBackground;
                     uItem.iconResId = R.drawable.msg_arrowright;
@@ -457,7 +457,7 @@ public class ReportAdBottomSheet extends BottomSheet {
         }
 
         public void onClick(UItem uItem, View view, int i, float f, float f2) {
-            if (uItem.viewType == 28) {
+            if (uItem.viewType == 30) {
                 TLRPC$TL_channels_sponsoredMessageReportResultChooseOption tLRPC$TL_channels_sponsoredMessageReportResultChooseOption = this.option;
                 if (tLRPC$TL_channels_sponsoredMessageReportResultChooseOption == null) {
                     ReportAdBottomSheet.this.submitOption(uItem.text, null);

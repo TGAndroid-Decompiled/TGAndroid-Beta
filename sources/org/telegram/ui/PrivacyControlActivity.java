@@ -2126,7 +2126,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                                                 if (PrivacyControlActivity.this.rulesType != 8) {
                                                     if (PrivacyControlActivity.this.rulesType != 10) {
                                                         if (PrivacyControlActivity.this.rulesType == 11) {
-                                                            headerCell.setText(LocaleController.getString(R.string.PrivacyBirthday));
+                                                            headerCell.setText(LocaleController.getString(R.string.PrivacyBirthdayTitle));
                                                             return;
                                                         } else {
                                                             headerCell.setText(LocaleController.getString("LastSeenTitle", R.string.LastSeenTitle));

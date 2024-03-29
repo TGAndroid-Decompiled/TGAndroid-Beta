@@ -293,8 +293,10 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
     @Override
     protected void drawPickerChart(Canvas canvas) {
         float f;
-        int i;
         float f2;
+        float f3;
+        int i;
+        float f4;
         T t = this.chartData;
         if (t != 0) {
             int length = ((StackLinearChartData) t).xPercentage.length;
@@ -303,135 +305,142 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                 ((LineViewData) this.lines.get(i2)).linesPathBottomSize = 0;
             }
             float length2 = (1.0f / ((StackLinearChartData) this.chartData).xPercentage.length) * this.pickerWidth;
-            for (int i3 = 0; i3 < length; i3++) {
-                float f3 = (length2 / 2.0f) + (((StackLinearChartData) this.chartData).xPercentage[i3] * (this.pickerWidth - length2));
-                float f4 = 0.0f;
+            int i3 = 0;
+            while (i3 < length) {
+                float f5 = (length2 / 2.0f) + (((StackLinearChartData) this.chartData).xPercentage[i3] * (this.pickerWidth - length2));
+                float f6 = 0.0f;
                 int i4 = 1;
-                float f5 = 0.0f;
                 int i5 = 0;
+                float f7 = 0.0f;
+                int i6 = 0;
                 boolean z = true;
-                for (int i6 = 0; i6 < size; i6++) {
-                    LineViewData lineViewData = (LineViewData) this.lines.get(i6);
+                while (i5 < size) {
+                    LineViewData lineViewData = (LineViewData) this.lines.get(i5);
                     boolean z2 = lineViewData.enabled;
                     if (z2 || lineViewData.alpha != 0.0f) {
-                        float f6 = lineViewData.line.y[i3] * lineViewData.alpha;
-                        f5 += f6;
-                        if (f6 > 0.0f) {
-                            i5++;
+                        f4 = length2;
+                        float f8 = ((float) lineViewData.line.y[i3]) * lineViewData.alpha;
+                        f7 += f8;
+                        if (f8 > 0.0f) {
+                            i6++;
                             if (z2) {
                                 z = false;
                             }
                         }
+                    } else {
+                        f4 = length2;
                     }
+                    i5++;
+                    length2 = f4;
                 }
+                float f9 = length2;
                 int i7 = 0;
-                float f7 = 0.0f;
+                float f10 = 0.0f;
                 while (i7 < size) {
                     LineViewData lineViewData2 = (LineViewData) this.lines.get(i7);
-                    if (lineViewData2.enabled || lineViewData2.alpha != f4) {
-                        int[] iArr = lineViewData2.line.y;
-                        if (i5 == i4) {
-                            if (iArr[i3] != 0) {
-                                f = lineViewData2.alpha;
+                    if (lineViewData2.enabled || lineViewData2.alpha != f6) {
+                        long[] jArr = lineViewData2.line.y;
+                        if (i6 == i4) {
+                            if (jArr[i3] != 0) {
+                                f3 = lineViewData2.alpha;
                                 int i8 = this.pikerHeight;
-                                float f8 = f * i8;
+                                float f11 = f3 * i8;
                                 float[] fArr = lineViewData2.linesPath;
                                 int i9 = lineViewData2.linesPathBottomSize;
-                                i = length;
                                 int i10 = i9 + 1;
                                 lineViewData2.linesPathBottomSize = i10;
-                                fArr[i9] = f3;
+                                fArr[i9] = f5;
                                 int i11 = i10 + 1;
                                 lineViewData2.linesPathBottomSize = i11;
-                                f2 = f5;
-                                fArr[i10] = (i8 - f8) - f7;
+                                i = length;
+                                fArr[i10] = (i8 - f11) - f10;
                                 int i12 = i11 + 1;
                                 lineViewData2.linesPathBottomSize = i12;
-                                fArr[i11] = f3;
+                                fArr[i11] = f5;
                                 lineViewData2.linesPathBottomSize = i12 + 1;
-                                fArr[i12] = i8 - f7;
-                                f7 += f8;
+                                fArr[i12] = i8 - f10;
+                                f10 += f11;
                             }
-                            f = 0.0f;
+                            f3 = 0.0f;
                             int i82 = this.pikerHeight;
-                            float f82 = f * i82;
+                            float f112 = f3 * i82;
                             float[] fArr2 = lineViewData2.linesPath;
                             int i92 = lineViewData2.linesPathBottomSize;
-                            i = length;
                             int i102 = i92 + 1;
                             lineViewData2.linesPathBottomSize = i102;
-                            fArr2[i92] = f3;
+                            fArr2[i92] = f5;
                             int i112 = i102 + 1;
                             lineViewData2.linesPathBottomSize = i112;
-                            f2 = f5;
-                            fArr2[i102] = (i82 - f82) - f7;
+                            i = length;
+                            fArr2[i102] = (i82 - f112) - f10;
                             int i122 = i112 + 1;
                             lineViewData2.linesPathBottomSize = i122;
-                            fArr2[i112] = f3;
+                            fArr2[i112] = f5;
                             lineViewData2.linesPathBottomSize = i122 + 1;
-                            fArr2[i122] = i82 - f7;
-                            f7 += f82;
+                            fArr2[i122] = i82 - f10;
+                            f10 += f112;
                         } else {
-                            if (f5 != f4) {
+                            if (f7 != f6) {
                                 if (z) {
-                                    float f9 = lineViewData2.alpha;
-                                    f = (iArr[i3] / f5) * f9 * f9;
+                                    f2 = lineViewData2.alpha;
+                                    f = (((float) jArr[i3]) / f7) * f2;
                                 } else {
-                                    f = lineViewData2.alpha * (iArr[i3] / f5);
+                                    f = ((float) jArr[i3]) / f7;
+                                    f2 = lineViewData2.alpha;
                                 }
+                                f3 = f * f2;
                                 int i822 = this.pikerHeight;
-                                float f822 = f * i822;
+                                float f1122 = f3 * i822;
                                 float[] fArr22 = lineViewData2.linesPath;
                                 int i922 = lineViewData2.linesPathBottomSize;
-                                i = length;
                                 int i1022 = i922 + 1;
                                 lineViewData2.linesPathBottomSize = i1022;
-                                fArr22[i922] = f3;
+                                fArr22[i922] = f5;
                                 int i1122 = i1022 + 1;
                                 lineViewData2.linesPathBottomSize = i1122;
-                                f2 = f5;
-                                fArr22[i1022] = (i822 - f822) - f7;
+                                i = length;
+                                fArr22[i1022] = (i822 - f1122) - f10;
                                 int i1222 = i1122 + 1;
                                 lineViewData2.linesPathBottomSize = i1222;
-                                fArr22[i1122] = f3;
+                                fArr22[i1122] = f5;
                                 lineViewData2.linesPathBottomSize = i1222 + 1;
-                                fArr22[i1222] = i822 - f7;
-                                f7 += f822;
+                                fArr22[i1222] = i822 - f10;
+                                f10 += f1122;
                             }
-                            f = 0.0f;
+                            f3 = 0.0f;
                             int i8222 = this.pikerHeight;
-                            float f8222 = f * i8222;
+                            float f11222 = f3 * i8222;
                             float[] fArr222 = lineViewData2.linesPath;
                             int i9222 = lineViewData2.linesPathBottomSize;
-                            i = length;
                             int i10222 = i9222 + 1;
                             lineViewData2.linesPathBottomSize = i10222;
-                            fArr222[i9222] = f3;
+                            fArr222[i9222] = f5;
                             int i11222 = i10222 + 1;
                             lineViewData2.linesPathBottomSize = i11222;
-                            f2 = f5;
-                            fArr222[i10222] = (i8222 - f8222) - f7;
+                            i = length;
+                            fArr222[i10222] = (i8222 - f11222) - f10;
                             int i12222 = i11222 + 1;
                             lineViewData2.linesPathBottomSize = i12222;
-                            fArr222[i11222] = f3;
+                            fArr222[i11222] = f5;
                             lineViewData2.linesPathBottomSize = i12222 + 1;
-                            fArr222[i12222] = i8222 - f7;
-                            f7 += f8222;
+                            fArr222[i12222] = i8222 - f10;
+                            f10 += f11222;
                         }
                     } else {
                         i = length;
-                        f2 = f5;
                     }
                     i7++;
                     length = i;
-                    f5 = f2;
-                    f4 = 0.0f;
+                    f6 = 0.0f;
                     i4 = 1;
                 }
+                i3++;
+                length2 = f9;
             }
+            float f12 = length2;
             for (int i13 = 0; i13 < size; i13++) {
                 LineViewData lineViewData3 = (LineViewData) this.lines.get(i13);
-                lineViewData3.paint.setStrokeWidth(length2);
+                lineViewData3.paint.setStrokeWidth(f12);
                 lineViewData3.paint.setAlpha(255);
                 lineViewData3.paint.setAntiAlias(false);
                 canvas.drawLines(lineViewData3.linesPath, 0, lineViewData3.linesPathBottomSize, lineViewData3.paint);
@@ -655,8 +664,8 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         while (i3 <= i2) {
             for (int i6 = 0; i6 < size; i6++) {
                 float[] fArr = this.values;
-                fArr[i6] = fArr[i6] + ((StackLinearChartData) this.chartData).lines.get(i6).y[i3];
-                this.sum += ((StackLinearChartData) this.chartData).lines.get(i6).y[i3];
+                fArr[i6] = fArr[i6] + ((float) ((StackLinearChartData) this.chartData).lines.get(i6).y[i3]);
+                this.sum += (float) ((StackLinearChartData) this.chartData).lines.get(i6).y[i3];
                 if (this.isEmpty && ((PieChartViewData) this.lines.get(i6)).enabled && ((StackLinearChartData) this.chartData).lines.get(i6).y[i3] > 0) {
                     this.isEmpty = false;
                 }

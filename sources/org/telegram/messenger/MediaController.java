@@ -3474,8 +3474,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void prepareResumedRecording(final int i, final MediaDataController.DraftVoice draftVoice, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories$StoryItem tL_stories$StoryItem, final int i2, boolean z, final String str, final int i3) {
-        this.manualRecording = z;
+    public void prepareResumedRecording(final int i, final MediaDataController.DraftVoice draftVoice, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories$StoryItem tL_stories$StoryItem, final int i2, final String str, final int i3) {
+        this.manualRecording = false;
         requestAudioFocus(true);
         this.recordQueue.cancelRunnable(this.recordStartRunnable);
         this.recordQueue.postRunnable(new Runnable() {
@@ -3908,6 +3908,23 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         ArrayList arrayList = new ArrayList();
         arrayList.add(remove);
         NotificationCenter.getInstance(remove.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(remove.getDialogId()), arrayList);
+    }
+
+    public void cleanRecording(boolean z) {
+        File file;
+        this.recordingAudio = null;
+        AutoDeleteMediaTask.unlockFile(this.recordingAudioFile);
+        if (z && (file = this.recordingAudioFile) != null) {
+            try {
+                file.delete();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        this.recordingAudioFile = null;
+        this.manualRecording = false;
+        this.raiseToEarRecord = false;
+        this.ignoreOnPause = false;
     }
 
     public void stopRecordingInternal(final int i, final boolean z, final int i2, final boolean z2) {
