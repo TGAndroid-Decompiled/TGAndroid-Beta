@@ -1324,9 +1324,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
     private void checkOptions() {
         TLRPC$StickerSet tLRPC$StickerSet;
-        boolean z = !MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(this.stickerSet.set.id);
+        MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.stickerSet;
-        if (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null || !tLRPC$StickerSet.creator || this.deleteItem != null || DISABLE_STICKER_EDITOR) {
+        boolean z = tLRPC$TL_messages_stickerSet == null || !mediaDataController.isStickerPackInstalled(tLRPC$TL_messages_stickerSet.set.id);
+        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2 = this.stickerSet;
+        if (tLRPC$TL_messages_stickerSet2 == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet2.set) == null || !tLRPC$StickerSet.creator || this.deleteItem != null || DISABLE_STICKER_EDITOR) {
             return;
         }
         this.optionsButton.addSubItem(3, R.drawable.tabs_reorder, LocaleController.getString(R.string.StickersReorder));
@@ -2666,6 +2668,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     return;
                 } else if (viewHolder.getItemViewType() != 3) {
                     final StickerEmojiCell stickerEmojiCell = (StickerEmojiCell) viewHolder.itemView;
+                    if (StickersAlert.this.stickerSet == null) {
+                        return;
+                    }
                     stickerEmojiCell.setSticker(StickersAlert.this.stickerSet.documents.get(i), null, StickersAlert.this.stickerSet, null, StickersAlert.this.showEmoji, StickersAlert.this.isEditModeEnabled);
                     stickerEmojiCell.editModeIcon.setOnClickListener(new View.OnClickListener() {
                         @Override

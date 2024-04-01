@@ -82,8 +82,8 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         textView3.setTextSize(1, 20.0f);
         textView3.setTextAlignment(4);
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 1, 22, 0, 22, 0));
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("RevenueSharingAdsInfo4Subtitle", R.string.RevenueSharingAdsInfo4Subtitle));
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("RevenueSharingAdsInfo4Subtitle", R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i3, 0, new Runnable() {
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.RevenueSharingAdsInfo4Subtitle2));
+        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i3, 0, new Runnable() {
             @Override
             public final void run() {
                 RevenueSharingAdsInfoBottomSheet.this.lambda$new$1();
@@ -112,7 +112,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         textView4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView4.setTextSize(1, 14.0f);
-        textView4.setText(LocaleController.getString("RevenueSharingAdsAlertButton", R.string.RevenueSharingAdsUnderstood));
+        textView4.setText(LocaleController.getString("RevenueSharingAdsAlertButton", R.string.RevenueSharingAdsAlertButton));
         textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 6.0f));
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -845,7 +845,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int unreadUnmutedDialogs;
     public int updateCheckDelay;
     private Comparator<TLRPC$Update> updatesComparator;
-    private LongSparseArray<ArrayList<TLRPC$Updates>> updatesQueueChannels;
+    private final LongSparseArray<ArrayList<TLRPC$Updates>> updatesQueueChannels;
     private ArrayList<TLRPC$Updates> updatesQueuePts;
     private ArrayList<TLRPC$Updates> updatesQueueQts;
     private ArrayList<TLRPC$Updates> updatesQueueSeq;

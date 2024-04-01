@@ -2521,8 +2521,8 @@ public class AlertsCreator {
     }
 
     public static void lambda$checkRestrictedInviteUsers$48(int i, TLRPC$Chat tLRPC$Chat, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null || lastFragment.getParentActivity() == null) {
+        BaseFragment lastFragment;
+        if (!LaunchActivity.isActive || (lastFragment = LaunchActivity.getLastFragment()) == null || lastFragment.getParentActivity() == null) {
             return;
         }
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(lastFragment, lastFragment.getParentActivity(), 11, i, null);

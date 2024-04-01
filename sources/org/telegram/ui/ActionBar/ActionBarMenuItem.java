@@ -2068,6 +2068,14 @@ public class ActionBarMenuItem extends FrameLayout {
         findViewWithTag.setVisibility(0);
     }
 
+    public void setSubItemShown(int i, boolean z) {
+        if (z) {
+            showSubItem(i);
+        } else {
+            hideSubItem(i);
+        }
+    }
+
     public int getVisibleSubItemsCount() {
         int i = 0;
         for (int i2 = 0; i2 < this.popupLayout.getItemsCount(); i2++) {

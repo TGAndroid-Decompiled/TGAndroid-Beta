@@ -538,7 +538,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 }
 
                 @Override
-                protected boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
+                public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
                     AnimatedEmojiDrawable.this.invalidate();
                     return super.setImageBitmapByKey(drawable, str, i, z, i2);
                 }

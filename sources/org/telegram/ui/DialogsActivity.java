@@ -10111,20 +10111,22 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             return;
         }
-        int i = 0;
-        while (true) {
-            ViewPage[] viewPageArr2 = this.viewPages;
-            if (i >= viewPageArr2.length) {
-                break;
+        if (this.viewPages != null) {
+            int i = 0;
+            while (true) {
+                ViewPage[] viewPageArr2 = this.viewPages;
+                if (i >= viewPageArr2.length) {
+                    break;
+                }
+                ViewPage viewPage = viewPageArr2[i];
+                if (viewPage != null) {
+                    viewPage.setLayerType(0, null);
+                    viewPage.setClipChildren(true);
+                    viewPage.setClipToPadding(true);
+                    viewPage.listView.setClipChildren(true);
+                }
+                i++;
             }
-            ViewPage viewPage = viewPageArr2[i];
-            if (viewPage != null) {
-                viewPage.setLayerType(0, null);
-                viewPage.setClipChildren(true);
-                viewPage.setClipToPadding(true);
-                viewPage.listView.setClipChildren(true);
-            }
-            i++;
         }
         ActionBar actionBar2 = this.actionBar;
         if (actionBar2 != null) {

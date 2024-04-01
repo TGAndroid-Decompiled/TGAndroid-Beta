@@ -105,6 +105,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_stories_getPeerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_getPinnedStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesArchive;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesByID;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_incrementStoryViews;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_peerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_readStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_sendReaction;
@@ -2543,12 +2544,16 @@ public class StoriesController {
         private final Runnable notify;
         private boolean preloading;
         private boolean saving;
+        public final HashSet<Integer> seenStories;
         private boolean showPhotos;
         private boolean showVideos;
         private final ArrayList<MessageObject> tempArr;
         private Utilities.CallbackReturn<Integer, Boolean> toLoad;
         private int totalCount;
         public final int type;
+
+        public static void lambda$markAsRead$9(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        }
 
         StoriesList(int i, long j, int i2, Utilities.Callback callback, AnonymousClass1 anonymousClass1) {
             this(i, j, i2, callback);
@@ -2641,6 +2646,7 @@ public class StoriesController {
             this.messageObjectsMap = new HashMap<>();
             this.cachedObjects = new TreeSet(Comparator$CC.reverseOrder());
             this.loadedObjects = new TreeSet(Comparator$CC.reverseOrder());
+            this.seenStories = new HashSet<>();
             this.showPhotos = true;
             this.showVideos = true;
             this.tempArr = new ArrayList<>();
@@ -2685,7 +2691,7 @@ public class StoriesController {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$preloadCache$3(org.telegram.messenger.MessagesStorage):void");
         }
 
-        public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
+        public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, HashSet hashSet) {
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} preloadCache {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             this.preloading = false;
             MessagesController.getInstance(this.currentAccount).putUsers(arrayList2, true);
@@ -2696,6 +2702,7 @@ public class StoriesController {
                 invalidateCache();
                 return;
             }
+            this.seenStories.addAll(hashSet);
             this.cachedObjects.clear();
             for (int i = 0; i < arrayList.size(); i++) {
                 pushObject((MessageObject) arrayList.get(i), true);
@@ -2842,6 +2849,25 @@ public class StoriesController {
             this.saving = false;
         }
 
+        public boolean markAsRead(int i) {
+            if (this.seenStories.contains(Integer.valueOf(i))) {
+                return false;
+            }
+            this.seenStories.add(Integer.valueOf(i));
+            saveCache();
+            TL_stories$TL_stories_incrementStoryViews tL_stories$TL_stories_incrementStoryViews = new TL_stories$TL_stories_incrementStoryViews();
+            tL_stories$TL_stories_incrementStoryViews.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            tL_stories$TL_stories_incrementStoryViews.id.add(Integer.valueOf(i));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_incrementStoryViews, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    StoriesController.StoriesList.lambda$markAsRead$9(tLObject, tLRPC$TL_error);
+                }
+            });
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesReadUpdated, new Object[0]);
+            return true;
+        }
+
         private boolean canLoad() {
             Long l;
             return lastLoadTime == null || (l = lastLoadTime.get(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.dialogId))))) == null || System.currentTimeMillis() - l.longValue() > 120000;
@@ -2883,9 +2909,9 @@ public class StoriesController {
                 this.toLoad = new Utilities.CallbackReturn() {
                     @Override
                     public final Object run(Object obj) {
-                        Boolean lambda$load$9;
-                        lambda$load$9 = StoriesController.StoriesList.this.lambda$load$9(z, i, list, (Integer) obj);
-                        return lambda$load$9;
+                        Boolean lambda$load$10;
+                        lambda$load$10 = StoriesController.StoriesList.this.lambda$load$10(z, i, list, (Integer) obj);
+                        return lambda$load$10;
                     }
                 };
                 return false;
@@ -2923,17 +2949,17 @@ public class StoriesController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getStoriesArchive, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StoriesController.StoriesList.this.lambda$load$12(i3, tLObject, tLRPC$TL_error);
+                    StoriesController.StoriesList.this.lambda$load$13(i3, tLObject, tLRPC$TL_error);
                 }
             });
             return true;
         }
 
-        public Boolean lambda$load$9(boolean z, int i, List list, Integer num) {
+        public Boolean lambda$load$10(boolean z, int i, List list, Integer num) {
             return Boolean.valueOf(load(z, i, list));
         }
 
-        public void lambda$load$12(final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$load$13(final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             if (tLObject instanceof TL_stories$TL_stories_stories) {
                 final ArrayList arrayList = new ArrayList();
                 final TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
@@ -2943,7 +2969,7 @@ public class StoriesController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StoriesController.StoriesList.this.lambda$load$10(arrayList, tL_stories$TL_stories_stories, i);
+                        StoriesController.StoriesList.this.lambda$load$11(arrayList, tL_stories$TL_stories_stories, i);
                     }
                 });
                 return;
@@ -2951,12 +2977,12 @@ public class StoriesController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesList.this.lambda$load$11();
+                    StoriesController.StoriesList.this.lambda$load$12();
                 }
             });
         }
 
-        public void lambda$load$10(ArrayList arrayList, TL_stories$TL_stories_stories tL_stories$TL_stories_stories, int i) {
+        public void lambda$load$11(ArrayList arrayList, TL_stories$TL_stories_stories tL_stories$TL_stories_stories, int i) {
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} loaded {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_stories_stories.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tL_stories$TL_stories_stories.chats, false);
@@ -3003,7 +3029,7 @@ public class StoriesController {
             saveCache();
         }
 
-        public void lambda$load$11() {
+        public void lambda$load$12() {
             this.loading = false;
             this.error = true;
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesListUpdated, this, Boolean.FALSE);

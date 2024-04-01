@@ -460,7 +460,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         double d2 = j;
         Double.isNaN(d2);
         decimalFormat2.setMaximumFractionDigits(d2 / 1.0E9d > 1.5d ? 2 : 6);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTON("TON " + this.formatter.format(d), this.balanceTitle.getPaint()));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTON("TON " + this.formatter.format(d), this.balanceTitle.getPaint(), 0.9f, true));
         int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
         if (indexOf >= 0) {
             spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
@@ -703,13 +703,12 @@ public class ChannelMonetizationLayout extends FrameLayout {
     }
 
     private void loadTransactions() {
-        TLRPC$Chat chat;
         if (this.loadingTransactions) {
             return;
         }
         int size = this.transactions.size();
         int i = this.transactionsTotalCount;
-        if ((size < i || i == 0) && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId))) != null && chat.creator) {
+        if (size < i || i == 0) {
             this.loadingTransactions = true;
             TL_stats$TL_getBroadcastRevenueTransactions tL_stats$TL_getBroadcastRevenueTransactions = new TL_stats$TL_getBroadcastRevenueTransactions();
             tL_stats$TL_getBroadcastRevenueTransactions.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
@@ -798,16 +797,18 @@ public class ChannelMonetizationLayout extends FrameLayout {
         if (spannableString == null) {
             spannableString = new SpannableString("T");
             if (z) {
-                AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(5471952986970267163L, f, textPaint.getFontMetricsInt());
-                animatedEmojiSpan.emoji = "💎";
-                animatedEmojiSpan.cacheType = 20;
-                spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
-            } else {
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_ton);
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
                 coloredImageSpan.setScale(f, f);
-                coloredImageSpan.setTranslateY(f2);
-                coloredImageSpan.spaceScaleX = 0.95f;
+                coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText2);
+                coloredImageSpan.setRelativeSize(textPaint.getFontMetricsInt());
+                coloredImageSpan.spaceScaleX = 0.9f;
                 spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+            } else {
+                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_ton);
+                coloredImageSpan2.setScale(f, f);
+                coloredImageSpan2.setTranslateY(f2);
+                coloredImageSpan2.spaceScaleX = 0.95f;
+                spannableString.setSpan(coloredImageSpan2, 0, spannableString.length(), 33);
             }
             tonString.put(Integer.valueOf(i), spannableString);
         }
@@ -1205,10 +1206,12 @@ public class ChannelMonetizationLayout extends FrameLayout {
         textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textViewEmojis.setTextColor(Theme.getColor(i, this.resourcesProvider));
         SpannableString spannableString = new SpannableString("💎");
-        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(5471952986970267163L, 0.98f, textViewEmojis.getPaint().getFontMetricsInt());
-        animatedEmojiSpan.emoji = "💎";
-        animatedEmojiSpan.cacheType = 21;
-        spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
+        coloredImageSpan.setScale(0.9f, 0.9f);
+        coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText2);
+        coloredImageSpan.setRelativeSize(textViewEmojis.getPaint().getFontMetricsInt());
+        coloredImageSpan.spaceScaleX = 0.9f;
+        spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
         textViewEmojis.setText(AndroidUtilities.replaceCharSequence("💎", LocaleController.getString(R.string.MonetizationInfoTONTitle), spannableString));
         linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-1, -2, 8.0f, 20.0f, 8.0f, 0.0f));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);

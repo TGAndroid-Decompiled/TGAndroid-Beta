@@ -1392,7 +1392,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="Theme.TMessages" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.TMessages" parent="@style/Theme.AppCompat.Light">
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowNoTitle">true</item>
@@ -1454,7 +1454,7 @@
         <item name="widgetPreviewImage">@drawable/widget_avatar_3</item>
         <item name="widgetPreviewTitle">Nick</item>
     </style>
-    <style name="Theme.TMessages.Dark" parent="@android:style/Theme.Holo">
+    <style name="Theme.TMessages.Dark" parent="@style/Theme.AppCompat.DayNight">
         <item name="android:colorBackground">@android:color/black</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowNoTitle">true</item>
@@ -1480,7 +1480,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowActionBar">false</item>
     </style>
-    <style name="Theme.TMessages.Start" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.TMessages.Start" parent="@style/Theme.AppCompat.Light">
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowNoTitle">true</item>

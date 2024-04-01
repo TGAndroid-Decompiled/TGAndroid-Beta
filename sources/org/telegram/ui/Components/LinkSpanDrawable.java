@@ -496,7 +496,8 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         private boolean disablePaddingsOffsetX;
         private boolean disablePaddingsOffsetY;
         private boolean isCustomLinkCollector;
-        private LinkCollector links;
+        private final LinkCollector links;
+        private boolean loggedError;
         private OnLinkPress onLongPressListener;
         private OnLinkPress onPressListener;
         private LinkSpanDrawable<ClickableSpan> pressedLink;
@@ -531,6 +532,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public LinksTextView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.loggedError = false;
             this.isCustomLinkCollector = false;
             this.links = new LinkCollector(this);
             this.resourcesProvider = resourcesProvider;
@@ -538,6 +540,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public LinksTextView(Context context, LinkCollector linkCollector, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.loggedError = false;
             this.isCustomLinkCollector = true;
             this.links = linkCollector;
             this.resourcesProvider = resourcesProvider;
@@ -645,28 +648,8 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
-            if (!this.isCustomLinkCollector) {
-                canvas.save();
-                if (!this.disablePaddingsOffset) {
-                    canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
-                }
-                if (this.links.draw(canvas)) {
-                    invalidate();
-                }
-                canvas.restore();
-            }
-            super.onDraw(canvas);
-            float paddingTop = ((getGravity() & 16) == 0 || getLayout() == null) ? 0.0f : getPaddingTop() + ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f);
-            if (paddingTop != 0.0f || getPaddingLeft() != 0) {
-                canvas.save();
-                canvas.translate(getPaddingLeft(), paddingTop);
-            }
-            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, getLayout(), this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
-            if (paddingTop == 0.0f && getPaddingLeft() == 0) {
-                return;
-            }
-            canvas.restore();
+        public void onDraw(android.graphics.Canvas r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
         }
 
         @Override

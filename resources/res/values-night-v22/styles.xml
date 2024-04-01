@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.TMessages.Start" parent="@android:style/Theme.Material">
+    <style name="Theme.TMessages.Start" parent="@style/Theme.AppCompat.DayNight">
         <item name="android:colorBackground">#1f2732</item>
         <item name="android:windowBackground">#1f2732</item>
         <item name="android:windowNoTitle">true</item>

@@ -6911,21 +6911,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void checkBotMessageHint() {
+        ChatMessageCell chatMessageCell;
+        MessageObject primaryMessageObject;
+        TLRPC$Message tLRPC$Message;
         if (this.botMessageHint != null) {
             return;
         }
-        ChatMessageCell chatMessageCell = null;
+        ChatMessageCell chatMessageCell2 = null;
         for (int childCount = this.chatListView.getChildCount() - 1; childCount >= 0; childCount--) {
             View childAt = this.chatListView.getChildAt(childCount);
-            if (childAt instanceof ChatMessageCell) {
-                ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt;
-                TLRPC$Message tLRPC$Message = chatMessageCell2.getPrimaryMessageObject().messageOwner;
-                if (tLRPC$Message != null && tLRPC$Message.via_business_bot_id != 0) {
-                    chatMessageCell = chatMessageCell2;
-                }
+            if ((childAt instanceof ChatMessageCell) && (primaryMessageObject = (chatMessageCell = (ChatMessageCell) childAt).getPrimaryMessageObject()) != null && (tLRPC$Message = primaryMessageObject.messageOwner) != null && tLRPC$Message.via_business_bot_id != 0) {
+                chatMessageCell2 = chatMessageCell;
             }
         }
-        showBotMessageHint(chatMessageCell, false);
+        showBotMessageHint(chatMessageCell2, false);
     }
 
     public void showBotMessageHint(final ChatMessageCell chatMessageCell, boolean z) {

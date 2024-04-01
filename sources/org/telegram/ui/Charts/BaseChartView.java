@@ -24,6 +24,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.ChartPickerDelegate;
@@ -74,6 +75,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     Paint emptyPaint;
     public boolean enabled;
     int endXIndex;
+    private Rect exclusionRect;
+    private List<Rect> exclusionRects;
     private ValueAnimator.AnimatorUpdateListener heightUpdateListener;
     int hintLinePaintAlpha;
     ArrayList<ChartHorizontalLinesData> horizontalLines;
@@ -282,6 +285,10 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.useMinHeight = false;
         this.lastW = 0;
         this.lastH = 0;
+        this.exclusionRect = new Rect();
+        ArrayList arrayList = new ArrayList();
+        this.exclusionRects = arrayList;
+        arrayList.add(this.exclusionRect);
         this.lastTime = 0L;
         this.animateLegentTo = false;
         this.resourcesProvider = resourcesProvider;
@@ -354,20 +361,26 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         } else {
             setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.displaySize.y - AndroidUtilities.dp(56.0f));
         }
-        if (getMeasuredWidth() == this.lastW && getMeasuredHeight() == this.lastH) {
-            return;
+        if (getMeasuredWidth() != this.lastW || getMeasuredHeight() != this.lastH) {
+            this.lastW = getMeasuredWidth();
+            this.lastH = getMeasuredHeight();
+            float f = HORIZONTAL_PADDING;
+            this.bottomChartBitmap = Bitmap.createBitmap((int) (getMeasuredWidth() - (f * 2.0f)), this.pikerHeight, Bitmap.Config.ARGB_4444);
+            this.bottomChartCanvas = new Canvas(this.bottomChartBitmap);
+            this.sharedUiComponents.getPickerMaskBitmap(this.pikerHeight, (int) (getMeasuredWidth() - (2.0f * f)));
+            measureSizes();
+            if (this.legendShowing) {
+                moveLegend((this.chartFullWidth * this.pickerDelegate.pickerStart) - f);
+            }
+            onPickerDataChanged(false, true, false);
         }
-        this.lastW = getMeasuredWidth();
-        this.lastH = getMeasuredHeight();
-        float f = HORIZONTAL_PADDING;
-        this.bottomChartBitmap = Bitmap.createBitmap((int) (getMeasuredWidth() - (f * 2.0f)), this.pikerHeight, Bitmap.Config.ARGB_4444);
-        this.bottomChartCanvas = new Canvas(this.bottomChartBitmap);
-        this.sharedUiComponents.getPickerMaskBitmap(this.pikerHeight, (int) (getMeasuredWidth() - (2.0f * f)));
-        measureSizes();
-        if (this.legendShowing) {
-            moveLegend((this.chartFullWidth * this.pickerDelegate.pickerStart) - f);
+        if (Build.VERSION.SDK_INT >= 29) {
+            Rect rect = this.exclusionRect;
+            int measuredHeight = getMeasuredHeight();
+            int i3 = PICKER_PADDING;
+            rect.set(0, measuredHeight - ((this.pikerHeight + i3) + i3), getMeasuredWidth(), getMeasuredHeight());
+            setSystemGestureExclusionRects(this.exclusionRects);
         }
-        onPickerDataChanged(false, true, false);
     }
 
     private void measureSizes() {

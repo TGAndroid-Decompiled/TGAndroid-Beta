@@ -886,7 +886,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 if (i >= segmentedObjectArr.length) {
                     break;
                 }
-                segmentedObjectArr[i].recycle();
+                if (segmentedObjectArr[i] != null) {
+                    segmentedObjectArr[i].recycle();
+                }
                 i++;
             }
             this.objects = null;

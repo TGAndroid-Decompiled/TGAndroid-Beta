@@ -103,6 +103,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private boolean allReactionsAvailable;
     private boolean allReactionsIsDefault;
     private List<ReactionsLayoutInBubble.VisibleReaction> allReactionsList;
+    HashSet<ReactionsLayoutInBubble.VisibleReaction> alwaysSelectedReactions;
     private boolean animatePopup;
     private final boolean animationEnabled;
     private Paint bgPaint;
@@ -259,6 +260,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.allReactionsList = new ArrayList(20);
         this.rectF = new RectF();
         this.selectedReactions = new HashSet<>();
+        this.alwaysSelectedReactions = new HashSet<>();
         this.location = new int[2];
         this.shadowPad = new android.graphics.Rect();
         new ArrayList();
@@ -1109,12 +1111,20 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.selectedReactions.clear();
         this.selectedReactions.addAll(getInclusiveReactions(arrayList));
         updateSelected();
+        if (this.type == 4) {
+            this.alwaysSelectedReactions.addAll(this.selectedReactions);
+            setMessage(this.messageObject, null);
+        }
     }
 
     public void setSelectedReactionInclusive(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         this.selectedReactions.clear();
         this.selectedReactions.add(visibleReaction);
         updateSelected();
+        if (this.type == 4) {
+            this.alwaysSelectedReactions.addAll(this.selectedReactions);
+            setMessage(this.messageObject, null);
+        }
     }
 
     private void updateSelected() {
@@ -1149,63 +1159,76 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
     private void fillRecentReactionsList(List<ReactionsLayoutInBubble.VisibleReaction> list) {
         int i;
+        int i2;
         ArrayList<TLRPC$Reaction> topReactions;
-        int i2 = 0;
-        if (!this.allReactionsAvailable || (i = this.type) == 4) {
+        HashSet hashSet = new HashSet();
+        int i3 = 0;
+        if (this.type == 4) {
+            Iterator<ReactionsLayoutInBubble.VisibleReaction> it = this.alwaysSelectedReactions.iterator();
+            i = 0;
+            while (it.hasNext()) {
+                ReactionsLayoutInBubble.VisibleReaction next = it.next();
+                if (!hashSet.contains(next)) {
+                    hashSet.add(next);
+                    list.add(next);
+                    i++;
+                }
+            }
+        } else {
+            i = 0;
+        }
+        if (!this.allReactionsAvailable || (i2 = this.type) == 4) {
             if (this.type == 3) {
                 ArrayList<TLRPC$Reaction> savedReactions = MediaDataController.getInstance(this.currentAccount).getSavedReactions();
-                HashSet hashSet = new HashSet();
-                int i3 = 0;
-                while (i2 < savedReactions.size()) {
-                    ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(savedReactions.get(i2));
+                while (i3 < savedReactions.size()) {
+                    ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(savedReactions.get(i3));
                     if (!hashSet.contains(fromTLReaction)) {
                         hashSet.add(fromTLReaction);
                         list.add(fromTLReaction);
-                        i3++;
+                        i++;
                     }
-                    if (i3 == 16) {
+                    if (i == 16) {
                         return;
                     }
-                    i2++;
+                    i3++;
                 }
                 return;
             }
             List<TLRPC$TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
-            while (i2 < enabledReactionsList.size()) {
-                list.add(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(enabledReactionsList.get(i2)));
-                i2++;
+            while (i3 < enabledReactionsList.size()) {
+                list.add(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(enabledReactionsList.get(i3)));
+                i3++;
             }
             return;
         }
-        if (i == 3) {
+        if (i2 == 3) {
             topReactions = MediaDataController.getInstance(this.currentAccount).getSavedReactions();
         } else {
             topReactions = MediaDataController.getInstance(this.currentAccount).getTopReactions();
         }
-        HashSet hashSet2 = new HashSet();
         if (this.type == 3) {
             TLRPC$TL_messages_savedReactionsTags savedReactionTags = MessagesController.getInstance(this.currentAccount).getSavedReactionTags(0L);
             if (savedReactionTags != null) {
                 for (int i4 = 0; i4 < savedReactionTags.tags.size(); i4++) {
                     ReactionsLayoutInBubble.VisibleReaction fromTLReaction2 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(savedReactionTags.tags.get(i4).reaction);
-                    if (!hashSet2.contains(fromTLReaction2)) {
-                        hashSet2.add(fromTLReaction2);
+                    if (!hashSet.contains(fromTLReaction2)) {
+                        hashSet.add(fromTLReaction2);
                         list.add(fromTLReaction2);
                     }
                 }
             }
             for (int i5 = 0; i5 < topReactions.size(); i5++) {
                 ReactionsLayoutInBubble.VisibleReaction fromTLReaction3 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(topReactions.get(i5));
-                if (!hashSet2.contains(fromTLReaction3)) {
-                    hashSet2.add(fromTLReaction3);
+                if (!hashSet.contains(fromTLReaction3)) {
+                    hashSet.add(fromTLReaction3);
                     list.add(fromTLReaction3);
                 }
             }
         } else {
             for (int i6 = 0; i6 < topReactions.size(); i6++) {
                 ReactionsLayoutInBubble.VisibleReaction fromTLReaction4 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(topReactions.get(i6));
-                if (!hashSet2.contains(fromTLReaction4) && (this.type == 3 || UserConfig.getInstance(this.currentAccount).isPremium() || fromTLReaction4.documentId == 0)) {
-                    hashSet2.add(fromTLReaction4);
+                if (!hashSet.contains(fromTLReaction4) && (this.type == 3 || UserConfig.getInstance(this.currentAccount).isPremium() || fromTLReaction4.documentId == 0)) {
+                    hashSet.add(fromTLReaction4);
                     list.add(fromTLReaction4);
                 }
             }
@@ -1214,19 +1237,19 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             ArrayList<TLRPC$Reaction> recentReactions = MediaDataController.getInstance(this.currentAccount).getRecentReactions();
             for (int i7 = 0; i7 < recentReactions.size(); i7++) {
                 ReactionsLayoutInBubble.VisibleReaction fromTLReaction5 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(recentReactions.get(i7));
-                if (!hashSet2.contains(fromTLReaction5)) {
-                    hashSet2.add(fromTLReaction5);
+                if (!hashSet.contains(fromTLReaction5)) {
+                    hashSet.add(fromTLReaction5);
                     list.add(fromTLReaction5);
                 }
             }
             List<TLRPC$TL_availableReaction> enabledReactionsList2 = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
-            while (i2 < enabledReactionsList2.size()) {
-                ReactionsLayoutInBubble.VisibleReaction fromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(enabledReactionsList2.get(i2));
-                if (!hashSet2.contains(fromEmojicon)) {
-                    hashSet2.add(fromEmojicon);
+            while (i3 < enabledReactionsList2.size()) {
+                ReactionsLayoutInBubble.VisibleReaction fromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(enabledReactionsList2.get(i3));
+                if (!hashSet.contains(fromEmojicon)) {
+                    hashSet.add(fromEmojicon);
                     list.add(fromEmojicon);
                 }
-                i2++;
+                i3++;
             }
         }
     }
