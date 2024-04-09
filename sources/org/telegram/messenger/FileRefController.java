@@ -74,6 +74,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_sendMedia;
 import org.telegram.tgnet.TLRPC$TL_messages_sendMultiMedia;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$TL_photos_getUserPhotos;
+import org.telegram.tgnet.TLRPC$TL_stickers_addStickerToSet;
 import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$TL_users_getFullUser;
 import org.telegram.tgnet.TLRPC$TL_users_getUsers;
@@ -105,6 +106,9 @@ public class FileRefController extends BaseController {
     }
 
     public static void lambda$onUpdateObjectReference$31(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    }
+
+    public static void lambda$onUpdateObjectReference$32(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
     public static class Requester {
@@ -737,6 +741,18 @@ public class FileRefController extends BaseController {
                                 FileRefController.lambda$onUpdateObjectReference$30(tLObject, tLRPC$TL_error);
                             }
                         });
+                    } else if (requester.args[0] instanceof TLRPC$TL_stickers_addStickerToSet) {
+                        TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = (TLRPC$TL_stickers_addStickerToSet) requester.args[0];
+                        if (z && isSameReference(tLRPC$TL_stickers_addStickerToSet.sticker.document.file_reference, bArr)) {
+                            return false;
+                        }
+                        tLRPC$TL_stickers_addStickerToSet.sticker.document.file_reference = bArr;
+                        getConnectionsManager().sendRequest(tLRPC$TL_stickers_addStickerToSet, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                FileRefController.lambda$onUpdateObjectReference$31(tLObject, tLRPC$TL_error);
+                            }
+                        });
                     } else if (requester.args[0] instanceof TLRPC$TL_messages_faveSticker) {
                         TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = (TLRPC$TL_messages_faveSticker) requester.args[0];
                         if (z && isSameReference(tLRPC$TL_messages_faveSticker.id.file_reference, bArr)) {
@@ -746,7 +762,7 @@ public class FileRefController extends BaseController {
                         getConnectionsManager().sendRequest(tLRPC$TL_messages_faveSticker, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                FileRefController.lambda$onUpdateObjectReference$31(tLObject, tLRPC$TL_error);
+                                FileRefController.lambda$onUpdateObjectReference$32(tLObject, tLRPC$TL_error);
                             }
                         });
                     } else if (requester.args[0] instanceof TLRPC$TL_messages_getAttachedStickers) {
@@ -864,7 +880,7 @@ public class FileRefController extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FileRefController.this.lambda$sendErrorToObject$32(tLRPC$TL_messages_sendMultiMedia, objArr2);
+                        FileRefController.this.lambda$sendErrorToObject$33(tLRPC$TL_messages_sendMultiMedia, objArr2);
                     }
                 });
             }
@@ -872,13 +888,15 @@ public class FileRefController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FileRefController.this.lambda$sendErrorToObject$33(objArr);
+                    FileRefController.this.lambda$sendErrorToObject$34(objArr);
                 }
             });
         } else if (objArr[0] instanceof TLRPC$TL_messages_saveGif) {
             TLRPC$TL_messages_saveGif tLRPC$TL_messages_saveGif = (TLRPC$TL_messages_saveGif) objArr[0];
         } else if (objArr[0] instanceof TLRPC$TL_messages_saveRecentSticker) {
             TLRPC$TL_messages_saveRecentSticker tLRPC$TL_messages_saveRecentSticker = (TLRPC$TL_messages_saveRecentSticker) objArr[0];
+        } else if (objArr[0] instanceof TLRPC$TL_stickers_addStickerToSet) {
+            TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = (TLRPC$TL_stickers_addStickerToSet) objArr[0];
         } else if (objArr[0] instanceof TLRPC$TL_messages_faveSticker) {
             TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = (TLRPC$TL_messages_faveSticker) objArr[0];
         } else if (objArr[0] instanceof TLRPC$TL_messages_getAttachedStickers) {
@@ -891,11 +909,11 @@ public class FileRefController extends BaseController {
         }
     }
 
-    public void lambda$sendErrorToObject$32(TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia, Object[] objArr) {
+    public void lambda$sendErrorToObject$33(TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia, Object[] objArr) {
         getSendMessagesHelper().performSendMessageRequestMulti(tLRPC$TL_messages_sendMultiMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$sendErrorToObject$33(Object[] objArr) {
+    public void lambda$sendErrorToObject$34(Object[] objArr) {
         getSendMessagesHelper().performSendMessageRequest((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
     }
 
@@ -903,19 +921,19 @@ public class FileRefController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileRefController.onRequestComplete(java.lang.String, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error, boolean, boolean):boolean");
     }
 
-    public void lambda$onRequestComplete$35(TLRPC$User tLRPC$User) {
+    public void lambda$onRequestComplete$36(TLRPC$User tLRPC$User) {
         getMessagesController().putUser(tLRPC$User, false);
-    }
-
-    public void lambda$onRequestComplete$36(TLRPC$Chat tLRPC$Chat) {
-        getMessagesController().putChat(tLRPC$Chat, false);
     }
 
     public void lambda$onRequestComplete$37(TLRPC$Chat tLRPC$Chat) {
         getMessagesController().putChat(tLRPC$Chat, false);
     }
 
-    public void lambda$onRequestComplete$38(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+    public void lambda$onRequestComplete$38(TLRPC$Chat tLRPC$Chat) {
+        getMessagesController().putChat(tLRPC$Chat, false);
+    }
+
+    public void lambda$onRequestComplete$39(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
         getMediaDataController().replaceStickerSet(tLRPC$TL_messages_stickerSet);
     }
 

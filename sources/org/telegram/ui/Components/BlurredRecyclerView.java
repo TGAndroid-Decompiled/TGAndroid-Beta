@@ -9,6 +9,7 @@ import org.telegram.messenger.SharedConfig;
 public class BlurredRecyclerView extends RecyclerListView {
     public int additionalClipBottom;
     public int blurTopPadding;
+    public int bottomPadding;
     boolean globalIgnoreLayout;
     public int topPadding;
 
@@ -74,6 +75,7 @@ public class BlurredRecyclerView extends RecyclerListView {
     @Override
     public void setPadding(int i, int i2, int i3, int i4) {
         this.topPadding = i2;
+        this.bottomPadding = i4;
         super.setPadding(i, i2 + this.blurTopPadding, i3, i4);
     }
 }

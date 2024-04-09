@@ -422,10 +422,17 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void reset(boolean z) {
         this.areaView.resetAnimator();
-        this.areaView.setBitmap(getCurrentWidth(), getCurrentHeight(), this.state.getBaseRotation() % 180.0f != 0.0f, this.freeform);
+        CropAreaView cropAreaView = this.areaView;
+        int currentWidth = getCurrentWidth();
+        int currentHeight = getCurrentHeight();
+        CropState cropState = this.state;
+        cropAreaView.setBitmap(currentWidth, currentHeight, (cropState == null || cropState.getBaseRotation() % 180.0f == 0.0f) ? false : true, this.freeform);
         this.areaView.setLockedAspectRatio(this.freeform ? 0.0f : 1.0f);
-        this.state.reset(this.areaView, 0.0f, this.freeform);
-        this.state.mirrored = false;
+        CropState cropState2 = this.state;
+        if (cropState2 != null) {
+            cropState2.reset(this.areaView, 0.0f, this.freeform);
+            this.state.mirrored = false;
+        }
         this.areaView.getCropRect(this.initialAreaRect);
         updateMatrix(z);
         resetRotationStartScale();

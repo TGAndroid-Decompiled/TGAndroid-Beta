@@ -25,6 +25,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.ColorSpanUnderline;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 public class StickerSetNameCell extends FrameLayout {
     private ImageView buttonView;
     private TextView editView;
@@ -74,18 +75,19 @@ public class StickerSetNameCell extends FrameLayout {
             createFrame = LayoutHelper.createFrame(-2, -2.0f, 51, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
         }
         addView(linearLayout, createFrame);
-        linearLayout.addView(this.textView);
+        linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
         TextView textView2 = new TextView(context);
         this.editView = textView2;
         textView2.setTextColor(getThemedColor(i));
         this.editView.setTextSize(1, 11.0f);
         this.editView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.editView.setEllipsize(TextUtils.TruncateAt.END);
-        this.editView.setPadding(AndroidUtilities.dp(6.33f), 0, AndroidUtilities.dp(6.33f), 0);
+        this.editView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.33f), 0);
         this.editView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(9.0f), Theme.multAlpha(getThemedColor(i), 0.1f), Theme.multAlpha(getThemedColor(i), 0.24f)));
         this.editView.setGravity(17);
         this.editView.setSingleLine(true);
-        linearLayout.addView(this.editView, LayoutHelper.createLinear(-2, -2, 5.33f, 0.66f, 0.0f, 0.0f));
+        ScaleStateListAnimator.apply(this.editView);
+        linearLayout.addView(this.editView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 5, 1, 0, 0));
         this.editView.setVisibility(8);
         TextView textView3 = new TextView(context);
         this.urlTextView = textView3;
@@ -180,6 +182,10 @@ public class StickerSetNameCell extends FrameLayout {
         this.editView.setVisibility(0);
         this.editView.setText(LocaleController.getString(R.string.EditPack));
         this.editView.setOnClickListener(onClickListener);
+    }
+
+    public void setHeaderOnClick(View.OnClickListener onClickListener) {
+        this.textView.setOnClickListener(onClickListener);
     }
 
     private void updateTextSearchSpan() {

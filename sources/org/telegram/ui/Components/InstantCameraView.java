@@ -252,7 +252,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.previewSize = new org.telegram.messenger.camera.Size[2];
         this.aspectRatio = SharedConfig.roundCamera16to9 ? new org.telegram.messenger.camera.Size(16, 9) : new org.telegram.messenger.camera.Size(4, 3);
         int i = Build.VERSION.SDK_INT;
-        this.useCamera2 = i >= 21 && SharedConfig.useCamera2;
+        this.useCamera2 = i >= 21 && SharedConfig.isUsingCamera2(this.currentAccount);
         this.camera2Sessions = new Camera2Session[2];
         this.mMVPMatrix = new float[16];
         this.mSTMatrix = new float[16];

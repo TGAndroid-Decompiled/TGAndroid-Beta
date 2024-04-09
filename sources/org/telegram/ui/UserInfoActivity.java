@@ -43,6 +43,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.OpeningHoursActivity;
 import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
@@ -67,9 +68,11 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     private ActionBarMenuItem doneButton;
     private CrossfadeDrawable doneButtonDrawable;
     private EditTextCell firstNameEdit;
+    private boolean hadHours;
+    private boolean hadLocation;
     private EditTextCell lastNameEdit;
     private boolean valueSet;
-    private AdminedChannelsFetcher channels = new AdminedChannelsFetcher(this.currentAccount);
+    private AdminedChannelsFetcher channels = new AdminedChannelsFetcher(this.currentAccount, true);
     private boolean wasSaved = false;
     private int shiftDp = -4;
 
@@ -175,12 +178,12 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileName)));
         arrayList.add(UItem.asCustom(this.firstNameEdit));
         arrayList.add(UItem.asCustom(this.lastNameEdit));
-        arrayList.add(UItem.asShadow(null));
+        arrayList.add(UItem.asShadow(-1, null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileChannel)));
         String string = LocaleController.getString(R.string.EditProfileChannelTitle);
         TLRPC$Chat tLRPC$Chat = this.channel;
         arrayList.add(UItem.asButton(3, string, tLRPC$Chat == null ? LocaleController.getString(R.string.EditProfileChannelAdd) : tLRPC$Chat.title));
-        arrayList.add(UItem.asShadow(null));
+        arrayList.add(UItem.asShadow(-2, null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileBio)));
         arrayList.add(UItem.asCustom(this.bioEdit));
         arrayList.add(UItem.asShadow(this.bioInfo));
@@ -217,6 +220,15 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             }), true);
         }
         arrayList.add(UItem.asShadow(this.birthdayInfo));
+        if (this.hadLocation) {
+            arrayList.add(UItem.asButton(4, R.drawable.menu_premium_clock, LocaleController.getString(R.string.EditProfileHours)));
+        }
+        if (this.hadLocation) {
+            arrayList.add(UItem.asButton(5, R.drawable.msg_map, LocaleController.getString(R.string.EditProfileLocation)));
+        }
+        if (this.hadLocation || this.hadHours) {
+            arrayList.add(UItem.asShadow(-3, null));
+        }
     }
 
     public void lambda$fillItems$1() {
@@ -266,6 +278,10 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                     UserInfoActivity.this.lambda$onClick$3((TLRPC$Chat) obj);
                 }
             }));
+        } else if (i2 == 5) {
+            presentFragment(new org.telegram.ui.Business.LocationActivity());
+        } else if (i2 == 4) {
+            presentFragment(new OpeningHoursActivity());
         }
     }
 
@@ -368,6 +384,8 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             this.currentChannel = 0L;
             this.channel = null;
         }
+        this.hadHours = userFull.business_work_hours != null;
+        this.hadLocation = userFull.business_location != null;
         checkDone(true);
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
@@ -564,13 +582,15 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
 
     public static class AdminedChannelsFetcher {
         public final int currentAccount;
+        public final boolean for_personal;
         public boolean loaded;
         public boolean loading;
-        public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
+        public final ArrayList<TLRPC$Chat> chats = new ArrayList<>();
         private ArrayList<Runnable> callbacks = new ArrayList<>();
 
-        public AdminedChannelsFetcher(int i) {
+        public AdminedChannelsFetcher(int i, boolean z) {
             this.currentAccount = i;
+            this.for_personal = z;
         }
 
         public void invalidate() {
@@ -583,7 +603,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             }
             this.loading = true;
             TLRPC$TL_channels_getAdminedPublicChannels tLRPC$TL_channels_getAdminedPublicChannels = new TLRPC$TL_channels_getAdminedPublicChannels();
-            tLRPC$TL_channels_getAdminedPublicChannels.for_personal = true;
+            tLRPC$TL_channels_getAdminedPublicChannels.for_personal = this.for_personal;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getAdminedPublicChannels, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

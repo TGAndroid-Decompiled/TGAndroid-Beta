@@ -147,6 +147,9 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         if ((this.flags & 1073741824) != 0) {
             this.available_reactions = TLRPC$ChatReactions.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags2 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+            this.reactions_limit = abstractSerializedData.readInt32(z);
+        }
         if ((this.flags2 & 16) != 0) {
             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -166,7 +169,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1153455271);
+        abstractSerializedData.writeInt32(-1146407795);
         int i = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.can_set_username ? i | 64 : i & (-65);
@@ -302,6 +305,9 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         }
         if ((this.flags & 1073741824) != 0) {
             this.available_reactions.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+            abstractSerializedData.writeInt32(this.reactions_limit);
         }
         if ((this.flags2 & 16) != 0) {
             this.stories.serializeToStream(abstractSerializedData);

@@ -20,6 +20,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
@@ -127,7 +128,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         TextView textView2 = new TextView(context);
         this.subtitleView = textView2;
         textView2.setTextSize(12.0f);
-        this.subtitleView.setTextColor(ColorUtils.setAlphaComponent(-1, 153));
+        this.subtitleView.setTextColor(ColorUtils.setAlphaComponent(-1, MessagesStorage.LAST_DB_VERSION));
         linearLayout.addView(this.subtitleView, LayoutHelper.createLinear(-1, -2));
         this.groupInfoContainer.addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 16, 55.0f, 0.0f, 0.0f, 0.0f));
         addView(this.groupInfoContainer, LayoutHelper.createLinear(-1, -2, 0, 10, 10, 10, 10));

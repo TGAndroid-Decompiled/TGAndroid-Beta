@@ -5909,6 +5909,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return view != null && view.getVisibility() == 0;
     }
 
+    public float topViewVisible() {
+        return this.topViewEnterProgress;
+    }
+
     public void onAdjustPanTransitionUpdate(float f, float f2, boolean z) {
         BotWebViewMenuContainer botWebViewMenuContainer = this.botWebViewMenuContainer;
         if (botWebViewMenuContainer != null) {
@@ -7027,6 +7031,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void doneEditingMessage() {
         MessagePreviewParams messagePreviewParams;
+        int i;
         if (this.editingMessageObject == null) {
             return;
         }
@@ -7081,7 +7086,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             messageObject2.editingMessageEntities = entities;
             messageObject2.editingMessageSearchWebPage = this.messageWebPageSearch;
             ChatActivity chatActivity = this.parentFragment;
-            if (chatActivity != null && chatActivity.getCurrentChat() != null && !ChatObject.canSendEmbed(this.parentFragment.getCurrentChat())) {
+            if (chatActivity != null && chatActivity.getCurrentChat() != null && (((i = this.editingMessageObject.type) == 0 || i == 19) && !ChatObject.canSendEmbed(this.parentFragment.getCurrentChat()))) {
                 MessageObject messageObject3 = this.editingMessageObject;
                 messageObject3.editingMessageSearchWebPage = false;
                 TLRPC$Message tLRPC$Message = messageObject3.messageOwner;
@@ -7093,8 +7098,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     if (chatActivity2.foundWebPage instanceof TLRPC$TL_webPagePending) {
                         MessageObject messageObject4 = this.editingMessageObject;
                         messageObject4.editingMessageSearchWebPage = false;
-                        int i = messageObject4.type;
-                        if (i == 0 || i == 19) {
+                        int i2 = messageObject4.type;
+                        if (i2 == 0 || i2 == 19) {
                             messageObject4.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
                             this.editingMessageObject.messageOwner.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
                         }
@@ -7108,8 +7113,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     } else {
                         MessageObject messageObject6 = this.editingMessageObject;
                         messageObject6.editingMessageSearchWebPage = false;
-                        int i2 = messageObject6.type;
-                        if (i2 == 0 || i2 == 19) {
+                        int i3 = messageObject6.type;
+                        if (i3 == 0 || i3 == 19) {
                             TLRPC$Message tLRPC$Message3 = messageObject6.messageOwner;
                             tLRPC$Message3.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
                             tLRPC$Message3.media = new TLRPC$TL_messageMediaEmpty();
@@ -7129,8 +7134,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 } else {
                     MessageObject messageObject7 = this.editingMessageObject;
                     messageObject7.editingMessageSearchWebPage = false;
-                    int i3 = messageObject7.type;
-                    if (i3 == 0 || i3 == 19) {
+                    int i4 = messageObject7.type;
+                    if (i4 == 0 || i4 == 19) {
                         TLRPC$Message tLRPC$Message5 = messageObject7.messageOwner;
                         tLRPC$Message5.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
                         tLRPC$Message5.media = new TLRPC$TL_messageMediaEmpty();
@@ -10255,7 +10260,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
 
         @Override
-        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet) {
+        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
             if (ChatActivityEnterView.this.trendingStickersAlert == null || ChatActivityEnterView.this.trendingStickersAlert.isDismissed()) {
                 BaseFragment baseFragment = ChatActivityEnterView.this.parentFragment;
                 if (baseFragment == null) {
@@ -10272,7 +10277,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 Activity activity = ChatActivityEnterView.this.parentActivity;
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
                 BaseFragment baseFragment2 = baseFragment;
-                baseFragment.showDialog(new StickersAlert(activity, baseFragment2, tLRPC$InputStickerSet, null, chatActivityEnterView, chatActivityEnterView.resourcesProvider));
+                StickersAlert stickersAlert = new StickersAlert(activity, baseFragment2, tLRPC$InputStickerSet, null, chatActivityEnterView, chatActivityEnterView.resourcesProvider);
+                baseFragment.showDialog(stickersAlert);
+                if (z) {
+                    stickersAlert.enableEditMode();
+                    return;
+                }
                 return;
             }
             ChatActivityEnterView.this.trendingStickersAlert.getLayout().showStickerSet(tLRPC$StickerSet, tLRPC$InputStickerSet);

@@ -1451,6 +1451,12 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 }
                 i -= size5 + 1;
             }
+            if (size + size2 > 0 && (getRecentItemsCount() > 0 || !this.searchTopics.isEmpty())) {
+                if (i == 0) {
+                    return false;
+                }
+                i--;
+            }
             if (i < 0 || i >= size) {
                 int i2 = i - size;
                 if (i2 < 0 || i2 >= size2) {
@@ -1605,7 +1611,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r22, int r23) {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsSearchAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 

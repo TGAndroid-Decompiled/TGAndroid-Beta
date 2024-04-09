@@ -904,6 +904,11 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
 
             @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
             public boolean clipWithGradient(int i) {
                 return true;
             }

@@ -4294,8 +4294,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public void didPressSponsoredClose() {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                    public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell2);
                     }
 
                     @Override

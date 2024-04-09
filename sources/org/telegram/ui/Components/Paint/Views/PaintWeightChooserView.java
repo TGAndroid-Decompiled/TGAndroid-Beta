@@ -90,7 +90,9 @@ public class PaintWeightChooserView extends View {
                         PaintWeightChooserView.this.colorSwatch.brushWeight = clamp;
                     }
                     PaintWeightChooserView.this.animatedWeight.set(clamp, true);
-                    PaintWeightChooserView.this.onUpdate.run();
+                    if (PaintWeightChooserView.this.onUpdate != null) {
+                        PaintWeightChooserView.this.onUpdate.run();
+                    }
                     PaintWeightChooserView.this.invalidate();
                 }
                 return PaintWeightChooserView.this.isTouchInProgress;
@@ -123,6 +125,11 @@ public class PaintWeightChooserView extends View {
 
     public void setColorSwatch(Swatch swatch) {
         this.colorSwatch = swatch;
+        invalidate();
+    }
+
+    public void setBrushWeight(float f) {
+        this.colorSwatch.brushWeight = f;
         invalidate();
     }
 

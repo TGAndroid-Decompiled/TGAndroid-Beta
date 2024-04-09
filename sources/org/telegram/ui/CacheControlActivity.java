@@ -2500,13 +2500,66 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 headerCell.setText(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerName);
                 headerCell.setTopMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerTopMargin);
                 headerCell.setBottomMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerBottomMargin);
-            } else if (itemViewType == 7) {
+            } else if (itemViewType != 7) {
+                switch (itemViewType) {
+                    case 9:
+                        CacheControlActivity.this.updateChart();
+                        return;
+                    case 10:
+                        if (CacheControlActivity.this.cacheChartHeader == null || CacheControlActivity.this.calculating) {
+                            return;
+                        }
+                        CacheChartHeader cacheChartHeader = CacheControlActivity.this.cacheChartHeader;
+                        r6 = CacheControlActivity.this.totalSize > 0;
+                        float f = 0.0f;
+                        float f2 = CacheControlActivity.this.totalDeviceSize <= 0 ? 0.0f : ((float) CacheControlActivity.this.totalSize) / ((float) CacheControlActivity.this.totalDeviceSize);
+                        if (CacheControlActivity.this.totalDeviceFreeSize > 0 && CacheControlActivity.this.totalDeviceSize > 0) {
+                            f = ((float) (CacheControlActivity.this.totalDeviceSize - CacheControlActivity.this.totalDeviceFreeSize)) / ((float) CacheControlActivity.this.totalDeviceSize);
+                        }
+                        cacheChartHeader.setData(r6, f2, f);
+                        return;
+                    case 11:
+                        final CheckBoxCell checkBoxCell = (CheckBoxCell) viewHolder.itemView;
+                        boolean isOtherSelected = itemInner.index < 0 ? CacheControlActivity.this.isOtherSelected() : CacheControlActivity.this.selected[itemInner.index];
+                        CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+                        CharSequence charSequence = itemInner.headerName;
+                        int[] iArr = cacheControlActivity.percents;
+                        int i2 = itemInner.index;
+                        CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i2 < 0 ? 9 : i2], i2 < 0);
+                        String formatFileSize = AndroidUtilities.formatFileSize(itemInner.size);
+                        if (itemInner.index >= 0 ? !itemInner.last : !CacheControlActivity.this.collapsed) {
+                            r6 = true;
+                        }
+                        checkBoxCell.setText(checkBoxTitle, formatFileSize, isOtherSelected, r6);
+                        checkBoxCell.setCheckBoxColor(itemInner.colorKey, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
+                        checkBoxCell.setCollapsed(itemInner.index < 0 ? Boolean.valueOf(CacheControlActivity.this.collapsed) : null);
+                        if (itemInner.index == -1) {
+                            checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$2(view);
+                                }
+                            }, new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$3(checkBoxCell, view);
+                                }
+                            });
+                        } else {
+                            checkBoxCell.setOnSectionsClickListener(null, null);
+                        }
+                        checkBoxCell.setPad(itemInner.pad ? 1 : 0);
+                        return;
+                    default:
+                        return;
+                }
+            } else {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 CacheByChatsController cacheByChatsController = CacheControlActivity.this.getMessagesController().getCacheByChatsController();
-                int i2 = itemInner.keepMediaType;
+                int i3 = itemInner.keepMediaType;
                 int size = cacheByChatsController.getKeepMediaExceptions(((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType).size();
                 String formatPluralString = size > 0 ? LocaleController.formatPluralString("ExceptionShort", size, Integer.valueOf(size)) : null;
-                String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i2));
+                String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i3));
                 if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
                     if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
                         if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 2) {
@@ -2523,50 +2576,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("PrivateChats", R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), true);
                 }
                 textCell.setSubtitle(formatPluralString);
-            } else if (itemViewType == 10) {
-                if (CacheControlActivity.this.cacheChartHeader == null || CacheControlActivity.this.calculating) {
-                    return;
-                }
-                CacheChartHeader cacheChartHeader = CacheControlActivity.this.cacheChartHeader;
-                r6 = CacheControlActivity.this.totalSize > 0;
-                float f = 0.0f;
-                float f2 = CacheControlActivity.this.totalDeviceSize <= 0 ? 0.0f : ((float) CacheControlActivity.this.totalSize) / ((float) CacheControlActivity.this.totalDeviceSize);
-                if (CacheControlActivity.this.totalDeviceFreeSize > 0 && CacheControlActivity.this.totalDeviceSize > 0) {
-                    f = ((float) (CacheControlActivity.this.totalDeviceSize - CacheControlActivity.this.totalDeviceFreeSize)) / ((float) CacheControlActivity.this.totalDeviceSize);
-                }
-                cacheChartHeader.setData(r6, f2, f);
-            } else if (itemViewType != 11) {
-            } else {
-                final CheckBoxCell checkBoxCell = (CheckBoxCell) viewHolder.itemView;
-                boolean isOtherSelected = itemInner.index < 0 ? CacheControlActivity.this.isOtherSelected() : CacheControlActivity.this.selected[itemInner.index];
-                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
-                CharSequence charSequence = itemInner.headerName;
-                int[] iArr = cacheControlActivity.percents;
-                int i3 = itemInner.index;
-                CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i3 < 0 ? 9 : i3], i3 < 0);
-                String formatFileSize = AndroidUtilities.formatFileSize(itemInner.size);
-                if (itemInner.index >= 0 ? !itemInner.last : !CacheControlActivity.this.collapsed) {
-                    r6 = true;
-                }
-                checkBoxCell.setText(checkBoxTitle, formatFileSize, isOtherSelected, r6);
-                checkBoxCell.setCheckBoxColor(itemInner.colorKey, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
-                checkBoxCell.setCollapsed(itemInner.index < 0 ? Boolean.valueOf(CacheControlActivity.this.collapsed) : null);
-                if (itemInner.index == -1) {
-                    checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$2(view);
-                        }
-                    }, new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$3(checkBoxCell, view);
-                        }
-                    });
-                } else {
-                    checkBoxCell.setOnSectionsClickListener(null, null);
-                }
-                checkBoxCell.setPad(itemInner.pad ? 1 : 0);
             }
         }
 

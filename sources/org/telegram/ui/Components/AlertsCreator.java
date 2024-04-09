@@ -6834,11 +6834,7 @@ public class AlertsCreator {
     public static ActionBarPopupWindow showPopupMenu(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view, int i, int i2) {
         final android.graphics.Rect rect = new android.graphics.Rect();
         final ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
-        if (Build.VERSION.SDK_INT >= 19) {
-            actionBarPopupWindow.setAnimationStyle(0);
-        } else {
-            actionBarPopupWindow.setAnimationStyle(R.style.PopupAnimation);
-        }
+        actionBarPopupWindow.setAnimationStyle(R.style.PopupAnimation);
         actionBarPopupWindow.setAnimationEnabled(true);
         actionBarPopupWindow.setOutsideTouchable(true);
         actionBarPopupWindow.setClippingEnabled(true);
@@ -6857,7 +6853,7 @@ public class AlertsCreator {
         actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x - AndroidUtilities.dp(40.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
         actionBarPopupWindow.showAsDropDown(view, i, i2);
         actionBarPopupWindowLayout.updateRadialSelectors();
-        actionBarPopupWindow.startAnimation();
+        ActionBarPopupWindow.startAnimation(actionBarPopupWindowLayout);
         actionBarPopupWindowLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {

@@ -21,6 +21,10 @@ public class GoogleApiAvailabilityLight {
         GooglePlayServicesUtilLight.cancelAvailabilityErrorNotifications(context);
     }
 
+    public int getApkVersion(Context context) {
+        return GooglePlayServicesUtilLight.getApkVersion(context);
+    }
+
     @Deprecated
     public Intent getErrorResolutionIntent(int i) {
         return getErrorResolutionIntent(null, i, null);

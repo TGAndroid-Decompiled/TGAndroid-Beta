@@ -638,6 +638,11 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             }
 
             @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
             public boolean clipWithGradient(int i) {
                 return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
             }

@@ -352,10 +352,10 @@ public class ChatbotsActivity extends BaseFragment {
         arrayList.add(UItem.asTopView(this.introText, "RestrictedEmoji", "🤖"));
         TLRPC$User tLRPC$User = this.selectedBot;
         if (tLRPC$User != null) {
-            arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User.id)).setChecked(true).setCloseIcon(new Runnable() {
+            arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
                 @Override
-                public final void run() {
-                    ChatbotsActivity.this.clear();
+                public final void onClick(View view) {
+                    ChatbotsActivity.this.clear(view);
                 }
             }));
         } else {
@@ -445,7 +445,7 @@ public class ChatbotsActivity extends BaseFragment {
         }
     }
 
-    public void clear() {
+    public void clear(View view) {
         this.selectedBot = null;
         this.listView.adapter.update(true);
         checkDone(true);

@@ -203,6 +203,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                 }
             }
         } else if (tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultAdsHidden) {
+            MessagesController.getInstance(this.currentAccount).disableAds(false);
             Listener listener4 = this.listener;
             if (listener4 != null) {
                 listener4.onHidden();

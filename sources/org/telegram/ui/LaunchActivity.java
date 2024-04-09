@@ -1016,11 +1016,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             } else if (id == 15) {
                 showSelectStatusDialog();
             } else if (id == 16) {
-                Bundle bundle5 = new Bundle();
-                bundle5.putLong("dialog_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
-                bundle5.putInt("type", 1);
                 this.drawerLayoutContainer.closeDrawer(true);
-                lambda$runLinkRequest$86(new MediaActivity(bundle5, null));
+                Bundle bundle5 = new Bundle();
+                bundle5.putLong("user_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
+                bundle5.putBoolean("my_profile", true);
+                lambda$runLinkRequest$86(new ProfileActivity(bundle5, null));
+            } else if (id == 17) {
+                this.drawerLayoutContainer.closeDrawer(true);
+                Bundle bundle6 = new Bundle();
+                bundle6.putLong("dialog_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
+                bundle6.putInt("type", 1);
+                lambda$runLinkRequest$86(new MediaActivity(bundle6, null));
             }
         }
     }
@@ -5451,7 +5457,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onSaveInstanceState(Bundle bundle) {
+    protected void onSaveInstanceState(Bundle bundle) {
         try {
             super.onSaveInstanceState(bundle);
             BaseFragment baseFragment = null;

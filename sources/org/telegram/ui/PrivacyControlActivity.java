@@ -522,8 +522,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public void didPressSponsoredClose() {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell2);
                 }
 
                 @Override

@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -29,7 +31,6 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$TL_stickers_addStickerToSet;
 import org.telegram.tgnet.TLRPC$TL_stickers_deleteStickerSet;
-import org.telegram.tgnet.TLRPC$TL_stickers_renameStickerSet;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -38,16 +39,17 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ContentPreviewViewer;
+import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 public class StickersDialogs {
-    public static void lambda$showDeleteForEveryOneDialog$6() {
+    public static void lambda$showDeleteForEveryOneDialog$5() {
     }
 
     private static int getThemedColor(int i, Theme.ResourcesProvider resourcesProvider) {
         return Theme.getColor(i, resourcesProvider);
     }
 
-    public static void showNameEditorDialog(final TLRPC$StickerSet tLRPC$StickerSet, Theme.ResourcesProvider resourcesProvider, Context context, final Utilities.Callback<CharSequence> callback) {
+    public static void showNameEditorDialog(TLRPC$StickerSet tLRPC$StickerSet, Theme.ResourcesProvider resourcesProvider, final Context context, final Utilities.Callback2<CharSequence, Utilities.Callback<Boolean>> callback2) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
         final boolean z = tLRPC$StickerSet != null;
         builder.setTitle(LocaleController.getString(z ? R.string.EditStickerPack : R.string.NewStickerPack));
@@ -102,6 +104,7 @@ public class StickersDialogs {
             @Override
             public void afterTextChanged(Editable editable) {
                 NumberTextView.this.setNumber(50 - Character.codePointCount(editable, 0, editable.length()), true);
+                editTextBoldCursor.setErrorText(null);
             }
         });
         if (z) {
@@ -113,13 +116,13 @@ public class StickersDialogs {
         builder.setPositiveButton(LocaleController.getString(z ? R.string.Done : R.string.Create), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                StickersDialogs.lambda$showNameEditorDialog$3(EditTextBoldCursor.this, callback, z, tLRPC$StickerSet, dialogInterface, i2);
+                StickersDialogs.lambda$showNameEditorDialog$2(EditTextBoldCursor.this, callback2, context, z, dialogInterface, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                StickersDialogs.lambda$showNameEditorDialog$4(EditTextBoldCursor.this, dialogInterface, i2);
+                StickersDialogs.lambda$showNameEditorDialog$3(EditTextBoldCursor.this, dialogInterface, i2);
             }
         });
         final AlertDialog show = builder.show();
@@ -127,9 +130,9 @@ public class StickersDialogs {
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                boolean lambda$showNameEditorDialog$5;
-                lambda$showNameEditorDialog$5 = StickersDialogs.lambda$showNameEditorDialog$5(AlertDialog.this, textView, i2, keyEvent);
-                return lambda$showNameEditorDialog$5;
+                boolean lambda$showNameEditorDialog$4;
+                lambda$showNameEditorDialog$4 = StickersDialogs.lambda$showNameEditorDialog$4(AlertDialog.this, textView, i2, keyEvent);
+                return lambda$showNameEditorDialog$4;
             }
         });
     }
@@ -138,48 +141,47 @@ public class StickersDialogs {
         return (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0)) && (TextUtils.isEmpty(editTextBoldCursor.getText()) || i3 == 0)) ? "" : charSequence;
     }
 
-    public static void lambda$showNameEditorDialog$3(EditTextBoldCursor editTextBoldCursor, Utilities.Callback callback, boolean z, TLRPC$StickerSet tLRPC$StickerSet, DialogInterface dialogInterface, int i) {
+    public static void lambda$showNameEditorDialog$2(final EditTextBoldCursor editTextBoldCursor, Utilities.Callback2 callback2, Context context, boolean z, final DialogInterface dialogInterface, int i) {
         String trim = editTextBoldCursor.getText().toString().trim();
-        if (TextUtils.isEmpty(trim)) {
+        if (TextUtils.isEmpty(trim) || TextUtils.isEmpty(AndroidUtilities.translitSafe(trim.toString()))) {
+            editTextBoldCursor.setErrorText(".");
+            AndroidUtilities.shakeViewSpring(editTextBoldCursor, -6.0f);
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+            AndroidUtilities.showKeyboard(editTextBoldCursor);
             return;
         }
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
-        dialogInterface.dismiss();
-        callback.run(trim);
-        if (z) {
-            TLRPC$TL_stickers_renameStickerSet tLRPC$TL_stickers_renameStickerSet = new TLRPC$TL_stickers_renameStickerSet();
-            tLRPC$TL_stickers_renameStickerSet.stickerset = MediaDataController.getInputStickerSet(tLRPC$StickerSet);
-            tLRPC$TL_stickers_renameStickerSet.title = trim.toString();
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_stickers_renameStickerSet, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StickersDialogs.lambda$showNameEditorDialog$2(tLObject, tLRPC$TL_error);
-                }
-            });
+        if (callback2 == null) {
+            return;
         }
-    }
-
-    public static void lambda$showNameEditorDialog$2(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
+        final AlertDialog alertDialog = new AlertDialog(context, 3, z ? null : new DarkThemeResourceProvider());
+        alertDialog.showDelayed(250L);
+        callback2.run(trim, new Utilities.Callback() {
             @Override
-            public final void run() {
-                StickersDialogs.lambda$showNameEditorDialog$1(TLObject.this);
+            public final void run(Object obj) {
+                StickersDialogs.lambda$showNameEditorDialog$1(AlertDialog.this, dialogInterface, editTextBoldCursor, (Boolean) obj);
             }
         });
     }
 
-    public static void lambda$showNameEditorDialog$1(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
-            MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tLObject, 2, null, false, false);
+    public static void lambda$showNameEditorDialog$1(AlertDialog alertDialog, DialogInterface dialogInterface, EditTextBoldCursor editTextBoldCursor, Boolean bool) {
+        alertDialog.dismiss();
+        if (bool.booleanValue()) {
+            dialogInterface.dismiss();
+            return;
         }
+        editTextBoldCursor.setErrorText(".");
+        AndroidUtilities.shakeViewSpring(editTextBoldCursor, -6.0f);
+        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void lambda$showNameEditorDialog$4(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface, int i) {
+    public static void lambda$showNameEditorDialog$3(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface, int i) {
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         dialogInterface.dismiss();
     }
 
-    public static boolean lambda$showNameEditorDialog$5(AlertDialog alertDialog, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean lambda$showNameEditorDialog$4(AlertDialog alertDialog, TextView textView, int i, KeyEvent keyEvent) {
         if (i == 6) {
             alertDialog.getButton(-1).callOnClick();
             return true;
@@ -194,7 +196,7 @@ public class StickersDialogs {
         AlertDialog create = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.StickersDeleteStickerSetTitle)).setMessage(LocaleController.getString(R.string.StickersDeleteStickerSetDescription)).setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                StickersDialogs.lambda$showDeleteForEveryOneDialog$8(runnable, tLRPC$StickerSet, dialogInterface, i);
+                StickersDialogs.lambda$showDeleteForEveryOneDialog$7(runnable, tLRPC$StickerSet, dialogInterface, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
         create.show();
@@ -204,33 +206,35 @@ public class StickersDialogs {
         }
     }
 
-    public static void lambda$showDeleteForEveryOneDialog$8(Runnable runnable, TLRPC$StickerSet tLRPC$StickerSet, DialogInterface dialogInterface, int i) {
+    public static void lambda$showDeleteForEveryOneDialog$7(Runnable runnable, TLRPC$StickerSet tLRPC$StickerSet, DialogInterface dialogInterface, int i) {
         runnable.run();
         TLRPC$TL_stickers_deleteStickerSet tLRPC$TL_stickers_deleteStickerSet = new TLRPC$TL_stickers_deleteStickerSet();
         tLRPC$TL_stickers_deleteStickerSet.stickerset = MediaDataController.getInputStickerSet(tLRPC$StickerSet);
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_stickers_deleteStickerSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StickersDialogs.lambda$showDeleteForEveryOneDialog$7(tLObject, tLRPC$TL_error);
+                StickersDialogs.lambda$showDeleteForEveryOneDialog$6(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$showDeleteForEveryOneDialog$7(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$showDeleteForEveryOneDialog$6(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersDialogs.lambda$showDeleteForEveryOneDialog$6();
+                StickersDialogs.lambda$showDeleteForEveryOneDialog$5();
             }
         });
     }
 
     private static void openStickerPickerDialog(final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
-        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(baseFragment.getContext(), true, resourcesProvider);
+        final int i = UserConfig.selectedAccount;
+        final Context context = baseFragment.getContext();
+        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(context, true, resourcesProvider);
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3) {
-                StickersDialogs.lambda$openStickerPickerDialog$12(TLRPC$TL_messages_stickerSet.this, obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                StickersDialogs.lambda$openStickerPickerDialog$11(i, context, tLRPC$TL_messages_stickerSet, obj, (TLRPC$Document) obj2, (Boolean) obj3);
             }
         });
         if (baseFragment.visibleDialog != null) {
@@ -240,45 +244,62 @@ public class StickersDialogs {
         }
     }
 
-    public static void lambda$openStickerPickerDialog$12(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, Object obj, final TLRPC$Document tLRPC$Document, Boolean bool) {
-        String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, "😀", Integer.valueOf(UserConfig.selectedAccount));
+    public static void lambda$openStickerPickerDialog$11(final int i, Context context, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final Object obj, final TLRPC$Document tLRPC$Document, Boolean bool) {
+        String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, "😀", Integer.valueOf(i));
         String str = TextUtils.isEmpty(findAnimatedEmojiEmoticon) ? "😀" : findAnimatedEmojiEmoticon;
-        TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = new TLRPC$TL_stickers_addStickerToSet();
+        final AlertDialog alertDialog = new AlertDialog(context, 3);
+        final TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = new TLRPC$TL_stickers_addStickerToSet();
         tLRPC$TL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(tLRPC$TL_messages_stickerSet.set);
         tLRPC$TL_stickers_addStickerToSet.sticker = MediaDataController.getInputStickerSetItem(tLRPC$Document, str);
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_stickers_addStickerToSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StickersDialogs.lambda$openStickerPickerDialog$11(TLRPC$Document.this, tLObject, tLRPC$TL_error);
+                StickersDialogs.lambda$openStickerPickerDialog$10(AlertDialog.this, i, tLRPC$Document, obj, tLRPC$TL_stickers_addStickerToSet, tLObject, tLRPC$TL_error);
             }
         });
-    }
-
-    public static void lambda$openStickerPickerDialog$11(final TLRPC$Document tLRPC$Document, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StickersDialogs.lambda$openStickerPickerDialog$10(TLObject.this, tLRPC$Document, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public static void lambda$openStickerPickerDialog$10(final TLObject tLObject, final TLRPC$Document tLRPC$Document, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
-            MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tLObject, 1, null, false, false);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StickersDialogs.lambda$openStickerPickerDialog$9(TLObject.this, tLRPC$Document);
-                }
-            }, 250L);
-        } else if (tLRPC$TL_error != null) {
-            BulletinFactory.showError(tLRPC$TL_error);
+        try {
+            alertDialog.showDelayed(350L);
+        } catch (Exception unused) {
         }
     }
 
-    public static void lambda$openStickerPickerDialog$9(TLObject tLObject, TLRPC$Document tLRPC$Document) {
-        NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject, tLRPC$Document);
+    public static void lambda$openStickerPickerDialog$10(final AlertDialog alertDialog, final int i, final TLRPC$Document tLRPC$Document, final Object obj, final TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StickersDialogs.lambda$openStickerPickerDialog$9(AlertDialog.this, tLObject, i, tLRPC$Document, tLRPC$TL_error, obj, tLRPC$TL_stickers_addStickerToSet);
+            }
+        });
+    }
+
+    public static void lambda$openStickerPickerDialog$9(AlertDialog alertDialog, final TLObject tLObject, int i, final TLRPC$Document tLRPC$Document, TLRPC$TL_error tLRPC$TL_error, Object obj, TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet) {
+        alertDialog.dismiss();
+        if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
+            TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
+            MediaDataController.getInstance(i).putStickerSet(tLRPC$TL_messages_stickerSet);
+            if (!MediaDataController.getInstance(i).isStickerPackInstalled(tLRPC$TL_messages_stickerSet.set.id)) {
+                MediaDataController.getInstance(i).toggleStickerSet(null, tLObject, 2, null, false, false);
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StickersDialogs.lambda$openStickerPickerDialog$8(TLObject.this, tLRPC$Document);
+                }
+            }, 250L);
+        } else if (tLRPC$TL_error != null) {
+            if (FileRefController.isFileRefError(tLRPC$TL_error.text)) {
+                FileRefController.getInstance(i).requestReference(obj, tLRPC$TL_stickers_addStickerToSet);
+            } else {
+                BulletinFactory.showError(tLRPC$TL_error);
+            }
+        }
+    }
+
+    public static void lambda$openStickerPickerDialog$8(TLObject tLObject, TLRPC$Document tLRPC$Document) {
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
+        int i = NotificationCenter.customStickerCreated;
+        Boolean bool = Boolean.FALSE;
+        notificationCenter.postNotificationNameOnUIThread(i, bool, tLObject, tLRPC$Document, null, bool);
     }
 
     public static void showAddStickerDialog(final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, View view, final BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider) {
@@ -301,7 +322,7 @@ public class StickersDialogs {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersDialogs.lambda$showAddStickerDialog$13(ActionBarPopupWindow.this, arrayList2, tLRPC$TL_messages_stickerSet, baseFragment, resourcesProvider, view2);
+                StickersDialogs.lambda$showAddStickerDialog$12(ActionBarPopupWindow.this, arrayList2, tLRPC$TL_messages_stickerSet, baseFragment, resourcesProvider, view2);
             }
         };
         for (int i = 0; i < arrayList.size(); i++) {
@@ -324,7 +345,7 @@ public class StickersDialogs {
         actionBarPopupWindow.dimBehind();
     }
 
-    public static void lambda$showAddStickerDialog$13(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void lambda$showAddStickerDialog$12(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
         int intValue = ((Integer) view.getTag()).intValue();
         actionBarPopupWindow.dismiss();
         if (((Integer) arrayList.get(intValue)).intValue() == 1) {

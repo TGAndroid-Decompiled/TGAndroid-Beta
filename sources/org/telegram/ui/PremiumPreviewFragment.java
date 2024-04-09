@@ -67,6 +67,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$TL_account_toggleSponsoredMessages;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
 import org.telegram.tgnet.TLRPC$TL_dataJSON;
 import org.telegram.tgnet.TLRPC$TL_emojiStatus;
@@ -86,6 +87,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
 import org.telegram.tgnet.TLRPC$TL_payments_canPurchasePremium;
 import org.telegram.tgnet.TLRPC$TL_premiumSubscriptionOption;
 import org.telegram.tgnet.TLRPC$Updates;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -103,8 +105,10 @@ import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Business.TimezonesController;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
@@ -168,6 +172,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     FrameLayout settingsView;
     Shader shader;
     Drawable shadowDrawable;
+    int showAdsHeaderRow;
+    int showAdsInfoRow;
+    int showAdsRow;
     private String source;
     private int statusBarHeight;
     int statusRow;
@@ -261,19 +268,19 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public static void lambda$sentPremiumButtonClick$17(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$sentPremiumButtonClick$19(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public static void lambda$sentPremiumBuyCanceled$18(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$sentPremiumBuyCanceled$20(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public static void lambda$sentShowFeaturePreview$19(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$sentShowFeaturePreview$21(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public static void lambda$sentShowScreenStat$16(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$sentShowScreenStat$18(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public static void lambda$updateButtonText$14(View view) {
+    public static void lambda$updateButtonText$16(View view) {
     }
 
     @Override
@@ -953,7 +960,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                PremiumPreviewFragment.this.lambda$createView$1(view, i2);
+                PremiumPreviewFragment.this.lambda$createView$3(view, i2);
             }
         });
         this.contentView.addView(this.listView);
@@ -989,7 +996,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PremiumPreviewFragment.this.lambda$createView$2();
+                    PremiumPreviewFragment.this.lambda$createView$4();
                 }
             }, 400L);
         }
@@ -998,8 +1005,25 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(View view, int i) {
-        if (view instanceof PremiumFeatureCell) {
+    public void lambda$createView$3(View view, int i) {
+        if (i == this.showAdsRow) {
+            TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+            if (userFull == null) {
+                return;
+            }
+            TextCell textCell = (TextCell) view;
+            textCell.setChecked(!textCell.isChecked());
+            userFull.sponsored_enabled = textCell.isChecked();
+            TLRPC$TL_account_toggleSponsoredMessages tLRPC$TL_account_toggleSponsoredMessages = new TLRPC$TL_account_toggleSponsoredMessages();
+            tLRPC$TL_account_toggleSponsoredMessages.enabled = userFull.sponsored_enabled;
+            getConnectionsManager().sendRequest(tLRPC$TL_account_toggleSponsoredMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    PremiumPreviewFragment.this.lambda$createView$1(tLObject, tLRPC$TL_error);
+                }
+            });
+            getMessagesStorage().updateUserInfo(userFull, false);
+        } else if (view instanceof PremiumFeatureCell) {
             final PremiumFeatureCell premiumFeatureCell = (PremiumFeatureCell) view;
             SubscriptionTier subscriptionTier = null;
             if (this.type == 1 && getUserConfig().isPremium()) {
@@ -1032,7 +1056,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     showSelectStatusDialog(premiumFeatureCell, UserObject.getEmojiStatusDocumentId(getUserConfig().getCurrentUser()), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
-                            PremiumPreviewFragment.this.lambda$createView$0(premiumFeatureCell, (Long) obj, (Integer) obj2);
+                            PremiumPreviewFragment.this.lambda$createView$2(premiumFeatureCell, (Long) obj, (Integer) obj2);
                         }
                     });
                     return;
@@ -1058,7 +1082,25 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public void lambda$createView$0(PremiumFeatureCell premiumFeatureCell, Long l, Integer num) {
+    public void lambda$createView$1(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PremiumPreviewFragment.this.lambda$createView$0(tLRPC$TL_error, tLObject);
+            }
+        });
+    }
+
+    public void lambda$createView$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+        if (tLRPC$TL_error != null) {
+            BulletinFactory.showError(tLRPC$TL_error);
+        } else if (tLObject instanceof TLRPC$TL_boolTrue) {
+        } else {
+            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+        }
+    }
+
+    public void lambda$createView$2(PremiumFeatureCell premiumFeatureCell, Long l, Integer num) {
         TLRPC$TL_emojiStatusEmpty tLRPC$TL_emojiStatusEmpty;
         if (l == null) {
             tLRPC$TL_emojiStatusEmpty = new TLRPC$TL_emojiStatusEmpty();
@@ -1076,7 +1118,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         premiumFeatureCell.setEmoji(l == null ? 0L : l.longValue(), true);
     }
 
-    public void lambda$createView$2() {
+    public void lambda$createView$4() {
         getMediaDataController().loadPremiumPromo(false);
     }
 
@@ -1120,14 +1162,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$fillPremiumFeaturesList$3;
-                lambda$fillPremiumFeaturesList$3 = PremiumPreviewFragment.lambda$fillPremiumFeaturesList$3(MessagesController.this, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
-                return lambda$fillPremiumFeaturesList$3;
+                int lambda$fillPremiumFeaturesList$5;
+                lambda$fillPremiumFeaturesList$5 = PremiumPreviewFragment.lambda$fillPremiumFeaturesList$5(MessagesController.this, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
+                return lambda$fillPremiumFeaturesList$5;
             }
         });
     }
 
-    public static int lambda$fillPremiumFeaturesList$3(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
+    public static int lambda$fillPremiumFeaturesList$5(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
         return messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData.type, ConnectionsManager.DEFAULT_DATACENTER_ID) - messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData2.type, ConnectionsManager.DEFAULT_DATACENTER_ID);
     }
 
@@ -1160,14 +1202,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$fillBusinessFeaturesList$4;
-                lambda$fillBusinessFeaturesList$4 = PremiumPreviewFragment.lambda$fillBusinessFeaturesList$4(MessagesController.this, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
-                return lambda$fillBusinessFeaturesList$4;
+                int lambda$fillBusinessFeaturesList$6;
+                lambda$fillBusinessFeaturesList$6 = PremiumPreviewFragment.lambda$fillBusinessFeaturesList$6(MessagesController.this, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
+                return lambda$fillBusinessFeaturesList$6;
             }
         });
     }
 
-    public static int lambda$fillBusinessFeaturesList$4(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
+    public static int lambda$fillBusinessFeaturesList$6(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
         return messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData.type, ConnectionsManager.DEFAULT_DATACENTER_ID) - messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData2.type, ConnectionsManager.DEFAULT_DATACENTER_ID);
     }
 
@@ -1274,26 +1316,26 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         BillingController.getInstance().queryPurchases("subs", new PurchasesResponseListener() {
             @Override
             public final void onQueryPurchasesResponse(BillingResult billingResult, List list) {
-                PremiumPreviewFragment.lambda$buyPremium$12(BaseFragment.this, z, subscriptionUpdateParams, subscriptionTier, billingResult, list);
+                PremiumPreviewFragment.lambda$buyPremium$14(BaseFragment.this, z, subscriptionUpdateParams, subscriptionTier, billingResult, list);
             }
         });
     }
 
-    public static void lambda$buyPremium$12(final BaseFragment baseFragment, final boolean z, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier, final BillingResult billingResult, final List list) {
+    public static void lambda$buyPremium$14(final BaseFragment baseFragment, final boolean z, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier, final BillingResult billingResult, final List list) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PremiumPreviewFragment.lambda$buyPremium$11(BillingResult.this, baseFragment, z, list, subscriptionUpdateParams, subscriptionTier);
+                PremiumPreviewFragment.lambda$buyPremium$13(BillingResult.this, baseFragment, z, list, subscriptionUpdateParams, subscriptionTier);
             }
         });
     }
 
-    public static void lambda$buyPremium$11(BillingResult billingResult, final BaseFragment baseFragment, final boolean z, List list, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier) {
+    public static void lambda$buyPremium$13(BillingResult billingResult, final BaseFragment baseFragment, final boolean z, List list, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier) {
         if (billingResult.getResponseCode() == 0) {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PremiumPreviewFragment.lambda$buyPremium$5(BaseFragment.this, z);
+                    PremiumPreviewFragment.lambda$buyPremium$7(BaseFragment.this, z);
                 }
             };
             if (list != null && !list.isEmpty() && !baseFragment.getUserConfig().isPremium()) {
@@ -1314,7 +1356,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         baseFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                PremiumPreviewFragment.lambda$buyPremium$7(BaseFragment.this, runnable, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
+                                PremiumPreviewFragment.lambda$buyPremium$9(BaseFragment.this, runnable, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
                             }
                         }, 66);
                         return;
@@ -1324,7 +1366,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             BillingController.getInstance().addResultListener(BillingController.PREMIUM_PRODUCT_ID, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    PremiumPreviewFragment.lambda$buyPremium$8(runnable, (BillingResult) obj);
+                    PremiumPreviewFragment.lambda$buyPremium$10(runnable, (BillingResult) obj);
                 }
             });
             final TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium = new TLRPC$TL_payments_canPurchasePremium();
@@ -1336,13 +1378,13 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             baseFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_canPurchasePremium, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    PremiumPreviewFragment.lambda$buyPremium$10(BaseFragment.this, tLRPC$TL_inputStorePaymentPremiumSubscription2, subscriptionTier, subscriptionUpdateParams, tLRPC$TL_payments_canPurchasePremium, tLObject, tLRPC$TL_error);
+                    PremiumPreviewFragment.lambda$buyPremium$12(BaseFragment.this, tLRPC$TL_inputStorePaymentPremiumSubscription2, subscriptionTier, subscriptionUpdateParams, tLRPC$TL_payments_canPurchasePremium, tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public static void lambda$buyPremium$5(BaseFragment baseFragment, boolean z) {
+    public static void lambda$buyPremium$7(BaseFragment baseFragment, boolean z) {
         if (baseFragment instanceof PremiumPreviewFragment) {
             PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) baseFragment;
             if (z) {
@@ -1366,7 +1408,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public static void lambda$buyPremium$7(final BaseFragment baseFragment, Runnable runnable, final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$buyPremium$9(final BaseFragment baseFragment, Runnable runnable, final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject instanceof TLRPC$Updates) {
             baseFragment.getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(runnable);
@@ -1374,32 +1416,32 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PremiumPreviewFragment.lambda$buyPremium$6(BaseFragment.this, tLRPC$TL_error, tLRPC$TL_payments_assignPlayMarketTransaction);
+                    PremiumPreviewFragment.lambda$buyPremium$8(BaseFragment.this, tLRPC$TL_error, tLRPC$TL_payments_assignPlayMarketTransaction);
                 }
             });
         }
     }
 
-    public static void lambda$buyPremium$6(BaseFragment baseFragment, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction) {
+    public static void lambda$buyPremium$8(BaseFragment baseFragment, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction) {
         AlertsCreator.processError(baseFragment.getCurrentAccount(), tLRPC$TL_error, baseFragment, tLRPC$TL_payments_assignPlayMarketTransaction, new Object[0]);
     }
 
-    public static void lambda$buyPremium$8(Runnable runnable, BillingResult billingResult) {
+    public static void lambda$buyPremium$10(Runnable runnable, BillingResult billingResult) {
         if (billingResult.getResponseCode() == 0) {
             AndroidUtilities.runOnUIThread(runnable);
         }
     }
 
-    public static void lambda$buyPremium$10(final BaseFragment baseFragment, final TLRPC$TL_inputStorePaymentPremiumSubscription tLRPC$TL_inputStorePaymentPremiumSubscription, final SubscriptionTier subscriptionTier, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$buyPremium$12(final BaseFragment baseFragment, final TLRPC$TL_inputStorePaymentPremiumSubscription tLRPC$TL_inputStorePaymentPremiumSubscription, final SubscriptionTier subscriptionTier, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PremiumPreviewFragment.lambda$buyPremium$9(TLObject.this, baseFragment, tLRPC$TL_inputStorePaymentPremiumSubscription, subscriptionTier, subscriptionUpdateParams, tLRPC$TL_error, tLRPC$TL_payments_canPurchasePremium);
+                PremiumPreviewFragment.lambda$buyPremium$11(TLObject.this, baseFragment, tLRPC$TL_inputStorePaymentPremiumSubscription, subscriptionTier, subscriptionUpdateParams, tLRPC$TL_error, tLRPC$TL_payments_canPurchasePremium);
             }
         });
     }
 
-    public static void lambda$buyPremium$9(TLObject tLObject, BaseFragment baseFragment, TLRPC$TL_inputStorePaymentPremiumSubscription tLRPC$TL_inputStorePaymentPremiumSubscription, SubscriptionTier subscriptionTier, BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium) {
+    public static void lambda$buyPremium$11(TLObject tLObject, BaseFragment baseFragment, TLRPC$TL_inputStorePaymentPremiumSubscription tLRPC$TL_inputStorePaymentPremiumSubscription, SubscriptionTier subscriptionTier, BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium) {
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             BillingController.getInstance().launchBillingFlow(baseFragment.getParentActivity(), baseFragment.getAccountInstance(), tLRPC$TL_inputStorePaymentPremiumSubscription, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(BillingController.PREMIUM_PRODUCT_DETAILS).setOfferToken(subscriptionTier.getOfferDetails().getOfferToken()).build()), subscriptionUpdateParams, false);
         } else {
@@ -1505,6 +1547,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.moreHeaderRow = -1;
         this.moreFeaturesStartRow = -1;
         this.moreFeaturesEndRow = -1;
+        this.showAdsHeaderRow = -1;
+        this.showAdsRow = -1;
+        this.showAdsInfoRow = -1;
         boolean z = true;
         int i = 0 + 1;
         this.rowCount = i;
@@ -1532,6 +1577,17 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.statusRow = i5;
         this.rowCount = i6 + 1;
         this.lastPaddingRow = i6;
+        if (this.type == 1 && getUserConfig().isPremium()) {
+            int i7 = this.rowCount;
+            int i8 = i7 + 1;
+            this.rowCount = i8;
+            this.showAdsHeaderRow = i7;
+            int i9 = i8 + 1;
+            this.rowCount = i9;
+            this.showAdsRow = i8;
+            this.rowCount = i9 + 1;
+            this.showAdsInfoRow = i9;
+        }
         FrameLayout frameLayout = this.buttonContainer;
         if (getUserConfig().isPremium() && ((subscriptionTier = this.currentSubscriptionTier) == null || subscriptionTier.getMonths() >= this.subscriptionTiers.get(this.selectedTierIndex).getMonths() || this.forcePremium)) {
             z = false;
@@ -1585,7 +1641,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
         }
 
@@ -1593,54 +1649,66 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View view;
             Context context = viewGroup.getContext();
-            if (i == 1) {
-                view = new PremiumFeatureCell(context) {
-                    @Override
-                    protected void dispatchDraw(Canvas canvas) {
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        rectF.set(this.imageView.getLeft(), this.imageView.getTop(), this.imageView.getRight(), this.imageView.getBottom());
-                        PremiumPreviewFragment.this.matrix.reset();
-                        PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
-                        premiumPreviewFragment.matrix.postScale(1.0f, premiumPreviewFragment.totalGradientHeight / 100.0f, 0.0f, 0.0f);
-                        PremiumPreviewFragment.this.matrix.postTranslate(0.0f, -this.data.yOffset);
-                        PremiumPreviewFragment premiumPreviewFragment2 = PremiumPreviewFragment.this;
-                        premiumPreviewFragment2.shader.setLocalMatrix(premiumPreviewFragment2.matrix);
-                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumPreviewFragment.this.gradientPaint);
-                        super.dispatchDraw(canvas);
-                    }
-                };
-            } else if (i == 2) {
-                int i2 = Theme.key_windowBackgroundGray;
-                view = new ShadowSectionCell(context, 12, Theme.getColor(i2));
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(i2)), Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow)), 0, 0);
-                combinedDrawable.setFullsize(true);
-                view.setBackgroundDrawable(combinedDrawable);
-            } else if (i == 4) {
-                view = new AboutPremiumView(context);
-            } else if (i == 5) {
-                view = new TextInfoPrivacyCell(context);
-            } else if (i == 6) {
-                view = new View(context);
-                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-            } else if (i != 7) {
-                view = new View(context) {
-                    @Override
-                    protected void onMeasure(int i3, int i4) {
-                        PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
-                        if (premiumPreviewFragment.isLandscapeMode) {
-                            premiumPreviewFragment.firstViewHeight = (premiumPreviewFragment.statusBarHeight + ((BaseFragment) PremiumPreviewFragment.this).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
-                        } else {
-                            int dp = AndroidUtilities.dp(80.0f) + PremiumPreviewFragment.this.statusBarHeight;
-                            if (PremiumPreviewFragment.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > dp) {
-                                dp = PremiumPreviewFragment.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f);
-                            }
-                            PremiumPreviewFragment.this.firstViewHeight = dp;
+            switch (i) {
+                case 1:
+                    view = new PremiumFeatureCell(context) {
+                        @Override
+                        protected void dispatchDraw(Canvas canvas) {
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(this.imageView.getLeft(), this.imageView.getTop(), this.imageView.getRight(), this.imageView.getBottom());
+                            PremiumPreviewFragment.this.matrix.reset();
+                            PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
+                            premiumPreviewFragment.matrix.postScale(1.0f, premiumPreviewFragment.totalGradientHeight / 100.0f, 0.0f, 0.0f);
+                            PremiumPreviewFragment.this.matrix.postTranslate(0.0f, -this.data.yOffset);
+                            PremiumPreviewFragment premiumPreviewFragment2 = PremiumPreviewFragment.this;
+                            premiumPreviewFragment2.shader.setLocalMatrix(premiumPreviewFragment2.matrix);
+                            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumPreviewFragment.this.gradientPaint);
+                            super.dispatchDraw(canvas);
                         }
-                        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(PremiumPreviewFragment.this.firstViewHeight, 1073741824));
-                    }
-                };
-            } else {
-                view = new HeaderCell(context);
+                    };
+                    break;
+                case 2:
+                    int i2 = Theme.key_windowBackgroundGray;
+                    view = new ShadowSectionCell(context, 12, Theme.getColor(i2));
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(i2)), Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow)), 0, 0);
+                    combinedDrawable.setFullsize(true);
+                    view.setBackgroundDrawable(combinedDrawable);
+                    break;
+                case 3:
+                default:
+                    view = new View(context) {
+                        @Override
+                        protected void onMeasure(int i3, int i4) {
+                            PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
+                            if (premiumPreviewFragment.isLandscapeMode) {
+                                premiumPreviewFragment.firstViewHeight = (premiumPreviewFragment.statusBarHeight + ((BaseFragment) PremiumPreviewFragment.this).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
+                            } else {
+                                int dp = AndroidUtilities.dp(80.0f) + PremiumPreviewFragment.this.statusBarHeight;
+                                if (PremiumPreviewFragment.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > dp) {
+                                    dp = PremiumPreviewFragment.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f);
+                                }
+                                PremiumPreviewFragment.this.firstViewHeight = dp;
+                            }
+                            super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(PremiumPreviewFragment.this.firstViewHeight, 1073741824));
+                        }
+                    };
+                    break;
+                case 4:
+                    view = new AboutPremiumView(context);
+                    break;
+                case 5:
+                    view = new TextInfoPrivacyCell(context);
+                    break;
+                case 6:
+                    view = new View(context);
+                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                    break;
+                case 7:
+                    view = new HeaderCell(context);
+                    break;
+                case 8:
+                    view = new TextCell(context, 23, false, true, ((BaseFragment) PremiumPreviewFragment.this).resourceProvider);
+                    break;
             }
             view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             return new RecyclerListView.Holder(view);
@@ -1649,6 +1717,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         @Override
         public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r19, int r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PremiumPreviewFragment.Adapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        }
+
+        public void lambda$onBindViewHolder$0() {
+            PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
+            PremiumPreviewFragment premiumPreviewFragment2 = PremiumPreviewFragment.this;
+            premiumPreviewFragment.showDialog(new RevenueSharingAdsInfoBottomSheet(premiumPreviewFragment2, premiumPreviewFragment2.getContext(), PremiumPreviewFragment.this.getResourceProvider()));
         }
 
         @Override
@@ -1667,13 +1741,16 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     if (i == premiumPreviewFragment.helpUsRow) {
                         return 4;
                     }
-                    if (i == premiumPreviewFragment.sectionRow || i == premiumPreviewFragment.statusRow || i == premiumPreviewFragment.privacyRow) {
+                    if (i == premiumPreviewFragment.sectionRow || i == premiumPreviewFragment.statusRow || i == premiumPreviewFragment.privacyRow || i == premiumPreviewFragment.showAdsInfoRow) {
                         return 5;
                     }
                     if (i == premiumPreviewFragment.lastPaddingRow) {
                         return 6;
                     }
-                    return i == premiumPreviewFragment.moreHeaderRow ? 7 : 0;
+                    if (i == premiumPreviewFragment.moreHeaderRow || i == premiumPreviewFragment.showAdsHeaderRow) {
+                        return 7;
+                    }
+                    return i == premiumPreviewFragment.showAdsRow ? 8 : 0;
                 }
                 return 1;
             }
@@ -1682,7 +1759,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 1;
+            return viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 8;
         }
     }
 
@@ -1977,14 +2054,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     this.premiumButtonView.setButton(getPremiumButtonText(this.currentAccount, this.subscriptionTiers.get(this.selectedTierIndex)), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            PremiumPreviewFragment.this.lambda$updateButtonText$13(view);
+                            PremiumPreviewFragment.this.lambda$updateButtonText$15(view);
                         }
                     }, z);
                 } else if (!BuildVars.useInvoiceBilling() && (!BillingController.getInstance().isReady() || this.subscriptionTiers.isEmpty() || this.selectedTierIndex >= this.subscriptionTiers.size() || this.subscriptionTiers.get(this.selectedTierIndex).googlePlayProductDetails == null)) {
                     this.premiumButtonView.setButton(LocaleController.getString(R.string.Loading), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            PremiumPreviewFragment.lambda$updateButtonText$14(view);
+                            PremiumPreviewFragment.lambda$updateButtonText$16(view);
                         }
                     }, z);
                     this.premiumButtonView.setFlickerDisabled(true);
@@ -1993,7 +2070,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     this.premiumButtonView.setButton(getPremiumButtonText(this.currentAccount, this.subscriptionTiers.get(this.selectedTierIndex)), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            PremiumPreviewFragment.this.lambda$updateButtonText$15(view);
+                            PremiumPreviewFragment.this.lambda$updateButtonText$17(view);
                         }
                     }, z);
                     this.premiumButtonView.setFlickerDisabled(false);
@@ -2002,11 +2079,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public void lambda$updateButtonText$13(View view) {
+    public void lambda$updateButtonText$15(View view) {
         buyPremium(this);
     }
 
-    public void lambda$updateButtonText$15(View view) {
+    public void lambda$updateButtonText$17(View view) {
         TLRPC$TL_premiumSubscriptionOption tLRPC$TL_premiumSubscriptionOption;
         SubscriptionTier subscriptionTier = this.subscriptionTiers.get(this.selectedTierIndex);
         SubscriptionTier subscriptionTier2 = this.currentSubscriptionTier;
@@ -2148,7 +2225,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         connectionsManager.sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PremiumPreviewFragment.lambda$sentShowScreenStat$16(tLObject, tLRPC$TL_error);
+                PremiumPreviewFragment.lambda$sentShowScreenStat$18(tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -2163,7 +2240,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PremiumPreviewFragment.lambda$sentPremiumButtonClick$17(tLObject, tLRPC$TL_error);
+                PremiumPreviewFragment.lambda$sentPremiumButtonClick$19(tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -2178,7 +2255,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PremiumPreviewFragment.lambda$sentPremiumBuyCanceled$18(tLObject, tLRPC$TL_error);
+                PremiumPreviewFragment.lambda$sentPremiumBuyCanceled$20(tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -2205,7 +2282,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PremiumPreviewFragment.lambda$sentShowFeaturePreview$19(tLObject, tLRPC$TL_error);
+                PremiumPreviewFragment.lambda$sentShowFeaturePreview$21(tLObject, tLRPC$TL_error);
             }
         });
     }

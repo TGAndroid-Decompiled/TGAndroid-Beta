@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
     @Override
@@ -72,11 +73,14 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         if ((this.flags & 262144) != 0) {
             this.available_reactions = TLRPC$ChatReactions.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0) {
+            this.reactions_limit = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-908914376);
+        abstractSerializedData.writeInt32(640893467);
         int i = this.can_set_username ? this.flags | 128 : this.flags & (-129);
         this.flags = i;
         int i2 = this.has_scheduled ? i | LiteMode.FLAG_CHAT_BLUR : i & (-257);
@@ -131,6 +135,9 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         }
         if ((this.flags & 262144) != 0) {
             this.available_reactions.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0) {
+            abstractSerializedData.writeInt32(this.reactions_limit);
         }
     }
 }

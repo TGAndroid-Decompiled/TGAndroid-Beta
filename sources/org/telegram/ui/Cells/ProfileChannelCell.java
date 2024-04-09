@@ -19,6 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
@@ -45,7 +46,7 @@ import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 public class ProfileChannelCell extends FrameLayout {
-    private final DialogCell dialogCell;
+    public final DialogCell dialogCell;
     private final TextView headerView;
     private boolean loading;
     private AnimatedFloat loadingAlpha;
@@ -73,7 +74,7 @@ public class ProfileChannelCell extends FrameLayout {
         this.headerView = textView;
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 15.0f);
-        textView.setText("Channel");
+        textView.setText(LocaleController.getString(R.string.ProfileChannel));
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 51));
         ClickableAnimatedTextView clickableAnimatedTextView = new ClickableAnimatedTextView(context);
         this.subscribersView = clickableAnimatedTextView;
@@ -86,6 +87,7 @@ public class ProfileChannelCell extends FrameLayout {
         linearLayout.addView(clickableAnimatedTextView, LayoutHelper.createLinear(-1, 17, 51, 4, 2, 4, 0));
         DialogCell dialogCell = new DialogCell(null, context, false, true, UserConfig.selectedAccount, resourceProvider);
         this.dialogCell = dialogCell;
+        dialogCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         dialogCell.setDialogCellDelegate(new DialogCell.DialogCellDelegate() {
             @Override
             public boolean canClickButtonInside() {

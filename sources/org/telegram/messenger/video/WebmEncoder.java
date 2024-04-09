@@ -31,7 +31,6 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
@@ -48,73 +47,8 @@ public class WebmEncoder {
 
     private static native boolean writeFrame(long j, ByteBuffer byteBuffer, int i, int i2);
 
-    public static boolean convert(MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        boolean z;
-        MediaController.VideoConvertorListener videoConvertorListener;
-        int i = convertVideoParams.resultWidth;
-        int i2 = convertVideoParams.resultHeight;
-        long createEncoder = createEncoder(convertVideoParams.cacheFile.getAbsolutePath(), i, i2, convertVideoParams.framerate, convertVideoParams.bitrate);
-        boolean z2 = true;
-        if (createEncoder == 0) {
-            return true;
-        }
-        Bitmap bitmap = null;
-        try {
-            try {
-                bitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
-                ByteBuffer allocateDirect = ByteBuffer.allocateDirect(bitmap.getByteCount());
-                Canvas canvas = new Canvas(bitmap);
-                FrameDrawer frameDrawer = new FrameDrawer(convertVideoParams);
-                double d = convertVideoParams.framerate;
-                double d2 = convertVideoParams.duration;
-                Double.isNaN(d2);
-                Double.isNaN(d);
-                int ceil = (int) Math.ceil(d * (d2 / 1000.0d));
-                int i3 = 0;
-                while (i3 < ceil) {
-                    frameDrawer.draw(canvas, i3);
-                    bitmap.copyPixelsToBuffer(allocateDirect);
-                    allocateDirect.flip();
-                    if (!writeFrame(createEncoder, allocateDirect, i, i2)) {
-                        FileLog.d("webm writeFile error at " + i3 + "/" + ceil);
-                        stop(createEncoder);
-                        bitmap.recycle();
-                        return z2;
-                    }
-                    MediaController.VideoConvertorListener videoConvertorListener2 = convertVideoParams.callback;
-                    if (videoConvertorListener2 != null) {
-                        videoConvertorListener2.didWriteData(convertVideoParams.cacheFile.length(), i3 / ceil);
-                    }
-                    if (i3 % 3 == 0 && (videoConvertorListener = convertVideoParams.callback) != null) {
-                        videoConvertorListener.checkConversionCanceled();
-                    }
-                    i3++;
-                    z2 = true;
-                }
-                stop(createEncoder);
-                bitmap.recycle();
-                z = false;
-            } catch (Exception e) {
-                FileLog.e(e);
-                stop(createEncoder);
-                if (bitmap != null) {
-                    bitmap.recycle();
-                }
-                z = true;
-            }
-            MediaController.VideoConvertorListener videoConvertorListener3 = convertVideoParams.callback;
-            if (videoConvertorListener3 != null) {
-                videoConvertorListener3.didWriteData(convertVideoParams.cacheFile.length(), 1.0f);
-            }
-            FileLog.d("webm encoded to " + convertVideoParams.cacheFile + " with size=" + convertVideoParams.cacheFile.length());
-            return z;
-        } catch (Throwable th) {
-            stop(createEncoder);
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-            throw th;
-        }
+    public static boolean convert(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.WebmEncoder.convert(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, int):boolean");
     }
 
     public static class FrameDrawer {
@@ -122,6 +56,7 @@ public class WebmEncoder {
         private final int W;
         private final Paint bitmapPaint;
         private final Paint clearPaint;
+        private final Path clipPath;
         private final int fps;
         private final ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
         Path path;
@@ -134,14 +69,19 @@ public class WebmEncoder {
             this.mediaEntities = arrayList;
             this.clearPaint = new Paint(1);
             this.bitmapPaint = new Paint(5);
-            this.W = convertVideoParams.resultWidth;
-            this.H = convertVideoParams.resultHeight;
+            int i = convertVideoParams.resultWidth;
+            this.W = i;
+            int i2 = convertVideoParams.resultHeight;
+            this.H = i2;
             this.fps = convertVideoParams.framerate;
+            Path path = new Path();
+            this.clipPath = path;
+            path.addRoundRect(new RectF(0.0f, 0.0f, i, i2), i * 0.125f, i2 * 0.125f, Path.Direction.CW);
             this.photo = BitmapFactory.decodeFile(convertVideoParams.videoPath);
             arrayList.addAll(convertVideoParams.mediaEntities);
             int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i);
+            for (int i3 = 0; i3 < size; i3++) {
+                VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i3);
                 byte b = mediaEntity.type;
                 if (b == 0 || b == 2 || b == 5) {
                     initStickerEntity(mediaEntity);
@@ -154,6 +94,8 @@ public class WebmEncoder {
 
         public void draw(Canvas canvas, int i) {
             canvas.drawPaint(this.clearPaint);
+            canvas.save();
+            canvas.clipPath(this.clipPath);
             Bitmap bitmap = this.photo;
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
@@ -164,6 +106,7 @@ public class WebmEncoder {
                 VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i2);
                 drawEntity(canvas, mediaEntity, mediaEntity.color, j);
             }
+            canvas.restore();
         }
 
         private void drawEntity(Canvas canvas, VideoEditedInfo.MediaEntity mediaEntity, int i, long j) {

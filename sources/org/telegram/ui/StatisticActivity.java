@@ -631,7 +631,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         };
         this.viewPagerFixed = new ViewPagerFixed(getContext()) {
             @Override
-            protected void onTabAnimationUpdate(boolean z2) {
+            public void onTabAnimationUpdate(boolean z2) {
                 if (z2) {
                     return;
                 }
@@ -695,6 +695,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 @Override
                 public boolean allowLayoutChanges() {
                     return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                }
+
+                @Override
+                public boolean bottomOffsetAnimated() {
+                    return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
                 }
 
                 @Override

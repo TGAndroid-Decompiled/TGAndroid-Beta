@@ -457,6 +457,10 @@ public class DownloadButton extends ImageView {
         private final Paint whitePaint;
 
         public PreparingVideoToast(Context context) {
+            this(context, LocaleController.getString(R.string.PreparingSticker));
+        }
+
+        public PreparingVideoToast(Context context, String str) {
             super(context);
             int i;
             float f;
@@ -497,7 +501,7 @@ public class DownloadButton extends ImageView {
             paint4.setStrokeWidth(AndroidUtilities.dp(4.0f));
             textPaint.setTextSize(AndroidUtilities.dp(14.0f));
             textPaint2.setTextSize(AndroidUtilities.dpf2(14.66f));
-            StaticLayout staticLayout = new StaticLayout(LocaleController.getString("PreparingVideo"), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.preparingLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 i = 0;

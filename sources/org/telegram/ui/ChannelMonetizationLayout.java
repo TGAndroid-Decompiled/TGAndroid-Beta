@@ -703,12 +703,13 @@ public class ChannelMonetizationLayout extends FrameLayout {
     }
 
     private void loadTransactions() {
+        TLRPC$Chat chat;
         if (this.loadingTransactions) {
             return;
         }
         int size = this.transactions.size();
         int i = this.transactionsTotalCount;
-        if (size < i || i == 0) {
+        if ((size < i || i == 0) && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId))) != null && chat.creator) {
             this.loadingTransactions = true;
             TL_stats$TL_getBroadcastRevenueTransactions tL_stats$TL_getBroadcastRevenueTransactions = new TL_stats$TL_getBroadcastRevenueTransactions();
             tL_stats$TL_getBroadcastRevenueTransactions.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);

@@ -16,6 +16,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -24,6 +25,8 @@ import org.telegram.tgnet.TLRPC$TL_boolFalse;
 import org.telegram.tgnet.TLRPC$TL_businessWeeklyOpen;
 import org.telegram.tgnet.TLRPC$TL_businessWorkHours;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_timezone;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -271,26 +274,33 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             int i7 = i6 * 1440;
             int i8 = i6 + 1;
             int i9 = i8 * 1440;
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen2 = arrayList.get(i10);
-                if (tLRPC$TL_businessWeeklyOpen2.start_minute <= i7 && (i = tLRPC$TL_businessWeeklyOpen2.end_minute) >= i7) {
-                    i7 = i + 1;
+            int i10 = i7;
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                TLRPC$TL_businessWeeklyOpen tLRPC$TL_businessWeeklyOpen2 = arrayList.get(i11);
+                if (tLRPC$TL_businessWeeklyOpen2.start_minute <= i10 && (i = tLRPC$TL_businessWeeklyOpen2.end_minute) >= i10) {
+                    i10 = i + 1;
                 }
             }
-            if (i7 >= i9) {
-                int i11 = ((i6 + 7) - 1) % 7;
-                if (!arrayListArr[i11].isEmpty() && arrayListArr[i11].get(arrayListArr[i11].size() - 1).end >= 1440) {
-                    arrayListArr[i11].get(arrayListArr[i11].size() - 1).end = 1439;
+            if (i10 >= i9) {
+                int i12 = i6 + 7;
+                int i13 = (i12 - 1) % 7;
+                if (!arrayListArr[i13].isEmpty() && arrayListArr[i13].get(arrayListArr[i13].size() - 1).end >= 1440) {
+                    arrayListArr[i13].get(arrayListArr[i13].size() - 1).end = 1439;
+                }
+                int min = Math.min((i10 - i7) - 1, 2879);
+                ArrayList<Period> arrayList2 = arrayListArr[(i12 + 1) % 7];
+                if (min >= 1440 && !arrayList2.isEmpty() && arrayList2.get(0).start < min - 1440) {
+                    min = (arrayList2.get(0).start + 1440) - 1;
                 }
                 arrayListArr[i6].clear();
-                arrayListArr[i6].add(new Period(0, 1439));
+                arrayListArr[i6].add(new Period(0, min));
             } else {
-                int i12 = i8 % 7;
-                if (!arrayListArr[i6].isEmpty() && !arrayListArr[i12].isEmpty()) {
+                int i14 = i8 % 7;
+                if (!arrayListArr[i6].isEmpty() && !arrayListArr[i14].isEmpty()) {
                     Period period = arrayListArr[i6].get(arrayListArr[i6].size() - 1);
-                    Period period2 = arrayListArr[i12].get(0);
-                    int i13 = period.end;
-                    if (i13 > 1440 && (i13 - 1440) + 1 == period2.start) {
+                    Period period2 = arrayListArr[i14].get(0);
+                    int i15 = period.end;
+                    if (i15 > 1440 && (i15 - 1440) + 1 == period2.start) {
                         period.end = 1439;
                         period2.start = 0;
                     }
@@ -318,6 +328,45 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             }
         }
         return arrayList;
+    }
+
+    public static String toString(int i, TLRPC$User tLRPC$User, TLRPC$TL_businessWorkHours tLRPC$TL_businessWorkHours) {
+        if (tLRPC$TL_businessWorkHours == null) {
+            return null;
+        }
+        ArrayList<Period>[] daysHours = getDaysHours(tLRPC$TL_businessWorkHours.weekly_open);
+        StringBuilder sb = new StringBuilder();
+        if (tLRPC$User != null) {
+            sb.append(LocaleController.formatString(R.string.BusinessHoursCopyHeader, UserObject.getUserName(tLRPC$User)));
+            sb.append("\n");
+        }
+        for (int i2 = 0; i2 < daysHours.length; i2++) {
+            ArrayList<Period> arrayList = daysHours[i2];
+            String displayName = DayOfWeek.values()[i2].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
+            sb.append(displayName.substring(0, 1).toUpperCase() + displayName.substring(1));
+            sb.append(": ");
+            if (isFull(arrayList)) {
+                sb.append(LocaleController.getString(R.string.BusinessHoursProfileOpen));
+            } else if (arrayList.isEmpty()) {
+                sb.append(LocaleController.getString(R.string.BusinessHoursProfileClose));
+            } else {
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    if (i3 > 0) {
+                        sb.append(", ");
+                    }
+                    Period period = arrayList.get(i3);
+                    sb.append(Period.timeToString(period.start));
+                    sb.append(" - ");
+                    sb.append(Period.timeToString(period.end));
+                }
+            }
+            sb.append("\n");
+        }
+        TLRPC$TL_timezone findTimezone = TimezonesController.getInstance(i).findTimezone(tLRPC$TL_businessWorkHours.timezone_id);
+        if (((Calendar.getInstance().getTimeZone().getRawOffset() / 1000) - (findTimezone == null ? 0 : findTimezone.utc_offset)) / 60 != 0 && findTimezone != null) {
+            sb.append(LocaleController.formatString(R.string.BusinessHoursCopyFooter, TimezonesController.getInstance(i).getTimezoneName(findTimezone, true)));
+        }
+        return sb.toString();
     }
 
     public void processDone() {

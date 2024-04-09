@@ -198,7 +198,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
         actionBarPopupWindowLayout.updateAnimation = false;
         actionBarPopupWindowLayout.setBackScaleX(((measuredWidth + ((f - measuredWidth) * f4)) + (actionBarPopupWindowLayout.getPaddingLeft() + actionBarPopupWindowLayout.getPaddingRight())) / actionBarPopupWindowLayout.getMeasuredWidth());
         if (z) {
-            actionBarPopupWindowLayout.setBackScaleY(paddingTop / actionBarPopupWindowLayout.getMeasuredHeight());
+            actionBarPopupWindowLayout.setBackScaleY(Math.min(1.0f, paddingTop / actionBarPopupWindowLayout.getMeasuredHeight()));
         }
         actionBarPopupWindowLayout.updateAnimation = true;
         for (int i3 = 0; i3 < getChildCount(); i3++) {

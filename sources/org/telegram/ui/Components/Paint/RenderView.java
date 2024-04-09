@@ -47,6 +47,12 @@ public class RenderView extends TextureView {
     private float weight;
 
     public interface RenderViewDelegate {
+
+        public final class CC {
+            public static void $default$invalidateInputView(RenderViewDelegate renderViewDelegate) {
+            }
+        }
+
         void invalidateInputView();
 
         void onBeganDrawing();

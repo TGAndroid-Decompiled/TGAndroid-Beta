@@ -294,6 +294,7 @@ public class Theme {
     public static Drawable chat_msgUnlockDrawable;
     public static Drawable chat_muteIconDrawable;
     public static TextPaint chat_namePaint;
+    public static PorterDuffColorFilter chat_outAnimatedEmojiTextColorFilter;
     public static Paint chat_outUrlPaint;
     public static Paint chat_pollTimerPaint;
     public static TextPaint chat_quoteTextPaint;
@@ -6329,7 +6330,7 @@ public class Theme {
                 dialogs_unarchiveDrawable.setLayerColor("Box1.**", getNonAnimatedColor(i4));
                 dialogs_unarchiveDrawable.commitApplyLayerColors();
                 chat_animatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_windowBackgroundWhiteBlackText), PorterDuff.Mode.SRC_IN);
-                new PorterDuffColorFilter(getColor(key_chat_messageTextOut), PorterDuff.Mode.SRC_IN);
+                chat_outAnimatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_chat_messageTextOut), PorterDuff.Mode.SRC_IN);
                 PremiumGradient.getInstance().checkIconColors();
                 return;
             }

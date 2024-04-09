@@ -21,7 +21,9 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.wallpaper_overridden = (268435456 & readInt32) != 0;
         this.contact_require_premium = (536870912 & readInt32) != 0;
         this.read_dates_private = (readInt32 & 1073741824) != 0;
-        this.flags2 = abstractSerializedData.readInt32(z);
+        int readInt322 = abstractSerializedData.readInt32(z);
+        this.flags2 = readInt322;
+        this.sponsored_enabled = (readInt322 & 128) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
@@ -63,15 +65,15 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             this.bot_broadcast_admin_rights = TLRPC$TL_chatAdminRights.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 524288) != 0) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 != 481674261) {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            if (readInt323 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
                 return;
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt324; i++) {
                 TLRPC$TL_premiumGiftOption TLdeserialize = TLRPC$TL_premiumGiftOption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
@@ -139,7 +141,9 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
         this.flags = i13;
         abstractSerializedData.writeInt32(i13);
-        abstractSerializedData.writeInt32(this.flags2);
+        int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+        this.flags2 = i14;
+        abstractSerializedData.writeInt32(i14);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
@@ -184,8 +188,8 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             abstractSerializedData.writeInt32(481674261);
             int size = this.premium_gifts.size();
             abstractSerializedData.writeInt32(size);
-            for (int i14 = 0; i14 < size; i14++) {
-                this.premium_gifts.get(i14).serializeToStream(abstractSerializedData);
+            for (int i15 = 0; i15 < size; i15++) {
+                this.premium_gifts.get(i15).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {

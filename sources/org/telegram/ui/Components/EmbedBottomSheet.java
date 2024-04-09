@@ -558,7 +558,7 @@ public class EmbedBottomSheet extends BottomSheet {
 
             @Override
             public ViewGroup getTextureViewContainer() {
-                return ((BottomSheet) EmbedBottomSheet.this).container;
+                return EmbedBottomSheet.this.container;
             }
         });
         this.videoView = webPlayerView;

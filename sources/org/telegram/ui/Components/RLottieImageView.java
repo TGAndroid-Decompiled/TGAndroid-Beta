@@ -111,6 +111,8 @@ public class RLottieImageView extends ImageView {
     }
 
     public void setAnimation(TLRPC$Document tLRPC$Document, final int i, final int i2) {
+        ImageLocation imageLocation;
+        String str;
         ImageReceiver imageReceiver = this.imageReceiver;
         if (imageReceiver != null) {
             imageReceiver.onDetachedFromWindow();
@@ -121,24 +123,30 @@ public class RLottieImageView extends ImageView {
         }
         ImageReceiver imageReceiver2 = new ImageReceiver() {
             @Override
-            public boolean setImageBitmapByKey(Drawable drawable, String str, int i3, boolean z, int i4) {
+            public boolean setImageBitmapByKey(Drawable drawable, String str2, int i3, boolean z, int i4) {
                 if (drawable != null) {
                     RLottieImageView.this.onLoaded();
                 }
-                return super.setImageBitmapByKey(drawable, str, i3, z, i4);
+                return super.setImageBitmapByKey(drawable, str2, i3, z, i4);
             }
         };
         this.imageReceiver = imageReceiver2;
         imageReceiver2.setAllowLoadingOnAttachedOnly(true);
+        String str2 = tLRPC$Document.localThumbPath;
+        if (str2 != null) {
+            imageLocation = ImageLocation.getForPath(str2);
+            str = i + "_" + i2;
+        } else {
+            imageLocation = null;
+            str = null;
+        }
         if (this.onlyLastFrame) {
-            ImageReceiver imageReceiver3 = this.imageReceiver;
-            ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$Document);
-            imageReceiver3.setImage(forDocument, i + "_" + i2 + "_lastframe", null, null, null, null, null, 0L, null, tLRPC$Document, 1);
+            this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), i + "_" + i2 + "_lastframe", null, null, imageLocation, str, null, 0L, null, tLRPC$Document, 1);
         } else {
             if ("video/webm".equals(tLRPC$Document.mime_type)) {
                 TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-                ImageReceiver imageReceiver4 = this.imageReceiver;
-                ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$Document);
+                ImageReceiver imageReceiver3 = this.imageReceiver;
+                ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$Document);
                 StringBuilder sb = new StringBuilder();
                 sb.append(i);
                 sb.append("_");
@@ -146,21 +154,21 @@ public class RLottieImageView extends ImageView {
                 sb.append(this.cached ? "_pcache" : "");
                 sb.append("_");
                 sb.append(ImageLoader.AUTOPLAY_FILTER);
-                imageReceiver4.setImage(forDocument2, sb.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), null, null, tLRPC$Document.size, null, tLRPC$Document, 1);
+                imageReceiver3.setImage(forDocument, sb.toString(), imageLocation != null ? imageLocation : ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), str, null, tLRPC$Document.size, null, tLRPC$Document, 1);
             } else {
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
                 if (svgThumb != null) {
                     svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
                 }
                 TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-                ImageReceiver imageReceiver5 = this.imageReceiver;
-                ImageLocation forDocument3 = ImageLocation.getForDocument(tLRPC$Document);
+                ImageReceiver imageReceiver4 = this.imageReceiver;
+                ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$Document);
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(i);
                 sb2.append("_");
                 sb2.append(i2);
                 sb2.append(this.cached ? "_pcache" : "");
-                imageReceiver5.setImage(forDocument3, sb2.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize2, tLRPC$Document), null, null, null, svgThumb, 0L, null, tLRPC$Document, 1);
+                imageReceiver4.setImage(forDocument2, sb2.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize2, tLRPC$Document), null, imageLocation, str, svgThumb, 0L, null, tLRPC$Document, 1);
             }
         }
         this.imageReceiver.setAspectFit(true);
@@ -172,9 +180,9 @@ public class RLottieImageView extends ImageView {
         } else {
             this.imageReceiver.setAutoRepeat(0);
         }
-        ImageReceiver imageReceiver6 = this.imageReceiver;
+        ImageReceiver imageReceiver5 = this.imageReceiver;
         Integer num = this.layerNum;
-        imageReceiver6.setLayerNum(num != null ? num.intValue() : 7);
+        imageReceiver5.setLayerNum(num != null ? num.intValue() : 7);
         this.imageReceiver.clip = false;
         setImageDrawable(new Drawable() {
             @Override

@@ -71,7 +71,7 @@ public class BottomSheet extends Dialog {
     private boolean canDismissWithSwipe;
     private boolean canDismissWithTouchOutside;
     private int cellType;
-    protected ContainerView container;
+    public ContainerView container;
     protected ViewGroup containerView;
     protected int currentAccount;
     private float currentPanTranslationY;
@@ -981,6 +981,11 @@ public class BottomSheet extends Dialog {
                     @Override
                     public boolean allowLayoutChanges() {
                         return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                    }
+
+                    @Override
+                    public boolean bottomOffsetAnimated() {
+                        return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
                     }
 
                     @Override

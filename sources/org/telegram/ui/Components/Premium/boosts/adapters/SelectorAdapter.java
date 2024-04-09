@@ -395,7 +395,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         }
 
         @Override
-        protected boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
             if (this == item) {
                 return true;
             }

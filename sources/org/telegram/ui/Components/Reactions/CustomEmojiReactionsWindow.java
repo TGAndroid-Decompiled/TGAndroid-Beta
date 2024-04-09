@@ -65,6 +65,8 @@ public class CustomEmojiReactionsWindow {
     boolean enterTransitionFinished;
     float enterTransitionProgress;
     float fromRadius;
+    float fromRectTranslateX;
+    float fromRectTranslateY;
     private boolean invalidatePath;
     boolean isShowing;
     float keyboardHeight;
@@ -106,6 +108,11 @@ public class CustomEmojiReactionsWindow {
                 @Override
                 public boolean allowLayoutChanges() {
                     return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                }
+
+                @Override
+                public boolean bottomOffsetAnimated() {
+                    return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
                 }
 
                 @Override
@@ -429,6 +436,7 @@ public class CustomEmojiReactionsWindow {
     }
 
     private void createTransition(final boolean z) {
+        ValueAnimator ofFloat;
         this.fromRect.set(this.reactionsContainerLayout.rect);
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
         this.fromRadius = reactionsContainerLayout.radius;
@@ -461,7 +469,12 @@ public class CustomEmojiReactionsWindow {
             this.yTranslation = dp;
             this.containerView.setTranslationY(dp);
         }
-        this.fromRect.offset((this.location[0] - iArr[0]) - this.containerView.getX(), (this.location[1] - iArr[1]) - this.containerView.getY());
+        RectF rectF = this.fromRect;
+        float x = (this.location[0] - iArr[0]) - this.containerView.getX();
+        this.fromRectTranslateX = x;
+        float y = (this.location[1] - iArr[1]) - this.containerView.getY();
+        this.fromRectTranslateY = y;
+        rectF.offset(x, y);
         this.reactionsContainerLayout.setCustomEmojiEnterProgress(this.enterTransitionProgress);
         if (z) {
             this.cascadeAnimation = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
@@ -477,15 +490,26 @@ public class CustomEmojiReactionsWindow {
         this.selectAnimatedEmojiDialog.emojiTabs.showRecentTabStub(z && this.cascadeAnimation);
         int i2 = UserConfig.selectedAccount;
         this.notificationsLocker.lock();
-        float[] fArr = new float[2];
-        fArr[0] = this.enterTransitionProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        StableAnimator ofFloat = StableAnimator.ofFloat(fArr);
+        ValueAnimator valueAnimator = this.valueAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (this.type == 4) {
+            float[] fArr = new float[2];
+            fArr[0] = this.enterTransitionProgress;
+            fArr[1] = z ? 1.0f : 0.0f;
+            ofFloat = ValueAnimator.ofFloat(fArr);
+        } else {
+            float[] fArr2 = new float[2];
+            fArr2[0] = this.enterTransitionProgress;
+            fArr2[1] = z ? 1.0f : 0.0f;
+            ofFloat = StableAnimator.ofFloat(fArr2);
+        }
         this.valueAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CustomEmojiReactionsWindow.this.lambda$createTransition$5(z, valueAnimator);
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                CustomEmojiReactionsWindow.this.lambda$createTransition$5(z, valueAnimator2);
             }
         });
         if (!z) {
@@ -518,7 +542,10 @@ public class CustomEmojiReactionsWindow {
                 CustomEmojiReactionsWindow.this.reactionsContainerLayout.setCustomEmojiReactionsBackground(true);
             }
         });
-        if (this.cascadeAnimation) {
+        if (this.type == 4) {
+            this.valueAnimator.setDuration(420L);
+            this.valueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        } else if (this.cascadeAnimation) {
             this.valueAnimator.setDuration(450L);
             this.valueAnimator.setInterpolator(new OvershootInterpolator(0.5f));
         } else {
@@ -535,12 +562,12 @@ public class CustomEmojiReactionsWindow {
             this.valueAnimator.start();
         } else {
             this.reactionsContainerLayout.setCustomEmojiReactionsBackground(false);
-            final ValueAnimator valueAnimator = this.valueAnimator;
-            Objects.requireNonNull(valueAnimator);
+            final ValueAnimator valueAnimator2 = this.valueAnimator;
+            Objects.requireNonNull(valueAnimator2);
             HwEmojis.prepare(new Runnable() {
                 @Override
                 public final void run() {
-                    valueAnimator.start();
+                    valueAnimator2.start();
                 }
             }, this.cascadeAnimation);
         }
@@ -665,8 +692,13 @@ public class CustomEmojiReactionsWindow {
                     CustomEmojiReactionsWindow.this.checkAnimationEnd(z);
                 }
             });
-            ofFloat.setDuration(350L);
-            ofFloat.setInterpolator(new OvershootInterpolator(1.0f));
+            if (this.type == 4) {
+                ofFloat.setDuration(420L);
+                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            } else {
+                ofFloat.setDuration(350L);
+                ofFloat.setInterpolator(new OvershootInterpolator(1.0f));
+            }
             ofFloat.start();
         }
     }
@@ -749,6 +781,10 @@ public class CustomEmojiReactionsWindow {
     public void dismiss() {
         if (this.dismissed) {
             return;
+        }
+        ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
+        if (reactionsContainerLayout != null) {
+            reactionsContainerLayout.onCustomEmojiWindowClosing();
         }
         Bulletin.hideVisible();
         this.dismissed = true;
@@ -880,25 +916,35 @@ public class CustomEmojiReactionsWindow {
         protected void onMeasure(int i, int i2) {
             int measuredWidth;
             int i3;
+            int dp;
+            int dp2;
             if (CustomEmojiReactionsWindow.this.type == 1 || CustomEmojiReactionsWindow.this.type == 2 || CustomEmojiReactionsWindow.this.type == 4) {
                 measuredWidth = CustomEmojiReactionsWindow.this.reactionsContainerLayout.getMeasuredWidth();
             } else {
                 measuredWidth = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-                int dp = (AndroidUtilities.dp(36.0f) * 8) + AndroidUtilities.dp(12.0f);
-                if (dp < measuredWidth) {
-                    measuredWidth = dp;
+                int dp3 = (AndroidUtilities.dp(36.0f) * 8) + AndroidUtilities.dp(12.0f);
+                if (dp3 < measuredWidth) {
+                    measuredWidth = dp3;
                 }
             }
-            if (CustomEmojiReactionsWindow.this.reactionsContainerLayout.showExpandableReactions()) {
-                int ceil = (int) Math.ceil(CustomEmojiReactionsWindow.this.reactions.size() / 8.0f);
-                if (ceil <= 8) {
-                    i3 = (ceil * AndroidUtilities.dp(36.0f)) + AndroidUtilities.dp(8.0f);
-                } else {
-                    i3 = (AndroidUtilities.dp(36.0f) * 8) - AndroidUtilities.dp(8.0f);
-                }
+            if (CustomEmojiReactionsWindow.this.type == 4) {
+                dp = AndroidUtilities.dp(36.0f) * 8;
+                dp2 = AndroidUtilities.dp(8.0f);
             } else {
-                i3 = measuredWidth;
+                if (CustomEmojiReactionsWindow.this.reactionsContainerLayout.showExpandableReactions()) {
+                    int ceil = (int) Math.ceil(CustomEmojiReactionsWindow.this.reactions.size() / 8.0f);
+                    if (ceil <= 8) {
+                        i3 = (ceil * AndroidUtilities.dp(36.0f)) + AndroidUtilities.dp(8.0f);
+                    } else {
+                        dp = AndroidUtilities.dp(36.0f) * 8;
+                        dp2 = AndroidUtilities.dp(8.0f);
+                    }
+                } else {
+                    i3 = measuredWidth;
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(i3, 1073741824));
             }
+            i3 = dp - dp2;
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(i3, 1073741824));
         }
 
@@ -910,27 +956,35 @@ public class CustomEmojiReactionsWindow {
             int y;
             View childAt;
             int i2;
+            int i3;
             float f2;
+            int i4;
             float f3;
             float f4;
             float f5;
             float f6;
             float f7;
-            int i3;
             boolean z2;
             float f8;
             float f9;
             float f10;
-            SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji;
+            float f11;
             ReactionsLayoutInBubble.VisibleReaction visibleReaction;
             CustomEmojiReactionsWindow customEmojiReactionsWindow = CustomEmojiReactionsWindow.this;
             if (customEmojiReactionsWindow.isShowing) {
-                float f11 = 1.0f;
+                float f12 = 1.0f;
                 float clamp = Utilities.clamp(customEmojiReactionsWindow.enterTransitionProgress, 1.0f, 0.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                CustomEmojiReactionsWindow customEmojiReactionsWindow2 = CustomEmojiReactionsWindow.this;
-                AndroidUtilities.lerp(customEmojiReactionsWindow2.fromRect, rectF, customEmojiReactionsWindow2.enterTransitionProgress, customEmojiReactionsWindow2.drawingRect);
+                int i5 = 4;
+                if (CustomEmojiReactionsWindow.this.type == 4) {
+                    CustomEmojiReactionsWindow customEmojiReactionsWindow2 = CustomEmojiReactionsWindow.this;
+                    customEmojiReactionsWindow2.fromRect.set(customEmojiReactionsWindow2.reactionsContainerLayout.rect);
+                    CustomEmojiReactionsWindow customEmojiReactionsWindow3 = CustomEmojiReactionsWindow.this;
+                    customEmojiReactionsWindow3.fromRect.offset(customEmojiReactionsWindow3.fromRectTranslateX, customEmojiReactionsWindow3.fromRectTranslateY);
+                }
+                CustomEmojiReactionsWindow customEmojiReactionsWindow4 = CustomEmojiReactionsWindow.this;
+                AndroidUtilities.lerp(customEmojiReactionsWindow4.fromRect, rectF, customEmojiReactionsWindow4.enterTransitionProgress, customEmojiReactionsWindow4.drawingRect);
                 float lerp = AndroidUtilities.lerp(CustomEmojiReactionsWindow.this.fromRadius, AndroidUtilities.dp(8.0f), CustomEmojiReactionsWindow.this.enterTransitionProgress);
                 this.transitionReactions.clear();
                 if (CustomEmojiReactionsWindow.this.type == 1 || (CustomEmojiReactionsWindow.this.reactionsContainerLayout.getDelegate() != null && CustomEmojiReactionsWindow.this.reactionsContainerLayout.getDelegate().drawBackground())) {
@@ -946,22 +1000,22 @@ public class CustomEmojiReactionsWindow {
                 }
                 if (CustomEmojiReactionsWindow.this.reactionsContainerLayout.hintView != null) {
                     canvas.save();
-                    CustomEmojiReactionsWindow customEmojiReactionsWindow3 = CustomEmojiReactionsWindow.this;
-                    RectF rectF3 = customEmojiReactionsWindow3.drawingRect;
-                    canvas.translate(rectF3.left, (rectF3.top + customEmojiReactionsWindow3.reactionsContainerLayout.hintView.getY()) - ((CustomEmojiReactionsWindow.this.type == 3 || CustomEmojiReactionsWindow.this.type == 4) ? CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.top : 0.0f));
+                    CustomEmojiReactionsWindow customEmojiReactionsWindow5 = CustomEmojiReactionsWindow.this;
+                    RectF rectF3 = customEmojiReactionsWindow5.drawingRect;
+                    canvas.translate(rectF3.left, (rectF3.top + customEmojiReactionsWindow5.reactionsContainerLayout.hintView.getY()) - ((CustomEmojiReactionsWindow.this.type == 3 || CustomEmojiReactionsWindow.this.type == 4) ? CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.top : 0.0f));
                     canvas.saveLayerAlpha(0.0f, 0.0f, CustomEmojiReactionsWindow.this.reactionsContainerLayout.hintView.getMeasuredWidth(), CustomEmojiReactionsWindow.this.reactionsContainerLayout.hintView.getMeasuredHeight(), (int) (CustomEmojiReactionsWindow.this.reactionsContainerLayout.hintView.getAlpha() * 255.0f * (1.0f - CustomEmojiReactionsWindow.this.enterTransitionProgress)), 31);
                     CustomEmojiReactionsWindow.this.reactionsContainerLayout.hintView.draw(canvas);
                     canvas.restore();
                     canvas.restore();
                 }
-                CustomEmojiReactionsWindow customEmojiReactionsWindow4 = CustomEmojiReactionsWindow.this;
-                RectF rectF4 = customEmojiReactionsWindow4.drawingRect;
-                float width = (rectF4.left - customEmojiReactionsWindow4.reactionsContainerLayout.rect.left) + (rectF4.width() - CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.width());
+                CustomEmojiReactionsWindow customEmojiReactionsWindow6 = CustomEmojiReactionsWindow.this;
+                RectF rectF4 = customEmojiReactionsWindow6.drawingRect;
+                float width = (rectF4.left - customEmojiReactionsWindow6.reactionsContainerLayout.rect.left) + (rectF4.width() - CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.width());
                 if (CustomEmojiReactionsWindow.this.enterTransitionProgress > 0.05f) {
                     canvas.save();
-                    CustomEmojiReactionsWindow customEmojiReactionsWindow5 = CustomEmojiReactionsWindow.this;
-                    RectF rectF5 = customEmojiReactionsWindow5.drawingRect;
-                    canvas.translate(width, (rectF5.top - customEmojiReactionsWindow5.reactionsContainerLayout.rect.top) + (rectF5.height() - CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.height()));
+                    CustomEmojiReactionsWindow customEmojiReactionsWindow7 = CustomEmojiReactionsWindow.this;
+                    RectF rectF5 = customEmojiReactionsWindow7.drawingRect;
+                    canvas.translate(width, (rectF5.top - customEmojiReactionsWindow7.reactionsContainerLayout.rect.top) + (rectF5.height() - CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.height()));
                     CustomEmojiReactionsWindow.this.reactionsContainerLayout.drawBubbles(canvas);
                     canvas.restore();
                 }
@@ -970,16 +1024,20 @@ public class CustomEmojiReactionsWindow {
                 this.enterTransitionScale = 1.0f;
                 this.enterTransitionScalePx = 0.0f;
                 this.enterTransitionScalePy = 0.0f;
-                if (CustomEmojiReactionsWindow.this.reactionsContainerLayout != null) {
-                    for (int i4 = 0; i4 < CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getChildCount(); i4++) {
-                        if ((CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getChildAt(i4) instanceof SelectAnimatedEmojiDialog.ImageViewEmoji) && (visibleReaction = (imageViewEmoji = (SelectAnimatedEmojiDialog.ImageViewEmoji) CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getChildAt(i4)).reaction) != null) {
-                            this.transitionReactions.put(visibleReaction, imageViewEmoji);
+                CustomEmojiReactionsWindow customEmojiReactionsWindow8 = CustomEmojiReactionsWindow.this;
+                if (customEmojiReactionsWindow8.reactionsContainerLayout != null) {
+                    for (int childCount = customEmojiReactionsWindow8.selectAnimatedEmojiDialog.emojiGridView.getChildCount() - 1; childCount >= 0; childCount--) {
+                        if (CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getChildAt(childCount) instanceof SelectAnimatedEmojiDialog.ImageViewEmoji) {
+                            SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji = (SelectAnimatedEmojiDialog.ImageViewEmoji) CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getChildAt(childCount);
+                            if (imageViewEmoji.isFirstReactions && (visibleReaction = imageViewEmoji.reaction) != null) {
+                                this.transitionReactions.put(visibleReaction, imageViewEmoji);
+                            }
                         }
                     }
                     int save = canvas.save();
-                    CustomEmojiReactionsWindow customEmojiReactionsWindow6 = CustomEmojiReactionsWindow.this;
-                    RectF rectF6 = customEmojiReactionsWindow6.drawingRect;
-                    canvas.translate(rectF6.left, rectF6.top + ((customEmojiReactionsWindow6.reactionsContainerLayout.getTopOffset() + CustomEmojiReactionsWindow.this.reactionsContainerLayout.expandSize()) * (1.0f - CustomEmojiReactionsWindow.this.enterTransitionProgress)));
+                    CustomEmojiReactionsWindow customEmojiReactionsWindow9 = CustomEmojiReactionsWindow.this;
+                    RectF rectF6 = customEmojiReactionsWindow9.drawingRect;
+                    canvas.translate(rectF6.left, rectF6.top + ((customEmojiReactionsWindow9.reactionsContainerLayout.getTopOffset() + CustomEmojiReactionsWindow.this.reactionsContainerLayout.expandSize()) * (1.0f - CustomEmojiReactionsWindow.this.enterTransitionProgress)));
                     float max = Math.max(1.0f - (CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiSearchGridView.getVisibility() == 0 ? CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiSearchGridView.getAlpha() : 0.0f), 1.0f - CustomEmojiReactionsWindow.this.enterTransitionProgress);
                     if (max != 1.0f) {
                         i = save;
@@ -989,17 +1047,18 @@ public class CustomEmojiReactionsWindow {
                     }
                     int x = (int) (CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.getX() + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getX());
                     canvas.clipRect((int) (CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.getY() + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getY()), CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiTabs.getParent() != null ? x + (AndroidUtilities.dp(36.0f) * CustomEmojiReactionsWindow.this.enterTransitionProgress) : 0.0f, y + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getMeasuredWidth(), x + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getMeasuredHeight());
-                    int i5 = -1;
                     int i6 = -1;
-                    while (i6 < CustomEmojiReactionsWindow.this.reactionsContainerLayout.recyclerListView.getChildCount()) {
-                        if (i6 == i5) {
+                    int i7 = -1;
+                    while (i7 < CustomEmojiReactionsWindow.this.reactionsContainerLayout.recyclerListView.getChildCount()) {
+                        if (i7 == i6) {
                             childAt = CustomEmojiReactionsWindow.this.reactionsContainerLayout.nextRecentReaction;
                         } else {
-                            childAt = CustomEmojiReactionsWindow.this.reactionsContainerLayout.recyclerListView.getChildAt(i6);
+                            childAt = CustomEmojiReactionsWindow.this.reactionsContainerLayout.recyclerListView.getChildAt(i7);
                         }
                         View view = childAt;
                         if (view.getLeft() < 0 || view.getVisibility() == 8) {
-                            i2 = i6;
+                            i2 = i7;
+                            i3 = i;
                             f2 = lerp;
                         } else {
                             canvas.save();
@@ -1009,93 +1068,105 @@ public class CustomEmojiReactionsWindow {
                                 if (imageViewEmoji2 != null) {
                                     float x2 = view.getX();
                                     float y2 = view.getY();
-                                    if (i6 == i5) {
+                                    if (i7 == i6) {
                                         x2 -= CustomEmojiReactionsWindow.this.reactionsContainerLayout.recyclerListView.getX();
                                         y2 -= CustomEmojiReactionsWindow.this.reactionsContainerLayout.recyclerListView.getY();
                                     }
-                                    float x3 = (((imageViewEmoji2.getX() + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.getX()) + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getX()) - reactionHolderView.loopImageView.getX()) - AndroidUtilities.dp(f11);
+                                    float x3 = (((imageViewEmoji2.getX() + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.getX()) + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getX()) - reactionHolderView.loopImageView.getX()) - AndroidUtilities.dp(f12);
                                     float y3 = (((imageViewEmoji2.getY() + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.getY()) + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.gridViewContainer.getY()) + CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.emojiGridView.getY()) - reactionHolderView.loopImageView.getY();
                                     float measuredWidth = imageViewEmoji2.getMeasuredWidth();
-                                    if (imageViewEmoji2.selected) {
-                                        float f12 = 0.86f * measuredWidth;
-                                        float f13 = (measuredWidth - f12) / 2.0f;
+                                    if (imageViewEmoji2.selected || CustomEmojiReactionsWindow.this.type == i5) {
+                                        if (CustomEmojiReactionsWindow.this.type == i5) {
+                                            f8 = 0.87f * measuredWidth;
+                                            x3 -= AndroidUtilities.dp(0.33f);
+                                            y3 -= AndroidUtilities.dp(1.33f);
+                                        } else {
+                                            f8 = measuredWidth;
+                                        }
+                                        if (imageViewEmoji2.selected) {
+                                            f8 *= 0.86f;
+                                        }
+                                        float f13 = (measuredWidth - f8) / 2.0f;
                                         x3 += f13;
                                         y3 += f13;
-                                        measuredWidth = f12;
+                                        measuredWidth = f8;
                                     }
                                     float lerp2 = AndroidUtilities.lerp(x2, x3, CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                     float lerp3 = AndroidUtilities.lerp(y2, y3, CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                     float measuredWidth2 = measuredWidth / reactionHolderView.loopImageView.getMeasuredWidth();
-                                    f7 = AndroidUtilities.lerp(f11, measuredWidth2, CustomEmojiReactionsWindow.this.enterTransitionProgress);
+                                    i4 = i7;
+                                    f3 = AndroidUtilities.lerp(1.0f, measuredWidth2, CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                     if (reactionHolderView.position == 0) {
                                         f6 = AndroidUtilities.dp(6.0f);
-                                        f8 = f6;
+                                        f10 = f6;
+                                        f9 = 0.0f;
                                     } else if (reactionHolderView.selected) {
                                         f6 = AndroidUtilities.dp(6.0f);
-                                        f8 = f6;
-                                        f9 = f8;
+                                        f9 = f6;
                                         f10 = f9;
+                                        f11 = f10;
                                         canvas.translate(lerp2, lerp3);
-                                        canvas.scale(f7, f7);
+                                        canvas.scale(f3, f3);
                                         if (this.enterTransitionOffsetX == 0.0f && this.enterTransitionOffsetY == 0.0f) {
-                                            CustomEmojiReactionsWindow customEmojiReactionsWindow7 = CustomEmojiReactionsWindow.this;
-                                            this.enterTransitionOffsetX = AndroidUtilities.lerp((customEmojiReactionsWindow7.fromRect.left + x2) - x3, 0.0f, customEmojiReactionsWindow7.enterTransitionProgress);
-                                            CustomEmojiReactionsWindow customEmojiReactionsWindow8 = CustomEmojiReactionsWindow.this;
-                                            this.enterTransitionOffsetY = AndroidUtilities.lerp((customEmojiReactionsWindow8.fromRect.top + y2) - y3, 0.0f, customEmojiReactionsWindow8.enterTransitionProgress);
+                                            CustomEmojiReactionsWindow customEmojiReactionsWindow10 = CustomEmojiReactionsWindow.this;
+                                            this.enterTransitionOffsetX = AndroidUtilities.lerp((customEmojiReactionsWindow10.fromRect.left + x2) - x3, 0.0f, customEmojiReactionsWindow10.enterTransitionProgress);
+                                            CustomEmojiReactionsWindow customEmojiReactionsWindow11 = CustomEmojiReactionsWindow.this;
+                                            this.enterTransitionOffsetY = AndroidUtilities.lerp((customEmojiReactionsWindow11.fromRect.top + y2) - y3, 0.0f, customEmojiReactionsWindow11.enterTransitionProgress);
                                             this.enterTransitionScale = AndroidUtilities.lerp(1.0f / measuredWidth2, 1.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                             this.enterTransitionScalePx = x3;
                                             this.enterTransitionScalePy = y3;
                                         }
-                                        f3 = f8;
                                         f4 = f9;
                                         f5 = f10;
+                                        f7 = f11;
                                     } else {
                                         f6 = 0.0f;
-                                        f8 = 0.0f;
+                                        f9 = 0.0f;
+                                        f10 = 0.0f;
                                     }
-                                    f9 = 0.0f;
-                                    f10 = 0.0f;
+                                    f11 = 0.0f;
                                     canvas.translate(lerp2, lerp3);
-                                    canvas.scale(f7, f7);
+                                    canvas.scale(f3, f3);
                                     if (this.enterTransitionOffsetX == 0.0f) {
-                                        CustomEmojiReactionsWindow customEmojiReactionsWindow72 = CustomEmojiReactionsWindow.this;
-                                        this.enterTransitionOffsetX = AndroidUtilities.lerp((customEmojiReactionsWindow72.fromRect.left + x2) - x3, 0.0f, customEmojiReactionsWindow72.enterTransitionProgress);
-                                        CustomEmojiReactionsWindow customEmojiReactionsWindow82 = CustomEmojiReactionsWindow.this;
-                                        this.enterTransitionOffsetY = AndroidUtilities.lerp((customEmojiReactionsWindow82.fromRect.top + y2) - y3, 0.0f, customEmojiReactionsWindow82.enterTransitionProgress);
+                                        CustomEmojiReactionsWindow customEmojiReactionsWindow102 = CustomEmojiReactionsWindow.this;
+                                        this.enterTransitionOffsetX = AndroidUtilities.lerp((customEmojiReactionsWindow102.fromRect.left + x2) - x3, 0.0f, customEmojiReactionsWindow102.enterTransitionProgress);
+                                        CustomEmojiReactionsWindow customEmojiReactionsWindow112 = CustomEmojiReactionsWindow.this;
+                                        this.enterTransitionOffsetY = AndroidUtilities.lerp((customEmojiReactionsWindow112.fromRect.top + y2) - y3, 0.0f, customEmojiReactionsWindow112.enterTransitionProgress);
                                         this.enterTransitionScale = AndroidUtilities.lerp(1.0f / measuredWidth2, 1.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                         this.enterTransitionScalePx = x3;
                                         this.enterTransitionScalePy = y3;
                                     }
-                                    f3 = f8;
                                     f4 = f9;
                                     f5 = f10;
+                                    f7 = f11;
                                 } else {
+                                    i4 = i7;
                                     canvas.translate(view.getX() + reactionHolderView.loopImageView.getX(), view.getY() + reactionHolderView.loopImageView.getY());
-                                    f3 = 0.0f;
+                                    f3 = 1.0f;
                                     f4 = 0.0f;
                                     f5 = 0.0f;
                                     f6 = 0.0f;
-                                    f7 = 1.0f;
+                                    f7 = 0.0f;
                                 }
                                 if (imageViewEmoji2 != null) {
                                     if (imageViewEmoji2.selected) {
                                         float measuredWidth3 = reactionHolderView.getMeasuredWidth() / 2.0f;
                                         float measuredHeight = reactionHolderView.getMeasuredHeight() / 2.0f;
                                         float measuredWidth4 = reactionHolderView.getMeasuredWidth() - AndroidUtilities.dp(2.0f);
-                                        float lerp4 = AndroidUtilities.lerp(measuredWidth4, (imageViewEmoji2.getMeasuredWidth() - AndroidUtilities.dp(2.0f)) / f7, CustomEmojiReactionsWindow.this.enterTransitionProgress);
+                                        float lerp4 = AndroidUtilities.lerp(measuredWidth4, (imageViewEmoji2.getMeasuredWidth() - AndroidUtilities.dp(2.0f)) / f3, CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                         RectF rectF7 = AndroidUtilities.rectTmp;
                                         float f14 = lerp4 / 2.0f;
-                                        i3 = i6;
                                         f2 = lerp;
+                                        i3 = i;
                                         rectF7.set(measuredWidth3 - f14, measuredHeight - f14, measuredWidth3 + f14, measuredHeight + f14);
                                         float lerp5 = AndroidUtilities.lerp(measuredWidth4 / 2.0f, AndroidUtilities.dp(4.0f), CustomEmojiReactionsWindow.this.enterTransitionProgress);
                                         canvas.drawRoundRect(rectF7, lerp5, lerp5, CustomEmojiReactionsWindow.this.selectAnimatedEmojiDialog.selectorPaint);
                                     } else {
-                                        i3 = i6;
+                                        i3 = i;
                                         f2 = lerp;
                                     }
                                     reactionHolderView.drawSelected = false;
-                                    if (f6 != 0.0f) {
+                                    if (f5 != 0.0f) {
                                         ImageReceiver imageReceiver = reactionHolderView.loopImageView.getImageReceiver();
                                         reactionHolderView.checkPlayLoopImage();
                                         AnimatedEmojiDrawable animatedEmojiDrawable = reactionHolderView.loopImageView.animatedEmojiDrawable;
@@ -1103,10 +1174,10 @@ public class CustomEmojiReactionsWindow {
                                             imageReceiver = reactionHolderView.loopImageView.animatedEmojiDrawable.getImageReceiver();
                                         }
                                         int[] roundRadius = imageReceiver.getRoundRadius();
-                                        for (int i7 = 0; i7 < 4; i7++) {
-                                            this.radiusTmp[i7] = roundRadius[i7];
+                                        for (int i8 = 0; i8 < 4; i8++) {
+                                            this.radiusTmp[i8] = roundRadius[i8];
                                         }
-                                        imageReceiver.setRoundRadius((int) AndroidUtilities.lerp(f3, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress), (int) AndroidUtilities.lerp(f4, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress), (int) AndroidUtilities.lerp(f5, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress), (int) AndroidUtilities.lerp(f6, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress));
+                                        imageReceiver.setRoundRadius((int) AndroidUtilities.lerp(f6, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress), (int) AndroidUtilities.lerp(f4, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress), (int) AndroidUtilities.lerp(f7, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress), (int) AndroidUtilities.lerp(f5, 0.0f, CustomEmojiReactionsWindow.this.enterTransitionProgress));
                                         reactionHolderView.draw(canvas);
                                         imageReceiver.setRoundRadius(this.radiusTmp);
                                         z2 = true;
@@ -1120,7 +1191,7 @@ public class CustomEmojiReactionsWindow {
                                         imageViewEmoji2.invalidate();
                                     }
                                 } else {
-                                    i3 = i6;
+                                    i3 = i;
                                     f2 = lerp;
                                     if (reactionHolderView.hasEnterAnimation && reactionHolderView.loopImageView.getImageReceiver().getLottieAnimation() == null) {
                                         float alpha = reactionHolderView.enterImageView.getImageReceiver().getAlpha();
@@ -1143,14 +1214,15 @@ public class CustomEmojiReactionsWindow {
                                 if (reactionHolderView.loopImageView.getVisibility() != 0) {
                                     invalidate();
                                 }
-                                i2 = i3;
+                                i2 = i4;
                             } else {
+                                i3 = i;
                                 f2 = lerp;
                                 float x4 = (view.getX() + CustomEmojiReactionsWindow.this.drawingRect.width()) - CustomEmojiReactionsWindow.this.reactionsContainerLayout.rect.width();
                                 float y4 = view.getY();
-                                CustomEmojiReactionsWindow customEmojiReactionsWindow9 = CustomEmojiReactionsWindow.this;
-                                canvas.translate(x4, (y4 + customEmojiReactionsWindow9.fromRect.top) - customEmojiReactionsWindow9.drawingRect.top);
-                                i2 = i6;
+                                CustomEmojiReactionsWindow customEmojiReactionsWindow12 = CustomEmojiReactionsWindow.this;
+                                canvas.translate(x4, (y4 + customEmojiReactionsWindow12.fromRect.top) - customEmojiReactionsWindow12.drawingRect.top);
+                                i2 = i7;
                                 canvas.saveLayerAlpha(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight(), (int) ((1.0f - clamp) * 255.0f), 31);
                                 float f15 = CustomEmojiReactionsWindow.this.enterTransitionProgress;
                                 canvas.scale(1.0f - f15, 1.0f - f15, view.getMeasuredWidth() >> 1, view.getMeasuredHeight() >> 1);
@@ -1159,14 +1231,17 @@ public class CustomEmojiReactionsWindow {
                             }
                             canvas.restore();
                         }
-                        i6 = i2 + 1;
+                        i7 = i2 + 1;
                         lerp = f2;
-                        i5 = -1;
-                        f11 = 1.0f;
+                        i = i3;
+                        i6 = -1;
+                        f12 = 1.0f;
+                        i5 = 4;
                     }
+                    int i9 = i;
                     f = lerp;
                     z = true;
-                    canvas.restoreToCount(i);
+                    canvas.restoreToCount(i9);
                 } else {
                     f = lerp;
                     z = true;

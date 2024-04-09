@@ -565,21 +565,24 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     StoryPrivacyBottomSheet.this.allowScreenshots = textCell.isChecked();
                     boolean z = StoryPrivacyBottomSheet.this.selectedType == 4;
                     if (StoryPrivacyBottomSheet.this.allowScreenshots) {
-                        BulletinFactory.of(((BottomSheet) StoryPrivacyBottomSheet.this).container, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.ic_save_to_gallery, LocaleController.getString(z ? R.string.StoryEnabledScreenshotsShare : R.string.StoryEnabledScreenshots), 4).setDuration(5000).show(true);
-                        return;
-                    } else {
-                        BulletinFactory.of(((BottomSheet) StoryPrivacyBottomSheet.this).container, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.getString(z ? R.string.StoryDisabledScreenshotsShare : R.string.StoryDisabledScreenshots), 4).setDuration(5000).show(true);
+                        StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+                        BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.ic_save_to_gallery, LocaleController.getString(z ? R.string.StoryEnabledScreenshotsShare : R.string.StoryEnabledScreenshots), 4).setDuration(5000).show(true);
                         return;
                     }
+                    StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
+                    BulletinFactory.of(storyPrivacyBottomSheet2.container, ((BottomSheet) storyPrivacyBottomSheet2).resourcesProvider).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.getString(z ? R.string.StoryDisabledScreenshotsShare : R.string.StoryDisabledScreenshots), 4).setDuration(5000).show(true);
+                    return;
                 }
                 StoryPrivacyBottomSheet.this.keepOnMyPage = textCell.isChecked();
-                StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                boolean z2 = storyPrivacyBottomSheet.selectedPeer instanceof TLRPC$TL_inputPeerChannel;
-                if (storyPrivacyBottomSheet.keepOnMyPage) {
-                    BulletinFactory.of(((BottomSheet) StoryPrivacyBottomSheet.this).container, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.msg_story_keep, LocaleController.getString(z2 ? R.string.StoryChannelEnableKeep : R.string.StoryEnableKeep), 4).setDuration(5000).show(true);
-                } else {
-                    BulletinFactory.of(((BottomSheet) StoryPrivacyBottomSheet.this).container, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(z2 ? R.string.StoryChannelDisableKeep : R.string.StoryDisableKeep), 4).setDuration(5000).show(true);
+                StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
+                boolean z2 = storyPrivacyBottomSheet3.selectedPeer instanceof TLRPC$TL_inputPeerChannel;
+                if (storyPrivacyBottomSheet3.keepOnMyPage) {
+                    StoryPrivacyBottomSheet storyPrivacyBottomSheet4 = StoryPrivacyBottomSheet.this;
+                    BulletinFactory.of(storyPrivacyBottomSheet4.container, ((BottomSheet) storyPrivacyBottomSheet4).resourcesProvider).createSimpleBulletin(R.raw.msg_story_keep, LocaleController.getString(z2 ? R.string.StoryChannelEnableKeep : R.string.StoryEnableKeep), 4).setDuration(5000).show(true);
+                    return;
                 }
+                StoryPrivacyBottomSheet storyPrivacyBottomSheet5 = StoryPrivacyBottomSheet.this;
+                BulletinFactory.of(storyPrivacyBottomSheet5.container, ((BottomSheet) storyPrivacyBottomSheet5).resourcesProvider).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(z2 ? R.string.StoryChannelDisableKeep : R.string.StoryDisableKeep), 4).setDuration(5000).show(true);
             }
         }
 
@@ -1023,7 +1026,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         public void lambda$onButton1Click$11() {
-            Bulletin.removeDelegate(((BottomSheet) StoryPrivacyBottomSheet.this).container);
+            Bulletin.removeDelegate(StoryPrivacyBottomSheet.this.container);
             StoryPrivacyBottomSheet.super.dismiss();
         }
 
@@ -1878,6 +1881,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override

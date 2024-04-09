@@ -33,6 +33,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -175,7 +176,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private ActionBarPopupWindow.ActionBarPopupWindowLayout popupLayout;
     private Rect popupRect;
     private ActionBarPopupWindow popupWindow;
-    private int[] pos;
+    private int[] pos2;
+    private float[] position;
     private DispatchQueue queue;
     private View renderInputView;
     private RenderView renderView;
@@ -320,7 +322,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.colorSwatch = new Swatch(-1, 1.0f, 0.016773745f);
         this.toolsPaint = new Paint(1);
         this.zoomOutVisible = false;
-        this.pos = new int[2];
+        new Matrix();
+        this.position = new float[2];
+        this.pos2 = new int[2];
         this.openKeyboardRunnable = new Runnable() {
             @Override
             public void run() {
@@ -988,6 +992,18 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (i == Theme.key_windowBackgroundGray) {
             return -15921907;
         }
+        if (i == Theme.key_fastScrollInactive) {
+            return -12500671;
+        }
+        if (i == Theme.key_fastScrollActive) {
+            return -13133079;
+        }
+        if (i == Theme.key_fastScrollText) {
+            return -1;
+        }
+        if (i == Theme.key_windowBackgroundWhite) {
+            return -15198183;
+        }
         if (resourcesProvider != null) {
             return resourcesProvider.getColor(i);
         }
@@ -1376,8 +1392,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
+        EntitiesContainerView entitiesContainerView;
+        FrameLayout frameLayout;
         int i = 0;
-        if ((view == this.renderView || view == this.renderInputView || view == this.entitiesView || view == this.selectionContainerView) && this.currentCropState != null) {
+        if ((view == this.renderView || view == this.renderInputView || ((view == (entitiesContainerView = this.entitiesView) && entitiesContainerView.getClipChildren()) || (view == (frameLayout = this.selectionContainerView) && frameLayout.getClipChildren()))) && this.currentCropState != null) {
             canvas.save();
             if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
                 i = AndroidUtilities.statusBarHeight;
@@ -3357,26 +3375,52 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     private int[] getCenterLocationInWindow(View view) {
-        view.getLocationInWindow(this.pos);
-        float rotation = view.getRotation();
-        MediaController.CropState cropState = this.currentCropState;
-        float f = cropState != null ? cropState.cropRotate + cropState.transformRotation : 0.0f;
-        double width = view.getWidth() * view.getScaleX() * this.entitiesView.getScaleX();
-        double radians = (float) Math.toRadians(rotation + f);
+        this.position[0] = view.getWidth() / 2.0f;
+        this.position[1] = view.getHeight() / 2.0f;
+        view.getMatrix().mapPoints(this.position);
+        float[] fArr = this.position;
+        fArr[0] = fArr[0] + view.getLeft();
+        float[] fArr2 = this.position;
+        fArr2[1] = fArr2[1] + view.getTop();
+        ViewParent parent = view.getParent();
+        while (parent instanceof View) {
+            View view2 = (View) parent;
+            float[] fArr3 = this.position;
+            fArr3[0] = fArr3[0] - view2.getScrollX();
+            float[] fArr4 = this.position;
+            fArr4[1] = fArr4[1] - view2.getScrollY();
+            view2.getMatrix().mapPoints(this.position);
+            float[] fArr5 = this.position;
+            fArr5[0] = fArr5[0] + view2.getLeft();
+            float[] fArr6 = this.position;
+            fArr6[1] = fArr6[1] + view2.getTop();
+            parent = view2.getParent();
+        }
+        this.pos2[0] = Math.round(this.position[0]);
+        this.pos2[1] = Math.round(this.position[1]);
+        int[] iArr = this.pos2;
+        android.graphics.Point point = AndroidUtilities.displaySize;
+        int[] iArr2 = this.pos2;
+        double d = iArr[0] - (point.x / 2.0f);
+        double radians = (float) Math.toRadians(-this.entitiesView.getRotation());
         double cos = Math.cos(radians);
-        Double.isNaN(width);
-        double height = view.getHeight() * view.getScaleY() * this.entitiesView.getScaleY();
+        Double.isNaN(d);
+        double d2 = iArr[1] - (point.y / 2.0f);
         double sin = Math.sin(radians);
-        Double.isNaN(height);
-        float f2 = (float) ((cos * width) - (sin * height));
+        Double.isNaN(d2);
+        iArr2[0] = ((int) ((cos * d) - (sin * d2))) + (AndroidUtilities.displaySize.x / 2);
+        int[] iArr3 = this.pos2;
         double sin2 = Math.sin(radians);
-        Double.isNaN(width);
+        Double.isNaN(d);
         double cos2 = Math.cos(radians);
-        Double.isNaN(height);
-        int[] iArr = this.pos;
-        iArr[0] = (int) (iArr[0] + (f2 / 2.0f));
-        iArr[1] = (int) (iArr[1] + (((float) ((width * sin2) + (height * cos2))) / 2.0f));
-        return iArr;
+        Double.isNaN(d2);
+        iArr3[1] = ((int) ((d * sin2) + (d2 * cos2))) + (AndroidUtilities.displaySize.y / 2);
+        return this.pos2;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
@@ -3384,7 +3428,6 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         return !this.editingText;
     }
 
-    @Override
     public float getCropRotation() {
         MediaController.CropState cropState = this.currentCropState;
         if (cropState != null) {
@@ -3732,8 +3775,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
 
         @Override
-        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet) {
-            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet);
+        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
+            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet, z);
         }
 
         @Override

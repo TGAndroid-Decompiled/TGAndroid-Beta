@@ -54,10 +54,15 @@ public class StealthModeAlert extends BottomSheet {
             @Override
             protected void onAttachedToWindow() {
                 super.onAttachedToWindow();
-                Bulletin.addDelegate(((BottomSheet) StealthModeAlert.this).container, new Bulletin.Delegate() {
+                Bulletin.addDelegate(StealthModeAlert.this.container, new Bulletin.Delegate() {
                     @Override
                     public boolean allowLayoutChanges() {
                         return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                    }
+
+                    @Override
+                    public boolean bottomOffsetAnimated() {
+                        return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
                     }
 
                     @Override
@@ -95,7 +100,7 @@ public class StealthModeAlert extends BottomSheet {
             @Override
             protected void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
-                Bulletin.removeDelegate(((BottomSheet) StealthModeAlert.this).container);
+                Bulletin.removeDelegate(StealthModeAlert.this.container);
             }
         };
         ImageView imageView = new ImageView(getContext());

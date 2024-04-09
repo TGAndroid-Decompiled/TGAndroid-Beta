@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -37,6 +37,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
@@ -70,15 +71,15 @@ public final class BulletinFactory {
         if (lastFragment == null) {
             return of(Bulletin.BulletinWindow.make(ApplicationLoader.applicationContext), null);
         }
+        Dialog dialog = lastFragment.visibleDialog;
+        if (dialog instanceof BottomSheet) {
+            return of(((BottomSheet) dialog).container, lastFragment.getResourceProvider());
+        }
         return of(lastFragment);
     }
 
     public void showForError(TLRPC$TL_error tLRPC$TL_error) {
-        if (BuildVars.DEBUG_VERSION) {
-            createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text).show();
-            return;
-        }
-        createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+        createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
     }
 
     public static void showError(TLRPC$TL_error tLRPC$TL_error) {

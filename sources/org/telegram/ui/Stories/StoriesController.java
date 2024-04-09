@@ -115,6 +115,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_stories_togglePinned;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemSkipped;
+import org.telegram.tgnet.tl.TL_stories$TL_togglePinnedToTop;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -1334,6 +1335,9 @@ public class StoriesController {
     }
 
     public void deleteStories(long j, ArrayList<TL_stories$StoryItem> arrayList) {
+        TLRPC$ChatFull chatFull;
+        TL_stories$PeerStories tL_stories$PeerStories;
+        TLRPC$UserFull userFull;
         if (arrayList == null) {
             return;
         }
@@ -1343,18 +1347,18 @@ public class StoriesController {
         if (inputPeer == null) {
             return;
         }
-        TL_stories$PeerStories tL_stories$PeerStories = this.allStoriesMap.get(j);
+        TL_stories$PeerStories tL_stories$PeerStories2 = this.allStoriesMap.get(j);
         for (int i = 0; i < arrayList.size(); i++) {
             TL_stories$StoryItem tL_stories$StoryItem = arrayList.get(i);
             if (!(tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted)) {
-                if (tL_stories$PeerStories != null) {
+                if (tL_stories$PeerStories2 != null) {
                     int i2 = 0;
                     while (true) {
-                        if (i2 >= tL_stories$PeerStories.stories.size()) {
+                        if (i2 >= tL_stories$PeerStories2.stories.size()) {
                             break;
-                        } else if (tL_stories$PeerStories.stories.get(i2).id == tL_stories$StoryItem.id) {
-                            tL_stories$PeerStories.stories.remove(i2);
-                            if (tL_stories$PeerStories.stories.isEmpty()) {
+                        } else if (tL_stories$PeerStories2.stories.get(i2).id == tL_stories$StoryItem.id) {
+                            tL_stories$PeerStories2.stories.remove(i2);
+                            if (tL_stories$PeerStories2.stories.isEmpty()) {
                                 this.allStoriesMap.remove(j);
                             }
                         } else {
@@ -1363,6 +1367,25 @@ public class StoriesController {
                     }
                 }
                 tL_stories$TL_stories_deleteStories.id.add(Integer.valueOf(tL_stories$StoryItem.id));
+            }
+        }
+        if (j < 0 ? !((chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-j)) == null || (tL_stories$PeerStories = chatFull.stories) == null) : !((userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j)) == null || (tL_stories$PeerStories = userFull.stories) == null)) {
+            tL_stories$PeerStories2 = tL_stories$PeerStories;
+        }
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            TL_stories$StoryItem tL_stories$StoryItem2 = arrayList.get(i3);
+            if (!(tL_stories$StoryItem2 instanceof TL_stories$TL_storyItemDeleted) && tL_stories$PeerStories2 != null) {
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= tL_stories$PeerStories2.stories.size()) {
+                        break;
+                    } else if (tL_stories$PeerStories2.stories.get(i4).id == tL_stories$StoryItem2.id) {
+                        tL_stories$PeerStories2.stories.remove(i4);
+                        break;
+                    } else {
+                        i4++;
+                    }
+                }
             }
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_deleteStories, new RequestDelegate() {
@@ -2542,6 +2565,7 @@ public class StoriesController {
         public final ArrayList<MessageObject> messageObjects;
         private final HashMap<Integer, MessageObject> messageObjectsMap;
         private final Runnable notify;
+        public final ArrayList<Integer> pinnedIds;
         private boolean preloading;
         private boolean saving;
         public final HashSet<Integer> seenStories;
@@ -2553,6 +2577,12 @@ public class StoriesController {
         public final int type;
 
         public static void lambda$markAsRead$9(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        }
+
+        public static void lambda$updatePinned$14() {
+        }
+
+        public static void lambda$updatePinnedOrder$16() {
         }
 
         StoriesList(int i, long j, int i2, Utilities.Callback callback, AnonymousClass1 anonymousClass1) {
@@ -2607,25 +2637,38 @@ public class StoriesController {
 
         private void fill(ArrayList<MessageObject> arrayList, boolean z, boolean z2) {
             this.tempArr.clear();
+            if (this.type == 0) {
+                Iterator<Integer> it = this.pinnedIds.iterator();
+                while (it.hasNext()) {
+                    MessageObject messageObject = this.messageObjectsMap.get(Integer.valueOf(it.next().intValue()));
+                    if (filter(messageObject, z, z2)) {
+                        this.tempArr.add(messageObject);
+                    }
+                }
+            }
             int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
             for (Integer num : this.loadedObjects) {
                 int intValue = num.intValue();
-                MessageObject messageObject = this.messageObjectsMap.get(Integer.valueOf(intValue));
-                if (filter(messageObject, z, z2)) {
-                    this.tempArr.add(messageObject);
-                }
-                if (intValue < i) {
-                    i = intValue;
+                MessageObject messageObject2 = this.messageObjectsMap.get(Integer.valueOf(intValue));
+                if (this.type != 0 || !this.pinnedIds.contains(Integer.valueOf(intValue))) {
+                    if (filter(messageObject2, z, z2)) {
+                        this.tempArr.add(messageObject2);
+                    }
+                    if (intValue < i) {
+                        i = intValue;
+                    }
                 }
             }
             if (!this.done) {
-                Iterator<Integer> it = this.cachedObjects.iterator();
-                while (it.hasNext() && (this.totalCount == -1 || this.tempArr.size() < this.totalCount)) {
-                    int intValue2 = it.next().intValue();
-                    if (i == Integer.MAX_VALUE || intValue2 < i) {
-                        MessageObject messageObject2 = this.messageObjectsMap.get(Integer.valueOf(intValue2));
-                        if (filter(messageObject2, z, z2)) {
-                            this.tempArr.add(messageObject2);
+                Iterator<Integer> it2 = this.cachedObjects.iterator();
+                while (it2.hasNext() && (this.totalCount == -1 || this.tempArr.size() < this.totalCount)) {
+                    int intValue2 = it2.next().intValue();
+                    if (this.type != 0 || !this.pinnedIds.contains(Integer.valueOf(intValue2))) {
+                        if (i == Integer.MAX_VALUE || intValue2 < i) {
+                            MessageObject messageObject3 = this.messageObjectsMap.get(Integer.valueOf(intValue2));
+                            if (filter(messageObject3, z, z2)) {
+                                this.tempArr.add(messageObject3);
+                            }
                         }
                     }
                 }
@@ -2641,6 +2684,7 @@ public class StoriesController {
         private StoriesList(int i, long j, int i2, final Utilities.Callback<StoriesList> callback) {
             this.maxLinkId = 0;
             this.links = new ArrayList<>();
+            this.pinnedIds = new ArrayList<>();
             this.groupedByDay = new HashMap<>();
             this.messageObjects = new ArrayList<>();
             this.messageObjectsMap = new HashMap<>();
@@ -2687,15 +2731,17 @@ public class StoriesController {
             });
         }
 
-        public void lambda$preloadCache$3(org.telegram.messenger.MessagesStorage r19) {
+        public void lambda$preloadCache$3(org.telegram.messenger.MessagesStorage r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$preloadCache$3(org.telegram.messenger.MessagesStorage):void");
         }
 
-        public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, HashSet hashSet) {
+        public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, HashSet hashSet) {
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} preloadCache {" + StoriesController.storyItemMessageIds(arrayList) + "}");
+            this.pinnedIds.clear();
+            this.pinnedIds.addAll(arrayList2);
             this.preloading = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(arrayList2, true);
-            MessagesController.getInstance(this.currentAccount).putChats(arrayList3, true);
+            MessagesController.getInstance(this.currentAccount).putUsers(arrayList3, true);
+            MessagesController.getInstance(this.currentAccount).putChats(arrayList4, true);
             if (this.invalidateAfterPreload) {
                 this.invalidateAfterPreload = false;
                 this.toLoad = null;
@@ -2740,6 +2786,7 @@ public class StoriesController {
                 this.cachedObjects.remove(Integer.valueOf(i));
             }
             this.loadedObjects.remove(Integer.valueOf(i));
+            this.pinnedIds.remove(Integer.valueOf(i));
             if (remove != null) {
                 long day = day(remove);
                 TreeSet<Integer> treeSet = this.groupedByDay.get(Long.valueOf(day));
@@ -2777,11 +2824,23 @@ public class StoriesController {
                 }
             });
             ArrayList<ArrayList<Integer>> arrayList2 = new ArrayList<>();
+            if (this.type == 0 && !this.pinnedIds.isEmpty()) {
+                arrayList2.add(new ArrayList<>(this.pinnedIds));
+            }
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
                 TreeSet<Integer> treeSet = this.groupedByDay.get((Long) it.next());
                 if (treeSet != null) {
-                    arrayList2.add(new ArrayList<>(treeSet));
+                    ArrayList<Integer> arrayList3 = new ArrayList<>(treeSet);
+                    if (this.type == 0 && !this.pinnedIds.isEmpty()) {
+                        Iterator<Integer> it2 = this.pinnedIds.iterator();
+                        while (it2.hasNext()) {
+                            arrayList3.remove(Integer.valueOf(it2.next().intValue()));
+                        }
+                    }
+                    if (!arrayList3.isEmpty()) {
+                        arrayList2.add(arrayList3);
+                    }
                 }
             }
             return arrayList2;
@@ -2831,18 +2890,19 @@ public class StoriesController {
             }
             this.saving = true;
             final ArrayList<MessageObject> arrayList = new ArrayList<>();
+            final ArrayList arrayList2 = new ArrayList(this.pinnedIds);
             fill(arrayList, true, true);
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesList.this.lambda$saveCache$8(arrayList, messagesStorage);
+                    StoriesController.StoriesList.this.lambda$saveCache$8(arrayList, messagesStorage, arrayList2);
                 }
             });
         }
 
-        public void lambda$saveCache$8(java.util.ArrayList r10, org.telegram.messenger.MessagesStorage r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$saveCache$8(java.util.ArrayList, org.telegram.messenger.MessagesStorage):void");
+        public void lambda$saveCache$8(java.util.ArrayList r11, org.telegram.messenger.MessagesStorage r12, java.util.ArrayList r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.StoriesList.lambda$saveCache$8(java.util.ArrayList, org.telegram.messenger.MessagesStorage, java.util.ArrayList):void");
         }
 
         public void lambda$saveCache$7() {
@@ -2964,7 +3024,7 @@ public class StoriesController {
                 final ArrayList arrayList = new ArrayList();
                 final TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
                 for (int i2 = 0; i2 < tL_stories$TL_stories_stories.stories.size(); i2++) {
-                    arrayList.add(toMessageObject(tL_stories$TL_stories_stories.stories.get(i2)));
+                    arrayList.add(toMessageObject(tL_stories$TL_stories_stories.stories.get(i2), tL_stories$TL_stories_stories));
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -2984,6 +3044,8 @@ public class StoriesController {
 
         public void lambda$load$11(ArrayList arrayList, TL_stories$TL_stories_stories tL_stories$TL_stories_stories, int i) {
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} loaded {" + StoriesController.storyItemMessageIds(arrayList) + "}");
+            this.pinnedIds.clear();
+            this.pinnedIds.addAll(tL_stories$TL_stories_stories.pinned_to_top);
             MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_stories_stories.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tL_stories$TL_stories_stories.chats, false);
             MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_stories$TL_stories_stories.users, tL_stories$TL_stories_stories.chats, true, true);
@@ -3110,7 +3172,7 @@ public class StoriesController {
                             }
                         } else {
                             FileLog.d("StoriesList put story " + tL_stories$StoryItem.id);
-                            pushObject(toMessageObject(tL_stories$StoryItem), false);
+                            pushObject(toMessageObject(tL_stories$StoryItem, null), false);
                             int i3 = this.totalCount;
                             if (i3 != -1) {
                                 this.totalCount = i3 + 1;
@@ -3118,7 +3180,7 @@ public class StoriesController {
                         }
                     } else if (z2 && z3 && ((messageObject = this.messageObjectsMap.get(Integer.valueOf(tL_stories$StoryItem.id))) == null || !equal(messageObject.storyItem, tL_stories$StoryItem))) {
                         FileLog.d("StoriesList update story " + tL_stories$StoryItem.id);
-                        this.messageObjectsMap.put(Integer.valueOf(tL_stories$StoryItem.id), toMessageObject(tL_stories$StoryItem));
+                        this.messageObjectsMap.put(Integer.valueOf(tL_stories$StoryItem.id), toMessageObject(tL_stories$StoryItem, null));
                     }
                     z = true;
                 }
@@ -3146,7 +3208,7 @@ public class StoriesController {
             return true;
         }
 
-        private MessageObject toMessageObject(TL_stories$StoryItem tL_stories$StoryItem) {
+        private MessageObject toMessageObject(TL_stories$StoryItem tL_stories$StoryItem, TL_stories$TL_stories_stories tL_stories$TL_stories_stories) {
             tL_stories$StoryItem.dialogId = this.dialogId;
             tL_stories$StoryItem.messageId = tL_stories$StoryItem.id;
             MessageObject messageObject = new MessageObject(this.currentAccount, tL_stories$StoryItem);
@@ -3174,6 +3236,109 @@ public class StoriesController {
                 return Math.max(this.messageObjects.size(), this.totalCount);
             }
             return this.messageObjects.size();
+        }
+
+        public boolean isPinned(int i) {
+            if (this.type != 0) {
+                return false;
+            }
+            return this.pinnedIds.contains(Integer.valueOf(i));
+        }
+
+        public boolean updatePinned(ArrayList<Integer> arrayList, boolean z) {
+            int i;
+            ArrayList arrayList2 = new ArrayList(this.pinnedIds);
+            int size = arrayList.size() - 1;
+            while (true) {
+                i = 0;
+                if (size < 0) {
+                    break;
+                }
+                int intValue = arrayList.get(size).intValue();
+                if (z && !arrayList2.contains(Integer.valueOf(intValue))) {
+                    arrayList2.add(0, Integer.valueOf(intValue));
+                } else if (!z && arrayList2.contains(Integer.valueOf(intValue))) {
+                    arrayList2.remove(Integer.valueOf(intValue));
+                }
+                size--;
+            }
+            int i2 = MessagesController.getInstance(this.currentAccount).storiesPinnedToTopCountMax;
+            boolean z2 = arrayList2.size() > i2;
+            if (z2) {
+                arrayList2.subList(i2, arrayList2.size()).clear();
+            }
+            boolean z3 = this.pinnedIds.size() != arrayList2.size();
+            if (!z3) {
+                while (true) {
+                    if (i >= this.pinnedIds.size()) {
+                        break;
+                    } else if (this.pinnedIds.get(i) != arrayList2.get(i)) {
+                        z3 = true;
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+            }
+            if (z3) {
+                this.pinnedIds.clear();
+                this.pinnedIds.addAll(arrayList2);
+                fill(true);
+                TL_stories$TL_togglePinnedToTop tL_stories$TL_togglePinnedToTop = new TL_stories$TL_togglePinnedToTop();
+                tL_stories$TL_togglePinnedToTop.id.addAll(this.pinnedIds);
+                tL_stories$TL_togglePinnedToTop.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_togglePinnedToTop, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        StoriesController.StoriesList.lambda$updatePinned$15(tLObject, tLRPC$TL_error);
+                    }
+                });
+            }
+            return z2;
+        }
+
+        public static void lambda$updatePinned$15(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoriesController.StoriesList.lambda$updatePinned$14();
+                }
+            });
+        }
+
+        public void updatePinnedOrder(ArrayList<Integer> arrayList, boolean z) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            int i = MessagesController.getInstance(this.currentAccount).storiesPinnedToTopCountMax;
+            if (arrayList2.size() > i) {
+                arrayList2.subList(i, arrayList2.size()).clear();
+            }
+            if (!(this.pinnedIds.size() != arrayList2.size())) {
+                for (int i2 = 0; i2 < this.pinnedIds.size() && this.pinnedIds.get(i2) == arrayList2.get(i2); i2++) {
+                }
+            }
+            this.pinnedIds.clear();
+            this.pinnedIds.addAll(arrayList2);
+            fill(false);
+            if (z) {
+                TL_stories$TL_togglePinnedToTop tL_stories$TL_togglePinnedToTop = new TL_stories$TL_togglePinnedToTop();
+                tL_stories$TL_togglePinnedToTop.id.addAll(this.pinnedIds);
+                tL_stories$TL_togglePinnedToTop.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_togglePinnedToTop, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        StoriesController.StoriesList.lambda$updatePinnedOrder$17(tLObject, tLRPC$TL_error);
+                    }
+                });
+            }
+        }
+
+        public static void lambda$updatePinnedOrder$17(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoriesController.StoriesList.lambda$updatePinnedOrder$16();
+                }
+            });
         }
     }
 

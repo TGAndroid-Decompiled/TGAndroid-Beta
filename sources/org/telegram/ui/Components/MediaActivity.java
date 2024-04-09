@@ -127,6 +127,11 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().removeObserver(this, NotificationCenter.storiesEnabledUpdate);
+        Runnable runnable = this.applyBulletin;
+        if (runnable != null) {
+            this.applyBulletin = null;
+            AndroidUtilities.runOnUIThread(runnable);
+        }
     }
 
     @Override
@@ -301,7 +306,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             i = 0;
         }
         this.sharedMediaLayout.closeActionMode(false);
-        this.sharedMediaLayout.disableScroll(false);
         if (z) {
             this.sharedMediaLayout.scrollToPage(8);
         }

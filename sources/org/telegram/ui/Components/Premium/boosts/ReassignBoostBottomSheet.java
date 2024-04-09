@@ -124,6 +124,11 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
             public boolean clipWithGradient(int i3) {
                 return Bulletin.Delegate.CC.$default$clipWithGradient(this, i3);
             }

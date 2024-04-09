@@ -39,6 +39,7 @@ public abstract class TLRPC$UserFull extends TLObject {
     public TLRPC$Photo profile_photo;
     public boolean read_dates_private;
     public TLRPC$PeerSettings settings;
+    public boolean sponsored_enabled;
     public TL_stories$PeerStories stories;
     public boolean stories_pinned_available;
     public String theme_emoticon;

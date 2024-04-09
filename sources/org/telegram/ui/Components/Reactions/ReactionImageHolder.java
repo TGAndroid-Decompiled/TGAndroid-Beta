@@ -15,6 +15,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 public class ReactionImageHolder {
     public AnimatedEmojiDrawable animatedEmojiDrawable;
@@ -89,6 +90,21 @@ public class ReactionImageHolder {
         imageReceiver.setImageCoords(rect.left, rect.top, rect.width(), this.bounds.height());
         this.imageReceiver.setAlpha(this.alpha);
         this.imageReceiver.draw(canvas);
+    }
+
+    public boolean isLoaded() {
+        ImageReceiver imageReceiver;
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+        if (animatedEmojiDrawable != null) {
+            imageReceiver = animatedEmojiDrawable.getImageReceiver();
+        } else {
+            imageReceiver = this.imageReceiver;
+        }
+        if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
+            RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+            return lottieAnimation == null || !lottieAnimation.isGeneratingCache();
+        }
+        return false;
     }
 
     public void setBounds(Rect rect) {

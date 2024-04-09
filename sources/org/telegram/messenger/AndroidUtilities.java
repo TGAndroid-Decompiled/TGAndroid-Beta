@@ -261,6 +261,7 @@ public class AndroidUtilities {
     private static int altFocusableClassGuid = 0;
     public static final RectF rectTmp = new RectF();
     public static final Rect rectTmp2 = new Rect();
+    public static final int[] pointTmp2 = new int[2];
     private static Pattern singleTagPatter = null;
 
     public interface IntColorCallback {

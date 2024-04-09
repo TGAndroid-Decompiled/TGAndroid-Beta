@@ -1592,7 +1592,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                     PaintView.this.showReactionsLayout(false);
                 }
             });
-            this.reactionLayout.setMessage(null, null);
+            this.reactionLayout.setMessage(null, null, true);
         }
         this.reactionLayout.setFragment(LaunchActivity.getLastFragment());
         this.reactionForEntity = reactionWidgetEntityView;
@@ -4157,7 +4157,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return !this.editingText;
     }
 
-    @Override
     public float getCropRotation() {
         MediaController.CropState cropState = this.currentCropState;
         if (cropState != null) {
@@ -4507,8 +4506,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
 
         @Override
-        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet) {
-            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet);
+        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
+            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet, z);
         }
 
         @Override

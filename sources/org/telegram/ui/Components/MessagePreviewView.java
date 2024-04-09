@@ -1215,8 +1215,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressSponsoredClose() {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                    public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell2);
                     }
 
                     @Override
@@ -1588,8 +1588,8 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didPressSponsoredClose() {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                        public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell2);
                         }
 
                         @Override

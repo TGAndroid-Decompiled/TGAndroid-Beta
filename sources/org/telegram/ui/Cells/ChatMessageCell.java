@@ -100,9 +100,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.video.VideoPlayerRewinder;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotApp;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$ChatPhoto;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
@@ -122,7 +120,6 @@ import org.telegram.tgnet.TLRPC$Poll;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
-import org.telegram.tgnet.TLRPC$TL_chatInvite;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonBuy;
@@ -141,12 +138,12 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaGiveawayResults;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$TL_peerChannel;
+import org.telegram.tgnet.TLRPC$TL_peerColor;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$TL_pollAnswer;
 import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
-import org.telegram.tgnet.TLRPC$TL_sponsoredWebPage;
 import org.telegram.tgnet.TLRPC$TL_user;
 import org.telegram.tgnet.TLRPC$TL_webPage;
 import org.telegram.tgnet.TLRPC$User;
@@ -191,6 +188,7 @@ import org.telegram.ui.Components.SeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.SeekBarWaveform;
 import org.telegram.ui.Components.SlotsDrawable;
 import org.telegram.ui.Components.StaticLayoutEx;
+import org.telegram.ui.Components.StickerSetLinkIcon;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.TimerParticles;
 import org.telegram.ui.Components.TranscribeButton;
@@ -745,6 +743,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean statusDrawableAnimationInProgress;
     private ValueAnimator statusDrawableAnimator;
     private float statusDrawableProgress;
+    private StickerSetLinkIcon stickerSetIcons;
     private int substractBackgroundHeight;
     public int textX;
     public int textY;
@@ -890,8 +889,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public void setAvatar(MessageObject messageObject) {
-        TLRPC$Photo tLRPC$Photo;
-        TLRPC$Chat tLRPC$Chat;
         if (messageObject == null) {
             return;
         }
@@ -913,40 +910,23 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 this.avatarImage.setForUserOrChat(this.currentUser, this.avatarDrawable, null, LiteMode.isEnabled(LiteMode.FLAGS_CHAT), 1, false);
                 return;
             }
-            TLRPC$Chat tLRPC$Chat2 = this.currentChat;
-            if (tLRPC$Chat2 != null) {
-                TLRPC$ChatPhoto tLRPC$ChatPhoto = tLRPC$Chat2.photo;
+            TLRPC$Chat tLRPC$Chat = this.currentChat;
+            if (tLRPC$Chat != null) {
+                TLRPC$ChatPhoto tLRPC$ChatPhoto = tLRPC$Chat.photo;
                 if (tLRPC$ChatPhoto != null) {
                     this.currentPhoto = tLRPC$ChatPhoto.photo_small;
                 } else {
                     this.currentPhoto = null;
                 }
-                this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat2);
+                this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
                 this.avatarImage.setForUserOrChat(this.currentChat, this.avatarDrawable);
                 return;
             } else if (messageObject.isSponsored()) {
-                TLRPC$TL_sponsoredWebPage tLRPC$TL_sponsoredWebPage = messageObject.sponsoredWebPage;
-                if (tLRPC$TL_sponsoredWebPage != null) {
-                    this.avatarDrawable.setInfo(messageObject.sponsoredId[0], tLRPC$TL_sponsoredWebPage.site_name, null, null);
-                    TLRPC$Photo tLRPC$Photo2 = messageObject.sponsoredWebPage.photo;
-                    if (tLRPC$Photo2 != null) {
-                        this.avatarImage.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo2.sizes, AndroidUtilities.dp(50.0f), false, null, true), tLRPC$Photo2), "50_50", this.avatarDrawable, null, null, 0);
-                        return;
-                    }
+                TLRPC$Photo tLRPC$Photo = messageObject.sponsoredPhoto;
+                if (tLRPC$Photo != null) {
+                    this.avatarImage.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.dp(50.0f), false, null, true), messageObject.sponsoredPhoto), "50_50", this.avatarDrawable, null, null, 0);
                     return;
                 }
-                TLRPC$ChatInvite tLRPC$ChatInvite = messageObject.sponsoredChatInvite;
-                if (tLRPC$ChatInvite != null && (tLRPC$Chat = tLRPC$ChatInvite.chat) != null) {
-                    this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
-                    this.avatarImage.setForUserOrChat(messageObject.sponsoredChatInvite.chat, this.avatarDrawable);
-                    return;
-                }
-                this.avatarDrawable.setInfo(this.currentAccount, tLRPC$ChatInvite);
-                TLRPC$ChatInvite tLRPC$ChatInvite2 = messageObject.sponsoredChatInvite;
-                if (tLRPC$ChatInvite2 == null || (tLRPC$Photo = tLRPC$ChatInvite2.photo) == null) {
-                    return;
-                }
-                this.avatarImage.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.dp(50.0f), false, null, true), tLRPC$Photo), "50_50", this.avatarDrawable, null, null, 0);
                 return;
             } else {
                 this.currentPhoto = null;
@@ -1164,7 +1144,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
         void didPressSideButton(ChatMessageCell chatMessageCell);
 
-        void didPressSponsoredClose();
+        void didPressSponsoredClose(ChatMessageCell chatMessageCell);
 
         void didPressSponsoredInfo(ChatMessageCell chatMessageCell, float f, float f2);
 
@@ -1321,7 +1301,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             public static void $default$didPressSideButton(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell) {
             }
 
-            public static void $default$didPressSponsoredClose(ChatMessageCellDelegate chatMessageCellDelegate) {
+            public static void $default$didPressSponsoredClose(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell) {
             }
 
             public static void $default$didPressSponsoredInfo(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, float f, float f2) {
@@ -2502,7 +2482,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (motionEvent.getAction() == 1) {
             ButtonBounce buttonBounce2 = this.closeSponsoredBounce;
             if (buttonBounce2 != null && buttonBounce2.isPressed() && (chatMessageCellDelegate = this.delegate) != null) {
-                chatMessageCellDelegate.didPressSponsoredClose();
+                chatMessageCellDelegate.didPressSponsoredClose(this);
             }
             ButtonBounce buttonBounce3 = this.closeSponsoredBounce;
             if (buttonBounce3 != null) {
@@ -3706,6 +3686,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             ImageLoader.getInstance().removeTestWebFile(this.currentUrl);
             this.addedForTest = false;
         }
+        StickerSetLinkIcon stickerSetLinkIcon = this.stickerSetIcons;
+        if (stickerSetLinkIcon != null) {
+            stickerSetLinkIcon.detach(this);
+        }
         DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
         if (getDelegate() != null && getDelegate().getTextSelectionHelper() != null) {
             getDelegate().getTextSelectionHelper().onChatMessageCellDetached(this);
@@ -3844,6 +3828,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         ChannelRecommendationsCell channelRecommendationsCell = this.channelRecommendationsCell;
         if (channelRecommendationsCell != null) {
             channelRecommendationsCell.onAttachedToWindow();
+        }
+        StickerSetLinkIcon stickerSetLinkIcon = this.stickerSetIcons;
+        if (stickerSetLinkIcon != null) {
+            stickerSetLinkIcon.attach(this);
         }
     }
 
@@ -4017,7 +4005,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContent(org.telegram.messenger.MessageObject r68, org.telegram.messenger.MessageObject.GroupedMessages r69, boolean r70, boolean r71) {
+    private void setMessageContent(org.telegram.messenger.MessageObject r69, org.telegram.messenger.MessageObject.GroupedMessages r70, boolean r71, boolean r72) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContent(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean):void");
     }
 
@@ -5264,52 +5252,56 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (str == null) {
                 int i = this.drawInstantViewType;
                 if (i == 12) {
-                    str = LocaleController.getString("OpenChannelPost", R.string.OpenChannelPost);
+                    str = LocaleController.getString(R.string.OpenChannelPost);
                 } else if (i == 1) {
-                    str = LocaleController.getString("OpenChannel", R.string.OpenChannel);
+                    str = LocaleController.getString(R.string.OpenChannel);
                 } else if (i == 13) {
-                    str = LocaleController.getString("SendMessage", R.string.SendMessage).toUpperCase();
+                    str = LocaleController.getString(R.string.SendMessage).toUpperCase();
                 } else if (i == 10) {
-                    str = LocaleController.getString("OpenBot", R.string.OpenBot);
+                    str = LocaleController.getString(R.string.OpenBot);
                 } else if (i == 2) {
-                    str = LocaleController.getString("OpenGroup", R.string.OpenGroup);
+                    str = LocaleController.getString(R.string.OpenGroup);
                 } else if (i == 3) {
-                    str = LocaleController.getString("OpenMessage", R.string.OpenMessage);
+                    str = LocaleController.getString(R.string.OpenMessage);
                 } else if (i == 5) {
-                    str = LocaleController.getString("ViewContact", R.string.ViewContact);
+                    str = LocaleController.getString(R.string.ViewContact);
                 } else if (i == 6) {
-                    str = LocaleController.getString("OpenBackground", R.string.OpenBackground);
+                    str = LocaleController.getString(R.string.OpenBackground);
                 } else if (i == 7) {
-                    str = LocaleController.getString("OpenTheme", R.string.OpenTheme);
+                    str = LocaleController.getString(R.string.OpenTheme);
                 } else if (i == 8) {
                     if (this.pollVoted || this.pollClosed) {
-                        str = LocaleController.getString("PollViewResults", R.string.PollViewResults);
+                        str = LocaleController.getString(R.string.PollViewResults);
                     } else {
-                        str = LocaleController.getString("PollSubmitVotes", R.string.PollSubmitVotes);
+                        str = LocaleController.getString(R.string.PollSubmitVotes);
                     }
                 } else if (i == 9 || i == 11) {
                     TLRPC$TL_webPage tLRPC$TL_webPage = (TLRPC$TL_webPage) MessageObject.getMedia(this.currentMessageObject.messageOwner).webpage;
                     if (tLRPC$TL_webPage != null && tLRPC$TL_webPage.url.contains("voicechat=")) {
-                        str = LocaleController.getString("VoipGroupJoinAsSpeaker", R.string.VoipGroupJoinAsSpeaker);
+                        str = LocaleController.getString(R.string.VoipGroupJoinAsSpeaker);
                     } else {
-                        str = LocaleController.getString("VoipGroupJoinAsLinstener", R.string.VoipGroupJoinAsLinstener);
+                        str = LocaleController.getString(R.string.VoipGroupJoinAsLinstener);
                     }
                 } else if (i == 14) {
-                    str = LocaleController.getString("ViewChatList", R.string.ViewChatList).toUpperCase();
+                    str = LocaleController.getString(R.string.ViewChatList).toUpperCase();
                 } else if (i == 15) {
                     str = LocaleController.getString(R.string.BotWebAppInstantViewOpen).toUpperCase();
                 } else if (i == 16) {
-                    str = LocaleController.getString("OpenLink").toUpperCase();
+                    str = LocaleController.getString(R.string.OpenLink).toUpperCase();
                 } else if (i == 17) {
-                    str = LocaleController.getString("ViewStory").toUpperCase();
+                    str = LocaleController.getString(R.string.ViewStory).toUpperCase();
                 } else if (i == 18 || i == 22) {
-                    str = LocaleController.getString("BoostLinkButton", R.string.BoostLinkButton);
+                    str = LocaleController.getString(R.string.BoostLinkButton);
                 } else if (i == 19) {
-                    str = LocaleController.getString("BoostingHowItWork", R.string.BoostingHowItWork);
+                    str = LocaleController.getString(R.string.BoostingHowItWork);
                 } else if (i == 20) {
                     str = LocaleController.getString(R.string.OpenGift);
                 } else if (i == 21) {
                     str = LocaleController.getString(R.string.AppUpdate);
+                } else if (i == 23) {
+                    str = LocaleController.getString(R.string.OpenStickerSet);
+                } else if (i == 24) {
+                    str = LocaleController.getString(R.string.OpenEmojiSet);
                 } else {
                     str = LocaleController.getString(R.string.InstantView);
                 }
@@ -7378,32 +7370,16 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     private String getAuthorName() {
-        TLRPC$Chat tLRPC$Chat;
-        String str;
-        String str2;
         TLRPC$User tLRPC$User = this.currentUser;
         if (tLRPC$User != null) {
             return UserObject.getUserName(tLRPC$User);
         }
-        TLRPC$Chat tLRPC$Chat2 = this.currentChat;
-        if (tLRPC$Chat2 != null) {
-            return tLRPC$Chat2.title;
+        TLRPC$Chat tLRPC$Chat = this.currentChat;
+        if (tLRPC$Chat != null) {
+            return tLRPC$Chat.title;
         }
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || !messageObject.isSponsored()) {
-            return "DELETED";
-        }
-        MessageObject messageObject2 = this.currentMessageObject;
-        TLRPC$BotApp tLRPC$BotApp = messageObject2.sponsoredBotApp;
-        if (tLRPC$BotApp != null) {
-            return tLRPC$BotApp.title;
-        }
-        TLRPC$TL_sponsoredWebPage tLRPC$TL_sponsoredWebPage = messageObject2.sponsoredWebPage;
-        if (tLRPC$TL_sponsoredWebPage != null) {
-            return tLRPC$TL_sponsoredWebPage.site_name;
-        }
-        TLRPC$ChatInvite tLRPC$ChatInvite = messageObject2.sponsoredChatInvite;
-        return (tLRPC$ChatInvite == null || (str2 = tLRPC$ChatInvite.title) == null) ? (tLRPC$ChatInvite == null || (tLRPC$Chat = tLRPC$ChatInvite.chat) == null || (str = tLRPC$Chat.title) == null) ? "" : str : str2;
+        return (messageObject == null || !messageObject.isSponsored()) ? "DELETED" : this.currentMessageObject.sponsoredTitle;
     }
 
     private Object getAuthorStatus() {
@@ -8526,9 +8502,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         float f4;
         int themedColor;
         TLRPC$User tLRPC$User;
-        TLRPC$ChatInvite tLRPC$ChatInvite;
-        TLRPC$Chat tLRPC$Chat;
-        TLRPC$ChatInvite tLRPC$ChatInvite2;
+        TLRPC$TL_peerColor tLRPC$TL_peerColor;
         float dp2;
         int i;
         int i2;
@@ -8574,19 +8548,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         themedColor = getThemedColor(Theme.key_chat_outForwardedNameText);
                     } else {
                         MessageObject messageObject2 = this.currentMessageObject;
-                        if (messageObject2.overrideLinkColor >= 0 || ((messageObject2.isFromUser() && this.currentUser != null) || ((this.currentMessageObject.isFromChannel() && this.currentChat != null) || ((this.currentMessageObject.isSponsored() && (this.currentMessageObject.sponsoredChatInvite instanceof TLRPC$TL_chatInvite)) || (this.currentMessageObject.isSponsored() && (tLRPC$ChatInvite2 = this.currentMessageObject.sponsoredChatInvite) != null && tLRPC$ChatInvite2.chat != null))))) {
+                        if (messageObject2.overrideLinkColor >= 0 || ((messageObject2.isFromUser() && this.currentUser != null) || ((this.currentMessageObject.isFromChannel() && this.currentChat != null) || ((tLRPC$TL_peerColor = this.currentMessageObject.sponsoredColor) != null && tLRPC$TL_peerColor.color != -1)))) {
                             MessageObject messageObject3 = this.currentMessageObject;
                             int i3 = messageObject3.overrideLinkColor;
                             if (i3 < 0) {
-                                if (messageObject3.isSponsored()) {
-                                    TLRPC$ChatInvite tLRPC$ChatInvite3 = this.currentMessageObject.sponsoredChatInvite;
-                                    if (tLRPC$ChatInvite3 instanceof TLRPC$TL_chatInvite) {
-                                        i3 = tLRPC$ChatInvite3.color;
-                                    }
-                                }
-                                if (this.currentMessageObject.isSponsored() && (tLRPC$ChatInvite = this.currentMessageObject.sponsoredChatInvite) != null && (tLRPC$Chat = tLRPC$ChatInvite.chat) != null) {
-                                    i3 = ChatObject.getColorId(tLRPC$Chat);
-                                } else if (this.currentMessageObject.isFromUser() && (tLRPC$User = this.currentUser) != null) {
+                                TLRPC$TL_peerColor tLRPC$TL_peerColor2 = messageObject3.sponsoredColor;
+                                if (tLRPC$TL_peerColor2 != null) {
+                                    i3 = tLRPC$TL_peerColor2.color;
+                                } else if (messageObject3.isFromUser() && (tLRPC$User = this.currentUser) != null) {
                                     i3 = UserObject.getColorId(tLRPC$User);
                                 } else {
                                     i3 = ChatObject.getColorId(this.currentChat);

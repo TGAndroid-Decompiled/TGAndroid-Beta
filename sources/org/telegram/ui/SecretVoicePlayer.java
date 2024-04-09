@@ -694,8 +694,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressSponsoredClose() {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                public void didPressSponsoredClose(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell6);
                 }
 
                 @Override

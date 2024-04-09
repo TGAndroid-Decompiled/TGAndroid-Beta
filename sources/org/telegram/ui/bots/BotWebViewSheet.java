@@ -352,6 +352,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     }
 
                     @Override
+                    public boolean bottomOffsetAnimated() {
+                        return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+                    }
+
+                    @Override
                     public boolean clipWithGradient(int i2) {
                         return Bulletin.Delegate.CC.$default$clipWithGradient(this, i2);
                     }

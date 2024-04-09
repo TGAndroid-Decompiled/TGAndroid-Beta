@@ -129,7 +129,9 @@ public class BotBiometry {
         if (authenticationResult != null) {
             try {
                 BiometricPrompt.CryptoObject cryptoObject = authenticationResult.getCryptoObject();
-                if (Build.VERSION.SDK_INT < 23) {
+                if (TextUtils.isEmpty(str)) {
+                    this.encrypted_token = null;
+                } else if (Build.VERSION.SDK_INT < 23) {
                     this.encrypted_token = str;
                 } else {
                     if (cryptoObject == null) {

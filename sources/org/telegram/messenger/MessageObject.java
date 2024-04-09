@@ -48,11 +48,9 @@ import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotApp;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$ChannelAdminLogEventAction;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$ChatReactions;
 import org.telegram.tgnet.TLRPC$DecryptedMessageAction;
 import org.telegram.tgnet.TLRPC$Document;
@@ -171,6 +169,7 @@ import org.telegram.tgnet.TLRPC$TL_peerChannel;
 import org.telegram.tgnet.TLRPC$TL_peerChannel_layer131;
 import org.telegram.tgnet.TLRPC$TL_peerChat;
 import org.telegram.tgnet.TLRPC$TL_peerChat_layer131;
+import org.telegram.tgnet.TLRPC$TL_peerColor;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_peerUser_layer131;
 import org.telegram.tgnet.TLRPC$TL_photo;
@@ -184,7 +183,6 @@ import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.tgnet.TLRPC$TL_replyInlineMarkup;
-import org.telegram.tgnet.TLRPC$TL_sponsoredWebPage;
 import org.telegram.tgnet.TLRPC$TL_stickerPack;
 import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.tgnet.TLRPC$TL_textWithEntities;
@@ -271,7 +269,6 @@ public class MessageObject {
     public int audioProgressMs;
     public int audioProgressSec;
     public StringBuilder botButtonsLayout;
-    public String botStartParam;
     public float bufferedProgress;
     public boolean business;
     public Boolean cachedIsSupergroup;
@@ -405,17 +402,15 @@ public class MessageObject {
     public boolean shouldRemoveVideoEditedInfo;
     private boolean spoiledLoginCode;
     public String sponsoredAdditionalInfo;
-    public TLRPC$BotApp sponsoredBotApp;
     public String sponsoredButtonText;
     public boolean sponsoredCanReport;
-    public int sponsoredChannelPost;
-    public TLRPC$ChatInvite sponsoredChatInvite;
-    public String sponsoredChatInviteHash;
+    public TLRPC$TL_peerColor sponsoredColor;
     public byte[] sponsoredId;
     public String sponsoredInfo;
+    public TLRPC$Photo sponsoredPhoto;
     public boolean sponsoredRecommended;
-    public boolean sponsoredShowPeerPhoto;
-    public TLRPC$TL_sponsoredWebPage sponsoredWebPage;
+    public String sponsoredTitle;
+    public String sponsoredUrl;
     public int stableId;
     public TL_stories$StoryItem storyItem;
     private TLRPC$WebPage storyMentionWebpage;
@@ -443,6 +438,7 @@ public class MessageObject {
         public float currentX;
         public float currentY;
         public float height;
+        public float progress;
         public float timeAlpha;
         public float width;
         public float x;
@@ -3399,17 +3395,13 @@ public class MessageObject {
                     this.photoThumbsObject = tLRPC$Document2;
                 }
             }
-        } else {
-            TLRPC$TL_sponsoredWebPage tLRPC$TL_sponsoredWebPage = this.sponsoredWebPage;
-            if (tLRPC$TL_sponsoredWebPage == null || tLRPC$TL_sponsoredWebPage.photo == null) {
-                return;
-            }
+        } else if (this.sponsoredPhoto != null) {
             if (!z || (arrayList2 = this.photoThumbs) == null) {
-                this.photoThumbs = new ArrayList<>(this.sponsoredWebPage.photo.sizes);
+                this.photoThumbs = new ArrayList<>(this.sponsoredPhoto.sizes);
             } else if (!arrayList2.isEmpty()) {
-                updatePhotoSizeLocations(this.photoThumbs, this.sponsoredWebPage.photo.sizes);
+                updatePhotoSizeLocations(this.photoThumbs, this.sponsoredPhoto.sizes);
             }
-            this.photoThumbsObject = this.sponsoredWebPage.photo;
+            this.photoThumbsObject = this.sponsoredPhoto;
             if (this.strippedThumb == null) {
                 createStrippedThumb();
             }
@@ -5064,6 +5056,38 @@ public class MessageObject {
         return str;
     }
 
+    public static ArrayList<String> findStickerEmoticons(TLRPC$Document tLRPC$Document, Integer num) {
+        if (tLRPC$Document == null) {
+            return null;
+        }
+        ArrayList<String> arrayList = new ArrayList<>();
+        int size = tLRPC$Document.attributes.size();
+        for (int i = 0; i < size; i++) {
+            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i);
+            if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeCustomEmoji) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker)) {
+                if (num != null) {
+                    TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(num.intValue()).getStickerSet(tLRPC$DocumentAttribute.stickerset, true);
+                    if (stickerSet != null && stickerSet.packs != null) {
+                        for (int i2 = 0; i2 < stickerSet.packs.size(); i2++) {
+                            TLRPC$TL_stickerPack tLRPC$TL_stickerPack = stickerSet.packs.get(i2);
+                            if (tLRPC$TL_stickerPack.documents.contains(Long.valueOf(tLRPC$Document.id)) && Emoji.getEmojiDrawable(tLRPC$TL_stickerPack.emoticon) != null) {
+                                arrayList.add(tLRPC$TL_stickerPack.emoticon);
+                            }
+                        }
+                    }
+                    if (!arrayList.isEmpty()) {
+                        return arrayList;
+                    }
+                }
+                if (!TextUtils.isEmpty(tLRPC$DocumentAttribute.alt) && Emoji.getEmojiDrawable(tLRPC$DocumentAttribute.alt) != null) {
+                    arrayList.add(tLRPC$DocumentAttribute.alt);
+                    return arrayList;
+                }
+            }
+        }
+        return null;
+    }
+
     public static boolean isAnimatedEmoji(TLRPC$Document tLRPC$Document) {
         if (tLRPC$Document == null) {
             return false;
@@ -6463,6 +6487,9 @@ public class MessageObject {
             }
         }
         if (tLRPC$ReactionCount == null) {
+            if (this.messageOwner.reactions.results.size() + 1 > MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(getDialogId())) {
+                return false;
+            }
             tLRPC$ReactionCount = new TLRPC$TL_reactionCount();
             tLRPC$ReactionCount.reaction = visibleReaction.toTLReaction();
             this.messageOwner.reactions.results.add(tLRPC$ReactionCount);
@@ -6758,7 +6785,7 @@ public class MessageObject {
         boolean z = !this.isRestrictedMessage && (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC$TL_webPage);
         TLRPC$WebPage tLRPC$WebPage = z ? getMedia(this.messageOwner).webpage : null;
         String str = tLRPC$WebPage != null ? tLRPC$WebPage.type : null;
-        return z && !isGiveawayOrGiveawayResults() && tLRPC$WebPage != null && (tLRPC$WebPage.photo != null || isVideoDocument(tLRPC$WebPage.document)) && !((TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) || ((isSponsored() && this.sponsoredWebPage == null && this.sponsoredChannelPost == 0) || "telegram_megagroup".equals(str) || "telegram_background".equals(str) || "telegram_voicechat".equals(str) || "telegram_livestream".equals(str) || "telegram_user".equals(str) || "telegram_story".equals(str) || "telegram_channel_boost".equals(str) || "telegram_group_boost".equals(str) || "telegram_chat".equals(str)));
+        return z && !isGiveawayOrGiveawayResults() && tLRPC$WebPage != null && (tLRPC$WebPage.photo != null || isVideoDocument(tLRPC$WebPage.document)) && !((TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) || isSponsored() || "telegram_megagroup".equals(str) || "telegram_background".equals(str) || "telegram_voicechat".equals(str) || "telegram_livestream".equals(str) || "telegram_user".equals(str) || "telegram_story".equals(str) || "telegram_channel_boost".equals(str) || "telegram_group_boost".equals(str) || "telegram_chat".equals(str));
     }
 
     public boolean isLinkMediaSmall() {

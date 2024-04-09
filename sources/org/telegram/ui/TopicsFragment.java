@@ -3812,6 +3812,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
 
             @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
             public boolean clipWithGradient(int i) {
                 return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
             }

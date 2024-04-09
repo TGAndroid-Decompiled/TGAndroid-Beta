@@ -56,6 +56,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -196,7 +197,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             this.parentActivity = (Activity) context;
         }
         cellFlickerDrawable.drawFrame = false;
-        cellFlickerDrawable.setColors(i, 153, 204);
+        cellFlickerDrawable.setColors(i, MessagesStorage.LAST_DB_VERSION, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
                 this.imageReceiver = new C00491(this);
@@ -655,7 +656,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void updateFlickerBackgroundColor(int i) {
-        this.flickerDrawable.setColors(i, 153, 204);
+        this.flickerDrawable.setColors(i, MessagesStorage.LAST_DB_VERSION, 204);
     }
 
     public boolean onBackPressed() {
@@ -1014,6 +1015,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override

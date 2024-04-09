@@ -155,6 +155,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
+        public boolean canDeleteSticker(TLRPC$Document tLRPC$Document) {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canDeleteSticker(this, tLRPC$Document);
+        }
+
+        @Override
         public boolean canEditSticker() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canEditSticker(this);
         }
@@ -225,8 +230,8 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void newStickerPackSelected(CharSequence charSequence, String str) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$newStickerPackSelected(this, charSequence, str);
+        public void newStickerPackSelected(CharSequence charSequence, String str, Utilities.Callback callback) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$newStickerPackSelected(this, charSequence, str, callback);
         }
 
         @Override

@@ -165,7 +165,7 @@ public class SharedConfig {
     public static int textSelectionHintShows;
     public static boolean translateChats;
     public static boolean updateStickersOrderOnSend;
-    public static boolean useCamera2;
+    public static Boolean useCamera2Force;
     public static boolean useFingerprint;
     public static boolean useSurfaceInStories;
     public static boolean useSystemEmoji;
@@ -1490,11 +1490,16 @@ public class SharedConfig {
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("bigCameraForRound", bigCameraForRound).apply();
     }
 
-    public static void toggleUseCamera2() {
+    public static boolean isUsingCamera2(int i) {
+        Boolean bool = useCamera2Force;
+        return bool == null ? !MessagesController.getInstance(i).androidDisableRoundCamera2 : bool.booleanValue();
+    }
+
+    public static void toggleUseCamera2(int i) {
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
-        boolean z = !useCamera2;
-        useCamera2 = z;
-        edit.putBoolean("useCamera2", z).apply();
+        Boolean valueOf = Boolean.valueOf(!isUsingCamera2(i));
+        useCamera2Force = valueOf;
+        edit.putBoolean("useCamera2", valueOf.booleanValue()).apply();
     }
 
     @Deprecated

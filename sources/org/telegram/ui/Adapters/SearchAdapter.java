@@ -26,6 +26,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_contact;
+import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
@@ -44,6 +45,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     private boolean allowUsernameSearch;
     private long channelId;
     private LongSparseArray<TLRPC$User> ignoreUsers;
+    private String lastQuery;
     private Context mContext;
     private boolean onlyMutual;
     private SearchAdapterHelper searchAdapterHelper;
@@ -151,6 +153,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public void lambda$processSearch$1(final String str) {
+        this.lastQuery = str;
         if (this.allowUsernameSearch) {
             this.searchAdapterHelper.queryServerSearch(str, true, this.allowChats, this.allowBots, this.allowSelf, false, this.channelId, this.allowPhoneNumbers, -1, 1);
         }
@@ -318,8 +321,8 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     public int getItemCount() {
         this.unregistredContactsHeaderRow = -1;
         int size = this.searchResult.size();
-        this.unregistredContactsHeaderRow = size;
         if (!this.unregistredContacts.isEmpty()) {
+            this.unregistredContactsHeaderRow = size;
             size += this.unregistredContacts.size() + 1;
         }
         int size2 = this.searchAdapterHelper.getGlobalSearch().size();
@@ -431,7 +434,15 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             CharSequence charSequence2 = null;
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
-                str = tLRPC$User.username;
+                str = UserObject.getPublicUsername(tLRPC$User);
+                if (str != null && this.lastQuery != null && !str.toLowerCase().contains(this.lastQuery.toLowerCase()) && tLRPC$User.usernames != null) {
+                    for (int i2 = 0; i2 < tLRPC$User.usernames.size(); i2++) {
+                        TLRPC$TL_username tLRPC$TL_username = tLRPC$User.usernames.get(i2);
+                        if (tLRPC$TL_username != null && tLRPC$TL_username.active && tLRPC$TL_username.username.toLowerCase().contains(this.lastQuery.toLowerCase())) {
+                            str = tLRPC$TL_username.username;
+                        }
+                    }
+                }
                 long j2 = tLRPC$User.id;
                 z = tLRPC$User.self;
                 j = j2;

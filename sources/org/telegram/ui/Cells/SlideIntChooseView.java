@@ -8,6 +8,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Rect;
 import android.os.Build;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -34,16 +35,6 @@ public class SlideIntChooseView extends FrameLayout {
     private int value;
     private final AnimatedTextView valueText;
     private Utilities.Callback<Integer> whenChanged;
-
-    public static class Options {
-        public int max;
-        public int maxStringResId;
-        public int min;
-        public int minStringResId;
-        public int valueMaxStringResId;
-        public int valueMinStringResId;
-        public int valueStringResId;
-    }
 
     public SlideIntChooseView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -102,11 +93,11 @@ public class SlideIntChooseView extends FrameLayout {
 
             @Override
             public void onSeekBarDrag(boolean z, float f) {
-                int i2;
-                if (SlideIntChooseView.this.options == null || SlideIntChooseView.this.whenChanged == null || SlideIntChooseView.this.value == (i2 = (int) (SlideIntChooseView.this.options.min + (SlideIntChooseView.this.stepsCount * f)))) {
+                int round;
+                if (SlideIntChooseView.this.options == null || SlideIntChooseView.this.whenChanged == null || SlideIntChooseView.this.value == (round = Math.round(SlideIntChooseView.this.options.min + (SlideIntChooseView.this.stepsCount * f)))) {
                     return;
                 }
-                SlideIntChooseView.this.value = i2;
+                SlideIntChooseView.this.value = round;
                 AndroidUtilities.vibrateCursor(SlideIntChooseView.this.seekBarView);
                 SlideIntChooseView slideIntChooseView = SlideIntChooseView.this;
                 slideIntChooseView.updateTexts(slideIntChooseView.value, true);
@@ -138,23 +129,32 @@ public class SlideIntChooseView extends FrameLayout {
     public void updateTexts(int i, boolean z) {
         int i2;
         this.minText.cancelAnimation();
-        AnimatedTextView animatedTextView = this.minText;
-        Options options = this.options;
-        animatedTextView.setText(processText(options.minStringResId, options.min), z);
-        Options options2 = this.options;
-        if (i <= options2.min) {
-            i2 = options2.valueMinStringResId;
-        } else if (i < options2.max) {
-            i2 = options2.valueStringResId;
-        } else {
-            i2 = options2.valueMaxStringResId;
-        }
-        this.valueText.cancelAnimation();
-        this.valueText.setText(processText(i2, i), z);
         this.maxText.cancelAnimation();
-        AnimatedTextView animatedTextView2 = this.maxText;
-        Options options3 = this.options;
-        animatedTextView2.setText(processText(options3.maxStringResId, options3.max), z);
+        if (!TextUtils.isEmpty(this.options.resId)) {
+            this.valueText.cancelAnimation();
+            this.valueText.setText(LocaleController.formatPluralString(this.options.resId, i, new Object[0]), z);
+            AnimatedTextView animatedTextView = this.minText;
+            animatedTextView.setText("" + this.options.min, z);
+            AnimatedTextView animatedTextView2 = this.maxText;
+            animatedTextView2.setText("" + this.options.max, z);
+        } else {
+            Options options = this.options;
+            if (i <= options.min) {
+                i2 = options.valueMinStringResId;
+            } else if (i < options.max) {
+                i2 = options.valueStringResId;
+            } else {
+                i2 = options.valueMaxStringResId;
+            }
+            this.valueText.cancelAnimation();
+            this.valueText.setText(processText(i2, i), z);
+            AnimatedTextView animatedTextView3 = this.minText;
+            Options options2 = this.options;
+            animatedTextView3.setText(processText(options2.minStringResId, options2.min), z);
+            AnimatedTextView animatedTextView4 = this.maxText;
+            Options options3 = this.options;
+            animatedTextView4.setText(processText(options3.maxStringResId, options3.max), z);
+        }
         this.maxText.setTextColor(Theme.getColor(i >= this.options.max ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
         setMaxTextEmojiSaturation(i >= this.options.max ? 1.0f : 0.0f, z);
     }
@@ -223,6 +223,25 @@ public class SlideIntChooseView extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(75.0f), 1073741824));
         if (Build.VERSION.SDK_INT >= 29) {
             setSystemGestureExclusionRects(Arrays.asList(new Rect(0, 0, AndroidUtilities.dp(80.0f), getMeasuredHeight()), new Rect(getMeasuredWidth() - AndroidUtilities.dp(80.0f), 0, getMeasuredWidth(), getMeasuredHeight())));
+        }
+    }
+
+    public static class Options {
+        public int max;
+        public int maxStringResId;
+        public int min;
+        public int minStringResId;
+        public String resId;
+        public int valueMaxStringResId;
+        public int valueMinStringResId;
+        public int valueStringResId;
+
+        public static Options make(int i, String str, int i2, int i3) {
+            Options options = new Options();
+            options.min = i2;
+            options.resId = str;
+            options.max = i3;
+            return options;
         }
     }
 }

@@ -38,6 +38,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
@@ -1052,7 +1053,7 @@ public class CaptionContainerView extends FrameLayout {
             this.blurPaint.setAlpha((int) (this.keyboardT * 255.0f * f2));
             canvas.drawRoundRect(rectF, f, f, this.blurPaint);
         }
-        this.backgroundPaint.setAlpha((int) (this.blurPaint == null ? 128.0f : f2 * AndroidUtilities.lerp(128, 153, this.keyboardT)));
+        this.backgroundPaint.setAlpha((int) (this.blurPaint == null ? 128.0f : f2 * AndroidUtilities.lerp(128, (int) MessagesStorage.LAST_DB_VERSION, this.keyboardT)));
         canvas.drawRoundRect(rectF, f, f, this.backgroundPaint);
     }
 

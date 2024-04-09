@@ -6,8 +6,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -17,6 +19,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
@@ -27,7 +30,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -35,6 +40,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.utils.GalleryBitmapsCache;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$VideoSize;
@@ -47,16 +53,20 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 public class PhotoAttachPhotoCell extends FrameLayout {
     private static Rect rect = new Rect();
     private AnimatorSet animator;
     private AnimatorSet animatorSet;
     private Paint backgroundPaint;
+    private Bitmap bitmap;
     private CheckBox2 checkBox;
     private FrameLayout checkFrame;
     private FrameLayout container;
     private Float crossfadeDuration;
+    private String currentKey;
     private PhotoAttachPhotoCellDelegate delegate;
+    private final GalleryBitmapsCache galleryBitmapsCache;
     private boolean hasSpoiler;
     private BackupImageView imageView;
     private float imageViewCrossfadeProgress;
@@ -65,6 +75,8 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private boolean isVertical;
     private int itemSize;
     private boolean itemSizeChanged;
+    private Runnable loadingBitmap;
+    private DispatchQueue myQueue;
     private Path path;
     private MediaController.PhotoEntry photoEntry;
     private boolean pressed;
@@ -76,6 +88,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private float spoilerRevealProgress;
     private float spoilerRevealX;
     private float spoilerRevealY;
+    private final Runnable unload;
     private FrameLayout videoInfoContainer;
     private TextView videoTextView;
     private boolean zoomOnSelect;
@@ -84,14 +97,25 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         void onCheckClick(PhotoAttachPhotoCell photoAttachPhotoCell);
     }
 
-    public PhotoAttachPhotoCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public void lambda$new$0() {
+        loadBitmap(null);
+    }
+
+    public PhotoAttachPhotoCell(Context context, Theme.ResourcesProvider resourcesProvider, GalleryBitmapsCache galleryBitmapsCache) {
         super(context);
         this.zoomOnSelect = true;
         this.backgroundPaint = new Paint();
         this.spoilerEffect = new SpoilerEffect();
         this.path = new Path();
         this.imageViewCrossfadeProgress = 1.0f;
+        this.unload = new Runnable() {
+            @Override
+            public final void run() {
+                PhotoAttachPhotoCell.this.lambda$new$0();
+            }
+        };
         this.resourcesProvider = resourcesProvider;
+        this.galleryBitmapsCache = galleryBitmapsCache;
         setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
@@ -287,6 +311,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         if (spoilerEffect2 != null) {
             spoilerEffect2.detach(this);
         }
+        if (this.photoEntry != null) {
+            AndroidUtilities.runOnUIThread(this.unload, 250L);
+        }
     }
 
     @Override
@@ -299,6 +326,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             } else {
                 spoilerEffect2.attach(this);
             }
+        }
+        if (this.photoEntry != null) {
+            AndroidUtilities.cancelRunOnUIThread(this.unload);
+            loadBitmap(this.photoEntry);
         }
     }
 
@@ -346,6 +377,16 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         return this.imageView;
     }
 
+    public ImageReceiver.BitmapHolder getBitmapSafe(boolean z) {
+        MediaController.PhotoEntry photoEntry;
+        int i;
+        ImageReceiver.BitmapHolder bitmapSafe = this.imageView.getImageReceiver().getBitmapSafe();
+        if (z && (photoEntry = this.photoEntry) != null && photoEntry.path != null && (i = photoEntry.orientation) != 0) {
+            bitmapSafe.bitmap = rotateBitmap(bitmapSafe.bitmap, -i);
+        }
+        return bitmapSafe;
+    }
+
     public float getScale() {
         return this.container.getScaleX();
     }
@@ -368,28 +409,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.photoEntry = photoEntry;
         this.isLast = z2;
         if (photoEntry.isVideo) {
-            this.imageView.setOrientation(0, true);
             this.videoInfoContainer.setVisibility(0);
             this.videoTextView.setText(AndroidUtilities.formatShortDuration(this.photoEntry.duration));
         } else {
             this.videoInfoContainer.setVisibility(4);
         }
-        MediaController.PhotoEntry photoEntry2 = this.photoEntry;
-        String str = photoEntry2.thumbPath;
-        if (str != null) {
-            this.imageView.setImage(str, null, Theme.chat_attachEmptyDrawable);
-        } else if (photoEntry2.path != null) {
-            if (photoEntry2.isVideo) {
-                BackupImageView backupImageView = this.imageView;
-                backupImageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
-            } else {
-                this.imageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
-                BackupImageView backupImageView2 = this.imageView;
-                backupImageView2.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
-            }
-        } else {
-            this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
-        }
+        loadBitmap(photoEntry);
         if (z && PhotoViewer.isShowingImage(this.photoEntry.path)) {
             z3 = true;
         }
@@ -398,6 +423,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.videoInfoContainer.setAlpha(z3 ? 0.0f : 1.0f);
         requestLayout();
         setHasSpoiler(photoEntry.hasSpoiler);
+    }
+
+    public void updatePhotoEntry(MediaController.PhotoEntry photoEntry) {
+        loadBitmap(photoEntry);
     }
 
     public void setPhotoEntry(MediaController.SearchImage searchImage, boolean z, boolean z2) {
@@ -507,7 +536,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.checkBox.setNum(i);
     }
 
-    public void setOnCheckClickLisnener(View.OnClickListener onClickListener) {
+    public void setOnCheckClickListener(View.OnClickListener onClickListener) {
         this.checkFrame.setOnClickListener(onClickListener);
     }
 
@@ -577,6 +606,142 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     @Override
     public boolean onTouchEvent(android.view.MotionEvent r6) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    private DispatchQueue getQueue() {
+        DispatchQueue dispatchQueue = this.myQueue;
+        if (dispatchQueue != null && dispatchQueue.isAlive()) {
+            return this.myQueue;
+        }
+        if (this.galleryBitmapsCache.getAllQueues().size() < 4) {
+            ArrayList<DispatchQueue> allQueues = this.galleryBitmapsCache.getAllQueues();
+            DispatchQueue dispatchQueue2 = new DispatchQueue("gallery_load_photo_cell_" + this.galleryBitmapsCache.getAllQueues().size());
+            this.myQueue = dispatchQueue2;
+            allQueues.add(dispatchQueue2);
+        } else {
+            GalleryBitmapsCache galleryBitmapsCache = this.galleryBitmapsCache;
+            galleryBitmapsCache.setAllQueuesIndex(galleryBitmapsCache.getAllQueuesIndex() + 1);
+            if (this.galleryBitmapsCache.getAllQueuesIndex() >= this.galleryBitmapsCache.getAllQueues().size()) {
+                this.galleryBitmapsCache.setAllQueuesIndex(0);
+            }
+            this.myQueue = this.galleryBitmapsCache.getAllQueues().get(this.galleryBitmapsCache.getAllQueuesIndex());
+        }
+        return this.myQueue;
+    }
+
+    private void loadBitmap(final MediaController.PhotoEntry photoEntry) {
+        if (photoEntry == null) {
+            this.galleryBitmapsCache.releaseBitmap(this.currentKey);
+            this.currentKey = null;
+            this.bitmap = null;
+            return;
+        }
+        final String key = getKey(this.photoEntry);
+        if (TextUtils.equals(key, this.currentKey)) {
+            return;
+        }
+        String str = this.currentKey;
+        if (str != null) {
+            this.bitmap = null;
+            this.galleryBitmapsCache.releaseBitmap(str);
+            this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
+            invalidate();
+        }
+        this.currentKey = key;
+        Bitmap bitmap = this.galleryBitmapsCache.getBitmap(key);
+        this.bitmap = bitmap;
+        if (bitmap != null) {
+            this.imageView.setImageBitmap(bitmap);
+            invalidate();
+            return;
+        }
+        if (this.loadingBitmap != null) {
+            getQueue().cancelRunnable(this.loadingBitmap);
+            this.loadingBitmap = null;
+        }
+        this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
+        DispatchQueue queue = getQueue();
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                PhotoAttachPhotoCell.this.lambda$loadBitmap$3(photoEntry, key);
+            }
+        };
+        this.loadingBitmap = runnable;
+        queue.postRunnable(runnable);
+    }
+
+    public void lambda$loadBitmap$3(MediaController.PhotoEntry photoEntry, final String str) {
+        final Bitmap thumbnail = getThumbnail(photoEntry);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PhotoAttachPhotoCell.this.lambda$loadBitmap$2(str, thumbnail);
+            }
+        });
+    }
+
+    private String getKey(MediaController.PhotoEntry photoEntry) {
+        if (photoEntry == null) {
+            return "";
+        }
+        String str = photoEntry.thumbPath;
+        if (str != null) {
+            return str;
+        }
+        if (photoEntry.isVideo) {
+            return String.valueOf(photoEntry.imageId);
+        }
+        return photoEntry.path;
+    }
+
+    private Bitmap getThumbnail(MediaController.PhotoEntry photoEntry) {
+        if (photoEntry == null) {
+            return null;
+        }
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        readBitmap(photoEntry, options);
+        int i = this.itemSize;
+        StoryEntry.setupScale(options, i, i);
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        options.inDither = true;
+        options.inJustDecodeBounds = false;
+        return readBitmap(photoEntry, options);
+    }
+
+    public static Bitmap rotateBitmap(Bitmap bitmap, float f) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(f);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    public void lambda$loadBitmap$2(String str, Bitmap bitmap) {
+        if (bitmap == null) {
+            return;
+        }
+        this.galleryBitmapsCache.putBitmap(str, bitmap);
+        if (!TextUtils.equals(str, this.currentKey)) {
+            this.galleryBitmapsCache.releaseBitmap(str);
+            return;
+        }
+        this.bitmap = bitmap;
+        this.imageView.setImageBitmap(bitmap);
+        invalidate();
+    }
+
+    private Bitmap readBitmap(MediaController.PhotoEntry photoEntry, BitmapFactory.Options options) {
+        if (photoEntry == null) {
+            return null;
+        }
+        String str = photoEntry.thumbPath;
+        if (str != null) {
+            return BitmapFactory.decodeFile(str, options);
+        }
+        if (photoEntry.isVideo) {
+            return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), photoEntry.imageId, 1, options);
+        }
+        return MediaStore.Images.Thumbnails.getThumbnail(getContext().getContentResolver(), photoEntry.imageId, 1, options);
     }
 
     @Override

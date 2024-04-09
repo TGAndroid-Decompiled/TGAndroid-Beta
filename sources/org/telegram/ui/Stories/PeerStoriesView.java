@@ -896,6 +896,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
+                public boolean bottomOffsetAnimated() {
+                    return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+                }
+
+                @Override
                 public boolean clipWithGradient(int i) {
                     return i == 1 || i == 2 || i == 3;
                 }
@@ -2633,13 +2638,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        protected void updateRecordInterface(int i, boolean z) {
+        public void updateRecordInterface(int i, boolean z) {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
 
         @Override
-        protected void isRecordingStateChanged() {
+        public void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }
@@ -3868,6 +3873,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.selectedPosition = 0;
         }
         updatePosition();
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null) {
+            storyViewer.checkSelfStoriesView();
+        }
     }
 
     private void showUserViewsDialog() {
@@ -4620,7 +4629,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
         if (reactionsContainerLayout != null) {
             reactionsContainerLayout.setCurrentAccount(i);
-            this.reactionsContainerLayout.setMessage(null, null);
+            this.reactionsContainerLayout.setMessage(null, null, true);
         }
         ReactionsContainerLayout reactionsContainerLayout2 = this.likesReactionLayout;
         if (reactionsContainerLayout2 != null) {
@@ -5925,7 +5934,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             reactionsContainerLayout2.skipEnterAnimation = true;
             addView(reactionsContainerLayout2, this.reactionsContainerIndex, LayoutHelper.createFrame(-2, 72.0f, 49, 0.0f, 0.0f, 0.0f, 64.0f));
             this.reactionsContainerLayout.setDelegate(new AnonymousClass35());
-            this.reactionsContainerLayout.setMessage(null, null);
+            this.reactionsContainerLayout.setMessage(null, null, true);
         }
         this.reactionsContainerLayout.setFragment(LaunchActivity.getLastFragment());
         this.reactionsContainerLayout.setHint(LocaleController.getString(this.isGroup ? R.string.StoryGroupReactionsHint : R.string.StoryReactionsHint));
@@ -6063,7 +6072,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             addView(this.likesReactionLayout, getChildCount() - 1, LayoutHelper.createFrame(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
             this.likesReactionLayout.setVisibility(8);
             this.likesReactionLayout.setDelegate(new AnonymousClass37());
-            this.likesReactionLayout.setMessage(null, null);
+            this.likesReactionLayout.setMessage(null, null, true);
         } else {
             bringChildToFront(reactionsContainerLayout);
             this.likesReactionLayout.reset();

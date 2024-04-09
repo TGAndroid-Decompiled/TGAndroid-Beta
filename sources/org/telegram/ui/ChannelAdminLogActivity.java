@@ -298,6 +298,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
             public boolean clipWithGradient(int i) {
                 return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
             }
@@ -2049,8 +2054,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressSponsoredClose() {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+            public void didPressSponsoredClose(ChatMessageCell chatMessageCell) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell);
             }
 
             @Override

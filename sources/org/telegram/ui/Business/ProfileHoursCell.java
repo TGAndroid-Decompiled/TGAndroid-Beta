@@ -166,7 +166,7 @@ public class ProfileHoursCell extends LinearLayout {
         }
     }
 
-    public void set(org.telegram.tgnet.TLRPC$TL_businessWorkHours r21, boolean r22, boolean r23, boolean r24) {
+    public void set(org.telegram.tgnet.TLRPC$TL_businessWorkHours r22, boolean r23, boolean r24, boolean r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ProfileHoursCell.set(org.telegram.tgnet.TLRPC$TL_businessWorkHours, boolean, boolean, boolean):void");
     }
 

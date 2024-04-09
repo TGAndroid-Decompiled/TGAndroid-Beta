@@ -3,7 +3,9 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import android.view.View;
 import java.util.Objects;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
 import org.telegram.ui.Business.BusinessLinksActivity;
@@ -16,7 +18,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public int backgroundKey;
     public String chatType;
     public boolean checked;
-    public Runnable clickCallback;
+    public View.OnClickListener clickCallback;
     public long dialogId;
     public boolean enabled;
     public boolean hideDivider;
@@ -33,10 +35,12 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public String[] texts;
     public boolean transparent;
     public View view;
+    public boolean withUsername;
 
     public UItem(int i, boolean z) {
         super(i, z);
         this.enabled = true;
+        this.withUsername = true;
     }
 
     public static UItem asCustom(View view) {
@@ -238,8 +242,45 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public UItem setCloseIcon(Runnable runnable) {
-        this.clickCallback = runnable;
+    public static UItem asGraySection(CharSequence charSequence) {
+        UItem uItem = new UItem(31, false);
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asGraySection(CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
+        UItem uItem = new UItem(31, false);
+        uItem.text = charSequence;
+        uItem.subtext = charSequence2;
+        uItem.clickCallback = onClickListener;
+        return uItem;
+    }
+
+    public static UItem asProfileCell(TLObject tLObject) {
+        UItem uItem = new UItem(32, false);
+        uItem.object = tLObject;
+        return uItem;
+    }
+
+    public static UItem asSearchMessage(MessageObject messageObject) {
+        UItem uItem = new UItem(33, false);
+        uItem.object = messageObject;
+        return uItem;
+    }
+
+    public static UItem asFlicker(int i) {
+        UItem uItem = new UItem(34, false);
+        uItem.intValue = i;
+        return uItem;
+    }
+
+    public UItem withUsername(boolean z) {
+        this.withUsername = z;
+        return this;
+    }
+
+    public UItem setCloseIcon(View.OnClickListener onClickListener) {
+        this.clickCallback = onClickListener;
         return this;
     }
 
@@ -274,6 +315,32 @@ public class UItem extends AdapterWithDiffUtils.Item {
             return false;
         }
         UItem uItem = (UItem) obj;
-        return this.viewType == uItem.viewType && this.id == uItem.id && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.backgroundKey == uItem.backgroundKey && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Objects.equals(this.object, uItem.object);
+        int i = this.viewType;
+        if (i != uItem.viewType) {
+            return false;
+        }
+        if (i == 31) {
+            return TextUtils.equals(this.text, uItem.text);
+        }
+        return this.id == uItem.id && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.backgroundKey == uItem.backgroundKey && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Objects.equals(this.object, uItem.object);
+    }
+
+    @Override
+    public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        if (this == item) {
+            return true;
+        }
+        if (item == null || UItem.class != item.getClass()) {
+            return false;
+        }
+        UItem uItem = (UItem) item;
+        int i = this.viewType;
+        if (i != uItem.viewType) {
+            return false;
+        }
+        if (i == 31) {
+            return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
+        }
+        return super.contentsEquals(item);
     }
 }

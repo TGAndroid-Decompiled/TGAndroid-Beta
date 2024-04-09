@@ -61,6 +61,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     Runnable onAnimationFinishRunnable;
     View parentView;
     float progressToBottomPanel;
+    boolean recommendedChannel;
     private final Theme.ResourcesProvider resourcesProvider;
     boolean showBottomPanel;
     AnimatorSet showReleaseAnimator;
@@ -71,6 +72,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     private Paint xRefPaint = new Paint(1);
     Path path = new Path();
     ImageReceiver imageReceiver = new ImageReceiver();
+    private boolean visibleCounterDrawable = true;
     CounterView.CounterDrawable counterDrawable = new CounterView.CounterDrawable(null, true, null);
     int[] params = new int[3];
 
@@ -97,10 +99,33 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
         this.xRefPaint.setColor(-16777216);
         this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        updateDialog();
+    }
+
+    public void updateDialog(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            updateDialog();
+            return;
+        }
+        this.nextDialogId = -tLRPC$Chat.id;
+        int[] iArr = this.params;
+        this.drawFolderBackground = iArr[0] == 1;
+        this.dialogFolderId = iArr[1];
+        this.dialogFilterId = iArr[2];
+        this.emptyStub = false;
+        this.nextChat = tLRPC$Chat;
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(this.currentAccount, this.nextChat);
+        this.imageReceiver.setImage(ImageLocation.getForChat(this.nextChat, 1), "50_50", avatarDrawable, null, UserConfig.getInstance(0).getCurrentUser(), 0);
+        MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(-tLRPC$Chat.id, 0, null);
+        TLRPC$Dialog dialog = MessagesController.getInstance(this.currentAccount).getDialog(-tLRPC$Chat.id);
+        int i = dialog == null ? 0 : dialog.unread_count;
+        this.counterDrawable.setCount(i, false);
+        this.visibleCounterDrawable = i > 0;
+        this.recommendedChannel = true;
     }
 
     public void updateDialog() {
+        this.recommendedChannel = false;
         TLRPC$Dialog nextUnreadDialog = getNextUnreadDialog(this.currentDialog, this.folderId, this.filterId, true, this.params);
         if (nextUnreadDialog != null) {
             this.nextDialogId = nextUnreadDialog.id;
@@ -112,13 +137,15 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-nextUnreadDialog.id));
             this.nextChat = chat;
             if (chat == null) {
-                MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.id));
+                this.nextChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.id));
             }
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setInfo(this.currentAccount, this.nextChat);
             this.imageReceiver.setImage(ImageLocation.getForChat(this.nextChat, 1), "50_50", avatarDrawable, null, UserConfig.getInstance(0).getCurrentUser(), 0);
             MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(nextUnreadDialog.id, 0, null);
-            this.counterDrawable.setCount(nextUnreadDialog.unread_count, false);
+            int i = nextUnreadDialog.unread_count;
+            this.counterDrawable.setCount(i, false);
+            this.visibleCounterDrawable = i > 0;
             return;
         }
         this.nextChat = null;
@@ -139,16 +166,21 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             this.chatNameWidth = measureText;
             this.chatNameWidth = Math.min(measureText, this.lastWidth - AndroidUtilities.dp(60.0f));
             this.chatNameLayout = new StaticLayout(string3, this.textPaint, this.chatNameWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            boolean z = this.drawFolderBackground;
-            if (z && (i2 = this.dialogFolderId) != this.folderId && i2 != 0) {
-                string = LocaleController.getString("SwipeToGoNextArchive", R.string.SwipeToGoNextArchive);
-                string2 = LocaleController.getString("ReleaseToGoNextArchive", R.string.ReleaseToGoNextArchive);
-            } else if (z) {
-                string = LocaleController.getString("SwipeToGoNextFolder", R.string.SwipeToGoNextFolder);
-                string2 = LocaleController.getString("ReleaseToGoNextFolder", R.string.ReleaseToGoNextFolder);
+            if (this.recommendedChannel) {
+                string = LocaleController.getString(R.string.SwipeToGoNextRecommendedChannel);
+                string2 = LocaleController.getString(R.string.ReleaseToGoNextRecommendedChannel);
             } else {
-                string = LocaleController.getString("SwipeToGoNextChannel", R.string.SwipeToGoNextChannel);
-                string2 = LocaleController.getString("ReleaseToGoNextChannel", R.string.ReleaseToGoNextChannel);
+                boolean z = this.drawFolderBackground;
+                if (z && (i2 = this.dialogFolderId) != this.folderId && i2 != 0) {
+                    string = LocaleController.getString(R.string.SwipeToGoNextArchive);
+                    string2 = LocaleController.getString(R.string.ReleaseToGoNextArchive);
+                } else if (z) {
+                    string = LocaleController.getString(R.string.SwipeToGoNextFolder);
+                    string2 = LocaleController.getString(R.string.ReleaseToGoNextFolder);
+                } else {
+                    string = LocaleController.getString(R.string.SwipeToGoNextChannel);
+                    string2 = LocaleController.getString(R.string.ReleaseToGoNextChannel);
+                }
             }
             String str = string;
             String str2 = string2;
@@ -286,7 +318,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             float f12 = dp2 / 2.0f;
             this.imageReceiver.setRoundRadius((int) f12);
             this.imageReceiver.setImageCoords(f6 - f12, dp23, dp2, dp2);
-            if (this.swipeToReleaseProgress > 0.0f) {
+            if (this.swipeToReleaseProgress > 0.0f && this.visibleCounterDrawable) {
                 f4 = 1.0f;
                 canvas.saveLayerAlpha(this.imageReceiver.getImageX(), this.imageReceiver.getImageY(), this.imageReceiver.getImageWidth() + this.imageReceiver.getImageX(), this.imageReceiver.getImageHeight() + this.imageReceiver.getImageY(), 255, 31);
                 this.imageReceiver.draw(canvas);
@@ -531,7 +563,9 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         if (this.nextDialogId == 0 || (tLRPC$Dialog = MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.nextDialogId)) == null) {
             return;
         }
-        this.counterDrawable.setCount(tLRPC$Dialog.unread_count, true);
+        int i3 = tLRPC$Dialog.unread_count;
+        this.counterDrawable.setCount(i3, true);
+        this.visibleCounterDrawable = i3 > 0;
         View view = this.parentView;
         if (view != null) {
             view.invalidate();

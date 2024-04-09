@@ -245,7 +245,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         invalidatePosition(false);
         if (this.reactionsContainerLayout.isEnabled()) {
             this.messageSet = true;
-            this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo());
+            this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo(), true);
             this.reactionsContainerLayout.startEnterAnimation(false);
             return;
         }

@@ -5752,9 +5752,8 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
     public void startPhoneVerification(boolean z, final String str, Runnable runnable, ErrorRunnable errorRunnable, final PassportActivityDelegate passportActivityDelegate) {
         boolean z2;
         TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
-        boolean z3 = true;
-        boolean z4 = (telephonyManager.getSimState() == 1 || telephonyManager.getPhoneType() == 0) ? false : true;
-        if (getParentActivity() == null || Build.VERSION.SDK_INT < 23 || !z4) {
+        boolean z3 = (telephonyManager.getSimState() == 1 || telephonyManager.getPhoneType() == 0) ? false : true;
+        if (getParentActivity() == null || Build.VERSION.SDK_INT < 23 || !z3) {
             z2 = true;
         } else {
             z2 = getParentActivity().checkSelfPermission("android.permission.READ_PHONE_STATE") == 0;
@@ -5785,7 +5784,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         tLRPC$TL_account_sendVerifyPhoneCode.phone_number = str;
         TLRPC$TL_codeSettings tLRPC$TL_codeSettings = new TLRPC$TL_codeSettings();
         tLRPC$TL_account_sendVerifyPhoneCode.settings = tLRPC$TL_codeSettings;
-        tLRPC$TL_codeSettings.allow_flashcall = (z4 && z2) ? false : false;
+        tLRPC$TL_codeSettings.allow_flashcall = z3 && z2;
         tLRPC$TL_codeSettings.allow_app_hash = PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices();
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
         if (tLRPC$TL_account_sendVerifyPhoneCode.settings.allow_app_hash) {
@@ -5803,7 +5802,9 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         tLRPC$TL_codeSettings2.allow_flashcall = false;
                     }
                 } else {
-                    tLRPC$TL_account_sendVerifyPhoneCode.settings.current_number = false;
+                    TLRPC$TL_codeSettings tLRPC$TL_codeSettings3 = tLRPC$TL_account_sendVerifyPhoneCode.settings;
+                    tLRPC$TL_codeSettings3.unknown_number = true;
+                    tLRPC$TL_codeSettings3.current_number = false;
                 }
             } catch (Exception e) {
                 tLRPC$TL_account_sendVerifyPhoneCode.settings.allow_flashcall = false;

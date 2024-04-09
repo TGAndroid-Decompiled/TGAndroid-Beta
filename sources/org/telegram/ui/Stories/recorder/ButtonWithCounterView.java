@@ -59,6 +59,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private Runnable tick;
     private int timerSeconds;
     private boolean withCounterIcon;
+    public boolean wrapContentDynamic;
 
     protected float calculateCounterWidth(float f, float f2) {
         return f * f2;
@@ -90,15 +91,13 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);
         View view = new View(context);
         this.rippleView = view;
-        view.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 8, 8));
         addView(view, LayoutHelper.createFrame(-1, -1.0f));
         if (z) {
             setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
         }
         Paint paint = new Paint(1);
         this.paint = paint;
-        int i = Theme.key_featuredStickers_buttonText;
-        paint.setColor(Theme.getColor(i, resourcesProvider));
+        paint.setColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.text = animatedTextDrawable;
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
@@ -107,14 +106,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         if (z) {
             animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         }
-        animatedTextDrawable.setTextColor(Theme.getColor(z ? i : Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable.setGravity(1);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.subText = animatedTextDrawable2;
         animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable2.setCallback(this);
         animatedTextDrawable2.setTextSize(AndroidUtilities.dp(12.0f));
-        animatedTextDrawable2.setTextColor(Theme.getColor(z ? i : Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable2.setGravity(1);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
         this.countText = animatedTextDrawable3;
@@ -122,10 +119,14 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         animatedTextDrawable3.setCallback(this);
         animatedTextDrawable3.setTextSize(AndroidUtilities.dp(12.0f));
         animatedTextDrawable3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        animatedTextDrawable3.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable3.setText("");
         animatedTextDrawable3.setGravity(1);
         setWillNotDraw(false);
+        updateColors();
+    }
+
+    public void disableRippleView() {
+        removeView(this.rippleView);
     }
 
     public void setColor(int i) {
@@ -135,7 +136,11 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     public void updateColors() {
-        this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
+        if (this.filled) {
+            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
+        } else {
+            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 0.1f), 8, 8));
+        }
         this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
@@ -543,5 +548,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
 
     public void setGlobalAlpha(float f) {
         this.globalAlpha = (int) (f * 255.0f);
+    }
+
+    public void wrapContentDynamic() {
+        this.wrapContentDynamic = true;
     }
 }

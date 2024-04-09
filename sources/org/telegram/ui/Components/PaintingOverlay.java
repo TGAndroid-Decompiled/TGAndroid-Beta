@@ -167,7 +167,7 @@ public class PaintingOverlay extends FrameLayout {
             byte b = mediaEntity.type;
             if (b == 0) {
                 BackupImageView backupImageView2 = new BackupImageView(getContext());
-                backupImageView2.setLayerNum(8);
+                backupImageView2.setLayerNum(12);
                 backupImageView2.setAspectFit(true);
                 ImageReceiver imageReceiver = backupImageView2.getImageReceiver();
                 if (z) {
@@ -192,7 +192,7 @@ public class PaintingOverlay extends FrameLayout {
                         });
                     }
                 }
-                imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), (String) null, "webp", mediaEntity.parentObject, 1);
+                imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), null, null, null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), null, null, 0L, "webp", mediaEntity.parentObject, 1);
                 if ((mediaEntity.subType & 2) != 0) {
                     backupImageView2.setScaleX(-1.0f);
                 }

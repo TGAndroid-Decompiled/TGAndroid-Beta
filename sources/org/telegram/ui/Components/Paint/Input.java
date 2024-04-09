@@ -81,7 +81,7 @@ public class Input {
     }
 
     private void fill(Brush brush, final boolean z, final Runnable runnable) {
-        if (!this.canFill || this.lastLocation == null) {
+        if (!this.canFill || this.renderView.getPainting().masking || this.lastLocation == null) {
             return;
         }
         if (brush == null) {

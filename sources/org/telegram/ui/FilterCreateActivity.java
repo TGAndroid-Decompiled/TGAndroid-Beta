@@ -2673,7 +2673,7 @@ public class FilterCreateActivity extends BaseFragment {
 
                     @Override
                     public void options() {
-                        ItemOptions makeOptions = ItemOptions.makeOptions(((BottomSheet) FilterInvitesBottomSheet.this).container, this);
+                        ItemOptions makeOptions = ItemOptions.makeOptions(FilterInvitesBottomSheet.this.container, this);
                         makeOptions.add(R.drawable.msg_copy, LocaleController.getString("CopyLink", R.string.CopyLink), new Runnable() {
                             @Override
                             public final void run() {

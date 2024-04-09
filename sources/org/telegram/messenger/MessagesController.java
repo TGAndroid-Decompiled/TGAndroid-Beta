@@ -97,6 +97,7 @@ import org.telegram.tgnet.TLRPC$TL_account_installWallPaper;
 import org.telegram.tgnet.TLRPC$TL_account_registerDevice;
 import org.telegram.tgnet.TLRPC$TL_account_reportPeer;
 import org.telegram.tgnet.TLRPC$TL_account_saveTheme;
+import org.telegram.tgnet.TLRPC$TL_account_toggleSponsoredMessages;
 import org.telegram.tgnet.TLRPC$TL_account_unregisterDevice;
 import org.telegram.tgnet.TLRPC$TL_account_updateEmojiStatus;
 import org.telegram.tgnet.TLRPC$TL_account_updateStatus;
@@ -493,6 +494,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int aboutLengthLimitPremium;
     private HashMap<Long, TLRPC$Chat> activeVoiceChatsMap;
     protected ArrayList<TLRPC$Dialog> allDialogs;
+    public boolean androidDisableRoundCamera2;
     public float animatedEmojisZoom;
     private final CacheFetcher<Integer, TLRPC$TL_help_appConfig> appConfigFetcher;
     public Set<String> authDomains;
@@ -594,6 +596,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public HashSet<String> diceEmojies;
     public HashMap<String, DiceFrameSuccess> diceSuccess;
     public List<String> directPaymentsCurrency;
+    public Set<String> dismissedSuggestions;
     public HashMap<Long, ArrayList<TLRPC$TL_sendMessageEmojiInteraction>> emojiInteractions;
     private SharedPreferences emojiPreferences;
     public HashMap<String, EmojiSound> emojiSounds;
@@ -731,6 +734,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public SparseIntArray premiumFeaturesTypesToPosition;
     public String premiumInvoiceSlug;
     public boolean premiumLocked;
+    public String premiumManageSubscriptionUrl;
     public LongSparseArray<LongSparseArray<CharSequence>> printingStrings;
     public LongSparseArray<LongSparseArray<Integer>> printingStringsTypes;
     public ConcurrentHashMap<Long, ConcurrentHashMap<Integer, ArrayList<PrintingUser>>> printingUsers;
@@ -750,6 +754,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int ratingDecay;
     private LongSparseArray<TLRPC$TL_messages_savedReactionsTags> reactionTags;
     public int reactionsInChatMax;
+    public int reactionsUniqMax;
     public int reactionsUserMaxDefault;
     public int reactionsUserMaxPremium;
     private ArrayList<ReadTask> readTasks;
@@ -811,6 +816,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public StoriesController storiesController;
     public String storiesEntities;
     public boolean storiesExportNopublicLink;
+    public int storiesPinnedToTopCountMax;
     public String storiesPosting;
     public int storiesSentMonthlyLimitDefault;
     public int storiesSentMonthlyLimitPremium;
@@ -1247,6 +1253,14 @@ public class MessagesController extends BaseController implements NotificationCe
             return this.reactionsInChatMax;
         }
         return 1;
+    }
+
+    public int getChatMaxUniqReactions(long j) {
+        TLRPC$ChatFull chatFull = getInstance(this.currentAccount).getChatFull(-j);
+        if (chatFull != null && (!(chatFull instanceof TLRPC$TL_chatFull) ? (chatFull.flags2 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0 : (chatFull.flags & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0)) {
+            return chatFull.reactions_limit;
+        }
+        return this.reactionsUniqMax;
     }
 
     public boolean isPremiumUser(TLRPC$User tLRPC$User) {
@@ -2100,6 +2114,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.roundVideoBitrate = this.mainPreferences.getInt("roundVideoBitrate", 1000);
         this.roundAudioBitrate = this.mainPreferences.getInt("roundAudioBitrate", 64);
         this.pendingSuggestions = this.mainPreferences.getStringSet("pendingSuggestions", null);
+        this.dismissedSuggestions = this.mainPreferences.getStringSet("dismissedSuggestions", null);
         int i2 = this.mainPreferences.getInt("channelsLimitDefault", 500);
         this.channelsLimitDefault = i2;
         this.channelsLimitPremium = this.mainPreferences.getInt("channelsLimitPremium", i2 * 2);
@@ -2212,6 +2227,10 @@ public class MessagesController extends BaseController implements NotificationCe
         this.businessChatLinksLimit = this.mainPreferences.getInt("businessChatLinksLimit", 100);
         this.channelRevenueWithdrawalEnabled = this.mainPreferences.getBoolean("channelRevenueWithdrawalEnabled", false);
         this.newNoncontactPeersRequirePremiumWithoutOwnpremium = this.mainPreferences.getBoolean("newNoncontactPeersRequirePremiumWithoutOwnpremium", false);
+        this.reactionsUniqMax = this.mainPreferences.getInt("reactionsUniqMax", 11);
+        this.premiumManageSubscriptionUrl = this.mainPreferences.getString("premiumManageSubscriptionUrl", ApplicationLoader.isStandaloneBuild() ? "https://t.me/premiumbot?start=status" : "https://play.google.com/store/account/subscriptions?sku=telegram_premium&package=org.telegram.messenger");
+        this.androidDisableRoundCamera2 = this.mainPreferences.getBoolean("androidDisableRoundCamera2", false);
+        this.storiesPinnedToTopCountMax = this.mainPreferences.getInt("storiesPinnedToTopCountMax", 3);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -2235,6 +2254,11 @@ public class MessagesController extends BaseController implements NotificationCe
             this.pendingSuggestions = new HashSet(this.pendingSuggestions);
         } else {
             this.pendingSuggestions = new HashSet();
+        }
+        if (this.dismissedSuggestions != null) {
+            this.dismissedSuggestions = new HashSet(this.dismissedSuggestions);
+        } else {
+            this.dismissedSuggestions = new HashSet();
         }
         Set<String> stringSet2 = this.mainPreferences.getStringSet("exportUri2", null);
         this.exportUri = stringSet2;
@@ -3722,11 +3746,13 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         if (j == 0) {
-            if (!this.pendingSuggestions.remove(str)) {
+            if (!this.pendingSuggestions.remove(str) && this.dismissedSuggestions.contains(str)) {
                 return;
             }
+            this.dismissedSuggestions.add(str);
             SharedPreferences.Editor edit = this.mainPreferences.edit();
             edit.putStringSet("pendingSuggestions", this.pendingSuggestions);
+            edit.putStringSet("dismissedSuggestions", this.dismissedSuggestions);
             edit.commit();
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
         }
@@ -15388,25 +15414,21 @@ public class MessagesController extends BaseController implements NotificationCe
                         tLRPC$TL_message.flags |= 128;
                     }
                     tLRPC$TL_message.peer_id = getPeer(j);
-                    tLRPC$TL_message.from_id = tLRPC$TL_sponsoredMessage.from_id;
                     tLRPC$TL_message.flags |= LiteMode.FLAG_CHAT_BLUR;
                     tLRPC$TL_message.date = getConnectionsManager().getCurrentTime();
                     int i5 = i4 - 1;
                     tLRPC$TL_message.id = i4;
                     MessageObject messageObject = new MessageObject(this.currentAccount, (TLRPC$Message) tLRPC$TL_message, (LongSparseArray<TLRPC$User>) longSparseArray, (LongSparseArray<TLRPC$Chat>) longSparseArray2, true, true);
                     messageObject.sponsoredId = tLRPC$TL_sponsoredMessage.random_id;
-                    messageObject.botStartParam = tLRPC$TL_sponsoredMessage.start_param;
-                    messageObject.sponsoredChannelPost = tLRPC$TL_sponsoredMessage.channel_post;
-                    messageObject.sponsoredChatInvite = tLRPC$TL_sponsoredMessage.chat_invite;
-                    messageObject.sponsoredChatInviteHash = tLRPC$TL_sponsoredMessage.chat_invite_hash;
+                    messageObject.sponsoredTitle = tLRPC$TL_sponsoredMessage.title;
+                    messageObject.sponsoredUrl = tLRPC$TL_sponsoredMessage.url;
                     messageObject.sponsoredRecommended = tLRPC$TL_sponsoredMessage.recommended;
-                    messageObject.sponsoredShowPeerPhoto = tLRPC$TL_sponsoredMessage.show_peer_photo;
+                    messageObject.sponsoredPhoto = tLRPC$TL_sponsoredMessage.photo;
                     messageObject.sponsoredInfo = tLRPC$TL_sponsoredMessage.sponsor_info;
                     messageObject.sponsoredAdditionalInfo = tLRPC$TL_sponsoredMessage.additional_info;
-                    messageObject.sponsoredWebPage = tLRPC$TL_sponsoredMessage.webpage;
-                    messageObject.sponsoredBotApp = tLRPC$TL_sponsoredMessage.app;
                     messageObject.sponsoredButtonText = tLRPC$TL_sponsoredMessage.button_text;
                     messageObject.sponsoredCanReport = tLRPC$TL_sponsoredMessage.can_report;
+                    messageObject.sponsoredColor = tLRPC$TL_sponsoredMessage.color;
                     arrayList3.add(messageObject);
                     i++;
                     tLRPC$messages_SponsoredMessages = tLRPC$messages_SponsoredMessages;
@@ -16187,7 +16209,7 @@ public class MessagesController extends BaseController implements NotificationCe
         runnable.run();
     }
 
-    public void setCustomChatReactions(final long j, int i, List<TLRPC$Reaction> list, final Utilities.Callback<TLRPC$TL_error> callback, final Runnable runnable) {
+    public void setCustomChatReactions(final long j, int i, List<TLRPC$Reaction> list, int i2, final Utilities.Callback<TLRPC$TL_error> callback, final Runnable runnable) {
         final TLRPC$TL_messages_setChatAvailableReactions tLRPC$TL_messages_setChatAvailableReactions = new TLRPC$TL_messages_setChatAvailableReactions();
         tLRPC$TL_messages_setChatAvailableReactions.peer = getInputPeer(-j);
         if (i == 2 || list.isEmpty()) {
@@ -16199,12 +16221,24 @@ public class MessagesController extends BaseController implements NotificationCe
             tLRPC$TL_messages_setChatAvailableReactions.available_reactions = tLRPC$TL_chatReactionsSome;
             tLRPC$TL_chatReactionsSome.reactions.addAll(list);
         }
+        tLRPC$TL_messages_setChatAvailableReactions.flags |= 1;
+        tLRPC$TL_messages_setChatAvailableReactions.reactions_limit = i2;
         getConnectionsManager().sendRequest(tLRPC$TL_messages_setChatAvailableReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 MessagesController.this.lambda$setCustomChatReactions$411(j, tLRPC$TL_messages_setChatAvailableReactions, runnable, callback, tLObject, tLRPC$TL_error);
             }
         });
+        TLRPC$ChatFull chatFull = getChatFull(j);
+        if (chatFull != null) {
+            if (chatFull instanceof TLRPC$TL_channelFull) {
+                chatFull.flags2 |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+            } else {
+                chatFull.flags |= FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+            }
+            chatFull.reactions_limit = i2;
+            getMessagesStorage().updateChatInfo(chatFull, false);
+        }
     }
 
     public void lambda$setCustomChatReactions$411(final long j, TLRPC$TL_messages_setChatAvailableReactions tLRPC$TL_messages_setChatAvailableReactions, final Runnable runnable, final Utilities.Callback callback, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -16878,34 +16912,45 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
+    public ChannelRecommendations getCachedChannelRecommendations(long j) {
+        HashMap<Long, ChannelRecommendations> hashMap = this.cachedChannelRecommendations;
+        if (hashMap == null) {
+            return null;
+        }
+        return hashMap.get(Long.valueOf(j));
+    }
+
     public ChannelRecommendations getChannelRecommendations(final long j) {
         ChannelRecommendations channelRecommendations;
         TLRPC$InputChannel inputChannel = getInputChannel(j);
-        if (inputChannel == null) {
-            return null;
-        }
-        if (this.cachedChannelRecommendations == null) {
-            this.cachedChannelRecommendations = new HashMap<>();
-        }
-        final boolean isPremium = getUserConfig().isPremium();
-        if (this.cachedChannelRecommendations.containsKey(Long.valueOf(j))) {
-            channelRecommendations = this.cachedChannelRecommendations.get(Long.valueOf(j));
-            if (channelRecommendations != null && channelRecommendations.wasPremium == isPremium) {
-                return channelRecommendations;
+        if (inputChannel != null || j == 0) {
+            if (this.cachedChannelRecommendations == null) {
+                this.cachedChannelRecommendations = new HashMap<>();
             }
-        } else {
-            channelRecommendations = null;
-        }
-        this.cachedChannelRecommendations.put(Long.valueOf(j), null);
-        TLRPC$TL_channels_getChannelRecommendations tLRPC$TL_channels_getChannelRecommendations = new TLRPC$TL_channels_getChannelRecommendations();
-        tLRPC$TL_channels_getChannelRecommendations.channel = inputChannel;
-        getConnectionsManager().sendRequest(tLRPC$TL_channels_getChannelRecommendations, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagesController.this.lambda$getChannelRecommendations$423(isPremium, j, tLObject, tLRPC$TL_error);
+            final boolean isPremium = getUserConfig().isPremium();
+            if (this.cachedChannelRecommendations.containsKey(Long.valueOf(j))) {
+                channelRecommendations = this.cachedChannelRecommendations.get(Long.valueOf(j));
+                if (channelRecommendations != null && channelRecommendations.wasPremium == isPremium) {
+                    return channelRecommendations;
+                }
+            } else {
+                channelRecommendations = null;
             }
-        });
-        return channelRecommendations;
+            this.cachedChannelRecommendations.put(Long.valueOf(j), null);
+            TLRPC$TL_channels_getChannelRecommendations tLRPC$TL_channels_getChannelRecommendations = new TLRPC$TL_channels_getChannelRecommendations();
+            if (j != 0) {
+                tLRPC$TL_channels_getChannelRecommendations.flags |= 1;
+                tLRPC$TL_channels_getChannelRecommendations.channel = inputChannel;
+            }
+            getConnectionsManager().sendRequest(tLRPC$TL_channels_getChannelRecommendations, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MessagesController.this.lambda$getChannelRecommendations$423(isPremium, j, tLObject, tLRPC$TL_error);
+                }
+            });
+            return channelRecommendations;
+        }
+        return null;
     }
 
     public void lambda$getChannelRecommendations$423(final boolean z, final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -17555,5 +17600,27 @@ public class MessagesController extends BaseController implements NotificationCe
         if (z) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userIsPremiumBlockedUpadted, new Object[0]);
         }
+    }
+
+    public void disableAds(boolean z) {
+        TLRPC$UserFull userFull = getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
+            return;
+        }
+        userFull.sponsored_enabled = false;
+        getMessagesStorage().updateUserInfo(userFull, false);
+        if (z) {
+            TLRPC$TL_account_toggleSponsoredMessages tLRPC$TL_account_toggleSponsoredMessages = new TLRPC$TL_account_toggleSponsoredMessages();
+            tLRPC$TL_account_toggleSponsoredMessages.enabled = false;
+            getConnectionsManager().sendRequest(tLRPC$TL_account_toggleSponsoredMessages, null);
+        }
+    }
+
+    public boolean isSponsoredDisabled() {
+        TLRPC$UserFull userFull = getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
+            return false;
+        }
+        return !userFull.sponsored_enabled;
     }
 }

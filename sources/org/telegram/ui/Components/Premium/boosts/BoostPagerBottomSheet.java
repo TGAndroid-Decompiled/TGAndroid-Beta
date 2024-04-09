@@ -242,7 +242,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
 
             @Override
             public void onShowToast(String str) {
-                BulletinFactory.of(((BottomSheet) BoostPagerBottomSheet.this).container, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, str).show(true);
+                BulletinFactory.of(BoostPagerBottomSheet.this.container, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, str).show(true);
             }
         });
         selectorBottomSheet.setOnCloseClick(new Runnable() {
@@ -256,6 +256,11 @@ public class BoostPagerBottomSheet extends BottomSheet {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override

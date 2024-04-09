@@ -123,7 +123,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
         }
         if (!this.periods.isEmpty() && !is24()) {
             ArrayList<OpeningHoursActivity.Period> arrayList = this.periods;
-            if (arrayList.get(arrayList.size() - 1).end >= this.max - 2) {
+            if (arrayList.get(arrayList.size() - 1).end >= Math.min(1438, this.max - 2)) {
                 return false;
             }
         }

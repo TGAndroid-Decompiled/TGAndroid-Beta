@@ -114,8 +114,6 @@ public class EntityView extends FrameLayout {
 
         int[] getCenterLocation(EntityView entityView);
 
-        float getCropRotation();
-
         void getTransformedTouch(float f, float f2, float[] fArr);
 
         boolean isEntityDeletable();
@@ -291,7 +289,7 @@ public class EntityView extends FrameLayout {
                 if (distance2 > 0.0f) {
                     scale(distance / distance2);
                 }
-                rotate((this.angle + ((float) Math.toDegrees(Math.atan2(f2 - f4, f - f3) - Math.atan2(this.previousLocationY - this.previousLocationY2, this.previousLocationX - this.previousLocationX2)))) - this.delegate.getCropRotation());
+                rotate(this.angle + ((float) Math.toDegrees(Math.atan2(f2 - f4, f - f3) - Math.atan2(this.previousLocationY - this.previousLocationY2, this.previousLocationX - this.previousLocationX2))));
             }
             this.previousLocationX = f;
             this.previousLocationY = f2;

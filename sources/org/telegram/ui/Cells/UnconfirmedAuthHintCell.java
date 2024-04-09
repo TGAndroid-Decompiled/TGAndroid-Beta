@@ -34,6 +34,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class UnconfirmedAuthHintCell extends FrameLayout {
@@ -180,7 +181,9 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
     }
 
     public void lambda$set$3(int i, ArrayList arrayList) {
-        showLoginPreventedSheet(arrayList);
+        if (LaunchActivity.isActive) {
+            showLoginPreventedSheet(arrayList);
+        }
         this.noButton.setLoading(false);
         MessagesController.getInstance(i).getUnconfirmedAuthController().cleanup();
     }

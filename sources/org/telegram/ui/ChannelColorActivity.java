@@ -558,6 +558,11 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
 
             @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
             public boolean clipWithGradient(int i3) {
                 return Bulletin.Delegate.CC.$default$clipWithGradient(this, i3);
             }
@@ -1885,7 +1890,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         }
 
                         @Override
-                        protected int noThemeStringTextSize() {
+                        public int noThemeStringTextSize() {
                             if (z) {
                                 return super.noThemeStringTextSize();
                             }
