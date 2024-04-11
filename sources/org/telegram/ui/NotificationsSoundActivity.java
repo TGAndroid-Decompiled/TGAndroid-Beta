@@ -154,11 +154,14 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             } else if (i == 2) {
                 str = "ChannelSoundPath";
                 str2 = "ChannelSoundDocId";
-            } else if (i != 3) {
-                throw new RuntimeException("Unsupported type");
-            } else {
+            } else if (i == 3) {
                 str = "StoriesSoundPath";
                 str2 = "StoriesSoundDocId";
+            } else if (i != 4 && i != 5) {
+                throw new RuntimeException("Unsupported type");
+            } else {
+                str = "ReactionSoundPath";
+                str2 = "ReactionSoundDocId";
             }
         }
         SharedPreferences notificationsSettings = getNotificationsSettings();
@@ -196,7 +199,9 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             } else if (i == 2) {
                 this.actionBar.setTitle(LocaleController.getString("NotificationsSoundChannels", R.string.NotificationsSoundChannels));
             } else if (i == 3) {
-                this.actionBar.setTitle(LocaleController.getString("NotificationsSoundStories", R.string.NotificationsSoundStories));
+                this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsSoundStories));
+            } else if (i == 5 || i == 4) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsSoundReactions));
             }
         } else {
             ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false, this.resourcesProvider);
@@ -903,12 +908,16 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 str = "ChannelSound";
                 str2 = "ChannelSoundPath";
                 str3 = "ChannelSoundDocId";
-            } else if (i != 3) {
-                throw new RuntimeException("Unsupported type");
-            } else {
+            } else if (i == 3) {
                 str = "StoriesSound";
                 str2 = "StoriesSoundPath";
                 str3 = "StoriesSoundDocId";
+            } else if (i != 5 && i != 4) {
+                throw new RuntimeException("Unsupported type");
+            } else {
+                str = "ReactionSound";
+                str2 = "ReactionSoundPath";
+                str3 = "ReactionSoundDocId";
             }
         }
         Tone tone = this.selectedTone;

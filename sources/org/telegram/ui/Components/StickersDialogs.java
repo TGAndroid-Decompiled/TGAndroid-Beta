@@ -231,10 +231,12 @@ public class StickersDialogs {
         final int i = UserConfig.selectedAccount;
         final Context context = baseFragment.getContext();
         EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(context, true, resourcesProvider);
-        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
+        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3) {
-                StickersDialogs.lambda$openStickerPickerDialog$11(i, context, tLRPC$TL_messages_stickerSet, obj, (TLRPC$Document) obj2, (Boolean) obj3);
+            public final Object run(Object obj, Object obj2, Object obj3) {
+                Boolean lambda$openStickerPickerDialog$11;
+                lambda$openStickerPickerDialog$11 = StickersDialogs.lambda$openStickerPickerDialog$11(i, context, tLRPC$TL_messages_stickerSet, obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                return lambda$openStickerPickerDialog$11;
             }
         });
         if (baseFragment.visibleDialog != null) {
@@ -244,7 +246,7 @@ public class StickersDialogs {
         }
     }
 
-    public static void lambda$openStickerPickerDialog$11(final int i, Context context, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final Object obj, final TLRPC$Document tLRPC$Document, Boolean bool) {
+    public static Boolean lambda$openStickerPickerDialog$11(final int i, Context context, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final Object obj, final TLRPC$Document tLRPC$Document, Boolean bool) {
         String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, "😀", Integer.valueOf(i));
         String str = TextUtils.isEmpty(findAnimatedEmojiEmoticon) ? "😀" : findAnimatedEmojiEmoticon;
         final AlertDialog alertDialog = new AlertDialog(context, 3);
@@ -261,6 +263,7 @@ public class StickersDialogs {
             alertDialog.showDelayed(350L);
         } catch (Exception unused) {
         }
+        return Boolean.TRUE;
     }
 
     public static void lambda$openStickerPickerDialog$10(final AlertDialog alertDialog, final int i, final TLRPC$Document tLRPC$Document, final Object obj, final TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

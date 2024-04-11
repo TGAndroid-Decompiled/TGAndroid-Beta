@@ -310,6 +310,9 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         } else if (i2 == 3) {
             string = notificationsSettings.getString("StoriesSound", string2);
             j = notificationsSettings.getLong("StoriesSoundDocId", 0L);
+        } else if (i2 == 4 || i2 == 5) {
+            string = notificationsSettings.getString("ReactionSound", string2);
+            j = notificationsSettings.getLong("ReactionSoundDocId", 0L);
         } else {
             string = notificationsSettings.getString("ChannelSound", string2);
             j = notificationsSettings.getLong("ChannelDocId", 0L);

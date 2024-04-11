@@ -140,7 +140,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     AlertDialog progressDialog;
     private ActionBarMenuSubItem resetDatabaseItem;
     private float[] tempSizes;
-    private boolean[] selected = {true, true, true, true, true, true, true, true, true, true};
+    private boolean[] selected = {true, true, true, true, true, true, true, true, true, false, true};
     private long databaseSize = -1;
     private long cacheSize = -1;
     private long cacheEmojiSize = -1;
@@ -151,6 +151,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     private long musicSize = -1;
     private long photoSize = -1;
     private long videoSize = -1;
+    private long logsSize = -1;
     private long stickersCacheSize = -1;
     private long totalSize = -1;
     private long totalDeviceSize = -1;
@@ -222,7 +223,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         long directorySize4 = getDirectorySize(FileLoader.checkDirectory(2), 0) + getDirectorySize(FileLoader.checkDirectory(101), 0);
         long directorySize5 = getDirectorySize(FileLoader.checkDirectory(3), 1) + getDirectorySize(FileLoader.checkDirectory(5), 1);
         long directorySize6 = getDirectorySize(FileLoader.checkDirectory(3), 2) + getDirectorySize(FileLoader.checkDirectory(5), 2);
-        Long valueOf = Long.valueOf(directorySize + directorySize2 + directorySize4 + getDirectorySize(FileLoader.checkDirectory(1), 0) + directorySize3 + directorySize5 + directorySize6 + getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0) + getDirectorySize(FileLoader.checkDirectory(4), 3) + getDirectorySize(FileLoader.checkDirectory(6), 0));
+        long directorySize7 = getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0) + getDirectorySize(FileLoader.checkDirectory(4), 3);
+        long directorySize8 = getDirectorySize(FileLoader.checkDirectory(1), 0);
+        long directorySize9 = getDirectorySize(FileLoader.checkDirectory(6), 0);
+        long directorySize10 = getDirectorySize(AndroidUtilities.getLogsDir(), 1);
+        if (!BuildVars.DEBUG_VERSION && directorySize10 < 268435456) {
+            directorySize10 = 0;
+        }
+        Long valueOf = Long.valueOf(directorySize + directorySize2 + directorySize4 + directorySize8 + directorySize3 + directorySize5 + directorySize6 + directorySize7 + directorySize9 + directorySize10);
         lastTotalSizeCalculated = valueOf;
         final long longValue = valueOf.longValue();
         lastTotalSizeCalculatedTime = System.currentTimeMillis();
@@ -366,15 +374,23 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (canceled) {
             return;
         }
-        long directorySize3 = getDirectorySize(FileLoader.checkDirectory(3), 1);
-        this.documentsSize = directorySize3;
-        this.documentsSize = directorySize3 + getDirectorySize(FileLoader.checkDirectory(5), 1);
+        long directorySize3 = getDirectorySize(AndroidUtilities.getLogsDir(), 1);
+        this.logsSize = directorySize3;
+        if (!BuildVars.DEBUG_VERSION && directorySize3 < 268435456) {
+            this.logsSize = 0L;
+        }
         if (canceled) {
             return;
         }
-        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(3), 2);
-        this.musicSize = directorySize4;
-        this.musicSize = directorySize4 + getDirectorySize(FileLoader.checkDirectory(5), 2);
+        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(3), 1);
+        this.documentsSize = directorySize4;
+        this.documentsSize = directorySize4 + getDirectorySize(FileLoader.checkDirectory(5), 1);
+        if (canceled) {
+            return;
+        }
+        long directorySize5 = getDirectorySize(FileLoader.checkDirectory(3), 2);
+        this.musicSize = directorySize5;
+        this.musicSize = directorySize5 + getDirectorySize(FileLoader.checkDirectory(5), 2);
         if (canceled) {
             return;
         }
@@ -392,7 +408,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (canceled) {
             return;
         }
-        Long valueOf = Long.valueOf(this.cacheSize + this.cacheTempSize + this.videoSize + this.audioSize + this.photoSize + this.documentsSize + this.musicSize + this.storiesSize + this.stickersCacheSize);
+        Long valueOf = Long.valueOf(this.cacheSize + this.cacheTempSize + this.videoSize + this.logsSize + this.audioSize + this.photoSize + this.documentsSize + this.musicSize + this.storiesSize + this.stickersCacheSize);
         lastTotalSizeCalculated = valueOf;
         this.totalSize = valueOf.longValue();
         lastTotalSizeCalculatedTime = System.currentTimeMillis();
@@ -457,14 +473,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (cacheChart != null) {
             boolean z = this.calculating;
             if (!z && this.totalSize > 0) {
-                CacheChart.SegmentSize[] segmentSizeArr = new CacheChart.SegmentSize[10];
+                CacheChart.SegmentSize[] segmentSizeArr = new CacheChart.SegmentSize[11];
                 for (int i = 0; i < this.itemInners.size(); i++) {
                     ItemInner itemInner = this.itemInners.get(i);
                     if (itemInner.viewType == 11) {
                         int i2 = itemInner.index;
                         if (i2 < 0) {
                             if (this.collapsed) {
-                                segmentSizeArr[9] = CacheChart.SegmentSize.of(itemInner.size, this.selected[9]);
+                                segmentSizeArr[10] = CacheChart.SegmentSize.of(itemInner.size, this.selected[10]);
                             }
                         } else {
                             segmentSizeArr[i2] = CacheChart.SegmentSize.of(itemInner.size, this.selected[i2]);
@@ -840,7 +856,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$cleanupFolders$11(final org.telegram.messenger.Utilities.Callback2<java.lang.Float, java.lang.Boolean> r21, final java.lang.Runnable r22) {
+    public void lambda$cleanupFolders$11(final org.telegram.messenger.Utilities.Callback2<java.lang.Float, java.lang.Boolean> r23, final java.lang.Runnable r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CacheControlActivity.lambda$cleanupFolders$11(org.telegram.messenger.Utilities$Callback2, java.lang.Runnable):void");
     }
 
@@ -922,6 +938,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 return this.cacheSize;
             case 8:
                 return this.cacheTempSize;
+            case 9:
+                return this.logsSize;
             default:
                 return 0L;
         }
@@ -929,7 +947,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     private int sectionsSelected() {
         int i = 0;
-        for (int i2 = 0; i2 < 9; i2++) {
+        for (int i2 = 0; i2 < 10; i2++) {
             if (this.selected[i2] && size(i2) > 0) {
                 i++;
             }
@@ -1936,7 +1954,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
 
         public void updateSize() {
-            setSize(CacheControlActivity.this.isAllSectionsSelected(), (CacheControlActivity.this.selected[0] ? CacheControlActivity.this.photoSize : 0L) + (CacheControlActivity.this.selected[1] ? CacheControlActivity.this.videoSize : 0L) + (CacheControlActivity.this.selected[2] ? CacheControlActivity.this.documentsSize : 0L) + (CacheControlActivity.this.selected[3] ? CacheControlActivity.this.musicSize : 0L) + (CacheControlActivity.this.selected[4] ? CacheControlActivity.this.audioSize : 0L) + (CacheControlActivity.this.selected[5] ? CacheControlActivity.this.storiesSize : 0L) + (CacheControlActivity.this.selected[6] ? CacheControlActivity.this.stickersCacheSize : 0L) + (CacheControlActivity.this.selected[7] ? CacheControlActivity.this.cacheSize : 0L) + (CacheControlActivity.this.selected[8] ? CacheControlActivity.this.cacheTempSize : 0L));
+            setSize(CacheControlActivity.this.isAllSectionsSelected(), (CacheControlActivity.this.selected[0] ? CacheControlActivity.this.photoSize : 0L) + (CacheControlActivity.this.selected[1] ? CacheControlActivity.this.videoSize : 0L) + (CacheControlActivity.this.selected[2] ? CacheControlActivity.this.documentsSize : 0L) + (CacheControlActivity.this.selected[3] ? CacheControlActivity.this.musicSize : 0L) + (CacheControlActivity.this.selected[4] ? CacheControlActivity.this.audioSize : 0L) + (CacheControlActivity.this.selected[5] ? CacheControlActivity.this.storiesSize : 0L) + (CacheControlActivity.this.selected[6] ? CacheControlActivity.this.stickersCacheSize : 0L) + (CacheControlActivity.this.selected[7] ? CacheControlActivity.this.cacheSize : 0L) + (CacheControlActivity.this.selected[8] ? CacheControlActivity.this.cacheTempSize : 0L) + (CacheControlActivity.this.selected[9] ? CacheControlActivity.this.logsSize : 0L));
         }
     }
 

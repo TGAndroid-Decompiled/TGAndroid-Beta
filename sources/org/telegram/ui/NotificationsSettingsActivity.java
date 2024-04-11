@@ -247,6 +247,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         this.rowCount = i38 + 1;
         this.resetNotificationsSectionRow = i38;
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.notificationsSettingsUpdated);
+        getMessagesController().reloadReactionsNotifySettings();
         return super.onFragmentCreate();
     }
 

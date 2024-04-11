@@ -395,10 +395,12 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         int i2 = uItem.id;
         if (i2 == 1) {
             EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), true, getResourceProvider());
-            emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
+            emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
                 @Override
-                public final void run(Object obj, Object obj2, Object obj3) {
-                    BusinessIntroActivity.this.lambda$onClick$2(view, obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                public final Object run(Object obj, Object obj2, Object obj3) {
+                    Boolean lambda$onClick$2;
+                    lambda$onClick$2 = BusinessIntroActivity.this.lambda$onClick$2(view, obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                    return lambda$onClick$2;
                 }
             });
             showDialog(emojiBottomSheet);
@@ -419,7 +421,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         }
     }
 
-    public void lambda$onClick$2(View view, Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
+    public Boolean lambda$onClick$2(View view, Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
         this.stickerRandom = false;
         AndroidUtilities.cancelRunOnUIThread(this.updateRandomStickerRunnable);
         ChatGreetingsView chatGreetingsView = this.greetingsView;
@@ -427,6 +429,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         chatGreetingsView.setSticker(tLRPC$Document);
         ((TextCell) view).setValueSticker(tLRPC$Document);
         checkDone(true, false);
+        return Boolean.TRUE;
     }
 
     public boolean hasChanges() {

@@ -1653,10 +1653,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 return num.intValue() == 2;
             }
         };
-        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
+        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3) {
-                LPhotoPaintView.this.lambda$openStickersView$19(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+            public final Object run(Object obj, Object obj2, Object obj3) {
+                Boolean lambda$openStickersView$19;
+                lambda$openStickersView$19 = LPhotoPaintView.this.lambda$openStickersView$19(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                return lambda$openStickersView$19;
             }
         });
         emojiBottomSheet.whenWidgetSelected(new Utilities.Callback() {
@@ -1681,11 +1683,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
     }
 
-    public void lambda$openStickersView$19(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
+    public Boolean lambda$openStickersView$19(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
         StickerView createSticker = createSticker(obj, tLRPC$Document, true);
         if (bool.booleanValue()) {
             createSticker.setScale(1.5f);
         }
+        return Boolean.TRUE;
     }
 
     public void lambda$openStickersView$20(Integer num) {

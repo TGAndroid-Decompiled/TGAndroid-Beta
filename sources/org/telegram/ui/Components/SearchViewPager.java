@@ -324,7 +324,15 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                 ArrayList<TLRPC$Chat> arrayList4;
                 ArrayList<TLRPC$Chat> arrayList5;
                 super.update(z);
-                SearchViewPager.this.channelsEmptyView.showProgress(this.loadingMessages || this.loadingChannels || (arrayList2 = this.messages) == null || !arrayList2.isEmpty() || (arrayList3 = this.searchMyChannels) == null || !arrayList3.isEmpty() || (arrayList4 = this.searchChannels) == null || !arrayList4.isEmpty() || (arrayList5 = this.searchRecommendedChannels) == null || !arrayList5.isEmpty() || TextUtils.isEmpty(this.query), z);
+                SearchViewPager.this.channelsEmptyView.showProgress(this.loadingMessages || this.loadingChannels || (arrayList2 = this.messages) == null || !arrayList2.isEmpty() || (arrayList3 = this.searchMyChannels) == null || !arrayList3.isEmpty() || (arrayList4 = this.searchChannels) == null || !arrayList4.isEmpty() || (arrayList5 = this.searchRecommendedChannels) == null || !arrayList5.isEmpty(), z);
+                if (TextUtils.isEmpty(this.query)) {
+                    SearchViewPager.this.channelsEmptyView.title.setText(LocaleController.getString(R.string.NoChannelsTitle));
+                    SearchViewPager.this.channelsEmptyView.subtitle.setVisibility(0);
+                    SearchViewPager.this.channelsEmptyView.subtitle.setText(LocaleController.getString(R.string.NoChannelsMessage));
+                    return;
+                }
+                SearchViewPager.this.channelsEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                SearchViewPager.this.channelsEmptyView.subtitle.setVisibility(8);
             }
 
             @Override
@@ -378,7 +386,6 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
     }
 
     public void search(View view, int i, String str, boolean z) {
-        boolean z2;
         DialogsSearchAdapter.DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = this.dialogsSearchAdapter.delegate;
         long searchForumDialogId = dialogsSearchAdapterDelegate != null ? dialogsSearchAdapterDelegate.getSearchForumDialogId() : 0L;
         long j = i == 0 ? 0L : searchForumDialogId;
@@ -406,6 +413,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         if (view == this.channelsSearchContainer) {
             MessagesController.getInstance(this.currentAccount).getChannelRecommendations(0L);
             this.channelsSearchAdapter.search(str);
+            this.channelsEmptyView.setKeyboardHeight(this.keyboardSize, false);
         } else if (view == this.searchContainer) {
             if ((j == 0 && j2 == 0 && j3 == 0) || searchForumDialogId != 0) {
                 this.lastSearchScrolledToTop = false;
@@ -431,7 +439,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                 }
                 this.noMediaFiltersSearchView.setTag(null);
             } else {
-                boolean z3 = true;
+                boolean z2 = true;
                 this.noMediaFiltersSearchView.setTag(1);
                 this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
                 this.noMediaFiltersSearchView.animate().setListener(null).cancel();
@@ -444,10 +452,9 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                         this.noMediaFiltersSearchView.setVisibility(0);
                         this.noMediaFiltersSearchView.setAlpha(0.0f);
                     } else {
-                        z3 = z;
+                        z2 = z;
                     }
                     this.noMediaFiltersSearchView.animate().alpha(1.0f).setDuration(150L).start();
-                    z2 = z3;
                 }
                 this.noMediaFiltersSearchView.search(j, j2, j3, null, i2, str, z2);
                 this.emptyView.setVisibility(8);
@@ -938,6 +945,8 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                 this.noMediaFiltersSearchView.setKeyboardHeight(i, z);
             } else if (getChildAt(i2) instanceof SearchDownloadsContainer) {
                 ((SearchDownloadsContainer) getChildAt(i2)).setKeyboardHeight(i, z);
+            } else if (getChildAt(i2) == this.channelsSearchContainer) {
+                this.channelsEmptyView.setKeyboardHeight(i, z);
             }
         }
     }

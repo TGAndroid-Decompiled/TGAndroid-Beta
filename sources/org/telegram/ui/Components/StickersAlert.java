@@ -1069,15 +1069,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-                if (viewHolder.getItemViewType() != 3 && viewHolder.getItemViewType() == viewHolder2.getItemViewType()) {
-                    int adapterPosition = viewHolder.getAdapterPosition();
-                    int adapterPosition2 = viewHolder2.getAdapterPosition();
-                    StickersAlert.this.stickerSet.documents.add(adapterPosition2, StickersAlert.this.stickerSet.documents.remove(adapterPosition));
-                    StickersAlert.this.adapter.notifyItemMoved(adapterPosition, adapterPosition2);
-                    this.movedPos = adapterPosition2;
-                    return true;
+                if (viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() != viewHolder2.getItemViewType() || StickersAlert.this.stickerSet == null) {
+                    return false;
                 }
-                return false;
+                int adapterPosition = viewHolder.getAdapterPosition();
+                int adapterPosition2 = viewHolder2.getAdapterPosition();
+                StickersAlert.this.stickerSet.documents.add(adapterPosition2, StickersAlert.this.stickerSet.documents.remove(adapterPosition));
+                StickersAlert.this.adapter.notifyItemMoved(adapterPosition, adapterPosition2);
+                this.movedPos = adapterPosition2;
+                return true;
             }
 
             @Override

@@ -86,11 +86,13 @@ public class CacheChart extends View {
 
     static {
         int i = Theme.key_statisticChartLine_purple;
-        DEFAULT_COLORS = new int[]{Theme.key_statisticChartLine_lightblue, Theme.key_statisticChartLine_blue, Theme.key_statisticChartLine_green, i, Theme.key_statisticChartLine_lightgreen, Theme.key_statisticChartLine_red, Theme.key_statisticChartLine_orange, Theme.key_statisticChartLine_cyan, i, Theme.key_statisticChartLine_golden};
-        int i2 = R.raw.cache_videos;
-        int i3 = R.raw.cache_music;
-        int i4 = R.raw.cache_other;
-        DEFAULT_PARTICLES = new int[]{R.raw.cache_photos, i2, R.raw.cache_documents, i3, i2, i3, R.raw.cache_stickers, R.raw.cache_profile_photos, i4, i4};
+        int i2 = Theme.key_statisticChartLine_golden;
+        DEFAULT_COLORS = new int[]{Theme.key_statisticChartLine_lightblue, Theme.key_statisticChartLine_blue, Theme.key_statisticChartLine_green, i, Theme.key_statisticChartLine_lightgreen, Theme.key_statisticChartLine_red, Theme.key_statisticChartLine_orange, Theme.key_statisticChartLine_cyan, i, i2, i2};
+        int i3 = R.raw.cache_videos;
+        int i4 = R.raw.cache_documents;
+        int i5 = R.raw.cache_music;
+        int i6 = R.raw.cache_other;
+        DEFAULT_PARTICLES = new int[]{R.raw.cache_photos, i3, i4, i5, i3, i5, R.raw.cache_stickers, R.raw.cache_profile_photos, i6, i6, i4};
         particlesStart = -1L;
     }
 
@@ -390,7 +392,7 @@ public class CacheChart extends View {
     }
 
     public CacheChart(Context context) {
-        this(context, 10, DEFAULT_COLORS, 0, DEFAULT_PARTICLES);
+        this(context, 11, DEFAULT_COLORS, 0, DEFAULT_PARTICLES);
     }
 
     public CacheChart(Context context, int i, int[] iArr, int i2, int[] iArr2) {

@@ -1027,8 +1027,16 @@ public class NotificationsController extends BaseController {
             int size2 = arrayList.size();
             for (int i2 = 0; i2 < size2; i2++) {
                 MessageObject messageObject = (MessageObject) arrayList.get(i2);
-                long j = messageObject.messageOwner.peer_id.channel_id;
-                SparseArray<MessageObject> sparseArray = this.pushMessagesDict.get(j != 0 ? -j : 0L);
+                long j = 0;
+                if (messageObject.isStoryReactionPush) {
+                    j = messageObject.getDialogId();
+                } else {
+                    long j2 = messageObject.messageOwner.peer_id.channel_id;
+                    if (j2 != 0) {
+                        j = -j2;
+                    }
+                }
+                SparseArray<MessageObject> sparseArray = this.pushMessagesDict.get(j);
                 if (sparseArray == null) {
                     break;
                 }
@@ -1148,13 +1156,14 @@ public class NotificationsController extends BaseController {
         long j;
         long j2;
         boolean z;
+        long j3;
         boolean z2;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         SharedPreferences sharedPreferences;
         MessageObject messageObject;
         SparseArray<MessageObject> sparseArray;
-        long j3;
         long j4;
+        long j5;
         int i;
         TLRPC$Message tLRPC$Message;
         boolean z3;
@@ -1171,7 +1180,7 @@ public class NotificationsController extends BaseController {
         this.personalCount = 0;
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
         LongSparseArray longSparseArray2 = new LongSparseArray();
-        long j5 = 0;
+        long j6 = 0;
         if (arrayList3 != null) {
             int i2 = 0;
             while (i2 < arrayList.size()) {
@@ -1179,9 +1188,9 @@ public class NotificationsController extends BaseController {
                 if (tLRPC$Message2 != null && ((tLRPC$MessageFwdHeader = tLRPC$Message2.fwd_from) == null || !tLRPC$MessageFwdHeader.imported)) {
                     TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message2.action;
                     if (!(tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetMessagesTTL) && (!tLRPC$Message2.silent || (!(tLRPC$MessageAction instanceof TLRPC$TL_messageActionContactSignUp) && !(tLRPC$MessageAction instanceof TLRPC$TL_messageActionUserJoined)))) {
-                        long j6 = tLRPC$Message2.peer_id.channel_id;
-                        long j7 = j6 != j5 ? -j6 : j5;
-                        SparseArray<MessageObject> sparseArray3 = this.pushMessagesDict.get(j7);
+                        long j7 = tLRPC$Message2.peer_id.channel_id;
+                        long j8 = j7 != j6 ? -j7 : j6;
+                        SparseArray<MessageObject> sparseArray3 = this.pushMessagesDict.get(j8);
                         if (sparseArray3 == null || sparseArray3.indexOfKey(tLRPC$Message2.id) < 0) {
                             MessageObject messageObject2 = new MessageObject(this.currentAccount, tLRPC$Message2, z5, z5);
                             if (isPersonalMessage(messageObject2)) {
@@ -1197,14 +1206,14 @@ public class NotificationsController extends BaseController {
                                 messageObject = messageObject2;
                                 sparseArray = sparseArray3;
                                 i = i2;
-                                j3 = dialogId;
-                                j4 = j7;
+                                j4 = dialogId;
+                                j5 = j8;
                                 tLRPC$Message = tLRPC$Message2;
                             } else {
                                 messageObject = messageObject2;
                                 sparseArray = sparseArray3;
-                                j3 = dialogId;
-                                j4 = j7;
+                                j4 = dialogId;
+                                j5 = j8;
                                 i = i2;
                                 tLRPC$Message = tLRPC$Message2;
                                 int notifyOverride = getNotifyOverride(sharedPreferences, fromChatId, topicId);
@@ -1219,23 +1228,23 @@ public class NotificationsController extends BaseController {
                             if (z4 && (fromChatId != this.openedDialogId || !ApplicationLoader.isScreenOn)) {
                                 if (sparseArray == null) {
                                     sparseArray2 = new SparseArray<>();
-                                    this.pushMessagesDict.put(j4, sparseArray2);
+                                    this.pushMessagesDict.put(j5, sparseArray2);
                                 } else {
                                     sparseArray2 = sparseArray;
                                 }
                                 sparseArray2.put(tLRPC$Message.id, messageObject);
                                 appendMessage(messageObject);
-                                if (j3 != fromChatId) {
-                                    long j8 = j3;
-                                    Integer num = this.pushDialogsOverrideMention.get(j8);
-                                    this.pushDialogsOverrideMention.put(j8, Integer.valueOf(num == null ? 1 : num.intValue() + 1));
+                                if (j4 != fromChatId) {
+                                    long j9 = j4;
+                                    Integer num = this.pushDialogsOverrideMention.get(j9);
+                                    this.pushDialogsOverrideMention.put(j9, Integer.valueOf(num == null ? 1 : num.intValue() + 1));
                                 }
                             }
                             i2 = i + 1;
                             arrayList3 = arrayList;
                             notificationsSettings = sharedPreferences;
                             z5 = false;
-                            j5 = 0;
+                            j6 = 0;
                         }
                     }
                 }
@@ -1245,7 +1254,7 @@ public class NotificationsController extends BaseController {
                 arrayList3 = arrayList;
                 notificationsSettings = sharedPreferences;
                 z5 = false;
-                j5 = 0;
+                j6 = 0;
             }
         }
         SharedPreferences sharedPreferences2 = notificationsSettings;
@@ -1284,35 +1293,39 @@ public class NotificationsController extends BaseController {
                     long dialogId2 = messageObject3.getDialogId();
                     long topicId2 = MessageObject.getTopicId(this.currentAccount, messageObject3.messageOwner, getMessagesController().isForum(messageObject3));
                     TLRPC$Message tLRPC$Message3 = messageObject3.messageOwner;
-                    long j9 = tLRPC$Message3.random_id;
+                    long j10 = tLRPC$Message3.random_id;
                     long fromChatId2 = tLRPC$Message3.mentioned ? messageObject3.getFromChatId() : dialogId2;
                     int indexOfKey3 = longSparseArray2.indexOfKey(fromChatId2);
                     if (indexOfKey3 >= 0 && topicId2 == 0) {
-                        j = j9;
-                        long j10 = fromChatId2;
-                        z = ((Boolean) longSparseArray2.valueAt(indexOfKey3)).booleanValue();
-                        j2 = j10;
-                    } else {
+                        j = j10;
                         long j11 = fromChatId2;
-                        j = j9;
-                        int notifyOverride3 = getNotifyOverride(sharedPreferences2, j11, topicId2);
+                        z = ((Boolean) longSparseArray2.valueAt(indexOfKey3)).booleanValue();
+                        j2 = j11;
+                    } else {
+                        long j12 = fromChatId2;
+                        j = j10;
+                        int notifyOverride3 = getNotifyOverride(sharedPreferences2, j12, topicId2);
                         if (notifyOverride3 == -1) {
-                            j2 = j11;
+                            j2 = j12;
                             z = isGlobalNotificationsEnabled(j2, messageObject3.isReactionPush, messageObject3.isStoryReactionPush);
                         } else {
-                            j2 = j11;
+                            j2 = j12;
                             z = notifyOverride3 != 2;
                         }
                         longSparseArray2.put(j2, Boolean.valueOf(z));
                     }
                     if (z && (j2 != this.openedDialogId || !ApplicationLoader.isScreenOn)) {
                         if (id != 0) {
-                            long j12 = messageObject3.messageOwner.peer_id.channel_id;
-                            long j13 = j12 != 0 ? -j12 : 0L;
-                            SparseArray<MessageObject> sparseArray4 = this.pushMessagesDict.get(j13);
+                            if (messageObject3.isStoryReactionPush) {
+                                j3 = messageObject3.getDialogId();
+                            } else {
+                                long j13 = messageObject3.messageOwner.peer_id.channel_id;
+                                j3 = j13 != 0 ? -j13 : 0L;
+                            }
+                            SparseArray<MessageObject> sparseArray4 = this.pushMessagesDict.get(j3);
                             if (sparseArray4 == null) {
                                 sparseArray4 = new SparseArray<>();
-                                this.pushMessagesDict.put(j13, sparseArray4);
+                                this.pushMessagesDict.put(j3, sparseArray4);
                             }
                             sparseArray4.put(id, messageObject3);
                         } else {
@@ -2051,6 +2064,8 @@ public class NotificationsController extends BaseController {
                 edit.putString("GlobalSound", string);
             } else if (i3 == 3) {
                 edit.putString("StoriesSound", string);
+            } else if (i3 == 4 || i3 == 5) {
+                edit.putString("ReactionSound", string);
             }
             if (i3 == 2) {
                 edit.putString("ChannelSoundPath", uri3);
@@ -2060,6 +2075,8 @@ public class NotificationsController extends BaseController {
                 edit.putString("GlobalSoundPath", uri3);
             } else if (i3 == 3) {
                 edit.putString("StoriesSoundPath", uri3);
+            } else if (i3 == 4 || i3 == 5) {
+                edit.putString("ReactionSound", uri3);
             }
             getNotificationsController().lambda$deleteNotificationChannelGlobal$40(i3, -1);
         } else {

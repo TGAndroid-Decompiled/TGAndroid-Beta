@@ -1971,10 +1971,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 PaintView.this.lambda$openStickersView$22(zArr, i, dialogInterface);
             }
         });
-        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
+        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3) {
-                PaintView.this.lambda$openStickersView$23(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+            public final Object run(Object obj, Object obj2, Object obj3) {
+                Boolean lambda$openStickersView$23;
+                lambda$openStickersView$23 = PaintView.this.lambda$openStickersView$23(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                return lambda$openStickersView$23;
             }
         });
         emojiBottomSheet.whenWidgetSelected(new Utilities.Callback() {
@@ -2001,13 +2003,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         switchTab(i);
     }
 
-    public void lambda$openStickersView$23(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
+    public Boolean lambda$openStickersView$23(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
         this.forceChanges = true;
         StickerView createSticker = createSticker(obj, tLRPC$Document, false);
         if (bool.booleanValue()) {
             createSticker.setScale(1.5f);
         }
         appearAnimation(createSticker);
+        return Boolean.TRUE;
     }
 
     public void lambda$openStickersView$25(boolean[] zArr, EmojiBottomSheet emojiBottomSheet, Integer num) {

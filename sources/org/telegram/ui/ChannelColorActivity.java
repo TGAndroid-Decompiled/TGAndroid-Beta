@@ -1890,7 +1890,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         }
 
                         @Override
-                        public int noThemeStringTextSize() {
+                        protected int noThemeStringTextSize() {
                             if (z) {
                                 return super.noThemeStringTextSize();
                             }

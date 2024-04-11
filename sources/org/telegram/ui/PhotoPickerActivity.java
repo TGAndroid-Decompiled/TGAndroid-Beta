@@ -59,7 +59,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.utils.GalleryBitmapsCache;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -121,7 +120,6 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
     private FlickerLoadingView flickerView;
     private final boolean forceDarckTheme;
     protected FrameLayout frameLayout2;
-    private final GalleryBitmapsCache galleryBitmapsCache;
     private int imageReqId;
     private boolean imageSearchEndReached;
     private String initialSearchString;
@@ -213,7 +211,6 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.rect = new RectF();
         this.paint = new Paint(1);
         this.needsBottomLayout = true;
-        this.galleryBitmapsCache = new GalleryBitmapsCache();
         this.provider = new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
             public boolean scaleToFill() {
@@ -249,15 +246,26 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             public void updatePhotoAtIndex(int i3) {
                 PhotoAttachPhotoCell cellForIndex = PhotoPickerActivity.this.getCellForIndex(i3);
                 if (cellForIndex != null) {
-                    if (PhotoPickerActivity.this.selectedAlbum != null) {
-                        MediaController.PhotoEntry photoEntry = PhotoPickerActivity.this.selectedAlbum.photos.get(i3);
-                        if (photoEntry != null) {
-                            cellForIndex.updatePhotoEntry(photoEntry);
-                            return;
-                        }
+                    if (PhotoPickerActivity.this.selectedAlbum == null) {
+                        cellForIndex.setPhotoEntry((MediaController.SearchImage) PhotoPickerActivity.this.searchResult.get(i3), true, false);
                         return;
                     }
-                    cellForIndex.setPhotoEntry((MediaController.SearchImage) PhotoPickerActivity.this.searchResult.get(i3), true, false);
+                    BackupImageView imageView = cellForIndex.getImageView();
+                    imageView.setOrientation(0, true);
+                    MediaController.PhotoEntry photoEntry = PhotoPickerActivity.this.selectedAlbum.photos.get(i3);
+                    String str = photoEntry.thumbPath;
+                    if (str != null) {
+                        imageView.setImage(str, null, Theme.chat_attachEmptyDrawable);
+                    } else if (photoEntry.path != null) {
+                        imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
+                        if (photoEntry.isVideo) {
+                            imageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                            return;
+                        }
+                        imageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                    } else {
+                        imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
+                    }
                 }
             }
 
@@ -1034,12 +1042,6 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 return;
             }
             super.requestLayout();
-        }
-
-        @Override
-        public void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            PhotoPickerActivity.this.galleryBitmapsCache.cleanupQueues();
         }
     }
 
@@ -1939,7 +1941,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 }
                 frameLayout = textCell;
             } else {
-                PhotoAttachPhotoCell photoAttachPhotoCell = new PhotoAttachPhotoCell(this.mContext, null, PhotoPickerActivity.this.galleryBitmapsCache);
+                PhotoAttachPhotoCell photoAttachPhotoCell = new PhotoAttachPhotoCell(this.mContext, null);
                 photoAttachPhotoCell.setDelegate(new PhotoAttachPhotoCell.PhotoAttachPhotoCellDelegate() {
                     {
                         ListAdapter.this = this;

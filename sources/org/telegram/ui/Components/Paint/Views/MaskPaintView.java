@@ -64,6 +64,9 @@ public class MaskPaintView extends FrameLayout {
         return 0;
     }
 
+    protected void onDrawn() {
+    }
+
     public void onRenderViewAlphaUpdate(ValueAnimator valueAnimator) {
     }
 
@@ -124,6 +127,7 @@ public class MaskPaintView extends FrameLayout {
             public void onFinishedDrawing(boolean z) {
                 MaskPaintView.this.undoStore.getDelegate().historyChanged();
                 MaskPaintView.this.weightChooserView.setViewHidden(false);
+                MaskPaintView.this.onDrawn();
             }
 
             @Override
@@ -180,6 +184,10 @@ public class MaskPaintView extends FrameLayout {
         textView2.setTextColor(Theme.getColor(i3));
         textView2.setGravity(17);
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, 44.0f, 5, 0.0f, 0.0f, -8.0f, 0.0f));
+    }
+
+    public boolean canUndo() {
+        return this.undoStore.canUndo();
     }
 
     public boolean undo() {

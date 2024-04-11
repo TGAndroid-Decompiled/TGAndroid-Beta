@@ -135,7 +135,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
     private int categoryIndex;
     private Utilities.Callback2<Bitmap, Float> drawBlurBitmap;
     private float maxPadding;
-    private Utilities.Callback3<Object, TLRPC$Document, Boolean> onDocumentSelected;
+    private Utilities.Callback3Return<Object, TLRPC$Document, Boolean, Boolean> onDocumentSelected;
     private Utilities.Callback<Integer> onWidgetSelected;
     private final boolean onlyStickers;
     private String query;
@@ -1691,8 +1691,8 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         return (int) (this.containerView.getMeasuredHeight() - this.viewPager.getY());
     }
 
-    public EmojiBottomSheet whenDocumentSelected(Utilities.Callback3<Object, TLRPC$Document, Boolean> callback3) {
-        this.onDocumentSelected = callback3;
+    public EmojiBottomSheet whenDocumentSelected(Utilities.Callback3Return<Object, TLRPC$Document, Boolean, Boolean> callback3Return) {
+        this.onDocumentSelected = callback3Return;
         return this;
     }
 

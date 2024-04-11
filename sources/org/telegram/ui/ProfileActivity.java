@@ -7083,11 +7083,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             actionBarPopupWindow.dimBehind();
             return true;
         } else if (i == this.channelInfoRow || i == this.userInfoRow || i == this.locationRow || i == this.bioRow) {
-            if (editRow(view2, i)) {
-                return true;
-            }
             if (i == this.bioRow && ((tLRPC$UserFull = this.userInfo) == null || TextUtils.isEmpty(tLRPC$UserFull.about))) {
                 return false;
+            }
+            if (editRow(view2, i)) {
+                return true;
             }
             if ((view2 instanceof AboutLinkCell) && ((AboutLinkCell) view2).onClick()) {
                 return false;
