@@ -174,6 +174,7 @@ import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_getPeerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_peerStories;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_stories;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -652,7 +653,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingConfirmPurchaseError);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        LiteMode.addOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda109(this));
+        LiteMode.addOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda110(this));
         if (this.actionBarLayout.getFragmentStack().isEmpty() && ((iNavigationLayout = this.layersActionBarLayout) == null || iNavigationLayout.getFragmentStack().isEmpty())) {
             if (!UserConfig.getInstance(this.currentAccount).isClientActivated()) {
                 this.actionBarLayout.addFragmentToStack(getClientNotActivatedFragment());
@@ -1942,7 +1943,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @android.annotation.SuppressLint({"Range"})
-    private boolean handleIntent(android.content.Intent r101, boolean r102, boolean r103, boolean r104, org.telegram.messenger.browser.Browser.Progress r105, boolean r106) {
+    private boolean handleIntent(android.content.Intent r99, boolean r100, boolean r101, boolean r102, org.telegram.messenger.browser.Browser.Progress r103, boolean r104) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean):boolean");
     }
 
@@ -4358,7 +4359,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateAvailable);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.billingConfirmPurchaseError);
-        LiteMode.removeOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda109(this));
+        LiteMode.removeOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda110(this));
     }
 
     public void onPowerSaver(boolean z) {
@@ -6028,6 +6029,63 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return AndroidUtilities.getLightNavigationBar(getWindow());
     }
 
+    private void openMyStory(final int r12, final boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openMyStory(int, boolean):void");
+    }
+
+    public void lambda$openMyStory$157(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LaunchActivity.this.lambda$openMyStory$156(tLObject, i, j, z);
+            }
+        });
+    }
+
+    public void lambda$openMyStory$156(TLObject tLObject, int i, long j, boolean z) {
+        StoriesListPlaceProvider storiesListPlaceProvider;
+        TL_stories$StoryItem tL_stories$StoryItem;
+        if (tLObject instanceof TL_stories$TL_stories_stories) {
+            TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
+            int i2 = 0;
+            while (true) {
+                storiesListPlaceProvider = null;
+                if (i2 >= tL_stories$TL_stories_stories.stories.size()) {
+                    tL_stories$StoryItem = null;
+                    break;
+                } else if (tL_stories$TL_stories_stories.stories.get(i2).id == i) {
+                    tL_stories$StoryItem = tL_stories$TL_stories_stories.stories.get(i2);
+                    break;
+                } else {
+                    i2++;
+                }
+            }
+            if (tL_stories$StoryItem != null) {
+                tL_stories$StoryItem.dialogId = j;
+                BaseFragment lastFragment = getLastFragment();
+                if (lastFragment == null) {
+                    return;
+                }
+                if (lastFragment instanceof DialogsActivity) {
+                    try {
+                        storiesListPlaceProvider = StoriesListPlaceProvider.of(((DialogsActivity) lastFragment).dialogStoriesCell.recyclerListView);
+                    } catch (Exception unused) {
+                    }
+                }
+                StoriesListPlaceProvider storiesListPlaceProvider2 = storiesListPlaceProvider;
+                lastFragment.getOrCreateStoryViewer().instantClose();
+                ArrayList<Long> arrayList = new ArrayList<>();
+                arrayList.add(Long.valueOf(j));
+                if (z) {
+                    lastFragment.getOrCreateStoryViewer().showViewsAfterOpening();
+                }
+                lastFragment.getOrCreateStoryViewer().open(this, tL_stories$StoryItem, arrayList, 0, null, null, storiesListPlaceProvider2, false);
+                return;
+            }
+        }
+        BulletinFactory.global().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryNotFound)).show(false);
+    }
+
     private void openStories(long[] jArr, boolean z) {
         boolean z2;
         final long[] jArr2 = jArr;
@@ -6077,7 +6135,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.this.lambda$openStories$156(iArr, jArr2);
+                    LaunchActivity.this.lambda$openStories$158(iArr, jArr2);
                 }
             };
             for (int i3 = 0; i3 < arrayList3.size(); i3++) {
@@ -6093,7 +6151,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getPeerStories, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            LaunchActivity.lambda$openStories$158(MessagesController.this, longValue, runnable, tLObject, tLRPC$TL_error);
+                            LaunchActivity.lambda$openStories$160(MessagesController.this, longValue, runnable, tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -6121,7 +6179,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, storiesListPlaceProvider, false);
     }
 
-    public void lambda$openStories$156(int[] iArr, long[] jArr) {
+    public void lambda$openStories$158(int[] iArr, long[] jArr) {
         iArr[0] = iArr[0] - 1;
         if (iArr[0] == 0) {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -6129,16 +6187,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$openStories$158(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$openStories$160(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$openStories$157(TLObject.this, messagesController, j, runnable);
+                LaunchActivity.lambda$openStories$159(TLObject.this, messagesController, j, runnable);
             }
         });
     }
 
-    public static void lambda$openStories$157(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
+    public static void lambda$openStories$159(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
         if (tLObject instanceof TL_stories$TL_stories_peerStories) {
             TL_stories$TL_stories_peerStories tL_stories$TL_stories_peerStories = (TL_stories$TL_stories_peerStories) tLObject;
             messagesController.putUsers(tL_stories$TL_stories_peerStories.users, false);

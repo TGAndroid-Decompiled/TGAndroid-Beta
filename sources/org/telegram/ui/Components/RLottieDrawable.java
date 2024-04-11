@@ -135,6 +135,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public static native void destroy(long j);
 
+    public static native double getDuration(String str, String str2);
+
     public static native int getFrame(long j, int i, Bitmap bitmap, int i2, int i3, int i4, boolean z);
 
     public static native long getFramesCount(String str, String str2);

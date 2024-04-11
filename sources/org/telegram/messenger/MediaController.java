@@ -707,6 +707,45 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.hasSpoiler = false;
             super.reset();
         }
+
+        public void deleteAll() {
+            if (this.path != null) {
+                try {
+                    new File(this.path).delete();
+                } catch (Exception unused) {
+                }
+            }
+            if (this.fullPaintPath != null) {
+                try {
+                    new File(this.fullPaintPath).delete();
+                } catch (Exception unused2) {
+                }
+            }
+            if (this.paintPath != null) {
+                try {
+                    new File(this.paintPath).delete();
+                } catch (Exception unused3) {
+                }
+            }
+            if (this.imagePath != null) {
+                try {
+                    new File(this.imagePath).delete();
+                } catch (Exception unused4) {
+                }
+            }
+            if (this.filterPath != null) {
+                try {
+                    new File(this.filterPath).delete();
+                } catch (Exception unused5) {
+                }
+            }
+            if (this.croppedPaintPath != null) {
+                try {
+                    new File(this.croppedPaintPath).delete();
+                } catch (Exception unused6) {
+                }
+            }
+        }
     }
 
     public static class SearchImage extends MediaEditState {

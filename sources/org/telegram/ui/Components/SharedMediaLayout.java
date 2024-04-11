@@ -572,6 +572,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return this.sharedMediaData[0].filterType;
     }
 
+    public boolean isPinnedToTop() {
+        return this.isPinnedToTop;
+    }
+
     public void setPinnedToTop(boolean z) {
         if (this.isPinnedToTop == z) {
             return;

@@ -174,7 +174,7 @@ public class UserConfig extends BaseController {
                     edit.putBoolean("syncContacts", this.syncContacts);
                     edit.putBoolean("suggestContacts", this.suggestContacts);
                     edit.putBoolean("hasSecureData", this.hasSecureData);
-                    edit.putBoolean("notificationsSettingsLoaded3", this.notificationsSettingsLoaded);
+                    edit.putBoolean("notificationsSettingsLoaded4", this.notificationsSettingsLoaded);
                     edit.putBoolean("notificationsSignUpSettingsLoaded", this.notificationsSignUpSettingsLoaded);
                     edit.putLong("autoDownloadConfigLoadTime", this.autoDownloadConfigLoadTime);
                     edit.putBoolean("hasValidDialogLoadIds", this.hasValidDialogLoadIds);

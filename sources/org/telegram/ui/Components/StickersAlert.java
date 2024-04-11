@@ -43,6 +43,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,8 +65,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -123,6 +126,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 public class StickersAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private GridAdapter adapter;
     private List<ThemeDescription> animatingDescriptions;
@@ -423,15 +427,24 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         @Override
         public void editSticker(final TLRPC$Document tLRPC$Document) {
             final ChatActivity chatActivity = StickersAlert.this.parentFragment instanceof ChatActivity ? (ChatActivity) StickersAlert.this.parentFragment : null;
-            final ArrayList arrayList = new ArrayList();
-            final File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
-            if (pathToAttach == null || !pathToAttach.exists()) {
+            if (MessageObject.isStaticStickerDocument(tLRPC$Document)) {
+                final ArrayList arrayList = new ArrayList();
+                final File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
+                if (pathToAttach == null || !pathToAttach.exists()) {
+                    return;
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersAlert.AnonymousClass1.this.lambda$editSticker$2(pathToAttach, arrayList, chatActivity, tLRPC$Document);
+                    }
+                }, 300L);
                 return;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.AnonymousClass1.this.lambda$editSticker$2(pathToAttach, arrayList, chatActivity, tLRPC$Document);
+                    StickersAlert.AnonymousClass1.this.lambda$editSticker$3(tLRPC$Document, chatActivity);
                 }
             }, 300L);
         }
@@ -445,7 +458,76 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     return false;
                 }
             }, chatActivity);
-            PhotoViewer.getInstance().enableStickerMode(tLRPC$Document);
+            PhotoViewer.getInstance().enableStickerMode(tLRPC$Document, false);
+            ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(StickersAlert.this.stickerSet);
+        }
+
+        public void lambda$editSticker$3(TLRPC$Document tLRPC$Document, ChatActivity chatActivity) {
+            double d;
+            File makeCacheFile = StoryEntry.makeCacheFile(((BottomSheet) StickersAlert.this).currentAccount, "webp");
+            int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+            int i = devicePerformanceClass != 0 ? devicePerformanceClass != 2 ? 2560 : 3840 : 1280;
+            float f = (float) LiteMode.FLAG_CALLS_ANIMATIONS;
+            Size size = new Size(f, f);
+            float f2 = i;
+            size.width = f2;
+            float floor = (float) Math.floor((f2 * f) / f);
+            size.height = floor;
+            if (floor > f2) {
+                size.height = f2;
+                size.width = (float) Math.floor((f2 * f) / f);
+            }
+            Bitmap createBitmap = Bitmap.createBitmap(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, Bitmap.Config.ARGB_8888);
+            try {
+                createBitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(makeCacheFile));
+            } catch (Throwable th) {
+                FileLog.e(th);
+            }
+            createBitmap.recycle();
+            ArrayList<Object> arrayList = new ArrayList<>();
+            MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, makeCacheFile.getAbsolutePath(), 0, false, 0, 0, 0L);
+            arrayList.add(photoEntry);
+            VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
+            mediaEntity.type = (byte) 0;
+            mediaEntity.parentObject = StickersAlert.this.stickerSet;
+            mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true).getAbsolutePath();
+            mediaEntity.x = 0.5f - ((Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f) / 2.0f);
+            mediaEntity.y = 0.5f - ((Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f) / 2.0f);
+            mediaEntity.width = Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f;
+            mediaEntity.height = Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f;
+            Double.isNaN(size.width);
+            int floor2 = (int) Math.floor(d * 0.5d);
+            mediaEntity.viewWidth = floor2;
+            mediaEntity.viewHeight = floor2;
+            mediaEntity.scale = 2.0f;
+            mediaEntity.document = tLRPC$Document;
+            if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) || MessageObject.isVideoStickerDocument(tLRPC$Document)) {
+                mediaEntity.subType = (byte) ((MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) ? (byte) 1 : (byte) 4) | mediaEntity.subType);
+            }
+            ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = new ArrayList<>();
+            photoEntry.mediaEntities = arrayList2;
+            arrayList2.add(mediaEntity);
+            photoEntry.averageDuration = 3000L;
+            if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) {
+                File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
+                if (pathToAttach != null) {
+                    try {
+                        photoEntry.averageDuration = (long) (RLottieDrawable.getDuration(pathToAttach.getAbsolutePath(), null) * 1000.0d);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+            } else if (MessageObject.isVideoStickerDocument(tLRPC$Document)) {
+                photoEntry.averageDuration = (long) (MessageObject.getDocumentDuration(tLRPC$Document) * 1000.0d);
+            }
+            PhotoViewer.getInstance().setParentActivity(StickersAlert.this.parentFragment.getParentActivity(), ((BottomSheet) StickersAlert.this).resourcesProvider);
+            PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider(this) {
+                @Override
+                public boolean allowCaption() {
+                    return false;
+                }
+            }, chatActivity);
+            PhotoViewer.getInstance().enableStickerMode(tLRPC$Document, true);
             ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(StickersAlert.this.stickerSet);
         }
 

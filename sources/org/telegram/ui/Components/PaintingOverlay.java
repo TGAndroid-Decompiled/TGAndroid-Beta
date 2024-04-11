@@ -26,6 +26,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
 public class PaintingOverlay extends FrameLayout {
     private Drawable backgroundDrawable;
+    public boolean drawChildren;
     private boolean ignoreLayout;
     private HashMap<View, VideoEditedInfo.MediaEntity> mediaEntityViews;
     private Bitmap paintBitmap;
@@ -47,6 +48,7 @@ public class PaintingOverlay extends FrameLayout {
 
     public PaintingOverlay(Context context) {
         super(context);
+        this.drawChildren = true;
     }
 
     public void setData(String str, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2, boolean z3) {
@@ -64,7 +66,16 @@ public class PaintingOverlay extends FrameLayout {
     }
 
     @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        if (this.drawChildren) {
+            return super.drawChild(canvas, view, j);
+        }
+        return false;
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
+        float f;
         this.ignoreLayout = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         if (this.mediaEntityViews != null) {
@@ -77,9 +88,13 @@ public class PaintingOverlay extends FrameLayout {
                 if (mediaEntity != null) {
                     if (childAt instanceof EditTextOutline) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                        float f = (mediaEntity.textViewWidth * measuredWidth) / mediaEntity.viewWidth;
-                        childAt.setScaleX(mediaEntity.scale * f);
-                        childAt.setScaleY(mediaEntity.scale * f);
+                        if (mediaEntity.customTextView) {
+                            f = (mediaEntity.width * getMeasuredWidth()) / mediaEntity.viewWidth;
+                        } else {
+                            f = mediaEntity.scale * ((mediaEntity.textViewWidth * measuredWidth) / mediaEntity.viewWidth);
+                        }
+                        childAt.setScaleX(f);
+                        childAt.setScaleY(f);
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * mediaEntity.width), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * mediaEntity.height), 1073741824));
                     }
@@ -101,22 +116,34 @@ public class PaintingOverlay extends FrameLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5;
         int i6;
+        int i7;
+        int measuredHeight;
         if (this.mediaEntityViews != null) {
             int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
+            int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
-            for (int i7 = 0; i7 < childCount; i7++) {
-                View childAt = getChildAt(i7);
+            for (int i8 = 0; i8 < childCount; i8++) {
+                View childAt = getChildAt(i8);
                 VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntityViews.get(childAt);
                 if (mediaEntity != null) {
+                    int measuredWidth2 = childAt.getMeasuredWidth();
+                    int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof EditTextOutline) {
-                        i5 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
-                        i6 = ((int) (measuredHeight * mediaEntity.textViewY)) - (childAt.getMeasuredHeight() / 2);
+                        if (mediaEntity.customTextView) {
+                            i5 = ((int) (measuredWidth * (mediaEntity.x + (mediaEntity.width / 2.0f)))) - (childAt.getMeasuredWidth() / 2);
+                            i7 = (int) (measuredHeight2 * (mediaEntity.y + (mediaEntity.height / 2.0f)));
+                            measuredHeight = childAt.getMeasuredHeight() / 2;
+                        } else {
+                            i5 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
+                            i7 = (int) (measuredHeight2 * mediaEntity.textViewY);
+                            measuredHeight = childAt.getMeasuredHeight() / 2;
+                        }
+                        i6 = i7 - measuredHeight;
                     } else {
                         i5 = (int) (measuredWidth * mediaEntity.x);
-                        i6 = (int) (measuredHeight * mediaEntity.y);
+                        i6 = (int) (measuredHeight2 * mediaEntity.y);
                     }
-                    childAt.layout(i5, i6, childAt.getMeasuredWidth() + i5, childAt.getMeasuredHeight() + i6);
+                    childAt.layout(i5, i6, measuredWidth2 + i5, measuredHeight3 + i6);
                 }
             }
         }
@@ -221,6 +248,12 @@ public class PaintingOverlay extends FrameLayout {
                     AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, editTextOutline.getPaint().getFontMetricsInt());
                     int i3 = next.offset;
                     spannableString.setSpan(animatedEmojiSpan, i3, next.length + i3, 33);
+                }
+                Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
+                if (emojiSpanArr != null) {
+                    for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
+                        emojiSpan.scale = 0.85f;
+                    }
                 }
                 editTextOutline.setText(spannableString);
                 editTextOutline.setGravity(17);

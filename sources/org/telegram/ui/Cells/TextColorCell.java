@@ -9,7 +9,6 @@ import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -19,7 +18,6 @@ public class TextColorCell extends FrameLayout {
     private static Paint colorPaint;
     public static final int[] colors = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
     public static final int[] colorsToSave = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    private float alpha;
     private int currentColor;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
@@ -31,7 +29,6 @@ public class TextColorCell extends FrameLayout {
 
     public TextColorCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.alpha = 1.0f;
         this.resourcesProvider = resourcesProvider;
         if (colorPaint == null) {
             colorPaint = new Paint(1);
@@ -45,19 +42,6 @@ public class TextColorCell extends FrameLayout {
         this.textView.setSingleLine(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
-    }
-
-    @Override
-    @Keep
-    public void setAlpha(float f) {
-        this.alpha = f;
-        invalidate();
-    }
-
-    @Override
-    @Keep
-    public float getAlpha() {
-        return this.alpha;
     }
 
     @Override
@@ -99,7 +83,6 @@ public class TextColorCell extends FrameLayout {
         int i = this.currentColor;
         if (i != 0) {
             colorPaint.setColor(i);
-            colorPaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.drawCircle(LocaleController.isRTL ? AndroidUtilities.dp(33.0f) : getMeasuredWidth() - AndroidUtilities.dp(33.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), colorPaint);
         }
     }

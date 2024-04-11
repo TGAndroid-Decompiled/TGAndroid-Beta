@@ -1199,27 +1199,28 @@ public class AlertsCreator {
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        final boolean isGlobalNotificationsEnabled = NotificationsController.getInstance(i3).isGlobalNotificationsEnabled(j);
+        ?? r12 = 0;
+        final boolean isGlobalNotificationsEnabled = NotificationsController.getInstance(i3).isGlobalNotificationsEnabled(j, false, false);
+        int i5 = 5;
         String[] strArr2 = new String[5];
-        ?? r10 = 0;
         strArr2[0] = LocaleController.getString("NotificationsTurnOn", R.string.NotificationsTurnOn);
-        int i5 = R.string.MuteFor;
+        int i6 = R.string.MuteFor;
         ?? r9 = 1;
-        strArr2[1] = LocaleController.formatString("MuteFor", i5, LocaleController.formatPluralString("Hours", 1, new Object[0]));
-        strArr2[2] = LocaleController.formatString("MuteFor", i5, LocaleController.formatPluralString("Days", 2, new Object[0]));
+        strArr2[1] = LocaleController.formatString("MuteFor", i6, LocaleController.formatPluralString("Hours", 1, new Object[0]));
+        strArr2[2] = LocaleController.formatString("MuteFor", i6, LocaleController.formatPluralString("Days", 2, new Object[0]));
         Drawable drawable2 = null;
         strArr2[3] = (j == 0 && (baseFragment instanceof NotificationsCustomSettingsActivity)) ? null : LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize);
-        int i6 = 4;
+        int i7 = 4;
         strArr2[4] = LocaleController.getString("NotificationsTurnOff", R.string.NotificationsTurnOff);
         int[] iArr2 = {R.drawable.notifications_on, R.drawable.notifications_mute1h, R.drawable.notifications_mute2d, R.drawable.notifications_settings, R.drawable.notifications_off};
         LinearLayout linearLayout2 = new LinearLayout(baseFragment.getParentActivity());
         linearLayout2.setOrientation(1);
         AlertDialog.Builder builder2 = new AlertDialog.Builder(baseFragment.getParentActivity());
-        int i7 = 0;
+        int i8 = 0;
         LinearLayout linearLayout3 = linearLayout2;
-        for (int i8 = 5; i7 < i8; i8 = 5) {
-            if (strArr2[i7] == null) {
-                i4 = i7;
+        while (i8 < i5) {
+            if (strArr2[i8] == null) {
+                i4 = i8;
                 builder = builder2;
                 linearLayout = linearLayout3;
                 iArr = iArr2;
@@ -1227,8 +1228,8 @@ public class AlertsCreator {
                 strArr = strArr2;
             } else {
                 TextView textView = new TextView(baseFragment.getParentActivity());
-                Drawable drawable3 = baseFragment.getParentActivity().getResources().getDrawable(iArr2[i7]);
-                if (i7 == i6) {
+                Drawable drawable3 = baseFragment.getParentActivity().getResources().getDrawable(iArr2[i8]);
+                if (i8 == i7) {
                     textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                     drawable3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedRegular), PorterDuff.Mode.MULTIPLY));
                 } else {
@@ -1239,15 +1240,15 @@ public class AlertsCreator {
                 textView.setLines(r9);
                 textView.setMaxLines(r9);
                 textView.setCompoundDrawablesWithIntrinsicBounds(drawable3, drawable2, drawable2, drawable2);
-                textView.setTag(Integer.valueOf(i7));
-                textView.setBackgroundDrawable(Theme.getSelectorDrawable(r10));
-                textView.setPadding(AndroidUtilities.dp(24.0f), r10, AndroidUtilities.dp(24.0f), r10);
+                textView.setTag(Integer.valueOf(i8));
+                textView.setBackgroundDrawable(Theme.getSelectorDrawable(r12));
+                textView.setPadding(AndroidUtilities.dp(24.0f), r12, AndroidUtilities.dp(24.0f), r12);
                 textView.setSingleLine(r9);
                 textView.setGravity(19);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(26.0f));
-                textView.setText(strArr2[i7]);
+                textView.setText(strArr2[i8]);
                 linearLayout3.addView(textView, LayoutHelper.createLinear(-1, 48, 51));
-                i4 = i7;
+                i4 = i8;
                 builder = builder2;
                 linearLayout = linearLayout3;
                 iArr = iArr2;
@@ -1260,15 +1261,16 @@ public class AlertsCreator {
                     }
                 });
             }
-            i7 = i4 + 1;
+            i8 = i4 + 1;
             linearLayout3 = linearLayout;
             builder2 = builder;
             iArr2 = iArr;
             drawable2 = drawable;
             strArr2 = strArr;
-            i6 = 4;
+            i7 = 4;
             r9 = 1;
-            r10 = 0;
+            i5 = 5;
+            r12 = 0;
         }
         AlertDialog.Builder builder3 = builder2;
         builder3.setTitle(LocaleController.getString("Notifications", R.string.Notifications));
@@ -5531,6 +5533,8 @@ public class AlertsCreator {
             i2 = notificationsSettings.getInt("GroupLed", -16776961);
         } else if (i == 3) {
             i2 = notificationsSettings.getInt("StoriesLed", -16776961);
+        } else if (i == 5 || i == 4) {
+            i2 = notificationsSettings.getInt("ReactionsLed", -16776961);
         } else {
             i2 = notificationsSettings.getInt("ChannelLed", -16776961);
         }
@@ -5600,6 +5604,8 @@ public class AlertsCreator {
                 edit.putInt("GroupLed", iArr[0]);
             } else if (i == 3) {
                 edit.putInt("StoriesLed", iArr[0]);
+            } else if (i == 5 || i == 4) {
+                edit.putInt("ReactionLed", iArr[0]);
             } else {
                 edit.putInt("ChannelLed", iArr[0]);
             }
@@ -5621,6 +5627,8 @@ public class AlertsCreator {
             edit.putInt("GroupLed", 0);
         } else if (i == 3) {
             edit.putInt("StoriesLed", 0);
+        } else if (i == 5 || i == 4) {
+            edit.putInt("ReactionsLed", 0);
         } else {
             edit.putInt("ChannelLed", 0);
         }
@@ -5737,6 +5745,8 @@ public class AlertsCreator {
                 NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(2);
             } else if (str.equals("vibrate_group")) {
                 NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(0);
+            } else if (str.equals("vibrate_react")) {
+                NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(4);
             } else {
                 NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(1);
             }
@@ -6031,138 +6041,50 @@ public class AlertsCreator {
         return createPrioritySelectDialog(activity, j, i, i2, runnable, null);
     }
 
-    public static Dialog createPrioritySelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-        int i2;
-        String[] strArr;
-        int i3;
-        Activity activity2 = activity;
-        final SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
-        int[] iArr = new int[1];
-        int i4 = 0;
-        if (j != 0) {
-            iArr[0] = notificationsSettings.getInt("priority_" + j, 3);
-            if (iArr[0] == 3) {
-                iArr[0] = 0;
-            } else if (iArr[0] == 4) {
-                iArr[0] = 1;
-            } else {
-                i3 = 5;
-                if (iArr[0] == 5) {
-                    iArr[0] = 2;
-                } else if (iArr[0] == 0) {
-                    iArr[0] = 3;
-                } else {
-                    iArr[0] = 4;
-                }
-                String[] strArr2 = new String[i3];
-                strArr2[0] = LocaleController.getString("NotificationsPrioritySettings", R.string.NotificationsPrioritySettings);
-                strArr2[1] = LocaleController.getString("NotificationsPriorityLow", R.string.NotificationsPriorityLow);
-                strArr2[2] = LocaleController.getString("NotificationsPriorityMedium", R.string.NotificationsPriorityMedium);
-                strArr2[3] = LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh);
-                strArr2[4] = LocaleController.getString("NotificationsPriorityUrgent", R.string.NotificationsPriorityUrgent);
-                strArr = strArr2;
-                i2 = 1;
-            }
-            i3 = 5;
-            String[] strArr22 = new String[i3];
-            strArr22[0] = LocaleController.getString("NotificationsPrioritySettings", R.string.NotificationsPrioritySettings);
-            strArr22[1] = LocaleController.getString("NotificationsPriorityLow", R.string.NotificationsPriorityLow);
-            strArr22[2] = LocaleController.getString("NotificationsPriorityMedium", R.string.NotificationsPriorityMedium);
-            strArr22[3] = LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh);
-            strArr22[4] = LocaleController.getString("NotificationsPriorityUrgent", R.string.NotificationsPriorityUrgent);
-            strArr = strArr22;
-            i2 = 1;
-        } else {
-            if (i == 1) {
-                iArr[0] = notificationsSettings.getInt("priority_messages", 1);
-            } else if (i == 0) {
-                iArr[0] = notificationsSettings.getInt("priority_group", 1);
-            } else if (i == 2) {
-                iArr[0] = notificationsSettings.getInt("priority_channel", 1);
-            } else if (i == 3) {
-                iArr[0] = notificationsSettings.getInt("priority_stories", 1);
-            }
-            if (iArr[0] == 4) {
-                iArr[0] = 0;
-            } else if (iArr[0] == 5) {
-                iArr[0] = 1;
-            } else if (iArr[0] == 0) {
-                iArr[0] = 2;
-            } else {
-                iArr[0] = 3;
-            }
-            i2 = 1;
-            strArr = new String[]{LocaleController.getString("NotificationsPriorityLow", R.string.NotificationsPriorityLow), LocaleController.getString("NotificationsPriorityMedium", R.string.NotificationsPriorityMedium), LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh), LocaleController.getString("NotificationsPriorityUrgent", R.string.NotificationsPriorityUrgent)};
-        }
-        LinearLayout linearLayout = new LinearLayout(activity2);
-        linearLayout.setOrientation(i2);
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity2, resourcesProvider);
-        int i5 = 0;
-        while (i5 < strArr.length) {
-            RadioColorCell radioColorCell = new RadioColorCell(activity2, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.dp(4.0f), i4, AndroidUtilities.dp(4.0f), i4);
-            radioColorCell.setTag(Integer.valueOf(i5));
-            radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
-            radioColorCell.setTextAndValue(strArr[i5], iArr[i4] == i5);
-            linearLayout.addView(radioColorCell);
-            final int[] iArr2 = iArr;
-            final AlertDialog.Builder builder2 = builder;
-            radioColorCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    AlertsCreator.lambda$createPrioritySelectDialog$144(iArr2, j, j2, i, notificationsSettings, builder2, runnable, view);
-                }
-            });
-            i5++;
-            activity2 = activity;
-            builder = builder2;
-            linearLayout = linearLayout;
-            strArr = strArr;
-            iArr = iArr;
-            i4 = 0;
-        }
-        AlertDialog.Builder builder3 = builder;
-        builder3.setTitle(LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance));
-        builder3.setView(linearLayout);
-        builder3.setPositiveButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-        return builder3.create();
+    public static android.app.Dialog createPrioritySelectDialog(android.app.Activity r21, final long r22, final long r24, final int r26, final java.lang.Runnable r27, org.telegram.ui.ActionBar.Theme.ResourcesProvider r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createPrioritySelectDialog(android.app.Activity, long, long, int, java.lang.Runnable, org.telegram.ui.ActionBar.Theme$ResourcesProvider):android.app.Dialog");
     }
 
     public static void lambda$createPrioritySelectDialog$144(int[] iArr, long j, long j2, int i, SharedPreferences sharedPreferences, AlertDialog.Builder builder, Runnable runnable, View view) {
-        int i2 = 0;
+        int i2;
+        int i3 = 0;
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
-        int i3 = 5;
         if (j != 0) {
             if (iArr[0] == 0) {
-                i2 = 3;
+                i3 = 3;
             } else if (iArr[0] == 1) {
-                i2 = 4;
+                i3 = 4;
             } else if (iArr[0] == 2) {
-                i2 = 5;
+                i3 = 5;
             } else if (iArr[0] != 3) {
-                i2 = 1;
+                i3 = 1;
             }
-            edit.putInt("priority_" + j, i2);
+            edit.putInt("priority_" + j, i3);
             NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannel(j, j2);
         } else {
             if (iArr[0] == 0) {
-                i3 = 4;
-            } else if (iArr[0] != 1) {
-                i3 = iArr[0] == 2 ? 0 : 1;
+                i2 = 4;
+            } else if (iArr[0] == 1) {
+                i2 = 5;
+            } else {
+                i2 = iArr[0] == 2 ? 0 : 1;
             }
             if (i == 1) {
-                edit.putInt("priority_messages", i3);
+                edit.putInt("priority_messages", i2);
                 iArr[0] = sharedPreferences.getInt("priority_messages", 1);
             } else if (i == 0) {
-                edit.putInt("priority_group", i3);
+                edit.putInt("priority_group", i2);
                 iArr[0] = sharedPreferences.getInt("priority_group", 1);
             } else if (i == 2) {
-                edit.putInt("priority_channel", i3);
+                edit.putInt("priority_channel", i2);
                 iArr[0] = sharedPreferences.getInt("priority_channel", 1);
             } else if (i == 3) {
-                edit.putInt("priority_stories", i3);
+                edit.putInt("priority_stories", i2);
                 iArr[0] = sharedPreferences.getInt("priority_stories", 1);
+            } else if (i == 4 || i == 5) {
+                edit.putInt("priority_react", i2);
+                iArr[0] = sharedPreferences.getInt("priority_react", 1);
             }
             NotificationsController.getInstance(UserConfig.selectedAccount).deleteNotificationChannelGlobal(i);
         }

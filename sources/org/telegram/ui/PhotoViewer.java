@@ -668,6 +668,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private int startOffset;
     private long startTime;
     private long startedPlayTime;
+    public boolean stickerEmpty;
+    public boolean stickerEmptySent;
     private StickerMakerBackgroundView stickerMakerBackgroundView;
     public StickerMakerView stickerMakerView;
     private boolean streamingAlertShown;
@@ -5959,7 +5961,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public void lambda$setParentActivity$21(View view) {
         int i;
-        if (this.cutOutBtn.isLoading() || this.cutOutBtn.isUndoCutState() || (i = this.currentIndex) < 0 || i >= this.imagesArrLocals.size() || this.stickerMakerView.isThanosInProgress) {
+        if (this.stickerEmpty || this.cutOutBtn.isLoading() || this.cutOutBtn.isUndoCutState() || (i = this.currentIndex) < 0 || i >= this.imagesArrLocals.size() || this.stickerMakerView.isThanosInProgress) {
             return;
         }
         final MediaController.MediaEditState mediaEditState = (MediaController.MediaEditState) this.imagesArrLocals.get(this.currentIndex);
@@ -6328,6 +6330,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$setParentActivity$37(View view) {
+        if (view.getAlpha() < 0.9f) {
+            return;
+        }
         cancelStickerClippingMode();
         if (isCaptionOpen()) {
             return;
@@ -6651,13 +6656,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (obj3 instanceof MediaController.PhotoEntry) {
                     final MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj3;
                     Bitmap createBitmap = Bitmap.createBitmap(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, Bitmap.Config.ARGB_8888);
-                    Math.min(getContainerViewWidth() / this.centerImage.getImageWidth(), getContainerViewHeight() / this.centerImage.getImageHeight());
-                    getContainerViewWidth();
-                    AndroidUtilities.dp(20.0f);
-                    createBitmap.getWidth();
-                    createBitmap.getWidth();
-                    getContainerViewWidth();
-                    AndroidUtilities.dp(20.0f);
                     Canvas canvas = new Canvas(createBitmap);
                     Path path = new Path();
                     RectF rectF = new RectF();
@@ -6697,14 +6695,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         this.centerImage.draw(canvas);
                         canvas.restore();
                     }
-                    if (!hasAnimatedMediaEntities() && this.paintingOverlay != null) {
+                    if (this.paintingOverlay != null) {
                         canvas.save();
                         canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
                         canvas.scale(createBitmap.getWidth() / dp, createBitmap.getHeight() / dp);
                         applyTransformToOutline(canvas);
                         canvas.translate((-this.centerImage.getImageWidth()) / 2.0f, (-this.centerImage.getImageHeight()) / 2.0f);
                         canvas.scale(this.centerImage.getImageWidth() / this.paintingOverlay.getMeasuredWidth(), this.centerImage.getImageHeight() / this.paintingOverlay.getMeasuredHeight());
+                        this.paintingOverlay.drawChildren = !hasAnimatedMediaEntities();
                         this.paintingOverlay.draw(canvas);
+                        this.paintingOverlay.drawChildren = true;
                         canvas.restore();
                     }
                     if (hasAnimatedMediaEntities()) {
@@ -6737,7 +6737,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             fArr[6] = f2;
                             fArr[7] = f7;
                             matrix.mapPoints(fArr);
-                            String str5 = str4;
                             Bitmap bitmap3 = createBitmap;
                             copy.width = ((float) Math.sqrt(Math.pow(fArr[0] - fArr[2], 2.0d) + Math.pow(fArr[c] - fArr[3], 2.0d))) / dp;
                             float sqrt = ((float) Math.sqrt(Math.pow(fArr[0] - fArr[6], 2.0d) + Math.pow(fArr[1] - fArr[7], 2.0d))) / dp;
@@ -6745,6 +6744,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             copy.x = (((fArr[0] + fArr[4]) / 2.0f) / dp) - (copy.width / 2.0f);
                             copy.y = (((fArr[1] + fArr[5]) / 2.0f) / dp) - (sqrt / 2.0f);
                             copy.scale = 1.0f;
+                            copy.customTextView = true;
                             if (photoEntry.isCropped && (cropState = photoEntry.cropState) != null) {
                                 double d = copy.rotation;
                                 double d2 = cropState.transformRotation / 180.0f;
@@ -6759,9 +6759,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             copy.rotation = (float) (d3 - (d4 * 3.141592653589793d));
                             arrayList.add(copy);
                             TLRPC$Document tLRPC$Document = copy.document;
-                            if (tLRPC$Document == null || str5 != null) {
+                            if (tLRPC$Document == null || str4 != null) {
                                 obj = null;
-                                str4 = str5;
                             } else {
                                 obj = null;
                                 str4 = MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, null);
@@ -6805,8 +6804,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         this.selectedEmojis = new ArrayList<>();
                     }
                     if (this.selectedEmojis.isEmpty()) {
-                        String str6 = this.stickerMakerView.detectedEmoji;
-                        if (str6 != null && Emoji.getEmojiDrawable(str6) != null) {
+                        String str5 = this.stickerMakerView.detectedEmoji;
+                        if (str5 != null && Emoji.getEmojiDrawable(str5) != null) {
                             this.selectedEmojis.add(this.stickerMakerView.detectedEmoji);
                         } else if (str != null) {
                             this.selectedEmojis.add(str);
@@ -6943,8 +6942,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
 
                         @Override
-                        public void sendSticker(TLRPC$Document tLRPC$Document2, String str7, Object obj4, boolean z6, int i4) {
-                            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, tLRPC$Document2, str7, obj4, z6, i4);
+                        public void sendSticker(TLRPC$Document tLRPC$Document2, String str6, Object obj4, boolean z6, int i4) {
+                            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, tLRPC$Document2, str6, obj4, z6, i4);
                         }
 
                         @Override
@@ -6958,6 +6957,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
                         @Override
                         public void sendSticker() {
+                            PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
                             photoEntry.imagePath = file;
                             PhotoViewer.this.placeProvider.sendButtonPressed(PhotoViewer.this.currentIndex, videoEditedInfo3, z, i, z3);
@@ -7000,22 +7000,25 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
 
                         @Override
-                        public void addToFavoriteSelected(String str7) {
+                        public void addToFavoriteSelected(String str6) {
+                            PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
-                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str7, null, true, null, null, photoEntry.thumbPath, null);
+                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, true, null, null, photoEntry.thumbPath, null);
                         }
 
                         @Override
-                        public void stickerSetSelected(TLRPC$StickerSet tLRPC$StickerSet, String str7) {
+                        public void stickerSetSelected(TLRPC$StickerSet tLRPC$StickerSet, String str6) {
+                            PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
                             PhotoViewer photoViewer = PhotoViewer.this;
-                            photoViewer.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str7, null, false, tLRPC$StickerSet, photoViewer.replacedSticker, photoEntry.thumbPath, null);
+                            photoViewer.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, false, tLRPC$StickerSet, photoViewer.replacedSticker, photoEntry.thumbPath, null);
                         }
 
                         @Override
-                        public void newStickerPackSelected(CharSequence charSequence, String str7, Utilities.Callback<Boolean> callback) {
+                        public void newStickerPackSelected(CharSequence charSequence, String str6, Utilities.Callback<Boolean> callback) {
+                            PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
-                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str7, charSequence, false, null, null, photoEntry.thumbPath, callback);
+                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, charSequence, false, null, null, photoEntry.thumbPath, callback);
                         }
 
                         @Override
@@ -11637,7 +11640,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         updateActionBarTitlePadding();
     }
 
-    public void onPhotoShow(org.telegram.messenger.MessageObject r31, org.telegram.tgnet.TLRPC$FileLocation r32, org.telegram.messenger.ImageLocation r33, org.telegram.messenger.ImageLocation r34, java.util.ArrayList<org.telegram.messenger.MessageObject> r35, java.util.ArrayList<org.telegram.messenger.SecureDocument> r36, java.util.List<java.lang.Object> r37, int r38, org.telegram.ui.PhotoViewer.PlaceProviderObject r39) {
+    public void onPhotoShow(org.telegram.messenger.MessageObject r30, org.telegram.tgnet.TLRPC$FileLocation r31, org.telegram.messenger.ImageLocation r32, org.telegram.messenger.ImageLocation r33, java.util.ArrayList<org.telegram.messenger.MessageObject> r34, java.util.ArrayList<org.telegram.messenger.SecureDocument> r35, java.util.List<java.lang.Object> r36, int r37, org.telegram.ui.PhotoViewer.PlaceProviderObject r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.onPhotoShow(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.List, int, org.telegram.ui.PhotoViewer$PlaceProviderObject):void");
     }
 
@@ -11726,29 +11729,31 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return replaceAnimatedEmoji;
     }
 
-    public void enableStickerMode(TLRPC$Document tLRPC$Document) {
+    public void enableStickerMode(TLRPC$Document tLRPC$Document, boolean z) {
         this.replacedSticker = tLRPC$Document;
-        if (tLRPC$Document != null) {
-            ArrayList<String> arrayList = this.selectedEmojis;
-            if (arrayList == null) {
-                this.selectedEmojis = new ArrayList<>();
-            } else {
-                arrayList.clear();
-            }
-            ArrayList<String> findStickerEmoticons = MessageObject.findStickerEmoticons(tLRPC$Document, Integer.valueOf(this.currentAccount));
-            if (findStickerEmoticons != null) {
-                this.selectedEmojis.addAll(findStickerEmoticons);
-            }
-        }
+        this.stickerEmpty = z;
+        this.stickerEmptySent = false;
         if (this.stickerMakerView != null) {
             BlurButton blurButton = this.outlineBtn;
             if (blurButton != null) {
                 blurButton.setActive(false, false);
             }
             this.stickerMakerView.clean();
+            ArrayList<String> arrayList = this.selectedEmojis;
+            if (arrayList != null) {
+                arrayList.clear();
+            }
+        }
+        if (this.replacedSticker != null) {
             ArrayList<String> arrayList2 = this.selectedEmojis;
-            if (arrayList2 != null) {
+            if (arrayList2 == null) {
+                this.selectedEmojis = new ArrayList<>();
+            } else {
                 arrayList2.clear();
+            }
+            ArrayList<String> findStickerEmoticons = MessageObject.findStickerEmoticons(tLRPC$Document, Integer.valueOf(this.currentAccount));
+            if (findStickerEmoticons != null) {
+                this.selectedEmojis.addAll(findStickerEmoticons);
             }
         }
         BlurButton blurButton2 = this.cutOutBtn;
@@ -11756,6 +11761,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             blurButton2.clean();
         }
         showStickerMode(true, false);
+        ImageView imageView = this.tuneItem;
+        if (imageView != null) {
+            imageView.setAlpha(this.stickerEmpty ? 0.4f : 1.0f);
+        }
     }
 
     public void prepareSegmentImage() {
@@ -11763,7 +11772,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (stickerMakerView == null || this.sendPhotoType != 11) {
             return;
         }
-        stickerMakerView.segmentImage(this.centerImage.getBitmap(), this.centerImage.getOrientation(), getContainerViewWidth(), getContainerViewHeight());
+        if (this.stickerEmpty) {
+            stickerMakerView.clean();
+        } else {
+            stickerMakerView.segmentImage(this.centerImage.getBitmap(), this.centerImage.getOrientation(), getContainerViewWidth(), getContainerViewHeight());
+        }
     }
 
     private void showStickerMode(boolean z, boolean z2) {
@@ -11790,7 +11803,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.stickerMakerBackgroundView.animate().alpha(0.0f).setListener(new HideViewAfterAnimation(this.stickerMakerBackgroundView)).start();
         }
         this.stickerMakerView.setTag(z ? 1 : null);
-        boolean z3 = z && !this.cutOutBtn.isUndoCutState();
+        boolean z3 = (!z || this.cutOutBtn.isUndoCutState() || this.stickerEmpty) ? false : true;
         if (!z2) {
             this.cutOutBtn.animate().setListener(null).cancel();
             this.cutOutBtn.setVisibility(z3 ? 0 : 8);
@@ -11806,7 +11819,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.cutOutBtn.animate().alpha(0.0f).setListener(new HideViewAfterAnimation(this.cutOutBtn)).start();
         }
         this.cutOutBtn.setTag(z3 ? 1 : null);
-        showEditStickerMode(z && this.cutOutBtn.isUndoCutState(), z2);
+        showEditStickerMode(z && this.cutOutBtn.isUndoCutState() && !this.stickerEmpty, z2);
         this.stickerMakerView.setOutlineVisible(z && this.cutOutBtn.isUndoCutState() && this.outlineBtn.isActive() && !this.eraseBtn.isActive() && !this.restoreBtn.isActive());
         boolean z4 = z && this.cutOutBtn.isUndoCutState() && !this.eraseBtn.isActive() && !this.restoreBtn.isActive();
         if (!z2) {
@@ -12796,6 +12809,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.pickerViewSendButton.setLayoutParams(layoutParams);
         }
         if (i2 != 11 && this.stickerMakerView != null) {
+            this.stickerEmpty = false;
+            ImageView imageView2 = this.tuneItem;
+            if (imageView2 != null) {
+                imageView2.setAlpha(1.0f);
+            }
             BlurButton blurButton = this.outlineBtn;
             if (blurButton != null) {
                 blurButton.setActive(false, false);
@@ -13792,12 +13810,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$closePhoto$96(PlaceProviderObject placeProviderObject) {
+        ArrayList<Object> arrayList;
         this.animationEndRunnable = null;
         this.containerView.setLayerType(0, null);
         this.animationInProgress = 0;
         invalidateBlur();
         onPhotoClosed(placeProviderObject);
         MediaController.getInstance().tryResumePausedAudio();
+        if (!this.stickerEmpty || this.stickerEmptySent || (arrayList = this.imagesArrLocals) == null) {
+            return;
+        }
+        Iterator<Object> it = arrayList.iterator();
+        while (it.hasNext()) {
+            Object next = it.next();
+            if (next instanceof MediaController.PhotoEntry) {
+                ((MediaController.PhotoEntry) next).deleteAll();
+            }
+        }
     }
 
     public class AnonymousClass74 extends AnimatorListenerAdapter {
@@ -13828,6 +13857,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$closePhoto$98(PlaceProviderObject placeProviderObject) {
+        ArrayList<Object> arrayList;
         this.animationEndRunnable = null;
         FrameLayoutDrawer frameLayoutDrawer = this.containerView;
         if (frameLayoutDrawer == null) {
@@ -13839,6 +13869,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.containerView.setScaleX(1.0f);
         this.containerView.setScaleY(1.0f);
         MediaController.getInstance().tryResumePausedAudio();
+        if (!this.stickerEmpty || this.stickerEmptySent || (arrayList = this.imagesArrLocals) == null) {
+            return;
+        }
+        Iterator<Object> it = arrayList.iterator();
+        while (it.hasNext()) {
+            Object next = it.next();
+            if (next instanceof MediaController.PhotoEntry) {
+                ((MediaController.PhotoEntry) next).deleteAll();
+            }
+        }
     }
 
     private ClippingImageView[] getAnimatingImageViews(PlaceProviderObject placeProviderObject) {

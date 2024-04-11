@@ -1004,6 +1004,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (i == Theme.key_windowBackgroundWhite) {
             return -15198183;
         }
+        if (i == Theme.key_divider) {
+            return -16777216;
+        }
         if (resourcesProvider != null) {
             return resourcesProvider.getColor(i);
         }
@@ -2737,13 +2740,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
     private void setTextType(int i) {
         this.selectedTextType = i;
-        if (this.currentEntityView instanceof TextPaintView) {
-            if (i == 0 && this.colorSwatch.color == -1) {
-                setNewColor(-16777216);
-            } else if ((i == 1 || i == 2) && this.colorSwatch.color == -16777216) {
-                setNewColor(-1);
-            }
-            ((TextPaintView) this.currentEntityView).setType(i);
+        EntityView entityView = this.currentEntityView;
+        if (entityView instanceof TextPaintView) {
+            ((TextPaintView) entityView).setType(i);
         }
         PersistColorPalette.getInstance(this.currentAccount).setCurrentTextType(i);
         this.textOptionsView.setOutlineType(i);

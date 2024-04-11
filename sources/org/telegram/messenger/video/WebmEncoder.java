@@ -11,7 +11,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -160,6 +159,7 @@ public class WebmEncoder {
 
         private void initTextEntity(final VideoEditedInfo.MediaEntity mediaEntity) {
             int i;
+            Emoji.EmojiSpan[] emojiSpanArr;
             Typeface typeface;
             final EditTextOutline editTextOutline = new EditTextOutline(ApplicationLoader.applicationContext);
             editTextOutline.getPaint().setAntiAlias(true);
@@ -228,14 +228,14 @@ public class WebmEncoder {
                     spannableString.setSpan(animatedEmojiSpan, i2, next.length + i2, 33);
                 }
             }
-            editTextOutline.setText(Emoji.replaceEmoji((CharSequence) spannableString, editTextOutline.getPaint().getFontMetricsInt(), (int) (editTextOutline.getTextSize() * 0.8f), false));
-            editTextOutline.setTextColor(mediaEntity.color);
-            Editable text = editTextOutline.getText();
-            if (text instanceof Spanned) {
-                for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) text.getSpans(0, text.length(), Emoji.EmojiSpan.class)) {
+            CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) spannableString, editTextOutline.getPaint().getFontMetricsInt(), (int) (editTextOutline.getTextSize() * 0.8f), false);
+            if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                     emojiSpan.scale = 0.85f;
                 }
             }
+            editTextOutline.setText(replaceEmoji);
+            editTextOutline.setTextColor(mediaEntity.color);
             int i3 = mediaEntity.textAlign;
             editTextOutline.setGravity(i3 != 1 ? i3 != 2 ? 19 : 21 : 17);
             int i4 = Build.VERSION.SDK_INT;
@@ -409,8 +409,7 @@ public class WebmEncoder {
             Matrix matrix = mediaEntity.matrix;
             double d = -mediaEntity.rotation;
             Double.isNaN(d);
-            float f = mediaEntity.x;
-            matrix.postRotate((float) ((d / 3.141592653589793d) * 180.0d), (mediaEntity.width + f) * this.W, (f + mediaEntity.height) * this.H);
+            matrix.postRotate((float) ((d / 3.141592653589793d) * 180.0d), (mediaEntity.x + (mediaEntity.width / 2.0f)) * this.W, (mediaEntity.y + (mediaEntity.height / 2.0f)) * this.H);
         }
 
         private void applyRoundRadius(VideoEditedInfo.MediaEntity mediaEntity, Bitmap bitmap, int i) {

@@ -87,6 +87,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     private int otherSectionRow;
     private int pinnedMessageRow;
     private int privateRow;
+    private int reactionsRow;
     private int repeatRow;
     private int resetNotificationsRow;
     private int resetNotificationsSectionRow;
@@ -153,95 +154,98 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         this.storiesRow = i8;
         int i10 = i9 + 1;
         this.rowCount = i10;
-        this.notificationsSection2Row = i9;
+        this.reactionsRow = i9;
         int i11 = i10 + 1;
         this.rowCount = i11;
-        this.callsSectionRow = i10;
+        this.notificationsSection2Row = i10;
         int i12 = i11 + 1;
         this.rowCount = i12;
-        this.callsVibrateRow = i11;
+        this.callsSectionRow = i11;
         int i13 = i12 + 1;
         this.rowCount = i13;
-        this.callsRingtoneRow = i12;
+        this.callsVibrateRow = i12;
         int i14 = i13 + 1;
         this.rowCount = i14;
-        this.eventsSection2Row = i13;
+        this.callsRingtoneRow = i13;
         int i15 = i14 + 1;
         this.rowCount = i15;
-        this.badgeNumberSection = i14;
+        this.eventsSection2Row = i14;
         int i16 = i15 + 1;
         this.rowCount = i16;
-        this.badgeNumberShowRow = i15;
+        this.badgeNumberSection = i15;
         int i17 = i16 + 1;
         this.rowCount = i17;
-        this.badgeNumberMutedRow = i16;
+        this.badgeNumberShowRow = i16;
         int i18 = i17 + 1;
         this.rowCount = i18;
-        this.badgeNumberMessagesRow = i17;
+        this.badgeNumberMutedRow = i17;
         int i19 = i18 + 1;
         this.rowCount = i19;
-        this.badgeNumberSection2Row = i18;
+        this.badgeNumberMessagesRow = i18;
         int i20 = i19 + 1;
         this.rowCount = i20;
-        this.inappSectionRow = i19;
+        this.badgeNumberSection2Row = i19;
         int i21 = i20 + 1;
         this.rowCount = i21;
-        this.inappSoundRow = i20;
+        this.inappSectionRow = i20;
         int i22 = i21 + 1;
         this.rowCount = i22;
-        this.inappVibrateRow = i21;
+        this.inappSoundRow = i21;
         int i23 = i22 + 1;
         this.rowCount = i23;
-        this.inappPreviewRow = i22;
+        this.inappVibrateRow = i22;
         int i24 = i23 + 1;
         this.rowCount = i24;
-        this.inchatSoundRow = i23;
+        this.inappPreviewRow = i23;
+        int i25 = i24 + 1;
+        this.rowCount = i25;
+        this.inchatSoundRow = i24;
         if (Build.VERSION.SDK_INT >= 21) {
-            this.rowCount = i24 + 1;
-            this.inappPriorityRow = i24;
+            this.rowCount = i25 + 1;
+            this.inappPriorityRow = i25;
         } else {
             this.inappPriorityRow = -1;
         }
-        int i25 = this.rowCount;
-        int i26 = i25 + 1;
-        this.rowCount = i26;
-        this.callsSection2Row = i25;
+        int i26 = this.rowCount;
         int i27 = i26 + 1;
         this.rowCount = i27;
-        this.eventsSectionRow = i26;
+        this.callsSection2Row = i26;
         int i28 = i27 + 1;
         this.rowCount = i28;
-        this.contactJoinedRow = i27;
+        this.eventsSectionRow = i27;
         int i29 = i28 + 1;
         this.rowCount = i29;
-        this.pinnedMessageRow = i28;
+        this.contactJoinedRow = i28;
         int i30 = i29 + 1;
         this.rowCount = i30;
-        this.otherSection2Row = i29;
+        this.pinnedMessageRow = i29;
         int i31 = i30 + 1;
         this.rowCount = i31;
-        this.otherSectionRow = i30;
+        this.otherSection2Row = i30;
         int i32 = i31 + 1;
         this.rowCount = i32;
-        this.notificationsServiceRow = i31;
+        this.otherSectionRow = i31;
         int i33 = i32 + 1;
         this.rowCount = i33;
-        this.notificationsServiceConnectionRow = i32;
-        this.androidAutoAlertRow = -1;
+        this.notificationsServiceRow = i32;
         int i34 = i33 + 1;
         this.rowCount = i34;
-        this.repeatRow = i33;
+        this.notificationsServiceConnectionRow = i33;
+        this.androidAutoAlertRow = -1;
         int i35 = i34 + 1;
         this.rowCount = i35;
-        this.resetSection2Row = i34;
+        this.repeatRow = i34;
         int i36 = i35 + 1;
         this.rowCount = i36;
-        this.resetSectionRow = i35;
+        this.resetSection2Row = i35;
         int i37 = i36 + 1;
         this.rowCount = i37;
-        this.resetNotificationsRow = i36;
-        this.rowCount = i37 + 1;
-        this.resetNotificationsSectionRow = i37;
+        this.resetSectionRow = i36;
+        int i38 = i37 + 1;
+        this.rowCount = i38;
+        this.resetNotificationsRow = i37;
+        this.rowCount = i38 + 1;
+        this.resetNotificationsSectionRow = i38;
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.notificationsSettingsUpdated);
         return super.onFragmentCreate();
     }
@@ -337,24 +341,24 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     public void lambda$createView$10(View view, final int i, float f, float f2) {
         ArrayList<NotificationException> arrayList;
         boolean isGlobalNotificationsEnabled;
+        ArrayList<NotificationException> arrayList2;
         if (getParentActivity() == null) {
             return;
         }
         int i2 = this.privateRow;
         final int i3 = 2;
-        ArrayList<NotificationException> arrayList2 = null;
-        r4 = null;
+        ArrayList<NotificationException> arrayList3 = null;
+        r5 = null;
         Parcelable parcelable = null;
-        arrayList2 = null;
-        arrayList2 = null;
         boolean z = false;
-        z = false;
-        z = false;
-        z = false;
-        z = false;
-        z = false;
-        z = false;
-        if (i == i2 || i == this.groupRow || i == this.channelsRow || i == this.storiesRow) {
+        r6 = false;
+        r6 = false;
+        r6 = false;
+        r6 = false;
+        r6 = false;
+        r6 = false;
+        boolean z2 = false;
+        if (i == i2 || i == this.groupRow || i == this.channelsRow || i == this.storiesRow || i == this.reactionsRow) {
             if (i == i2) {
                 arrayList = this.exceptionUsers;
                 isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(1);
@@ -363,31 +367,46 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                 arrayList = this.exceptionChats;
                 isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(0);
                 i3 = 0;
-            } else if (i == this.storiesRow) {
-                arrayList = this.exceptionStories;
-                arrayList2 = this.exceptionAutoStories;
-                isGlobalNotificationsEnabled = getNotificationsSettings().getBoolean("EnableAllStories", false);
-                i3 = 3;
             } else {
-                arrayList = this.exceptionChannels;
-                isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(2);
+                if (i == this.storiesRow) {
+                    arrayList3 = this.exceptionStories;
+                    arrayList2 = this.exceptionAutoStories;
+                    isGlobalNotificationsEnabled = getNotificationsSettings().getBoolean("EnableAllStories", false);
+                    i3 = 3;
+                } else if (i == this.reactionsRow) {
+                    arrayList2 = null;
+                    isGlobalNotificationsEnabled = (getNotificationsSettings().getBoolean("EnableReactionsMessages", true) || getNotificationsSettings().getBoolean("EnableReactionsStories", true)) ? true : true;
+                    i3 = 4;
+                } else {
+                    arrayList = this.exceptionChannels;
+                    isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(2);
+                }
+                if (arrayList3 != null && i3 != 4) {
+                    return;
+                }
+                final NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
+                if ((!LocaleController.isRTL && f <= AndroidUtilities.dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) {
+                    final boolean z3 = isGlobalNotificationsEnabled;
+                    showExceptionsAlert(i, new Runnable() {
+                        @Override
+                        public final void run() {
+                            NotificationsSettingsActivity.this.lambda$createView$3(i3, z3, notificationsCheckCell, i);
+                        }
+                    });
+                } else {
+                    presentFragment(new NotificationsCustomSettingsActivity(i3, arrayList3, arrayList2));
+                }
+                z2 = isGlobalNotificationsEnabled;
             }
-            if (arrayList == null) {
-                return;
+            arrayList3 = arrayList;
+            arrayList2 = null;
+            if (arrayList3 != null) {
             }
-            final NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
-            if ((LocaleController.isRTL && f <= AndroidUtilities.dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) {
-                final boolean z2 = isGlobalNotificationsEnabled;
-                showExceptionsAlert(i, new Runnable() {
-                    @Override
-                    public final void run() {
-                        NotificationsSettingsActivity.this.lambda$createView$3(i3, z2, notificationsCheckCell, i);
-                    }
-                });
-            } else {
-                presentFragment(new NotificationsCustomSettingsActivity(i3, arrayList, arrayList2));
+            final NotificationsCheckCell notificationsCheckCell2 = (NotificationsCheckCell) view;
+            if (!LocaleController.isRTL) {
             }
-            z = isGlobalNotificationsEnabled;
+            presentFragment(new NotificationsCustomSettingsActivity(i3, arrayList3, arrayList2));
+            z2 = isGlobalNotificationsEnabled;
         } else if (i == this.callsRingtoneRow) {
             try {
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
@@ -427,43 +446,43 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         } else if (i == this.inappSoundRow) {
             SharedPreferences notificationsSettings2 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit = notificationsSettings2.edit();
-            z = notificationsSettings2.getBoolean("EnableInAppSounds", true);
-            edit.putBoolean("EnableInAppSounds", !z);
+            z2 = notificationsSettings2.getBoolean("EnableInAppSounds", true);
+            edit.putBoolean("EnableInAppSounds", !z2);
             edit.commit();
         } else if (i == this.inappVibrateRow) {
             SharedPreferences notificationsSettings3 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit2 = notificationsSettings3.edit();
-            z = notificationsSettings3.getBoolean("EnableInAppVibrate", true);
-            edit2.putBoolean("EnableInAppVibrate", !z);
+            z2 = notificationsSettings3.getBoolean("EnableInAppVibrate", true);
+            edit2.putBoolean("EnableInAppVibrate", !z2);
             edit2.commit();
         } else if (i == this.inappPreviewRow) {
             SharedPreferences notificationsSettings4 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit3 = notificationsSettings4.edit();
-            z = notificationsSettings4.getBoolean("EnableInAppPreview", true);
-            edit3.putBoolean("EnableInAppPreview", !z);
+            z2 = notificationsSettings4.getBoolean("EnableInAppPreview", true);
+            edit3.putBoolean("EnableInAppPreview", !z2);
             edit3.commit();
         } else if (i == this.inchatSoundRow) {
             SharedPreferences notificationsSettings5 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit4 = notificationsSettings5.edit();
-            z = notificationsSettings5.getBoolean("EnableInChatSound", true);
-            edit4.putBoolean("EnableInChatSound", !z);
+            z2 = notificationsSettings5.getBoolean("EnableInChatSound", true);
+            edit4.putBoolean("EnableInChatSound", !z2);
             edit4.commit();
-            getNotificationsController().setInChatSoundEnabled(!z);
+            getNotificationsController().setInChatSoundEnabled(!z2);
         } else if (i == this.inappPriorityRow) {
             SharedPreferences notificationsSettings6 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit5 = notificationsSettings6.edit();
-            z = notificationsSettings6.getBoolean("EnableInAppPriority", false);
-            edit5.putBoolean("EnableInAppPriority", !z);
+            z2 = notificationsSettings6.getBoolean("EnableInAppPriority", false);
+            edit5.putBoolean("EnableInAppPriority", !z2);
             edit5.commit();
         } else if (i == this.contactJoinedRow) {
             SharedPreferences notificationsSettings7 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit6 = notificationsSettings7.edit();
-            z = notificationsSettings7.getBoolean("EnableContactJoined", true);
-            MessagesController.getInstance(this.currentAccount).enableJoined = !z;
-            edit6.putBoolean("EnableContactJoined", !z);
+            z2 = notificationsSettings7.getBoolean("EnableContactJoined", true);
+            MessagesController.getInstance(this.currentAccount).enableJoined = !z2;
+            edit6.putBoolean("EnableContactJoined", !z2);
             edit6.commit();
             TLRPC$TL_account_setContactSignUpNotification tLRPC$TL_account_setContactSignUpNotification = new TLRPC$TL_account_setContactSignUpNotification();
-            tLRPC$TL_account_setContactSignUpNotification.silent = z;
+            tLRPC$TL_account_setContactSignUpNotification.silent = z2;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_setContactSignUpNotification, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -473,56 +492,56 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         } else if (i == this.pinnedMessageRow) {
             SharedPreferences notificationsSettings8 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit7 = notificationsSettings8.edit();
-            z = notificationsSettings8.getBoolean("PinnedMessages", true);
-            edit7.putBoolean("PinnedMessages", !z);
+            z2 = notificationsSettings8.getBoolean("PinnedMessages", true);
+            edit7.putBoolean("PinnedMessages", !z2);
             edit7.commit();
         } else if (i == this.androidAutoAlertRow) {
             SharedPreferences notificationsSettings9 = MessagesController.getNotificationsSettings(this.currentAccount);
             SharedPreferences.Editor edit8 = notificationsSettings9.edit();
-            z = notificationsSettings9.getBoolean("EnableAutoNotifications", false);
-            edit8.putBoolean("EnableAutoNotifications", !z);
+            z2 = notificationsSettings9.getBoolean("EnableAutoNotifications", false);
+            edit8.putBoolean("EnableAutoNotifications", !z2);
             edit8.commit();
         } else if (i == this.badgeNumberShowRow) {
             SharedPreferences.Editor edit9 = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-            z = getNotificationsController().showBadgeNumber;
-            getNotificationsController().showBadgeNumber = !z;
+            z2 = getNotificationsController().showBadgeNumber;
+            getNotificationsController().showBadgeNumber = !z2;
             edit9.putBoolean("badgeNumber", getNotificationsController().showBadgeNumber);
             edit9.commit();
             getNotificationsController().updateBadge();
         } else if (i == this.badgeNumberMutedRow) {
             SharedPreferences.Editor edit10 = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-            z = getNotificationsController().showBadgeMuted;
-            getNotificationsController().showBadgeMuted = !z;
+            z2 = getNotificationsController().showBadgeMuted;
+            getNotificationsController().showBadgeMuted = !z2;
             edit10.putBoolean("badgeNumberMuted", getNotificationsController().showBadgeMuted);
             edit10.commit();
             getNotificationsController().updateBadge();
             getMessagesStorage().updateMutedDialogsFiltersCounters();
         } else if (i == this.badgeNumberMessagesRow) {
             SharedPreferences.Editor edit11 = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-            z = getNotificationsController().showBadgeMessages;
-            getNotificationsController().showBadgeMessages = !z;
+            z2 = getNotificationsController().showBadgeMessages;
+            getNotificationsController().showBadgeMessages = !z2;
             edit11.putBoolean("badgeNumberMessages", getNotificationsController().showBadgeMessages);
             edit11.commit();
             getNotificationsController().updateBadge();
         } else if (i == this.notificationsServiceConnectionRow) {
             SharedPreferences notificationsSettings10 = MessagesController.getNotificationsSettings(this.currentAccount);
-            boolean z3 = notificationsSettings10.getBoolean("pushConnection", getMessagesController().backgroundConnection);
+            boolean z4 = notificationsSettings10.getBoolean("pushConnection", getMessagesController().backgroundConnection);
             SharedPreferences.Editor edit12 = notificationsSettings10.edit();
-            edit12.putBoolean("pushConnection", !z3);
+            edit12.putBoolean("pushConnection", !z4);
             edit12.commit();
-            if (!z3) {
+            if (!z4) {
                 ConnectionsManager.getInstance(this.currentAccount).setPushConnectionEnabled(true);
             } else {
                 ConnectionsManager.getInstance(this.currentAccount).setPushConnectionEnabled(false);
             }
-            z = z3;
+            z2 = z4;
         } else if (i == this.accountsAllRow) {
             SharedPreferences globalNotificationsSettings = MessagesController.getGlobalNotificationsSettings();
-            boolean z4 = globalNotificationsSettings.getBoolean("AllAccounts", true);
+            boolean z5 = globalNotificationsSettings.getBoolean("AllAccounts", true);
             SharedPreferences.Editor edit13 = globalNotificationsSettings.edit();
-            edit13.putBoolean("AllAccounts", !z4);
+            edit13.putBoolean("AllAccounts", !z5);
             edit13.commit();
-            SharedConfig.showNotificationsForAllAccounts = !z4;
+            SharedConfig.showNotificationsForAllAccounts = !z5;
             for (int i4 = 0; i4 < 4; i4++) {
                 if (SharedConfig.showNotificationsForAllAccounts) {
                     NotificationsController.getInstance(i4).showNotifications();
@@ -532,12 +551,12 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                     NotificationsController.getInstance(i4).hideNotifications();
                 }
             }
-            z = z4;
+            z2 = z5;
         } else if (i == this.notificationsServiceRow) {
             SharedPreferences notificationsSettings11 = MessagesController.getNotificationsSettings(this.currentAccount);
-            z = notificationsSettings11.getBoolean("pushService", getMessagesController().keepAliveService);
+            z2 = notificationsSettings11.getBoolean("pushService", getMessagesController().keepAliveService);
             SharedPreferences.Editor edit14 = notificationsSettings11.edit();
-            edit14.putBoolean("pushService", !z);
+            edit14.putBoolean("pushService", !z2);
             edit14.commit();
             ApplicationLoader.startPushService();
         } else if (i == this.callsVibrateRow) {
@@ -563,7 +582,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             showDialog(builder2.create());
         }
         if (view instanceof TextCheckCell) {
-            ((TextCheckCell) view).setChecked(!z);
+            ((TextCheckCell) view).setChecked(!z2);
         }
     }
 
@@ -577,6 +596,18 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             }
             edit.apply();
             getNotificationsController().updateServerNotificationsSettings(i);
+        } else if (i == 4 || i == 5) {
+            SharedPreferences.Editor edit2 = getNotificationsSettings().edit();
+            if (z) {
+                edit2.putBoolean("EnableReactionsMessages", false);
+                edit2.putBoolean("EnableReactionsStories", false);
+            } else {
+                edit2.putBoolean("EnableReactionsMessages", true);
+                edit2.putBoolean("EnableReactionsStories", true);
+            }
+            edit2.apply();
+            getNotificationsController().updateServerNotificationsSettings(i);
+            getNotificationsController().deleteNotificationChannelGlobal(i);
         } else {
             getNotificationsController().setGlobalNotificationsEnabled(i, !z ? 0 : ConnectionsManager.DEFAULT_DATACENTER_ID);
         }
@@ -705,6 +736,9 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                 arrayList2 = null;
             }
             arrayList2 = null;
+        } else if (i == this.reactionsRow) {
+            runnable.run();
+            return;
         } else {
             arrayList = this.exceptionChannels;
             if (arrayList != null && !arrayList.isEmpty()) {
@@ -782,31 +816,31 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View headerCell;
             if (i == 0) {
-                headerCell = new HeaderCell(this.mContext);
+                headerCell = new HeaderCell(this.mContext, ((BaseFragment) NotificationsSettingsActivity.this).resourceProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 1) {
-                headerCell = new TextCheckCell(this.mContext);
+                headerCell = new TextCheckCell(this.mContext, ((BaseFragment) NotificationsSettingsActivity.this).resourceProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 2) {
                 headerCell = new TextDetailSettingsCell(this.mContext);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 3) {
-                headerCell = new NotificationsCheckCell(this.mContext);
+                headerCell = new NotificationsCheckCell(this.mContext, 21, 64, true, ((BaseFragment) NotificationsSettingsActivity.this).resourceProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
-                headerCell = new ShadowSectionCell(this.mContext);
+                headerCell = new ShadowSectionCell(this.mContext, ((BaseFragment) NotificationsSettingsActivity.this).resourceProvider);
             } else if (i == 5) {
-                headerCell = new TextSettingsCell(this.mContext);
+                headerCell = new TextSettingsCell(this.mContext, ((BaseFragment) NotificationsSettingsActivity.this).resourceProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else {
-                headerCell = new TextInfoPrivacyCell(this.mContext);
+                headerCell = new TextInfoPrivacyCell(this.mContext, ((BaseFragment) NotificationsSettingsActivity.this).resourceProvider);
                 headerCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             }
             return new RecyclerListView.Holder(headerCell);
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r19, int r20) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r21, int r22) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSettingsActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -821,7 +855,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             if (i == NotificationsSettingsActivity.this.resetNotificationsRow) {
                 return 2;
             }
-            if (i == NotificationsSettingsActivity.this.privateRow || i == NotificationsSettingsActivity.this.groupRow || i == NotificationsSettingsActivity.this.channelsRow || i == NotificationsSettingsActivity.this.storiesRow) {
+            if (i == NotificationsSettingsActivity.this.privateRow || i == NotificationsSettingsActivity.this.groupRow || i == NotificationsSettingsActivity.this.channelsRow || i == NotificationsSettingsActivity.this.storiesRow || i == NotificationsSettingsActivity.this.reactionsRow) {
                 return 3;
             }
             if (i == NotificationsSettingsActivity.this.eventsSection2Row || i == NotificationsSettingsActivity.this.notificationsSection2Row || i == NotificationsSettingsActivity.this.otherSection2Row || i == NotificationsSettingsActivity.this.resetSection2Row || i == NotificationsSettingsActivity.this.callsSection2Row || i == NotificationsSettingsActivity.this.badgeNumberSection2Row || i == NotificationsSettingsActivity.this.resetNotificationsSectionRow) {

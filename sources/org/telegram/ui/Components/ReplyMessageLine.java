@@ -73,6 +73,7 @@ public class ReplyMessageLine {
     private Path color2Path = new Path();
     private Path color3Path = new Path();
     private int switchedCount = 0;
+    private float emojiAlpha = 1.0f;
 
     public ReplyMessageLine(View view) {
         this.parentView = view;
@@ -356,6 +357,10 @@ public class ReplyMessageLine {
         return this.nameColorAnimated.set(this.nameColor);
     }
 
+    public void setEmojiAlpha(float f) {
+        this.emojiAlpha = f;
+    }
+
     public void resetAnimation() {
         this.color1Animated.set(this.color1, true);
         this.color2Animated.set(this.color2, true);
@@ -526,7 +531,7 @@ public class ReplyMessageLine {
             return;
         }
         float f2 = this.emojiLoadedT.set(isEmojiLoaded());
-        if (f2 <= 0.0f) {
+        if (f2 <= 0.0f || this.emojiAlpha <= 0.0f) {
             return;
         }
         int i = 0;
@@ -548,7 +553,7 @@ public class ReplyMessageLine {
             if (i < iconCoordsArr.length) {
                 IconCoords iconCoords = iconCoordsArr[i];
                 if (!iconCoords.q || z) {
-                    this.emoji.setAlpha((int) (iconCoords.a * 76.5f));
+                    this.emoji.setAlpha((int) (iconCoords.a * 76.5f * this.emojiAlpha));
                     float dp = max - AndroidUtilities.dp(iconCoords.x);
                     float dp2 = AndroidUtilities.dp(iconCoords.y) + min;
                     float dp3 = AndroidUtilities.dp(10.0f) * iconCoords.s * f2;

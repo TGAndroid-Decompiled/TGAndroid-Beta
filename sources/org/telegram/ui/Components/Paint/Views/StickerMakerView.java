@@ -120,6 +120,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     public SegmentedObject[] objects;
     public int orientation;
     private final AnimatedFloat outlineAlpha;
+    private final RectF outlineBounds;
     private Path outlineBoundsInnerPath;
     private Path outlineBoundsPath;
     public final Matrix outlineMatrix;
@@ -134,7 +135,6 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     private volatile boolean segmentingLoaded;
     private volatile boolean segmentingLoading;
     private SegmentedObject selectedObject;
-    public boolean setOutlineBounds;
     private volatile Bitmap sourceBitmap;
     private StickerCutOutBtn stickerCutOutBtn;
     private StickerUploader stickerUploader;
@@ -168,6 +168,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         this.outlineWidth = 2.0f;
         this.imageReceiverMatrix = new Matrix();
         this.outlineMatrix = new Matrix();
+        this.outlineBounds = new RectF();
         this.exclusionRects = new ArrayList<>();
         this.exclusionRect = new Rect();
         this.resourcesProvider = resourcesProvider;
@@ -270,18 +271,20 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         public Bitmap overrideImage;
         private float[] points;
         private int pointsCount;
+        private final Paint pointsHighlightPaint;
+        private final Paint pointsPaint;
         public AnimatedFloat select = new AnimatedFloat(0.0f, (View) null, 0, 320, CubicBezierInterpolator.EASE_OUT_QUINT);
         public RectF bounds = new RectF();
         public RectF rotatedBounds = new RectF();
         private final Path segmentBorderPath = new Path();
         private final Path partSegmentBorderPath = new Path();
-        private final Path outlinePath = new Path();
         private final Paint bordersFillPaint = new Paint(1);
         private final Paint bordersStrokePaint = new Paint(1);
-        private final Paint pointsPaint = new Paint(1);
-        private final Paint pointsHighlightPaint = new Paint(1);
 
         public SegmentedObject() {
+            new Paint(1);
+            this.pointsPaint = new Paint(1);
+            this.pointsHighlightPaint = new Paint(1);
         }
 
         public Bitmap getImage() {
@@ -350,22 +353,18 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
 
         public void drawOutline(Canvas canvas, boolean z, float f, float f2) {
-            if (!z) {
-                this.outlinePath.reset();
-                if (StickerMakerView.this.outlineBoundsPath != null) {
-                    StickerMakerView stickerMakerView = StickerMakerView.this;
-                    if (stickerMakerView.setOutlineBounds) {
-                        this.outlinePath.op(this.segmentBorderPath, stickerMakerView.outlineBoundsPath, Path.Op.INTERSECT);
-                    }
-                }
-                this.outlinePath.set(this.segmentBorderPath);
-            }
             canvas.save();
+            canvas.clipPath(StickerMakerView.this.outlineBoundsPath);
             if (StickerMakerView.this.sourceBitmap != null) {
                 Paint paint = z ? this.bordersStrokePaint : this.bordersFillPaint;
                 paint.setAlpha((int) (f2 * 255.0f));
                 paint.setStrokeWidth(AndroidUtilities.dp(f));
-                canvas.drawPath(this.outlinePath, paint);
+                canvas.drawPath(this.segmentBorderPath, paint);
+                if (StickerMakerView.this.outlineBoundsPath != null && z) {
+                    canvas.clipPath(this.segmentBorderPath);
+                    paint.setStrokeWidth(AndroidUtilities.dp(f * 2.0f));
+                    canvas.drawPath(StickerMakerView.this.outlineBoundsPath, paint);
+                }
             }
             canvas.restore();
         }
@@ -556,7 +555,6 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     }
 
     public void updateOutlineBounds(boolean z) {
-        this.setOutlineBounds = z;
         if (z) {
             Path path = this.outlineBoundsPath;
             if (path == null) {
@@ -571,6 +569,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 this.outlineBoundsInnerPath.addRoundRect(rectF, rectF.width() * 0.12f, rectF.height() * 0.12f, Path.Direction.CW);
             }
             this.outlineBoundsPath.addPath(this.outlineBoundsInnerPath, this.outlineMatrix);
+            this.outlineBoundsPath.computeBounds(this.outlineBounds, true);
         }
     }
 
@@ -880,7 +879,13 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         return createBitmap2;
     }
 
-    public void segmentImage(Bitmap bitmap, final int i, final int i2, final int i3) {
+    public void segmentImage(Bitmap bitmap, final int i, int i2, int i3) {
+        if (i2 <= 0) {
+            i2 = AndroidUtilities.displaySize.x;
+        }
+        if (i3 <= 0) {
+            i3 = AndroidUtilities.displaySize.y;
+        }
         this.containerWidth = i2;
         this.containerHeight = i3;
         if (this.segmentingLoaded || this.segmentingLoading || bitmap == null || Build.VERSION.SDK_INT < 24) {
@@ -892,23 +897,23 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         segment(bitmap, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerMakerView.this.lambda$segmentImage$5(i, i2, i3, (List) obj);
+                StickerMakerView.this.lambda$segmentImage$5(i, (List) obj);
             }
         });
     }
 
-    public void lambda$segmentImage$5(final int i, final int i2, final int i3, final List list) {
+    public void lambda$segmentImage$5(final int i, final List list) {
         final ArrayList arrayList = new ArrayList();
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$segmentImage$4(i, list, i2, i3, arrayList);
+                StickerMakerView.this.lambda$segmentImage$4(i, list, arrayList);
             }
         });
     }
 
-    public void lambda$segmentImage$4(int i, List list, int i2, int i3, final ArrayList arrayList) {
-        if (this.sourceBitmap == null) {
+    public void lambda$segmentImage$4(int i, List list, final ArrayList arrayList) {
+        if (this.sourceBitmap == null || this.segmentingLoaded) {
             return;
         }
         Matrix matrix = new Matrix();
@@ -921,13 +926,13 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         } else {
             matrix.postScale(this.sourceBitmap.getWidth(), this.sourceBitmap.getHeight());
         }
-        for (int i4 = 0; i4 < list.size(); i4++) {
-            SubjectMock subjectMock = (SubjectMock) list.get(i4);
+        for (int i2 = 0; i2 < list.size(); i2++) {
+            SubjectMock subjectMock = (SubjectMock) list.get(i2);
             SegmentedObject segmentedObject = new SegmentedObject();
             RectF rectF = segmentedObject.bounds;
-            int i5 = subjectMock.startX;
-            int i6 = subjectMock.startY;
-            rectF.set(i5, i6, i5 + subjectMock.width, i6 + subjectMock.height);
+            int i3 = subjectMock.startX;
+            int i4 = subjectMock.startY;
+            rectF.set(i3, i4, i3 + subjectMock.width, i4 + subjectMock.height);
             segmentedObject.rotatedBounds.set(segmentedObject.bounds);
             matrix.mapRect(segmentedObject.rotatedBounds);
             segmentedObject.orientation = i;
@@ -935,7 +940,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             segmentedObject.image = createSmoothEdgesSegmentedImage;
             if (createSmoothEdgesSegmentedImage != null) {
                 segmentedObject.darkMaskImage = segmentedObject.makeDarkMaskImage();
-                createSegmentImagePath(segmentedObject, i2, i3);
+                createSegmentImagePath(segmentedObject, this.containerWidth, this.containerHeight);
                 this.segmentBorderImageWidth = segmentedObject.borderImageWidth;
                 this.segmentBorderImageHeight = segmentedObject.borderImageHeight;
                 arrayList.add(segmentedObject);

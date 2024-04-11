@@ -141,6 +141,10 @@ public class NotificationsSettingsFacade {
             str = "GlobalSound";
             str2 = "GlobalSoundDocId";
             str3 = "GlobalSoundPath";
+        } else if (i == 4 || i == 5) {
+            str = "ReactionSound";
+            str2 = "ReactionSoundDocId";
+            str3 = "ReactionSoundPath";
         } else {
             str = "ChannelSound";
             str2 = "ChannelSoundDocId";

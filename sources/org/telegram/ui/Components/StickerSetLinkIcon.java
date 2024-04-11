@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.ActionBar.Theme;
@@ -36,12 +35,10 @@ public class StickerSetLinkIcon extends Drawable {
         int min = Math.min(max * max, arrayList.size());
         this.count = min;
         this.drawables = new AnimatedEmojiDrawable[min];
-        int i2 = 1;
-        if (!LiteMode.isEnabled(!arrayList.isEmpty() && MessageObject.isAnimatedEmoji(arrayList.get(0)) ? LiteMode.FLAG_ANIMATED_EMOJI_CHAT : 2)) {
-            i2 = 13;
-        } else if (max >= 2) {
-            i2 = 0;
+        if (!arrayList.isEmpty()) {
+            MessageObject.isAnimatedEmoji(arrayList.get(0));
         }
+        int i2 = max < 2 ? 1 : 0;
         for (int i3 = 0; i3 < this.count; i3++) {
             this.drawables[i3] = AnimatedEmojiDrawable.make(i, i2, arrayList.get(i3));
         }

@@ -1042,6 +1042,12 @@ public class ReactionsLayoutInBubble {
             return (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == this.documentId;
         }
 
+        public VisibleReaction flatten() {
+            String findAnimatedEmojiEmoticon;
+            long j = this.documentId;
+            return (j == 0 || (findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j), null)) == null) ? this : fromEmojicon(findAnimatedEmojiEmoticon);
+        }
+
         public String toString() {
             TLRPC$Document findDocument;
             if (!TextUtils.isEmpty(this.emojicon)) {

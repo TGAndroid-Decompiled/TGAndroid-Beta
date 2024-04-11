@@ -1114,7 +1114,7 @@ public class StoriesController {
                 if (tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted) {
                     FileLog.d("StoriesController story is not found, but already deleted storyId=" + tL_stories$StoryItem.id);
                 } else {
-                    FileLog.d(" StoriesController add new story for full peer storyId=" + tL_stories$StoryItem.id);
+                    FileLog.d("StoriesController add new story for full peer storyId=" + tL_stories$StoryItem.id);
                     tL_stories$PeerStories.stories.add(tL_stories$StoryItem);
                 }
             }
@@ -3262,10 +3262,9 @@ public class StoriesController {
                 }
                 size--;
             }
-            int i2 = MessagesController.getInstance(this.currentAccount).storiesPinnedToTopCountMax;
-            boolean z2 = arrayList2.size() > i2;
+            boolean z2 = arrayList2.size() > MessagesController.getInstance(this.currentAccount).storiesPinnedToTopCountMax;
             if (z2) {
-                arrayList2.subList(i2, arrayList2.size()).clear();
+                return true;
             }
             boolean z3 = this.pinnedIds.size() != arrayList2.size();
             if (!z3) {

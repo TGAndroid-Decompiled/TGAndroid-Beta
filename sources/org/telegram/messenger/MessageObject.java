@@ -339,6 +339,7 @@ public class MessageObject {
     public boolean isStoryMentionPush;
     public boolean isStoryPush;
     public boolean isStoryPushHidden;
+    public boolean isStoryReactionPush;
     public boolean isTopicMainMessage;
     public Object lastGeoWebFileLoaded;
     public Object lastGeoWebFileSet;

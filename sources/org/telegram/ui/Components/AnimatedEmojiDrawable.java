@@ -638,7 +638,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 } else {
                     tLRPC$PhotoSize = closestPhotoSizeWithSize;
                     svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
-                    if (svgThumb != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                    if (svgThumb != null) {
                         svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
                     }
                     imageLocation = null;

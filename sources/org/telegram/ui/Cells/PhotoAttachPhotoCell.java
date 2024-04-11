@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,12 +18,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Property;
+import android.util.Size;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -381,6 +385,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         MediaController.PhotoEntry photoEntry;
         int i;
         ImageReceiver.BitmapHolder bitmapSafe = this.imageView.getImageReceiver().getBitmapSafe();
+        if (bitmapSafe == null) {
+            return null;
+        }
         if (z && (photoEntry = this.photoEntry) != null && photoEntry.path != null && (i = photoEntry.orientation) != 0) {
             bitmapSafe.bitmap = rotateBitmap(bitmapSafe.bitmap, -i);
         }
@@ -734,14 +741,24 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         if (photoEntry == null) {
             return null;
         }
-        String str = photoEntry.thumbPath;
-        if (str != null) {
-            return BitmapFactory.decodeFile(str, options);
+        try {
+            String str = photoEntry.thumbPath;
+            if (str != null) {
+                return BitmapFactory.decodeFile(str, options);
+            }
+            if (photoEntry.isVideo) {
+                return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), photoEntry.imageId, 1, options);
+            }
+            Uri withAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoEntry.imageId);
+            if (Build.VERSION.SDK_INT >= 29) {
+                ContentResolver contentResolver = getContext().getContentResolver();
+                int i = this.itemSize;
+                return contentResolver.loadThumbnail(withAppendedId, new Size(i, i), null);
+            }
+            return MediaStore.Images.Thumbnails.getThumbnail(getContext().getContentResolver(), photoEntry.imageId, 1, options);
+        } catch (Exception unused) {
+            return null;
         }
-        if (photoEntry.isVideo) {
-            return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), photoEntry.imageId, 1, options);
-        }
-        return MediaStore.Images.Thumbnails.getThumbnail(getContext().getContentResolver(), photoEntry.imageId, 1, options);
     }
 
     @Override
