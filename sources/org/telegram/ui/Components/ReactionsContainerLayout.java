@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -77,7 +76,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_savedReactionsTags;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -1321,29 +1319,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             frameLayout.invalidate();
         }
         invalidate();
-    }
-
-    public void clearRecentReactions() {
-        AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.ClearRecentReactionsAlertTitle)).setMessage(LocaleController.getString(R.string.ClearRecentReactionsAlertMessage)).setPositiveButton(LocaleController.getString(R.string.ClearButton), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                ReactionsContainerLayout.this.lambda$clearRecentReactions$5(dialogInterface, i);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
-        create.show();
-        TextView textView = (TextView) create.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-        }
-    }
-
-    public void lambda$clearRecentReactions$5(DialogInterface dialogInterface, int i) {
-        MediaDataController.getInstance(this.currentAccount).clearRecentReactions();
-        ArrayList arrayList = new ArrayList();
-        fillRecentReactionsList(arrayList);
-        setVisibleReactionsList(arrayList, true);
-        this.lastVisibleViews.clear();
-        this.reactionsWindow.setRecentReactions(arrayList);
     }
 
     public void setChatScrimView(ChatScrimPopupContainerLayout chatScrimPopupContainerLayout) {

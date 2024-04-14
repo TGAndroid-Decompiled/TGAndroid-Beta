@@ -8,6 +8,7 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     private int backWidth;
     private Drawable background;
     private boolean both;
+    private boolean center;
     private boolean fullSize;
     private Drawable icon;
     private int iconHeight;
@@ -53,6 +54,10 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     public void setCustomSize(int i, int i2) {
         this.backWidth = i;
         this.backHeight = i2;
+    }
+
+    public void setCenter(boolean z) {
+        this.center = z;
     }
 
     public void setIconOffset(int i, int i2) {
@@ -108,6 +113,10 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
 
     @Override
     public void draw(Canvas canvas) {
+        if (this.center) {
+            android.graphics.Rect bounds = getBounds();
+            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), bounds.centerX() + (getIntrinsicWidth() / 2), bounds.centerY() + (getIntrinsicHeight() / 2));
+        }
         Drawable drawable = this.background;
         if (drawable != null) {
             drawable.setBounds(getBounds());
@@ -115,14 +124,14 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         }
         if (this.icon != null) {
             if (this.fullSize) {
-                android.graphics.Rect bounds = getBounds();
+                android.graphics.Rect bounds2 = getBounds();
                 int i = this.left;
                 if (i != 0) {
-                    int i2 = bounds.top;
+                    int i2 = bounds2.top;
                     int i3 = this.top;
-                    this.icon.setBounds(bounds.left + i, i2 + i3, bounds.right - i, bounds.bottom - i3);
+                    this.icon.setBounds(bounds2.left + i, i2 + i3, bounds2.right - i, bounds2.bottom - i3);
                 } else {
-                    this.icon.setBounds(bounds);
+                    this.icon.setBounds(bounds2);
                 }
             } else if (this.iconWidth != 0) {
                 int centerX = (getBounds().centerX() - (this.iconWidth / 2)) + this.left + this.offsetX;

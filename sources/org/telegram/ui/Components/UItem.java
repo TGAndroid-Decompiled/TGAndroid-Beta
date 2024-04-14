@@ -99,11 +99,19 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asButton(int i, CharSequence charSequence, TLRPC$Document tLRPC$Document) {
+    public static UItem asStickerButton(int i, CharSequence charSequence, TLRPC$Document tLRPC$Document) {
         UItem uItem = new UItem(3, false);
         uItem.id = i;
         uItem.text = charSequence;
         uItem.object = tLRPC$Document;
+        return uItem;
+    }
+
+    public static UItem asStickerButton(int i, CharSequence charSequence, String str) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.object = str;
         return uItem;
     }
 

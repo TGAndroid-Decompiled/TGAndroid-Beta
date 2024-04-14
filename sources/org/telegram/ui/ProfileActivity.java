@@ -1357,10 +1357,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         if (top > 0) {
                             iArr[1] = iArr[1] - i2;
                         }
-                        if (iArr[1] > 0) {
-                            currentListView.scrollBy(0, iArr[1]);
+                        if (currentListView == null || iArr[1] <= 0) {
                             return;
                         }
+                        currentListView.scrollBy(0, iArr[1]);
                         return;
                     }
                     return;
@@ -13438,15 +13438,22 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void onTextDetailCellImageClicked(View view) {
-        final TLRPC$User user;
         View view2 = (View) view.getParent();
         if (view2.getTag() != null && ((Integer) view2.getTag()).intValue() == this.usernameRow) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", this.chatId);
             bundle.putLong("user_id", this.userId);
             presentFragment(new QrActivity(bundle));
-        } else if (view2.getTag() == null || ((Integer) view2.getTag()).intValue() != this.birthdayRow || (user = getMessagesController().getUser(Long.valueOf(this.dialogId))) == null || this.userInfo == null) {
+        } else if (view2.getTag() == null || ((Integer) view2.getTag()).intValue() != this.birthdayRow) {
         } else {
+            if (this.userId == getUserConfig().getClientUserId()) {
+                presentFragment(new PremiumPreviewFragment("my_profile_gift"));
+                return;
+            }
+            final TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.userId));
+            if (user == null || this.userInfo == null) {
+                return;
+            }
             if (new ArrayList(this.userInfo.premium_gifts).isEmpty()) {
                 if (getVisibleDialog() != null) {
                     return;

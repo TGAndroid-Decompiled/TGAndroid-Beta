@@ -288,6 +288,15 @@ public class ChatGreetingsView extends LinearLayout {
         }
     }
 
+    public void setSticker(String str) {
+        if (str == null) {
+            return;
+        }
+        this.wasDraw = true;
+        this.nextStickerToSendView.clearImage();
+        this.stickerToSendView.setImage(ImageLocation.getForPath(str), "256_256", (ImageLocation) null, (String) null, 0, (Object) null);
+    }
+
     public void setNextSticker(final TLRPC$Document tLRPC$Document, Runnable runnable) {
         if (tLRPC$Document == null) {
             return;

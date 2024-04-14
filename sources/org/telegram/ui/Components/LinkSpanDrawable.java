@@ -648,7 +648,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         @Override
-        public void onDraw(android.graphics.Canvas r13) {
+        public void onDraw(android.graphics.Canvas r14) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
         }
 

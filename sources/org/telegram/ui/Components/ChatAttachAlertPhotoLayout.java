@@ -1101,15 +1101,16 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 photoViewer.setMaxSelectedPhotos(chatAttachAlert2.maxSelectedPhotos, chatAttachAlert2.allowOrder);
                 ChatAttachAlert chatAttachAlert3 = this.parentAlert;
                 if (chatAttachAlert3.isPhotoPicker && chatAttachAlert3.isStickerMode) {
-                    chatActivity = (ChatActivity) chatAttachAlert3.baseFragment;
+                    BaseFragment baseFragment3 = chatAttachAlert3.baseFragment;
+                    chatActivity = baseFragment3 instanceof ChatActivity ? (ChatActivity) baseFragment3 : null;
                     i2 = 11;
                 } else if (chatAttachAlert3.avatarPicker != 0) {
                     chatActivity = null;
                     i2 = 1;
                 } else {
-                    BaseFragment baseFragment3 = chatAttachAlert3.baseFragment;
-                    if (baseFragment3 instanceof ChatActivity) {
-                        chatActivity = (ChatActivity) baseFragment3;
+                    BaseFragment baseFragment4 = chatAttachAlert3.baseFragment;
+                    if (baseFragment4 instanceof ChatActivity) {
+                        chatActivity = (ChatActivity) baseFragment4;
                     } else if (chatAttachAlert3.allowEnterCaption) {
                         chatActivity = null;
                     } else {
@@ -1176,7 +1177,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             PhotoViewer.getInstance().closePhotoAfterSelect = false;
         }
         if (this.parentAlert.isStickerMode) {
-            PhotoViewer.getInstance().enableStickerMode(null, false);
+            PhotoViewer.getInstance().enableStickerMode(null, false, this.parentAlert.customStickerHandler);
         }
         if (captionForAllMedia()) {
             PhotoViewer.getInstance().setCaption(this.parentAlert.getCommentTextView().getText());
@@ -1995,7 +1996,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new AnonymousClass15(z), chatActivity);
             PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
             if (this.parentAlert.isStickerMode) {
-                PhotoViewer.getInstance().enableStickerMode(null, false);
+                PhotoViewer.getInstance().enableStickerMode(null, false, this.parentAlert.customStickerHandler);
                 PhotoViewer.getInstance().prepareSegmentImage();
             }
         }

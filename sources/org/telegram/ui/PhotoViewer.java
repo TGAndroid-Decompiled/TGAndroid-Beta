@@ -174,6 +174,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$FileLocation;
+import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
@@ -414,6 +415,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private ImageReceiver.BitmapHolder currentThumb;
     private boolean currentVideoFinishedLoading;
     private float currentVideoSpeed;
+    public Utilities.Callback2<String, TLRPC$InputDocument> customStickerHandler;
     private CharSequence customTitle;
     private BlurButton cutOutBtn;
     private MessagesController.DialogPhotos dialogPhotos;
@@ -6945,6 +6947,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
                         @Override
                         public void sendSticker() {
+                            if (PhotoViewer.this.placeProvider == null) {
+                                return;
+                            }
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
                             photoEntry.imagePath = file;
@@ -6991,7 +6996,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         public void addToFavoriteSelected(String str6) {
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
-                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, true, null, null, photoEntry.thumbPath, null);
+                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, true, null, null, photoEntry.thumbPath, null, null);
                         }
 
                         @Override
@@ -6999,19 +7004,32 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
                             PhotoViewer photoViewer = PhotoViewer.this;
-                            photoViewer.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, false, tLRPC$StickerSet, photoViewer.replacedSticker, photoEntry.thumbPath, null);
+                            photoViewer.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, false, tLRPC$StickerSet, photoViewer.replacedSticker, photoEntry.thumbPath, null, null);
                         }
 
                         @Override
                         public void newStickerPackSelected(CharSequence charSequence, String str6, Utilities.Callback<Boolean> callback) {
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
-                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, charSequence, false, null, null, photoEntry.thumbPath, callback);
+                            PhotoViewer.this.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, charSequence, false, null, null, photoEntry.thumbPath, callback, null);
+                        }
+
+                        @Override
+                        public void setIntroSticker(String str6) {
+                            PhotoViewer.this.stickerEmptySent = true;
+                            generateThumb();
+                            PhotoViewer photoViewer = PhotoViewer.this;
+                            photoViewer.stickerMakerView.uploadStickerFile(file, videoEditedInfo3, str6, null, false, null, null, photoEntry.thumbPath, null, photoViewer.customStickerHandler);
                         }
 
                         @Override
                         public boolean isReplacedSticker() {
                             return PhotoViewer.this.replacedSticker != null;
+                        }
+
+                        @Override
+                        public boolean isSettingIntroSticker() {
+                            return PhotoViewer.this.customStickerHandler != null;
                         }
 
                         @Override
@@ -7785,12 +7803,36 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public float scale1() {
+        return scale1(true);
+    }
+
+    public float scale1(boolean z) {
+        int i;
         if (this.sendPhotoType == 11) {
             int containerViewWidth = getContainerViewWidth();
             if (containerViewWidth == 0) {
                 containerViewWidth = AndroidUtilities.displaySize.x;
             }
-            return ((containerViewWidth - AndroidUtilities.dp(20.0f)) + 1) / containerViewWidth;
+            float dp = ((containerViewWidth - AndroidUtilities.dp(20.0f)) + 1) / containerViewWidth;
+            if (z) {
+                int bitmapWidth = this.centerImage.getBitmapWidth();
+                int bitmapHeight = this.centerImage.getBitmapHeight();
+                if ((bitmapWidth <= 1 || bitmapHeight <= 1) && (i = this.currentIndex) >= 0 && i < this.imagesArrLocals.size()) {
+                    Object obj = this.imagesArrLocals.get(this.currentIndex);
+                    if (obj instanceof MediaController.PhotoEntry) {
+                        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                        if ((photoEntry.orientation / 90) % 2 != 0) {
+                            bitmapWidth = photoEntry.height;
+                            bitmapHeight = photoEntry.width;
+                        } else {
+                            bitmapWidth = photoEntry.width;
+                            bitmapHeight = photoEntry.height;
+                        }
+                    }
+                }
+                return (bitmapWidth <= 1 || bitmapHeight <= 1 || bitmapWidth <= bitmapHeight) ? dp : dp * (bitmapWidth / bitmapHeight);
+            }
+            return dp;
         }
         return 1.0f;
     }
@@ -7831,8 +7873,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             }
             if (this.sendPhotoType == 11) {
-                this.scale *= scale1();
-                this.animateToScale *= scale1();
+                this.scale *= scale1(false);
+                this.animateToScale *= scale1(false);
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             final float rotation = this.photoCropView.wheelView.getRotation();
@@ -7858,9 +7900,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     PhotoViewer photoViewer2 = PhotoViewer.this;
                     photoViewer2.mirror = photoViewer2.animateToMirror = 0.0f;
                     PhotoViewer photoViewer3 = PhotoViewer.this;
-                    photoViewer3.scale = photoViewer3.animateToScale = photoViewer3.scale1();
+                    photoViewer3.scale = photoViewer3.animateToScale = photoViewer3.scale1(false);
                     PhotoViewer.this.containerView.invalidate();
-                    PhotoViewer.this.photoCropView.cropView.areaView.setRotationScaleTranslation(0.0f, PhotoViewer.this.scale1(), 0.0f, 0.0f);
+                    PhotoViewer.this.photoCropView.cropView.areaView.setRotationScaleTranslation(0.0f, PhotoViewer.this.scale1(false), 0.0f, 0.0f);
                     PhotoViewer.this.photoCropView.wheelView.setRotated(false);
                     if (Math.abs(f) > 0.0f) {
                         if (PhotoViewer.this.photoCropView.rotate(f)) {
@@ -10207,7 +10249,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 photoViewer4.animateToRotate = photoViewer4.savedRotation;
             } else {
                 PhotoViewer photoViewer5 = PhotoViewer.this;
-                photoViewer5.scale = photoViewer5.animateToScale = photoViewer5.scale1();
+                photoViewer5.scale = photoViewer5.animateToScale = photoViewer5.scale1(false);
                 PhotoViewer photoViewer6 = PhotoViewer.this;
                 photoViewer6.updateMinMax(photoViewer6.scale);
                 PhotoViewer.this.animateToX = 0.0f;
@@ -10646,6 +10688,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void switchToPaintMode() {
+        EditState editState;
         LPhotoPaintView lPhotoPaintView;
         LPhotoPaintView lPhotoPaintView2;
         this.changeModeAnimation = null;
@@ -10717,10 +10760,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             float f3 = bitmapWidth;
             float f4 = bitmapHeight;
-            this.animateToScale = (Math.min(getContainerViewWidth(3) / f3, getContainerViewHeight(3) / f4) / Math.min(getContainerViewWidth() / f3, getContainerViewHeight() / f4)) * scale1();
+            this.animateToScale = (Math.min(getContainerViewWidth(3) / f3, getContainerViewHeight(3) / f4) / Math.min(getContainerViewWidth() / f3, getContainerViewHeight() / f4)) * scale1(false);
             this.animateToX = (getLeftInset() / 2) - (getRightInset() / 2);
             this.animationStartTime = System.currentTimeMillis();
             this.zoomAnimation = true;
+        }
+        LPhotoPaintView lPhotoPaintView3 = this.photoPaintView;
+        if (lPhotoPaintView3 != null) {
+            lPhotoPaintView3.setDrawShadow(this.sendPhotoType == 11 && ((editState = this.editState) == null || editState.cropState == null));
         }
         this.windowView.setClipChildren(true);
         this.navigationBar.setVisibility(4);
@@ -10760,7 +10807,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 PhotoViewer.this.switchingToMode = -1;
                 PhotoViewer photoViewer = PhotoViewer.this;
-                photoViewer.animateToScale = photoViewer.scale = photoViewer.scale1();
+                photoViewer.animateToScale = photoViewer.scale = photoViewer.scale1(false);
                 PhotoViewer.this.animateToX = 0.0f;
                 PhotoViewer.this.animateToY = 0.0f;
                 PhotoViewer photoViewer2 = PhotoViewer.this;
@@ -11658,7 +11705,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(final int r39, boolean r40, boolean r41) {
+    private void setIsAboutToSwitchToIndex(final int r41, boolean r42, boolean r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean):void");
     }
 
@@ -11717,10 +11764,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return replaceAnimatedEmoji;
     }
 
-    public void enableStickerMode(TLRPC$Document tLRPC$Document, boolean z) {
+    public void enableStickerMode(TLRPC$Document tLRPC$Document, boolean z, Utilities.Callback2<String, TLRPC$InputDocument> callback2) {
         this.replacedSticker = tLRPC$Document;
         this.stickerEmpty = z;
         this.stickerEmptySent = false;
+        this.customStickerHandler = callback2;
         this.rotate = 0.0f;
         this.animateToRotate = 0.0f;
         if (this.stickerMakerView != null) {
@@ -13811,7 +13859,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void closePhoto(boolean r28, boolean r29) {
+    public void closePhoto(boolean r29, boolean r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.closePhoto(boolean, boolean):void");
     }
 
@@ -14400,55 +14448,57 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     private void drawFancyShadows(Canvas canvas) {
         float f;
-        if (SharedConfig.photoViewerBlur) {
-            AnimatedFloat animatedFloat = this.blurAlpha;
-            int i = this.animationInProgress;
-            f = animatedFloat.set(i == 0 || i == 2 || i == 3);
-        } else {
-            f = 1.0f;
+        if (this.fancyShadows) {
+            if (SharedConfig.photoViewerBlur) {
+                AnimatedFloat animatedFloat = this.blurAlpha;
+                int i = this.animationInProgress;
+                f = animatedFloat.set(i == 0 || i == 2 || i == 3);
+            } else {
+                f = 1.0f;
+            }
+            if (f <= 0.0f) {
+                return;
+            }
+            int currentActionBarHeight = ((int) (AndroidUtilities.statusBarHeight * 1.5f)) + ActionBar.getCurrentActionBarHeight();
+            int height = AndroidUtilities.navigationBarHeight + this.pickerView.getHeight() + (this.captionEdit.getVisibility() == 0 ? (this.captionEdit.getEditTextHeightClosedKeyboard() / 2) + AndroidUtilities.dp(20.0f) : 0);
+            if (this.clipFancyShadows == null) {
+                this.clipFancyShadows = new Path();
+                Paint paint = new Paint(1);
+                this.topFancyShadowPaint = paint;
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+                Paint paint2 = new Paint(1);
+                this.bottomFancyShadowPaint = paint2;
+                paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+                this.topFancyShadow = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                this.bottomFancyShadow = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                this.topFancyShadowMatrix = new Matrix();
+                this.bottomFancyShadowMatrix = new Matrix();
+                this.topFancyShadowPaint.setShader(this.topFancyShadow);
+                this.bottomFancyShadowPaint.setShader(this.bottomFancyShadow);
+            }
+            canvas.saveLayerAlpha(0.0f, 0.0f, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, (int) (f * (this.backgroundDrawable.getAlpha() - 127) * 2.007874f), 31);
+            this.clipFancyShadows.rewind();
+            float f2 = currentActionBarHeight;
+            this.clipFancyShadows.addRect(0.0f, 0.0f, this.containerView.getWidth(), f2, Path.Direction.CW);
+            this.clipFancyShadows.addRect(0.0f, (this.containerView.getHeight() + AndroidUtilities.navigationBarHeight) - height, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, Path.Direction.CW);
+            canvas.clipPath(this.clipFancyShadows);
+            canvas.drawColor(-16777216);
+            drawCaptionBlur(canvas, this.shadowBlurer, 0, 0, true, true, false);
+            canvas.save();
+            this.topFancyShadowMatrix.reset();
+            this.topFancyShadowMatrix.postScale(1.0f, f2 / 16.0f);
+            this.topFancyShadow.setLocalMatrix(this.topFancyShadowMatrix);
+            this.topFancyShadowPaint.setAlpha(208);
+            canvas.drawRect(0.0f, 0.0f, this.containerView.getWidth(), f2, this.topFancyShadowPaint);
+            this.bottomFancyShadowMatrix.reset();
+            this.bottomFancyShadowMatrix.postScale(1.0f, height / 16.0f);
+            this.bottomFancyShadowMatrix.postTranslate(0.0f, (this.containerView.getHeight() - height) + AndroidUtilities.navigationBarHeight);
+            this.bottomFancyShadow.setLocalMatrix(this.bottomFancyShadowMatrix);
+            this.bottomFancyShadowPaint.setAlpha(187);
+            canvas.drawRect(0.0f, (this.containerView.getHeight() + AndroidUtilities.navigationBarHeight) - height, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, this.bottomFancyShadowPaint);
+            canvas.restore();
+            canvas.restore();
         }
-        if (f <= 0.0f) {
-            return;
-        }
-        int currentActionBarHeight = ((int) (AndroidUtilities.statusBarHeight * 1.5f)) + ActionBar.getCurrentActionBarHeight();
-        int height = AndroidUtilities.navigationBarHeight + this.pickerView.getHeight() + (this.captionEdit.getVisibility() == 0 ? (this.captionEdit.getEditTextHeightClosedKeyboard() / 2) + AndroidUtilities.dp(20.0f) : 0);
-        if (this.clipFancyShadows == null) {
-            this.clipFancyShadows = new Path();
-            Paint paint = new Paint(1);
-            this.topFancyShadowPaint = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-            Paint paint2 = new Paint(1);
-            this.bottomFancyShadowPaint = paint2;
-            paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-            this.topFancyShadow = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-            this.bottomFancyShadow = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-            this.topFancyShadowMatrix = new Matrix();
-            this.bottomFancyShadowMatrix = new Matrix();
-            this.topFancyShadowPaint.setShader(this.topFancyShadow);
-            this.bottomFancyShadowPaint.setShader(this.bottomFancyShadow);
-        }
-        canvas.saveLayerAlpha(0.0f, 0.0f, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, (int) (f * (this.backgroundDrawable.getAlpha() - 127) * 2.007874f), 31);
-        this.clipFancyShadows.rewind();
-        float f2 = currentActionBarHeight;
-        this.clipFancyShadows.addRect(0.0f, 0.0f, this.containerView.getWidth(), f2, Path.Direction.CW);
-        this.clipFancyShadows.addRect(0.0f, (this.containerView.getHeight() + AndroidUtilities.navigationBarHeight) - height, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, Path.Direction.CW);
-        canvas.clipPath(this.clipFancyShadows);
-        canvas.drawColor(-16777216);
-        drawCaptionBlur(canvas, this.shadowBlurer, 0, 0, true, true, false);
-        canvas.save();
-        this.topFancyShadowMatrix.reset();
-        this.topFancyShadowMatrix.postScale(1.0f, f2 / 16.0f);
-        this.topFancyShadow.setLocalMatrix(this.topFancyShadowMatrix);
-        this.topFancyShadowPaint.setAlpha(208);
-        canvas.drawRect(0.0f, 0.0f, this.containerView.getWidth(), f2, this.topFancyShadowPaint);
-        this.bottomFancyShadowMatrix.reset();
-        this.bottomFancyShadowMatrix.postScale(1.0f, height / 16.0f);
-        this.bottomFancyShadowMatrix.postTranslate(0.0f, (this.containerView.getHeight() - height) + AndroidUtilities.navigationBarHeight);
-        this.bottomFancyShadow.setLocalMatrix(this.bottomFancyShadowMatrix);
-        this.bottomFancyShadowPaint.setAlpha(187);
-        canvas.drawRect(0.0f, (this.containerView.getHeight() + AndroidUtilities.navigationBarHeight) - height, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, this.bottomFancyShadowPaint);
-        canvas.restore();
-        canvas.restore();
     }
 
     private void drawCenterImageInternal(android.graphics.Canvas r7, float r8, float r9) {
@@ -15102,8 +15152,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (z) {
             if (this.fancyShadows) {
                 this.navigationBar.setVisibility(0);
-                this.navigationBar.setAlpha(0.0f);
-                this.navigationBar.setBackgroundColor(this.sendPhotoType == 11 ? -16777216 : 2130706432);
+                this.navigationBar.setAlpha(this.sendPhotoType == 11 ? 1.0f : 0.0f);
+                this.navigationBar.setBackgroundColor(this.sendPhotoType == 11 ? 1711276032 : 2130706432);
             }
             this.qualityChooseView.setTag(1);
             AnimatorSet animatorSet2 = this.qualityChooseViewAnimation;

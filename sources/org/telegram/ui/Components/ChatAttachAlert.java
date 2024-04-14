@@ -84,6 +84,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.ConnectionsManager;
@@ -92,6 +93,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
@@ -190,6 +192,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private AttachAlertLayout currentAttachLayout;
     private int currentLimit;
     float currentPanTranslationY;
+    public Utilities.Callback2<String, TLRPC$InputDocument> customStickerHandler;
     protected ChatAttachViewDelegate delegate;
     public boolean destroyed;
     public long dialogId;
@@ -2777,7 +2780,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         BaseFragment baseFragment = this.baseFragment;
         photoViewer.openPhotoForSelect(arrayList, 0, 11, false, emptyPhotoViewerProvider, baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null);
         if (this.isStickerMode) {
-            PhotoViewer.getInstance().enableStickerMode(null, true);
+            PhotoViewer.getInstance().enableStickerMode(null, true, this.customStickerHandler);
         }
     }
 
@@ -4793,7 +4796,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void enableStickerMode() {
+    public void enableStickerMode(Utilities.Callback2<String, TLRPC$InputDocument> callback2) {
         this.selectedTextView.setText(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto));
         this.typeButtonsAvailable = false;
         this.buttonsRecyclerView.setVisibility(8);
@@ -4801,6 +4804,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.avatarPicker = 1;
         this.isPhotoPicker = true;
         this.isStickerMode = true;
+        this.customStickerHandler = callback2;
         if (this.optionsItem != null) {
             this.selectedTextView.setTranslationY(-AndroidUtilities.dp(8.0f));
             this.optionsItem.setVisibility(0);
@@ -4814,6 +4818,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.avatarPicker = 0;
         this.isPhotoPicker = false;
         this.isStickerMode = false;
+        this.customStickerHandler = null;
         if (this.optionsItem != null) {
             this.selectedTextView.setTranslationY(0.0f);
             this.optionsItem.setVisibility(8);

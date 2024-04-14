@@ -56,26 +56,26 @@ public class DocumentObject {
 
     public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f) {
         int size = arrayList.size();
+        int i2 = LiteMode.FLAG_CALLS_ANIMATIONS;
         TLRPC$TL_photoPathSize tLRPC$TL_photoPathSize = null;
-        int i2 = 0;
-        int i3 = 0;
+        int i3 = LiteMode.FLAG_CALLS_ANIMATIONS;
         for (int i4 = 0; i4 < size; i4++) {
             TLRPC$PhotoSize tLRPC$PhotoSize = arrayList.get(i4);
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
                 tLRPC$TL_photoPathSize = (TLRPC$TL_photoPathSize) tLRPC$PhotoSize;
-            } else if (tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) {
+            } else if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) && "v".equals(tLRPC$PhotoSize.type)) {
                 i2 = tLRPC$PhotoSize.w;
                 i3 = tLRPC$PhotoSize.h;
             }
-            if (tLRPC$TL_photoPathSize != null && i2 != 0 && i3 != 0) {
-                SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(tLRPC$TL_photoPathSize.svgPath, i2, i3);
-                if (drawableByPath != null) {
-                    drawableByPath.setupGradient(i, f, false);
-                }
-                return drawableByPath;
-            }
         }
-        return null;
+        if (tLRPC$TL_photoPathSize == null || i2 == 0 || i3 == 0) {
+            return null;
+        }
+        SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(tLRPC$TL_photoPathSize.svgPath, i2, i3);
+        if (drawableByPath != null) {
+            drawableByPath.setupGradient(i, f, false);
+        }
+        return drawableByPath;
     }
 
     public static SvgHelper.SvgDrawable getCircleThumb(float f, int i, float f2) {

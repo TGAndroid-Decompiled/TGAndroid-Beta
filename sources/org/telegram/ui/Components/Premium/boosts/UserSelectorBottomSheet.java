@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ReplacementSpan;
@@ -41,9 +42,11 @@ import org.telegram.tgnet.TLRPC$TL_topPeer;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.adapters.SelectorAdapter;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
@@ -52,6 +55,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private static UserSelectorBottomSheet instance;
@@ -596,7 +600,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 }
                 i2++;
                 i += AndroidUtilities.dp(56.0f);
-                arrayList3.add(SelectorAdapter.Item.asUser(next, this.selectedIds.contains(Long.valueOf(next.id))));
+                arrayList3.add(SelectorAdapter.Item.asUser(next, this.selectedIds.contains(Long.valueOf(next.id))).withOptions(openOptions(next)));
             }
         }
         if (arrayList3.isEmpty()) {
@@ -664,7 +668,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             i = 0;
             for (TLRPC$User tLRPC$User : this.foundedUsers) {
                 i += AndroidUtilities.dp(56.0f);
-                this.items.add(SelectorAdapter.Item.asUser(tLRPC$User, this.selectedIds.contains(Long.valueOf(tLRPC$User.id))));
+                this.items.add(SelectorAdapter.Item.asUser(tLRPC$User, this.selectedIds.contains(Long.valueOf(tLRPC$User.id))).withOptions(openOptions(tLRPC$User)));
             }
         } else {
             if (this.userId >= 0) {
@@ -684,7 +688,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                                 arrayList.add(Long.valueOf(user.id));
                             }
                             addSection += AndroidUtilities.dp(56.0f);
-                            arrayList2.add(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id))));
+                            arrayList2.add(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id))).withOptions(openOptions(user)));
                         }
                     }
                 }
@@ -706,7 +710,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                         if (this.selectedIds.contains(Long.valueOf(user2.id))) {
                             arrayList.add(Long.valueOf(user2.id));
                         }
-                        arrayList3.add(SelectorAdapter.Item.asUser(user2, this.selectedIds.contains(Long.valueOf(user2.id))));
+                        arrayList3.add(SelectorAdapter.Item.asUser(user2, this.selectedIds.contains(Long.valueOf(user2.id))).withOptions(openOptions(user2)));
                     }
                 }
                 if (!arrayList3.isEmpty()) {
@@ -763,6 +767,55 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         updateList(true, false);
     }
 
+    public View.OnClickListener openOptions(final TLRPC$User tLRPC$User) {
+        return new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                UserSelectorBottomSheet.this.lambda$openOptions$14(tLRPC$User, view);
+            }
+        };
+    }
+
+    public void lambda$openOptions$14(final TLRPC$User tLRPC$User, View view) {
+        ItemOptions.makeOptions(this.container, this.resourcesProvider, (View) view.getParent()).add(R.drawable.msg_message_s, LocaleController.getString(R.string.SendMessage), new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$openOptions$12(tLRPC$User);
+            }
+        }).add(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$openOptions$13(tLRPC$User);
+            }
+        }).show();
+    }
+
+    public void lambda$openOptions$12(TLRPC$User tLRPC$User) {
+        BaseFragment baseFragment = getBaseFragment();
+        if (tLRPC$User == null || baseFragment == null) {
+            return;
+        }
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", tLRPC$User.id);
+        baseFragment.showAsSheet(new ChatActivity(bundle), bottomSheetParams);
+    }
+
+    public void lambda$openOptions$13(TLRPC$User tLRPC$User) {
+        BaseFragment baseFragment = getBaseFragment();
+        if (tLRPC$User == null || baseFragment == null) {
+            return;
+        }
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", tLRPC$User.id);
+        baseFragment.showAsSheet(new ProfileActivity(bundle), bottomSheetParams);
+    }
+
     @Override
     public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
@@ -796,24 +849,24 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$12();
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$15();
                 }
             });
         } else if (i == NotificationCenter.reloadHints) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$13();
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$16();
                 }
             });
         }
     }
 
-    public void lambda$didReceivedNotification$12() {
+    public void lambda$didReceivedNotification$15() {
         initContacts(true);
     }
 
-    public void lambda$didReceivedNotification$13() {
+    public void lambda$didReceivedNotification$16() {
         initHints(true);
     }
 }

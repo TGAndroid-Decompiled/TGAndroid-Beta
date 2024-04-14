@@ -325,7 +325,11 @@ public class NotificationsController extends BaseController {
         }
         NotificationChannel notificationChannel = systemNotificationManager.getNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
         if (notificationChannel != null && notificationChannel.getImportance() == 0) {
-            systemNotificationManager.deleteNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
+            try {
+                systemNotificationManager.deleteNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
             OTHER_NOTIFICATIONS_CHANNEL = null;
             notificationChannel = null;
         }
@@ -343,8 +347,8 @@ public class NotificationsController extends BaseController {
             notificationChannel2.setSound(null, null);
             try {
                 systemNotificationManager.createNotificationChannel(notificationChannel2);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e2) {
+                FileLog.e(e2);
             }
         }
     }
@@ -1962,7 +1966,7 @@ public class NotificationsController extends BaseController {
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            notificationsSettings.edit().putBoolean("groupsCreated4", true).commit();
+            notificationsSettings.edit().putBoolean("groupsCreated5", true).commit();
             this.groupsCreated = Boolean.TRUE;
         }
         if (this.channelGroupsCreated) {
@@ -1971,31 +1975,31 @@ public class NotificationsController extends BaseController {
         List<NotificationChannelGroup> notificationChannelGroups = systemNotificationManager.getNotificationChannelGroups();
         String str2 = "channels" + this.currentAccount;
         String str3 = "groups" + this.currentAccount;
-        String str4 = "private" + this.currentAccount;
-        String str5 = "stories" + this.currentAccount;
-        String str6 = "reactions" + this.currentAccount;
-        String str7 = "other" + this.currentAccount;
         int size2 = notificationChannelGroups.size();
+        String str4 = "other" + this.currentAccount;
+        String str5 = "reactions" + this.currentAccount;
+        String str6 = "stories" + this.currentAccount;
+        String str7 = "private" + this.currentAccount;
         for (int i2 = 0; i2 < size2; i2++) {
             String id2 = notificationChannelGroups.get(i2).getId();
             if (str2 != null && str2.equals(id2)) {
                 str2 = null;
             } else if (str3 != null && str3.equals(id2)) {
                 str3 = null;
-            } else if (str5 != null && str5.equals(id2)) {
-                str5 = null;
             } else if (str6 != null && str6.equals(id2)) {
                 str6 = null;
-            } else if (str4 != null && str4.equals(id2)) {
-                str4 = null;
+            } else if (str5 != null && str5.equals(id2)) {
+                str5 = null;
             } else if (str7 != null && str7.equals(id2)) {
                 str7 = null;
+            } else if (str4 != null && str4.equals(id2)) {
+                str4 = null;
             }
-            if (str2 == null && str5 == null && str6 == null && str3 == null && str4 == null && str7 == null) {
+            if (str2 == null && str6 == null && str5 == null && str3 == null && str7 == null && str4 == null) {
                 break;
             }
         }
-        if (str2 != null || str3 != null || str6 != null || str5 != null || str4 != null || str7 != null) {
+        if (str2 != null || str3 != null || str5 != null || str6 != null || str7 != null || str4 != null) {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
             if (user == null) {
                 getUserConfig().getCurrentUser();
@@ -2008,17 +2012,17 @@ public class NotificationsController extends BaseController {
             if (str3 != null) {
                 arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString("NotificationsGroups", R.string.NotificationsGroups) + str8));
             }
-            if (str5 != null) {
-                arrayList.add(new NotificationChannelGroup(str5, LocaleController.getString(R.string.NotificationsStories) + str8));
-            }
             if (str6 != null) {
-                arrayList.add(new NotificationChannelGroup(str6, LocaleController.getString(R.string.NotificationsReactions) + str8));
+                arrayList.add(new NotificationChannelGroup(str6, LocaleController.getString(R.string.NotificationsStories) + str8));
             }
-            if (str4 != null) {
-                arrayList.add(new NotificationChannelGroup(str4, LocaleController.getString("NotificationsPrivateChats", R.string.NotificationsPrivateChats) + str8));
+            if (str5 != null) {
+                arrayList.add(new NotificationChannelGroup(str5, LocaleController.getString(R.string.NotificationsReactions) + str8));
             }
             if (str7 != null) {
-                arrayList.add(new NotificationChannelGroup(str7, LocaleController.getString("NotificationsOther", R.string.NotificationsOther) + str8));
+                arrayList.add(new NotificationChannelGroup(str7, LocaleController.getString("NotificationsPrivateChats", R.string.NotificationsPrivateChats) + str8));
+            }
+            if (str4 != null) {
+                arrayList.add(new NotificationChannelGroup(str4, LocaleController.getString("NotificationsOther", R.string.NotificationsOther) + str8));
             }
             systemNotificationManager.createNotificationChannelGroups(arrayList);
         }

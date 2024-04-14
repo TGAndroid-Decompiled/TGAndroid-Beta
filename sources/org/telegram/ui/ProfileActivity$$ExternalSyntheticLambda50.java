@@ -8,6 +8,6 @@ public final class ProfileActivity$$ExternalSyntheticLambda50 implements Runnabl
 
     @Override
     public final void run() {
-        ProfileActivity.m2716$r8$lambda$9EZ_WtnMBKkzF7Jtmqu4Ps3Pg(this.f$0);
+        ProfileActivity.m2719$r8$lambda$9EZ_WtnMBKkzF7Jtmqu4Ps3Pg(this.f$0);
     }
 }

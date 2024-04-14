@@ -198,7 +198,6 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     private Integer listStateId;
     private int longtapHintRow;
     private AnimationNotificationsLocker notificationsLocker;
-    public onRecentClearedListener onRecentClearedListener;
     private OvershootInterpolator overshootInterpolator;
     private ArrayList<EmojiView.EmojiPack> packs;
     Paint paint;
@@ -276,7 +275,6 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     }
 
     public interface onRecentClearedListener {
-        void onRecentCleared();
     }
 
     protected float getScrimDrawableTranslationY() {
@@ -300,6 +298,9 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 
     public boolean prevWindowKeyboardVisible() {
         return false;
+    }
+
+    public void setOnRecentClearedListener(onRecentClearedListener onrecentclearedlistener) {
     }
 
     @Override
@@ -2073,11 +2074,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SelectAnimatedEmojiDialog.Adapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
-        public void lambda$onBindViewHolder$0(View view) {
-            SelectAnimatedEmojiDialog.this.clearRecent();
-        }
-
-        public void lambda$onBindViewHolder$1(EmojiView.EmojiPack emojiPack, int i, View view) {
+        public void lambda$onBindViewHolder$0(EmojiView.EmojiPack emojiPack, int i, View view) {
             Integer num;
             View view2;
             int childAdapterPosition;
@@ -2124,14 +2121,6 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     public boolean enterAnimationInProgress() {
         ValueAnimator valueAnimator;
         return this.enterAnimationInProgress || ((valueAnimator = this.showAnimator) != null && valueAnimator.isRunning());
-    }
-
-    public void clearRecent() {
-        onRecentClearedListener onrecentclearedlistener;
-        int i = this.type;
-        if ((i == 1 || i == 11) && (onrecentclearedlistener = this.onRecentClearedListener) != null) {
-            onrecentclearedlistener.onRecentCleared();
-        }
     }
 
     public class HeaderView extends FrameLayout {
@@ -4492,10 +4481,6 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 
     public void setOnLongPressedListener(onLongPressedListener onlongpressedlistener) {
         this.bigReactionListener = onlongpressedlistener;
-    }
-
-    public void setOnRecentClearedListener(onRecentClearedListener onrecentclearedlistener) {
-        this.onRecentClearedListener = onrecentclearedlistener;
     }
 
     public class SelectStatusDurationDialog extends Dialog {

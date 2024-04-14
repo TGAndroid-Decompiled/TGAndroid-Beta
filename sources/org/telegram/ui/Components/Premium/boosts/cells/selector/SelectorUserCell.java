@@ -2,6 +2,10 @@ package org.telegram.ui.Components.Premium.boosts.cells.selector;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.ImageView;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -25,6 +29,7 @@ public class SelectorUserCell extends BaseCell {
     private TLRPC$Chat chat;
     private final CheckBox2 checkBox;
     private final boolean[] isOnline;
+    private final ImageView optionsView;
     StatusBadgeComponent statusBadgeComponent;
     private TLRPC$User user;
 
@@ -51,6 +56,21 @@ public class SelectorUserCell extends BaseCell {
         addView(checkBox2);
         checkBox2.setChecked(false, false);
         checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.optionsView = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_ab_other);
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
+        addView(imageView, LayoutHelper.createFrame(32, 32.0f, (LocaleController.isRTL ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+    }
+
+    public void setOptions(View.OnClickListener onClickListener) {
+        if (onClickListener != null) {
+            this.optionsView.setVisibility(0);
+            this.optionsView.setOnClickListener(onClickListener);
+            return;
+        }
+        this.optionsView.setVisibility(8);
     }
 
     @Override
@@ -98,6 +118,7 @@ public class SelectorUserCell extends BaseCell {
     }
 
     public void setUser(TLRPC$User tLRPC$User) {
+        this.optionsView.setVisibility(8);
         this.user = tLRPC$User;
         this.chat = null;
         this.avatarDrawable.setInfo(tLRPC$User);
@@ -114,6 +135,7 @@ public class SelectorUserCell extends BaseCell {
 
     public void setChat(TLRPC$Chat tLRPC$Chat, int i) {
         String string;
+        this.optionsView.setVisibility(8);
         this.chat = tLRPC$Chat;
         this.user = null;
         this.avatarDrawable.setInfo(tLRPC$Chat);
@@ -135,6 +157,7 @@ public class SelectorUserCell extends BaseCell {
     }
 
     public void setBoost(TL_stories$TL_myBoost tL_stories$TL_myBoost) {
+        this.optionsView.setVisibility(8);
         this.boost = tL_stories$TL_myBoost;
         TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_stories$TL_myBoost.peer)));
         this.chat = chat;

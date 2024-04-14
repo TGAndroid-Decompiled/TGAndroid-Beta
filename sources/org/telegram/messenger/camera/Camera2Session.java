@@ -467,6 +467,10 @@ public class Camera2Session {
             } else if (this.nightMode) {
                 createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(this.isFront ? 6 : 5));
             }
+            if (this.recordingVideo) {
+                this.captureRequestBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, 3);
+            }
+            this.captureRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, 1);
             if (this.sensorSize != null && Math.abs(this.currentZoom - 1.0f) >= 0.01f) {
                 int width = this.sensorSize.width() / 2;
                 int height = this.sensorSize.height() / 2;

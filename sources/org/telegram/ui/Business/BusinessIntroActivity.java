@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -25,20 +26,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$TL_account_updateBusinessIntro;
 import org.telegram.tgnet.TLRPC$TL_boolFalse;
 import org.telegram.tgnet.TLRPC$TL_businessIntro;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputBusinessIntro;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatGreetingsView;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
@@ -48,10 +53,12 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 import org.telegram.ui.Stories.recorder.PreviewView;
 public class BusinessIntroActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
+    private ChatAttachAlert chatAttachAlert;
     private String currentMessage;
     private long currentSticker;
     private String currentTitle;
@@ -59,6 +66,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     private CrossfadeDrawable doneButtonDrawable;
     private ChatGreetingsView greetingsView;
     private Drawable greetingsViewBackground;
+    private TLRPC$InputDocument inputSticker;
+    private String inputStickerPath;
     private boolean keyboardVisible;
     private EditTextCell messageEdit;
     private FrameLayout previewContainer;
@@ -308,8 +317,10 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         arrayList.add(UItem.asCustom(this.messageEdit));
         if (this.stickerRandom) {
             arrayList.add(UItem.asButton(1, LocaleController.getString(R.string.BusinessIntroSticker), LocaleController.getString(R.string.BusinessIntroStickerRandom)));
+        } else if (this.inputStickerPath != null) {
+            arrayList.add(UItem.asStickerButton(1, LocaleController.getString(R.string.BusinessIntroSticker), this.inputStickerPath));
         } else {
-            arrayList.add(UItem.asButton(1, LocaleController.getString(R.string.BusinessIntroSticker), this.sticker));
+            arrayList.add(UItem.asStickerButton(1, LocaleController.getString(R.string.BusinessIntroSticker), this.sticker));
         }
         arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessIntroInfo)));
         boolean z = !isEmpty();
@@ -327,13 +338,6 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             return true;
         }
         return TextUtils.isEmpty(editTextCell.getText()) && TextUtils.isEmpty(this.messageEdit.getText()) && this.stickerRandom;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.userInfoDidLoad) {
-            setValue();
-        }
     }
 
     private void setValue() {
@@ -364,6 +368,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             EditTextCell editTextCell4 = this.messageEdit;
             this.currentMessage = "";
             editTextCell4.setText("");
+            this.inputSticker = null;
             this.sticker = null;
         }
         TLRPC$Document tLRPC$Document = this.sticker;
@@ -403,6 +408,14 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
                     return lambda$onClick$2;
                 }
             });
+            if (BuildVars.DEBUG_VERSION) {
+                emojiBottomSheet.whenPlusSelected(new Runnable() {
+                    @Override
+                    public final void run() {
+                        BusinessIntroActivity.this.openCustomStickerEditor();
+                    }
+                });
+            }
             showDialog(emojiBottomSheet);
         } else if (i2 == 2) {
             this.titleEdit.setText("");
@@ -443,7 +456,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             String charSequence2 = this.messageEdit.getText().toString();
             String str2 = this.currentMessage;
             if (TextUtils.equals(charSequence2, str2 != null ? str2 : "")) {
-                if (((this.stickerRandom || (tLRPC$Document = this.sticker) == null) ? 0L : tLRPC$Document.id) == this.currentSticker) {
+                boolean z = this.stickerRandom;
+                if (((z || (tLRPC$Document = this.sticker) == null) ? 0L : tLRPC$Document.id) == this.currentSticker && (z || this.inputSticker == null)) {
                     return false;
                 }
             }
@@ -487,10 +501,15 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             tLRPC$TL_account_updateBusinessIntro.intro = tLRPC$TL_inputBusinessIntro;
             tLRPC$TL_inputBusinessIntro.title = this.titleEdit.getText().toString();
             tLRPC$TL_account_updateBusinessIntro.intro.description = this.messageEdit.getText().toString();
-            if (!this.stickerRandom && this.sticker != null) {
+            if (!this.stickerRandom && (this.sticker != null || this.inputSticker != null)) {
                 TLRPC$TL_inputBusinessIntro tLRPC$TL_inputBusinessIntro2 = tLRPC$TL_account_updateBusinessIntro.intro;
                 tLRPC$TL_inputBusinessIntro2.flags |= 1;
-                tLRPC$TL_inputBusinessIntro2.sticker = getMessagesController().getInputDocument(this.sticker);
+                TLRPC$InputDocument tLRPC$InputDocument = this.inputSticker;
+                if (tLRPC$InputDocument != null) {
+                    tLRPC$TL_inputBusinessIntro2.sticker = tLRPC$InputDocument;
+                } else {
+                    tLRPC$TL_inputBusinessIntro2.sticker = getMessagesController().getInputDocument(this.sticker);
+                }
             }
             if (userFull != null) {
                 userFull.flags2 |= 16;
@@ -534,6 +553,9 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
+            if (this.inputSticker != null) {
+                getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
+            }
             finishFragment();
         }
     }
@@ -568,5 +590,125 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
 
     public void lambda$onBackPressed$6(DialogInterface dialogInterface, int i) {
         finishFragment();
+    }
+
+    public void openCustomStickerEditor() {
+        ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(null);
+        if (getParentActivity() == null) {
+            return;
+        }
+        createChatAttachView();
+        this.chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
+        this.chatAttachAlert.setMaxSelectedPhotos(1, false);
+        this.chatAttachAlert.setOpenWithFrontFaceCamera(true);
+        this.chatAttachAlert.enableStickerMode(new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                BusinessIntroActivity.this.setCustomSticker((String) obj, (TLRPC$InputDocument) obj2);
+            }
+        });
+        this.chatAttachAlert.init();
+        ChatAttachAlert chatAttachAlert = this.chatAttachAlert;
+        chatAttachAlert.parentThemeDelegate = null;
+        if (this.visibleDialog != null) {
+            chatAttachAlert.show();
+        } else {
+            showDialog(chatAttachAlert);
+        }
+    }
+
+    private void createChatAttachView() {
+        if (getParentActivity() == null || getContext() == null || this.chatAttachAlert != null) {
+            return;
+        }
+        ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getParentActivity(), this, false, false, true, this.resourceProvider) {
+            @Override
+            public void dismissInternal() {
+                if (BusinessIntroActivity.this.chatAttachAlert != null && BusinessIntroActivity.this.chatAttachAlert.isShowing()) {
+                    AndroidUtilities.requestAdjustResize(BusinessIntroActivity.this.getParentActivity(), ((BaseFragment) BusinessIntroActivity.this).classGuid);
+                }
+                super.dismissInternal();
+            }
+
+            @Override
+            public void onDismissAnimationStart() {
+                if (BusinessIntroActivity.this.chatAttachAlert != null) {
+                    BusinessIntroActivity.this.chatAttachAlert.setFocusable(false);
+                }
+                if (BusinessIntroActivity.this.chatAttachAlert == null || !BusinessIntroActivity.this.chatAttachAlert.isShowing()) {
+                    return;
+                }
+                AndroidUtilities.requestAdjustResize(BusinessIntroActivity.this.getParentActivity(), ((BaseFragment) BusinessIntroActivity.this).classGuid);
+            }
+        };
+        this.chatAttachAlert = chatAttachAlert;
+        chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
+            @Override
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, boolean z3) {
+            }
+
+            @Override
+            public void didSelectBot(TLRPC$User tLRPC$User) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
+            }
+
+            @Override
+            public boolean needEnterComment() {
+                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
+            }
+
+            @Override
+            public void onCameraOpened() {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
+            }
+
+            @Override
+            public void onWallpaperSelected(Object obj) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
+            }
+
+            @Override
+            public void openAvatarsSearch() {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
+            }
+
+            @Override
+            public boolean selectItemOnClicking() {
+                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
+            }
+
+            @Override
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
+            }
+
+            @Override
+            public void doOnIdle(Runnable runnable) {
+                NotificationCenter.getInstance(((BaseFragment) BusinessIntroActivity.this).currentAccount).doOnIdle(runnable);
+            }
+        });
+    }
+
+    public void setCustomSticker(String str, TLRPC$InputDocument tLRPC$InputDocument) {
+        UniversalAdapter universalAdapter;
+        this.chatAttachAlert.dismiss();
+        this.inputStickerPath = str;
+        this.inputSticker = tLRPC$InputDocument;
+        this.stickerRandom = false;
+        AndroidUtilities.cancelRunOnUIThread(this.updateRandomStickerRunnable);
+        this.greetingsView.setSticker(this.inputStickerPath);
+        checkDone(true, false);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(true);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.userInfoDidLoad) {
+            setValue();
+        }
     }
 }

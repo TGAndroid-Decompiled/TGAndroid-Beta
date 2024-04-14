@@ -210,6 +210,10 @@ public class ContentPreviewViewer {
                 return false;
             }
 
+            public static boolean $default$isSettingIntroSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+                return false;
+            }
+
             public static boolean $default$isStickerEditor(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
                 return false;
             }
@@ -268,6 +272,9 @@ public class ContentPreviewViewer {
             public static void $default$setAsEmojiStatus(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC$Document tLRPC$Document, Integer num) {
             }
 
+            public static void $default$setIntroSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate, String str) {
+            }
+
             public static void $default$stickerSetSelected(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC$StickerSet tLRPC$StickerSet, String str) {
             }
         }
@@ -302,6 +309,8 @@ public class ContentPreviewViewer {
 
         boolean isReplacedSticker();
 
+        boolean isSettingIntroSticker();
+
         boolean isStickerEditor();
 
         boolean needCopy(TLRPC$Document tLRPC$Document);
@@ -335,6 +344,8 @@ public class ContentPreviewViewer {
         void sendSticker(TLRPC$Document tLRPC$Document, String str, Object obj, boolean z, int i);
 
         void setAsEmojiStatus(TLRPC$Document tLRPC$Document, Integer num);
+
+        void setIntroSticker(String str);
 
         void stickerSetSelected(TLRPC$StickerSet tLRPC$StickerSet, String str);
     }
@@ -435,7 +446,11 @@ public class ContentPreviewViewer {
                 if (((Integer) arrayList.get(intValue)).intValue() == 1) {
                     ContentPreviewViewer.this.delegate.addToFavoriteSelected(TextUtils.join("", ContentPreviewViewer.this.selectedEmojis));
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 0) {
-                    ContentPreviewViewer.this.delegate.sendSticker();
+                    if (ContentPreviewViewer.this.delegate.isSettingIntroSticker()) {
+                        ContentPreviewViewer.this.delegate.setIntroSticker(TextUtils.join("", ContentPreviewViewer.this.selectedEmojis));
+                    } else {
+                        ContentPreviewViewer.this.delegate.sendSticker();
+                    }
                 }
             }
             ContentPreviewViewer.this.dismissPopupWindow();

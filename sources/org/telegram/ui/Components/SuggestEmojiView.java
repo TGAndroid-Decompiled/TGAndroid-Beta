@@ -149,6 +149,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
+        public boolean isSettingIntroSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isSettingIntroSticker(this);
+        }
+
+        @Override
         public boolean isStickerEditor() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isStickerEditor(this);
         }
@@ -210,6 +215,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         @Override
         public void sendSticker(TLRPC$Document tLRPC$Document, String str, Object obj, boolean z, int i) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, tLRPC$Document, str, obj, z, i);
+        }
+
+        @Override
+        public void setIntroSticker(String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$setIntroSticker(this, str);
         }
 
         @Override

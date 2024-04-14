@@ -16,6 +16,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
@@ -89,6 +90,7 @@ import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -127,6 +129,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private boolean bottomPanelIgnoreOnce;
     public PaintCancelView cancelButton;
     private TextView cancelTextButton;
+    private final Paint clearPaint;
     private Paint colorPickerRainbowPaint;
     private Swatch colorSwatch;
     private Paint colorSwatchOutlinePaint;
@@ -138,6 +141,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private boolean destroyed;
     public PaintDoneView doneButton;
     private TextView doneTextButton;
+    private boolean drawShadow;
     private TextView drawTab;
     private boolean editingText;
     private int emojiPadding;
@@ -185,6 +189,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private float scale;
     private int selectedTextType;
     private FrameLayout selectionContainerView;
+    private final AnimatedFloat shadowAlpha;
+    private final Paint shadowPaint;
     private TextView stickerTab;
     public LinearLayout tabsLayout;
     private int tabsNewSelectedIndex;
@@ -322,6 +328,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.colorSwatch = new Swatch(-1, 1.0f, 0.016773745f);
         this.toolsPaint = new Paint(1);
         this.zoomOutVisible = false;
+        this.shadowAlpha = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.shadowPaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.clearPaint = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         new Matrix();
         this.position = new float[2];
         this.pos2 = new int[2];
@@ -1162,6 +1173,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         PersistColorPalette.getInstance(i).setCurrentWeight(this.colorSwatch.brushWeight);
     }
 
+    public void setDrawShadow(boolean z) {
+        this.drawShadow = z;
+        invalidate();
+        setClipChildren(!z);
+    }
+
     public void setNewColor(final int i) {
         Swatch swatch = this.colorSwatch;
         final int i2 = swatch.color;
@@ -1398,6 +1415,19 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         EntitiesContainerView entitiesContainerView;
         FrameLayout frameLayout;
         int i = 0;
+        if (view == this.entitiesView) {
+            float f = this.shadowAlpha.set(this.drawShadow);
+            if (f > 0.0f) {
+                this.shadowPaint.setShadowLayer(AndroidUtilities.dp(24.0f * f), 0.0f, 0.0f, Theme.multAlpha(1090519039, f));
+                this.shadowPaint.setColor(0);
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas.translate(this.entitiesView.getX(), this.entitiesView.getY());
+                canvas.scale(this.entitiesView.getScaleX(), this.entitiesView.getScaleY(), this.entitiesView.getWidth() / 2.0f, this.entitiesView.getHeight() / 2.0f);
+                canvas.drawRect(0.0f, 0.0f, this.entitiesView.getWidth(), this.entitiesView.getHeight(), this.shadowPaint);
+                canvas.drawRect(0.0f, 0.0f, this.entitiesView.getWidth(), this.entitiesView.getHeight(), this.clearPaint);
+                canvas.restore();
+            }
+        }
         if ((view == this.renderView || view == this.renderInputView || ((view == (entitiesContainerView = this.entitiesView) && entitiesContainerView.getClipChildren()) || (view == (frameLayout = this.selectionContainerView) && frameLayout.getClipChildren()))) && this.currentCropState != null) {
             canvas.save();
             if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {

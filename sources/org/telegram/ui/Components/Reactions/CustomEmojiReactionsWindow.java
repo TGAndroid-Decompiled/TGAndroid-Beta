@@ -232,11 +232,7 @@ public class CustomEmojiReactionsWindow {
                 }
             }
         });
-        this.selectAnimatedEmojiDialog.setOnRecentClearedListener(new SelectAnimatedEmojiDialog.onRecentClearedListener(this) {
-            @Override
-            public void onRecentCleared() {
-                reactionsContainerLayout.clearRecentReactions();
-            }
+        this.selectAnimatedEmojiDialog.setOnRecentClearedListener(new SelectAnimatedEmojiDialog.onRecentClearedListener(this, reactionsContainerLayout) {
         });
         this.selectAnimatedEmojiDialog.setRecentReactions(list);
         this.selectAnimatedEmojiDialog.setSelectedReactions(hashSet);
@@ -1280,10 +1276,6 @@ public class CustomEmojiReactionsWindow {
             return this.containerView.getY() - AndroidUtilities.statusBarHeight;
         }
         return this.containerView.getY() + this.windowView.getY();
-    }
-
-    public void setRecentReactions(List<ReactionsLayoutInBubble.VisibleReaction> list) {
-        this.selectAnimatedEmojiDialog.setRecentReactions(list);
     }
 
     public SelectAnimatedEmojiDialog getSelectAnimatedEmojiDialog() {

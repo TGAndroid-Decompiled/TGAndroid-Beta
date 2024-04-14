@@ -671,6 +671,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
 
     public void checkRowsEnabled() {
         boolean isGlobalNotificationsEnabled;
+        int i;
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList;
         if (this.exceptions.isEmpty() || this.currentType == 3) {
             int childCount = this.listView.getChildCount();
@@ -681,15 +682,15 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             } else {
                 isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(this.currentType);
             }
-            for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
+            for (int i2 = 0; i2 < childCount; i2++) {
+                View childAt = this.listView.getChildAt(i2);
                 RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.getChildViewHolder(childAt);
                 int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
                 ItemInner itemInner = null;
                 if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
                     itemInner = this.items.get(childAdapterPosition);
                 }
-                boolean z = (itemInner == null || itemInner.id != 102) ? isGlobalNotificationsEnabled : true;
+                boolean z = (itemInner == null || !((i = itemInner.id) == 102 || i == 101 || i == 100)) ? isGlobalNotificationsEnabled : true;
                 int itemViewType = holder.getItemViewType();
                 if (itemViewType == 0) {
                     ((HeaderCell) holder.itemView).setEnabled(z, arrayList2);

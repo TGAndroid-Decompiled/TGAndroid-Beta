@@ -804,6 +804,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private SparseBooleanArray serverDialogsEndReached;
     private LongSparseIntArray shortPollChannels;
     private LongSparseIntArray shortPollOnlines;
+    public boolean showAnnualPerMonth;
     public boolean showFiltersTooltip;
     public int smallQueueMaxActiveOperations;
     public boolean smsjobsStickyNotificationEnabled;
@@ -1987,6 +1988,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.diceSuccess = new HashMap<>();
         this.emojiSounds = new HashMap<>();
         this.emojiInteractions = new HashMap<>();
+        this.showAnnualPerMonth = false;
         this.directPaymentsCurrency = new ArrayList();
         this.emojiStatusUntilValues = new LongSparseArray<>();
         this.photoSuggestion = new SparseArray<>();
@@ -2235,6 +2237,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.premiumManageSubscriptionUrl = this.mainPreferences.getString("premiumManageSubscriptionUrl", ApplicationLoader.isStandaloneBuild() ? "https://t.me/premiumbot?start=status" : "https://play.google.com/store/account/subscriptions?sku=telegram_premium&package=org.telegram.messenger");
         this.androidDisableRoundCamera2 = this.mainPreferences.getBoolean("androidDisableRoundCamera2", false);
         this.storiesPinnedToTopCountMax = this.mainPreferences.getInt("storiesPinnedToTopCountMax", 3);
+        this.showAnnualPerMonth = this.mainPreferences.getBoolean("showAnnualPerMonth", false);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -3703,7 +3706,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.channelRevenueWithdrawalEnabled = false;
         this.collectDeviceStats = false;
         this.smsjobsStickyNotificationEnabled = false;
-        this.mainPreferences.edit().remove("getfileExperimentalParams").remove("smsjobsStickyNotificationEnabled").remove("channelRevenueWithdrawalEnabled").apply();
+        this.showAnnualPerMonth = false;
+        this.mainPreferences.edit().remove("getfileExperimentalParams").remove("smsjobsStickyNotificationEnabled").remove("channelRevenueWithdrawalEnabled").remove("showAnnualPerMonth").apply();
     }
 
     private boolean savePremiumFeaturesPreviewOrder(String str, SparseIntArray sparseIntArray, SharedPreferences.Editor editor, ArrayList<TLRPC$JSONValue> arrayList) {
@@ -4026,25 +4030,29 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public TLRPC$InputPeer getInputPeer(long j) {
+        TLRPC$InputPeer tLRPC$TL_inputPeerUser;
+        if (j == getUserConfig().getClientUserId()) {
+            return new TLRPC$TL_inputPeerSelf();
+        }
         if (j < 0) {
             long j2 = -j;
             TLRPC$Chat chat = getChat(Long.valueOf(j2));
             if (ChatObject.isChannel(chat)) {
-                TLRPC$TL_inputPeerChannel tLRPC$TL_inputPeerChannel = new TLRPC$TL_inputPeerChannel();
-                tLRPC$TL_inputPeerChannel.channel_id = j2;
-                tLRPC$TL_inputPeerChannel.access_hash = chat.access_hash;
-                return tLRPC$TL_inputPeerChannel;
+                tLRPC$TL_inputPeerUser = new TLRPC$TL_inputPeerChannel();
+                tLRPC$TL_inputPeerUser.channel_id = j2;
+                tLRPC$TL_inputPeerUser.access_hash = chat.access_hash;
+            } else {
+                TLRPC$TL_inputPeerChat tLRPC$TL_inputPeerChat = new TLRPC$TL_inputPeerChat();
+                tLRPC$TL_inputPeerChat.chat_id = j2;
+                return tLRPC$TL_inputPeerChat;
             }
-            TLRPC$TL_inputPeerChat tLRPC$TL_inputPeerChat = new TLRPC$TL_inputPeerChat();
-            tLRPC$TL_inputPeerChat.chat_id = j2;
-            return tLRPC$TL_inputPeerChat;
-        }
-        TLRPC$User user = getUser(Long.valueOf(j));
-        TLRPC$TL_inputPeerUser tLRPC$TL_inputPeerUser = new TLRPC$TL_inputPeerUser();
-        tLRPC$TL_inputPeerUser.user_id = j;
-        if (user != null) {
-            tLRPC$TL_inputPeerUser.access_hash = user.access_hash;
-            return tLRPC$TL_inputPeerUser;
+        } else {
+            TLRPC$User user = getUser(Long.valueOf(j));
+            tLRPC$TL_inputPeerUser = new TLRPC$TL_inputPeerUser();
+            tLRPC$TL_inputPeerUser.user_id = j;
+            if (user != null) {
+                tLRPC$TL_inputPeerUser.access_hash = user.access_hash;
+            }
         }
         return tLRPC$TL_inputPeerUser;
     }

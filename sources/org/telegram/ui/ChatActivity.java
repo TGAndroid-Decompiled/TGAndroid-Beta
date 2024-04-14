@@ -11084,7 +11084,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         this.chatAttachAlert.setMaxSelectedPhotos(1, false);
         this.chatAttachAlert.setOpenWithFrontFaceCamera(true);
-        this.chatAttachAlert.enableStickerMode();
+        this.chatAttachAlert.enableStickerMode(null);
         this.chatAttachAlert.init();
         ChatAttachAlert chatAttachAlert = this.chatAttachAlert;
         chatAttachAlert.parentThemeDelegate = this.themeDelegate;

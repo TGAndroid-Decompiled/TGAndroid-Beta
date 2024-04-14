@@ -15,6 +15,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$Document;
@@ -645,6 +646,28 @@ public class TextCell extends FrameLayout {
         setValueSticker(tLRPC$Document);
     }
 
+    public void setTextAndSticker(CharSequence charSequence, String str, boolean z) {
+        this.imageLeft = 21;
+        this.offsetFromImage = getOffsetFromImage(false);
+        this.textView.setText(charSequence);
+        this.textView.setRightDrawable((Drawable) null);
+        AnimatedTextView animatedTextView = this.valueTextView;
+        this.valueText = null;
+        animatedTextView.setText(null, false);
+        this.valueImageView.setVisibility(8);
+        this.valueTextView.setVisibility(8);
+        this.valueSpoilersTextView.setVisibility(8);
+        this.imageView.setVisibility(8);
+        this.imageView.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
+        this.needDivider = z;
+        setWillNotDraw(!z);
+        Switch r4 = this.checkBox;
+        if (r4 != null) {
+            r4.setVisibility(8);
+        }
+        setValueSticker(str);
+    }
+
     public void setValueSticker(TLRPC$Document tLRPC$Document) {
         if (this.emojiDrawable == null) {
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(30.0f));
@@ -654,6 +677,65 @@ public class TextCell extends FrameLayout {
             }
         }
         this.emojiDrawable.set(tLRPC$Document, 1, true);
+        invalidate();
+    }
+
+    public void setValueSticker(String str) {
+        if (this.emojiDrawable == null) {
+            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(30.0f));
+            this.emojiDrawable = swapAnimatedEmojiDrawable;
+            if (this.attached) {
+                swapAnimatedEmojiDrawable.attach();
+            }
+        }
+        final ImageReceiver imageReceiver = new ImageReceiver(this);
+        if (isAttachedToWindow()) {
+            imageReceiver.onAttachedToWindow();
+        }
+        addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(this) {
+            @Override
+            public void onViewAttachedToWindow(View view) {
+                imageReceiver.onAttachedToWindow();
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View view) {
+                imageReceiver.onDetachedFromWindow();
+            }
+        });
+        imageReceiver.setImage(str, "30_30", null, null, 0L);
+        this.emojiDrawable.set(new Drawable(this) {
+            @Override
+            public int getOpacity() {
+                return -2;
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                imageReceiver.setImageCoords(getBounds());
+                imageReceiver.draw(canvas);
+            }
+
+            @Override
+            public void setAlpha(int i) {
+                imageReceiver.setAlpha(i / 255.0f);
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+                imageReceiver.setColorFilter(colorFilter);
+            }
+
+            @Override
+            public int getIntrinsicWidth() {
+                return AndroidUtilities.dp(30.0f);
+            }
+
+            @Override
+            public int getIntrinsicHeight() {
+                return AndroidUtilities.dp(30.0f);
+            }
+        }, true);
         invalidate();
     }
 

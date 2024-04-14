@@ -366,7 +366,11 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 stopSelf();
             }
         } else if (i == NotificationCenter.messagePlayingDidSeek) {
-            long round = Math.round(MediaController.getInstance().getPlayingMessageObject().audioPlayerDuration * ((Float) objArr[1]).floatValue()) * 1000;
+            MessageObject playingMessageObject2 = MediaController.getInstance().getPlayingMessageObject();
+            if (playingMessageObject2 == null) {
+                return;
+            }
+            long round = Math.round(playingMessageObject2.audioPlayerDuration * ((Float) objArr[1]).floatValue()) * 1000;
             updatePlaybackState(round);
             RemoteControlClient remoteControlClient = this.remoteControlClient;
             if (remoteControlClient == null || Build.VERSION.SDK_INT < 18) {
@@ -375,18 +379,18 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3, round, MediaController.getInstance().isMessagePaused() ? 0.0f : 1.0f);
         } else if (i == NotificationCenter.httpFileDidLoad) {
             String str3 = (String) objArr[0];
-            MessageObject playingMessageObject2 = MediaController.getInstance().getPlayingMessageObject();
-            if (playingMessageObject2 == null || (str2 = this.loadingFilePath) == null || !str2.equals(str3)) {
-                return;
-            }
-            createNotification(playingMessageObject2, false);
-        } else if (i == NotificationCenter.fileLoaded) {
-            String str4 = (String) objArr[0];
             MessageObject playingMessageObject3 = MediaController.getInstance().getPlayingMessageObject();
-            if (playingMessageObject3 == null || (str = this.loadingFilePath) == null || !str.equals(str4)) {
+            if (playingMessageObject3 == null || (str2 = this.loadingFilePath) == null || !str2.equals(str3)) {
                 return;
             }
             createNotification(playingMessageObject3, false);
+        } else if (i == NotificationCenter.fileLoaded) {
+            String str4 = (String) objArr[0];
+            MessageObject playingMessageObject4 = MediaController.getInstance().getPlayingMessageObject();
+            if (playingMessageObject4 == null || (str = this.loadingFilePath) == null || !str.equals(str4)) {
+                return;
+            }
+            createNotification(playingMessageObject4, false);
         }
     }
 }

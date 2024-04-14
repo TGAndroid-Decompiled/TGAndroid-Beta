@@ -165,10 +165,10 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
                 z = false;
             }
             selectorUserCell.setDivider(z);
-            if (i3 >= this.items.size() || this.items.get(i3).viewType != 7) {
-                return;
+            if (i3 < this.items.size() && this.items.get(i3).viewType == 7) {
+                selectorUserCell.setDivider(false);
             }
-            selectorUserCell.setDivider(false);
+            selectorUserCell.setOptions(item.options);
         } else if (itemViewType == 6) {
             SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
             selectorCountryCell.setCountry(item.country, (i >= this.items.size() - 1 || (i2 = i + 1) >= this.items.size() - 1 || this.items.get(i2).viewType == 7) ? false : false);
@@ -285,6 +285,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         public TLRPC$Chat chat;
         public boolean checked;
         public TLRPC$TL_help_country country;
+        public View.OnClickListener options;
         public int padHeight;
         public TLRPC$InputPeer peer;
         public CharSequence subtext;
@@ -310,6 +311,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             item.chat = null;
             item.checked = z;
             return item;
+        }
+
+        public Item withOptions(View.OnClickListener onClickListener) {
+            this.options = onClickListener;
+            return this;
         }
 
         public static Item asLetter(String str) {

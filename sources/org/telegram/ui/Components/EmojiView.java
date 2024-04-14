@@ -538,6 +538,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
+        public boolean isSettingIntroSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isSettingIntroSticker(this);
+        }
+
+        @Override
         public boolean isStickerEditor() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isStickerEditor(this);
         }
@@ -575,6 +580,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         @Override
         public void sendSticker() {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this);
+        }
+
+        @Override
+        public void setIntroSticker(String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$setIntroSticker(this, str);
         }
 
         @Override

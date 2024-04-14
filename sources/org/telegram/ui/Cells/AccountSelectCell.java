@@ -100,7 +100,7 @@ public class AccountSelectCell extends FrameLayout {
         }
         TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
         this.avatarDrawable.setInfo(tLRPC$Chat);
-        this.infoTextView.setText(tLRPC$Chat.title);
+        this.infoTextView.setText(tLRPC$Chat == null ? "" : tLRPC$Chat.title);
         this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
     }
 

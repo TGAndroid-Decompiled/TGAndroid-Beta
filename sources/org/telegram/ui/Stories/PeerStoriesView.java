@@ -2105,8 +2105,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         if (storyItemHolder != null) {
             HashSet hashSet = new HashSet();
             ArrayList<TLRPC$InputStickerSet> arrayList2 = new ArrayList<>();
+            TL_stories$StoryItem tL_stories$StoryItem = storyItemHolder.storyItem;
             int i = 0;
-            if (storyItemHolder.storyItem.media_areas != null) {
+            if (tL_stories$StoryItem != null && tL_stories$StoryItem.media_areas != null) {
                 for (int i2 = 0; i2 < storyItemHolder.storyItem.media_areas.size(); i2++) {
                     TL_stories$MediaArea tL_stories$MediaArea2 = storyItemHolder.storyItem.media_areas.get(i2);
                     if (tL_stories$MediaArea2 instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
@@ -2121,8 +2122,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     }
                 }
             }
-            TL_stories$StoryItem tL_stories$StoryItem = storyItemHolder.storyItem;
-            if (tL_stories$StoryItem != null && (arrayList = tL_stories$StoryItem.entities) != null && !arrayList.isEmpty()) {
+            TL_stories$StoryItem tL_stories$StoryItem2 = storyItemHolder.storyItem;
+            if (tL_stories$StoryItem2 != null && (arrayList = tL_stories$StoryItem2.entities) != null && !arrayList.isEmpty()) {
                 while (i < storyItemHolder.storyItem.entities.size()) {
                     TLRPC$MessageEntity tLRPC$MessageEntity = storyItemHolder.storyItem.entities.get(i);
                     if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityCustomEmoji) {

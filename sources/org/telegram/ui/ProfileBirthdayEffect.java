@@ -207,6 +207,7 @@ public class ProfileBirthdayEffect extends View {
         public ArrayList<ProfileBirthdayEffect> views = new ArrayList<>();
 
         public static BirthdayEffectFetcher of(int i, TLRPC$UserFull tLRPC$UserFull, BirthdayEffectFetcher birthdayEffectFetcher) {
+            TLRPC$TL_birthday tLRPC$TL_birthday;
             if (!LiteMode.isEnabled(2) || !BirthdayController.isToday(tLRPC$UserFull)) {
                 if (birthdayEffectFetcher != null) {
                     birthdayEffectFetcher.detach(false);
@@ -214,8 +215,7 @@ public class ProfileBirthdayEffect extends View {
                 }
                 return null;
             }
-            TLRPC$TL_birthday tLRPC$TL_birthday = tLRPC$UserFull.birthday;
-            int years = (tLRPC$TL_birthday.flags & 1) != 0 ? Period.between(LocalDate.of(tLRPC$TL_birthday.year, tLRPC$TL_birthday.month, tLRPC$TL_birthday.day), LocalDate.now()).getYears() : 0;
+            int years = (tLRPC$UserFull == null || (tLRPC$TL_birthday = tLRPC$UserFull.birthday) == null || (tLRPC$TL_birthday.flags & 1) == 0) ? 0 : Period.between(LocalDate.of(tLRPC$TL_birthday.year, tLRPC$TL_birthday.month, tLRPC$TL_birthday.day), LocalDate.now()).getYears();
             if (birthdayEffectFetcher != null) {
                 if (birthdayEffectFetcher.age == years) {
                     return birthdayEffectFetcher;
