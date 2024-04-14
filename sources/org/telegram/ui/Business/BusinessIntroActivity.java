@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -408,14 +407,12 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
                     return lambda$onClick$2;
                 }
             });
-            if (BuildVars.DEBUG_VERSION) {
-                emojiBottomSheet.whenPlusSelected(new Runnable() {
-                    @Override
-                    public final void run() {
-                        BusinessIntroActivity.this.openCustomStickerEditor();
-                    }
-                });
-            }
+            emojiBottomSheet.whenPlusSelected(new Runnable() {
+                @Override
+                public final void run() {
+                    BusinessIntroActivity.this.openCustomStickerEditor();
+                }
+            });
             showDialog(emojiBottomSheet);
         } else if (i2 == 2) {
             this.titleEdit.setText("");

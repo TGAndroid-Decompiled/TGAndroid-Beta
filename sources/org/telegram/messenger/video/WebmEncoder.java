@@ -401,7 +401,7 @@ public class WebmEncoder {
             if (bitmap != null) {
                 mediaEntity.matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());
             }
-            if ((mediaEntity.subType & 2) != 0) {
+            if (mediaEntity.type != 1 && (mediaEntity.subType & 2) != 0) {
                 mediaEntity.matrix.postScale(-1.0f, 1.0f, 0.5f, 0.5f);
             }
             mediaEntity.matrix.postScale(mediaEntity.width * this.W, mediaEntity.height * this.H);

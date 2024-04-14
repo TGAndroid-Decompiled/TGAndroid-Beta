@@ -873,7 +873,7 @@ public class ReactionsLayoutInBubble {
         return this.totalHeight;
     }
 
-    public static class ButtonsComparator implements Comparator<ReactionButton> {
+    private static class ButtonsComparator implements Comparator<ReactionButton> {
         int currentAccount;
         long dialogId;
 
