@@ -389,15 +389,16 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
 
     private void updateCheckboxes(boolean z) {
         int childAdapterPosition;
+        int childAdapterPosition2;
         int i = -1;
         int i2 = 0;
         for (int i3 = 0; i3 < this.recyclerListView.getChildCount(); i3++) {
             View childAt = this.recyclerListView.getChildAt(i3);
-            if ((childAt instanceof SelectorUserCell) && (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt)) > 0) {
+            if ((childAt instanceof SelectorUserCell) && (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt)) - 1 >= 0 && childAdapterPosition2 < this.items.size()) {
                 if (i == -1) {
                     i = childAdapterPosition;
                 }
-                SelectorAdapter.Item item = this.items.get(childAdapterPosition - 1);
+                SelectorAdapter.Item item = this.items.get(childAdapterPosition2);
                 SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
                 selectorUserCell.setChecked(item.checked, z);
                 TLRPC$Chat tLRPC$Chat = item.chat;

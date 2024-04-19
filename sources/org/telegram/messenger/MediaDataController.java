@@ -7652,7 +7652,7 @@ public class MediaDataController extends BaseController {
                     arrayList = arrayList4;
                 }
                 if (spanned instanceof Spannable) {
-                    AndroidUtilities.addLinks((Spannable) spanned, 1, false, false);
+                    AndroidUtilities.addLinksSafe((Spannable) spanned, 1, false, false);
                     URLSpan[] uRLSpanArr = (URLSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), URLSpan.class);
                     if (uRLSpanArr != null && uRLSpanArr.length > 0) {
                         if (arrayList == null) {

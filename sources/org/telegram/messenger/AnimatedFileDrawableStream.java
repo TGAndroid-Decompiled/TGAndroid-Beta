@@ -39,82 +39,76 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
     }
 
     public int read(int i, int i2) {
-        long j;
-        long[] downloadedLengthFromOffset;
-        long j2;
         synchronized (this.sync) {
             if (this.canceled) {
                 int i3 = this.debugCanceledCount + 1;
                 this.debugCanceledCount = i3;
                 if (!this.debugReportSend && i3 > 200) {
                     this.debugReportSend = true;
-                    if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        throw new RuntimeException("infinity stream reading!!!");
-                    }
                     FileLog.e(new RuntimeException("infinity stream reading!!!"));
                 }
                 return 0;
             } else if (i2 == 0) {
                 return 0;
             } else {
-                long j3 = 0;
-                while (j3 == 0) {
+                long j = 0;
+                while (j == 0) {
                     try {
-                        j = i;
-                        downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(j, i2);
-                        j2 = downloadedLengthFromOffset[0];
-                    } catch (Exception e) {
-                        e = e;
-                    }
-                    try {
-                        if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
-                            this.finishedLoadingFile = true;
-                            this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
-                        }
-                        if (j2 == 0) {
-                            synchronized (this.sync) {
-                                if (this.canceled) {
-                                    cancelLoadingInternal();
-                                    return 0;
-                                }
-                                this.countDownLatch = new CountDownLatch(1);
-                                if (this.loadOperation.isPaused() || this.lastOffset != j || this.preview) {
-                                    FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j, this.preview, this.loadingPriority);
-                                    FileLoadOperation fileLoadOperation = this.loadOperation;
-                                    if (fileLoadOperation != loadStreamFile) {
-                                        fileLoadOperation.removeStreamListener(this);
-                                        this.loadOperation = loadStreamFile;
-                                    }
-                                    this.lastOffset = j + j2;
-                                }
+                        long j2 = i;
+                        long[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(j2, i2);
+                        long j3 = downloadedLengthFromOffset[0];
+                        try {
+                            if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
+                                this.finishedLoadingFile = true;
+                                this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
+                            }
+                            if (j3 == 0) {
                                 synchronized (this.sync) {
                                     if (this.canceled) {
-                                        this.countDownLatch = null;
                                         cancelLoadingInternal();
                                         return 0;
                                     }
-                                }
-                                if (!this.preview) {
-                                    FileLoader.getInstance(this.currentAccount).setLoadingVideo(this.document, false, true);
-                                }
-                                CountDownLatch countDownLatch = this.countDownLatch;
-                                if (countDownLatch != null) {
-                                    this.waitingForLoad = true;
-                                    countDownLatch.await();
-                                    this.waitingForLoad = false;
+                                    this.countDownLatch = new CountDownLatch(1);
+                                    if (this.loadOperation.isPaused() || this.lastOffset != j2 || this.preview) {
+                                        FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j2, this.preview, this.loadingPriority);
+                                        FileLoadOperation fileLoadOperation = this.loadOperation;
+                                        if (fileLoadOperation != loadStreamFile) {
+                                            fileLoadOperation.removeStreamListener(this);
+                                            this.loadOperation = loadStreamFile;
+                                        }
+                                        this.lastOffset = j2 + j3;
+                                    }
+                                    synchronized (this.sync) {
+                                        if (this.canceled) {
+                                            this.countDownLatch = null;
+                                            cancelLoadingInternal();
+                                            return 0;
+                                        }
+                                    }
+                                    if (!this.preview) {
+                                        FileLoader.getInstance(this.currentAccount).setLoadingVideo(this.document, false, true);
+                                    }
+                                    CountDownLatch countDownLatch = this.countDownLatch;
+                                    if (countDownLatch != null) {
+                                        this.waitingForLoad = true;
+                                        countDownLatch.await();
+                                        this.waitingForLoad = false;
+                                    }
                                 }
                             }
+                            j = j3;
+                        } catch (Exception e) {
+                            e = e;
+                            j = j3;
+                            FileLog.e((Throwable) e, false);
+                            return (int) j;
                         }
-                        j3 = j2;
                     } catch (Exception e2) {
                         e = e2;
-                        j3 = j2;
-                        FileLog.e((Throwable) e, false);
-                        return (int) j3;
                     }
                 }
-                this.lastOffset = i + j3;
-                return (int) j3;
+                this.lastOffset = i + j;
+                return (int) j;
             }
         }
     }

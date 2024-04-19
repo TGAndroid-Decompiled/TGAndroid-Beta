@@ -8116,9 +8116,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         int dp = AndroidUtilities.dp(10.0f);
         int measuredWidth = (this.videoPlayerControlFrameLayout.getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - (this.videoPreviewFrame.getMeasuredWidth() / 2);
         if (thumbX < dp) {
+            VideoSeekPreviewImage videoSeekPreviewImage = this.videoPreviewFrame;
+            videoSeekPreviewImage.setPivotX(Utilities.clamp((videoSeekPreviewImage.getMeasuredWidth() / 2.0f) - (dp - thumbX), this.videoPreviewFrame.getMeasuredWidth(), 0.0f));
             thumbX = dp;
         } else if (thumbX >= measuredWidth) {
+            VideoSeekPreviewImage videoSeekPreviewImage2 = this.videoPreviewFrame;
+            videoSeekPreviewImage2.setPivotX(Utilities.clamp((videoSeekPreviewImage2.getMeasuredWidth() / 2.0f) + (thumbX - measuredWidth), this.videoPreviewFrame.getMeasuredWidth(), 0.0f));
             thumbX = measuredWidth;
+        } else {
+            VideoSeekPreviewImage videoSeekPreviewImage3 = this.videoPreviewFrame;
+            videoSeekPreviewImage3.setPivotX(videoSeekPreviewImage3.getMeasuredWidth() / 2.0f);
         }
         this.videoPreviewFrame.setTranslationX(thumbX);
     }
@@ -8138,12 +8145,27 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.videoPreviewFrame.setTag(z ? 1 : null);
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.videoPreviewFrameAnimation = animatorSet2;
-                Animator[] animatorArr = new Animator[1];
+                Animator[] animatorArr = new Animator[4];
                 VideoSeekPreviewImage videoSeekPreviewImage = this.videoPreviewFrame;
                 Property property = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = z ? 1.0f : 0.0f;
                 animatorArr[0] = ObjectAnimator.ofFloat(videoSeekPreviewImage, property, fArr);
+                VideoSeekPreviewImage videoSeekPreviewImage2 = this.videoPreviewFrame;
+                Property property2 = View.SCALE_X;
+                float[] fArr2 = new float[1];
+                fArr2[0] = z ? 1.0f : 0.5f;
+                animatorArr[1] = ObjectAnimator.ofFloat(videoSeekPreviewImage2, property2, fArr2);
+                VideoSeekPreviewImage videoSeekPreviewImage3 = this.videoPreviewFrame;
+                Property property3 = View.SCALE_Y;
+                float[] fArr3 = new float[1];
+                fArr3[0] = z ? 1.0f : 0.5f;
+                animatorArr[2] = ObjectAnimator.ofFloat(videoSeekPreviewImage3, property3, fArr3);
+                VideoSeekPreviewImage videoSeekPreviewImage4 = this.videoPreviewFrame;
+                Property property4 = View.TRANSLATION_Y;
+                float[] fArr4 = new float[1];
+                fArr4[0] = z ? 0.0f : AndroidUtilities.dp(12.0f);
+                animatorArr[3] = ObjectAnimator.ofFloat(videoSeekPreviewImage4, property4, fArr4);
                 animatorSet2.playTogether(animatorArr);
                 this.videoPreviewFrameAnimation.addListener(new AnimatorListenerAdapter() {
                     {
@@ -11749,7 +11771,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(messageObject.messageOwner.translatedText.text), Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false), messageObject.messageOwner.translatedText.entities, Theme.chat_msgTextPaint.getFontMetricsInt(), false);
         if (MessageObject.containsUrls(replaceAnimatedEmoji)) {
             try {
-                AndroidUtilities.addLinks(replaceAnimatedEmoji, 5);
+                AndroidUtilities.addLinksSafe(replaceAnimatedEmoji, 5, false, true);
             } catch (Exception e) {
                 FileLog.e(e);
             }

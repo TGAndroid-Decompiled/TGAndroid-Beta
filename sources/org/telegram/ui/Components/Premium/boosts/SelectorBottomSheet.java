@@ -628,9 +628,9 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
             View childAt = this.recyclerListView.getChildAt(i);
             if (childAt instanceof SelectorUserCell) {
-                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
-                if (childAdapterPosition >= 0) {
-                    SelectorAdapter.Item item = this.items.get(childAdapterPosition - 1);
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1;
+                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
+                    SelectorAdapter.Item item = this.items.get(childAdapterPosition);
                     SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
                     selectorUserCell.setChecked(item.checked, z);
                     TLRPC$Chat tLRPC$Chat = item.chat;

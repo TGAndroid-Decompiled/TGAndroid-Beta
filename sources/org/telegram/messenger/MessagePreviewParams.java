@@ -399,7 +399,7 @@ public class MessagePreviewParams {
             try {
                 SpannableString valueOf = SpannableString.valueOf(charSequence);
                 try {
-                    AndroidUtilities.addLinks(valueOf, 1);
+                    AndroidUtilities.addLinksSafe(valueOf, 1, false, true);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

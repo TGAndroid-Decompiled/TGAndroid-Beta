@@ -3735,13 +3735,13 @@ public class MessageObject {
         if ((charSequence instanceof Spannable) && containsUrls(charSequence)) {
             if (charSequence.length() < 1000) {
                 try {
-                    AndroidUtilities.addLinks((Spannable) charSequence, 5, z4);
+                    AndroidUtilities.addLinksSafe((Spannable) charSequence, 5, z4, false);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             } else {
                 try {
-                    AndroidUtilities.addLinks((Spannable) charSequence, 1, z4);
+                    AndroidUtilities.addLinksSafe((Spannable) charSequence, 1, z4, false);
                 } catch (Exception e2) {
                     FileLog.e(e2);
                 }

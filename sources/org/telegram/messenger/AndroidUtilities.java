@@ -198,6 +198,7 @@ public class AndroidUtilities {
     public static final int FLAG_TAG_COLOR = 4;
     public static final int FLAG_TAG_URL = 8;
     public static final int LIGHT_STATUS_BAR_OVERLAY = 251658240;
+    public static Pattern LONG_BAD_CHARS_PATTERN = null;
     public static final int REPLACING_TAG_TYPE_BOLD = 1;
     public static final int REPLACING_TAG_TYPE_LINK = 0;
     public static final int REPLACING_TAG_TYPE_LINKBOLD = 2;
@@ -301,7 +302,7 @@ public class AndroidUtilities {
         return c == '-' || c == '~';
     }
 
-    public static String lambda$formatSpannableSimple$11(Integer num) {
+    public static String lambda$formatSpannableSimple$12(Integer num) {
         return "%s";
     }
 
@@ -328,10 +329,12 @@ public class AndroidUtilities {
     static {
         WEB_URL = null;
         BAD_CHARS_PATTERN = null;
+        LONG_BAD_CHARS_PATTERN = null;
         BAD_CHARS_MESSAGE_PATTERN = null;
         BAD_CHARS_MESSAGE_LONG_PATTERN = null;
         try {
             BAD_CHARS_PATTERN = Pattern.compile("[─-◿]");
+            LONG_BAD_CHARS_PATTERN = Pattern.compile("[一-\u9fff]");
             BAD_CHARS_MESSAGE_LONG_PATTERN = Pattern.compile("[̀-ͯ\u2066-\u2067]+");
             BAD_CHARS_MESSAGE_PATTERN = Pattern.compile("[\u2066-\u2067]+");
             WEB_URL = Pattern.compile("((?:(http|https|Http|Https|ton|tg):\\/\\/(?:(?:[a-zA-Z0-9\\$\\-\\_\\.\\+\\!\\*\\'\\(\\)\\,\\;\\?\\&\\=]|(?:\\%[a-fA-F0-9]{2})){1,64}(?:\\:(?:[a-zA-Z0-9\\$\\-\\_\\.\\+\\!\\*\\'\\(\\)\\,\\;\\?\\&\\=]|(?:\\%[a-fA-F0-9]{2})){1,25})?\\@)?)?(?:" + Pattern.compile("(([a-zA-Z0-9 -\ud7ff豈-\ufdcfﷰ-\uffef]([a-zA-Z0-9 -\ud7ff豈-\ufdcfﷰ-\uffef\\-]{0,61}[a-zA-Z0-9 -\ud7ff豈-\ufdcfﷰ-\uffef]){0,1}\\.)+[a-zA-Z -\ud7ff豈-\ufdcfﷰ-\uffef]{2,63}|" + Pattern.compile("((25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[1-9][0-9]|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[1-9][0-9]|[0-9]))") + ")") + ")(?:\\:\\d{1,5})?)(\\/(?:(?:[a-zA-Z0-9 -\ud7ff豈-\ufdcfﷰ-\uffef\\;\\/\\?\\:\\@\\&\\=\\#\\~\\-\\.\\+\\!\\*\\'\\(\\)\\,\\_])|(?:\\%[a-fA-F0-9]{2}))*)?(?:\\b|$)");
@@ -969,14 +972,30 @@ public class AndroidUtilities {
         return i == 0 || charSequence.charAt(i - 1) != '@';
     }
 
+    @Deprecated
     public static boolean addLinks(Spannable spannable, int i) {
         return addLinks(spannable, i, false);
     }
 
+    @Deprecated
     public static boolean addLinks(Spannable spannable, int i, boolean z) {
         return addLinks(spannable, i, z, true);
     }
 
+    public static boolean addLinksSafe(android.text.Spannable r5, final int r6, final boolean r7, final boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.addLinksSafe(android.text.Spannable, int, boolean, boolean):boolean");
+    }
+
+    public static Boolean lambda$addLinksSafe$6(SpannableStringBuilder spannableStringBuilder, int i, boolean z, boolean z2) throws Exception {
+        try {
+            return Boolean.valueOf(addLinks(spannableStringBuilder, i, z, z2));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return Boolean.FALSE;
+        }
+    }
+
+    @Deprecated
     public static boolean addLinks(Spannable spannable, int i, boolean z, boolean z2) {
         if (spannable == null || containsUnsupportedCharacters(spannable.toString()) || i == 0) {
             return false;
@@ -1025,9 +1044,9 @@ public class AndroidUtilities {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$pruneOverlaps$6;
-                lambda$pruneOverlaps$6 = AndroidUtilities.lambda$pruneOverlaps$6((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
-                return lambda$pruneOverlaps$6;
+                int lambda$pruneOverlaps$7;
+                lambda$pruneOverlaps$7 = AndroidUtilities.lambda$pruneOverlaps$7((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
+                return lambda$pruneOverlaps$7;
             }
         });
         int size = arrayList.size();
@@ -1050,7 +1069,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int lambda$pruneOverlaps$6(LinkSpec linkSpec, LinkSpec linkSpec2) {
+    public static int lambda$pruneOverlaps$7(LinkSpec linkSpec, LinkSpec linkSpec2) {
         int i;
         int i2;
         int i3 = linkSpec.start;
@@ -1419,7 +1438,7 @@ public class AndroidUtilities {
             builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    AndroidUtilities.lambda$isMapsInstalled$7(mapsAppPackageName, baseFragment, dialogInterface, i);
+                    AndroidUtilities.lambda$isMapsInstalled$8(mapsAppPackageName, baseFragment, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1428,7 +1447,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void lambda$isMapsInstalled$7(String str, BaseFragment baseFragment, DialogInterface dialogInterface, int i) {
+    public static void lambda$isMapsInstalled$8(String str, BaseFragment baseFragment, DialogInterface dialogInterface, int i) {
         try {
             baseFragment.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
         } catch (Exception e) {
@@ -2002,14 +2021,14 @@ public class AndroidUtilities {
                 SmsRetriever.getClient(ApplicationLoader.applicationContext).startSmsRetriever().addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public final void onSuccess(Object obj) {
-                        AndroidUtilities.lambda$setWaitingForSms$8((Void) obj);
+                        AndroidUtilities.lambda$setWaitingForSms$9((Void) obj);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$setWaitingForSms$8(Void r0) {
+    public static void lambda$setWaitingForSms$9(Void r0) {
         if (BuildVars.DEBUG_VERSION) {
             FileLog.d("sms listener registered");
         }
@@ -2831,7 +2850,7 @@ public class AndroidUtilities {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.lambda$shakeView$9(view, valueAnimator);
+                AndroidUtilities.lambda$shakeView$10(view, valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -2845,7 +2864,7 @@ public class AndroidUtilities {
         view.setTag(i, ofFloat);
     }
 
-    public static void lambda$shakeView$9(View view, ValueAnimator valueAnimator) {
+    public static void lambda$shakeView$10(View view, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         double d = floatValue * 4.0f * (1.0f - floatValue);
         double d2 = floatValue;
@@ -2889,14 +2908,14 @@ public class AndroidUtilities {
         SpringAnimation addEndListener = new SpringAnimation(view, DynamicAnimation.TRANSLATION_X, translationX).setSpring(new SpringForce(translationX).setStiffness(600.0f)).setStartVelocity((-dp) * 100).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f3, float f4) {
-                AndroidUtilities.lambda$shakeViewSpring$10(runnable, view, translationX, dynamicAnimation, z, f3, f4);
+                AndroidUtilities.lambda$shakeViewSpring$11(runnable, view, translationX, dynamicAnimation, z, f3, f4);
             }
         });
         view.setTag(i, addEndListener);
         addEndListener.start();
     }
 
-    public static void lambda$shakeViewSpring$10(Runnable runnable, View view, float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
+    public static void lambda$shakeViewSpring$11(Runnable runnable, View view, float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
         if (runnable != null) {
             runnable.run();
         }
@@ -3446,9 +3465,9 @@ public class AndroidUtilities {
         return formatSpannable(charSequence, new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                String lambda$formatSpannableSimple$11;
-                lambda$formatSpannableSimple$11 = AndroidUtilities.lambda$formatSpannableSimple$11((Integer) obj);
-                return lambda$formatSpannableSimple$11;
+                String lambda$formatSpannableSimple$12;
+                lambda$formatSpannableSimple$12 = AndroidUtilities.lambda$formatSpannableSimple$12((Integer) obj);
+                return lambda$formatSpannableSimple$12;
             }
         }, charSequenceArr);
     }
@@ -3460,14 +3479,14 @@ public class AndroidUtilities {
         return formatSpannable(charSequence, new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                String lambda$formatSpannable$12;
-                lambda$formatSpannable$12 = AndroidUtilities.lambda$formatSpannable$12((Integer) obj);
-                return lambda$formatSpannable$12;
+                String lambda$formatSpannable$13;
+                lambda$formatSpannable$13 = AndroidUtilities.lambda$formatSpannable$13((Integer) obj);
+                return lambda$formatSpannable$13;
             }
         }, charSequenceArr);
     }
 
-    public static String lambda$formatSpannable$12(Integer num) {
+    public static String lambda$formatSpannable$13(Integer num) {
         return "%" + (num.intValue() + 1) + "$s";
     }
 
@@ -3744,7 +3763,7 @@ public class AndroidUtilities {
                         ConnectionsManager.getInstance(UserConfig.selectedAccount).checkProxy(str, Integer.parseInt(str2), str3, str4, str5, new RequestTimeDelegate() {
                             @Override
                             public final void run(long j) {
-                                AndroidUtilities.lambda$showProxyAlert$14(TextDetailSettingsCell.this, j);
+                                AndroidUtilities.lambda$showProxyAlert$15(TextDetailSettingsCell.this, j);
                             }
                         });
                     } catch (NumberFormatException unused) {
@@ -3778,22 +3797,22 @@ public class AndroidUtilities {
         pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                AndroidUtilities.lambda$showProxyAlert$16(str, str2, str5, str4, str3, activity, dismissRunnable, view2);
+                AndroidUtilities.lambda$showProxyAlert$17(str, str2, str5, str4, str3, activity, dismissRunnable, view2);
             }
         });
         builder.show();
     }
 
-    public static void lambda$showProxyAlert$14(final TextDetailSettingsCell textDetailSettingsCell, final long j) {
+    public static void lambda$showProxyAlert$15(final TextDetailSettingsCell textDetailSettingsCell, final long j) {
         runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.lambda$showProxyAlert$13(j, textDetailSettingsCell);
+                AndroidUtilities.lambda$showProxyAlert$14(j, textDetailSettingsCell);
             }
         });
     }
 
-    public static void lambda$showProxyAlert$13(long j, TextDetailSettingsCell textDetailSettingsCell) {
+    public static void lambda$showProxyAlert$14(long j, TextDetailSettingsCell textDetailSettingsCell) {
         if (j == -1) {
             textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Unavailable));
             textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_text_RedRegular));
@@ -3804,7 +3823,7 @@ public class AndroidUtilities {
         textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGreenText));
     }
 
-    public static void lambda$showProxyAlert$16(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
+    public static void lambda$showProxyAlert$17(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
         SharedConfig.ProxyInfo proxyInfo;
         boolean z;
         UndoView undoView;
@@ -4272,7 +4291,7 @@ public class AndroidUtilities {
             ofArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AndroidUtilities.lambda$setNavigationBarColor$17(AndroidUtilities.IntColorCallback.this, window, valueAnimator2);
+                    AndroidUtilities.lambda$setNavigationBarColor$18(AndroidUtilities.IntColorCallback.this, window, valueAnimator2);
                 }
             });
             ofArgb.addListener(new AnimatorListenerAdapter() {
@@ -4293,7 +4312,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void lambda$setNavigationBarColor$17(IntColorCallback intColorCallback, Window window, ValueAnimator valueAnimator) {
+    public static void lambda$setNavigationBarColor$18(IntColorCallback intColorCallback, Window window, ValueAnimator valueAnimator) {
         int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         if (intColorCallback != null) {
             intColorCallback.run(intValue);
@@ -4364,9 +4383,9 @@ public class AndroidUtilities {
             recyclerListView.highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
-                    int lambda$scrollToFragmentRow$18;
-                    lambda$scrollToFragmentRow$18 = AndroidUtilities.lambda$scrollToFragmentRow$18(BaseFragment.this, str, recyclerListView);
-                    return lambda$scrollToFragmentRow$18;
+                    int lambda$scrollToFragmentRow$19;
+                    lambda$scrollToFragmentRow$19 = AndroidUtilities.lambda$scrollToFragmentRow$19(BaseFragment.this, str, recyclerListView);
+                    return lambda$scrollToFragmentRow$19;
                 }
             });
             declaredField.setAccessible(false);
@@ -4374,7 +4393,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int lambda$scrollToFragmentRow$18(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
+    public static int lambda$scrollToFragmentRow$19(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
         int i = -1;
         try {
             Field declaredField = baseFragment.getClass().getDeclaredField(str);
@@ -4420,13 +4439,13 @@ public class AndroidUtilities {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.lambda$updateImageViewImageAnimated$19(imageView, atomicBoolean, drawable, valueAnimator);
+                AndroidUtilities.lambda$updateImageViewImageAnimated$20(imageView, atomicBoolean, drawable, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public static void lambda$updateImageViewImageAnimated$19(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
+    public static void lambda$updateImageViewImageAnimated$20(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float abs = Math.abs(floatValue - 0.5f) + 0.5f;
         imageView.setScaleX(abs);

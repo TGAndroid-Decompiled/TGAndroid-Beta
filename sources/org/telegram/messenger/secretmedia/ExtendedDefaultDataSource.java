@@ -36,6 +36,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
     private DataSource fileDataSource;
     private DataSource rawResourceDataSource;
     private DataSource rtmpDataSource;
+    private FileStreamLoadOperation streamLoadOperation;
     private final List<TransferListener> transferListeners;
 
     public ExtendedDefaultDataSource(Context context, String str, boolean z) {
@@ -174,9 +175,12 @@ public final class ExtendedDefaultDataSource implements DataSource {
     }
 
     private DataSource getStreamDataSource() {
-        FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
-        addListenersToDataSource(fileStreamLoadOperation);
-        return fileStreamLoadOperation;
+        if (this.streamLoadOperation == null) {
+            FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
+            this.streamLoadOperation = fileStreamLoadOperation;
+            addListenersToDataSource(fileStreamLoadOperation);
+        }
+        return this.streamLoadOperation;
     }
 
     private DataSource getContentDataSource() {

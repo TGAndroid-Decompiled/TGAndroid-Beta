@@ -265,6 +265,10 @@ public class ChannelMonetizationLayout extends FrameLayout {
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
     }
 
+    public void lambda$new$1() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
+    }
+
     public void lambda$new$3(BaseFragment baseFragment, View view) {
         if (view.isEnabled()) {
             final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
@@ -608,7 +612,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
 
     private void checkLearnSheet() {
         if (isAttachedToWindow() && this.proceedsAvailable && MessagesController.getGlobalMainSettings().getBoolean("monetizationadshint", true)) {
-            lambda$new$1();
+            lambda$new$0();
             MessagesController.getGlobalMainSettings().edit().putBoolean("monetizationadshint", false).apply();
         }
     }
@@ -1175,7 +1179,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         Browser.openUrl(getContext(), tL_stats$TL_broadcastRevenueTransactionWithdrawal.transaction_url);
     }
 
-    public void lambda$new$1() {
+    public void lambda$new$0() {
         final BottomSheet bottomSheet = new BottomSheet(getContext(), false, this.resourcesProvider);
         bottomSheet.fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(getContext());

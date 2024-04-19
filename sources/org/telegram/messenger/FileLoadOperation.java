@@ -927,6 +927,9 @@ public class FileLoadOperation {
             startDownloadRequest(-1);
             this.nextPartWasPreloaded = false;
         }
+        if (this.notLoadedBytesRanges != null) {
+            notifyStreamListeners();
+        }
     }
 
     public void lambda$start$8() {

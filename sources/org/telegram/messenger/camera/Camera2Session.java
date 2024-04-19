@@ -14,6 +14,7 @@ import android.media.ImageReader;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Range;
 import android.view.Surface;
 import java.io.File;
 import java.util.ArrayList;
@@ -468,9 +469,9 @@ public class Camera2Session {
                 createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(this.isFront ? 6 : 5));
             }
             if (this.recordingVideo) {
+                this.captureRequestBuilder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, new Range(30, 60));
                 this.captureRequestBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, 3);
             }
-            this.captureRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, 1);
             if (this.sensorSize != null && Math.abs(this.currentZoom - 1.0f) >= 0.01f) {
                 int width = this.sensorSize.width() / 2;
                 int height = this.sensorSize.height() / 2;

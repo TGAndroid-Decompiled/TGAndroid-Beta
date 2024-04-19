@@ -671,6 +671,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private long lastStatusUpdateTime;
     private long lastViewsCheckTime;
     public String linkPrefix;
+    private Runnable loadAppConfigRunnable;
     public LongSparseLongArray loadedFullChats;
     private HashSet<Long> loadedFullParticipants;
     private LongSparseLongArray loadedFullUsers;
@@ -2016,6 +2017,12 @@ public class MessagesController extends BaseController implements NotificationCe
                 return lambda$new$12;
             }
         };
+        this.loadAppConfigRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                MessagesController.this.loadAppConfig();
+            }
+        };
         this.notifyTranscriptionAudioCooldownUpdate = new Runnable() {
             @Override
             public final void run() {
@@ -3089,16 +3096,8 @@ public class MessagesController extends BaseController implements NotificationCe
         loadAppConfig(false);
     }
 
-    public void lambda$loadAppConfig$31(final TLRPC$TL_help_appConfig tLRPC$TL_help_appConfig) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MessagesController.this.lambda$loadAppConfig$30(tLRPC$TL_help_appConfig);
-            }
-        });
-    }
-
     public void loadAppConfig(boolean z) {
+        AndroidUtilities.cancelRunOnUIThread(this.loadAppConfigRunnable);
         if (z) {
             this.appConfigFetcher.forceRequest(this.currentAccount, 0);
         }
@@ -3110,6 +3109,15 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
+    public void lambda$loadAppConfig$31(final TLRPC$TL_help_appConfig tLRPC$TL_help_appConfig) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessagesController.this.lambda$loadAppConfig$30(tLRPC$TL_help_appConfig);
+            }
+        });
+    }
+
     public void lambda$loadAppConfig$30(TLRPC$TL_help_appConfig tLRPC$TL_help_appConfig) {
         if (tLRPC$TL_help_appConfig != null) {
             TLRPC$JSONValue tLRPC$JSONValue = tLRPC$TL_help_appConfig.config;
@@ -3117,6 +3125,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 applyAppConfig((TLRPC$TL_jsonObject) tLRPC$JSONValue);
             }
         }
+        AndroidUtilities.cancelRunOnUIThread(this.loadAppConfigRunnable);
+        AndroidUtilities.runOnUIThread(this.loadAppConfigRunnable, 240010L);
     }
 
     private void applyAppConfig(org.telegram.tgnet.TLRPC$TL_jsonObject r34) {

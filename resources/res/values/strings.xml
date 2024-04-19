@@ -4635,6 +4635,7 @@
     <string name="Monetization">Monetization</string>
     <string name="MonetizationBalance">Available balance</string>
     <string name="MonetizationBalanceInfo">You can collect your reward using Fragment, a third-party platform used by advertisers to pay for ads. **Learn more &gt;**</string>
+    <string name="MonetizationBalanceInfoLink">https://telegram.org/tos/content-creator-rewards</string>
     <string name="MonetizationBalanceInfoNotAvailable">In the coming weeks you will be able to collect your reward using Fragment, a third-party platform used by advertisers to pay ads. **Learn more &gt;**</string>
     <string name="MonetizationChartInTON">%s in TON</string>
     <string name="MonetizationChartInUSD">%s in USD</string>
