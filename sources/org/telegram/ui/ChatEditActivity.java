@@ -1397,7 +1397,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
         TextCell textCell10 = this.logCell;
         if (textCell10 != null) {
-            textCell10.setVisibility((ChatObject.isChannel(this.currentChat) && this.currentChat.megagroup) ? 0 : 8);
+            textCell10.setVisibility(ChatObject.isChannel(this.currentChat) ? 0 : 8);
         }
         TextCell textCell11 = this.linkedCell;
         if (textCell11 != null) {

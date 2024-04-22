@@ -176,7 +176,8 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
             StringBuilder sb = new StringBuilder();
             TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
             sb.append(((tLRPC$TL_channelAdminLogEventsFilter.promote || tLRPC$TL_channelAdminLogEventsFilter.demote) ? 1 : 0) + ((this.isMegagroup && (tLRPC$TL_channelAdminLogEventsFilter.kick || tLRPC$TL_channelAdminLogEventsFilter.ban || tLRPC$TL_channelAdminLogEventsFilter.unkick || tLRPC$TL_channelAdminLogEventsFilter.unban)) ? 1 : 0) + ((tLRPC$TL_channelAdminLogEventsFilter.invite || tLRPC$TL_channelAdminLogEventsFilter.join) ? 1 : 1) + (tLRPC$TL_channelAdminLogEventsFilter.leave ? 1 : 0));
-            sb.append("/4");
+            sb.append("/");
+            sb.append(this.isMegagroup ? 4 : 3);
             return sb.toString();
         } else if (i == 1) {
             StringBuilder sb2 = new StringBuilder();

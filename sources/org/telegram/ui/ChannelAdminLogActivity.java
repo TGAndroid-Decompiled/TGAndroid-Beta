@@ -1609,7 +1609,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     public void lambda$createMenu$14(final ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, View view, float f, float f2) {
-        if (arrayList.isEmpty()) {
+        if (arrayList.isEmpty() || getParentActivity() == null) {
             return;
         }
         Activity parentActivity = getParentActivity();
