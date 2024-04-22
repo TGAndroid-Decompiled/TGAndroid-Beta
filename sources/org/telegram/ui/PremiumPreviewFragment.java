@@ -90,6 +90,7 @@ import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Business.AwayMessagesActivity;
@@ -184,6 +185,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     float totalProgress;
     int totalTiersGradientHeight;
     private final int type;
+    private boolean whiteBackground;
 
     public static String featureTypeToServerString(int i) {
         switch (i) {
@@ -281,11 +283,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     public static void lambda$updateButtonText$16(View view) {
-    }
-
-    @Override
-    public boolean isLightStatusBar() {
-        return false;
     }
 
     @Override
@@ -679,6 +676,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         premiumGradientTools.cx = 0.0f;
         premiumGradientTools.cy = 0.0f;
         this.type = i;
+        Theme.isCurrentThemeDark();
+        this.whiteBackground = false;
         this.source = str;
     }
 
@@ -691,7 +690,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     @SuppressLint({"NotifyDataSetChanged"})
     public View createView(Context context) {
         this.hasOwnBackground = true;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 100.0f, new int[]{Theme.getColor(Theme.key_premiumGradient4), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient0)}, new float[]{0.0f, 0.32f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.CLAMP);
+        int i = Theme.key_premiumGradient2;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 100.0f, new int[]{Theme.getColor(Theme.key_premiumGradient4), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(i), Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient0)}, new float[]{0.0f, 0.32f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.CLAMP);
         this.shader = linearGradient;
         linearGradient.setLocalMatrix(this.matrix);
         this.gradientPaint.setShader(this.shader);
@@ -719,13 +719,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         final Rect rect = new Rect();
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
-        int i = Theme.key_dialogBackground;
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
+        int i2 = Theme.key_dialogBackground;
+        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
         if (Build.VERSION.SDK_INT >= 21) {
             this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
         }
         FrameLayout frameLayout = new FrameLayout(context) {
+            private final Paint backgroundPaint = new Paint(1);
             boolean iconInterceptedTouch;
             int lastSize;
             boolean listInterceptedTouch;
@@ -749,7 +750,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 float x2 = PremiumPreviewFragment.this.backgroundView.getX() + PremiumPreviewFragment.this.backgroundView.tierListView.getX();
                 float y2 = PremiumPreviewFragment.this.backgroundView.getY() + PremiumPreviewFragment.this.backgroundView.tierListView.getY();
                 rectF.set(x2, y2, PremiumPreviewFragment.this.backgroundView.tierListView.getWidth() + x2, PremiumPreviewFragment.this.backgroundView.tierListView.getHeight() + y2);
-                if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.listInterceptedTouch) && !PremiumPreviewFragment.this.listView.scrollingByUser) {
+                if (PremiumPreviewFragment.this.progressToFull < 1.0f && ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.listInterceptedTouch) && !PremiumPreviewFragment.this.listView.scrollingByUser)) {
                     motionEvent.offsetLocation(-x2, -y2);
                     if (motionEvent.getAction() == 0) {
                         this.listInterceptedTouch = true;
@@ -765,9 +766,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             @Override
-            protected void onMeasure(int i2, int i3) {
-                int i4 = 0;
-                if (View.MeasureSpec.getSize(i2) > View.MeasureSpec.getSize(i3)) {
+            protected void onMeasure(int i3, int i4) {
+                int i5 = 0;
+                if (View.MeasureSpec.getSize(i3) > View.MeasureSpec.getSize(i4)) {
                     PremiumPreviewFragment.this.isLandscapeMode = true;
                 } else {
                     PremiumPreviewFragment.this.isLandscapeMode = false;
@@ -775,23 +776,23 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 if (Build.VERSION.SDK_INT >= 21) {
                     PremiumPreviewFragment.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
                 }
-                PremiumPreviewFragment.this.backgroundView.measure(i2, View.MeasureSpec.makeMeasureSpec(0, 0));
+                PremiumPreviewFragment.this.backgroundView.measure(i3, View.MeasureSpec.makeMeasureSpec(0, 0));
                 PremiumPreviewFragment.this.particlesView.getLayoutParams().height = PremiumPreviewFragment.this.backgroundView.getMeasuredHeight();
                 if (PremiumPreviewFragment.this.buttonContainer != null && PremiumPreviewFragment.this.buttonContainer.getVisibility() != 8) {
-                    i4 = AndroidUtilities.dp(68.0f);
+                    i5 = AndroidUtilities.dp(68.0f);
                 }
                 PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
-                premiumPreviewFragment.layoutManager.setAdditionalHeight((premiumPreviewFragment.statusBarHeight + i4) - AndroidUtilities.dp(16.0f));
-                PremiumPreviewFragment.this.layoutManager.setMinimumLastViewHeight(i4);
-                super.onMeasure(i2, i3);
+                premiumPreviewFragment.layoutManager.setAdditionalHeight((premiumPreviewFragment.statusBarHeight + i5) - AndroidUtilities.dp(16.0f));
+                PremiumPreviewFragment.this.layoutManager.setMinimumLastViewHeight(i5);
+                super.onMeasure(i3, i4);
                 if (this.lastSize != ((getMeasuredHeight() + getMeasuredWidth()) << 16)) {
                     PremiumPreviewFragment.this.updateBackgroundImage();
                 }
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                super.onLayout(z, i2, i3, i4, i5);
+            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                super.onLayout(z, i3, i4, i5, i6);
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientScaleX = PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredWidth() / getMeasuredWidth();
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientScaleY = PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredHeight() / getMeasuredHeight();
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientStartX = (PremiumPreviewFragment.this.backgroundView.getX() + PremiumPreviewFragment.this.backgroundView.imageView.getX()) / getMeasuredWidth();
@@ -799,9 +800,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             @Override
-            protected void onSizeChanged(int i2, int i3, int i4, int i5) {
-                super.onSizeChanged(i2, i3, i4, i5);
-                PremiumPreviewFragment.this.measureGradient(i2, i3);
+            protected void onSizeChanged(int i3, int i4, int i5, int i6) {
+                super.onSizeChanged(i3, i4, i5, i6);
+                PremiumPreviewFragment.this.measureGradient(i3, i4);
             }
 
             @Override
@@ -874,8 +875,19 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     invalidate();
                 }
                 PremiumPreviewFragment.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * PremiumPreviewFragment.this.progress, 0.0f);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), PremiumPreviewFragment.this.currentYOffset + AndroidUtilities.dp(20.0f), PremiumPreviewFragment.this.gradientTools.paint);
+                if (!PremiumPreviewFragment.this.whiteBackground) {
+                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), PremiumPreviewFragment.this.currentYOffset + AndroidUtilities.dp(20.0f), PremiumPreviewFragment.this.gradientTools.paint);
+                } else {
+                    this.backgroundPaint.setColor(ColorUtils.blendARGB(PremiumPreviewFragment.this.getThemedColor(Theme.key_windowBackgroundGray), PremiumPreviewFragment.this.getThemedColor(Theme.key_windowBackgroundWhite), PremiumPreviewFragment.this.progressToFull));
+                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), PremiumPreviewFragment.this.currentYOffset + AndroidUtilities.dp(20.0f), this.backgroundPaint);
+                }
                 super.dispatchDraw(canvas);
+                if (((BaseFragment) PremiumPreviewFragment.this).parentLayout == null || !PremiumPreviewFragment.this.whiteBackground) {
+                    return;
+                }
+                INavigationLayout iNavigationLayout = ((BaseFragment) PremiumPreviewFragment.this).parentLayout;
+                PremiumPreviewFragment premiumPreviewFragment9 = PremiumPreviewFragment.this;
+                iNavigationLayout.drawHeaderShadow(canvas, (int) (premiumPreviewFragment9.progressToFull * 255.0f), ((BaseFragment) premiumPreviewFragment9).actionBar.getBottom());
             }
 
             @Override
@@ -910,9 +922,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.listView.setAdapter(new Adapter());
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
-                super.onScrollStateChanged(recyclerView, i2);
-                if (i2 == 0) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
+                super.onScrollStateChanged(recyclerView, i3);
+                if (i3 == 0) {
                     int bottom = ((BaseFragment) PremiumPreviewFragment.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
                     PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
                     if (premiumPreviewFragment.totalProgress > 0.5f) {
@@ -928,8 +940,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                super.onScrolled(recyclerView, i2, i3);
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                super.onScrolled(recyclerView, i3, i4);
                 PremiumPreviewFragment.this.contentView.invalidate();
                 PremiumPreviewFragment.this.checkButtonDivider();
             }
@@ -944,23 +956,39 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.particlesView = starParticlesView;
         starParticlesView.setClipWithGradient();
         if (this.type == 1) {
-            StarParticlesView.Drawable drawable = this.particlesView.drawable;
-            drawable.isCircle = true;
-            drawable.centerOffsetY = AndroidUtilities.dp(28.0f);
-            StarParticlesView.Drawable drawable2 = this.particlesView.drawable;
-            drawable2.minLifeTime = 2000L;
-            drawable2.randLifeTime = 3000;
-            drawable2.size1 = 16;
-            drawable2.useRotate = false;
-            drawable2.type = 28;
+            if (this.whiteBackground) {
+                StarParticlesView.Drawable drawable = this.particlesView.drawable;
+                drawable.useGradient = true;
+                drawable.useBlur = false;
+                drawable.checkBounds = true;
+                drawable.isCircle = true;
+                drawable.centerOffsetY = AndroidUtilities.dp(-14.0f);
+                StarParticlesView.Drawable drawable2 = this.particlesView.drawable;
+                drawable2.minLifeTime = 2000L;
+                drawable2.randLifeTime = 3000;
+                drawable2.size1 = 16;
+                drawable2.useRotate = false;
+                drawable2.type = 28;
+                drawable2.colorKey = i;
+            } else {
+                StarParticlesView.Drawable drawable3 = this.particlesView.drawable;
+                drawable3.isCircle = true;
+                drawable3.centerOffsetY = AndroidUtilities.dp(28.0f);
+                StarParticlesView.Drawable drawable4 = this.particlesView.drawable;
+                drawable4.minLifeTime = 2000L;
+                drawable4.randLifeTime = 3000;
+                drawable4.size1 = 16;
+                drawable4.useRotate = false;
+                drawable4.type = 28;
+            }
         }
         this.backgroundView.imageView.setStarParticlesView(this.particlesView);
         this.contentView.addView(this.particlesView, LayoutHelper.createFrame(-1, -2.0f));
         this.contentView.addView(this.backgroundView, LayoutHelper.createFrame(-1, -2.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) {
-                PremiumPreviewFragment.this.lambda$createView$3(view, i2);
+            public final void onItemClick(View view, int i3) {
+                PremiumPreviewFragment.this.lambda$createView$3(view, i3);
             }
         });
         this.contentView.addView(this.listView);
@@ -974,7 +1002,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.buttonDivider.getLayoutParams().height = 1;
         AndroidUtilities.updateViewVisibilityAnimated(this.buttonDivider, true, 1.0f, false);
         this.buttonContainer.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        this.buttonContainer.setBackgroundColor(getThemedColor(i));
+        this.buttonContainer.setBackgroundColor(getThemedColor(i2));
         this.contentView.addView(this.buttonContainer, LayoutHelper.createFrame(-1, 68, 80));
         this.fragmentView = this.contentView;
         this.actionBar.setBackground(null);
@@ -982,8 +1010,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i2) {
-                if (i2 == -1) {
+            public void onItemClick(int i3) {
+                if (i3 == -1) {
                     PremiumPreviewFragment.this.finishFragment();
                 }
             }
@@ -1225,6 +1253,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     public void updateBackgroundImage() {
         BackgroundView backgroundView;
         if (this.contentView.getMeasuredWidth() == 0 || this.contentView.getMeasuredHeight() == 0 || (backgroundView = this.backgroundView) == null || backgroundView.imageView == null) {
+            return;
+        }
+        if (this.whiteBackground) {
+            Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+            new Canvas(createBitmap).drawColor(ColorUtils.blendARGB(getThemedColor(Theme.key_premiumGradient2), getThemedColor(Theme.key_dialogBackground), 0.5f));
+            this.backgroundView.imageView.setBackgroundBitmap(createBitmap);
             return;
         }
         this.gradientTools.gradientMatrix(0, 0, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), 0.0f, 0.0f);
@@ -1807,12 +1841,18 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
         public BackgroundView(Context context) {
             super(context);
+            int i;
             setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(context);
             this.imageFrameLayout = frameLayout;
-            int i = PremiumPreviewFragment.this.type == 1 ? 175 : 190;
-            addView(frameLayout, LayoutHelper.createLinear(i, i, 1));
-            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, PremiumPreviewFragment.this.type == 1 ? 2 : 0, PremiumPreviewFragment.this.type == 1 ? 1 : 0, PremiumPreviewFragment.this, context) {
+            int i2 = PremiumPreviewFragment.this.type == 1 ? 175 : 190;
+            addView(frameLayout, LayoutHelper.createLinear(i2, i2, 1));
+            if (PremiumPreviewFragment.this.whiteBackground) {
+                i = 1;
+            } else {
+                i = PremiumPreviewFragment.this.type == 1 ? 2 : 0;
+            }
+            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, i, PremiumPreviewFragment.this.type == 1 ? 1 : 0, PremiumPreviewFragment.this, context) {
                 final Context val$context;
 
                 {
@@ -1860,11 +1900,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     Paint paint = new Paint(1);
                     this.paint = paint;
                     paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+                    if (PremiumPreviewFragment.this.whiteBackground) {
+                        this.paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), 805306368);
+                    }
                     this.path = new Path();
                 }
 
                 @Override
-                public void draw(Canvas canvas) {
+                public void dispatchDraw(Canvas canvas) {
                     this.path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -1872,14 +1915,30 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     canvas.drawPath(this.path, this.paint);
                     canvas.save();
                     canvas.clipPath(this.path);
-                    super.draw(canvas);
+                    super.dispatchDraw(canvas);
                     canvas.restore();
                 }
 
                 @Override
-                public void onSizeChanged(int i2, int i3, int i4, int i5) {
-                    super.onSizeChanged(i2, i3, i4, i5);
-                    BackgroundView.this.measureGradient(i2, i3);
+                public void onSizeChanged(int i3, int i4, int i5, int i6) {
+                    super.onSizeChanged(i3, i4, i5, i6);
+                    BackgroundView.this.measureGradient(i3, i4);
+                }
+
+                @Override
+                public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                    if (PremiumPreviewFragment.this.progressToFull >= 1.0f) {
+                        return false;
+                    }
+                    return super.onInterceptTouchEvent(motionEvent);
+                }
+
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (PremiumPreviewFragment.this.progressToFull >= 1.0f) {
+                        return false;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
                 }
             };
             this.tierListView = recyclerListView;
@@ -1888,8 +1947,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             this.tierListView.setAdapter(new AnonymousClass3(PremiumPreviewFragment.this, context));
             this.tierListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public final void onItemClick(View view, int i2) {
-                    PremiumPreviewFragment.BackgroundView.this.lambda$new$0(view, i2);
+                public final void onItemClick(View view, int i3) {
+                    PremiumPreviewFragment.BackgroundView.this.lambda$new$0(view, i3);
                 }
             });
             final Path path = new Path();
@@ -1900,7 +1959,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     PremiumPreviewFragment.BackgroundView.this.lambda$new$1(path, fArr, (Canvas) obj);
                 }
             });
-            addView(this.tierListView, LayoutHelper.createLinear(-1, -2, 12.0f, 16.0f, 12.0f, 0.0f));
+            setClipChildren(false);
+            setClipToPadding(false);
+            addView(this.tierListView, LayoutHelper.createLinear(-1, -2, 12.0f, 16.0f, 12.0f, 4.0f));
             updatePremiumTiers();
             updateText();
         }
@@ -2109,6 +2170,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     @Override
+    public boolean isLightStatusBar() {
+        return this.whiteBackground;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         BackgroundView backgroundView = this.backgroundView;
@@ -2150,7 +2216,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             public void onAnimationProgress(float f) {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
-        }, Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4, Theme.key_premiumGradientBackground1, Theme.key_premiumGradientBackground2, Theme.key_premiumGradientBackground3, Theme.key_premiumGradientBackground4, Theme.key_premiumGradientBackgroundOverlay, Theme.key_premiumStartGradient1, Theme.key_premiumStartGradient2, Theme.key_premiumStartSmallStarsColor, Theme.key_premiumStartSmallStarsColor2);
+        }, Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4, Theme.key_premiumGradientBackground1, Theme.key_premiumGradientBackground2, Theme.key_premiumGradientBackground3, Theme.key_premiumGradientBackground4, Theme.key_premiumGradientBackgroundOverlay, Theme.key_premiumStarGradient1, Theme.key_premiumStarGradient2, Theme.key_premiumStartSmallStarsColor, Theme.key_premiumStartSmallStarsColor2);
     }
 
     public void updateColors() {
@@ -2158,16 +2224,26 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         if (this.backgroundView == null || (actionBar = this.actionBar) == null) {
             return;
         }
+        actionBar.setItemsColor(Theme.getColor(this.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), false);
+        this.actionBar.setItemsColor(Theme.getColor(this.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), true);
+        ActionBar actionBar2 = this.actionBar;
         int i = Theme.key_premiumGradientBackgroundOverlay;
-        actionBar.setItemsColor(Theme.getColor(i), false);
-        this.actionBar.setItemsColor(Theme.getColor(i), true);
-        this.actionBar.setItemsBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 60), false);
+        actionBar2.setItemsBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 60), false);
         this.particlesView.drawable.updateColors();
         BackgroundView backgroundView = this.backgroundView;
         if (backgroundView != null) {
-            backgroundView.titleView.setTextColor(Theme.getColor(i));
-            this.backgroundView.subtitleView.setTextColor(Theme.getColor(i));
+            backgroundView.titleView.setTextColor(Theme.getColor(this.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : i));
+            TextView textView = this.backgroundView.subtitleView;
+            if (this.whiteBackground) {
+                i = Theme.key_windowBackgroundWhiteBlackText;
+            }
+            textView.setTextColor(Theme.getColor(i));
             if (this.backgroundView.imageView != null && this.backgroundView.imageView.mRenderer != null) {
+                if (this.whiteBackground) {
+                    this.backgroundView.imageView.mRenderer.forceNight = true;
+                    this.backgroundView.imageView.mRenderer.colorKey1 = Theme.key_premiumCoinGradient1;
+                    this.backgroundView.imageView.mRenderer.colorKey2 = Theme.key_premiumCoinGradient2;
+                }
                 this.backgroundView.imageView.mRenderer.updateColors();
             }
         }

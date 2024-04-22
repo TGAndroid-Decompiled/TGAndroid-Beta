@@ -2087,7 +2087,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     if (ChatAttachAlert.this.isDismissed() || !ChatAttachAlert.this.openTransitionFinished) {
                         return false;
                     }
-                    return !ChatAttachAlert.this.commentTextView.isPopupVisible();
+                    return !(ChatAttachAlert.this.currentAttachLayout == ChatAttachAlert.this.pollLayout || ChatAttachAlert.this.commentTextView.isPopupVisible()) || (ChatAttachAlert.this.currentAttachLayout == ChatAttachAlert.this.pollLayout && !ChatAttachAlert.this.pollLayout.isPopupVisible());
                 }
             };
         }
@@ -2162,6 +2162,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         private void onMeasureInternal(int i, int i2) {
+            int emojiPadding;
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
             setMeasuredDimension(size, size2);
@@ -2171,8 +2172,19 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 ChatAttachAlert.this.commentTextView.hideEmojiView();
                 this.ignoreLayout = false;
             }
+            if (ChatAttachAlert.this.pollLayout != null && AndroidUtilities.dp(20.0f) >= 0 && !ChatAttachAlert.this.pollLayout.isWaitingForKeyboardOpen() && !ChatAttachAlert.this.pollLayout.isPopupShowing() && !ChatAttachAlert.this.pollLayout.isAnimatePopupClosing()) {
+                this.ignoreLayout = true;
+                ChatAttachAlert.this.pollLayout.hideEmojiView();
+                this.ignoreLayout = false;
+            }
             if (AndroidUtilities.dp(20.0f) >= 0) {
-                int emojiPadding = ((BottomSheet) ChatAttachAlert.this).keyboardVisible ? 0 : ChatAttachAlert.this.commentTextView.getEmojiPadding();
+                if (((BottomSheet) ChatAttachAlert.this).keyboardVisible) {
+                    emojiPadding = 0;
+                } else if (ChatAttachAlert.this.currentAttachLayout == ChatAttachAlert.this.pollLayout && ChatAttachAlert.this.pollLayout.emojiView != null) {
+                    emojiPadding = ChatAttachAlert.this.pollLayout.getEmojiPadding();
+                } else {
+                    emojiPadding = ChatAttachAlert.this.commentTextView.getEmojiPadding();
+                }
                 if (!AndroidUtilities.isInMultiwindow) {
                     size2 -= emojiPadding;
                     i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
@@ -2189,7 +2201,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 View childAt = getChildAt(i4);
                 if (childAt != null && childAt.getVisibility() != 8) {
                     EditTextEmoji editTextEmoji = ChatAttachAlert.this.commentTextView;
-                    if (editTextEmoji != null && editTextEmoji.isPopupView(childAt)) {
+                    if ((editTextEmoji != null && editTextEmoji.isPopupView(childAt)) || (ChatAttachAlert.this.pollLayout != null && childAt == ChatAttachAlert.this.pollLayout.emojiView)) {
                         if (ChatAttachAlert.this.inBubbleMode) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + size2, 1073741824));
                         } else if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {

@@ -703,8 +703,10 @@ public class ThemeColors {
         iArr[Theme.key_premiumGradientBackground3] = -2401123;
         iArr[Theme.key_premiumGradientBackground4] = -816858;
         iArr[Theme.key_premiumGradientBackgroundOverlay] = -1;
-        iArr[Theme.key_premiumStartGradient1] = -1;
-        iArr[Theme.key_premiumStartGradient2] = -1839878;
+        iArr[Theme.key_premiumStarGradient1] = -1;
+        iArr[Theme.key_premiumStarGradient2] = -1839878;
+        iArr[Theme.key_premiumCoinGradient1] = -15436801;
+        iArr[Theme.key_premiumCoinGradient2] = -4167942;
         iArr[Theme.key_premiumStartSmallStarsColor] = ColorUtils.setAlphaComponent(-1, 90);
         iArr[Theme.key_premiumStartSmallStarsColor2] = ColorUtils.setAlphaComponent(-1, 90);
         iArr[Theme.key_premiumGradientBottomSheet1] = -10773017;
@@ -1445,8 +1447,10 @@ public class ThemeColors {
         sparseArray.put(Theme.key_premiumGradientBackground4, "premiumGradientBackground4");
         sparseArray.put(Theme.key_premiumGradientBackgroundOverlay, "premiumGradientBackgroundOverlay");
         sparseArray.put(Theme.key_premiumStartSmallStarsColor, "premiumStartSmallStarsColor");
-        sparseArray.put(Theme.key_premiumStartGradient1, "premiumStarGradient1");
-        sparseArray.put(Theme.key_premiumStartGradient2, "premiumStarGradient2");
+        sparseArray.put(Theme.key_premiumStarGradient1, "premiumStarGradient1");
+        sparseArray.put(Theme.key_premiumStarGradient2, "premiumStarGradient2");
+        sparseArray.put(Theme.key_premiumCoinGradient1, "premiumCoinGradient1");
+        sparseArray.put(Theme.key_premiumCoinGradient2, "premiumCoinGradient2");
         sparseArray.put(Theme.key_premiumStartSmallStarsColor2, "premiumStartSmallStarsColor2");
         sparseArray.put(Theme.key_premiumGradientBottomSheet1, "premiumGradientBottomSheet1");
         sparseArray.put(Theme.key_premiumGradientBottomSheet2, "premiumGradientBottomSheet2");

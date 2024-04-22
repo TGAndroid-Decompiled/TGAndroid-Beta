@@ -144,8 +144,8 @@ public class ProfileChannelCell extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
         float f = this.loadingAlpha.set(this.loading);
         if (f > 0.0f) {
             this.loadingDrawable.setAlpha((int) (f * 255.0f));

@@ -29,4 +29,8 @@ public class ScaleStateListAnimator {
         stateListAnimator.addState(new int[0], animatorSet2);
         view.setStateListAnimator(stateListAnimator);
     }
+
+    public static void reset(View view) {
+        view.setStateListAnimator(null);
+    }
 }

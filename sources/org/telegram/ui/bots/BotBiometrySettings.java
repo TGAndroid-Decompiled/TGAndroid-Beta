@@ -92,7 +92,7 @@ public class BotBiometrySettings extends BaseFragment {
             if (spannableStringBuilder == null) {
                 spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append((CharSequence) "a   ");
-                AvatarSpan avatarSpan = new AvatarSpan(null, this.currentAccount, 24);
+                AvatarSpan avatarSpan = new AvatarSpan(null, this.currentAccount, 24.0f);
                 avatarSpan.setUser(bot.user);
                 spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
                 spannableStringBuilder.append((CharSequence) UserObject.getUserName(bot.user));

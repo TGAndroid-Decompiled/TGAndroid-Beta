@@ -423,7 +423,6 @@ public class ReportAdBottomSheet extends BottomSheet {
                 for (int i = 0; i < this.option.options.size(); i++) {
                     UItem uItem = new UItem(30, false);
                     uItem.text = this.option.options.get(i).text;
-                    uItem.backgroundKey = Theme.key_dialogBackground;
                     uItem.iconResId = R.drawable.msg_arrowright;
                     uItem.id = i;
                     arrayList.add(uItem);

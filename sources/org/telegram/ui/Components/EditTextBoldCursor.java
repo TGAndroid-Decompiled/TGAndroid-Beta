@@ -8,8 +8,11 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -70,6 +73,11 @@ public class EditTextBoldCursor extends EditTextEffects {
     public Utilities.Callback2<Canvas, Runnable> drawHint;
     boolean drawInMaim;
     private Object editor;
+    public boolean ellipsizeByGradient;
+    private LinearGradient ellipsizeGradient;
+    private Matrix ellipsizeMatrix;
+    private Paint ellipsizePaint;
+    private int ellipsizeWidth;
     private int errorLineColor;
     private TextPaint errorPaint;
     private CharSequence errorText;
@@ -1067,5 +1075,22 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public Runnable getOnPremiumMenuLockClickListener() {
         return this.onPremiumMenuLockClickListener;
+    }
+
+    public void setEllipsizeByGradient(boolean z) {
+        this.ellipsizeByGradient = z;
+        if (z) {
+            this.ellipsizeWidth = AndroidUtilities.dp(12.0f);
+            this.ellipsizePaint = new Paint(1);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.ellipsizeWidth, 0.0f, new int[]{-1, 16777215}, new float[]{0.4f, 1.0f}, Shader.TileMode.CLAMP);
+            this.ellipsizeGradient = linearGradient;
+            this.ellipsizePaint.setShader(linearGradient);
+            this.ellipsizeMatrix = new Matrix();
+        }
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
     }
 }

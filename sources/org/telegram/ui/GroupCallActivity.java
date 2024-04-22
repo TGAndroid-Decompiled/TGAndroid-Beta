@@ -3615,7 +3615,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         PinchToZoomHelper pinchToZoomHelper = new PinchToZoomHelper(viewGroup, this.containerView) {
             @Override
-            protected void invalidateViews() {
+            public void invalidateViews() {
                 super.invalidateViews();
                 for (int i27 = 0; i27 < GroupCallActivity.this.avatarsViewPager.getChildCount(); i27++) {
                     GroupCallActivity.this.avatarsViewPager.getChildAt(i27).invalidate();
@@ -6737,7 +6737,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             return;
         }
         TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
-        this.accountInstance.getMessagesController().deleteParticipantFromChat(this.currentChat.id, null, tLRPC$Chat, false, false);
+        this.accountInstance.getMessagesController().deleteParticipantFromChat(this.currentChat.id, (TLRPC$User) null, tLRPC$Chat, false, false);
         getUndoView().showWithAction(0L, 32, tLRPC$Chat, (Object) null, (Runnable) null, (Runnable) null);
     }
 

@@ -182,7 +182,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         return null;
     }
 
-    public class TouchHelperCallback extends ItemTouchHelper.Callback {
+    private class TouchHelperCallback extends ItemTouchHelper.Callback {
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
         }

@@ -340,10 +340,23 @@ public final class BulletinFactory {
     }
 
     public Bulletin createUndoBulletin(CharSequence charSequence, boolean z, Runnable runnable, Runnable runnable2) {
-        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
-        lottieLayout.textView.setText(charSequence);
-        lottieLayout.textView.setSingleLine(false);
-        lottieLayout.textView.setMaxLines(2);
+        return createUndoBulletin(charSequence, null, z, runnable, runnable2);
+    }
+
+    public Bulletin createUndoBulletin(CharSequence charSequence, CharSequence charSequence2, boolean z, Runnable runnable, Runnable runnable2) {
+        Bulletin.LottieLayout lottieLayout;
+        if (!TextUtils.isEmpty(charSequence2)) {
+            Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
+            twoLineLottieLayout.titleTextView.setText(charSequence);
+            twoLineLottieLayout.subtitleTextView.setText(charSequence2);
+            lottieLayout = twoLineLottieLayout;
+        } else {
+            Bulletin.LottieLayout lottieLayout2 = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+            lottieLayout2.textView.setText(charSequence);
+            lottieLayout2.textView.setSingleLine(false);
+            lottieLayout2.textView.setMaxLines(2);
+            lottieLayout = lottieLayout2;
+        }
         lottieLayout.setTimer();
         lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, z, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
         return create(lottieLayout, 5000);

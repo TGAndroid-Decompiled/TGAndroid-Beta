@@ -1677,7 +1677,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 LPhotoPaintView.this.lambda$openStickersView$18();
             }
         }, 350L);
-        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(this, getContext(), false, this.resourcesProvider) {
+        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(this, getContext(), false, this.resourcesProvider, false) {
             @Override
             public boolean canShowWidget(Integer num) {
                 return num.intValue() == 2;

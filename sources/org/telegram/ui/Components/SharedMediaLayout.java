@@ -3008,7 +3008,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     tLRPC$User = null;
                     tLRPC$EncryptedChat = null;
                 }
-                AlertsCreator.createDeleteMessagesAlert(this.profileActivity, tLRPC$User, chat, tLRPC$EncryptedChat, null, this.mergeDialogId, null, this.selectedFiles, null, 0, 0, 1, new Runnable() {
+                AlertsCreator.createDeleteMessagesAlert(this.profileActivity, tLRPC$User, chat, tLRPC$EncryptedChat, null, this.mergeDialogId, null, this.selectedFiles, null, 0, 0, null, new Runnable() {
                     @Override
                     public final void run() {
                         SharedMediaLayout.this.lambda$onActionBarItemClick$22();

@@ -12,10 +12,13 @@ import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
 import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
+import org.telegram.tgnet.TLRPC$TL_inputStickerSetID;
+import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
 import org.telegram.tgnet.TLRPC$TL_photoPathSize;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$TL_secureFile;
@@ -309,6 +312,24 @@ public class ImageLocation {
         tLRPC$TL_fileLocationToBeDeprecated.secret = tLRPC$FileLocation.secret;
         tLRPC$TL_fileLocationToBeDeprecated.dc_id = tLRPC$FileLocation.dc_id;
         return imageLocation;
+    }
+
+    public static ImageLocation getForStickerSet(TLRPC$StickerSet tLRPC$StickerSet) {
+        TLRPC$PhotoSize closestPhotoSizeWithSize;
+        TLRPC$InputStickerSet tLRPC$TL_inputStickerSetShortName;
+        if (tLRPC$StickerSet == null || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$StickerSet.thumbs, 90)) == null) {
+            return null;
+        }
+        if (tLRPC$StickerSet.access_hash != 0) {
+            tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetID();
+            tLRPC$TL_inputStickerSetShortName.id = tLRPC$StickerSet.id;
+            tLRPC$TL_inputStickerSetShortName.access_hash = tLRPC$StickerSet.access_hash;
+        } else {
+            tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetShortName();
+            tLRPC$TL_inputStickerSetShortName.short_name = tLRPC$StickerSet.short_name;
+        }
+        TLRPC$FileLocation tLRPC$FileLocation = closestPhotoSizeWithSize.location;
+        return getForPhoto(tLRPC$FileLocation, closestPhotoSizeWithSize.size, null, null, null, 1, tLRPC$FileLocation.dc_id, tLRPC$TL_inputStickerSetShortName, closestPhotoSizeWithSize.type);
     }
 
     private static ImageLocation getForPhoto(TLRPC$FileLocation tLRPC$FileLocation, int i, TLRPC$Photo tLRPC$Photo, TLRPC$Document tLRPC$Document, TLRPC$InputPeer tLRPC$InputPeer, int i2, int i3, TLRPC$InputStickerSet tLRPC$InputStickerSet, String str) {

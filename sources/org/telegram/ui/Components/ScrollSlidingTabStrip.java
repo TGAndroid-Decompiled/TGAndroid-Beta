@@ -719,7 +719,8 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                             TLRPC$StickerSet tLRPC$StickerSet = ((TLRPC$TL_messages_stickerSet) tag4).set;
                             i = tLRPC$StickerSet.thumb_version;
                             if (!stickerTabView.inited) {
-                                stickerTabView.svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSet.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
+                                ArrayList<TLRPC$PhotoSize> arrayList2 = tLRPC$StickerSet.thumbs;
+                                stickerTabView.svgThumb = DocumentObject.getSvgThumb(arrayList2, Theme.key_emptyListPlaceholder, 0.2f, DocumentObject.containsPhotoSizeType(arrayList2, "v"));
                             }
                         } else {
                             i = 0;

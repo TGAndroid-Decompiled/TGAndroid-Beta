@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.RecyclerListView;
@@ -33,6 +34,6 @@ public class SelectorBtnCell extends LinearLayout {
         } else {
             this.dividerPaint.setAlpha((int) (this.alpha.set(1.0f) * 255.0f));
         }
-        canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, this.dividerPaint);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), this.dividerPaint);
     }
 }

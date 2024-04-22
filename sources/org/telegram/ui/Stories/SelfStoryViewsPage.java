@@ -356,7 +356,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 }).makeMultiline(false).cutTextInFancyHalf();
                 boolean z3 = (z2 || z) ? false : true;
                 int i2 = R.drawable.msg_user_remove;
-                final ItemOptions addIf = cutTextInFancyHalf.addIf(z3, i2, LocaleController.getString(R.string.BlockUser), true, new Runnable() {
+                final ItemOptions addIf = cutTextInFancyHalf.addIf(z3, i2, (CharSequence) LocaleController.getString(R.string.BlockUser), true, new Runnable() {
                     @Override
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, tL_stories$StoryView);
@@ -366,7 +366,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, tL_stories$StoryView);
                     }
-                }).addIf(z2, i2, LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
+                }).addIf(z2, i2, (CharSequence) LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
                     @Override
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tL_stories$StoryView);

@@ -303,7 +303,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             }
         });
         int i = this.currentType;
-        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, LocaleController.getString("Remove", R.string.Remove), true, new Runnable() {
+        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString("Remove", R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
                 PrivacyUsersActivity.this.lambda$showUnblockAlert$6(l);

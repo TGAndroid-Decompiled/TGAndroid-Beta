@@ -108,4 +108,9 @@ public class AuthTokensHelper {
         edit.putString("log_out_token_" + i, Utilities.bytesToHex(serializedData.toByteArray())).putInt(NotificationBadge.NewHtcHomeBadger.COUNT, i + 1).apply();
         BackupAgent.requestBackup(ApplicationLoader.applicationContext);
     }
+
+    public static void clearLogInTokens() {
+        ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
+        ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
+    }
 }

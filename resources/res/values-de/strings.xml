@@ -1188,7 +1188,6 @@
     <string name="DeleteBackground_other">%1$d Hintergründe löschen</string>
     <string name="DeleteBackground_two">%1$d Hintergründe löschen</string>
     <string name="DeleteBackground_zero">%1$d Hintergründe löschen</string>
-    <string name="DeleteBanUser">Nutzer sperren</string>
     <string name="DeleteCalls">Anrufe löschen</string>
     <string name="DeleteCallsForEveryone">Bei allen löschen</string>
     <string name="DeleteChannelForAll">Bei allen Abonnenten löschen</string>
@@ -1433,8 +1432,6 @@
     <string name="EventLogEditedMedia">un1 hat Medium bearbeitet:</string>
     <string name="EventLogEditedMediaCaption">un1 hat Medium und Beschriftung bearbeitet:</string>
     <string name="EventLogEditedMessages">un1 hat diese Nachricht bearbeitet:</string>
-    <string name="EventLogEmpty">**Noch keine Aktionen!**\n\nMitglieder und Admins\nhaben noch keine Aktionen in den\nletzten 48 Stunden durchgeführt.</string>
-    <string name="EventLogEmptyChannel">**Noch keine Aktionen!**\n\nMitglieder und Admins\nhaben noch keine Aktionen\nin den letzten 48 Stunden durchgeführt.</string>
     <string name="EventLogEmptySearch">**Keine Aktionen gefunden**\n\nKeine kürzlichen Ereignisse gefunden,\ndie deinen Suchbegriff beinhalten.</string>
     <string name="EventLogEmptyTextSearch">Keine kürzlichen Aktionen gefunden, die \'**%1$s**\' beinhalten.</string>
     <string name="EventLogEndedVoiceChat">un1 hat den Sprachchat beendet</string>

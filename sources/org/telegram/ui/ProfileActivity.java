@@ -119,6 +119,7 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.AuthTokensHelper;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.BuildVars;
@@ -296,6 +297,7 @@ import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.AudioPlayerAlert;
 import org.telegram.ui.Components.AutoDeletePopupWrapper;
@@ -345,7 +347,6 @@ import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickerEmptyView;
-import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TimerDrawable;
 import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -5187,7 +5188,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i4 >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.getString("DebugMenu", R.string.DebugMenu));
-                CharSequence[] charSequenceArr = new CharSequence[29];
+                CharSequence[] charSequenceArr = new CharSequence[30];
                 charSequenceArr[0] = LocaleController.getString("DebugMenuImportContacts", R.string.DebugMenuImportContacts);
                 charSequenceArr[1] = LocaleController.getString("DebugMenuReloadContacts", R.string.DebugMenuReloadContacts);
                 charSequenceArr[2] = LocaleController.getString("DebugMenuResetContacts", R.string.DebugMenuResetContacts);
@@ -5254,6 +5255,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 charSequenceArr[27] = str5;
                 charSequenceArr[28] = BuildVars.DEBUG_VERSION ? "Clear bot biometry data" : null;
+                charSequenceArr[29] = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -5606,6 +5608,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 SharedConfig.toggleUseCamera2(((BaseFragment) ProfileActivity.this).currentAccount);
             } else if (i == 28) {
                 BotBiometry.clear();
+            } else if (i == 29) {
+                AuthTokensHelper.clearLogInTokens();
             }
         }
 
@@ -5703,27 +5707,56 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
+    public class AnonymousClass19 implements ChatRightsEditActivity.ChatRightsEditActivityDelegate {
+        final TLRPC$Chat val$chat;
+        final ChatRightsEditActivity val$fragment;
+
+        AnonymousClass19(TLRPC$Chat tLRPC$Chat, ChatRightsEditActivity chatRightsEditActivity) {
+            ProfileActivity.this = r1;
+            this.val$chat = tLRPC$Chat;
+            this.val$fragment = chatRightsEditActivity;
+        }
+
+        @Override
+        public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str) {
+            ChatRightsEditActivity chatRightsEditActivity;
+            ProfileActivity.this.removeSelfFromStack();
+            final TLRPC$User user = ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId));
+            if (user == null || this.val$chat == null || ProfileActivity.this.userId == 0 || (chatRightsEditActivity = this.val$fragment) == null || !chatRightsEditActivity.banning || chatRightsEditActivity.getParentLayout() == null) {
+                return;
+            }
+            for (final BaseFragment baseFragment : this.val$fragment.getParentLayout().getFragmentStack()) {
+                if (baseFragment instanceof ChannelAdminLogActivity) {
+                    ((ChannelAdminLogActivity) baseFragment).lambda$processSelectedOption$20();
+                    final TLRPC$Chat tLRPC$Chat = this.val$chat;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            ProfileActivity.AnonymousClass19.lambda$didSetRights$0(BaseFragment.this, user, tLRPC$Chat);
+                        }
+                    });
+                    return;
+                }
+            }
+        }
+
+        public static void lambda$didSetRights$0(BaseFragment baseFragment, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
+            BulletinFactory.createRemoveFromChatBulletin(baseFragment, tLRPC$User, tLRPC$Chat.title).show();
+        }
+
+        @Override
+        public void didChangeOwner(TLRPC$User tLRPC$User) {
+            ProfileActivity.this.undoView.showWithAction(-ProfileActivity.this.chatId, ProfileActivity.this.currentChat.megagroup ? 10 : 9, tLRPC$User);
+        }
+    }
+
     public void lambda$createView$16(TLRPC$Chat tLRPC$Chat, View view) {
         long j = this.userId;
         long j2 = this.banFromGroup;
         TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = tLRPC$Chat.default_banned_rights;
         TLRPC$ChannelParticipant tLRPC$ChannelParticipant = this.currentChannelParticipant;
         ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, j2, null, tLRPC$TL_chatBannedRights, tLRPC$ChannelParticipant != null ? tLRPC$ChannelParticipant.banned_rights : null, "", 1, true, false, null);
-        chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
-            {
-                ProfileActivity.this = this;
-            }
-
-            @Override
-            public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str) {
-                ProfileActivity.this.removeSelfFromStack();
-            }
-
-            @Override
-            public void didChangeOwner(TLRPC$User tLRPC$User) {
-                ProfileActivity.this.undoView.showWithAction(-ProfileActivity.this.chatId, ProfileActivity.this.currentChat.megagroup ? 10 : 9, tLRPC$User);
-            }
-        });
+        chatRightsEditActivity.setDelegate(new AnonymousClass19(tLRPC$Chat, chatRightsEditActivity));
         presentFragment(chatRightsEditActivity);
     }
 
@@ -6695,7 +6728,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         public final void run() {
                             ProfileActivity.this.lambda$onMemberClick$39(tLRPC$ChannelParticipant4, tLRPC$ChatParticipant, user, callback);
                         }
-                    }).addIf(z6, R.drawable.msg_remove, LocaleController.getString("KickFromGroup", R.string.KickFromGroup), true, new Runnable() {
+                    }).addIf(z6, R.drawable.msg_remove, (CharSequence) LocaleController.getString("KickFromGroup", R.string.KickFromGroup), true, new Runnable() {
                         @Override
                         public final void run() {
                             ProfileActivity.this.lambda$onMemberClick$40(tLRPC$ChatParticipant);
@@ -9483,7 +9516,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.verifiedDrawable[i] = Theme.profile_verifiedDrawable.getConstantState().newDrawable().mutate();
             this.verifiedCheckDrawable[i] = Theme.profile_verifiedCheckDrawable.getConstantState().newDrawable().mutate();
             if (i == 1 && (peerColor = this.peerColor) != null) {
-                this.verifiedDrawable[1].setColorFilter(AndroidUtilities.getOffsetColor(Theme.adaptHSV(ColorUtils.blendARGB(peerColor.getColor2(), this.peerColor.hasColor6(Theme.isCurrentThemeDark()) ? this.peerColor.getColor5() : this.peerColor.getColor3(), 0.4f), 0.1f, Theme.isCurrentThemeDark() ? -0.1f : -0.08f), getThemedColor(Theme.key_player_actionBarTitle), this.mediaHeaderAnimationProgress, 1.0f), PorterDuff.Mode.MULTIPLY);
+                this.verifiedDrawable[1].setColorFilter(AndroidUtilities.getOffsetColor(Theme.adaptHSV(peerColor.hasColor6(Theme.isCurrentThemeDark()) ? this.peerColor.getColor5() : this.peerColor.getColor3(), 0.1f, Theme.isCurrentThemeDark() ? -0.1f : -0.08f), getThemedColor(Theme.key_player_actionBarTitle), this.mediaHeaderAnimationProgress, 1.0f), PorterDuff.Mode.MULTIPLY);
                 this.verifiedCheckDrawable[1].setColorFilter(AndroidUtilities.getOffsetColor(-1, getThemedColor(Theme.key_windowBackgroundWhite), this.mediaHeaderAnimationProgress, 1.0f), PorterDuff.Mode.MULTIPLY);
             }
             this.verifiedCrossfadeDrawable[i] = new CrossfadeDrawable(new CombinedDrawable(this.verifiedDrawable[i], this.verifiedCheckDrawable[i]), ContextCompat.getDrawable(getParentActivity(), R.drawable.verified_profile));
@@ -13945,8 +13978,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         private float alpha;
         public final Paint backgroundPaint;
         private final ButtonBounce bounce;
-        private final Text text;
         private int textColor;
+        public final AnimatedTextView.AnimatedTextDrawable textDrawable;
+        private View view;
 
         @Override
         public int getOpacity() {
@@ -13971,7 +14005,31 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ShowDrawable.this.invalidateSelf();
                 }
             };
-            this.text = new Text(str, 11.0f);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
+            this.textDrawable = animatedTextDrawable;
+            animatedTextDrawable.setCallback(new Drawable.Callback() {
+                @Override
+                public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+                }
+
+                @Override
+                public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                }
+
+                {
+                    ShowDrawable.this = this;
+                }
+
+                @Override
+                public void invalidateDrawable(Drawable drawable) {
+                    if (ShowDrawable.this.view != null) {
+                        ShowDrawable.this.view.invalidate();
+                    }
+                }
+            });
+            animatedTextDrawable.setText(str);
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.0f));
+            animatedTextDrawable.setGravity(17);
             paint.setColor(520093696);
         }
 
@@ -14003,7 +14061,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.backgroundPaint.setAlpha((int) (alpha * this.alpha));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.backgroundPaint);
             this.backgroundPaint.setAlpha(alpha);
-            this.text.draw(canvas, rectF.left + AndroidUtilities.dp(5.5f), rectF.centerY(), this.textColor, this.alpha);
+            this.textDrawable.setTextColor(this.textColor);
+            this.textDrawable.setAlpha((int) (this.alpha * 255.0f));
+            this.textDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.textDrawable.draw(canvas);
             canvas.restore();
         }
 
@@ -14015,7 +14076,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public int getIntrinsicWidth() {
-            return (int) (this.text.getCurrentWidth() + AndroidUtilities.dp(11.0f));
+            return (int) (this.textDrawable.getAnimateToWidth() + AndroidUtilities.dp(11.0f));
         }
 
         @Override
@@ -14026,6 +14087,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public void setPressed(boolean z) {
             this.bounce.setPressed(z);
+        }
+
+        public void setView(View view) {
+            this.view = view;
         }
     }
 

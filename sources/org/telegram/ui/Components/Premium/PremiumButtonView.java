@@ -70,7 +70,7 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         cellFlickerDrawable.repeatProgress = 4.0f;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
-        AnimatedTextView animatedTextView = new AnimatedTextView(context) {
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true) {
             @Override
             public void onDraw(Canvas canvas) {
                 if (PremiumButtonView.this.loadingT > 0.0f) {

@@ -391,7 +391,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
@@ -666,7 +666,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         universalAdapter.update(true);
     }
 
-    private static class MoreSpan extends ReplacementSpan {
+    public static class MoreSpan extends ReplacementSpan {
         private final Paint backgroundPaint = new Paint(1);
         private final Text text;
 

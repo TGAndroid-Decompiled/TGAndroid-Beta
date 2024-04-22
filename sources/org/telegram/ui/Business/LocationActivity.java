@@ -142,7 +142,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, LocationActivity.this.getResourceProvider())));
                 this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());

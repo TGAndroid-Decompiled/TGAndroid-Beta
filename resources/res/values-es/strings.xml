@@ -1189,7 +1189,6 @@
     <string name="DeleteBackground_other">Eliminar %1$d fondos</string>
     <string name="DeleteBackground_two">Eliminar %1$d fondos</string>
     <string name="DeleteBackground_zero">Eliminar %1$d fondos</string>
-    <string name="DeleteBanUser">Expulsar usuario</string>
     <string name="DeleteCalls">Eliminar llamadas</string>
     <string name="DeleteCallsForEveryone">Eliminar para todos</string>
     <string name="DeleteChannelForAll">Eliminar para todos los suscriptores</string>
@@ -1434,8 +1433,6 @@
     <string name="EventLogEditedMedia">un1 editó un archivo multimedia:</string>
     <string name="EventLogEditedMediaCaption">un1 editó un archivo multimedia y comentario:</string>
     <string name="EventLogEditedMessages">un1 editó este mensaje:</string>
-    <string name="EventLogEmpty">**Aún sin acciones**\n\nLos administradores del grupo\nno han realizado acciones de servicio\nen las últimas 48 horas.</string>
-    <string name="EventLogEmptyChannel">**Aún sin acciones**\n\nLos administradores del canal\nno han realizado acciones de servicio\nen las últimas 48 horas.</string>
     <string name="EventLogEmptySearch">**No se encontraron acciones**\n\nNo se encontraron acciones recientes\nque coincidan con tu consulta.</string>
     <string name="EventLogEmptyTextSearch">No se encontraron acciones recientes que contengan “**%1$s**”.</string>
     <string name="EventLogEndedVoiceChat">un1 finalizó el chat de voz</string>

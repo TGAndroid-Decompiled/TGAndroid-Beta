@@ -5947,7 +5947,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$setParentActivity$14(Integer num) {
-        this.videoTimelineViewContainer.setTranslationY(this.pickerView.getTranslationY() - Math.max(0, num.intValue() - AndroidUtilities.dp(46.0f)));
+        FrameLayout frameLayout = this.videoTimelineViewContainer;
+        if (frameLayout != null && frameLayout.getVisibility() != 8) {
+            this.videoTimelineViewContainer.setTranslationY(this.pickerView.getTranslationY() - Math.max(0, this.captionEdit.getEditTextHeight() - AndroidUtilities.dp(46.0f)));
+        }
         this.muteItem.setTranslationY(-Math.max(0, num.intValue() - AndroidUtilities.dp(46.0f)));
     }
 
@@ -8167,6 +8170,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 fArr4[0] = z ? 0.0f : AndroidUtilities.dp(12.0f);
                 animatorArr[3] = ObjectAnimator.ofFloat(videoSeekPreviewImage4, property4, fArr4);
                 animatorSet2.playTogether(animatorArr);
+                this.videoPreviewFrameAnimation.setDuration(380L);
+                this.videoPreviewFrameAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.videoPreviewFrameAnimation.addListener(new AnimatorListenerAdapter() {
                     {
                         PhotoViewer.this = this;
@@ -8177,7 +8182,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         PhotoViewer.this.videoPreviewFrameAnimation = null;
                     }
                 });
-                this.videoPreviewFrameAnimation.setDuration(180L);
                 this.videoPreviewFrameAnimation.start();
             }
         }
@@ -12056,6 +12060,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.videoTimelineAnimator.setDuration(220L);
             this.videoTimelineAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.videoTimelineAnimator.start();
+        }
+        FrameLayout frameLayout = this.videoTimelineViewContainer;
+        if (frameLayout != null && frameLayout.getVisibility() != 8) {
+            this.videoTimelineViewContainer.setTranslationY(this.pickerView.getTranslationY() - Math.max(0, this.captionEdit.getEditTextHeight() - AndroidUtilities.dp(46.0f)));
         }
         this.videoTimelineViewContainer.setTag(z ? 1 : null);
     }

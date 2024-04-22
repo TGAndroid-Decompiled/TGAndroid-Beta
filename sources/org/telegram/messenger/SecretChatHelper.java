@@ -843,7 +843,11 @@ public class SecretChatHelper extends BaseController {
 
     public void lambda$performSendEncryptedRequest$4(TLRPC$Message tLRPC$Message, int i) {
         tLRPC$Message.send_state = 0;
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(tLRPC$Message.id), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i), Boolean.FALSE);
+        NotificationCenter notificationCenter = getNotificationCenter();
+        int i2 = NotificationCenter.messageReceivedByServer;
+        Boolean bool = Boolean.FALSE;
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, Integer.valueOf(tLRPC$Message.id), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i), bool);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer2, Integer.valueOf(tLRPC$Message.id), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i), bool);
         getSendMessagesHelper().processSentMessage(tLRPC$Message.id);
         getSendMessagesHelper().removeFromSendingMessages(tLRPC$Message.id, false);
     }

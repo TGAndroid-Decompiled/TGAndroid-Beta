@@ -1189,7 +1189,6 @@
     <string name="DeleteBackground_other">حذف %1$d خلفية</string>
     <string name="DeleteBackground_two">حذف الخلفيتين</string>
     <string name="DeleteBackground_zero">حذف %1$d خلفية</string>
-    <string name="DeleteBanUser">حظر المستخدم</string>
     <string name="DeleteCalls">حذف المكالمات</string>
     <string name="DeleteCallsForEveryone">الحذف عند الجميع</string>
     <string name="DeleteChannelForAll">الحذف لجميع المشتركين</string>
@@ -1434,8 +1433,6 @@
     <string name="EventLogEditedMedia">عدّل un1 ملف الوسائط:</string>
     <string name="EventLogEditedMediaCaption">عدّل un1 ملف الوسائط والوصف:</string>
     <string name="EventLogEditedMessages">عدّل un1 هذه الرسالة:</string>
-    <string name="EventLogEmpty">**لا توجد أحداث هنا بعد**\n\nلم يَقم أعضاءُ المجموعة أو\nمشرفوها باتخاذ أيِّ إجراءات\nخلال الـ 48 ساعة الماضية.</string>
-    <string name="EventLogEmptyChannel">**ما من أحداث هنا بعد**\n\nلم يقم مشرفو القناة\nباتخاذ أي إجراءات خلال\nالـ 48 ساعة الماضية.</string>
     <string name="EventLogEmptySearch">**لم يتم العثور على أحداث**\n\nلا توجد نتائج تطابق ما بحثت عنه\nضمن الأحداث الأخيرة.</string>
     <string name="EventLogEmptyTextSearch">لم يتم العثور على أحداث أخيرة تحوي «**%1$s**».</string>
     <string name="EventLogEndedVoiceChat">أنهى un1 المحادثة الصوتية</string>
@@ -1668,6 +1665,7 @@
     <string name="ForwardedFile_other">%1$d ملف محوَّل</string>
     <string name="ForwardedFile_two">ملفان محوَّلان</string>
     <string name="ForwardedFile_zero">%1$d ملف محوَّل</string>
+    <string name="ForwardedFrom">ارسلت من</string>
     <string name="ForwardedLocation_few">%1$d مواقع محوَّلة</string>
     <string name="ForwardedLocation_many">%1$d موقعًا محوَّلا</string>
     <string name="ForwardedLocation_one">موقع واحد محوَّل</string>

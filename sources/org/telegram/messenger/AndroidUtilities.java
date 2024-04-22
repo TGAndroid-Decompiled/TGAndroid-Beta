@@ -602,9 +602,14 @@ public class AndroidUtilities {
     }
 
     public static CharSequence replaceArrows(CharSequence charSequence, boolean z) {
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_forumarrow, 0);
+        return replaceArrows(charSequence, z, dp(2.6666667f), 0.0f);
+    }
+
+    public static CharSequence replaceArrows(CharSequence charSequence, boolean z, float f, float f2) {
+        int i = R.drawable.msg_mini_forumarrow;
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(i, 0);
         coloredImageSpan.setScale(0.88f, 0.88f);
-        coloredImageSpan.translate(-dp(2.6666667f), 0.0f);
+        coloredImageSpan.translate(-f, f2);
         coloredImageSpan.spaceScaleX = 0.8f;
         if (z) {
             coloredImageSpan.useLinkPaintColor = z;
@@ -614,7 +619,18 @@ public class AndroidUtilities {
         CharSequence replaceMultipleCharSequence = replaceMultipleCharSequence(" >", charSequence, spannableString);
         SpannableString spannableString2 = new SpannableString(">");
         spannableString2.setSpan(coloredImageSpan, 0, 1, 33);
-        return replaceMultipleCharSequence(">", replaceMultipleCharSequence, spannableString2);
+        CharSequence replaceMultipleCharSequence2 = replaceMultipleCharSequence(">", replaceMultipleCharSequence, spannableString2);
+        ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(i, 0);
+        coloredImageSpan2.setScale(0.88f, 0.88f);
+        coloredImageSpan2.translate(f, f2);
+        coloredImageSpan2.rotate(180.0f);
+        coloredImageSpan2.spaceScaleX = 0.8f;
+        if (z) {
+            coloredImageSpan2.useLinkPaintColor = z;
+        }
+        SpannableString spannableString3 = new SpannableString("<");
+        spannableString3.setSpan(coloredImageSpan2, 0, 1, 33);
+        return replaceMultipleCharSequence("<", replaceMultipleCharSequence2, spannableString3);
     }
 
     public static void recycleBitmaps(List<Bitmap> list) {

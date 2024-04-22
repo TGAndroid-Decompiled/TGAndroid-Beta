@@ -44,6 +44,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$InputCheckPasswordSRP;
 import org.telegram.tgnet.TLRPC$TL_account_getPassword;
+import org.telegram.tgnet.TLRPC$TL_broadcastRevenueBalances;
 import org.telegram.tgnet.TLRPC$TL_channels_restrictSponsoredMessages;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordEmpty;
@@ -85,6 +86,7 @@ import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TwoStepVerificationActivity;
 public class ChannelMonetizationLayout extends FrameLayout {
+    public static ChannelMonetizationLayout instance;
     private static HashMap<Integer, SpannableString> tonString;
     private final ProceedOverview availableValue;
     private final ButtonWithCounterView balanceButton;
@@ -113,6 +115,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
     private final CharSequence titleInfo;
     private final ArrayList<TL_stats$BroadcastRevenueTransaction> transactions;
     private int transactionsTotalCount;
+    private double usd_rate;
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
@@ -542,10 +545,8 @@ public class ChannelMonetizationLayout extends FrameLayout {
     }
 
     public void lambda$initLevel$12(TLObject tLObject) {
-        UniversalAdapter universalAdapter;
         if (tLObject instanceof TL_stats$TL_broadcastRevenueStats) {
             TL_stats$TL_broadcastRevenueStats tL_stats$TL_broadcastRevenueStats = (TL_stats$TL_broadcastRevenueStats) tLObject;
-            int i = 0;
             this.impressionsChart = StatisticActivity.createViewData(tL_stats$TL_broadcastRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0);
             TL_stats$StatsGraph tL_stats$StatsGraph = tL_stats$TL_broadcastRevenueStats.revenue_graph;
             if (tL_stats$StatsGraph != null) {
@@ -556,40 +557,8 @@ public class ChannelMonetizationLayout extends FrameLayout {
             if (chartViewData != null) {
                 chartViewData.useHourFormat = true;
             }
-            ProceedOverview proceedOverview = this.availableValue;
-            long j = tL_stats$TL_broadcastRevenueStats.available_balance;
-            proceedOverview.crypto_amount = j;
-            double d = j;
-            Double.isNaN(d);
-            long j2 = (long) ((d / 1.0E9d) * tL_stats$TL_broadcastRevenueStats.usd_rate * 100.0d);
-            proceedOverview.amount = j2;
-            setBalance(j, j2);
-            this.availableValue.currency = "USD";
-            ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
-            long j3 = tL_stats$TL_broadcastRevenueStats.current_balance;
-            proceedOverview2.crypto_amount = j3;
-            double d2 = j3;
-            Double.isNaN(d2);
-            double d3 = tL_stats$TL_broadcastRevenueStats.usd_rate;
-            proceedOverview2.amount = (long) ((d2 / 1.0E9d) * d3 * 100.0d);
-            proceedOverview2.currency = "USD";
-            ProceedOverview proceedOverview3 = this.lifetimeValue;
-            long j4 = tL_stats$TL_broadcastRevenueStats.overall_revenue;
-            proceedOverview3.crypto_amount = j4;
-            double d4 = j4;
-            Double.isNaN(d4);
-            proceedOverview3.amount = (long) ((d4 / 1.0E9d) * d3 * 100.0d);
-            proceedOverview3.currency = "USD";
-            this.proceedsAvailable = true;
-            ButtonWithCounterView buttonWithCounterView = this.balanceButton;
-            if (tL_stats$TL_broadcastRevenueStats.available_balance <= 0 && !BuildVars.DEBUG_PRIVATE_VERSION) {
-                i = 8;
-            }
-            buttonWithCounterView.setVisibility(i);
-            UniversalRecyclerView universalRecyclerView = this.listView;
-            if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-                universalAdapter.update(true);
-            }
+            this.usd_rate = tL_stats$TL_broadcastRevenueStats.usd_rate;
+            setupBalances(tL_stats$TL_broadcastRevenueStats.balances);
             this.progress.animate().alpha(0.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
@@ -604,10 +573,56 @@ public class ChannelMonetizationLayout extends FrameLayout {
         this.progress.setVisibility(8);
     }
 
+    public void setupBalances(TLRPC$TL_broadcastRevenueBalances tLRPC$TL_broadcastRevenueBalances) {
+        UniversalAdapter universalAdapter;
+        double d = this.usd_rate;
+        if (d == 0.0d) {
+            return;
+        }
+        ProceedOverview proceedOverview = this.availableValue;
+        long j = tLRPC$TL_broadcastRevenueBalances.available_balance;
+        proceedOverview.crypto_amount = j;
+        double d2 = j;
+        Double.isNaN(d2);
+        long j2 = (long) ((d2 / 1.0E9d) * d * 100.0d);
+        proceedOverview.amount = j2;
+        setBalance(j, j2);
+        this.availableValue.currency = "USD";
+        ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
+        long j3 = tLRPC$TL_broadcastRevenueBalances.current_balance;
+        proceedOverview2.crypto_amount = j3;
+        double d3 = j3;
+        Double.isNaN(d3);
+        double d4 = this.usd_rate;
+        proceedOverview2.amount = (long) ((d3 / 1.0E9d) * d4 * 100.0d);
+        proceedOverview2.currency = "USD";
+        ProceedOverview proceedOverview3 = this.lifetimeValue;
+        long j4 = tLRPC$TL_broadcastRevenueBalances.overall_revenue;
+        proceedOverview3.crypto_amount = j4;
+        double d5 = j4;
+        Double.isNaN(d5);
+        proceedOverview3.amount = (long) ((d5 / 1.0E9d) * d4 * 100.0d);
+        proceedOverview3.currency = "USD";
+        this.proceedsAvailable = true;
+        this.balanceButton.setVisibility((tLRPC$TL_broadcastRevenueBalances.available_balance > 0 || BuildVars.DEBUG_PRIVATE_VERSION) ? 0 : 8);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(true);
+    }
+
     @Override
     protected void onAttachedToWindow() {
+        instance = this;
         super.onAttachedToWindow();
         checkLearnSheet();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        instance = null;
+        super.onDetachedFromWindow();
     }
 
     private void checkLearnSheet() {
@@ -706,6 +721,16 @@ public class ChannelMonetizationLayout extends FrameLayout {
         this.fragment.showDialog(limitReachedBottomSheet);
     }
 
+    public void reloadTransactions() {
+        if (this.loadingTransactions) {
+            return;
+        }
+        this.transactions.clear();
+        this.transactionsTotalCount = 0;
+        this.loadingTransactions = false;
+        loadTransactions();
+    }
+
     private void loadTransactions() {
         TLRPC$Chat chat;
         if (this.loadingTransactions) {
@@ -797,7 +822,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         if (tonString == null) {
             tonString = new HashMap<>();
         }
-        int i = textPaint.getFontMetricsInt().bottom * (z ? 1 : -1) * ((int) (100.0f * f));
+        int i = ((textPaint.getFontMetricsInt().bottom * (z ? 1 : -1)) * ((int) (f * 100.0f))) - ((int) (100.0f * f2));
         SpannableString spannableString = tonString.get(Integer.valueOf(i));
         if (spannableString == null) {
             spannableString = new SpannableString("T");
@@ -984,16 +1009,17 @@ public class ChannelMonetizationLayout extends FrameLayout {
             this.dateView.setTextColor(Theme.getColor(z2 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) (c < 0 ? "-" : "+"));
+            spannableStringBuilder.append((CharSequence) "TON ");
             DecimalFormat decimalFormat = this.formatter;
             double abs = Math.abs(j);
             Double.isNaN(abs);
             spannableStringBuilder.append((CharSequence) decimalFormat.format(abs / 1.0E9d));
-            spannableStringBuilder.append((CharSequence) " TON");
             int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
             if (indexOf >= 0) {
                 spannableStringBuilder.setSpan(new RelativeSizeSpan(1.15f), 0, indexOf + 1, 33);
             }
-            this.valueText.setText(spannableStringBuilder);
+            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.valueText;
+            textViewEmojis.setText(ChannelMonetizationLayout.replaceTON(spannableStringBuilder, textViewEmojis.getPaint(), 1.1f, AndroidUtilities.dp(0.33f), false));
             this.valueText.setTextColor(Theme.getColor(c < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen, this.resourcesProvider));
             this.needDivider = z;
             setWillNotDraw(!z);

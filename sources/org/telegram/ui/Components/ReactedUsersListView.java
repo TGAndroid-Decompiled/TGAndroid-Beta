@@ -19,7 +19,6 @@ import j$.util.function.ToIntFunction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
@@ -336,10 +335,8 @@ public class ReactedUsersListView extends FrameLayout {
     public void lambda$load$4(TLObject tLObject) {
         if (tLObject instanceof TLRPC$TL_messages_messageReactionsList) {
             TLRPC$TL_messages_messageReactionsList tLRPC$TL_messages_messageReactionsList = (TLRPC$TL_messages_messageReactionsList) tLObject;
-            Iterator<TLRPC$User> it = tLRPC$TL_messages_messageReactionsList.users.iterator();
-            while (it.hasNext()) {
-                MessagesController.getInstance(this.currentAccount).putUser(it.next(), false);
-            }
+            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_messages_messageReactionsList.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_messages_messageReactionsList.chats, false);
             HashSet hashSet = new HashSet();
             for (int i = 0; i < tLRPC$TL_messages_messageReactionsList.reactions.size(); i++) {
                 this.userReactions.add(tLRPC$TL_messages_messageReactionsList.reactions.get(i));

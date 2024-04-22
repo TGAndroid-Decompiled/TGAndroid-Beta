@@ -1189,7 +1189,6 @@
     <string name="DeleteBackground_other">배경 %1$d개 삭제</string>
     <string name="DeleteBackground_two">배경 %1$d개 삭제</string>
     <string name="DeleteBackground_zero">배경 %1$d개 삭제</string>
-    <string name="DeleteBanUser">사용자 차단</string>
     <string name="DeleteCalls">전화내역 삭제</string>
     <string name="DeleteCallsForEveryone">모두에게서 삭제</string>
     <string name="DeleteChannelForAll">구독자 모두에게서 삭제</string>
@@ -1434,8 +1433,6 @@
     <string name="EventLogEditedMedia">un1 님이 미디어를 수정했습니다:</string>
     <string name="EventLogEditedMediaCaption">un1 님이 미디어와 설명을 수정했습니다:</string>
     <string name="EventLogEditedMessages">un1 님이 아래 메시지를 수정했습니다:</string>
-    <string name="EventLogEmpty">**활동 없음**\n\n지난 48시간 사이에\n그룹 참가자와 관리자의\n서비스 활동이 없었습니다.</string>
-    <string name="EventLogEmptyChannel">**활동 없음**\n\n지난 48시간 사이에\n채널 관리자가 취한\n서비스 활동이 없습니다.</string>
     <string name="EventLogEmptySearch">**검색하신 활동이 없습니다**\n\n검색어에 해당하는 최근 활동을 찾지 못했습니다.</string>
     <string name="EventLogEmptyTextSearch">\'**%1$s**\'에 관한 최근 활동을 찾지 못했습니다.</string>
     <string name="EventLogEndedVoiceChat">un1 님이 음성 대화를 종료했습니다</string>

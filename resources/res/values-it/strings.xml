@@ -1189,7 +1189,6 @@
     <string name="DeleteBackground_other">Elimina %1$d sfondi</string>
     <string name="DeleteBackground_two">Elimina %1$d sfondi</string>
     <string name="DeleteBackground_zero">Elimina %1$d sfondi</string>
-    <string name="DeleteBanUser">Rimuovi utente</string>
     <string name="DeleteCalls">Elimina chiamate</string>
     <string name="DeleteCallsForEveryone">Elimina per tutti</string>
     <string name="DeleteChannelForAll">Elimina per tutti gli iscritti</string>
@@ -1434,8 +1433,6 @@
     <string name="EventLogEditedMedia">un1 ha modificato un media:</string>
     <string name="EventLogEditedMediaCaption">un1 ha modificato un media e la didascalia:</string>
     <string name="EventLogEditedMessages">un1 ha modificato questo messaggio:</string>
-    <string name="EventLogEmpty">**Ancora nessuna azione**\n\nI membri e gli amministratori del\ngruppo non hanno eseguito azioni\ndi servizio nelle ultime 48 ore.</string>
-    <string name="EventLogEmptyChannel">**Ancora nessuna azione**\n\nGli amministratori del canale non\nhanno eseguito azioni di servizio\nnelle ultime 48 ore.</string>
     <string name="EventLogEmptySearch">**Nessuna azione trovata**\n\nNon sono state trovate azioni recenti\nche rispondono alla tua richiesta.</string>
     <string name="EventLogEmptyTextSearch">Non sono state trovate azioni recenti contenenti \'**%1$s**\' .</string>
     <string name="EventLogEndedVoiceChat">un1 ha terminato la chat vocale</string>

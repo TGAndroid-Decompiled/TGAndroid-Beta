@@ -1189,7 +1189,6 @@
     <string name="DeleteBackground_other">%1$d Achtergronden verwijderen</string>
     <string name="DeleteBackground_two">%1$d Achtergronden verwijderen</string>
     <string name="DeleteBackground_zero">%1$d Achtergronden verwijderen</string>
-    <string name="DeleteBanUser">Blokkeer gebruiker</string>
     <string name="DeleteCalls">Oproepen verwijderen</string>
     <string name="DeleteCallsForEveryone">Verwijder voor iedereen</string>
     <string name="DeleteChannelForAll">Verwijder voor alle abonnees</string>
@@ -1434,8 +1433,6 @@
     <string name="EventLogEditedMedia">un1 wijzigde media:</string>
     <string name="EventLogEditedMediaCaption">un1 wijzigde media en onderschrift:</string>
     <string name="EventLogEditedMessages">bericht door un1 bewerkt:</string>
-    <string name="EventLogEmpty">**Nog geen gebeurtenissen**\n\nBeheerders en leden\nhebben geen acties uitgevoerd\nin de afgelopen 48 uur.</string>
-    <string name="EventLogEmptyChannel">**Nog geen gebeurtenissen**\n\nBeheerders\nhebben geen acties uitgevoerd\nin de afgelopen 48 uur.</string>
     <string name="EventLogEmptySearch">**Geen gebeurtenissen**\n\nGeen recente gebeurtenissen gevonden\nvoor je zoekopdracht.</string>
     <string name="EventLogEmptyTextSearch">Geen recente gebeurtenissen met inhoud \'**%1$s**\' gevonden</string>
     <string name="EventLogEndedVoiceChat">un1 beëindigde de spraakchat</string>

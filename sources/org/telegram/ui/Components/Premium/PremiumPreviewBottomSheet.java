@@ -13,7 +13,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -606,42 +605,14 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     PremiumPreviewBottomSheet.this.titleViewContainer.setClipChildren(false);
                     PremiumPreviewBottomSheet premiumPreviewBottomSheet3 = PremiumPreviewBottomSheet.this;
                     Integer num = premiumPreviewBottomSheet3.accentColor;
-                    final PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(num == null ? premiumPreviewBottomSheet3.getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon) : num.intValue(), PorterDuff.Mode.SRC_IN);
+                    new PorterDuffColorFilter(num == null ? premiumPreviewBottomSheet3.getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon) : num.intValue(), PorterDuff.Mode.SRC_IN);
                     PremiumPreviewBottomSheet.this.titleView = new LinkSpanDrawable.LinksTextView[2];
                     int i3 = 0;
                     while (i3 < 2) {
-                        PremiumPreviewBottomSheet.this.titleView[i3] = new LinkSpanDrawable.LinksTextView(context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
-                            private Layout lastLayout;
-                            AnimatedEmojiSpan.EmojiGroupedSpans stack;
-
+                        PremiumPreviewBottomSheet.this.titleView[i3] = new LinkSpanDrawable.LinksTextView(this, context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
                             @Override
-                            public void onDetachedFromWindow() {
-                                super.onDetachedFromWindow();
-                                AnimatedEmojiSpan.release(this, this.stack);
-                                this.lastLayout = null;
-                            }
-
-                            @Override
-                            protected void dispatchDraw(Canvas canvas2) {
-                                super.dispatchDraw(canvas2);
-                                if (this.lastLayout != getLayout()) {
-                                    AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.stack;
-                                    Layout layout = getLayout();
-                                    this.lastLayout = layout;
-                                    this.stack = AnimatedEmojiSpan.update(3, this, emojiGroupedSpans, layout);
-                                }
-                                AnimatedEmojiSpan.drawAnimatedEmojis(canvas2, getLayout(), this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
-                            }
-
-                            @Override
-                            public void onMeasure(int i4, int i5) {
-                                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(99999999, Integer.MIN_VALUE));
-                            }
-
-                            @Override
-                            public int overrideColor() {
-                                Integer num2 = PremiumPreviewBottomSheet.this.accentColor;
-                                return num2 != null ? Theme.multAlpha(num2.intValue(), 0.1f) : super.overrideColor();
+                            protected int emojiCacheType() {
+                                return 3;
                             }
                         };
                         PremiumPreviewBottomSheet.this.titleView[i3].setVisibility(i3 == 0 ? 0 : 8);

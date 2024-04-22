@@ -806,7 +806,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 getMessagesController().deleteDialog(j, 0, z);
                 return;
             } else {
-                getMessagesController().deleteParticipantFromChat(-j, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())), null, z, z);
+                getMessagesController().deleteParticipantFromChat(-j, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())), (TLRPC$Chat) null, z, z);
                 return;
             }
         }

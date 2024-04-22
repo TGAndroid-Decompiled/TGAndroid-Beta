@@ -75,6 +75,7 @@ import org.telegram.tgnet.TLRPC$PageBlock;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.tgnet.TLRPC$PollAnswer;
 import org.telegram.tgnet.TLRPC$PollResults;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$ReactionCount;
@@ -177,7 +178,6 @@ import org.telegram.tgnet.TLRPC$TL_photoCachedSize;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 import org.telegram.tgnet.TLRPC$TL_photoSizeEmpty;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
-import org.telegram.tgnet.TLRPC$TL_pollAnswer;
 import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
 import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
@@ -260,6 +260,7 @@ public class MessageObject {
     public static Pattern urlPattern;
     private static CharSequence[] userSpan;
     public static Pattern videoTimeUrlPattern;
+    public long actionDeleteGroupEventId;
     public boolean animateComments;
     public int animatedEmojiCount;
     public boolean attachPathExists;
@@ -277,7 +278,7 @@ public class MessageObject {
     private boolean captionTranslated;
     private boolean channelJoined;
     public boolean channelJoinedExpanded;
-    public ArrayList<TLRPC$TL_pollAnswer> checkedVotes;
+    public ArrayList<TLRPC$PollAnswer> checkedVotes;
     public int contentType;
     public int currentAccount;
     public TLRPC$TL_channelAdminLogEvent currentEvent;
@@ -1535,6 +1536,7 @@ public class MessageObject {
     public MessageObject(int i, TL_stories$StoryItem tL_stories$StoryItem) {
         this.type = 1000;
         this.forceSeekTo = -1.0f;
+        this.actionDeleteGroupEventId = -1L;
         this.overrideLinkColor = -1;
         this.overrideLinkEmoji = -1L;
         this.topicIconDrawable = new Drawable[1];
@@ -1560,6 +1562,7 @@ public class MessageObject {
     public MessageObject(int i, TLRPC$Message tLRPC$Message, String str, String str2, String str3, boolean z, boolean z2, boolean z3, boolean z4) {
         this.type = 1000;
         this.forceSeekTo = -1.0f;
+        this.actionDeleteGroupEventId = -1L;
         this.overrideLinkColor = -1;
         this.overrideLinkEmoji = -1L;
         this.topicIconDrawable = new Drawable[1];
@@ -1616,6 +1619,7 @@ public class MessageObject {
         TextPaint textPaint;
         this.type = 1000;
         this.forceSeekTo = -1.0f;
+        this.actionDeleteGroupEventId = -1L;
         this.overrideLinkColor = -1;
         this.overrideLinkEmoji = -1L;
         this.topicIconDrawable = new Drawable[1];
@@ -1913,7 +1917,7 @@ public class MessageObject {
         this.totalAnimatedEmojiCount = 0;
     }
 
-    public MessageObject(int r30, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r31, java.util.ArrayList<org.telegram.messenger.MessageObject> r32, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r33, org.telegram.tgnet.TLRPC$Chat r34, int[] r35, boolean r36) {
+    public MessageObject(int r31, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r32, java.util.ArrayList<org.telegram.messenger.MessageObject> r33, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r34, org.telegram.tgnet.TLRPC$Chat r35, int[] r36, boolean r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 

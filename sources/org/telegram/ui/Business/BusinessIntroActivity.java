@@ -398,7 +398,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     public void onClick(UItem uItem, final View view, int i, float f, float f2) {
         int i2 = uItem.id;
         if (i2 == 1) {
-            EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), true, getResourceProvider());
+            EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), true, getResourceProvider(), true);
             emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
                 @Override
                 public final Object run(Object obj, Object obj2, Object obj3) {

@@ -59,9 +59,7 @@ public class OutlineTextContainerView extends FrameLayout {
     public static void lambda$static$1(OutlineTextContainerView outlineTextContainerView, float f) {
         outlineTextContainerView.selectionProgress = f;
         if (!outlineTextContainerView.forceUseCenter) {
-            Paint paint = outlineTextContainerView.outlinePaint;
-            float f2 = outlineTextContainerView.strokeWidthRegular;
-            paint.setStrokeWidth(f2 + ((outlineTextContainerView.strokeWidthSelected - f2) * f));
+            outlineTextContainerView.outlinePaint.setStrokeWidth(AndroidUtilities.lerp(outlineTextContainerView.strokeWidthRegular, outlineTextContainerView.strokeWidthSelected, f));
             outlineTextContainerView.updateColor();
         }
         outlineTextContainerView.invalidate();
@@ -85,7 +83,7 @@ public class OutlineTextContainerView extends FrameLayout {
         this.selectionSpring = new SpringAnimation(this, SELECTION_PROGRESS_PROPERTY);
         this.errorSpring = new SpringAnimation(this, ERROR_PROGRESS_PROPERTY);
         this.strokeWidthRegular = Math.max(2, AndroidUtilities.dp(0.5f));
-        this.strokeWidthSelected = AndroidUtilities.dp(1.5f);
+        this.strokeWidthSelected = AndroidUtilities.dp(1.6667f);
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         this.textPaint.setTextSize(AndroidUtilities.dp(16.0f));
@@ -176,7 +174,7 @@ public class OutlineTextContainerView extends FrameLayout {
         this.rect.set(getPaddingLeft() + AndroidUtilities.dp(10.0f), getPaddingTop(), (getWidth() - AndroidUtilities.dp(18.0f)) - getPaddingRight(), getPaddingTop() + (strokeWidth * 2.0f));
         canvas.clipRect(this.rect, Region.Op.DIFFERENCE);
         this.rect.set(getPaddingLeft() + strokeWidth, getPaddingTop() + strokeWidth, (getWidth() - strokeWidth) - getPaddingRight(), (getHeight() - strokeWidth) - getPaddingBottom());
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.outlinePaint);
+        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.outlinePaint);
         canvas.restore();
         float paddingLeft = getPaddingLeft() + AndroidUtilities.dp(10.0f);
         float paddingTop2 = getPaddingTop() + strokeWidth;

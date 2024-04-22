@@ -114,20 +114,32 @@ public class GroupColorActivity extends ChannelColorActivity {
         int i9 = i8 + 1;
         this.rowsCount = i9;
         this.statusEmojiRow = i8;
-        int i10 = i9 + 1;
-        this.rowsCount = i10;
+        this.rowsCount = i9 + 1;
         this.statusHintRow = i9;
-        int i11 = i10 + 1;
-        this.rowsCount = i11;
-        this.messagesPreviewRow = i10;
-        int i12 = i11 + 1;
-        this.rowsCount = i12;
-        this.wallpaperThemesRow = i11;
+        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+        if (chatFull != null && chatFull.can_set_stickers) {
+            int i10 = this.rowsCount;
+            int i11 = i10 + 1;
+            this.rowsCount = i11;
+            this.packStickerRow = i10;
+            this.rowsCount = i11 + 1;
+            this.packStickerHintRow = i11;
+        } else {
+            this.packStickerRow = -1;
+            this.packStickerHintRow = -1;
+        }
+        int i12 = this.rowsCount;
         int i13 = i12 + 1;
         this.rowsCount = i13;
-        this.wallpaperRow = i12;
-        this.rowsCount = i13 + 1;
-        this.wallpaperHintRow = i13;
+        this.messagesPreviewRow = i12;
+        int i14 = i13 + 1;
+        this.rowsCount = i14;
+        this.wallpaperThemesRow = i13;
+        int i15 = i14 + 1;
+        this.rowsCount = i15;
+        this.wallpaperRow = i14;
+        this.rowsCount = i15 + 1;
+        this.wallpaperHintRow = i15;
     }
 
     @Override
@@ -149,6 +161,16 @@ public class GroupColorActivity extends ChannelColorActivity {
     @Override
     protected int getEmojiPackInfoStrRes() {
         return R.string.GroupEmojiPackInfo;
+    }
+
+    @Override
+    protected int getStickerPackStrRes() {
+        return R.string.GroupStickerPack;
+    }
+
+    @Override
+    protected int getStickerPackInfoStrRes() {
+        return R.string.GroupStickerPackInfo;
     }
 
     @Override

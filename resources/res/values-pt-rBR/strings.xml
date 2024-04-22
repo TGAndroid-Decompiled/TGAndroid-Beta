@@ -1189,7 +1189,6 @@
     <string name="DeleteBackground_other">Apagar %1$d papéis de parede</string>
     <string name="DeleteBackground_two">Apagar %1$d papéis de parede</string>
     <string name="DeleteBackground_zero">Apagar %1$d papéis de parede</string>
-    <string name="DeleteBanUser">Banir usuário</string>
     <string name="DeleteCalls">Apagar chamadas</string>
     <string name="DeleteCallsForEveryone">Apagar para todos</string>
     <string name="DeleteChannelForAll">Apagar para todos inscritos</string>
@@ -1434,8 +1433,6 @@
     <string name="EventLogEditedMedia">un1 editou a mídia:</string>
     <string name="EventLogEditedMediaCaption">un1 editou a mídia e a legenda:</string>
     <string name="EventLogEditedMessages">un1 editou esta mensagem:</string>
-    <string name="EventLogEmpty">**Nenhuma ação ainda**\n\nOs membros e admins do grupo\nainda não tomaram nenhuma ação\nnas últimas 48 horas.</string>
-    <string name="EventLogEmptyChannel">**Nenhuma ação ainda**\n\nOs admins do canal não fizeram nenhuma ação de serviço nas últimas 48 horas.</string>
     <string name="EventLogEmptySearch">**Nenhuma ação encontrada**\n\nNenhuma ação recente corresponde à sua busca.</string>
     <string name="EventLogEmptyTextSearch">Nenhuma ação recente que contenha \"**%1$s**\" foi encontrada.</string>
     <string name="EventLogEndedVoiceChat">un1 encerrou o chat de voz</string>

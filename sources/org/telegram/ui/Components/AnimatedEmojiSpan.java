@@ -25,6 +25,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Document;
@@ -1098,14 +1099,16 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             float paddingTop = ((getGravity() & 16) == 0 || getLayout() == null) ? 0.0f : getPaddingTop() + ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f);
-            if (paddingTop != 0.0f) {
+            float paddingRight = LocaleController.isRTL ? getPaddingRight() : getPaddingLeft();
+            if (paddingTop != 0.0f || paddingRight != 0.0f) {
                 canvas.save();
-                canvas.translate(0.0f, paddingTop);
+                canvas.translate(paddingRight, paddingTop);
             }
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, getLayout(), this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
-            if (paddingTop != 0.0f) {
-                canvas.restore();
+            if (paddingTop == 0.0f && paddingRight == 0.0f) {
+                return;
             }
+            canvas.restore();
         }
     }
 }

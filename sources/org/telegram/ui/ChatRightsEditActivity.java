@@ -99,6 +99,7 @@ public class ChatRightsEditActivity extends BaseFragment {
     private float asAdminT;
     private int banUsersRow;
     private TLRPC$TL_chatBannedRights bannedRights;
+    public boolean banning;
     private String botHash;
     private boolean canEdit;
     private int cantEditInfoRow;
@@ -680,6 +681,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                     }
                     finishFragment();
                 } else if (i4 == 1) {
+                    this.banning = true;
                     TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights3 = new TLRPC$TL_chatBannedRights();
                     this.bannedRights = tLRPC$TL_chatBannedRights3;
                     tLRPC$TL_chatBannedRights3.view_messages = true;
@@ -2541,6 +2543,9 @@ public class ChatRightsEditActivity extends BaseFragment {
         tLRPC$TL_chatBannedRights.send_photos = !z;
         tLRPC$TL_chatBannedRights.send_videos = !z;
         tLRPC$TL_chatBannedRights.send_stickers = !z;
+        tLRPC$TL_chatBannedRights.send_gifs = !z;
+        tLRPC$TL_chatBannedRights.send_games = !z;
+        tLRPC$TL_chatBannedRights.send_inline = !z;
         tLRPC$TL_chatBannedRights.send_audios = !z;
         tLRPC$TL_chatBannedRights.send_docs = !z;
         tLRPC$TL_chatBannedRights.send_voices = !z;

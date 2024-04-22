@@ -68,6 +68,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -380,6 +381,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
             public static boolean $default$isUserSelf(EmojiViewDelegate emojiViewDelegate) {
                 return false;
+            }
+
+            public static void $default$onAnimatedEmojiUnlockClick(EmojiViewDelegate emojiViewDelegate) {
             }
 
             public static void $default$onEmojiSettingsClick(EmojiViewDelegate emojiViewDelegate, ArrayList arrayList) {
@@ -1027,7 +1031,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             });
             this.box.addView(this.clear, LayoutHelper.createFrame(36, 36, 53));
             if (i != 1 || (r23.allowAnimatedEmoji && UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-                StickerCategoriesListView stickerCategoriesListView = new StickerCategoriesListView(context, null, 0, r23.resourcesProvider, r23, i) {
+                StickerCategoriesListView stickerCategoriesListView = new StickerCategoriesListView(context, null, i == 0 ? 3 : 0, r23.resourcesProvider, r23, i) {
                     final int val$type;
 
                     {
@@ -9349,6 +9353,53 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 runnable.run();
             }
 
+            public void addPremiumStickers(Runnable runnable) {
+                HashMap<String, ArrayList<TLRPC$Document>> allStickers = MediaDataController.getInstance(EmojiView.this.currentAccount).getAllStickers();
+                HashSet hashSet = new HashSet();
+                ArrayList arrayList = new ArrayList();
+                for (ArrayList<TLRPC$Document> arrayList2 : allStickers.values()) {
+                    Iterator<TLRPC$Document> it = arrayList2.iterator();
+                    while (it.hasNext()) {
+                        TLRPC$Document next = it.next();
+                        if (!hashSet.contains(Long.valueOf(next.id)) && MessageObject.isPremiumSticker(next)) {
+                            hashSet.add(Long.valueOf(next.id));
+                            arrayList.add(next);
+                            this.emojiStickersMap.put(next.id, next);
+                        }
+                    }
+                }
+                Iterator<TLRPC$StickerSetCovered> it2 = MediaDataController.getInstance(EmojiView.this.currentAccount).getFeaturedStickerSets().iterator();
+                while (it2.hasNext()) {
+                    TLRPC$StickerSetCovered next2 = it2.next();
+                    TLRPC$Document tLRPC$Document = next2.cover;
+                    if (tLRPC$Document != null && !hashSet.contains(Long.valueOf(tLRPC$Document.id)) && MessageObject.isPremiumSticker(next2.cover)) {
+                        hashSet.add(Long.valueOf(next2.cover.id));
+                        arrayList.add(next2.cover);
+                        LongSparseArray<TLRPC$Document> longSparseArray = this.emojiStickersMap;
+                        TLRPC$Document tLRPC$Document2 = next2.cover;
+                        longSparseArray.put(tLRPC$Document2.id, tLRPC$Document2);
+                    }
+                    ArrayList<TLRPC$Document> arrayList3 = next2.covers;
+                    if (arrayList3 != null) {
+                        Iterator<TLRPC$Document> it3 = arrayList3.iterator();
+                        while (it3.hasNext()) {
+                            TLRPC$Document next3 = it3.next();
+                            if (!hashSet.contains(Long.valueOf(next3.id)) && MessageObject.isPremiumSticker(next3)) {
+                                hashSet.add(Long.valueOf(next3.id));
+                                arrayList.add(next3);
+                                this.emojiStickersMap.put(next3.id, next3);
+                            }
+                        }
+                    }
+                }
+                if (!arrayList.isEmpty()) {
+                    this.emojiStickersArray.addAll(arrayList);
+                    this.emojiStickers.put(this.emojiStickersArray, StickersSearchGridAdapter.this.searchQuery);
+                    this.emojiArrays.add(this.emojiStickersArray);
+                }
+                runnable.run();
+            }
+
             public void addLocalPacks(Runnable runnable) {
                 int indexOfIgnoreCase;
                 int indexOfIgnoreCase2;
@@ -9500,37 +9551,51 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 this.emojiStickersArray.clear();
                 this.emojiStickersMap.clear();
                 EmojiView.this.stickersSearchField.showProgress(true);
-                Utilities.raceCallbacks(new Runnable() {
-                    @Override
-                    public final void run() {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchFinish();
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addFromAllStickers((Runnable) obj);
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addFromSuggestions((Runnable) obj);
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addLocalPacks((Runnable) obj);
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchStickerSets((Runnable) obj);
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchStickers((Runnable) obj);
-                    }
-                });
+                if ("premium".equalsIgnoreCase(this.query)) {
+                    Utilities.raceCallbacks(new Runnable() {
+                        @Override
+                        public final void run() {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchFinish();
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addPremiumStickers((Runnable) obj);
+                        }
+                    });
+                } else {
+                    Utilities.raceCallbacks(new Runnable() {
+                        @Override
+                        public final void run() {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchFinish();
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addFromAllStickers((Runnable) obj);
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addFromSuggestions((Runnable) obj);
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.addLocalPacks((Runnable) obj);
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchStickerSets((Runnable) obj);
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.this.searchStickers((Runnable) obj);
+                        }
+                    });
+                }
             }
         }
 

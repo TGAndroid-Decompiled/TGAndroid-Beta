@@ -1,11 +1,15 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.text.Layout;
@@ -495,6 +499,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         private boolean disablePaddingsOffset;
         private boolean disablePaddingsOffsetX;
         private boolean disablePaddingsOffsetY;
+        private ColorFilter emojiColorFilter;
         private boolean isCustomLinkCollector;
         private final LinkCollector links;
         private boolean loggedError;
@@ -506,6 +511,10 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public interface OnLinkPress {
             void run(ClickableSpan clickableSpan);
+        }
+
+        protected int emojiCacheType() {
+            return 0;
         }
 
         protected int processColor(int i) {
@@ -648,32 +657,44 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         @Override
-        public void onDraw(android.graphics.Canvas r14) {
+        public void onDraw(android.graphics.Canvas r15) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
         }
 
         @Override
         public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
             super.setText(charSequence, bufferType);
-            this.stack = AnimatedEmojiSpan.update(0, this, this.stack, getLayout());
+            this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
         }
 
         @Override
         public void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
-            this.stack = AnimatedEmojiSpan.update(0, this, this.stack, getLayout());
+            this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
         }
 
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
-            this.stack = AnimatedEmojiSpan.update(0, this, this.stack, getLayout());
+            this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
         }
 
         @Override
         public void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             AnimatedEmojiSpan.release(this, this.stack);
+        }
+
+        @Override
+        public void setTextColor(int i) {
+            super.setTextColor(i);
+            this.emojiColorFilter = new PorterDuffColorFilter(getPaint().linkColor, PorterDuff.Mode.SRC_IN);
+        }
+
+        @Override
+        public void setTextColor(ColorStateList colorStateList) {
+            super.setTextColor(colorStateList);
+            this.emojiColorFilter = new PorterDuffColorFilter(getPaint().linkColor, PorterDuff.Mode.SRC_IN);
         }
     }
 

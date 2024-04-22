@@ -27,6 +27,7 @@ import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorCountryCell;
@@ -81,7 +82,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 6;
+        return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 6 || viewHolder.getItemViewType() == 9;
     }
 
     @Override
@@ -103,6 +104,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             selectorUserCell = new SelectorCountryCell(this.context, this.resourcesProvider);
         } else if (i == 8) {
             selectorUserCell = new GraySectionCell(this.context, this.resourcesProvider);
+        } else if (i == 9) {
+            TextCell textCell = new TextCell(this.context, this.resourcesProvider);
+            textCell.leftPadding = 16;
+            textCell.imageLeft = 19;
+            selectorUserCell = textCell;
         } else {
             selectorUserCell = new View(this.context);
         }
@@ -186,7 +192,13 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
                 ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
             } catch (Exception unused) {
             }
-        } else if (itemViewType == 8) {
+        } else if (itemViewType != 8) {
+            if (itemViewType == 9) {
+                TextCell textCell = (TextCell) viewHolder.itemView;
+                textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
+                textCell.setTextAndIcon(item.text, item.resId, false);
+            }
+        } else {
             GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
             if (TextUtils.equals(graySectionCell.getText(), item.text)) {
                 CharSequence charSequence = item.subtext;
@@ -285,9 +297,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         public TLRPC$Chat chat;
         public boolean checked;
         public TLRPC$TL_help_country country;
+        public int id;
         public View.OnClickListener options;
         public int padHeight;
         public TLRPC$InputPeer peer;
+        public int resId;
         public CharSequence subtext;
         public CharSequence text;
         public int type;
@@ -301,6 +315,14 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         public static Item asPad(int i) {
             Item item = new Item(-1, false);
             item.padHeight = i;
+            return item;
+        }
+
+        public static Item asButton(int i, int i2, String str) {
+            Item item = new Item(9, false);
+            item.id = i;
+            item.resId = i2;
+            item.text = str;
             return item;
         }
 
@@ -389,7 +411,10 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
                     int i2 = this.viewType;
                     if (i2 != 6 || this.country == item.country) {
                         if (i2 != 7 || TextUtils.equals(this.text, item.text)) {
-                            return this.viewType != 8 || TextUtils.equals(this.text, item.text);
+                            if (this.viewType != 8 || TextUtils.equals(this.text, item.text)) {
+                                return this.viewType != 9 || (TextUtils.equals(this.text, item.text) && this.id == item.id && this.resId == item.resId);
+                            }
+                            return false;
                         }
                         return false;
                     }

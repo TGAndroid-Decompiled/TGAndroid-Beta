@@ -1364,7 +1364,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 i3 = R.string.KickFromGroup;
                 str3 = "KickFromGroup";
             }
-            addIf.addIf(z12, i5, LocaleController.getString(str3, i3), true, new Runnable() {
+            addIf.addIf(z12, i5, (CharSequence) LocaleController.getString(str3, i3), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$13(user, j4);

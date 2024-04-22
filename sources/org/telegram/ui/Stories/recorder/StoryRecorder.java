@@ -4440,7 +4440,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.titleTextView.setText(LocaleController.getString(R.string.RecorderRepost));
             } else if (storyEntry15 != null && storyEntry15.isRepost) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                AvatarSpan avatarSpan = new AvatarSpan(this.titleTextView, this.currentAccount, 32);
+                AvatarSpan avatarSpan = new AvatarSpan(this.titleTextView, this.currentAccount, 32.0f);
                 this.titleTextView.setTranslationX(-AndroidUtilities.dp(6.0f));
                 SpannableString spannableString = new SpannableString("a");
                 spannableString.setSpan(avatarSpan, 0, 1, 33);

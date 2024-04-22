@@ -54,7 +54,24 @@ public class DocumentObject {
         }
     }
 
+    public static boolean containsPhotoSizeType(ArrayList<TLRPC$PhotoSize> arrayList, String str) {
+        if (str == null) {
+            return false;
+        }
+        int size = arrayList.size();
+        for (int i = 0; i < size; i++) {
+            if (str.equalsIgnoreCase(arrayList.get(i).type)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f) {
+        return getSvgThumb(arrayList, i, f, false);
+    }
+
+    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f, boolean z) {
         int size = arrayList.size();
         int i2 = LiteMode.FLAG_CALLS_ANIMATIONS;
         TLRPC$TL_photoPathSize tLRPC$TL_photoPathSize = null;
@@ -63,7 +80,7 @@ public class DocumentObject {
             TLRPC$PhotoSize tLRPC$PhotoSize = arrayList.get(i4);
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
                 tLRPC$TL_photoPathSize = (TLRPC$TL_photoPathSize) tLRPC$PhotoSize;
-            } else if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) && "v".equals(tLRPC$PhotoSize.type)) {
+            } else if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) && z) {
                 i2 = tLRPC$PhotoSize.w;
                 i3 = tLRPC$PhotoSize.h;
             }

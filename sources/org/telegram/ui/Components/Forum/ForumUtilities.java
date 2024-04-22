@@ -182,13 +182,22 @@ public class ForumUtilities {
     }
 
     public static void openTopic(BaseFragment baseFragment, long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
+        ChatActivity chatActivityForTopic = getChatActivityForTopic(baseFragment, j, tLRPC$TL_forumTopic, i, new Bundle());
+        if (chatActivityForTopic != null) {
+            baseFragment.presentFragment(chatActivityForTopic);
+        }
+    }
+
+    public static ChatActivity getChatActivityForTopic(BaseFragment baseFragment, long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i, Bundle bundle) {
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic2;
         TLRPC$TL_forumTopic findTopic;
         if (baseFragment == null || tLRPC$TL_forumTopic == null) {
-            return;
+            return null;
         }
         TLRPC$Chat chat = baseFragment.getMessagesController().getChat(Long.valueOf(j));
-        Bundle bundle = new Bundle();
+        if (bundle == null) {
+            bundle = new Bundle();
+        }
         bundle.putLong("chat_id", j);
         if (i != 0) {
             bundle.putInt("message_id", i);
@@ -206,7 +215,7 @@ public class ForumUtilities {
             tLRPC$TL_forumTopic2 = findTopic;
         }
         if (tLRPC$Message == null) {
-            return;
+            return null;
         }
         ArrayList<MessageObject> arrayList = new ArrayList<>();
         arrayList.add(new MessageObject(baseFragment.getCurrentAccount(), tLRPC$Message, false, false));
@@ -214,7 +223,7 @@ public class ForumUtilities {
         if (i != 0) {
             chatActivity.highlightMessageId = i;
         }
-        baseFragment.presentFragment(chatActivity);
+        return chatActivity;
     }
 
     public static CharSequence getTopicSpannedName(TLRPC$ForumTopic tLRPC$ForumTopic, Paint paint, boolean z) {

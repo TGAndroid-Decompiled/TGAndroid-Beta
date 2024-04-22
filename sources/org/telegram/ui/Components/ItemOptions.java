@@ -144,6 +144,10 @@ public class ItemOptions {
         return !z ? this : add(i, charSequence, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_actionBarDefaultSubmenuItem, runnable);
     }
 
+    public ItemOptions addIf(boolean z, int i, Drawable drawable, CharSequence charSequence, Runnable runnable) {
+        return !z ? this : add(i, drawable, charSequence, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_actionBarDefaultSubmenuItem, runnable);
+    }
+
     public ItemOptions add(CharSequence charSequence, Runnable runnable) {
         return add(0, charSequence, false, runnable);
     }
@@ -160,14 +164,18 @@ public class ItemOptions {
         return add(i, charSequence, i2, i2, runnable);
     }
 
-    public ItemOptions add(int i, CharSequence charSequence, int i2, int i3, final Runnable runnable) {
+    public ItemOptions add(int i, CharSequence charSequence, int i2, int i3, Runnable runnable) {
+        return add(i, null, charSequence, i2, i3, runnable);
+    }
+
+    public ItemOptions add(int i, Drawable drawable, CharSequence charSequence, int i2, int i3, final Runnable runnable) {
         if (this.context == null) {
             return this;
         }
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, false, false, this.resourcesProvider);
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp((LocaleController.isRTL ? 0 : 8) + 18), 0);
-        if (i != 0) {
-            actionBarMenuSubItem.setTextAndIcon(charSequence, i);
+        if (i != 0 || drawable != null) {
+            actionBarMenuSubItem.setTextAndIcon(charSequence, i, drawable);
         } else {
             actionBarMenuSubItem.setText(charSequence);
         }

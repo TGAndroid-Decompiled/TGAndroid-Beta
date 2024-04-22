@@ -13,6 +13,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesActivity;
+import org.telegram.ui.Cells.CheckBoxCell;
+import org.telegram.ui.Cells.CollapseTextCell;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.DialogRadioCell;
 import org.telegram.ui.Cells.GraySectionCell;
@@ -22,6 +24,7 @@ import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.Cells.TextCheckCell2;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextRightIconCell;
 import org.telegram.ui.Cells.UserCell;
@@ -39,26 +42,36 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     private final int currentAccount;
     private Section currentReorderSection;
     private Section currentWhiteSection;
+    private final boolean dialog;
     protected Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> fillItems;
+    private final ArrayList<UItem> items;
     protected final RecyclerListView listView;
+    private final ArrayList<UItem> oldItems;
     private Utilities.Callback2<Integer, ArrayList<UItem>> onReordered;
     private boolean orderChanged;
     private int orderChangedId;
+    private final ArrayList<Section> reorderSections;
     private final Theme.ResourcesProvider resourcesProvider;
-    private final ArrayList<UItem> oldItems = new ArrayList<>();
-    private final ArrayList<UItem> items = new ArrayList<>();
-    private final ArrayList<Section> whiteSections = new ArrayList<>();
-    private final ArrayList<Section> reorderSections = new ArrayList<>();
+    private final ArrayList<Section> whiteSections;
 
     private boolean isShadow(int i) {
-        return i == 7 || i == 8 || i == 31 || i == 34;
+        return i == 7 || i == 8 || i == 38 || i == 31 || i == 34;
     }
 
     public UniversalAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Theme.ResourcesProvider resourcesProvider) {
+        this(recyclerListView, context, i, i2, false, callback2, resourcesProvider);
+    }
+
+    public UniversalAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, boolean z, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Theme.ResourcesProvider resourcesProvider) {
+        this.oldItems = new ArrayList<>();
+        this.items = new ArrayList<>();
+        this.whiteSections = new ArrayList<>();
+        this.reorderSections = new ArrayList<>();
         this.listView = recyclerListView;
         this.context = context;
         this.currentAccount = i;
         this.classGuid = i2;
+        this.dialog = z;
         this.fillItems = callback2;
         this.resourcesProvider = resourcesProvider;
         update(false);
@@ -178,7 +191,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             Section section = this.whiteSections.get(i);
             int i2 = section.end;
             if (i2 >= 0) {
-                recyclerListView.drawSectionBackground(canvas, section.start, i2, getThemedColor(Theme.key_windowBackgroundWhite));
+                recyclerListView.drawSectionBackground(canvas, section.start, i2, getThemedColor(this.dialog ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite));
             }
         }
     }
@@ -202,32 +215,39 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view;
         FlickerLoadingView flickerLoadingView;
+        boolean z = this.dialog;
+        int i2 = z ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite;
         switch (i) {
             case -1:
                 flickerLoadingView = new FrameLayout(this, this.context) {
                     @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), i3);
+                    protected void onMeasure(int i3, int i4) {
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
                     }
                 };
                 break;
             case 0:
-                View headerCell = new HeaderCell(this.context, this.resourcesProvider);
-                headerCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                flickerLoadingView = headerCell;
+                if (z) {
+                    view = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, this.resourcesProvider);
+                } else {
+                    view = new HeaderCell(this.context, this.resourcesProvider);
+                }
+                view.setBackgroundColor(getThemedColor(i2));
+                flickerLoadingView = view;
                 break;
             case 1:
-                View headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, false, this.resourcesProvider);
-                headerCell2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                flickerLoadingView = headerCell2;
+                View headerCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, false, this.resourcesProvider);
+                headerCell.setBackgroundColor(getThemedColor(i2));
+                flickerLoadingView = headerCell;
                 break;
             case 2:
                 flickerLoadingView = new TopViewCell(this.context, this.resourcesProvider);
                 break;
             case 3:
                 View textCell = new TextCell(this.context, this.resourcesProvider);
-                textCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                textCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = textCell;
                 break;
             case 4:
@@ -239,13 +259,13 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     textCheckCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     textCheckCell.setHeight(56);
                 }
-                textCheckCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                textCheckCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = textCheckCell;
                 break;
             case 5:
             case 6:
                 View notificationsCheckCell = new NotificationsCheckCell(this.context, 21, 60, i == 6, this.resourcesProvider);
-                notificationsCheckCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                notificationsCheckCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = notificationsCheckCell;
                 break;
             case 7:
@@ -255,39 +275,39 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 break;
             case 10:
                 View dialogRadioCell = new DialogRadioCell(this.context);
-                dialogRadioCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                dialogRadioCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = dialogRadioCell;
                 break;
             case 11:
             case 12:
                 UserCell userCell = new UserCell(this.context, 6, i == 12 ? 3 : 0, false);
                 userCell.setSelfAsSavedMessages(true);
-                userCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                userCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = userCell;
                 break;
             case 13:
                 UserCell userCell2 = new UserCell(this.context, 6, 0, false, true);
-                userCell2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                userCell2.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = userCell2;
                 break;
             case 14:
                 View slideChooseView = new SlideChooseView(this.context, this.resourcesProvider);
-                slideChooseView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                slideChooseView.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = slideChooseView;
                 break;
             case 15:
                 View slideIntChooseView = new SlideIntChooseView(this.context, this.resourcesProvider);
-                slideIntChooseView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                slideIntChooseView.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = slideIntChooseView;
                 break;
             case 16:
                 View quickReplyView = new QuickRepliesActivity.QuickReplyView(this.context, this.onReordered != null, this.resourcesProvider);
-                quickReplyView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                quickReplyView.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = quickReplyView;
                 break;
             case 17:
                 View largeQuickReplyView = new QuickRepliesActivity.LargeQuickReplyView(this.context, this.resourcesProvider);
-                largeQuickReplyView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                largeQuickReplyView.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = largeQuickReplyView;
                 break;
             case 18:
@@ -300,44 +320,43 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     this.chartSharedUI = new BaseChartView.SharedUiComponents();
                 }
                 View universalChartCell = new StatisticActivity.UniversalChartCell(this.context, this.currentAccount, i - 18, this.chartSharedUI, this.classGuid);
-                universalChartCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                universalChartCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = universalChartCell;
                 break;
             case 24:
                 View proceedOverviewCell = new ChannelMonetizationLayout.ProceedOverviewCell(this.context, this.resourcesProvider);
-                proceedOverviewCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                proceedOverviewCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = proceedOverviewCell;
                 break;
             case 25:
                 View transactionCell = new ChannelMonetizationLayout.TransactionCell(this.context, this.resourcesProvider);
-                transactionCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                transactionCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = transactionCell;
                 break;
             case 26:
-                HeaderCell headerCell3 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 8, 10, false, this.resourcesProvider);
-                headerCell3.setTextSize(20.0f);
-                headerCell3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                flickerLoadingView = headerCell3;
+                HeaderCell headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 20, 0, false, this.resourcesProvider);
+                headerCell2.setTextSize(20.0f);
+                flickerLoadingView = headerCell2;
                 break;
             case 27:
                 StoryPrivacyBottomSheet.UserCell userCell3 = new StoryPrivacyBottomSheet.UserCell(this.context, this.resourcesProvider);
                 userCell3.setIsSendAs(false, false);
-                userCell3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                userCell3.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = userCell3;
                 break;
             case 28:
-                View view = new View(this.context);
-                view.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                flickerLoadingView = view;
+                View view2 = new View(this.context);
+                view2.setBackgroundColor(getThemedColor(i2));
+                flickerLoadingView = view2;
                 break;
             case 29:
                 View businessLinkView = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
-                businessLinkView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                businessLinkView.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = businessLinkView;
                 break;
             case R.styleable.AppCompatTheme_actionModeTheme:
                 View textRightIconCell = new TextRightIconCell(this.context, this.resourcesProvider);
-                textRightIconCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                textRightIconCell.setBackgroundColor(getThemedColor(i2));
                 flickerLoadingView = textRightIconCell;
                 break;
             case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
@@ -359,6 +378,29 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 flickerLoadingView2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 flickerLoadingView = flickerLoadingView2;
                 break;
+            case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+            case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+            case R.styleable.AppCompatTheme_alertDialogStyle:
+            case R.styleable.AppCompatTheme_buttonBarButtonStyle:
+                CheckBoxCell checkBoxCell = new CheckBoxCell(this.context, i == 35 ? 4 : i == 36 ? 6 : i == 37 ? 7 : i == 41 ? 8 : 0, 21, true, this.resourcesProvider);
+                checkBoxCell.getCheckBoxRound().setColor(Theme.key_switch2TrackChecked, Theme.key_radioBackground, Theme.key_checkboxCheck);
+                checkBoxCell.setBackgroundColor(getThemedColor(i2));
+                flickerLoadingView = checkBoxCell;
+                break;
+            case R.styleable.AppCompatTheme_alertDialogTheme:
+                flickerLoadingView = new CollapseTextCell(this.context, this.resourcesProvider);
+                break;
+            case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
+            case R.styleable.AppCompatTheme_borderlessButtonStyle:
+                View textCheckCell2 = new TextCheckCell2(this.context);
+                textCheckCell2.setBackgroundColor(getThemedColor(i2));
+                flickerLoadingView = textCheckCell2;
+                break;
+            case R.styleable.AppCompatTheme_buttonBarNegativeButtonStyle:
+                View headerCell3 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, true, this.resourcesProvider);
+                headerCell3.setBackgroundColor(getThemedColor(i2));
+                flickerLoadingView = headerCell3;
+                break;
         }
         return new RecyclerListView.Holder(flickerLoadingView);
     }
@@ -379,7 +421,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r22, int r23) {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UniversalAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
@@ -396,6 +438,10 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             return (StatisticActivity.UniversalChartCell) findViewByItemObject;
         }
         return null;
+    }
+
+    public static void lambda$onBindViewHolder$2(UItem uItem, TextCheckCell2 textCheckCell2) {
+        uItem.clickCallback.onClick(textCheckCell2);
     }
 
     private View findViewByItemObject(Object obj) {
@@ -444,7 +490,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         int itemViewType = viewHolder.getItemViewType();
         UItem item = getItem(viewHolder.getAdapterPosition());
-        return (itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 30 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 29 || itemViewType == 25 || itemViewType == 27 || itemViewType == 32 || itemViewType == 33) && (item == null || item.enabled);
+        return (itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 30 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 29 || itemViewType == 25 || itemViewType == 27 || itemViewType == 32 || itemViewType == 33 || itemViewType == 35 || itemViewType == 36 || itemViewType == 37 || itemViewType == 41 || itemViewType == 39 || itemViewType == 40) && (item == null || item.enabled);
     }
 
     public UItem getItem(int i) {

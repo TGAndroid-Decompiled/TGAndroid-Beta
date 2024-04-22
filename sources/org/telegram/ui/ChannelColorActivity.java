@@ -156,6 +156,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     private final Drawable msgOutHalfCheckDrawable;
     protected int packEmojiHintRow;
     protected int packEmojiRow;
+    protected int packStickerHintRow;
+    protected int packStickerRow;
     private Theme.ResourcesProvider parentResourcesProvider;
     protected int profileColorGridRow;
     protected int profileEmojiRow;
@@ -199,6 +201,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
     protected int getMessagePreviewType() {
         return 3;
+    }
+
+    protected int getStickerPackInfoStrRes() {
+        return 0;
+    }
+
+    protected int getStickerPackStrRes() {
+        return 0;
     }
 
     protected boolean needBoostInfoSection() {
@@ -599,6 +609,15 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     public void lambda$createView$4(TLRPC$ChatFull tLRPC$ChatFull, final View view, final int i) {
         long j = 0;
         if (view instanceof EmojiCell) {
+            if (i == this.packStickerRow) {
+                if (tLRPC$ChatFull == null) {
+                    return;
+                }
+                GroupStickersActivity groupStickersActivity = new GroupStickersActivity(-this.dialogId);
+                groupStickersActivity.setInfo(tLRPC$ChatFull);
+                presentFragment(groupStickersActivity);
+                return;
+            }
             if (i == this.replyEmojiRow) {
                 j = this.selectedReplyEmoji;
             } else if (i == this.profileEmojiRow) {
@@ -614,9 +633,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     openBoostDialog(29);
                     return;
                 }
-                GroupStickersActivity groupStickersActivity = new GroupStickersActivity(-this.dialogId, true);
-                groupStickersActivity.setInfo(tLRPC$ChatFull);
-                presentFragment(groupStickersActivity);
+                GroupStickersActivity groupStickersActivity2 = new GroupStickersActivity(-this.dialogId, true);
+                groupStickersActivity2.setInfo(tLRPC$ChatFull);
+                presentFragment(groupStickersActivity2);
                 return;
             }
             showSelectStatusDialog((EmojiCell) view, j2, i == this.statusEmojiRow, new Utilities.Callback2() {
@@ -1283,6 +1302,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             TLRPC$StickerSet tLRPC$StickerSet;
+            TLRPC$StickerSet tLRPC$StickerSet2;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 1) {
                 ProfilePreview profilePreview = (ProfilePreview) viewHolder.itemView;
@@ -1326,6 +1346,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     textInfoPrivacyCell.setText(LocaleController.getString(channelColorActivity3.getEmojiStatusInfoStrRes()));
                 } else if (i == channelColorActivity3.packEmojiHintRow) {
                     textInfoPrivacyCell.setText(LocaleController.getString(channelColorActivity3.getEmojiPackInfoStrRes()));
+                } else if (i == channelColorActivity3.packStickerHintRow) {
+                    textInfoPrivacyCell.setText(LocaleController.getString(channelColorActivity3.getStickerPackInfoStrRes()));
                 } else if (i == channelColorActivity3.removeProfileColorShadowRow) {
                     textInfoPrivacyCell.setText("");
                     textInfoPrivacyCell.setFixedSize(12);
@@ -1378,8 +1400,17 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         emojiCell.setLockLevel(0);
                     }
                     TLRPC$ChatFull chatFull = ChannelColorActivity.this.getMessagesController().getChatFull(-ChannelColorActivity.this.dialogId);
-                    if (chatFull != null && (tLRPC$StickerSet = chatFull.emojiset) != null) {
-                        emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumbId(tLRPC$StickerSet), false);
+                    if (chatFull != null && (tLRPC$StickerSet2 = chatFull.emojiset) != null) {
+                        emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumbId(tLRPC$StickerSet2), false);
+                    } else {
+                        emojiCell.setEmoji(0L, false);
+                    }
+                } else if (i == channelColorActivity5.packStickerRow) {
+                    emojiCell.setText(LocaleController.getString(channelColorActivity5.getStickerPackStrRes()));
+                    emojiCell.setLockLevel(0);
+                    TLRPC$ChatFull chatFull2 = ChannelColorActivity.this.getMessagesController().getChatFull(-ChannelColorActivity.this.dialogId);
+                    if (chatFull2 != null && (tLRPC$StickerSet = chatFull2.stickerset) != null) {
+                        emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumb(tLRPC$StickerSet), false);
                     } else {
                         emojiCell.setEmoji(0L, false);
                     }
@@ -1422,7 +1453,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (i == channelColorActivity.profileColorGridRow) {
                 return 4;
             }
-            if (i == channelColorActivity.replyEmojiRow || i == channelColorActivity.profileEmojiRow || i == channelColorActivity.statusEmojiRow || i == channelColorActivity.packEmojiRow) {
+            if (i == channelColorActivity.replyEmojiRow || i == channelColorActivity.profileEmojiRow || i == channelColorActivity.statusEmojiRow || i == channelColorActivity.packEmojiRow || i == channelColorActivity.packStickerRow) {
                 return 6;
             }
             return (i == channelColorActivity.wallpaperRow || i == channelColorActivity.removeProfileColorRow) ? 5 : 7;
@@ -1480,11 +1511,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
     public void updateProfilePreview(boolean z) {
         TLRPC$StickerSet tLRPC$StickerSet;
+        TLRPC$StickerSet tLRPC$StickerSet2;
         View findChildAt = findChildAt(this.profilePreviewRow);
         View findChildAt2 = findChildAt(this.profileColorGridRow);
         View findChildAt3 = findChildAt(this.profileEmojiRow);
         View findChildAt4 = findChildAt(this.statusEmojiRow);
         View findChildAt5 = findChildAt(this.packEmojiRow);
+        View findChildAt6 = findChildAt(this.packStickerRow);
         if (findChildAt instanceof ProfilePreview) {
             ProfilePreview profilePreview = (ProfilePreview) findChildAt;
             profilePreview.setColor(this.selectedProfileColor, z);
@@ -1511,10 +1544,18 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             EmojiCell emojiCell3 = (EmojiCell) findChildAt5;
             emojiCell3.setAdaptiveEmojiColor(this.currentAccount, this.selectedProfileColor, false);
             TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
-            if (chatFull != null && (tLRPC$StickerSet = chatFull.emojiset) != null) {
-                emojiCell3.setEmoji(getEmojiSetThumbId(tLRPC$StickerSet), false);
+            if (chatFull != null && (tLRPC$StickerSet2 = chatFull.emojiset) != null) {
+                emojiCell3.setEmoji(getEmojiSetThumbId(tLRPC$StickerSet2), false);
             } else {
                 emojiCell3.setEmoji(0L, false);
+            }
+        }
+        if (findChildAt6 instanceof EmojiCell) {
+            TLRPC$ChatFull chatFull2 = getMessagesController().getChatFull(-this.dialogId);
+            if (chatFull2 != null && (tLRPC$StickerSet = chatFull2.stickerset) != null) {
+                ((EmojiCell) findChildAt6).setEmoji(getEmojiSetThumb(tLRPC$StickerSet), false);
+            } else {
+                ((EmojiCell) findChildAt6).setEmoji(0L, false);
             }
         }
         updateRows();
@@ -1530,6 +1571,16 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             return !groupStickerSetById.documents.isEmpty() ? groupStickerSetById.documents.get(0).id : j;
         }
         return j;
+    }
+
+    public TLRPC$Document getEmojiSetThumb(TLRPC$StickerSet tLRPC$StickerSet) {
+        if (tLRPC$StickerSet != null && tLRPC$StickerSet.thumb_document_id == 0) {
+            TLRPC$TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet);
+            if (!groupStickerSetById.documents.isEmpty()) {
+                return groupStickerSetById.documents.get(0);
+            }
+        }
+        return null;
     }
 
     public View findChildAt(int i) {
@@ -1705,6 +1756,19 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 return;
             }
             this.imageDrawable.set(j, z);
+            this.offText = null;
+        }
+
+        public void setEmoji(TLRPC$Document tLRPC$Document, boolean z) {
+            if (tLRPC$Document == null) {
+                this.imageDrawable.set((Drawable) null, z);
+                if (this.offText == null) {
+                    this.offText = new Text(LocaleController.getString(R.string.ChannelReplyIconOff), 16.0f);
+                    return;
+                }
+                return;
+            }
+            this.imageDrawable.set(tLRPC$Document, z);
             this.offText = null;
         }
 

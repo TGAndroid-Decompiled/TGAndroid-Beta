@@ -40,7 +40,9 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_emojiGroup;
+import org.telegram.tgnet.TLRPC$EmojiGroup;
+import org.telegram.tgnet.TLRPC$TL_emojiGroupGreeting;
+import org.telegram.tgnet.TLRPC$TL_emojiGroupPremium;
 import org.telegram.tgnet.TLRPC$TL_emojiList;
 import org.telegram.tgnet.TLRPC$TL_emojiListNotModified;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -49,6 +51,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_emojiGroupsNotModified;
 import org.telegram.tgnet.TLRPC$TL_messages_getEmojiGroups;
 import org.telegram.tgnet.TLRPC$TL_messages_getEmojiProfilePhotoGroups;
 import org.telegram.tgnet.TLRPC$TL_messages_getEmojiStatusGroups;
+import org.telegram.tgnet.TLRPC$TL_messages_getEmojiStickerGroups;
 import org.telegram.tgnet.TLRPC$TL_messages_searchCustomEmoji;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -85,6 +88,10 @@ public class StickerCategoriesListView extends RecyclerListView {
     private Paint selectedPaint;
     private float shownButtonsAtStart;
 
+    protected EmojiCategory[] preprocessCategories(EmojiCategory[] emojiCategoryArr) {
+        return emojiCategoryArr;
+    }
+
     static {
         new HashSet();
     }
@@ -99,11 +106,11 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     public static void lambda$preload$0(int i, TLRPC$TL_messages_emojiGroups tLRPC$TL_messages_emojiGroups) {
-        ArrayList<TLRPC$TL_emojiGroup> arrayList;
+        ArrayList<TLRPC$EmojiGroup> arrayList;
         if (tLRPC$TL_messages_emojiGroups == null || (arrayList = tLRPC$TL_messages_emojiGroups.groups) == null) {
             return;
         }
-        Iterator<TLRPC$TL_emojiGroup> it = arrayList.iterator();
+        Iterator<TLRPC$EmojiGroup> it = arrayList.iterator();
         while (it.hasNext()) {
             AnimatedEmojiDrawable.getDocumentFetcher(i).fetchDocument(it.next().icon_emoji_id, null);
         }
@@ -182,6 +189,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         for (int i2 = 0; i2 < tLRPC$TL_messages_emojiGroups.groups.size(); i2++) {
             this.categories[i + i2] = EmojiCategory.remote(tLRPC$TL_messages_emojiGroups.groups.get(i2));
         }
+        this.categories = preprocessCategories(this.categories);
         this.adapter.notifyDataSetChanged();
         setCategoriesShownT(0.0f);
         updateCategoriesShown(this.categoriesShouldShow, System.currentTimeMillis() - j > 16);
@@ -877,14 +885,20 @@ public class StickerCategoriesListView extends RecyclerListView {
         public boolean animated;
         public long documentId;
         public String emojis;
+        public boolean greeting;
         public int iconResId;
         public boolean remote;
 
-        public static EmojiCategory remote(TLRPC$TL_emojiGroup tLRPC$TL_emojiGroup) {
+        public static EmojiCategory remote(TLRPC$EmojiGroup tLRPC$EmojiGroup) {
             EmojiCategory emojiCategory = new EmojiCategory();
             emojiCategory.remote = true;
-            emojiCategory.documentId = tLRPC$TL_emojiGroup.icon_emoji_id;
-            emojiCategory.emojis = TextUtils.concat((CharSequence[]) tLRPC$TL_emojiGroup.emoticons.toArray(new String[0])).toString();
+            emojiCategory.documentId = tLRPC$EmojiGroup.icon_emoji_id;
+            if (tLRPC$EmojiGroup instanceof TLRPC$TL_emojiGroupPremium) {
+                emojiCategory.emojis = "premium";
+            } else {
+                emojiCategory.emojis = TextUtils.concat((CharSequence[]) tLRPC$EmojiGroup.emoticons.toArray(new String[0])).toString();
+            }
+            emojiCategory.greeting = tLRPC$EmojiGroup instanceof TLRPC$TL_emojiGroupGreeting;
             return emojiCategory;
         }
     }
@@ -904,6 +918,10 @@ public class StickerCategoriesListView extends RecyclerListView {
                 TLRPC$TL_messages_getEmojiProfilePhotoGroups tLRPC$TL_messages_getEmojiProfilePhotoGroups = new TLRPC$TL_messages_getEmojiProfilePhotoGroups();
                 tLRPC$TL_messages_getEmojiProfilePhotoGroups.hash = (int) j;
                 tLRPC$TL_messages_getEmojiGroups = tLRPC$TL_messages_getEmojiProfilePhotoGroups;
+            } else if (num.intValue() == 3) {
+                TLRPC$TL_messages_getEmojiStickerGroups tLRPC$TL_messages_getEmojiStickerGroups = new TLRPC$TL_messages_getEmojiStickerGroups();
+                tLRPC$TL_messages_getEmojiStickerGroups.hash = (int) j;
+                tLRPC$TL_messages_getEmojiGroups = tLRPC$TL_messages_getEmojiStickerGroups;
             } else {
                 TLRPC$TL_messages_getEmojiGroups tLRPC$TL_messages_getEmojiGroups2 = new TLRPC$TL_messages_getEmojiGroups();
                 tLRPC$TL_messages_getEmojiGroups2.hash = (int) j;

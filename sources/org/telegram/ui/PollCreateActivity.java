@@ -37,6 +37,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_poll;
 import org.telegram.tgnet.TLRPC$TL_pollAnswer;
 import org.telegram.tgnet.TLRPC$TL_pollResults;
+import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -268,12 +269,15 @@ public class PollCreateActivity extends BaseFragment {
                 tLRPC$TL_poll.multiple_choice = PollCreateActivity.this.multipleChoise;
                 tLRPC$TL_messageMediaPoll.poll.quiz = PollCreateActivity.this.quizPoll;
                 tLRPC$TL_messageMediaPoll.poll.public_voters = !PollCreateActivity.this.anonymousPoll;
-                tLRPC$TL_messageMediaPoll.poll.question = ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.questionString).toString();
+                tLRPC$TL_messageMediaPoll.poll.question = new TLRPC$TL_textWithEntities();
+                tLRPC$TL_messageMediaPoll.poll.question.text = ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.questionString).toString();
                 SerializedData serializedData = new SerializedData(10);
                 for (int i4 = 0; i4 < PollCreateActivity.this.answers.length; i4++) {
                     if (!TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.answers[i4]))) {
                         TLRPC$TL_pollAnswer tLRPC$TL_pollAnswer = new TLRPC$TL_pollAnswer();
-                        tLRPC$TL_pollAnswer.text = ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.answers[i4]).toString();
+                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
+                        tLRPC$TL_pollAnswer.text = tLRPC$TL_textWithEntities;
+                        tLRPC$TL_textWithEntities.text = ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.answers[i4]).toString();
                         tLRPC$TL_pollAnswer.option = r5;
                         byte[] bArr = {(byte) (tLRPC$TL_messageMediaPoll.poll.answers.size() + 48)};
                         tLRPC$TL_messageMediaPoll.poll.answers.add(tLRPC$TL_pollAnswer);
@@ -776,7 +780,7 @@ public class PollCreateActivity extends BaseFragment {
                 textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 pollEditTextCell = textCheckCell;
             } else if (i == 7) {
-                final PollEditTextCell pollEditTextCell3 = new PollEditTextCell(this.mContext, true, null) {
+                final PollEditTextCell pollEditTextCell3 = new PollEditTextCell(this.mContext, true, 0, null) {
                     @Override
                     protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
                         if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {

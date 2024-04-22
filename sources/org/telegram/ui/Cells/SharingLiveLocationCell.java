@@ -56,6 +56,8 @@ public class SharingLiveLocationCell extends FrameLayout {
     private TextView distanceTextView;
     private int distanceTextViewHeight;
     private boolean distanceTextViewSingle;
+    private Drawable foreverDrawable;
+    private int foreverDrawableColor;
     private Runnable invalidateRunnable;
     private double lastLat;
     private double lastLong;
@@ -113,7 +115,7 @@ public class SharingLiveLocationCell extends FrameLayout {
             this.distanceTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             TextView textView2 = this.distanceTextView;
             boolean z4 = LocaleController.isRTL;
-            addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z4 ? 5 : 3) | 48, z4 ? i : 73.0f, 37.0f, z4 ? 73.0f : i, 0.0f));
+            addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z4 ? 5 : 3) | 48, z4 ? i : 73.0f, 33.0f, z4 ? 73.0f : i, 0.0f));
         } else {
             BackupImageView backupImageView3 = this.avatarImageView;
             boolean z5 = LocaleController.isRTL;
@@ -413,27 +415,45 @@ public class SharingLiveLocationCell extends FrameLayout {
             i = tLRPC$Message.media.period;
             i2 = i3 + i;
         }
+        boolean z = i == Integer.MAX_VALUE;
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        if (i2 < currentTime) {
-            return;
+        if (i2 >= currentTime || z) {
+            float abs = z ? 1.0f : Math.abs(i2 - currentTime) / i;
+            if (LocaleController.isRTL) {
+                this.rect.set(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
+            } else {
+                this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
+            }
+            if (this.distanceTextView == null) {
+                themedColor = getThemedColor(Theme.key_dialog_liveLocationProgress);
+            } else {
+                themedColor = getThemedColor(Theme.key_location_liveLocationProgress);
+            }
+            Theme.chat_radialProgress2Paint.setColor(themedColor);
+            Theme.chat_livePaint.setColor(themedColor);
+            int alpha = Theme.chat_radialProgress2Paint.getAlpha();
+            Theme.chat_radialProgress2Paint.setAlpha((int) (alpha * 0.2f));
+            canvas.drawArc(this.rect, -90.0f, 360.0f, false, Theme.chat_radialProgress2Paint);
+            Theme.chat_radialProgress2Paint.setAlpha(alpha);
+            canvas.drawArc(this.rect, -90.0f, abs * (-360.0f), false, Theme.chat_radialProgress2Paint);
+            Theme.chat_radialProgress2Paint.setAlpha(alpha);
+            if (z) {
+                if (this.foreverDrawable == null) {
+                    this.foreverDrawable = getContext().getResources().getDrawable(R.drawable.filled_location_forever).mutate();
+                }
+                if (Theme.chat_livePaint.getColor() != this.foreverDrawableColor) {
+                    Drawable drawable = this.foreverDrawable;
+                    int color = Theme.chat_livePaint.getColor();
+                    this.foreverDrawableColor = color;
+                    drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+                }
+                this.foreverDrawable.setBounds(((int) this.rect.centerX()) - (this.foreverDrawable.getIntrinsicWidth() / 2), ((int) this.rect.centerY()) - (this.foreverDrawable.getIntrinsicHeight() / 2), ((int) this.rect.centerX()) + (this.foreverDrawable.getIntrinsicWidth() / 2), ((int) this.rect.centerY()) + (this.foreverDrawable.getIntrinsicHeight() / 2));
+                this.foreverDrawable.draw(canvas);
+                return;
+            }
+            String formatLocationLeftTime = LocaleController.formatLocationLeftTime(i2 - currentTime);
+            canvas.drawText(formatLocationLeftTime, this.rect.centerX() - (Theme.chat_livePaint.measureText(formatLocationLeftTime) / 2.0f), AndroidUtilities.dp(this.distanceTextView != null ? 37.0f : 31.0f), Theme.chat_livePaint);
         }
-        int i4 = i2 - currentTime;
-        float abs = Math.abs(i4) / i;
-        if (LocaleController.isRTL) {
-            this.rect.set(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
-        } else {
-            this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
-        }
-        if (this.distanceTextView == null) {
-            themedColor = getThemedColor(Theme.key_dialog_liveLocationProgress);
-        } else {
-            themedColor = getThemedColor(Theme.key_location_liveLocationProgress);
-        }
-        Theme.chat_radialProgress2Paint.setColor(themedColor);
-        Theme.chat_livePaint.setColor(themedColor);
-        canvas.drawArc(this.rect, -90.0f, abs * (-360.0f), false, Theme.chat_radialProgress2Paint);
-        String formatLocationLeftTime = LocaleController.formatLocationLeftTime(i4);
-        canvas.drawText(formatLocationLeftTime, this.rect.centerX() - (Theme.chat_livePaint.measureText(formatLocationLeftTime) / 2.0f), AndroidUtilities.dp(this.distanceTextView != null ? 37.0f : 31.0f), Theme.chat_livePaint);
     }
 
     private int getThemedColor(int i) {

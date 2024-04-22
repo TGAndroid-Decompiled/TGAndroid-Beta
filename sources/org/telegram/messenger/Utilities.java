@@ -82,6 +82,10 @@ public class Utilities {
         ReturnType run();
     }
 
+    public interface IndexedConsumer<T> {
+        void accept(T t, int i);
+    }
+
     public static native void aesCbcEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i, int i2, int i3);
 
     private static native void aesCbcEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, int i, int i2, int i3, int i4);

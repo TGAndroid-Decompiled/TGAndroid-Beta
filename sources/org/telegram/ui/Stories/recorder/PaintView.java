@@ -1917,7 +1917,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 PaintView.this.lambda$openStickersView$21();
             }
         }, 350L);
-        final EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider) {
+        final EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider, false) {
             @Override
             public boolean canShowWidget(Integer num) {
                 return true;

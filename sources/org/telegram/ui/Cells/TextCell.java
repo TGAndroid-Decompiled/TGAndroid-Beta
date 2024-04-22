@@ -42,7 +42,7 @@ public class TextCell extends FrameLayout {
     private boolean inDialogs;
     private boolean incrementLoadingProgress;
     private int lastWidth;
-    private int leftPadding;
+    public int leftPadding;
     private float loadingProgress;
     private int loadingSize;
     private boolean needDivider;

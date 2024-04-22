@@ -140,7 +140,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     AlertDialog progressDialog;
     private ActionBarMenuSubItem resetDatabaseItem;
     private float[] tempSizes;
-    private boolean[] selected = {true, true, true, true, true, true, true, true, true, false, true};
+    private boolean[] selected = {true, true, true, true, true, true, true, true, true, true, true};
     private long databaseSize = -1;
     private long cacheSize = -1;
     private long cacheEmojiSize = -1;

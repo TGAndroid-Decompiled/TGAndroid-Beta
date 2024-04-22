@@ -580,6 +580,9 @@ public abstract class TLRPC$Update extends TLObject {
             case 1538885128:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updatePinnedChannelMessages();
                 break;
+            case 1550177112:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateBroadcastRevenueTransactions();
+                break;
             case 1578843320:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageReactions();
                 break;

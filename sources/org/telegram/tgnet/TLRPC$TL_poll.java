@@ -9,7 +9,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
         this.public_voters = (readInt32 & 2) != 0;
         this.multiple_choice = (readInt32 & 4) != 0;
         this.quiz = (readInt32 & 8) != 0;
-        this.question = abstractSerializedData.readString(z);
+        this.question = TLRPC$TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         int readInt322 = abstractSerializedData.readInt32(z);
         if (readInt322 != 481674261) {
             if (z) {
@@ -19,7 +19,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
         }
         int readInt323 = abstractSerializedData.readInt32(z);
         for (int i = 0; i < readInt323; i++) {
-            TLRPC$TL_pollAnswer TLdeserialize = TLRPC$TL_pollAnswer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TLRPC$PollAnswer TLdeserialize = TLRPC$PollAnswer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize == null) {
                 return;
             }
@@ -35,7 +35,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-2032041631);
+        abstractSerializedData.writeInt32(1484026161);
         abstractSerializedData.writeInt64(this.id);
         int i = this.closed ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
@@ -46,7 +46,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
         int i4 = this.quiz ? i3 | 8 : i3 & (-9);
         this.flags = i4;
         abstractSerializedData.writeInt32(i4);
-        abstractSerializedData.writeString(this.question);
+        this.question.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.answers.size();
         abstractSerializedData.writeInt32(size);

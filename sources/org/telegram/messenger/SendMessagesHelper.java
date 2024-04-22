@@ -84,6 +84,7 @@ import org.telegram.tgnet.TLRPC$MessageReplies;
 import org.telegram.tgnet.TLRPC$MessageReplyHeader;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.tgnet.TLRPC$PollAnswer;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$TL_account_getPassword;
 import org.telegram.tgnet.TLRPC$TL_botInlineMessageMediaAuto;
@@ -186,7 +187,6 @@ import org.telegram.tgnet.TLRPC$TL_photoSizeEmpty;
 import org.telegram.tgnet.TLRPC$TL_photoSizeProgressive;
 import org.telegram.tgnet.TLRPC$TL_photoSize_layer127;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
-import org.telegram.tgnet.TLRPC$TL_pollAnswer;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.tgnet.TLRPC$TL_restrictionReason;
@@ -2228,6 +2228,17 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         objArr[5] = Integer.valueOf(i2);
         objArr[6] = Boolean.valueOf(i3 != 0);
         notificationCenter.lambda$postNotificationNameOnUIThread$1(i4, objArr);
+        NotificationCenter notificationCenter2 = getNotificationCenter();
+        int i5 = NotificationCenter.messageReceivedByServer2;
+        Object[] objArr2 = new Object[7];
+        objArr2[0] = Integer.valueOf(i);
+        objArr2[1] = Integer.valueOf(tLRPC$Message2.id);
+        objArr2[2] = tLRPC$Message2;
+        objArr2[3] = Long.valueOf(j);
+        objArr2[4] = 0L;
+        objArr2[5] = Integer.valueOf(i2);
+        objArr2[6] = Boolean.valueOf(i3 != 0);
+        notificationCenter2.lambda$postNotificationNameOnUIThread$1(i5, objArr2);
         processSentMessage(i);
         removeFromSendingMessages(i, i3 != 0);
     }
@@ -2475,7 +2486,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return this.waitingForVote.get("poll_" + messageObject.getPollId());
     }
 
-    public int sendVote(final MessageObject messageObject, ArrayList<TLRPC$TL_pollAnswer> arrayList, final Runnable runnable) {
+    public int sendVote(final MessageObject messageObject, ArrayList<TLRPC$PollAnswer> arrayList, final Runnable runnable) {
         byte[] bArr;
         if (messageObject == null) {
             return 0;
@@ -2490,9 +2501,9 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if (arrayList != null) {
             bArr = new byte[arrayList.size()];
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$TL_pollAnswer tLRPC$TL_pollAnswer = arrayList.get(i);
-                tLRPC$TL_messages_sendVote.options.add(tLRPC$TL_pollAnswer.option);
-                bArr[i] = tLRPC$TL_pollAnswer.option[0];
+                TLRPC$PollAnswer tLRPC$PollAnswer = arrayList.get(i);
+                tLRPC$TL_messages_sendVote.options.add(tLRPC$PollAnswer.option);
+                bArr[i] = tLRPC$PollAnswer.option[0];
             }
         } else {
             bArr = new byte[0];
@@ -3727,6 +3738,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void lambda$performSendMessageRequestMulti$44(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, final boolean z, TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia) {
+        final SendMessagesHelper sendMessagesHelper;
         boolean z2;
         final TLRPC$Updates tLRPC$Updates;
         boolean z3;
@@ -3896,6 +3908,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 getStatsController().incrementSentItemsCount(ApplicationLoader.getCurrentNetworkType(), 1, 1);
                 tLRPC$Message6.send_state = 0;
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(i10), Integer.valueOf(tLRPC$Message6.id), tLRPC$Message6, Long.valueOf(tLRPC$Message6.dialog_id), Long.valueOf(j), Integer.valueOf(mediaExistanceFlags), Boolean.valueOf(z));
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer2, Integer.valueOf(i10), Integer.valueOf(tLRPC$Message6.id), tLRPC$Message6, Long.valueOf(tLRPC$Message6.dialog_id), Long.valueOf(j), Integer.valueOf(mediaExistanceFlags), Boolean.valueOf(z));
                 getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
@@ -3903,12 +3916,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     }
                 });
                 i9 = i + 1;
-                sparseArray = sparseArray;
                 tLRPC$Updates3 = tLRPC$Updates2;
                 longSparseArray = longSparseArray;
             }
             tLRPC$Updates = tLRPC$Updates3;
             z3 = false;
+            sendMessagesHelper = this;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
@@ -3917,7 +3930,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             });
             z2 = z3;
         } else {
-            AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, null, tLRPC$TL_messages_sendMultiMedia, new Object[0]);
+            sendMessagesHelper = this;
+            AlertsCreator.processError(sendMessagesHelper.currentAccount, tLRPC$TL_error, null, tLRPC$TL_messages_sendMultiMedia, new Object[0]);
             z2 = true;
         }
         if (z2) {
@@ -3926,8 +3940,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 getMessagesStorage().markMessageAsSendError(tLRPC$Message8, z ? 1 : 0);
                 tLRPC$Message8.send_state = 2;
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageSendError, Integer.valueOf(tLRPC$Message8.id));
-                processSentMessage(tLRPC$Message8.id);
-                removeFromSendingMessages(tLRPC$Message8.id, z);
+                sendMessagesHelper.processSentMessage(tLRPC$Message8.id);
+                sendMessagesHelper.removeFromSendingMessages(tLRPC$Message8.id, z);
             }
         }
     }
@@ -3961,6 +3975,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public void lambda$performSendMessageRequestMulti$41(TLRPC$Message tLRPC$Message, int i, long j, int i2, boolean z) {
         getMediaDataController().increasePeerRaiting(tLRPC$Message.dialog_id);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(i), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), Long.valueOf(j), Integer.valueOf(i2), Boolean.valueOf(z));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer2, Integer.valueOf(i), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), Long.valueOf(j), Integer.valueOf(i2), Boolean.valueOf(z));
         processSentMessage(i);
         removeFromSendingMessages(i, z);
     }
@@ -4212,6 +4227,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public void lambda$performSendMessageRequest$57(TLRPC$Message tLRPC$Message, int i, int i2, boolean z) {
         getMediaDataController().increasePeerRaiting(tLRPC$Message.dialog_id);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(i), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i2), Boolean.valueOf(z));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer2, Integer.valueOf(i), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i2), Boolean.valueOf(z));
         processSentMessage(i);
         removeFromSendingMessages(i, z);
     }

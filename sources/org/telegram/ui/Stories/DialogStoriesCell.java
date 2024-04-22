@@ -356,6 +356,10 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return false;
     }
 
+    public void openStoryForCell(StoryCell storyCell) {
+        openStoryForCell(storyCell, false);
+    }
+
     private void openStoryForCell(final StoryCell storyCell, boolean z) {
         if (storyCell == null) {
             return;

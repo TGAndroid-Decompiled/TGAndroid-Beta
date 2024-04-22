@@ -963,6 +963,8 @@ public class Theme {
     public static final int key_player_progressBackground;
     public static final int key_player_progressCachedBackground;
     public static final int key_player_time;
+    public static final int key_premiumCoinGradient1;
+    public static final int key_premiumCoinGradient2;
     public static final int key_premiumGradient0;
     public static final int key_premiumGradient1;
     public static final int key_premiumGradient2;
@@ -976,8 +978,8 @@ public class Theme {
     public static final int key_premiumGradientBottomSheet1;
     public static final int key_premiumGradientBottomSheet2;
     public static final int key_premiumGradientBottomSheet3;
-    public static final int key_premiumStartGradient1;
-    public static final int key_premiumStartGradient2;
+    public static final int key_premiumStarGradient1;
+    public static final int key_premiumStarGradient2;
     public static final int key_premiumStartSmallStarsColor;
     public static final int key_premiumStartSmallStarsColor2;
     public static final int key_profile_actionBackground;
@@ -4519,10 +4521,6 @@ public class Theme {
             return createCircle(drawable, calcRippleColor(i), f);
         }
 
-        public static Drawable rect() {
-            return rect(Theme.getColor(defaultBackgroundColorKey));
-        }
-
         public static Drawable rectByKey(int i, float... fArr) {
             return rect(Theme.getColor(i), fArr);
         }
@@ -6640,7 +6638,7 @@ public class Theme {
             chat_audioTimePaint = new TextPaint(1);
             TextPaint textPaint5 = new TextPaint(1);
             chat_livePaint = textPaint5;
-            textPaint5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textPaint5.setTypeface(Typeface.DEFAULT_BOLD);
             TextPaint textPaint6 = new TextPaint(1);
             chat_audioTitlePaint = textPaint6;
             textPaint6.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -7020,7 +7018,7 @@ public class Theme {
         chat_contextResult_titleTextPaint.setTextSize(AndroidUtilities.dp(15.0f));
         chat_contextResult_descriptionTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         chat_radialProgressPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        chat_radialProgress2Paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        chat_radialProgress2Paint.setStrokeWidth(AndroidUtilities.dp(2.33f));
         chat_commentTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
         chat_commentTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
     }

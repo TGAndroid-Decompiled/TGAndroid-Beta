@@ -20,6 +20,7 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -717,7 +718,11 @@ public class LocationController extends BaseController implements NotificationCe
         sharingLocationInfo.lastSentProximityMeters = i;
         sharingLocationInfo.account = this.currentAccount;
         sharingLocationInfo.messageObject = new MessageObject(this.currentAccount, tLRPC$Message, false, false);
-        sharingLocationInfo.stopTime = getConnectionsManager().getCurrentTime() + sharingLocationInfo.period;
+        if (sharingLocationInfo.period == Integer.MAX_VALUE) {
+            sharingLocationInfo.stopTime = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        } else {
+            sharingLocationInfo.stopTime = getConnectionsManager().getCurrentTime() + sharingLocationInfo.period;
+        }
         final SharingLocationInfo sharingLocationInfo2 = this.sharingLocationsMap.get(sharingLocationInfo.did);
         this.sharingLocationsMap.put(sharingLocationInfo.did, sharingLocationInfo);
         if (sharingLocationInfo2 != null) {

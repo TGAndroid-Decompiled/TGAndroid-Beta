@@ -6741,7 +6741,7 @@ public class MediaDataController extends BaseController {
                             messageObject2.messageOwner.reply_to = new TLRPC$TL_messageReplyHeader();
                             TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = messageObject2.messageOwner.reply_to;
                             tLRPC$MessageReplyHeader.flags |= 16;
-                            tLRPC$MessageReplyHeader.reply_to_msg_id = messageObject.getId();
+                            tLRPC$MessageReplyHeader.reply_to_msg_id = messageObject.getRealId();
                         }
                     }
                 }

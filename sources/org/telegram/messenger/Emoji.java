@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Document;
@@ -674,6 +675,17 @@ public class Emoji {
                 ((EmojiDrawable) getDrawable()).placeholderColor = 285212671 & textPaint.getColor();
             }
             super.updateDrawState(textPaint);
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            EmojiSpan emojiSpan = (EmojiSpan) obj;
+            return Float.compare(this.scale, emojiSpan.scale) == 0 && this.size == emojiSpan.size && Objects.equals(this.emoji, emojiSpan.emoji);
         }
     }
 

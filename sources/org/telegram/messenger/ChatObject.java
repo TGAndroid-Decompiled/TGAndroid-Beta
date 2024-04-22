@@ -20,6 +20,7 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$ChannelParticipant;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$ChatPhoto;
@@ -1613,6 +1614,47 @@ public class ChatObject {
         return tLRPC$Chat != null && (getBannedRight(tLRPC$Chat.banned_rights, i) || getBannedRight(tLRPC$Chat.default_banned_rights, i));
     }
 
+    public static boolean canUserDoAdminAction(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, int i) {
+        boolean z;
+        if (tLRPC$TL_chatAdminRights != null) {
+            if (i == 0) {
+                z = tLRPC$TL_chatAdminRights.pin_messages;
+            } else if (i == 1) {
+                z = tLRPC$TL_chatAdminRights.change_info;
+            } else if (i == 2) {
+                z = tLRPC$TL_chatAdminRights.ban_users;
+            } else if (i == 3) {
+                z = tLRPC$TL_chatAdminRights.invite_users;
+            } else if (i == 4) {
+                z = tLRPC$TL_chatAdminRights.add_admins;
+            } else if (i == 5) {
+                z = tLRPC$TL_chatAdminRights.post_messages;
+            } else {
+                switch (i) {
+                    case 12:
+                        z = tLRPC$TL_chatAdminRights.edit_messages;
+                        break;
+                    case 13:
+                        z = tLRPC$TL_chatAdminRights.delete_messages;
+                        break;
+                    case 14:
+                        z = tLRPC$TL_chatAdminRights.manage_call;
+                        break;
+                    case 15:
+                        z = tLRPC$TL_chatAdminRights.manage_topics;
+                        break;
+                    default:
+                        z = false;
+                        break;
+                }
+            }
+            if (z) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean canUserDoAdminAction(TLRPC$Chat tLRPC$Chat, int i) {
         boolean z;
         if (tLRPC$Chat == null) {
@@ -1655,6 +1697,31 @@ public class ChatObject {
                 }
             }
             if (z) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean canUserDoAction(TLRPC$Chat tLRPC$Chat, TLRPC$ChannelParticipant tLRPC$ChannelParticipant, int i) {
+        if (tLRPC$Chat == null) {
+            return true;
+        }
+        if (tLRPC$ChannelParticipant == null) {
+            return false;
+        }
+        if (canUserDoAdminAction(tLRPC$ChannelParticipant.admin_rights, i)) {
+            return true;
+        }
+        if (!getBannedRight(tLRPC$ChannelParticipant.banned_rights, i) && isBannableAction(i)) {
+            if (tLRPC$ChannelParticipant.admin_rights != null && !isAdminAction(i)) {
+                return true;
+            }
+            TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = tLRPC$Chat.default_banned_rights;
+            if (tLRPC$TL_chatBannedRights == null && ((tLRPC$Chat instanceof TLRPC$TL_chat_layer92) || (tLRPC$Chat instanceof TLRPC$TL_chat_old) || (tLRPC$Chat instanceof TLRPC$TL_chat_old2) || (tLRPC$Chat instanceof TLRPC$TL_channel_layer92) || (tLRPC$Chat instanceof TLRPC$TL_channel_layer77) || (tLRPC$Chat instanceof TLRPC$TL_channel_layer72) || (tLRPC$Chat instanceof TLRPC$TL_channel_layer67) || (tLRPC$Chat instanceof TLRPC$TL_channel_layer48) || (tLRPC$Chat instanceof TLRPC$TL_channel_old))) {
+                return true;
+            }
+            if (tLRPC$TL_chatBannedRights != null && !getBannedRight(tLRPC$TL_chatBannedRights, i)) {
                 return true;
             }
         }

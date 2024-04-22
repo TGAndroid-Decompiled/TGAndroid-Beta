@@ -1329,7 +1329,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 return;
             }
         }
-        AlertsCreator.createLocationUpdateDialog(getParentActivity(), DialogObject.isUserDialog(this.dialogId) ? this.parentAlert.baseFragment.getMessagesController().getUser(Long.valueOf(this.dialogId)) : null, new MessagesStorage.IntCallback() {
+        AlertsCreator.createLocationUpdateDialog(getParentActivity(), false, DialogObject.isUserDialog(this.dialogId) ? this.parentAlert.baseFragment.getMessagesController().getUser(Long.valueOf(this.dialogId)) : null, new MessagesStorage.IntCallback() {
             @Override
             public final void run(int i) {
                 ChatAttachAlertLocationLayout.this.lambda$openShareLiveLocation$18(i);

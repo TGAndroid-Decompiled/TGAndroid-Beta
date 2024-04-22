@@ -63,6 +63,7 @@ public class AnimatedTextView extends View {
         private ColorFilter emojiColorFilter;
         private int gravity;
         public boolean ignoreRTL;
+        private boolean includeFontPadding;
         private boolean isRTL;
         private float moveAmplitude;
         private boolean moveDown;
@@ -170,12 +171,13 @@ public class AnimatedTextView extends View {
             this.t = 0.0f;
             this.moveDown = true;
             this.animateDelay = 0L;
-            this.animateDuration = 450L;
+            this.animateDuration = 320L;
             this.animateInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.moveAmplitude = 1.0f;
+            this.moveAmplitude = 0.3f;
             this.scaleAmplitude = 0.0f;
             this.alpha = 255;
             this.bounds = new android.graphics.Rect();
+            this.includeFontPadding = true;
             this.shadowed = false;
             this.splitByWords = z;
             this.preserveIndex = z2;
@@ -469,9 +471,9 @@ public class AnimatedTextView extends View {
             }
             int i2 = i;
             if (Build.VERSION.SDK_INT >= 23) {
-                return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.textPaint, i2).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i2).build();
+                return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.textPaint, i2).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i2).setIncludePad(this.includeFontPadding).build();
             }
-            return new StaticLayout(charSequence, 0, charSequence.length(), this.textPaint, i2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i2);
+            return new StaticLayout(charSequence, 0, charSequence.length(), this.textPaint, i2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, this.includeFontPadding, TextUtils.TruncateAt.END, i2);
         }
 
         public static class WordSequence implements CharSequence {
@@ -917,6 +919,10 @@ public class AnimatedTextView extends View {
         public void setOnWidthUpdatedListener(Runnable runnable) {
             this.widthUpdatedListener = runnable;
         }
+
+        public void setIncludeFontPadding(boolean z) {
+            this.includeFontPadding = z;
+        }
     }
 
     public AnimatedTextView(Context context) {
@@ -961,7 +967,8 @@ public class AnimatedTextView extends View {
         }
         if (this.lastMaxWidth != size && getLayoutParams().width != 0) {
             this.drawable.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
-            setText(this.drawable.getText(), false);
+            AnimatedTextDrawable animatedTextDrawable = this.drawable;
+            animatedTextDrawable.setText(animatedTextDrawable.getText(), false, true);
         }
         this.lastMaxWidth = size;
         if (this.adaptWidth && View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
@@ -1110,5 +1117,9 @@ public class AnimatedTextView extends View {
 
     public void setOnWidthUpdatedListener(Runnable runnable) {
         this.drawable.setOnWidthUpdatedListener(runnable);
+    }
+
+    public void setIncludeFontPadding(boolean z) {
+        this.drawable.setIncludeFontPadding(z);
     }
 }

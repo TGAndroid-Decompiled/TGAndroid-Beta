@@ -25,6 +25,7 @@ public class TextCheckCell2 extends FrameLayout {
     private View checkBoxClickArea;
     private LinearLayout collapseViewContainer;
     private View collapsedArrow;
+    public int id;
     private boolean isMultiline;
     private boolean needDivider;
     private TextView textView;

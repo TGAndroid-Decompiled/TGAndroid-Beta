@@ -230,7 +230,7 @@ public class StickersDialogs {
     private static void openStickerPickerDialog(final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         final int i = UserConfig.selectedAccount;
         final Context context = baseFragment.getContext();
-        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(context, true, resourcesProvider);
+        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(context, true, resourcesProvider, false);
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {

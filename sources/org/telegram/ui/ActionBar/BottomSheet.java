@@ -126,6 +126,7 @@ public class BottomSheet extends Dialog {
     private boolean showWithoutAnimation;
     boolean showing;
     private boolean skipDismissAnimation;
+    private long smoothContainerViewLayoutUntil;
     public boolean smoothKeyboardAnimationEnabled;
     protected Runnable startAnimationRunnable;
     private int statusBarHeight;
@@ -225,6 +226,9 @@ public class BottomSheet extends Dialog {
     }
 
     protected void onScrollUpEnd(float f) {
+    }
+
+    public void onSmoothContainerViewLayout(float f) {
     }
 
     protected boolean shouldOverlayCameraViewOverNavBar() {
@@ -597,6 +601,8 @@ public class BottomSheet extends Dialog {
 
         public void lambda$onLayout$3(ValueAnimator valueAnimator) {
             BottomSheet.this.containerView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+            BottomSheet bottomSheet = BottomSheet.this;
+            bottomSheet.onSmoothContainerViewLayout(bottomSheet.containerView.getTranslationY());
             invalidate();
         }
 
@@ -929,6 +935,7 @@ public class BottomSheet extends Dialog {
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.useBackgroundTopPadding = true;
         this.customViewGravity = 51;
+        this.smoothContainerViewLayoutUntil = -1L;
         this.resourcesProvider = resourcesProvider;
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 30) {
@@ -1958,5 +1965,9 @@ public class BottomSheet extends Dialog {
     public void setImageReceiverNumLevel(int i, int i2) {
         this.playingImagesLayerNum = i;
         this.openedLayerNum = i2;
+    }
+
+    public void smoothContainerViewLayout() {
+        this.smoothContainerViewLayoutUntil = System.currentTimeMillis() + 80;
     }
 }

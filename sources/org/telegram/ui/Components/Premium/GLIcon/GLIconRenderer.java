@@ -34,8 +34,8 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
     private final float[] mRotationMatrix = new float[16];
-    public int colorKey1 = Theme.key_premiumStartGradient1;
-    public int colorKey2 = Theme.key_premiumStartGradient2;
+    public int colorKey1 = Theme.key_premiumStarGradient1;
+    public int colorKey2 = Theme.key_premiumStarGradient2;
 
     public GLIconRenderer(Context context, int i, int i2) {
         this.context = context;

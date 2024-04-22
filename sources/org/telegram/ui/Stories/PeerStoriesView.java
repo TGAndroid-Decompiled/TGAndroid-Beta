@@ -1858,7 +1858,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         if (this.stealthModeIsActive) {
             StealthModeAlert.showStealthModeEnabledBulletin();
         } else {
-            this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), this.resourcesProvider));
+            this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), 0, this.resourcesProvider));
         }
         CustomPopupMenu customPopupMenu = this.popupMenu;
         if (customPopupMenu != null) {
@@ -1867,7 +1867,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public void lambda$createStealthModeItem$12(View view) {
-        this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), this.resourcesProvider));
+        this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), 0, this.resourcesProvider));
         CustomPopupMenu customPopupMenu = this.popupMenu;
         if (customPopupMenu != null) {
             customPopupMenu.dismiss();

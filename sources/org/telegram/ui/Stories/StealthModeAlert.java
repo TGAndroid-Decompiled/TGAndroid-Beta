@@ -36,13 +36,19 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.LaunchActivity;
 public class StealthModeAlert extends BottomSheet {
     private final PremiumButtonView button;
-    boolean stealthModeIsActive;
+    private Listener listener;
+    private boolean stealthModeIsActive;
+    private int type;
     Runnable updateButtonRunnuble;
+
+    public interface Listener {
+        void onButtonClicked(boolean z);
+    }
 
     public static void lambda$new$1() {
     }
 
-    public StealthModeAlert(Context context, final float f, final Theme.ResourcesProvider resourcesProvider) {
+    public StealthModeAlert(Context context, final float f, final int i, final Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         this.updateButtonRunnuble = new Runnable() {
             @Override
@@ -50,6 +56,7 @@ public class StealthModeAlert extends BottomSheet {
                 StealthModeAlert.this.lambda$new$4();
             }
         };
+        this.type = i;
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
             protected void onAttachedToWindow() {
@@ -66,13 +73,13 @@ public class StealthModeAlert extends BottomSheet {
                     }
 
                     @Override
-                    public boolean clipWithGradient(int i) {
-                        return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+                    public boolean clipWithGradient(int i2) {
+                        return Bulletin.Delegate.CC.$default$clipWithGradient(this, i2);
                     }
 
                     @Override
-                    public int getBottomOffset(int i) {
-                        return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
+                    public int getBottomOffset(int i2) {
+                        return Bulletin.Delegate.CC.$default$getBottomOffset(this, i2);
                     }
 
                     @Override
@@ -91,7 +98,7 @@ public class StealthModeAlert extends BottomSheet {
                     }
 
                     @Override
-                    public int getTopOffset(int i) {
+                    public int getTopOffset(int i2) {
                         return (int) (f + AndroidUtilities.dp(58.0f));
                     }
                 });
@@ -142,12 +149,12 @@ public class StealthModeAlert extends BottomSheet {
         this.button = premiumButtonView;
         premiumButtonView.drawGradient = false;
         premiumButtonView.overlayTextView.getDrawable().setSplitByWords(false);
-        int i = R.raw.unlock_icon;
-        premiumButtonView.setIcon(i);
+        int i2 = R.raw.unlock_icon;
+        premiumButtonView.setIcon(i2);
         ScaleStateListAnimator.apply(premiumButtonView);
         final TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         if (!currentUser.premium) {
-            premiumButtonView.setIcon(i);
+            premiumButtonView.setIcon(i2);
             premiumButtonView.setButton(LocaleController.getString("UnlockStealthMode", R.string.UnlockStealthMode), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -162,7 +169,7 @@ public class StealthModeAlert extends BottomSheet {
         premiumButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StealthModeAlert.this.lambda$new$3(currentUser, resourcesProvider, view);
+                StealthModeAlert.this.lambda$new$3(currentUser, i, resourcesProvider, view);
             }
         });
     }
@@ -175,7 +182,7 @@ public class StealthModeAlert extends BottomSheet {
         }
     }
 
-    public void lambda$new$3(TLRPC$User tLRPC$User, Theme.ResourcesProvider resourcesProvider, View view) {
+    public void lambda$new$3(TLRPC$User tLRPC$User, int i, Theme.ResourcesProvider resourcesProvider, View view) {
         if (!tLRPC$User.premium) {
             dismiss();
             BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -184,6 +191,10 @@ public class StealthModeAlert extends BottomSheet {
             }
         } else if (this.stealthModeIsActive) {
             dismiss();
+            Listener listener = this.listener;
+            if (listener != null) {
+                listener.onButtonClicked(false);
+            }
         } else {
             StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
             TL_stories$TL_storiesStealthMode stealthMode = storiesController.getStealthMode();
@@ -204,9 +215,19 @@ public class StealthModeAlert extends BottomSheet {
                 });
                 this.containerView.performHapticFeedback(3);
                 dismiss();
-                showStealthModeEnabledBulletin();
+                if (i == 0) {
+                    showStealthModeEnabledBulletin();
+                }
+                Listener listener2 = this.listener;
+                if (listener2 != null) {
+                    listener2.onButtonClicked(true);
+                }
             } else if (this.stealthModeIsActive) {
                 dismiss();
+                Listener listener3 = this.listener;
+                if (listener3 != null) {
+                    listener3.onButtonClicked(false);
+                }
             } else {
                 BulletinFactory of = BulletinFactory.of(this.container, resourcesProvider);
                 if (of != null) {
@@ -223,6 +244,10 @@ public class StealthModeAlert extends BottomSheet {
                 StealthModeAlert.lambda$new$1();
             }
         });
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 
     public static void showStealthModeEnabledBulletin() {
@@ -272,7 +297,12 @@ public class StealthModeAlert extends BottomSheet {
                 return;
             }
         }
-        this.button.setOverlayText(LocaleController.getString("EnableStealthMode", R.string.EnableStealthMode), true, z);
+        int i4 = this.type;
+        if (i4 == 0) {
+            this.button.setOverlayText(LocaleController.getString("EnableStealthMode", R.string.EnableStealthMode), true, z);
+        } else if (i4 == 1) {
+            this.button.setOverlayText(LocaleController.getString(R.string.EnableStealthModeAndOpenStory), true, z);
+        }
         this.button.overlayTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
     }
 
