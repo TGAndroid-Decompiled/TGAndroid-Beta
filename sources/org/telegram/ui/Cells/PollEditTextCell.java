@@ -70,7 +70,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
     public void lambda$new$1(PollEditTextCell pollEditTextCell) {
     }
 
-    protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
+    public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
     }
 
     protected boolean shouldShowCheckBox() {
@@ -248,7 +248,8 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         if (i == 1) {
             ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context);
             this.emojiButton = chatActivityEnterViewAnimatedIconView;
-            chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.SRC_IN));
+            chatActivityEnterViewAnimatedIconView.setAlpha(0.8f);
+            this.emojiButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.SRC_IN));
             this.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
             int dp = AndroidUtilities.dp(9.5f);
             this.emojiButton.setPadding(dp, dp, dp, dp);
@@ -485,7 +486,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
                 }
                 PollEditTextCell.this.emojiButton.setScaleX(1.0f);
                 PollEditTextCell.this.emojiButton.setScaleY(1.0f);
-                PollEditTextCell.this.emojiButton.setAlpha(1.0f);
+                PollEditTextCell.this.emojiButton.setAlpha(0.8f);
             }
         });
         this.valueAnimator.setDuration(200L);
@@ -496,7 +497,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.emojiButton.setScaleX(floatValue);
         this.emojiButton.setScaleY(floatValue);
-        this.emojiButton.setAlpha(floatValue);
+        this.emojiButton.setAlpha(Math.max(floatValue, 0.8f));
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView != null && this.deleteImageView == null && simpleTextView.getVisibility() == 0) {
             this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * floatValue);

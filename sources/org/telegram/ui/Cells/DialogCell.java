@@ -79,6 +79,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_messageService;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
+import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
@@ -1944,7 +1945,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     public SpannableStringBuilder getMessageStringFormatted(int i, String str, CharSequence charSequence, boolean z) {
         TLRPC$Message tLRPC$Message;
-        String charSequence2;
+        CharSequence charSequence2;
         String formatPluralString;
         CharSequence charSequence3;
         String str2;
@@ -2029,7 +2030,29 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             TLRPC$MessageMedia tLRPC$MessageMedia = messageObject3.messageOwner.media;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPoll) {
                 TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia;
-                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("📊 \u2068%s\u2069", tLRPC$TL_messageMediaPoll.poll.question.text) : String.format("📊 %s", tLRPC$TL_messageMediaPoll.poll.question.text);
+                if (Build.VERSION.SDK_INT >= 18) {
+                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = tLRPC$TL_messageMediaPoll.poll.question;
+                    if (tLRPC$TL_textWithEntities == null || tLRPC$TL_textWithEntities.entities == null) {
+                        charSequence2 = String.format("📊 \u2068%s\u2069", tLRPC$TL_textWithEntities.text);
+                    } else {
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
+                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = tLRPC$TL_messageMediaPoll.poll.question;
+                        MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities2.entities, tLRPC$TL_textWithEntities2.text, spannableStringBuilder2);
+                        MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder2, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
+                        charSequence2 = new SpannableStringBuilder("📊 \u2068").append((CharSequence) spannableStringBuilder2).append((CharSequence) "\u2069");
+                    }
+                } else {
+                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities3 = tLRPC$TL_messageMediaPoll.poll.question;
+                    if (tLRPC$TL_textWithEntities3 == null || tLRPC$TL_textWithEntities3.entities == null) {
+                        charSequence2 = String.format("📊 %s", tLRPC$TL_textWithEntities3.text);
+                    } else {
+                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
+                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities4 = tLRPC$TL_messageMediaPoll.poll.question;
+                        MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities4.entities, tLRPC$TL_textWithEntities4.text, spannableStringBuilder3);
+                        MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder3, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
+                        charSequence2 = new SpannableStringBuilder("📊 ").append((CharSequence) spannableStringBuilder3);
+                    }
+                }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGame) {
                 charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎮 \u2068%s\u2069", tLRPC$MessageMedia.game.title) : String.format("🎮 %s", tLRPC$MessageMedia.game.title);
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
@@ -2050,11 +2073,13 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 charSequence2 = charSequence4.toString();
                 i2 = Theme.key_chats_actionMessage;
             }
-            CharSequence replace = charSequence2.replace('\n', ' ');
-            if (z) {
-                replace = applyThumbs(replace);
+            if (charSequence2 instanceof String) {
+                charSequence2 = ((String) charSequence2).replace('\n', ' ');
             }
-            SpannableStringBuilder formatInternal = formatInternal(i, replace, charSequence);
+            if (z) {
+                charSequence2 = applyThumbs(charSequence2);
+            }
+            SpannableStringBuilder formatInternal = formatInternal(i, charSequence2, charSequence);
             if (isForumCell()) {
                 return formatInternal;
             }
@@ -2090,22 +2115,22 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     }
                     charSequence8 = AndroidUtilities.replaceNewLines(charSequence8);
                 }
-                ?? spannableStringBuilder2 = new SpannableStringBuilder(charSequence8);
+                ?? spannableStringBuilder4 = new SpannableStringBuilder(charSequence8);
                 MessageObject messageObject5 = this.message;
                 if (messageObject5 != null) {
                     messageObject5.spoilLoginCode();
                 }
-                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder2, 264);
+                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder4, 264);
                 MessageObject messageObject6 = this.message;
                 if (messageObject6 != null && (tLRPC$Message = messageObject6.messageOwner) != null) {
                     ArrayList<TLRPC$MessageEntity> arrayList4 = tLRPC$Message.entities;
                     TextPaint textPaint2 = this.currentMessagePaint;
-                    MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder2, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
+                    MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder4, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
                 }
                 if (z) {
-                    spannableStringBuilder2 = applyThumbs(spannableStringBuilder2);
+                    spannableStringBuilder4 = applyThumbs(spannableStringBuilder4);
                 }
-                return formatInternal(i, spannableStringBuilder2, charSequence);
+                return formatInternal(i, spannableStringBuilder4, charSequence);
             }
             return new SpannableStringBuilder();
         }

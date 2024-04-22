@@ -2136,7 +2136,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
 
             @Override
-            protected boolean onTabClick(int r10) {
+            public boolean onTabClick(int r10) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.AnonymousClass11.onTabClick(int):boolean");
             }
 
@@ -5395,6 +5395,14 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             return this.emojiSearchField;
         }
         return this.stickersSearchField;
+    }
+
+    public void scrollEmojiToTop() {
+        try {
+            this.emojiTabs.scrollTo(0, 0);
+            this.emojiTabs.onTabClick(0);
+        } catch (Exception unused) {
+        }
     }
 
     public void checkEmojiSearchFieldScroll(boolean z) {

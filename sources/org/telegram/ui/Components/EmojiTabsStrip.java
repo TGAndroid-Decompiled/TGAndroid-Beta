@@ -80,7 +80,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         return true;
     }
 
-    protected boolean onTabClick(int i) {
+    public boolean onTabClick(int i) {
         return true;
     }
 

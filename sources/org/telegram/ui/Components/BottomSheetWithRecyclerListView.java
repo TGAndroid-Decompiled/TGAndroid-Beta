@@ -293,7 +293,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
         this.headerHeight = currentActionBarHeight;
         this.headerTotalHeight = currentActionBarHeight + AndroidUtilities.statusBarHeight;
-        this.headerPaddingTop = AndroidUtilities.dp(12.0f);
+        this.headerPaddingTop = AndroidUtilities.dp(16.0f);
         this.headerPaddingBottom = AndroidUtilities.dp(-20.0f);
         this.actionBarSlideProgress = new AnimatedFloat(this.containerView, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.actionBar.backButtonImageView.setPivotX(0.0f);
@@ -459,7 +459,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         this.shadowDrawable.draw(canvas);
         if (this.showHandle && f2 > 0.0f) {
             int dp = AndroidUtilities.dp(36.0f);
-            int dp2 = AndroidUtilities.dp(19.0f) + i2;
+            int dp2 = AndroidUtilities.dp(20.0f) + i2;
             this.handleRect.set((view.getMeasuredWidth() - dp) / 2.0f, dp2, (view.getMeasuredWidth() + dp) / 2.0f, dp2 + AndroidUtilities.dp(4.0f));
             Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_sheet_scrollUp));
             Paint paint = Theme.dialogs_onlineCirclePaint;

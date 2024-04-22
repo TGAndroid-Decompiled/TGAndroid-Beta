@@ -68,6 +68,9 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     private int direction;
     private AnchorViewDelegate enterView;
     private boolean forceClose;
+    private int horizontalPadding;
+    private boolean isCopyForbidden;
+    private boolean isSetAsStatusForbidden;
     private ArrayList<MediaDataController.KeywordResult> keywordResults;
     private String[] lastLang;
     private long lastLangChangedTime;
@@ -282,6 +285,9 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
         @Override
         public boolean needCopy(TLRPC$Document tLRPC$Document) {
+            if (SuggestEmojiView.this.isCopyForbidden) {
+                return false;
+            }
             return UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
         }
 
@@ -298,11 +304,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         @Override
         public Boolean canSetAsStatus(TLRPC$Document tLRPC$Document) {
             TLRPC$User currentUser;
-            if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) != null) {
-                Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-                return Boolean.valueOf(tLRPC$Document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != tLRPC$Document.id));
+            if (SuggestEmojiView.this.isSetAsStatusForbidden || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
+                return null;
             }
-            return null;
+            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
+            return Boolean.valueOf(tLRPC$Document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != tLRPC$Document.id));
         }
 
         @Override
@@ -372,6 +378,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     public SuggestEmojiView(Context context, final int i, AnchorViewDelegate anchorViewDelegate, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.direction = 0;
+        this.horizontalPadding = AndroidUtilities.dp(10.0f);
         this.lastLangChangedTime = 0L;
         this.currentAccount = i;
         this.enterView = anchorViewDelegate;
@@ -386,6 +393,14 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
     public static void lambda$new$0(int i) {
         MediaDataController.getInstance(i).checkStickers(5);
+    }
+
+    public void forbidCopy() {
+        this.isCopyForbidden = true;
+    }
+
+    public void forbidSetAsStatus() {
+        this.isSetAsStatusForbidden = true;
     }
 
     private void createListView() {
@@ -404,7 +419,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
             @Override
             protected void onMeasure(int i, int i2) {
-                setPadding(AndroidUtilities.dp(10.0f), SuggestEmojiView.this.direction == 0 ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(6.66f), AndroidUtilities.dp(10.0f), SuggestEmojiView.this.direction == 0 ? AndroidUtilities.dp(6.66f) : AndroidUtilities.dp(8.0f));
+                setPadding(SuggestEmojiView.this.horizontalPadding, SuggestEmojiView.this.direction == 0 ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(6.66f), SuggestEmojiView.this.horizontalPadding, SuggestEmojiView.this.direction == 0 ? AndroidUtilities.dp(6.66f) : AndroidUtilities.dp(8.0f));
                 super.onMeasure(i, i2);
             }
 
@@ -491,22 +506,26 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, 52.0f));
         addView(this.containerView, LayoutHelper.createFrame(-1.0f, 66.66f, 80));
-        this.enterView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
+        AnchorViewDelegate anchorViewDelegate = this.enterView;
+        if (anchorViewDelegate != null) {
+            anchorViewDelegate.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (SuggestEmojiView.this.enterView.getVisibility() == 0) {
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (SuggestEmojiView.this.enterView == null || SuggestEmojiView.this.enterView.getVisibility() != 0) {
+                        return;
+                    }
                     SuggestEmojiView.this.fireUpdate();
                 }
-            }
-        });
+            });
+        }
     }
 
     public void lambda$createListView$1(View view, int i) {
@@ -519,6 +538,10 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
     public void setDelegate(AnchorViewDelegate anchorViewDelegate) {
         this.enterView = anchorViewDelegate;
+    }
+
+    public void setHorizontalPadding(int i) {
+        this.horizontalPadding = i;
     }
 
     public AnchorViewDelegate getDelegate() {
