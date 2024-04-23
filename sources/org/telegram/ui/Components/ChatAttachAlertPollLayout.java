@@ -1804,17 +1804,21 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     headerCell = new TextCheckCell(this.mContext);
                     break;
                 case 7:
-                    pollEditTextCell = new PollEditTextCell(this.mContext, true, 0, null) {
+                    pollEditTextCell = new PollEditTextCell(this.mContext, false, ChatAttachAlertPollLayout.this.isPremium ? 1 : 0, null) {
                         @Override
                         public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
                             ChatAttachAlertPollLayout.this.parentAlert.makeFocusable(editTextBoldCursor, true);
                             if (ChatAttachAlertPollLayout.this.isPremium) {
-                                ChatAttachAlertPollLayout.this.currentCell = null;
-                                ChatAttachAlertPollLayout.this.hideEmojiPopup(false);
-                                if (ChatAttachAlertPollLayout.this.suggestEmojiPanel != null) {
-                                    ChatAttachAlertPollLayout.this.suggestEmojiPanel.forceClose();
-                                    ChatAttachAlertPollLayout.this.suggestEmojiPanel.setDelegate(null);
+                                PollEditTextCell pollEditTextCell3 = (PollEditTextCell) editTextBoldCursor.getParent();
+                                ChatAttachAlertPollLayout.this.currentCell = pollEditTextCell3;
+                                EmojiView emojiView = ChatAttachAlertPollLayout.this.emojiView;
+                                if (emojiView != null) {
+                                    emojiView.scrollEmojiToTop();
                                 }
+                                pollEditTextCell3.getEmojiButton().setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
+                                ChatAttachAlertPollLayout.this.hideEmojiPopup(false);
+                                ChatAttachAlertPollLayout chatAttachAlertPollLayout = ChatAttachAlertPollLayout.this;
+                                chatAttachAlertPollLayout.updateSuggestEmojiPanelDelegate(chatAttachAlertPollLayout.listView.findContainingViewHolder(this));
                             }
                         }
 
@@ -1827,6 +1831,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                 }
                                 ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), true);
                             }
+                        }
+
+                        @Override
+                        public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell3) {
+                            ChatAttachAlertPollLayout.this.onEmojiClicked(pollEditTextCell3);
                         }
                     };
                     pollEditTextCell.createErrorTextView();
@@ -1844,8 +1853,18 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             if (pollEditTextCell.getTag() != null) {
                                 return;
                             }
+                            RecyclerView.ViewHolder findViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(ChatAttachAlertPollLayout.this.questionRow);
+                            if (findViewHolderForAdapterPosition != null && ChatAttachAlertPollLayout.this.suggestEmojiPanel != null) {
+                                for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                                    editable.removeSpan(imageSpan);
+                                }
+                                Emoji.replaceEmoji((CharSequence) editable, pollEditTextCell.getEditField().getPaint().getFontMetricsInt(), AndroidUtilities.dp(18.0f), false);
+                                ChatAttachAlertPollLayout.this.suggestEmojiPanel.setDirection(1);
+                                ChatAttachAlertPollLayout.this.suggestEmojiPanel.setDelegate(pollEditTextCell);
+                                ChatAttachAlertPollLayout.this.suggestEmojiPanel.setTranslationY(findViewHolderForAdapterPosition.itemView.getY());
+                                ChatAttachAlertPollLayout.this.suggestEmojiPanel.fireUpdate();
+                            }
                             ChatAttachAlertPollLayout.this.solutionString = editable;
-                            RecyclerView.ViewHolder findViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(ChatAttachAlertPollLayout.this.solutionRow);
                             if (findViewHolderForAdapterPosition != null) {
                                 ChatAttachAlertPollLayout chatAttachAlertPollLayout = ChatAttachAlertPollLayout.this;
                                 chatAttachAlertPollLayout.setTextLeft(findViewHolderForAdapterPosition.itemView, chatAttachAlertPollLayout.solutionRow);

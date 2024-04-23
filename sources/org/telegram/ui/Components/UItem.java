@@ -290,11 +290,10 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asShadowCollapseButton(int i, CharSequence charSequence, View.OnClickListener onClickListener) {
+    public static UItem asShadowCollapseButton(int i, CharSequence charSequence) {
         UItem uItem = new UItem(38, false);
         uItem.id = i;
         uItem.animatedText = charSequence;
-        uItem.clickCallback = onClickListener;
         return uItem;
     }
 

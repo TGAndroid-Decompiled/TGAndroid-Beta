@@ -79,11 +79,15 @@ public final class BulletinFactory {
     }
 
     public void showForError(TLRPC$TL_error tLRPC$TL_error) {
-        createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+        if (LaunchActivity.isActive) {
+            createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+        }
     }
 
     public static void showError(TLRPC$TL_error tLRPC$TL_error) {
-        global().createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+        if (LaunchActivity.isActive) {
+            global().createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+        }
     }
 
     public static final class FileType {
@@ -252,9 +256,9 @@ public final class BulletinFactory {
             }
             charSequence = spannableStringBuilder;
         }
-        lottieLayout.textView.setText(charSequence);
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(i2);
+        lottieLayout.textView.setText(charSequence);
         return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
     }
 

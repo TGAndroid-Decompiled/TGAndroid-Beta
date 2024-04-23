@@ -22,6 +22,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
@@ -96,6 +97,7 @@ public class CheckBoxCell extends FrameLayout {
                 addView(this.animatedTextView, LayoutHelper.createFrame(-1, -2.0f, 19, 29.0f, 0.0f, 0.0f, 0.0f));
                 this.animatedTextView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
             } else {
+                this.animatedTextView.setRightPadding(AndroidUtilities.dp(i2));
                 this.animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
                 if (i == 2) {
                     View view = this.animatedTextView;
@@ -335,6 +337,9 @@ public class CheckBoxCell extends FrameLayout {
         } else {
             setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0));
             int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(isCheckboxRound() ? 60.0f : 34.0f);
+            if (this.textAnimated) {
+                measuredWidth += (int) this.animatedTextView.getRightPadding();
+            }
             if (this.currentType == 7) {
                 measuredWidth -= AndroidUtilities.dp(34.0f);
             }
@@ -407,10 +412,16 @@ public class CheckBoxCell extends FrameLayout {
     }
 
     public void setUserOrChat(TLObject tLObject) {
+        String formatName;
         this.avatarDrawable.setInfo(tLObject);
         this.avatarImageView.setForUserOrChat(tLObject, this.avatarDrawable);
-        String formatName = ContactsController.formatName(tLObject);
-        if ((tLObject instanceof TLRPC$User) && ((TLRPC$User) tLObject).id == MessagesController.getInstance(UserConfig.selectedAccount).telegramAntispamUserId) {
+        boolean z = tLObject instanceof TLRPC$User;
+        if (z) {
+            formatName = UserObject.getUserName((TLRPC$User) tLObject);
+        } else {
+            formatName = ContactsController.formatName(tLObject);
+        }
+        if (z && ((TLRPC$User) tLObject).id == MessagesController.getInstance(UserConfig.selectedAccount).telegramAntispamUserId) {
             formatName = LocaleController.getString(R.string.ChannelAntiSpamUser);
         }
         if (this.textAnimated) {

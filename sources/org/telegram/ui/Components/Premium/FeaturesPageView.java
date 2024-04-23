@@ -200,7 +200,6 @@ public class FeaturesPageView extends BaseListPageView {
                 canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i2, FeaturesPageView.this.resourcesProvider), Theme.getColor(Theme.key_dialogBackground, FeaturesPageView.this.resourcesProvider), 0.5f));
                 this.iconTextureView.setBackgroundBitmap(createBitmap);
                 GLIconRenderer gLIconRenderer = this.iconTextureView.mRenderer;
-                gLIconRenderer.forceNight = true;
                 gLIconRenderer.colorKey1 = i2;
                 gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
                 gLIconRenderer.updateColors();

@@ -63,7 +63,7 @@ public class Icon3D {
     float xOffset;
     private int xOffsetHandle;
     private static final String[] starModel = {"models/star.binobj"};
-    private static final String[] coinModel = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj"};
+    private static final String[] coinModel = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
     float enterAlpha = 0.0f;
     public float spec1 = 2.0f;
     public float spec2 = 0.13f;

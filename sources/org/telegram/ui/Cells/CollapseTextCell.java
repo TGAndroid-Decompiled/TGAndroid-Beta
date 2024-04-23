@@ -45,9 +45,8 @@ public class CollapseTextCell extends FrameLayout {
         addView(this.collapsedArrow, LayoutHelper.createFrameRelatively(14.0f, 14.0f, 8388627, 21.0f, 1.0f, 0.0f, 3.0f));
     }
 
-    public void set(CharSequence charSequence, boolean z, View.OnClickListener onClickListener) {
+    public void set(CharSequence charSequence, boolean z) {
         this.textView.setText(charSequence);
-        this.textView.setOnClickListener(onClickListener);
         this.collapsedArrow.animate().cancel();
         this.collapsedArrow.animate().rotation(z ? 0.0f : 180.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
     }

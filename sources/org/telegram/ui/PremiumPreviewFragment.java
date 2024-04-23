@@ -659,6 +659,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.premiumFeatures = new ArrayList<>();
         this.morePremiumFeatures = new ArrayList<>();
         this.subscriptionTiers = new ArrayList<>();
+        boolean z = false;
         this.selectedTierIndex = 0;
         this.matrix = new Matrix();
         this.gradientPaint = new Paint(1);
@@ -676,8 +677,10 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         premiumGradientTools.cx = 0.0f;
         premiumGradientTools.cy = 0.0f;
         this.type = i;
-        Theme.isCurrentThemeDark();
-        this.whiteBackground = false;
+        if (!Theme.isCurrentThemeDark() && i == 1) {
+            z = true;
+        }
+        this.whiteBackground = z;
         this.source = str;
     }
 
@@ -2240,7 +2243,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             textView.setTextColor(Theme.getColor(i));
             if (this.backgroundView.imageView != null && this.backgroundView.imageView.mRenderer != null) {
                 if (this.whiteBackground) {
-                    this.backgroundView.imageView.mRenderer.forceNight = true;
                     this.backgroundView.imageView.mRenderer.colorKey1 = Theme.key_premiumCoinGradient1;
                     this.backgroundView.imageView.mRenderer.colorKey2 = Theme.key_premiumCoinGradient2;
                 }

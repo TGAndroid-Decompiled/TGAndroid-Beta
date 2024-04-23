@@ -1054,6 +1054,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private HintView slowModeHint;
     private boolean sponsoredMessagesAdded;
     private int sponsoredMessagesPostsBetween;
+    private Pattern sponsoredUrlPattern;
     private int startFromVideoMessageId;
     private int startFromVideoTimestamp;
     private int startLoadFromDate;
@@ -15491,26 +15492,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void addSponsoredMessages(boolean z) {
-        MessagesController.SponsoredMessagesInfo sponsoredMessages;
-        if (!this.sponsoredMessagesAdded && this.chatMode == 0 && ChatObject.isChannel(this.currentChat)) {
-            if (this.forwardEndReached[0]) {
-                if ((getUserConfig().isPremium() && getMessagesController().isSponsoredDisabled()) || (sponsoredMessages = getMessagesController().getSponsoredMessages(this.dialog_id)) == null || sponsoredMessages.messages == null) {
-                    return;
-                }
-                for (int i = 0; i < sponsoredMessages.messages.size(); i++) {
-                    sponsoredMessages.messages.get(i).resetLayout();
-                }
-                this.sponsoredMessagesAdded = true;
-                Integer num = sponsoredMessages.posts_between;
-                this.sponsoredMessagesPostsBetween = num != null ? num.intValue() : 0;
-                ArrayList<MessageObject> arrayList = this.notPushedSponsoredMessages;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                processNewMessages(sponsoredMessages.messages);
-            }
-        }
+    private void addSponsoredMessages(boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.addSponsoredMessages(boolean):void");
     }
 
     public void removeFromSponsored(MessageObject messageObject) {
@@ -16290,7 +16273,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         if (!tLRPC$PollResults.solution_entities.isEmpty()) {
-            charSequence = new SpannableStringBuilder(tLRPC$PollResults.solution);
+            charSequence = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(tLRPC$PollResults.solution), Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(13.0f), false), tLRPC$PollResults.solution_entities, Theme.chat_msgBotButtonPaint.getFontMetricsInt());
             MessageObject.addEntitiesToText(charSequence, tLRPC$PollResults.solution_entities, false, true, true, false);
         } else {
             charSequence = tLRPC$PollResults.solution;
@@ -24382,7 +24365,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ChatActivity.this.logSponsoredClicked(messageObject);
                     new Bundle();
                     if (messageObject.sponsoredUrl != null) {
-                        Browser.openUrl(ChatActivity.this.getContext(), messageObject.sponsoredUrl, true, false);
+                        if (ChatActivity.this.progressDialogCurrent != null) {
+                            ChatActivity.this.progressDialogCurrent.cancel(true);
+                        }
+                        ChatActivity.this.progressDialogCurrent = chatMessageCell.getMessageObject() != null ? new AnonymousClass10(chatMessageCell) : null;
+                        Browser.openUrl(ChatActivity.this.getContext(), Uri.parse(messageObject.sponsoredUrl), true, false, false, ChatActivity.this.progressDialogCurrent);
                     }
                 } else {
                     TLRPC$WebPage storyMentionWebpage = messageObject.getStoryMentionWebpage();
@@ -24409,7 +24396,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (ChatActivity.this.progressDialogCurrent != null) {
                         ChatActivity.this.progressDialogCurrent.cancel(true);
                     }
-                    ChatActivity.this.progressDialogCurrent = chatMessageCell.getMessageObject() != null ? new AnonymousClass10(chatMessageCell) : null;
+                    ChatActivity.this.progressDialogCurrent = chatMessageCell.getMessageObject() != null ? new AnonymousClass11(chatMessageCell) : null;
                     Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(storyMentionWebpage.url), true, true, false, ChatActivity.this.progressDialogCurrent);
                 }
             }
@@ -24550,6 +24537,36 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final ChatMessageCell val$cell;
 
             AnonymousClass10(ChatMessageCell chatMessageCell) {
+                this.val$cell = chatMessageCell;
+            }
+
+            @Override
+            public void init() {
+                ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
+                ChatActivity.this.progressDialogAtMessageType = 2;
+                ChatActivity.this.progressDialogLinkSpan = null;
+                this.val$cell.invalidate();
+            }
+
+            @Override
+            public void end(boolean z) {
+                if (z) {
+                    return;
+                }
+                final ChatActivity chatActivity = ChatActivity.this;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatActivity.access$48500(ChatActivity.this);
+                    }
+                }, 250L);
+            }
+        }
+
+        public class AnonymousClass11 extends Browser.Progress {
+            final ChatMessageCell val$cell;
+
+            AnonymousClass11(ChatMessageCell chatMessageCell) {
                 this.val$cell = chatMessageCell;
             }
 

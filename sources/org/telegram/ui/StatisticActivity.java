@@ -631,7 +631,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         };
         this.viewPagerFixed = new ViewPagerFixed(getContext()) {
             @Override
-            protected void onTabAnimationUpdate(boolean z2) {
+            public void onTabAnimationUpdate(boolean z2) {
                 if (z2) {
                     return;
                 }

@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.text.Layout;
@@ -199,11 +200,13 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
                     if (animatedEmojiDrawable4 != null && (view = this.parentView) != null) {
                         animatedEmojiDrawable4.removeView(view);
                     }
-                    this.animatedEmojiDrawable = new AnimatedEmojiDrawable(11, this.currentAccount, nextUnreadTopic.icon_emoji_id);
+                    AnimatedEmojiDrawable animatedEmojiDrawable5 = new AnimatedEmojiDrawable(11, this.currentAccount, nextUnreadTopic.icon_emoji_id);
+                    this.animatedEmojiDrawable = animatedEmojiDrawable5;
+                    animatedEmojiDrawable5.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.SRC_IN));
                 }
-                AnimatedEmojiDrawable animatedEmojiDrawable5 = this.animatedEmojiDrawable;
-                if (animatedEmojiDrawable5 != null && (view2 = this.parentView) != null) {
-                    animatedEmojiDrawable5.addView(view2);
+                AnimatedEmojiDrawable animatedEmojiDrawable6 = this.animatedEmojiDrawable;
+                if (animatedEmojiDrawable6 != null && (view2 = this.parentView) != null) {
+                    animatedEmojiDrawable6.addView(view2);
                 }
                 this.imageReceiver.setImageBitmap((Bitmap) null);
             } else {

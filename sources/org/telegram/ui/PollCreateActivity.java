@@ -1630,7 +1630,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 });
                 pollEditTextCell = pollEditTextCell3;
             } else {
-                final PollEditTextCell pollEditTextCell4 = new PollEditTextCell(this.mContext, true, 0, null) {
+                final PollEditTextCell pollEditTextCell4 = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
                     @Override
                     protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
                         if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
@@ -1643,15 +1643,23 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
+                    public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell5) {
+                        PollCreateActivity.this.onEmojiClicked(pollEditTextCell5);
+                    }
+
+                    @Override
                     public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
                         super.onFieldTouchUp(editTextBoldCursor);
                         if (PollCreateActivity.this.isPremium) {
-                            PollCreateActivity.this.currentCell = null;
-                            PollCreateActivity.this.hideEmojiPopup(false);
-                            if (PollCreateActivity.this.suggestEmojiPanel != null) {
-                                PollCreateActivity.this.suggestEmojiPanel.forceClose();
-                                PollCreateActivity.this.suggestEmojiPanel.setDelegate(null);
+                            PollEditTextCell pollEditTextCell5 = (PollEditTextCell) editTextBoldCursor.getParent();
+                            PollCreateActivity.this.currentCell = pollEditTextCell5;
+                            if (PollCreateActivity.this.emojiView != null) {
+                                PollCreateActivity.this.emojiView.scrollEmojiToTop();
                             }
+                            pollEditTextCell5.getEmojiButton().setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
+                            PollCreateActivity.this.hideEmojiPopup(false);
+                            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
+                            pollCreateActivity.updateSuggestEmojiPanelDelegate(pollCreateActivity.listView.findContainingViewHolder(this));
                         }
                     }
                 };
@@ -1671,8 +1679,18 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                         if (pollEditTextCell4.getTag() != null) {
                             return;
                         }
+                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(PollCreateActivity.this.questionRow);
+                        if (findViewHolderForAdapterPosition != null && PollCreateActivity.this.suggestEmojiPanel != null) {
+                            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                                editable.removeSpan(imageSpan);
+                            }
+                            Emoji.replaceEmoji((CharSequence) editable, pollEditTextCell4.getEditField().getPaint().getFontMetricsInt(), AndroidUtilities.dp(18.0f), false);
+                            PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
+                            PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell4);
+                            PollCreateActivity.this.suggestEmojiPanel.setTranslationY(findViewHolderForAdapterPosition.itemView.getY());
+                            PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
+                        }
                         PollCreateActivity.this.solutionString = editable;
-                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(PollCreateActivity.this.solutionRow);
                         if (findViewHolderForAdapterPosition != null) {
                             PollCreateActivity pollCreateActivity = PollCreateActivity.this;
                             pollCreateActivity.setTextLeft(findViewHolderForAdapterPosition.itemView, pollCreateActivity.solutionRow);

@@ -3262,6 +3262,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
 
         public void lambda$onVideoRecordStart$3(final boolean z, final Runnable runnable) {
+            if (StoryRecorder.this.cameraView == null) {
+                return;
+            }
             CameraController.getInstance().recordVideo(StoryRecorder.this.cameraView.getCameraSessionObject(), StoryRecorder.this.outputFile, false, new CameraController.VideoTakeCallback() {
                 @Override
                 public final void onFinishVideoRecording(String str, long j) {

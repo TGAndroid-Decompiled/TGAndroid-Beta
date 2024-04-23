@@ -161,6 +161,7 @@ import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.ChatScrimPopupContainerLayout;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.EmbedBottomSheet;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.InviteLinkBottomSheet;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PhonebookShareAlert;
@@ -2588,11 +2589,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressTopicButton(ChatMessageCell chatMessageCell) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTopicButton(this, chatMessageCell);
-            }
-
-            @Override
             public void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, TLRPC$Document tLRPC$Document) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserStatus(this, chatMessageCell, tLRPC$User, tLRPC$Document);
             }
@@ -2717,16 +2713,28 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public boolean shouldShowTopicButton() {
-                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
-            }
-
-            @Override
             public void videoTimerReached() {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
             }
 
             AnonymousClass1() {
+            }
+
+            @Override
+            public boolean shouldShowTopicButton() {
+                return ChatObject.isForum(ChannelAdminLogActivity.this.currentChat);
+            }
+
+            @Override
+            public void didPressTopicButton(ChatMessageCell chatMessageCell) {
+                MessageObject messageObject = chatMessageCell.getMessageObject();
+                if (messageObject != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", -messageObject.getDialogId());
+                    ChatActivity chatActivity = new ChatActivity(bundle);
+                    ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(messageObject.getDialogId(), MessageObject.getTopicId(((BaseFragment) ChannelAdminLogActivity.this).currentAccount, messageObject.messageOwner, true)));
+                    ChannelAdminLogActivity.this.presentFragment(chatActivity);
+                }
             }
 
             @Override
