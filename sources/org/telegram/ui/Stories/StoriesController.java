@@ -613,7 +613,7 @@ public class StoriesController {
             int i3 = 0;
             while (i3 < tL_stories$PeerStories.stories.size()) {
                 TL_stories$StoryItem tL_stories$StoryItem = tL_stories$PeerStories.stories.get(i3);
-                if ((tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted) || ((tL_stories$StoryItem instanceof TL_stories$TL_storyItem) && tL_stories$StoryItem.expire_date > currentTime)) {
+                if ((tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted) || ((tL_stories$StoryItem instanceof TL_stories$TL_storyItem) && currentTime > tL_stories$StoryItem.expire_date)) {
                     NotificationsController.getInstance(this.currentAccount).processDeleteStory(peerDialogId, tL_stories$StoryItem.id);
                     tL_stories$PeerStories.stories.remove(i3);
                     i3--;

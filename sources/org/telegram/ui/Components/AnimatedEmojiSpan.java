@@ -492,7 +492,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         Layout[] layoutArr = new Layout[arrayList == null ? 0 : arrayList.size()];
         if (arrayList != null) {
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                layoutArr[i2] = arrayList.get(i2).textLayout.layout;
+                layoutArr[i2] = arrayList.get(i2).textLayout;
             }
         }
         return update(i, view, z, emojiGroupedSpans, z2, layoutArr);

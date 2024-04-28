@@ -3789,7 +3789,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
-            String charSequence3 = textLayoutBlock.textLayout.layout.getText().toString();
+            String charSequence3 = textLayoutBlock.textLayout.getText().toString();
             int i3 = textLayoutBlock.charactersOffset;
             if (findQuoteStart > i3) {
                 if (findQuoteStart - i3 > charSequence3.length() - 1) {

@@ -2827,10 +2827,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     DialogsActivity.this.viewPages[0].dialogsAdapter.resume();
                     DialogsActivity.this.viewPages[1].dialogsAdapter.pause();
                 }
-                View view = DialogsActivity.this.fragmentView;
-                if (view instanceof SizeNotifierFrameLayout) {
-                    ((SizeNotifierFrameLayout) view).updateBlurContent();
-                }
             }
         }
 

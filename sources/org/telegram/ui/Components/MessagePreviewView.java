@@ -1832,7 +1832,7 @@ public class MessagePreviewView extends FrameLayout {
                 if (arrayList != null && charSequence != null) {
                     for (int i3 = 0; i3 < arrayList.size(); i3++) {
                         MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i3);
-                        String charSequence3 = textLayoutBlock.textLayout.layout.getText().toString();
+                        String charSequence3 = textLayoutBlock.textLayout.getText().toString();
                         int i4 = textLayoutBlock.charactersOffset;
                         if (i > i4) {
                             if (i - i4 > charSequence3.length() - 1) {

@@ -1564,13 +1564,13 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             MessageObject messageObject = ((ChatMessageCell) this.selectedView).getMessageObject();
             StaticLayout staticLayout = null;
             if (this.isDescription) {
-                staticLayout = ((ChatMessageCell) this.selectedView).getDescriptionLayout();
+                staticLayout = ((ChatMessageCell) this.selectedView).getDescriptionlayout();
             } else if (((ChatMessageCell) this.selectedView).hasCaptionLayout()) {
-                staticLayout = ((ChatMessageCell) this.selectedView).getCaptionLayout().textLayoutBlocks.get(0).textLayout.layout;
+                staticLayout = ((ChatMessageCell) this.selectedView).getCaptionLayout().textLayoutBlocks.get(0).textLayout;
             } else {
                 ArrayList<MessageObject.TextLayoutBlock> arrayList = messageObject.textLayoutBlocks;
                 if (arrayList != null) {
-                    staticLayout = arrayList.get(0).textLayout.layout;
+                    staticLayout = arrayList.get(0).textLayout;
                 }
             }
             if (staticLayout == null) {
@@ -1583,22 +1583,22 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             ArrayList<MessageObject.TextLayoutBlock> arrayList;
             this.maybeSelectedView = chatMessageCell;
             MessageObject messageObject = chatMessageCell.getMessageObject();
-            if (this.maybeIsDescription && chatMessageCell.getDescriptionLayout() != null) {
+            if (this.maybeIsDescription && chatMessageCell.getDescriptionlayout() != null) {
                 Rect rect = this.textArea;
                 int i = this.maybeTextX;
-                rect.set(i, this.maybeTextY, chatMessageCell.getDescriptionLayout().getWidth() + i, this.maybeTextY + chatMessageCell.getDescriptionLayout().getHeight());
+                rect.set(i, this.maybeTextY, chatMessageCell.getDescriptionlayout().getWidth() + i, this.maybeTextY + chatMessageCell.getDescriptionlayout().getHeight());
             } else if (chatMessageCell.hasCaptionLayout() && chatMessageCell.getCaptionLayout().textLayoutBlocks.size() > 0) {
                 ArrayList<MessageObject.TextLayoutBlock> arrayList2 = chatMessageCell.getCaptionLayout().textLayoutBlocks;
                 MessageObject.TextLayoutBlock textLayoutBlock = arrayList2.get(arrayList2.size() - 1);
                 Rect rect2 = this.textArea;
                 int i2 = this.maybeTextX;
-                rect2.set(i2, this.maybeTextY, textLayoutBlock.textLayout.layout.getWidth() + i2, (int) (this.maybeTextY + textLayoutBlock.textYOffset + textLayoutBlock.padTop + textLayoutBlock.textLayout.layout.getHeight()));
+                rect2.set(i2, this.maybeTextY, textLayoutBlock.textLayout.getWidth() + i2, (int) (this.maybeTextY + textLayoutBlock.textYOffset + textLayoutBlock.padTop + textLayoutBlock.textLayout.getHeight()));
             } else if (messageObject != null && (arrayList = messageObject.textLayoutBlocks) != null && arrayList.size() > 0) {
                 ArrayList<MessageObject.TextLayoutBlock> arrayList3 = messageObject.textLayoutBlocks;
                 MessageObject.TextLayoutBlock textLayoutBlock2 = arrayList3.get(arrayList3.size() - 1);
                 Rect rect3 = this.textArea;
                 int i3 = this.maybeTextX;
-                rect3.set(i3, this.maybeTextY, textLayoutBlock2.textLayout.layout.getWidth() + i3, (int) (this.maybeTextY + textLayoutBlock2.textYOffset + textLayoutBlock2.padTop + textLayoutBlock2.textLayout.layout.getHeight()));
+                rect3.set(i3, this.maybeTextY, textLayoutBlock2.textLayout.getWidth() + i3, (int) (this.maybeTextY + textLayoutBlock2.textYOffset + textLayoutBlock2.padTop + textLayoutBlock2.textLayout.getHeight()));
             } else {
                 this.maybeSelectedView = null;
             }
@@ -1610,7 +1610,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 return null;
             }
             if (!z ? this.isDescription : this.maybeIsDescription) {
-                return chatMessageCell.getDescriptionLayout().getText();
+                return chatMessageCell.getDescriptionlayout().getText();
             }
             if (chatMessageCell.hasCaptionLayout()) {
                 return chatMessageCell.getCaptionLayout().text;
@@ -1690,7 +1690,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 } else if (textLayoutBlock.code) {
                     i4 = AndroidUtilities.dp(0.0f);
                 }
-                drawSelection(canvas, textLayoutBlock.textLayout.layout, clamp, clamp2, true, true, i4);
+                drawSelection(canvas, textLayoutBlock.textLayout, clamp, clamp2, true, true, i4);
             }
         }
 
@@ -1722,7 +1722,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 } else if (textLayoutBlock.code) {
                     i4 = AndroidUtilities.dp(0.0f);
                 }
-                drawSelection(canvas, textLayoutBlock.textLayout.layout, clamp, clamp2, true, true, i4);
+                drawSelection(canvas, textLayoutBlock.textLayout, clamp, clamp2, true, true, i4);
             }
         }
 
@@ -1739,16 +1739,16 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             int i8 = i2 - i4;
             float f2 = 0.0f;
             if (z ? this.maybeIsDescription : this.isDescription) {
-                staticLayout = chatMessageCell.getDescriptionLayout();
+                staticLayout = chatMessageCell.getDescriptionlayout();
             } else {
                 if (chatMessageCell.hasCaptionLayout()) {
                     MessageObject.TextLayoutBlock textLayoutBlock = chatMessageCell.getCaptionLayout().textLayoutBlocks.get(chatMessageCell.getCaptionLayout().textLayoutBlocks.size() - 1);
-                    staticLayout = textLayoutBlock.textLayout.layout;
+                    staticLayout = textLayoutBlock.textLayout;
                     f = textLayoutBlock.textYOffset;
                     i5 = textLayoutBlock.padTop;
                 } else {
                     MessageObject.TextLayoutBlock textLayoutBlock2 = chatMessageCell.getMessageObject().textLayoutBlocks.get(chatMessageCell.getMessageObject().textLayoutBlocks.size() - 1);
-                    staticLayout = textLayoutBlock2.textLayout.layout;
+                    staticLayout = textLayoutBlock2.textLayout;
                     f = textLayoutBlock2.textYOffset;
                     i5 = textLayoutBlock2.padTop;
                 }
@@ -1794,7 +1794,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             }
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (!z ? this.isDescription : this.maybeIsDescription) {
-                layoutBlock.layout = chatMessageCell.getDescriptionLayout();
+                layoutBlock.layout = chatMessageCell.getDescriptionlayout();
                 layoutBlock.xOffset = 0.0f;
                 layoutBlock.yOffset = 0.0f;
                 layoutBlock.charOffset = 0;
@@ -1807,7 +1807,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     if (f >= f2) {
                         int i4 = textLayoutBlock.padTop;
                         if (f <= i4 + f2 + textLayoutBlock.height) {
-                            layoutBlock.layout = textLayoutBlock.textLayout.layout;
+                            layoutBlock.layout = textLayoutBlock.textLayout;
                             layoutBlock.yOffset = f2 + i4;
                             float f3 = -(textLayoutBlock.isRtl() ? ((int) Math.ceil(captionLayout.textXOffset)) - (textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0) : 0);
                             layoutBlock.xOffset = f3;
@@ -1827,7 +1827,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     if (f4 >= f5) {
                         int i6 = textLayoutBlock2.padTop;
                         if (f4 <= i6 + f5 + textLayoutBlock2.height) {
-                            layoutBlock.layout = textLayoutBlock2.textLayout.layout;
+                            layoutBlock.layout = textLayoutBlock2.textLayout;
                             layoutBlock.yOffset = f5 + i6;
                             if (textLayoutBlock2.quote) {
                                 dp = AndroidUtilities.dp(10.0f);
@@ -1858,14 +1858,14 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             }
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (this.isDescription) {
-                layoutBlock.layout = chatMessageCell.getDescriptionLayout();
+                layoutBlock.layout = chatMessageCell.getDescriptionlayout();
                 layoutBlock.yOffset = 0.0f;
                 layoutBlock.xOffset = 0.0f;
                 layoutBlock.charOffset = 0;
             } else if (chatMessageCell.hasCaptionLayout()) {
                 MessageObject.TextLayoutBlocks captionLayout = chatMessageCell.getCaptionLayout();
                 if (captionLayout.textLayoutBlocks.size() == 1) {
-                    layoutBlock.layout = captionLayout.textLayoutBlocks.get(0).textLayout.layout;
+                    layoutBlock.layout = captionLayout.textLayoutBlocks.get(0).textLayout;
                     layoutBlock.yOffset = textLayoutBlock2.padTop;
                     MessageObject.TextLayoutBlock textLayoutBlock3 = captionLayout.textLayoutBlocks.get(0);
                     float f = -(textLayoutBlock3.isRtl() ? ((int) Math.ceil(captionLayout.textXOffset)) - (textLayoutBlock3.quote ? AndroidUtilities.dp(10.0f) : 0) : 0);
@@ -1880,7 +1880,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     MessageObject.TextLayoutBlock textLayoutBlock4 = captionLayout.textLayoutBlocks.get(i2);
                     int i3 = i - textLayoutBlock4.charactersOffset;
                     if (i3 >= 0 && i3 <= textLayoutBlock4.textLayout.getText().length()) {
-                        layoutBlock.layout = textLayoutBlock4.textLayout.layout;
+                        layoutBlock.layout = textLayoutBlock4.textLayout;
                         layoutBlock.yOffset = textLayoutBlock4.textYOffset + textLayoutBlock4.padTop;
                         float f2 = -(textLayoutBlock4.isRtl() ? ((int) Math.ceil(captionLayout.textXOffset)) - (textLayoutBlock4.quote ? AndroidUtilities.dp(10.0f) : 0) : 0);
                         layoutBlock.xOffset = f2;
@@ -1897,7 +1897,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 if (arrayList == null) {
                     layoutBlock.layout = null;
                 } else if (arrayList.size() == 1) {
-                    layoutBlock.layout = messageObject.textLayoutBlocks.get(0).textLayout.layout;
+                    layoutBlock.layout = messageObject.textLayoutBlocks.get(0).textLayout;
                     layoutBlock.yOffset = textLayoutBlock.padTop;
                     MessageObject.TextLayoutBlock textLayoutBlock5 = messageObject.textLayoutBlocks.get(0);
                     float f3 = -(textLayoutBlock5.isRtl() ? ((int) Math.ceil(messageObject.textXOffset)) - (textLayoutBlock5.quote ? AndroidUtilities.dp(10.0f) : 0) : 0);
@@ -1911,7 +1911,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                         MessageObject.TextLayoutBlock textLayoutBlock6 = messageObject.textLayoutBlocks.get(i4);
                         int i5 = i - textLayoutBlock6.charactersOffset;
                         if (i5 >= 0 && i5 <= textLayoutBlock6.textLayout.getText().length()) {
-                            layoutBlock.layout = textLayoutBlock6.textLayout.layout;
+                            layoutBlock.layout = textLayoutBlock6.textLayout;
                             layoutBlock.yOffset = textLayoutBlock6.textYOffset + textLayoutBlock6.padTop;
                             float f4 = -(textLayoutBlock6.isRtl() ? ((int) Math.ceil(messageObject.textXOffset)) - (textLayoutBlock6.quote ? AndroidUtilities.dp(10.0f) : 0) : 0);
                             layoutBlock.xOffset = f4;

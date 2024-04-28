@@ -30,7 +30,6 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CachedStaticLayout;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedTextView;
 public class AnimatedTextView extends View {
@@ -107,23 +106,18 @@ public class AnimatedTextView extends View {
 
         public class Part {
             AnimatedEmojiSpan.EmojiGroupedSpans emoji;
-            CachedStaticLayout layout;
+            StaticLayout layout;
             float left;
             float offset;
             int toOppositeIndex;
             float width;
 
-            public Part(CachedStaticLayout cachedStaticLayout, float f, int i) {
-                this.layout = cachedStaticLayout;
+            public Part(StaticLayout staticLayout, float f, int i) {
+                this.layout = staticLayout;
                 this.toOppositeIndex = i;
                 layout(f);
                 if (AnimatedTextDrawable.this.getCallback() instanceof View) {
-                    View view = (View) AnimatedTextDrawable.this.getCallback();
-                    int i2 = AnimatedTextDrawable.this.emojiCacheType;
-                    AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.emoji;
-                    Layout[] layoutArr = new Layout[1];
-                    layoutArr[0] = cachedStaticLayout == null ? null : cachedStaticLayout.layout;
-                    this.emoji = AnimatedEmojiSpan.update(i2, view, emojiGroupedSpans, layoutArr);
+                    this.emoji = AnimatedEmojiSpan.update(AnimatedTextDrawable.this.emojiCacheType, (View) AnimatedTextDrawable.this.getCallback(), this.emoji, staticLayout);
                 }
             }
 
@@ -135,11 +129,11 @@ public class AnimatedTextView extends View {
 
             public void layout(float f) {
                 this.offset = f;
-                CachedStaticLayout cachedStaticLayout = this.layout;
+                StaticLayout staticLayout = this.layout;
                 float f2 = 0.0f;
-                this.left = (cachedStaticLayout == null || cachedStaticLayout.getLineCount() <= 0) ? 0.0f : this.layout.getLineLeft(0);
-                CachedStaticLayout cachedStaticLayout2 = this.layout;
-                if (cachedStaticLayout2 != null && cachedStaticLayout2.getLineCount() > 0) {
+                this.left = (staticLayout == null || staticLayout.getLineCount() <= 0) ? 0.0f : this.layout.getLineLeft(0);
+                StaticLayout staticLayout2 = this.layout;
+                if (staticLayout2 != null && staticLayout2.getLineCount() > 0) {
                     f2 = this.layout.getLineWidth(0);
                 }
                 this.width = f2;
@@ -147,7 +141,7 @@ public class AnimatedTextView extends View {
 
             public void draw(Canvas canvas, float f) {
                 this.layout.draw(canvas);
-                AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout.layout, this.emoji, 0.0f, null, 0.0f, 0.0f, 0.0f, f, AnimatedTextDrawable.this.emojiColorFilter);
+                AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emoji, 0.0f, null, 0.0f, 0.0f, 0.0f, f, AnimatedTextDrawable.this.emojiColorFilter);
             }
         }
 
@@ -366,7 +360,7 @@ public class AnimatedTextView extends View {
                 clearCurrentParts();
                 this.currentParts = r12;
                 this.currentText = charSequence;
-                Part[] partArr3 = {new Part(new CachedStaticLayout(makeLayout(charSequence, i)), 0.0f, -1)};
+                Part[] partArr3 = {new Part(makeLayout(charSequence, i), 0.0f, -1)};
                 Part[] partArr4 = this.currentParts;
                 this.currentWidth = partArr4[0].width;
                 this.currentHeight = partArr4[0].layout.getHeight();
@@ -384,32 +378,32 @@ public class AnimatedTextView extends View {
         }
 
         public void lambda$setText$0(int i, ArrayList arrayList, ArrayList arrayList2, CharSequence charSequence, int i2, int i3) {
-            CachedStaticLayout cachedStaticLayout = new CachedStaticLayout(makeLayout(charSequence, i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth)))));
-            Part part = new Part(cachedStaticLayout, this.currentWidth, arrayList.size());
-            Part part2 = new Part(cachedStaticLayout, this.oldWidth, arrayList.size());
+            StaticLayout makeLayout = makeLayout(charSequence, i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
+            Part part = new Part(makeLayout, this.currentWidth, arrayList.size());
+            Part part2 = new Part(makeLayout, this.oldWidth, arrayList.size());
             arrayList2.add(part);
             arrayList.add(part2);
             float f = part.width;
             this.currentWidth += f;
             this.oldWidth += f;
-            this.currentHeight = Math.max(this.currentHeight, cachedStaticLayout.getHeight());
-            this.oldHeight = Math.max(this.oldHeight, cachedStaticLayout.getHeight());
+            this.currentHeight = Math.max(this.currentHeight, makeLayout.getHeight());
+            this.oldHeight = Math.max(this.oldHeight, makeLayout.getHeight());
         }
 
         public void lambda$setText$1(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
-            CachedStaticLayout cachedStaticLayout;
-            Part part = new Part(new CachedStaticLayout(makeLayout(charSequence, i - ((int) Math.ceil(this.currentWidth)))), this.currentWidth, -1);
+            StaticLayout makeLayout;
+            Part part = new Part(makeLayout(charSequence, i - ((int) Math.ceil(this.currentWidth))), this.currentWidth, -1);
             arrayList.add(part);
             this.currentWidth += part.width;
-            this.currentHeight = Math.max(this.currentHeight, cachedStaticLayout.getHeight());
+            this.currentHeight = Math.max(this.currentHeight, makeLayout.getHeight());
         }
 
         public void lambda$setText$2(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
-            CachedStaticLayout cachedStaticLayout;
-            Part part = new Part(new CachedStaticLayout(makeLayout(charSequence, i - ((int) Math.ceil(this.oldWidth)))), this.oldWidth, -1);
+            StaticLayout makeLayout;
+            Part part = new Part(makeLayout(charSequence, i - ((int) Math.ceil(this.oldWidth))), this.oldWidth, -1);
             arrayList.add(part);
             this.oldWidth += part.width;
-            this.oldHeight = Math.max(this.oldHeight, cachedStaticLayout.getHeight());
+            this.oldHeight = Math.max(this.oldHeight, makeLayout.getHeight());
         }
 
         public void lambda$setText$3(ValueAnimator valueAnimator) {
@@ -762,13 +756,11 @@ public class AnimatedTextView extends View {
                         }
                         StaticLayout makeLayout = makeLayout(partArr[i3].layout.getText(), i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
                         Part[] partArr2 = this.currentParts;
-                        CachedStaticLayout cachedStaticLayout = new CachedStaticLayout(makeLayout);
-                        Part[] partArr3 = this.currentParts;
-                        partArr2[i3] = new Part(cachedStaticLayout, partArr3[i3].offset, partArr3[i3].toOppositeIndex);
+                        partArr2[i3] = new Part(makeLayout, partArr2[i3].offset, partArr2[i3].toOppositeIndex);
                         float f2 = this.currentWidth;
-                        Part[] partArr4 = this.currentParts;
-                        this.currentWidth = f2 + partArr4[i3].width;
-                        this.currentHeight = Math.max(this.currentHeight, partArr4[i3].layout.getHeight());
+                        Part[] partArr3 = this.currentParts;
+                        this.currentWidth = f2 + partArr3[i3].width;
+                        this.currentHeight = Math.max(this.currentHeight, partArr3[i3].layout.getHeight());
                         i3++;
                     }
                 }
@@ -776,17 +768,17 @@ public class AnimatedTextView extends View {
                     this.oldWidth = 0.0f;
                     this.oldHeight = 0.0f;
                     while (true) {
-                        Part[] partArr5 = this.oldParts;
-                        if (i2 >= partArr5.length) {
+                        Part[] partArr4 = this.oldParts;
+                        if (i2 >= partArr4.length) {
                             break;
                         }
-                        CachedStaticLayout cachedStaticLayout2 = new CachedStaticLayout(makeLayout(partArr5[i2].layout.getText(), i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth)))));
-                        Part[] partArr6 = this.oldParts;
-                        partArr6[i2] = new Part(cachedStaticLayout2, partArr6[i2].offset, partArr6[i2].toOppositeIndex);
+                        StaticLayout makeLayout2 = makeLayout(partArr4[i2].layout.getText(), i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
+                        Part[] partArr5 = this.oldParts;
+                        partArr5[i2] = new Part(makeLayout2, partArr5[i2].offset, partArr5[i2].toOppositeIndex);
                         float f3 = this.oldWidth;
-                        Part[] partArr7 = this.oldParts;
-                        this.oldWidth = f3 + partArr7[i2].width;
-                        this.oldHeight = Math.max(this.oldHeight, partArr7[i2].layout.getHeight());
+                        Part[] partArr6 = this.oldParts;
+                        this.oldWidth = f3 + partArr6[i2].width;
+                        this.oldHeight = Math.max(this.oldHeight, partArr6[i2].layout.getHeight());
                         i2++;
                     }
                 }

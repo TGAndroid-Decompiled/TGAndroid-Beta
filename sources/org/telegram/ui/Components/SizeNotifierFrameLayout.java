@@ -960,7 +960,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
 
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
         float f2;
-        int alpha = Color.alpha(Theme.getColor(DRAW_USING_RENDERNODE() ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow));
+        int alpha = Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow));
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);
         } else if (DRAW_USING_RENDERNODE()) {
@@ -979,7 +979,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                     if (renderNodeArr[i] == null) {
                         renderNodeArr[i] = new RenderNode("blurNode" + i);
                         ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setSaturation(1.0f);
+                        colorMatrix.setSaturation(2.0f);
                         this.blurNodes[i].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(getBlurRadius(), getBlurRadius(), Shader.TileMode.DECAL), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
                     }
                     int measuredWidth = getMeasuredWidth();

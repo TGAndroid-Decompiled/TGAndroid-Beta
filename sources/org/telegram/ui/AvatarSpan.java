@@ -104,7 +104,6 @@ public class AvatarSpan extends ReplacementSpan {
         canvas.drawCircle(this.translateX + f + (AndroidUtilities.dp(this.sz) / 2.0f), this.translateY + f2, AndroidUtilities.dp(this.sz) / 2.0f, this.shadowPaint);
         this.imageReceiver.setImageCoords(this.translateX + f, (this.translateY + f2) - (AndroidUtilities.dp(this.sz) / 2.0f), AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
         this.imageReceiver.draw(canvas);
-        this.imageReceiver.invalidate();
     }
 
     public void translate(float f, float f2) {

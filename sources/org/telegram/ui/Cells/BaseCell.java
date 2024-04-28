@@ -204,7 +204,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
                 }
             }
         }
-        if (i >= 29 && this.renderNode != null && canvas.isHardwareAccelerated() && !this.forceNotCacheNextFrame) {
+        if (i >= 29 && this.renderNode != null && !this.forceNotCacheNextFrame && canvas.isHardwareAccelerated()) {
             this.renderNode.setPosition(0, 0, getWidth(), getHeight());
             super.draw(this.renderNode.beginRecording());
             this.renderNode.endRecording();

@@ -15,10 +15,10 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ReplacementSpan;
@@ -85,7 +85,6 @@ import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
-import org.telegram.ui.CachedStaticLayout;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -133,7 +132,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int bottomClip;
     private Paint buttonBackgroundPaint;
     private boolean buttonCreated;
-    private CachedStaticLayout buttonLayout;
+    private StaticLayout buttonLayout;
     private int buttonLeft;
     private int buttonTop;
     CanvasButton canvasButton;
@@ -150,15 +149,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public float collapseOffset;
     public boolean collapsed;
     private float cornerProgress;
-    private CachedStaticLayout countAnimationInLayout;
+    private StaticLayout countAnimationInLayout;
     private boolean countAnimationIncrement;
-    private CachedStaticLayout countAnimationStableLayout;
+    private StaticLayout countAnimationStableLayout;
     private ValueAnimator countAnimator;
     private float countChangeProgress;
-    private CachedStaticLayout countLayout;
+    private StaticLayout countLayout;
     private int countLeft;
     private int countLeftOld;
-    private CachedStaticLayout countOldLayout;
+    private StaticLayout countOldLayout;
     private int countTop;
     private int countWidth;
     private int countWidthOld;
@@ -249,21 +248,21 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private Drawable lockDrawable;
     private boolean markUnread;
     private int mentionCount;
-    private CachedStaticLayout mentionLayout;
+    private StaticLayout mentionLayout;
     private int mentionLeft;
     private int mentionWidth;
     private MessageObject message;
     private int messageId;
-    private CachedStaticLayout messageLayout;
+    private StaticLayout messageLayout;
     private int messageLeft;
-    private CachedStaticLayout messageNameLayout;
+    private StaticLayout messageNameLayout;
     private int messageNameLeft;
     private int messageNameTop;
     public int messagePaddingStart;
     private int messageTop;
     boolean moving;
     private boolean nameIsEllipsized;
-    private CachedStaticLayout nameLayout;
+    private StaticLayout nameLayout;
     private boolean nameLayoutEllipsizeByGradient;
     private boolean nameLayoutEllipsizeLeft;
     private boolean nameLayoutFits;
@@ -315,7 +314,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public final StoriesUtilities.AvatarStoryParams storyParams;
     public boolean swipeCanceled;
     private int swipeMessageTextId;
-    private CachedStaticLayout swipeMessageTextLayout;
+    private StaticLayout swipeMessageTextLayout;
     private int swipeMessageWidth;
     public DialogCellTags tags;
     private int tagsLeft;
@@ -327,7 +326,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     int thumbSize;
     private SpoilerEffect thumbSpoiler;
     private int thumbsCount;
-    private CachedStaticLayout timeLayout;
+    private StaticLayout timeLayout;
     private int timeLeft;
     private int timeTop;
     private TimerDrawable timerDrawable;
@@ -346,7 +345,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int ttlPeriod;
     private float ttlProgress;
     private boolean twoLinesForName;
-    private CachedStaticLayout typingLayout;
+    private StaticLayout typingLayout;
     private int typingLeft;
     private int unreadCount;
     private Runnable unsubscribePremiumBlocked;
@@ -809,26 +808,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             i++;
         }
         resetPinnedArchiveState();
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.animatedEmojiStack;
-        Layout[] layoutArr = new Layout[1];
-        CachedStaticLayout cachedStaticLayout = this.messageLayout;
-        layoutArr[0] = cachedStaticLayout == null ? null : cachedStaticLayout.layout;
-        this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans, layoutArr);
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans2 = this.animatedEmojiStack2;
-        Layout[] layoutArr2 = new Layout[1];
-        CachedStaticLayout cachedStaticLayout2 = this.messageNameLayout;
-        layoutArr2[0] = cachedStaticLayout2 == null ? null : cachedStaticLayout2.layout;
-        this.animatedEmojiStack2 = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans2, layoutArr2);
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans3 = this.animatedEmojiStack3;
-        Layout[] layoutArr3 = new Layout[1];
-        CachedStaticLayout cachedStaticLayout3 = this.buttonLayout;
-        layoutArr3[0] = cachedStaticLayout3 == null ? null : cachedStaticLayout3.layout;
-        this.animatedEmojiStack3 = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans3, layoutArr3);
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans4 = this.animatedEmojiStackName;
-        Layout[] layoutArr4 = new Layout[1];
-        CachedStaticLayout cachedStaticLayout4 = this.nameLayout;
-        layoutArr4[0] = cachedStaticLayout4 != null ? cachedStaticLayout4.layout : null;
-        this.animatedEmojiStackName = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans4, layoutArr4);
+        this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this, this.animatedEmojiStack, this.messageLayout);
+        this.animatedEmojiStack2 = AnimatedEmojiSpan.update(0, this, this.animatedEmojiStack2, this.messageNameLayout);
+        this.animatedEmojiStack3 = AnimatedEmojiSpan.update(0, this, this.animatedEmojiStack3, this.buttonLayout);
+        this.animatedEmojiStackName = AnimatedEmojiSpan.update(0, this, this.animatedEmojiStackName, this.nameLayout);
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emojiStatus;
         if (swapAnimatedEmojiDrawable != null) {
             swapAnimatedEmojiDrawable.attach();
@@ -1042,13 +1025,13 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     private void updateThumbsPosition() {
         if (this.thumbsCount > 0) {
-            CachedStaticLayout cachedStaticLayout = isForumCell() ? this.buttonLayout : this.messageLayout;
+            StaticLayout staticLayout = isForumCell() ? this.buttonLayout : this.messageLayout;
             int i = isForumCell() ? this.buttonLeft : this.messageLeft;
-            if (cachedStaticLayout == null) {
+            if (staticLayout == null) {
                 return;
             }
             try {
-                CharSequence text = cachedStaticLayout.getText();
+                CharSequence text = staticLayout.getText();
                 if (text instanceof Spanned) {
                     FixedWidthSpan[] fixedWidthSpanArr = (FixedWidthSpan[]) ((Spanned) text).getSpans(0, text.length(), FixedWidthSpan.class);
                     if (fixedWidthSpanArr == null || fixedWidthSpanArr.length <= 0) {
@@ -1061,7 +1044,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     if (spanStart < 0) {
                         spanStart = 0;
                     }
-                    int ceil = (int) Math.ceil(Math.min(cachedStaticLayout.layout.getPrimaryHorizontal(spanStart), cachedStaticLayout.layout.getPrimaryHorizontal(spanStart + 1)));
+                    int ceil = (int) Math.ceil(Math.min(staticLayout.getPrimaryHorizontal(spanStart), staticLayout.getPrimaryHorizontal(spanStart + 1)));
                     if (ceil != 0 && !this.drawForwardIcon) {
                         ceil += AndroidUtilities.dp(3.0f);
                     }
@@ -1371,10 +1354,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             paint = (z || this.currentDialogFolderId != 0) ? Theme.dialogs_countGrayPaint : Theme.dialogs_countPaint;
             z3 = false;
         }
-        CachedStaticLayout cachedStaticLayout = this.countOldLayout;
-        if (cachedStaticLayout == null || this.unreadCount == 0) {
+        StaticLayout staticLayout = this.countOldLayout;
+        if (staticLayout == null || this.unreadCount == 0) {
             if (this.unreadCount != 0) {
-                cachedStaticLayout = this.countLayout;
+                staticLayout = this.countLayout;
             }
             paint.setAlpha((int) ((1.0f - this.reorderIconProgress) * i4));
             Theme.dialogs_countTextPaint.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
@@ -1418,10 +1401,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(11.5f), AndroidUtilities.dp(11.5f), this.counterPaintOutline);
                 }
             }
-            if (cachedStaticLayout != null) {
+            if (staticLayout != null) {
                 canvas.save();
                 canvas.translate(i2, i + AndroidUtilities.dp(4.0f));
-                cachedStaticLayout.draw(canvas);
+                staticLayout.draw(canvas);
                 canvas.restore();
             }
             canvas.restoreToCount(save);
@@ -1735,8 +1718,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 }
                 sb2.append(captionMessage.caption);
             }
-            CachedStaticLayout cachedStaticLayout = this.messageLayout;
-            int length = cachedStaticLayout == null ? -1 : cachedStaticLayout.getText().length();
+            StaticLayout staticLayout = this.messageLayout;
+            int length = staticLayout == null ? -1 : staticLayout.getText().length();
             if (length > 0) {
                 int length2 = sb2.length();
                 int indexOf = sb2.indexOf("\n", length);
