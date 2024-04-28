@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -380,5 +381,10 @@ public class GroupColorActivity extends ChannelColorActivity {
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+    }
+
+    @Override
+    protected boolean isForum() {
+        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.dialogId)));
     }
 }

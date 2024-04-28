@@ -152,6 +152,7 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.SharedMediaLayout;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
@@ -592,7 +593,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void drawListForBlur(Canvas canvas) {
+    public void drawListForBlur(Canvas canvas, ArrayList<SizeNotifierFrameLayout.IViewWithInvalidateCallback> arrayList) {
         int i = 0;
         while (true) {
             MediaPage[] mediaPageArr = this.mediaPages;
@@ -606,6 +607,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         int save = canvas.save();
                         canvas.translate(this.mediaPages[i].getX() + childAt.getX(), getY() + this.mediaPages[i].getY() + this.mediaPages[i].listView.getY() + childAt.getY());
                         childAt.draw(canvas);
+                        if (arrayList != null && (childAt instanceof SizeNotifierFrameLayout.IViewWithInvalidateCallback)) {
+                            arrayList.add((SizeNotifierFrameLayout.IViewWithInvalidateCallback) childAt);
+                        }
                         canvas.restoreToCount(save);
                     }
                 }
@@ -1659,7 +1663,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                                                         public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                             if (this.firstCreateView) {
                                                                 if (this.searchItem != null) {
-                                                                    lambda$openSearchWithText$304("");
+                                                                    lambda$openSearchWithText$305("");
                                                                     this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                                 }
                                                                 SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -7376,10 +7380,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     public class ScrollSlidingTextTabStripInner extends ScrollSlidingTextTabStrip {
         public int backgroundColor;
         protected Paint backgroundPaint;
+        private android.graphics.Rect blurBounds;
 
         public ScrollSlidingTextTabStripInner(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
             this.backgroundColor = 0;
+            this.blurBounds = new android.graphics.Rect();
         }
 
         protected void drawBackground(Canvas canvas) {
@@ -7390,9 +7396,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
-            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-            rect.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            SharedMediaLayout.this.drawBackgroundWithBlur(canvas, getY(), rect, this.backgroundPaint);
+            this.blurBounds.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            SharedMediaLayout.this.drawBackgroundWithBlur(canvas, getY(), this.blurBounds, this.backgroundPaint);
         }
 
         @Override

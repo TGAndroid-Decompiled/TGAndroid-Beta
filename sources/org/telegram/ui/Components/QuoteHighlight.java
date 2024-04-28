@@ -72,9 +72,9 @@ public class QuoteHighlight extends Path {
                 this.minX = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
                 z = z || AndroidUtilities.isRTL(textLayoutBlock.textLayout.getText());
                 if (z) {
-                    textLayoutBlock.textLayout.getSelectionPath(max, min, this);
+                    textLayoutBlock.textLayout.layout.getSelectionPath(max, min, this);
                 } else {
-                    getSelectionPath(textLayoutBlock.textLayout, max, min);
+                    getSelectionPath(textLayoutBlock.textLayout.layout, max, min);
                 }
             }
         }

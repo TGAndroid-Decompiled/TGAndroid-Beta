@@ -1430,6 +1430,17 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             } else if (i == 4) {
                 final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
                     @Override
+                    protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+                        if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                            Menu menu = actionMode.getMenu();
+                            if (menu.findItem(16908321) == null) {
+                                return;
+                            }
+                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false);
+                        }
+                    }
+
+                    @Override
                     public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
                         super.onFieldTouchUp(editTextBoldCursor);
                         if (PollCreateActivity.this.isPremium) {

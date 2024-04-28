@@ -1056,8 +1056,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void openKeyboardInternal() {
-        this.keyboardNotifier.awaitKeyboard();
-        AndroidUtilities.showKeyboard(this.currentCell.getEditField());
+        if (this.currentCell != null) {
+            this.keyboardNotifier.awaitKeyboard();
+            AndroidUtilities.showKeyboard(this.currentCell.getEditField());
+        }
         showEmojiPopup(AndroidUtilities.usingHardwareInput ? 0 : 2);
         if (AndroidUtilities.usingHardwareInput || this.keyboardVisible || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
             return;
@@ -1068,6 +1070,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void showEmojiPopup(int i) {
+        ChatActivityEnterViewAnimatedIconView emojiButton;
         PollEditTextCell pollEditTextCell;
         if (this.isPremium) {
             if (i == 1) {
@@ -1102,7 +1105,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 this.emojiPadding = i2;
                 this.keyboardNotifier.fire();
                 this.parentAlert.sizeNotifierFrameLayout.requestLayout();
-                ChatActivityEnterViewAnimatedIconView emojiButton = this.currentCell.getEmojiButton();
+                PollEditTextCell pollEditTextCell2 = this.currentCell;
+                emojiButton = pollEditTextCell2 != null ? pollEditTextCell2.getEmojiButton() : null;
                 if (emojiButton != null) {
                     emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.KEYBOARD, true);
                 }
@@ -1127,9 +1131,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 ofFloat.start();
                 return;
             }
-            ChatActivityEnterViewAnimatedIconView emojiButton2 = this.currentCell.getEmojiButton();
-            if (emojiButton2 != null) {
-                emojiButton2.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, true);
+            PollEditTextCell pollEditTextCell3 = this.currentCell;
+            emojiButton = pollEditTextCell3 != null ? pollEditTextCell3.getEmojiButton() : null;
+            if (emojiButton != null) {
+                emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, true);
             }
             EmojiView emojiView3 = this.emojiView;
             if (emojiView3 != null) {
@@ -1233,6 +1238,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
         EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourcesProvider, false);
         this.emojiView = emojiView2;
+        emojiView2.emojiCacheType = 3;
         emojiView2.fixBottomTabContainerTranslation = false;
         emojiView2.allowEmojisForNonPremium(false);
         this.emojiView.setVisibility(8);
@@ -1354,8 +1360,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
         @Override
         public boolean onBackspace() {
-            EditTextBoldCursor editField = ChatAttachAlertPollLayout.this.currentCell.getEditField();
-            if (editField == null) {
+            EditTextBoldCursor editField;
+            if (ChatAttachAlertPollLayout.this.currentCell == null || (editField = ChatAttachAlertPollLayout.this.currentCell.getEditField()) == null) {
                 return false;
             }
             editField.dispatchKeyEvent(new KeyEvent(0, 67));
@@ -1364,8 +1370,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
         @Override
         public void onEmojiSelected(String str) {
-            EditTextBoldCursor editField = ChatAttachAlertPollLayout.this.currentCell.getEditField();
-            if (editField == null) {
+            EditTextBoldCursor editField;
+            if (ChatAttachAlertPollLayout.this.currentCell == null || (editField = ChatAttachAlertPollLayout.this.currentCell.getEditField()) == null) {
                 return;
             }
             int selectionEnd = editField.getSelectionEnd();
@@ -1384,9 +1390,9 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
         @Override
         public void onCustomEmojiSelected(long j, TLRPC$Document tLRPC$Document, String str, boolean z) {
+            EditTextBoldCursor editField;
             AnimatedEmojiSpan animatedEmojiSpan;
-            EditTextBoldCursor editField = ChatAttachAlertPollLayout.this.currentCell.getEditField();
-            if (editField == null) {
+            if (ChatAttachAlertPollLayout.this.currentCell == null || (editField = ChatAttachAlertPollLayout.this.currentCell.getEditField()) == null) {
                 return;
             }
             int selectionEnd = editField.getSelectionEnd();
@@ -1400,7 +1406,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 } else {
                     animatedEmojiSpan = new AnimatedEmojiSpan(j, editField.getPaint().getFontMetricsInt());
                 }
-                animatedEmojiSpan.cacheType = ChatAttachAlertPollLayout.this.emojiView.emojiCacheType;
+                animatedEmojiSpan.cacheType = 3;
                 spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
                 editField.setText(editField.getText().insert(selectionEnd, spannableString));
                 int length = selectionEnd + spannableString.length();
@@ -1614,6 +1620,17 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                 ChatAttachAlertPollLayout.this.hideEmojiPopup(false);
                                 ChatAttachAlertPollLayout chatAttachAlertPollLayout = ChatAttachAlertPollLayout.this;
                                 chatAttachAlertPollLayout.updateSuggestEmojiPanelDelegate(chatAttachAlertPollLayout.listView.findContainingViewHolder(this));
+                            }
+                        }
+
+                        @Override
+                        protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+                            if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                                Menu menu = actionMode.getMenu();
+                                if (menu.findItem(16908321) == null) {
+                                    return;
+                                }
+                                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), true);
                             }
                         }
 

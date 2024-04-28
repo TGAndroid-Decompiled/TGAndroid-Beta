@@ -18,6 +18,7 @@ import android.graphics.text.MeasuredText;
 import android.os.Build;
 public class NoClipCanvas extends Canvas {
     public Canvas canvas;
+    public boolean disableReject;
 
     @Override
     public boolean clipRect(float f, float f2, float f3, float f4) {
@@ -557,7 +558,7 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean quickReject(float f, float f2, float f3, float f4) {
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
             return this.canvas.quickReject(f, f2, f3, f4);
         }
         return false;
@@ -565,7 +566,7 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean quickReject(RectF rectF) {
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
             return this.canvas.quickReject(rectF);
         }
         return false;
@@ -573,7 +574,7 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean quickReject(Path path) {
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
             return this.canvas.quickReject(path);
         }
         return false;
@@ -581,16 +582,25 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean quickReject(RectF rectF, Canvas.EdgeType edgeType) {
+        if (this.disableReject) {
+            return false;
+        }
         return this.canvas.quickReject(rectF, edgeType);
     }
 
     @Override
     public boolean quickReject(Path path, Canvas.EdgeType edgeType) {
+        if (this.disableReject) {
+            return false;
+        }
         return this.canvas.quickReject(path, edgeType);
     }
 
     @Override
     public boolean quickReject(float f, float f2, float f3, float f4, Canvas.EdgeType edgeType) {
+        if (this.disableReject) {
+            return false;
+        }
         return this.canvas.quickReject(f, f2, f3, f4, edgeType);
     }
 

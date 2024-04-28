@@ -1444,6 +1444,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).checkPromoInfo(true);
         ConnectionsManager.getInstance(this.currentAccount).updateDcSettings();
         MessagesController.getInstance(this.currentAccount).loadAppConfig();
+        MessagesController.getInstance(this.currentAccount).checkPeerColors(false);
         if (tLRPC$TL_auth_authorization.future_auth_token != null) {
             AuthTokensHelper.saveLogInToken(tLRPC$TL_auth_authorization);
         } else {
@@ -2133,7 +2134,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
             }
-            if (BuildVars.DEBUG_VERSION && LoginActivity.this.activityMode == 0) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
                 checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend, false);
@@ -3137,6 +3138,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.nextCodeParams = bundle;
             TLRPC$TL_auth_sentCode tLRPC$TL_auth_sentCode = (TLRPC$TL_auth_sentCode) tLObject;
             this.nextCodeAuth = tLRPC$TL_auth_sentCode;
+            TLRPC$auth_SentCodeType tLRPC$auth_SentCodeType = tLRPC$TL_auth_sentCode.type;
+            if (tLRPC$auth_SentCodeType instanceof TLRPC$TL_auth_sentCodeTypeSmsPhrase) {
+                this.nextType = 17;
+            } else if (tLRPC$auth_SentCodeType instanceof TLRPC$TL_auth_sentCodeTypeSmsWord) {
+                this.nextType = 16;
+            }
             LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, tLRPC$TL_auth_sentCode);
         }
 
@@ -3153,6 +3160,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$new$9(Context context, View view) {
+            final String str;
             TLRPC$TL_auth_sentCode tLRPC$TL_auth_sentCode;
             Bundle bundle = this.nextCodeParams;
             if (bundle != null && (tLRPC$TL_auth_sentCode = this.nextCodeAuth) != null) {
@@ -3173,19 +3181,37 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     tLRPC$TL_auth_reportMissingCode.phone_code_hash = this.phoneHash;
                     tLRPC$TL_auth_reportMissingCode.mnc = "";
                     try {
-                        String networkOperator = ((TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone")).getNetworkOperator();
-                        if (!TextUtils.isEmpty(networkOperator)) {
-                            networkOperator.substring(0, 3);
-                            tLRPC$TL_auth_reportMissingCode.mnc = networkOperator.substring(3);
-                        }
+                        str = ((TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone")).getNetworkOperator();
                     } catch (Exception e) {
+                        e = e;
+                        str = null;
+                    }
+                    try {
+                        if (!TextUtils.isEmpty(str)) {
+                            str.substring(0, 3);
+                            tLRPC$TL_auth_reportMissingCode.mnc = str.substring(3);
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
                         FileLog.e(e);
+                        LoginActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_auth_reportMissingCode, null, 8);
+                        new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new DialogInterface.OnClickListener() {
+                            @Override
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                LoginActivity.LoginActivitySmsView.this.lambda$new$7(str, dialogInterface, i);
+                            }
+                        }).setPositiveButton(LocaleController.getString(R.string.Close), null).setNegativeButton(LocaleController.getString(R.string.DidNotGetTheCodeEditNumberButton), new DialogInterface.OnClickListener() {
+                            @Override
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                LoginActivity.LoginActivitySmsView.this.lambda$new$8(dialogInterface, i);
+                            }
+                        }).show();
                     }
                     LoginActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_auth_reportMissingCode, null, 8);
                     new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            LoginActivity.LoginActivitySmsView.this.lambda$new$7(dialogInterface, i);
+                            LoginActivity.LoginActivitySmsView.this.lambda$new$7(str, dialogInterface, i);
                         }
                     }).setPositiveButton(LocaleController.getString(R.string.Close), null).setNegativeButton(LocaleController.getString(R.string.DidNotGetTheCodeEditNumberButton), new DialogInterface.OnClickListener() {
                         @Override
@@ -3197,7 +3223,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$new$7(DialogInterface dialogInterface, int i) {
+        public void lambda$new$7(String str, DialogInterface dialogInterface, int i) {
+            String str2;
             try {
                 PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
                 String format = String.format(Locale.US, "%s (%d)", packageInfo.versionName, Integer.valueOf(packageInfo.versionCode));
@@ -3205,7 +3232,27 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 intent.setData(Uri.parse("mailto:"));
                 intent.putExtra("android.intent.extra.EMAIL", new String[]{"sms@telegram.org"});
                 intent.putExtra("android.intent.extra.SUBJECT", "Android registration/login issue " + format + " " + this.emailPhone);
-                intent.putExtra("android.intent.extra.TEXT", "Phone: " + this.requestPhone + "\nApp version: " + format + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault() + "\nError: " + this.lastError);
+                StringBuilder sb = new StringBuilder();
+                sb.append("Phone: ");
+                sb.append(this.requestPhone);
+                sb.append("\nApp version: ");
+                sb.append(format);
+                sb.append("\nOS version: SDK ");
+                sb.append(Build.VERSION.SDK_INT);
+                sb.append("\nDevice Name: ");
+                sb.append(Build.MANUFACTURER);
+                sb.append(Build.MODEL);
+                if (str != null) {
+                    str2 = "\nOperator: " + str;
+                } else {
+                    str2 = "";
+                }
+                sb.append(str2);
+                sb.append("\nLocale: ");
+                sb.append(Locale.getDefault());
+                sb.append("\nError: ");
+                sb.append(this.lastError);
+                intent.putExtra("android.intent.extra.TEXT", sb.toString());
                 getContext().startActivity(Intent.createChooser(intent, "Send email..."));
             } catch (Exception unused) {
                 LoginActivity.this.needShowAlert(LocaleController.getString(R.string.AppName), LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled));
@@ -3309,6 +3356,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 this.nextCodeParams = bundle;
                 TLRPC$TL_auth_sentCode tLRPC$TL_auth_sentCode = (TLRPC$TL_auth_sentCode) tLObject;
                 this.nextCodeAuth = tLRPC$TL_auth_sentCode;
+                TLRPC$auth_SentCodeType tLRPC$auth_SentCodeType = tLRPC$TL_auth_sentCode.type;
+                if (tLRPC$auth_SentCodeType instanceof TLRPC$TL_auth_sentCodeTypeSmsPhrase) {
+                    this.nextType = 17;
+                } else if (tLRPC$auth_SentCodeType instanceof TLRPC$TL_auth_sentCodeTypeSmsWord) {
+                    this.nextType = 16;
+                }
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, tLRPC$TL_auth_sentCode);
             } else {
                 String str = tLRPC$TL_error.text;

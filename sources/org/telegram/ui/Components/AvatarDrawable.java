@@ -29,6 +29,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CachedStaticLayout;
 public class AvatarDrawable extends Drawable {
     public static final int[][] advancedGradients = {new int[]{-636796, -1090751, -612560, -35006}, new int[]{-693938, -690388, -11246, -22717}, new int[]{-8160001, -5217281, -36183, -1938945}, new int[]{-16133536, -10560448, -4070106, -8331477}, new int[]{-10569989, -14692629, -12191817, -14683687}, new int[]{-11694593, -13910017, -14622003, -15801871}, new int[]{-439392, -304000, -19910, -98718}};
     private GradientTools advancedGradient;
@@ -54,7 +55,7 @@ public class AvatarDrawable extends Drawable {
     private float scaleSize;
     private StringBuilder stringBuilder;
     private float textHeight;
-    private StaticLayout textLayout;
+    private CachedStaticLayout textLayout;
     private float textLeft;
     private float textWidth;
 
@@ -627,12 +628,12 @@ public class AvatarDrawable extends Drawable {
                 this.invalidateTextLayout = false;
                 if (this.stringBuilder.length() > 0) {
                     CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), AndroidUtilities.dp(16.0f), true);
-                    StaticLayout staticLayout = this.textLayout;
-                    if (staticLayout == null || !TextUtils.equals(replaceEmoji, staticLayout.getText())) {
+                    CachedStaticLayout cachedStaticLayout = this.textLayout;
+                    if (cachedStaticLayout == null || !TextUtils.equals(replaceEmoji, cachedStaticLayout.getText())) {
                         try {
-                            StaticLayout staticLayout2 = new StaticLayout(replaceEmoji, this.namePaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                            this.textLayout = staticLayout2;
-                            if (staticLayout2.getLineCount() > 0) {
+                            CachedStaticLayout cachedStaticLayout2 = new CachedStaticLayout(new StaticLayout(replaceEmoji, this.namePaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                            this.textLayout = cachedStaticLayout2;
+                            if (cachedStaticLayout2.getLineCount() > 0) {
                                 this.textLeft = this.textLayout.getLineLeft(0);
                                 this.textWidth = this.textLayout.getLineWidth(0);
                                 this.textHeight = this.textLayout.getLineBottom(0);

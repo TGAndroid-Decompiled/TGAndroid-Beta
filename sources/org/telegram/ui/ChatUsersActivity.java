@@ -1498,6 +1498,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createMenuForParticipant$16(long j) {
+        lambda$createMenuForParticipant$17(j);
         getMessagesController().addUserToChat(this.chatId, getMessagesController().getUser(Long.valueOf(j)), 0, null, this, null);
     }
 

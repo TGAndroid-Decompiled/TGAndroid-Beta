@@ -31,6 +31,8 @@ public class ScaleStateListAnimator {
     }
 
     public static void reset(View view) {
-        view.setStateListAnimator(null);
+        if (Build.VERSION.SDK_INT >= 21) {
+            view.setStateListAnimator(null);
+        }
     }
 }

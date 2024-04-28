@@ -1259,6 +1259,7 @@ public class ThemeColors {
         sparseArray.put(Theme.key_chat_inBubbleLocationPlaceholder, "chat_inBubbleLocationPlaceholder");
         sparseArray.put(Theme.key_chat_outBubbleLocationPlaceholder, "chat_outBubbleLocationPlaceholder");
         sparseArray.put(Theme.key_chat_BlurAlpha, "chat_BlurAlpha");
+        sparseArray.put(Theme.key_chat_BlurAlphaSlow, "chat_BlurAlphaSlow");
         sparseArray.put(Theme.key_chat_editMediaButton, "chat_editMediaButton");
         sparseArray.put(Theme.key_voipgroup_listSelector, "voipgroup_listSelector");
         sparseArray.put(Theme.key_voipgroup_inviteMembersBackground, "voipgroup_inviteMembersBackground");

@@ -87,7 +87,7 @@ void main() {
     float spec = 0.0;
 
     lightPos = vec3(-3., -3., .5);
-    spec += (night ? 0.3 : 1.0) * 2.0 * pow(max(dot(normalize(vec3(0.0) - pos), reflect(-normalize(lightPos - pos), norm)), 0.0), 2.0);
+    spec += 2.0 * pow(max(dot(normalize(vec3(0.0) - pos), reflect(-normalize(lightPos - pos), norm)), 0.0), 2.0);
 
     lightPos = vec3(-3., .5, 30.);
     spec += (modelIndex == 1 ? 1.5 : 0.5) * pow(max(dot(normalize(vec3(0.0) - pos), reflect(-normalize(lightPos - pos), norm)), 0.0), 32.0);

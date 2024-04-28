@@ -201,6 +201,7 @@ import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.QuickRepliesController;
+import org.telegram.ui.CachedStaticLayout;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -388,6 +389,7 @@ public class MessageObject {
     private byte[] randomWaveform;
     public boolean reactionsChanged;
     public long reactionsLastCheckTime;
+    public int realDate;
     public MessageObject replyMessageObject;
     public boolean replyTextEllipsized;
     public boolean replyTextRevealed;
@@ -883,9 +885,9 @@ public class MessageObject {
         public int padBottom;
         public int padTop;
         public boolean quote;
-        public StaticLayout textLayout;
+        public CachedStaticLayout textLayout;
         public float textYOffset;
-        public AtomicReference<Layout> spoilersPatchedTextLayout = new AtomicReference<>();
+        public AtomicReference<CachedStaticLayout> spoilersPatchedTextLayout = new AtomicReference<>();
         public List<SpoilerEffect> spoilers = new ArrayList();
 
         public void layoutCode(String str, int i, boolean z) {

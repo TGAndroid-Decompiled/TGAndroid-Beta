@@ -19,6 +19,7 @@ import org.telegram.ui.Components.RLottieImageView;
 public class ActionBarMenuSubItem extends FrameLayout {
     boolean bottom;
     private CheckBox2 checkView;
+    private boolean checkViewLeft;
     boolean expandIfMultiline;
     private int iconColor;
     public RLottieImageView imageView;
@@ -75,6 +76,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.textView.setTextColor(this.textColor);
         this.textView.setTextSize(1, 16.0f);
         addView(this.textView, LayoutHelper.createFrame(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
+        this.checkViewLeft = LocaleController.isRTL;
         if (i > 0) {
             CheckBox2 checkBox2 = new CheckBox2(context, 26, resourcesProvider);
             this.checkView = checkBox2;
@@ -82,7 +84,10 @@ public class ActionBarMenuSubItem extends FrameLayout {
             this.checkView.setColor(-1, -1, Theme.key_radioBackgroundChecked);
             this.checkView.setDrawBackgroundAsArc(-1);
             if (i == 1) {
-                addView(this.checkView, LayoutHelper.createFrame(26, -1, (LocaleController.isRTL ? 5 : 3) | 16));
+                boolean z3 = LocaleController.isRTL;
+                this.checkViewLeft = !z3;
+                addView(this.checkView, LayoutHelper.createFrame(26, -1, (z3 ? 5 : 3) | 16));
+                this.textView.setPadding(!LocaleController.isRTL ? AndroidUtilities.dp(34.0f) : 0, 0, !LocaleController.isRTL ? 0 : AndroidUtilities.dp(34.0f), 0);
                 return;
             }
             addView(this.checkView, LayoutHelper.createFrame(26, -1, (LocaleController.isRTL ? 3 : 5) | 16));
@@ -166,6 +171,8 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     public void setTextAndIcon(CharSequence charSequence, int i, Drawable drawable) {
+        int dp;
+        int dp2;
         this.textView.setText(charSequence);
         if (i != 0 || drawable != null || this.checkView != null) {
             if (drawable != null) {
@@ -174,7 +181,19 @@ public class ActionBarMenuSubItem extends FrameLayout {
                 this.imageView.setImageResource(i);
             }
             this.imageView.setVisibility(0);
-            this.textView.setPadding(LocaleController.isRTL ? this.checkView != null ? AndroidUtilities.dp(34.0f) : 0 : AndroidUtilities.dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(43.0f) : this.checkView != null ? AndroidUtilities.dp(34.0f) : 0, 0);
+            TextView textView = this.textView;
+            float f = 0.0f;
+            if (this.checkViewLeft) {
+                dp = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
+            } else {
+                dp = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
+            }
+            if (this.checkViewLeft) {
+                dp2 = AndroidUtilities.dp((i == 0 && drawable == null) ? 43.0f : 43.0f);
+            } else {
+                dp2 = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
+            }
+            textView.setPadding(dp, 0, dp2, 0);
             return;
         }
         this.imageView.setVisibility(4);

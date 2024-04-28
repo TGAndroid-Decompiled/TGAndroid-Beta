@@ -211,6 +211,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         return 0;
     }
 
+    protected boolean isForum() {
+        return false;
+    }
+
     protected boolean needBoostInfoSection() {
         return false;
     }
@@ -1309,6 +1313,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 profilePreview.backgroundView.setColor(((BaseFragment) ChannelColorActivity.this).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
                 profilePreview.profileView.setColor(ChannelColorActivity.this.selectedProfileColor, false);
                 profilePreview.profileView.setEmoji(ChannelColorActivity.this.selectedProfileEmoji, false);
+                profilePreview.profileView.setForum(ChannelColorActivity.this.isForum());
                 profilePreview.profileView.setStatusEmoji(DialogObject.getEmojiStatusDocumentId(ChannelColorActivity.this.selectedStatusEmoji), false);
                 profilePreview.profileView.overrideAvatarColor(ChannelColorActivity.this.selectedReplyColor);
             } else if (itemViewType == 3) {
@@ -1425,6 +1430,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 ProfilePreview profilePreview = (ProfilePreview) view;
                 profilePreview.profileView.setColor(ChannelColorActivity.this.selectedProfileColor, false);
                 profilePreview.profileView.setEmoji(ChannelColorActivity.this.selectedProfileEmoji, false);
+                profilePreview.profileView.setForum(ChannelColorActivity.this.isForum());
                 profilePreview.profileView.setStatusEmoji(DialogObject.getEmojiStatusDocumentId(ChannelColorActivity.this.selectedStatusEmoji), false);
                 profilePreview.profileView.overrideAvatarColor(ChannelColorActivity.this.selectedReplyColor);
             } else if (!(view instanceof ThemePreviewMessagesCell)) {
@@ -1954,7 +1960,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         }
 
                         @Override
-                        protected int noThemeStringTextSize() {
+                        public int noThemeStringTextSize() {
                             if (z) {
                                 return super.noThemeStringTextSize();
                             }

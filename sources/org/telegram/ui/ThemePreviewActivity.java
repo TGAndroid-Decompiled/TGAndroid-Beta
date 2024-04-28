@@ -4083,7 +4083,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FrameLayout frameLayout;
             if (i == 0) {
-                ?? chatMessageCell = new ChatMessageCell(this.mContext, false, null, new Theme.ResourcesProvider() {
+                ?? chatMessageCell = new ChatMessageCell(this.mContext, ((BaseFragment) ThemePreviewActivity.this).currentAccount, false, null, new Theme.ResourcesProvider() {
                     @Override
                     public ColorFilter getAnimatedEmojiColorFilter() {
                         ColorFilter colorFilter;
@@ -4459,8 +4459,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public boolean shouldShowTopicButton() {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                    public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                     }
 
                     @Override

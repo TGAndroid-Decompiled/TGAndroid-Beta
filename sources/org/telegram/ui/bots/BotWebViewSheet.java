@@ -206,7 +206,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public void lambda$new$5() {
-        if (this.dismissed) {
+        if (this.dismissed || this.queryId == 0) {
             return;
         }
         TLRPC$TL_messages_prolongWebView tLRPC$TL_messages_prolongWebView = new TLRPC$TL_messages_prolongWebView();

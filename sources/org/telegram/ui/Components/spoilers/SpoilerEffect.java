@@ -43,6 +43,8 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CachedStaticLayout;
+import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
@@ -434,6 +436,8 @@ public class SpoilerEffect extends Drawable {
         if (view != null) {
             if (view.getParent() != null && this.invalidateParent) {
                 ((View) view.getParent()).invalidate();
+            } else if (view instanceof BaseCell) {
+                ((BaseCell) view).invalidateLite();
             } else {
                 view.invalidate();
             }
@@ -721,6 +725,138 @@ public class SpoilerEffect extends Drawable {
             canvas.clipPath(tempPath);
             canvas.translate(0.0f, -view.getPaddingTop());
             layoutDrawMaybe(layout, canvas);
+            canvas.restore();
+        }
+        boolean z3 = list.get(0).rippleProgress != -1.0f;
+        if (z3) {
+            int measuredWidth = view.getMeasuredWidth();
+            if (z2 && (view.getParent() instanceof View)) {
+                measuredWidth = ((View) view.getParent()).getMeasuredWidth();
+            }
+            canvas.saveLayer(0.0f, 0.0f, measuredWidth, view.getMeasuredHeight(), null, 31);
+        } else {
+            canvas.save();
+        }
+        canvas.translate(0.0f, -view.getPaddingTop());
+        for (SpoilerEffect spoilerEffect2 : list) {
+            spoilerEffect2.setInvalidateParent(z);
+            if (spoilerEffect2.getParentView() != view) {
+                spoilerEffect2.setParentView(view);
+            }
+            if (spoilerEffect2.shouldInvalidateColor()) {
+                spoilerEffect2.setColor(ColorUtils.blendARGB(i, Theme.chat_msgTextPaint.getColor(), Math.max(0.0f, spoilerEffect2.getRippleProgress())));
+            } else {
+                spoilerEffect2.setColor(i);
+            }
+            spoilerEffect2.draw(canvas);
+        }
+        if (z3) {
+            tempPath.rewind();
+            list.get(0).getRipplePath(tempPath);
+            if (xRefPaint == null) {
+                Paint paint = new Paint(1);
+                xRefPaint = paint;
+                paint.setColor(-16777216);
+                xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            }
+            canvas.drawPath(tempPath, xRefPaint);
+        }
+        canvas.restore();
+    }
+
+    @SuppressLint({"WrongConstant"})
+    public static void renderWithRipple(View view, boolean z, int i, int i2, AtomicReference<CachedStaticLayout> atomicReference, CachedStaticLayout cachedStaticLayout, List<SpoilerEffect> list, Canvas canvas, boolean z2) {
+        StaticLayout staticLayout;
+        TextStyleSpan[] textStyleSpanArr;
+        int i3;
+        if (list.isEmpty()) {
+            cachedStaticLayout.draw(canvas);
+            return;
+        }
+        CachedStaticLayout cachedStaticLayout2 = atomicReference.get();
+        int i4 = 0;
+        if (cachedStaticLayout2 == null || !cachedStaticLayout.getText().toString().equals(cachedStaticLayout2.getText().toString()) || cachedStaticLayout.layout.getWidth() != cachedStaticLayout2.layout.getWidth() || cachedStaticLayout.layout.getHeight() != cachedStaticLayout2.layout.getHeight()) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(cachedStaticLayout.getText());
+            if (cachedStaticLayout.getText() instanceof Spanned) {
+                Spanned spanned = (Spanned) cachedStaticLayout.getText();
+                TextStyleSpan[] textStyleSpanArr2 = (TextStyleSpan[]) spanned.getSpans(0, spanned.length(), TextStyleSpan.class);
+                int length = textStyleSpanArr2.length;
+                int i5 = 0;
+                while (i5 < length) {
+                    TextStyleSpan textStyleSpan = textStyleSpanArr2[i5];
+                    if (textStyleSpan.isSpoiler()) {
+                        int spanStart = spanned.getSpanStart(textStyleSpan);
+                        int spanEnd = spanned.getSpanEnd(textStyleSpan);
+                        Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spanned.getSpans(spanStart, spanEnd, Emoji.EmojiSpan.class);
+                        int length2 = emojiSpanArr.length;
+                        while (i4 < length2) {
+                            TextStyleSpan[] textStyleSpanArr3 = textStyleSpanArr2;
+                            final Emoji.EmojiSpan emojiSpan = emojiSpanArr[i4];
+                            spannableStringBuilder.setSpan(new ReplacementSpan() {
+                                @Override
+                                public void draw(Canvas canvas2, CharSequence charSequence, int i6, int i7, float f, int i8, int i9, int i10, Paint paint) {
+                                }
+
+                                @Override
+                                public int getSize(Paint paint, CharSequence charSequence, int i6, int i7, Paint.FontMetricsInt fontMetricsInt) {
+                                    return Emoji.EmojiSpan.this.getSize(paint, charSequence, i6, i7, fontMetricsInt);
+                                }
+                            }, spanned.getSpanStart(emojiSpan), spanned.getSpanEnd(emojiSpan), spanned.getSpanFlags(textStyleSpan));
+                            spannableStringBuilder.removeSpan(emojiSpan);
+                            i4++;
+                            textStyleSpanArr2 = textStyleSpanArr3;
+                            length = length;
+                            length2 = length2;
+                            emojiSpanArr = emojiSpanArr;
+                        }
+                        textStyleSpanArr = textStyleSpanArr2;
+                        i3 = length;
+                        spannableStringBuilder.setSpan(new ForegroundColorSpan(0), spanStart, spanEnd, spanned.getSpanFlags(textStyleSpan));
+                        spannableStringBuilder.removeSpan(textStyleSpan);
+                    } else {
+                        textStyleSpanArr = textStyleSpanArr2;
+                        i3 = length;
+                    }
+                    i5++;
+                    textStyleSpanArr2 = textStyleSpanArr;
+                    length = i3;
+                    i4 = 0;
+                }
+            }
+            if (Build.VERSION.SDK_INT >= 24) {
+                staticLayout = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), cachedStaticLayout.layout.getPaint(), cachedStaticLayout.layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(cachedStaticLayout.layout.getAlignment()).setLineSpacing(cachedStaticLayout.layout.getSpacingAdd(), cachedStaticLayout.layout.getSpacingMultiplier()).build();
+            } else {
+                staticLayout = new StaticLayout(spannableStringBuilder, cachedStaticLayout.layout.getPaint(), cachedStaticLayout.layout.getWidth(), cachedStaticLayout.layout.getAlignment(), cachedStaticLayout.layout.getSpacingMultiplier(), cachedStaticLayout.layout.getSpacingAdd(), false);
+            }
+            cachedStaticLayout2 = new CachedStaticLayout(staticLayout);
+            atomicReference.set(cachedStaticLayout2);
+        }
+        if (!list.isEmpty()) {
+            canvas.save();
+            canvas.translate(0.0f, i2);
+            cachedStaticLayout2.draw(canvas);
+            canvas.restore();
+        } else {
+            cachedStaticLayout.draw(canvas);
+        }
+        if (list.isEmpty()) {
+            return;
+        }
+        tempPath.rewind();
+        for (SpoilerEffect spoilerEffect : list) {
+            Rect bounds = spoilerEffect.getBounds();
+            tempPath.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+        }
+        if (!list.isEmpty() && list.get(0).rippleProgress != -1.0f) {
+            canvas.save();
+            canvas.clipPath(tempPath);
+            tempPath.rewind();
+            if (!list.isEmpty()) {
+                list.get(0).getRipplePath(tempPath);
+            }
+            canvas.clipPath(tempPath);
+            canvas.translate(0.0f, -view.getPaddingTop());
+            cachedStaticLayout.draw(canvas);
             canvas.restore();
         }
         boolean z3 = list.get(0).rippleProgress != -1.0f;

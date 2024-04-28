@@ -62,7 +62,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public ThemePreviewMessagesCell(android.content.Context r19, org.telegram.ui.ActionBar.INavigationLayout r20, int r21, long r22, org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
+    public ThemePreviewMessagesCell(android.content.Context r20, org.telegram.ui.ActionBar.INavigationLayout r21, int r22, long r23, org.telegram.ui.ActionBar.Theme.ResourcesProvider r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ThemePreviewMessagesCell.<init>(android.content.Context, org.telegram.ui.ActionBar.INavigationLayout, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

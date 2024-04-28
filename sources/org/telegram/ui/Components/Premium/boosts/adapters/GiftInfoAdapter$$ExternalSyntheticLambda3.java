@@ -8,6 +8,6 @@ public final class GiftInfoAdapter$$ExternalSyntheticLambda3 implements Runnable
 
     @Override
     public final void run() {
-        GiftInfoAdapter.m1925$r8$lambda$8zwq8tHRswrqJTqJ8_Z2NxcnGQ(this.f$0);
+        GiftInfoAdapter.m1915$r8$lambda$8zwq8tHRswrqJTqJ8_Z2NxcnGQ(this.f$0);
     }
 }

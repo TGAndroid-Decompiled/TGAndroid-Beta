@@ -16,7 +16,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.text.Layout;
 import android.text.SpannableString;
@@ -33,6 +32,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -387,7 +387,7 @@ public class HintView2 extends View {
         Paint paint = new Paint(1);
         this.cutSelectorPaint = paint;
         paint.setPathEffect(new CornerPathEffect(this.rounding));
-        RippleDrawable rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
             @Override
             public int getOpacity() {
                 return -2;
@@ -409,8 +409,8 @@ public class HintView2 extends View {
                 canvas.restore();
             }
         });
-        this.selectorDrawable = rippleDrawable;
-        rippleDrawable.setCallback(this);
+        this.selectorDrawable = rippleDrawableSafe;
+        rippleDrawableSafe.setCallback(this);
         return this;
     }
 

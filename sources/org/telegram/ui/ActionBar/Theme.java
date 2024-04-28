@@ -125,6 +125,7 @@ import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.tgnet.TLRPC$WallPaperSettings;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AudioVisualizerDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
@@ -476,6 +477,7 @@ public class Theme {
     public static final int key_calls_callReceivedRedIcon;
     public static final int key_changephoneinfo_image2;
     public static final int key_chat_BlurAlpha;
+    public static final int key_chat_BlurAlphaSlow;
     public static final int key_chat_TextSelectionCursor;
     public static final int key_chat_addContact;
     public static final int key_chat_attachActiveTab;
@@ -4295,7 +4297,7 @@ public class Theme {
         ShapeDrawable shapeDrawable2 = new ShapeDrawable(ovalShape);
         if (Build.VERSION.SDK_INT >= 21) {
             shapeDrawable2.getPaint().setColor(-1);
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i3}), shapeDrawable, shapeDrawable2);
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i3}), shapeDrawable, shapeDrawable2);
         }
         shapeDrawable2.getPaint().setColor(i3);
         StateListDrawable stateListDrawable = new StateListDrawable();
@@ -4385,7 +4387,7 @@ public class Theme {
         ShapeDrawable shapeDrawable2 = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f, f, f, f}, null, null));
         shapeDrawable2.getPaint().setColor(i4);
         if (Build.VERSION.SDK_INT >= 21) {
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i3}), shapeDrawable, shapeDrawable2);
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i3}), shapeDrawable, shapeDrawable2);
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{16842919}, shapeDrawable2);
@@ -4408,7 +4410,7 @@ public class Theme {
 
     public static Drawable getRoundRectSelectorDrawable(int i, int i2) {
         if (Build.VERSION.SDK_INT >= 21) {
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{(i2 & 16777215) | 419430400}), null, createRoundRectDrawable(i, -1));
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{(i2 & 16777215) | 419430400}), null, createRoundRectDrawable(i, -1));
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
         int i3 = (i2 & 16777215) | 419430400;
@@ -4420,7 +4422,7 @@ public class Theme {
 
     public static Drawable createSelectorWithBackgroundDrawable(int i, int i2) {
         if (Build.VERSION.SDK_INT >= 21) {
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), new ColorDrawable(i), new ColorDrawable(i));
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), new ColorDrawable(i), new ColorDrawable(i));
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{16842919}, new ColorDrawable(i2));
@@ -4447,7 +4449,7 @@ public class Theme {
     public static Drawable getSelectorDrawable(int i, int i2) {
         if (i2 >= 0) {
             if (Build.VERSION.SDK_INT >= 21) {
-                return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), new ColorDrawable(getColor(i2)), new ColorDrawable(-1));
+                return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), new ColorDrawable(getColor(i2)), new ColorDrawable(-1));
             }
             StateListDrawable stateListDrawable = new StateListDrawable();
             stateListDrawable.addState(new int[]{16842919}, new ColorDrawable(i));
@@ -4473,7 +4475,7 @@ public class Theme {
     public static Drawable createCircleSelectorDrawable(int i, final int i2, final int i3) {
         if (Build.VERSION.SDK_INT >= 21) {
             maskPaint.setColor(-1);
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
                 @Override
                 public int getOpacity() {
                     return 0;
@@ -4578,7 +4580,7 @@ public class Theme {
                     shapeDrawable2 = new ShapeDrawable(new RectShape());
                     shapeDrawable2.getPaint().setColor(-1);
                 }
-                return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), drawable, shapeDrawable2);
+                return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), drawable, shapeDrawable2);
             }
             StateListDrawable stateListDrawable = new StateListDrawable();
             if (hasNonzeroRadii(fArr)) {
@@ -4607,7 +4609,7 @@ public class Theme {
 
         private static Drawable createCircle(Drawable drawable, int i, float f) {
             if (Build.VERSION.SDK_INT >= 21) {
-                return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), drawable, new CircleDrawable(f));
+                return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), drawable, new CircleDrawable(f));
             }
             StateListDrawable stateListDrawable = new StateListDrawable();
             Drawable circleDrawable = new CircleDrawable(f, i);
@@ -4838,7 +4840,7 @@ public class Theme {
     public static Drawable createRadSelectorDrawable(int i, int i2, int i3) {
         if (Build.VERSION.SDK_INT >= 21) {
             maskPaint.setColor(-1);
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new RippleRadMaskDrawable(i2, i3));
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new RippleRadMaskDrawable(i2, i3));
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{16842919}, new ColorDrawable(i));
@@ -4852,7 +4854,7 @@ public class Theme {
             maskPaint.setColor(-1);
             float f = i3;
             float f2 = i4;
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), createRoundRectDrawable(AndroidUtilities.dp(f), AndroidUtilities.dp(f2), i), new RippleRadMaskDrawable(f, f2));
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), createRoundRectDrawable(AndroidUtilities.dp(f), AndroidUtilities.dp(f2), i), new RippleRadMaskDrawable(f, f2));
         }
         float f3 = i3;
         float f4 = i4;
@@ -4868,7 +4870,7 @@ public class Theme {
     public static Drawable createRadSelectorDrawable(int i, int i2, int i3, int i4, int i5) {
         if (Build.VERSION.SDK_INT >= 21) {
             maskPaint.setColor(-1);
-            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new RippleRadMaskDrawable(i2, i3, i4, i5));
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new RippleRadMaskDrawable(i2, i3, i4, i5));
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{16842919}, new ColorDrawable(i));

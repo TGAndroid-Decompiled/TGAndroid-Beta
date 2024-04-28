@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CachedStaticLayout;
 import org.telegram.ui.Components.CounterView;
 public class CounterView extends View {
     public CounterDrawable counterDrawable;
@@ -62,14 +63,14 @@ public class CounterView extends View {
         public boolean addServiceGradient;
         private int circleColor;
         public Paint circlePaint;
-        private StaticLayout countAnimationInLayout;
+        private CachedStaticLayout countAnimationInLayout;
         private boolean countAnimationIncrement;
-        private StaticLayout countAnimationStableLayout;
+        private CachedStaticLayout countAnimationStableLayout;
         private ValueAnimator countAnimator;
-        private StaticLayout countLayout;
+        private CachedStaticLayout countLayout;
         private float countLayoutWidth;
         float countLeft;
-        private StaticLayout countOldLayout;
+        private CachedStaticLayout countOldLayout;
         private int countWidth;
         private int countWidthOld;
         int currentCount;
@@ -186,9 +187,9 @@ public class CounterView extends View {
                     return;
                 }
                 this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence.toString())));
-                StaticLayout staticLayout = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                this.countLayout = staticLayout;
-                this.countLayoutWidth = staticLayout.getLineCount() >= 1 ? this.countLayout.getLineWidth(0) : 0.0f;
+                CachedStaticLayout cachedStaticLayout = new CachedStaticLayout(new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false));
+                this.countLayout = cachedStaticLayout;
+                this.countLayoutWidth = cachedStaticLayout.layout.getLineCount() >= 1 ? this.countLayout.layout.getLineWidth(0) : 0.0f;
                 View view3 = this.parent;
                 if (view3 != null) {
                     view3.invalidate();
@@ -257,9 +258,9 @@ public class CounterView extends View {
                             }
                         }
                         int max = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence2.toString())));
-                        this.countOldLayout = new StaticLayout(spannableStringBuilder, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.countAnimationStableLayout = new StaticLayout(spannableStringBuilder3, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.countAnimationInLayout = new StaticLayout(spannableStringBuilder2, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                        this.countOldLayout = new CachedStaticLayout(new StaticLayout(spannableStringBuilder, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false));
+                        this.countAnimationStableLayout = new CachedStaticLayout(new StaticLayout(spannableStringBuilder3, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false));
+                        this.countAnimationInLayout = new CachedStaticLayout(new StaticLayout(spannableStringBuilder2, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false));
                     } else {
                         this.countOldLayout = this.countLayout;
                     }
@@ -270,9 +271,9 @@ public class CounterView extends View {
             }
             if (i > 0) {
                 this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence.toString())));
-                StaticLayout staticLayout2 = new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                this.countLayout = staticLayout2;
-                this.countLayoutWidth = staticLayout2.getLineCount() >= 1 ? this.countLayout.getLineWidth(0) : 0.0f;
+                CachedStaticLayout cachedStaticLayout2 = new CachedStaticLayout(new StaticLayout(charSequence, this.textPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false));
+                this.countLayout = cachedStaticLayout2;
+                this.countLayoutWidth = cachedStaticLayout2.layout.getLineCount() >= 1 ? this.countLayout.layout.getLineWidth(0) : 0.0f;
             }
             this.currentCount = i;
             this.currentText = charSequence;

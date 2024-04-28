@@ -83,104 +83,69 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
 
     public PollEditTextCell(Context context, boolean z, final int i, View.OnClickListener onClickListener) {
         super(context);
-        if (z) {
-            EditTextCaption editTextCaption = new EditTextCaption(context, null) {
-                @Override
-                protected int emojiCacheType() {
-                    return 3;
-                }
+        EditTextCaption editTextCaption = new EditTextCaption(context, null) {
+            @Override
+            protected int emojiCacheType() {
+                return 3;
+            }
 
-                @Override
-                public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-                    InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                    if (PollEditTextCell.this.showNextButton) {
-                        editorInfo.imeOptions &= -1073741825;
+            @Override
+            public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+                InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+                if (PollEditTextCell.this.showNextButton) {
+                    editorInfo.imeOptions &= -1073741825;
+                }
+                return onCreateInputConnection;
+            }
+
+            @Override
+            public void onDraw(Canvas canvas) {
+                super.onDraw(canvas);
+                PollEditTextCell.this.onEditTextDraw(this, canvas);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (isEnabled()) {
+                    if (motionEvent.getAction() == 1) {
+                        PollEditTextCell.this.onFieldTouchUp(this);
                     }
-                    return onCreateInputConnection;
+                    return super.onTouchEvent(motionEvent);
                 }
+                return false;
+            }
 
-                @Override
-                public void onDraw(Canvas canvas) {
-                    super.onDraw(canvas);
-                    PollEditTextCell.this.onEditTextDraw(this, canvas);
-                }
-
-                @Override
-                public boolean onTouchEvent(MotionEvent motionEvent) {
-                    if (isEnabled()) {
-                        if (motionEvent.getAction() == 1) {
-                            PollEditTextCell.this.onFieldTouchUp(this);
-                        }
-                        return super.onTouchEvent(motionEvent);
-                    }
-                    return false;
-                }
-
-                @Override
-                public ActionMode startActionMode(ActionMode.Callback callback, int i2) {
-                    ActionMode startActionMode = super.startActionMode(callback, i2);
-                    PollEditTextCell.this.onActionModeStart(this, startActionMode);
-                    return startActionMode;
-                }
-
-                @Override
-                public ActionMode startActionMode(ActionMode.Callback callback) {
-                    ActionMode startActionMode = super.startActionMode(callback);
-                    PollEditTextCell.this.onActionModeStart(this, startActionMode);
-                    return startActionMode;
-                }
-            };
-            this.textView = editTextCaption;
-            editTextCaption.setAllowTextEntitiesIntersection(true);
-        } else {
-            this.textView = new EditTextBoldCursor(context) {
-                @Override
-                protected int emojiCacheType() {
-                    return 3;
-                }
-
-                @Override
-                public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-                    InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                    if (PollEditTextCell.this.showNextButton) {
-                        editorInfo.imeOptions &= -1073741825;
-                    }
-                    return onCreateInputConnection;
-                }
-
-                @Override
-                public void onDraw(Canvas canvas) {
-                    super.onDraw(canvas);
-                    PollEditTextCell.this.onEditTextDraw(this, canvas);
-                }
-
-                @Override
-                public boolean onTouchEvent(MotionEvent motionEvent) {
-                    if (isEnabled()) {
-                        if (motionEvent.getAction() == 1) {
-                            PollEditTextCell.this.onFieldTouchUp(this);
-                        }
-                        return super.onTouchEvent(motionEvent);
-                    }
-                    return false;
-                }
-
-                @Override
-                public void onFocusChanged(boolean z2, int i2, Rect rect) {
-                    super.onFocusChanged(z2, i2, rect);
-                    if (i == 1) {
-                        if (!z2 || PollEditTextCell.this.emojiButton.getVisibility() != 8) {
-                            if (z2 || PollEditTextCell.this.emojiButton.getVisibility() != 0) {
-                                return;
-                            }
-                            PollEditTextCell.this.setEmojiButtonVisibility(false);
+            @Override
+            public void onFocusChanged(boolean z2, int i2, Rect rect) {
+                super.onFocusChanged(z2, i2, rect);
+                if (i == 1) {
+                    if (!z2 || PollEditTextCell.this.emojiButton.getVisibility() != 8) {
+                        if (z2 || PollEditTextCell.this.emojiButton.getVisibility() != 0) {
                             return;
                         }
-                        PollEditTextCell.this.setEmojiButtonVisibility(true);
+                        PollEditTextCell.this.setEmojiButtonVisibility(false);
+                        return;
                     }
+                    PollEditTextCell.this.setEmojiButtonVisibility(true);
                 }
-            };
-        }
+            }
+
+            @Override
+            public ActionMode startActionMode(ActionMode.Callback callback, int i2) {
+                ActionMode startActionMode = super.startActionMode(callback, i2);
+                PollEditTextCell.this.onActionModeStart(this, startActionMode);
+                return startActionMode;
+            }
+
+            @Override
+            public ActionMode startActionMode(ActionMode.Callback callback) {
+                ActionMode startActionMode = super.startActionMode(callback);
+                PollEditTextCell.this.onActionModeStart(this, startActionMode);
+                return startActionMode;
+            }
+        };
+        this.textView = editTextCaption;
+        editTextCaption.setAllowTextEntitiesIntersection(true);
         this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
         this.textView.setTextSize(1, 16.0f);

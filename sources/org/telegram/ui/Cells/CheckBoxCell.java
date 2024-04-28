@@ -570,6 +570,15 @@ public class CheckBoxCell extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
+        AnimatedTextView animatedTextView = this.animatedTextView;
+        if (animatedTextView != null) {
+            accessibilityNodeInfo.setText(animatedTextView.getText());
+        } else {
+            LinkSpanDrawable.LinksTextView linksTextView = this.linksTextView;
+            if (linksTextView != null) {
+                accessibilityNodeInfo.setText(linksTextView.getText());
+            }
+        }
         accessibilityNodeInfo.setChecked(isChecked());
     }
 

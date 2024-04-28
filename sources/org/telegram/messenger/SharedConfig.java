@@ -167,6 +167,7 @@ public class SharedConfig {
     public static boolean updateStickersOrderOnSend;
     public static Boolean useCamera2Force;
     public static boolean useFingerprint;
+    public static boolean useNewBlur;
     public static boolean useSurfaceInStories;
     public static boolean useSystemEmoji;
     public static boolean useThreeLinesLayout;
@@ -1427,7 +1428,7 @@ public class SharedConfig {
     }
 
     public static boolean canBlurChat() {
-        return getDevicePerformanceClass() == 2;
+        return getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? 1 : 2);
     }
 
     public static boolean chatBlurEnabled() {
@@ -1488,6 +1489,11 @@ public class SharedConfig {
     public static void toggleRoundCamera() {
         bigCameraForRound = !bigCameraForRound;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("bigCameraForRound", bigCameraForRound).apply();
+    }
+
+    public static void toggleUseNewBlur() {
+        useNewBlur = !useNewBlur;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("useNewBlur", useNewBlur).apply();
     }
 
     public static boolean isUsingCamera2(int i) {

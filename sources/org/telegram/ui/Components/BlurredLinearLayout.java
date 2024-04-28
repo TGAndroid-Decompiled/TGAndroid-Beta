@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 @SuppressLint({"ViewConstructor"})
 public class BlurredLinearLayout extends LinearLayout {
@@ -14,6 +13,7 @@ public class BlurredLinearLayout extends LinearLayout {
     public int backgroundPaddingBottom;
     public int backgroundPaddingTop;
     protected Paint backgroundPaint;
+    private android.graphics.Rect blurBounds;
     public boolean drawBlur;
     public boolean isTopView;
     private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
@@ -23,6 +23,7 @@ public class BlurredLinearLayout extends LinearLayout {
         this.backgroundColor = 0;
         this.isTopView = true;
         this.drawBlur = true;
+        this.blurBounds = new android.graphics.Rect();
         this.sizeNotifierFrameLayout = sizeNotifierFrameLayout;
     }
 
@@ -34,7 +35,7 @@ public class BlurredLinearLayout extends LinearLayout {
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
-            AndroidUtilities.rectTmp2.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
+            this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
             float f = 0.0f;
             View view = this;
             while (true) {
@@ -45,7 +46,7 @@ public class BlurredLinearLayout extends LinearLayout {
                 f += view.getY();
                 view = (View) view.getParent();
             }
-            sizeNotifierFrameLayout.drawBlurRect(canvas, f, AndroidUtilities.rectTmp2, this.backgroundPaint, this.isTopView);
+            sizeNotifierFrameLayout.drawBlurRect(canvas, f, this.blurBounds, this.backgroundPaint, this.isTopView);
         }
         super.dispatchDraw(canvas);
     }

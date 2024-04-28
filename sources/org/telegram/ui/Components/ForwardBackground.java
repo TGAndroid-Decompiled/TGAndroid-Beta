@@ -5,11 +5,11 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.text.StaticLayout;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CachedStaticLayout;
 public class ForwardBackground {
     public final ButtonBounce bounce;
     public float cx;
@@ -26,7 +26,7 @@ public class ForwardBackground {
         this.bounce = new ButtonBounce(view, 0.8f, 1.4f);
     }
 
-    public void set(StaticLayout[] staticLayoutArr, boolean z) {
+    public void set(CachedStaticLayout[] cachedStaticLayoutArr, boolean z) {
         float f;
         float f2;
         float dp;
@@ -37,8 +37,8 @@ public class ForwardBackground {
         float f3 = -AndroidUtilities.dp(((min / 9.0f) * 2.66f) + 4.0f);
         float f4 = -AndroidUtilities.dp(3.0f);
         float dp3 = dp2 + AndroidUtilities.dp(5.0f);
-        float lineWidth = staticLayoutArr[0].getLineWidth(0) + AndroidUtilities.dp(f);
-        float lineWidth2 = staticLayoutArr[1].getLineWidth(0) + AndroidUtilities.dp(f);
+        float lineWidth = cachedStaticLayoutArr[0].layout.getLineWidth(0) + AndroidUtilities.dp(f);
+        float lineWidth2 = cachedStaticLayoutArr[1].layout.getLineWidth(0) + AndroidUtilities.dp(f);
         this.path.rewind();
         if (!z) {
             max = SharedConfig.bubbleRadius / 2.0f;

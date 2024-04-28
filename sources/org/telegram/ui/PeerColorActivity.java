@@ -2287,6 +2287,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
         protected final ImageReceiver imageReceiver;
         private final boolean isChannel;
+        private boolean isForum;
         private int lastColorId;
         private final RectF rectF;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -2411,6 +2412,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             invalidate();
         }
 
+        public void setForum(boolean z) {
+            if (this.isForum != z) {
+                invalidate();
+            }
+            this.isForum = z;
+        }
+
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
@@ -2513,9 +2521,12 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         @Override
         protected void dispatchDraw(final Canvas canvas) {
             this.rectF.set(AndroidUtilities.dp(20.33f), getHeight() - AndroidUtilities.dp(78.66f), AndroidUtilities.dp(20.33f) + AndroidUtilities.dp(53.33f), getHeight() - AndroidUtilities.dp(25.33f));
+            this.imageReceiver.setRoundRadius(AndroidUtilities.dp(this.isForum ? 18.0f : 54.0f));
             this.imageReceiver.setImageCoords(this.rectF);
             this.imageReceiver.draw(canvas);
-            canvas.drawCircle(this.rectF.centerX(), this.rectF.centerY(), (this.rectF.width() / 2.0f) + AndroidUtilities.dp(4.0f), this.storyGradient.getPaint(this.rectF));
+            float width = (this.rectF.width() / 2.0f) + AndroidUtilities.dp(4.0f);
+            float dp = AndroidUtilities.dp(this.isForum ? 22.0f : 58.0f);
+            canvas.drawRoundRect(this.rectF.centerX() - width, this.rectF.centerY() - width, this.rectF.centerX() + width, this.rectF.centerY() + width, dp, dp, this.storyGradient.getPaint(this.rectF));
             PeerColorActivity.drawProfileIconPattern(getWidth() - AndroidUtilities.dp(46.0f), getHeight(), 1.0f, new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4) {

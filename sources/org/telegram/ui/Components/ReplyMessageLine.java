@@ -344,14 +344,16 @@ public class ReplyMessageLine {
             }
         }
         if (this.emojiDocumentId != 0 && this.emoji == null) {
-            this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
+            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
+            this.emoji = swapAnimatedEmojiDrawable;
+            swapAnimatedEmojiDrawable.cacheNode();
             View view = this.parentView;
             if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
                 this.emoji.attach();
             }
         }
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.emoji;
+        if (swapAnimatedEmojiDrawable2 != null && swapAnimatedEmojiDrawable2.set(this.emojiDocumentId, true)) {
             this.emojiLoaded = false;
         }
         return this.nameColorAnimated.set(this.nameColor);

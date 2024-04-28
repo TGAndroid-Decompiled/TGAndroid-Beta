@@ -436,12 +436,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
 
             @Override
-            public void drawList(Canvas canvas, boolean z) {
+            public void drawList(Canvas canvas, boolean z, ArrayList<SizeNotifierFrameLayout.IViewWithInvalidateCallback> arrayList) {
                 for (int i2 = 0; i2 < TopicsFragment.this.recyclerListView.getChildCount(); i2++) {
                     View childAt = TopicsFragment.this.recyclerListView.getChildAt(i2);
                     if (childAt.getY() < AndroidUtilities.dp(100.0f) && childAt.getVisibility() == 0) {
                         int save = canvas.save();
                         canvas.translate(TopicsFragment.this.recyclerListView.getX() + childAt.getX(), getY() + TopicsFragment.this.recyclerListView.getY() + childAt.getY());
+                        if (arrayList != null && (childAt instanceof SizeNotifierFrameLayout.IViewWithInvalidateCallback)) {
+                            arrayList.add((SizeNotifierFrameLayout.IViewWithInvalidateCallback) childAt);
+                        }
                         childAt.draw(canvas);
                         canvas.restoreToCount(save);
                     }

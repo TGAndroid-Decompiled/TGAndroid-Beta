@@ -374,14 +374,22 @@ public class StoriesController {
     }
 
     public TL_stories$PeerStories getStoriesFromFullPeer(long j) {
+        TL_stories$PeerStories tL_stories$PeerStories;
+        TL_stories$PeerStories tL_stories$PeerStories2;
         if (j > 0) {
             TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
+            if (userFull != null && (tL_stories$PeerStories2 = userFull.stories) != null && !tL_stories$PeerStories2.checkedExpired) {
+                checkExpireStories(tL_stories$PeerStories2);
+            }
             if (userFull == null) {
                 return null;
             }
             return userFull.stories;
         }
         TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-j);
+        if (chatFull != null && (tL_stories$PeerStories = chatFull.stories) != null && !tL_stories$PeerStories.checkedExpired) {
+            checkExpireStories(tL_stories$PeerStories);
+        }
         if (chatFull == null) {
             return null;
         }
@@ -598,13 +606,15 @@ public class StoriesController {
         }
         MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_stories_allStories.users, z2);
         MessagesController.getInstance(this.currentAccount).putChats(tL_stories$TL_stories_allStories.chats, z2);
+        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
         for (int i2 = 0; i2 < tL_stories$TL_stories_allStories.peer_stories.size(); i2++) {
             TL_stories$PeerStories tL_stories$PeerStories = tL_stories$TL_stories_allStories.peer_stories.get(i2);
             long peerDialogId = DialogObject.getPeerDialogId(tL_stories$PeerStories.peer);
             int i3 = 0;
             while (i3 < tL_stories$PeerStories.stories.size()) {
-                if (tL_stories$PeerStories.stories.get(i3) instanceof TL_stories$TL_storyItemDeleted) {
-                    NotificationsController.getInstance(this.currentAccount).processDeleteStory(peerDialogId, tL_stories$PeerStories.stories.get(i3).id);
+                TL_stories$StoryItem tL_stories$StoryItem = tL_stories$PeerStories.stories.get(i3);
+                if ((tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted) || ((tL_stories$StoryItem instanceof TL_stories$TL_storyItem) && tL_stories$StoryItem.expire_date > currentTime)) {
+                    NotificationsController.getInstance(this.currentAccount).processDeleteStory(peerDialogId, tL_stories$StoryItem.id);
                     tL_stories$PeerStories.stories.remove(i3);
                     i3--;
                 }
@@ -1889,6 +1899,21 @@ public class StoriesController {
         if (z) {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
         }
+    }
+
+    private void checkExpireStories(TL_stories$PeerStories tL_stories$PeerStories) {
+        if (tL_stories$PeerStories == null || tL_stories$PeerStories.stories == null) {
+            return;
+        }
+        int i = 0;
+        while (i < tL_stories$PeerStories.stories.size()) {
+            if (StoriesUtilities.isExpired(this.currentAccount, tL_stories$PeerStories.stories.get(i))) {
+                tL_stories$PeerStories.stories.remove(i);
+                i--;
+            }
+            i++;
+        }
+        tL_stories$PeerStories.checkedExpired = true;
     }
 
     public void checkExpiredStories(long j) {

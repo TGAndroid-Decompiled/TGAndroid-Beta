@@ -29,6 +29,7 @@ import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.R;
+import org.telegram.ui.CachedStaticLayout;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -49,10 +50,10 @@ public class SimpleTextView extends View {
     private int fadeEllpsizePaintWidth;
     private Paint fadePaint;
     private Paint fadePaintBack;
-    private Layout firstLineLayout;
+    private CachedStaticLayout firstLineLayout;
     private Boolean forceEllipsizeByGradientLeft;
     private float fullAlpha;
-    private Layout fullLayout;
+    private CachedStaticLayout fullLayout;
     private int fullLayoutAdditionalWidth;
     private float fullLayoutLeftCharactersOffset;
     private int fullLayoutLeftOffset;
@@ -60,7 +61,7 @@ public class SimpleTextView extends View {
     private int gravity;
     private long lastUpdateTime;
     private int lastWidth;
-    private Layout layout;
+    private CachedStaticLayout layout;
     private Drawable leftDrawable;
     private int leftDrawableTopPadding;
     private Layout.Alignment mAlignment;
@@ -71,7 +72,7 @@ public class SimpleTextView extends View {
     private int offsetX;
     private int offsetY;
     private int paddingRight;
-    private Layout partLayout;
+    private CachedStaticLayout partLayout;
     private Path path;
     private Drawable replacedDrawable;
     private String replacedText;
@@ -143,7 +144,11 @@ public class SimpleTextView extends View {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attachedToWindow = true;
-        this.emojiStack = AnimatedEmojiSpan.update(0, this, this.emojiStack, this.layout);
+        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.emojiStack;
+        Layout[] layoutArr = new Layout[1];
+        CachedStaticLayout cachedStaticLayout = this.layout;
+        layoutArr[0] = cachedStaticLayout == null ? null : cachedStaticLayout.layout;
+        this.emojiStack = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans, layoutArr);
     }
 
     @Override
@@ -279,18 +284,18 @@ public class SimpleTextView extends View {
         int i2;
         Drawable drawable;
         Drawable drawable2;
-        Layout layout = this.layout;
-        if (layout == null) {
+        CachedStaticLayout cachedStaticLayout = this.layout;
+        if (cachedStaticLayout == null) {
             return;
         }
-        if (layout.getLineCount() > 0) {
+        if (cachedStaticLayout.getLineCount() > 0) {
             this.textWidth = (int) Math.ceil(this.layout.getLineWidth(0));
-            Layout layout2 = this.fullLayout;
-            if (layout2 != null) {
-                this.textHeight = layout2.getLineBottom(layout2.getLineCount() - 1);
+            CachedStaticLayout cachedStaticLayout2 = this.fullLayout;
+            if (cachedStaticLayout2 != null) {
+                this.textHeight = cachedStaticLayout2.getLineBottom(cachedStaticLayout2.getLineCount() - 1);
             } else if (this.maxLines > 1 && this.layout.getLineCount() > 0) {
-                Layout layout3 = this.layout;
-                this.textHeight = layout3.getLineBottom(layout3.getLineCount() - 1);
+                CachedStaticLayout cachedStaticLayout3 = this.layout;
+                this.textHeight = cachedStaticLayout3.getLineBottom(cachedStaticLayout3.getLineCount() - 1);
             } else {
                 this.textHeight = this.layout.getLineBottom(0);
             }
@@ -298,16 +303,16 @@ public class SimpleTextView extends View {
             if ((i3 & 7) == 1) {
                 this.offsetX = ((i - this.textWidth) / 2) - ((int) this.layout.getLineLeft(0));
             } else if ((i3 & 7) == 3) {
-                Layout layout4 = this.firstLineLayout;
-                if (layout4 != null) {
-                    this.offsetX = -((int) layout4.getLineLeft(0));
+                CachedStaticLayout cachedStaticLayout4 = this.firstLineLayout;
+                if (cachedStaticLayout4 != null) {
+                    this.offsetX = -((int) cachedStaticLayout4.getLineLeft(0));
                 } else {
                     this.offsetX = -((int) this.layout.getLineLeft(0));
                 }
             } else if (this.layout.getLineLeft(0) == 0.0f) {
-                Layout layout5 = this.firstLineLayout;
-                if (layout5 != null) {
-                    this.offsetX = (int) (i - layout5.getLineWidth(0));
+                CachedStaticLayout cachedStaticLayout5 = this.firstLineLayout;
+                if (cachedStaticLayout5 != null) {
+                    this.offsetX = (int) (i - cachedStaticLayout5.getLineWidth(0));
                 } else {
                     this.offsetX = i - this.textWidth;
                 }
@@ -324,9 +329,9 @@ public class SimpleTextView extends View {
                 i2 = 0;
             }
             this.textDoesNotFit = this.textWidth + i2 > i - this.paddingRight;
-            Layout layout6 = this.fullLayout;
-            if (layout6 != null && this.fullLayoutAdditionalWidth > 0) {
-                this.fullLayoutLeftCharactersOffset = layout6.getPrimaryHorizontal(0) - this.firstLineLayout.getPrimaryHorizontal(0);
+            CachedStaticLayout cachedStaticLayout6 = this.fullLayout;
+            if (cachedStaticLayout6 != null && this.fullLayoutAdditionalWidth > 0) {
+                this.fullLayoutLeftCharactersOffset = cachedStaticLayout6.getPrimaryHorizontal(0) - this.firstLineLayout.getPrimaryHorizontal(0);
             }
         }
         int i4 = this.replacingDrawableTextIndex;
@@ -391,44 +396,42 @@ public class SimpleTextView extends View {
                 if (this.buildFullLayout) {
                     CharSequence ellipsize = !this.ellipsizeByGradient ? TextUtils.ellipsize(spannableStringBuilder, this.textPaint, i5, TextUtils.TruncateAt.END) : spannableStringBuilder;
                     if (!this.ellipsizeByGradient && !ellipsize.equals(spannableStringBuilder)) {
-                        StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.textPaint, i5, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, this.fullTextMaxLines, false);
-                        this.fullLayout = createStaticLayout;
-                        if (createStaticLayout != null) {
-                            int lineEnd = createStaticLayout.getLineEnd(0);
-                            int lineStart = this.fullLayout.getLineStart(1);
-                            CharSequence subSequence = spannableStringBuilder.subSequence(0, lineEnd);
-                            SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(spannableStringBuilder);
-                            valueOf2.setSpan(new EmptyStubSpan(), 0, lineStart, 0);
-                            String subSequence2 = lineEnd < ellipsize.length() ? ellipsize.subSequence(lineEnd, ellipsize.length()) : "…";
-                            this.firstLineLayout = new StaticLayout(ellipsize, 0, ellipsize.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
-                            StaticLayout staticLayout = new StaticLayout(subSequence, 0, subSequence.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
-                            this.layout = staticLayout;
-                            String str = subSequence2;
-                            if (staticLayout.getLineLeft(0) != 0.0f) {
-                                str = "\u200f" + ((Object) subSequence2);
-                            }
-                            CharSequence charSequence2 = str;
-                            this.partLayout = new StaticLayout(charSequence2, 0, charSequence2.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
-                            this.fullLayout = StaticLayoutEx.createStaticLayout(valueOf2, this.textPaint, AndroidUtilities.dp(8.0f) + i5 + this.fullLayoutAdditionalWidth, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5 + this.fullLayoutAdditionalWidth, this.fullTextMaxLines, false);
+                        CachedStaticLayout cachedStaticLayout = new CachedStaticLayout(StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.textPaint, i5, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, this.fullTextMaxLines, false));
+                        this.fullLayout = cachedStaticLayout;
+                        int lineEnd = cachedStaticLayout.getLineEnd(0);
+                        int lineStart = this.fullLayout.getLineStart(1);
+                        CharSequence subSequence = spannableStringBuilder.subSequence(0, lineEnd);
+                        SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(spannableStringBuilder);
+                        valueOf2.setSpan(new EmptyStubSpan(), 0, lineStart, 0);
+                        String subSequence2 = lineEnd < ellipsize.length() ? ellipsize.subSequence(lineEnd, ellipsize.length()) : "…";
+                        this.firstLineLayout = new CachedStaticLayout(new StaticLayout(ellipsize, 0, ellipsize.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false));
+                        CachedStaticLayout cachedStaticLayout2 = new CachedStaticLayout(new StaticLayout(subSequence, 0, subSequence.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false));
+                        this.layout = cachedStaticLayout2;
+                        String str = subSequence2;
+                        if (cachedStaticLayout2.getLineLeft(0) != 0.0f) {
+                            str = "\u200f" + ((Object) subSequence2);
                         }
+                        CharSequence charSequence2 = str;
+                        this.partLayout = new CachedStaticLayout(new StaticLayout(charSequence2, 0, charSequence2.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false));
+                        this.fullLayout = new CachedStaticLayout(StaticLayoutEx.createStaticLayout(valueOf2, this.textPaint, AndroidUtilities.dp(8.0f) + i5 + this.fullLayoutAdditionalWidth, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5 + this.fullLayoutAdditionalWidth, this.fullTextMaxLines, false));
                     } else {
                         int length = ellipsize.length();
                         TextPaint textPaint = this.textPaint;
                         if (!this.scrollNonFitText && !this.ellipsizeByGradient) {
                             dp2 = AndroidUtilities.dp(8.0f) + i5;
-                            this.layout = new StaticLayout(ellipsize, 0, length, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
+                            this.layout = new CachedStaticLayout(new StaticLayout(ellipsize, 0, length, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false));
                             this.fullLayout = null;
                             this.partLayout = null;
                             this.firstLineLayout = null;
                         }
                         dp2 = AndroidUtilities.dp(2000.0f);
-                        this.layout = new StaticLayout(ellipsize, 0, length, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
+                        this.layout = new CachedStaticLayout(new StaticLayout(ellipsize, 0, length, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false));
                         this.fullLayout = null;
                         this.partLayout = null;
                         this.firstLineLayout = null;
                     }
                 } else if (this.maxLines > 1) {
-                    this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.textPaint, i5, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, this.maxLines, false);
+                    this.layout = new CachedStaticLayout(StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.textPaint, i5, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, this.maxLines, false));
                 } else {
                     CharSequence charSequence3 = spannableStringBuilder;
                     if (!this.scrollNonFitText) {
@@ -439,19 +442,19 @@ public class SimpleTextView extends View {
                     TextPaint textPaint2 = this.textPaint;
                     if (!this.scrollNonFitText && !this.ellipsizeByGradient) {
                         dp = AndroidUtilities.dp(8.0f) + i5;
-                        this.layout = new StaticLayout(charSequence4, 0, length2, textPaint2, dp, getAlignment(), 1.0f, 0.0f, false);
+                        this.layout = new CachedStaticLayout(new StaticLayout(charSequence4, 0, length2, textPaint2, dp, getAlignment(), 1.0f, 0.0f, false));
                     }
                     dp = AndroidUtilities.dp(2000.0f);
-                    this.layout = new StaticLayout(charSequence4, 0, length2, textPaint2, dp, getAlignment(), 1.0f, 0.0f, false);
+                    this.layout = new CachedStaticLayout(new StaticLayout(charSequence4, 0, length2, textPaint2, dp, getAlignment(), 1.0f, 0.0f, false));
                 }
                 this.spoilersPool.addAll(this.spoilers);
                 this.spoilers.clear();
-                Layout layout = this.layout;
-                if (layout == null || !(layout.getText() instanceof Spannable)) {
+                CachedStaticLayout cachedStaticLayout3 = this.layout;
+                if (cachedStaticLayout3 == null || !(cachedStaticLayout3.getText() instanceof Spannable)) {
                     i3 = i5;
                 } else {
                     i3 = i5;
-                    SpoilerEffect.addSpoilers(this, this.layout, -2, -2, this.spoilersPool, this.spoilers);
+                    SpoilerEffect.addSpoilers(this, this.layout.layout, -2, -2, this.spoilersPool, this.spoilers);
                 }
                 calcOffset(i3);
             } catch (Exception unused) {
@@ -463,7 +466,11 @@ public class SimpleTextView extends View {
         }
         AnimatedEmojiSpan.release(this, this.emojiStack);
         if (this.attachedToWindow) {
-            this.emojiStack = AnimatedEmojiSpan.update(0, this, this.emojiStack, this.layout);
+            AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.emojiStack;
+            Layout[] layoutArr = new Layout[1];
+            CachedStaticLayout cachedStaticLayout4 = this.layout;
+            layoutArr[0] = cachedStaticLayout4 != null ? cachedStaticLayout4.layout : null;
+            this.emojiStack = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans, layoutArr);
         }
         invalidate();
         return true;
@@ -742,10 +749,10 @@ public class SimpleTextView extends View {
     }
 
     public int getLineCount() {
-        Layout layout = this.layout;
-        int lineCount = layout != null ? 0 + layout.getLineCount() : 0;
-        Layout layout2 = this.fullLayout;
-        return layout2 != null ? lineCount + layout2.getLineCount() : lineCount;
+        CachedStaticLayout cachedStaticLayout = this.layout;
+        int lineCount = cachedStaticLayout != null ? 0 + cachedStaticLayout.getLineCount() : 0;
+        CachedStaticLayout cachedStaticLayout2 = this.fullLayout;
+        return cachedStaticLayout2 != null ? lineCount + cachedStaticLayout2.getLineCount() : lineCount;
     }
 
     public int getTextStartX() {
@@ -1193,26 +1200,18 @@ public class SimpleTextView extends View {
             canvas.translate(((-this.fullLayoutLeftOffset) * f) + (this.fullLayoutLeftCharactersOffset * f), 0.0f);
             canvas.save();
             clipOutSpoilers(canvas);
-            AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.emojiStack;
-            if (emojiGroupedSpans != null) {
-                emojiGroupedSpans.clearPositions();
-            }
             this.layout.draw(canvas);
             canvas.restore();
-            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             drawSpoilers(canvas);
             canvas.restore();
             return;
         }
         canvas.save();
         clipOutSpoilers(canvas);
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans2 = this.emojiStack;
-        if (emojiGroupedSpans2 != null) {
-            emojiGroupedSpans2.clearPositions();
-        }
         this.layout.draw(canvas);
         canvas.restore();
-        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
         drawSpoilers(canvas);
     }
 

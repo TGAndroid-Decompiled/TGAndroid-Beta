@@ -1170,7 +1170,7 @@ public class StoryCaptionView extends NestedScrollView {
 
             private void drawLayout(StaticLayout staticLayout, Canvas canvas, List<SpoilerEffect> list) {
                 if (!list.isEmpty()) {
-                    SpoilerEffect.renderWithRipple(StoryCaptionTextView.this, false, -1, 0, this.patchedLayout, staticLayout, list, canvas, false);
+                    SpoilerEffect.renderWithRipple((View) StoryCaptionTextView.this, false, -1, 0, this.patchedLayout, (Layout) staticLayout, list, canvas, false);
                 } else {
                     staticLayout.draw(canvas);
                 }

@@ -902,6 +902,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         private int backgroundGradientColor2;
         private int backgroundGradientHeight;
         private final Paint backgroundPaint;
+        private Rect blurBounds;
         public int color1;
         private final AnimatedColor color1Animated;
         public int color2;
@@ -927,6 +928,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.backgroundPaint = new Paint(1);
             this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, false, AndroidUtilities.dp(20.0f), 13);
             this.emojiLoadedT = new AnimatedFloat(this, 0L, 440L, cubicBezierInterpolator);
+            this.blurBounds = new Rect();
         }
 
         @Override
@@ -1017,13 +1019,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i != 0) {
                 ChatActivityInterface chatActivityInterface = ProfileActivity.this.previousTransitionFragment;
                 if (chatActivityInterface != null && chatActivityInterface.getContentView() != null) {
-                    Rect rect = AndroidUtilities.rectTmp2;
-                    rect.set(0, 0, getMeasuredWidth(), i);
+                    this.blurBounds.set(0, 0, getMeasuredWidth(), i);
                     if (ProfileActivity.this.previousTransitionFragment.getActionBar() != null && !ProfileActivity.this.previousTransitionFragment.getContentView().blurWasDrawn() && ProfileActivity.this.previousTransitionFragment.getActionBar().getBackground() == null) {
                         this.paint.setColor(Theme.getColor(Theme.key_actionBarDefault, ProfileActivity.this.previousTransitionFragment.getResourceProvider()));
-                        canvas.drawRect(rect, this.paint);
+                        canvas.drawRect(this.blurBounds, this.paint);
                     } else {
-                        ProfileActivity.this.previousTransitionFragment.getContentView().drawBlurRect(canvas, getY(), rect, ProfileActivity.this.previousTransitionFragment.getActionBar().blurScrimPaint, true);
+                        ProfileActivity.this.previousTransitionFragment.getContentView().drawBlurRect(canvas, getY(), this.blurBounds, ProfileActivity.this.previousTransitionFragment.getActionBar().blurScrimPaint, true);
                     }
                 }
                 this.paint.setColor(this.currentColor);
@@ -1070,9 +1071,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             if (i != currentActionBarHeight) {
                 this.paint.setColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                Rect rect2 = AndroidUtilities.rectTmp2;
-                rect2.set(0, i, getMeasuredWidth(), (int) currentActionBarHeight);
-                ProfileActivity.this.contentView.drawBlurRect(canvas, getY(), rect2, this.paint, true);
+                this.blurBounds.set(0, i, getMeasuredWidth(), (int) currentActionBarHeight);
+                ProfileActivity.this.contentView.drawBlurRect(canvas, getY(), this.blurBounds, this.paint, true);
             }
             if (((BaseFragment) ProfileActivity.this).parentLayout != null) {
                 ((BaseFragment) ProfileActivity.this).parentLayout.drawHeaderShadow(canvas, (int) (ProfileActivity.this.headerShadowAlpha * 255.0f), (int) currentActionBarHeight);
@@ -1406,11 +1406,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void drawList(Canvas canvas, boolean z) {
-            super.drawList(canvas, z);
+        public void drawList(Canvas canvas, boolean z, ArrayList<SizeNotifierFrameLayout.IViewWithInvalidateCallback> arrayList) {
+            super.drawList(canvas, z, arrayList);
             canvas.save();
             canvas.translate(0.0f, ProfileActivity.this.listView.getY());
-            ProfileActivity.this.sharedMediaLayout.drawListForBlur(canvas);
+            ProfileActivity.this.sharedMediaLayout.drawListForBlur(canvas, arrayList);
             canvas.restore();
         }
     }
@@ -5188,7 +5188,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i4 >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.getString("DebugMenu", R.string.DebugMenu));
-                CharSequence[] charSequenceArr = new CharSequence[30];
+                CharSequence[] charSequenceArr = new CharSequence[31];
                 charSequenceArr[0] = LocaleController.getString("DebugMenuImportContacts", R.string.DebugMenuImportContacts);
                 charSequenceArr[1] = LocaleController.getString("DebugMenuReloadContacts", R.string.DebugMenuReloadContacts);
                 charSequenceArr[2] = LocaleController.getString("DebugMenuResetContacts", R.string.DebugMenuResetContacts);
@@ -5256,6 +5256,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 charSequenceArr[27] = str5;
                 charSequenceArr[28] = BuildVars.DEBUG_VERSION ? "Clear bot biometry data" : null;
                 charSequenceArr[29] = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
+                charSequenceArr[30] = (!SharedConfig.canBlurChat() || i5 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -5610,6 +5611,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 BotBiometry.clear();
             } else if (i == 29) {
                 AuthTokensHelper.clearLogInTokens();
+            } else if (i == 30) {
+                SharedConfig.toggleUseNewBlur();
             }
         }
 

@@ -264,7 +264,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
     public void lambda$processResponse$3(final TLRPC$TL_messages_archivedStickers tLRPC$TL_messages_archivedStickers) {
         if (!this.isInTransition) {
             this.sets.addAll(tLRPC$TL_messages_archivedStickers.sets);
-            this.endReached = tLRPC$TL_messages_archivedStickers.sets.size() != 15;
+            this.endReached = this.sets.size() >= tLRPC$TL_messages_archivedStickers.count;
             this.loadingStickers = false;
             this.firstLoaded = true;
             EmptyTextProgressView emptyTextProgressView = this.emptyView;

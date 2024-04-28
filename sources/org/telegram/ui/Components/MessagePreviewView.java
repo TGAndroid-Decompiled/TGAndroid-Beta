@@ -1055,8 +1055,9 @@ public class MessagePreviewView extends FrameLayout {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 Context context = viewGroup.getContext();
+                int i2 = MessagePreviewView.this.currentAccount;
                 Page page = Page.this;
-                ChatMessageCell chatMessageCell = new ChatMessageCell(context, false, page.sharedResources, MessagePreviewView.this.resourcesProvider) {
+                ChatMessageCell chatMessageCell = new ChatMessageCell(context, i2, false, page.sharedResources, MessagePreviewView.this.resourcesProvider) {
                     @Override
                     public void invalidate() {
                         super.invalidate();
@@ -1064,8 +1065,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void invalidate(int i2, int i3, int i4, int i5) {
-                        super.invalidate(i2, i3, i4, i5);
+                    public void invalidate(int i3, int i4, int i5, int i6) {
+                        super.invalidate(i3, i4, i5, i6);
                         Page.this.chatListView.invalidate();
                     }
 
@@ -1076,8 +1077,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                        super.onLayout(z, i2, i3, i4, i5);
+                    public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                        super.onLayout(z, i3, i4, i5, i6);
                         Page.this.updateLinkHighlight(this);
                     }
                 };
@@ -1100,8 +1101,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i3, f, f2);
                     }
 
                     @Override
@@ -1135,8 +1136,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i3, f, f2);
                     }
 
                     @Override
@@ -1165,8 +1166,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i2);
+                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1175,8 +1176,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressHint(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell2, i2);
+                    public void didPressHint(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1185,8 +1186,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell2, i2);
+                    public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1205,8 +1206,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i2);
+                    public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1255,8 +1256,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i2, int i3, int i4) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell2, arrayList, i2, i3, i4);
+                    public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i3, int i4, int i5) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell2, arrayList, i3, i4, i5);
                     }
 
                     @Override
@@ -1315,8 +1316,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i2, i3);
+                    public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i3, int i4) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i3, i4);
                     }
 
                     @Override
@@ -1330,13 +1331,13 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void needShowPremiumBulletin(int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i2);
+                    public void needShowPremiumBulletin(int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i3);
                     }
 
                     @Override
-                    public boolean onAccessibilityAction(int i2, Bundle bundle) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i2, bundle);
+                    public boolean onAccessibilityAction(int i3, Bundle bundle) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i3, bundle);
                     }
 
                     @Override
@@ -1360,8 +1361,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean shouldShowTopicButton() {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                    public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                     }
 
                     @Override
@@ -1418,9 +1419,9 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i2) {
+                    public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i3) {
                         Page page2 = Page.this;
-                        if (page2.currentTab == 2 && i2 == 1) {
+                        if (page2.currentTab == 2 && i3 == 1) {
                             MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
                             if (messagePreviewParams.singleLink) {
                                 return false;
@@ -1753,8 +1754,8 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public boolean shouldShowTopicButton() {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                        public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                         }
 
                         @Override
@@ -1831,7 +1832,7 @@ public class MessagePreviewView extends FrameLayout {
                 if (arrayList != null && charSequence != null) {
                     for (int i3 = 0; i3 < arrayList.size(); i3++) {
                         MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i3);
-                        String charSequence3 = textLayoutBlock.textLayout.getText().toString();
+                        String charSequence3 = textLayoutBlock.textLayout.layout.getText().toString();
                         int i4 = textLayoutBlock.charactersOffset;
                         if (i > i4) {
                             if (i - i4 > charSequence3.length() - 1) {

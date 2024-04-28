@@ -1347,18 +1347,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         ChatAttachAlert.this.nextAttachLayout.setTranslationX((-max) * (1.0f - f));
                     }
                 } else {
-                    if (f > 0.7f) {
-                        float f2 = 1.0f - ((1.0f - f) / 0.3f);
-                        if (ChatAttachAlert.this.nextAttachLayout == ChatAttachAlert.this.locationLayout) {
-                            ChatAttachAlert.this.currentAttachLayout.setAlpha(1.0f - f2);
-                            ChatAttachAlert.this.nextAttachLayout.setAlpha(1.0f);
-                        } else {
-                            ChatAttachAlert.this.nextAttachLayout.setAlpha(f2);
-                            ChatAttachAlert.this.nextAttachLayout.onHideShowProgress(f2);
-                        }
-                    } else if (ChatAttachAlert.this.nextAttachLayout == ChatAttachAlert.this.locationLayout) {
-                        ChatAttachAlert.this.nextAttachLayout.setAlpha(0.0f);
-                    }
+                    ChatAttachAlert.this.nextAttachLayout.setAlpha(f);
+                    ChatAttachAlert.this.nextAttachLayout.onHideShowProgress(f);
                     if (ChatAttachAlert.this.nextAttachLayout == ChatAttachAlert.this.pollLayout || ChatAttachAlert.this.currentAttachLayout == ChatAttachAlert.this.pollLayout) {
                         ChatAttachAlert chatAttachAlert2 = ChatAttachAlert.this;
                         chatAttachAlert2.updateSelectedPosition(chatAttachAlert2.nextAttachLayout == ChatAttachAlert.this.pollLayout ? 1 : 0);
@@ -3610,11 +3600,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     ActionBar actionBar = this.actionBar;
                     animatorSet.playTogether(ObjectAnimator.ofFloat(attachAlertLayout6, property, fArr), ObjectAnimator.ofFloat(this.currentAttachLayout, this.ATTACH_ALERT_LAYOUT_TRANSLATION, 0.0f, 1.0f), ObjectAnimator.ofFloat(actionBar, View.ALPHA, actionBar.getAlpha(), 0.0f));
                     animatorSet.setDuration(180L);
-                    animatorSet.setStartDelay(20L);
                     animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
                     animatorSet.addListener(new AnonymousClass18(runnable));
                     this.viewChangeAnimator = animatorSet;
                     animatorSet.start();
+                    this.ATTACH_ALERT_LAYOUT_TRANSLATION.set(this.currentAttachLayout, Float.valueOf(0.0f));
                     return;
                 }
                 attachAlertLayout5.setAlpha(0.0f);
@@ -3758,10 +3748,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (!(this.nextAttachLayout instanceof ChatAttachAlertPhotoLayoutPreview) || z) {
             f5 = 1.0f - f5;
         }
-        this.mediaPreviewView.setAlpha(f5);
-        float f6 = 1.0f - f5;
+        float clamp = Utilities.clamp(f5, 1.0f, 0.0f);
+        this.mediaPreviewView.setAlpha(clamp);
+        float f6 = 1.0f - clamp;
         this.selectedView.setAlpha(f6);
-        this.selectedView.setTranslationX(f5 * (-AndroidUtilities.dp(16.0f)));
+        this.selectedView.setTranslationX(clamp * (-AndroidUtilities.dp(16.0f)));
         this.mediaPreviewView.setTranslationX(f6 * AndroidUtilities.dp(16.0f));
     }
 

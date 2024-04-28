@@ -280,6 +280,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private ChatActivityEnterViewAnimatedIconView audioVideoSendButton;
     Paint backgroundPaint;
     public HintView2 birthdayHint;
+    private android.graphics.Rect blurBounds;
     private ImageView botButton;
     private ReplaceableIconDrawable botButtonDrawable;
     private MessageObject botButtonsMessageObject;
@@ -2425,6 +2426,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.shouldDrawBackground = true;
         this.backgroundPaint = new Paint();
         this.composeShadowAlpha = 1.0f;
+        this.blurBounds = new android.graphics.Rect();
         this.messageEditTextEnabled = true;
         this.topViewUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -4423,9 +4425,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             if (this.allowBlur) {
                 this.backgroundPaint.setColor(getThemedColor(Theme.key_chat_messagePanelBackground));
                 if (SharedConfig.chatBlurEnabled() && this.sizeNotifierLayout != null) {
-                    android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-                    rect.set(0, i, getWidth(), getHeight());
-                    this.sizeNotifierLayout.drawBlurRect(canvas, getTop(), rect, this.backgroundPaint, false);
+                    this.blurBounds.set(0, i, getWidth(), getHeight());
+                    this.sizeNotifierLayout.drawBlurRect(canvas, getTop(), this.blurBounds, this.backgroundPaint, false);
                     return;
                 }
                 canvas.drawRect(0.0f, i, getWidth(), getHeight(), this.backgroundPaint);
@@ -9151,7 +9152,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         boolean z3 = (this.delegate == null || isInScheduleMode() || !this.delegate.hasScheduledMessages()) ? false : true;
         final boolean z4 = (!z3 || this.scheduleButtonHidden || this.recordingAudioVideo) ? false : true;
-        createScheduledButton();
+        if (z4) {
+            createScheduledButton();
+        }
         ImageView imageView3 = this.scheduledButton;
         float f = 96.0f;
         if (imageView3 != null) {

@@ -2819,7 +2819,10 @@ public class ContactsController extends BaseController {
         if (tLObject instanceof TLRPC$User) {
             return formatName((TLRPC$User) tLObject);
         }
-        return tLObject instanceof TLRPC$Chat ? ((TLRPC$Chat) tLObject).title : "DELETED";
+        if (tLObject instanceof TLRPC$Chat) {
+            return ((TLRPC$Chat) tLObject).title;
+        }
+        return LocaleController.getString(R.string.HiddenName);
     }
 
     public static String formatName(TLRPC$User tLRPC$User) {

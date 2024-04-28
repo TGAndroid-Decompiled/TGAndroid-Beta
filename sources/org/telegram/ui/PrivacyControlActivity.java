@@ -383,7 +383,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             this.messageObject = messageObject;
             messageObject.eventId = 1L;
             messageObject.resetLayout();
-            ChatMessageCell chatMessageCell = new ChatMessageCell(context);
+            ChatMessageCell chatMessageCell = new ChatMessageCell(context, ((BaseFragment) privacyControlActivity).currentAccount);
             this.cell = chatMessageCell;
             chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this, privacyControlActivity) {
                 @Override
@@ -687,8 +687,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public boolean shouldShowTopicButton() {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                 }
 
                 @Override

@@ -681,6 +681,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             diffResult = null;
         }
         this.rowCount = 0;
+        this.archivedRow = -1;
         this.loopRow = -1;
         this.loopInfoRow = -1;
         int i3 = this.currentType;

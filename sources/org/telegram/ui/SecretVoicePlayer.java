@@ -386,7 +386,7 @@ public class SecretVoicePlayer extends Dialog {
             final int i2 = height;
             this.heightdiff = i2 - this.cell.getHeight();
             int ceil = (int) Math.ceil((Math.min(width, i2) * 0.92f) / AndroidUtilities.density);
-            ChatMessageCell chatMessageCell5 = new ChatMessageCell(getContext(), false, null, this.cell.getResourcesProvider()) {
+            ChatMessageCell chatMessageCell5 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
                 private Paint clipPaint;
                 private RadialGradient radialGradient;
                 private Matrix radialMatrix;
@@ -859,8 +859,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public boolean shouldShowTopicButton() {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell6);
                 }
 
                 @Override

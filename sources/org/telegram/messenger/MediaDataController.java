@@ -2680,14 +2680,15 @@ public class MediaDataController extends BaseController {
             }
             executeFast.dispose();
             database.commitTransaction();
-            if (arrayList.size() >= i3) {
-                database.beginTransaction();
-                while (i3 < arrayList.size()) {
-                    database.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + ((TLRPC$Document) arrayList.get(i3)).id + "' AND type = " + i6).stepThis().dispose();
-                    i3++;
-                }
-                database.commitTransaction();
+            if (z2 || arrayList.size() < i3) {
+                return;
             }
+            database.beginTransaction();
+            while (i3 < arrayList.size()) {
+                database.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + ((TLRPC$Document) arrayList.get(i3)).id + "' AND type = " + i6).stepThis().dispose();
+                i3++;
+            }
+            database.commitTransaction();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -2698,22 +2699,22 @@ public class MediaDataController extends BaseController {
         if (z) {
             this.loadingRecentGifs = false;
             this.recentGifsLoaded = true;
-            edit.putLong("lastGifLoadTime", System.currentTimeMillis()).commit();
+            edit.putLong("lastGifLoadTime", System.currentTimeMillis()).apply();
         } else {
             this.loadingRecentStickers[i] = false;
             this.recentStickersLoaded[i] = true;
             if (i == 0) {
-                edit.putLong("lastStickersLoadTime", System.currentTimeMillis()).commit();
+                edit.putLong("lastStickersLoadTime", System.currentTimeMillis()).apply();
             } else if (i == 1) {
-                edit.putLong("lastStickersLoadTimeMask", System.currentTimeMillis()).commit();
+                edit.putLong("lastStickersLoadTimeMask", System.currentTimeMillis()).apply();
             } else if (i == 3) {
-                edit.putLong("lastStickersLoadTimeGreet", System.currentTimeMillis()).commit();
+                edit.putLong("lastStickersLoadTimeGreet", System.currentTimeMillis()).apply();
             } else if (i == 5) {
-                edit.putLong("lastStickersLoadTimeEmojiPacks", System.currentTimeMillis()).commit();
+                edit.putLong("lastStickersLoadTimeEmojiPacks", System.currentTimeMillis()).apply();
             } else if (i == 7) {
-                edit.putLong("lastStickersLoadTimePremiumStickers", System.currentTimeMillis()).commit();
+                edit.putLong("lastStickersLoadTimePremiumStickers", System.currentTimeMillis()).apply();
             } else {
-                edit.putLong("lastStickersLoadTimeFavs", System.currentTimeMillis()).commit();
+                edit.putLong("lastStickersLoadTimeFavs", System.currentTimeMillis()).apply();
             }
         }
         if (arrayList != null) {

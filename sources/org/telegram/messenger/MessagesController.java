@@ -685,8 +685,10 @@ public class MessagesController extends BaseController implements NotificationCe
     private HashSet<Long> loadingIsUserPremiumBlocked;
     private int loadingNotificationSettings;
     private boolean loadingNotificationSignUpSettings;
+    private boolean loadingPeerColors;
     private LongSparseArray<Boolean> loadingPeerSettings;
     private SparseIntArray loadingPinnedDialogs;
+    private boolean loadingProfilePeerColors;
     private HashSet<Long> loadingReactionTags;
     private boolean loadingRemoteFilters;
     private boolean loadingSuggestedFilters;
@@ -17626,8 +17628,12 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void checkPeerColors(boolean z) {
-        PeerColors peerColors = this.peerColors;
-        if (peerColors == null || peerColors.needUpdate() || z) {
+        PeerColors peerColors;
+        if (getUserConfig().getCurrentUser() == null) {
+            return;
+        }
+        if (!this.loadingPeerColors && ((peerColors = this.peerColors) == null || peerColors.needUpdate() || z)) {
+            this.loadingPeerColors = true;
             TLRPC$TL_help_getPeerColors tLRPC$TL_help_getPeerColors = new TLRPC$TL_help_getPeerColors();
             PeerColors peerColors2 = this.peerColors;
             tLRPC$TL_help_getPeerColors.hash = peerColors2 != null ? peerColors2.hash : 0;
@@ -17641,8 +17647,12 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
             });
         }
+        if (this.loadingProfilePeerColors) {
+            return;
+        }
         PeerColors peerColors3 = this.profilePeerColors;
         if (peerColors3 == null || peerColors3.needUpdate() || z) {
+            this.loadingProfilePeerColors = true;
             TLRPC$TL_help_getPeerProfileColors tLRPC$TL_help_getPeerProfileColors = new TLRPC$TL_help_getPeerProfileColors();
             PeerColors peerColors4 = this.profilePeerColors;
             tLRPC$TL_help_getPeerProfileColors.hash = peerColors4 != null ? peerColors4.hash : 0;
@@ -17670,6 +17680,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$checkPeerColors$436(TLObject tLObject) {
+        this.loadingPeerColors = false;
         this.peerColors = PeerColors.fromTL(0, (TLRPC$TL_help_peerColors) tLObject);
         this.mainPreferences.edit().putString("peerColors", this.peerColors.toString()).apply();
     }
@@ -17686,6 +17697,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$checkPeerColors$438(TLObject tLObject) {
+        this.loadingProfilePeerColors = false;
         this.profilePeerColors = PeerColors.fromTL(1, (TLRPC$TL_help_peerColors) tLObject);
         this.mainPreferences.edit().putString("profilePeerColors", this.profilePeerColors.toString()).apply();
     }

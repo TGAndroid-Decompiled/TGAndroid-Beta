@@ -5225,9 +5225,9 @@ public class AlertsCreator {
         } else if (i == 8) {
             builder.setMessage(LocaleController.getString("ErrorSendRestrictedPrivacyVideoMessages", R.string.ErrorSendRestrictedPrivacyVideoMessages));
         } else if (i == 9) {
-            builder.setMessage(LocaleController.getString("ErrorSendRestrictedPrivacyVideo", R.string.ErrorSendRestrictedVideoAll));
+            builder.setMessage(LocaleController.getString("ErrorSendRestrictedVideoAll", R.string.ErrorSendRestrictedVideoAll));
         } else if (i == 10) {
-            builder.setMessage(LocaleController.getString("ErrorSendRestrictedPrivacyPhoto", R.string.ErrorSendRestrictedPhotoAll));
+            builder.setMessage(LocaleController.getString("ErrorSendRestrictedPhotoAll", R.string.ErrorSendRestrictedPhotoAll));
         } else if (i == 11) {
             builder.setMessage(LocaleController.getString("ErrorSendRestrictedVideo", R.string.ErrorSendRestrictedVideo));
         } else if (i == 12) {

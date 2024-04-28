@@ -4,7 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RecordingCanvas;
+import android.graphics.RenderNode;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
@@ -538,7 +541,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 }
 
                 @Override
-                protected boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
+                public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
                     AnimatedEmojiDrawable.this.invalidate();
                     return super.setImageBitmapByKey(drawable, str, i, z, i2);
                 }
@@ -850,6 +853,9 @@ public class AnimatedEmojiDrawable extends Drawable {
         private Integer lastColor;
         private OvershootInterpolator overshootInterpolator;
         private View parentView;
+        private RenderNode renderNode;
+        private boolean renderNodeForceUpdate;
+        private float renderedNodeWithProgress;
         private View secondParent;
         private int size;
 
@@ -881,6 +887,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.changeProgress = animatedFloat;
             this.drawables = new Drawable[2];
             this.alpha = 255;
+            this.renderedNodeWithProgress = -1.0f;
             this.parentView = view;
             animatedFloat.setParent(view);
             this.size = i;
@@ -932,52 +939,77 @@ public class AnimatedEmojiDrawable extends Drawable {
         public void draw(Canvas canvas) {
             float f = this.changeProgress.set(1.0f);
             android.graphics.Rect bounds = getBounds();
-            Drawable[] drawableArr = this.drawables;
-            if (drawableArr[1] != null && f < 1.0f) {
-                drawableArr[1].setAlpha((int) (this.alpha * (1.0f - f)));
-                Drawable[] drawableArr2 = this.drawables;
-                if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
-                    drawableArr2[1].setBounds(bounds);
-                } else if (this.center) {
-                    drawableArr2[1].setBounds(bounds.centerX() - (this.drawables[1].getIntrinsicWidth() / 2), bounds.centerY() - (this.drawables[1].getIntrinsicHeight() / 2), bounds.centerX() + (this.drawables[1].getIntrinsicWidth() / 2), bounds.centerY() + (this.drawables[1].getIntrinsicHeight() / 2));
-                } else {
-                    drawableArr2[1].setBounds(bounds.left, bounds.centerY() - (this.drawables[1].getIntrinsicHeight() / 2), bounds.left + this.drawables[1].getIntrinsicWidth(), bounds.centerY() + (this.drawables[1].getIntrinsicHeight() / 2));
+            boolean z = this.renderNode != null && canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 29;
+            RenderNode renderNode = this.renderNode;
+            if (renderNode == null || (z && (!renderNode.hasDisplayList() || Math.abs(this.renderedNodeWithProgress - f) > 0.1f || this.renderNodeForceUpdate))) {
+                if (z) {
+                    this.renderNode.setPosition(0, 0, getIntrinsicWidth(), getIntrinsicHeight());
                 }
-                this.drawables[1].setColorFilter(this.colorFilter);
-                this.drawables[1].draw(canvas);
-                this.drawables[1].setColorFilter(null);
-            }
-            if (this.drawables[0] != null) {
-                canvas.save();
-                Drawable[] drawableArr3 = this.drawables;
-                if (drawableArr3[0] instanceof AnimatedEmojiDrawable) {
-                    if (((AnimatedEmojiDrawable) drawableArr3[0]).imageReceiver != null) {
-                        ((AnimatedEmojiDrawable) this.drawables[0]).imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-                    }
-                    if (f < 1.0f) {
-                        float interpolation = this.overshootInterpolator.getInterpolation(f);
-                        canvas.scale(interpolation, interpolation, bounds.centerX(), bounds.centerY());
-                    }
-                    this.drawables[0].setBounds(bounds);
-                } else if (this.center) {
-                    if (f < 1.0f) {
-                        float interpolation2 = this.overshootInterpolator.getInterpolation(f);
-                        canvas.scale(interpolation2, interpolation2, bounds.centerX(), bounds.centerY());
-                    }
-                    this.drawables[0].setBounds(bounds.centerX() - (this.drawables[0].getIntrinsicWidth() / 2), bounds.centerY() - (this.drawables[0].getIntrinsicHeight() / 2), bounds.centerX() + (this.drawables[0].getIntrinsicWidth() / 2), bounds.centerY() + (this.drawables[0].getIntrinsicHeight() / 2));
-                } else {
-                    if (f < 1.0f) {
-                        float interpolation3 = this.overshootInterpolator.getInterpolation(f);
-                        canvas.scale(interpolation3, interpolation3, bounds.left + (this.drawables[0].getIntrinsicWidth() / 2.0f), bounds.centerY());
-                    }
-                    this.drawables[0].setBounds(bounds.left, bounds.centerY() - (this.drawables[0].getIntrinsicHeight() / 2), bounds.left + this.drawables[0].getIntrinsicWidth(), bounds.centerY() + (this.drawables[0].getIntrinsicHeight() / 2));
+                RecordingCanvas beginRecording = z ? this.renderNode.beginRecording() : canvas;
+                if (z) {
+                    beginRecording.translate((-bounds.centerX()) + (getIntrinsicWidth() / 2.0f), (-bounds.centerY()) + (getIntrinsicHeight() / 2.0f));
                 }
-                this.drawables[0].setAlpha(this.alpha);
-                this.drawables[0].setColorFilter(this.colorFilter);
-                this.drawables[0].draw(canvas);
-                this.drawables[0].setColorFilter(null);
-                canvas.restore();
+                int i = z ? 255 : this.alpha;
+                Drawable[] drawableArr = this.drawables;
+                if (drawableArr[1] != null && f < 1.0f) {
+                    drawableArr[1].setAlpha((int) (i * (1.0f - f)));
+                    Drawable[] drawableArr2 = this.drawables;
+                    if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
+                        drawableArr2[1].setBounds(bounds);
+                    } else if (this.center) {
+                        drawableArr2[1].setBounds(bounds.centerX() - (this.drawables[1].getIntrinsicWidth() / 2), bounds.centerY() - (this.drawables[1].getIntrinsicHeight() / 2), bounds.centerX() + (this.drawables[1].getIntrinsicWidth() / 2), bounds.centerY() + (this.drawables[1].getIntrinsicHeight() / 2));
+                    } else {
+                        drawableArr2[1].setBounds(bounds.left, bounds.centerY() - (this.drawables[1].getIntrinsicHeight() / 2), bounds.left + this.drawables[1].getIntrinsicWidth(), bounds.centerY() + (this.drawables[1].getIntrinsicHeight() / 2));
+                    }
+                    this.drawables[1].setColorFilter(this.colorFilter);
+                    this.drawables[1].draw(beginRecording);
+                    this.drawables[1].setColorFilter(null);
+                }
+                if (this.drawables[0] != null) {
+                    beginRecording.save();
+                    Drawable[] drawableArr3 = this.drawables;
+                    if (drawableArr3[0] instanceof AnimatedEmojiDrawable) {
+                        if (((AnimatedEmojiDrawable) drawableArr3[0]).imageReceiver != null) {
+                            ((AnimatedEmojiDrawable) this.drawables[0]).imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
+                        }
+                        if (f < 1.0f) {
+                            float interpolation = this.overshootInterpolator.getInterpolation(f);
+                            beginRecording.scale(interpolation, interpolation, bounds.centerX(), bounds.centerY());
+                        }
+                        this.drawables[0].setBounds(bounds);
+                    } else if (this.center) {
+                        if (f < 1.0f) {
+                            float interpolation2 = this.overshootInterpolator.getInterpolation(f);
+                            beginRecording.scale(interpolation2, interpolation2, bounds.centerX(), bounds.centerY());
+                        }
+                        this.drawables[0].setBounds(bounds.centerX() - (this.drawables[0].getIntrinsicWidth() / 2), bounds.centerY() - (this.drawables[0].getIntrinsicHeight() / 2), bounds.centerX() + (this.drawables[0].getIntrinsicWidth() / 2), bounds.centerY() + (this.drawables[0].getIntrinsicHeight() / 2));
+                    } else {
+                        if (f < 1.0f) {
+                            float interpolation3 = this.overshootInterpolator.getInterpolation(f);
+                            beginRecording.scale(interpolation3, interpolation3, bounds.left + (this.drawables[0].getIntrinsicWidth() / 2.0f), bounds.centerY());
+                        }
+                        this.drawables[0].setBounds(bounds.left, bounds.centerY() - (this.drawables[0].getIntrinsicHeight() / 2), bounds.left + this.drawables[0].getIntrinsicWidth(), bounds.centerY() + (this.drawables[0].getIntrinsicHeight() / 2));
+                    }
+                    this.drawables[0].setAlpha(i);
+                    this.drawables[0].setColorFilter(this.colorFilter);
+                    this.drawables[0].draw(beginRecording);
+                    this.drawables[0].setColorFilter(null);
+                    beginRecording.restore();
+                }
+                if (z) {
+                    this.renderNode.endRecording();
+                }
+                this.renderedNodeWithProgress = f;
+                this.renderNodeForceUpdate = false;
             }
+            if (Build.VERSION.SDK_INT < 29 || this.renderNode == null || !canvas.isHardwareAccelerated()) {
+                return;
+            }
+            this.renderNode.setAlpha(this.alpha / 255.0f);
+            canvas.save();
+            canvas.translate(bounds.centerX() - (getIntrinsicWidth() / 2.0f), bounds.centerY() - (getIntrinsicHeight() / 2.0f));
+            canvas.drawRenderNode(this.renderNode);
+            canvas.restore();
         }
 
         public Drawable getDrawable() {
@@ -1001,6 +1033,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             if ((drawableArr[0] instanceof AnimatedEmojiDrawable) && ((AnimatedEmojiDrawable) drawableArr[0]).getDocumentId() == j) {
                 return false;
             }
+            this.renderNodeForceUpdate = true;
             if (z) {
                 this.changeProgress.set(0.0f, true);
                 Drawable[] drawableArr2 = this.drawables;
@@ -1054,6 +1087,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             if ((drawableArr[0] instanceof AnimatedEmojiDrawable) && tLRPC$Document != null && ((AnimatedEmojiDrawable) drawableArr[0]).getDocumentId() == tLRPC$Document.id) {
                 return;
             }
+            this.renderNodeForceUpdate = true;
             if (z) {
                 this.changeProgress.set(0.0f, true);
                 Drawable[] drawableArr2 = this.drawables;
@@ -1099,6 +1133,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             if (this.drawables[0] == drawable) {
                 return;
             }
+            this.renderNodeForceUpdate = true;
             if (z) {
                 this.changeProgress.set(0.0f, true);
                 Drawable[] drawableArr = this.drawables;
@@ -1132,6 +1167,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         public void detach() {
             if (this.attached) {
                 this.attached = false;
+                this.renderNodeForceUpdate = true;
                 Drawable[] drawableArr = this.drawables;
                 if (drawableArr[0] instanceof AnimatedEmojiDrawable) {
                     ((AnimatedEmojiDrawable) drawableArr[0]).removeView(this);
@@ -1148,6 +1184,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 return;
             }
             this.attached = true;
+            this.renderNodeForceUpdate = true;
             Drawable[] drawableArr = this.drawables;
             if (drawableArr[0] instanceof AnimatedEmojiDrawable) {
                 ((AnimatedEmojiDrawable) drawableArr[0]).addView(this);
@@ -1192,6 +1229,14 @@ public class AnimatedEmojiDrawable extends Drawable {
 
         public void setSecondParent(View view) {
             this.secondParent = view;
+        }
+
+        public void cacheNode() {
+            if (Build.VERSION.SDK_INT >= 29) {
+                RenderNode renderNode = new RenderNode("SwapAnimatedEmojiDrawable");
+                this.renderNode = renderNode;
+                renderNode.setClipToBounds(false);
+            }
         }
     }
 

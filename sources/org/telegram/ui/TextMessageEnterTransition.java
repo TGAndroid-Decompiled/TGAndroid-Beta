@@ -100,7 +100,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         this.drawBitmaps = false;
         this.resourcesProvider = resourcesProvider;
         int i4 = UserConfig.selectedAccount;
-        if (chatMessageCell.getMessageObject().textLayoutBlocks == null || chatMessageCell.getMessageObject().textLayoutBlocks.size() > 1 || chatMessageCell.getMessageObject().textLayoutBlocks.isEmpty() || chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.getLineCount() > 10) {
+        if (chatMessageCell.getMessageObject().textLayoutBlocks == null || chatMessageCell.getMessageObject().textLayoutBlocks.size() > 1 || chatMessageCell.getMessageObject().textLayoutBlocks.isEmpty() || chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.layout.getLineCount() > 10) {
             return;
         }
         this.messageView = chatMessageCell;
@@ -225,7 +225,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         this.drawableFromBottom = y + chatActivityEnterView.getEditField().getMeasuredHeight();
         MessageObject.TextLayoutBlock textLayoutBlock = chatMessageCell.getMessageObject().textLayoutBlocks.get(0);
         this.textLayoutBlock = textLayoutBlock;
-        StaticLayout staticLayout = textLayoutBlock.textLayout;
+        StaticLayout staticLayout = textLayoutBlock.textLayout.layout;
         int i6 = Theme.key_chat_messageTextOut;
         double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i6));
         int i7 = Theme.key_chat_messagePanelText;
@@ -281,7 +281,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
                 this.rtlLayout = new StaticLayout(spannableString2, textPaint2, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
         }
-        this.toXOffsetRtl = this.layout.getWidth() - chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.getWidth();
+        this.toXOffsetRtl = this.layout.getWidth() - chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.layout.getWidth();
         try {
             if (this.drawBitmaps) {
                 this.textLayoutBitmap = Bitmap.createBitmap(this.layout.getWidth(), this.layout.getHeight(), Bitmap.Config.ARGB_8888);
@@ -329,9 +329,9 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         this.messageId = chatMessageCell.getMessageObject().stableId;
         chatActivityEnterView.getEditField().setAlpha(0.0f);
         chatActivityEnterView.setTextTransitionIsRunning(true);
-        StaticLayout staticLayout3 = chatMessageCell.replyNameLayout;
-        if (staticLayout3 != null && staticLayout3.getText().length() > 1 && chatMessageCell.replyNameLayout.getPrimaryHorizontal(0) != 0.0f) {
-            this.replyNameDx = chatMessageCell.replyNameLayout.getWidth() - chatMessageCell.replyNameLayout.getLineWidth(0);
+        CachedStaticLayout cachedStaticLayout = chatMessageCell.replyNameLayout;
+        if (cachedStaticLayout != null && cachedStaticLayout.getText().length() > 1 && chatMessageCell.replyNameLayout.layout.getPrimaryHorizontal(0) != 0.0f) {
+            this.replyNameDx = chatMessageCell.replyNameLayout.layout.getWidth() - chatMessageCell.replyNameLayout.layout.getLineWidth(0);
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.animator = ofFloat;

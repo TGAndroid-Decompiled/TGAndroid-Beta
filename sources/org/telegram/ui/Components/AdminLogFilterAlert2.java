@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventsFilter;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.CheckBoxCell;
+import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -39,12 +39,12 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     }
 
     public AdminLogFilterAlert2(BaseFragment baseFragment, TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray<TLRPC$User> longSparseArray, boolean z) {
-        super(baseFragment, false, false);
+        super(baseFragment.getContext(), baseFragment, false, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, baseFragment.getResourceProvider());
         this.currentFilter = new TLRPC$TL_channelAdminLogEventsFilter();
         this.sectionMembersExpanded = false;
         this.sectionSettingsExpanded = false;
         this.sectionMessagesExpanded = false;
-        this.topPadding = 0.6f;
+        this.topPadding = 0.35f;
         fixNavigationBar();
         setSlidingActionBar();
         setShowHandle(true);
@@ -204,7 +204,6 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     }
 
     public void lambda$getGroupClick$2(int i, View view) {
-        saveScrollPosition();
         if (i == 0) {
             this.sectionMembersExpanded = !this.sectionMembersExpanded;
         } else if (i == 1) {
@@ -221,7 +220,7 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
             return;
         }
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EventLogFilterByActions)));
-        UItem asRoundGroupCheckbox = UItem.asRoundGroupCheckbox(2, LocaleController.getString(R.string.EventLogFilterSectionMembers), getGroupCount(0));
+        UItem asRoundGroupCheckbox = UItem.asRoundGroupCheckbox(2, LocaleController.getString(this.isMegagroup ? R.string.EventLogFilterSectionMembers : R.string.EventLogFilterSectionSubscribers), getGroupCount(0));
         TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
         arrayList.add(asRoundGroupCheckbox.setChecked(tLRPC$TL_channelAdminLogEventsFilter.promote || tLRPC$TL_channelAdminLogEventsFilter.demote || (this.isMegagroup && (tLRPC$TL_channelAdminLogEventsFilter.kick || tLRPC$TL_channelAdminLogEventsFilter.ban || tLRPC$TL_channelAdminLogEventsFilter.unkick || tLRPC$TL_channelAdminLogEventsFilter.unban)) || tLRPC$TL_channelAdminLogEventsFilter.invite || tLRPC$TL_channelAdminLogEventsFilter.join || tLRPC$TL_channelAdminLogEventsFilter.leave).setCollapsed(!this.sectionMembersExpanded).setClickCallback(getGroupClick(0)));
         if (this.sectionMembersExpanded) {
@@ -233,10 +232,10 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
                 TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter3 = this.currentFilter;
                 arrayList.add(pad2.setChecked(tLRPC$TL_channelAdminLogEventsFilter3.kick || tLRPC$TL_channelAdminLogEventsFilter3.ban || tLRPC$TL_channelAdminLogEventsFilter3.unkick || tLRPC$TL_channelAdminLogEventsFilter3.unban));
             }
-            UItem pad3 = UItem.asRoundCheckbox(5, LocaleController.getString(R.string.EventLogFilterNewMembers)).pad();
+            UItem pad3 = UItem.asRoundCheckbox(5, LocaleController.getString(this.isMegagroup ? R.string.EventLogFilterNewMembers : R.string.EventLogFilterNewSubscribers)).pad();
             TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter4 = this.currentFilter;
             arrayList.add(pad3.setChecked(tLRPC$TL_channelAdminLogEventsFilter4.invite || tLRPC$TL_channelAdminLogEventsFilter4.join));
-            arrayList.add(UItem.asRoundCheckbox(6, LocaleController.getString(R.string.EventLogFilterLeavingMembers2)).pad().setChecked(this.currentFilter.leave));
+            arrayList.add(UItem.asRoundCheckbox(6, LocaleController.getString(this.isMegagroup ? R.string.EventLogFilterLeavingMembers2 : R.string.EventLogFilterLeavingSubscribers2)).pad().setChecked(this.currentFilter.leave));
         }
         UItem asRoundGroupCheckbox2 = UItem.asRoundGroupCheckbox(7, LocaleController.getString(this.isMegagroup ? R.string.EventLogFilterSectionGroupSettings : R.string.EventLogFilterSectionChannelSettings), getGroupCount(1));
         TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter5 = this.currentFilter;
@@ -273,150 +272,8 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void onClick(UItem uItem, View view, float f) {
-        ArrayList<TLRPC$ChannelParticipant> arrayList;
-        if (uItem == null) {
-            return;
-        }
-        int i = uItem.viewType;
-        if (i == 41 || i == 35) {
-            saveScrollPosition();
-            boolean z = uItem.viewType == 41 && (!LocaleController.isRTL ? f <= ((float) AndroidUtilities.dp(60.0f)) : f >= ((float) (view.getMeasuredWidth() - AndroidUtilities.dp(60.0f))));
-            CheckBoxCell checkBoxCell = (CheckBoxCell) view;
-            if (!z) {
-                checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
-            }
-            switch (uItem.id) {
-                case 2:
-                    if (z) {
-                        this.sectionMembersExpanded = !this.sectionMembersExpanded;
-                        break;
-                    } else {
-                        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
-                        boolean isChecked = checkBoxCell.isChecked();
-                        tLRPC$TL_channelAdminLogEventsFilter.leave = isChecked;
-                        tLRPC$TL_channelAdminLogEventsFilter.join = isChecked;
-                        tLRPC$TL_channelAdminLogEventsFilter.invite = isChecked;
-                        tLRPC$TL_channelAdminLogEventsFilter.demote = isChecked;
-                        tLRPC$TL_channelAdminLogEventsFilter.promote = isChecked;
-                        if (this.isMegagroup) {
-                            TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter2 = this.currentFilter;
-                            boolean isChecked2 = checkBoxCell.isChecked();
-                            tLRPC$TL_channelAdminLogEventsFilter2.unban = isChecked2;
-                            tLRPC$TL_channelAdminLogEventsFilter2.unkick = isChecked2;
-                            tLRPC$TL_channelAdminLogEventsFilter2.ban = isChecked2;
-                            tLRPC$TL_channelAdminLogEventsFilter2.kick = isChecked2;
-                            break;
-                        }
-                    }
-                    break;
-                case 3:
-                    TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter3 = this.currentFilter;
-                    boolean isChecked3 = checkBoxCell.isChecked();
-                    tLRPC$TL_channelAdminLogEventsFilter3.demote = isChecked3;
-                    tLRPC$TL_channelAdminLogEventsFilter3.promote = isChecked3;
-                    break;
-                case 4:
-                    TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter4 = this.currentFilter;
-                    boolean isChecked4 = checkBoxCell.isChecked();
-                    tLRPC$TL_channelAdminLogEventsFilter4.unban = isChecked4;
-                    tLRPC$TL_channelAdminLogEventsFilter4.unkick = isChecked4;
-                    tLRPC$TL_channelAdminLogEventsFilter4.ban = isChecked4;
-                    tLRPC$TL_channelAdminLogEventsFilter4.kick = isChecked4;
-                    break;
-                case 5:
-                    TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter5 = this.currentFilter;
-                    boolean isChecked5 = checkBoxCell.isChecked();
-                    tLRPC$TL_channelAdminLogEventsFilter5.join = isChecked5;
-                    tLRPC$TL_channelAdminLogEventsFilter5.invite = isChecked5;
-                    break;
-                case 6:
-                    this.currentFilter.leave = checkBoxCell.isChecked();
-                    break;
-                case 7:
-                    if (z) {
-                        this.sectionSettingsExpanded = !this.sectionSettingsExpanded;
-                        break;
-                    } else {
-                        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter6 = this.currentFilter;
-                        boolean isChecked6 = checkBoxCell.isChecked();
-                        tLRPC$TL_channelAdminLogEventsFilter6.group_call = isChecked6;
-                        tLRPC$TL_channelAdminLogEventsFilter6.invites = isChecked6;
-                        tLRPC$TL_channelAdminLogEventsFilter6.settings = isChecked6;
-                        tLRPC$TL_channelAdminLogEventsFilter6.info = isChecked6;
-                        break;
-                    }
-                case 8:
-                    TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter7 = this.currentFilter;
-                    boolean isChecked7 = checkBoxCell.isChecked();
-                    tLRPC$TL_channelAdminLogEventsFilter7.settings = isChecked7;
-                    tLRPC$TL_channelAdminLogEventsFilter7.info = isChecked7;
-                    break;
-                case 9:
-                    this.currentFilter.invites = checkBoxCell.isChecked();
-                    break;
-                case 10:
-                    this.currentFilter.group_call = checkBoxCell.isChecked();
-                    break;
-                case 11:
-                    if (z) {
-                        this.sectionMessagesExpanded = !this.sectionMessagesExpanded;
-                        break;
-                    } else {
-                        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter8 = this.currentFilter;
-                        boolean isChecked8 = checkBoxCell.isChecked();
-                        tLRPC$TL_channelAdminLogEventsFilter8.pinned = isChecked8;
-                        tLRPC$TL_channelAdminLogEventsFilter8.edit = isChecked8;
-                        tLRPC$TL_channelAdminLogEventsFilter8.delete = isChecked8;
-                        break;
-                    }
-                case 12:
-                    this.currentFilter.delete = checkBoxCell.isChecked();
-                    break;
-                case 13:
-                    this.currentFilter.edit = checkBoxCell.isChecked();
-                    break;
-                case 14:
-                    this.currentFilter.pinned = checkBoxCell.isChecked();
-                    break;
-                case 15:
-                    if (this.selectedAdmins == null) {
-                        this.selectedAdmins = new LongSparseArray<>();
-                    }
-                    this.selectedAdmins.clear();
-                    if (checkBoxCell.isChecked() && (arrayList = this.currentAdmins) != null) {
-                        Iterator<TLRPC$ChannelParticipant> it = arrayList.iterator();
-                        while (it.hasNext()) {
-                            long peerDialogId = DialogObject.getPeerDialogId(it.next().peer);
-                            this.selectedAdmins.put(peerDialogId, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId)));
-                        }
-                        break;
-                    }
-                    break;
-            }
-            this.adapter.update(true);
-        }
-        int i2 = uItem.id;
-        if (i2 < 0) {
-            CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
-            int i3 = (-i2) - 1;
-            if (i3 < 0 || i3 >= this.currentAdmins.size()) {
-                return;
-            }
-            long peerDialogId2 = DialogObject.getPeerDialogId(this.currentAdmins.get(i3).peer);
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId2));
-            if (this.selectedAdmins == null) {
-                this.selectedAdmins = new LongSparseArray<>();
-            }
-            if (this.selectedAdmins.containsKey(peerDialogId2)) {
-                this.selectedAdmins.remove(peerDialogId2);
-                checkBoxCell2.setChecked(false, true);
-            } else {
-                this.selectedAdmins.put(peerDialogId2, user);
-                checkBoxCell2.setChecked(true, true);
-            }
-            this.adapter.update(true);
-        }
+    public void onClick(org.telegram.ui.Components.UItem r7, android.view.View r8, float r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AdminLogFilterAlert2.onClick(org.telegram.ui.Components.UItem, android.view.View, float):void");
     }
 
     public void setCurrentAdmins(ArrayList<TLRPC$ChannelParticipant> arrayList) {

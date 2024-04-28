@@ -28,6 +28,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
@@ -661,7 +662,7 @@ public class MessageEntityView extends EntityView {
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i4) {
-                ChatMessageCell chatMessageCell = new ChatMessageCell(context, false, null, MessageEntityView.this.resourcesProvider) {
+                ChatMessageCell chatMessageCell = new ChatMessageCell(context, UserConfig.selectedAccount, false, null, MessageEntityView.this.resourcesProvider) {
                     public BlurringShader.StoryBlurDrawer blurDrawer;
                     private final Paint clearPaint;
                     private final RectF dst;
