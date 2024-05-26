@@ -378,6 +378,7 @@ public class FileLoader extends BaseController {
             sb2.append(attachFileName);
             sb2.append(z ? "p" : "");
             hashMap2.put(sb2.toString(), Boolean.TRUE);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
     }
 

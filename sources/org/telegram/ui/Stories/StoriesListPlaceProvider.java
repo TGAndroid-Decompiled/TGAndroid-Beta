@@ -28,6 +28,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoryViewer;
 public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
+    public int addBottomClip;
     int[] clipPoint;
     public boolean hasPaginationParams;
     public boolean hiddedStories;
@@ -48,6 +49,11 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
 
     public interface LoadNextInterface {
         void loadNext(boolean z);
+    }
+
+    public StoriesListPlaceProvider addBottomClip(int i) {
+        this.addBottomClip += i;
+        return this;
     }
 
     public static StoriesListPlaceProvider of(RecyclerListView recyclerListView) {
@@ -330,13 +336,13 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
             ((ClippedView) view).updateClip(this.clipPoint);
             int[] iArr = this.clipPoint;
             transitionViewHolder.clipTop = iArr[0];
-            transitionViewHolder.clipBottom = iArr[1];
+            transitionViewHolder.clipBottom = iArr[1] - this.addBottomClip;
         } else if (view instanceof BlurredRecyclerView) {
             transitionViewHolder.clipTop = ((BlurredRecyclerView) view).blurTopPadding;
-            transitionViewHolder.clipBottom = view.getMeasuredHeight() - transitionViewHolder.clipParent.getPaddingBottom();
+            transitionViewHolder.clipBottom = (view.getMeasuredHeight() - transitionViewHolder.clipParent.getPaddingBottom()) - this.addBottomClip;
         } else {
             transitionViewHolder.clipTop = view.getPaddingTop();
-            transitionViewHolder.clipBottom = transitionViewHolder.clipParent.getMeasuredHeight() - transitionViewHolder.clipParent.getPaddingBottom();
+            transitionViewHolder.clipBottom = (transitionViewHolder.clipParent.getMeasuredHeight() - transitionViewHolder.clipParent.getPaddingBottom()) - this.addBottomClip;
         }
     }
 

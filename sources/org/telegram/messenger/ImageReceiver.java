@@ -94,6 +94,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private ArrayList<Decorator> decorators;
     private ImageReceiverDelegate delegate;
     private final RectF drawRegion;
+    private boolean emojiPaused;
+    private int[] emptyRoundRadius;
     private long endTime;
     private int fileLoadingPriority;
     private boolean forceCrossfade;
@@ -155,6 +157,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private int thumbTag;
     private String uniqKeyPrefix;
     private boolean useRoundForThumb;
+    private boolean useRoundRadius;
     private boolean useSharedAnimationQueue;
     private boolean videoThumbIsSame;
     private static PorterDuffColorFilter selectedColorFilter = new PorterDuffColorFilter(-2236963, PorterDuff.Mode.MULTIPLY);
@@ -372,6 +375,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.autoRepeatCount = -1;
         this.drawRegion = new RectF();
         this.isVisible = true;
+        this.useRoundRadius = true;
         this.roundRadius = new int[4];
         this.isRoundRect = true;
         this.roundRect = new RectF();
@@ -960,12 +964,12 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (drawable == null) {
             return;
         }
+        int[] roundRadius = getRoundRadius(true);
         if (drawable instanceof ClipRoundedDrawable) {
-            int[] iArr = this.roundRadius;
-            ((ClipRoundedDrawable) drawable).setRadii(iArr[0], iArr[1], iArr[2], iArr[3]);
+            ((ClipRoundedDrawable) drawable).setRadii(roundRadius[0], roundRadius[1], roundRadius[2], roundRadius[3]);
         } else if ((hasRoundRadius() || this.gradientShader != null) && ((drawable instanceof BitmapDrawable) || (drawable instanceof AvatarDrawable))) {
             if (drawable instanceof AvatarDrawable) {
-                ((AvatarDrawable) drawable).setRoundRadius(this.roundRadius[0]);
+                ((AvatarDrawable) drawable).setRoundRadius(roundRadius[0]);
                 return;
             }
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
@@ -973,7 +977,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
             if (bitmapDrawable instanceof AnimatedFileDrawable) {
-                ((AnimatedFileDrawable) drawable).setRoundRadius(this.roundRadius);
+                ((AnimatedFileDrawable) drawable).setRoundRadius(roundRadius);
             } else if (bitmapDrawable.getBitmap() == null || bitmapDrawable.getBitmap().isRecycled()) {
             } else {
                 Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -1282,7 +1286,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return draw(canvas, null);
     }
 
-    public boolean draw(android.graphics.Canvas r39, org.telegram.messenger.ImageReceiver.BackgroundThreadDrawHolder r40) {
+    public boolean draw(android.graphics.Canvas r37, org.telegram.messenger.ImageReceiver.BackgroundThreadDrawHolder r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.draw(android.graphics.Canvas, org.telegram.messenger.ImageReceiver$BackgroundThreadDrawHolder):boolean");
     }
 
@@ -1786,6 +1790,32 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
+    public void setRoundRadiusEnabled(boolean z) {
+        if (this.useRoundRadius != z) {
+            this.useRoundRadius = z;
+            if (!z && this.emptyRoundRadius == null) {
+                this.emptyRoundRadius = r5;
+                int[] iArr = {0, 0, 0, 0};
+            }
+            Drawable drawable = this.currentImageDrawable;
+            if (drawable != null && this.imageShader == null) {
+                updateDrawableRadius(drawable);
+            }
+            Drawable drawable2 = this.currentMediaDrawable;
+            if (drawable2 != null && this.mediaShader == null) {
+                updateDrawableRadius(drawable2);
+            }
+            Drawable drawable3 = this.currentThumbDrawable;
+            if (drawable3 != null) {
+                updateDrawableRadius(drawable3);
+            }
+            Drawable drawable4 = this.staticThumbDrawable;
+            if (drawable4 != null) {
+                updateDrawableRadius(drawable4);
+            }
+        }
+    }
+
     public void setMark(Object obj) {
         this.mark = obj;
     }
@@ -1800,6 +1830,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public int[] getRoundRadius() {
         return this.roundRadius;
+    }
+
+    public int[] getRoundRadius(boolean z) {
+        return (this.useRoundRadius || !z) ? this.roundRadius : this.emptyRoundRadius;
     }
 
     public Object getParentObject() {
@@ -1923,10 +1957,26 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             return;
         }
         RLottieDrawable lottieAnimation = getLottieAnimation();
-        if (lottieAnimation == null || lottieAnimation.isRunning()) {
+        if (lottieAnimation != null) {
+            lottieAnimation.stop();
+        }
+    }
+
+    public void setEmojiPaused(boolean z) {
+        if (this.emojiPaused == z) {
             return;
         }
-        lottieAnimation.stop();
+        this.emojiPaused = z;
+        RLottieDrawable lottieAnimation = getLottieAnimation();
+        this.allowStartLottieAnimation = !z;
+        if (lottieAnimation != null) {
+            if (z) {
+                lottieAnimation.stop();
+            } else if (lottieAnimation.isRunning()) {
+            } else {
+                lottieAnimation.start();
+            }
+        }
     }
 
     public boolean isAnimationRunning() {

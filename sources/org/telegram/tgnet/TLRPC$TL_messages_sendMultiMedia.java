@@ -5,6 +5,7 @@ import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
     public boolean background;
     public boolean clear_draft;
+    public long effect;
     public int flags;
     public boolean invert_media;
     public ArrayList<TLRPC$TL_inputSingleMedia> multi_media = new ArrayList<>();
@@ -24,7 +25,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(211175177);
+        abstractSerializedData.writeInt32(934757205);
         int i = this.silent ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);
@@ -56,6 +57,9 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         }
         if ((this.flags & 131072) != 0) {
             this.quick_reply_shortcut.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 262144) != 0) {
+            abstractSerializedData.writeInt64(this.effect);
         }
     }
 }

@@ -41,36 +41,44 @@ public class BackButtonMenu {
 
     private static ArrayList<PulledDialog> getStackedHistoryForTopic(BaseFragment baseFragment, long j, long j2) {
         INavigationLayout parentLayout;
+        int i;
         ArrayList<PulledDialog> arrayList = new ArrayList<>();
         if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
             return arrayList;
         }
+        List<PulledDialog> pulledDialogs = parentLayout.getPulledDialogs();
+        if (pulledDialogs != null) {
+            i = -1;
+            for (int i2 = 0; i2 < pulledDialogs.size(); i2++) {
+                PulledDialog pulledDialog = pulledDialogs.get(i2);
+                TLRPC$TL_forumTopic tLRPC$TL_forumTopic = pulledDialog.topic;
+                if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.id != j2) {
+                    int i3 = pulledDialog.stackIndex;
+                    if (i3 >= i) {
+                        i = i3;
+                    }
+                    arrayList.add(pulledDialog);
+                }
+            }
+        } else {
+            i = -1;
+        }
         if (parentLayout.getFragmentStack().size() > 1 && (parentLayout.getFragmentStack().get(parentLayout.getFragmentStack().size() - 2) instanceof TopicsFragment)) {
-            PulledDialog pulledDialog = new PulledDialog();
-            arrayList.add(pulledDialog);
-            pulledDialog.stackIndex = 0;
-            pulledDialog.activity = DialogsActivity.class;
             PulledDialog pulledDialog2 = new PulledDialog();
             arrayList.add(pulledDialog2);
-            pulledDialog2.stackIndex = parentLayout.getFragmentStack().size() - 2;
-            pulledDialog2.activity = TopicsFragment.class;
-            pulledDialog2.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
-        } else {
+            pulledDialog2.stackIndex = i + 1;
+            pulledDialog2.activity = DialogsActivity.class;
             PulledDialog pulledDialog3 = new PulledDialog();
             arrayList.add(pulledDialog3);
             pulledDialog3.stackIndex = -1;
             pulledDialog3.activity = TopicsFragment.class;
             pulledDialog3.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
-        }
-        List<PulledDialog> pulledDialogs = parentLayout.getPulledDialogs();
-        if (pulledDialogs != null) {
-            for (int i = 0; i < pulledDialogs.size(); i++) {
-                PulledDialog pulledDialog4 = pulledDialogs.get(i);
-                TLRPC$TL_forumTopic tLRPC$TL_forumTopic = pulledDialog4.topic;
-                if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.id != j2) {
-                    arrayList.add(pulledDialog4);
-                }
-            }
+        } else {
+            PulledDialog pulledDialog4 = new PulledDialog();
+            arrayList.add(pulledDialog4);
+            pulledDialog4.stackIndex = -1;
+            pulledDialog4.activity = TopicsFragment.class;
+            pulledDialog4.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
         }
         Collections.sort(arrayList, new Comparator() {
             @Override

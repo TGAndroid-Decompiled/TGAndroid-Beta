@@ -67,10 +67,13 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
     protected void onEditTextDraw(EditTextBoldCursor editTextBoldCursor, Canvas canvas) {
     }
 
+    protected void onEditTextFocusChanged(boolean z) {
+    }
+
     public void lambda$new$1(PollEditTextCell pollEditTextCell) {
     }
 
-    public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
+    protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
     }
 
     protected boolean shouldShowCheckBox() {
@@ -81,7 +84,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         this(context, false, 0, onClickListener);
     }
 
-    public PollEditTextCell(Context context, boolean z, final int i, View.OnClickListener onClickListener) {
+    public PollEditTextCell(Context context, boolean z, int i, View.OnClickListener onClickListener) {
         super(context);
         EditTextCaption editTextCaption = new EditTextCaption(context, null) {
             @Override
@@ -118,16 +121,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             @Override
             public void onFocusChanged(boolean z2, int i2, Rect rect) {
                 super.onFocusChanged(z2, i2, rect);
-                if (i == 1) {
-                    if (!z2 || PollEditTextCell.this.emojiButton.getVisibility() != 8) {
-                        if (z2 || PollEditTextCell.this.emojiButton.getVisibility() != 0) {
-                            return;
-                        }
-                        PollEditTextCell.this.setEmojiButtonVisibility(false);
-                        return;
-                    }
-                    PollEditTextCell.this.setEmojiButtonVisibility(true);
-                }
+                PollEditTextCell.this.onEditTextFocusChanged(z2);
             }
 
             @Override

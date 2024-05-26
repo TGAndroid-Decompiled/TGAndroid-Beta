@@ -97,7 +97,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), this.timerButton);
         this.timerPopup = makeOptions;
         makeOptions.setDimAlpha(0);
-        this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13);
+        this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13, AndroidUtilities.dp(200.0f));
         this.timerPopup.addGap();
         for (final int i : this.values) {
             if (i == 0) {

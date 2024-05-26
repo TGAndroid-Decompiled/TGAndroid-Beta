@@ -194,6 +194,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
+    public BaseFragment getSafeLastFragment() {
+        return INavigationLayout.CC.$default$getSafeLastFragment(this);
+    }
+
+    @Override
     public ViewGroup getView() {
         return INavigationLayout.CC.$default$getView(this);
     }

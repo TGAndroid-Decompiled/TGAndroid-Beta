@@ -351,7 +351,7 @@ public class AboutLinkCell extends FrameLayout {
                         staticLayout4.draw(canvas);
                         canvas.restoreToCount(i2);
                         f2 += staticLayout4.getLineRight(0) + this.SPACE;
-                        lineBottom += staticLayout4.getLineBottom(0) + staticLayout4.getTopPadding();
+                        lineBottom += (staticLayout4.getLineBottom(0) + staticLayout4.getTopPadding()) - 1;
                     } else {
                         i = i3;
                     }

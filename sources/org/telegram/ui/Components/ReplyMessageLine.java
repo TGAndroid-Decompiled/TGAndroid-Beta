@@ -69,7 +69,7 @@ public class ReplyMessageLine {
     public final float[] radii = new float[8];
     private final Path lineClipPath = new Path();
     private final Path backgroundPath = new Path();
-    private final Paint backgroundPaint = new Paint();
+    public final Paint backgroundPaint = new Paint();
     private Path color2Path = new Path();
     private Path color3Path = new Path();
     private int switchedCount = 0;
@@ -343,6 +343,27 @@ public class ReplyMessageLine {
                 this.emojiDocumentId = j2;
             }
         }
+        if (this.emojiDocumentId != 0 && this.emoji == null) {
+            this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
+            View view = this.parentView;
+            if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
+                this.emoji.attach();
+            }
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
+            this.emojiLoaded = false;
+        }
+        return this.nameColorAnimated.set(this.nameColor);
+    }
+
+    public int setFactCheck(Theme.ResourcesProvider resourcesProvider) {
+        int i = Theme.key_text_RedBold;
+        this.nameColor = Theme.getColor(i, resourcesProvider);
+        this.color1 = Theme.getColor(i, resourcesProvider);
+        this.hasColor2 = false;
+        this.hasColor3 = false;
+        this.backgroundColor = Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1f);
         if (this.emojiDocumentId != 0 && this.emoji == null) {
             this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
             View view = this.parentView;

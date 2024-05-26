@@ -10,6 +10,8 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -56,6 +58,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
     private int stickersShadowRow;
     private int stickersStartRow;
     private final LongSparseArray<TLRPC$StickerSetCovered> installingStickerSets = new LongSparseArray<>();
+    private HashSet<Long> loadedSets = new HashSet<>();
     private ArrayList<TLRPC$StickerSetCovered> sets = new ArrayList<>();
 
     public ArchivedStickersActivity(int i) {
@@ -263,8 +266,17 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
 
     public void lambda$processResponse$3(final TLRPC$TL_messages_archivedStickers tLRPC$TL_messages_archivedStickers) {
         if (!this.isInTransition) {
-            this.sets.addAll(tLRPC$TL_messages_archivedStickers.sets);
-            this.endReached = this.sets.size() >= tLRPC$TL_messages_archivedStickers.count;
+            Iterator<TLRPC$StickerSetCovered> it = tLRPC$TL_messages_archivedStickers.sets.iterator();
+            int i = 0;
+            while (it.hasNext()) {
+                TLRPC$StickerSetCovered next = it.next();
+                if (!this.loadedSets.contains(Long.valueOf(next.set.id))) {
+                    this.loadedSets.add(Long.valueOf(next.set.id));
+                    this.sets.add(next);
+                    i++;
+                }
+            }
+            this.endReached = i <= 0;
             this.loadingStickers = false;
             this.firstLoaded = true;
             EmptyTextProgressView emptyTextProgressView = this.emptyView;

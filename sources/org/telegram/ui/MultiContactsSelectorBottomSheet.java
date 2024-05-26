@@ -397,14 +397,17 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 if (i == -1) {
                     i = childAdapterPosition;
                 }
-                SelectorAdapter.Item item = this.items.get(childAdapterPosition - 1);
-                SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
-                selectorUserCell.setChecked(item.checked, z);
-                TLRPC$Chat tLRPC$Chat = item.chat;
-                if (tLRPC$Chat != null) {
-                    selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(tLRPC$Chat) > 200 ? 0.3f : 1.0f, z);
-                } else {
-                    selectorUserCell.setCheckboxAlpha(1.0f, z);
+                int i4 = childAdapterPosition - 1;
+                if (i4 >= 0 && i4 < this.items.size()) {
+                    SelectorAdapter.Item item = this.items.get(i4);
+                    SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
+                    selectorUserCell.setChecked(item.checked, z);
+                    TLRPC$Chat tLRPC$Chat = item.chat;
+                    if (tLRPC$Chat != null) {
+                        selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(tLRPC$Chat) > 200 ? 0.3f : 1.0f, z);
+                    } else {
+                        selectorUserCell.setCheckboxAlpha(1.0f, z);
+                    }
                 }
                 i2 = childAdapterPosition;
             }
@@ -433,7 +436,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
     public void onSearch(String str) {
         this.query = str;
         AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
+        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 100L);
     }
 
     private void clearSearchAfterSelect() {

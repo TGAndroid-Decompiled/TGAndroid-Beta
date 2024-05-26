@@ -1,19 +1,29 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.util.LongSparseArray;
 import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.StatisticActivity;
 public class UItem extends AdapterWithDiffUtils.Item {
+    private static LongSparseArray<UItemFactory<?>> factories = null;
+    private static HashMap<Class<? extends UItemFactory<?>>, UItemFactory<?>> factoryInstances = null;
+    private static int factoryViewType = 10000;
+    public static int factoryViewTypeStartsWith = 10000;
     public boolean accent;
     public CharSequence animatedText;
     public String chatType;
@@ -29,6 +39,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public Utilities.Callback<Integer> intCallback;
     public int intValue;
     public boolean locked;
+    public long longValue;
     public Object object;
     public int pad;
     public boolean red;
@@ -40,6 +51,12 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public View view;
     public boolean withUsername;
 
+    static int access$008() {
+        int i = factoryViewType;
+        factoryViewType = i + 1;
+        return i;
+    }
+
     public UItem(int i, boolean z) {
         super(i, z);
         this.enabled = true;
@@ -49,6 +66,19 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public static UItem asCustom(View view) {
         UItem uItem = new UItem(-1, false);
         uItem.view = view;
+        return uItem;
+    }
+
+    public static UItem asFullyCustom(View view) {
+        UItem uItem = new UItem(-2, false);
+        uItem.view = view;
+        return uItem;
+    }
+
+    public static UItem asFullscreenCustom(View view, int i) {
+        UItem uItem = new UItem(-3, false);
+        uItem.view = view;
+        uItem.intValue = i;
         return uItem;
     }
 
@@ -402,7 +432,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return this;
     }
 
+    public <F extends UItemFactory<?>> boolean instanceOf(Class<F> cls) {
+        HashMap<Class<? extends UItemFactory<?>>, UItemFactory<?>> hashMap;
+        UItemFactory<?> uItemFactory;
+        return this.viewType >= factoryViewTypeStartsWith && (hashMap = factoryInstances) != null && (uItemFactory = hashMap.get(cls)) != null && uItemFactory.viewType == this.viewType;
+    }
+
     public boolean equals(Object obj) {
+        UItemFactory<?> findFactory;
         if (this == obj) {
             return true;
         }
@@ -419,12 +456,16 @@ public class UItem extends AdapterWithDiffUtils.Item {
         } else if (i == 31) {
             return TextUtils.equals(this.text, uItem.text);
         } else {
-            return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Objects.equals(this.object, uItem.object);
+            if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+                return findFactory.equals(this, uItem);
+            }
+            return itemEquals(uItem);
         }
     }
 
     @Override
     public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        UItemFactory<?> findFactory;
         if (this == item) {
             return true;
         }
@@ -440,8 +481,86 @@ public class UItem extends AdapterWithDiffUtils.Item {
             return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
         } else if (i == 35 || i == 37) {
             return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
+        } else if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+            return findFactory.contentsEquals(this, uItem);
         } else {
-            return super.contentsEquals(item);
+            return itemContentEquals(uItem);
         }
+    }
+
+    public boolean itemEquals(UItem uItem) {
+        return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && this.longValue == uItem.longValue && Objects.equals(this.object, uItem.object);
+    }
+
+    public boolean itemContentEquals(UItem uItem) {
+        return super.contentsEquals(uItem);
+    }
+
+    public static abstract class UItemFactory<V extends View> {
+        private ArrayList<V> cache;
+        public final int viewType = UItem.access$008();
+
+        public void bindView(View view, UItem uItem, boolean z) {
+        }
+
+        public V createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return null;
+        }
+
+        public boolean isClickable() {
+            return true;
+        }
+
+        public boolean isShadow() {
+            return false;
+        }
+
+        public void precache(BaseFragment baseFragment, int i) {
+            precache(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), baseFragment.getResourceProvider(), i);
+        }
+
+        public void precache(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider, int i3) {
+            if (context == null) {
+                return;
+            }
+            if (this.cache == null) {
+                this.cache = new ArrayList<>();
+            }
+            for (int i4 = 0; i4 < this.cache.size() - i3; i4++) {
+                this.cache.add(createView(context, i, i2, resourcesProvider));
+            }
+        }
+
+        public V getCached() {
+            ArrayList<V> arrayList = this.cache;
+            if (arrayList == null || arrayList.isEmpty()) {
+                return null;
+            }
+            return this.cache.remove(0);
+        }
+
+        public boolean equals(UItem uItem, UItem uItem2) {
+            return uItem.itemEquals(uItem2);
+        }
+
+        public boolean contentsEquals(UItem uItem, UItem uItem2) {
+            return uItem.itemContentEquals(uItem2);
+        }
+    }
+
+    public static UItemFactory<?> findFactory(int i) {
+        LongSparseArray<UItemFactory<?>> longSparseArray = factories;
+        if (longSparseArray == null) {
+            return null;
+        }
+        return longSparseArray.get(i);
+    }
+
+    public static <F extends UItemFactory<?>> UItem ofFactory(Class<F> cls) {
+        return new UItem(getFactory(cls).viewType, false);
+    }
+
+    public static <F extends org.telegram.ui.Components.UItem.UItemFactory<?>> org.telegram.ui.Components.UItem.UItemFactory<?> getFactory(java.lang.Class<F> r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UItem.getFactory(java.lang.Class):org.telegram.ui.Components.UItem$UItemFactory");
     }
 }

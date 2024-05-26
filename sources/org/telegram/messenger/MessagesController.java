@@ -107,6 +107,7 @@ import org.telegram.tgnet.TLRPC$TL_account_updateTheme;
 import org.telegram.tgnet.TLRPC$TL_account_uploadTheme;
 import org.telegram.tgnet.TLRPC$TL_account_uploadWallPaper;
 import org.telegram.tgnet.TLRPC$TL_auth_loggedOut;
+import org.telegram.tgnet.TLRPC$TL_availableEffect;
 import org.telegram.tgnet.TLRPC$TL_boolFalse;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
 import org.telegram.tgnet.TLRPC$TL_botInfo;
@@ -241,6 +242,8 @@ import org.telegram.tgnet.TLRPC$TL_messageViews;
 import org.telegram.tgnet.TLRPC$TL_messages_addChatUser;
 import org.telegram.tgnet.TLRPC$TL_messages_affectedHistory;
 import org.telegram.tgnet.TLRPC$TL_messages_affectedMessages;
+import org.telegram.tgnet.TLRPC$TL_messages_availableEffects;
+import org.telegram.tgnet.TLRPC$TL_messages_availableEffectsNotModified;
 import org.telegram.tgnet.TLRPC$TL_messages_chatFull;
 import org.telegram.tgnet.TLRPC$TL_messages_chats;
 import org.telegram.tgnet.TLRPC$TL_messages_chatsSlice;
@@ -260,6 +263,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_editChatDefaultBannedRights;
 import org.telegram.tgnet.TLRPC$TL_messages_editChatPhoto;
 import org.telegram.tgnet.TLRPC$TL_messages_editChatTitle;
 import org.telegram.tgnet.TLRPC$TL_messages_forumTopics;
+import org.telegram.tgnet.TLRPC$TL_messages_getAvailableEffects;
 import org.telegram.tgnet.TLRPC$TL_messages_getChats;
 import org.telegram.tgnet.TLRPC$TL_messages_getDialogs;
 import org.telegram.tgnet.TLRPC$TL_messages_getHistory;
@@ -417,6 +421,7 @@ import org.telegram.tgnet.TLRPC$WallPaperSettings;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.tgnet.TLRPC$contacts_Blocked;
 import org.telegram.tgnet.TLRPC$help_PeerColorSet;
+import org.telegram.tgnet.TLRPC$messages_AvailableEffects;
 import org.telegram.tgnet.TLRPC$messages_Chats;
 import org.telegram.tgnet.TLRPC$messages_Dialogs;
 import org.telegram.tgnet.TLRPC$messages_Messages;
@@ -506,6 +511,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean autoarchiveAvailable;
     public Set<String> autologinDomains;
     public String autologinToken;
+    private TLRPC$messages_AvailableEffects availableEffects;
     public int availableMapProviders;
     public boolean backgroundConnection;
     public LongSparseIntArray blockePeers;
@@ -523,6 +529,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int callPacketTimeout;
     public int callReceiveTimeout;
     public int callRingTimeout;
+    public boolean canEditFactcheck;
     public boolean canRevokePmInbox;
     public int captionLengthLimitDefault;
     public int captionLengthLimitPremium;
@@ -601,6 +608,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public HashMap<String, DiceFrameSuccess> diceSuccess;
     public List<String> directPaymentsCurrency;
     public Set<String> dismissedSuggestions;
+    private final CacheFetcher<Integer, TLRPC$messages_AvailableEffects> effectsFetcher;
     public HashMap<Long, ArrayList<TLRPC$TL_sendMessageEmojiInteraction>> emojiInteractions;
     private SharedPreferences emojiPreferences;
     public HashMap<String, EmojiSound> emojiSounds;
@@ -611,6 +619,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public Set<String> exportPrivateUri;
     public Set<String> exportUri;
     private LongSparseArray<TLRPC$TL_chatInviteExported> exportedChats;
+    public int factcheckLengthLimit;
     public ArrayList<FaqSearchResult> faqSearchArray;
     public TLRPC$WebPage faqWebPage;
     public boolean filtersEnabled;
@@ -675,6 +684,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public LongSparseLongArray loadedFullChats;
     private HashSet<Long> loadedFullParticipants;
     private LongSparseLongArray loadedFullUsers;
+    private boolean loadingAvailableEffects;
     public boolean loadingBlockedPeers;
     private LongSparseIntArray loadingChannelAdmins;
     private SparseBooleanArray loadingDialogs;
@@ -813,6 +823,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean smsjobsStickyNotificationEnabled;
     private DialogFilter sortingDialogFilter;
     private LongSparseArray<SponsoredMessagesInfo> sponsoredMessages;
+    public boolean starsLocked;
     private int statusRequest;
     private int statusSettingState;
     public int stealthModeCooldown;
@@ -1132,6 +1143,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 FileLog.e(e);
             }
         }
+    }
+
+    public boolean starsPurchaseAvailable() {
+        return !this.starsLocked;
     }
 
     public boolean premiumFeaturesBlocked() {
@@ -1861,7 +1876,7 @@ public class MessagesController extends BaseController implements NotificationCe
         super(i);
         this.chats = new ConcurrentHashMap<>(100, 1.0f, 2);
         this.encryptedChats = new ConcurrentHashMap<>(10, 1.0f, 2);
-        this.users = new ConcurrentHashMap<>(100, 1.0f, 2);
+        this.users = new ConcurrentHashMap<>(100, 1.0f, 3);
         this.objectsByUsernames = new ConcurrentHashMap<>(100, 1.0f, 2);
         this.activeVoiceChatsMap = new HashMap<>();
         this.joiningToChannels = new ArrayList<>();
@@ -2045,6 +2060,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 MessagesController.this.requestIsUserPremiumBlocked();
             }
         };
+        this.effectsFetcher = new AnonymousClass3();
         ImageLoader.getInstance();
         getMessagesStorage();
         getLocationController();
@@ -2164,6 +2180,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.premiumInvoiceSlug = this.mainPreferences.getString("premiumInvoiceSlug", null);
         this.premiumBotUsername = this.mainPreferences.getString("premiumBotUsername", null);
         this.premiumLocked = this.mainPreferences.getBoolean("premiumLocked", false);
+        this.starsLocked = this.mainPreferences.getBoolean("starsLocked", true);
         this.transcribeButtonPressed = this.mainPreferences.getInt("transcribeButtonPressed", 0);
         this.forumUpgradeParticipantsMin = this.mainPreferences.getInt("forumUpgradeParticipantsMin", 200);
         this.topicsPinnedLimit = this.mainPreferences.getInt("topicsPinnedLimit", 3);
@@ -2247,6 +2264,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.androidDisableRoundCamera2 = this.mainPreferences.getBoolean("androidDisableRoundCamera2", false);
         this.storiesPinnedToTopCountMax = this.mainPreferences.getInt("storiesPinnedToTopCountMax", 3);
         this.showAnnualPerMonth = this.mainPreferences.getBoolean("showAnnualPerMonth", false);
+        this.canEditFactcheck = this.mainPreferences.getBoolean("canEditFactcheck", false);
+        this.factcheckLengthLimit = this.mainPreferences.getInt("factcheckLengthLimit", 1024);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -3719,7 +3738,10 @@ public class MessagesController extends BaseController implements NotificationCe
         this.collectDeviceStats = false;
         this.smsjobsStickyNotificationEnabled = false;
         this.showAnnualPerMonth = false;
-        this.mainPreferences.edit().remove("getfileExperimentalParams").remove("smsjobsStickyNotificationEnabled").remove("channelRevenueWithdrawalEnabled").remove("showAnnualPerMonth").apply();
+        this.canEditFactcheck = false;
+        this.starsLocked = true;
+        this.factcheckLengthLimit = 1024;
+        this.mainPreferences.edit().remove("starsLocked").remove("getfileExperimentalParams").remove("smsjobsStickyNotificationEnabled").remove("channelRevenueWithdrawalEnabled").remove("showAnnualPerMonth").remove("canEditFactcheck").remove("factcheckLengthLimit").apply();
     }
 
     private boolean savePremiumFeaturesPreviewOrder(String str, SparseIntArray sparseIntArray, SharedPreferences.Editor editor, ArrayList<TLRPC$JSONValue> arrayList) {
@@ -4835,6 +4857,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$cleanup$48() {
+        FileLog.d("cleanup: isUpdating = false");
         getConnectionsManager().setIsUpdating(false);
         this.updatesQueueChannels.clear();
         this.updatesStartWaitTimeChannels.clear();
@@ -14043,6 +14066,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("start getDifference with date = " + i2 + " pts = " + i + " qts = " + i3);
+                FileLog.d("getDifference: isUpdating = true");
             }
             getConnectionsManager().setIsUpdating(true);
             getConnectionsManager().sendRequest(tLRPC$TL_updates_getDifference, new RequestDelegate() {
@@ -14121,6 +14145,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         this.gettingDifference = false;
         getConnectionsManager().setIsUpdating(false);
+        FileLog.d("received: isUpdating = false");
     }
 
     public void lambda$getDifference$328(TLRPC$updates_Difference tLRPC$updates_Difference, int i, int i2) {
@@ -17214,7 +17239,7 @@ public class MessagesController extends BaseController implements NotificationCe
         long savedDialogId = MessageObject.getSavedDialogId(getUserConfig().getClientUserId(), tLRPC$Message);
         boolean z = false;
         for (int i = 0; i < tLRPC$Message.reactions.results.size(); i++) {
-            if (updateSavedReactionTags(savedDialogId, ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Message.reactions.results.get(i).reaction), false, false)) {
+            if (updateSavedReactionTags(savedDialogId, ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Message.reactions.results.get(i).reaction), false, false)) {
                 z = true;
             }
         }
@@ -17738,15 +17763,15 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isUserPremiumBlocked(long j, boolean z) {
-        if (getUserConfig().isPremium()) {
-            return false;
-        }
-        Boolean bool = this.cachedIsUserPremiumBlocked.get(j);
-        if (bool != null) {
-            return bool.booleanValue();
-        }
-        TLRPC$User user = getUser(Long.valueOf(j));
-        if (user == null || user.contact_require_premium) {
+        if (!getUserConfig().isPremium() && getUserConfig().getClientUserId() != j) {
+            Boolean bool = this.cachedIsUserPremiumBlocked.get(j);
+            if (bool != null) {
+                return bool.booleanValue();
+            }
+            TLRPC$User user = getUser(Long.valueOf(j));
+            if (user != null && !user.contact_require_premium) {
+                return false;
+            }
             TLRPC$UserFull userFull = getUserFull(j);
             if (userFull != null) {
                 return userFull.contact_require_premium;
@@ -17757,7 +17782,6 @@ public class MessagesController extends BaseController implements NotificationCe
             this.loadingIsUserPremiumBlocked.add(Long.valueOf(j));
             AndroidUtilities.cancelRunOnUIThread(this.requestIsUserPremiumBlockedRunnable);
             AndroidUtilities.runOnUIThread(this.requestIsUserPremiumBlockedRunnable, 60L);
-            return false;
         }
         return false;
     }
@@ -17859,5 +17883,167 @@ public class MessagesController extends BaseController implements NotificationCe
             return false;
         }
         return !userFull.sponsored_enabled;
+    }
+
+    public TLRPC$messages_AvailableEffects getAvailableEffects() {
+        if (!this.loadingAvailableEffects) {
+            this.loadingAvailableEffects = true;
+            this.effectsFetcher.fetch(this.currentAccount, 0, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    MessagesController.this.lambda$getAvailableEffects$442((TLRPC$messages_AvailableEffects) obj);
+                }
+            });
+        }
+        return this.availableEffects;
+    }
+
+    public void lambda$getAvailableEffects$442(TLRPC$messages_AvailableEffects tLRPC$messages_AvailableEffects) {
+        if (this.availableEffects != tLRPC$messages_AvailableEffects) {
+            this.availableEffects = tLRPC$messages_AvailableEffects;
+            if (tLRPC$messages_AvailableEffects != null) {
+                AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocuments(this.availableEffects.documents);
+            }
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.availableEffectsUpdate, new Object[0]);
+        }
+        this.loadingAvailableEffects = false;
+    }
+
+    public boolean hasAvailableEffects() {
+        TLRPC$messages_AvailableEffects tLRPC$messages_AvailableEffects = this.availableEffects;
+        return (tLRPC$messages_AvailableEffects == null || tLRPC$messages_AvailableEffects.effects.isEmpty()) ? false : true;
+    }
+
+    public TLRPC$TL_availableEffect getEffect(long j) {
+        getAvailableEffects();
+        if (this.availableEffects != null) {
+            for (int i = 0; i < this.availableEffects.effects.size(); i++) {
+                if (this.availableEffects.effects.get(i).id == j) {
+                    return this.availableEffects.effects.get(i);
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public TLRPC$Document getEffectDocument(long j) {
+        if (this.availableEffects != null) {
+            for (int i = 0; i < this.availableEffects.documents.size(); i++) {
+                if (this.availableEffects.documents.get(i).id == j) {
+                    return this.availableEffects.documents.get(i);
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public class AnonymousClass3 extends CacheFetcher<Integer, TLRPC$messages_AvailableEffects> {
+        @Override
+        public boolean emitLocal(Integer num) {
+            return true;
+        }
+
+        @Override
+        protected boolean saveLastTimeRequested() {
+            return true;
+        }
+
+        AnonymousClass3() {
+            MessagesController.this = r1;
+        }
+
+        @Override
+        public void getRemote(int i, Integer num, long j, final Utilities.Callback4<Boolean, TLRPC$messages_AvailableEffects, Long, Boolean> callback4) {
+            TLRPC$TL_messages_getAvailableEffects tLRPC$TL_messages_getAvailableEffects = new TLRPC$TL_messages_getAvailableEffects();
+            tLRPC$TL_messages_getAvailableEffects.hash = (int) j;
+            MessagesController.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_getAvailableEffects, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MessagesController.AnonymousClass3.lambda$getRemote$0(Utilities.Callback4.this, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+
+        public static void lambda$getRemote$0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            String str;
+            int i;
+            TLRPC$TL_messages_availableEffects tLRPC$TL_messages_availableEffects;
+            if (tLObject instanceof TLRPC$TL_messages_availableEffectsNotModified) {
+                Boolean bool = Boolean.TRUE;
+                callback4.run(bool, null, 0L, bool);
+            } else if (tLObject instanceof TLRPC$TL_messages_availableEffects) {
+                callback4.run(Boolean.FALSE, (TLRPC$TL_messages_availableEffects) tLObject, Long.valueOf(tLRPC$TL_messages_availableEffects.hash), Boolean.TRUE);
+            } else {
+                StringBuilder sb = new StringBuilder();
+                sb.append("getting available effects error ");
+                if (tLRPC$TL_error != null) {
+                    str = tLRPC$TL_error.code + " " + tLRPC$TL_error.text;
+                } else {
+                    str = "";
+                }
+                sb.append(str);
+                FileLog.e(sb.toString());
+                callback4.run(Boolean.FALSE, null, 0L, Boolean.valueOf(tLRPC$TL_error == null || !((i = tLRPC$TL_error.code) == -2000 || i == -2001)));
+            }
+        }
+
+        @Override
+        public void getLocal(final int i, Integer num, final Utilities.Callback2<Long, TLRPC$messages_AvailableEffects> callback2) {
+            MessagesController.this.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.AnonymousClass3.lambda$getLocal$1(i, callback2);
+                }
+            });
+        }
+
+        public static void lambda$getLocal$1(int r7, org.telegram.messenger.Utilities.Callback2 r8) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.AnonymousClass3.lambda$getLocal$1(int, org.telegram.messenger.Utilities$Callback2):void");
+        }
+
+        @Override
+        public void setLocal(final int i, Integer num, final TLRPC$messages_AvailableEffects tLRPC$messages_AvailableEffects, long j) {
+            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.AnonymousClass3.lambda$setLocal$2(i, tLRPC$messages_AvailableEffects);
+                }
+            });
+        }
+
+        public static void lambda$setLocal$2(int i, TLRPC$messages_AvailableEffects tLRPC$messages_AvailableEffects) {
+            try {
+                SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
+                if (database != null) {
+                    database.executeFast("DELETE FROM effects").stepThis().dispose();
+                    if (tLRPC$messages_AvailableEffects != null) {
+                        SQLitePreparedStatement executeFast = database.executeFast("INSERT INTO effects VALUES(?)");
+                        executeFast.requery();
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$messages_AvailableEffects.getObjectSize());
+                        tLRPC$messages_AvailableEffects.serializeToStream(nativeByteBuffer);
+                        executeFast.bindByteBuffer(1, nativeByteBuffer);
+                        executeFast.step();
+                        nativeByteBuffer.reuse();
+                        executeFast.dispose();
+                    }
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+
+        @Override
+        protected long getSavedLastTimeRequested(int i) {
+            SharedPreferences sharedPreferences = MessagesController.this.mainPreferences;
+            return sharedPreferences.getLong("effects_last_" + i, 0L);
+        }
+
+        @Override
+        protected void setSavedLastTimeRequested(int i, long j) {
+            SharedPreferences.Editor edit = MessagesController.this.mainPreferences.edit();
+            edit.putLong("effects_last_" + i, j).apply();
+        }
     }
 }

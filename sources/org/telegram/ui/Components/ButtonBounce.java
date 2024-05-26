@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 public class ButtonBounce {
+    private Runnable additionalInvalidate;
     private ValueAnimator animator;
     private final float durationPressMultiplier;
     private final float durationReleaseMultiplier;
@@ -27,12 +28,20 @@ public class ButtonBounce {
         this.overshoot = f2;
     }
 
+    public View getView() {
+        return this.view;
+    }
+
     public ButtonBounce(View view, float f, float f2, float f3) {
         this.releaseDelay = 0L;
         this.view = view;
         this.durationPressMultiplier = f;
         this.durationReleaseMultiplier = f2;
         this.overshoot = f3;
+    }
+
+    public void setAdditionalInvalidate(Runnable runnable) {
+        this.additionalInvalidate = runnable;
     }
 
     public ButtonBounce setReleaseDelay(long j) {
@@ -103,6 +112,10 @@ public class ButtonBounce {
         View view = this.view;
         if (view != null) {
             view.invalidate();
+        }
+        Runnable runnable = this.additionalInvalidate;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 }

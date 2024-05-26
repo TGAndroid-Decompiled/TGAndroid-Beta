@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ import org.telegram.ui.Charts.view_data.ChartHeaderView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CombinedDrawable;
+import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
@@ -216,7 +218,8 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     View view = new View(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
-                            super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(0, BoostsActivity.this.layoutManager.getLastItemHeight()), 1073741824));
+                            LinearLayoutManager linearLayoutManager = BoostsActivity.this.layoutManager;
+                            super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(0, linearLayoutManager instanceof FillLastLinearLayoutManager ? ((FillLastLinearLayoutManager) linearLayoutManager).getLastItemHeight() : 0), 1073741824));
                         }
                     };
                     view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));

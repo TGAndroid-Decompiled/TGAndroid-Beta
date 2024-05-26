@@ -166,7 +166,8 @@ public class SharedConfig {
     public static boolean translateChats;
     public static boolean updateStickersOrderOnSend;
     public static Boolean useCamera2Force;
-    public static boolean useFingerprint;
+    public static boolean useFaceLock;
+    public static boolean useFingerprintLock;
     public static boolean useNewBlur;
     public static boolean useSurfaceInStories;
     public static boolean useSystemEmoji;
@@ -298,7 +299,8 @@ public class SharedConfig {
         passcodeHash = "";
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
-        useFingerprint = true;
+        useFingerprintLock = true;
+        useFaceLock = true;
         keepMedia = CacheByChatsController.KEEP_MEDIA_ONE_MONTH;
         updateStickersOrderOnSend = true;
         photoViewerBlur = true;
@@ -442,7 +444,7 @@ public class SharedConfig {
                 edit.putInt("badPasscodeTries", badPasscodeTries);
                 edit.putInt("autoLockIn", autoLockIn);
                 edit.putInt("lastPauseTime", lastPauseTime);
-                edit.putBoolean("useFingerprint", useFingerprint);
+                edit.putBoolean("useFingerprint", useFingerprintLock);
                 edit.putBoolean("allowScreenCapture", allowScreenCapture);
                 edit.putString("pushString2", pushString);
                 edit.putInt("pushType", pushType);
@@ -662,7 +664,7 @@ public class SharedConfig {
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
         lastPauseTime = 0;
-        useFingerprint = true;
+        useFingerprintLock = true;
         isWaitingForPasscodeEnter = false;
         allowScreenCapture = false;
         textSelectionHintShows = 0;
@@ -1428,8 +1430,7 @@ public class SharedConfig {
     }
 
     public static boolean canBlurChat() {
-        getDevicePerformanceClass();
-        return true;
+        return getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? 1 : 2) || BuildVars.DEBUG_PRIVATE_VERSION;
     }
 
     public static boolean chatBlurEnabled() {

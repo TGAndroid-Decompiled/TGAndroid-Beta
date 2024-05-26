@@ -197,7 +197,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.HintEditText;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda33;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
 import org.telegram.ui.Components.RadialProgress;
 import org.telegram.ui.Components.SlideView;
 import org.telegram.ui.CountrySelectActivity;
@@ -2555,7 +2555,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         } catch (Exception e) {
             FileLog.e(e);
         }
-        Collections.sort(this.countriesArray, BoostRepository$$ExternalSyntheticLambda33.INSTANCE);
+        Collections.sort(this.countriesArray, BoostRepository$$ExternalSyntheticLambda31.INSTANCE);
         String str3 = UserConfig.getInstance(this.currentAccount).getCurrentUser().phone;
         TextSettingsCell textSettingsCell = new TextSettingsCell(context);
         textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
@@ -6354,12 +6354,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }
 
                 @Override
-                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
                 }
 
                 @Override
-                public void didPressedButton(int i, boolean z, boolean z2, int i2, boolean z3) {
+                public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
                     if (PassportActivity.this.getParentActivity() == null || PassportActivity.this.chatAttachAlert == null) {
                         return;
                     }
@@ -6460,7 +6460,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void didSelectFiles(ArrayList<String> arrayList, String str, boolean z, int i) {
+    public void didSelectFiles(ArrayList<String> arrayList, String str, boolean z, int i, long j, boolean z2) {
         ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList2 = new ArrayList<>();
         int size = arrayList.size();
         for (int i2 = 0; i2 < size; i2++) {

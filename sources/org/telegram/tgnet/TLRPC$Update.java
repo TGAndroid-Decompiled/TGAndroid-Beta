@@ -277,6 +277,9 @@ public abstract class TLRPC$Update extends TLObject {
             case -674602590:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChatParticipantAdmin();
                 break;
+            case -539401739:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateBroadcastRevenueTransactions();
+                break;
             case -513517117:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDialogUnreadMark();
                 break;
@@ -367,6 +370,9 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 196268545:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateStickerSetsOrder();
+                break;
+            case 263737752:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateStarsBalance();
                 break;
             case 277713951:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelTooLong();
@@ -579,9 +585,6 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 1538885128:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updatePinnedChannelMessages();
-                break;
-            case 1550177112:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateBroadcastRevenueTransactions();
                 break;
             case 1578843320:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageReactions();

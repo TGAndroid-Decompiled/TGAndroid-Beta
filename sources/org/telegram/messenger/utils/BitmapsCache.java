@@ -16,6 +16,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.FileLoader;
@@ -48,6 +49,7 @@ public class BitmapsCache {
     int w;
     static ConcurrentHashMap<Thread, byte[]> sharedBuffers = new ConcurrentHashMap<>();
     private static final int N = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
+    public final AtomicInteger framesProcessed = new AtomicInteger(0);
     ArrayList<FrameOffset> frameOffsets = new ArrayList<>();
     private final Object mutex = new Object();
     public AtomicBoolean cancelled = new AtomicBoolean(false);
@@ -123,53 +125,53 @@ public class BitmapsCache {
                 try {
                     try {
                         randomAccessFile = new RandomAccessFile(file3, "r");
-                        try {
-                            this.cacheCreated = randomAccessFile.readBoolean();
-                            if (this.cacheCreated && this.frameOffsets.isEmpty()) {
-                                randomAccessFile.seek(randomAccessFile.readInt());
-                                int readInt = randomAccessFile.readInt();
-                                fillFrames(randomAccessFile, readInt > 10000 ? 0 : readInt);
-                                if (this.frameOffsets.size() == 0) {
-                                    this.cacheCreated = false;
-                                    this.fileExist = false;
-                                    file3.delete();
-                                } else {
-                                    if (this.cachedFile != randomAccessFile) {
-                                        closeCachedFile();
-                                    }
-                                    this.cachedFile = randomAccessFile;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        this.cacheCreated = randomAccessFile.readBoolean();
+                        if (this.cacheCreated && this.frameOffsets.isEmpty()) {
+                            randomAccessFile.seek(randomAccessFile.readInt());
+                            int readInt = randomAccessFile.readInt();
+                            fillFrames(randomAccessFile, readInt > 10000 ? 0 : readInt);
+                            if (this.frameOffsets.size() == 0) {
+                                this.cacheCreated = false;
+                                this.fileExist = false;
+                                file3.delete();
+                            } else {
+                                if (this.cachedFile != randomAccessFile) {
+                                    closeCachedFile();
                                 }
+                                this.cachedFile = randomAccessFile;
                             }
-                            if (this.cachedFile != randomAccessFile) {
+                        }
+                        if (this.cachedFile != randomAccessFile) {
+                            randomAccessFile.close();
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        try {
+                            th.printStackTrace();
+                            this.file.delete();
+                            this.fileExist = false;
+                            if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
                                 randomAccessFile.close();
                             }
-                        } catch (Throwable th2) {
-                            th = th2;
+                            return;
+                        } catch (Throwable th3) {
                             try {
-                                th.printStackTrace();
-                                this.file.delete();
-                                this.fileExist = false;
                                 if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
                                     randomAccessFile.close();
                                 }
-                                return;
-                            } catch (Throwable th3) {
-                                try {
-                                    if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
-                                        randomAccessFile.close();
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                throw th3;
+                            } catch (IOException e2) {
+                                e2.printStackTrace();
                             }
+                            throw th3;
                         }
-                    } catch (Throwable th4) {
-                        randomAccessFile = null;
-                        th = th4;
                     }
-                } catch (IOException e2) {
-                    e2.printStackTrace();
+                } catch (Throwable th4) {
+                    randomAccessFile = null;
+                    th = th4;
                 }
                 return;
             }

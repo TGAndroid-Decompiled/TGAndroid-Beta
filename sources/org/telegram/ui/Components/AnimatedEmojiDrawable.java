@@ -15,6 +15,7 @@ import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Objects;
 import org.telegram.SQLite.SQLiteCursor;
@@ -420,6 +421,22 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
+        public void putDocuments(ArrayList<TLRPC$Document> arrayList) {
+            if (arrayList == null) {
+                return;
+            }
+            synchronized (this) {
+                if (this.emojiDocumentsCache == null) {
+                    this.emojiDocumentsCache = new HashMap<>();
+                }
+                Iterator<TLRPC$Document> it = arrayList.iterator();
+                while (it.hasNext()) {
+                    TLRPC$Document next = it.next();
+                    this.emojiDocumentsCache.put(Long.valueOf(next.id), next);
+                }
+            }
+        }
+
         public TLRPC$InputStickerSet findStickerSet(long j) {
             synchronized (this) {
                 HashMap<Long, TLRPC$Document> hashMap = this.emojiDocumentsCache;
@@ -509,6 +526,10 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.sizedp = (int) (((Math.abs(Theme.chat_msgTextPaintEmoji[0].ascent()) + Math.abs(Theme.chat_msgTextPaintEmoji[0].descent())) * 1.15f) / AndroidUtilities.density);
         } else if (i == 14 || i == 15 || i == 17) {
             this.sizedp = 100;
+        } else if (i == 11 || i == 22) {
+            this.sizedp = 56;
+        } else if (i == 23) {
+            this.sizedp = 14;
         } else {
             this.sizedp = 34;
         }
@@ -559,7 +580,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         int i = this.cacheType;
         if (i == 7 || i == 9 || i == 10) {
             imageReceiver.setAutoRepeatCount(2);
-        } else if (i == 11 || i == 18 || i == 14 || i == 6 || i == 5) {
+        } else if (i == 11 || i == 18 || i == 14 || i == 6 || i == 5 || i == 22) {
             imageReceiver.setAutoRepeatCount(1);
         } else if (i == 17) {
             imageReceiver.setAutoRepeatCount(0);
@@ -935,13 +956,18 @@ public class AnimatedEmojiDrawable extends Drawable {
             Drawable[] drawableArr = this.drawables;
             if (drawableArr[1] != null && f < 1.0f) {
                 drawableArr[1].setAlpha((int) (this.alpha * (1.0f - f)));
+                int intrinsicWidth = this.drawables[1].getIntrinsicWidth() < 0 ? getIntrinsicWidth() : this.drawables[1].getIntrinsicWidth();
+                int intrinsicHeight = this.drawables[1].getIntrinsicHeight() < 0 ? getIntrinsicHeight() : this.drawables[1].getIntrinsicHeight();
                 Drawable[] drawableArr2 = this.drawables;
                 if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
                     drawableArr2[1].setBounds(bounds);
                 } else if (this.center) {
-                    drawableArr2[1].setBounds(bounds.centerX() - (this.drawables[1].getIntrinsicWidth() / 2), bounds.centerY() - (this.drawables[1].getIntrinsicHeight() / 2), bounds.centerX() + (this.drawables[1].getIntrinsicWidth() / 2), bounds.centerY() + (this.drawables[1].getIntrinsicHeight() / 2));
+                    int i = intrinsicWidth / 2;
+                    int i2 = intrinsicHeight / 2;
+                    drawableArr2[1].setBounds(bounds.centerX() - i, bounds.centerY() - i2, bounds.centerX() + i, bounds.centerY() + i2);
                 } else {
-                    drawableArr2[1].setBounds(bounds.left, bounds.centerY() - (this.drawables[1].getIntrinsicHeight() / 2), bounds.left + this.drawables[1].getIntrinsicWidth(), bounds.centerY() + (this.drawables[1].getIntrinsicHeight() / 2));
+                    int i3 = intrinsicHeight / 2;
+                    drawableArr2[1].setBounds(bounds.left, bounds.centerY() - i3, bounds.left + intrinsicWidth, bounds.centerY() + i3);
                 }
                 this.drawables[1].setColorFilter(this.colorFilter);
                 this.drawables[1].draw(canvas);
@@ -949,6 +975,8 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             if (this.drawables[0] != null) {
                 canvas.save();
+                int intrinsicWidth2 = this.drawables[0].getIntrinsicWidth() < 0 ? getIntrinsicWidth() : this.drawables[0].getIntrinsicWidth();
+                int intrinsicHeight2 = this.drawables[0].getIntrinsicHeight() < 0 ? getIntrinsicHeight() : this.drawables[0].getIntrinsicHeight();
                 Drawable[] drawableArr3 = this.drawables;
                 if (drawableArr3[0] instanceof AnimatedEmojiDrawable) {
                     if (((AnimatedEmojiDrawable) drawableArr3[0]).imageReceiver != null) {
@@ -964,13 +992,16 @@ public class AnimatedEmojiDrawable extends Drawable {
                         float interpolation2 = this.overshootInterpolator.getInterpolation(f);
                         canvas.scale(interpolation2, interpolation2, bounds.centerX(), bounds.centerY());
                     }
-                    this.drawables[0].setBounds(bounds.centerX() - (this.drawables[0].getIntrinsicWidth() / 2), bounds.centerY() - (this.drawables[0].getIntrinsicHeight() / 2), bounds.centerX() + (this.drawables[0].getIntrinsicWidth() / 2), bounds.centerY() + (this.drawables[0].getIntrinsicHeight() / 2));
+                    int i4 = intrinsicWidth2 / 2;
+                    int i5 = intrinsicHeight2 / 2;
+                    this.drawables[0].setBounds(bounds.centerX() - i4, bounds.centerY() - i5, bounds.centerX() + i4, bounds.centerY() + i5);
                 } else {
                     if (f < 1.0f) {
                         float interpolation3 = this.overshootInterpolator.getInterpolation(f);
-                        canvas.scale(interpolation3, interpolation3, bounds.left + (this.drawables[0].getIntrinsicWidth() / 2.0f), bounds.centerY());
+                        canvas.scale(interpolation3, interpolation3, bounds.left + (intrinsicWidth2 / 2.0f), bounds.centerY());
                     }
-                    this.drawables[0].setBounds(bounds.left, bounds.centerY() - (this.drawables[0].getIntrinsicHeight() / 2), bounds.left + this.drawables[0].getIntrinsicWidth(), bounds.centerY() + (this.drawables[0].getIntrinsicHeight() / 2));
+                    int i6 = intrinsicHeight2 / 2;
+                    this.drawables[0].setBounds(bounds.left, bounds.centerY() - i6, bounds.left + intrinsicWidth2, bounds.centerY() + i6);
                 }
                 this.drawables[0].setAlpha(this.alpha);
                 this.drawables[0].setColorFilter(this.colorFilter);

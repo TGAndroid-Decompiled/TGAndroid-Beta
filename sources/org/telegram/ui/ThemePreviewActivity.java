@@ -4239,8 +4239,28 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, tLRPC$KeyboardButton);
+                    }
+
+                    @Override
+                    public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell2, i2, i3);
                     }
 
                     @Override
@@ -4359,6 +4379,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z);
+                    }
+
+                    @Override
                     public String getAdminRank(long j) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                     }
@@ -4449,13 +4474,18 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2);
+                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z);
                     }
 
                     @Override
                     public boolean shouldRepeatSticker(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
+                    }
+
+                    @Override
+                    public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
                     }
 
                     @Override

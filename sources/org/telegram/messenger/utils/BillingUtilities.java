@@ -17,6 +17,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiftCode;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiveaway;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStars;
 public class BillingUtilities {
     private static TLRPC$InputStorePaymentPurpose remPaymentPurpose;
 
@@ -43,7 +44,7 @@ public class BillingUtilities {
         tLRPC$InputStorePaymentPurpose.serializeToStream(serializedData);
         String encodeToString2 = Base64.encodeToString(serializedData.toByteArray(), 0);
         serializedData.cleanup();
-        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
+        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStars) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
             remPaymentPurpose = tLRPC$InputStorePaymentPurpose;
             return Pair.create(encodeToString, encodeToString);
         }
@@ -76,10 +77,15 @@ public class BillingUtilities {
         try {
             TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = remPaymentPurpose;
             if (tLRPC$InputStorePaymentPurpose == null) {
-                SerializedData serializedData = new SerializedData(Base64.decode(obfuscatedProfileId, 0));
-                TLRPC$InputStorePaymentPurpose TLdeserialize = TLRPC$InputStorePaymentPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                serializedData.cleanup();
-                tLRPC$InputStorePaymentPurpose = TLdeserialize;
+                try {
+                    SerializedData serializedData = new SerializedData(Base64.decode(obfuscatedProfileId, 0));
+                    TLRPC$InputStorePaymentPurpose TLdeserialize = TLRPC$InputStorePaymentPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                    serializedData.cleanup();
+                    tLRPC$InputStorePaymentPurpose = TLdeserialize;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    tLRPC$InputStorePaymentPurpose = null;
+                }
             } else {
                 remPaymentPurpose = null;
             }
@@ -89,8 +95,8 @@ public class BillingUtilities {
                 return null;
             }
             return Pair.create(findAccountById, tLRPC$InputStorePaymentPurpose);
-        } catch (Exception e) {
-            FileLog.e("Billing: Extract Payload", e);
+        } catch (Exception e2) {
+            FileLog.e("Billing: Extract Payload", e2);
             return null;
         }
     }

@@ -57,7 +57,7 @@ public class ForumUtilities {
         }
         if (tLRPC$TL_forumTopic.id == 1) {
             backupImageView.setAnimatedEmojiDrawable(null);
-            backupImageView.setImageDrawable(createGeneralTopicDrawable(backupImageView.getContext(), 0.75f, Theme.getColor(Theme.key_actionBarDefaultIcon, resourcesProvider), false));
+            backupImageView.setImageDrawable(createGeneralTopicDrawable(backupImageView.getContext(), 0.75f, Theme.getColor(Theme.key_actionBarDefaultIcon, resourcesProvider), false, z2));
         } else if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
             backupImageView.setImageDrawable(null);
             AnimatedEmojiDrawable animatedEmojiDrawable = backupImageView.animatedEmojiDrawable;
@@ -73,10 +73,14 @@ public class ForumUtilities {
     }
 
     public static GeneralTopicDrawable createGeneralTopicDrawable(Context context, float f, int i, boolean z) {
+        return createGeneralTopicDrawable(context, f, i, z, false);
+    }
+
+    public static GeneralTopicDrawable createGeneralTopicDrawable(Context context, float f, int i, boolean z, boolean z2) {
         if (context == null) {
             return null;
         }
-        return new GeneralTopicDrawable(context, f, i, z);
+        return new GeneralTopicDrawable(context, f, i, z, z2);
     }
 
     public static void filterMessagesByTopic(long j, ArrayList<MessageObject> arrayList) {
@@ -103,14 +107,14 @@ public class ForumUtilities {
             return -2;
         }
 
-        public GeneralTopicDrawable(Context context, float f, int i, boolean z) {
+        public GeneralTopicDrawable(Context context, float f, int i, boolean z, boolean z2) {
             if (z) {
                 if (ForumUtilities.dialogGeneralIcon == null) {
-                    ForumUtilities.dialogGeneralIcon = context.getResources().getDrawable(R.drawable.msg_filled_general).mutate();
+                    ForumUtilities.dialogGeneralIcon = context.getResources().getDrawable(z2 ? R.drawable.msg_filled_general_large : R.drawable.msg_filled_general).mutate();
                 }
                 this.icon = ForumUtilities.dialogGeneralIcon;
             } else {
-                this.icon = context.getResources().getDrawable(R.drawable.msg_filled_general).mutate();
+                this.icon = context.getResources().getDrawable(z2 ? R.drawable.msg_filled_general_large : R.drawable.msg_filled_general).mutate();
             }
             this.scale = f;
             setColor(i);

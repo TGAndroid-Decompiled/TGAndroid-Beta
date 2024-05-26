@@ -937,13 +937,13 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             TLRPC$User tLRPC$User;
             int i2;
             TLRPC$Message tLRPC$Message2;
-            ReactionsLayoutInBubble.VisibleReaction fromTLReaction;
+            ReactionsLayoutInBubble.VisibleReaction fromTL;
             String str;
             int i3;
             TLRPC$Message tLRPC$Message3;
             float f;
             boolean z;
-            ReactionsLayoutInBubble.VisibleReaction fromTLReaction2;
+            ReactionsLayoutInBubble.VisibleReaction fromTL2;
             String str2;
             TLRPC$Message tLRPC$Message4;
             if (viewHolder.getItemViewType() != 1 || i < 0 || i >= this.items.size()) {
@@ -981,7 +981,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             TL_stories$StoryView tL_stories$StoryView2 = item.view;
             if (tL_stories$StoryView2 != null) {
                 TLRPC$Reaction tLRPC$Reaction = tL_stories$StoryView2.reaction;
-                boolean z2 = (tLRPC$Reaction == null || (fromTLReaction2 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction)) == null || (str2 = fromTLReaction2.emojicon) == null || !str2.equals("❤")) ? false : true;
+                boolean z2 = (tLRPC$Reaction == null || (fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction)) == null || (str2 = fromTL2.emojicon) == null || !str2.equals("❤")) ? false : true;
                 TL_stories$StoryView tL_stories$StoryView3 = item.view;
                 if (tL_stories$StoryView3 instanceof TL_stories$TL_storyViewPublicRepost) {
                     i3 = 11;
@@ -1013,7 +1013,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 if (tL_stories$StoryReaction2 instanceof TL_stories$TL_storyReaction) {
                     TL_stories$TL_storyReaction tL_stories$TL_storyReaction = (TL_stories$TL_storyReaction) tL_stories$StoryReaction2;
                     TLRPC$Reaction tLRPC$Reaction2 = tL_stories$TL_storyReaction.reaction;
-                    boolean z3 = (tLRPC$Reaction2 == null || (fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction2)) == null || (str = fromTLReaction.emojicon) == null || !str.equals("❤")) ? false : true;
+                    boolean z3 = (tLRPC$Reaction2 == null || (fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction2)) == null || (str = fromTL.emojicon) == null || !str.equals("❤")) ? false : true;
                     TLRPC$Reaction tLRPC$Reaction3 = z3 ? null : tL_stories$TL_storyReaction.reaction;
                     long j2 = tL_stories$TL_storyReaction.date;
                     i2 = 12;

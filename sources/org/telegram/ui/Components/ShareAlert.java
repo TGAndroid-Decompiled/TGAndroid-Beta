@@ -555,9 +555,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.lastOffset = ConnectionsManager.DEFAULT_DATACENTER_ID;
         this.resourcesProvider = resourcesProvider;
         this.includeStory = z4;
-        if (context instanceof Activity) {
-            this.parentActivity = (Activity) context;
-        }
+        this.parentActivity = AndroidUtilities.findActivity(context);
         this.darkTheme = z3;
         this.parentFragment = chatActivity;
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();

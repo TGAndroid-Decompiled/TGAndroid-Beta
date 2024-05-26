@@ -258,7 +258,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         placeProviderObject.animatingImageViewYOffset = -iArr[1];
                         placeProviderObject.imageReceiver = photoImage;
                         placeProviderObject.allowTakeAnimation = false;
-                        placeProviderObject.radius = photoImage.getRoundRadius();
+                        placeProviderObject.radius = photoImage.getRoundRadius(true);
                         placeProviderObject.thumb = placeProviderObject.imageReceiver.getBitmapSafe();
                         placeProviderObject.parentView.getLocationInWindow(iArr);
                         placeProviderObject.clipTopAddition = 0;

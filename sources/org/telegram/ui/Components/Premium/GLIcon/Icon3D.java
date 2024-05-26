@@ -79,7 +79,7 @@ public class Icon3D {
         if (i == 1) {
             strArr = coinModel;
         } else {
-            strArr = starModel;
+            strArr = (i == 0 || i == 2) ? starModel : new String[0];
         }
         int length = strArr.length;
         this.N = length;
@@ -100,7 +100,7 @@ public class Icon3D {
         generateTexture();
         int[] iArr = new int[1];
         int loadShader = GLIconRenderer.loadShader(35633, loadFromAsset(context, "shaders/vertex2.glsl"));
-        int loadShader2 = GLIconRenderer.loadShader(35632, loadFromAsset(context, i == 1 ? "shaders/fragment3.glsl" : "shaders/fragment2.glsl"));
+        int loadShader2 = GLIconRenderer.loadShader(35632, loadFromAsset(context, i == 0 ? "shaders/fragment2.glsl" : i == 1 ? "shaders/fragment3.glsl" : "shaders/fragment4.glsl"));
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, loadShader);
         GLES20.glAttachShader(glCreateProgram, loadShader2);
@@ -111,6 +111,7 @@ public class Icon3D {
     }
 
     private void init(Context context) {
+        Bitmap bitmap;
         GLES20.glUseProgram(this.mProgramObject);
         this.mVerticesHandle = GLES20.glGetAttribLocation(this.mProgramObject, "vPosition");
         this.mTextureCoordinateHandle = GLES20.glGetAttribLocation(this.mProgramObject, "a_TexCoordinate");
@@ -181,9 +182,13 @@ public class Icon3D {
         GLES20.glTexParameteri(3553, 10240, 9729);
         GLES20.glBindTexture(3553, this.mBackgroundTextureHandle);
         int i4 = this.type;
-        if (i4 == 0) {
-            Bitmap bitmap = SvgHelper.getBitmap(R.raw.start_texture, 80, 80, -1);
-            Utilities.stackBlurBitmap(bitmap, 3);
+        if (i4 == 0 || i4 == 2) {
+            if (i4 == 2) {
+                bitmap = SvgHelper.getBitmap(R.raw.start_texture, 240, 240, -1);
+            } else {
+                bitmap = SvgHelper.getBitmap(R.raw.start_texture, 80, 80, -1);
+                Utilities.stackBlurBitmap(bitmap, 3);
+            }
             int[] iArr5 = new int[1];
             GLES20.glGenTextures(1, iArr5, 0);
             GLES20.glBindTexture(3553, iArr5[0]);

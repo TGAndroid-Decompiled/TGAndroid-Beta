@@ -1009,6 +1009,8 @@ public class Theme {
     public static final int key_sharedMedia_startStopLoadIcon;
     public static final int key_sheet_other;
     public static final int key_sheet_scrollUp;
+    public static final int key_starsGradient1;
+    public static final int key_starsGradient2;
     public static final int key_statisticChartActiveLine;
     public static final int key_statisticChartActivePickerChart;
     public static final int key_statisticChartBackZoomColor;
@@ -1047,6 +1049,8 @@ public class Theme {
     public static final int key_switchTrackBlueThumb;
     public static final int key_switchTrackBlueThumbChecked;
     public static final int key_switchTrackChecked;
+    public static final int key_table_background;
+    public static final int key_table_border;
     public static final int key_text_RedBold;
     public static final int key_text_RedRegular;
     public static final int key_topics_unreadCounter;

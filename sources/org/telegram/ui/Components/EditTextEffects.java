@@ -24,12 +24,14 @@ import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
 public class EditTextEffects extends EditText {
+    private static final int SPOILER_TIMEOUT = 10000;
     private static Boolean allowHackingTextCanvasCache;
     private ColorFilter animatedEmojiColorFilter;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiDrawables;
     private SpoilersClickDetector clickDetector;
     private boolean clipToPadding;
     public boolean drawAnimatedEmojiDrawables;
+    private boolean editedWhileQuoteUpdating;
     private boolean isSpoilersRevealed;
     private Layout lastLayout;
     private float lastRippleX;
@@ -40,6 +42,7 @@ public class EditTextEffects extends EditText {
     private Path path;
     private boolean postedSpoilerTimeout;
     private ArrayList<QuoteSpan.Block> quoteBlocks;
+    private boolean quoteBlocksUpdating;
     public int quoteColor;
     private boolean[] quoteUpdateLayout;
     private int quoteUpdatesTries;
@@ -242,10 +245,22 @@ public class EditTextEffects extends EditText {
         this.shouldRevealSpoilersByTouch = z;
     }
 
+    public void lambda$dispatchTouchEvent$5() {
+        invalidateQuotes(true);
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z;
         SpoilersClickDetector spoilersClickDetector;
+        if (QuoteSpan.onTouch(motionEvent, getPaddingTop() - getScrollY(), this.quoteBlocks, new Runnable() {
+            @Override
+            public final void run() {
+                EditTextEffects.this.lambda$dispatchTouchEvent$5();
+            }
+        })) {
+            return true;
+        }
         if (this.shouldRevealSpoilersByTouch && (spoilersClickDetector = this.clickDetector) != null && spoilersClickDetector.onTouchEvent(motionEvent)) {
             if (motionEvent.getActionMasked() == 1) {
                 MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
@@ -311,7 +326,7 @@ public class EditTextEffects extends EditText {
         canvas.clipPath(this.path, Region.Op.DIFFERENCE);
         invalidateQuotes(false);
         for (int i = 0; i < this.quoteBlocks.size(); i++) {
-            this.quoteBlocks.get(i).draw(canvas, 0.0f, getWidth(), this.quoteColor, 1.0f);
+            this.quoteBlocks.get(i).draw(canvas, 0.0f, getWidth(), this.quoteColor, 1.0f, getPaint());
         }
         updateAnimatedEmoji(false);
         if (this.wrapCanvasToFixClipping) {
@@ -383,6 +398,11 @@ public class EditTextEffects extends EditText {
     }
 
     public void invalidateQuotes(boolean z) {
+        if (this.quoteBlocksUpdating) {
+            this.editedWhileQuoteUpdating = true;
+            return;
+        }
+        int i = 0;
         int length = (getLayout() == null || getLayout().getText() == null) ? 0 : getLayout().getText().length();
         if (z || this.lastText2Length != length) {
             this.quoteUpdatesTries = 2;
@@ -393,11 +413,22 @@ public class EditTextEffects extends EditText {
                 this.quoteUpdateLayout = new boolean[1];
             }
             this.quoteUpdateLayout[0] = false;
-            this.quoteBlocks = QuoteSpan.updateQuoteBlocks(getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            this.editedWhileQuoteUpdating = false;
+            this.quoteBlocksUpdating = true;
+            this.quoteBlocks = QuoteSpan.updateQuoteBlocks(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            if (this.editedWhileQuoteUpdating) {
+                this.quoteBlocks = QuoteSpan.updateQuoteBlocks(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            }
+            this.quoteBlocksUpdating = false;
+            this.editedWhileQuoteUpdating = false;
             if (this.quoteUpdateLayout[0]) {
                 resetFontMetricsCache();
             }
             this.quoteUpdatesTries--;
+            if (getLayout() != null && getLayout().getText() != null) {
+                i = getLayout().getText().length();
+            }
+            this.lastText2Length = i;
         }
     }
 
@@ -448,5 +479,9 @@ public class EditTextEffects extends EditText {
 
     public void setClipToPadding(boolean z) {
         this.clipToPadding = z;
+    }
+
+    public CharSequence getTextToUse() {
+        return QuoteSpan.stripNewlineHacks(getText());
     }
 }

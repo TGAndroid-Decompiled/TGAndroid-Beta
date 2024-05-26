@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -263,7 +264,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsTopics"), 64));
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsSpoiler"), 128));
-            if (SharedConfig.getDevicePerformanceClass() >= 1) {
+            if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur"), LiteMode.FLAG_CHAT_BLUR));
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), LiteMode.FLAG_CHAT_SCALE));

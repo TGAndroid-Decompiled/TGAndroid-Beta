@@ -66,7 +66,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 NotificationPermissionDialog.this.lambda$new$0(view);
             }
         });
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, R.styleable.AppCompatTheme_textColorAlertDialogListItem));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, (int) R.styleable.AppCompatTheme_textColorAlertDialogListItem));
         TextView textView = new TextView(context);
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2));

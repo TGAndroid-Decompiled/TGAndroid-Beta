@@ -241,7 +241,7 @@ public class CaptionStory extends CaptionContainerView {
         };
         ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, resourcesProvider, this.periodButton);
         this.periodPopup = makeOptions;
-        makeOptions.addText(LocaleController.getString("StoryPeriodHint"), 13);
+        makeOptions.addText(LocaleController.getString("StoryPeriodHint"), 13, AndroidUtilities.dp(200.0f));
         this.periodPopup.addGap();
         int i = 0;
         while (true) {

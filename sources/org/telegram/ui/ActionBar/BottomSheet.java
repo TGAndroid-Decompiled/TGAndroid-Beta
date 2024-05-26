@@ -88,6 +88,7 @@ public class BottomSheet extends Dialog {
     public boolean drawDoubleNavigationBar;
     public boolean drawNavigationBar;
     private boolean focusable;
+    private boolean forceKeyboardOnDismiss;
     private boolean fullHeight;
     protected boolean fullWidth;
     private float hideSystemVerticalInsetsProgress;
@@ -100,6 +101,7 @@ public class BottomSheet extends Dialog {
     protected int keyboardHeight;
     protected boolean keyboardVisible;
     private WindowInsets lastInsets;
+    private int lastKeyboardHeight;
     private int layoutCount;
     private int leftInset;
     private boolean multipleLinesTitle;
@@ -235,22 +237,22 @@ public class BottomSheet extends Dialog {
         return false;
     }
 
-    static int access$1410(BottomSheet bottomSheet) {
-        int i = bottomSheet.layoutCount;
-        bottomSheet.layoutCount = i - 1;
-        return i;
-    }
-
-    static int access$912(BottomSheet bottomSheet, int i) {
+    static int access$1012(BottomSheet bottomSheet, int i) {
         int i2 = bottomSheet.bottomInset + i;
         bottomSheet.bottomInset = i2;
         return i2;
     }
 
-    static int access$920(BottomSheet bottomSheet, int i) {
+    static int access$1020(BottomSheet bottomSheet, int i) {
         int i2 = bottomSheet.bottomInset - i;
         bottomSheet.bottomInset = i2;
         return i2;
+    }
+
+    static int access$1510(BottomSheet bottomSheet) {
+        int i = bottomSheet.layoutCount;
+        bottomSheet.layoutCount = i - 1;
+        return i;
     }
 
     public void setDisableScroll(boolean z) {
@@ -1105,6 +1107,10 @@ public class BottomSheet extends Dialog {
                 @Override
                 public void setTranslationY(float f) {
                     super.setTranslationY(f);
+                    FrameLayout frameLayout2 = BottomSheet.this.topBulletinContainer;
+                    if (frameLayout2 != null) {
+                        frameLayout2.setTranslationY(((((-getHeight()) + f) - getPaddingTop()) - AndroidUtilities.statusBarHeight) + BottomSheet.this.backgroundPaddingTop);
+                    }
                     BottomSheet.this.onContainerTranslationYChanged(f);
                 }
             };
@@ -1114,6 +1120,12 @@ public class BottomSheet extends Dialog {
         }
         this.containerView.setVisibility(4);
         this.container.addView(this.containerView, 0, LayoutHelper.createFrame(-1, -2, 80));
+        if (this.topBulletinContainer == null) {
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            this.topBulletinContainer = frameLayout2;
+            ContainerView containerView = this.container;
+            containerView.addView(frameLayout2, containerView.indexOfChild(this.containerView) + 1, LayoutHelper.createFrame(-1, -2, 80));
+        }
         int i = 48;
         if (this.title != null) {
             TextView textView = new TextView(getContext()) {
@@ -1694,6 +1706,10 @@ public class BottomSheet extends Dialog {
             return 0;
         }
         return viewGroup.getMeasuredHeight();
+    }
+
+    public void forceKeyboardOnDismiss() {
+        this.forceKeyboardOnDismiss = true;
     }
 
     @Override

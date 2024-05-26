@@ -5463,7 +5463,7 @@ public class MediaDataController extends BaseController {
             boolean z8 = false;
             try {
                 try {
-                    ArrayList arrayList = new ArrayList();
+                    ArrayList<Long> arrayList = new ArrayList<>();
                     ArrayList arrayList2 = new ArrayList();
                     int i7 = this.val$count + 1;
                     SQLiteDatabase database = MediaDataController.this.getMessagesStorage().getDatabase();
@@ -5727,7 +5727,7 @@ public class MediaDataController extends BaseController {
                         }
                     }
                     if (!arrayList.isEmpty()) {
-                        MediaDataController.this.getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList), tLRPC$TL_messages_messages.users);
+                        MediaDataController.this.getMessagesStorage().getUsersInternal(arrayList, tLRPC$TL_messages_messages.users);
                     }
                     if (!arrayList2.isEmpty()) {
                         MediaDataController.this.getMessagesStorage().getChatsInternal(TextUtils.join(",", arrayList2), tLRPC$TL_messages_messages.chats);
@@ -6006,7 +6006,7 @@ public class MediaDataController extends BaseController {
         final ArrayList<TLRPC$Chat> arrayList4 = new ArrayList<>();
         long clientUserId = getUserConfig().getClientUserId();
         try {
-            ArrayList arrayList5 = new ArrayList();
+            ArrayList<Long> arrayList5 = new ArrayList<>();
             ArrayList arrayList6 = new ArrayList();
             int i = 0;
             SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT did, type, rating FROM chat_hints WHERE 1 ORDER BY rating DESC", new Object[0]);
@@ -6038,7 +6038,7 @@ public class MediaDataController extends BaseController {
             }
             queryFinalized.dispose();
             if (!arrayList5.isEmpty()) {
-                getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList5), arrayList3);
+                getMessagesStorage().getUsersInternal(arrayList5, arrayList3);
             }
             if (!arrayList6.isEmpty()) {
                 getMessagesStorage().getChatsInternal(TextUtils.join(",", arrayList6), arrayList4);
@@ -6800,7 +6800,7 @@ public class MediaDataController extends BaseController {
             ArrayList<TLRPC$Message> arrayList = new ArrayList<>();
             ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
             ArrayList<TLRPC$Chat> arrayList3 = new ArrayList<>();
-            ArrayList arrayList4 = new ArrayList();
+            ArrayList<Long> arrayList4 = new ArrayList<>();
             ArrayList arrayList5 = new ArrayList();
             int size = longSparseArray2.size();
             int i4 = 0;
@@ -6857,7 +6857,7 @@ public class MediaDataController extends BaseController {
             }
             int i6 = 0;
             if (!arrayList4.isEmpty()) {
-                getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList4), arrayList2);
+                getMessagesStorage().getUsersInternal(arrayList4, arrayList2);
             }
             if (!arrayList5.isEmpty()) {
                 getMessagesStorage().getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
@@ -7644,6 +7644,7 @@ public class MediaDataController extends BaseController {
                                 TLRPC$MessageEntity tLRPC$TL_messageEntityBlockquote = new TLRPC$TL_messageEntityBlockquote();
                                 tLRPC$TL_messageEntityBlockquote.offset = spanned.getSpanStart(quoteSpan);
                                 tLRPC$TL_messageEntityBlockquote.length = Math.min(spanned.getSpanEnd(quoteSpan), charSequenceArr[0].length()) - tLRPC$TL_messageEntityBlockquote.offset;
+                                tLRPC$TL_messageEntityBlockquote.collapsed = quoteSpan.isCollapsing;
                                 arrayList4.add(tLRPC$TL_messageEntityBlockquote);
                             } catch (Exception e3) {
                                 FileLog.e(e3);
@@ -7653,8 +7654,9 @@ public class MediaDataController extends BaseController {
                     arrayList = arrayList4;
                 }
                 if (spanned instanceof Spannable) {
-                    AndroidUtilities.addLinksSafe((Spannable) spanned, 1, false, false);
-                    URLSpan[] uRLSpanArr = (URLSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), URLSpan.class);
+                    Spannable spannable = (Spannable) spanned;
+                    AndroidUtilities.addLinksSafe(spannable, 1, false, false);
+                    URLSpan[] uRLSpanArr = (URLSpan[]) spannable.getSpans(0, charSequenceArr[0].length(), URLSpan.class);
                     if (uRLSpanArr != null && uRLSpanArr.length > 0) {
                         if (arrayList == null) {
                             arrayList = new ArrayList<>();
@@ -7666,6 +7668,7 @@ public class MediaDataController extends BaseController {
                                 tLRPC$TL_messageEntityUrl.length = Math.min(spanned.getSpanEnd(uRLSpanArr[i18]), charSequenceArr[0].length()) - tLRPC$TL_messageEntityUrl.offset;
                                 tLRPC$TL_messageEntityUrl.url = uRLSpanArr[i18].getURL();
                                 arrayList.add(tLRPC$TL_messageEntityUrl);
+                                spannable.removeSpan(uRLSpanArr[i18]);
                             }
                         }
                     }
@@ -8873,6 +8876,7 @@ public class MediaDataController extends BaseController {
         checkPremiumPromo();
         checkPremiumGiftStickers();
         checkGenericAnimations();
+        getMessagesController().getAvailableEffects();
     }
 
     public void moveStickerSetToTop(long j, boolean z, boolean z2) {

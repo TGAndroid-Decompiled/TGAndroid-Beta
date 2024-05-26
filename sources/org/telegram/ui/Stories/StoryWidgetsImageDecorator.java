@@ -94,7 +94,7 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                 this.storyReactionWidgetBackground.nextStyle();
             }
             this.imageHolder.setStatic();
-            this.imageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tL_stories$TL_mediaAreaSuggestedReaction.reaction));
+            this.imageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_stories$TL_mediaAreaSuggestedReaction.reaction));
         }
 
         @Override

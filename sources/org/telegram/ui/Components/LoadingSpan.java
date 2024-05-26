@@ -46,9 +46,6 @@ public class LoadingSpan extends ReplacementSpan {
                 loadingDrawable.setColors(Theme.multAlpha(paint.getColor(), 0.1f), Theme.multAlpha(paint.getColor(), 0.25f));
             }
         }
-        if (paint != null) {
-            this.drawable.setAlpha(paint.getAlpha());
-        }
         return this.size;
     }
 
@@ -56,6 +53,9 @@ public class LoadingSpan extends ReplacementSpan {
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         int i6 = (int) f;
         this.drawable.setBounds(i6, i3 + this.yOffset, this.size + i6, (i5 - AndroidUtilities.dp(2.0f)) + this.yOffset);
+        if (paint != null) {
+            this.drawable.setAlpha(paint.getAlpha());
+        }
         this.drawable.draw(canvas);
         View view = this.view;
         if (view != null) {

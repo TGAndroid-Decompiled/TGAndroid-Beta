@@ -27,9 +27,9 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Runn
     }
 
     @Override
-    public void mo152dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public void mo160dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         if (!addAndTryDispatching(runnable) && tryAllocateWorker()) {
-            this.dispatcher.mo152dispatch(this, this);
+            this.dispatcher.mo160dispatch(this, this);
         }
     }
 

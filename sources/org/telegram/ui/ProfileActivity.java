@@ -121,6 +121,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AuthTokensHelper;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BillingController$$ExternalSyntheticLambda8;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
@@ -263,7 +264,6 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda6;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -361,6 +361,7 @@ import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ProfileBirthdayEffect;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
+import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
@@ -531,7 +532,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int membersSectionRow;
     private int membersStartRow;
     private long mergeDialogId;
-    private boolean myProfile;
+    public boolean myProfile;
     private SimpleTextView[] nameTextView;
     private String nameTextViewRightDrawable2ContentDescription;
     private String nameTextViewRightDrawableContentDescription;
@@ -634,6 +635,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     boolean showBoostsAlert;
     private ShowDrawable showStatusButton;
     private ArrayList<Integer> sortedUsers;
+    private int starsRow;
     private int stickersRow;
     private ProfileStoriesView storyView;
     private int subscribersRequestsRow;
@@ -693,7 +695,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$getInitialSearchString(this);
     }
 
-    public static void access$33900(ProfileActivity profileActivity, View view) {
+    public static void access$34000(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -1772,7 +1774,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                     placeProviderObject.thumb = placeProviderObject.imageReceiver.getBitmapSafe();
                     placeProviderObject.size = -1L;
-                    placeProviderObject.radius = ProfileActivity.this.avatarImage.getImageReceiver().getRoundRadius();
+                    placeProviderObject.radius = ProfileActivity.this.avatarImage.getImageReceiver().getRoundRadius(true);
                     placeProviderObject.scale = ProfileActivity.this.avatarContainer.getScaleX();
                     placeProviderObject.canEdit = ProfileActivity.this.userId == ProfileActivity.this.getUserConfig().clientUserId;
                     return placeProviderObject;
@@ -2015,6 +2017,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getNotificationCenter().addObserver(this, NotificationCenter.storiesReadUpdated);
         getNotificationCenter().addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
         getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        getNotificationCenter().addObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         updateRowsIds();
         ListAdapter listAdapter = this.listAdapter;
@@ -2157,6 +2160,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getNotificationCenter().removeObserver(this, NotificationCenter.storiesReadUpdated);
         getNotificationCenter().removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
         getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        getNotificationCenter().removeObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         ProfileGalleryView profileGalleryView = this.avatarsViewPager;
         if (profileGalleryView != null) {
@@ -4587,8 +4591,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public void onTabProgress(float f) {
             super.onTabProgress(f);
-            if (ProfileActivity.this.myProfile) {
-                ProfileActivity.this.bottomButtonContainer[0].setTranslationX((8.0f - f) * ProfileActivity.this.sharedMediaLayout.getMeasuredWidth());
+            ProfileActivity profileActivity = ProfileActivity.this;
+            if (profileActivity.myProfile) {
+                profileActivity.bottomButtonContainer[0].setTranslationX((8.0f - f) * ProfileActivity.this.sharedMediaLayout.getMeasuredWidth());
                 ProfileActivity.this.bottomButtonContainer[1].setTranslationX((9.0f - f) * ProfileActivity.this.sharedMediaLayout.getMeasuredWidth());
                 ProfileActivity.this.updateBottomButtonY();
             }
@@ -5034,6 +5039,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             onWriteButtonClick();
         } else if (i == this.premiumRow) {
             presentFragment(new PremiumPreviewFragment("settings"));
+        } else if (i == this.starsRow) {
+            presentFragment(new StarsIntroActivity());
         } else if (i == this.businessRow) {
             presentFragment(new PremiumPreviewFragment(1, "settings"));
         } else if (i == this.premiumGiftingRow) {
@@ -8899,6 +8906,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateEditColorIcon();
         } else if (i == NotificationCenter.currentUserPremiumStatusChanged) {
             updateEditColorIcon();
+        } else if (i == NotificationCenter.starBalanceUpdated) {
+            updateListAnimated(false);
         }
     }
 
@@ -9896,7 +9905,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             removeSelfFromStack();
             getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(getMessagesController().getUser(Long.valueOf(this.userId)), j, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
             if (!TextUtils.isEmpty(charSequence)) {
-                SendMessagesHelper.prepareSendingText(AccountInstance.getInstance(this.currentAccount), charSequence.toString(), j, true, 0);
+                SendMessagesHelper.prepareSendingText(AccountInstance.getInstance(this.currentAccount), charSequence.toString(), j, true, 0, 0L);
             }
             return true;
         }
@@ -10399,7 +10408,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             File logsDir = AndroidUtilities.getLogsDir();
             if (logsDir == null) {
                 Objects.requireNonNull(alertDialog);
-                AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda6(alertDialog));
+                AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda8(alertDialog));
                 return;
             }
             final File file = new File(logsDir, "logs.zip");
@@ -10541,7 +10550,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View headerCell;
-            TextDetailCell textDetailCell;
+            TextInfoPrivacyCell textInfoPrivacyCell;
             String str;
             switch (i) {
                 case 1:
@@ -10550,7 +10559,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     break;
                 case 2:
                 case 19:
-                    TextDetailCell textDetailCell2 = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 19) {
+                    TextDetailCell textDetailCell = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 19) {
                         {
                             ListAdapter.this = this;
                         }
@@ -10560,10 +10569,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             return ProfileActivity.this.applyPeerColor(i2, false);
                         }
                     };
-                    textDetailCell2.setContentDescriptionValueFirst(true);
-                    textDetailCell2.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    textDetailCell = textDetailCell2;
-                    headerCell = textDetailCell;
+                    textDetailCell.setContentDescriptionValueFirst(true);
+                    textDetailCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    textInfoPrivacyCell = textDetailCell;
+                    headerCell = textInfoPrivacyCell;
                     break;
                 case 3:
                     ProfileActivity profileActivity = ProfileActivity.this;
@@ -10639,10 +10648,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 14:
                 case 16:
                 default:
-                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext, 10, ProfileActivity.this.resourcesProvider);
-                    textInfoPrivacyCell.getTextView().setGravity(1);
-                    textInfoPrivacyCell.getTextView().setTextColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
-                    textInfoPrivacyCell.getTextView().setMovementMethod(null);
+                    TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(this.mContext, 10, ProfileActivity.this.resourcesProvider);
+                    textInfoPrivacyCell2.getTextView().setGravity(1);
+                    textInfoPrivacyCell2.getTextView().setTextColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
+                    textInfoPrivacyCell2.getTextView().setMovementMethod(null);
                     try {
                         PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
                         int i2 = packageInfo.versionCode;
@@ -10655,14 +10664,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         } else {
                             str = "universal " + Build.CPU_ABI + " " + Build.CPU_ABI2;
                         }
-                        textInfoPrivacyCell.setText(LocaleController.formatString("TelegramVersion", R.string.TelegramVersion, String.format(Locale.US, "v%s (%d) %s", packageInfo.versionName, Integer.valueOf(i3), str)));
+                        textInfoPrivacyCell2.setText(LocaleController.formatString("TelegramVersion", R.string.TelegramVersion, String.format(Locale.US, "v%s (%d) %s", packageInfo.versionName, Integer.valueOf(i3), str)));
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
-                    textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f));
-                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGrayShadow)));
-                    textDetailCell = textInfoPrivacyCell;
-                    headerCell = textDetailCell;
+                    textInfoPrivacyCell2.getTextView().setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f));
+                    textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGrayShadow)));
+                    textInfoPrivacyCell = textInfoPrivacyCell2;
+                    headerCell = textInfoPrivacyCell;
                     break;
                 case 11:
                     headerCell = new View(this, this.mContext) {
@@ -10756,8 +10765,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 18:
-                    headerCell = new ProfilePremiumCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                case 24:
+                    FrameLayout profilePremiumCell = new ProfilePremiumCell(this.mContext, i == 18 ? 0 : 1, ProfileActivity.this.resourcesProvider);
+                    profilePremiumCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    textInfoPrivacyCell = profilePremiumCell;
+                    headerCell = textInfoPrivacyCell;
                     break;
                 case 20:
                     headerCell = new TextCheckCell(this.mContext, ProfileActivity.this.resourcesProvider);
@@ -10820,7 +10832,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onBindViewHolder(final androidx.recyclerview.widget.RecyclerView.ViewHolder r18, final int r19) {
+        public void onBindViewHolder(final androidx.recyclerview.widget.RecyclerView.ViewHolder r25, final int r26) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -10977,7 +10989,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 int adapterPosition = viewHolder.getAdapterPosition();
                 if (adapterPosition != ProfileActivity.this.notificationRow && adapterPosition != ProfileActivity.this.numberRow && adapterPosition != ProfileActivity.this.privacyRow && adapterPosition != ProfileActivity.this.languageRow && adapterPosition != ProfileActivity.this.setUsernameRow && adapterPosition != ProfileActivity.this.bioRow && adapterPosition != ProfileActivity.this.versionRow && adapterPosition != ProfileActivity.this.dataRow && adapterPosition != ProfileActivity.this.chatRow && adapterPosition != ProfileActivity.this.questionRow && adapterPosition != ProfileActivity.this.devicesRow && adapterPosition != ProfileActivity.this.filtersRow && adapterPosition != ProfileActivity.this.stickersRow && adapterPosition != ProfileActivity.this.faqRow && adapterPosition != ProfileActivity.this.policyRow && adapterPosition != ProfileActivity.this.sendLogsRow && adapterPosition != ProfileActivity.this.sendLastLogsRow && adapterPosition != ProfileActivity.this.clearLogsRow && adapterPosition != ProfileActivity.this.switchBackendRow && adapterPosition != ProfileActivity.this.setAvatarRow && adapterPosition != ProfileActivity.this.addToGroupButtonRow && adapterPosition != ProfileActivity.this.premiumRow && adapterPosition != ProfileActivity.this.premiumGiftingRow && adapterPosition != ProfileActivity.this.businessRow && adapterPosition != ProfileActivity.this.liteModeRow) {
                     ProfileActivity profileActivity = ProfileActivity.this;
-                    if (adapterPosition != profileActivity.birthdayRow && adapterPosition != profileActivity.channelRow) {
+                    if (adapterPosition != profileActivity.birthdayRow && adapterPosition != profileActivity.channelRow && adapterPosition != ProfileActivity.this.starsRow) {
                         return false;
                     }
                 }
@@ -11053,6 +11065,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 if (i == ProfileActivity.this.premiumRow) {
                     return 18;
+                }
+                if (i == ProfileActivity.this.starsRow) {
+                    return 24;
                 }
                 if (i == ProfileActivity.this.bizLocationRow) {
                     return 21;
@@ -13676,66 +13691,67 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             put(15, ProfileActivity.this.notificationRow, sparseIntArray);
             put(16, ProfileActivity.this.languageRow, sparseIntArray);
             put(17, ProfileActivity.this.premiumRow, sparseIntArray);
-            put(18, ProfileActivity.this.businessRow, sparseIntArray);
-            put(19, ProfileActivity.this.premiumSectionsRow, sparseIntArray);
-            put(20, ProfileActivity.this.premiumGiftingRow, sparseIntArray);
-            put(21, ProfileActivity.this.privacyRow, sparseIntArray);
-            put(22, ProfileActivity.this.dataRow, sparseIntArray);
-            put(23, ProfileActivity.this.liteModeRow, sparseIntArray);
-            put(24, ProfileActivity.this.chatRow, sparseIntArray);
-            put(25, ProfileActivity.this.filtersRow, sparseIntArray);
-            put(26, ProfileActivity.this.stickersRow, sparseIntArray);
-            put(27, ProfileActivity.this.devicesRow, sparseIntArray);
-            put(28, ProfileActivity.this.devicesSectionRow, sparseIntArray);
-            put(29, ProfileActivity.this.helpHeaderRow, sparseIntArray);
-            put(30, ProfileActivity.this.questionRow, sparseIntArray);
-            put(31, ProfileActivity.this.faqRow, sparseIntArray);
-            put(32, ProfileActivity.this.policyRow, sparseIntArray);
-            put(33, ProfileActivity.this.helpSectionCell, sparseIntArray);
-            put(34, ProfileActivity.this.debugHeaderRow, sparseIntArray);
-            put(35, ProfileActivity.this.sendLogsRow, sparseIntArray);
-            put(36, ProfileActivity.this.sendLastLogsRow, sparseIntArray);
-            put(37, ProfileActivity.this.clearLogsRow, sparseIntArray);
-            put(38, ProfileActivity.this.switchBackendRow, sparseIntArray);
-            put(39, ProfileActivity.this.versionRow, sparseIntArray);
-            put(40, ProfileActivity.this.emptyRow, sparseIntArray);
-            put(41, ProfileActivity.this.bottomPaddingRow, sparseIntArray);
-            put(42, ProfileActivity.this.infoHeaderRow, sparseIntArray);
-            put(43, ProfileActivity.this.phoneRow, sparseIntArray);
-            put(44, ProfileActivity.this.locationRow, sparseIntArray);
-            put(45, ProfileActivity.this.userInfoRow, sparseIntArray);
-            put(46, ProfileActivity.this.channelInfoRow, sparseIntArray);
-            put(47, ProfileActivity.this.usernameRow, sparseIntArray);
-            put(48, ProfileActivity.this.notificationsDividerRow, sparseIntArray);
-            put(49, ProfileActivity.this.reportDividerRow, sparseIntArray);
-            put(50, ProfileActivity.this.notificationsRow, sparseIntArray);
-            put(51, ProfileActivity.this.infoSectionRow, sparseIntArray);
-            put(52, ProfileActivity.this.sendMessageRow, sparseIntArray);
-            put(53, ProfileActivity.this.reportRow, sparseIntArray);
-            put(54, ProfileActivity.this.reportReactionRow, sparseIntArray);
-            put(55, ProfileActivity.this.addToContactsRow, sparseIntArray);
-            put(56, ProfileActivity.this.settingsTimerRow, sparseIntArray);
-            put(57, ProfileActivity.this.settingsKeyRow, sparseIntArray);
-            put(58, ProfileActivity.this.secretSettingsSectionRow, sparseIntArray);
-            put(59, ProfileActivity.this.membersHeaderRow, sparseIntArray);
-            put(60, ProfileActivity.this.addMemberRow, sparseIntArray);
-            put(61, ProfileActivity.this.subscribersRow, sparseIntArray);
-            put(62, ProfileActivity.this.subscribersRequestsRow, sparseIntArray);
-            put(63, ProfileActivity.this.administratorsRow, sparseIntArray);
-            put(64, ProfileActivity.this.settingsRow, sparseIntArray);
-            put(65, ProfileActivity.this.blockedUsersRow, sparseIntArray);
-            put(66, ProfileActivity.this.membersSectionRow, sparseIntArray);
-            put(67, ProfileActivity.this.sharedMediaRow, sparseIntArray);
-            put(68, ProfileActivity.this.unblockRow, sparseIntArray);
-            put(69, ProfileActivity.this.addToGroupButtonRow, sparseIntArray);
-            put(70, ProfileActivity.this.addToGroupInfoRow, sparseIntArray);
-            put(71, ProfileActivity.this.joinRow, sparseIntArray);
-            put(72, ProfileActivity.this.lastSectionRow, sparseIntArray);
-            put(73, ProfileActivity.this.notificationsSimpleRow, sparseIntArray);
-            put(74, ProfileActivity.this.bizHoursRow, sparseIntArray);
-            put(75, ProfileActivity.this.bizLocationRow, sparseIntArray);
-            put(76, ProfileActivity.this.birthdayRow, sparseIntArray);
-            put(77, ProfileActivity.this.channelRow, sparseIntArray);
+            put(18, ProfileActivity.this.starsRow, sparseIntArray);
+            put(19, ProfileActivity.this.businessRow, sparseIntArray);
+            put(20, ProfileActivity.this.premiumSectionsRow, sparseIntArray);
+            put(21, ProfileActivity.this.premiumGiftingRow, sparseIntArray);
+            put(22, ProfileActivity.this.privacyRow, sparseIntArray);
+            put(23, ProfileActivity.this.dataRow, sparseIntArray);
+            put(24, ProfileActivity.this.liteModeRow, sparseIntArray);
+            put(25, ProfileActivity.this.chatRow, sparseIntArray);
+            put(26, ProfileActivity.this.filtersRow, sparseIntArray);
+            put(27, ProfileActivity.this.stickersRow, sparseIntArray);
+            put(28, ProfileActivity.this.devicesRow, sparseIntArray);
+            put(29, ProfileActivity.this.devicesSectionRow, sparseIntArray);
+            put(30, ProfileActivity.this.helpHeaderRow, sparseIntArray);
+            put(31, ProfileActivity.this.questionRow, sparseIntArray);
+            put(32, ProfileActivity.this.faqRow, sparseIntArray);
+            put(33, ProfileActivity.this.policyRow, sparseIntArray);
+            put(34, ProfileActivity.this.helpSectionCell, sparseIntArray);
+            put(35, ProfileActivity.this.debugHeaderRow, sparseIntArray);
+            put(36, ProfileActivity.this.sendLogsRow, sparseIntArray);
+            put(37, ProfileActivity.this.sendLastLogsRow, sparseIntArray);
+            put(38, ProfileActivity.this.clearLogsRow, sparseIntArray);
+            put(39, ProfileActivity.this.switchBackendRow, sparseIntArray);
+            put(40, ProfileActivity.this.versionRow, sparseIntArray);
+            put(41, ProfileActivity.this.emptyRow, sparseIntArray);
+            put(42, ProfileActivity.this.bottomPaddingRow, sparseIntArray);
+            put(43, ProfileActivity.this.infoHeaderRow, sparseIntArray);
+            put(44, ProfileActivity.this.phoneRow, sparseIntArray);
+            put(45, ProfileActivity.this.locationRow, sparseIntArray);
+            put(46, ProfileActivity.this.userInfoRow, sparseIntArray);
+            put(47, ProfileActivity.this.channelInfoRow, sparseIntArray);
+            put(48, ProfileActivity.this.usernameRow, sparseIntArray);
+            put(49, ProfileActivity.this.notificationsDividerRow, sparseIntArray);
+            put(50, ProfileActivity.this.reportDividerRow, sparseIntArray);
+            put(51, ProfileActivity.this.notificationsRow, sparseIntArray);
+            put(52, ProfileActivity.this.infoSectionRow, sparseIntArray);
+            put(53, ProfileActivity.this.sendMessageRow, sparseIntArray);
+            put(54, ProfileActivity.this.reportRow, sparseIntArray);
+            put(55, ProfileActivity.this.reportReactionRow, sparseIntArray);
+            put(56, ProfileActivity.this.addToContactsRow, sparseIntArray);
+            put(57, ProfileActivity.this.settingsTimerRow, sparseIntArray);
+            put(58, ProfileActivity.this.settingsKeyRow, sparseIntArray);
+            put(59, ProfileActivity.this.secretSettingsSectionRow, sparseIntArray);
+            put(60, ProfileActivity.this.membersHeaderRow, sparseIntArray);
+            put(61, ProfileActivity.this.addMemberRow, sparseIntArray);
+            put(62, ProfileActivity.this.subscribersRow, sparseIntArray);
+            put(63, ProfileActivity.this.subscribersRequestsRow, sparseIntArray);
+            put(64, ProfileActivity.this.administratorsRow, sparseIntArray);
+            put(65, ProfileActivity.this.settingsRow, sparseIntArray);
+            put(66, ProfileActivity.this.blockedUsersRow, sparseIntArray);
+            put(67, ProfileActivity.this.membersSectionRow, sparseIntArray);
+            put(68, ProfileActivity.this.sharedMediaRow, sparseIntArray);
+            put(69, ProfileActivity.this.unblockRow, sparseIntArray);
+            put(70, ProfileActivity.this.addToGroupButtonRow, sparseIntArray);
+            put(71, ProfileActivity.this.addToGroupInfoRow, sparseIntArray);
+            put(72, ProfileActivity.this.joinRow, sparseIntArray);
+            put(73, ProfileActivity.this.lastSectionRow, sparseIntArray);
+            put(74, ProfileActivity.this.notificationsSimpleRow, sparseIntArray);
+            put(75, ProfileActivity.this.bizHoursRow, sparseIntArray);
+            put(76, ProfileActivity.this.bizLocationRow, sparseIntArray);
+            put(77, ProfileActivity.this.birthdayRow, sparseIntArray);
+            put(78, ProfileActivity.this.channelRow, sparseIntArray);
         }
 
         private void put(int i, int i2, SparseIntArray sparseIntArray) {

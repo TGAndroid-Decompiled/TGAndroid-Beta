@@ -964,69 +964,71 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);
         } else if (DRAW_USING_RENDERNODE()) {
-            if (canvas.isHardwareAccelerated()) {
-                if (this.blurNodes == null) {
-                    this.blurNodes = new RenderNode[2];
-                }
-                float renderNodeScale = getRenderNodeScale();
-                int i = !z ? 1 : 0;
-                if (!z && !this.blurNodeInvalidated[i] && Math.abs(getBottomOffset() - this.lastDrawnBottomBlurOffset) > 0.1f) {
-                    this.blurNodeInvalidated[i] = true;
-                }
-                int dp = AndroidUtilities.dp(36.0f);
-                if (alpha < 255 && this.blurNodeInvalidated[i] && !this.blurNodeInvalidatedThisFrame[i]) {
-                    RenderNode[] renderNodeArr = this.blurNodes;
-                    if (renderNodeArr[i] == null) {
-                        renderNodeArr[i] = new RenderNode("blurNode" + i);
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setSaturation(2.0f);
-                        this.blurNodes[i].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(getBlurRadius(), getBlurRadius(), Shader.TileMode.DECAL), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
-                    }
-                    int measuredWidth = getMeasuredWidth();
-                    int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(100.0f);
-                    this.blurNodes[i].setPosition(0, 0, (int) (measuredWidth / renderNodeScale), (int) (((dp * 2) + currentActionBarHeight) / renderNodeScale));
-                    RecordingCanvas beginRecording = this.blurNodes[i].beginRecording();
-                    drawingBlur = true;
-                    float f3 = 1.0f / renderNodeScale;
-                    beginRecording.scale(f3, f3);
-                    beginRecording.drawPaint(paint);
-                    beginRecording.translate(0.0f, dp);
-                    if (!z) {
-                        float bottomOffset = getBottomOffset();
-                        this.lastDrawnBottomBlurOffset = bottomOffset;
-                        float f4 = bottomOffset - currentActionBarHeight;
-                        this.drawnBottomOffset = f4;
-                        beginRecording.translate(0.0f, -f4);
-                    }
-                    drawListWithCallbacks(beginRecording, z);
-                    drawingBlur = false;
-                    this.blurNodes[i].endRecording();
-                    this.blurNodeInvalidatedThisFrame[i] = true;
-                    this.blurNodeInvalidated[i] = false;
-                }
-                if (!invalidateOptimized()) {
-                    this.blurNodeInvalidated[i] = true;
-                    invalidateBlurredViews();
-                }
-                canvas.save();
+            if (!canvas.isHardwareAccelerated()) {
                 canvas.drawRect(rect, paint);
-                canvas.clipRect(rect);
-                RenderNode[] renderNodeArr2 = this.blurNodes;
-                if (renderNodeArr2[i] != null && alpha < 255) {
-                    renderNodeArr2[i].setAlpha(1.0f - (alpha / 255.0f));
-                    if (z) {
-                        f2 = 0.0f;
-                        canvas.translate(0.0f, (-f) - getTranslationY());
-                    } else {
-                        f2 = 0.0f;
-                        canvas.translate(0.0f, ((-f) + this.drawnBottomOffset) - (this.lastDrawnBottomBlurOffset - (getBottomOffset() + getListTranslationY())));
-                    }
-                    canvas.translate(f2, -dp);
-                    canvas.scale(renderNodeScale, renderNodeScale);
-                    canvas.drawRenderNode(this.blurNodes[i]);
-                }
-                canvas.restore();
+                return;
             }
+            if (this.blurNodes == null) {
+                this.blurNodes = new RenderNode[2];
+            }
+            float renderNodeScale = getRenderNodeScale();
+            int i = !z ? 1 : 0;
+            if (!z && !this.blurNodeInvalidated[i] && Math.abs(getBottomOffset() - this.lastDrawnBottomBlurOffset) > 0.1f) {
+                this.blurNodeInvalidated[i] = true;
+            }
+            int dp = AndroidUtilities.dp(36.0f);
+            if (alpha < 255 && this.blurNodeInvalidated[i] && !this.blurNodeInvalidatedThisFrame[i]) {
+                RenderNode[] renderNodeArr = this.blurNodes;
+                if (renderNodeArr[i] == null) {
+                    renderNodeArr[i] = new RenderNode("blurNode" + i);
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    colorMatrix.setSaturation(2.0f);
+                    this.blurNodes[i].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(getBlurRadius(), getBlurRadius(), Shader.TileMode.DECAL), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
+                }
+                int measuredWidth = getMeasuredWidth();
+                int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(100.0f);
+                this.blurNodes[i].setPosition(0, 0, (int) (measuredWidth / renderNodeScale), (int) (((dp * 2) + currentActionBarHeight) / renderNodeScale));
+                RecordingCanvas beginRecording = this.blurNodes[i].beginRecording();
+                drawingBlur = true;
+                float f3 = 1.0f / renderNodeScale;
+                beginRecording.scale(f3, f3);
+                beginRecording.drawPaint(paint);
+                beginRecording.translate(0.0f, dp);
+                if (!z) {
+                    float bottomOffset = getBottomOffset();
+                    this.lastDrawnBottomBlurOffset = bottomOffset;
+                    float f4 = bottomOffset - currentActionBarHeight;
+                    this.drawnBottomOffset = f4;
+                    beginRecording.translate(0.0f, -f4);
+                }
+                drawListWithCallbacks(beginRecording, z);
+                drawingBlur = false;
+                this.blurNodes[i].endRecording();
+                this.blurNodeInvalidatedThisFrame[i] = true;
+                this.blurNodeInvalidated[i] = false;
+            }
+            if (!invalidateOptimized()) {
+                this.blurNodeInvalidated[i] = true;
+                invalidateBlurredViews();
+            }
+            canvas.save();
+            canvas.drawRect(rect, paint);
+            canvas.clipRect(rect);
+            RenderNode[] renderNodeArr2 = this.blurNodes;
+            if (renderNodeArr2[i] != null && alpha < 255) {
+                renderNodeArr2[i].setAlpha(1.0f - (alpha / 255.0f));
+                if (z) {
+                    f2 = 0.0f;
+                    canvas.translate(0.0f, (-f) - getTranslationY());
+                } else {
+                    f2 = 0.0f;
+                    canvas.translate(0.0f, ((-f) + this.drawnBottomOffset) - (this.lastDrawnBottomBlurOffset - (getBottomOffset() + getListTranslationY())));
+                }
+                canvas.translate(f2, -dp);
+                canvas.scale(renderNodeScale, renderNodeScale);
+                canvas.drawRenderNode(this.blurNodes[i]);
+            }
+            canvas.restore();
         } else if (this.currentBitmap == null) {
             canvas.drawRect(rect, paint);
         } else {

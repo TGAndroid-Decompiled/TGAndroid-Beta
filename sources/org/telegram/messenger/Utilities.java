@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.telegram.tgnet.ConnectionsManager;
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static volatile DispatchQueue videoPlayerQueue;
@@ -329,36 +330,7 @@ public class Utilities {
     }
 
     public static boolean isGoodPrime(byte[] bArr, int i) {
-        int intValue;
-        if (i < 2 || i > 7 || bArr.length != 256 || bArr[0] >= 0) {
-            return false;
-        }
-        BigInteger bigInteger = new BigInteger(1, bArr);
-        if (i == 2) {
-            if (bigInteger.mod(BigInteger.valueOf(8L)).intValue() != 7) {
-                return false;
-            }
-        } else if (i == 3) {
-            if (bigInteger.mod(BigInteger.valueOf(3L)).intValue() != 2) {
-                return false;
-            }
-        } else if (i == 5) {
-            int intValue2 = bigInteger.mod(BigInteger.valueOf(5L)).intValue();
-            if (intValue2 != 1 && intValue2 != 4) {
-                return false;
-            }
-        } else if (i == 6) {
-            int intValue3 = bigInteger.mod(BigInteger.valueOf(24L)).intValue();
-            if (intValue3 != 19 && intValue3 != 23) {
-                return false;
-            }
-        } else if (i == 7 && (intValue = bigInteger.mod(BigInteger.valueOf(7L)).intValue()) != 3 && intValue != 5 && intValue != 6) {
-            return false;
-        }
-        if (bytesToHex(bArr).equals("C71CAEB9C6B1C9048E6C522F70F13F73980D40238E3E21C14934D037563D930F48198A0AA7C14058229493D22530F4DBFA336F6E0AC925139543AED44CCE7C3720FD51F69458705AC68CD4FE6B6B13ABDC9746512969328454F18FAF8C595F642477FE96BB2A941D5BCD1D4AC8CC49880708FA9B378E3C4F3A9060BEE67CF9A4A4A695811051907E162753B56B0F6B410DBA74D8A84B2A14B3144E0EF1284754FD17ED950D5965B4B9DD46582DB1178D169C6BC465B0D6FF9CA3928FEF5B9AE4E418FC15E83EBEA0F87FA9FF5EED70050DED2849F47BF959D956850CE929851F0D8115F635B105EE2E4E15D04B2454BF6F4FADF034B10403119CD8E3B92FCC5B")) {
-            return true;
-        }
-        return bigInteger.isProbablePrime(30) && bigInteger.subtract(BigInteger.valueOf(1L)).divide(BigInteger.valueOf(2L)).isProbablePrime(30);
+        return ConnectionsManager.native_isGoodPrime(bArr, i);
     }
 
     public static boolean isGoodGaAndGb(BigInteger bigInteger, BigInteger bigInteger2) {
@@ -526,6 +498,23 @@ public class Utilities {
         }
         try {
             byte[] digest = MessageDigest.getInstance("MD5").digest(AndroidUtilities.getStringBytes(str));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(Integer.toHexString((b & 255) | LiteMode.FLAG_CHAT_BLUR).substring(1, 3));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public static String SHA256(String str) {
+        if (str == null) {
+            return null;
+        }
+        try {
+            byte[] digest = MessageDigest.getInstance("SHA-256").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
                 sb.append(Integer.toHexString((b & 255) | LiteMode.FLAG_CHAT_BLUR).substring(1, 3));

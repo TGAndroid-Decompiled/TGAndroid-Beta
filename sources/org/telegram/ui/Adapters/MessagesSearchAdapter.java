@@ -1,24 +1,27 @@
 package org.telegram.ui.Adapters;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
+import org.telegram.messenger.HashtagSearchController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
-import org.telegram.ui.Cells.LoadingCell;
+import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
 public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
+    public int flickerCount;
     public int loadedCount;
     private Context mContext;
     private final Theme.ResourcesProvider resourcesProvider;
+    private int searchType;
     private HashSet<Integer> messageIds = new HashSet<>();
     private ArrayList<MessageObject> searchResultMessages = new ArrayList<>();
     private int currentAccount = UserConfig.selectedAccount;
@@ -28,16 +31,17 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
         return i;
     }
 
-    public MessagesSearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public MessagesSearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         this.resourcesProvider = resourcesProvider;
         this.mContext = context;
+        this.searchType = i;
     }
 
     @Override
     public void notifyDataSetChanged() {
         this.searchResultMessages.clear();
         this.messageIds.clear();
-        ArrayList<MessageObject> foundMessageObjects = MediaDataController.getInstance(this.currentAccount).getFoundMessageObjects();
+        ArrayList<MessageObject> foundMessageObjects = this.searchType == 0 ? MediaDataController.getInstance(this.currentAccount).getFoundMessageObjects() : HashtagSearchController.getInstance(this.currentAccount).getMessages(this.searchType);
         for (int i = 0; i < foundMessageObjects.size(); i++) {
             MessageObject messageObject = foundMessageObjects.get(i);
             if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !this.messageIds.contains(Integer.valueOf(messageObject.getId()))) {
@@ -45,13 +49,43 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
                 this.messageIds.add(Integer.valueOf(messageObject.getId()));
             }
         }
+        int i2 = this.loadedCount;
+        int i3 = this.flickerCount;
         this.loadedCount = this.searchResultMessages.size();
-        super.notifyDataSetChanged();
+        if (this.searchType != 0) {
+            this.flickerCount = (!(HashtagSearchController.getInstance(this.currentAccount).isEndReached(this.searchType) ^ true) || this.loadedCount == 0) ? 0 : Utilities.clamp(HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType) - this.loadedCount, 29, 0);
+        } else {
+            this.flickerCount = (!(MediaDataController.getInstance(this.currentAccount).searchEndReached() ^ true) || this.loadedCount == 0) ? 0 : Utilities.clamp(MediaDataController.getInstance(this.currentAccount).getSearchCount() - this.loadedCount, 20, 0);
+        }
+        int i4 = this.loadedCount;
+        if (i4 >= i2) {
+            if (i4 - i2 > 0) {
+                notifyItemRangeInserted(i2 + i3, i4 - i2);
+            }
+            if (i3 > 0) {
+                notifyItemRangeRemoved(i2, i3);
+            }
+            int i5 = this.loadedCount;
+            if (i5 > 0) {
+                notifyItemRangeInserted(i5, this.flickerCount);
+                return;
+            }
+            return;
+        }
+        int i6 = i2 + i3;
+        if (i6 > 0) {
+            notifyItemRangeRemoved(0, i6);
+        }
+        int i7 = this.loadedCount;
+        int i8 = this.flickerCount;
+        if (i7 + i8 > 0) {
+            notifyItemRangeInserted(0, i7 + i8);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return this.searchResultMessages.size();
+        return this.searchResultMessages.size() + this.flickerCount;
     }
 
     public Object getItem(int i) {
@@ -68,11 +102,16 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View dialogCell;
+        DialogCell dialogCell;
         if (i == 0) {
             dialogCell = new DialogCell(null, this.mContext, false, true, this.currentAccount, this.resourcesProvider);
+        } else if (i != 1) {
+            dialogCell = null;
         } else {
-            dialogCell = i != 1 ? null : new LoadingCell(this.mContext);
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext, this.resourcesProvider);
+            flickerLoadingView.setIsSingleCell(true);
+            flickerLoadingView.setViewType(7);
+            dialogCell = flickerLoadingView;
         }
         dialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
         return new RecyclerListView.Holder(dialogCell);

@@ -688,6 +688,23 @@ public class FlickerLoadingView extends View {
                         }
                         i3 = i37;
                     }
+                } else if (getViewType() == 31) {
+                    while (i <= getMeasuredHeight()) {
+                        int cellHeight2 = getCellHeight(getMeasuredWidth());
+                        float f11 = i;
+                        this.rectF.set(this.paddingLeft + AndroidUtilities.dp(18.0f), ((cellHeight2 - AndroidUtilities.dp(22.0f)) / 2.0f) + f11, this.paddingLeft + AndroidUtilities.dp(40.0f), ((AndroidUtilities.dp(22.0f) + cellHeight2) / 2.0f) + f11);
+                        checkRtl(this.rectF);
+                        canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), paint2);
+                        this.rectF.set(this.paddingLeft + AndroidUtilities.dp(58.0f), ((cellHeight2 - AndroidUtilities.dp(8.0f)) / 2.0f) + f11, Math.min(this.paddingLeft + AndroidUtilities.dp(132.0f), getMeasuredWidth() - AndroidUtilities.dp(19.0f)), f11 + ((AndroidUtilities.dp(8.0f) + cellHeight2) / 2.0f));
+                        checkRtl(this.rectF);
+                        canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
+                        i += cellHeight2;
+                        int i38 = i3 + 1;
+                        if (this.isSingleCell && i38 >= this.itemsCount) {
+                            break;
+                        }
+                        i3 = i38;
+                    }
                 }
             }
         }
@@ -831,6 +848,8 @@ public class FlickerLoadingView extends View {
                 return AndroidUtilities.dp(60.0f) + 1;
             case R.styleable.AppCompatTheme_actionModeTheme:
                 return AndroidUtilities.dp(32.0f);
+            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+                return AndroidUtilities.dp(48.0f) + 1;
         }
     }
 

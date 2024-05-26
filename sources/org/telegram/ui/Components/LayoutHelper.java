@@ -148,6 +148,10 @@ public class LayoutHelper {
         return new LinearLayout.LayoutParams(getSize(i), getSize(i2));
     }
 
+    public static LinearLayout.LayoutParams createLinear(float f, float f2) {
+        return new LinearLayout.LayoutParams(getSize(f), getSize(f2));
+    }
+
     public static LinearLayout.LayoutParams createLinearRelatively(float f, float f2, int i, float f3, float f4, float f5, float f6) {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getSize(f), getSize(f2), getAbsoluteGravity(i));
         layoutParams.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? f5 : f3);

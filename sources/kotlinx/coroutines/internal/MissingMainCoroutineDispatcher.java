@@ -26,7 +26,7 @@ public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatche
     }
 
     @Override
-    public Void mo152dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public Void mo160dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         missing();
         throw new KotlinNothingValueException();
     }

@@ -75,7 +75,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
     }
 
     public static class UserCell extends FrameLayout {

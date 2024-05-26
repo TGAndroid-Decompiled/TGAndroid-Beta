@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.os.Looper;
 import android.util.LongSparseArray;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ public class FilePathDatabase {
     private SQLiteDatabase database;
     boolean databaseCreated;
     private DispatchQueue dispatchQueue;
-    private final FileMeta metaTmp = new FileMeta();
     private File shmCacheFile;
+    private final ConcurrentHashMap<String, String> cache = new ConcurrentHashMap<>();
+    private final FileMeta metaTmp = new FileMeta();
 
     public static class FileMeta {
         public long dialogId;
@@ -150,76 +152,11 @@ public class FilePathDatabase {
         return false;
     }
 
-    public String getPath(final long j, final int i, final int i2, boolean z) {
-        SQLiteException sQLiteException;
-        String str;
-        SQLiteCursor queryFinalized;
-        DispatchQueue dispatchQueue;
-        if (z) {
-            if (BuildVars.DEBUG_PRIVATE_VERSION && (dispatchQueue = this.dispatchQueue) != null && dispatchQueue.getHandler() != null && Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
-                throw new RuntimeException("Error, lead to infinity loop");
-            }
-            final CountDownLatch countDownLatch = new CountDownLatch(1);
-            final String[] strArr = new String[1];
-            postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    FilePathDatabase.this.lambda$getPath$0(j, i, i2, strArr, countDownLatch);
-                }
-            });
-            try {
-                countDownLatch.await();
-            } catch (Exception unused) {
-            }
-            return strArr[0];
-        }
-        SQLiteDatabase sQLiteDatabase = this.database;
-        SQLiteCursor sQLiteCursor = null;
-        r2 = null;
-        String str2 = null;
-        sQLiteCursor = null;
-        if (sQLiteDatabase == null) {
-            return null;
-        }
-        try {
-            try {
-                queryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
-            } catch (SQLiteException e) {
-                sQLiteException = e;
-                str = null;
-            }
-        } catch (Throwable th) {
-            th = th;
-        }
-        try {
-            if (queryFinalized.next()) {
-                str2 = queryFinalized.stringValue(0);
-                if (BuildVars.DEBUG_VERSION) {
-                    FileLog.d("get file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + str2);
-                }
-            }
-            queryFinalized.dispose();
-            return str2;
-        } catch (SQLiteException e2) {
-            sQLiteException = e2;
-            str = str2;
-            sQLiteCursor = queryFinalized;
-            FileLog.e(sQLiteException);
-            if (sQLiteCursor != null) {
-                sQLiteCursor.dispose();
-            }
-            return str;
-        } catch (Throwable th2) {
-            th = th2;
-            sQLiteCursor = queryFinalized;
-            if (sQLiteCursor != null) {
-                sQLiteCursor.dispose();
-            }
-            throw th;
-        }
+    public java.lang.String getPath(final long r19, final int r21, final int r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilePathDatabase.getPath(long, int, int, boolean):java.lang.String");
     }
 
-    public void lambda$getPath$0(long j, int i, int i2, String[] strArr, CountDownLatch countDownLatch) {
+    public void lambda$getPath$0(long j, int i, int i2, String[] strArr, long j2, CountDownLatch countDownLatch) {
         ensureDatabaseCreated();
         SQLiteDatabase sQLiteDatabase = this.database;
         if (sQLiteDatabase != null) {
@@ -229,7 +166,7 @@ public class FilePathDatabase {
                 if (sQLiteCursor.next()) {
                     strArr[0] = sQLiteCursor.stringValue(0);
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.d("get file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + strArr[0]);
+                        FileLog.d("get file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + strArr[0] + " in " + (System.currentTimeMillis() - j2) + "ms");
                     }
                 }
             } catch (Throwable th) {
@@ -276,7 +213,7 @@ public class FilePathDatabase {
         });
     }
 
-    public void lambda$putPath$1(long r6, int r8, int r9, java.lang.String r10, int r11) {
+    public void lambda$putPath$1(long r7, int r9, int r10, java.lang.String r11, int r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilePathDatabase.lambda$putPath$1(long, int, int, java.lang.String, int):void");
     }
 
@@ -321,6 +258,7 @@ public class FilePathDatabase {
     }
 
     public void clear() {
+        this.cache.clear();
         postRunnable(new Runnable() {
             @Override
             public final void run() {

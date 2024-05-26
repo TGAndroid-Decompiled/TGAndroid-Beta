@@ -10452,7 +10452,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             placeProviderObject.parentView = ArticleViewer.this.listView[0];
             placeProviderObject.imageReceiver = imageReceiverFromListView;
             placeProviderObject.thumb = imageReceiverFromListView.getBitmapSafe();
-            placeProviderObject.radius = imageReceiverFromListView.getRoundRadius();
+            placeProviderObject.radius = imageReceiverFromListView.getRoundRadius(true);
             placeProviderObject.clipTopAddition = ArticleViewer.this.currentHeaderHeight;
             return placeProviderObject;
         }

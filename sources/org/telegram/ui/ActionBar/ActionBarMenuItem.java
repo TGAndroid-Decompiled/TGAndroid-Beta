@@ -128,6 +128,10 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public static class ActionBarMenuItemSearchListener {
+        public boolean canClearCaption() {
+            return true;
+        }
+
         public boolean canCollapseSearch() {
             return true;
         }
@@ -166,6 +170,10 @@ public class ActionBarMenuItem extends FrameLayout {
         }
 
         public void onTextChanged(EditText editText) {
+        }
+
+        public boolean showClearForCaption() {
+            return true;
         }
     }
 
@@ -647,6 +655,39 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
+    public View addSubItem(int i, View view) {
+        createPopupLayout();
+        view.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        view.setTag(Integer.valueOf(i));
+        this.popupLayout.addView(view);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
+        }
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(48.0f);
+        view.setLayoutParams(layoutParams);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                ActionBarMenuItem.this.lambda$addSubItem$6(view2);
+            }
+        });
+        return view;
+    }
+
+    public void lambda$addSubItem$6(View view) {
+        ActionBarMenu actionBarMenu = this.parentMenu;
+        if (actionBarMenu != null) {
+            actionBarMenu.onItemClick(((Integer) view.getTag()).intValue());
+            return;
+        }
+        ActionBarMenuItemDelegate actionBarMenuItemDelegate = this.delegate;
+        if (actionBarMenuItemDelegate != null) {
+            actionBarMenuItemDelegate.onItemClick(((Integer) view.getTag()).intValue());
+        }
+    }
+
     public ActionBarMenuSubItem addSwipeBackItem(int i, Drawable drawable, String str, View view) {
         createPopupLayout();
         final ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), false, false, false, this.resourcesProvider);
@@ -665,7 +706,7 @@ public class ActionBarMenuItem extends FrameLayout {
         actionBarMenuSubItem.openSwipeBackLayout = new Runnable() {
             @Override
             public final void run() {
-                ActionBarMenuItem.this.lambda$addSwipeBackItem$6(addViewToSwipeBack);
+                ActionBarMenuItem.this.lambda$addSwipeBackItem$7(addViewToSwipeBack);
             }
         };
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
@@ -678,7 +719,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return actionBarMenuSubItem;
     }
 
-    public void lambda$addSwipeBackItem$6(int i) {
+    public void lambda$addSwipeBackItem$7(int i) {
         if (this.popupLayout.getSwipeBack() != null) {
             this.popupLayout.getSwipeBack().openForeground(i);
         }
@@ -859,15 +900,15 @@ public class ActionBarMenuItem extends FrameLayout {
                 actionBarPopupWindowLayout.setOnKeyListener(new View.OnKeyListener() {
                     @Override
                     public final boolean onKey(View view3, int i, KeyEvent keyEvent) {
-                        boolean lambda$toggleSubMenu$8;
-                        lambda$toggleSubMenu$8 = ActionBarMenuItem.this.lambda$toggleSubMenu$8(view3, i, keyEvent);
-                        return lambda$toggleSubMenu$8;
+                        boolean lambda$toggleSubMenu$9;
+                        lambda$toggleSubMenu$9 = ActionBarMenuItem.this.lambda$toggleSubMenu$9(view3, i, keyEvent);
+                        return lambda$toggleSubMenu$9;
                     }
                 });
                 this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public final void onDismiss() {
-                        ActionBarMenuItem.this.lambda$toggleSubMenu$9();
+                        ActionBarMenuItem.this.lambda$toggleSubMenu$10();
                     }
                 });
                 actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x - AndroidUtilities.dp(40.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
@@ -890,7 +931,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
-    public boolean lambda$toggleSubMenu$8(View view, int i, KeyEvent keyEvent) {
+    public boolean lambda$toggleSubMenu$9(View view, int i, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (i == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
             this.popupWindow.dismiss();
@@ -899,7 +940,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return false;
     }
 
-    public void lambda$toggleSubMenu$9() {
+    public void lambda$toggleSubMenu$10() {
         onDismiss();
         ActionBarSubMenuItemDelegate actionBarSubMenuItemDelegate = this.subMenuDelegate;
         if (actionBarSubMenuItemDelegate != null) {
@@ -921,13 +962,13 @@ public class ActionBarMenuItem extends FrameLayout {
             actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    ActionBarMenuItem.this.lambda$setOnMenuDismiss$10(callback);
+                    ActionBarMenuItem.this.lambda$setOnMenuDismiss$11(callback);
                 }
             });
         }
     }
 
-    public void lambda$setOnMenuDismiss$10(Utilities.Callback callback) {
+    public void lambda$setOnMenuDismiss$11(Utilities.Callback callback) {
         if (callback != null) {
             callback.run(Boolean.valueOf(this.processedPopupClick));
         }
@@ -1172,7 +1213,7 @@ public class ActionBarMenuItem extends FrameLayout {
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActionBarMenuItem.this.lambda$onFiltersChanged$11(searchFilterView, view);
+                    ActionBarMenuItem.this.lambda$onFiltersChanged$12(searchFilterView, view);
                 }
             });
             this.searchFilterLayout.addView(searchFilterView, LayoutHelper.createLinear(-2, -1, 0, 0, 0, 6, 0));
@@ -1200,7 +1241,7 @@ public class ActionBarMenuItem extends FrameLayout {
         checkClearButton();
     }
 
-    public void lambda$onFiltersChanged$11(SearchFilterView searchFilterView, View view) {
+    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) {
         int indexOf = this.currentSearchFilters.indexOf(searchFilterView.getFilter());
         if (this.selectedFilterIndex != indexOf) {
             this.selectedFilterIndex = indexOf;
@@ -1568,9 +1609,9 @@ public class ActionBarMenuItem extends FrameLayout {
             this.searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
-                    boolean lambda$checkCreateSearchField$12;
-                    lambda$checkCreateSearchField$12 = ActionBarMenuItem.this.lambda$checkCreateSearchField$12(textView3, i2, keyEvent);
-                    return lambda$checkCreateSearchField$12;
+                    boolean lambda$checkCreateSearchField$13;
+                    lambda$checkCreateSearchField$13 = ActionBarMenuItem.this.lambda$checkCreateSearchField$13(textView3, i2, keyEvent);
+                    return lambda$checkCreateSearchField$13;
                 }
             });
             this.searchField.addTextChangedListener(new TextWatcher() {
@@ -1671,7 +1712,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.clearButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActionBarMenuItem.this.lambda$checkCreateSearchField$13(view);
+                    ActionBarMenuItem.this.lambda$checkCreateSearchField$14(view);
                 }
             });
             this.clearButton.setContentDescription(LocaleController.getString("ClearButton", R.string.ClearButton));
@@ -1683,7 +1724,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
-    public boolean lambda$checkCreateSearchField$12(TextView textView, int i, KeyEvent keyEvent) {
+    public boolean lambda$checkCreateSearchField$13(TextView textView, int i, KeyEvent keyEvent) {
         if (keyEvent != null) {
             if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                 AndroidUtilities.hideKeyboard(this.searchField);
@@ -1699,7 +1740,8 @@ public class ActionBarMenuItem extends FrameLayout {
         return false;
     }
 
-    public void lambda$checkCreateSearchField$13(View view) {
+    public void lambda$checkCreateSearchField$14(View view) {
+        ActionBarMenuItemSearchListener actionBarMenuItemSearchListener;
         if (this.searchField.length() != 0) {
             this.searchField.setText("");
         } else if (hasRemovableFilters()) {
@@ -1712,11 +1754,11 @@ public class ActionBarMenuItem extends FrameLayout {
             clearSearchFilters();
         } else {
             TextView textView = this.searchFieldCaption;
-            if (textView != null && textView.getVisibility() == 0) {
+            if (textView != null && textView.getVisibility() == 0 && ((actionBarMenuItemSearchListener = this.listener) == null || actionBarMenuItemSearchListener.canClearCaption())) {
                 this.searchFieldCaption.setVisibility(8);
-                ActionBarMenuItemSearchListener actionBarMenuItemSearchListener = this.listener;
-                if (actionBarMenuItemSearchListener != null) {
-                    actionBarMenuItemSearchListener.onCaptionCleared();
+                ActionBarMenuItemSearchListener actionBarMenuItemSearchListener2 = this.listener;
+                if (actionBarMenuItemSearchListener2 != null) {
+                    actionBarMenuItemSearchListener2.onCaptionCleared();
                 }
             }
         }
@@ -1737,8 +1779,9 @@ public class ActionBarMenuItem extends FrameLayout {
     public void checkClearButton() {
         ActionBarMenuItemSearchListener actionBarMenuItemSearchListener;
         TextView textView;
+        ActionBarMenuItemSearchListener actionBarMenuItemSearchListener2;
         if (this.clearButton != null) {
-            if (!hasRemovableFilters() && TextUtils.isEmpty(this.searchField.getText()) && (((actionBarMenuItemSearchListener = this.listener) == null || !actionBarMenuItemSearchListener.forceShowClear()) && ((textView = this.searchFieldCaption) == null || textView.getVisibility() != 0))) {
+            if (!hasRemovableFilters() && TextUtils.isEmpty(this.searchField.getText()) && (((actionBarMenuItemSearchListener = this.listener) == null || !actionBarMenuItemSearchListener.forceShowClear()) && ((textView = this.searchFieldCaption) == null || textView.getVisibility() != 0 || ((actionBarMenuItemSearchListener2 = this.listener) != null && !actionBarMenuItemSearchListener2.showClearForCaption())))) {
                 if (this.clearButton.getTag() != null) {
                     this.clearButton.setTag(null);
                     AnimatorSet animatorSet = this.clearButtonAnimator;
@@ -1752,7 +1795,7 @@ public class ActionBarMenuItem extends FrameLayout {
                         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ActionBarMenuItem.this.lambda$checkClearButton$14(valueAnimator);
+                                ActionBarMenuItem.this.lambda$checkClearButton$15(valueAnimator);
                             }
                         });
                         duration.playTogether(ObjectAnimator.ofFloat(this.clearButton, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.clearButton, View.SCALE_X, 0.0f), ObjectAnimator.ofFloat(this.clearButton, View.SCALE_Y, 0.0f), ObjectAnimator.ofFloat(this.clearButton, View.ROTATION, 45.0f), ofFloat);
@@ -1788,7 +1831,7 @@ public class ActionBarMenuItem extends FrameLayout {
                     ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ActionBarMenuItem.this.lambda$checkClearButton$15(valueAnimator);
+                            ActionBarMenuItem.this.lambda$checkClearButton$16(valueAnimator);
                         }
                     });
                     duration2.playTogether(ObjectAnimator.ofFloat(this.clearButton, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.clearButton, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.clearButton, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.clearButton, View.ROTATION, 0.0f), ofFloat2);
@@ -1815,7 +1858,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
-    public void lambda$checkClearButton$14(ValueAnimator valueAnimator) {
+    public void lambda$checkClearButton$15(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         View view = this.searchAdditionalButton;
         if (view != null) {
@@ -1823,7 +1866,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
-    public void lambda$checkClearButton$15(ValueAnimator valueAnimator) {
+    public void lambda$checkClearButton$16(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         View view = this.searchAdditionalButton;
         if (view != null) {

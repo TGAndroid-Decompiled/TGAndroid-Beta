@@ -412,9 +412,13 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void lambda$didReceivedNotification$7() {
-        if (this.layoutManager.findLastVisibleItemPosition() + 10 > this.items.size()) {
+        if (this.layoutManager.findLastVisibleItemPosition() + 10 > this.items.size() || isReadAtPosition(this.layoutManager.findLastVisibleItemPosition() + 9)) {
             this.storiesController.loadNextStories(this.type == 1);
         }
+    }
+
+    private boolean isReadAtPosition(int i) {
+        return i < this.items.size() && this.storiesController.getUnreadState(this.items.get(i).dialogId) == 0;
     }
 
     public void updateItems(boolean z, boolean z2) {

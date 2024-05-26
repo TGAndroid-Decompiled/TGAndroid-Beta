@@ -172,14 +172,14 @@ public class CustomHtml {
             }
             QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
             if (quoteSpanArr != null) {
-                for (int i3 = 0; i3 < quoteSpanArr.length; i3++) {
-                    sb.append("<blockquote>");
+                for (QuoteSpan quoteSpan : quoteSpanArr) {
+                    sb.append(quoteSpan.isCollapsing ? "<details>" : "<blockquote>");
                 }
             }
             toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
             if (quoteSpanArr != null) {
-                for (int i4 = 0; i4 < quoteSpanArr.length; i4++) {
-                    sb.append("</blockquote>");
+                for (int length = quoteSpanArr.length - 1; length >= 0; length--) {
+                    sb.append(quoteSpanArr[length].isCollapsing ? "</details>" : "</blockquote>");
                 }
             }
             i = nextSpanTransition;

@@ -779,7 +779,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 }
             }
             if (!arrayList.isEmpty()) {
-                MessagesStorage.getInstance(i).getUsersInternal(TextUtils.join(",", arrayList), arrayList5);
+                MessagesStorage.getInstance(i).getUsersInternal(arrayList, arrayList5);
                 for (int i5 = 0; i5 < arrayList5.size(); i5++) {
                     TLRPC$User tLRPC$User = arrayList5.get(i5);
                     RecentSearchObject recentSearchObject5 = (RecentSearchObject) longSparseArray.get(tLRPC$User.id);

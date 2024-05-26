@@ -67,15 +67,15 @@ public final class BulletinFactory {
     }
 
     public static BulletinFactory global() {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null) {
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
             return of(Bulletin.BulletinWindow.make(ApplicationLoader.applicationContext), null);
         }
-        Dialog dialog = lastFragment.visibleDialog;
+        Dialog dialog = safeLastFragment.visibleDialog;
         if (dialog instanceof BottomSheet) {
-            return of(((BottomSheet) dialog).container, lastFragment.getResourceProvider());
+            return of(((BottomSheet) dialog).container, safeLastFragment.getResourceProvider());
         }
-        return of(lastFragment);
+        return of(safeLastFragment);
     }
 
     public void showForError(TLRPC$TL_error tLRPC$TL_error) {
@@ -328,6 +328,14 @@ public final class BulletinFactory {
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(2);
         return create(lottieLayout, 2750);
+    }
+
+    public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence, CharSequence charSequence2) {
+        Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
+        twoLineLottieLayout.imageView.setImageDrawable(drawable);
+        twoLineLottieLayout.titleTextView.setText(charSequence);
+        twoLineLottieLayout.subtitleTextView.setText(charSequence2);
+        return create(twoLineLottieLayout, 2750);
     }
 
     public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence, CharSequence charSequence2, String str, Runnable runnable) {

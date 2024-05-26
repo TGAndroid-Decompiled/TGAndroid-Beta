@@ -14,6 +14,7 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -558,6 +559,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public ArrayList<VideoEditedInfo.MediaEntity> croppedMediaEntities;
         public String croppedPaintPath;
         public VideoEditedInfo editedInfo;
+        public long effectId;
         public ArrayList<TLRPC$MessageEntity> entities;
         public String filterPath;
         public String fullPaintPath;
@@ -638,6 +640,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public int orientation;
         public String path;
         public long size;
+        public BitmapDrawable thumb;
+        public int videoOrientation = -1;
         public int width;
 
         public PhotoEntry(int i, int i2, long j, String str, int i3, boolean z, int i4, int i5, long j2) {
@@ -653,6 +657,19 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } else {
                 this.orientation = i3;
             }
+            this.isVideo = z;
+        }
+
+        public PhotoEntry(int i, int i2, long j, String str, int i3, int i4, boolean z, int i5, int i6, long j2) {
+            this.bucketId = i;
+            this.imageId = i2;
+            this.dateTaken = j;
+            this.path = str;
+            this.width = i5;
+            this.height = i6;
+            this.size = j2;
+            this.duration = i4;
+            this.orientation = i3;
             this.isVideo = z;
         }
 
@@ -675,12 +692,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public PhotoEntry clone() {
-            int i = this.bucketId;
-            int i2 = this.imageId;
-            long j = this.dateTaken;
-            String str = this.path;
-            boolean z = this.isVideo;
-            PhotoEntry photoEntry = new PhotoEntry(i, i2, j, str, z ? this.duration : this.orientation, z, this.width, this.height, this.size);
+            PhotoEntry photoEntry = new PhotoEntry(this.bucketId, this.imageId, this.dateTaken, this.path, this.orientation, this.duration, this.isVideo, this.width, this.height, this.size);
             photoEntry.invert = this.invert;
             photoEntry.isMuted = this.isMuted;
             photoEntry.canDeleteAfter = this.canDeleteAfter;
@@ -4572,7 +4584,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         thread.start();
     }
 
-    public static void lambda$loadGalleryPhotosAlbums$51(int r54) {
+    public static void lambda$loadGalleryPhotosAlbums$51(int r56) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$loadGalleryPhotosAlbums$51(int):void");
     }
 

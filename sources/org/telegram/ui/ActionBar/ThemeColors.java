@@ -182,6 +182,8 @@ public class ThemeColors {
         iArr[Theme.key_actionBarTabLine] = -1;
         iArr[Theme.key_actionBarTabSelector] = -12554860;
         iArr[Theme.key_actionBarBrowser] = -1;
+        iArr[Theme.key_table_background] = -526345;
+        iArr[Theme.key_table_border] = -2039584;
         iArr[Theme.key_actionBarDefaultArchived] = -9471353;
         iArr[Theme.key_actionBarDefaultArchivedSelector] = -10590350;
         iArr[Theme.key_actionBarDefaultArchivedIcon] = -1;
@@ -714,6 +716,8 @@ public class ThemeColors {
         iArr[Theme.key_premiumGradientBottomSheet3] = -1600322;
         iArr[Theme.key_topics_unreadCounter] = -11613090;
         iArr[Theme.key_topics_unreadCounterMuted] = -7631473;
+        iArr[Theme.key_starsGradient1] = -79802;
+        iArr[Theme.key_starsGradient2] = -1273334;
         iArr[Theme.key_stories_circle1] = -12984516;
         iArr[Theme.key_stories_circle2] = -11682817;
         iArr[Theme.key_stories_circle_dialog1] = -11866795;
@@ -917,6 +921,8 @@ public class ThemeColors {
         sparseArray.put(Theme.key_actionBarTabUnactiveText, "actionBarTabUnactiveText");
         sparseArray.put(Theme.key_actionBarTabLine, "actionBarTabLine");
         sparseArray.put(Theme.key_actionBarTabSelector, "actionBarTabSelector");
+        sparseArray.put(Theme.key_table_background, "tableBackground");
+        sparseArray.put(Theme.key_table_border, "tableBorder");
         sparseArray.put(Theme.key_actionBarDefaultArchived, "actionBarDefaultArchived");
         sparseArray.put(Theme.key_actionBarDefaultArchivedSelector, "actionBarDefaultArchivedSelector");
         sparseArray.put(Theme.key_actionBarDefaultArchivedIcon, "actionBarDefaultArchivedIcon");

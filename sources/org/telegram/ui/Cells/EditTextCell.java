@@ -175,6 +175,13 @@ public class EditTextCell extends FrameLayout {
                 if (EditTextCell.this.ignoreEditText) {
                     return;
                 }
+                if (i > 0 && editable != null && editable.length() > i) {
+                    EditTextCell.this.ignoreEditText = true;
+                    EditTextCell.this.editText.setText(editable.subSequence(0, i));
+                    EditTextBoldCursor editTextBoldCursor2 = EditTextCell.this.editText;
+                    editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                    EditTextCell.this.ignoreEditText = false;
+                }
                 EditTextCell.this.onTextChanged(editable);
             }
         });
@@ -200,9 +207,6 @@ public class EditTextCell extends FrameLayout {
                     return null;
                 }
             });
-        }
-        if (i > 0) {
-            arrayList.add(new InputFilter.LengthFilter(i));
         }
         editTextBoldCursor.setFilters((InputFilter[]) arrayList.toArray(new InputFilter[0]));
         addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -1, 48));

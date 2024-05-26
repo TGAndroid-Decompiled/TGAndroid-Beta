@@ -1062,7 +1062,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 } else {
                     PeopleNearbyActivity peopleNearbyActivity = PeopleNearbyActivity.this;
                     if (peopleNearbyActivity.showingMe = peopleNearbyActivity.getUserConfig().sharingMyLocationUntil > PeopleNearbyActivity.this.getConnectionsManager().getCurrentTime()) {
-                        manageChatTextCell.setText(LocaleController.getString("StopShowingMe", R.string.StopShowingMe), null, R.drawable.msg_nearby_off, PeopleNearbyActivity.this.usersStartRow != -1);
+                        manageChatTextCell.setText(LocaleController.getString(R.string.StopShowingMe), null, R.drawable.menu_nearby_off, PeopleNearbyActivity.this.usersStartRow != -1);
                         int i4 = Theme.key_text_RedRegular;
                         manageChatTextCell.setColors(i4, i4);
                         return;

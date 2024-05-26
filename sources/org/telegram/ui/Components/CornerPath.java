@@ -8,6 +8,8 @@ import java.util.List;
 public class CornerPath extends Path {
     private static ArrayList<RectF> recycled;
     private boolean isPathCreated;
+    private int paddingX;
+    private int paddingY;
     private final ArrayList<RectF> rects;
     private float rectsUnionDiffDelta;
     protected boolean useCornerPathImplementation;
@@ -147,12 +149,12 @@ public class CornerPath extends Path {
         }
         boolean z = false;
         if (list.size() == 1) {
-            super.addRect(list.get(0).left, list.get(0).top, list.get(0).right, list.get(0).bottom, Path.Direction.CW);
+            super.addRect(list.get(0).left - this.paddingX, list.get(0).top - this.paddingY, list.get(0).right + this.paddingX, list.get(0).bottom + this.paddingY, Path.Direction.CW);
             return;
         }
         RectF rectF = list.get(0);
         int size = list.size() - 1;
-        super.moveTo(rectF.left, rectF.top);
+        super.moveTo(rectF.left - this.paddingX, rectF.top - this.paddingY);
         for (int i = 1; i < list.size(); i++) {
             RectF rectF2 = list.get(i);
             if (rectF2.width() != 0.0f) {
@@ -165,8 +167,8 @@ public class CornerPath extends Path {
                         float f5 = rectF2.left;
                         if (f4 >= f5) {
                             if (f3 != f5) {
-                                super.lineTo(f3, f2);
-                                super.lineTo(rectF2.left, rectF2.top);
+                                super.lineTo(f3 - this.paddingX, f2);
+                                super.lineTo(rectF2.left - this.paddingX, rectF2.top);
                             }
                             rectF = rectF2;
                         }
@@ -177,20 +179,20 @@ public class CornerPath extends Path {
                 break;
             }
         }
-        super.lineTo(rectF.left, rectF.bottom);
-        super.lineTo(rectF.right, rectF.bottom);
+        super.lineTo(rectF.left - this.paddingX, rectF.bottom + this.paddingY);
+        super.lineTo(rectF.right + this.paddingX, rectF.bottom + this.paddingY);
         for (int i2 = size - 1; i2 >= 0; i2--) {
             RectF rectF3 = list.get(i2);
             if (rectF3.width() != 0.0f) {
                 float f6 = rectF.right;
                 if (f6 != rectF3.right) {
-                    super.lineTo(f6, rectF.top);
-                    super.lineTo(rectF3.right, rectF.top);
+                    super.lineTo(f6 + this.paddingX, rectF.top);
+                    super.lineTo(rectF3.right + this.paddingX, rectF.top);
                 }
                 rectF = rectF3;
             }
         }
-        super.lineTo(rectF.right, rectF.top);
+        super.lineTo(rectF.right + this.paddingX, rectF.top - this.paddingY);
         super.close();
         if (z) {
             createClosedPathsFromRects(list.subList(size, list.size()));

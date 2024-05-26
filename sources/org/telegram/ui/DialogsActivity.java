@@ -6617,7 +6617,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
-    public ChatActivity highlightFoundQuote(ChatActivity chatActivity, MessageObject messageObject) {
+    public static ChatActivity highlightFoundQuote(ChatActivity chatActivity, MessageObject messageObject) {
         CharSequence charSequence;
         boolean z;
         if (messageObject != null && messageObject.hasHighlightedWords()) {
@@ -6657,7 +6657,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             }
                             spanEnd = spanStart3;
                         }
-                        chatActivity.setHighlightQuote(messageObject.getId(), charSequence.subSequence(spanStart, spanEnd).toString(), spanStart);
+                        chatActivity.setHighlightQuote(messageObject.getRealId(), charSequence.subSequence(spanStart, spanEnd).toString(), spanStart);
                     }
                 }
             } catch (Exception e) {

@@ -666,7 +666,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         universalAdapter.update(true);
     }
 
-    private static class MoreSpan extends ReplacementSpan {
+    public static class MoreSpan extends ReplacementSpan {
         private final Paint backgroundPaint = new Paint(1);
         private final Text text;
 

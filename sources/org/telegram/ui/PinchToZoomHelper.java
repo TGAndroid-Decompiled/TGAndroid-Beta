@@ -243,7 +243,7 @@ public class PinchToZoomHelper {
                 if (this.callback != null) {
                     this.overlayView.backupImageView.setImageBitmap(this.callback.getCurrentTextureView().getBitmap((int) this.fullImageWidth, (int) this.fullImageHeight));
                     this.overlayView.backupImageView.setSize((int) this.fullImageWidth, (int) this.fullImageHeight);
-                    this.overlayView.backupImageView.getImageReceiver().setRoundRadius(imageReceiver.getRoundRadius());
+                    this.overlayView.backupImageView.getImageReceiver().setRoundRadius(imageReceiver.getRoundRadius(true));
                 }
                 this.overlayView.videoPlayerContainer.setVisibility(0);
             } else {
@@ -262,8 +262,9 @@ public class PinchToZoomHelper {
                 }
                 this.childImage.setImageCoords(this.imageX, this.imageY, this.imageWidth, this.imageHeight);
                 this.childImage.setAspectFit(imageReceiver.isAspectFit());
-                this.childImage.setRoundRadius(imageReceiver.getRoundRadius());
-                this.fullImage.setRoundRadius(imageReceiver.getRoundRadius());
+                this.childImage.setRoundRadius(imageReceiver.getRoundRadius(true));
+                this.fullImage.setRoundRadius(imageReceiver.getRoundRadius(true));
+                this.fullImage.setAspectFit(imageReceiver.isAspectFit());
                 this.overlayView.videoPlayerContainer.setVisibility(8);
             }
         }
@@ -464,7 +465,7 @@ public class PinchToZoomHelper {
                     public void getOutline(View view, Outline outline) {
                         ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
                         if (imageReceiver != null) {
-                            int[] roundRadius = imageReceiver.getRoundRadius();
+                            int[] roundRadius = imageReceiver.getRoundRadius(true);
                             int i = 0;
                             for (int i2 = 0; i2 < 4; i2++) {
                                 i = Math.max(i, roundRadius[i2]);
@@ -494,7 +495,7 @@ public class PinchToZoomHelper {
                             float f = i / 2;
                             ZoomOverlayView.this.aspectPath.addCircle(f, i2 / 2, f, Path.Direction.CW);
                         } else {
-                            int[] roundRadius = imageReceiver.getRoundRadius();
+                            int[] roundRadius = imageReceiver.getRoundRadius(true);
                             int i5 = 0;
                             for (int i6 = 0; i6 < 4; i6++) {
                                 i5 = Math.max(i5, roundRadius[i6]);
@@ -667,10 +668,10 @@ public class PinchToZoomHelper {
             }
             if (PinchToZoomHelper.this.hasMediaSpoiler) {
                 PinchToZoomHelper.this.blurImage.setAlpha(PinchToZoomHelper.this.childImage.getAlpha());
-                PinchToZoomHelper.this.blurImage.setRoundRadius(PinchToZoomHelper.this.childImage.getRoundRadius());
+                PinchToZoomHelper.this.blurImage.setRoundRadius(PinchToZoomHelper.this.childImage.getRoundRadius(true));
                 PinchToZoomHelper.this.blurImage.setImageCoords(PinchToZoomHelper.this.childImage.getImageX(), PinchToZoomHelper.this.childImage.getImageY(), PinchToZoomHelper.this.childImage.getImageWidth(), PinchToZoomHelper.this.childImage.getImageHeight());
                 PinchToZoomHelper.this.blurImage.draw(canvas);
-                int[] roundRadius = PinchToZoomHelper.this.childImage.getRoundRadius();
+                int[] roundRadius = PinchToZoomHelper.this.childImage.getRoundRadius(true);
                 float[] fArr = PinchToZoomHelper.this.spoilerRadii;
                 float[] fArr2 = PinchToZoomHelper.this.spoilerRadii;
                 float f11 = roundRadius[0];

@@ -5,7 +5,7 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.Html;
 import android.text.Spannable;
-import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.StrikethroughSpan;
@@ -70,7 +70,7 @@ public class CopyUtilities {
                         } else {
                             arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntityPre(), spanStart, spanEnd));
                         }
-                    } else if (i == 2) {
+                    } else if (i == 2 || i == 3) {
                         arrayList3.add(parsedSpan);
                     }
                 } else if (obj instanceof AnimatedEmojiSpan) {
@@ -81,8 +81,8 @@ public class CopyUtilities {
                     arrayList.add(setEntityStartEnd(tLRPC$TL_messageEntityCustomEmoji, spanStart, spanEnd));
                 }
             }
-            SpannableString spannableString = new SpannableString(fromHtml.toString());
-            MediaDataController.addTextStyleRuns(arrayList, spannableString, spannableString);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(fromHtml.toString());
+            MediaDataController.addTextStyleRuns(arrayList, spannableStringBuilder, spannableStringBuilder);
             for (Object obj2 : spans) {
                 if (obj2 instanceof URLSpan) {
                     int spanStart2 = fromHtml.getSpanStart(obj2);
@@ -90,24 +90,24 @@ public class CopyUtilities {
                     String charSequence = fromHtml.subSequence(spanStart2, spanEnd2).toString();
                     String url = ((URLSpan) obj2).getURL();
                     if (charSequence.equals(url)) {
-                        spannableString.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableString.setSpan(new URLSpanReplacement(url), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new URLSpanReplacement(url), spanStart2, spanEnd2, 33);
                     }
                 }
             }
-            MediaDataController.addAnimatedEmojiSpans(arrayList, spannableString, null);
+            MediaDataController.addAnimatedEmojiSpans(arrayList, spannableStringBuilder, null);
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 ParsedSpan parsedSpan2 = (ParsedSpan) arrayList2.get(i2);
                 int spanStart3 = fromHtml.getSpanStart(parsedSpan2);
                 int spanEnd3 = fromHtml.getSpanEnd(parsedSpan2);
-                spannableString.setSpan(new CodeHighlighting.Span(true, 0, null, parsedSpan2.lng, spannableString.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+                spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, parsedSpan2.lng, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
             }
             for (int i3 = 0; i3 < arrayList3.size(); i3++) {
                 ParsedSpan parsedSpan3 = (ParsedSpan) arrayList3.get(i3);
-                QuoteSpan.putQuote(spannableString, fromHtml.getSpanStart(parsedSpan3), fromHtml.getSpanEnd(parsedSpan3));
+                QuoteSpan.putQuoteToEditable(spannableStringBuilder, fromHtml.getSpanStart(parsedSpan3), fromHtml.getSpanEnd(parsedSpan3), parsedSpan3.type == 3);
             }
-            return spannableString;
+            return spannableStringBuilder;
         } catch (Exception e) {
             FileLog.e("Html.fromHtml", e);
             return null;
@@ -282,6 +282,20 @@ public class CopyUtilities {
                     editable.removeSpan(last3);
                     if (spanStart4 != editable.length()) {
                         editable.setSpan(last3, spanStart4, editable.length(), 33);
+                    }
+                    return true;
+                }
+            } else if (str.equals("details")) {
+                if (z) {
+                    editable.setSpan(new ParsedSpan(3), editable.length(), editable.length(), 17);
+                    return true;
+                }
+                ParsedSpan last4 = getLast(editable, ParsedSpan.class, 3);
+                if (last4 != null) {
+                    int spanStart5 = editable.getSpanStart(last4);
+                    editable.removeSpan(last4);
+                    if (spanStart5 != editable.length()) {
+                        editable.setSpan(last4, spanStart5, editable.length(), 33);
                     }
                     return true;
                 }

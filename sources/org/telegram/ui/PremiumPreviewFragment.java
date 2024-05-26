@@ -1844,18 +1844,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
         public BackgroundView(Context context) {
             super(context);
-            int i;
             setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(context);
             this.imageFrameLayout = frameLayout;
-            int i2 = PremiumPreviewFragment.this.type == 1 ? 175 : 190;
-            addView(frameLayout, LayoutHelper.createLinear(i2, i2, 1));
-            if (PremiumPreviewFragment.this.whiteBackground) {
-                i = 1;
-            } else {
-                i = PremiumPreviewFragment.this.type == 1 ? 2 : 0;
-            }
-            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, i, PremiumPreviewFragment.this.type == 1 ? 1 : 0, PremiumPreviewFragment.this, context) {
+            int i = PremiumPreviewFragment.this.type == 1 ? 175 : 190;
+            addView(frameLayout, LayoutHelper.createLinear(i, i, 1));
+            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, PremiumPreviewFragment.this.whiteBackground ? 1 : 0, PremiumPreviewFragment.this.type == 1 ? 1 : 0, PremiumPreviewFragment.this, context) {
                 final Context val$context;
 
                 {
@@ -1923,9 +1917,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
 
                 @Override
-                public void onSizeChanged(int i3, int i4, int i5, int i6) {
-                    super.onSizeChanged(i3, i4, i5, i6);
-                    BackgroundView.this.measureGradient(i3, i4);
+                public void onSizeChanged(int i2, int i3, int i4, int i5) {
+                    super.onSizeChanged(i2, i3, i4, i5);
+                    BackgroundView.this.measureGradient(i2, i3);
                 }
 
                 @Override
@@ -1950,8 +1944,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             this.tierListView.setAdapter(new AnonymousClass3(PremiumPreviewFragment.this, context));
             this.tierListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public final void onItemClick(View view, int i3) {
-                    PremiumPreviewFragment.BackgroundView.this.lambda$new$0(view, i3);
+                public final void onItemClick(View view, int i2) {
+                    PremiumPreviewFragment.BackgroundView.this.lambda$new$0(view, i2);
                 }
             });
             final Path path = new Path();

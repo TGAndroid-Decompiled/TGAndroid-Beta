@@ -1,7 +1,9 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Vibrator;
+import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -17,7 +19,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -89,12 +93,13 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.countriesArray = new ArrayList<>();
         this.codesMap = new HashMap<>();
         this.phoneFormatMap = new HashMap<>();
+        fixNavigationBar();
         this.waitingKeyboard = true;
         this.smoothKeyboardAnimationEnabled = true;
         this.classGuid = ConnectionsManager.generateClassGuid();
         this.parentFragment = baseFragment;
         setCustomView(createView(getContext()));
-        setTitle(LocaleController.getString("NewContactTitle", R.string.NewContactTitle), true);
+        setTitle(LocaleController.getString(R.string.NewContactTitle), true);
     }
 
     public android.view.View createView(android.content.Context r29) {
@@ -325,34 +330,49 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         return str;
     }
 
-    public void setInitialPhoneNumber(String str, boolean z) {
+    public NewContactBottomSheet setInitialPhoneNumber(String str, boolean z) {
+        boolean z2;
         this.initialPhoneNumber = str;
         this.initialPhoneNumberWithCountryCode = z;
-        if (TextUtils.isEmpty(str)) {
-            return;
-        }
-        TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-        if (this.initialPhoneNumber.startsWith("+")) {
-            this.codeField.setText(this.initialPhoneNumber.substring(1));
-        } else if (this.initialPhoneNumberWithCountryCode || currentUser == null || TextUtils.isEmpty(currentUser.phone)) {
-            this.codeField.setText(this.initialPhoneNumber);
-        } else {
-            String str2 = currentUser.phone;
-            int i = 4;
-            while (true) {
-                if (i < 1) {
-                    break;
+        if (!TextUtils.isEmpty(str)) {
+            TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+            if (this.initialPhoneNumber.startsWith("+")) {
+                this.codeField.setText(this.initialPhoneNumber.substring(1));
+            } else if (this.initialPhoneNumberWithCountryCode || currentUser == null || TextUtils.isEmpty(currentUser.phone)) {
+                this.codeField.setText(this.initialPhoneNumber);
+            } else {
+                String str2 = currentUser.phone;
+                int i = 4;
+                while (true) {
+                    z2 = false;
+                    if (i < 1) {
+                        break;
+                    }
+                    List<CountrySelectActivity.Country> list = this.codesMap.get(str2.substring(0, i));
+                    if (list == null || list.size() <= 0) {
+                        i--;
+                    } else {
+                        String str3 = list.get(0).code;
+                        this.codeField.setText(str3);
+                        if (str3.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
+                            this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                        }
+                        z2 = true;
+                    }
                 }
-                List<CountrySelectActivity.Country> list = this.codesMap.get(str2.substring(0, i));
-                if (list != null && list.size() > 0) {
-                    this.codeField.setText(list.get(0).code);
-                    break;
+                if (!z2 && Build.VERSION.SDK_INT >= 23) {
+                    Context context = ApplicationLoader.applicationContext;
+                    String upperCase = context != null ? ((TelephonyManager) context.getSystemService(TelephonyManager.class)).getSimCountryIso().toUpperCase(Locale.US) : Locale.getDefault().getCountry();
+                    this.codeField.setText(upperCase);
+                    if (upperCase.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
+                        this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                    }
                 }
-                i--;
+                this.phoneField.setText(this.initialPhoneNumber);
             }
-            this.phoneField.setText(this.initialPhoneNumber);
+            this.initialPhoneNumber = null;
         }
-        this.initialPhoneNumber = null;
+        return this;
     }
 
     public void setInitialName(String str, String str2) {

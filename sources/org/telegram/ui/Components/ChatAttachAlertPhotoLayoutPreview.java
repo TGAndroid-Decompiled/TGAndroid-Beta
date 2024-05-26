@@ -270,6 +270,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
         this.parentAlert.getPhotoLayout().previewItem.setIcon(R.drawable.ic_ab_back);
         this.parentAlert.getPhotoLayout().previewItem.setText(LocaleController.getString(R.string.Back));
+        this.parentAlert.getPhotoLayout().previewItem.setRightIcon(0);
     }
 
     @Override
@@ -285,6 +286,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         if (getSelectedItemsCount() > 1 && this.parentAlert.getPhotoLayout() != null) {
             this.parentAlert.getPhotoLayout().previewItem.setIcon(R.drawable.msg_view_file);
             this.parentAlert.getPhotoLayout().previewItem.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            this.parentAlert.getPhotoLayout().previewItem.setRightIcon(R.drawable.msg_arrowright);
         }
         this.groupsView.toPhotoLayout(this.photoLayout, true);
     }

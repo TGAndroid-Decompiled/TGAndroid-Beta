@@ -81,7 +81,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     private AnimatorSet shadowAnimation;
 
     public interface AudioSelectDelegate {
-        void didSelectAudio(ArrayList<MessageObject> arrayList, CharSequence charSequence, boolean z, int i);
+        void didSelectAudio(ArrayList<MessageObject> arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2);
     }
 
     public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
@@ -486,7 +486,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
     }
 
-    private void onItemClick(android.view.View r7) {
+    private void onItemClick(android.view.View r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(android.view.View):void");
     }
 
@@ -496,7 +496,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
         if (this.selectedAudios.size() == 0 || this.delegate == null || this.sendPressed) {
             return;
         }
@@ -505,7 +505,15 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         for (int i2 = 0; i2 < this.selectedAudiosOrder.size(); i2++) {
             arrayList.add(this.selectedAudiosOrder.get(i2).messageObject);
         }
-        this.delegate.didSelectAudio(arrayList, this.parentAlert.commentTextView.getText(), z, i);
+        this.delegate.didSelectAudio(arrayList, this.parentAlert.commentTextView.getText(), z, i, j, z2);
+    }
+
+    public ArrayList<MessageObject> getSelected() {
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
+        for (int i = 0; i < this.selectedAudiosOrder.size(); i++) {
+            arrayList.add(this.selectedAudiosOrder.get(i).messageObject);
+        }
+        return arrayList;
     }
 
     public void setDelegate(AudioSelectDelegate audioSelectDelegate) {

@@ -29,6 +29,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.BitmapDrawable;
@@ -616,6 +617,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private QualityChooseView qualityChooseView;
     private AnimatorSet qualityChooseViewAnimation;
     private PickerBottomLayoutViewer qualityPicker;
+    private RenderNode renderNode;
     public TLRPC$Document replacedSticker;
     private boolean requestingPreview;
     private TextView resetButton;
@@ -7447,7 +7449,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 canvas.save();
                 canvas.translate(getPaddingLeft(), getPaddingTop());
                 for (int i = 0; i < this.quoteBlocks.size(); i++) {
-                    this.quoteBlocks.get(i).draw(canvas, 0.0f, ((getWidth() - getPaddingLeft()) - getPaddingRight()) + (this.hasQuote ? AndroidUtilities.dp(32.0f) : 0), -1, 1.0f);
+                    this.quoteBlocks.get(i).draw(canvas, 0.0f, ((getWidth() - getPaddingLeft()) - getPaddingRight()) + (this.hasQuote ? AndroidUtilities.dp(32.0f) : 0), -1, 1.0f, getPaint());
                 }
                 canvas.restore();
             }
@@ -13088,7 +13090,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             MessageObject threadMessage = PhotoViewer.this.parentChatActivity.getThreadMessage();
                             ChatActivity.ReplyQuote replyQuote = PhotoViewer.this.parentChatActivity.getReplyQuote();
                             MediaController.PhotoEntry photoEntry3 = orientation;
-                            SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry3.entities, photoEntry3.ttl, messageObject2, z3, i2, z5, photoEntry3.hasSpoiler, photoEntry3.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId());
+                            SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry3.entities, photoEntry3.ttl, messageObject2, z3, i2, z5, photoEntry3.hasSpoiler, photoEntry3.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                             return;
                         }
                         AccountInstance accountInstance2 = PhotoViewer.this.parentChatActivity.getAccountInstance();
@@ -13098,7 +13100,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage2 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote2 = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry4 = orientation;
-                        SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, dialogId2, replyMessage2, threadMessage2, null, replyQuote2, photoEntry4.entities, photoEntry4.ttl, messageObject2, z3, i2, z5, photoEntry4.hasSpoiler, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId());
+                        SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, dialogId2, replyMessage2, threadMessage2, null, replyQuote2, photoEntry4.entities, photoEntry4.ttl, messageObject2, z3, i2, z5, photoEntry4.hasSpoiler, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                     } else if (photoEntry2.imagePath != null) {
                         AccountInstance accountInstance3 = PhotoViewer.this.parentChatActivity.getAccountInstance();
                         MediaController.PhotoEntry photoEntry5 = orientation;
@@ -13109,7 +13111,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage3 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote3 = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry6 = orientation;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, dialogId3, replyMessage3, threadMessage3, null, replyQuote3, photoEntry6.entities, photoEntry6.stickers, null, photoEntry6.ttl, messageObject2, videoEditedInfo, z3, i2, 0, z5, photoEntry6.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId());
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, dialogId3, replyMessage3, threadMessage3, null, replyQuote3, photoEntry6.entities, photoEntry6.stickers, null, photoEntry6.ttl, messageObject2, videoEditedInfo, z3, i2, 0, z5, photoEntry6.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                     } else if (photoEntry2.path != null) {
                         AccountInstance accountInstance4 = PhotoViewer.this.parentChatActivity.getAccountInstance();
                         MediaController.PhotoEntry photoEntry7 = orientation;
@@ -13120,7 +13122,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage4 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote4 = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry8 = orientation;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, dialogId4, replyMessage4, threadMessage4, null, replyQuote4, photoEntry8.entities, photoEntry8.stickers, null, photoEntry8.ttl, messageObject2, videoEditedInfo, z3, i2, 0, z5, photoEntry8.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId());
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, dialogId4, replyMessage4, threadMessage4, null, replyQuote4, photoEntry8.entities, photoEntry8.stickers, null, photoEntry8.ttl, messageObject2, videoEditedInfo, z3, i2, 0, z5, photoEntry8.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                     }
                 }
             }
@@ -13152,14 +13154,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private boolean checkAnimation() {
-        if (this.animationInProgress != 0 && Math.abs(this.transitionAnimationStartTime - System.currentTimeMillis()) >= 500) {
-            Runnable runnable = this.animationEndRunnable;
-            if (runnable != null) {
-                runnable.run();
-                this.animationEndRunnable = null;
-            }
-            this.animationInProgress = 0;
+        if (this.animationInProgress != 0) {
             invalidateBlur();
+            if (Math.abs(this.transitionAnimationStartTime - System.currentTimeMillis()) >= 500) {
+                Runnable runnable = this.animationEndRunnable;
+                if (runnable != null) {
+                    runnable.run();
+                    this.animationEndRunnable = null;
+                }
+                this.animationInProgress = 0;
+            }
         }
         return this.animationInProgress != 0;
     }
@@ -13204,9 +13208,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public boolean openPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, ImageLocation imageLocation, ImageLocation imageLocation2, ArrayList<MessageObject> arrayList, ArrayList<SecureDocument> arrayList2, ArrayList<Object> arrayList3, int i, final PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity, long j, long j2, long j3, boolean z, PageBlocksAdapter pageBlocksAdapter, final Integer num) {
         TLRPC$Message tLRPC$Message;
-        boolean z2;
         PhotoViewerProvider photoViewerProvider2;
-        float f;
+        int i2 = 0;
         if (this.parentActivity != null && !this.isVisible && ((photoViewerProvider != null || !checkAnimation()) && (messageObject != null || tLRPC$FileLocation != null || arrayList != null || arrayList3 != null || arrayList2 != null || imageLocation != null || pageBlocksAdapter != null))) {
             PlaceProviderObject placeForPhoto = photoViewerProvider.getPlaceForPhoto(messageObject, tLRPC$FileLocation, i, true);
             if (Build.VERSION.SDK_INT < 21) {
@@ -13283,9 +13286,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.isVisible = true;
                 this.isVisibleOrAnimating = true;
                 togglePhotosListView(false, false);
-                boolean z3 = !z;
-                this.openedFullScreenVideo = z3;
-                if (z3) {
+                boolean z2 = !z;
+                this.openedFullScreenVideo = z2;
+                if (z2) {
                     toggleActionBar(false, false);
                 } else if (this.sendPhotoType == 1) {
                     createCropView();
@@ -13320,7 +13323,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     } else if (pageBlocksAdapter != null) {
                         this.currentAnimation = placeForPhoto.imageReceiver.getAnimation();
                     }
-                    z2 = true;
+                    float f = 0.0f;
                     onPhotoShow(messageObject, tLRPC$FileLocation, imageLocation, imageLocation2, arrayList, arrayList2, arrayList3, i, placeForPhoto);
                     if (this.sendPhotoType == 1) {
                         this.photoCropView.setVisibility(0);
@@ -13337,12 +13340,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     ClippingImageView[] animatingImageViews = getAnimatingImageViews(placeForPhoto);
                     this.clippingImageProgress = 1.0f;
-                    for (int i2 = 0; i2 < animatingImageViews.length; i2++) {
-                        animatingImageViews[i2].setAnimationValues(this.animationValues);
-                        animatingImageViews[i2].setVisibility(0);
-                        animatingImageViews[i2].setRadius(placeForPhoto.radius);
-                        animatingImageViews[i2].setOrientation(orientation, placeForPhoto.imageReceiver.getInvert());
-                        animatingImageViews[i2].setImageBitmap(placeForPhoto.thumb);
+                    for (int i3 = 0; i3 < animatingImageViews.length; i3++) {
+                        animatingImageViews[i3].setAnimationValues(this.animationValues);
+                        animatingImageViews[i3].setVisibility(0);
+                        animatingImageViews[i3].setRadius(placeForPhoto.radius);
+                        animatingImageViews[i3].setOrientation(orientation, placeForPhoto.imageReceiver.getInvert());
+                        animatingImageViews[i3].setImageBitmap(placeForPhoto.thumb);
                     }
                     initCropView();
                     if (this.sendPhotoType == 1) {
@@ -13358,25 +13361,24 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     if (height <= 0) {
                         layoutParams2.height = 100;
                     }
-                    for (int i3 = 0; i3 < animatingImageViews.length; i3++) {
+                    while (i2 < animatingImageViews.length) {
                         if (animatingImageViews.length > 1) {
-                            f = 0.0f;
-                            animatingImageViews[i3].setAlpha(0.0f);
+                            animatingImageViews[i2].setAlpha(f);
                         } else {
-                            f = 0.0f;
-                            animatingImageViews[i3].setAlpha(1.0f);
+                            animatingImageViews[i2].setAlpha(1.0f);
                         }
-                        animatingImageViews[i3].setPivotX(f);
-                        animatingImageViews[i3].setPivotY(f);
-                        animatingImageViews[i3].setScaleX(placeForPhoto.scale);
-                        animatingImageViews[i3].setScaleY(placeForPhoto.scale);
-                        animatingImageViews[i3].setTranslationX(placeForPhoto.viewX + (drawRegion.left * placeForPhoto.scale));
-                        animatingImageViews[i3].setTranslationY(placeForPhoto.viewY + (drawRegion.top * placeForPhoto.scale));
-                        animatingImageViews[i3].setLayoutParams(layoutParams2);
+                        animatingImageViews[i2].setPivotX(f);
+                        animatingImageViews[i2].setPivotY(f);
+                        animatingImageViews[i2].setScaleX(placeForPhoto.scale);
+                        animatingImageViews[i2].setScaleY(placeForPhoto.scale);
+                        animatingImageViews[i2].setTranslationX(placeForPhoto.viewX + (drawRegion.left * placeForPhoto.scale));
+                        animatingImageViews[i2].setTranslationY(placeForPhoto.viewY + (drawRegion.top * placeForPhoto.scale));
+                        animatingImageViews[i2].setLayoutParams(layoutParams2);
+                        i2++;
+                        f = 0.0f;
                     }
-                    this.windowView.getViewTreeObserver().addOnPreDrawListener(new AnonymousClass71(animatingImageViews, layoutParams2, f2, placeForPhoto, f3, pageBlocksAdapter, photoViewerProvider, arrayList3, num));
+                    this.windowView.getViewTreeObserver().addOnPreDrawListener(new AnonymousClass71(animatingImageViews, layoutParams2, f2, placeForPhoto, f3, photoViewerProvider, arrayList3, num));
                 } else {
-                    z2 = true;
                     if (arrayList3 != null && this.sendPhotoType != 3 && ((photoViewerProvider2 = this.placeProvider) == null || !photoViewerProvider2.closeKeyboard())) {
                         makeFocusable();
                     }
@@ -13469,7 +13471,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     obtain.getText().add(LocaleController.getString("AccDescrPhotoViewer", R.string.AccDescrPhotoViewer));
                     accessibilityManager.sendAccessibilityEvent(obtain);
                 }
-                return z2;
+                return true;
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -13483,19 +13485,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final ViewGroup.LayoutParams val$layoutParams;
         final float val$left;
         final PlaceProviderObject val$object;
-        final PageBlocksAdapter val$pageBlocksAdapter;
         final ArrayList val$photos;
         final PhotoViewerProvider val$provider;
         final float val$top;
 
-        AnonymousClass71(ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f, PlaceProviderObject placeProviderObject, float f2, PageBlocksAdapter pageBlocksAdapter, PhotoViewerProvider photoViewerProvider, ArrayList arrayList, Integer num) {
+        AnonymousClass71(ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f, PlaceProviderObject placeProviderObject, float f2, PhotoViewerProvider photoViewerProvider, ArrayList arrayList, Integer num) {
             PhotoViewer.this = r1;
             this.val$animatingImageViews = clippingImageViewArr;
             this.val$layoutParams = layoutParams;
             this.val$left = f;
             this.val$object = placeProviderObject;
             this.val$top = f2;
-            this.val$pageBlocksAdapter = pageBlocksAdapter;
             this.val$provider = photoViewerProvider;
             this.val$photos = arrayList;
             this.val$embedSeekTime = num;
@@ -13542,7 +13542,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             int abs = (int) Math.abs(this.val$left - this.val$object.imageReceiver.getImageX());
             int abs2 = (int) Math.abs(this.val$top - this.val$object.imageReceiver.getImageY());
-            if (this.val$pageBlocksAdapter != null && this.val$object.imageReceiver.isAspectFit()) {
+            if (this.val$object.imageReceiver.isAspectFit()) {
                 abs = 0;
             }
             int[] iArr = new int[2];
@@ -14459,7 +14459,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @android.annotation.SuppressLint({"NewApi", "DrawAllocation"})
-    public void onDraw(android.graphics.Canvas r49) {
+    public void onDraw(android.graphics.Canvas r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.onDraw(android.graphics.Canvas):void");
     }
 
@@ -15685,7 +15685,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return Theme.getColor(i);
     }
 
-    public void drawCaptionBlur(android.graphics.Canvas r45, org.telegram.ui.Components.BlurringShader.StoryBlurDrawer r46, int r47, int r48, boolean r49, boolean r50, boolean r51) {
+    public static boolean BLUR_RENDERNODE() {
+        return Build.VERSION.SDK_INT >= 31 && SharedConfig.useNewBlur && SharedConfig.getDevicePerformanceClass() >= 2;
+    }
+
+    public void drawCaptionBlur(android.graphics.Canvas r44, org.telegram.ui.Components.BlurringShader.StoryBlurDrawer r45, int r46, int r47, boolean r48, boolean r49, boolean r50) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.drawCaptionBlur(android.graphics.Canvas, org.telegram.ui.Components.BlurringShader$StoryBlurDrawer, int, int, boolean, boolean, boolean):void");
     }
 
@@ -15700,7 +15704,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public void invalidateBlur() {
         StickerMakerView stickerMakerView = this.stickerMakerView;
-        if ((stickerMakerView == null || !stickerMakerView.isThanosInProgress) && this.animationInProgress == 0) {
+        if (stickerMakerView == null || !stickerMakerView.isThanosInProgress) {
             CaptionPhotoViewer captionPhotoViewer = this.captionEdit;
             if (captionPhotoViewer != null) {
                 captionPhotoViewer.invalidateBlur();

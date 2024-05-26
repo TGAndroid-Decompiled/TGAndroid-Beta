@@ -41,6 +41,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 public class EditTextCaption extends EditTextBoldCursor {
+    private static final int ACCESSIBILITY_ACTION_SHARE = 268435456;
     public boolean adaptiveCreateLinkDialog;
     private boolean allowTextEntitiesIntersection;
     private String caption;
@@ -54,6 +55,7 @@ public class EditTextCaption extends EditTextBoldCursor {
     private final Theme.ResourcesProvider resourcesProvider;
     private int selectionEnd;
     private int selectionStart;
+    private int triesCount;
     private int userNameLength;
     private int xOffset;
     private int yOffset;
@@ -73,6 +75,7 @@ public class EditTextCaption extends EditTextBoldCursor {
 
     public EditTextCaption(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.triesCount = 0;
         this.selectionStart = -1;
         this.selectionEnd = -1;
         this.resourcesProvider = resourcesProvider;
@@ -162,6 +165,10 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public void makeSelectedQuote() {
+        makeSelectedQuote(false);
+    }
+
+    public void makeSelectedQuote(boolean z) {
         int selectionEnd;
         int i = this.selectionStart;
         if (i >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
@@ -171,7 +178,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             i = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        int putQuoteToEditable = QuoteSpan.putQuoteToEditable(getText(), i, selectionEnd);
+        int putQuoteToEditable = QuoteSpan.putQuoteToEditable(getText(), i, selectionEnd, z);
         if (putQuoteToEditable >= 0) {
             setSelection(putQuoteToEditable);
             resetFontMetricsCache();
@@ -567,7 +574,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 break;
             }
             AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat = actionList.get(i);
-            if (accessibilityActionCompat.getId() == 268435456) {
+            if (accessibilityActionCompat.getId() == ACCESSIBILITY_ACTION_SHARE) {
                 wrap.removeAction(accessibilityActionCompat);
                 break;
             }

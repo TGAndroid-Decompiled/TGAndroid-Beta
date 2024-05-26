@@ -393,6 +393,32 @@ public class TextCell extends FrameLayout {
         }
     }
 
+    public void setTextAndValueAndIcon(CharSequence charSequence, CharSequence charSequence2, Drawable drawable, boolean z) {
+        this.offsetFromImage = 71;
+        this.imageLeft = 18;
+        this.textView.setText(charSequence);
+        this.textView.setRightDrawable((Drawable) null);
+        AnimatedTextView animatedTextView = this.valueTextView;
+        this.valueText = charSequence2;
+        animatedTextView.setText(charSequence2, false);
+        this.imageView.setColorFilter((ColorFilter) null);
+        if (drawable instanceof RLottieDrawable) {
+            this.imageView.setAnimation((RLottieDrawable) drawable);
+        } else {
+            this.imageView.setImageDrawable(drawable);
+        }
+        this.imageView.setVisibility(0);
+        this.valueTextView.setVisibility(0);
+        this.valueImageView.setVisibility(8);
+        this.imageView.setPadding(0, AndroidUtilities.dp(6.0f), 0, 0);
+        this.needDivider = z;
+        setWillNotDraw(!z);
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emojiDrawable;
+        if (swapAnimatedEmojiDrawable != null) {
+            swapAnimatedEmojiDrawable.set((Drawable) null, false);
+        }
+    }
+
     public void setOffsetFromImage(int i) {
         this.offsetFromImage = i;
     }

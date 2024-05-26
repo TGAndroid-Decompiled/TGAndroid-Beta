@@ -39,6 +39,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
@@ -78,9 +79,11 @@ public class EditTextBoldCursor extends EditTextEffects {
     private Matrix ellipsizeMatrix;
     private Paint ellipsizePaint;
     private int ellipsizeWidth;
+    private StaticLayout errorLayout;
     private int errorLineColor;
     private TextPaint errorPaint;
     private CharSequence errorText;
+    private boolean fixed;
     public FloatingActionMode floatingActionMode;
     private FloatingToolbar floatingToolbar;
     private ViewTreeObserver.OnPreDrawListener floatingToolbarPreDrawListener;
@@ -98,14 +101,18 @@ public class EditTextBoldCursor extends EditTextEffects {
     private long hintLastUpdateTime;
     private StaticLayout hintLayout;
     public float hintLayoutX;
+    public float hintLayoutY;
     public boolean hintLayoutYFix;
     private boolean hintVisible;
     private int ignoreBottomCount;
+    public boolean ignoreClipTop;
     private int ignoreTopCount;
     private Runnable invalidateRunnable;
     private boolean isTextWatchersSuppressed;
     private float lastLineActiveness;
+    int lastOffset;
     private int lastSize;
+    CharSequence lastText;
     private int lastTouchX;
     private boolean lineActive;
     private float lineActiveness;
@@ -115,6 +122,9 @@ public class EditTextBoldCursor extends EditTextEffects {
     private float lineSpacingExtra;
     private boolean lineVisible;
     private float lineY;
+    public boolean lineYFix;
+    private ViewTreeObserver.OnPreDrawListener listenerFixer;
+    private Drawable mCursorDrawable;
     private android.graphics.Rect mTempRect;
     private boolean nextSetTextAnimated;
     private Runnable onPremiumMenuLockClickListener;
@@ -223,6 +233,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         this.lineActiveness = 0.0f;
         this.lastLineActiveness = 0.0f;
         this.activeLineWidth = 0.0f;
+        this.lastOffset = -1;
         this.registeredTextWatchers = new ArrayList();
         this.isTextWatchersSuppressed = false;
         this.padding = new android.graphics.Rect();
@@ -301,6 +312,10 @@ public class EditTextBoldCursor extends EditTextEffects {
                 textWatcher2.afterTextChanged(getText());
             }
         }
+    }
+
+    public boolean isTextWatchersSuppressed() {
+        return this.isTextWatchersSuppressed;
     }
 
     @Override
@@ -416,6 +431,39 @@ public class EditTextBoldCursor extends EditTextEffects {
             }
         }
         this.cursorSize = AndroidUtilities.dp(24.0f);
+    }
+
+    @SuppressLint({"PrivateApi"})
+    public void fixHandleView(boolean z) {
+        if (z) {
+            this.fixed = false;
+        } else if (this.fixed) {
+        } else {
+            try {
+                if (editorClass == null) {
+                    editorClass = Class.forName("android.widget.Editor");
+                    Field declaredField = TextView.class.getDeclaredField("mEditor");
+                    mEditor = declaredField;
+                    declaredField.setAccessible(true);
+                    this.editor = mEditor.get(this);
+                }
+                if (this.listenerFixer == null) {
+                    Method declaredMethod = editorClass.getDeclaredMethod("getPositionListener", new Class[0]);
+                    declaredMethod.setAccessible(true);
+                    this.listenerFixer = (ViewTreeObserver.OnPreDrawListener) declaredMethod.invoke(this.editor, new Object[0]);
+                }
+                final ViewTreeObserver.OnPreDrawListener onPreDrawListener = this.listenerFixer;
+                Objects.requireNonNull(onPreDrawListener);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        onPreDrawListener.onPreDraw();
+                    }
+                }, 500L);
+            } catch (Throwable unused) {
+            }
+            this.fixed = true;
+        }
     }
 
     public void setTransformHintToHeader(boolean z) {
@@ -805,11 +853,15 @@ public class EditTextBoldCursor extends EditTextEffects {
                     if (this.supportRtlHint && LocaleController.isRTL) {
                         float scrollX = i + getScrollX() + (getMeasuredWidth() - lineWidth);
                         this.hintLayoutX = scrollX;
-                        canvas.translate(scrollX, (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp(7.0f));
+                        float height = (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp(7.0f);
+                        this.hintLayoutY = height;
+                        canvas.translate(scrollX, height);
                     } else {
                         float scrollX2 = i + getScrollX();
                         this.hintLayoutX = scrollX2;
-                        canvas.translate(scrollX2, (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp2(7.0f));
+                        float height2 = (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp2(7.0f);
+                        this.hintLayoutY = height2;
+                        canvas.translate(scrollX2, height2);
                     }
                     if (this.transformHintToHeader) {
                         float f3 = 1.0f - (this.headerAnimationProgress * 0.3f);
@@ -870,7 +922,8 @@ public class EditTextBoldCursor extends EditTextEffects {
         int length = this.forceCursorEnd ? layout.getText().length() : getSelectionStart();
         int lineForOffset = layout.getLineForOffset(length);
         updateCursorPosition(layout.getLineTop(lineForOffset), layout.getLineTop(lineForOffset + 1), layout.getPrimaryHorizontal(length));
-        layout.getText();
+        this.lastText = layout.getText();
+        this.lastOffset = length;
         return true;
     }
 

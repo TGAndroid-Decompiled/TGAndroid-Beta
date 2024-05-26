@@ -881,11 +881,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
         CameraSessionWrapper[] cameraSessionWrapperArr = this.cameraSession;
         if (cameraSessionWrapperArr[0] != null) {
-            cameraSessionWrapperArr[0].destroy(false, null, null);
+            cameraSessionWrapperArr[0].destroy(true, null, null);
         }
         CameraSessionWrapper[] cameraSessionWrapperArr2 = this.cameraSession;
         if (cameraSessionWrapperArr2[1] != null) {
-            cameraSessionWrapperArr2[1].destroy(false, null, null);
+            cameraSessionWrapperArr2[1].destroy(true, null, null);
         }
         return false;
     }

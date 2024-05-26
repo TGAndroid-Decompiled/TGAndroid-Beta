@@ -11,8 +11,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
+import org.telegram.tgnet.TLRPC$PaymentReceipt;
 import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
-import org.telegram.tgnet.TLRPC$TL_payments_paymentReceipt;
 import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
@@ -120,7 +120,7 @@ public class PaymentInfoCell extends FrameLayout {
         setInfo(tLRPC$TL_messageMediaInvoice.title, tLRPC$TL_messageMediaInvoice.description, tLRPC$TL_messageMediaInvoice.webPhoto, str, tLRPC$TL_messageMediaInvoice);
     }
 
-    public void setReceipt(TLRPC$TL_payments_paymentReceipt tLRPC$TL_payments_paymentReceipt, String str) {
-        setInfo(tLRPC$TL_payments_paymentReceipt.title, tLRPC$TL_payments_paymentReceipt.description, tLRPC$TL_payments_paymentReceipt.photo, str, tLRPC$TL_payments_paymentReceipt);
+    public void setReceipt(TLRPC$PaymentReceipt tLRPC$PaymentReceipt, String str) {
+        setInfo(tLRPC$PaymentReceipt.title, tLRPC$PaymentReceipt.description, tLRPC$PaymentReceipt.photo, str, tLRPC$PaymentReceipt);
     }
 }

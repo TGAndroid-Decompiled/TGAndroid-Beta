@@ -135,7 +135,7 @@ public class AlertDialogDecor extends AlertDialog {
         } else {
             rect.set(windowInsetsCompat.getStableInsetLeft(), windowInsetsCompat.getStableInsetTop(), windowInsetsCompat.getStableInsetRight(), windowInsetsCompat.getStableInsetBottom());
         }
-        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
         frameLayout.requestLayout();
         return windowInsetsCompat;
     }

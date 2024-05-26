@@ -79,6 +79,8 @@ public interface INavigationLayout {
 
     List<BackButtonMenu.PulledDialog> getPulledDialogs();
 
+    BaseFragment getSafeLastFragment();
+
     float getThemeAnimationValue();
 
     ViewGroup getView();
@@ -226,6 +228,19 @@ public interface INavigationLayout {
                 return null;
             }
             return _this.getFragmentStack().get(_this.getFragmentStack().size() - 2);
+        }
+
+        public static BaseFragment $default$getSafeLastFragment(INavigationLayout _this) {
+            if (_this.getFragmentStack().isEmpty()) {
+                return null;
+            }
+            for (int size = _this.getFragmentStack().size() - 1; size >= 0; size--) {
+                BaseFragment baseFragment = _this.getFragmentStack().get(size);
+                if (baseFragment != null && !baseFragment.isFinishing() && !baseFragment.isRemovingFromStack()) {
+                    return baseFragment;
+                }
+            }
+            return null;
         }
 
         public static Activity $default$getParentActivity(INavigationLayout _this) {

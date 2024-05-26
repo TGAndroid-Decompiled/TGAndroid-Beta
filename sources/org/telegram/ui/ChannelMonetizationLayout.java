@@ -98,7 +98,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
     private TL_stories$TL_premium_boostsStatus boostsStatus;
     private final int currentAccount;
     private int currentBoostLevel;
-    private final long dialogId;
+    public final long dialogId;
     private DecimalFormat formatter;
     private final BaseFragment fragment;
     private StatisticActivity.ChartViewData impressionsChart;

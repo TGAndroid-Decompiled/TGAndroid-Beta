@@ -578,7 +578,7 @@ public class QuickRepliesController {
     }
 
     public void lambda$updateTopMessage$16(MessagesStorage messagesStorage, final QuickReply quickReply, long j) {
-        ArrayList arrayList;
+        ArrayList<Long> arrayList;
         ArrayList arrayList2;
         SQLiteCursor queryFinalized;
         NativeByteBuffer byteBufferValue;
@@ -588,7 +588,7 @@ public class QuickRepliesController {
         sQLiteCursor = null;
         try {
             try {
-                arrayList = new ArrayList();
+                arrayList = new ArrayList<>();
                 arrayList2 = new ArrayList();
                 queryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, send_state, mid, date, topic_id, ttl FROM quick_replies_messages WHERE topic_id = ? ORDER BY mid ASC", Integer.valueOf(quickReply.id));
             } catch (Exception e) {
@@ -619,7 +619,7 @@ public class QuickRepliesController {
                 messagesStorage.getChatsInternal(TextUtils.join(",", arrayList2), arrayList4);
             }
             if (!arrayList.isEmpty()) {
-                messagesStorage.getUsersInternal(TextUtils.join(",", arrayList), arrayList3);
+                messagesStorage.getUsersInternal(arrayList, arrayList3);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

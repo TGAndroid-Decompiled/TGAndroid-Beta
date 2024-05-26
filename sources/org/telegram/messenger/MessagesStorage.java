@@ -126,7 +126,7 @@ import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 153;
+    public static final int LAST_DB_VERSION = 155;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -463,7 +463,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (intValue < 153) {
+                if (intValue < 155) {
                     try {
                         updateDbToLastVersion(intValue);
                     } catch (Exception e4) {
@@ -701,6 +701,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reaction_mentions_topics_did ON reaction_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE emoji_groups(type INTEGER PRIMARY KEY, data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE app_config(data BLOB)").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE effects(data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, custom_params BLOB, PRIMARY KEY (dialog_id, story_id));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE stories_counter (dialog_id INTEGER PRIMARY KEY, count INTEGER, max_read INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE profile_stories (dialog_id INTEGER, story_id INTEGER, data BLOB, type INTEGER, seen INTEGER, pin INTEGER, PRIMARY KEY(dialog_id, story_id));").stepThis().dispose();
@@ -719,7 +720,8 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reply_to_idx_quick_replies_messages ON quick_replies_messages(mid, reply_to_message_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_quick_replies_messages ON quick_replies_messages(reply_to_message_id, mid);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE business_links(data BLOB, order_value INTEGER);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 153").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -1822,7 +1824,7 @@ public class MessagesStorage extends BaseController {
                     getEncryptedChatsInternal(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                 }
                 if (!arrayList.isEmpty()) {
-                    getUsersInternal(TextUtils.join(",", arrayList), arrayList4);
+                    getUsersInternal(arrayList, arrayList4);
                 }
                 if (!arrayList2.isEmpty()) {
                     getChatsInternal(TextUtils.join(",", arrayList2), arrayList5);
@@ -1833,11 +1835,11 @@ public class MessagesStorage extends BaseController {
                         MessagesStorage.this.lambda$readAllDialogs$61(arrayList4, arrayList5, arrayList6, longSparseArray);
                     }
                 });
-            } catch (Throwable th2) {
-                th = th2;
+            } catch (Exception e2) {
+                e = e2;
             }
-        } catch (Exception e2) {
-            e = e2;
+        } catch (Throwable th2) {
+            th = th2;
         }
     }
 
@@ -1880,7 +1882,7 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    private void calcUnreadCounters(boolean r28) {
+    private void calcUnreadCounters(boolean r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.calcUnreadCounters(boolean):void");
     }
 
@@ -2873,17 +2875,17 @@ public class MessagesStorage extends BaseController {
             longSparseArray2.clear();
             if (tLRPC$TL_messageReactions != null && tLRPC$TL_messageReactions.results != null && tLRPC$TL_messageReactions.reactions_as_tags) {
                 for (int i2 = 0; i2 < tLRPC$TL_messageReactions.results.size(); i2++) {
-                    ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_messageReactions.results.get(i2).reaction);
-                    if (fromTLReaction != null) {
-                        longSparseArray.put(fromTLReaction.hash, fromTLReaction);
+                    ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_messageReactions.results.get(i2).reaction);
+                    if (fromTL != null) {
+                        longSparseArray.put(fromTL.hash, fromTL);
                     }
                 }
             }
             if (tLRPC$TL_messageReactions2 != null && tLRPC$TL_messageReactions2.results != null && tLRPC$TL_messageReactions2.reactions_as_tags) {
                 for (int i3 = 0; i3 < tLRPC$TL_messageReactions2.results.size(); i3++) {
-                    ReactionsLayoutInBubble.VisibleReaction fromTLReaction2 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_messageReactions2.results.get(i3).reaction);
-                    if (fromTLReaction2 != null) {
-                        longSparseArray2.put(fromTLReaction2.hash, fromTLReaction2);
+                    ReactionsLayoutInBubble.VisibleReaction fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_messageReactions2.results.get(i3).reaction);
+                    if (fromTL2 != null) {
+                        longSparseArray2.put(fromTL2.hash, fromTL2);
                     }
                 }
             }
@@ -2930,14 +2932,14 @@ public class MessagesStorage extends BaseController {
         LongSparseArray longSparseArray2 = new LongSparseArray();
         if (tLRPC$TL_messageReactions != null && tLRPC$TL_messageReactions.results != null && tLRPC$TL_messageReactions.reactions_as_tags) {
             for (int i = 0; i < tLRPC$TL_messageReactions.results.size(); i++) {
-                ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_messageReactions.results.get(i).reaction);
-                longSparseArray.put(fromTLReaction.hash, fromTLReaction);
+                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_messageReactions.results.get(i).reaction);
+                longSparseArray.put(fromTL.hash, fromTL);
             }
         }
         if (tLRPC$TL_messageReactions2 != null && tLRPC$TL_messageReactions2.results != null && tLRPC$TL_messageReactions2.reactions_as_tags) {
             for (int i2 = 0; i2 < tLRPC$TL_messageReactions2.results.size(); i2++) {
-                ReactionsLayoutInBubble.VisibleReaction fromTLReaction2 = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_messageReactions2.results.get(i2).reaction);
-                longSparseArray2.put(fromTLReaction2.hash, fromTLReaction2);
+                ReactionsLayoutInBubble.VisibleReaction fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_messageReactions2.results.get(i2).reaction);
+                longSparseArray2.put(fromTL2.hash, fromTL2);
             }
         }
         boolean z = false;
@@ -3638,7 +3640,7 @@ public class MessagesStorage extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesReadContent, Long.valueOf(j), arrayList);
     }
 
-    private void updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray r31, org.telegram.messenger.support.LongSparseIntArray r32, boolean r33) throws java.lang.Exception {
+    private void updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray r29, org.telegram.messenger.support.LongSparseIntArray r30, boolean r31) throws java.lang.Exception {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, boolean):void");
     }
 
@@ -5221,7 +5223,7 @@ public class MessagesStorage extends BaseController {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                ArrayList arrayList4 = new ArrayList();
+                ArrayList<Long> arrayList4 = new ArrayList<>();
                 ArrayList arrayList5 = new ArrayList();
                 SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT did FROM shortcut_widget WHERE id = %d ORDER BY ord ASC", Integer.valueOf(i)), new Object[0]);
                 while (queryFinalized.next()) {
@@ -5294,16 +5296,16 @@ public class MessagesStorage extends BaseController {
                         getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
                     }
                     if (!arrayList4.isEmpty()) {
-                        getUsersInternal(TextUtils.join(",", arrayList4), arrayList2);
+                        getUsersInternal(arrayList4, arrayList2);
                     }
                 }
-            } catch (Throwable th2) {
-                th = th2;
+            } catch (Exception e2) {
+                e = e2;
             }
-        } catch (Exception e2) {
-            e = e2;
+            countDownLatch.countDown();
+        } catch (Throwable th2) {
+            th = th2;
         }
-        countDownLatch.countDown();
     }
 
     public void getWidgetDialogs(final int i, final int i2, final ArrayList<Long> arrayList, final LongSparseArray<TLRPC$Dialog> longSparseArray, final LongSparseArray<TLRPC$Message> longSparseArray2, final ArrayList<TLRPC$User> arrayList2, final ArrayList<TLRPC$Chat> arrayList3) {
@@ -5327,7 +5329,7 @@ public class MessagesStorage extends BaseController {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                ArrayList arrayList4 = new ArrayList();
+                ArrayList<Long> arrayList4 = new ArrayList<>();
                 ArrayList arrayList5 = new ArrayList();
                 SQLiteCursor queryFinalized2 = this.database.queryFinalized(String.format(Locale.US, "SELECT did FROM shortcut_widget WHERE id = %d ORDER BY ord ASC", Integer.valueOf(i)), new Object[0]);
                 while (queryFinalized2.next()) {
@@ -5435,15 +5437,15 @@ public class MessagesStorage extends BaseController {
                     getChatsInternal(TextUtils.join(",", arrayList5), arrayList2);
                 }
                 if (!arrayList4.isEmpty()) {
-                    getUsersInternal(TextUtils.join(",", arrayList4), arrayList3);
+                    getUsersInternal(arrayList4, arrayList3);
                 }
-            } catch (Throwable th2) {
-                th = th2;
+            } catch (Exception e2) {
+                e = e2;
             }
-        } catch (Exception e2) {
-            e = e2;
+            countDownLatch.countDown();
+        } catch (Throwable th2) {
+            th = th2;
         }
-        countDownLatch.countDown();
     }
 
     public void putSentFile(final String str, final TLObject tLObject, final int i, final String str2) {
@@ -5761,7 +5763,7 @@ public class MessagesStorage extends BaseController {
                 getEncryptedChatsInternal("" + j, arrayList3, arrayList2);
                 if (!arrayList3.isEmpty() && !arrayList2.isEmpty()) {
                     ArrayList<TLRPC$User> arrayList4 = new ArrayList<>();
-                    getUsersInternal(TextUtils.join(",", arrayList2), arrayList4);
+                    getUsersInternal(arrayList2, arrayList4);
                     if (!arrayList4.isEmpty()) {
                         arrayList.add(arrayList3.get(0));
                         arrayList.add(arrayList4.get(0));
@@ -6074,11 +6076,72 @@ public class MessagesStorage extends BaseController {
         executeFast.dispose();
     }
 
-    public void getUsersInternal(String str, ArrayList<TLRPC$User> arrayList) throws Exception {
-        if (str == null || str.length() == 0 || arrayList == null) {
+    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC$User> arrayList2) throws Exception {
+        getUsersInternal(arrayList, arrayList2, false);
+    }
+
+    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC$User> arrayList2, boolean z) throws Exception {
+        if (arrayList == null || arrayList.isEmpty() || arrayList2 == null) {
             return;
         }
-        SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data, status FROM users WHERE uid IN(%s)", str), new Object[0]);
+        if (arrayList.size() > 50) {
+            int i = 0;
+            while (i < arrayList.size()) {
+                TLRPC$User user = getMessagesController().getUser(Long.valueOf(arrayList.get(i).longValue()));
+                if (user != null) {
+                    arrayList2.add(user);
+                    arrayList.remove(i);
+                    i--;
+                }
+                i++;
+            }
+        }
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data, status FROM users WHERE uid IN(%s)", TextUtils.join(",", arrayList)), new Object[0]);
+        while (queryFinalized.next()) {
+            try {
+                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                if (byteBufferValue != null) {
+                    TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    byteBufferValue.reuse();
+                    if (TLdeserialize != null) {
+                        TLRPC$UserStatus tLRPC$UserStatus = TLdeserialize.status;
+                        if (tLRPC$UserStatus != null) {
+                            tLRPC$UserStatus.expires = queryFinalized.intValue(1);
+                        }
+                        arrayList2.add(TLdeserialize);
+                        if (arrayList.size() > 50 && z) {
+                            getMessagesController().putUser(TLdeserialize, true, false);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                checkSQLException(e);
+            }
+        }
+        queryFinalized.dispose();
+    }
+
+    public void getUsersInternal(HashSet<Long> hashSet, ArrayList<TLRPC$User> arrayList) throws Exception {
+        if (hashSet == null || hashSet.isEmpty() || arrayList == null) {
+            return;
+        }
+        if (hashSet.size() > 50) {
+            Iterator<Long> it = hashSet.iterator();
+            while (it.hasNext()) {
+                TLRPC$User user = getMessagesController().getUser(it.next());
+                if (user != null) {
+                    arrayList.add(user);
+                    it.remove();
+                }
+            }
+        }
+        if (hashSet.isEmpty()) {
+            return;
+        }
+        SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data, status FROM users WHERE uid IN(%s)", TextUtils.join(",", hashSet)), new Object[0]);
         while (queryFinalized.next()) {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -6814,22 +6877,19 @@ public class MessagesStorage extends BaseController {
                         throw th;
                     }
                 } else {
-                    StringBuilder sb = new StringBuilder();
+                    ArrayList<Long> arrayList2 = new ArrayList<>();
                     LongSparseArray longSparseArray = new LongSparseArray();
                     int size2 = arrayList.size();
                     for (int i2 = 0; i2 < size2; i2++) {
                         TLRPC$User tLRPC$User2 = arrayList.get(i2);
-                        if (sb.length() != 0) {
-                            sb.append(",");
-                        }
-                        sb.append(tLRPC$User2.id);
+                        arrayList2.add(Long.valueOf(tLRPC$User2.id));
                         longSparseArray.put(tLRPC$User2.id, tLRPC$User2);
                     }
-                    ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
-                    getUsersInternal(sb.toString(), arrayList2);
-                    int size3 = arrayList2.size();
+                    ArrayList<TLRPC$User> arrayList3 = new ArrayList<>();
+                    getUsersInternal(arrayList2, arrayList3);
+                    int size3 = arrayList3.size();
                     for (int i3 = 0; i3 < size3; i3++) {
-                        TLRPC$User tLRPC$User3 = arrayList2.get(i3);
+                        TLRPC$User tLRPC$User3 = arrayList3.get(i3);
                         TLRPC$User tLRPC$User4 = (TLRPC$User) longSparseArray.get(tLRPC$User3.id);
                         if (tLRPC$User4 != null) {
                             if (tLRPC$User4.first_name != null && tLRPC$User4.last_name != null) {
@@ -6851,11 +6911,11 @@ public class MessagesStorage extends BaseController {
                             }
                         }
                     }
-                    if (!arrayList2.isEmpty()) {
+                    if (!arrayList3.isEmpty()) {
                         if (z2) {
                             this.database.beginTransaction();
                         }
-                        putUsersInternal(arrayList2);
+                        putUsersInternal(arrayList3);
                         if (z2) {
                             this.database.commitTransaction();
                         }
@@ -6865,11 +6925,11 @@ public class MessagesStorage extends BaseController {
                 if (sQLiteDatabase3 != null) {
                     sQLiteDatabase3.commitTransaction();
                 }
-            } catch (Exception e2) {
-                e = e2;
+            } catch (Throwable th2) {
+                th = th2;
             }
-        } catch (Throwable th2) {
-            th = th2;
+        } catch (Exception e2) {
+            e = e2;
         }
     }
 
@@ -7212,12 +7272,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(179);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(181);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(179);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(181);
             tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
         }
     }
@@ -8162,7 +8222,9 @@ public class MessagesStorage extends BaseController {
     public TLRPC$User getUser(long j) {
         try {
             ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-            getUsersInternal("" + j, arrayList);
+            ArrayList<Long> arrayList2 = new ArrayList<>();
+            arrayList2.add(Long.valueOf(j));
+            getUsersInternal(arrayList2, arrayList);
             if (arrayList.isEmpty()) {
                 return null;
             }
@@ -8176,7 +8238,7 @@ public class MessagesStorage extends BaseController {
     public ArrayList<TLRPC$User> getUsers(ArrayList<Long> arrayList) {
         ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
         try {
-            getUsersInternal(TextUtils.join(",", arrayList), arrayList2);
+            getUsersInternal(arrayList, arrayList2);
         } catch (Exception e) {
             arrayList2.clear();
             checkSQLException(e);

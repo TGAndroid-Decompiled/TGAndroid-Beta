@@ -29,13 +29,13 @@ public abstract class BaseContinuationImpl implements Continuation<Object>, Coro
                 coroutine_suspended = IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED();
             } catch (Throwable th) {
                 Result.Companion companion = Result.Companion;
-                obj = Result.m148constructorimpl(ResultKt.createFailure(th));
+                obj = Result.m156constructorimpl(ResultKt.createFailure(th));
             }
             if (invokeSuspend == coroutine_suspended) {
                 return;
             }
             Result.Companion companion2 = Result.Companion;
-            obj = Result.m148constructorimpl(invokeSuspend);
+            obj = Result.m156constructorimpl(invokeSuspend);
             baseContinuationImpl.releaseIntercepted();
             if (!(continuation2 instanceof BaseContinuationImpl)) {
                 continuation2.resumeWith(obj);

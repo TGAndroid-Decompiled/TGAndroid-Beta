@@ -98,9 +98,9 @@ public class ReactionTabHolderView extends FrameLayout {
         int i2 = tLRPC$ReactionCount.count;
         this.count = i2;
         this.counterView.setText(String.format("%s", LocaleController.formatShortNumber(i2, null)));
-        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$ReactionCount.reaction);
-        this.reaction = fromTLReaction;
-        if (fromTLReaction.emojicon != null) {
+        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$ReactionCount.reaction);
+        this.reaction = fromTL;
+        if (fromTL.emojicon != null) {
             for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
                 if (tLRPC$TL_availableReaction.reaction.equals(this.reaction.emojicon)) {
                     this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);

@@ -16,6 +16,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -26,7 +27,7 @@ public class AccountSelectCell extends FrameLayout {
     private ImageView checkImageView;
     private BackupImageView imageView;
     private TextView infoTextView;
-    private TextView textView;
+    private SimpleTextView textView;
 
     public AccountSelectCell(Context context, boolean z) {
         super(context);
@@ -37,22 +38,20 @@ public class AccountSelectCell extends FrameLayout {
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(18.0f));
         addView(this.imageView, LayoutHelper.createFrame(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.textView = textView;
-        textView.setTextSize(1, 15.0f);
+        SimpleTextView simpleTextView = new SimpleTextView(context);
+        this.textView = simpleTextView;
+        simpleTextView.setTextSize(15);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textView.setLines(1);
+        this.textView.setEllipsizeByGradient(true);
         this.textView.setMaxLines(1);
-        this.textView.setSingleLine(true);
         this.textView.setGravity(19);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
         if (z) {
             addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
             this.textView.setTextColor(Theme.getColor(Theme.key_voipgroup_nameText));
             this.textView.setText(LocaleController.getString("VoipGroupDisplayAs", R.string.VoipGroupDisplayAs));
-            TextView textView2 = new TextView(context);
-            this.infoTextView = textView2;
-            textView2.setTextColor(Theme.getColor(Theme.key_voipgroup_lastSeenText));
+            TextView textView = new TextView(context);
+            this.infoTextView = textView;
+            textView.setTextColor(Theme.getColor(Theme.key_voipgroup_lastSeenText));
             this.infoTextView.setTextSize(1, 15.0f);
             this.infoTextView.setLines(1);
             this.infoTextView.setMaxLines(1);
@@ -63,7 +62,7 @@ public class AccountSelectCell extends FrameLayout {
             addView(this.infoTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 61.0f, 27.0f, 8.0f, 0.0f));
             return;
         }
-        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 61.0f, 0.0f, 56.0f, 0.0f));
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 61.0f, 0.0f, 52.0f, 0.0f));
         this.textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         ImageView imageView = new ImageView(context);
         this.checkImageView = imageView;

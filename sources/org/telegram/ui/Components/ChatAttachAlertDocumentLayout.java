@@ -112,7 +112,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     private ActionBarMenuItem searchItem;
     private boolean searching;
     private HashMap<String, ListItem> selectedFiles;
-    private ArrayList<String> selectedFilesOrder;
+    public ArrayList<String> selectedFilesOrder;
     private HashMap<FilteredSearchView.MessageHashId, MessageObject> selectedMessages;
     private boolean sendPressed;
     private boolean sortByName;
@@ -128,7 +128,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         }
 
-        void didSelectFiles(ArrayList<String> arrayList, String str, ArrayList<MessageObject> arrayList2, boolean z, int i);
+        void didSelectFiles(ArrayList<String> arrayList, String str, ArrayList<MessageObject> arrayList2, boolean z, int i, long j, boolean z2);
 
         void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i);
 
@@ -825,7 +825,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
         if ((this.selectedFiles.size() == 0 && this.selectedMessages.size() == 0) || this.delegate == null || this.sendPressed) {
             return;
         }
@@ -834,7 +834,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         for (FilteredSearchView.MessageHashId messageHashId : this.selectedMessages.keySet()) {
             arrayList.add(this.selectedMessages.get(messageHashId));
         }
-        this.delegate.didSelectFiles(new ArrayList<>(this.selectedFilesOrder), this.parentAlert.commentTextView.getText().toString(), arrayList, z, i);
+        this.delegate.didSelectFiles(new ArrayList<>(this.selectedFilesOrder), this.parentAlert.commentTextView.getText().toString(), arrayList, z, i, j, z2);
         this.parentAlert.dismiss(true);
     }
 

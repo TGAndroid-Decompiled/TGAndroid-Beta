@@ -24,6 +24,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 public class PremiumGradient {
     private static PremiumGradient instance;
+    private final PremiumGradientTools goldGradient;
+    public InternalDrawable goldenStarMenuDrawable;
     private int lastStarColor;
     Paint lockedPremiumPaint;
     private final PremiumGradientTools mainGradient;
@@ -43,11 +45,16 @@ public class PremiumGradient {
     private PremiumGradient() {
         PremiumGradientTools premiumGradientTools = new PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4);
         this.mainGradient = premiumGradientTools;
+        PremiumGradientTools premiumGradientTools2 = new PremiumGradientTools(Theme.key_starsGradient1, Theme.key_starsGradient2, -1);
+        this.goldGradient = premiumGradientTools2;
         this.mainGradientPaint = premiumGradientTools.paint;
         Context context = ApplicationLoader.applicationContext;
         int i = R.drawable.msg_premium_liststar;
         this.premiumStarDrawableMini = ContextCompat.getDrawable(context, i).mutate();
-        this.premiumStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_settings_premium));
+        Context context2 = ApplicationLoader.applicationContext;
+        int i2 = R.drawable.msg_settings_premium;
+        this.premiumStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(context2, i2));
+        this.goldenStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2), premiumGradientTools2);
         this.premiumStarMenuDrawable2 = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_premium_normal));
         this.premiumStarColoredDrawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
         premiumGradientTools.chekColors();
@@ -155,6 +162,10 @@ public class PremiumGradient {
         public float x2;
         public float y1;
         public float y2;
+
+        public PremiumGradientTools(int i, int i2, int i3) {
+            this(i, i2, i3, -1, -1);
+        }
 
         public PremiumGradientTools(int i, int i2, int i3, int i4) {
             this(i, i2, i3, i4, -1);

@@ -142,7 +142,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
 
     public void lambda$onLoadChildren$1(MessagesStorage messagesStorage, final String str, final MediaBrowserService.Result result) {
         try {
-            ArrayList arrayList = new ArrayList();
+            ArrayList<Long> arrayList = new ArrayList<>();
             ArrayList arrayList2 = new ArrayList();
             SQLiteCursor queryFinalized = messagesStorage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT DISTINCT uid FROM media_v4 WHERE uid != 0 AND mid > 0 AND type = %d", 4), new Object[0]);
             while (queryFinalized.next()) {
@@ -190,7 +190,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 queryFinalized2.dispose();
                 if (!arrayList.isEmpty()) {
                     ArrayList<TLRPC$User> arrayList5 = new ArrayList<>();
-                    messagesStorage.getUsersInternal(TextUtils.join(",", arrayList), arrayList5);
+                    messagesStorage.getUsersInternal(arrayList, arrayList5);
                     for (int i = 0; i < arrayList5.size(); i++) {
                         TLRPC$User tLRPC$User = arrayList5.get(i);
                         this.users.put(tLRPC$User.id, tLRPC$User);

@@ -79,7 +79,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuItem, -1);
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuItemIcon, -1);
         this.sparseIntArray.put(Theme.key_text_RedRegular, -1152913);
-        this.sparseIntArray.put(Theme.key_listSelector, 234881023);
+        this.sparseIntArray.put(Theme.key_listSelector, 385875967);
         SparseIntArray sparseIntArray3 = this.sparseIntArray;
         int i3 = Theme.key_dialogButtonSelector;
         sparseIntArray3.put(i3, 436207615);

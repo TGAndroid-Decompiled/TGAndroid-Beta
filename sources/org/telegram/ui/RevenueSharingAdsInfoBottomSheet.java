@@ -33,6 +33,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
     @SuppressLint({"UseCompatLoadingForDrawables"})
     public RevenueSharingAdsInfoBottomSheet(final BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
+        fixNavigationBar();
         Paint paint = new Paint(1);
         this.topIconBgPaint = paint;
         paint.setStyle(Paint.Style.FILL);

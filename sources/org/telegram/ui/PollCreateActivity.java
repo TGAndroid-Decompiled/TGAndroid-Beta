@@ -101,6 +101,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private boolean hintShowed;
     private HintView hintView;
     private boolean isAnimatePopupClosing;
+    boolean isEmojiSearchOpened;
     private int keyboardHeight;
     private int keyboardHeightLand;
     private KeyboardNotifier keyboardNotifier;
@@ -129,6 +130,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private CharSequence solutionString;
     private SuggestEmojiView suggestEmojiPanel;
     private boolean waitingForKeyboardOpen;
+    boolean wasEmojiSearchOpened;
     private CharSequence[] answers = new CharSequence[10];
     private boolean[] answersChecks = new boolean[10];
     private int answersCount = 1;
@@ -155,7 +157,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         void sendPoll(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap<String, String> hashMap, boolean z, int i);
     }
 
-    static int access$3610(PollCreateActivity pollCreateActivity) {
+    static int access$3710(PollCreateActivity pollCreateActivity) {
         int i = pollCreateActivity.answersCount;
         pollCreateActivity.answersCount = i - 1;
         return i;
@@ -256,13 +258,16 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 int measureKeyboardHeight = measureKeyboardHeight();
                 if (measureKeyboardHeight > AndroidUtilities.dp(20.0f)) {
                     PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                    if (!pollCreateActivity.emojiViewVisible) {
+                    if (!pollCreateActivity.emojiViewVisible && !pollCreateActivity.isEmojiSearchOpened) {
                         this.ignoreLayout = true;
                         pollCreateActivity.hideEmojiView();
                         this.ignoreLayout = false;
                     }
                 }
                 int emojiPadding = (measureKeyboardHeight > AndroidUtilities.dp(20.0f) || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) ? 0 : PollCreateActivity.this.getEmojiPadding();
+                if (measureKeyboardHeight > AndroidUtilities.dp(20.0f) && PollCreateActivity.this.isEmojiSearchOpened) {
+                    emojiPadding = AndroidUtilities.dp(120.0f);
+                }
                 int childCount = getChildCount();
                 for (int i3 = 0; i3 < childCount; i3++) {
                     View childAt = getChildAt(i3);
@@ -590,6 +595,12 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             if (suggestEmojiView != null) {
                 suggestEmojiView.forceClose();
             }
+            PollEditTextCell pollEditTextCell = this.currentCell;
+            if (pollEditTextCell != null) {
+                pollEditTextCell.setEmojiButtonVisibility(false);
+                this.currentCell.getTextView().clearFocus();
+                AndroidUtilities.hideKeyboard(this.currentCell.getEditField());
+            }
         }
     }
 
@@ -732,7 +743,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     public boolean onBackPressed() {
         if (this.emojiViewVisible) {
             hideEmojiPopup(true);
-            return true;
+            return false;
         }
         return checkDiscard();
     }
@@ -803,11 +814,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void addNewField() {
-        EmojiView emojiView = this.emojiView;
-        if (emojiView != null) {
-            emojiView.scrollEmojiToTop();
-        }
-        hideEmojiPopup(false);
         resetSuggestEmojiPanel();
         boolean[] zArr = this.answersChecks;
         int i = this.answersCount;
@@ -823,7 +829,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.listAdapter.notifyItemChanged(this.answerSectionRow);
     }
 
-    public void updateSuggestEmojiPanelDelegate(RecyclerView.ViewHolder viewHolder) {
+    private void updateSuggestEmojiPanelDelegate(RecyclerView.ViewHolder viewHolder) {
         SuggestEmojiView suggestEmojiView = this.suggestEmojiPanel;
         if (suggestEmojiView != null) {
             suggestEmojiView.forceClose();
@@ -862,16 +868,24 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             }
             if (this.emojiViewVisible) {
                 int i2 = z ? this.keyboardHeightLand : this.keyboardHeight;
+                if (this.isEmojiSearchOpened) {
+                    i2 += AndroidUtilities.dp(120.0f);
+                }
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.emojiView.getLayoutParams();
                 int i3 = layoutParams.width;
                 int i4 = AndroidUtilities.displaySize.x;
-                if (i3 != i4 || layoutParams.height != i2) {
+                if (i3 != i4 || layoutParams.height != i2 || this.wasEmojiSearchOpened != this.isEmojiSearchOpened) {
                     layoutParams.width = i4;
                     layoutParams.height = i2;
                     this.emojiView.setLayoutParams(layoutParams);
                     this.emojiPadding = layoutParams.height;
                     this.keyboardNotifier.fire();
                     this.sizeNotifierFrameLayout.requestLayout();
+                    boolean z3 = this.wasEmojiSearchOpened;
+                    if (z3 != this.isEmojiSearchOpened) {
+                        animateEmojiViewTranslationY(z3 ? -AndroidUtilities.dp(120.0f) : AndroidUtilities.dp(120.0f), 0.0f);
+                    }
+                    this.wasEmojiSearchOpened = this.isEmojiSearchOpened;
                 }
             }
             if (this.lastSizeChangeValue1 == i && this.lastSizeChangeValue2 == z) {
@@ -879,7 +893,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             }
             this.lastSizeChangeValue1 = i;
             this.lastSizeChangeValue2 = z;
-            boolean z3 = this.keyboardVisible;
+            boolean z4 = this.keyboardVisible;
             PollEditTextCell pollEditTextCell = this.currentCell;
             if (pollEditTextCell != null) {
                 this.keyboardVisible = pollEditTextCell.getEditField().isFocused() && this.keyboardNotifier.keyboardVisible() && i > 0;
@@ -889,7 +903,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             if (this.keyboardVisible && this.emojiViewVisible) {
                 showEmojiPopup(0);
             }
-            if (this.emojiPadding != 0 && !(z2 = this.keyboardVisible) && z2 != z3 && !this.emojiViewVisible) {
+            if (this.emojiPadding != 0 && !(z2 = this.keyboardVisible) && z2 != z4 && !this.emojiViewVisible) {
                 this.emojiPadding = 0;
                 this.keyboardNotifier.fire();
                 this.sizeNotifierFrameLayout.requestLayout();
@@ -901,18 +915,57 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
+    private void animateEmojiViewTranslationY(final float f, final float f2) {
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                PollCreateActivity.this.lambda$animateEmojiViewTranslationY$2(f, f2, valueAnimator);
+            }
+        });
+        ofFloat.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                PollCreateActivity.this.emojiView.setTranslationY(f2);
+            }
+        });
+        ofFloat.setDuration(250L);
+        ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+        ofFloat.start();
+    }
+
+    public void lambda$animateEmojiViewTranslationY$2(float f, float f2, ValueAnimator valueAnimator) {
+        this.emojiView.setTranslationY(AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+    }
+
     public void onEmojiClicked(PollEditTextCell pollEditTextCell) {
         this.currentCell = pollEditTextCell;
         if (this.emojiViewVisible) {
+            collapseSearchEmojiView();
             openKeyboardInternal();
-        } else {
-            showEmojiPopup(1);
+            return;
+        }
+        showEmojiPopup(1);
+    }
+
+    private void collapseSearchEmojiView() {
+        if (this.isEmojiSearchOpened) {
+            this.emojiView.closeSearch(false);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.emojiView.getLayoutParams();
+            layoutParams.height -= AndroidUtilities.dp(120.0f);
+            this.emojiView.setLayoutParams(layoutParams);
+            this.emojiPadding = layoutParams.height;
+            this.wasEmojiSearchOpened = this.isEmojiSearchOpened;
+            this.isEmojiSearchOpened = false;
+            animateEmojiViewTranslationY(-AndroidUtilities.dp(120.0f), 0.0f);
         }
     }
 
     private void openKeyboardInternal() {
         this.keyboardNotifier.awaitKeyboard();
-        AndroidUtilities.showKeyboard(this.currentCell.getEditField());
+        EditTextBoldCursor editField = this.currentCell.getEditField();
+        editField.requestFocus();
+        AndroidUtilities.showKeyboard(editField);
         showEmojiPopup(AndroidUtilities.usingHardwareInput ? 0 : 2);
         if (AndroidUtilities.usingHardwareInput || this.keyboardVisible || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
             return;
@@ -968,7 +1021,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PollCreateActivity.this.lambda$showEmojiPopup$2(valueAnimator);
+                        PollCreateActivity.this.lambda$showEmojiPopup$3(valueAnimator);
                     }
                 });
                 ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -989,6 +1042,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             EmojiView emojiView3 = this.emojiView;
             if (emojiView3 != null) {
                 this.emojiViewVisible = false;
+                this.isEmojiSearchOpened = false;
                 if (AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow) {
                     emojiView3.setVisibility(8);
                 }
@@ -1001,13 +1055,45 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void lambda$showEmojiPopup$2(ValueAnimator valueAnimator) {
+    public void lambda$showEmojiPopup$3(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    }
+
+    public void onCellFocusChanges(PollEditTextCell pollEditTextCell, boolean z) {
+        if (this.isPremium && z) {
+            if (this.currentCell == pollEditTextCell && this.emojiViewVisible && this.isEmojiSearchOpened) {
+                collapseSearchEmojiView();
+                this.emojiViewVisible = false;
+            }
+            PollEditTextCell pollEditTextCell2 = this.currentCell;
+            this.currentCell = pollEditTextCell;
+            pollEditTextCell.setEmojiButtonVisibility(true);
+            ChatActivityEnterViewAnimatedIconView emojiButton = pollEditTextCell.getEmojiButton();
+            ChatActivityEnterViewAnimatedIconView.State state = ChatActivityEnterViewAnimatedIconView.State.SMILE;
+            emojiButton.setState(state, false);
+            updateSuggestEmojiPanelDelegate(this.listView.findContainingViewHolder(pollEditTextCell));
+            if (pollEditTextCell2 == null || pollEditTextCell2 == pollEditTextCell) {
+                return;
+            }
+            if (this.emojiViewVisible) {
+                collapseSearchEmojiView();
+                hideEmojiPopup(false);
+                openKeyboardInternal();
+            }
+            pollEditTextCell2.setEmojiButtonVisibility(false);
+            pollEditTextCell2.getEmojiButton().setState(state, false);
+        }
     }
 
     public void hideEmojiPopup(boolean z) {
         if (this.isPremium) {
             if (this.emojiViewVisible) {
+                this.emojiView.scrollEmojiToTop();
+                this.emojiView.closeSearch(false);
+                if (z) {
+                    this.emojiView.hideSearchKeyboard();
+                }
+                this.isEmojiSearchOpened = false;
                 showEmojiPopup(0);
             }
             if (z) {
@@ -1017,7 +1103,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            PollCreateActivity.this.lambda$hideEmojiPopup$3(valueAnimator);
+                            PollCreateActivity.this.lambda$hideEmojiPopup$4(valueAnimator);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -1038,7 +1124,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void lambda$hideEmojiPopup$3(ValueAnimator valueAnimator) {
+    public void lambda$hideEmojiPopup$4(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -1072,7 +1158,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         if (this.emojiView != null) {
             return;
         }
-        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourceProvider, false);
+        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), true, null, null, true, this.resourceProvider, false);
         this.emojiView = emojiView2;
         emojiView2.fixBottomTabContainerTranslation = false;
         emojiView2.allowEmojisForNonPremium(false);
@@ -1080,11 +1166,11 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         if (AndroidUtilities.isTablet()) {
             this.emojiView.setForseMultiwindowLayout(true);
         }
-        this.emojiView.setDelegate(new AnonymousClass8());
+        this.emojiView.setDelegate(new AnonymousClass9());
         this.sizeNotifierFrameLayout.addView(this.emojiView);
     }
 
-    public class AnonymousClass8 implements EmojiView.EmojiViewDelegate {
+    public class AnonymousClass9 implements EmojiView.EmojiViewDelegate {
         @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
@@ -1121,11 +1207,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
 
         @Override
-        public boolean isSearchOpened() {
-            return EmojiView.EmojiViewDelegate.CC.$default$isSearchOpened(this);
-        }
-
-        @Override
         public boolean isUserSelf() {
             return EmojiView.EmojiViewDelegate.CC.$default$isUserSelf(this);
         }
@@ -1143,11 +1224,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         @Override
         public void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i) {
             EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
-        }
-
-        @Override
-        public void onSearchOpenClose(int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onSearchOpenClose(this, i);
         }
 
         @Override
@@ -1190,7 +1266,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             EmojiView.EmojiViewDelegate.CC.$default$showTrendingStickersAlert(this, trendingStickersLayout);
         }
 
-        AnonymousClass8() {
+        AnonymousClass9() {
         }
 
         @Override
@@ -1259,7 +1335,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             builder.setPositiveButton(LocaleController.getString("ClearButton", R.string.ClearButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    PollCreateActivity.AnonymousClass8.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
+                    PollCreateActivity.AnonymousClass9.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1268,6 +1344,18 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
 
         public void lambda$onClearEmojiRecent$0(DialogInterface dialogInterface, int i) {
             PollCreateActivity.this.emojiView.clearRecentEmoji();
+        }
+
+        @Override
+        public void onSearchOpenClose(int i) {
+            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
+            pollCreateActivity.isEmojiSearchOpened = i != 0;
+            pollCreateActivity.sizeNotifierFrameLayout.requestLayout();
+        }
+
+        @Override
+        public boolean isSearchOpened() {
+            return PollCreateActivity.this.isEmojiSearchOpened;
         }
     }
 
@@ -1441,19 +1529,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
-                    public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
-                        super.onFieldTouchUp(editTextBoldCursor);
-                        if (PollCreateActivity.this.isPremium) {
-                            PollEditTextCell pollEditTextCell3 = (PollEditTextCell) editTextBoldCursor.getParent();
-                            PollCreateActivity.this.currentCell = pollEditTextCell3;
-                            if (PollCreateActivity.this.emojiView != null) {
-                                PollCreateActivity.this.emojiView.scrollEmojiToTop();
-                            }
-                            pollEditTextCell3.getEmojiButton().setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
-                            PollCreateActivity.this.hideEmojiPopup(false);
-                            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                            pollCreateActivity.updateSuggestEmojiPanelDelegate(pollCreateActivity.listView.findContainingViewHolder(this));
-                        }
+                    protected void onEditTextFocusChanged(boolean z) {
+                        PollCreateActivity.this.onCellFocusChanges(this, z);
                     }
 
                     @Override
@@ -1511,19 +1588,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
                 }) {
                     @Override
-                    public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
-                        super.onFieldTouchUp(editTextBoldCursor);
-                        if (PollCreateActivity.this.isPremium) {
-                            PollEditTextCell pollEditTextCell4 = (PollEditTextCell) editTextBoldCursor.getParent();
-                            PollCreateActivity.this.currentCell = pollEditTextCell4;
-                            if (PollCreateActivity.this.emojiView != null) {
-                                PollCreateActivity.this.emojiView.scrollEmojiToTop();
-                            }
-                            PollCreateActivity.this.hideEmojiPopup(false);
-                            pollEditTextCell4.getEmojiButton().setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
-                            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                            pollCreateActivity.updateSuggestEmojiPanelDelegate(pollCreateActivity.listView.findContainingViewHolder(this));
-                        }
+                    protected void onEditTextFocusChanged(boolean z2) {
+                        PollCreateActivity.this.onCellFocusChanges(this, z2);
                     }
 
                     @Override
@@ -1659,19 +1725,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
-                    public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
-                        super.onFieldTouchUp(editTextBoldCursor);
-                        if (PollCreateActivity.this.isPremium) {
-                            PollEditTextCell pollEditTextCell5 = (PollEditTextCell) editTextBoldCursor.getParent();
-                            PollCreateActivity.this.currentCell = pollEditTextCell5;
-                            if (PollCreateActivity.this.emojiView != null) {
-                                PollCreateActivity.this.emojiView.scrollEmojiToTop();
-                            }
-                            pollEditTextCell5.getEmojiButton().setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
-                            PollCreateActivity.this.hideEmojiPopup(false);
-                            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                            pollCreateActivity.updateSuggestEmojiPanelDelegate(pollCreateActivity.listView.findContainingViewHolder(this));
-                        }
+                    protected void onEditTextFocusChanged(boolean z2) {
+                        PollCreateActivity.this.onCellFocusChanges(this, z2);
                     }
                 };
                 pollEditTextCell4.createErrorTextView();

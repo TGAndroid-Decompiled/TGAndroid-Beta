@@ -50,11 +50,11 @@ public class ChartHorizontalLinesData {
         return AndroidUtilities.formatWholeNumber((int) j, 0);
     }
 
-    public static int lookupHeight(long j) {
+    public static long lookupHeight(long j) {
         if (j > 100) {
             j = round(j);
         }
-        return ((int) Math.ceil(((float) j) / 5.0f)) * 5;
+        return ((long) Math.ceil(((float) j) / 5.0f)) * 5;
     }
 
     private static long round(long j) {

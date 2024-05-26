@@ -185,6 +185,10 @@ public class AnimatedFloat {
         this.transitionDuration = j;
     }
 
+    public void setDelay(long j) {
+        this.transitionDelay = j;
+    }
+
     public long getDuration() {
         return this.transitionDuration;
     }

@@ -121,11 +121,17 @@ public class TLRPC$TL_message extends TLRPC$Message {
         if ((this.flags & 1073741824) != 0) {
             this.quick_reply_shortcut_id = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags2 & 4) != 0) {
+            this.effect = abstractSerializedData.readInt64(z);
+        }
+        if ((this.flags2 & 8) != 0) {
+            this.factcheck = TLRPC$TL_factCheck.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(592953125);
+        abstractSerializedData.writeInt32(-1808510398);
         int i = this.out ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.mentioned ? i | 16 : i & (-17);
@@ -225,6 +231,12 @@ public class TLRPC$TL_message extends TLRPC$Message {
         }
         if ((this.flags & 1073741824) != 0) {
             abstractSerializedData.writeInt32(this.quick_reply_shortcut_id);
+        }
+        if ((this.flags2 & 4) != 0) {
+            abstractSerializedData.writeInt64(this.effect);
+        }
+        if ((this.flags2 & 8) != 0) {
+            this.factcheck.serializeToStream(abstractSerializedData);
         }
         writeAttachPath(abstractSerializedData);
     }

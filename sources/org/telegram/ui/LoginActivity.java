@@ -74,6 +74,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.integrity.IntegrityManagerFactory;
+import com.google.android.play.core.integrity.IntegrityTokenRequest;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import j$.util.Comparator$CC;
 import j$.util.function.Function;
 import java.io.BufferedReader;
@@ -1464,16 +1467,20 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public void lambda$resendCodeFromSafetyNet$19(Bundle bundle, TLRPC$auth_SentCode tLRPC$auth_SentCode) {
-        lambda$fillNextCodeParams$23(bundle, tLRPC$auth_SentCode, true);
+        lambda$fillNextCodeParams$27(bundle, tLRPC$auth_SentCode, true);
     }
 
-    private void resendCodeFromSafetyNet(final Bundle bundle, TLRPC$auth_SentCode tLRPC$auth_SentCode) {
+    private void resendCodeFromSafetyNet(final Bundle bundle, TLRPC$auth_SentCode tLRPC$auth_SentCode, String str) {
         if (this.isRequestingFirebaseSms) {
             needHideProgress(false);
             this.isRequestingFirebaseSms = false;
             TLRPC$TL_auth_resendCode tLRPC$TL_auth_resendCode = new TLRPC$TL_auth_resendCode();
             tLRPC$TL_auth_resendCode.phone_number = bundle.getString("phoneFormated");
             tLRPC$TL_auth_resendCode.phone_code_hash = tLRPC$auth_SentCode.phone_code_hash;
+            if (str != null) {
+                tLRPC$TL_auth_resendCode.flags |= 1;
+                tLRPC$TL_auth_resendCode.reason = str;
+            }
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_auth_resendCode, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1484,7 +1491,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public void lambda$resendCodeFromSafetyNet$22(final Bundle bundle, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject != null) {
+        if (tLObject != null && !(((TLRPC$auth_SentCode) tLObject).type instanceof TLRPC$TL_auth_sentCodeTypeFirebaseSms)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1520,27 +1527,58 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$fillNextCodeParams$23(final Bundle bundle, final TLRPC$auth_SentCode tLRPC$auth_SentCode, final boolean z) {
+    public static String errorString(Throwable th) {
+        if (th == null) {
+            return "NULL";
+        }
+        String simpleName = th.getClass().getSimpleName();
+        if (th.getMessage() != null) {
+            if (simpleName.length() > 0) {
+                simpleName = simpleName + " ";
+            }
+            simpleName = simpleName + th.getMessage();
+        }
+        return simpleName.toUpperCase().replaceAll(" ", "_");
+    }
+
+    public void lambda$fillNextCodeParams$27(final Bundle bundle, final TLRPC$auth_SentCode tLRPC$auth_SentCode, final boolean z) {
         TLRPC$auth_SentCodeType tLRPC$auth_SentCodeType = tLRPC$auth_SentCode.type;
         if ((tLRPC$auth_SentCodeType instanceof TLRPC$TL_auth_sentCodeTypeFirebaseSms) && !tLRPC$auth_SentCodeType.verifiedFirebase && !this.isRequestingFirebaseSms) {
             if (PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices()) {
+                TLRPC$TL_auth_sentCodeTypeFirebaseSms tLRPC$TL_auth_sentCodeTypeFirebaseSms = (TLRPC$TL_auth_sentCodeTypeFirebaseSms) tLRPC$auth_SentCode.type;
                 needShowProgress(0);
                 this.isRequestingFirebaseSms = true;
-                SafetyNet.getClient(ApplicationLoader.applicationContext).attest(tLRPC$auth_SentCode.type.nonce, BuildVars.SAFETYNET_KEY).addOnSuccessListener(new OnSuccessListener() {
-                    @Override
-                    public final void onSuccess(Object obj) {
-                        LoginActivity.this.lambda$fillNextCodeParams$25(bundle, tLRPC$auth_SentCode, z, (SafetyNetApi$AttestationResponse) obj);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public final void onFailure(Exception exc) {
-                        LoginActivity.this.lambda$fillNextCodeParams$26(bundle, tLRPC$auth_SentCode, exc);
-                    }
-                });
-                return;
+                final String string = bundle.getString("phoneFormated");
+                if (tLRPC$TL_auth_sentCodeTypeFirebaseSms.play_integrity_nonce != null) {
+                    IntegrityManagerFactory.create(getContext()).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(Utilities.bytesToHex(tLRPC$TL_auth_sentCodeTypeFirebaseSms.play_integrity_nonce)).setCloudProjectNumber(760348033671L).build()).addOnSuccessListener(new OnSuccessListener() {
+                        @Override
+                        public final void onSuccess(Object obj) {
+                            LoginActivity.this.lambda$fillNextCodeParams$25(bundle, tLRPC$auth_SentCode, string, z, (IntegrityTokenResponse) obj);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public final void onFailure(Exception exc) {
+                            LoginActivity.this.lambda$fillNextCodeParams$26(bundle, tLRPC$auth_SentCode, exc);
+                        }
+                    });
+                    return;
+                } else {
+                    SafetyNet.getClient(ApplicationLoader.applicationContext).attest(tLRPC$auth_SentCode.type.nonce, BuildVars.SAFETYNET_KEY).addOnSuccessListener(new OnSuccessListener() {
+                        @Override
+                        public final void onSuccess(Object obj) {
+                            LoginActivity.this.lambda$fillNextCodeParams$29(string, tLRPC$auth_SentCode, bundle, z, (SafetyNetApi$AttestationResponse) obj);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public final void onFailure(Exception exc) {
+                            LoginActivity.this.lambda$fillNextCodeParams$30(bundle, tLRPC$auth_SentCode, exc);
+                        }
+                    });
+                    return;
+                }
             }
-            FileLog.d("Resend firebase sms because firebase is not available");
-            resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
+            FileLog.d("{GOOGLE_PLAY_SERVICES_NOT_AVAILABLE} Resend firebase sms because firebase is not available");
+            resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "GOOGLE_PLAY_SERVICES_NOT_AVAILABLE");
             return;
         }
         bundle.putString("phoneHash", tLRPC$auth_SentCode.phone_code_hash);
@@ -1616,43 +1654,24 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$fillNextCodeParams$25(final Bundle bundle, final TLRPC$auth_SentCode tLRPC$auth_SentCode, final boolean z, SafetyNetApi$AttestationResponse safetyNetApi$AttestationResponse) {
-        String jwsResult = safetyNetApi$AttestationResponse.getJwsResult();
-        if (jwsResult != null) {
-            TLRPC$TL_auth_requestFirebaseSms tLRPC$TL_auth_requestFirebaseSms = new TLRPC$TL_auth_requestFirebaseSms();
-            tLRPC$TL_auth_requestFirebaseSms.phone_number = bundle.getString("phoneFormated");
-            tLRPC$TL_auth_requestFirebaseSms.phone_code_hash = tLRPC$auth_SentCode.phone_code_hash;
-            tLRPC$TL_auth_requestFirebaseSms.safety_net_token = jwsResult;
-            tLRPC$TL_auth_requestFirebaseSms.flags |= 1;
-            String[] split = jwsResult.split("\\.");
-            if (split.length > 0) {
-                try {
-                    JSONObject jSONObject = new JSONObject(new String(Base64.decode(split[1].getBytes(StandardCharsets.UTF_8), 0)));
-                    if (jSONObject.optBoolean("basicIntegrity") && jSONObject.optBoolean("ctsProfileMatch")) {
-                        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_auth_requestFirebaseSms, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                LoginActivity.this.lambda$fillNextCodeParams$24(tLRPC$auth_SentCode, bundle, z, tLObject, tLRPC$TL_error);
-                            }
-                        }, 10);
-                    } else {
-                        FileLog.d("Resend firebase sms because ctsProfileMatch or basicIntegrity = false");
-                        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
-                    }
-                    return;
-                } catch (JSONException e) {
-                    FileLog.e(e);
-                    FileLog.d("Resend firebase sms because of exception");
-                    resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
-                    return;
-                }
-            }
-            FileLog.d("Resend firebase sms because can't split JWS token");
-            resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
+    public void lambda$fillNextCodeParams$25(final Bundle bundle, final TLRPC$auth_SentCode tLRPC$auth_SentCode, String str, final boolean z, IntegrityTokenResponse integrityTokenResponse) {
+        String str2 = integrityTokenResponse.token();
+        if (str2 == null) {
+            FileLog.d("Resend firebase sms because integrity token = null");
+            resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "PLAYINTEGRITY_TOKEN_NULL");
             return;
         }
-        FileLog.d("Resend firebase sms because JWS = null");
-        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
+        TLRPC$TL_auth_requestFirebaseSms tLRPC$TL_auth_requestFirebaseSms = new TLRPC$TL_auth_requestFirebaseSms();
+        tLRPC$TL_auth_requestFirebaseSms.phone_number = str;
+        tLRPC$TL_auth_requestFirebaseSms.phone_code_hash = tLRPC$auth_SentCode.phone_code_hash;
+        tLRPC$TL_auth_requestFirebaseSms.play_integrity_token = str2;
+        tLRPC$TL_auth_requestFirebaseSms.flags |= 4;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_auth_requestFirebaseSms, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LoginActivity.this.lambda$fillNextCodeParams$24(tLRPC$auth_SentCode, bundle, z, tLObject, tLRPC$TL_error);
+            }
+        }, 10);
     }
 
     public void lambda$fillNextCodeParams$24(final TLRPC$auth_SentCode tLRPC$auth_SentCode, final Bundle bundle, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1668,14 +1687,85 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             });
             return;
         }
-        FileLog.d("Resend firebase sms because auth.requestFirebaseSms = false");
-        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
+        FileLog.d("{PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE");
     }
 
     public void lambda$fillNextCodeParams$26(Bundle bundle, TLRPC$auth_SentCode tLRPC$auth_SentCode, Exception exc) {
+        String str = "PLAYINTEGRITY_EXCEPTION_" + errorString(exc);
+        FileLog.e("{" + str + "} Resend firebase sms because integrity threw error", exc);
+        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, str);
+    }
+
+    public void lambda$fillNextCodeParams$29(String str, final TLRPC$auth_SentCode tLRPC$auth_SentCode, final Bundle bundle, final boolean z, SafetyNetApi$AttestationResponse safetyNetApi$AttestationResponse) {
+        String jwsResult = safetyNetApi$AttestationResponse.getJwsResult();
+        if (jwsResult != null) {
+            TLRPC$TL_auth_requestFirebaseSms tLRPC$TL_auth_requestFirebaseSms = new TLRPC$TL_auth_requestFirebaseSms();
+            tLRPC$TL_auth_requestFirebaseSms.phone_number = str;
+            tLRPC$TL_auth_requestFirebaseSms.phone_code_hash = tLRPC$auth_SentCode.phone_code_hash;
+            tLRPC$TL_auth_requestFirebaseSms.safety_net_token = jwsResult;
+            tLRPC$TL_auth_requestFirebaseSms.flags |= 1;
+            String[] split = jwsResult.split("\\.");
+            if (split.length > 0) {
+                try {
+                    JSONObject jSONObject = new JSONObject(new String(Base64.decode(split[1].getBytes(StandardCharsets.UTF_8), 0)));
+                    boolean optBoolean = jSONObject.optBoolean("basicIntegrity");
+                    boolean optBoolean2 = jSONObject.optBoolean("ctsProfileMatch");
+                    if (optBoolean && optBoolean2) {
+                        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_auth_requestFirebaseSms, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                LoginActivity.this.lambda$fillNextCodeParams$28(tLRPC$auth_SentCode, bundle, z, tLObject, tLRPC$TL_error);
+                            }
+                        }, 10);
+                    } else if (!optBoolean && !optBoolean2) {
+                        FileLog.d("{SAFETYNET_BASICINTEGRITY_CTSPROFILEMATCH_FALSE} Resend firebase sms because ctsProfileMatch = false and basicIntegrity = false");
+                        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_BASICINTEGRITY_CTSPROFILEMATCH_FALSE");
+                    } else if (!optBoolean) {
+                        FileLog.d("{SAFETYNET_BASICINTEGRITY_FALSE} Resend firebase sms because basicIntegrity = false");
+                        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_BASICINTEGRITY_FALSE");
+                    } else if (!optBoolean2) {
+                        FileLog.d("{SAFETYNET_CTSPROFILEMATCH_FALSE} Resend firebase sms because ctsProfileMatch = false");
+                        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_CTSPROFILEMATCH_FALSE");
+                    }
+                    return;
+                } catch (JSONException e) {
+                    FileLog.e(e);
+                    FileLog.d("{SAFETYNET_JSON_EXCEPTION} Resend firebase sms because of exception");
+                    resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_JSON_EXCEPTION");
+                    return;
+                }
+            }
+            FileLog.d("{SAFETYNET_CANT_SPLIT} Resend firebase sms because can't split JWS token");
+            resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_CANT_SPLIT");
+            return;
+        }
+        FileLog.d("{SAFETYNET_NULL_JWS} Resend firebase sms because JWS = null");
+        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_NULL_JWS");
+    }
+
+    public void lambda$fillNextCodeParams$28(final TLRPC$auth_SentCode tLRPC$auth_SentCode, final Bundle bundle, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        if (tLObject instanceof TLRPC$TL_boolTrue) {
+            needHideProgress(false);
+            this.isRequestingFirebaseSms = false;
+            tLRPC$auth_SentCode.type.verifiedFirebase = true;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.this.lambda$fillNextCodeParams$27(bundle, tLRPC$auth_SentCode, z);
+                }
+            });
+            return;
+        }
+        FileLog.d("{SAFETYNET_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "SAFETYNET_REQUESTFIREBASESMS_FALSE");
+    }
+
+    public void lambda$fillNextCodeParams$30(Bundle bundle, TLRPC$auth_SentCode tLRPC$auth_SentCode, Exception exc) {
         FileLog.e(exc);
-        FileLog.d("Resend firebase sms because of safetynet exception");
-        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode);
+        String str = "SAFETYNET_EXCEPTION_" + errorString(exc);
+        FileLog.d("{" + str + "} Resend firebase sms because of safetynet exception");
+        resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, str);
     }
 
     public class PhoneView extends SlideView implements AdapterView.OnItemSelectedListener, NotificationCenter.NotificationCenterDelegate {
@@ -2134,10 +2224,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
             }
-            if (BuildVars.DEBUG_PRIVATE_VERSION && LoginActivity.this.activityMode == 0) {
+            if (LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
-                checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend, false);
+                checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend = LoginActivity.this.getConnectionsManager().isTestBackend(), false);
                 View view = this.testBackendCheckBox;
                 if (!LocaleController.isRTL || !AndroidUtilities.isSmallScreen()) {
                     i5 = 0;
@@ -2149,7 +2239,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 this.testBackendCheckBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        LoginActivity.PhoneView.this.lambda$new$8(view2);
+                        LoginActivity.PhoneView.this.lambda$new$8(r2, view2);
                     }
                 });
             }
@@ -2325,15 +2415,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$new$8(View view) {
+        public void lambda$new$8(boolean z, View view) {
             if (LoginActivity.this.getParentActivity() == null) {
                 return;
             }
             LoginActivity loginActivity = LoginActivity.this;
-            boolean z = true;
+            boolean z2 = true;
             loginActivity.testBackend = !loginActivity.testBackend;
             ((CheckBoxCell) view).setChecked(LoginActivity.this.testBackend, true);
-            if (((BuildVars.DEBUG_VERSION && LoginActivity.this.getConnectionsManager().isTestBackend()) ? false : false) != LoginActivity.this.testBackend) {
+            if (((z && LoginActivity.this.getConnectionsManager().isTestBackend()) ? false : false) != LoginActivity.this.testBackend) {
                 LoginActivity.this.getConnectionsManager().switchBackend(false);
             }
             loadCountries();
@@ -7764,7 +7854,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                LoginActivity.this.lambda$onCustomTransitionAnimation$27(color, alpha, layoutParams, width, i, height, transformableLoginButtonView, f, width2, f2, height2, valueAnimator);
+                LoginActivity.this.lambda$onCustomTransitionAnimation$31(color, alpha, layoutParams, width, i, height, transformableLoginButtonView, f, width2, f2, height2, valueAnimator);
             }
         });
         ofFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -7775,7 +7865,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         return animatorSet;
     }
 
-    public void lambda$onCustomTransitionAnimation$27(int i, int i2, ViewGroup.MarginLayoutParams marginLayoutParams, int i3, int i4, int i5, TransformableLoginButtonView transformableLoginButtonView, float f, int i6, float f2, int i7, ValueAnimator valueAnimator) {
+    public void lambda$onCustomTransitionAnimation$31(int i, int i2, ViewGroup.MarginLayoutParams marginLayoutParams, int i3, int i4, int i5, TransformableLoginButtonView transformableLoginButtonView, float f, int i6, float f2, int i7, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.keyboardLinearLayout.setAlpha(floatValue);
         this.fragmentView.setBackgroundColor(ColorUtils.setAlphaComponent(i, (int) (i2 * floatValue)));
@@ -7862,35 +7952,35 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString("ResetMyAccountWarningReset", R.string.ResetMyAccountWarningReset), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                LoginActivity.this.lambda$tryResetAccount$30(str, str2, str3, dialogInterface, i);
+                LoginActivity.this.lambda$tryResetAccount$34(str, str2, str3, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$tryResetAccount$30(final String str, final String str2, final String str3, DialogInterface dialogInterface, int i) {
+    public void lambda$tryResetAccount$34(final String str, final String str2, final String str3, DialogInterface dialogInterface, int i) {
         needShowProgress(0);
         TLRPC$TL_account_deleteAccount tLRPC$TL_account_deleteAccount = new TLRPC$TL_account_deleteAccount();
         tLRPC$TL_account_deleteAccount.reason = "Forgot password";
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_deleteAccount, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LoginActivity.this.lambda$tryResetAccount$29(str, str2, str3, tLObject, tLRPC$TL_error);
+                LoginActivity.this.lambda$tryResetAccount$33(str, str2, str3, tLObject, tLRPC$TL_error);
             }
         }, 10);
     }
 
-    public void lambda$tryResetAccount$29(final String str, final String str2, final String str3, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$tryResetAccount$33(final String str, final String str2, final String str3, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LoginActivity.this.lambda$tryResetAccount$28(tLRPC$TL_error, str, str2, str3);
+                LoginActivity.this.lambda$tryResetAccount$32(tLRPC$TL_error, str, str2, str3);
             }
         });
     }
 
-    public void lambda$tryResetAccount$28(TLRPC$TL_error tLRPC$TL_error, String str, String str2, String str3) {
+    public void lambda$tryResetAccount$32(TLRPC$TL_error tLRPC$TL_error, String str, String str2, String str3) {
         needHideProgress(false);
         if (tLRPC$TL_error == null) {
             if (str == null || str2 == null || str3 == null) {
@@ -8270,14 +8360,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                LoginActivity.this.lambda$showProxyButtonDelayed$31();
+                LoginActivity.this.lambda$showProxyButtonDelayed$35();
             }
         };
         this.showProxyButtonDelayed = runnable2;
         AndroidUtilities.runOnUIThread(runnable2, 5000L);
     }
 
-    public void lambda$showProxyButtonDelayed$31() {
+    public void lambda$showProxyButtonDelayed$35() {
         this.proxyButtonVisible = false;
         showProxyButton(true, true);
     }
@@ -8298,7 +8388,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.proxyButtonView.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.this.lambda$showProxyButton$32(z);
+                    LoginActivity.this.lambda$showProxyButton$36(z);
                 }
             }).start();
             return;
@@ -8307,7 +8397,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         this.proxyButtonView.setAlpha(z ? 1.0f : 0.0f);
     }
 
-    public void lambda$showProxyButton$32(boolean z) {
+    public void lambda$showProxyButton$36(boolean z) {
         if (z) {
             return;
         }

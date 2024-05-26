@@ -416,7 +416,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         }
         ?? r15 = builder;
         String savedTagName = MessagesController.getInstance(i).getSavedTagName(tLRPC$Reaction);
-        r15.setTitle(new SpannableStringBuilder(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction).toCharSequence(20)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(TextUtils.isEmpty(savedTagName) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag)));
+        r15.setTitle(new SpannableStringBuilder(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction).toCharSequence(20)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(TextUtils.isEmpty(savedTagName) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag)));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             AnimatedTextView.AnimatedTextDrawable limit;
             AnimatedColor limitColor = new AnimatedColor(this);
@@ -474,7 +474,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                         AndroidUtilities.shakeView(EditTextBoldCursor.this);
                         return true;
                     }
-                    MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction), obj);
+                    MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction), obj);
                     AlertDialog[] alertDialogArr = r14;
                     if (alertDialogArr[0] != null) {
                         alertDialogArr[0].dismiss();
@@ -575,7 +575,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             AndroidUtilities.shakeView(editTextBoldCursor);
             return;
         }
-        MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction), obj);
+        MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction), obj);
         dialogInterface.dismiss();
     }
 
@@ -649,16 +649,16 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             z2 = false;
             for (int i = 0; i < savedReactionTags.tags.size(); i++) {
                 TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = savedReactionTags.tags.get(i);
-                ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_savedReactionTag.reaction);
-                if (!hashSet.contains(Long.valueOf(fromTLReaction.hash))) {
+                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_savedReactionTag.reaction);
+                if (!hashSet.contains(Long.valueOf(fromTL.hash))) {
                     long j = this.topicId;
                     if (j == 0 || tLRPC$TL_savedReactionTag.count > 0) {
-                        Item item = Item.get(fromTLReaction, tLRPC$TL_savedReactionTag.count, j != 0 ? messagesController.getSavedTagName(tLRPC$TL_savedReactionTag.reaction) : tLRPC$TL_savedReactionTag.title);
+                        Item item = Item.get(fromTL, tLRPC$TL_savedReactionTag.count, j != 0 ? messagesController.getSavedTagName(tLRPC$TL_savedReactionTag.reaction) : tLRPC$TL_savedReactionTag.title);
                         if (item.hash() == this.chosen) {
                             z2 = true;
                         }
                         this.items.add(item);
-                        hashSet.add(Long.valueOf(fromTLReaction.hash));
+                        hashSet.add(Long.valueOf(fromTL.hash));
                     }
                 }
             }

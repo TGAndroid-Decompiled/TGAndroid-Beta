@@ -37,15 +37,15 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         this.preloadSmallReaction = new ImageReceiver(this);
         this.progressToCount = new AnimatedFloat(this);
         this.animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tL_stories$TL_mediaAreaSuggestedReaction.reaction);
-        this.visibleReaction = fromTLReaction;
+        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_stories$TL_mediaAreaSuggestedReaction.reaction);
+        this.visibleReaction = fromTL;
         if (tL_stories$TL_mediaAreaSuggestedReaction.flipped) {
             this.storyReactionWidgetBackground.setMirror(true, false);
         }
         this.storyReactionWidgetBackground.updateShadowLayer(getScaleX());
-        this.holder.setVisibleReaction(fromTLReaction);
-        emojiAnimationsOverlay.preload(fromTLReaction);
-        if (fromTLReaction.emojicon != null && (tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(fromTLReaction.emojicon)) != null) {
+        this.holder.setVisibleReaction(fromTL);
+        emojiAnimationsOverlay.preload(fromTL);
+        if (fromTL.emojicon != null && (tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(fromTL.emojicon)) != null) {
             this.preloadSmallReaction.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tLRPC$TL_availableReaction, 1);
         }
         this.animatedTextDrawable.setGravity(17);

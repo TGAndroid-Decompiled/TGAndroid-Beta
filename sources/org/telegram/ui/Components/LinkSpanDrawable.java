@@ -217,6 +217,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
     }
 
     public static class LinkCollector {
+        private Runnable additionalInvalidate;
         private ArrayList<Pair<LinkSpanDrawable, Object>> mLinks = new ArrayList<>();
         private int mLinksCount = 0;
         private ArrayList<Pair<LoadingDrawable, Object>> mLoading = new ArrayList<>();
@@ -228,6 +229,10 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public LinkCollector(View view) {
             this.mParent = view;
+        }
+
+        public void setAdditionalInvalidate(Runnable runnable) {
+            this.additionalInvalidate = runnable;
         }
 
         public void addLink(LinkSpanDrawable linkSpanDrawable) {
@@ -487,9 +492,12 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                 ((View) obj).invalidate();
             } else if (obj instanceof ArticleViewer.DrawingText) {
                 ((ArticleViewer.DrawingText) obj).invalidateParent();
-            } else if (!z || (view = this.mParent) == null) {
-            } else {
+            } else if (z && (view = this.mParent) != null) {
                 view.invalidate();
+            }
+            Runnable runnable = this.additionalInvalidate;
+            if (runnable != null) {
+                runnable.run();
             }
         }
     }

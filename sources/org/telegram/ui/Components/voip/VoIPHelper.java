@@ -790,7 +790,7 @@ public class VoIPHelper {
             MessagesController.getInstance(i).processUpdates((TLRPC$TL_updates) tLObject, false);
         }
         if (zArr[0] && file.exists() && tLRPC$TL_phone_setCallRating.rating < 4) {
-            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, 0);
+            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, 0, false);
             Toast.makeText(context, LocaleController.getString("CallReportSent", R.string.CallReportSent), 1).show();
         }
     }

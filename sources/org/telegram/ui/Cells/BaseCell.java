@@ -192,12 +192,14 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
 
     @Override
     public void draw(Canvas canvas) {
-        boolean allowCaching = allowCaching();
+        boolean z = (this.cachingTop || this.cachingBottom || SharedConfig.useNewBlur) && allowCaching();
         int i = Build.VERSION.SDK_INT;
         if (i >= 29) {
-            if (allowCaching != (this.renderNode != null)) {
-                if (allowCaching) {
-                    this.renderNode = new RenderNode("basecell");
+            if (z != (this.renderNode != null)) {
+                if (z) {
+                    RenderNode renderNode = new RenderNode("basecell");
+                    this.renderNode = renderNode;
+                    renderNode.setClipToBounds(false);
                     this.updatedContent = true;
                 } else {
                     this.renderNode = null;

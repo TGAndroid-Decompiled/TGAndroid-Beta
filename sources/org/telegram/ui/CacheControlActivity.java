@@ -555,7 +555,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         final ArrayList<TLRPC$Chat> arrayList5 = new ArrayList<>();
         if (!arrayList.isEmpty()) {
             try {
-                getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList), arrayList4);
+                getMessagesStorage().getUsersInternal(arrayList, arrayList4);
             } catch (Exception e) {
                 FileLog.e(e);
             }

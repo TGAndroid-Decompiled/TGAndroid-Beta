@@ -815,7 +815,7 @@ public class LocationController extends BaseController implements NotificationCe
         final ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
         final ArrayList<TLRPC$Chat> arrayList3 = new ArrayList<>();
         try {
-            ArrayList arrayList4 = new ArrayList();
+            ArrayList<Long> arrayList4 = new ArrayList<>();
             ArrayList arrayList5 = new ArrayList();
             SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT uid, mid, date, period, message, proximity FROM sharing_locations WHERE 1", new Object[0]);
             while (queryFinalized.next()) {
@@ -846,9 +846,7 @@ public class LocationController extends BaseController implements NotificationCe
             if (!arrayList5.isEmpty()) {
                 getMessagesStorage().getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
             }
-            if (!arrayList4.isEmpty()) {
-                getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList4), arrayList2);
-            }
+            getMessagesStorage().getUsersInternal(arrayList4, arrayList2);
         } catch (Exception e) {
             FileLog.e(e);
         }

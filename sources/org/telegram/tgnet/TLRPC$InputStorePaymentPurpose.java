@@ -12,6 +12,9 @@ public abstract class TLRPC$InputStorePaymentPurpose extends TLObject {
             case 369444042:
                 tLRPC$TL_inputStorePaymentPremiumGiftCode = new TLRPC$TL_inputStorePaymentPremiumGiveaway();
                 break;
+            case 1326377183:
+                tLRPC$TL_inputStorePaymentPremiumGiftCode = new TLRPC$TL_inputStorePaymentStars();
+                break;
             case 1634697192:
                 tLRPC$TL_inputStorePaymentPremiumGiftCode = new TLRPC$TL_inputStorePaymentGiftPremium();
                 break;

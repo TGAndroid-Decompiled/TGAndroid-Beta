@@ -2130,7 +2130,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new AnonymousClass23(null, callback2), false, true, false, this.resourcesProvider);
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate(this) {
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, boolean z3) {
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
             }
 
             @Override
@@ -2169,8 +2169,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
             }
         });
         if (locationView != null && (tLRPC$MessageMedia = locationView.location) != null && (tLRPC$GeoPoint = tLRPC$MessageMedia.geo) != null) {
@@ -2227,7 +2227,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             }
 
             @Override
-            public void sendAudio(ArrayList<MessageObject> arrayList, CharSequence charSequence, boolean z, int i) {
+            public void sendAudio(ArrayList<MessageObject> arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
                 MessageObject messageObject;
                 if (arrayList.isEmpty() || (messageObject = arrayList.get(0)) == null) {
                     return;
@@ -2241,7 +2241,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }, false, true, false, this.resourcesProvider)};
         chatAttachAlertArr[0].setDelegate(new ChatAttachAlert.ChatAttachViewDelegate(this) {
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, boolean z3) {
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
             }
 
             @Override
@@ -2280,8 +2280,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
             }
         });
         chatAttachAlertArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -2450,7 +2450,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                     roundView = createLocationSticker;
                 } else if (b == 4) {
                     ReactionWidgetEntityView createReactionWidget = createReactionWidget(false);
-                    createReactionWidget.setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(mediaEntity.mediaArea.reaction), false);
+                    createReactionWidget.setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(mediaEntity.mediaArea.reaction), false);
                     if (mediaEntity.mediaArea.flipped) {
                         createReactionWidget.mirror(false);
                     }

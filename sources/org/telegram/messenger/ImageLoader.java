@@ -46,6 +46,7 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -108,6 +109,7 @@ public class ImageLoader {
     private HashMap<String, CacheImage> imageLoadingByUrl = new HashMap<>();
     private HashMap<String, CacheImage> imageLoadingByUrlPframe = new HashMap<>();
     public ConcurrentHashMap<String, CacheImage> imageLoadingByKeys = new ConcurrentHashMap<>();
+    public HashSet<String> imageLoadingKeys = new HashSet<>();
     private SparseArray<CacheImage> imageLoadingByTag = new SparseArray<>();
     private HashMap<String, ThumbGenerateInfo> waitingForQualityThumb = new HashMap<>();
     private SparseArray<String> waitingForQualityThumbByTag = new SparseArray<>();
@@ -1189,6 +1191,7 @@ public class ImageLoader {
                 String str = this.key;
                 if (str != null) {
                     ImageLoader.this.imageLoadingByKeys.remove(str);
+                    ImageLoader.this.imageLoadingKeys.remove(ImageLoader.cutFilter(this.key));
                 }
             }
         }
@@ -1275,6 +1278,7 @@ public class ImageLoader {
             String str2 = this.key;
             if (str2 != null) {
                 ImageLoader.this.imageLoadingByKeys.remove(str2);
+                ImageLoader.this.imageLoadingKeys.remove(ImageLoader.cutFilter(this.key));
             }
         }
 
@@ -1604,6 +1608,7 @@ public class ImageLoader {
                     cacheImage2.imageType = cacheImage.imageType;
                     cacheImage2.cacheType = cacheImage.cacheType;
                     ImageLoader.this.imageLoadingByKeys.put(str2, cacheImage2);
+                    ImageLoader.this.imageLoadingKeys.add(ImageLoader.cutFilter(str2));
                     arrayList.add(cacheImage2.cacheTask);
                 }
                 cacheImage2.addImageReceiver(imageReceiver, str2, str3, intValue, intValue2);
@@ -2077,6 +2082,14 @@ public class ImageLoader {
         }
     }
 
+    public static String cutFilter(String str) {
+        if (str == null) {
+            return null;
+        }
+        int indexOf = str.indexOf(64);
+        return indexOf >= 0 ? str.substring(0, indexOf) : str;
+    }
+
     public void replaceImageInCache(final String str, final String str2, final ImageLocation imageLocation, boolean z) {
         if (z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -2336,6 +2349,7 @@ public class ImageLoader {
                 cacheImage2.filter = str3;
                 cacheImage2.imageType = cacheImage.imageType;
                 this.imageLoadingByKeys.put(str2, cacheImage2);
+                this.imageLoadingKeys.add(cutFilter(str2));
                 arrayList.add(cacheImage2.cacheTask);
             }
             cacheImage2.addImageReceiver(imageReceiver, str2, str3, intValue, intValue2);

@@ -1381,6 +1381,16 @@ public class DatabaseMigrationHelper {
         if (i7 == 152) {
             sQLiteDatabase.executeFast("ALTER TABLE profile_stories ADD COLUMN pin INTEGER default 0;").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 153").stepThis().dispose();
+            i7 = 153;
+        }
+        if (i7 == 153) {
+            sQLiteDatabase.executeFast("CREATE TABLE effects(data BLOB)").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 154").stepThis().dispose();
+            i7 = 154;
+        }
+        if (i7 == 154) {
+            sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1426,7 +1436,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 153) {
+        if (intValue != 155) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

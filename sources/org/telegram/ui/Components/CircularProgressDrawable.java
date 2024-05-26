@@ -35,6 +35,8 @@ public class CircularProgressDrawable extends Drawable {
         Paint paint = new Paint();
         this.paint = paint;
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
         this.bounds = new RectF();
         setColor(i);
     }
@@ -47,6 +49,8 @@ public class CircularProgressDrawable extends Drawable {
         Paint paint = new Paint();
         this.paint = paint;
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
         this.bounds = new RectF();
         this.size = f;
         this.thickness = f2;

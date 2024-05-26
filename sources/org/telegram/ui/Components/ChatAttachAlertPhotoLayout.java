@@ -91,6 +91,7 @@ import org.telegram.ui.Components.AvatarConstructorFragment;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.RecyclerViewItemRangeSelector;
 import org.telegram.ui.Components.ShutterButton;
@@ -130,6 +131,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private float cameraZoom;
     private boolean canSaveCameraPreview;
     private boolean cancelTakingPhotos;
+    public MessagePreviewView.ToggleButton captionItem;
     private boolean checkCameraWhenShown;
     private ActionBarMenuSubItem compressItem;
     private TextView counterTextView;
@@ -512,7 +514,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                 }
             }
-            ChatAttachAlertPhotoLayout.this.parentAlert.delegate.didPressedButton(7, true, z, i2, z2);
+            ChatAttachAlertPhotoLayout.this.parentAlert.delegate.didPressedButton(7, true, z, i2, 0L, false, z2);
             ChatAttachAlertPhotoLayout.selectedPhotos.clear();
             ChatAttachAlertPhotoLayout.cameraPhotos.clear();
             ChatAttachAlertPhotoLayout.selectedPhotosOrder.clear();
@@ -643,12 +645,17 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.dropDown.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
         this.dropDownContainer.addView(this.dropDown, LayoutHelper.createFrame(-2, -2.0f, 16, 16.0f, 0.0f, 0.0f, 0.0f));
         checkCamera(false);
+        MessagePreviewView.ToggleButton toggleButton = new MessagePreviewView.ToggleButton(context, R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), resourcesProvider);
+        this.captionItem = toggleButton;
+        toggleButton.setState(!this.parentAlert.captionAbove, false);
+        this.previewItem = this.parentAlert.selectedMenuItem.addSubItem(6, R.drawable.msg_view_file, LocaleController.getString(R.string.AttachMediaPreviewButton));
+        this.parentAlert.selectedMenuItem.addColoredGap(4);
+        this.spoilerItem = this.parentAlert.selectedMenuItem.addSubItem(2, R.drawable.msg_spoiler, LocaleController.getString("EnablePhotoSpoiler", R.string.EnablePhotoSpoiler));
+        this.parentAlert.selectedMenuItem.addSubItem(7, this.captionItem);
+        this.parentAlert.selectedMenuItem.addColoredGap(5);
+        this.parentAlert.selectedMenuItem.addSubItem(3, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
         this.compressItem = this.parentAlert.selectedMenuItem.addSubItem(1, R.drawable.msg_filehq, LocaleController.getString("SendWithoutCompression", R.string.SendWithoutCompression));
         this.parentAlert.selectedMenuItem.addSubItem(0, R.drawable.msg_ungroup, LocaleController.getString("SendWithoutGrouping", R.string.SendWithoutGrouping));
-        this.spoilerItem = this.parentAlert.selectedMenuItem.addSubItem(2, R.drawable.msg_spoiler, LocaleController.getString("EnablePhotoSpoiler", R.string.EnablePhotoSpoiler));
-        this.parentAlert.selectedMenuItem.addSubItem(3, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
-        this.parentAlert.selectedMenuItem.addColoredGap(4);
-        this.previewItem = this.parentAlert.selectedMenuItem.addSubItem(5, R.drawable.msg_view_file, LocaleController.getString("AttachMediaPreviewButton", R.string.AttachMediaPreviewButton));
         this.parentAlert.selectedMenuItem.setFitSubItems(true);
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
@@ -1087,7 +1094,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         addToSelectedPhotos(photoEntry, -1);
                     }
                     this.parentAlert.applyCaption();
-                    this.parentAlert.delegate.didPressedButton(7, true, true, 0, false);
+                    this.parentAlert.delegate.didPressedButton(7, true, true, 0, 0L, false, false);
                     selectedPhotos.clear();
                     cameraPhotos.clear();
                     selectedPhotosOrder.clear();
@@ -1154,7 +1161,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             } else {
                 ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate2 = this.parentAlert.delegate;
                 if (chatAttachViewDelegate2 != null) {
-                    chatAttachViewDelegate2.didPressedButton(0, false, true, 0, false);
+                    chatAttachViewDelegate2.didPressedButton(0, false, true, 0, 0L, false, false);
                 }
             }
         }
@@ -1188,7 +1195,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (i == 0 && this.selectedAlbumEntry == this.galleryAlbumEntry) {
             ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate = this.parentAlert.delegate;
             if (chatAttachViewDelegate != null) {
-                chatAttachViewDelegate.didPressedButton(0, false, true, 0, false);
+                chatAttachViewDelegate.didPressedButton(0, false, true, 0, 0L, false, false);
             }
             return true;
         } else if (view instanceof PhotoAttachPhotoCell) {
@@ -1664,7 +1671,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
         selectedPhotos.put(-1, photoEntry);
         selectedPhotosOrder.add(-1);
-        this.parentAlert.delegate.didPressedButton(7, true, false, 0, false);
+        this.parentAlert.delegate.didPressedButton(7, true, false, 0, 0L, false, false);
         if (avatarConstructorFragment.finishOnDone) {
             return;
         }
@@ -2086,7 +2093,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         public void needAddMorePhotos() {
             ChatAttachAlertPhotoLayout.this.cancelTakingPhotos = false;
             if (ChatAttachAlertPhotoLayout.mediaFromExternalCamera) {
-                ChatAttachAlertPhotoLayout.this.parentAlert.delegate.didPressedButton(0, true, true, 0, false);
+                ChatAttachAlertPhotoLayout.this.parentAlert.delegate.didPressedButton(0, true, true, 0, 0L, false, false);
                 return;
             }
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
@@ -2120,7 +2127,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
             ChatAttachAlertPhotoLayout.this.parentAlert.applyCaption();
             ChatAttachAlertPhotoLayout.this.closeCamera(false);
-            ChatAttachAlertPhotoLayout.this.parentAlert.delegate.didPressedButton(z2 ? 4 : 8, true, z, i2, z2);
+            ChatAttachAlertPhotoLayout.this.parentAlert.delegate.didPressedButton(z2 ? 4 : 8, true, z, i2, 0L, false, z2);
             ChatAttachAlertPhotoLayout.cameraPhotos.clear();
             ChatAttachAlertPhotoLayout.selectedPhotosOrder.clear();
             ChatAttachAlertPhotoLayout.selectedPhotos.clear();
@@ -2563,6 +2570,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
                 @Override
                 public void dispatchDraw(Canvas canvas) {
+                    if (AndroidUtilities.makingGlobalBlurBitmap) {
+                        return;
+                    }
                     if (Build.VERSION.SDK_INT < 21) {
                         float commentTextViewTop = ((ChatAttachAlertPhotoLayout.this.parentAlert.getCommentTextViewTop() + ChatAttachAlertPhotoLayout.this.currentPanTranslationY) + ChatAttachAlertPhotoLayout.this.parentAlert.getContainerView().getTranslationY()) - ChatAttachAlertPhotoLayout.this.cameraView.getTranslationY();
                         MentionsContainerView mentionsContainerView = ChatAttachAlertPhotoLayout.this.parentAlert.mentionContainer;
@@ -3301,40 +3311,45 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     public void onMenuItemClick(int i) {
         TLRPC$Chat chat;
         boolean z;
-        if ((i == 0 || i == 1) && this.parentAlert.maxSelectedPhotos > 0 && selectedPhotosOrder.size() > 1 && (chat = this.parentAlert.getChat()) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled) {
+        if (i == 7) {
+            ChatAttachAlert chatAttachAlert = this.parentAlert;
+            boolean z2 = !chatAttachAlert.captionAbove;
+            chatAttachAlert.captionAbove = z2;
+            this.captionItem.setState(!z2, true);
+        } else if ((i == 0 || i == 1) && this.parentAlert.maxSelectedPhotos > 0 && selectedPhotosOrder.size() > 1 && (chat = this.parentAlert.getChat()) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled) {
             AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendError", R.string.SlowmodeSendError), this.resourcesProvider).show();
         } else if (i == 0) {
-            ChatAttachAlert chatAttachAlert = this.parentAlert;
-            if (chatAttachAlert.editingMessageObject == null) {
-                BaseFragment baseFragment = chatAttachAlert.baseFragment;
+            ChatAttachAlert chatAttachAlert2 = this.parentAlert;
+            if (chatAttachAlert2.editingMessageObject == null) {
+                BaseFragment baseFragment = chatAttachAlert2.baseFragment;
                 if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).isInScheduleMode()) {
                     AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.parentAlert.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z2, int i2) {
-                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$18(z2, i2);
+                        public final void didSelectDate(boolean z3, int i2) {
+                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$18(z3, i2);
                         }
                     }, this.resourcesProvider);
                     return;
                 }
             }
             this.parentAlert.applyCaption();
-            this.parentAlert.delegate.didPressedButton(7, false, true, 0, false);
+            this.parentAlert.delegate.didPressedButton(7, false, true, 0, 0L, false, false);
         } else if (i == 1) {
-            ChatAttachAlert chatAttachAlert2 = this.parentAlert;
-            if (chatAttachAlert2.editingMessageObject == null) {
-                BaseFragment baseFragment2 = chatAttachAlert2.baseFragment;
+            ChatAttachAlert chatAttachAlert3 = this.parentAlert;
+            if (chatAttachAlert3.editingMessageObject == null) {
+                BaseFragment baseFragment2 = chatAttachAlert3.baseFragment;
                 if ((baseFragment2 instanceof ChatActivity) && ((ChatActivity) baseFragment2).isInScheduleMode()) {
                     AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.parentAlert.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z2, int i2) {
-                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$19(z2, i2);
+                        public final void didSelectDate(boolean z3, int i2) {
+                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$19(z3, i2);
                         }
                     }, this.resourcesProvider);
                     return;
                 }
             }
             this.parentAlert.applyCaption();
-            this.parentAlert.delegate.didPressedButton(4, true, true, 0, false);
+            this.parentAlert.delegate.didPressedButton(4, true, true, 0, 0L, false, false);
         } else if (i == 2) {
             if (this.parentAlert.getPhotoPreviewLayout() != null) {
                 this.parentAlert.getPhotoPreviewLayout().startMediaCrossfade();
@@ -3351,18 +3366,18 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     break;
                 }
             }
-            final boolean z2 = !z;
+            final boolean z3 = !z;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$20(z2);
+                    ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$20(z3);
                 }
             }, 200L);
             final ArrayList arrayList = new ArrayList();
             for (Map.Entry<Object, Object> entry : selectedPhotos.entrySet()) {
                 if (entry.getValue() instanceof MediaController.PhotoEntry) {
                     MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) entry.getValue();
-                    photoEntry.hasSpoiler = z2;
+                    photoEntry.hasSpoiler = z3;
                     photoEntry.isChatPreviewSpoilerRevealed = false;
                     photoEntry.isAttachSpoilerRevealed = false;
                     arrayList.add(Integer.valueOf(photoEntry.imageId));
@@ -3371,7 +3386,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             this.gridView.forAllChild(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatAttachAlertPhotoLayout.lambda$onMenuItemClick$21(arrayList, z2, (View) obj);
+                    ChatAttachAlertPhotoLayout.lambda$onMenuItemClick$21(arrayList, z3, (View) obj);
                 }
             });
             if (this.parentAlert.getCurrentAttachLayout() != this) {
@@ -3382,15 +3397,15 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
         } else if (i == 3) {
             try {
-                ChatAttachAlert chatAttachAlert3 = this.parentAlert;
-                if (!(chatAttachAlert3.baseFragment instanceof ChatActivity) && chatAttachAlert3.avatarPicker != 2) {
+                ChatAttachAlert chatAttachAlert4 = this.parentAlert;
+                if (!(chatAttachAlert4.baseFragment instanceof ChatActivity) && chatAttachAlert4.avatarPicker != 2) {
                     Intent intent = new Intent("android.intent.action.PICK");
                     intent.setType("image/*");
-                    ChatAttachAlert chatAttachAlert4 = this.parentAlert;
-                    if (chatAttachAlert4.avatarPicker != 0) {
-                        chatAttachAlert4.baseFragment.startActivityForResult(intent, 14);
+                    ChatAttachAlert chatAttachAlert5 = this.parentAlert;
+                    if (chatAttachAlert5.avatarPicker != 0) {
+                        chatAttachAlert5.baseFragment.startActivityForResult(intent, 14);
                     } else {
-                        chatAttachAlert4.baseFragment.startActivityForResult(intent, 1);
+                        chatAttachAlert5.baseFragment.startActivityForResult(intent, 1);
                     }
                     this.parentAlert.dismiss(true);
                 }
@@ -3402,19 +3417,19 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 intent3.setType("image/*");
                 Intent createChooser = Intent.createChooser(intent3, null);
                 createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent2});
-                ChatAttachAlert chatAttachAlert5 = this.parentAlert;
-                if (chatAttachAlert5.avatarPicker != 0) {
-                    chatAttachAlert5.baseFragment.startActivityForResult(createChooser, 14);
+                ChatAttachAlert chatAttachAlert6 = this.parentAlert;
+                if (chatAttachAlert6.avatarPicker != 0) {
+                    chatAttachAlert6.baseFragment.startActivityForResult(createChooser, 14);
                 } else {
-                    chatAttachAlert5.baseFragment.startActivityForResult(createChooser, 1);
+                    chatAttachAlert6.baseFragment.startActivityForResult(createChooser, 1);
                 }
                 this.parentAlert.dismiss(true);
             } catch (Exception e) {
                 FileLog.e(e);
             }
-        } else if (i == 5) {
-            ChatAttachAlert chatAttachAlert6 = this.parentAlert;
-            chatAttachAlert6.updatePhotoPreview(chatAttachAlert6.getCurrentAttachLayout() != this.parentAlert.getPhotoPreviewLayout());
+        } else if (i == 6) {
+            ChatAttachAlert chatAttachAlert7 = this.parentAlert;
+            chatAttachAlert7.updatePhotoPreview(chatAttachAlert7.getCurrentAttachLayout() != this.parentAlert.getPhotoPreviewLayout());
         } else if (i >= 10) {
             MediaController.AlbumEntry albumEntry = this.dropDownAlbums.get(i - 10);
             this.selectedAlbumEntry = albumEntry;
@@ -3431,12 +3446,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     public void lambda$onMenuItemClick$18(boolean z, int i) {
         this.parentAlert.applyCaption();
-        this.parentAlert.delegate.didPressedButton(7, false, z, i, false);
+        this.parentAlert.delegate.didPressedButton(7, false, z, i, 0L, false, false);
     }
 
     public void lambda$onMenuItemClick$19(boolean z, int i) {
         this.parentAlert.applyCaption();
-        this.parentAlert.delegate.didPressedButton(4, true, z, i, false);
+        this.parentAlert.delegate.didPressedButton(4, true, z, i, 0L, false, false);
     }
 
     public void lambda$onMenuItemClick$20(boolean z) {
@@ -3448,8 +3463,15 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
         if (z) {
             this.parentAlert.selectedMenuItem.hideSubItem(1);
-        } else {
-            this.parentAlert.selectedMenuItem.showSubItem(1);
+            if (getSelectedItemsCount() <= 1) {
+                this.parentAlert.selectedMenuItem.hideSubItem(5);
+                return;
+            }
+            return;
+        }
+        this.parentAlert.selectedMenuItem.showSubItem(1);
+        if (getSelectedItemsCount() <= 1) {
+            this.parentAlert.selectedMenuItem.showSubItem(5);
         }
     }
 
@@ -3467,7 +3489,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onSelectedItemsCountChanged(int r6) {
+    public void onSelectedItemsCountChanged(int r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayout.onSelectedItemsCountChanged(int):void");
     }
 

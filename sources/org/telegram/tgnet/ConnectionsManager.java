@@ -9,7 +9,12 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.integrity.IntegrityManagerFactory;
+import com.google.android.play.core.integrity.IntegrityTokenRequest;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ByteArrayOutputStream;
@@ -61,6 +66,7 @@ import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.LoginActivity;
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -87,6 +93,7 @@ public class ConnectionsManager extends BaseController {
     public static final int RequestFlagDoNotWaitFloodWait = 1024;
     public static final int RequestFlagEnableUnauthorized = 1;
     public static final int RequestFlagFailOnServerErrors = 2;
+    public static final int RequestFlagFailOnServerErrorsExceptFloodWait = 65536;
     public static final int RequestFlagForceDownload = 32;
     public static final int RequestFlagInvokeAfter = 64;
     public static final int RequestFlagListenAfterCancel = 2048;
@@ -143,11 +150,15 @@ public class ConnectionsManager extends BaseController {
 
     public static native void native_init(int i, int i2, int i3, int i4, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, int i5, long j, boolean z, boolean z2, boolean z3, int i6, int i7);
 
+    public static native boolean native_isGoodPrime(byte[] bArr, int i);
+
     public static native int native_isTestBackend(int i);
 
     public static native void native_onHostNameResolved(String str, long j, String str2);
 
     public static native void native_pauseNetwork(int i);
+
+    public static native void native_receivedIntegrityCheckClassic(int i, int i2, String str, String str2);
 
     public static native void native_resumeNetwork(int i, boolean z);
 
@@ -324,7 +335,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 179, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 181, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -933,6 +944,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void lambda$onRequestNewServerIpAndPort$13(int i, boolean z, int i2) {
+        FileLog.d("13. currentTask == " + currentTask);
         if (currentTask != null || ((i == 0 && Math.abs(lastDnsRequestTime - System.currentTimeMillis()) < 10000) || !z)) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("don't start task, current task = " + currentTask + " next task = " + i + " time diff = " + Math.abs(lastDnsRequestTime - System.currentTimeMillis()) + " network = " + ApplicationLoader.isNetworkOnline());
@@ -941,33 +953,29 @@ public class ConnectionsManager extends BaseController {
             return;
         }
         lastDnsRequestTime = System.currentTimeMillis();
-        if (i == 3) {
+        if (i == 2) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("start mozilla txt task");
             }
             MozillaDnsLoadTask mozillaDnsLoadTask = new MozillaDnsLoadTask(i2);
             mozillaDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("9. currentTask = mozilla");
             currentTask = mozillaDnsLoadTask;
-        } else if (i == 2) {
+        } else if (i == 1) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("start google txt task");
             }
             GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(i2);
             googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("11. currentTask = dnstxt");
             currentTask = googleDnsLoadTask;
-        } else if (i == 1) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("start dns txt task");
-            }
-            DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(i2);
-            dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            currentTask = dnsTxtLoadTask;
         } else {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("start firebase task");
             }
             FirebaseTask firebaseTask = new FirebaseTask(i2);
             firebaseTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("12. currentTask = firebase");
             currentTask = firebaseTask;
         }
     }
@@ -1213,150 +1221,6 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static class DnsTxtLoadTask extends AsyncTask<Void, Void, NativeByteBuffer> {
-        private int currentAccount;
-        private int responseDate;
-
-        public DnsTxtLoadTask(int i) {
-            this.currentAccount = i;
-        }
-
-        @Override
-        public NativeByteBuffer doInBackground(Void... voidArr) {
-            int read;
-            ByteArrayOutputStream byteArrayOutputStream = null;
-            InputStream inputStream = null;
-            int i = 0;
-            while (i < 3) {
-                String str = i == 0 ? "www.google.com" : i == 1 ? "www.google.ru" : "google.com";
-                try {
-                    String str2 = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
-                    int nextInt = Utilities.random.nextInt(116) + 13;
-                    StringBuilder sb = new StringBuilder(nextInt);
-                    for (int i2 = 0; i2 < nextInt; i2++) {
-                        sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
-                    }
-                    URLConnection openConnection = new URL("https://" + str + "/resolve?name=" + str2 + "&type=ANY&random_padding=" + ((Object) sb)).openConnection();
-                    openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
-                    openConnection.addRequestProperty("Host", "dns.google.com");
-                    openConnection.setConnectTimeout(5000);
-                    openConnection.setReadTimeout(5000);
-                    openConnection.connect();
-                    inputStream = openConnection.getInputStream();
-                    this.responseDate = (int) (openConnection.getDate() / 1000);
-                    ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
-                    try {
-                        byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
-                        while (!isCancelled() && (read = inputStream.read(bArr)) > 0) {
-                            byteArrayOutputStream2.write(bArr, 0, read);
-                        }
-                        JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
-                        int length = jSONArray.length();
-                        ArrayList arrayList = new ArrayList(length);
-                        for (int i3 = 0; i3 < length; i3++) {
-                            JSONObject jSONObject = jSONArray.getJSONObject(i3);
-                            if (jSONObject.getInt("type") == 16) {
-                                arrayList.add(jSONObject.getString("data"));
-                            }
-                        }
-                        Collections.sort(arrayList, new Comparator() {
-                            @Override
-                            public final int compare(Object obj, Object obj2) {
-                                int lambda$doInBackground$0;
-                                lambda$doInBackground$0 = ConnectionsManager.DnsTxtLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
-                                return lambda$doInBackground$0;
-                            }
-                        });
-                        StringBuilder sb2 = new StringBuilder();
-                        for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                            sb2.append(((String) arrayList.get(i4)).replace("\"", ""));
-                        }
-                        byte[] decode = Base64.decode(sb2.toString(), 0);
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
-                        nativeByteBuffer.writeBytes(decode);
-                        if (inputStream != null) {
-                            try {
-                                inputStream.close();
-                            } catch (Throwable th) {
-                                FileLog.e(th, false);
-                            }
-                        }
-                        try {
-                            byteArrayOutputStream2.close();
-                        } catch (Exception unused) {
-                        }
-                        return nativeByteBuffer;
-                    } catch (Throwable th2) {
-                        th = th2;
-                        byteArrayOutputStream = byteArrayOutputStream2;
-                        try {
-                            FileLog.e(th, false);
-                            if (byteArrayOutputStream != null) {
-                                try {
-                                    byteArrayOutputStream.close();
-                                } catch (Exception unused2) {
-                                }
-                            }
-                            i++;
-                        } finally {
-                            if (inputStream != null) {
-                                try {
-                                    inputStream.close();
-                                } catch (Throwable th3) {
-                                    FileLog.e(th3, false);
-                                }
-                            }
-                            if (byteArrayOutputStream != null) {
-                                try {
-                                    byteArrayOutputStream.close();
-                                } catch (Exception unused3) {
-                                }
-                            }
-                        }
-                    }
-                } catch (Throwable th4) {
-                    th = th4;
-                }
-            }
-            return null;
-        }
-
-        public static int lambda$doInBackground$0(String str, String str2) {
-            int length = str.length();
-            int length2 = str2.length();
-            if (length > length2) {
-                return -1;
-            }
-            return length < length2 ? 1 : 0;
-        }
-
-        @Override
-        public void onPostExecute(final NativeByteBuffer nativeByteBuffer) {
-            Utilities.stageQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    ConnectionsManager.DnsTxtLoadTask.this.lambda$onPostExecute$1(nativeByteBuffer);
-                }
-            });
-        }
-
-        public void lambda$onPostExecute$1(NativeByteBuffer nativeByteBuffer) {
-            AsyncTask unused = ConnectionsManager.currentTask = null;
-            if (nativeByteBuffer != null) {
-                int i = this.currentAccount;
-                ConnectionsManager.native_applyDnsConfig(i, nativeByteBuffer.address, AccountInstance.getInstance(i).getUserConfig().getClientPhone(), this.responseDate);
-                return;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("failed to get dns txt result");
-                FileLog.d("start google task");
-            }
-            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
-            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            AsyncTask unused2 = ConnectionsManager.currentTask = googleDnsLoadTask;
-        }
-    }
-
     public static class GoogleDnsLoadTask extends AsyncTask<Void, Void, NativeByteBuffer> {
         private int currentAccount;
         private int responseDate;
@@ -1502,6 +1366,7 @@ public class ConnectionsManager extends BaseController {
         }
 
         public void lambda$onPostExecute$1(NativeByteBuffer nativeByteBuffer) {
+            FileLog.d("3. currentTask = null, result = " + nativeByteBuffer);
             AsyncTask unused = ConnectionsManager.currentTask = null;
             if (nativeByteBuffer != null) {
                 int i = this.currentAccount;
@@ -1514,6 +1379,7 @@ public class ConnectionsManager extends BaseController {
             }
             MozillaDnsLoadTask mozillaDnsLoadTask = new MozillaDnsLoadTask(this.currentAccount);
             mozillaDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("4. currentTask = mozilla");
             AsyncTask unused2 = ConnectionsManager.currentTask = mozillaDnsLoadTask;
         }
     }
@@ -1658,6 +1524,7 @@ public class ConnectionsManager extends BaseController {
         }
 
         public void lambda$onPostExecute$1(NativeByteBuffer nativeByteBuffer) {
+            FileLog.d("5. currentTask = null");
             AsyncTask unused = ConnectionsManager.currentTask = null;
             if (nativeByteBuffer != null) {
                 int i = this.currentAccount;
@@ -1729,10 +1596,20 @@ public class ConnectionsManager extends BaseController {
                         ConnectionsManager.FirebaseTask.this.lambda$doInBackground$0(task);
                     }
                 });
+                return;
             }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("failed to get firebase result 2");
+                FileLog.d("start dns txt task");
+            }
+            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
+            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("7. currentTask = GoogleDnsLoadTask");
+            AsyncTask unused = ConnectionsManager.currentTask = googleDnsLoadTask;
         }
 
         public void lambda$doInBackground$0(Task task) {
+            FileLog.d("6. currentTask = null");
             AsyncTask unused = ConnectionsManager.currentTask = null;
             String string = this.firebaseRemoteConfig.getString("ipconfigv3");
             if (!TextUtils.isEmpty(string)) {
@@ -1753,9 +1630,10 @@ public class ConnectionsManager extends BaseController {
                 FileLog.d("failed to get firebase result");
                 FileLog.d("start dns txt task");
             }
-            DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(this.currentAccount);
-            dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            AsyncTask unused2 = ConnectionsManager.currentTask = dnsTxtLoadTask;
+            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
+            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("7. currentTask = GoogleDnsLoadTask");
+            AsyncTask unused2 = ConnectionsManager.currentTask = googleDnsLoadTask;
         }
 
         public void lambda$doInBackground$3() {
@@ -1763,9 +1641,10 @@ public class ConnectionsManager extends BaseController {
                 FileLog.d("failed to get firebase result");
                 FileLog.d("start dns txt task");
             }
-            DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(this.currentAccount);
-            dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            AsyncTask unused = ConnectionsManager.currentTask = dnsTxtLoadTask;
+            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
+            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("8. currentTask = GoogleDnsLoadTask");
+            AsyncTask unused = ConnectionsManager.currentTask = googleDnsLoadTask;
         }
     }
 
@@ -1801,5 +1680,53 @@ public class ConnectionsManager extends BaseController {
         if (z2) {
             NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
         }
+    }
+
+    public static void onIntegrityCheckClassic(final int i, final int i2, final String str) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, str, i2);
+            }
+        });
+    }
+
+    public static void lambda$onIntegrityCheckClassic$22(final int i, final String str, final int i2) {
+        final long currentTimeMillis = System.currentTimeMillis();
+        FileLog.d("account" + i + ": server requests integrity classic check with nonce = " + str);
+        IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str).setCloudProjectNumber(760348033671L).build()).addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public final void onSuccess(Object obj) {
+                ConnectionsManager.lambda$onIntegrityCheckClassic$20(i, currentTimeMillis, i2, str, (IntegrityTokenResponse) obj);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public final void onFailure(Exception exc) {
+                ConnectionsManager.lambda$onIntegrityCheckClassic$21(i, currentTimeMillis, i2, str, exc);
+            }
+        });
+    }
+
+    public static void lambda$onIntegrityCheckClassic$20(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
+        String str2 = integrityTokenResponse.token();
+        if (str2 == null) {
+            FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");
+            native_receivedIntegrityCheckClassic(i, i2, str, "PLAYINTEGRITY_FAILED_EXCEPTION_NULL");
+            return;
+        }
+        FileLog.d("account" + i + ": integrity check successfully gave token: " + str2 + " in " + (System.currentTimeMillis() - j) + "ms");
+        try {
+            native_receivedIntegrityCheckClassic(i, i2, str, str2);
+        } catch (Exception e) {
+            FileLog.e("receivedIntegrityCheckClassic failed", e);
+        }
+    }
+
+    public static void lambda$onIntegrityCheckClassic$21(int i, long j, int i2, String str, Exception exc) {
+        FileLog.e("account" + i + ": integrity check failed to give a token in " + (System.currentTimeMillis() - j) + "ms", exc);
+        StringBuilder sb = new StringBuilder();
+        sb.append("PLAYINTEGRITY_FAILED_EXCEPTION_");
+        sb.append(LoginActivity.errorString(exc));
+        native_receivedIntegrityCheckClassic(i, i2, str, sb.toString());
     }
 }

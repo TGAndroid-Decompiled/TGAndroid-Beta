@@ -9,6 +9,7 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
     public int next_phone_login_date;
     public byte[] nonce;
     public String pattern;
+    public byte[] play_integrity_nonce;
     public String prefix;
     public int push_timeout;
     public String receipt;
@@ -143,41 +144,6 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
                     }
                 };
                 break;
-            case -444918734:
-                tLRPC$auth_SentCodeType = new TLRPC$auth_SentCodeType() {
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2);
-                        this.flags = readInt32;
-                        if ((readInt32 & 1) != 0) {
-                            this.nonce = abstractSerializedData2.readByteArray(z2);
-                        }
-                        if ((this.flags & 2) != 0) {
-                            this.receipt = abstractSerializedData2.readString(z2);
-                        }
-                        if ((this.flags & 2) != 0) {
-                            this.push_timeout = abstractSerializedData2.readInt32(z2);
-                        }
-                        this.length = abstractSerializedData2.readInt32(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(-444918734);
-                        abstractSerializedData2.writeInt32(this.flags);
-                        if ((this.flags & 1) != 0) {
-                            abstractSerializedData2.writeByteArray(this.nonce);
-                        }
-                        if ((this.flags & 2) != 0) {
-                            abstractSerializedData2.writeString(this.receipt);
-                        }
-                        if ((this.flags & 2) != 0) {
-                            abstractSerializedData2.writeInt32(this.push_timeout);
-                        }
-                        abstractSerializedData2.writeInt32(this.length);
-                    }
-                };
-                break;
             case -196020837:
                 tLRPC$auth_SentCodeType = new TLRPC$auth_SentCodeType() {
                     @Override
@@ -212,6 +178,47 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
                         if ((this.flags & 16) != 0) {
                             abstractSerializedData2.writeInt32(this.reset_pending_date);
                         }
+                    }
+                };
+                break;
+            case 331943703:
+                tLRPC$auth_SentCodeType = new TLRPC$auth_SentCodeType() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        if ((readInt32 & 1) != 0) {
+                            this.nonce = abstractSerializedData2.readByteArray(z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.play_integrity_nonce = abstractSerializedData2.readByteArray(z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.receipt = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.push_timeout = abstractSerializedData2.readInt32(z2);
+                        }
+                        this.length = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(331943703);
+                        abstractSerializedData2.writeInt32(this.flags);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeByteArray(this.nonce);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeByteArray(this.play_integrity_nonce);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeString(this.receipt);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeInt32(this.push_timeout);
+                        }
+                        abstractSerializedData2.writeInt32(this.length);
                     }
                 };
                 break;

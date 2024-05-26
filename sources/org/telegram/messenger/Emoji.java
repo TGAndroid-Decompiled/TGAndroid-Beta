@@ -31,6 +31,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.ColoredImageSpan;
 public class Emoji {
     private static String[] DEFAULT_RECENT = null;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -435,6 +436,7 @@ public class Emoji {
         int i2;
         EmojiSpanRange emojiSpanRange;
         boolean z2;
+        boolean z3;
         if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
             return charSequence;
         }
@@ -448,28 +450,46 @@ public class Emoji {
             return charSequence;
         }
         AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) newSpannable.getSpans(0, newSpannable.length(), AnimatedEmojiSpan.class);
+        ColoredImageSpan[] coloredImageSpanArr = (ColoredImageSpan[]) newSpannable.getSpans(0, newSpannable.length(), ColoredImageSpan.class);
         int i3 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
         while (i2 < parseEmojis.size()) {
             try {
                 emojiSpanRange = parseEmojis.get(i2);
+                z2 = true;
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            if (animatedEmojiSpanArr != null) {
+            if (animatedEmojiSpanArr != null && animatedEmojiSpanArr.length > 0) {
                 int i4 = 0;
                 while (true) {
                     if (i4 >= animatedEmojiSpanArr.length) {
-                        z2 = false;
+                        z3 = false;
                         break;
                     }
                     AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i4];
                     if (animatedEmojiSpan != null && newSpannable.getSpanStart(animatedEmojiSpan) == emojiSpanRange.start && newSpannable.getSpanEnd(animatedEmojiSpan) == emojiSpanRange.end) {
-                        z2 = true;
+                        z3 = true;
                         break;
                     }
                     i4++;
                 }
-                i2 = z2 ? i2 + 1 : 0;
+                i2 = z3 ? i2 + 1 : 0;
+            }
+            if (coloredImageSpanArr != null && coloredImageSpanArr.length > 0) {
+                int i5 = 0;
+                while (true) {
+                    if (i5 >= coloredImageSpanArr.length) {
+                        z2 = false;
+                        break;
+                    }
+                    ColoredImageSpan coloredImageSpan = coloredImageSpanArr[i5];
+                    if (coloredImageSpan != null && newSpannable.getSpanStart(coloredImageSpan) == emojiSpanRange.start && newSpannable.getSpanEnd(coloredImageSpan) == emojiSpanRange.end) {
+                        break;
+                    }
+                    i5++;
+                }
+                if (z2) {
+                }
             }
             EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);
             if (emojiDrawable != null) {
@@ -478,8 +498,8 @@ public class Emoji {
                 emojiSpan.emoji = charSequence2 == null ? null : charSequence2.toString();
                 newSpannable.setSpan(emojiSpan, emojiSpanRange.start, emojiSpanRange.end, 33);
             }
-            int i5 = Build.VERSION.SDK_INT;
-            if ((i5 < 23 || i5 >= 29) && i2 + 1 >= i3) {
+            int i6 = Build.VERSION.SDK_INT;
+            if ((i6 < 23 || i6 >= 29) && i2 + 1 >= i3) {
                 break;
             }
         }

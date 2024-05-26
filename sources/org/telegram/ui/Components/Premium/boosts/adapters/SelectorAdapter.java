@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,7 +39,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     private final Context context;
     private boolean isGreenSelector;
     private List<Item> items;
-    private RecyclerListView listView;
     private final Theme.ResourcesProvider resourcesProvider;
     private GraySectionCell topSectionCell;
 
@@ -62,7 +60,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     public void setData(List<Item> list, RecyclerListView recyclerListView) {
         this.items = list;
-        this.listView = recyclerListView;
     }
 
     public void setTopSectionClickListener(View.OnClickListener onClickListener) {
@@ -232,56 +229,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             return 0;
         }
         return list.size();
-    }
-
-    private RecyclerView.Adapter realAdapter() {
-        return this.listView.getAdapter();
-    }
-
-    @Override
-    public void notifyItemChanged(int i) {
-        realAdapter().notifyItemChanged(i + 1);
-    }
-
-    @Override
-    public void notifyItemInserted(int i) {
-        realAdapter().notifyItemInserted(i + 1);
-    }
-
-    @Override
-    public void notifyItemMoved(int i, int i2) {
-        realAdapter().notifyItemMoved(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeChanged(int i, int i2) {
-        realAdapter().notifyItemRangeChanged(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeChanged(int i, int i2, Object obj) {
-        realAdapter().notifyItemRangeChanged(i + 1, i2, obj);
-    }
-
-    @Override
-    public void notifyItemRangeInserted(int i, int i2) {
-        realAdapter().notifyItemRangeInserted(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeRemoved(int i, int i2) {
-        realAdapter().notifyItemRangeRemoved(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRemoved(int i) {
-        realAdapter().notifyItemRemoved(i + 1);
-    }
-
-    @Override
-    @SuppressLint({"NotifyDataSetChanged"})
-    public void notifyDataSetChanged() {
-        realAdapter().notifyDataSetChanged();
     }
 
     public void notifyChangedLast() {

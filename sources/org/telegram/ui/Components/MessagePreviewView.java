@@ -1161,8 +1161,28 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, tLRPC$KeyboardButton);
+                    }
+
+                    @Override
+                    public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i3, int i4) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell2, i3, i4);
                     }
 
                     @Override
@@ -1276,6 +1296,11 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z);
+                    }
+
+                    @Override
                     public String getAdminRank(long j) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                     }
@@ -1351,13 +1376,18 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2);
+                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z);
                     }
 
                     @Override
                     public boolean shouldRepeatSticker(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
+                    }
+
+                    @Override
+                    public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
                     }
 
                     @Override
@@ -1534,8 +1564,28 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
+                        }
+
+                        @Override
                         public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, tLRPC$KeyboardButton);
+                        }
+
+                        @Override
+                        public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i2, int i3) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell2, i2, i3);
                         }
 
                         @Override
@@ -1654,6 +1704,11 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z);
+                        }
+
+                        @Override
                         public String getAdminRank(long j) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
                         }
@@ -1744,13 +1799,18 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2);
+                        public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z);
                         }
 
                         @Override
                         public boolean shouldRepeatSticker(MessageObject messageObject) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
+                        }
+
+                        @Override
+                        public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
                         }
 
                         @Override
@@ -1807,7 +1867,7 @@ public class MessagePreviewView extends FrameLayout {
 
             private int offset(ChatMessageCell chatMessageCell, int i) {
                 MessageObject messageObject;
-                int dp;
+                int i2;
                 ArrayList<MessageObject.TextLayoutBlock> arrayList;
                 CharSequence charSequence;
                 StaticLayout staticLayout;
@@ -1817,15 +1877,17 @@ public class MessagePreviewView extends FrameLayout {
                     return 0;
                 }
                 if (!TextUtils.isEmpty(messageObject.caption) && (textLayoutBlocks = chatMessageCell.captionLayout) != null) {
-                    dp = (int) chatMessageCell.captionY;
+                    i2 = (int) chatMessageCell.captionY;
                     charSequence = messageObject.caption;
                     arrayList = textLayoutBlocks.textLayoutBlocks;
                 } else {
                     chatMessageCell.layoutTextXY(true);
-                    int i2 = chatMessageCell.textY;
+                    i2 = chatMessageCell.textY;
                     CharSequence charSequence2 = messageObject.messageText;
                     ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
-                    dp = chatMessageCell.linkPreviewAbove ? chatMessageCell.linkPreviewHeight + AndroidUtilities.dp(10.0f) + i2 : i2;
+                    if (chatMessageCell.linkPreviewAbove) {
+                        i2 += chatMessageCell.linkPreviewHeight + AndroidUtilities.dp(10.0f);
+                    }
                     arrayList = arrayList2;
                     charSequence = charSequence2;
                 }
@@ -1836,9 +1898,9 @@ public class MessagePreviewView extends FrameLayout {
                         int i4 = textLayoutBlock.charactersOffset;
                         if (i > i4) {
                             if (i - i4 > charSequence3.length() - 1) {
-                                lineTop = dp + ((int) (textLayoutBlock.textYOffset + textLayoutBlock.padTop + textLayoutBlock.height));
+                                lineTop = i2 + ((int) (textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
                             } else {
-                                lineTop = dp + textLayoutBlock.textYOffset + textLayoutBlock.padTop + staticLayout.getLineTop(staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset));
+                                lineTop = staticLayout.getLineTop(staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset)) + i2 + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop;
                             }
                             return (int) lineTop;
                         }
@@ -2342,7 +2404,7 @@ public class MessagePreviewView extends FrameLayout {
         }
     }
 
-    public class ToggleButton extends View {
+    public static class ToggleButton extends View {
         private boolean first;
         RLottieToggleDrawable iconDrawable;
         private boolean isState1;
@@ -2351,17 +2413,17 @@ public class MessagePreviewView extends FrameLayout {
         final String text2;
         AnimatedTextView.AnimatedTextDrawable textDrawable;
 
-        public ToggleButton(MessagePreviewView messagePreviewView, Context context, int i, String str, int i2, String str2) {
+        public ToggleButton(Context context, int i, String str, int i2, String str2, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.first = true;
             this.text1 = str;
             this.text2 = str2;
-            setBackground(Theme.createSelectorDrawable(messagePreviewView.getThemedColor(Theme.key_listSelector), 2));
+            setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.textDrawable = animatedTextDrawable;
             animatedTextDrawable.setAnimationProperties(0.35f, 0L, 300L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.textDrawable.setTextSize(AndroidUtilities.dp(16.0f));
-            this.textDrawable.setTextColor(messagePreviewView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
+            this.textDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
             this.textDrawable.setCallback(this);
             this.textDrawable.setEllipsizeByGradient(true ^ LocaleController.isRTL);
             if (LocaleController.isRTL) {
@@ -2370,9 +2432,9 @@ public class MessagePreviewView extends FrameLayout {
             int dp = (int) (AndroidUtilities.dp(77.0f) + Math.max(this.textDrawable.getPaint().measureText(str), this.textDrawable.getPaint().measureText(str2)));
             this.minWidth = dp;
             this.textDrawable.setOverrideFullWidth(dp);
-            RLottieToggleDrawable rLottieToggleDrawable = new RLottieToggleDrawable(messagePreviewView, this, i, i2);
+            RLottieToggleDrawable rLottieToggleDrawable = new RLottieToggleDrawable(this, i, i2);
             this.iconDrawable = rLottieToggleDrawable;
-            rLottieToggleDrawable.setColorFilter(new PorterDuffColorFilter(messagePreviewView.getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            rLottieToggleDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
         }
 
         public void setState(boolean z, boolean z2) {
@@ -2382,6 +2444,10 @@ public class MessagePreviewView extends FrameLayout {
                 this.iconDrawable.setState(z, z2);
                 this.first = false;
             }
+        }
+
+        public boolean getState() {
+            return this.isState1;
         }
 
         @Override
@@ -2423,7 +2489,7 @@ public class MessagePreviewView extends FrameLayout {
         }
     }
 
-    public class RLottieToggleDrawable extends Drawable {
+    public static class RLottieToggleDrawable extends Drawable {
         private RLottieDrawable currentState;
         private boolean detached;
         private boolean isState1;
@@ -2435,7 +2501,7 @@ public class MessagePreviewView extends FrameLayout {
             return -2;
         }
 
-        public RLottieToggleDrawable(MessagePreviewView messagePreviewView, View view, int i, int i2) {
+        public RLottieToggleDrawable(View view, int i, int i2) {
             RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.state1 = rLottieDrawable;
             rLottieDrawable.setMasterParent(view);

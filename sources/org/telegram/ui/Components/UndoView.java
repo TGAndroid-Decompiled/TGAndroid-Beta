@@ -39,9 +39,9 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$PaymentReceipt;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_payments_getPaymentReceipt;
-import org.telegram.tgnet.TLRPC$TL_payments_paymentReceipt;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -399,8 +399,8 @@ public class UndoView extends FrameLayout {
     }
 
     public void lambda$showWithAction$4(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$TL_payments_paymentReceipt) {
-            this.parentFragment.presentFragment(new PaymentFormActivity((TLRPC$TL_payments_paymentReceipt) tLObject));
+        if (tLObject instanceof TLRPC$PaymentReceipt) {
+            this.parentFragment.presentFragment(new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject));
         }
     }
 

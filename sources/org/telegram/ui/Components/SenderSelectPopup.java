@@ -33,7 +33,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -220,7 +219,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         frameLayout.addView(this.recyclerView);
         this.headerShadow = new View(context);
         Drawable drawable = ContextCompat.getDrawable(context, R.drawable.header_shadow);
-        drawable.setAlpha(MessagesStorage.LAST_DB_VERSION);
+        drawable.setAlpha(153);
         this.headerShadow.setBackground(drawable);
         this.headerShadow.setAlpha(0.0f);
         frameLayout.addView(this.headerShadow, LayoutHelper.createFrame(-1, 4.0f));

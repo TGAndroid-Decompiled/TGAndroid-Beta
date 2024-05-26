@@ -189,9 +189,9 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 });
                 showDialog(builder.create());
             } else if (i == this.fingerprintRow) {
-                SharedConfig.useFingerprint = !SharedConfig.useFingerprint;
+                SharedConfig.useFingerprintLock = !SharedConfig.useFingerprintLock;
                 UserConfig.getInstance(this.currentAccount).saveConfig(false);
-                ((TextCheckCell) view).setChecked(SharedConfig.useFingerprint);
+                ((TextCheckCell) view).setChecked(SharedConfig.useFingerprintLock);
             } else if (i == this.captureRow) {
                 SharedConfig.allowScreenCapture = !SharedConfig.allowScreenCapture;
                 UserConfig.getInstance(this.currentAccount).saveConfig(false);
@@ -594,6 +594,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
     }
 
     private void updateRows() {
+        this.fingerprintRow = -1;
         this.rowCount = 0;
         int i = 0 + 1;
         this.rowCount = i;
@@ -604,16 +605,10 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         this.rowCount = i2 + 1;
         this.changePasscodeRow = i2;
         try {
-            if (Build.VERSION.SDK_INT >= 23) {
-                if (BiometricManager.from(getContext()).canAuthenticate(15) == 0 && AndroidUtilities.isKeyguardSecure()) {
-                    int i3 = this.rowCount;
-                    this.rowCount = i3 + 1;
-                    this.fingerprintRow = i3;
-                } else {
-                    this.fingerprintRow = -1;
-                }
-            } else {
-                this.fingerprintRow = -1;
+            if (Build.VERSION.SDK_INT >= 23 && BiometricManager.from(getContext()).canAuthenticate(15) == 0 && AndroidUtilities.isKeyguardSecure()) {
+                int i3 = this.rowCount;
+                this.rowCount = i3 + 1;
+                this.fingerprintRow = i3;
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -972,7 +967,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     }
                     return;
                 }
-                textCheckCell.setTextAndCheck(LocaleController.getString("UnlockFingerprint", R.string.UnlockFingerprint), SharedConfig.useFingerprint, true);
+                textCheckCell.setTextAndCheck(LocaleController.getString(R.string.UnlockFingerprint), SharedConfig.useFingerprintLock, false);
             } else if (itemViewType != 1) {
                 if (itemViewType != 2) {
                     if (itemViewType != 3) {

@@ -271,77 +271,77 @@ public class ProfileChannelCell extends FrameLayout {
             try {
                 try {
                     if (i <= 0) {
-                        queryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMTI 1", Long.valueOf(-j));
+                        queryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 1", Long.valueOf(-j));
                     } else {
                         queryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid = ? LIMIT 1", Long.valueOf(-j), Integer.valueOf(i));
                     }
                 } catch (Throwable th) {
                     th = th;
                 }
-            } catch (Exception e) {
-                e = e;
+                try {
+                    try {
+                        ArrayList<Long> arrayList3 = new ArrayList<>();
+                        ArrayList arrayList4 = new ArrayList();
+                        if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
+                            r42 = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            try {
+                                r42.readAttachPath(byteBufferValue, j2);
+                                byteBufferValue.reuse();
+                                r42.id = queryFinalized.intValue(1);
+                                r42.dialog_id = -j;
+                                MessagesStorage.addUsersAndChatsFromMessage(r42, arrayList3, arrayList4, null);
+                                sQLiteCursor = r42;
+                            } catch (Exception e) {
+                                e = e;
+                                sQLiteCursor = queryFinalized;
+                                obj = r42;
+                                FileLog.e(e);
+                                r4 = obj;
+                                if (sQLiteCursor != null) {
+                                    sQLiteCursor.dispose();
+                                    r4 = obj;
+                                }
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, r4, j, i, messagesStorage);
+                                    }
+                                });
+                            }
+                        }
+                        queryFinalized.dispose();
+                        if (sQLiteCursor != null) {
+                            if (!arrayList3.isEmpty()) {
+                                messagesStorage.getUsersInternal(arrayList3, arrayList);
+                            }
+                            if (!arrayList4.isEmpty()) {
+                                messagesStorage.getChatsInternal(TextUtils.join(",", arrayList4), arrayList2);
+                            }
+                        }
+                        queryFinalized.dispose();
+                        r4 = sQLiteCursor;
+                    } catch (Exception e2) {
+                        e = e2;
+                        r42 = sQLiteCursor;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    sQLiteCursor = queryFinalized;
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th;
+                }
+            } catch (Exception e3) {
+                e = e3;
                 obj = null;
             }
-            try {
-                try {
-                    ArrayList arrayList3 = new ArrayList();
-                    ArrayList arrayList4 = new ArrayList();
-                    if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
-                        r42 = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                        try {
-                            r42.readAttachPath(byteBufferValue, j2);
-                            byteBufferValue.reuse();
-                            r42.id = queryFinalized.intValue(1);
-                            r42.dialog_id = -j;
-                            MessagesStorage.addUsersAndChatsFromMessage(r42, arrayList3, arrayList4, null);
-                            sQLiteCursor = r42;
-                        } catch (Exception e2) {
-                            e = e2;
-                            sQLiteCursor = queryFinalized;
-                            obj = r42;
-                            FileLog.e(e);
-                            r4 = obj;
-                            if (sQLiteCursor != null) {
-                                sQLiteCursor.dispose();
-                                r4 = obj;
-                            }
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, r4, j, i, messagesStorage);
-                                }
-                            });
-                        }
-                    }
-                    queryFinalized.dispose();
-                    if (sQLiteCursor != null) {
-                        if (!arrayList3.isEmpty()) {
-                            messagesStorage.getUsersInternal(TextUtils.join(",", arrayList3), arrayList);
-                        }
-                        if (!arrayList4.isEmpty()) {
-                            messagesStorage.getChatsInternal(TextUtils.join(",", arrayList4), arrayList2);
-                        }
-                    }
-                    queryFinalized.dispose();
-                    r4 = sQLiteCursor;
-                } catch (Exception e3) {
-                    e = e3;
-                    r42 = sQLiteCursor;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, r4, j, i, messagesStorage);
                 }
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, r4, j, i, messagesStorage);
-                    }
-                });
-            } catch (Throwable th2) {
-                th = th2;
-                sQLiteCursor = queryFinalized;
-                if (sQLiteCursor != null) {
-                    sQLiteCursor.dispose();
-                }
-                throw th;
-            }
+            });
         }
 
         public void lambda$fetch$2(final int i, TLRPC$Message tLRPC$Message, final long j, final int i2, final MessagesStorage messagesStorage) {

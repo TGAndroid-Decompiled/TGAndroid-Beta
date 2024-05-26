@@ -191,7 +191,7 @@ public class ReactedUsersListView extends FrameLayout {
         addView(this.loadingView, LayoutHelper.createFrame(-1, -1.0f));
         if (!z && (tLRPC$Reaction = this.filter) != null && (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && !MessagesController.getInstance(i).premiumFeaturesBlocked()) {
             this.customReactionsEmoji.clear();
-            this.customReactionsEmoji.add(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(this.filter));
+            this.customReactionsEmoji.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(this.filter));
             updateCustomReactionsButton();
         }
         this.loadingView.setViewType(this.customReactionsEmoji.isEmpty() ? 16 : 23);
@@ -353,9 +353,9 @@ public class ReactedUsersListView extends FrameLayout {
                     }
                     i2++;
                 }
-                ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_messages_messageReactionsList.reactions.get(i).reaction);
-                if (fromTLReaction.documentId != 0) {
-                    hashSet.add(fromTLReaction);
+                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_messages_messageReactionsList.reactions.get(i).reaction);
+                if (fromTL.documentId != 0) {
+                    hashSet.add(fromTL);
                 }
                 arrayList.add(tLRPC$TL_messages_messageReactionsList.reactions.get(i));
                 this.peerReactionMap.put(peerId, arrayList);
