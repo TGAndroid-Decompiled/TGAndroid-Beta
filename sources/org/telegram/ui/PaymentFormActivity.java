@@ -456,7 +456,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             return;
         }
         this.currentPassword = tLRPC$account_Password;
-        this.waitingForEmail = !TextUtils.isEmpty(tLRPC$account_Password.email_unconfirmed_pattern);
+        this.waitingForEmail = (tLRPC$account_Password == null || TextUtils.isEmpty(tLRPC$account_Password.email_unconfirmed_pattern)) ? false : true;
         updatePasswordFields();
     }
 

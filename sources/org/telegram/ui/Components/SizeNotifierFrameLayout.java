@@ -910,7 +910,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     }
 
     public boolean blurWasDrawn() {
-        return SharedConfig.chatBlurEnabled() && this.currentBitmap != null;
+        return SharedConfig.chatBlurEnabled() && (DRAW_USING_RENDERNODE() || this.currentBitmap != null);
     }
 
     private void drawListWithCallbacks(Canvas canvas, boolean z) {

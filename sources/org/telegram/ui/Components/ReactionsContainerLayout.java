@@ -1062,7 +1062,9 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
         HashSet<ReactionsLayoutInBubble.VisibleReaction> hashSet2 = new HashSet<>();
         for (int i4 = 0; i4 < longSparseArray.size(); i4++) {
-            hashSet2.add((ReactionsLayoutInBubble.VisibleReaction) longSparseArray.valueAt(i4));
+            if (longSparseArray.valueAt(i4) != null) {
+                hashSet2.add((ReactionsLayoutInBubble.VisibleReaction) longSparseArray.valueAt(i4));
+            }
         }
         return hashSet2;
     }
@@ -1075,7 +1077,9 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
     public void setSelectedReactionInclusive(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         this.selectedReactions.clear();
-        this.selectedReactions.add(visibleReaction);
+        if (visibleReaction != null) {
+            this.selectedReactions.add(visibleReaction);
+        }
         updateSelected(true);
     }
 
@@ -1084,8 +1088,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         Iterator<String> it = arrayList.iterator();
         while (it.hasNext()) {
             ReactionsLayoutInBubble.VisibleReaction fromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(it.next());
-            this.selectedReactions.add(fromEmojicon);
-            this.alwaysSelectedReactions.add(fromEmojicon);
+            if (fromEmojicon != null) {
+                this.selectedReactions.add(fromEmojicon);
+                this.alwaysSelectedReactions.add(fromEmojicon);
+            }
         }
         updateSelected(true);
     }

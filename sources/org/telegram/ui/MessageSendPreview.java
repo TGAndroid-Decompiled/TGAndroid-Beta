@@ -105,8 +105,10 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     private float destClipTop;
     private boolean dismissing;
     private Utilities.Callback2<Canvas, Utilities.Callback0Return<Boolean>> drawEditText;
+    private Utilities.Callback<Canvas> drawEditTextBackground;
     private ChatMessageCell dummyMessageCell;
     private EditTextCaption editText;
+    private Paint editTextBackgroundPaint;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable effectDrawable;
     private long effectId;
     private EmojiAnimationsOverlay effectOverlay;
@@ -150,6 +152,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.insets = new Rect();
         this.messageObjects = new ArrayList<>();
         this.groupedMessagesMap = new LongSparseArray<>();
+        this.editTextBackgroundPaint = new Paint(1);
         this.sendButtonInitialPosition = new int[2];
         this.dismissing = false;
         this.cellDelta = new Rect();
@@ -195,7 +198,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         });
         frameLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new AnonymousClass2());
-        AnonymousClass3 anonymousClass3 = new AnonymousClass3(context);
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, resourcesProvider);
         this.containerView = anonymousClass3;
         anonymousClass3.setClipToPadding(false);
         frameLayout.addView(anonymousClass3, LayoutHelper.createFrame(-1, -1, 119));
@@ -1044,9 +1047,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         final int[] destCellPos;
         final int[] pos;
         final int[] pos2;
+        final Theme.ResourcesProvider val$resourcesProvider;
 
-        AnonymousClass3(Context context) {
+        AnonymousClass3(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.val$resourcesProvider = resourcesProvider;
             this.pos = new int[2];
             this.pos2 = new int[2];
             this.chatListViewTy = 0;
@@ -1057,7 +1062,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        public void dispatchDraw(final android.graphics.Canvas r27) {
+        public void dispatchDraw(final android.graphics.Canvas r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass3.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1312,9 +1317,10 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.cameraRect.set(iArr[0], iArr[1], iArr[0] + textureView.getWidth(), iArr[1] + textureView.getHeight());
     }
 
-    public void setEditText(EditTextCaption editTextCaption, Utilities.Callback2<Canvas, Utilities.Callback0Return<Boolean>> callback2) {
+    public void setEditText(EditTextCaption editTextCaption, Utilities.Callback2<Canvas, Utilities.Callback0Return<Boolean>> callback2, Utilities.Callback<Canvas> callback) {
         this.editText = editTextCaption;
         this.drawEditText = callback2;
+        this.drawEditTextBackground = callback;
     }
 
     public void setSendButton(final ChatActivityEnterView.SendButton sendButton, final boolean z, View.OnClickListener onClickListener) {

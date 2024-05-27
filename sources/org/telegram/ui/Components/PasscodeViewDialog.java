@@ -78,20 +78,18 @@ public class PasscodeViewDialog extends Dialog {
         attributes.dimAmount = 0.0f;
         int i = attributes.flags & (-3);
         attributes.flags = i;
-        attributes.softInputMode = 48;
-        int i2 = i | 131072;
-        attributes.flags = i2;
+        attributes.softInputMode = 16;
         if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags = i2 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+            attributes.flags = i | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
         }
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 21) {
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 21) {
             attributes.flags |= -2013200128;
         }
-        int i4 = attributes.flags | 1024;
-        attributes.flags = i4;
-        attributes.flags = i4 | 128;
-        if (i3 >= 28) {
+        int i3 = attributes.flags | 1024;
+        attributes.flags = i3;
+        attributes.flags = i3 | 128;
+        if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);

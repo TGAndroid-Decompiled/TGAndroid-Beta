@@ -12,7 +12,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesController;
@@ -513,22 +512,6 @@ public class UItem extends AdapterWithDiffUtils.Item {
 
         public boolean isShadow() {
             return false;
-        }
-
-        public void precache(BaseFragment baseFragment, int i) {
-            precache(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), baseFragment.getResourceProvider(), i);
-        }
-
-        public void precache(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider, int i3) {
-            if (context == null) {
-                return;
-            }
-            if (this.cache == null) {
-                this.cache = new ArrayList<>();
-            }
-            for (int i4 = 0; i4 < this.cache.size() - i3; i4++) {
-                this.cache.add(createView(context, i, i2, resourcesProvider));
-            }
         }
 
         public V getCached() {

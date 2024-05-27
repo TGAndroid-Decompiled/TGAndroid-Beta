@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -605,7 +606,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         this.rowCount = i2 + 1;
         this.changePasscodeRow = i2;
         try {
-            if (Build.VERSION.SDK_INT >= 23 && BiometricManager.from(getContext()).canAuthenticate(15) == 0 && AndroidUtilities.isKeyguardSecure()) {
+            if (Build.VERSION.SDK_INT >= 23 && BiometricManager.from(ApplicationLoader.applicationContext).canAuthenticate(15) == 0 && AndroidUtilities.isKeyguardSecure()) {
                 int i3 = this.rowCount;
                 this.rowCount = i3 + 1;
                 this.fingerprintRow = i3;

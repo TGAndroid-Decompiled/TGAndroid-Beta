@@ -691,7 +691,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 };
                 break;
             case 17:
-                flickerLoadingView = new DialogsHintCell(this.mContext);
+                flickerLoadingView = new DialogsHintCell(this.mContext, null);
                 break;
             case 18:
                 flickerLoadingView = new View(this, this.mContext) {

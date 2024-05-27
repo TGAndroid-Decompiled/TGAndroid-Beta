@@ -4289,7 +4289,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         if (this.shouldDrawBackground) {
             int intrinsicHeight = (int) (this.animatedTop + (Theme.chat_composeShadowDrawable.getIntrinsicHeight() * (1.0f - this.composeShadowAlpha)));
             View view = this.topView;
@@ -8581,6 +8581,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         this.ignoreTextChange = z;
         editTextCaption.setText(charSequence);
+        this.messageEditText.invalidateQuotes(true);
         EditTextCaption editTextCaption2 = this.messageEditText;
         editTextCaption2.setSelection(editTextCaption2.getText().length());
         this.ignoreTextChange = false;
@@ -12683,7 +12684,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         canvas.save();
         if (f > 0.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.messageEditText.getX() - AndroidUtilities.dp(5.0f), this.messageEditText.getY() + this.animatedTop, this.messageEditText.getX() + this.messageEditText.getMeasuredWidth() + AndroidUtilities.dp(5.0f), this.messageEditText.getY() + this.animatedTop + AndroidUtilities.dp(13.0f));
+            rectF.set(this.messageEditText.getX() - AndroidUtilities.dp(5.0f), (this.messageEditText.getY() + this.animatedTop) - 1.0f, this.messageEditText.getX() + this.messageEditText.getMeasuredWidth() + AndroidUtilities.dp(5.0f), this.messageEditText.getY() + this.animatedTop + AndroidUtilities.dp(13.0f));
             this.clipMatrix.reset();
             this.clipMatrix.postScale(1.0f, rectF.height() / 16.0f);
             this.clipMatrix.postTranslate(rectF.left, rectF.top);
@@ -12693,7 +12694,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         if (f2 > 0.0f) {
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(this.messageEditText.getX() - AndroidUtilities.dp(5.0f), (this.messageEditText.getY() + this.messageEditText.getMeasuredHeight()) - AndroidUtilities.dp(15.0f), this.messageEditText.getX() + this.messageEditText.getMeasuredWidth() + AndroidUtilities.dp(5.0f), this.messageEditText.getY() + this.messageEditText.getMeasuredHeight() + AndroidUtilities.dp(2.0f));
+            rectF2.set(this.messageEditText.getX() - AndroidUtilities.dp(5.0f), (this.messageEditText.getY() + this.messageEditText.getMeasuredHeight()) - AndroidUtilities.dp(15.0f), this.messageEditText.getX() + this.messageEditText.getMeasuredWidth() + AndroidUtilities.dp(5.0f), this.messageEditText.getY() + this.messageEditText.getMeasuredHeight() + AndroidUtilities.dp(2.0f) + 1.0f);
             this.clipMatrix.reset();
             this.clipMatrix.postScale(1.0f, rectF2.height() / 16.0f);
             this.clipMatrix.postRotate(180.0f);

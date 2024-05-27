@@ -16,11 +16,14 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
@@ -78,20 +81,20 @@ public class MessageTopicButton {
 
     public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLObject tLObject, int i) {
         String formatName;
+        int colorId;
         if (chatMessageCell == null || messageObject == null) {
             return 0;
         }
         this.isGeneralTopic = false;
         this.topicClosed = false;
-        if (tLObject instanceof TLRPC$User) {
+        boolean z = tLObject instanceof TLRPC$User;
+        if (z) {
             formatName = UserObject.getForcedFirstName((TLRPC$User) tLObject);
         } else {
             formatName = ContactsController.formatName(tLObject);
         }
         String str = formatName;
         this.topicIconDrawable = null;
-        this.topicNameColor = getThemedColor(Theme.key_chat_outReactionButtonText);
-        this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_outReactionButtonBackground), 38);
         this.avatarSize = AndroidUtilities.dp(11.0f) + ((int) Theme.chat_topicTextPaint.getTextSize());
         this.avatarDrawable = new AvatarDrawable();
         ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
@@ -99,6 +102,28 @@ public class MessageTopicButton {
         imageReceiver.setRoundRadius(this.avatarSize / 2);
         this.avatarDrawable.setInfo(messageObject.currentAccount, tLObject);
         this.imageReceiver.setForUserOrChat(tLObject, this.avatarDrawable);
+        if (messageObject.isOutOwner()) {
+            this.topicNameColor = getThemedColor(Theme.key_chat_outReplyNameText);
+        } else {
+            if (z) {
+                colorId = UserObject.getColorId((TLRPC$User) tLObject);
+            } else {
+                colorId = tLObject instanceof TLRPC$Chat ? ChatObject.getColorId((TLRPC$Chat) tLObject) : 0;
+            }
+            if (colorId < 7) {
+                this.topicNameColor = getThemedColor(Theme.keys_avatar_nameInMessage[colorId]);
+            } else {
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(messageObject.currentAccount).peerColors;
+                MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(colorId) : null;
+                if (color != null) {
+                    this.topicNameColor = color.getColor(0, this.resourcesProvider);
+                } else {
+                    this.topicNameColor = getThemedColor(Theme.key_chat_inReplyNameText);
+                }
+            }
+        }
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        this.topicBackgroundColor = Theme.multAlpha(this.topicNameColor, resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
         return setInternal(chatMessageCell, messageObject, i, str, 1);
     }
 

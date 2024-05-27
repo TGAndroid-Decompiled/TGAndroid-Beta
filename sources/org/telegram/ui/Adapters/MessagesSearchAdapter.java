@@ -60,10 +60,10 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
         int i4 = this.loadedCount;
         if (i4 >= i2) {
             if (i4 - i2 > 0) {
-                notifyItemRangeInserted(i2 + i3, i4 - i2);
+                notifyItemRangeInserted(i2, i4 - i2);
             }
             if (i3 > 0) {
-                notifyItemRangeRemoved(i2, i3);
+                notifyItemRangeRemoved(this.loadedCount, i3);
             }
             int i5 = this.loadedCount;
             if (i5 > 0) {

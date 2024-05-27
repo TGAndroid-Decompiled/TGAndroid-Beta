@@ -326,7 +326,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         this.selectedDocumentIds.clear();
         ArrayList arrayList = new ArrayList(hashSet);
         for (int i = 0; i < arrayList.size(); i++) {
-            if (((ReactionsLayoutInBubble.VisibleReaction) arrayList.get(i)).documentId != 0) {
+            if (arrayList.get(i) != null && ((ReactionsLayoutInBubble.VisibleReaction) arrayList.get(i)).documentId != 0) {
                 this.selectedDocumentIds.add(Long.valueOf(((ReactionsLayoutInBubble.VisibleReaction) arrayList.get(i)).documentId));
             }
         }

@@ -6,7 +6,6 @@ import android.graphics.PorterDuff;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,8 +19,10 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarsImageView;
+import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
-public class DialogsHintCell extends FrameLayout {
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
+public class DialogsHintCell extends BlurredFrameLayout {
     private final AvatarsImageView avatarsImageView;
     private final ImageView chevronView;
     private final ImageView closeView;
@@ -31,8 +32,8 @@ public class DialogsHintCell extends FrameLayout {
     private final LinearLayout parentView;
     public final AnimatedEmojiSpan.TextViewEmojis titleView;
 
-    public DialogsHintCell(Context context) {
-        super(context);
+    public DialogsHintCell(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
+        super(context, sizeNotifierFrameLayout);
         setWillNotDraw(false);
         setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f));
         AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);

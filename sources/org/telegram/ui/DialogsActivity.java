@@ -2000,7 +2000,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         DialogsActivity.this.checkAnimationFinished();
                         return;
                     }
-                    DialogsActivity.this.frozenDialogsList.remove(0);
+                    if (!DialogsActivity.this.frozenDialogsList.isEmpty()) {
+                        DialogsActivity.this.frozenDialogsList.remove(0);
+                    }
                     this.parentPage.dialogsItemAnimator.prepareForRemove();
                     this.parentPage.updateList(true);
                     return;

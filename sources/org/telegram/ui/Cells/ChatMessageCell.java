@@ -476,6 +476,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean hasFactCheck;
     private boolean hasGamePreview;
     private boolean hasInvoicePreview;
+    private boolean hasInvoicePrice;
     private boolean hasLinkPreview;
     private int hasMiniProgress;
     private boolean hasNewLineForTime;
@@ -6744,7 +6745,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     BaseCell.setDrawableBounds(themedDrawable, (((botButton2.x + botButton2.width) - AndroidUtilities.dp(3.0f)) - themedDrawable.getIntrinsicWidth()) + dp, dp3 + AndroidUtilities.dp(3.0f));
                     themedDrawable.draw(canvas);
                 } else if (!(botButton2.button instanceof TLRPC$TL_keyboardButtonSwitchInline) && !(botButton2.button instanceof TLRPC$TL_keyboardButtonRequestPeer)) {
-                    if ((botButton2.button instanceof TLRPC$TL_keyboardButtonBuy) && this.hasInvoicePreview) {
+                    if ((botButton2.button instanceof TLRPC$TL_keyboardButtonBuy) && this.hasInvoicePreview && this.hasInvoicePrice) {
                         BaseCell.setDrawableBounds(Theme.chat_botCardDrawable, (((botButton2.x + botButton2.width) - AndroidUtilities.dp(5.0f)) - Theme.chat_botCardDrawable.getIntrinsicWidth()) + dp, dp3 + AndroidUtilities.dp(4.0f));
                         Theme.chat_botCardDrawable.draw(canvas);
                     }

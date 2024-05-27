@@ -1422,11 +1422,20 @@ public class LocaleController {
         return formatPluralStringComma(str, i, ',');
     }
 
+    public static String formatPluralStringComma(String str, int i, Object... objArr) {
+        return formatPluralStringComma(str, i, ',', objArr);
+    }
+
     public static String formatPluralStringComma(String str, int i, char c) {
+        return formatPluralStringComma(str, i, c, new Object[0]);
+    }
+
+    public static String formatPluralStringComma(String str, int i, char c, Object... objArr) {
         if (str != null) {
             try {
                 if (str.length() != 0 && getInstance().currentPluralRules != null) {
                     String str2 = str + "_" + getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i));
+                    int i2 = 0;
                     StringBuilder sb = new StringBuilder(String.format("%d", Integer.valueOf(i)));
                     for (int length = sb.length() - 3; length > 0; length -= 3) {
                         sb.insert(length, c);
@@ -1442,7 +1451,16 @@ public class LocaleController {
                         str3 = ApplicationLoader.applicationContext.getString(ApplicationLoader.applicationContext.getResources().getIdentifier(str + "_other", "string", ApplicationLoader.applicationContext.getPackageName()));
                     }
                     String replace = str3.replace("%d", "%1$s").replace("%1$d", "%1$s");
-                    return getInstance().currentLocale != null ? String.format(getInstance().currentLocale, replace, sb) : String.format(replace, sb);
+                    int length2 = (objArr == null ? 0 : objArr.length) + 1;
+                    Object[] objArr2 = new Object[length2];
+                    while (i2 < length2) {
+                        objArr2[i2] = i2 == 0 ? sb : objArr[i2 - 1];
+                        i2++;
+                    }
+                    if (getInstance().currentLocale != null) {
+                        return String.format(getInstance().currentLocale, replace, objArr2);
+                    }
+                    return String.format(replace, objArr2);
                 }
             } catch (Exception e) {
                 FileLog.e(e);

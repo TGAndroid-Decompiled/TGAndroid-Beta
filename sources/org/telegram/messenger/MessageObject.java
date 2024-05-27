@@ -2009,6 +2009,36 @@ public class MessageObject {
         this.totalAnimatedEmojiCount = 0;
     }
 
+    public TextPaint getTextPaint() {
+        if (this.emojiOnlyCount >= 1 && this.messageOwner != null && !hasNonEmojiEntities()) {
+            int i = this.emojiOnlyCount;
+            int i2 = this.animatedEmojiCount;
+            boolean z = i == i2;
+            switch (Math.max(i, i2)) {
+                case 0:
+                case 1:
+                case 2:
+                    TextPaint[] textPaintArr = Theme.chat_msgTextPaintEmoji;
+                    return z ? textPaintArr[0] : textPaintArr[2];
+                case 3:
+                    TextPaint[] textPaintArr2 = Theme.chat_msgTextPaintEmoji;
+                    return z ? textPaintArr2[1] : textPaintArr2[3];
+                case 4:
+                    TextPaint[] textPaintArr3 = Theme.chat_msgTextPaintEmoji;
+                    return z ? textPaintArr3[2] : textPaintArr3[4];
+                case 5:
+                    TextPaint[] textPaintArr4 = Theme.chat_msgTextPaintEmoji;
+                    return z ? textPaintArr4[3] : textPaintArr4[5];
+                case 6:
+                    TextPaint[] textPaintArr5 = Theme.chat_msgTextPaintEmoji;
+                    return z ? textPaintArr5[4] : textPaintArr5[5];
+                default:
+                    return Theme.chat_msgTextPaintEmoji[5];
+            }
+        }
+        return Theme.chat_msgTextPaint;
+    }
+
     public MessageObject(int r31, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r32, java.util.ArrayList<org.telegram.messenger.MessageObject> r33, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r34, org.telegram.tgnet.TLRPC$Chat r35, int[] r36, boolean r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }

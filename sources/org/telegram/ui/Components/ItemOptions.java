@@ -431,6 +431,21 @@ public class ItemOptions {
         return this;
     }
 
+    public ActionBarMenuSubItem getLast() {
+        ViewGroup viewGroup = this.linearLayout;
+        if (viewGroup == null) {
+            viewGroup = this.lastLayout;
+        }
+        if (viewGroup.getChildCount() <= 0) {
+            return null;
+        }
+        View childAt = viewGroup.getChildAt(viewGroup.getChildCount() - 1);
+        if (childAt instanceof ActionBarMenuSubItem) {
+            return (ActionBarMenuSubItem) childAt;
+        }
+        return null;
+    }
+
     public ViewGroup getLayout() {
         return this.layout;
     }

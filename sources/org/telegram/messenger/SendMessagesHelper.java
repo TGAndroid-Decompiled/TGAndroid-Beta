@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -230,6 +231,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -2706,7 +2708,11 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     getMessagesController().putUsers(tLRPC$PaymentForm.users, false);
                     chatActivity.presentFragment(new PaymentFormActivity(tLRPC$PaymentForm, messageObject, chatActivity));
                 } else if (tLObject instanceof TLRPC$TL_payments_paymentReceiptStars) {
-                    StarsIntroActivity.showTransactionSheet(ApplicationLoader.applicationContext, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, (Theme.ResourcesProvider) null);
+                    Context context = LaunchActivity.instance;
+                    if (context == null) {
+                        context = ApplicationLoader.applicationContext;
+                    }
+                    StarsIntroActivity.showTransactionSheet(context, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, (Theme.ResourcesProvider) null);
                 } else if (tLObject instanceof TLRPC$PaymentReceipt) {
                     chatActivity.presentFragment(new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject));
                 }

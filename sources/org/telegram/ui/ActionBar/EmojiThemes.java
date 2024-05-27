@@ -580,6 +580,9 @@ public class EmojiThemes {
     }
 
     private int getOrDefault(SparseIntArray sparseIntArray, int i) {
+        if (sparseIntArray == null) {
+            return Theme.getDefaultColor(i);
+        }
         int indexOfKey = sparseIntArray.indexOfKey(i);
         if (indexOfKey >= 0) {
             return sparseIntArray.valueAt(indexOfKey);

@@ -2,6 +2,7 @@ package org.telegram.ui.Stars;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import androidx.core.util.Consumer;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
@@ -68,6 +69,7 @@ public class StarsController {
     private ArrayList<TLRPC$TL_starsTopupOption> options;
     private boolean optionsLoaded;
     private boolean optionsLoading;
+    private boolean paymentFormOpened;
     public final ArrayList<TLRPC$TL_starsTransaction>[] transactions = {new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
     private String[] offset = new String[3];
     private boolean[] loading = new boolean[3];
@@ -622,7 +624,7 @@ public class StarsController {
 
     public void openPaymentForm(final TLRPC$InputInvoice tLRPC$InputInvoice, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final Runnable runnable) {
         String str;
-        if (tLRPC$TL_payments_paymentFormStars == null || tLRPC$TL_payments_paymentFormStars.invoice == null) {
+        if (tLRPC$TL_payments_paymentFormStars == null || tLRPC$TL_payments_paymentFormStars.invoice == null || this.paymentFormOpened) {
             return;
         }
         Context context = LaunchActivity.instance;
@@ -648,36 +650,28 @@ public class StarsController {
         while (it.hasNext()) {
             j += it.next().amount;
         }
-        final long j2 = tLRPC$TL_payments_paymentFormStars.bot_id;
+        long j2 = tLRPC$TL_payments_paymentFormStars.bot_id;
         if (j2 >= 0) {
             str = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2)));
         } else {
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j2));
             str = chat == null ? "" : chat.title;
         }
-        String str2 = str;
-        final String str3 = tLRPC$TL_payments_paymentFormStars.title;
+        final String str2 = str;
+        String str3 = tLRPC$TL_payments_paymentFormStars.title;
         if (runnable != null) {
             runnable.run();
         }
-        if (this.balance < j) {
-            if (!MessagesController.getInstance(this.currentAccount).starsPurchaseAvailable()) {
-                showNoSupportDialog(context2, resourceProvider);
-                return;
-            }
-            final long j3 = j;
-            new StarsIntroActivity.StarsNeededSheet(context2, resourceProvider, j, str2, new Runnable() {
-                @Override
-                public final void run() {
-                    StarsController.this.lambda$openPaymentForm$24(context2, resourceProvider, j2, str3, j3, tLRPC$TL_payments_paymentFormStars, tLRPC$InputInvoice);
-                }
-            }).show();
-            return;
-        }
+        final long j3 = j;
         StarsIntroActivity.openConfirmPurchaseSheet(context2, resourceProvider, this.currentAccount, j2, str3, j, tLRPC$TL_payments_paymentFormStars.photo, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarsController.this.lambda$openPaymentForm$25(tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, (Runnable) obj);
+                StarsController.this.lambda$openPaymentForm$25(j3, context2, resourceProvider, str2, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, (Utilities.Callback) obj);
+            }
+        }, new Runnable() {
+            @Override
+            public final void run() {
+                StarsController.this.lambda$openPaymentForm$26();
             }
         });
     }
@@ -694,20 +688,57 @@ public class StarsController {
         openPaymentForm(tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, runnable);
     }
 
-    public void lambda$openPaymentForm$24(Context context, Theme.ResourcesProvider resourcesProvider, long j, String str, long j2, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final TLRPC$InputInvoice tLRPC$InputInvoice) {
-        StarsIntroActivity.openConfirmPurchaseSheet(context, resourcesProvider, this.currentAccount, j, str, j2, tLRPC$TL_payments_paymentFormStars.photo, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                StarsController.this.lambda$openPaymentForm$23(tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, (Runnable) obj);
+    public void lambda$openPaymentForm$25(long j, Context context, Theme.ResourcesProvider resourcesProvider, String str, final TLRPC$InputInvoice tLRPC$InputInvoice, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final Utilities.Callback callback) {
+        if (this.balance < j) {
+            if (!MessagesController.getInstance(this.currentAccount).starsPurchaseAvailable()) {
+                this.paymentFormOpened = false;
+                if (callback != null) {
+                    callback.run(Boolean.FALSE);
+                }
+                showNoSupportDialog(context, resourcesProvider);
+                return;
             }
-        });
+            final boolean[] zArr = {false};
+            StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, j, str, new Runnable() {
+                @Override
+                public final void run() {
+                    StarsController.this.lambda$openPaymentForm$23(zArr, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, callback);
+                }
+            });
+            starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    StarsController.this.lambda$openPaymentForm$24(callback, zArr, dialogInterface);
+                }
+            });
+            starsNeededSheet.show();
+            return;
+        }
+        payAfterConfirmed(tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, callback);
+    }
+
+    public void lambda$openPaymentForm$23(boolean[] zArr, TLRPC$InputInvoice tLRPC$InputInvoice, TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, Utilities.Callback callback) {
+        zArr[0] = true;
+        payAfterConfirmed(tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, callback);
+    }
+
+    public void lambda$openPaymentForm$24(Utilities.Callback callback, boolean[] zArr, DialogInterface dialogInterface) {
+        if (callback == null || zArr[0]) {
+            return;
+        }
+        callback.run(Boolean.FALSE);
+        this.paymentFormOpened = false;
+    }
+
+    public void lambda$openPaymentForm$26() {
+        this.paymentFormOpened = false;
     }
 
     private void showNoSupportDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
         new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.StarsNotAvailableTitle)).setMessage(LocaleController.getString(R.string.StarsNotAvailableText)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
     }
 
-    public void lambda$openPaymentForm$25(TLRPC$InputInvoice tLRPC$InputInvoice, TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final Runnable runnable) {
+    private void payAfterConfirmed(TLRPC$InputInvoice tLRPC$InputInvoice, TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final Utilities.Callback<Boolean> callback) {
         String str;
         if (tLRPC$TL_payments_paymentFormStars == null) {
             return;
@@ -747,24 +778,25 @@ public class StarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_sendStarsForm, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StarsController.this.lambda$payAfterConfirmed$27(runnable, context, j3, str3, str2, tLObject, tLRPC$TL_error);
+                StarsController.this.lambda$payAfterConfirmed$28(callback, context, j3, str3, str2, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$payAfterConfirmed$27(final Runnable runnable, final Context context, final long j, final String str, final String str2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$payAfterConfirmed$28(final Utilities.Callback callback, final Context context, final long j, final String str, final String str2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsController.this.lambda$payAfterConfirmed$26(runnable, tLObject, context, j, str, str2, tLRPC$TL_error);
+                StarsController.this.lambda$payAfterConfirmed$27(callback, tLObject, context, j, str, str2, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$payAfterConfirmed$26(Runnable runnable, TLObject tLObject, Context context, long j, String str, String str2, TLRPC$TL_error tLRPC$TL_error) {
-        if (runnable != null) {
-            runnable.run();
+    public void lambda$payAfterConfirmed$27(Utilities.Callback callback, TLObject tLObject, Context context, long j, String str, String str2, TLRPC$TL_error tLRPC$TL_error) {
+        if (callback != null) {
+            callback.run(Boolean.valueOf(tLObject instanceof TLRPC$TL_payments_paymentResult));
         }
+        this.paymentFormOpened = false;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         BulletinFactory global = (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment);
         if (tLObject instanceof TLRPC$TL_payments_paymentResult) {

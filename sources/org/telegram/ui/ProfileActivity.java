@@ -10244,8 +10244,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             arrayList2.add(user);
             getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
             TLRPC$UserFull userFull = getMessagesController().getUserFull(this.userId);
-            userFull.profile_photo = tLRPC$TL_photos_photo.photo;
-            getMessagesStorage().updateUserInfo(userFull, false);
+            if (userFull != null) {
+                userFull.profile_photo = tLRPC$TL_photos_photo.photo;
+                getMessagesStorage().updateUserInfo(userFull, false);
+            }
         }
         this.allowPullingDown = (AndroidUtilities.isTablet() || this.isInLandscapeMode || !this.avatarImage.getImageReceiver().hasNotThumb() || AndroidUtilities.isAccessibilityScreenReaderEnabled()) ? false : true;
         this.avatar = null;
