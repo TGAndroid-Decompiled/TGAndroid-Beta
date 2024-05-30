@@ -2832,7 +2832,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             TLRPC$Message tLRPC$Message = arrayList.get(i);
             int i2 = tLRPC$Message.date;
             TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            if (i2 + tLRPC$MessageMedia.period > currentTime) {
+            int i3 = tLRPC$MessageMedia.period;
+            if (i2 + i3 > currentTime || i3 == Integer.MAX_VALUE) {
                 if (onCreateLatLngBoundsBuilder != null) {
                     TLRPC$GeoPoint tLRPC$GeoPoint = tLRPC$MessageMedia.geo;
                     onCreateLatLngBoundsBuilder.include(new IMapsProvider.LatLng(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long));

@@ -8715,7 +8715,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (((float) j) * f >= 5242880.0f || (f >= 0.5f && j >= 2097152)) {
             if (Math.abs(SystemClock.elapsedRealtime() - this.startedPlayTime) >= (z ? 10000 : 3000)) {
                 if (this.videoPlayer.getDuration() == -9223372036854775807L) {
-                    Toast.makeText(this.parentActivity, LocaleController.getString("VideoDoesNotSupportStreaming", R.string.VideoDoesNotSupportStreaming), 1).show();
+                    Toast.makeText(this.parentActivity, LocaleController.getString(R.string.VideoDoesNotSupportStreaming), 1).show();
                 }
                 this.streamingAlertShown = true;
             }

@@ -7045,20 +7045,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$checkAnimationFinished$86() {
-        ArrayList<TLRPC$Dialog> arrayList;
-        if (this.viewPages != null && this.folderId != 0 && ((arrayList = this.frozenDialogsList) == null || arrayList.isEmpty())) {
-            int i = 0;
-            while (true) {
-                ViewPage[] viewPageArr = this.viewPages;
-                if (i >= viewPageArr.length) {
-                    break;
-                }
-                viewPageArr[i].listView.setEmptyView(null);
-                this.viewPages[i].progressView.setVisibility(4);
-                i++;
-            }
-            finishFragment();
-        }
         setDialogsListFrozen(false);
         updateDialogIndices();
     }

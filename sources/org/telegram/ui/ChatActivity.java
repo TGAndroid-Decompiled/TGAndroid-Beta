@@ -7310,14 +7310,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
         createActionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
         if (this.currentEncryptedChat == null) {
+            boolean z = getDialogId() == getUserConfig().getClientUserId() && ((i = this.chatMode) == 0 || i == 3);
             this.actionModeViews.add(createActionMode.addItemWithWidth(25, R.drawable.msg_download, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.SaveToMusic)));
             this.actionModeViews.add(createActionMode.addItemWithWidth(23, R.drawable.msg_edit, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Edit)));
-            if (getDialogId() == getUserConfig().getClientUserId() && ((i = this.chatMode) == 0 || i == 3)) {
+            if (z) {
                 this.actionModeViews.add(createActionMode.addItemWithWidth(28, R.drawable.menu_tag_edit, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrTagMessage)));
             }
             this.actionModeViews.add(createActionMode.addItemWithWidth(22, R.drawable.msg_fave, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AddToFavorites)));
             this.actionModeViews.add(createActionMode.addItemWithWidth(10, R.drawable.msg_copy, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Copy)));
-            this.actionModeViews.add(createActionMode.addItemWithWidth(11, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Forward)));
+            if (!z) {
+                this.actionModeViews.add(createActionMode.addItemWithWidth(11, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Forward)));
+            }
             this.actionModeViews.add(createActionMode.addItemWithWidth(12, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete)));
         } else {
             this.actionModeViews.add(createActionMode.addItemWithWidth(23, R.drawable.msg_edit, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Edit)));
@@ -13705,7 +13708,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         addToSelectedMessages(messageObject, z, true);
     }
 
-    private void addToSelectedMessages(org.telegram.messenger.MessageObject r23, boolean r24, boolean r25) {
+    private void addToSelectedMessages(org.telegram.messenger.MessageObject r28, boolean r29, boolean r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.addToSelectedMessages(org.telegram.messenger.MessageObject, boolean, boolean):void");
     }
 

@@ -1398,6 +1398,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 }
                 long balance = StarsController.getInstance(this.currentAccount).getBalance();
                 this.headerView.titleView.setText(LocaleController.formatPluralStringComma("StarsNeededTitle", (int) (this.starsNeeded - balance)));
+                ActionBar actionBar = this.actionBar;
+                if (actionBar != null) {
+                    actionBar.setTitle(getTitle());
+                }
                 if (balance < this.starsNeeded || (runnable = this.whenPurchased) == null) {
                     return;
                 }

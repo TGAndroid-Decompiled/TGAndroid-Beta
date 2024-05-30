@@ -620,14 +620,14 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.numbersTitleContainer = frameLayout5;
         this.numbersFrameLayout.addView(frameLayout5, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView3 = new TextView(context);
-        textView3.setTextSize(1, 14.0f);
+        textView3.setTextSize(1, 15.0f);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextColor(-1);
         textView3.setText(LocaleController.getString(R.string.UnlockToUse));
         this.numbersTitleContainer.addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView4 = new TextView(context);
         this.subtitleView = textView4;
-        textView4.setTextSize(1, 13.0f);
+        textView4.setTextSize(1, 14.0f);
         this.subtitleView.setTextColor(-1);
         this.subtitleView.setText(LocaleController.getString(R.string.EnterPINorFingerprint));
         this.numbersTitleContainer.addView(this.subtitleView, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 23.0f, 0.0f, 0.0f));

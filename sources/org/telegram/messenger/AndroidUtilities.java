@@ -335,19 +335,9 @@ public class AndroidUtilities {
     }
 
     public static Typeface bold() {
-        if (mediumTypeface == null) {
-            if (Build.VERSION.SDK_INT >= 28) {
-                mediumTypeface = Typeface.create(null, 500, false);
-                TextPaint textPaint = new TextPaint(1);
-                TextPaint textPaint2 = new TextPaint(1);
-                textPaint2.setTypeface(mediumTypeface);
-                if (Math.abs(textPaint.measureText("Sample text") - textPaint2.measureText("Sample text")) < 0.1f) {
-                    mediumTypeface = Typeface.create(null, 700, false);
-                }
-            }
-            if (mediumTypeface == null) {
-                mediumTypeface = getTypeface(TYPEFACE_ROBOTO_MEDIUM);
-            }
+        Typeface typeface = mediumTypeface;
+        if (typeface == null && typeface == null) {
+            mediumTypeface = getTypeface(TYPEFACE_ROBOTO_MEDIUM);
         }
         return mediumTypeface;
     }
