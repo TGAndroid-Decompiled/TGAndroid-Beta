@@ -108,7 +108,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         textView3.setGravity(17);
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText));
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, resourcesProvider);

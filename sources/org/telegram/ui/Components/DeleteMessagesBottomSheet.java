@@ -293,7 +293,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         this.actionButton.setEllipsize(TextUtils.TruncateAt.END);
         this.actionButton.setGravity(17);
         this.actionButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.actionButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionButton.setTypeface(AndroidUtilities.bold());
         this.actionButton.setTextSize(1, 14.0f);
         this.actionButton.setText(LocaleController.getString(R.string.DeleteProceedBtn));
         this.actionButton.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 6.0f));

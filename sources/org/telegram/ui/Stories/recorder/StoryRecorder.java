@@ -2113,7 +2113,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         simpleTextView.setTextSize(20);
         this.titleTextView.setGravity(19);
         this.titleTextView.setTextColor(-1);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.titleTextView.setText(LocaleController.getString("RecorderNewStory", R.string.RecorderNewStory));
         this.titleTextView.getPaint().setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, 1.0f, 1073741824);
         this.titleTextView.setAlpha(0.0f);

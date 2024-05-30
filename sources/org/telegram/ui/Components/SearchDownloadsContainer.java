@@ -760,7 +760,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         double round = Math.round(f * 10.0f);
         Double.isNaN(round);
         SpannableString spannableString = new SpannableString(Double.toString(round / 10.0d).replaceAll("\\.0$", ""));
-        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         if (this.parentFragment.hasStoryViewer()) {
             return;
         }

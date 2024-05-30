@@ -1821,7 +1821,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 18.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleView.setTypeface(AndroidUtilities.bold());
             this.titleView.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? R.string.ChangePhoneNewNumber : R.string.YourNumber));
             this.titleView.setGravity(17);
             this.titleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
@@ -3158,7 +3158,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public LoginActivitySmsView(final android.content.Context r42, int r43) {
+        public LoginActivitySmsView(final android.content.Context r37, int r38) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.<init>(org.telegram.ui.LoginActivity, android.content.Context, int):void");
         }
 
@@ -4853,7 +4853,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 18.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleView.setTypeface(AndroidUtilities.bold());
             TextView textView2 = this.titleView;
             int i = R.string.ResetAccount;
             textView2.setText(LocaleController.getString(i));
@@ -4878,14 +4878,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.resetAccountTime = textView5;
             textView5.setGravity(1);
             this.resetAccountTime.setTextSize(1, 20.0f);
-            this.resetAccountTime.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.resetAccountTime.setTypeface(AndroidUtilities.bold());
             this.resetAccountTime.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             addView(this.resetAccountTime, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
             TextView textView6 = new TextView(context);
             this.resetAccountButton = textView6;
             textView6.setGravity(17);
             this.resetAccountButton.setText(LocaleController.getString(i));
-            this.resetAccountButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.resetAccountButton.setTypeface(AndroidUtilities.bold());
             this.resetAccountButton.setTextSize(1, 15.0f);
             this.resetAccountButton.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.resetAccountButton.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -6496,7 +6496,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.titleTextView = textView;
             float f = 18.0f;
             textView.setTextSize(1, 18.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleTextView.setTypeface(AndroidUtilities.bold());
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.titleTextView.setGravity(49);
             this.titleTextView.setText(LocaleController.getString(R.string.SetNewPassword));
@@ -7182,7 +7182,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.titleTextView = textView;
             textView.setText(LocaleController.getString(R.string.RegistrationProfileInfo));
             this.titleTextView.setTextSize(1, 18.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleTextView.setTypeface(AndroidUtilities.bold());
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.titleTextView.setGravity(1);
             addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 8, 12, 8, 0));
@@ -8090,7 +8090,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.numberView = textView2;
             textView2.setText(str);
             this.numberView.setTextSize(1, 18.0f);
-            this.numberView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.numberView.setTypeface(AndroidUtilities.bold());
             this.numberView.setSingleLine();
             this.popupLayout.addView(this.numberView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 24.0f, 48.0f, 24.0f, 0.0f));
             int dp = AndroidUtilities.dp(16.0f);

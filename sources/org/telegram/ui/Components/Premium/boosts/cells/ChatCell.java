@@ -32,7 +32,7 @@ public class ChatCell extends BaseCell {
 
     public ChatCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
         this.deleteImageView = imageView;
         imageView.setFocusable(false);

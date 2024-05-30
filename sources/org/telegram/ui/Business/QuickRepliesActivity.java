@@ -103,7 +103,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         NumberTextView numberTextView = new NumberTextView(getContext());
         this.countText = numberTextView;
         numberTextView.setTextSize(18);
-        this.countText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.countText.setTypeface(AndroidUtilities.bold());
         this.countText.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         createActionMode.addView(this.countText, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.countText.setOnTouchListener(new View.OnTouchListener() {
@@ -671,7 +671,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         private final Text text;
 
         public MoreSpan(int i) {
-            this.text = new Text(LocaleController.formatPluralString("BusinessRepliesMore", i, new Object[0]), 9.33f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.text = new Text(LocaleController.formatPluralString("BusinessRepliesMore", i, new Object[0]), 9.33f, AndroidUtilities.bold());
         }
 
         public static CharSequence of(int i, int[] iArr) {
@@ -778,7 +778,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                 str3 = "/" + str3;
             }
             spannableStringBuilder.append((CharSequence) "/").append((CharSequence) quickReply.name);
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
             spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)), 0, spannableStringBuilder.length(), 33);
             if (str3 != null) {
                 spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2, this.resourcesProvider)), 0, Math.min(str3.length() <= 0 ? 1 : str3.length(), spannableStringBuilder.length()), 33);
@@ -893,7 +893,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             textView.setSingleLine();
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 16.0f);
             boolean z = LocaleController.isRTL;
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 7, z ? 40.0f : 78.0f, 10.33f, z ? 78.0f : 40.0f, 0.0f));

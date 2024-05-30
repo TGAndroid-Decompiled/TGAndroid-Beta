@@ -248,7 +248,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         animatedTextView.setGravity(3);
         this.titleView.setTextColor(getTextColor());
         this.titleView.setEllipsizeByGradient(true);
-        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         this.titleView.setTextSize(AndroidUtilities.dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20.0f : 18.0f));
         addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f));
@@ -963,7 +963,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         private void createTextView() {
             SimpleTextView simpleTextView = new SimpleTextView(getContext());
             this.textView = simpleTextView;
-            simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            simpleTextView.setTypeface(AndroidUtilities.bold());
             this.textView.setGravity(17);
             this.textView.setTextSize(11);
             this.textView.setTextColor(DialogStoriesCell.this.getTextColor());
@@ -1666,7 +1666,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
         if (clickableSpanArr != null && clickableSpanArr.length >= 1) {
-            replaceSingleTag.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
+            replaceSingleTag.setSpan(new TypefaceSpan(AndroidUtilities.bold()), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
         }
         HintView2 hintView22 = this.premiumHint;
         hintView22.setMaxWidthPx(HintView2.cutInFancyHalf(replaceSingleTag, hintView22.getTextPaint()));

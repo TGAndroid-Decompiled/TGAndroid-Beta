@@ -1169,7 +1169,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.titleTextView[i].setGravity(19);
                 this.titleTextView[i].setTextColor(-1);
                 this.titleTextView[i].setTextSize(20);
-                this.titleTextView[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.titleTextView[i].setTypeface(AndroidUtilities.bold());
                 this.titleTextView[i].setDrawablePadding(AndroidUtilities.dp(4.0f));
                 this.titleTextView[i].setScrollNonFitText(true);
                 this.titleLayout.addView(this.titleTextView[i], LayoutHelper.createFrame(-1, -2, 19));
@@ -1438,20 +1438,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             animatedTextDrawable.setAnimationProperties(0.3f, 0L, 320L, cubicBezierInterpolator);
             this.left.setTextColor(-1);
             this.left.setTextSize(AndroidUtilities.dp(14.0f));
-            this.left.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.left.setTypeface(AndroidUtilities.bold());
             this.left.setCallback(this);
             this.left.setText("0");
             this.left.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             this.paint.setColor(-1);
             this.paint.setTextSize(AndroidUtilities.dp(14.0f));
-            this.paint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.paint.setTypeface(AndroidUtilities.bold());
             setCenterText();
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
             this.right = animatedTextDrawable2;
             animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 320L, cubicBezierInterpolator);
             this.right.setTextColor(-1);
             this.right.setTextSize(AndroidUtilities.dp(14.0f));
-            this.right.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.right.setTypeface(AndroidUtilities.bold());
             this.right.setCallback(this);
             this.right.setText("0");
             this.right.setOverrideFullWidth(AndroidUtilities.displaySize.x);
@@ -2294,7 +2294,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             this.textPaint.setColor(-1);
             Paint paint = new Paint(1);
             this.paint = paint;
@@ -4556,7 +4556,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         TextView textView2 = new TextView(this.containerView.getContext());
         this.docNameTextView = textView2;
         textView2.setTextSize(1, 15.0f);
-        this.docNameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.docNameTextView.setTypeface(AndroidUtilities.bold());
         this.docNameTextView.setSingleLine(true);
         this.docNameTextView.setMaxLines(1);
         this.docNameTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -4585,7 +4585,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.doneButtonFullWidth.setSingleLine(true);
         this.doneButtonFullWidth.setText(LocaleController.getString("SetAsMyPhoto", R.string.SetAsMyPhoto));
         this.doneButtonFullWidth.setTextSize(1, 15.0f);
-        this.doneButtonFullWidth.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.doneButtonFullWidth.setTypeface(AndroidUtilities.bold());
         this.doneButtonFullWidth.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -5032,7 +5032,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.resetButton.setBackgroundDrawable(Theme.createSelectorDrawable(-12763843, 0));
         this.resetButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.resetButton.setText(LocaleController.getString("Reset", R.string.CropReset).toUpperCase());
-        this.resetButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.resetButton.setTypeface(AndroidUtilities.bold());
         this.editorDoneLayout.addView(this.resetButton, LayoutHelper.createFrame(-2, -1, 49));
         this.resetButton.setOnClickListener(new View.OnClickListener() {
             @Override

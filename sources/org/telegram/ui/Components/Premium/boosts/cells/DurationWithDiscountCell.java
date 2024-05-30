@@ -30,7 +30,7 @@ public class DurationWithDiscountCell extends DurationCell {
         checkBox2.setDrawUnchecked(true);
         checkBox2.setDrawBackgroundAsArc(10);
         addView(checkBox2);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.radioButton.setVisibility(8);
         updateLayouts();
     }

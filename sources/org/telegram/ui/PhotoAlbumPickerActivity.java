@@ -375,7 +375,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             }
         });
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         View view2 = new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {

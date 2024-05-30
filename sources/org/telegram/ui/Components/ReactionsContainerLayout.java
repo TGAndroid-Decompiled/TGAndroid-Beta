@@ -853,8 +853,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         reactionHolderView.setPivotY(reactionHolderView.enterImageView.getY() + reactionHolderView.enterImageView.getMeasuredHeight());
         reactionHolderView.setScaleX(this.otherViewsScale);
         reactionHolderView.setScaleY(this.otherViewsScale);
-        reactionHolderView.enterImageView.setScaleX(reactionHolderView.sideScale);
-        reactionHolderView.enterImageView.setScaleY(reactionHolderView.sideScale);
         reactionHolderView.pressedBackupImageView.setVisibility(4);
         reactionHolderView.enterImageView.setAlpha(1.0f);
     }
@@ -1862,7 +1860,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         public void setReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction, int i) {
-            this.selected = ReactionsContainerLayout.this.selectedReactions.contains(visibleReaction);
+            updateSelected(visibleReaction, false);
             ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
             if (visibleReaction2 == null || !visibleReaction2.equals(visibleReaction)) {
                 boolean isPremium = UserConfig.getInstance(ReactionsContainerLayout.this.currentAccount).isPremium();

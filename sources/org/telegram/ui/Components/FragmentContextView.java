@@ -383,13 +383,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         if (FragmentContextView.this.currentStyle == 1 || FragmentContextView.this.currentStyle == 3) {
                             textView.setGravity(19);
                             textView.setTextColor(FragmentContextView.this.getThemedColor(Theme.key_returnToCallText));
-                            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                            textView.setTypeface(AndroidUtilities.bold());
                             textView.setTextSize(1, 14.0f);
                         }
                     } else {
                         textView.setGravity(51);
                         textView.setTextColor(FragmentContextView.this.getThemedColor(Theme.key_inappPlayerPerformer));
-                        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                        textView.setTypeface(AndroidUtilities.bold());
                         textView.setTextSize(1, 15.0f);
                     }
                 } else {
@@ -466,7 +466,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.joinButton.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         this.joinButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), getThemedColor(Theme.key_featuredStickers_addButton), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
         this.joinButton.setTextSize(1, 14.0f);
-        this.joinButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.joinButton.setTypeface(AndroidUtilities.bold());
         this.joinButton.setGravity(17);
         this.joinButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         addView(this.joinButton, LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 10.0f, 14.0f, 0.0f));
@@ -1284,7 +1284,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 if (textView3 != null) {
                     textView3.setGravity(51);
                     textView3.setTextColor(getThemedColor(Theme.key_inappPlayerPerformer));
-                    textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    textView3.setTypeface(AndroidUtilities.bold());
                     textView3.setTextSize(1, 15.0f);
                 }
                 i8++;
@@ -1342,7 +1342,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 if (textView4 != null) {
                     textView4.setGravity(19);
                     textView4.setTextColor(getThemedColor(Theme.key_returnToCallText));
-                    textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    textView4.setTypeface(AndroidUtilities.bold());
                     textView4.setTextSize(1, 14.0f);
                 }
                 i9++;
@@ -1690,7 +1690,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 }
                 i2++;
             }
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, getThemedColor(Theme.key_inappPlayerPerformer)), indexOf, string2.length() + indexOf, 18);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold(), 0, getThemedColor(Theme.key_inappPlayerPerformer)), indexOf, string2.length() + indexOf, 18);
             this.titleTextView.setText(spannableStringBuilder, false);
             return;
         }
@@ -1758,7 +1758,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             i4++;
         }
         if (indexOf >= 0) {
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, getThemedColor(Theme.key_inappPlayerPerformer)), indexOf, string.length() + indexOf, 18);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold(), 0, getThemedColor(Theme.key_inappPlayerPerformer)), indexOf, string.length() + indexOf, 18);
         }
         this.titleTextView.setText(spannableStringBuilder, false);
     }
@@ -1975,7 +1975,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 i4++;
             }
         }
-        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, getThemedColor(Theme.key_inappPlayerPerformer)), 0, playingMessageObject.getMusicAuthor().length(), 18);
+        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold(), 0, getThemedColor(Theme.key_inappPlayerPerformer)), 0, playingMessageObject.getMusicAuthor().length(), 18);
         this.titleTextView.setText(spannableStringBuilder, (!z && z3 && this.isMusic) ? false : false);
     }
 

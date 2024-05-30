@@ -48,7 +48,7 @@ public class MemberRequestCell extends FrameLayout {
         simpleTextView.setMaxLines(1);
         simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         simpleTextView.setTextSize(17);
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         boolean z2 = LocaleController.isRTL;
         addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 48, z2 ? 12.0f : 74.0f, 12.0f, z2 ? 74.0f : 12.0f, 0.0f));
         simpleTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -73,7 +73,7 @@ public class MemberRequestCell extends FrameLayout {
         textView.setText(LocaleController.getString(str, i));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView.setTextSize(14.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -91,7 +91,7 @@ public class MemberRequestCell extends FrameLayout {
         textView2.setText(LocaleController.getString("Dismiss", R.string.Dismiss));
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
         textView2.setTextSize(14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

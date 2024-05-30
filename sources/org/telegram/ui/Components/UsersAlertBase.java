@@ -657,7 +657,7 @@ public class UsersAlertBase extends BottomSheet {
             this.titleView = textView;
             textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
             this.titleView.setTextSize(1, 20.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleView.setTypeface(AndroidUtilities.bold());
             this.titleView.setLines(1);
             this.titleView.setMaxLines(1);
             this.titleView.setSingleLine(true);

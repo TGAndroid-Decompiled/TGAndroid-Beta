@@ -40,7 +40,7 @@ public class PremiumFeatureCell extends FrameLayout {
         linearLayout.setClipChildren(false);
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.title = simpleTextView;
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setTextSize(15);
         simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         linearLayout.addView(simpleTextView, LayoutHelper.createLinear(-1, -2));

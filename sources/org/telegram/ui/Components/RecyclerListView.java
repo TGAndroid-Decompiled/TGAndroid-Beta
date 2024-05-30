@@ -562,7 +562,7 @@ public class RecyclerListView extends RecyclerView {
             } else {
                 this.isRtl = false;
                 this.letterPaint.setTextSize(AndroidUtilities.dp(13.0f));
-                this.letterPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.letterPaint.setTypeface(AndroidUtilities.bold());
                 Paint paint = this.paint2;
                 int i2 = Theme.key_windowBackgroundWhite;
                 paint.setColor(Theme.getColor(i2, RecyclerListView.this.resourcesProvider));

@@ -193,7 +193,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         this.titleView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
         this.headerView = new HeaderView(getContext());
         RecyclerListViewInner recyclerListViewInner = new RecyclerListViewInner(context, this.resourcesProvider) {
@@ -1564,14 +1564,14 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             int i2 = Theme.key_dialogTextBlack;
             textView2.setTextColor(Theme.getColor(i2, SelfStoryViewsPage.this.resourcesProvider));
             this.allViewersView.setTextSize(1, 14.0f);
-            this.allViewersView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.allViewersView.setTypeface(AndroidUtilities.bold());
             this.allViewersView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
             TextView textView3 = new TextView(context);
             this.contactsViewersView = textView3;
             textView3.setText(LocaleController.getString("Contacts", R.string.Contacts));
             this.contactsViewersView.setTextColor(Theme.getColor(i2, SelfStoryViewsPage.this.resourcesProvider));
             this.contactsViewersView.setTextSize(1, 14.0f);
-            this.contactsViewersView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.contactsViewersView.setTypeface(AndroidUtilities.bold());
             this.contactsViewersView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
             linearLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
             linearLayout.addView(this.allViewersView, LayoutHelper.createLinear(-2, -2, 0, 13, 0, 0, 0));

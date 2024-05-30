@@ -1154,7 +1154,7 @@ public class FilterChatlistActivity extends BaseFragment {
             int i3 = Theme.key_featuredStickers_buttonText;
             textView2.setTextColor(Theme.getColor(i3));
             this.copyButton.setBackground(Theme.createRadSelectorDrawable(822083583, 8, 8));
-            this.copyButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.copyButton.setTypeface(AndroidUtilities.bold());
             this.copyButton.setTextSize(14.0f);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_copy_filled)), 0, 1, 0);
@@ -1181,7 +1181,7 @@ public class FilterChatlistActivity extends BaseFragment {
             textView3.setGravity(17);
             this.shareButton.setTextColor(Theme.getColor(i3));
             this.shareButton.setBackground(Theme.createRadSelectorDrawable(822083583, 8, 8));
-            this.shareButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.shareButton.setTypeface(AndroidUtilities.bold());
             this.shareButton.setTextSize(14.0f);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_share_filled)), 0, 1, 0);
@@ -1203,7 +1203,7 @@ public class FilterChatlistActivity extends BaseFragment {
             textView4.setGravity(17);
             this.generateButton.setTextColor(Theme.getColor(i3));
             this.generateButton.setBackground(Theme.createRadSelectorDrawable(822083583, 8, 8));
-            this.generateButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.generateButton.setTypeface(AndroidUtilities.bold());
             this.generateButton.setTextSize(14.0f);
             this.generateButton.setText("Generate Invite Link");
             this.generateButton.setOnClickListener(new View.OnClickListener() {

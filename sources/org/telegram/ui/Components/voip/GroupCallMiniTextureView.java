@@ -190,11 +190,11 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.pausedVideoDrawable.setStrokeWidth(AndroidUtilities.dpf2(3.4f));
         this.castingScreenDrawable = groupCallRenderersContainer.getContext().getResources().getDrawable(R.drawable.screencast_big).mutate();
         final TextPaint textPaint = new TextPaint(1);
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint.setColor(-1);
         final TextPaint textPaint2 = new TextPaint(1);
-        textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint2.setTypeface(AndroidUtilities.bold());
         textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint2.setColor(-1);
         final String string = LocaleController.getString("VoipVideoOnPause", R.string.VoipVideoOnPause);
@@ -558,7 +558,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.nameView = simpleTextView;
         simpleTextView.setTextSize(13);
         simpleTextView.setTextColor(ColorUtils.setAlphaComponent(-1, 229));
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setFullTextMaxLines(1);
         simpleTextView.setBuildFullLayout(true);
         FrameLayout frameLayout = new FrameLayout(groupCallRenderersContainer.getContext());
@@ -591,7 +591,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.stopSharingTextView = textView;
         textView.setText(LocaleController.getString("VoipVideoScreenStopSharing", R.string.VoipVideoScreenStopSharing));
         this.stopSharingTextView.setTextSize(1, 15.0f);
-        this.stopSharingTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.stopSharingTextView.setTypeface(AndroidUtilities.bold());
         this.stopSharingTextView.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
         this.stopSharingTextView.setTextColor(-1);
         this.stopSharingTextView.setBackground(createSimpleSelectorRoundRectDrawable);

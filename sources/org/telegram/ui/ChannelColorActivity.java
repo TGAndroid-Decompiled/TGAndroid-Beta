@@ -1645,7 +1645,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 this.title = simpleTextView;
                 simpleTextView.setGravity(19);
                 this.title.setTextColor(ChannelColorActivity.this.getThemedColor(Theme.key_actionBarDefaultTitle));
-                this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.title.setTypeface(AndroidUtilities.bold());
                 this.title.setText(LocaleController.getString(R.string.ChangeChannelNameColor2));
                 this.title.setAlpha(0.0f);
                 setTitleSize();

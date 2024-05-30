@@ -72,7 +72,7 @@ public class ProfileChannelCell extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 16.6f, 22.0f, 0.0f));
         TextView textView = new TextView(context);
         this.headerView = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 15.0f);
         textView.setText(LocaleController.getString(R.string.ProfileChannel));
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 51));
@@ -80,7 +80,7 @@ public class ProfileChannelCell extends FrameLayout {
         this.subscribersView = clickableAnimatedTextView;
         clickableAnimatedTextView.getDrawable().setHacks(true, true, true);
         clickableAnimatedTextView.setAnimationProperties(0.3f, 0L, 165L, cubicBezierInterpolator);
-        clickableAnimatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        clickableAnimatedTextView.setTypeface(AndroidUtilities.bold());
         clickableAnimatedTextView.setTextSize(AndroidUtilities.dp(11.0f));
         clickableAnimatedTextView.setPadding(AndroidUtilities.dp(4.33f), 0, AndroidUtilities.dp(4.33f), 0);
         clickableAnimatedTextView.setGravity(3);

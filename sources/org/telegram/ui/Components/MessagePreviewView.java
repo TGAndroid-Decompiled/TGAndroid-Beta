@@ -2128,7 +2128,7 @@ public class MessagePreviewView extends FrameLayout {
 
             public Tab(int i, String str) {
                 this.id = i;
-                this.text = new Text(str, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.text = new Text(str, 14.0f, AndroidUtilities.bold());
             }
         }
 
@@ -2269,7 +2269,7 @@ public class MessagePreviewView extends FrameLayout {
             this.title = animatedTextDrawable;
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             animatedTextDrawable.setAnimationProperties(0.3f, 0L, 430L, cubicBezierInterpolator);
-            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
             animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle, resourcesProvider));
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
             animatedTextDrawable.setEllipsizeByGradient(!LocaleController.isRTL);

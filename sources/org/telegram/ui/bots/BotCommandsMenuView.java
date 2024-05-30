@@ -85,7 +85,7 @@ public class BotCommandsMenuView extends View {
         menuDrawable.setRotateToBack(false);
         menuDrawable.setRotation(0.0f, false);
         menuDrawable.setCallback(this);
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         menuDrawable.setRoundCap();
         Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
         this.backgroundDrawable = createSimpleSelectorRoundRectDrawable;

@@ -85,7 +85,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         textView.setGravity(17);
         this.titleView.setTextSize(1, 18.0f);
         this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleView.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(this.titleView, LayoutHelper.createLinear(-1, -2, 49, 0, 6, 0, 0));
         TextView textView2 = new TextView(context);
         this.subtitleView = textView2;
@@ -99,7 +99,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         this.buttonView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
         this.buttonView.setTextSize(1, 14.0f);
         this.buttonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.buttonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.buttonView.setTypeface(AndroidUtilities.bold());
         this.buttonView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         this.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override

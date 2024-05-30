@@ -154,7 +154,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         });
         this.nameTextView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
         this.nameTextView.setTextSize(15);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setGravity(19);
         this.nameTextView.setEllipsizeByGradient(true);
         this.nameTextView.setRightDrawableOutside(true);

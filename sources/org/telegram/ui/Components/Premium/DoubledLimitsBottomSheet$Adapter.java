@@ -97,7 +97,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
             frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
             fixedHeightEmptyCell = frameLayout;

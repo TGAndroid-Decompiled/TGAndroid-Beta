@@ -576,7 +576,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         TextView textView2 = new TextView(getParentActivity());
         textView2.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         textView2.setTextSize(1, 20.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setLines(1);
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);

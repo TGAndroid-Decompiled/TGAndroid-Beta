@@ -151,7 +151,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     @Override
-    public android.view.View createView(android.content.Context r34) {
+    public android.view.View createView(android.content.Context r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
     }
 

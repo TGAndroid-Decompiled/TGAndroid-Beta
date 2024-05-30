@@ -703,7 +703,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         TextView textView = new TextView(context);
         this.zoomOutText = textView;
         textView.setTextColor(-1);
-        this.zoomOutText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.zoomOutText.setTypeface(AndroidUtilities.bold());
         this.zoomOutText.setTextSize(1, 16.0f);
         this.zoomOutText.setText(LocaleController.getString(R.string.PhotoEditorZoomOut));
         ImageView imageView2 = new ImageView(context);
@@ -726,7 +726,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.undoAllButton.setText(LocaleController.getString(R.string.PhotoEditorClearAll));
         this.undoAllButton.setGravity(16);
         this.undoAllButton.setTextColor(-1);
-        this.undoAllButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.undoAllButton.setTypeface(AndroidUtilities.bold());
         this.undoAllButton.setTextSize(1, 16.0f);
         this.undoAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -743,7 +743,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.cancelTextButton.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         this.cancelTextButton.setGravity(16);
         this.cancelTextButton.setTextColor(-1);
-        this.cancelTextButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.cancelTextButton.setTypeface(AndroidUtilities.bold());
         this.cancelTextButton.setTextSize(1, 16.0f);
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -761,7 +761,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.doneTextButton.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         this.doneTextButton.setGravity(16);
         this.doneTextButton.setTextColor(-1);
-        this.doneTextButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.doneTextButton.setTypeface(AndroidUtilities.bold());
         this.doneTextButton.setTextSize(1, 16.0f);
         this.doneTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1743,7 +1743,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.drawTab.setTextColor(-1);
         this.drawTab.setTextSize(1, 14.0f);
         this.drawTab.setGravity(1);
-        this.drawTab.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.drawTab.setTypeface(AndroidUtilities.bold());
         this.drawTab.setSingleLine();
         this.drawTab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1766,7 +1766,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.stickerTab.setTextColor(-1);
         this.stickerTab.setTextSize(1, 14.0f);
         this.stickerTab.setGravity(1);
-        this.stickerTab.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.stickerTab.setTypeface(AndroidUtilities.bold());
         this.stickerTab.setAlpha(0.6f);
         this.stickerTab.setSingleLine();
         this.tabsLayout.addView(this.stickerTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1778,7 +1778,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.textTab.setTextColor(-1);
         this.textTab.setTextSize(1, 14.0f);
         this.textTab.setGravity(1);
-        this.textTab.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textTab.setTypeface(AndroidUtilities.bold());
         this.textTab.setAlpha(0.6f);
         this.textTab.setSingleLine();
         this.textTab.setOnClickListener(new View.OnClickListener() {
@@ -3335,7 +3335,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             textView.setLines(1);
             textView.setSingleLine();
             textView.setEllipsize(TextUtils.TruncateAt.END);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView.setTextSize(1, 14.0f);
             textView.setTag(0);
@@ -3355,7 +3355,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             textView2.setLines(1);
             textView2.setSingleLine();
             textView2.setEllipsize(TextUtils.TruncateAt.END);
-            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView2.setTypeface(AndroidUtilities.bold());
             textView2.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView2.setTextSize(1, 14.0f);
             if ((this.keyboardNotifier.keyboardVisible() && !this.keyboardNotifier.ignoring) || this.emojiPadding > 0) {
@@ -3420,7 +3420,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             textView3.setSingleLine();
             textView3.setEllipsize(TextUtils.TruncateAt.END);
             textView3.setGravity(16);
-            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView3.setTypeface(AndroidUtilities.bold());
             textView3.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView3.setTextSize(1, 14.0f);
             textView3.setTag(2);
@@ -3555,7 +3555,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         textView.setLines(1);
         textView.setSingleLine();
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         textView.setTextSize(1, 14.0f);
         textView.setTag(Integer.valueOf(i));

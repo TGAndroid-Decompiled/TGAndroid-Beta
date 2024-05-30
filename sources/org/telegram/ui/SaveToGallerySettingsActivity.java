@@ -186,7 +186,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             }
             textView.setText(LocaleController.getString(str, i));
             textView.setGravity(17);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 17));
             frameLayout2.setOnClickListener(new View.OnClickListener() {

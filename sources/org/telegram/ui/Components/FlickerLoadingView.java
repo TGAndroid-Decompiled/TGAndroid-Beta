@@ -905,7 +905,7 @@ public class FlickerLoadingView extends View {
         int i;
         String str;
         TextPaint textPaint = new TextPaint(1);
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         float dp = AndroidUtilities.dp(34.0f);
         if (z) {

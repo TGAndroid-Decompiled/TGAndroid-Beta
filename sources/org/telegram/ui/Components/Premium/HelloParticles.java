@@ -31,7 +31,7 @@ public class HelloParticles {
         public Drawable(int i) {
             this.bitmapScale = 1.0f;
             this.count = i;
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             this.textPaint.setColor(-1);
             int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
             if (devicePerformanceClass == 0) {

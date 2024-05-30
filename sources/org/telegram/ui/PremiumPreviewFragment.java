@@ -1880,7 +1880,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 22.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleView.setTypeface(AndroidUtilities.bold());
             this.titleView.setGravity(1);
             addView(this.titleView, LayoutHelper.createLinear(-2, -2, 0.0f, 1, 16, PremiumPreviewFragment.this.type == 1 ? 8 : 20, 16, 0));
             TextView textView2 = new TextView(context);

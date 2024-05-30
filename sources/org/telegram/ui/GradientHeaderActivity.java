@@ -579,7 +579,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 22.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setGravity(1);
             addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 1, 16, 20, 16, 0));
             TextView textView2 = new TextView(context);

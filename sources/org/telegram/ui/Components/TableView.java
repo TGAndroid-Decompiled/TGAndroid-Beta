@@ -65,7 +65,7 @@ public class TableView extends android.widget.TableLayout {
             this.resourcesProvider = resourcesProvider;
             setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
             setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-            setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            setTypeface(AndroidUtilities.bold());
             setTextSize(1, 14.0f);
             setText(charSequence);
         }

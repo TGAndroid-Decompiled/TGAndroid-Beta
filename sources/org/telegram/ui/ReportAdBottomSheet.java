@@ -484,7 +484,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                 super(context);
                 TextView textView = new TextView(context);
                 this.textView = textView;
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextSize(1, 20.0f);
                 textView.setGravity(LocaleController.isRTL ? 5 : 3);
                 textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));

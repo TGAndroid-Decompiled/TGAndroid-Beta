@@ -70,7 +70,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         TextView textView = new TextView(context);
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(1);
         textView.setText(LocaleController.getString("NotificationsPermissionAlertTitle"));
@@ -91,7 +91,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         TextView textView3 = new TextView(context);
         textView3.setText(LocaleController.getString("NotificationsPermissionContinue"));
         textView3.setGravity(17);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView3.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 8.0f));

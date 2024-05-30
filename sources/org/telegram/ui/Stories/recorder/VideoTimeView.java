@@ -27,7 +27,7 @@ public class VideoTimeView extends View {
         animatedTextDrawable.setAnimationProperties(0.2f, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(13.0f));
         animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setGravity(1);
         setTime(0L, false);

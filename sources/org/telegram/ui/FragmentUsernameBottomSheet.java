@@ -121,7 +121,7 @@ public class FragmentUsernameBottomSheet {
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
         SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence("TON", AndroidUtilities.replaceTags(formatString2), spannableString);
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-        linksTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        linksTextView.setTypeface(AndroidUtilities.bold());
         linksTextView.setGravity(17);
         int i5 = Theme.key_dialogTextBlack;
         linksTextView.setTextColor(Theme.getColor(i5, resourcesProvider));

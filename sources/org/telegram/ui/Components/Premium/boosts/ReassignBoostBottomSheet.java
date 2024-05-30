@@ -387,7 +387,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             frameLayout.addView(avatarHolderView, LayoutHelper.createFrame(70, 70, 17));
             addView(frameLayout, LayoutHelper.createLinear(-1, 70, 0.0f, 15.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setText(LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost));
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));

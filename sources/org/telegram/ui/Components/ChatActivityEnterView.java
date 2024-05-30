@@ -3218,7 +3218,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         numberTextView.setVisibility(8);
         this.captionLimitView.setTextSize(15);
         this.captionLimitView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
-        this.captionLimitView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.captionLimitView.setTypeface(AndroidUtilities.bold());
         this.captionLimitView.setCenterAlign(true);
         addView(this.captionLimitView, 3, LayoutHelper.createFrame(48, 20.0f, 85, 3.0f, 0.0f, 0.0f, 48.0f));
     }
@@ -8346,6 +8346,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         doneEditingMessage();
         messageSendPreview.dismiss(true);
+        this.captionAbove = false;
     }
 
     public void lambda$setEditingMessageObject$56(CharSequence charSequence) {
@@ -11685,7 +11686,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             TextPaint textPaint2 = new TextPaint(1);
             this.bluePaint = textPaint2;
             textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
-            this.bluePaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.bluePaint.setTypeface(AndroidUtilities.bold());
             this.arrowPaint.setColor(r4.getThemedColor(Theme.key_chat_messagePanelIcons));
             this.arrowPaint.setStyle(Paint.Style.STROKE);
             this.arrowPaint.setStrokeWidth(AndroidUtilities.dpf2(this.smallSize ? 1.0f : 1.6f));
@@ -11907,7 +11908,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 TextPaint textPaint = new TextPaint(1);
                 this.textPaint = textPaint;
                 textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-                this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.textPaint.setTypeface(AndroidUtilities.bold());
                 this.textPaint.setColor(ChatActivityEnterView.this.getThemedColor(Theme.key_chat_recordTime));
             }
             long currentTimeMillis = System.currentTimeMillis();

@@ -65,7 +65,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         this.nameTextView = textView;
         textView.setTextColor(getThemedColor(Theme.key_chat_emojiPanelTrendingTitle));
         this.nameTextView.setTextSize(1, 17.0f);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.nameTextView.setSingleLine(true);
         if (z) {
@@ -102,7 +102,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             textView3.setGravity(17);
             this.delButton.setTextColor(getThemedColor(Theme.key_featuredStickers_removeButtonText));
             this.delButton.setTextSize(1, 14.0f);
-            this.delButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.delButton.setTypeface(AndroidUtilities.bold());
             this.delButton.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
             if (z) {
                 createFrame4 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);

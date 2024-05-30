@@ -239,7 +239,7 @@ public class ActionBarMenuItem extends FrameLayout {
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextSize(1, 15.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             this.textView.setGravity(17);
             this.textView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
             this.textView.setImportantForAccessibility(2);

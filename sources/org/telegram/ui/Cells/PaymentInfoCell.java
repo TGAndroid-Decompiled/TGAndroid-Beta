@@ -35,7 +35,7 @@ public class PaymentInfoCell extends FrameLayout {
         textView.setTextColor(Theme.getColor(i));
         this.nameTextView.setTextSize(1, 16.0f);
         this.nameTextView.setLines(1);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setSingleLine(true);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);

@@ -204,7 +204,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         paint2.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
         animatedTextDrawable.setAnimationProperties(0.4f, 0L, 320L, cubicBezierInterpolator);
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle, resourcesProvider));
         animatedTextDrawable.setEllipsizeByGradient(true);
         animatedTextDrawable.setCallback(this);

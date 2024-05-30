@@ -1705,7 +1705,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.selectedTextView = textView;
         textView.setTextColor(getThemedColor(i5));
         this.selectedTextView.setTextSize(1, 16.0f);
-        this.selectedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.selectedTextView.setTypeface(AndroidUtilities.bold());
         this.selectedTextView.setGravity(19);
         this.selectedTextView.setMaxLines(1);
         this.selectedTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -1731,7 +1731,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.mediaPreviewTextView = textView2;
         textView2.setTextColor(getThemedColor(i5));
         this.mediaPreviewTextView.setTextSize(1, 16.0f);
-        this.mediaPreviewTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.mediaPreviewTextView.setTypeface(AndroidUtilities.bold());
         this.mediaPreviewTextView.setGravity(19);
         this.mediaPreviewTextView.setText(LocaleController.getString("AttachMediaPreview", R.string.AttachMediaPreview));
         this.mediaPreviewView.setAlpha(0.0f);
@@ -1815,7 +1815,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.botMainButtonTextView.setAlpha(0.0f);
         this.botMainButtonTextView.setSingleLine();
         this.botMainButtonTextView.setGravity(17);
-        this.botMainButtonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.botMainButtonTextView.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(16.0f);
         this.botMainButtonTextView.setPadding(dp, 0, dp, 0);
         this.botMainButtonTextView.setTextSize(1, 14.0f);
@@ -1853,7 +1853,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         numberTextView.setVisibility(8);
         numberTextView.setTextSize(15);
         numberTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
-        numberTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        numberTextView.setTypeface(AndroidUtilities.bold());
         numberTextView.setCenterAlign(true);
         this.frameLayout2.addView(numberTextView, LayoutHelper.createFrame(56, 20.0f, 85, 3.0f, 0.0f, 14.0f, 78.0f));
         this.currentLimit = MessagesController.getInstance(UserConfig.selectedAccount).getCaptionMaxLengthLimit();
@@ -2023,7 +2023,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         });
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         View view3 = new View(context) {
             {
                 ChatAttachAlert.this = this;
@@ -3363,17 +3363,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         ChatAttachAlert.this.lambda$new$18(selectedEffect, z, i);
                     }
                 }, resourcesProvider);
-                return;
+                this.captionAbove = false;
             }
         }
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
             sendPressed(true, 0, selectedEffect, isCaptionAbove());
-            return;
+        } else {
+            attachAlertLayout.sendSelectedItems(true, 0, selectedEffect, isCaptionAbove());
+            this.allowPassConfirmationAlert = true;
+            dismiss();
         }
-        attachAlertLayout.sendSelectedItems(true, 0, selectedEffect, isCaptionAbove());
-        this.allowPassConfirmationAlert = true;
-        dismiss();
+        this.captionAbove = false;
     }
 
     public void lambda$new$18(long j, boolean z, int i) {

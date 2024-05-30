@@ -168,7 +168,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
                 this.selectedMessagesCountTextView = animatedTextView;
                 animatedTextView.setTextSize(AndroidUtilities.dp(18.0f));
-                animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                animatedTextView.setTypeface(AndroidUtilities.bold());
                 animatedTextView.setTextColor(Theme.getColor(i2));
                 linearLayout.addView(animatedTextView, LayoutHelper.createLinear(0, -1, 1.0f, 18, 0, 0, 0));
                 this.actionModeViews.add(animatedTextView);

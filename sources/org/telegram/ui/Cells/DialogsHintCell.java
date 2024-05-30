@@ -49,7 +49,7 @@ public class DialogsHintCell extends BlurredFrameLayout {
         this.titleView = textViewEmojis;
         textViewEmojis.setEllipsize(TextUtils.TruncateAt.END);
         textViewEmojis.setTextSize(1, 15.0f);
-        textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setSingleLine();
         linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-2, -2, 0.0f, (LocaleController.isRTL ? 5 : 3) | 48));
         TextView textView = new TextView(context);

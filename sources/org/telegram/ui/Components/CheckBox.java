@@ -64,7 +64,7 @@ public class CheckBox extends View {
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(18.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.checkDrawable = context.getResources().getDrawable(i).mutate();
     }
 

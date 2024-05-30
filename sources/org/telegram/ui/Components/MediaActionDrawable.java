@@ -72,7 +72,7 @@ public class MediaActionDrawable extends Drawable {
         this.paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint3.setColor(-1);
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.textPaint.setColor(-1);
         this.paint2.setColor(-1);

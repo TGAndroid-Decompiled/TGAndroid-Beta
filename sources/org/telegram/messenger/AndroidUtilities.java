@@ -234,6 +234,7 @@ public class AndroidUtilities {
     private static Field mAttachInfoField;
     private static Field mStableInsetsField;
     public static boolean makingGlobalBlurBitmap;
+    private static Typeface mediumTypeface;
     private static HashMap<Window, ValueAnimator> navigationBarColorAnimators;
     public static final String[] numbersSignatureArray;
     public static int roundMessageInset;
@@ -331,6 +332,24 @@ public class AndroidUtilities {
 
     public static int setPeerLayerVersion(int i, int i2) {
         return (i & 65535) | (i2 << 16);
+    }
+
+    public static Typeface bold() {
+        if (mediumTypeface == null) {
+            if (Build.VERSION.SDK_INT >= 28) {
+                mediumTypeface = Typeface.create(null, 500, false);
+                TextPaint textPaint = new TextPaint(1);
+                TextPaint textPaint2 = new TextPaint(1);
+                textPaint2.setTypeface(mediumTypeface);
+                if (Math.abs(textPaint.measureText("Sample text") - textPaint2.measureText("Sample text")) < 0.1f) {
+                    mediumTypeface = Typeface.create(null, 700, false);
+                }
+            }
+            if (mediumTypeface == null) {
+                mediumTypeface = getTypeface(TYPEFACE_ROBOTO_MEDIUM);
+            }
+        }
+        return mediumTypeface;
     }
 
     static {
@@ -543,7 +562,7 @@ public class AndroidUtilities {
                             textPaint.setColor(Theme.getColor(i6, resourcesProvider));
                         }
                         if (i2 == 2) {
-                            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                            textPaint.setTypeface(AndroidUtilities.bold());
                         }
                     }
 
@@ -559,7 +578,7 @@ public class AndroidUtilities {
                 spannableStringBuilder.setSpan(new CharacterStyle() {
                     @Override
                     public void updateDrawState(TextPaint textPaint) {
-                        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                        textPaint.setTypeface(AndroidUtilities.bold());
                         int alpha = textPaint.getAlpha();
                         textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, Theme.ResourcesProvider.this));
                         textPaint.setAlpha(alpha);
@@ -2853,7 +2872,7 @@ public class AndroidUtilities {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb);
             for (int i2 = 0; i2 < arrayList.size() / 2; i2++) {
                 int i3 = i2 * 2;
-                spannableStringBuilder.setSpan(new TypefaceSpan(getTypeface(TYPEFACE_ROBOTO_MEDIUM)), ((Integer) arrayList.get(i3)).intValue(), ((Integer) arrayList.get(i3 + 1)).intValue(), 33);
+                spannableStringBuilder.setSpan(new TypefaceSpan(bold()), ((Integer) arrayList.get(i3)).intValue(), ((Integer) arrayList.get(i3 + 1)).intValue(), 33);
             }
             return spannableStringBuilder;
         } catch (Exception e) {

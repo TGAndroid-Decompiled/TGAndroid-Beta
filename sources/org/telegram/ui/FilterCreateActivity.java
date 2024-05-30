@@ -2349,7 +2349,7 @@ public class FilterCreateActivity extends BaseFragment {
             this.textPaint = new TextPaint(1);
             this.bgPaint = new Paint(1);
             this.outline = z;
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             if (z) {
                 this.bgPaint.setStyle(Paint.Style.STROKE);
                 this.bgPaint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
@@ -2370,7 +2370,7 @@ public class FilterCreateActivity extends BaseFragment {
             this.textPaint = new TextPaint(1);
             this.bgPaint = new Paint(1);
             this.outline = false;
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             this.bgPaint.setStyle(Paint.Style.FILL);
             this.textPaint.setTextSize(AndroidUtilities.dp(f));
         }
@@ -2527,7 +2527,7 @@ public class FilterCreateActivity extends BaseFragment {
             this.button = textView;
             textView.setTextSize(1, 14.0f);
             this.button.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-            this.button.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.button.setTypeface(AndroidUtilities.bold());
             this.button.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
             this.button.setText(LocaleController.getString("FolderLinkShareButton", R.string.FolderLinkShareButton));
             this.button.setGravity(17);
@@ -2775,7 +2775,7 @@ public class FilterCreateActivity extends BaseFragment {
                 TextView textView = new TextView(context);
                 this.titleView = textView;
                 textView.setText(r12.getTitle());
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextSize(1, 20.0f);
                 int i = Theme.key_dialogTextBlack;
                 textView.setTextColor(Theme.getColor(i));
@@ -2965,7 +2965,7 @@ public class FilterCreateActivity extends BaseFragment {
             this.previewView = animatedTextView;
             this.animatedColor = new AnimatedColor(animatedTextView, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             animatedTextView.setTextSize(AndroidUtilities.dp(10.0f));
-            animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextView.setTypeface(AndroidUtilities.bold());
             animatedTextView.setGravity(5);
             animatedTextView.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
             int i3 = LocaleController.isRTL ? 3 : 5;

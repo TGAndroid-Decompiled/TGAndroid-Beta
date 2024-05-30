@@ -3786,7 +3786,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             this.addButtonTextView = animatedTextView;
             animatedTextView.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.addButtonTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.addButtonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.addButtonTextView.setTypeface(AndroidUtilities.bold());
             this.addButtonTextView.setTextColor(emojiView.getThemedColor(Theme.key_featuredStickers_buttonText));
             this.addButtonTextView.setGravity(17);
             FrameLayout frameLayout = new FrameLayout(getContext());
@@ -3838,7 +3838,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             this.headerView = simpleTextView;
             simpleTextView.setTextSize(15);
             this.headerView.setTextColor(r17.getThemedColor(i2));
-            this.headerView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.headerView.setTypeface(AndroidUtilities.bold());
             this.headerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -3849,7 +3849,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             this.markView = textView;
             textView.setTextSize(1, 11.0f);
             this.markView.setTextColor(r17.getThemedColor(i2));
-            this.markView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.markView.setTypeface(AndroidUtilities.bold());
             this.markView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.multAlpha(r17.getThemedColor(Theme.key_chat_emojiPanelIcon), 0.12f)));
             this.markView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.5f));
             this.markView.setText(LocaleController.getString(R.string.GroupEmoji));
@@ -3870,7 +3870,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             TextView textView2 = new TextView(context);
             this.addButtonView = textView2;
             textView2.setTextSize(1, 14.0f);
-            this.addButtonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.addButtonView.setTypeface(AndroidUtilities.bold());
             this.addButtonView.setText(LocaleController.getString("Add", R.string.Add));
             this.addButtonView.setTextColor(r17.getThemedColor(Theme.key_featuredStickers_buttonText));
             TextView textView3 = this.addButtonView;
@@ -3888,7 +3888,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             TextView textView4 = new TextView(context);
             this.removeButtonView = textView4;
             textView4.setTextSize(1, 14.0f);
-            this.removeButtonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.removeButtonView.setTypeface(AndroidUtilities.bold());
             this.removeButtonView.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
             this.removeButtonView.setTextColor(r17.getThemedColor(Theme.key_featuredStickers_removeButtonText));
             this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, r17.getThemedColor(i3) & 452984831, 16.0f));
@@ -7370,7 +7370,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             textView.setTextSize(1, 13.0f);
             this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
             this.textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(11.0f), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_chat_emojiPanelStickerSetName, resourcesProvider), 99)));
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             this.textView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f));
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
@@ -8188,7 +8188,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         textView2.setTextSize(1, 15.0f);
                         textView2.setTextColor(EmojiView.this.getThemedColor(Theme.key_dialogTextBlue2));
                         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-                        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                        textView2.setTypeface(AndroidUtilities.bold());
                         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 51, 0, 24, 0, 0));
                         TextView textView3 = new TextView(EmojiView.this.getContext());
                         textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("EmojiSuggestionsInfo", R.string.EmojiSuggestionsInfo)));

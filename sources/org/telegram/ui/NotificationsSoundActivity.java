@@ -231,7 +231,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
         this.selectedTonesCountTextView = numberTextView;
         numberTextView.setTextSize(18);
-        this.selectedTonesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.selectedTonesCountTextView.setTypeface(AndroidUtilities.bold());
         this.selectedTonesCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon, this.resourcesProvider));
         createActionMode.addView(this.selectedTonesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedTonesCountTextView.setOnTouchListener(new View.OnTouchListener() {

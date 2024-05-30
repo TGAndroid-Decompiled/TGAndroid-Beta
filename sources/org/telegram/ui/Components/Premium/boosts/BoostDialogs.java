@@ -251,7 +251,7 @@ public class BoostDialogs {
                 this.paint = textPaint;
                 setWillNotDraw(false);
                 textPaint.setTextSize(AndroidUtilities.dp(20.0f));
-                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textPaint.setTypeface(AndroidUtilities.bold());
                 textPaint.setColor(scheduleDatePickerColors.textColor);
             }
 
@@ -291,7 +291,7 @@ public class BoostDialogs {
         textView.setText(LocaleController.getString("BoostingSelectDateTime", R.string.BoostingSelectDateTime));
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -385,7 +385,7 @@ public class BoostDialogs {
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setBackground(Theme.AdaptiveRipple.filledRect(scheduleDatePickerColors.buttonBackgroundColor, 8.0f));
         textView2.setText(LocaleController.getString("BoostingConfirm", R.string.BoostingConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -668,7 +668,7 @@ public class BoostDialogs {
             String string2 = LocaleController.getString("BoostingGiveawayCanceledByPayment", R.string.BoostingGiveawayCanceledByPayment);
             TextView textView = new TextView(context);
             textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setGravity(17);
             textView.setText(string2);
             int i3 = Theme.key_text_RedRegular;

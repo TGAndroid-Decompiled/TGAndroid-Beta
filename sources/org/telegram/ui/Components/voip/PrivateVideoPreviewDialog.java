@@ -215,7 +215,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         int i = Theme.key_voipgroup_nameText;
         textView2.setTextColor(Theme.getColor(i));
         this.positiveButton.setGravity(17);
-        this.positiveButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.positiveButton.setTypeface(AndroidUtilities.bold());
         this.positiveButton.setText(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 76)));
@@ -240,7 +240,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             textViewArr[i2] = new TextView(context);
             this.titles[i2].setTextSize(1, 12.0f);
             this.titles[i2].setTextColor(-1);
-            this.titles[i2].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titles[i2].setTypeface(AndroidUtilities.bold());
             this.titles[i2].setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             this.titles[i2].setGravity(16);
             this.titles[i2].setSingleLine(true);
@@ -565,7 +565,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                 textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                 textView.setTextColor(-1);
                 textView.setTextSize(1, 15.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
                 imageView = frameLayout;
             } else {

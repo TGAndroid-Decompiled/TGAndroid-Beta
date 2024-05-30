@@ -58,7 +58,6 @@ public class JoinGroupAlert extends BottomSheet {
         String str3;
         int i5;
         String str4;
-        boolean z3;
         int i6;
         String str5;
         CharSequence format;
@@ -129,9 +128,9 @@ public class JoinGroupAlert extends BottomSheet {
             TLRPC$Chat tLRPC$Chat2 = this.currentChat;
             backupImageView.setForUserOrChat(tLRPC$Chat2, avatarDrawable3, tLRPC$Chat2);
             TLRPC$Chat tLRPC$Chat3 = this.currentChat;
-            boolean z4 = tLRPC$Chat3.verified;
+            boolean z3 = tLRPC$Chat3.verified;
             z2 = tLRPC$Chat3.fake;
-            z = z4;
+            z = z3;
             str2 = r10;
             r10 = str8;
             i2 = tLRPC$Chat3.scam;
@@ -143,7 +142,7 @@ public class JoinGroupAlert extends BottomSheet {
             i3 = 0;
         }
         SimpleTextView simpleTextView = new SimpleTextView(context);
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setTextSize(20);
         int i7 = Theme.key_dialogTextBlack;
         simpleTextView.setTextColor(getThemedColor(i7));
@@ -156,8 +155,8 @@ public class JoinGroupAlert extends BottomSheet {
             simpleTextView.setRightDrawable(getVerifiedCrossfadeDrawable());
         }
         TLRPC$ChatInvite tLRPC$ChatInvite5 = this.chatInvite;
-        final boolean z5 = (tLRPC$ChatInvite5 != null && ((tLRPC$ChatInvite5.channel && !tLRPC$ChatInvite5.megagroup) || ChatObject.isChannelAndNotMegaGroup(tLRPC$ChatInvite5.chat))) || (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup);
-        boolean z6 = !TextUtils.isEmpty(str2);
+        final boolean z4 = (tLRPC$ChatInvite5 != null && ((tLRPC$ChatInvite5.channel && !tLRPC$ChatInvite5.megagroup) || ChatObject.isChannelAndNotMegaGroup(tLRPC$ChatInvite5.chat))) || (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup);
+        boolean z5 = !TextUtils.isEmpty(str2);
         TextView textView = new TextView(context);
         textView.setTextSize(1, 13.0f);
         int i8 = Theme.key_dialogTextGray3;
@@ -167,15 +166,15 @@ public class JoinGroupAlert extends BottomSheet {
         if (this.chatInvite != null && i == 0) {
             textView.setText(LocaleController.getString("ChannelPublic", R.string.ChannelPublic).toLowerCase());
         } else {
-            if (z5) {
+            if (z4) {
                 lowerCase = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate).toLowerCase();
             } else {
                 lowerCase = LocaleController.getString("MegaPrivate", R.string.MegaPrivate).toLowerCase();
             }
             textView.setText(lowerCase);
         }
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 10, 0, 10, z6 ? 0 : 20));
-        if (z6) {
+        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 10, 0, 10, z5 ? 0 : 20));
+        if (z5) {
             TextView textView2 = new TextView(context);
             textView2.setGravity(17);
             textView2.setText(str2);
@@ -201,7 +200,7 @@ public class JoinGroupAlert extends BottomSheet {
             this.requestTextView.setGravity(17);
             this.requestTextView.setSingleLine(true);
             TextView textView4 = this.requestTextView;
-            if (z5) {
+            if (z4) {
                 i4 = R.string.RequestToJoinChannel;
                 str3 = "RequestToJoinChannel";
             } else {
@@ -211,18 +210,18 @@ public class JoinGroupAlert extends BottomSheet {
             textView4.setText(LocaleController.getString(str3, i4));
             this.requestTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
             this.requestTextView.setTextSize(1, 14.0f);
-            this.requestTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.requestTextView.setTypeface(AndroidUtilities.bold());
             this.requestTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    JoinGroupAlert.this.lambda$new$7(z5, view);
+                    JoinGroupAlert.this.lambda$new$7(z4, view);
                 }
             });
             frameLayout2.addView(this.requestTextView, LayoutHelper.createLinear(-1, 48, 8388611, 14, 0, 14, 0));
             TextView textView5 = new TextView(getContext());
             textView5.setGravity(17);
             textView5.setTextSize(1, 14.0f);
-            if (z5) {
+            if (z4) {
                 i5 = R.string.RequestToJoinChannelDescription;
                 str4 = "RequestToJoinChannelDescription";
             } else {
@@ -233,9 +232,7 @@ public class JoinGroupAlert extends BottomSheet {
             textView5.setTextColor(getThemedColor(i8));
             linearLayout.addView(textView5, LayoutHelper.createLinear(-1, -2, 48, 24, 17, 24, 15));
         } else if (tLRPC$ChatInvite6 != null) {
-            if (tLRPC$ChatInvite6.participants.isEmpty()) {
-                z3 = false;
-            } else {
+            if (!tLRPC$ChatInvite6.participants.isEmpty()) {
                 int min = Math.min(this.chatInvite.participants.size(), 3);
                 AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
                 avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
@@ -260,25 +257,21 @@ public class JoinGroupAlert extends BottomSheet {
                     format = LocaleController.formatString("RequestToJoinMembersThree", R.string.RequestToJoinMembersThree, ellipsize(textView6, this.chatInvite, 0), ellipsize(textView6, this.chatInvite, 1), ellipsize(textView6, this.chatInvite, 2));
                 } else {
                     int max = Math.max(i3 - min, 2);
-                    z3 = false;
                     format = String.format(LocaleController.getPluralString("RequestToJoinMembersAll", max), ellipsize(textView6, this.chatInvite, 0), ellipsize(textView6, this.chatInvite, 1), Integer.valueOf(max));
                     textView6.setText(format);
                     linearLayout.addView(textView6, LayoutHelper.createLinear(-2, -2, 49, 10, 0, 10, 24));
                 }
-                z3 = false;
                 textView6.setText(format);
                 linearLayout.addView(textView6, LayoutHelper.createLinear(-2, -2, 49, 10, 0, 10, 24));
             }
             TLRPC$ChatInvite tLRPC$ChatInvite7 = this.chatInvite;
-            if ((tLRPC$ChatInvite7.channel && !tLRPC$ChatInvite7.megagroup) || (ChatObject.isChannel(tLRPC$ChatInvite7.chat) && !this.chatInvite.chat.megagroup)) {
-                z3 = true;
-            }
+            boolean z6 = (tLRPC$ChatInvite7.channel && !tLRPC$ChatInvite7.megagroup) || (ChatObject.isChannel(tLRPC$ChatInvite7.chat) && !this.chatInvite.chat.megagroup);
             TextView textView7 = new TextView(getContext());
             textView7.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), getThemedColor(Theme.key_featuredStickers_addButton), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
             textView7.setEllipsize(TextUtils.TruncateAt.END);
             textView7.setGravity(17);
             textView7.setSingleLine(true);
-            if (z3) {
+            if (z6) {
                 i6 = R.string.ProfileJoinChannel;
                 str5 = "ProfileJoinChannel";
             } else {
@@ -288,7 +281,7 @@ public class JoinGroupAlert extends BottomSheet {
             textView7.setText(LocaleController.getString(str5, i6));
             textView7.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
             textView7.setTextSize(1, 14.0f);
-            textView7.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView7.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView7, LayoutHelper.createLinear(-1, 48, 8388611, 14, 0, 14, 14));
             textView7.setOnClickListener(new View.OnClickListener() {
                 @Override

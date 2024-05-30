@@ -594,7 +594,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             textView.setTextColor(-1711276033);
             textView.setTextSize(1, 16.0f);
             textView.setText(LocaleController.getString(R.string.PaintPaletteSlidersHexColor).toUpperCase());
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 8.0f, 0.0f));
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.hexEdit = editTextBoldCursor;
@@ -606,7 +606,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.hexEdit.setSingleLine();
             this.hexEdit.setImeOptions(6);
             this.hexEdit.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
-            this.hexEdit.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.hexEdit.setTypeface(AndroidUtilities.bold());
             this.hexEdit.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
                 private Pattern pattern = Pattern.compile("^[0-9a-fA-F]*$");
                 private CharSequence previous;
@@ -690,7 +690,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.titleView = textView;
             textView.setTextColor(-1711276033);
             this.titleView.setTextSize(1, 14.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleView.setTypeface(AndroidUtilities.bold());
             addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 3, 8.0f, 0.0f, 8.0f, 0.0f));
             ColorSliderView colorSliderView = new ColorSliderView(context);
             this.sliderView = colorSliderView;
@@ -706,7 +706,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.valueView.setImeOptions(6);
             this.valueView.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
             this.valueView.setInputType(2);
-            this.valueView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.valueView.setTypeface(AndroidUtilities.bold());
             this.valueView.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
                 private CharSequence previous;
 

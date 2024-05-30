@@ -343,7 +343,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             if (this.namePaint == null) {
                 TextPaint textPaint2 = new TextPaint(1);
                 this.namePaint = textPaint2;
-                textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textPaint2.setTypeface(AndroidUtilities.bold());
             }
             this.namePaint.setTextSize(AndroidUtilities.dp(16.0f));
             if (this.encryptedChat != null) {

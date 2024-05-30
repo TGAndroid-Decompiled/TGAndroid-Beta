@@ -625,7 +625,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
                 int indexOf = formatString.indexOf(firstName);
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), indexOf, firstName.length() + indexOf, 18);
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
                 multiLineLayout.textView.setText(spannableStringBuilder);
                 if (this.allImporters.isEmpty()) {
                     Bulletin.make(this.fragment, multiLineLayout, 2750).show();
@@ -992,7 +992,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             textView.setMaxLines(1);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView.setTextSize(16.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             viewGroup.addView(textView);
             textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView2.setTextSize(14.0f);

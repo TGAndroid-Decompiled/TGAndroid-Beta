@@ -103,7 +103,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextDrawable.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
         this.text1.setTextSize(AndroidUtilities.dp(24.0f));
-        this.text1.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.text1.setTypeface(AndroidUtilities.bold());
         this.text2.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
         if (this.dialogId != null) {
             this.text2.setTextSize(AndroidUtilities.dp(16.0f));

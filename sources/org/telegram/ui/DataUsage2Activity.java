@@ -351,7 +351,7 @@ public class DataUsage2Activity extends BaseFragment {
                 boolean z2 = this.empty || this.removedSegments.contains(Integer.valueOf(i4));
                 if (j > 0 || z2) {
                     SpannableString spannableString = new SpannableString(formatPercent(this.tempPercents[i4]));
-                    spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+                    spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                     spannableString.setSpan(new RelativeSizeSpan(0.8f), 0, spannableString.length(), 33);
                     int i5 = i3;
                     spannableString.setSpan(new CustomCharacterSpan(DataUsage2Activity.this, 0.1d), 0, spannableString.length(), 33);

@@ -30,7 +30,7 @@ public class LocationDirectionCell extends FrameLayout {
         this.buttonTextView.setTextSize(14);
         this.buttonTextView.setText(LocaleController.getString("Directions", R.string.Directions));
         this.buttonTextView.setLeftDrawable(R.drawable.filled_directions);
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.buttonTextView.setTypeface(AndroidUtilities.bold());
         this.frameLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, -1.0f));
     }
 

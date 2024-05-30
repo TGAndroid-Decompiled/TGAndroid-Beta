@@ -104,7 +104,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
         if (z) {
-            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         }
         animatedTextDrawable.setGravity(1);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
@@ -118,7 +118,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         animatedTextDrawable3.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable3.setCallback(this);
         animatedTextDrawable3.setTextSize(AndroidUtilities.dp(12.0f));
-        animatedTextDrawable3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable3.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable3.setText("");
         animatedTextDrawable3.setGravity(1);
         setWillNotDraw(false);

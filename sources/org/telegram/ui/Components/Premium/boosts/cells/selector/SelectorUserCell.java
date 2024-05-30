@@ -42,7 +42,7 @@ public class SelectorUserCell extends BaseCell {
         super(context, resourcesProvider);
         this.isOnline = new boolean[1];
         this.statusBadgeComponent = new StatusBadgeComponent(this);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.radioButton.setVisibility(8);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;

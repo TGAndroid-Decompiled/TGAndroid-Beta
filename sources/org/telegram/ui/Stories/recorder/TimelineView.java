@@ -247,7 +247,7 @@ public class TimelineView extends View {
         this.resourcesProvider = resourcesProvider;
         paint7.setColor(ConnectionsManager.DEFAULT_DATACENTER_ID);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setColor(-1);
         textPaint2.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint2.setColor(-1);

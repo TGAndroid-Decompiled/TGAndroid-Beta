@@ -68,7 +68,7 @@ public class BottomPagerTabs extends View {
             rLottieDrawable.setAllowDecodeSingleFrame(true);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             rLottieDrawable.setAutoRepeat(0);
-            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textPaint.setTypeface(AndroidUtilities.bold());
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             int i5 = Theme.key_windowBackgroundWhiteBlackText;
             textPaint.setColor(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider));

@@ -230,7 +230,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.titleView = textView;
         textView.setTextSize(1, 20.0f);
         this.titleView.setText(LocaleController.getString(R.string.DebugMenu));
-        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
         this.bigLayout.addView(this.titleView, LayoutHelper.createLinear(-1, -2));
         RecyclerListView recyclerListView = new RecyclerListView(context);

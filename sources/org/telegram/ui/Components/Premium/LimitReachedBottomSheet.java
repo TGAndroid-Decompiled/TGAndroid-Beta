@@ -337,7 +337,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             this.actionBtn.setEllipsize(TextUtils.TruncateAt.END);
             this.actionBtn.setSingleLine(true);
             this.actionBtn.setTextSize(1, 14.0f);
-            this.actionBtn.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.actionBtn.setTypeface(AndroidUtilities.bold());
             this.actionBtn.setText(this.premiumButtonView.getTextView().getText());
             this.actionBtn.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.actionBtn.setOnClickListener(new View.OnClickListener() {
@@ -1693,7 +1693,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 removeView(this.title);
                 TextView textView = new TextView(getContext());
                 this.title = textView;
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 this.title.setTextSize(1, 20.0f);
                 this.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider));
                 this.title.setGravity(17);
@@ -2367,7 +2367,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             this.levelTextView = simpleTextView2;
             simpleTextView2.setTextColor(-1);
             simpleTextView2.setWidthWrapContent(true);
-            simpleTextView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            simpleTextView2.setTypeface(AndroidUtilities.bold());
             simpleTextView2.setTextSize(14);
             FrameLayout frameLayout = new FrameLayout(context, limitReachedBottomSheet, resourcesProvider) {
                 private final Paint dividerPaint;
@@ -2435,7 +2435,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     if (indexOf >= 0) {
                         spannableStringBuilder = new SpannableStringBuilder(string);
                         SpannableString spannableString = new SpannableString(this.feature.countPlural + "");
-                        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+                        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                         spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                     }
                     this.textView.setText(spannableStringBuilder);
@@ -2448,7 +2448,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                         if (indexOf2 >= 0) {
                             spannableStringBuilder2 = new SpannableStringBuilder(str);
                             SpannableString spannableString2 = new SpannableString(this.feature.countValue);
-                            spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString2.length(), 33);
+                            spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
                             spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                         }
                         this.textView.setText(spannableStringBuilder2);

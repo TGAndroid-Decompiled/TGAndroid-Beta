@@ -320,7 +320,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     if (i == 9) {
                         textCheckCell.setDrawCheckRipple(true);
                         textCheckCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
-                        textCheckCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                        textCheckCell.setTypeface(AndroidUtilities.bold());
                         textCheckCell.setHeight(56);
                     }
                     textCheckCell.setBackgroundColor(getThemedColor(i2));

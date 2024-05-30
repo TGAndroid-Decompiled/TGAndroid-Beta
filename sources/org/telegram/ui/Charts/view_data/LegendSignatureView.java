@@ -85,11 +85,11 @@ public class LegendSignatureView extends FrameLayout {
         TextView textView = new TextView(context);
         this.time = textView;
         textView.setTextSize(1, 14.0f);
-        this.time.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.time.setTypeface(AndroidUtilities.bold());
         TextView textView2 = new TextView(context);
         this.hourTime = textView2;
         textView2.setTextSize(1, 14.0f);
-        this.hourTime.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.hourTime.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
         this.chevron = imageView;
         imageView.setImageResource(R.drawable.ic_chevron_right_black_18dp);
@@ -313,7 +313,7 @@ public class LegendSignatureView extends FrameLayout {
                 linearLayout.addView(textView);
                 this.percentage.getLayoutParams().width = AndroidUtilities.dp(36.0f);
                 this.percentage.setVisibility(8);
-                this.percentage.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.percentage.setTypeface(AndroidUtilities.bold());
                 this.percentage.setTextSize(1, 13.0f);
             }
             TextView textView2 = new TextView(legendSignatureView.getContext());
@@ -324,7 +324,7 @@ public class LegendSignatureView extends FrameLayout {
             linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-1, -2));
             textView2.setGravity(8388611);
             textViewEmojis.setGravity(8388613);
-            textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textViewEmojis.setTypeface(AndroidUtilities.bold());
             textViewEmojis.setTextSize(1, 13.0f);
             textView2.setTextSize(1, 13.0f);
         }

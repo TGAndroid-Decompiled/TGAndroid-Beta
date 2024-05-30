@@ -107,7 +107,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(1);
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -131,7 +131,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView3.setGravity(17);
         textView3.setEllipsize(TextUtils.TruncateAt.END);
         textView3.setSingleLine(true);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
         int i3 = Theme.key_featuredStickers_addButton;
         textView3.setTextColor(Theme.getColor(i3));

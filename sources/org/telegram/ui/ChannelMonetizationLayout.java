@@ -175,7 +175,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         linearLayout.setPadding(0, 0, 0, AndroidUtilities.dp(17.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
         this.balanceTitle = animatedTextView;
-        animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextView.setTypeface(AndroidUtilities.bold());
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         animatedTextView.setTextSize(AndroidUtilities.dp(32.0f));
         animatedTextView.setGravity(17);
@@ -249,7 +249,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         rLottieImageView.playAnimation();
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i3 = Theme.key_player_actionBarTitle;
         textView.setTextColor(Theme.getColor(i3));
         textView.setTag(Integer.valueOf(i3));
@@ -863,7 +863,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
             addView(linearLayout, LayoutHelper.createLinear(-1, -1, 22.0f, 9.0f, 22.0f, 0.0f));
             AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
             this.cryptoAmountView = textViewEmojis;
-            textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textViewEmojis.setTypeface(AndroidUtilities.bold());
             textViewEmojis.setTextSize(1, 16.0f);
             textViewEmojis.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-2, -2, 80, 0, 0, 5, 0));
@@ -951,7 +951,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
             linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 4.0f, 0.0f, 0.0f));
             AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
             this.valueText = textViewEmojis;
-            textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textViewEmojis.setTypeface(AndroidUtilities.bold());
             textViewEmojis.setTextSize(1, 13.0f);
             addView(textViewEmojis, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
             DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
@@ -1097,7 +1097,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         }
         TextView textView = new TextView(getContext());
         textView.setGravity(17);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(Theme.getColor(c < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -1135,7 +1135,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 0));
         TextView textView3 = new TextView(getContext());
         textView3.setGravity(17);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         textView3.setText(string);
@@ -1220,7 +1220,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         TextView textView = new TextView(getContext());
         textView.setGravity(17);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView.setText(LocaleController.getString(R.string.MonetizationInfoTitle));
@@ -1234,7 +1234,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(getContext());
         textViewEmojis.setGravity(17);
         textViewEmojis.setTextSize(1, 20.0f);
-        textViewEmojis.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setTextColor(Theme.getColor(i, this.resourcesProvider));
         SpannableString spannableString = new SpannableString("💎");
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
@@ -1287,7 +1287,7 @@ public class ChannelMonetizationLayout extends FrameLayout {
             linearLayout.setOrientation(1);
             addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 14.0f);
             textView.setTextColor(Theme.getColor(i2, channelMonetizationLayout.resourcesProvider));
             textView.setText(charSequence);

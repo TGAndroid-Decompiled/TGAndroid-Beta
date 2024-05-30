@@ -700,7 +700,7 @@ public class CameraScanActivity extends BaseFragment {
                         spannableStringBuilder.replace(indexOf, i6, (CharSequence) " ");
                         int i8 = i7 - 1;
                         spannableStringBuilder.setSpan(new URLSpanNoUnderline(strArr[i4], true), i6, i8, 33);
-                        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), i6, i8, 33);
+                        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), i6, i8, 33);
                         i4++;
                     }
                     this.titleTextView.setLinkTextColor(-1);

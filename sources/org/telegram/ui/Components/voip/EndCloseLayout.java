@@ -227,12 +227,12 @@ public class EndCloseLayout extends FrameLayout {
             this.callDeclineDrawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
             paint.setTextSize(AndroidUtilities.dp(18.0f));
-            paint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            paint.setTypeface(AndroidUtilities.bold());
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(-16777216);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             paint2.setTextSize(AndroidUtilities.dp(18.0f));
-            paint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            paint2.setTypeface(AndroidUtilities.bold());
             paint2.setTextAlign(Paint.Align.CENTER);
             paint2.setColor(-16777216);
             setLayerType(2, null);

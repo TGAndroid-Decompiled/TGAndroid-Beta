@@ -61,7 +61,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         this.titleTextView = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 11, 28, 0));
         TextView textView2 = new TextView(context);
@@ -77,7 +77,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         TextViewWithLoading textViewWithLoading = new TextViewWithLoading(context);
         this.yesButton = textViewWithLoading;
         textViewWithLoading.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
-        textViewWithLoading.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textViewWithLoading.setTypeface(AndroidUtilities.bold());
         textViewWithLoading.setTextSize(1, 14.22f);
         textViewWithLoading.setText(LocaleController.getString(R.string.UnconfirmedAuthConfirm));
         linearLayout2.addView(textViewWithLoading, LayoutHelper.createLinear(-2, 30));
@@ -85,7 +85,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         TextViewWithLoading textViewWithLoading2 = new TextViewWithLoading(context);
         this.noButton = textViewWithLoading2;
         textViewWithLoading2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
-        textViewWithLoading2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textViewWithLoading2.setTypeface(AndroidUtilities.bold());
         textViewWithLoading2.setTextSize(1, 14.22f);
         textViewWithLoading2.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
         linearLayout2.addView(textViewWithLoading2, LayoutHelper.createLinear(-2, 30));
@@ -297,7 +297,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_windowBackgroundWhiteValueText)));
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(80, 80, 17, 0, 14, 0, 0));
         TextView textView = new TextView(getContext());
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(17);
         textView.setText(LocaleController.formatPluralString("UnconfirmedAuthDeniedTitle", arrayList.size(), new Object[0]));
@@ -323,7 +323,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         int i2 = Theme.key_text_RedBold;
         frameLayout.setBackground(Theme.createRoundRectDrawable(dp, Theme.multAlpha(Theme.getColor(i2), Theme.isCurrentThemeDark() ? 0.2f : 0.15f)));
         TextView textView3 = new TextView(getContext());
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
         textView3.setGravity(17);
         textView3.setTextColor(Theme.getColor(i2));

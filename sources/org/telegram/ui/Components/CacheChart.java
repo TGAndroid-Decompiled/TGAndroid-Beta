@@ -144,7 +144,7 @@ public class CacheChart extends View {
             this.selectedAnimated = new AnimatedFloat(CacheChart.this, 0L, 200L, cubicBezierInterpolator);
             this.text.setTextColor(-1);
             this.text.setAnimationProperties(0.35f, 0L, 200L, cubicBezierInterpolator);
-            this.text.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.text.setTypeface(AndroidUtilities.bold());
             this.text.setTextSize(AndroidUtilities.dp(15.0f));
             this.text.setGravity(17);
             this.path = new Path();
@@ -437,7 +437,7 @@ public class CacheChart extends View {
         this.completePaintStroke.setStrokeJoin(Paint.Join.ROUND);
         this.topText.setAnimationProperties(0.2f, 0L, 450L, cubicBezierInterpolator);
         this.topText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.topText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.topText.setTypeface(AndroidUtilities.bold());
         this.topText.setTextSize(AndroidUtilities.dp(32.0f));
         this.topText.setGravity(17);
         this.bottomText.setAnimationProperties(0.6f, 0L, 450L, cubicBezierInterpolator);
@@ -446,12 +446,12 @@ public class CacheChart extends View {
         this.bottomText.setGravity(17);
         this.topCompleteText.setAnimationProperties(0.2f, 0L, 450L, cubicBezierInterpolator);
         this.topCompleteText.getPaint().setShader(this.completeTextGradient);
-        this.topCompleteText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.topCompleteText.setTypeface(AndroidUtilities.bold());
         this.topCompleteText.setTextSize(AndroidUtilities.dp(32.0f));
         this.topCompleteText.setGravity(17);
         this.bottomCompleteText.setAnimationProperties(0.6f, 0L, 450L, cubicBezierInterpolator);
         this.bottomCompleteText.getPaint().setShader(this.completeTextGradient);
-        this.bottomCompleteText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.bottomCompleteText.setTypeface(AndroidUtilities.bold());
         this.bottomCompleteText.setTextSize(AndroidUtilities.dp(12.0f));
         this.bottomCompleteText.setGravity(17);
         int i3 = 0;

@@ -400,7 +400,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
             this.selectedMessagesCountTextView = numberTextView;
             numberTextView.setTextSize(18);
-            this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.bold());
             this.selectedMessagesCountTextView.setTextColor(Theme.getColor(i2));
             this.selectedMessagesCountTextView.setOnTouchListener(new View.OnTouchListener() {
                 @Override

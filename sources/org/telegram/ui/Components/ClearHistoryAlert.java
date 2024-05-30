@@ -62,7 +62,7 @@ public class ClearHistoryAlert extends BottomSheet {
             this.textView.setGravity(17);
             this.textView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 

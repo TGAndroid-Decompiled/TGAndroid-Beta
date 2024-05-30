@@ -60,7 +60,7 @@ public class TermsOfServiceView extends FrameLayout {
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2));
         this.titleTextView.setTextSize(1, 17.0f);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.titleTextView.setText(LocaleController.getString("PrivacyPolicyAndTerms", R.string.PrivacyPolicyAndTerms));
         linearLayout.addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 3, 0, 20, 0, 0));
         TextView textView2 = new TextView(context);
@@ -82,7 +82,7 @@ public class TermsOfServiceView extends FrameLayout {
         TextView textView3 = new TextView(context);
         textView3.setText(LocaleController.getString("Decline", R.string.Decline).toUpperCase());
         textView3.setGravity(17);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         int i3 = Theme.key_windowBackgroundWhiteGrayText;
         textView3.setTextColor(Theme.getColor(i3));
         textView3.setTextSize(1, 14.0f);
@@ -98,7 +98,7 @@ public class TermsOfServiceView extends FrameLayout {
         TextView textView4 = new TextView(context);
         textView4.setText(LocaleController.getString("Accept", R.string.Accept));
         textView4.setGravity(17);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setTextColor(-1);
         textView4.setTextSize(1, 14.0f);
         textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), -11491093, -12346402));

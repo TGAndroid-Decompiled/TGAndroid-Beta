@@ -273,7 +273,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             String format = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
             int indexOf = TextUtils.indexOf(spannableStringBuilder, format);
             if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), indexOf, format.length() + indexOf, 33);
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), indexOf, format.length() + indexOf, 33);
             }
             builder.setMessage(spannableStringBuilder);
         } else {

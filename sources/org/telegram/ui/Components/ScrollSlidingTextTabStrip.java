@@ -287,7 +287,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             textView.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(processColor(Theme.getColor(this.activeTextColorKey, this.resourcesProvider)), 0.15f), 3));
             textView.setTextSize(1, 15.0f);
             textView.setSingleLine(true);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override

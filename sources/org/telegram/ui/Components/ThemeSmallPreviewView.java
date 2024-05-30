@@ -604,7 +604,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         this.noThemeTextPaint = textPaint;
         textPaint.setColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
         this.noThemeTextPaint.setTextSize(AndroidUtilities.dp(noThemeStringTextSize()));
-        this.noThemeTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.noThemeTextPaint.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(52.0f);
         int i = this.currentType;
         if (i == 3 || i == 4) {

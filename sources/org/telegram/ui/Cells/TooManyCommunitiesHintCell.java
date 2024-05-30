@@ -31,7 +31,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         this.headerTextView = textView;
         textView.setTextColor(Theme.getColor(i));
         this.headerTextView.setTextSize(1, 20.0f);
-        this.headerTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.headerTextView.setTypeface(AndroidUtilities.bold());
         this.headerTextView.setGravity(17);
         addView(this.headerTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 75.0f, 52.0f, 0.0f));
         TextView textView2 = new TextView(context);
@@ -43,7 +43,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         final TextPaint textPaint = new TextPaint(1);
         textPaint.setColor(-1);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         final Paint paint = new Paint(1);
         FrameLayout frameLayout = new FrameLayout(this, context) {
             RectF rect = new RectF();

@@ -99,7 +99,7 @@ public class PhonebookShareAlert extends BottomSheet {
             backupImageView.setForUserOrChat(phonebookShareAlert.currentUser, avatarDrawable);
             addView(backupImageView, LayoutHelper.createLinear(80, 80, 49, 0, 32, 0, 0));
             TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 17.0f);
             textView.setTextColor(phonebookShareAlert.getThemedColor(Theme.key_dialogTextBlack));
             textView.setSingleLine(true);

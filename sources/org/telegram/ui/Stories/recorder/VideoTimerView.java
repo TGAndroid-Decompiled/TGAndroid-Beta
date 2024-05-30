@@ -33,7 +33,7 @@ public class VideoTimerView extends View implements FlashViews.Invertable {
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         this.textDrawable.setTextSize(AndroidUtilities.dp(13.0f));
         this.textDrawable.setTextColor(-1);
-        this.textDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textDrawable.setTypeface(AndroidUtilities.bold());
         this.textDrawable.setCallback(this);
         this.textDrawable.setGravity(1);
         setDuration(0L, false);

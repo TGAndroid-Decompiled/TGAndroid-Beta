@@ -20,7 +20,7 @@ public class StoryPositionView {
     public StoryPositionView() {
         this.textDrawable.setTextSize(AndroidUtilities.dp(13.0f));
         this.textDrawable.setTextColor(-1);
-        this.textDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textDrawable.setTypeface(AndroidUtilities.bold());
         this.backgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 58));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         this.leftSpace = spannableStringBuilder;

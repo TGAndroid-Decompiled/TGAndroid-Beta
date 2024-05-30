@@ -101,7 +101,7 @@ public class HeaderCell extends FrameLayout {
         gLIconTextureView.setStarParticlesView(starParticlesView);
         TextView textView = new TextView(context);
         this.titleView = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 22.0f);
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));

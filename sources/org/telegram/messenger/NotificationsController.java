@@ -2034,7 +2034,7 @@ public class NotificationsController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.validateChannelId(long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):java.lang.String");
     }
 
-    private void showOrUpdateNotification(boolean r49) {
+    private void showOrUpdateNotification(boolean r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showOrUpdateNotification(boolean):void");
     }
 
@@ -2392,7 +2392,7 @@ public class NotificationsController extends BaseController {
                                 try {
                                     TextPaint textPaint3 = new TextPaint(1);
                                     try {
-                                        textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                                        textPaint3.setTypeface(AndroidUtilities.bold());
                                         textPaint3.setTextSize(f8 * 0.25f);
                                         textPaint3.setColor(-1);
                                         textPaint2 = textPaint3;

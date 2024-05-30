@@ -28,7 +28,7 @@ public class TopicExceptionCell extends FrameLayout {
         this.title = textView;
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.title.setTextSize(1, 16.0f);
-        this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.title.setTypeface(AndroidUtilities.bold());
         this.title.setMaxLines(1);
         addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 0, 72.0f, 8.0f, 12.0f, 0.0f));
         TextView textView2 = new TextView(context);

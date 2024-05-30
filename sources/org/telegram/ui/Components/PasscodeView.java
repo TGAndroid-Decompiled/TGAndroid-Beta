@@ -149,7 +149,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             for (int i = 0; i < 4; i++) {
                 TextView textView = new TextView(context);
                 textView.setTextColor(-1);
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextSize(1, 36.0f);
                 textView.setGravity(17);
                 textView.setAlpha(0.0f);
@@ -159,7 +159,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 this.characterTextViews.add(textView);
                 TextView textView2 = new TextView(context);
                 textView2.setTextColor(-1);
-                textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView2.setTypeface(AndroidUtilities.bold());
                 textView2.setTextSize(1, 36.0f);
                 textView2.setGravity(17);
                 textView2.setAlpha(0.0f);
@@ -522,7 +522,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         textView.setTextColor(-1);
         this.passcodeTextView.setTextSize(1, 18.33f);
         this.passcodeTextView.setGravity(1);
-        this.passcodeTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.passcodeTextView.setTypeface(AndroidUtilities.bold());
         this.passcodeTextView.setAlpha(0.0f);
         this.passwordFrameLayout.addView(this.passcodeTextView, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 128.0f));
         TextView textView2 = new TextView(context);
@@ -621,7 +621,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.numbersFrameLayout.addView(frameLayout5, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextColor(-1);
         textView3.setText(LocaleController.getString(R.string.UnlockToUse));
         this.numbersTitleContainer.addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -1841,14 +1841,14 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             addView(imageView, LayoutHelper.createFrame(-1, -1, 119));
             TextView textView = new TextView(context);
             this.textView1 = textView;
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(-1);
             textView.setTextSize(1, 26.0f);
             textView.setGravity(17);
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.textView2 = textView2;
-            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView2.setTypeface(AndroidUtilities.bold());
             textView2.setTextSize(1, 10.0f);
             textView2.setTextColor(ConnectionsManager.DEFAULT_DATACENTER_ID);
             textView2.setGravity(17);

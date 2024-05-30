@@ -63,7 +63,7 @@ public class ChatBigEmptyView extends LinearLayout {
         } else {
             textView3.setText(LocaleController.getString("ChatYourSelfTitle", R.string.ChatYourSelfTitle));
             textView3.setTextSize(1, 16.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(1);
         }
         textView3.setTextColor(getThemedColor(Theme.key_chat_serviceText));

@@ -36,7 +36,7 @@ public class GraySectionCell extends FrameLayout {
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(getContext());
         this.textView = textViewEmojis;
         textViewEmojis.setTextSize(1, 14.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis2 = this.textView;
         int i = Theme.key_graySectionText;
         textViewEmojis2.setTextColor(getThemedColor(i));

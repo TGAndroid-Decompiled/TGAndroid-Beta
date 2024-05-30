@@ -135,7 +135,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setEllipsize(TextUtils.TruncateAt.END);
         this.header.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         this.header.setText(LocaleController.getString("AttachMediaPreview", R.string.AttachMediaPreview));
-        this.header.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.header.setTypeface(AndroidUtilities.bold());
         this.header.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         this.header.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
         this.header.setAlpha(0.0f);
@@ -1643,7 +1643,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         if (this.textPaint == null) {
                             TextPaint textPaint = new TextPaint(1);
                             this.textPaint = textPaint;
-                            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                            textPaint.setTypeface(AndroidUtilities.bold());
                         }
                         TextPaint textPaint2 = this.textPaint;
                         ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview = ChatAttachAlertPhotoLayoutPreview.this;
@@ -1682,7 +1682,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             if (this.videoDurationTextPaint == null) {
                                 TextPaint textPaint = new TextPaint(1);
                                 this.videoDurationTextPaint = textPaint;
-                                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                                textPaint.setTypeface(AndroidUtilities.bold());
                                 this.videoDurationTextPaint.setColor(-1);
                             }
                             float dp = AndroidUtilities.dp(12.0f);

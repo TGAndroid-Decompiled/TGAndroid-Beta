@@ -420,7 +420,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.mainButton.setAlpha(0.0f);
         this.mainButton.setSingleLine();
         this.mainButton.setGravity(17);
-        this.mainButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.mainButton.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(16.0f);
         this.mainButton.setPadding(dp, 0, dp, 0);
         this.mainButton.setTextSize(1, 14.0f);

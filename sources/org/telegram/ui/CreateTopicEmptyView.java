@@ -30,7 +30,7 @@ public class CreateTopicEmptyView extends LinearLayout {
         setOrientation(1);
         this.backupImageView = new BackupImageView(context);
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 15.0f);
         int i = Theme.key_chat_serviceText;
         textView.setTextColor(getThemedColor(i));

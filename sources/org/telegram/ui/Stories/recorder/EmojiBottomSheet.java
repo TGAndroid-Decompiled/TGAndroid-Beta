@@ -2846,7 +2846,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
 
         private void updateLayouts() {
             this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             StaticLayout staticLayout = new StaticLayout(LocaleController.getString("Emoji"), this.textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.emojiLayout = staticLayout;
             this.emojiLayoutWidth = staticLayout.getLineCount() >= 1 ? this.emojiLayout.getLineWidth(0) : 0.0f;

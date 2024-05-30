@@ -746,7 +746,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
     @Override
     @android.annotation.SuppressLint({"Recycle"})
-    public android.view.View createView(android.content.Context r38) {
+    public android.view.View createView(android.content.Context r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -5148,7 +5148,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         public void setText(CharSequence charSequence) {
-            this.text = new Text(charSequence, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.text = new Text(charSequence, 14.0f, AndroidUtilities.bold());
         }
 
         public void setSubText(CharSequence charSequence, boolean z) {
@@ -5281,7 +5281,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
             textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
             textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
-            textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textPaint3.setTypeface(AndroidUtilities.bold());
             paint.setColor(352321536);
         }
 

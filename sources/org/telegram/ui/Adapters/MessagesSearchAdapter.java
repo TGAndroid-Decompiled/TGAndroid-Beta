@@ -112,11 +112,11 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
         if (viewHolder.getItemViewType() == 0) {
             DialogCell dialogCell = (DialogCell) viewHolder.itemView;
             dialogCell.useSeparator = true;
-            dialogCell.isSavedDialog = true;
             MessageObject messageObject = (MessageObject) getItem(i);
             long dialogId = messageObject.getDialogId();
             int i4 = messageObject.messageOwner.date;
             if (this.isSavedMessages) {
+                dialogCell.isSavedDialog = true;
                 dialogId = messageObject.getSavedDialogId();
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
                 TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;

@@ -34,7 +34,7 @@ public class LocationLoadingCell extends FrameLayout {
         this.textView = textView;
         textView.setTextColor(getThemedColor(Theme.key_dialogEmptyText));
         this.textView.setGravity(17);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setTextSize(1, 17.0f);
         this.textView.setText(LocaleController.getString("NoPlacesFound", R.string.NoPlacesFound));
         addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 34.0f, 0.0f, 0.0f));

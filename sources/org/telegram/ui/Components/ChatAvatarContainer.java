@@ -221,7 +221,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.titleTextView.setTextColor(getThemedColor(Theme.key_actionBarDefaultTitle));
         this.titleTextView.setTextSize(18);
         this.titleTextView.setGravity(3);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.titleTextView.setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
         this.titleTextView.setCanHideRightDrawable(false);
         this.titleTextView.setRightDrawableOutside(true);
@@ -620,7 +620,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         simpleTextView.setTextColor(getThemedColor(Theme.key_actionBarDefaultTitle));
         simpleTextView.setTextSize(18);
         simpleTextView.setGravity(3);
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
         simpleTextView.setRightDrawable(this.titleTextView.getRightDrawable());
         simpleTextView.setRightDrawable2(this.titleTextView.getRightDrawable2());

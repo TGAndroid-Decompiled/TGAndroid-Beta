@@ -130,7 +130,7 @@ public class LinkEditActivity extends BaseFragment {
         }
         this.createTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle));
         this.createTextView.setTextSize(1, 14.0f);
-        this.createTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.createTextView.setTypeface(AndroidUtilities.bold());
         this.createTextView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.0f));
         this.actionBar.addView(this.createTextView, LayoutHelper.createFrame(-2, -2.0f, 8388629, 0.0f, this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight / AndroidUtilities.dp(2.0f) : 0, 0.0f, 0.0f));
         this.scrollView = new ScrollView(context);
@@ -279,7 +279,7 @@ public class LinkEditActivity extends BaseFragment {
         textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.buttonTextView.setTypeface(AndroidUtilities.bold());
         int i3 = this.type;
         if (i3 == 0) {
             this.buttonTextView.setText(LocaleController.getString("CreateLink", R.string.CreateLink));
@@ -305,7 +305,7 @@ public class LinkEditActivity extends BaseFragment {
             this.approveCell.setHeight(56);
             this.approveCell.setTag(Integer.valueOf(i4));
             this.approveCell.setTextAndCheck(LocaleController.getString("ApproveNewMembers", R.string.ApproveNewMembers), false, false);
-            this.approveCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.approveCell.setTypeface(AndroidUtilities.bold());
             this.approveCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

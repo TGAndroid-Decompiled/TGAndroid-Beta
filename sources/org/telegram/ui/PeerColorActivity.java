@@ -1054,7 +1054,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.titleView.setEllipsizeByGradient(true);
             this.titleView.setTextSize(20);
             this.titleView.setTextColor(getThemedColor(Theme.key_actionBarDefaultTitle));
-            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleView.setTypeface(AndroidUtilities.bold());
             this.actionBarContainer.addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 19, 72.0f, 0.0f, 72.0f, 0.0f));
         }
         if (this.startAtProfile) {
@@ -1377,7 +1377,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         public LevelLock(Context context, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
             this.resourcesProvider = resourcesProvider;
-            this.text = new Text(LocaleController.formatPluralString(z ? "BoostLevelPlus" : "BoostLevel", i, new Object[0]), 12.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.text = new Text(LocaleController.formatPluralString(z ? "BoostLevelPlus" : "BoostLevel", i, new Object[0]), 12.0f, AndroidUtilities.bold());
             Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
             this.lock = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
@@ -1518,7 +1518,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 return;
             }
             this.needDivider = z;
-            this.userText = new Text(Emoji.replaceEmoji(tLRPC$Chat.title, Theme.chat_msgTextPaint.getFontMetricsInt(), false), 13.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.userText = new Text(Emoji.replaceEmoji(tLRPC$Chat.title, Theme.chat_msgTextPaint.getFontMetricsInt(), false), 13.0f, AndroidUtilities.bold());
             int colorId = ChatObject.getColorId(tLRPC$Chat);
             if (colorId < 7) {
                 int i = Theme.keys_avatar_nameInMessage[colorId];
@@ -1553,7 +1553,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
             }
-            this.userText = new Text(Emoji.replaceEmoji(trim, Theme.chat_msgTextPaint.getFontMetricsInt(), false), 13.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.userText = new Text(Emoji.replaceEmoji(trim, Theme.chat_msgTextPaint.getFontMetricsInt(), false), 13.0f, AndroidUtilities.bold());
             int colorId = UserObject.getColorId(tLRPC$User);
             if (colorId < 7) {
                 int i = Theme.keys_avatar_nameInMessage[colorId];
@@ -2331,7 +2331,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             simpleTextView.setRightDrawable(swapAnimatedEmojiDrawable);
             simpleTextView.setTextColor(-1);
             simpleTextView.setTextSize(20);
-            simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            simpleTextView.setTypeface(AndroidUtilities.bold());
             simpleTextView.setScrollNonFitText(true);
             addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 83, 97.0f, 0.0f, 16.0f, 50.33f));
             SimpleTextView simpleTextView2 = new SimpleTextView(context);

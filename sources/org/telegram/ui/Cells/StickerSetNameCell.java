@@ -60,7 +60,7 @@ public class StickerSetNameCell extends FrameLayout {
         int i = Theme.key_chat_emojiPanelStickerSetName;
         textView.setTextColor(getThemedColor(i));
         this.textView.setTextSize(1, 15.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setSingleLine(true);
         if (z) {
@@ -80,7 +80,7 @@ public class StickerSetNameCell extends FrameLayout {
         this.editView = textView2;
         textView2.setTextColor(getThemedColor(i));
         this.editView.setTextSize(1, 11.0f);
-        this.editView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.editView.setTypeface(AndroidUtilities.bold());
         this.editView.setEllipsize(TextUtils.TruncateAt.END);
         this.editView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.33f), 0);
         this.editView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(9.0f), Theme.multAlpha(getThemedColor(i), 0.1f), Theme.multAlpha(getThemedColor(i), 0.24f)));

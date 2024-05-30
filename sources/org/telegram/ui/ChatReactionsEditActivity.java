@@ -94,7 +94,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", R.string.EnableReactions), !this.chatReactions.isEmpty(), false);
             TextCheckCell textCheckCell2 = this.enableReactionsCell;
             textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
-            this.enableReactionsCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.enableReactionsCell.setTypeface(AndroidUtilities.bold());
             this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

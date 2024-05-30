@@ -698,7 +698,7 @@ public class StoryCaptionView extends NestedScrollView {
                 if (charSequence == null) {
                     charSequence = "";
                 }
-                this.titleLayout = new Text(charSequence, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.titleLayout = new Text(charSequence, 14.0f, AndroidUtilities.bold());
             }
             if (this.textLayout == null || this.updateText) {
                 ?? r5 = this.text;
@@ -1241,7 +1241,7 @@ public class StoryCaptionView extends NestedScrollView {
             textPaint.linkColor = -1;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.showMorePaint.setColor(-1);
-            this.showMorePaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.showMorePaint.setTypeface(AndroidUtilities.bold());
             this.showMorePaint.setTextSize(AndroidUtilities.dp(16.0f));
             paint.setColor(-16777216);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));

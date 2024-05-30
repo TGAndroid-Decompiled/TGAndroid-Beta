@@ -100,7 +100,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             TextView textView = new TextView(context);
             this.videoTextView = textView;
             textView.setTextColor(-1);
-            this.videoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.videoTextView.setTypeface(AndroidUtilities.bold());
             this.videoTextView.setTextSize(1, 12.0f);
             this.videoTextView.setImportantForAccessibility(2);
             this.videoInfoContainer.addView(this.videoTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 13.0f, -0.7f, 0.0f, 0.0f));

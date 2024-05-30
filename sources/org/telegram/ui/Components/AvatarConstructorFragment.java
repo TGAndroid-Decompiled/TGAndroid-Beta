@@ -451,7 +451,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             }
         }
         textView4.setGravity(17);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.button.addView(textView4, LayoutHelper.createFrame(-2, -2, 17));
         this.button.setOnClickListener(new View.OnClickListener() {
@@ -1179,7 +1179,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         textView.setTextSize(1, 14.0f);
         textView.setText(LocaleController.getString("SetColor", R.string.SetColor));
         textView.setGravity(17);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 17));
         linearLayout.addView(frameLayout, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, -8.0f, 16.0f, 16.0f));

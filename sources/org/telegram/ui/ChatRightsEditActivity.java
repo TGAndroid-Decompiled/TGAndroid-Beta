@@ -2092,7 +2092,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                     frameLayout.setBackgroundColor(Theme.getColor(i3));
                     ChatRightsEditActivity.this.addBotButton = new FrameLayout(this.mContext);
                     ChatRightsEditActivity.this.addBotButtonText = new AnimatedTextView(this.mContext, true, false, false);
-                    ChatRightsEditActivity.this.addBotButtonText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    ChatRightsEditActivity.this.addBotButtonText.setTypeface(AndroidUtilities.bold());
                     ChatRightsEditActivity.this.addBotButtonText.setTextColor(-1);
                     ChatRightsEditActivity.this.addBotButtonText.setTextSize(AndroidUtilities.dp(14.0f));
                     ChatRightsEditActivity.this.addBotButtonText.setGravity(17);

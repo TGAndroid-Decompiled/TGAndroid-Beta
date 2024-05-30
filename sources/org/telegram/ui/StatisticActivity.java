@@ -762,7 +762,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.imageView.playAnimation();
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i = Theme.key_player_actionBarTitle;
         textView.setTextColor(Theme.getColor(i));
         textView.setTag(Integer.valueOf(i));
@@ -3391,7 +3391,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     this.primary[i5] = new TextView(context);
                     this.secondary[i5] = new TextView(context);
                     this.title[i5] = new TextView(context);
-                    this.primary[i5].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    this.primary[i5].setTypeface(AndroidUtilities.bold());
                     this.primary[i5].setTextSize(1, 17.0f);
                     this.title[i5].setTextSize(1, 13.0f);
                     this.title[i5].setGravity(3);

@@ -95,7 +95,7 @@ public class StatisticPostInfoCell extends FrameLayout {
         };
         this.message = simpleTextView;
         NotificationCenter.listenEmojiLoading(simpleTextView);
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setTextSize(16);
         simpleTextView.setMaxLines(1);
         simpleTextView.setTextColor(-16777216);

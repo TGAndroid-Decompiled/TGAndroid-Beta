@@ -120,7 +120,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             this.nameTextView = simpleTextView;
             NotificationCenter.listenEmojiLoading(simpleTextView);
             this.nameTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-            this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.nameTextView.setTypeface(AndroidUtilities.bold());
             this.nameTextView.setTextSize(16);
             this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             SimpleTextView simpleTextView2 = this.nameTextView;

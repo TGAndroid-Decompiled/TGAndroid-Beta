@@ -176,7 +176,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         textView.setText(LocaleController.getString("SelectTheme", R.string.SelectTheme));
         textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
         ImageView imageView = new ImageView(getContext());
         this.backButtonView = imageView;
@@ -295,7 +295,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         int i4 = Theme.key_featuredStickers_buttonText;
         animatedTextView3.setTextColor(getThemedColor(i4));
         this.applyTextView.setTextSize(AndroidUtilities.dp(15.0f));
-        this.applyTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.applyTextView.setTypeface(AndroidUtilities.bold());
         this.rootLayout.addView(this.applyTextView, LayoutHelper.createFrame(-1, 48.0f, 8388611, 16.0f, 162.0f, 16.0f, 16.0f));
         AnimatedTextView animatedTextView4 = new AnimatedTextView(getContext(), true, true, true);
         this.applySubTextView = animatedTextView4;

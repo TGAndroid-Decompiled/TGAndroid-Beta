@@ -70,11 +70,11 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         buttonPaint.setColor(-10327179);
         percentPaint.setColor(-1);
         openPaint.setColor(-1);
-        docPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        namePaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        buttonPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        percentPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        openPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        docPaint.setTypeface(AndroidUtilities.bold());
+        namePaint.setTypeface(AndroidUtilities.bold());
+        buttonPaint.setTypeface(AndroidUtilities.bold());
+        percentPaint.setTypeface(AndroidUtilities.bold());
+        openPaint.setTypeface(AndroidUtilities.bold());
     }
 
     public OtherDocumentPlaceholderDrawable(Context context, View view, MessageObject messageObject) {

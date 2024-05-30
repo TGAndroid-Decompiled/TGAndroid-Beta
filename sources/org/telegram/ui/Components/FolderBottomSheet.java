@@ -808,7 +808,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
             this.text.setCallback(this);
             this.text.setTextSize(AndroidUtilities.dp(14.0f));
-            this.text.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.text.setTypeface(AndroidUtilities.bold());
             this.text.setTextColor(Theme.getColor(i2));
             this.text.setText(str);
             this.text.setGravity(1);
@@ -817,7 +817,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
             this.countText.setCallback(this);
             this.countText.setTextSize(AndroidUtilities.dp(12.0f));
-            this.countText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.countText.setTypeface(AndroidUtilities.bold());
             this.countText.setTextColor(Theme.getColor(i));
             this.countText.setText("");
             this.countText.setGravity(1);
@@ -1107,7 +1107,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, false);
             this.textView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             AnimatedTextView animatedTextView2 = this.textView;
             int i = Theme.key_windowBackgroundWhiteBlueHeader;
             animatedTextView2.setTextColor(Theme.getColor(i));
@@ -1178,7 +1178,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             int i = Theme.key_windowBackgroundWhiteBlackText;
             textView.setTextColor(Theme.getColor(i));
             this.titleTextView.setTextSize(1, 20.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleTextView.setTypeface(AndroidUtilities.bold());
             this.titleTextView.setText(FolderBottomSheet.this.getTitle());
             this.titleTextView.setGravity(17);
             addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 48, 32.0f, 78.3f, 32.0f, 0.0f));
@@ -1252,10 +1252,10 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 this.rightMatrix = new Matrix();
                 this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_profile_tabText), 0.8f));
                 this.paint.setTextSize(AndroidUtilities.dp(15.33f));
-                this.paint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.paint.setTypeface(AndroidUtilities.bold());
                 this.selectedTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2));
                 this.selectedTextPaint.setTextSize(AndroidUtilities.dp(17.0f));
-                this.selectedTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.selectedTextPaint.setTypeface(AndroidUtilities.bold());
                 this.selectedPaint.setColor(Theme.getColor(Theme.key_featuredStickers_unread));
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
                 this.countText = animatedTextDrawable;
@@ -1263,7 +1263,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 this.countText.setCallback(this);
                 this.countText.setTextSize(AndroidUtilities.dp(11.66f));
                 this.countText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                this.countText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.countText.setTypeface(AndroidUtilities.bold());
                 this.countText.setGravity(1);
                 if (charSequence != null) {
                     StaticLayout makeLayout = makeLayout(charSequence, false);

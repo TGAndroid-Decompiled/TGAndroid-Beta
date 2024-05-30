@@ -33,7 +33,7 @@ public class FilledTabsView extends View {
         this.tabs = new Text[charSequenceArr.length];
         this.bounds = new RectF[charSequenceArr.length];
         for (int i = 0; i < charSequenceArr.length; i++) {
-            this.tabs[i] = new Text(charSequenceArr[i], 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.tabs[i] = new Text(charSequenceArr[i], 14.0f, AndroidUtilities.bold());
             this.bounds[i] = new RectF();
         }
         invalidate();

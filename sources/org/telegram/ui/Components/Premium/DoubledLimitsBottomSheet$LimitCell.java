@@ -19,7 +19,7 @@ class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
         TextView textView = new TextView(context);
         this.title = textView;
         textView.setTextSize(1, 15.0f);
-        this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.title.setTypeface(AndroidUtilities.bold());
         this.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         addView(this.title, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 0, 16, 0));
         TextView textView2 = new TextView(context);

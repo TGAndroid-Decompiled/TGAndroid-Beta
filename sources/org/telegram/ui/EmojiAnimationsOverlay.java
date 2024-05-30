@@ -510,8 +510,10 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             }
             DrawingObject drawingObject = new DrawingObject();
             drawingObject.isPremiumSticker = true;
-            drawingObject.randomOffsetX = (imageWidth / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
-            drawingObject.randomOffsetY = (imageHeight / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+            if (!drawingObject.isMessageEffect) {
+                drawingObject.randomOffsetX = (imageWidth / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+                drawingObject.randomOffsetY = (imageHeight / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+            }
             drawingObject.messageId = chatActionCell.getMessageObject().getId();
             drawingObject.isOut = true;
             drawingObject.imageReceiver.setAllowStartAnimation(true);
@@ -810,8 +812,10 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         }
         DrawingObject drawingObject2 = new DrawingObject();
         drawingObject2.genericEffect = AnimatedEmojiEffect.createFrom(storyReactionWidgetView.getAnimatedEmojiDrawable(), z2, z2);
-        drawingObject2.randomOffsetX = (f3 / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
-        drawingObject2.randomOffsetY = (f / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+        if (!drawingObject2.isMessageEffect) {
+            drawingObject2.randomOffsetX = (f3 / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+            drawingObject2.randomOffsetY = (f / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
+        }
         drawingObject2.messageId = i;
         drawingObject2.document = null;
         drawingObject2.documentId = fromTL.documentId;

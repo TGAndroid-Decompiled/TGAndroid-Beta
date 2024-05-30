@@ -118,11 +118,11 @@ public class GiveawayMessageCell {
         this.giftReceiver = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         this.clipRectPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        this.counterTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.counterTextPaint.setTypeface(AndroidUtilities.bold());
         this.counterTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.counterTextPaint.setTextSize(AndroidUtilities.dp(12.0f));
         this.counterTextPaint.setTextAlign(Paint.Align.CENTER);
-        this.chatTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.chatTextPaint.setTypeface(AndroidUtilities.bold());
         this.chatTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.countriesTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));

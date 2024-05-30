@@ -190,7 +190,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(80, 80, 1, 0, 16, 0, 16));
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         int i3 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i3, resourcesProvider));
@@ -242,7 +242,7 @@ public class MessagePrivateSeenView extends FrameLayout {
             simpleTextView.setTextSize(14);
             linearLayout.addView(simpleTextView, LayoutHelper.createLinear(270, -2, 1, 12, 17, 12, 17));
             TextView textView3 = new TextView(context);
-            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(17);
             textView3.setTextColor(Theme.getColor(i3, resourcesProvider));
             textView3.setTextSize(1, 20.0f);

@@ -138,7 +138,7 @@ public class StickerSetCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.addButtonView = textView;
         textView.setTextSize(1, 14.0f);
-        this.addButtonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.addButtonView.setTypeface(AndroidUtilities.bold());
         this.addButtonView.setText(LocaleController.getString("Add", R.string.Add));
         this.addButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         TextView textView2 = this.addButtonView;
@@ -156,7 +156,7 @@ public class StickerSetCell extends FrameLayout {
         TextView textView3 = new TextView(context);
         this.removeButtonView = textView3;
         textView3.setTextSize(1, 14.0f);
-        this.removeButtonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.removeButtonView.setTypeface(AndroidUtilities.bold());
         this.removeButtonView.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
         this.removeButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText, resourcesProvider));
         this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, Theme.getColor(i3, resourcesProvider) & 452984831, 4.0f));
@@ -208,7 +208,7 @@ public class StickerSetCell extends FrameLayout {
         NotificationCenter.listenEmojiLoading(textView4);
         this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(1, 16.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);

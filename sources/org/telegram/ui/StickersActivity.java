@@ -275,7 +275,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
         this.selectedCountTextView = numberTextView;
         numberTextView.setTextSize(18);
-        this.selectedCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.selectedCountTextView.setTypeface(AndroidUtilities.bold());
         this.selectedCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         createActionMode.addView(this.selectedCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedCountTextView.setOnTouchListener(new View.OnTouchListener() {
@@ -1318,7 +1318,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     }
                 };
                 featuredStickerSetCell22.setBackgroundColor(StickersActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                featuredStickerSetCell22.getTextView().setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                featuredStickerSetCell22.getTextView().setTypeface(AndroidUtilities.bold());
                 featuredStickerSetCell2 = featuredStickerSetCell22;
             } else {
                 View textCheckCell = new TextCheckCell(this.mContext);

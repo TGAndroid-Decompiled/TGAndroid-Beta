@@ -177,7 +177,7 @@ public class PollVotesAlert extends BottomSheet {
             AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(getContext());
             this.textView = textViewEmojis;
             textViewEmojis.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             AnimatedEmojiSpan.TextViewEmojis textViewEmojis2 = this.textView;
             int i = Theme.key_graySectionText;
             textViewEmojis2.setTextColor(Theme.getColor(i));
@@ -272,7 +272,7 @@ public class PollVotesAlert extends BottomSheet {
             } else {
                 spannableStringBuilder = new SpannableStringBuilder(String.format(" – %s%%", Integer.valueOf(i)));
             }
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 3, format.length() + 3, 33);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 3, format.length() + 3, 33);
             this.middleTextView.setText(spannableStringBuilder);
             if (i3 == 0) {
                 if (PollVotesAlert.this.poll.quiz) {
@@ -325,7 +325,7 @@ public class PollVotesAlert extends BottomSheet {
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.nameTextView = simpleTextView;
             simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-            this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.nameTextView.setTypeface(AndroidUtilities.bold());
             this.nameTextView.setTextSize(16);
             this.nameTextView.setGravity(16 | (LocaleController.isRTL ? 5 : 3));
             SimpleTextView simpleTextView2 = this.nameTextView;
@@ -758,7 +758,7 @@ public class PollVotesAlert extends BottomSheet {
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(parentActivity);
         this.titleTextView = textViewEmojis;
         textViewEmojis.setTextSize(1, 18.0f);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.titleTextView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(21.0f));
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis2 = this.titleTextView;
         int i11 = Theme.key_dialogTextBlack;

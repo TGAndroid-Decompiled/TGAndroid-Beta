@@ -130,7 +130,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.viewsText.setCallback(this);
         this.viewsText.setTextSize(AndroidUtilities.dp(12.0f));
         this.viewsText.setTextColor(-1);
-        this.viewsText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.viewsText.setTypeface(AndroidUtilities.bold());
         this.viewsText.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         setWillNotDraw(false);
     }
@@ -619,7 +619,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         public SharedResources(Context context, Theme.ResourcesProvider resourcesProvider) {
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.textPaint.setColor(-1);
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             Drawable drawable = ContextCompat.getDrawable(context, R.drawable.play_mini_video);
             this.playDrawable = drawable;
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());

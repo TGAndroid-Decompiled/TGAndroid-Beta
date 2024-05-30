@@ -60,7 +60,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
 
         @Override
         public void updateDrawState(TextPaint textPaint) {
-            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textPaint.setTypeface(AndroidUtilities.bold());
             int alpha = textPaint.getAlpha();
             textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, MessageContainsEmojiButton.this.resourcesProvider));
             textPaint.setAlpha(alpha);

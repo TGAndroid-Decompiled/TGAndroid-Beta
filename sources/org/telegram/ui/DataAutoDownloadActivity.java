@@ -631,7 +631,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             if (i == 0) {
                 TextCheckCell textCheckCell = new TextCheckCell(this.mContext);
                 textCheckCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
-                textCheckCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textCheckCell.setTypeface(AndroidUtilities.bold());
                 textCheckCell.setHeight(56);
                 slideChooseView = textCheckCell;
             } else if (i == 1) {

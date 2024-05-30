@@ -73,7 +73,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView3.setEllipsize(TextUtils.TruncateAt.END);
         textView3.setSingleLine(true);
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString("ManageDeviceStorage", R.string.ManageDeviceStorage));
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         int dp2 = AndroidUtilities.dp(8.0f);
@@ -85,7 +85,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView4.setEllipsize(TextUtils.TruncateAt.END);
         textView4.setSingleLine(true);
         textView4.setTextSize(1, 14.0f);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setText(LocaleController.getString("ClearDownloadsList", R.string.ClearDownloadsList));
         textView4.setTextColor(Theme.getColor(i3));
         textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i3), 120)));

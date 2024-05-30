@@ -61,7 +61,7 @@ public class BusinessBotButton extends FrameLayout {
         this.titleView = animatedTextView;
         animatedTextView.adaptWidth = false;
         animatedTextView.getDrawable().setHacks(true, true, false);
-        animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextView.setTypeface(AndroidUtilities.bold());
         animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextView.setText(UserObject.getUserName(user));
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
@@ -82,7 +82,7 @@ public class BusinessBotButton extends FrameLayout {
         clickableAnimatedTextView.getDrawable().setHacks(true, true, true);
         clickableAnimatedTextView.setAnimationProperties(0.75f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         clickableAnimatedTextView.setScaleProperty(0.6f);
-        clickableAnimatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        clickableAnimatedTextView.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(14.0f);
         int i = Theme.key_featuredStickers_addButton;
         clickableAnimatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i, resourcesProvider), Theme.blendOver(Theme.getColor(i, resourcesProvider), Theme.multAlpha(-1, 0.12f))));

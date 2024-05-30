@@ -16,7 +16,7 @@ public class LetterSectionCell extends FrameLayout {
         TextView textView = new TextView(getContext());
         this.textView = textView;
         textView.setTextSize(1, 22.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
         this.textView.setGravity(17);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));

@@ -90,7 +90,7 @@ public class CheckBoxCell extends FrameLayout {
             this.animatedTextView.setTag(Integer.valueOf(getThemedColor((i == 1 || i == 5) ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText)));
             this.animatedTextView.setTextSize(AndroidUtilities.dp(16.0f));
             if (i == 7) {
-                this.animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.animatedTextView.setTypeface(AndroidUtilities.bold());
             }
             if (i == 3) {
                 this.animatedTextView.setGravity(19);
@@ -134,7 +134,7 @@ public class CheckBoxCell extends FrameLayout {
             this.linksTextView.setSingleLine(true);
             this.linksTextView.setEllipsize(TextUtils.TruncateAt.END);
             if (i == 7) {
-                this.linksTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.linksTextView.setTypeface(AndroidUtilities.bold());
             }
             if (i == 3) {
                 this.linksTextView.setGravity(19);
@@ -624,7 +624,7 @@ public class CheckBoxCell extends FrameLayout {
             animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
             animatedTextView.setTextColor(themedColor);
             animatedTextView.setIncludeFontPadding(false);
-            animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextView.setTypeface(AndroidUtilities.bold());
             View view = new View(context);
             this.collapsedArrow = view;
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();

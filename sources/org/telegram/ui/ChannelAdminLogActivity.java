@@ -795,7 +795,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             ProfileActivity.ShowDrawable findDrawable = findDrawable(messageObject.messageText);
             if (findDrawable == null) {
                 findDrawable = new ProfileActivity.ShowDrawable(LocaleController.getString(z ? R.string.EventLogDeletedMultipleMessagesHide : R.string.EventLogDeletedMultipleMessagesShow));
-                findDrawable.textDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                findDrawable.textDrawable.setTypeface(AndroidUtilities.bold());
                 findDrawable.textDrawable.setTextSize(AndroidUtilities.dp(10.0f));
                 findDrawable.setTextColor(-1);
                 findDrawable.setBackgroundColor(503316480);
@@ -1418,7 +1418,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         TextView textView3 = new TextView(context);
         this.bottomOverlayChatText = textView3;
         textView3.setTextSize(1, 15.0f);
-        this.bottomOverlayChatText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.bottomOverlayChatText.setTypeface(AndroidUtilities.bold());
         TextView textView4 = this.bottomOverlayChatText;
         int i4 = Theme.key_chat_fieldOverlayText;
         textView4.setTextColor(Theme.getColor(i4));
@@ -1470,7 +1470,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.searchCountText = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_chat_searchPanelText));
         this.searchCountText.setTextSize(15);
-        this.searchCountText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.searchCountText.setTypeface(AndroidUtilities.bold());
         this.searchContainer.addView(this.searchCountText, LayoutHelper.createFrame(-1, -2.0f, 19, 108.0f, 0.0f, 0.0f, 0.0f));
         this.chatAdapter.updateRows();
         if (this.loading && this.messages.isEmpty()) {

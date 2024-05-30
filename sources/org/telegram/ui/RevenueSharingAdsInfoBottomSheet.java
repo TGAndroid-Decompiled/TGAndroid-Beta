@@ -49,7 +49,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(80, 80, 1, 0, 28, 0, 0));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString("AboutRevenueSharingAds", R.string.AboutRevenueSharingAds));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setTextSize(1, 20.0f);
@@ -78,7 +78,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         linearLayout.addView(view, layoutParams);
         TextView textView3 = new TextView(context);
         textView3.setText(LocaleController.getString("RevenueSharingAdsInfo4Title", R.string.RevenueSharingAdsInfo4Title));
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView3.setTextSize(1, 20.0f);
         textView3.setTextAlignment(4);
@@ -111,7 +111,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         textView4.setGravity(17);
         textView4.setEllipsize(TextUtils.TruncateAt.END);
         textView4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setTextSize(1, 14.0f);
         textView4.setText(LocaleController.getString("RevenueSharingAdsAlertButton", R.string.RevenueSharingAdsAlertButton));
         textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 6.0f));
@@ -166,7 +166,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
             textView.setText(charSequence);
             textView.setTextColor(Theme.getColor(i2));
             textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
             linksTextView.setText(charSequence2);

@@ -528,9 +528,9 @@ public class FilterTabsView extends FrameLayout {
             }
         };
         this.textCounterPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        this.textCounterPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textCounterPaint.setTypeface(AndroidUtilities.bold());
         this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.deletePaint.setStyle(Paint.Style.STROKE);
         this.deletePaint.setStrokeCap(Paint.Cap.ROUND);
         this.deletePaint.setStrokeWidth(AndroidUtilities.dp(1.5f));

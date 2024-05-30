@@ -51,7 +51,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         this.selectorRect = new RectF();
         this.selectorPaint.setColor(855638015);
         this.textPaint.setColor(-1);
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.textPaint.setTextSize(AndroidUtilities.dpf2(14.0f));
         this.textPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.4f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
         String string = LocaleController.getString("StoryPhoto");

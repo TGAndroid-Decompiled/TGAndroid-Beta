@@ -221,7 +221,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         frameLayout.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -1, 119));
         final TextView textView = new TextView(getContext());
         textView.setTextSize(1, 12.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.Paste));
         textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
         textView.setGravity(17);

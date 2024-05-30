@@ -632,7 +632,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             int i2 = Theme.key_dialogTextBlack;
             textView2.setTextColor(PremiumFeatureBottomSheet.this.getThemedColor(i2));
             this.title.setTextSize(1, 20.0f);
-            this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.title.setTypeface(AndroidUtilities.bold());
             addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
             TextView textView3 = new TextView(context);
             this.description = textView3;

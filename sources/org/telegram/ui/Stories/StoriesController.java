@@ -2983,7 +2983,36 @@ public class StoriesController {
             return load(z, 0, list);
         }
 
+        public int lastLoadedId() {
+            if (this.loadedObjects.isEmpty()) {
+                return -1;
+            }
+            ArrayList arrayList = new ArrayList(this.loadedObjects);
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                int intValue = ((Integer) arrayList.get(size)).intValue();
+                if (!this.pinnedIds.contains(Integer.valueOf(intValue))) {
+                    return intValue;
+                }
+            }
+            return -1;
+        }
+
+        public int firstLoadedId() {
+            if (this.loadedObjects.isEmpty()) {
+                return -1;
+            }
+            ArrayList arrayList = new ArrayList(this.loadedObjects);
+            for (int i = 0; i < arrayList.size(); i++) {
+                int intValue = ((Integer) arrayList.get(i)).intValue();
+                if (!this.pinnedIds.contains(Integer.valueOf(intValue))) {
+                    return intValue;
+                }
+            }
+            return -1;
+        }
+
         public boolean load(final boolean z, final int i, final List<Integer> list) {
+            final int lastLoadedId;
             TL_stories$TL_stories_getStoriesArchive tL_stories$TL_stories_getStoriesArchive;
             if (this.loading || ((this.done || this.error || !canLoad()) && !z)) {
                 return false;
@@ -3000,30 +3029,24 @@ public class StoriesController {
                 return false;
             }
             int i2 = this.type;
-            final int i3 = -1;
             if (i2 == 0) {
                 TL_stories$TL_stories_getPinnedStories tL_stories$TL_stories_getPinnedStories = new TL_stories$TL_stories_getPinnedStories();
                 tL_stories$TL_stories_getPinnedStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                if (!this.loadedObjects.isEmpty()) {
-                    int intValue = this.loadedObjects.last().intValue();
-                    tL_stories$TL_stories_getPinnedStories.offset_id = intValue;
-                    i3 = intValue;
-                }
+                lastLoadedId = lastLoadedId();
+                tL_stories$TL_stories_getPinnedStories.offset_id = lastLoadedId;
                 tL_stories$TL_stories_getPinnedStories.limit = i;
                 tL_stories$TL_stories_getStoriesArchive = tL_stories$TL_stories_getPinnedStories;
             } else if (i2 == 2) {
                 TL_stories$TL_stories_getStoriesByID tL_stories$TL_stories_getStoriesByID = new TL_stories$TL_stories_getStoriesByID();
                 tL_stories$TL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
                 tL_stories$TL_stories_getStoriesByID.id.addAll(list);
+                lastLoadedId = -1;
                 tL_stories$TL_stories_getStoriesArchive = tL_stories$TL_stories_getStoriesByID;
             } else {
                 TL_stories$TL_stories_getStoriesArchive tL_stories$TL_stories_getStoriesArchive2 = new TL_stories$TL_stories_getStoriesArchive();
                 tL_stories$TL_stories_getStoriesArchive2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                if (!this.loadedObjects.isEmpty()) {
-                    int intValue2 = this.loadedObjects.last().intValue();
-                    tL_stories$TL_stories_getStoriesArchive2.offset_id = intValue2;
-                    i3 = intValue2;
-                }
+                lastLoadedId = lastLoadedId();
+                tL_stories$TL_stories_getStoriesArchive2.offset_id = lastLoadedId;
                 tL_stories$TL_stories_getStoriesArchive2.limit = i;
                 tL_stories$TL_stories_getStoriesArchive = tL_stories$TL_stories_getStoriesArchive2;
             }
@@ -3032,7 +3055,7 @@ public class StoriesController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getStoriesArchive, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StoriesController.StoriesList.this.lambda$load$13(i3, tLObject, tLRPC$TL_error);
+                    StoriesController.StoriesList.this.lambda$load$13(lastLoadedId, tLObject, tLRPC$TL_error);
                 }
             });
             return true;
@@ -3081,24 +3104,24 @@ public class StoriesController {
             this.done = z;
             if (!z) {
                 if (i == -1) {
-                    i = this.loadedObjects.first().intValue();
+                    i = firstLoadedId();
                 }
-                int intValue = !this.loadedObjects.isEmpty() ? this.loadedObjects.last().intValue() : 0;
+                int lastLoadedId = lastLoadedId();
                 Iterator<Integer> it = this.cachedObjects.iterator();
                 while (it.hasNext()) {
-                    int intValue2 = it.next().intValue();
-                    if (!this.loadedObjects.contains(Integer.valueOf(intValue2)) && intValue2 >= i && intValue2 <= intValue) {
+                    int intValue = it.next().intValue();
+                    if (!this.loadedObjects.contains(Integer.valueOf(intValue)) && intValue >= i && intValue <= lastLoadedId) {
                         it.remove();
-                        removeObject(intValue2, false);
+                        removeObject(intValue, false);
                     }
                 }
             } else {
                 Iterator<Integer> it2 = this.cachedObjects.iterator();
                 while (it2.hasNext()) {
-                    int intValue3 = it2.next().intValue();
-                    if (!this.loadedObjects.contains(Integer.valueOf(intValue3))) {
+                    int intValue2 = it2.next().intValue();
+                    if (!this.loadedObjects.contains(Integer.valueOf(intValue2))) {
                         it2.remove();
-                        removeObject(intValue3, false);
+                        removeObject(intValue2, false);
                     }
                 }
             }

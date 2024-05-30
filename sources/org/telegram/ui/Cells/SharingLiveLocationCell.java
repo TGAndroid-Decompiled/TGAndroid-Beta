@@ -96,7 +96,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         NotificationCenter.listenEmojiLoading(simpleTextView);
         this.nameTextView.setTextSize(16);
         this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.nameTextView.setScrollNonFitText(true);
         if (z) {

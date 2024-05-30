@@ -31,7 +31,7 @@ public class DiscountSpan extends ReplacementSpan {
     }
 
     public DiscountSpan(float f, int i) {
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.bgPaint.setStyle(Paint.Style.FILL);
         this.textPaint.setTextSize(AndroidUtilities.dp(f));
         this.discount = i;

@@ -130,7 +130,7 @@ public class LinkActionView extends LinearLayout {
         textView2.setContentDescription(LocaleController.getString("LinkActionCopy", i));
         textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setSingleLine(true);
         linearLayout.addView(textView2, LayoutHelper.createLinear(0, 42, 1.0f, 0, 4, 0, 4, 0));
         TextView textView3 = new TextView(context);
@@ -145,7 +145,7 @@ public class LinkActionView extends LinearLayout {
         textView3.setContentDescription(LocaleController.getString("LinkActionShare", i2));
         textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setSingleLine(true);
         linearLayout.addView(textView3, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         TextView textView4 = new TextView(context);
@@ -159,7 +159,7 @@ public class LinkActionView extends LinearLayout {
         textView4.setText(spannableStringBuilder3);
         textView4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView4.setTextSize(1, 14.0f);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setSingleLine(true);
         linearLayout.addView(textView4, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         textView4.setVisibility(8);
@@ -553,7 +553,7 @@ public class LinkActionView extends LinearLayout {
             TextView textView = new TextView(context);
             this.countTextView = textView;
             textView.setTextSize(1, 14.0f);
-            this.countTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.countTextView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(this.avatarsImageView, LayoutHelper.createLinear(-2, -1));
             linearLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 16));
             setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));

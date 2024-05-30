@@ -67,7 +67,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
             if ((i & 4) == 0 && (i & 2048) == 0) {
                 if ((i & 1) == 0 || (i & 2) == 0) {
                     if ((i & 1) != 0) {
-                        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM);
+                        return AndroidUtilities.bold();
                     }
                     if ((i & 2) != 0) {
                         return AndroidUtilities.getTypeface("fonts/ritalic.ttf");

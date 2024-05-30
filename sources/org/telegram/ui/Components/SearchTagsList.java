@@ -178,7 +178,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         int i = Theme.key_windowBackgroundWhiteBlueText2;
         textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView.setTextSize(1, 12.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
         int i2 = Theme.key_chat_messageLinkIn;
@@ -196,7 +196,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView2.setTextSize(1, 12.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.AddTagsToYourSavedMessages2));
         SpannableString spannableString2 = new SpannableString(">");
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();

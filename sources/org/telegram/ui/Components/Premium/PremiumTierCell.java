@@ -69,7 +69,7 @@ public class PremiumTierCell extends ViewGroup {
         this.titleView = textView;
         textView.setTextSize(1, 16.0f);
         this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setSingleLine();
         addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
@@ -77,7 +77,7 @@ public class PremiumTierCell extends ViewGroup {
         textView2.setTextSize(1, 14.0f);
         this.discountView.setTextColor(-1);
         this.discountView.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        this.discountView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.discountView.setTypeface(AndroidUtilities.bold());
         addView(this.discountView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 0.0f, 0.0f, 0.0f, 8.0f));
         TextView textView3 = new TextView(context);
         this.pricePerYearStrikeView = textView3;

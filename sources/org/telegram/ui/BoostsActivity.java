@@ -898,7 +898,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextColor(-1);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 12.0f);
             addView(imageView, LayoutHelper.createFrame(-2, -2, 1));
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 25.0f, 0.0f, 0.0f));

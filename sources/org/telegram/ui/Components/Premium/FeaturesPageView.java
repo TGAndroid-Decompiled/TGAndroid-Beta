@@ -140,7 +140,7 @@ public class FeaturesPageView extends BaseListPageView {
                 this.imageView.getImageReceiver().setForUserOrChat(currentUser, avatarDrawable);
                 TextView textView = new TextView(context);
                 textView.setTextSize(1, 20.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
                 textView.setText(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
                 addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
@@ -210,7 +210,7 @@ public class FeaturesPageView extends BaseListPageView {
                 }
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 20.0f);
-                textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView2.setTypeface(AndroidUtilities.bold());
                 textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
                 textView2.setText(LocaleController.getString(R.string.TelegramBusiness));
                 textView2.setGravity(17);
@@ -268,7 +268,7 @@ public class FeaturesPageView extends BaseListPageView {
             addView(this.imageView, LayoutHelper.createFrame(28, 28.0f, 0, 25.0f, 12.0f, 16.0f, 0.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, featuresPageView.resourcesProvider));
             this.textView.setTextSize(1, 14.0f);
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 8.0f, 16.0f, 0.0f));

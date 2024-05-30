@@ -102,14 +102,14 @@ public class LimitPreviewView extends LinearLayout {
         final TextViewHolder textViewHolder = new TextViewHolder(context, true);
         TextView textView = new TextView(context);
         this.defaultText = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString("LimitFree", R.string.LimitFree));
         textView.setGravity(16);
         int i4 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i4, resourcesProvider));
         TextView textView2 = new TextView(context);
         this.defaultCount = textView2;
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         this.defaultCount.setText(String.format("%d", Integer.valueOf(i3)));
         this.defaultCount.setGravity(16);
         this.defaultCount.setTextColor(Theme.getColor(i4, resourcesProvider));
@@ -123,7 +123,7 @@ public class LimitPreviewView extends LinearLayout {
         final TextViewHolder textViewHolder2 = new TextViewHolder(context, false);
         TextView textView3 = new TextView(context);
         this.premiumText = textView3;
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString("LimitPremium", R.string.LimitPremium));
         textView3.setGravity(16);
         textView3.setTextColor(-1);
@@ -144,7 +144,7 @@ public class LimitPreviewView extends LinearLayout {
             }
         };
         this.premiumCount = textView4;
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         this.premiumCount.setText(String.format("%d", Integer.valueOf(i3)));
         this.premiumCount.setGravity(16);
         this.premiumCount.setTextColor(-1);
@@ -502,7 +502,7 @@ public class LimitPreviewView extends LinearLayout {
             this.animatedLayouts = new ArrayList<>();
             this.dstOutPaint = new Paint();
             this.overlayPaint = new Paint();
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             this.textPaint.setTextSize(AndroidUtilities.dp(22.0f));
             this.textPaint.setColor(-1);
             this.dstOutPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));

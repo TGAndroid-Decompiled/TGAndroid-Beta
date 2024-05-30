@@ -322,7 +322,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         this.imageView.playAnimation();
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i = Theme.key_player_actionBarTitle;
         textView.setTextColor(Theme.getColor(i, getResourceProvider()));
         textView.setTag(Integer.valueOf(i));
@@ -1160,7 +1160,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                     int i3 = (i * 2) + i2;
                     this.primary[i3] = new TextView(context);
                     this.title[i3] = new TextView(context);
-                    this.primary[i3].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    this.primary[i3].setTypeface(AndroidUtilities.bold());
                     this.primary[i3].setTextSize(1, 17.0f);
                     this.title[i3].setTextSize(1, 13.0f);
                     this.title[i3].setGravity(3);

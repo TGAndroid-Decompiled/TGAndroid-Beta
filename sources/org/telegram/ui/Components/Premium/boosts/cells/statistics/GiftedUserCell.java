@@ -48,7 +48,7 @@ public class GiftedUserCell extends UserCell {
         TextView textView = new TextView(getContext());
         this.badgeTextView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-        this.badgeTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.badgeTextView.setTypeface(AndroidUtilities.bold());
         this.badgeTextView.setTextSize(12.0f);
         this.badgeTextView.setGravity(17);
         this.badgeLayout.addView(this.badgeTextView, LayoutHelper.createFrame(-2, 22.0f));

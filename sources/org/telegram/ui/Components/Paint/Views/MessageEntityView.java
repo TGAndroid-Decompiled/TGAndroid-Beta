@@ -145,7 +145,7 @@ public class MessageEntityView extends EntityView {
                 textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
                 textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
                 textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
-                textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textPaint3.setTypeface(AndroidUtilities.bold());
                 paint.setColor(352321536);
             }
 

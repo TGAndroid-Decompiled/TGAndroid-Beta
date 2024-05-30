@@ -399,7 +399,7 @@ public class CaptionContainerView extends FrameLayout {
         this.limitTextView.setTextSize(AndroidUtilities.dp(15.0f));
         this.limitTextView.setTextColor(-1);
         this.limitTextView.setAnimationProperties(0.4f, 0L, 320L, cubicBezierInterpolator);
-        this.limitTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.limitTextView.setTypeface(AndroidUtilities.bold());
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.limitTextContainer = frameLayout3;
         frameLayout3.setTranslationX(AndroidUtilities.dp(2.0f));
@@ -890,7 +890,7 @@ public class CaptionContainerView extends FrameLayout {
         if (charSequence == null) {
             charSequence = "";
         }
-        this.replyTitle = new Text(charSequence, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.replyTitle = new Text(charSequence, 14.0f, AndroidUtilities.bold());
         if (charSequence2 == null) {
             charSequence2 = "";
         }

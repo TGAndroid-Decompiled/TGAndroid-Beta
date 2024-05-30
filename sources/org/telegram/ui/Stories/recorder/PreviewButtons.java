@@ -236,7 +236,7 @@ public class PreviewButtons extends FrameLayout {
             paint2.setColor(1610612736);
             textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint.setColor(-1);
-            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textPaint.setTypeface(AndroidUtilities.bold());
             SpannableString spannableString = new SpannableString(">");
             Drawable mutate = getResources().getDrawable(R.drawable.attach_arrow_right).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));

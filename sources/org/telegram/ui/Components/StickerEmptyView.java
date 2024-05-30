@@ -97,7 +97,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         });
         SpoilersTextView spoilersTextView = new SpoilersTextView(context);
         this.title = spoilersTextView;
-        spoilersTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        spoilersTextView.setTypeface(AndroidUtilities.bold());
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         spoilersTextView.setTag(Integer.valueOf(i2));
         spoilersTextView.setTextColor(getThemedColor(i2));
@@ -141,7 +141,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
         textView.setGravity(17);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 15.0f);
         FrameLayout frameLayout = new FrameLayout(this, getContext()) {
             @Override

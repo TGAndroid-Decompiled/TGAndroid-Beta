@@ -68,7 +68,7 @@ public class HeaderCell extends FrameLayout {
             AnimatedTextView animatedTextView = new AnimatedTextView(getContext());
             this.animatedTextView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
-            this.animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.animatedTextView.setTypeface(AndroidUtilities.bold());
             this.animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.animatedTextView.setTextColor(getThemedColor(i));
             this.animatedTextView.setTag(Integer.valueOf(i));
@@ -79,7 +79,7 @@ public class HeaderCell extends FrameLayout {
             TextView textView = new TextView(getContext());
             this.textView = textView;
             textView.setTextSize(1, 15.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.textView.setMinHeight(AndroidUtilities.dp(this.height - i3));

@@ -257,13 +257,13 @@ public class GroupCallRenderersContainer extends FrameLayout {
         this.pinTextView = textView;
         textView.setTextColor(-1);
         this.pinTextView.setTextSize(1, 15.0f);
-        this.pinTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.pinTextView.setTypeface(AndroidUtilities.bold());
         this.pinTextView.setText(LocaleController.getString("CallVideoPin", R.string.CallVideoPin));
         TextView textView2 = new TextView(context);
         this.unpinTextView = textView2;
         textView2.setTextColor(-1);
         this.unpinTextView.setTextSize(1, 15.0f);
-        this.unpinTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.unpinTextView.setTypeface(AndroidUtilities.bold());
         this.unpinTextView.setText(LocaleController.getString("CallVideoUnpin", R.string.CallVideoUnpin));
         addView(this.pinTextView, LayoutHelper.createFrame(-2, -2, 51));
         addView(this.unpinTextView, LayoutHelper.createFrame(-2, -2, 51));
@@ -1146,12 +1146,12 @@ public class GroupCallRenderersContainer extends FrameLayout {
                             }
                             if (user != null) {
                                 if (Build.VERSION.SDK_INT >= 21) {
-                                    spannableStringBuilder.append(UserObject.getFirstName(user), new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0);
+                                    spannableStringBuilder.append(UserObject.getFirstName(user), new TypefaceSpan(AndroidUtilities.bold()), 0);
                                 } else {
                                     spannableStringBuilder.append((CharSequence) UserObject.getFirstName(user));
                                 }
                             } else if (Build.VERSION.SDK_INT >= 21) {
-                                spannableStringBuilder.append(chat.title, new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0);
+                                spannableStringBuilder.append(chat.title, new TypefaceSpan(AndroidUtilities.bold()), 0);
                             } else {
                                 spannableStringBuilder.append((CharSequence) chat.title);
                             }

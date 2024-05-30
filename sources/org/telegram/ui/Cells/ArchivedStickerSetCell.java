@@ -78,7 +78,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             progressButton2.setTextColor(Theme.getColor(i));
             progressButton2.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
             progressButton2.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(i)));
-            progressButton2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            progressButton2.setTypeface(AndroidUtilities.bold());
             ViewHelper.setPadding(progressButton2, 8.0f, 0.0f, 8.0f, 0.0f);
             if (Build.VERSION.SDK_INT >= 21) {
                 progressButton2.setOutlineProvider(null);

@@ -2075,7 +2075,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
                 SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i2)));
-                spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+                spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.StoryRestrictions)).setMessage(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder)).setPositiveButton(LocaleController.getString(R.string.Proceed), new DialogInterface.OnClickListener() {
@@ -2622,7 +2622,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             addView(backupImageView);
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.titleTextView = simpleTextView;
-            simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            simpleTextView.setTypeface(AndroidUtilities.bold());
             simpleTextView.setTextSize(16);
             int i = Theme.key_dialogTextBlack;
             simpleTextView.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -2747,11 +2747,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void set(Object obj) {
             if (obj instanceof TLRPC$User) {
-                this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.titleTextView.setTypeface(AndroidUtilities.bold());
                 this.titleTextView.setTranslationX(0.0f);
                 setUser((TLRPC$User) obj);
             } else if (obj instanceof TLRPC$Chat) {
-                this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.titleTextView.setTypeface(AndroidUtilities.bold());
                 this.titleTextView.setTranslationX(0.0f);
                 setChat((TLRPC$Chat) obj, 0);
             } else if (obj instanceof String) {
@@ -2968,7 +2968,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.titleTextView = textView;
             textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
             textView.setTextSize(1, 20.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             addView(textView, LayoutHelper.createLinear(-1, -2, 55, 27, 16, 27, 0));
             TextView textView2 = new TextView(context);
             this.subtitleTextView = textView2;
@@ -2997,7 +2997,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.resourcesProvider = resourcesProvider;
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             this.textView.setTextSize(1, 20.0f);
             this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -4116,7 +4116,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             textView.setTextSize(1, 20.0f);
             textView.setPadding(this.backgroundPaddingLeft + AndroidUtilities.dp(22.0f), AndroidUtilities.dp(2.0f), this.backgroundPaddingLeft + AndroidUtilities.dp(22.0f), AndroidUtilities.dp(14.0f));
             textView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setText(LocaleController.getString(R.string.StoryPrivacyPublishAs));
             this.containerView.addView(textView, LayoutHelper.createFrame(-1, -2.0f));
         }

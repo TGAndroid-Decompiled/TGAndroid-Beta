@@ -63,7 +63,7 @@ public class LocationCell extends FrameLayout {
         this.nameTextView.setTextSize(AndroidUtilities.dp(16.0f));
         this.nameTextView.setEllipsizeByGradient(true);
         this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.nameTextView.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
         NotificationCenter.listenEmojiLoading(this.nameTextView);

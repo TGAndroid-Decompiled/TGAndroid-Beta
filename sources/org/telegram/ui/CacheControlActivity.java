@@ -679,7 +679,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     public CharSequence getCheckBoxTitle(CharSequence charSequence, int i, boolean z) {
         SpannableString spannableString = new SpannableString(i <= 0 ? String.format("<%.1f%%", Float.valueOf(1.0f)) : String.format("%d%%", Integer.valueOf(i)));
         spannableString.setSpan(new RelativeSizeSpan(0.834f), 0, spannableString.length(), 33);
-        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) "  ");
         spannableStringBuilder.append((CharSequence) spannableString);
@@ -1002,7 +1002,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
         this.actionModeTitle.setTextSize(AndroidUtilities.dp(18.0f));
-        this.actionModeTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionModeTitle.setTypeface(AndroidUtilities.bold());
         this.actionModeTitle.setTextColor(Theme.getColor(i));
         frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 18.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
@@ -1017,7 +1017,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionModeClearButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         this.actionModeClearButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 6.0f));
-        this.actionModeClearButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionModeClearButton.setTypeface(AndroidUtilities.bold());
         this.actionModeClearButton.setGravity(17);
         this.actionModeClearButton.setText(LocaleController.getString("CacheClear", R.string.CacheClear));
         this.actionModeClearButton.setOnClickListener(new View.OnClickListener() {
@@ -1512,7 +1512,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             AnimatedTextView animatedTextView = new AnimatedTextView(context);
             this.title = animatedTextView;
             animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
-            this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.title.setTypeface(AndroidUtilities.bold());
             this.title.setTextSize(AndroidUtilities.dp(20.0f));
             this.title.setText(LocaleController.getString("StorageUsage", R.string.StorageUsage));
             this.title.setGravity(17);
@@ -1760,7 +1760,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             int i = Theme.key_dialogTextBlack;
             animatedTextView2.setTextColor(Theme.getColor(i));
             this.percentsTextView.setTextSize(AndroidUtilities.dp(24.0f));
-            this.percentsTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.percentsTextView.setTypeface(AndroidUtilities.bold());
             addView(this.percentsTextView, LayoutHelper.createFrame(-1, 32.0f, 49, 0.0f, 176.0f, 0.0f, 0.0f));
             ProgressView progressView = new ProgressView(this, context);
             this.progressView = progressView;
@@ -1770,7 +1770,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             textView.setGravity(1);
             this.title.setTextColor(Theme.getColor(i));
             this.title.setTextSize(1, 16.0f);
-            this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.title.setTypeface(AndroidUtilities.bold());
             this.title.setText(LocaleController.getString("ClearingCache", R.string.ClearingCache));
             addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 261.0f, 0.0f, 0.0f));
             TextView textView2 = new TextView(context);
@@ -2024,7 +2024,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
                 this.rtlTextView.setGravity(17);
                 this.rtlTextView.setTextSize(1, 14.0f);
-                this.rtlTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.rtlTextView.setTypeface(AndroidUtilities.bold());
                 this.rtlTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
                 this.button.addView(this.rtlTextView, LayoutHelper.createFrame(-2, -1, 17));
             }
@@ -2036,7 +2036,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.textView.setTextSize(AndroidUtilities.dp(14.0f));
             this.textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
             this.textView.setGravity(5);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.textView;
             int i2 = Theme.key_featuredStickers_buttonText;
             animatedTextDrawable2.setTextColor(Theme.getColor(i2));
@@ -2045,7 +2045,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             animatedTextDrawable3.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
             this.valueTextView.setCallback(this.button);
             this.valueTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.valueTextView.setTypeface(AndroidUtilities.bold());
             this.valueTextView.setTextColor(Theme.blendOver(Theme.getColor(i), Theme.multAlpha(Theme.getColor(i2), 0.7f)));
             this.valueTextView.setText("");
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));

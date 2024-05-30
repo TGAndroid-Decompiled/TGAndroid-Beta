@@ -96,7 +96,7 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void customDraw(Canvas canvas) {
         this.storyReactionWidgetBackground.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         this.storyReactionWidgetBackground.draw(canvas);
         float measuredWidth = ((int) (getMeasuredWidth() * 0.61f)) / 2.0f;
@@ -119,6 +119,14 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         canvas.scale(f3, f3, this.storyReactionWidgetBackground.getBounds().centerX(), height2);
         this.animatedTextDrawable.draw(canvas);
         canvas.restore();
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        if (getParent() instanceof View) {
+            ((View) getParent()).invalidate();
+        }
     }
 
     @Override

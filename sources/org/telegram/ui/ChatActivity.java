@@ -1518,7 +1518,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             TextView textView = new TextView(getContext());
             this.webBotTitle = textView;
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            this.webBotTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.webBotTitle.setTypeface(AndroidUtilities.bold());
             this.webBotTitle.setGravity(16);
             this.actionBar.addView(this.webBotTitle, LayoutHelper.createFrame(-1, -1.0f, 0, 72.0f, 0.0f, 72.0f, 0.0f));
         }
@@ -7035,7 +7035,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             int i = Theme.key_actionBarActionModeDefaultIcon;
             textView2.setTextColor(getThemedColor(i));
             this.replyButton.setCompoundDrawablePadding(AndroidUtilities.dp(7.0f));
-            this.replyButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.replyButton.setTypeface(AndroidUtilities.bold());
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.input_reply).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
             this.replyButton.setCompoundDrawablesWithIntrinsicBounds(mutate, (Drawable) null, (Drawable) null, (Drawable) null);
@@ -7058,7 +7058,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         TextView textView4 = this.forwardButton;
         int i2 = Theme.key_actionBarActionModeDefaultIcon;
         textView4.setTextColor(getThemedColor(i2));
-        this.forwardButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.forwardButton.setTypeface(AndroidUtilities.bold());
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.input_forward).mutate();
         mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
         this.forwardButton.setCompoundDrawablesWithIntrinsicBounds(mutate2, (Drawable) null, (Drawable) null, (Drawable) null);
@@ -7298,7 +7298,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
         this.selectedMessagesCountTextView = numberTextView;
         numberTextView.setTextSize(18);
-        this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.bold());
         this.selectedMessagesCountTextView.setTextColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon));
         this.selectedMessagesCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -7531,7 +7531,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextView.setAnimationProperties(0.25f, 0L, 280L, cubicBezierInterpolator);
         this.searchCountText.setTextSize(AndroidUtilities.dp(15.0f));
-        this.searchCountText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.searchCountText.setTypeface(AndroidUtilities.bold());
         this.searchCountText.setTextColor(getThemedColor(Theme.key_chat_searchPanelText));
         this.searchCountText.setGravity(3);
         this.searchContainer.addView(this.searchCountText, LayoutHelper.createFrame(-2, 30.0f, 16, 0.0f, -1.0f, 97.33f, 0.0f));
@@ -7546,7 +7546,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.searchExpandList.setScaleProperty(0.7f);
         this.searchExpandList.setTextSize(AndroidUtilities.dp(15.0f));
         this.searchExpandList.setGravity(5);
-        this.searchExpandList.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.searchExpandList.setTypeface(AndroidUtilities.bold());
         this.searchExpandList.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueText2));
         AnimatedTextView animatedTextView3 = this.searchExpandList;
         FrameLayout frameLayout = this.messagesSearchListContainer;
@@ -7566,7 +7566,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AnimatedTextView animatedTextView5 = new AnimatedTextView(getContext(), true, true, true);
         this.searchOtherButton = animatedTextView5;
         animatedTextView5.setGravity(17);
-        this.searchOtherButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.searchOtherButton.setTypeface(AndroidUtilities.bold());
         this.searchOtherButton.setTextColor(getThemedColor(Theme.key_chat_fieldOverlayText));
         this.searchOtherButton.setTextSize(AndroidUtilities.dp(15.0f));
         AnimatedTextView animatedTextView6 = this.searchOtherButton;
@@ -7843,7 +7843,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             setTextColor(chatActivity.getThemedColor(Theme.key_featuredStickers_buttonText));
             setBackground(Theme.AdaptiveRipple.filledRect(chatActivity.getThemedColor(Theme.key_featuredStickers_addButton), 16.0f));
             setTextSize(1, 14.0f);
-            setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            setTypeface(AndroidUtilities.bold());
             setGravity(17);
             setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         }
@@ -7865,7 +7865,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             createView.addSubItem(58, LocaleController.getString("Quote", R.string.Quote));
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("Bold", R.string.Bold));
-        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         createView.addSubItem(50, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString("Italic", R.string.Italic));
         spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/ritalic.ttf")), 0, spannableStringBuilder2.length(), 33);
@@ -13410,7 +13410,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             combinedDrawable.setCustomSize(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d " + LocaleController.getString(R.string.BoostingBoostToSendMessages));
                             spannableStringBuilder.setSpan(new ForegroundColorSpan(getThemedColor(i)), 0, spannableStringBuilder.length(), 33);
-                            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableStringBuilder.length(), 33);
+                            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
                             spannableStringBuilder.setSpan(new ImageSpan(combinedDrawable, 1), 0, 1, 33);
                             this.bottomOverlayText.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_listSelector)));
                             this.bottomOverlayText.setText(spannableStringBuilder);
@@ -15925,7 +15925,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         spannableStringBuilder.setSpan(new AnimatedEmojiSpan(j, this.groupEmojiPackHint.getTextPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(chatFull.emojiset.title);
-        spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableStringBuilder2.length(), 34);
+        spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder2.length(), 34);
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append((CharSequence) spannableStringBuilder2);
         this.groupEmojiPackHint.setText(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.GroupEmojiPackHint), spannableStringBuilder));
@@ -16193,7 +16193,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         int i4 = i2 + 1;
         menu.add(i3, R.id.menu_spoiler, i2, LocaleController.getString("Spoiler", R.string.Spoiler));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("Bold", R.string.Bold));
-        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         int i5 = i4 + 1;
         menu.add(i3, i, i4, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString("Italic", R.string.Italic));
@@ -16365,7 +16365,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.alertNameTextView = textView;
         textView.setTextSize(1, 14.0f);
         this.alertNameTextView.setTextColor(getThemedColor(Theme.key_chat_topPanelTitle));
-        this.alertNameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.alertNameTextView.setTypeface(AndroidUtilities.bold());
         this.alertNameTextView.setSingleLine(true);
         this.alertNameTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.alertNameTextView.setMaxLines(1);
@@ -18282,7 +18282,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 this.emptyView.setGravity(17);
                 this.emptyView.setTextColor(getThemedColor(Theme.key_chat_serviceText));
                 this.emptyView.setBackground(Theme.createServiceDrawable(AndroidUtilities.dp(6.0f), this.emptyView, this.contentView, getThemedPaint("paintChatActionBackground")));
-                this.emptyView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.emptyView.setTypeface(AndroidUtilities.bold());
                 this.emptyView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(3.0f));
                 this.emptyViewContainer.addView(this.emptyView, new FrameLayout.LayoutParams(-2, -2, 17));
                 return;
@@ -18401,7 +18401,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         this.emptyView.setGravity(17);
                         this.emptyView.setTextColor(getThemedColor(Theme.key_chat_serviceText));
                         this.emptyView.setBackground(Theme.createServiceDrawable(AndroidUtilities.dp(6.0f), this.emptyView, this.contentView, getThemedPaint("paintChatActionBackground")));
-                        this.emptyView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                        this.emptyView.setTypeface(AndroidUtilities.bold());
                         this.emptyView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(3.0f));
                         this.emptyViewContainer.addView(this.emptyView, new FrameLayout.LayoutParams(-2, -2, 17));
                     }
@@ -27450,7 +27450,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         double round = Math.round(f * 10.0f);
         Double.isNaN(round);
         SpannableString spannableString = new SpannableString(Double.toString(round / 10.0d).replaceAll("\\.0$", ""));
-        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         if (hasStoryViewer()) {
             return;
         }

@@ -232,7 +232,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         this.buttonTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.buttonTextView.setTypeface(AndroidUtilities.bold());
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setText(LocaleController.getString("CloseTranslation", R.string.CloseTranslation));
         this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 6.0f));
@@ -690,7 +690,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             this.titleTextView = textView;
             textView.setTextColor(TranslateAlert2.this.getThemedColor(i));
             this.titleTextView.setTextSize(1, 20.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titleTextView.setTypeface(AndroidUtilities.bold());
             this.titleTextView.setText(LocaleController.getString("AutomaticTranslation", R.string.AutomaticTranslation));
             this.titleTextView.setPivotX(0.0f);
             this.titleTextView.setPivotY(0.0f);

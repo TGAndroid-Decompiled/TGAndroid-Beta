@@ -31,7 +31,7 @@ public class BoostCounterView extends View {
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setTextColor(-1);
         animatedTextDrawable.setText("");
         animatedTextDrawable.setGravity(17);

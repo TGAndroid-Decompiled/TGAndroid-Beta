@@ -617,7 +617,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                         };
                         PremiumPreviewBottomSheet.this.titleView[i3].setVisibility(i3 == 0 ? 0 : 8);
                         PremiumPreviewBottomSheet.this.titleView[i3].setTextSize(1, 16.0f);
-                        PremiumPreviewBottomSheet.this.titleView[i3].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                        PremiumPreviewBottomSheet.this.titleView[i3].setTypeface(AndroidUtilities.bold());
                         PremiumPreviewBottomSheet.this.titleView[i3].setGravity(1);
                         PremiumPreviewBottomSheet premiumPreviewBottomSheet4 = PremiumPreviewBottomSheet.this;
                         premiumPreviewBottomSheet4.titleView[i3].setTextColor(premiumPreviewBottomSheet4.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));

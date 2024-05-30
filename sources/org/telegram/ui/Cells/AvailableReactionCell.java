@@ -39,7 +39,7 @@ public class AvailableReactionCell extends FrameLayout {
         this.textView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(16);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setMaxLines(1);
         this.textView.setMaxLines(1);
         this.textView.setGravity(16 | LayoutHelper.getAbsoluteGravityStart());

@@ -40,7 +40,7 @@ public class JoinCallByUrlAlert extends BottomSheet {
             this.textView.setGravity(17);
             this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 
@@ -66,7 +66,7 @@ public class JoinCallByUrlAlert extends BottomSheet {
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(90, 90, 49, 0, 29, 0, 0));
         backupImageView.setForUserOrChat(tLRPC$Chat, new AvatarDrawable(tLRPC$Chat));
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setGravity(1);

@@ -60,9 +60,9 @@ public class UnreadCounterTextView extends View {
         this.replaceProgress = 1.0f;
         this.textColorKey = Theme.key_chat_fieldOverlayText;
         this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.layoutPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        this.layoutPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.layoutPaint.setTypeface(AndroidUtilities.bold());
     }
 
     public void setText(CharSequence charSequence, boolean z) {
@@ -73,7 +73,7 @@ public class UnreadCounterTextView extends View {
         this.animatedFromBottom = z;
         this.textLayoutOut = this.textLayout;
         this.iconOut = this.icon;
-        this.layoutPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.layoutPaint.setTypeface(AndroidUtilities.bold());
         this.layoutTextWidth = (int) Math.ceil(this.layoutPaint.measureText(charSequence, 0, charSequence.length()));
         this.icon = null;
         this.textLayout = new StaticLayout(charSequence, this.layoutPaint, this.layoutTextWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
@@ -105,7 +105,7 @@ public class UnreadCounterTextView extends View {
     }
 
     public void setText(CharSequence charSequence) {
-        this.layoutPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.layoutPaint.setTypeface(AndroidUtilities.bold());
         this.layoutTextWidth = (int) Math.ceil(this.layoutPaint.measureText(charSequence, 0, charSequence.length()));
         this.icon = null;
         this.textLayout = new StaticLayout(charSequence, this.layoutPaint, this.layoutTextWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);

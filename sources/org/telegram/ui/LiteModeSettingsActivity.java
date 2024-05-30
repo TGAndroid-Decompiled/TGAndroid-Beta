@@ -480,7 +480,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
             this.countTextView = animatedTextView;
             animatedTextView.setAnimationProperties(0.35f, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.countTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.countTextView.setTypeface(AndroidUtilities.bold());
             this.countTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.countTextView.setTextColor(Theme.getColor(i2));
             this.countTextView.setImportantForAccessibility(2);
@@ -691,7 +691,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             TextView textView = new TextView(context);
             this.headerTextView = textView;
             textView.setTextSize(1, 15.0f);
-            this.headerTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.headerTextView.setTypeface(AndroidUtilities.bold());
             TextView textView2 = this.headerTextView;
             int i = Theme.key_windowBackgroundWhiteBlueHeader;
             textView2.setTextColor(Theme.getColor(i));
@@ -709,7 +709,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
             };
             this.headerOnView = animatedTextView;
-            animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextView.setTypeface(AndroidUtilities.bold());
             this.headerOnView.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f));
             this.headerOnView.setTextSize(AndroidUtilities.dp(12.0f));
             this.headerOnView.setTextColor(Theme.getColor(i));

@@ -549,7 +549,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             textView.setTextSize(1, 13.0f);
             textView.setText(LocaleController.getString(R.string.StarsBalance));
             textView.setGravity(5);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             addView(textView, LayoutHelper.createLinear(-2, -2, 5));
             final Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
             AnimatedTextView animatedTextView = new AnimatedTextView(this, context) {
@@ -564,7 +564,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             this.amountTextView = animatedTextView;
             animatedTextView.adaptWidth = true;
             animatedTextView.getDrawable().setHacks(false, true, true);
-            animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextView.setTypeface(AndroidUtilities.bold());
             animatedTextView.setTextColor(Theme.getColor(i2));
             animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
             animatedTextView.setGravity(5);
@@ -673,7 +673,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             setWillNotDraw(false);
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 15.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             addView(textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 48.0f, 0.0f, 0.0f, 0.0f));
@@ -1105,7 +1105,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             addView(linearLayout, LayoutHelper.createLinear(-2, -1, 119));
             TextView textView = new TextView(context);
             this.titleTextView = textView;
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
             textView.setTextColor(Theme.getColor(i2, resourcesProvider));
             textView.setTextSize(1, 16.0f);
@@ -1124,7 +1124,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2));
             TextView textView4 = new TextView(context);
             this.amountTextView = textView4;
-            textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView4.setTypeface(AndroidUtilities.bold());
             textView4.setTextSize(1, 15.3f);
             textView4.setGravity(5);
             addView(textView4, LayoutHelper.createLinear(-1, -2, 21, 0, 0, 20, 0));
@@ -1294,7 +1294,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 117, 7));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setText(LocaleController.getString(R.string.StarsConfirmPurchaseTitle));
@@ -1641,7 +1641,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 TextView textView = new TextView(context);
                 this.titleView = textView;
                 textView.setTextSize(1, 20.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 int i2 = Theme.key_dialogTextBlack;
                 textView.setTextColor(Theme.getColor(i2, resourcesProvider));
                 textView.setGravity(17);
@@ -1798,14 +1798,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         textView.setText(getTransactionTitle(tLRPC$TL_starsTransaction));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(Theme.getColor(tLRPC$TL_starsTransaction.stars >= 0 ? Theme.key_color_green : Theme.key_color_red, resourcesProvider));
         textView2.setTextSize(1, 18.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setGravity(17);
         StringBuilder sb = new StringBuilder();
         sb.append(tLRPC$TL_starsTransaction.stars >= 0 ? "+" : "-");
@@ -1826,7 +1826,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     Paint paint = new Paint(1);
                     this.backgroundPaint = paint;
                     paint.setColor(Theme.multAlpha(r4, 0.1f));
-                    this.layout = new Text(LocaleController.getString(R.string.StarsRefunded), 13.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    this.layout = new Text(LocaleController.getString(R.string.StarsRefunded), 13.0f, AndroidUtilities.bold());
                 }
 
                 @Override

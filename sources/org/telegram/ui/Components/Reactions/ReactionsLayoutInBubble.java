@@ -117,7 +117,7 @@ public class ReactionsLayoutInBubble {
         paint.setColor(Theme.getColor(Theme.key_chat_inLoader, resourcesProvider));
         textPaint.setColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         cutTagPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -570,7 +570,7 @@ public class ReactionsLayoutInBubble {
                 animatedTextDrawable.setAnimationProperties(0.4f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.textDrawable.setTextSize(AndroidUtilities.dp(13.0f));
                 this.textDrawable.setCallback(view);
-                this.textDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.textDrawable.setTypeface(AndroidUtilities.bold());
                 this.textDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             }
             this.reactionCount = tLRPC$ReactionCount;

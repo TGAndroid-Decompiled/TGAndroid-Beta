@@ -120,7 +120,7 @@ public class CaptionStory extends CaptionContainerView {
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         animatedTextDrawable.setAnimationProperties(0.16f, 0L, 50L, cubicBezierInterpolator);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.0f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setText("0:00.0");
         animatedTextDrawable.setTextColor(-1);
         Paint paint = new Paint(1);
@@ -386,7 +386,7 @@ public class CaptionStory extends CaptionContainerView {
             }
             if (f5 > f2) {
                 if (this.cancelText == null) {
-                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f3, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f3, AndroidUtilities.bold());
                 }
                 this.cancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - this.timerTextDrawable.getCurrentWidth()));
                 float centerX2 = (rectF.centerX() - (this.cancelText.getWidth() / 2.0f)) + ((rectF.width() / 4.0f) * f6);

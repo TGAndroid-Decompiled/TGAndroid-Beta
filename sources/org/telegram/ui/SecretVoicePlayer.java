@@ -1032,7 +1032,7 @@ public class SecretVoicePlayer extends Dialog {
         TextView textView2 = new TextView(this.context);
         this.closeButton = textView2;
         textView2.setTextColor(-1);
-        this.closeButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.closeButton.setTypeface(AndroidUtilities.bold());
         if (Theme.isCurrentThemeDark()) {
             this.closeButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(64, 553648127, 872415231));
         } else {
