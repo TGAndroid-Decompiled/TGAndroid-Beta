@@ -3567,8 +3567,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int i13 = 0;
         while (i9 < this.currentMessageObject.textLayoutBlocks.size()) {
             float textYOffset = this.currentMessageObject.textLayoutBlocks.get(i9).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams);
+            float height = textLayoutBlock.padTop + textYOffset + textLayoutBlock.height(this.transitionParams) + textLayoutBlock.padBottom;
             float f3 = i8;
-            if (intersect(textYOffset, textLayoutBlock.height + textYOffset, f3, i8 + i2)) {
+            if (intersect(textYOffset, height, f3, i8 + i2)) {
                 if (i11 == -1) {
                     i11 = i9;
                 }
@@ -6985,7 +6986,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
             this.captionX = imageX + AndroidUtilities.dp(5.0f) + this.captionOffsetX;
             float dp = imageY + imageHeight + AndroidUtilities.dp(6.0f);
-            this.captionY = imageY + AndroidUtilities.lerp(imageHeight + AndroidUtilities.dp(6.0f), (this.captionLayout == null ? 0 : -textLayoutBlocks.textHeight(this.transitionParams)) - AndroidUtilities.dp(4.0f), mediaAbove());
+            this.captionY = imageY + AndroidUtilities.lerp(imageHeight + AndroidUtilities.dp(6.0f), (this.captionLayout == null ? 0 : -textLayoutBlocks.textHeight()) - AndroidUtilities.dp(4.0f), mediaAbove());
             f = dp;
             z = false;
         } else {
@@ -8810,38 +8811,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         drawAnimatedEmojiMessageText(f7, f5, canvas, messageObject3.textLayoutBlocks, this.animatedEmojiStack, true, f, messageObject3.textXOffset, false);
     }
 
-    private void drawAnimatedEmojiMessageText(float f, float f2, Canvas canvas, ArrayList<MessageObject.TextLayoutBlock> arrayList, AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans, boolean z, float f3, float f4, boolean z2) {
-        int size;
-        int i;
-        if (this.currentMessageObject == null || arrayList == null || arrayList.isEmpty() || f3 == 0.0f) {
-            return;
-        }
-        if (z && !z2) {
-            if (this.fullyDraw) {
-                this.firstVisibleBlockNum = 0;
-                this.lastVisibleBlockNum = arrayList.size();
-            }
-            i = this.firstVisibleBlockNum;
-            size = this.lastVisibleBlockNum;
-        } else {
-            size = arrayList.size();
-            i = 0;
-        }
-        for (int i2 = i; i2 <= size && i2 < arrayList.size(); i2++) {
-            if (i2 >= 0) {
-                MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
-                canvas.save();
-                canvas.translate(f - (textLayoutBlock.isRtl() ? (int) Math.ceil(f4) : 0), f2 + textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, this.transitionParams) + this.transitionYOffsetForDrawables);
-                float textYOffset = f2 + textLayoutBlock.textYOffset(arrayList, this.transitionParams) + this.transitionYOffsetForDrawables;
-                boolean z3 = this.transitionParams.messageEntering;
-                int i3 = this.currentMessageObject.isOutOwner() ? Theme.key_chat_messageTextOut : Theme.key_chat_messageTextIn;
-                if (this.currentMessageObject.shouldDrawWithoutBackground()) {
-                    i3 = Theme.key_windowBackgroundWhiteBlackText;
-                }
-                AnimatedEmojiSpan.drawAnimatedEmojis(canvas, textLayoutBlock.textLayout, emojiGroupedSpans, 0.0f, textLayoutBlock.spoilers, 0.0f, 0.0f, textYOffset, f3, getAdaptiveEmojiColorFilter(0, getThemedColor(i3)));
-                canvas.restore();
-            }
-        }
+    private void drawAnimatedEmojiMessageText(float r27, float r28, android.graphics.Canvas r29, java.util.ArrayList<org.telegram.messenger.MessageObject.TextLayoutBlock> r30, org.telegram.ui.Components.AnimatedEmojiSpan.EmojiGroupedSpans r31, boolean r32, float r33, float r34, boolean r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawAnimatedEmojiMessageText(float, float, android.graphics.Canvas, java.util.ArrayList, org.telegram.ui.Components.AnimatedEmojiSpan$EmojiGroupedSpans, boolean, float, float, boolean):void");
     }
 
     public void drawAnimatedEmojiCaption(android.graphics.Canvas r17, float r18) {
@@ -9315,7 +9286,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public void drawCaptionLayout(Canvas canvas, boolean z, float f) {
-        if (this.animatedEmojiStack != null && (this.captionLayout != null || this.transitionParams.animateOutCaptionLayout != null)) {
+        if (this.animatedEmojiStack != null && !(canvas instanceof SizeNotifierFrameLayout.SimplerCanvas) && (this.captionLayout != null || this.transitionParams.animateOutCaptionLayout != null)) {
             this.animatedEmojiStack.clearPositions();
         }
         TransitionParams transitionParams = this.transitionParams;
@@ -9329,16 +9300,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             drawAnimatedEmojiCaption(canvas, f);
         }
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null && messageObject.messageOwner != null && messageObject.isVoiceTranscriptionOpen()) {
-            MessageObject messageObject2 = this.currentMessageObject;
-            if (!messageObject2.messageOwner.voiceTranscriptionFinal && TranscribeButton.isTranscribing(messageObject2)) {
-                invalidate();
-            }
+        if (messageObject == null || messageObject.messageOwner == null || !messageObject.isVoiceTranscriptionOpen()) {
+            return;
         }
+        MessageObject messageObject2 = this.currentMessageObject;
+        if (messageObject2.messageOwner.voiceTranscriptionFinal || !TranscribeButton.isTranscribing(messageObject2)) {
+            return;
+        }
+        invalidate();
+    }
+
+    public void drawReactionsLayout(Canvas canvas, float f) {
         if (this.isRoundVideo) {
             this.reactionsLayoutInBubble.drawServiceShaderBackground = 1.0f - getVideoTranscriptionProgress();
         }
-        if (z || !this.currentMessageObject.shouldDrawReactions()) {
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null || !messageObject.shouldDrawReactions()) {
             return;
         }
         MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
@@ -9362,14 +9339,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
         if (reactionsLayoutInBubble2.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
-            TransitionParams transitionParams2 = this.transitionParams;
-            reactionsLayoutInBubble2.draw(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f, null);
+            TransitionParams transitionParams = this.transitionParams;
+            reactionsLayoutInBubble2.draw(canvas, transitionParams.animateChange ? transitionParams.animateChangeProgress : 1.0f, null);
         } else {
             canvas.save();
             canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), getBackgroundDrawableBottom() + this.transitionParams.deltaBottom);
             ReactionsLayoutInBubble reactionsLayoutInBubble3 = this.reactionsLayoutInBubble;
-            TransitionParams transitionParams3 = this.transitionParams;
-            reactionsLayoutInBubble3.draw(canvas, transitionParams3.animateChange ? transitionParams3.animateChangeProgress : 1.0f, null);
+            TransitionParams transitionParams2 = this.transitionParams;
+            reactionsLayoutInBubble3.draw(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f, null);
             canvas.restore();
         }
         if (getAlpha() != 1.0f) {

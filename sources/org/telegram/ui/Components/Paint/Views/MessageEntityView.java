@@ -374,6 +374,7 @@ public class MessageEntityView extends EntityView {
             private final ArrayList<ChatMessageCell> drawTimeAfter = new ArrayList<>();
             private final ArrayList<ChatMessageCell> drawNamesAfter = new ArrayList<>();
             private final ArrayList<ChatMessageCell> drawCaptionAfter = new ArrayList<>();
+            private final ArrayList<ChatMessageCell> drawReactionsAfter = new ArrayList<>();
             private final ArrayList<MessageObject.GroupedMessages> drawingGroups = new ArrayList<>(10);
 
             @Override
@@ -388,7 +389,8 @@ public class MessageEntityView extends EntityView {
 
             private void drawChatForegroundElements(Canvas canvas) {
                 int size = this.drawTimeAfter.size();
-                boolean z2 = false;
+                boolean z2 = 1;
+                boolean z3 = false;
                 if (size > 0) {
                     for (int i4 = 0; i4 < size; i4++) {
                         ChatMessageCell chatMessageCell = this.drawTimeAfter.get(i4);
@@ -420,14 +422,14 @@ public class MessageEntityView extends EntityView {
                     int i6 = 0;
                     while (i6 < size3) {
                         ChatMessageCell chatMessageCell3 = this.drawCaptionAfter.get(i6);
-                        boolean z3 = chatMessageCell3.getCurrentPosition() != null && (chatMessageCell3.getCurrentPosition().flags & 1) == 0;
+                        boolean z4 = chatMessageCell3.getCurrentPosition() != null && (chatMessageCell3.getCurrentPosition().flags & z2) == 0;
                         float alpha2 = chatMessageCell3.shouldDrawAlphaLayer() ? chatMessageCell3.getAlpha() : 1.0f;
-                        float left2 = chatMessageCell3.getLeft() + chatMessageCell3.getNonAnimationTranslationX(z2);
+                        float left2 = chatMessageCell3.getLeft() + chatMessageCell3.getNonAnimationTranslationX(z3);
                         float y2 = chatMessageCell3.getY();
                         canvas.save();
                         MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup();
                         if (currentMessagesGroup != null && currentMessagesGroup.transitionParams.backgroundChangeBounds) {
-                            float nonAnimationTranslationX = chatMessageCell3.getNonAnimationTranslationX(true);
+                            float nonAnimationTranslationX = chatMessageCell3.getNonAnimationTranslationX(z2);
                             MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                             float f3 = transitionParams.left + nonAnimationTranslationX + transitionParams.offsetLeft;
                             float f4 = transitionParams.top + transitionParams.offsetTop;
@@ -442,14 +444,49 @@ public class MessageEntityView extends EntityView {
                         if (chatMessageCell3.getTransitionParams().wasDraw) {
                             canvas.translate(left2, y2);
                             chatMessageCell3.setInvalidatesParent(true);
-                            chatMessageCell3.drawCaptionLayout(canvas, z3, alpha2);
+                            chatMessageCell3.drawCaptionLayout(canvas, z4, alpha2);
                             chatMessageCell3.setInvalidatesParent(false);
                             canvas.restore();
                         }
                         i6++;
-                        z2 = false;
+                        z2 = 1;
+                        z3 = false;
                     }
                     this.drawCaptionAfter.clear();
+                }
+                int size4 = this.drawReactionsAfter.size();
+                if (size4 > 0) {
+                    for (int i7 = 0; i7 < size4; i7++) {
+                        ChatMessageCell chatMessageCell4 = this.drawReactionsAfter.get(i7);
+                        if (!(chatMessageCell4.getCurrentPosition() != null && (chatMessageCell4.getCurrentPosition().flags & 1) == 0)) {
+                            float alpha3 = chatMessageCell4.shouldDrawAlphaLayer() ? chatMessageCell4.getAlpha() : 1.0f;
+                            float left3 = chatMessageCell4.getLeft() + chatMessageCell4.getNonAnimationTranslationX(false);
+                            float y3 = chatMessageCell4.getY();
+                            canvas.save();
+                            MessageObject.GroupedMessages currentMessagesGroup2 = chatMessageCell4.getCurrentMessagesGroup();
+                            if (currentMessagesGroup2 != null && currentMessagesGroup2.transitionParams.backgroundChangeBounds) {
+                                float nonAnimationTranslationX2 = chatMessageCell4.getNonAnimationTranslationX(true);
+                                MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup2.transitionParams;
+                                float f7 = transitionParams2.left + nonAnimationTranslationX2 + transitionParams2.offsetLeft;
+                                float f8 = transitionParams2.top + transitionParams2.offsetTop;
+                                float f9 = transitionParams2.right + nonAnimationTranslationX2 + transitionParams2.offsetRight;
+                                float f10 = transitionParams2.bottom + transitionParams2.offsetBottom;
+                                if (!transitionParams2.backgroundChangeBounds) {
+                                    f8 += chatMessageCell4.getTranslationY();
+                                    f10 += chatMessageCell4.getTranslationY();
+                                }
+                                canvas.clipRect(f7 + AndroidUtilities.dp(8.0f), f8 + AndroidUtilities.dp(8.0f), f9 - AndroidUtilities.dp(8.0f), f10 - AndroidUtilities.dp(8.0f));
+                            }
+                            if (chatMessageCell4.getTransitionParams().wasDraw) {
+                                canvas.translate(left3, y3);
+                                chatMessageCell4.setInvalidatesParent(true);
+                                chatMessageCell4.drawReactionsLayout(canvas, alpha3);
+                                chatMessageCell4.setInvalidatesParent(false);
+                                canvas.restore();
+                            }
+                        }
+                    }
+                    this.drawReactionsAfter.clear();
                 }
             }
 

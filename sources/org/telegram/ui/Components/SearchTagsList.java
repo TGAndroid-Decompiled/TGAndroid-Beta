@@ -801,6 +801,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         onShownUpdate(false);
     }
 
+    public boolean shown() {
+        return this.shownT > 0.5f;
+    }
+
     public int getCurrentHeight() {
         return (int) (getMeasuredHeight() * this.shownT);
     }

@@ -44,6 +44,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -433,6 +434,11 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                     public final void run() {
                         AlertDialog.this.dismiss();
                     }
+                }, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        BotWebViewMenuContainer.AnonymousClass2.this.lambda$onWebAppOpenInvoice$4(str, (String) obj);
+                    }
                 });
                 return;
             }
@@ -447,14 +453,18 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                 paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                     @Override
                     public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                        BotWebViewMenuContainer.AnonymousClass2.this.lambda$onWebAppOpenInvoice$4(str, invoiceStatus);
+                        BotWebViewMenuContainer.AnonymousClass2.this.lambda$onWebAppOpenInvoice$5(str, invoiceStatus);
                     }
                 });
                 parentFragment.presentFragment(paymentFormActivity);
             }
         }
 
-        public void lambda$onWebAppOpenInvoice$4(String str, PaymentFormActivity.InvoiceStatus invoiceStatus) {
+        public void lambda$onWebAppOpenInvoice$4(String str, String str2) {
+            BotWebViewMenuContainer.this.webViewContainer.onInvoiceStatusUpdate(str, str2);
+        }
+
+        public void lambda$onWebAppOpenInvoice$5(String str, PaymentFormActivity.InvoiceStatus invoiceStatus) {
             BotWebViewMenuContainer.this.webViewContainer.onInvoiceStatusUpdate(str, invoiceStatus.name().toLowerCase(Locale.ROOT));
         }
 
@@ -465,7 +475,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             botWebViewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BotWebViewMenuContainer.AnonymousClass2.this.lambda$onSetupMainButton$5(view);
+                    BotWebViewMenuContainer.AnonymousClass2.this.lambda$onSetupMainButton$6(view);
                 }
             });
             if (z != BotWebViewMenuContainer.this.botWebViewButtonWasVisible) {
@@ -473,7 +483,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             }
         }
 
-        public void lambda$onSetupMainButton$5(View view) {
+        public void lambda$onSetupMainButton$6(View view) {
             BotWebViewMenuContainer.this.webViewContainer.onMainButtonPressed();
         }
 

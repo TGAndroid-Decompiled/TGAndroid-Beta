@@ -26,6 +26,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.PermissionRequest;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -359,25 +360,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
         GeolocationPermissions.getInstance().clearAll();
         this.webView.setVerticalScrollBarEnabled(false);
-        this.webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
-                Uri parse = Uri.parse(str);
-                if (Browser.isInternalUri(parse, null)) {
-                    if (BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse.getScheme())) {
-                        BotWebViewContainer.this.onOpenUri(parse);
-                        return true;
-                    }
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public void onPageFinished(WebView webView3, String str) {
-                BotWebViewContainer.this.setPageLoaded(str);
-            }
-        });
+        this.webView.setWebViewClient(new AnonymousClass3());
         this.webView.setWebChromeClient(new AnonymousClass4());
         this.webView.setAlpha(0.0f);
         addView(this.webView);
@@ -387,22 +370,102 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         onWebViewCreated();
     }
 
+    public class AnonymousClass3 extends WebViewClient {
+        AnonymousClass3() {
+        }
+
+        @Override
+        public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+            new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                @Override
+                public final void run() {
+                    BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$0();
+                }
+            })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$1(dialogInterface);
+                }
+            }).show();
+            return true;
+        }
+
+        public void lambda$onRenderProcessGone$0() {
+            Browser.openUrl(BotWebViewContainer.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+        }
+
+        public void lambda$onRenderProcessGone$1(DialogInterface dialogInterface) {
+            if (BotWebViewContainer.this.delegate != null) {
+                BotWebViewContainer.this.delegate.onCloseRequested(null);
+            }
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+            Uri parse = Uri.parse(str);
+            if (Browser.isInternalUri(parse, null)) {
+                if (BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse.getScheme())) {
+                    BotWebViewContainer.this.onOpenUri(parse);
+                    return true;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String str) {
+            BotWebViewContainer.this.setPageLoaded(str);
+        }
+    }
+
     public class AnonymousClass4 extends WebChromeClient {
         private Dialog lastPermissionsDialog;
 
         AnonymousClass4() {
         }
 
+        public class AnonymousClass1 extends WebViewClient {
+            AnonymousClass1() {
+            }
+
+            @Override
+            public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+                new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                    @Override
+                    public final void run() {
+                        BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$0();
+                    }
+                })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
+                    }
+                }).show();
+                return true;
+            }
+
+            public void lambda$onRenderProcessGone$0() {
+                Browser.openUrl(BotWebViewContainer.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+            }
+
+            public void lambda$onRenderProcessGone$1(DialogInterface dialogInterface) {
+                if (BotWebViewContainer.this.delegate != null) {
+                    BotWebViewContainer.this.delegate.onCloseRequested(null);
+                }
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+                BotWebViewContainer.this.onOpenUri(Uri.parse(str));
+                return true;
+            }
+        }
+
         @Override
         public boolean onCreateWindow(WebView webView, boolean z, boolean z2, Message message) {
             WebView webView2 = new WebView(webView.getContext());
-            webView2.setWebViewClient(new WebViewClient() {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
-                    BotWebViewContainer.this.onOpenUri(Uri.parse(str));
-                    return true;
-                }
-            });
+            webView2.setWebViewClient(new AnonymousClass1());
             ((WebView.WebViewTransport) message.obj).setWebView(webView2);
             message.sendToTarget();
             return true;
@@ -751,6 +814,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             jSONObject.put("slug", str);
             jSONObject.put("status", str2);
             notifyEvent("invoice_closed", jSONObject);
+            FileLog.d("invoice_closed " + jSONObject);
             if (z || !Objects.equals(this.currentPaymentSlug, str)) {
                 return;
             }

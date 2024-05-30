@@ -443,7 +443,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 case R.styleable.AppCompatTheme_activityChooserViewStyle:
                     FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(this.context, this.resourcesProvider);
                     flickerLoadingView2.setIsSingleCell(true);
-                    flickerLoadingView2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    flickerLoadingView2.setBackgroundColor(getThemedColor(i2));
                     flickerLoadingView = flickerLoadingView2;
                     break;
                 case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:

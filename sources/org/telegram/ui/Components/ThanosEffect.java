@@ -855,7 +855,7 @@ public class ThanosEffect extends TextureView {
                 this.bitmap = bitmap;
             }
 
-            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r36, final java.util.ArrayList<android.view.View> r37, java.lang.Runnable r38) {
+            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r37, final java.util.ArrayList<android.view.View> r38, java.lang.Runnable r39) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, java.util.ArrayList, java.lang.Runnable):void");
             }
 
@@ -879,8 +879,10 @@ public class ThanosEffect extends TextureView {
                     chatMessageCell.drawTime(canvas, alpha, true);
                 } else if (i == 1) {
                     chatMessageCell.drawNamesLayout(canvas, alpha);
-                } else {
+                } else if (i == 2) {
                     chatMessageCell.drawCaptionLayout(canvas, (chatMessageCell.getCurrentPosition() == null || (chatMessageCell.getCurrentPosition().flags & 1) != 0) ? false : false, alpha);
+                } else if (chatMessageCell.getCurrentPosition() == null || (1 & chatMessageCell.getCurrentPosition().flags) != 0) {
+                    chatMessageCell.drawReactionsLayout(canvas, alpha);
                 }
                 chatMessageCell.setInvalidatesParent(false);
                 canvas.restore();

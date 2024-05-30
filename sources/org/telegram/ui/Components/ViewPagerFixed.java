@@ -144,6 +144,9 @@ public class ViewPagerFixed extends FrameLayout {
     protected void onTabPageSelected(int i) {
     }
 
+    public void onTabScrollEnd(int i) {
+    }
+
     protected int tabMarginDp() {
         return 16;
     }
@@ -349,15 +352,16 @@ public class ViewPagerFixed extends FrameLayout {
                         viewPagerFixed3.removeView(viewPagerFixed3.viewPages[1]);
                         ViewPagerFixed.this.viewPages[0].setTranslationX(0.0f);
                         ViewPagerFixed.this.viewPages[1] = null;
-                        return;
                     }
+                    ViewPagerFixed viewPagerFixed4 = ViewPagerFixed.this;
+                    viewPagerFixed4.onTabScrollEnd(viewPagerFixed4.currentPosition);
                     return;
                 }
-                ViewPagerFixed viewPagerFixed4 = ViewPagerFixed.this;
-                if (viewPagerFixed4.viewPages[1] == null) {
+                ViewPagerFixed viewPagerFixed5 = ViewPagerFixed.this;
+                if (viewPagerFixed5.viewPages[1] == null) {
                     return;
                 }
-                if (viewPagerFixed4.animatingForward) {
+                if (viewPagerFixed5.animatingForward) {
                     View[] viewArr = ViewPagerFixed.this.viewPages;
                     viewArr[1].setTranslationX(viewArr[0].getMeasuredWidth() * (1.0f - f));
                     View[] viewArr2 = ViewPagerFixed.this.viewPages;

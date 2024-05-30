@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.HashtagSearchController;
 import org.telegram.messenger.LocaleController;
@@ -35,6 +36,9 @@ public class HashtagHistoryView extends FrameLayout {
 
     protected void onClick(String str) {
         throw null;
+    }
+
+    public void onScrolled(RecyclerView recyclerView, int i, int i2) {
     }
 
     public HashtagHistoryView(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
@@ -61,7 +65,14 @@ public class HashtagHistoryView extends FrameLayout {
             }
         }, resourcesProvider);
         this.recyclerView = universalRecyclerView;
-        this.adapter = (UniversalAdapter) universalRecyclerView.getAdapter();
+        universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                super.onScrolled(recyclerView, i2, i3);
+                HashtagHistoryView.this.onScrolled(recyclerView, i2, i3);
+            }
+        });
+        this.adapter = (UniversalAdapter) this.recyclerView.getAdapter();
         addView(this.recyclerView, -1, -1);
         this.emptyView = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
@@ -150,13 +161,12 @@ public class HashtagHistoryView extends FrameLayout {
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        int i2 = uItem.id;
-        if (i2 == 0) {
+        if (uItem.id == 0) {
             HashtagSearchController.getInstance(this.currentAccount).clearHistory();
             update();
             return;
         }
-        onClick(this.history.get(i2 - 1));
+        onClick("#" + this.history.get(uItem.id - 1));
     }
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {

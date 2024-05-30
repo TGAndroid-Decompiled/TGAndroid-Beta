@@ -517,28 +517,28 @@ public class QuoteSpan implements LeadingMarginSpan {
         putQuoteToEditable(spannableStringBuilder, i4, spannableStringBuilder.length(), z);
     }
 
-    public static void normalizeQuotes(Spannable spannable) {
+    public static void normalizeQuotes(Editable editable) {
         boolean z;
-        if (spannable == null) {
+        if (editable == null) {
             return;
         }
         TreeSet treeSet = new TreeSet();
         HashMap hashMap = new HashMap();
-        QuoteStyleSpan[] quoteStyleSpanArr = (QuoteStyleSpan[]) spannable.getSpans(0, spannable.length(), QuoteStyleSpan.class);
+        QuoteStyleSpan[] quoteStyleSpanArr = (QuoteStyleSpan[]) editable.getSpans(0, editable.length(), QuoteStyleSpan.class);
         int i = 0;
         while (true) {
             if (i >= quoteStyleSpanArr.length) {
                 break;
             }
             QuoteStyleSpan quoteStyleSpan = quoteStyleSpanArr[i];
-            int spanStart = spannable.getSpanStart(quoteStyleSpan);
-            int spanEnd = spannable.getSpanEnd(quoteStyleSpan);
+            int spanStart = editable.getSpanStart(quoteStyleSpan);
+            int spanEnd = editable.getSpanEnd(quoteStyleSpan);
             treeSet.add(Integer.valueOf(spanStart));
             hashMap.put(Integer.valueOf(spanStart), Integer.valueOf((quoteStyleSpan.span.isCollapsing ? 16 : 1) | (hashMap.containsKey(Integer.valueOf(spanStart)) ? ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue() : 0)));
             treeSet.add(Integer.valueOf(spanEnd));
             hashMap.put(Integer.valueOf(spanEnd), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanEnd)) ? ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue() : 0) | 2));
-            spannable.removeSpan(quoteStyleSpan);
-            spannable.removeSpan(quoteStyleSpan.span);
+            editable.removeSpan(quoteStyleSpan);
+            editable.removeSpan(quoteStyleSpan.span);
             i++;
         }
         Iterator it = treeSet.iterator();
@@ -549,37 +549,30 @@ public class QuoteSpan implements LeadingMarginSpan {
             while (it.hasNext()) {
                 int intValue = ((Integer) it.next()).intValue();
                 int intValue2 = ((Integer) hashMap.get(Integer.valueOf(intValue))).intValue();
-                int i4 = intValue2 & 2;
-                if (i4 == 0 || (intValue2 & 17) == 0) {
-                    if (i3 <= 0 || (intValue2 & 17) == 0) {
-                        if (i2 != intValue) {
-                            int i5 = intValue - 1;
-                            int i6 = (i5 < 0 || i5 >= spannable.length() || spannable.charAt(i5) != '\n') ? intValue : intValue - 1;
-                            if (i3 > 0) {
-                                putQuote(spannable, i2, i6, z);
-                            }
-                            i2 = intValue + 1;
-                            if (i2 >= spannable.length() || spannable.charAt(intValue) != '\n') {
-                                i2 = intValue;
-                            }
-                        }
-                        if (i4 != 0) {
-                            i3--;
-                        }
-                        if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
-                            i3++;
-                            if ((intValue2 & 16) != 0) {
-                                z = true;
-                            }
-                        }
+                if (i2 != intValue) {
+                    int i4 = intValue - 1;
+                    int i5 = (i4 < 0 || i4 >= editable.length() || editable.charAt(i4) != '\n') ? intValue : intValue - 1;
+                    if (i3 > 0) {
+                        putQuoteToEditable(editable, i2, i5, z);
                     }
+                    i2 = intValue + 1;
+                    if (i2 >= editable.length() || editable.charAt(intValue) != '\n') {
+                        i2 = intValue;
+                    }
+                }
+                if ((intValue2 & 2) != 0) {
+                    i3--;
+                }
+                if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
+                    i3++;
+                    z = (intValue2 & 16) != 0 ? true : true;
                 }
             }
         }
-        if (i2 >= spannable.length() || i3 <= 0) {
+        if (i2 >= editable.length() || i3 <= 0) {
             return;
         }
-        putQuote(spannable, i2, spannable.length(), z);
+        putQuoteToEditable(editable, i2, editable.length(), z);
     }
 
     public SpannableString getNewlineHack() {

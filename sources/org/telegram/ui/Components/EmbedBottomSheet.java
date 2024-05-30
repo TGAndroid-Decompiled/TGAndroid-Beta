@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -51,6 +52,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -305,32 +307,7 @@ public class EmbedBottomSheet extends BottomSheet {
                 EmbedBottomSheet.this.customView = null;
             }
         });
-        this.webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onLoadResource(WebView webView2, String str5) {
-                super.onLoadResource(webView2, str5);
-            }
-
-            @Override
-            public void onPageFinished(WebView webView2, String str5) {
-                super.onPageFinished(webView2, str5);
-                if (!EmbedBottomSheet.this.isYouTube || Build.VERSION.SDK_INT < 17) {
-                    EmbedBottomSheet.this.progressBar.setVisibility(4);
-                    EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(4);
-                    EmbedBottomSheet.this.pipButton.setEnabled(true);
-                    EmbedBottomSheet.this.pipButton.setAlpha(1.0f);
-                }
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView2, String str5) {
-                if (EmbedBottomSheet.this.isYouTube) {
-                    Browser.openUrl(webView2.getContext(), str5);
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(webView2, str5);
-            }
-        });
+        this.webView.setWebViewClient(new AnonymousClass5());
         this.containerLayout.addView(this.webView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, (this.hasDescription ? 22 : 0) + 84));
         WebPlayerView webPlayerView = new WebPlayerView(context, true, false, new WebPlayerView.WebPlayerViewDelegate() {
             @Override
@@ -819,6 +796,51 @@ public class EmbedBottomSheet extends BottomSheet {
             this.orientationEventListener = null;
         }
         instance = this;
+    }
+
+    public class AnonymousClass5 extends WebViewClient {
+        AnonymousClass5() {
+        }
+
+        @Override
+        public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+            new AlertDialog.Builder(EmbedBottomSheet.this.getContext(), ((BottomSheet) EmbedBottomSheet.this).resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                @Override
+                public final void run() {
+                    EmbedBottomSheet.AnonymousClass5.this.lambda$onRenderProcessGone$0();
+                }
+            })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+            return true;
+        }
+
+        public void lambda$onRenderProcessGone$0() {
+            Browser.openUrl(EmbedBottomSheet.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+        }
+
+        @Override
+        public void onLoadResource(WebView webView, String str) {
+            super.onLoadResource(webView, str);
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String str) {
+            super.onPageFinished(webView, str);
+            if (!EmbedBottomSheet.this.isYouTube || Build.VERSION.SDK_INT < 17) {
+                EmbedBottomSheet.this.progressBar.setVisibility(4);
+                EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(4);
+                EmbedBottomSheet.this.pipButton.setEnabled(true);
+                EmbedBottomSheet.this.pipButton.setAlpha(1.0f);
+            }
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+            if (EmbedBottomSheet.this.isYouTube) {
+                Browser.openUrl(webView.getContext(), str);
+                return true;
+            }
+            return super.shouldOverrideUrlLoading(webView, str);
+        }
     }
 
     public void lambda$new$2(View view) {

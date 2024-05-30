@@ -303,6 +303,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     if (chatMessageCell.getCurrentPosition() != null && (((chatMessageCell.getCurrentPosition().flags & chatMessageCell.captionFlag()) != 0 && (chatMessageCell.getCurrentPosition().flags & 1) != 0) || (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().isDocuments))) {
                         chatMessageCell.drawCaptionLayout(canvas, false, chatMessageCell.getAlpha());
                     }
+                    if (chatMessageCell.getCurrentPosition() != null && (((chatMessageCell.getCurrentPosition().flags & 8) != 0 && (chatMessageCell.getCurrentPosition().flags & 1) != 0) || (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().isDocuments))) {
+                        chatMessageCell.drawReactionsLayout(canvas, chatMessageCell.getAlpha());
+                    }
                     if (chatMessageCell.getCurrentPosition() != null) {
                         chatMessageCell.drawNamesLayout(canvas, chatMessageCell.getAlpha());
                     }
@@ -1643,7 +1646,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
         FrameLayout frameLayout = this.effectSelectorContainer;
         if (frameLayout != null) {
-            frameLayout.setX(((iArr[0] + this.sendButton.getWidth()) - this.effectSelectorContainer.getMeasuredWidth()) - AndroidUtilities.dp(6.0f));
+            frameLayout.setX(Math.max(0, ((iArr[0] + this.sendButton.getWidth()) - this.effectSelectorContainer.getMeasuredWidth()) - AndroidUtilities.dp(6.0f)));
             RectF rectF = this.cameraRect;
             if (rectF != null) {
                 FrameLayout frameLayout2 = this.effectSelectorContainer;

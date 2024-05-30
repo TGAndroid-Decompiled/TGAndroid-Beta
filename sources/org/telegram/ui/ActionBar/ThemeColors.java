@@ -921,8 +921,8 @@ public class ThemeColors {
         sparseArray.put(Theme.key_actionBarTabUnactiveText, "actionBarTabUnactiveText");
         sparseArray.put(Theme.key_actionBarTabLine, "actionBarTabLine");
         sparseArray.put(Theme.key_actionBarTabSelector, "actionBarTabSelector");
-        sparseArray.put(Theme.key_table_background, "tableBackground");
-        sparseArray.put(Theme.key_table_border, "tableBorder");
+        sparseArray.put(Theme.key_table_background, "table_background");
+        sparseArray.put(Theme.key_table_border, "table_border");
         sparseArray.put(Theme.key_actionBarDefaultArchived, "actionBarDefaultArchived");
         sparseArray.put(Theme.key_actionBarDefaultArchivedSelector, "actionBarDefaultArchivedSelector");
         sparseArray.put(Theme.key_actionBarDefaultArchivedIcon, "actionBarDefaultArchivedIcon");

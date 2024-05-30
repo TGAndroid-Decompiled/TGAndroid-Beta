@@ -373,6 +373,13 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asFlicker(int i, int i2) {
+        UItem uItem = new UItem(34, false);
+        uItem.id = i;
+        uItem.intValue = i2;
+        return uItem;
+    }
+
     public UItem withUsername(boolean z) {
         this.withUsername = z;
         return this;

@@ -60,6 +60,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.DecelerateInterpolator;
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -196,6 +197,7 @@ import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.tgnet.TLRPC$messages_Messages;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -6949,26 +6951,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
             }
             this.webView.setWebChromeClient(new AnonymousClass2(ArticleViewer.this));
-            this.webView.setWebViewClient(new WebViewClient(ArticleViewer.this) {
-                @Override
-                public void onLoadResource(WebView webView, String str) {
-                    super.onLoadResource(webView, str);
-                }
-
-                @Override
-                public void onPageFinished(WebView webView, String str) {
-                    super.onPageFinished(webView, str);
-                }
-
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-                    if (BlockEmbedCell.this.wasUserInteraction) {
-                        Browser.openUrl(ArticleViewer.this.parentActivity, str);
-                        return true;
-                    }
-                    return false;
-                }
-            });
+            this.webView.setWebViewClient(new AnonymousClass3(ArticleViewer.this));
             addView(this.webView);
         }
 
@@ -7016,6 +6999,45 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     ArticleViewer.this.customViewCallback.onCustomViewHidden();
                 }
                 ArticleViewer.this.customView = null;
+            }
+        }
+
+        public class AnonymousClass3 extends WebViewClient {
+            AnonymousClass3(ArticleViewer articleViewer) {
+            }
+
+            @Override
+            public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+                new AlertDialog.Builder(BlockEmbedCell.this.getContext(), null).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.BlockEmbedCell.AnonymousClass3.this.lambda$onRenderProcessGone$0();
+                    }
+                })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                return true;
+            }
+
+            public void lambda$onRenderProcessGone$0() {
+                Browser.openUrl(BlockEmbedCell.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+            }
+
+            @Override
+            public void onLoadResource(WebView webView, String str) {
+                super.onLoadResource(webView, str);
+            }
+
+            @Override
+            public void onPageFinished(WebView webView, String str) {
+                super.onPageFinished(webView, str);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+                if (BlockEmbedCell.this.wasUserInteraction) {
+                    Browser.openUrl(ArticleViewer.this.parentActivity, str);
+                    return true;
+                }
+                return false;
             }
         }
 

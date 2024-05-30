@@ -19,8 +19,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -93,15 +95,28 @@ public class MessageTopicButton {
         } else {
             formatName = ContactsController.formatName(tLObject);
         }
-        String str = formatName;
         this.topicIconDrawable = null;
-        this.avatarSize = AndroidUtilities.dp(11.0f) + ((int) Theme.chat_topicTextPaint.getTextSize());
+        int dp = AndroidUtilities.dp(11.0f) + ((int) Theme.chat_topicTextPaint.getTextSize());
+        this.avatarSize = dp;
+        float dp2 = dp / AndroidUtilities.dp(56.0f);
         this.avatarDrawable = new AvatarDrawable();
         ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
         this.imageReceiver = imageReceiver;
         imageReceiver.setRoundRadius(this.avatarSize / 2);
-        this.avatarDrawable.setInfo(messageObject.currentAccount, tLObject);
-        this.imageReceiver.setForUserOrChat(tLObject, this.avatarDrawable);
+        if (z && UserObject.isReplyUser((TLRPC$User) tLObject)) {
+            this.avatarDrawable.setAvatarType(12);
+            this.avatarDrawable.setScaleSize(dp2);
+            this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
+            formatName = LocaleController.getString(R.string.RepliesTitle);
+        } else if (z && UserObject.isUserSelf((TLRPC$User) tLObject)) {
+            this.avatarDrawable.setAvatarType(22);
+            this.avatarDrawable.setScaleSize(dp2);
+            this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
+            formatName = LocaleController.getString(R.string.MyNotes);
+        } else {
+            this.avatarDrawable.setInfo(messageObject.currentAccount, tLObject);
+            this.imageReceiver.setForUserOrChat(tLObject, this.avatarDrawable);
+        }
         if (messageObject.isOutOwner()) {
             this.topicNameColor = getThemedColor(Theme.key_chat_outReplyNameText);
         } else {
@@ -124,7 +139,7 @@ public class MessageTopicButton {
         }
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.topicBackgroundColor = Theme.multAlpha(this.topicNameColor, resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
-        return setInternal(chatMessageCell, messageObject, i, str, 1);
+        return setInternal(chatMessageCell, messageObject, i, formatName, 1);
     }
 
     public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {

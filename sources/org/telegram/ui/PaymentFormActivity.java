@@ -6,12 +6,14 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
@@ -24,7 +26,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.webkit.JavascriptInterface;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,6 +84,7 @@ import org.telegram.messenger.SRPHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -534,7 +539,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     @Override
     @android.annotation.SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    public android.view.View createView(final android.content.Context r35) {
+    public android.view.View createView(android.content.Context r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -590,6 +595,71 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         boolean z = !this.saveShippingInfo;
         this.saveShippingInfo = z;
         this.checkCell1.setChecked(z);
+    }
+
+    public class AnonymousClass6 extends WebViewClient {
+        final Context val$context;
+
+        AnonymousClass6(Context context) {
+            this.val$context = context;
+        }
+
+        @Override
+        public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+            new AlertDialog.Builder(PaymentFormActivity.this.getContext(), PaymentFormActivity.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                @Override
+                public final void run() {
+                    PaymentFormActivity.AnonymousClass6.this.lambda$onRenderProcessGone$0();
+                }
+            })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+            return true;
+        }
+
+        public void lambda$onRenderProcessGone$0() {
+            Browser.openUrl(PaymentFormActivity.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+        }
+
+        @Override
+        public void onLoadResource(WebView webView, String str) {
+            super.onLoadResource(webView, str);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+            Uri parse;
+            PaymentFormActivity paymentFormActivity = PaymentFormActivity.this;
+            paymentFormActivity.shouldNavigateBack = !str.equals(paymentFormActivity.webViewUrl);
+            try {
+                parse = Uri.parse(str);
+            } catch (Exception unused) {
+            }
+            if ("t.me".equals(parse.getHost())) {
+                PaymentFormActivity.this.goToNextStep();
+                return true;
+            } else if (PaymentFormActivity.BLACKLISTED_PROTOCOLS.contains(parse.getScheme())) {
+                return true;
+            } else {
+                if (!PaymentFormActivity.WEBVIEW_PROTOCOLS.contains(parse.getScheme())) {
+                    try {
+                        if (PaymentFormActivity.this.getContext() instanceof Activity) {
+                            ((Activity) PaymentFormActivity.this.getContext()).startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                        }
+                    } catch (ActivityNotFoundException unused2) {
+                        new AlertDialog.Builder(this.val$context).setTitle(PaymentFormActivity.this.currentBotName).setMessage(LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                    }
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            }
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String str) {
+            super.onPageFinished(webView, str);
+            PaymentFormActivity.this.webviewLoading = false;
+            PaymentFormActivity.this.showEditDoneProgress(true, false);
+            PaymentFormActivity.this.updateSavePaymentField();
+        }
     }
 
     public void lambda$createView$4(View view) {
@@ -839,6 +909,64 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$22(DialogInterface dialogInterface, int i) {
         showPayAlert(this.totalPrice[0]);
+    }
+
+    public class AnonymousClass18 extends WebViewClient {
+        final Context val$context;
+
+        AnonymousClass18(Context context) {
+            this.val$context = context;
+        }
+
+        @Override
+        public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+            new AlertDialog.Builder(PaymentFormActivity.this.getContext(), PaymentFormActivity.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                @Override
+                public final void run() {
+                    PaymentFormActivity.AnonymousClass18.this.lambda$onRenderProcessGone$0();
+                }
+            })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+            return true;
+        }
+
+        public void lambda$onRenderProcessGone$0() {
+            Browser.openUrl(PaymentFormActivity.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String str) {
+            super.onPageFinished(webView, str);
+            PaymentFormActivity.this.webviewLoading = false;
+            PaymentFormActivity.this.showEditDoneProgress(true, false);
+            PaymentFormActivity.this.updateSavePaymentField();
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+            try {
+                Uri parse = Uri.parse(str);
+                if ("t.me".equals(parse.getHost())) {
+                    PaymentFormActivity.this.goToNextStep();
+                    return true;
+                } else if (PaymentFormActivity.BLACKLISTED_PROTOCOLS.contains(parse.getScheme())) {
+                    return true;
+                } else {
+                    if (PaymentFormActivity.WEBVIEW_PROTOCOLS.contains(parse.getScheme())) {
+                        return false;
+                    }
+                    try {
+                        if (PaymentFormActivity.this.getContext() instanceof Activity) {
+                            ((Activity) PaymentFormActivity.this.getContext()).startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                        }
+                    } catch (ActivityNotFoundException unused) {
+                        new AlertDialog.Builder(this.val$context).setTitle(PaymentFormActivity.this.currentBotName).setMessage(LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                    }
+                    return true;
+                }
+            } catch (Exception unused2) {
+                return false;
+            }
+        }
     }
 
     public void lambda$createView$24(View view) {

@@ -68,39 +68,31 @@ public class FileLog {
     }
 
     public static void dumpResponseAndRequest(final int i, TLObject tLObject, TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error, final long j, final long j2, final int i2) {
-        final String str;
-        String str2;
-        String simpleName = tLObject.getClass().getSimpleName();
-        checkGson();
-        if (excludeRequests.contains(simpleName) && tLRPC$TL_error == null) {
-            return;
-        }
-        try {
-            final String str3 = "req -> " + simpleName + " : " + gson.toJson(tLObject);
-            if (tLObject2 != null) {
-                str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.toJson(tLObject2);
-            } else if (tLRPC$TL_error != null) {
-                str2 = "err -> " + TLRPC$TL_error.class.getSimpleName() + " : " + gson.toJson(tLRPC$TL_error);
-            } else {
-                str = "null";
+        if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
+            String simpleName = tLObject.getClass().getSimpleName();
+            checkGson();
+            if (excludeRequests.contains(simpleName) && tLRPC$TL_error == null) {
+                return;
+            }
+            try {
+                final String str = "req -> " + simpleName + " : " + gson.toJson(tLObject);
+                String str2 = "null";
+                if (tLObject2 != null) {
+                    str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.toJson(tLObject2);
+                } else if (tLRPC$TL_error != null) {
+                    str2 = "err -> " + TLRPC$TL_error.class.getSimpleName() + " : " + gson.toJson(tLRPC$TL_error);
+                }
+                final String str3 = str2;
                 final long currentTimeMillis = System.currentTimeMillis();
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$dumpResponseAndRequest$0(j, j2, i2, i, currentTimeMillis, str3, str);
+                        FileLog.lambda$dumpResponseAndRequest$0(j, j2, i2, i, currentTimeMillis, str, str3);
                     }
                 });
+            } catch (Throwable th) {
+                e(th, BuildVars.DEBUG_PRIVATE_VERSION);
             }
-            str = str2;
-            final long currentTimeMillis2 = System.currentTimeMillis();
-            getInstance().logQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    FileLog.lambda$dumpResponseAndRequest$0(j, j2, i2, i, currentTimeMillis2, str3, str);
-                }
-            });
-        } catch (Throwable th) {
-            e(th, BuildVars.DEBUG_PRIVATE_VERSION);
         }
     }
 
@@ -124,23 +116,25 @@ public class FileLog {
     }
 
     public static void dumpUnparsedMessage(TLObject tLObject, final long j, final int i) {
-        try {
-            checkGson();
-            getInstance().dateFormat.format(System.currentTimeMillis());
-            StringBuilder sb = new StringBuilder();
-            sb.append("receive message -> ");
-            sb.append(tLObject.getClass().getSimpleName());
-            sb.append(" : ");
-            sb.append(gsonDisabled ? tLObject : gson.toJson(tLObject));
-            final String sb2 = sb.toString();
-            final long currentTimeMillis = System.currentTimeMillis();
-            getInstance().logQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    FileLog.lambda$dumpUnparsedMessage$1(currentTimeMillis, j, i, sb2);
-                }
-            });
-        } catch (Throwable unused) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
+            try {
+                checkGson();
+                getInstance().dateFormat.format(System.currentTimeMillis());
+                StringBuilder sb = new StringBuilder();
+                sb.append("receive message -> ");
+                sb.append(tLObject.getClass().getSimpleName());
+                sb.append(" : ");
+                sb.append(gsonDisabled ? tLObject : gson.toJson(tLObject));
+                final String sb2 = sb.toString();
+                final long currentTimeMillis = System.currentTimeMillis();
+                getInstance().logQueue.postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        FileLog.lambda$dumpUnparsedMessage$1(currentTimeMillis, j, i, sb2);
+                    }
+                });
+            } catch (Throwable unused) {
+            }
         }
     }
 
@@ -167,7 +161,8 @@ public class FileLog {
         if (gson == null) {
             HashSet<String> hashSet = new HashSet<>();
             privateFields = hashSet;
-            hashSet.add("phone");
+            hashSet.add("message");
+            privateFields.add("phone");
             privateFields.add("about");
             privateFields.add("status_text");
             privateFields.add("bytes");

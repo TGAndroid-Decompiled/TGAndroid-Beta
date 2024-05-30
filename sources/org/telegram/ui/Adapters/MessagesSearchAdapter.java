@@ -18,6 +18,7 @@ import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
 public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
     public int flickerCount;
+    private boolean isSavedMessages;
     public int loadedCount;
     private Context mContext;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -26,61 +27,47 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
     private ArrayList<MessageObject> searchResultMessages = new ArrayList<>();
     private int currentAccount = UserConfig.selectedAccount;
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    public MessagesSearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
+    public MessagesSearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, int i, boolean z) {
         this.resourcesProvider = resourcesProvider;
         this.mContext = context;
         this.searchType = i;
+        this.isSavedMessages = z;
     }
 
     @Override
     public void notifyDataSetChanged() {
+        int itemCount = getItemCount();
         this.searchResultMessages.clear();
         this.messageIds.clear();
         ArrayList<MessageObject> foundMessageObjects = this.searchType == 0 ? MediaDataController.getInstance(this.currentAccount).getFoundMessageObjects() : HashtagSearchController.getInstance(this.currentAccount).getMessages(this.searchType);
-        for (int i = 0; i < foundMessageObjects.size(); i++) {
-            MessageObject messageObject = foundMessageObjects.get(i);
+        int i = 0;
+        for (int i2 = 0; i2 < foundMessageObjects.size(); i2++) {
+            MessageObject messageObject = foundMessageObjects.get(i2);
             if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !this.messageIds.contains(Integer.valueOf(messageObject.getId()))) {
                 this.searchResultMessages.add(messageObject);
                 this.messageIds.add(Integer.valueOf(messageObject.getId()));
             }
         }
-        int i2 = this.loadedCount;
         int i3 = this.flickerCount;
         this.loadedCount = this.searchResultMessages.size();
         if (this.searchType != 0) {
-            this.flickerCount = (!(HashtagSearchController.getInstance(this.currentAccount).isEndReached(this.searchType) ^ true) || this.loadedCount == 0) ? 0 : Utilities.clamp(HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType) - this.loadedCount, 29, 0);
+            if ((!HashtagSearchController.getInstance(this.currentAccount).isEndReached(this.searchType)) && this.loadedCount != 0) {
+                i = Utilities.clamp(HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType) - this.loadedCount, 3, 0);
+            }
+            this.flickerCount = i;
         } else {
-            this.flickerCount = (!(MediaDataController.getInstance(this.currentAccount).searchEndReached() ^ true) || this.loadedCount == 0) ? 0 : Utilities.clamp(MediaDataController.getInstance(this.currentAccount).getSearchCount() - this.loadedCount, 20, 0);
+            if ((!MediaDataController.getInstance(this.currentAccount).searchEndReached()) && this.loadedCount != 0) {
+                i = Utilities.clamp(MediaDataController.getInstance(this.currentAccount).getSearchCount() - this.loadedCount, 3, 0);
+            }
+            this.flickerCount = i;
         }
-        int i4 = this.loadedCount;
-        if (i4 >= i2) {
-            if (i4 - i2 > 0) {
-                notifyItemRangeInserted(i2, i4 - i2);
-            }
-            if (i3 > 0) {
-                notifyItemRangeRemoved(this.loadedCount, i3);
-            }
-            int i5 = this.loadedCount;
-            if (i5 > 0) {
-                notifyItemRangeInserted(i5, this.flickerCount);
-                return;
-            }
+        int itemCount2 = getItemCount();
+        if (itemCount < itemCount2) {
+            notifyItemRangeChanged(itemCount - i3, i3);
+            notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
             return;
         }
-        int i6 = i2 + i3;
-        if (i6 > 0) {
-            notifyItemRangeRemoved(0, i6);
-        }
-        int i7 = this.loadedCount;
-        int i8 = this.flickerCount;
-        if (i7 + i8 > 0) {
-            notifyItemRangeInserted(0, i7 + i8);
-        }
+        super.notifyDataSetChanged();
     }
 
     @Override
@@ -119,7 +106,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        long dialogId;
+        boolean z;
         int i2;
         int i3;
         if (viewHolder.getItemViewType() == 0) {
@@ -127,24 +114,29 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
             dialogCell.useSeparator = true;
             dialogCell.isSavedDialog = true;
             MessageObject messageObject = (MessageObject) getItem(i);
-            if (messageObject.getDialogId() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            long dialogId = messageObject.getDialogId();
+            int i4 = messageObject.messageOwner.date;
+            if (this.isSavedMessages) {
                 dialogId = messageObject.getSavedDialogId();
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
                 TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
                 if (tLRPC$MessageFwdHeader == null || ((i3 = tLRPC$MessageFwdHeader.date) == 0 && tLRPC$MessageFwdHeader.saved_date == 0)) {
                     i2 = tLRPC$Message.date;
+                } else if (i3 == 0) {
+                    i2 = tLRPC$MessageFwdHeader.saved_date;
                 } else {
-                    if (i3 == 0) {
-                        i2 = tLRPC$MessageFwdHeader.saved_date;
-                    }
-                    dialogCell.setDialog(dialogId, messageObject, i3, false, false);
+                    i4 = i3;
+                    z = false;
                 }
+                i4 = i2;
+                z = false;
             } else {
-                dialogId = messageObject.getDialogId();
-                i2 = messageObject.messageOwner.date;
+                if (messageObject.isOutOwner()) {
+                    dialogId = messageObject.getFromChatId();
+                }
+                z = true;
             }
-            i3 = i2;
-            dialogCell.setDialog(dialogId, messageObject, i3, false, false);
+            dialogCell.setDialog(dialogId, messageObject, i4, z, false);
         }
     }
 

@@ -6702,7 +6702,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$87(new PremiumPreviewFragment(null));
+            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$88(new PremiumPreviewFragment(null));
         }
     }
 
@@ -8276,59 +8276,54 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     public boolean lambda$setEditingMessageObject$55(final MessageObject messageObject, final MessageObject.GroupedMessages groupedMessages, View view) {
-        if (messageObject.isMediaEmpty() || TextUtils.isEmpty(this.messageEditText.getTextToUse())) {
+        EditTextCaption editTextCaption;
+        if (messageObject.isMediaEmpty() || (editTextCaption = this.messageEditText) == null || TextUtils.isEmpty(editTextCaption.getTextToUse())) {
             return false;
         }
-        if (groupedMessages == null || groupedMessages.hasCaption) {
-            final MessageSendPreview messageSendPreview = new MessageSendPreview(getContext(), this.resourcesProvider);
-            messageSendPreview.allowRelayout = true;
-            final ArrayList<MessageObject> arrayList = new ArrayList<>();
-            if (groupedMessages != null) {
-                int i = 0;
-                while (i < groupedMessages.messages.size()) {
-                    arrayList.add(editingMessageObjectPreview(groupedMessages.messages.get(i), i == 0));
-                    i++;
+        if (groupedMessages == null || (groupedMessages.hasCaption && !groupedMessages.isDocuments)) {
+            int i = messageObject.type;
+            if (i == 1 || i == 3 || i == 8) {
+                final MessageSendPreview messageSendPreview = new MessageSendPreview(getContext(), this.resourcesProvider);
+                messageSendPreview.allowRelayout = true;
+                final ArrayList<MessageObject> arrayList = new ArrayList<>();
+                if (groupedMessages != null) {
+                    int i2 = 0;
+                    while (i2 < groupedMessages.messages.size()) {
+                        arrayList.add(editingMessageObjectPreview(groupedMessages.messages.get(i2), i2 == 0));
+                        i2++;
+                    }
+                } else {
+                    arrayList.add(editingMessageObjectPreview(messageObject, true));
                 }
-            } else {
-                arrayList.add(editingMessageObjectPreview(messageObject, true));
+                messageSendPreview.setMessageObjects(arrayList);
+                ItemOptions makeOptions = ItemOptions.makeOptions(this.sizeNotifierLayout, this.resourcesProvider, this.doneButton);
+                final MessagePreviewView.ToggleButton toggleButton = new MessagePreviewView.ToggleButton(getContext(), R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), this.resourcesProvider);
+                toggleButton.setState(!this.captionAbove, false);
+                toggleButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        ChatActivityEnterView.this.lambda$setEditingMessageObject$53(arrayList, toggleButton, messageSendPreview, view2);
+                    }
+                });
+                makeOptions.addView(toggleButton);
+                makeOptions.setupSelectors();
+                messageSendPreview.setItemOptions(makeOptions);
+                messageSendPreview.setSendButton(this.doneButton, false, new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        ChatActivityEnterView.this.lambda$setEditingMessageObject$54(groupedMessages, messageObject, messageSendPreview, view2);
+                    }
+                });
+                messageSendPreview.show();
+                return true;
             }
-            messageSendPreview.setMessageObjects(arrayList);
-            ItemOptions makeOptions = ItemOptions.makeOptions(this.sizeNotifierLayout, this.resourcesProvider, this.doneButton);
-            final MessagePreviewView.ToggleButton toggleButton = new MessagePreviewView.ToggleButton(getContext(), R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), this.resourcesProvider);
-            toggleButton.setState(!this.captionAbove, false);
-            toggleButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    ChatActivityEnterView.this.lambda$setEditingMessageObject$53(groupedMessages, messageObject, arrayList, toggleButton, messageSendPreview, view2);
-                }
-            });
-            makeOptions.addView(toggleButton);
-            makeOptions.setupSelectors();
-            messageSendPreview.setItemOptions(makeOptions);
-            messageSendPreview.setSendButton(this.doneButton, false, new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    ChatActivityEnterView.this.lambda$setEditingMessageObject$54(messageSendPreview, view2);
-                }
-            });
-            messageSendPreview.show();
-            return true;
+            return false;
         }
         return false;
     }
 
-    public void lambda$setEditingMessageObject$53(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, ArrayList arrayList, MessagePreviewView.ToggleButton toggleButton, MessageSendPreview messageSendPreview, View view) {
-        boolean z = !this.captionAbove;
-        this.captionAbove = z;
-        if (groupedMessages != null) {
-            Iterator<MessageObject> it = groupedMessages.messages.iterator();
-            while (it.hasNext()) {
-                it.next().messageOwner.invert_media = this.captionAbove;
-            }
-            groupedMessages.calculate();
-        } else {
-            messageObject.messageOwner.invert_media = z;
-        }
+    public void lambda$setEditingMessageObject$53(ArrayList arrayList, MessagePreviewView.ToggleButton toggleButton, MessageSendPreview messageSendPreview, View view) {
+        this.captionAbove = !this.captionAbove;
         for (int i = 0; i < arrayList.size(); i++) {
             ((MessageObject) arrayList.get(i)).messageOwner.invert_media = this.captionAbove;
         }
@@ -8339,7 +8334,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         messageSendPreview.scrollTo(!this.captionAbove);
     }
 
-    public void lambda$setEditingMessageObject$54(MessageSendPreview messageSendPreview, View view) {
+    public void lambda$setEditingMessageObject$54(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) {
+        if (groupedMessages != null) {
+            Iterator<MessageObject> it = groupedMessages.messages.iterator();
+            while (it.hasNext()) {
+                it.next().messageOwner.invert_media = this.captionAbove;
+            }
+            groupedMessages.calculate();
+        } else {
+            messageObject.messageOwner.invert_media = this.captionAbove;
+        }
         doneEditingMessage();
         messageSendPreview.dismiss(true);
     }

@@ -662,6 +662,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     public final void run() {
                         AlertDialog.this.dismiss();
                     }
+                }, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppOpenInvoice$4(str, (String) obj);
+                    }
                 });
                 return;
             }
@@ -680,7 +685,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                     @Override
                     public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                        BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppOpenInvoice$4(overlayActionBarLayoutDialog, str, invoiceStatus);
+                        BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppOpenInvoice$5(overlayActionBarLayoutDialog, str, invoiceStatus);
                     }
                 });
                 paymentFormActivity.setResourcesProvider(this.val$resourcesProvider);
@@ -688,7 +693,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         }
 
-        public void lambda$onWebAppOpenInvoice$4(OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, String str, PaymentFormActivity.InvoiceStatus invoiceStatus) {
+        public void lambda$onWebAppOpenInvoice$4(String str, String str2) {
+            BotWebViewSheet.this.webViewContainer.onInvoiceStatusUpdate(str, str2);
+        }
+
+        public void lambda$onWebAppOpenInvoice$5(OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, String str, PaymentFormActivity.InvoiceStatus invoiceStatus) {
             if (invoiceStatus != PaymentFormActivity.InvoiceStatus.PENDING) {
                 overlayActionBarLayoutDialog.dismiss();
             }
@@ -733,16 +742,16 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-                    boolean lambda$onWebAppSwitchInlineQuery$5;
-                    lambda$onWebAppSwitchInlineQuery$5 = BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSwitchInlineQuery$5(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
-                    return lambda$onWebAppSwitchInlineQuery$5;
+                    boolean lambda$onWebAppSwitchInlineQuery$6;
+                    lambda$onWebAppSwitchInlineQuery$6 = BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSwitchInlineQuery$6(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                    return lambda$onWebAppSwitchInlineQuery$6;
                 }
             });
             overlayActionBarLayoutDialog.show();
             overlayActionBarLayoutDialog.addFragment(dialogsActivity);
         }
 
-        public boolean lambda$onWebAppSwitchInlineQuery$5(TLRPC$User tLRPC$User, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+        public boolean lambda$onWebAppSwitchInlineQuery$6(TLRPC$User tLRPC$User, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
             long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();
             bundle.putBoolean("scrollToTopOnResume", true);
@@ -1228,7 +1237,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", this.val$botId);
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$87(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$88(new ChatActivity(bundle));
                 }
                 BotWebViewSheet.this.dismiss();
             } else if (i == R.id.menu_tos_bot) {

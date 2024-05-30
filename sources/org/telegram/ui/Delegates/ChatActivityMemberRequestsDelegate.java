@@ -23,8 +23,10 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.AvatarsImageView;
+import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MemberRequestsBottomSheet;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 public class ChatActivityMemberRequestsDelegate {
     private AvatarsImageView avatarsView;
     private MemberRequestsBottomSheet bottomSheet;
@@ -40,13 +42,15 @@ public class ChatActivityMemberRequestsDelegate {
     private float pendingRequestsEnterOffset;
     private TextView requestsCountTextView;
     private FrameLayout root;
+    private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public interface Callback {
         void onEnterOffsetChanged();
     }
 
-    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, TLRPC$Chat tLRPC$Chat, Callback callback) {
+    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, TLRPC$Chat tLRPC$Chat, Callback callback) {
         this.fragment = baseFragment;
+        this.sizeNotifierFrameLayout = sizeNotifierFrameLayout;
         this.currentChat = tLRPC$Chat;
         this.currentAccount = baseFragment.getCurrentAccount();
         this.callback = callback;
@@ -54,10 +58,9 @@ public class ChatActivityMemberRequestsDelegate {
 
     public View getView() {
         if (this.root == null) {
-            FrameLayout frameLayout = new FrameLayout(this.fragment.getParentActivity());
-            this.root = frameLayout;
-            frameLayout.setBackgroundResource(R.drawable.blockpanel);
-            this.root.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor(Theme.key_chat_topPanelBackground), PorterDuff.Mode.MULTIPLY));
+            BlurredFrameLayout blurredFrameLayout = new BlurredFrameLayout(this.fragment.getParentActivity(), this.sizeNotifierFrameLayout);
+            this.root = blurredFrameLayout;
+            blurredFrameLayout.setBackgroundColor(this.fragment.getThemedColor(Theme.key_chat_topPanelBackground));
             this.root.setVisibility(8);
             this.pendingRequestsEnterOffset = -getViewHeight();
             View view = new View(this.fragment.getParentActivity());
@@ -266,7 +269,6 @@ public class ChatActivityMemberRequestsDelegate {
     }
 
     public void fillThemeDescriptions(List<ThemeDescription> list) {
-        list.add(new ThemeDescription(this.root, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_chat_topPanelBackground));
         list.add(new ThemeDescription(this.requestsCountTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
         list.add(new ThemeDescription(this.closeView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_chat_topPanelClose));
     }

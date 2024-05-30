@@ -14,9 +14,11 @@ import org.telegram.ui.ActionBar.Theme;
 public class TableView extends android.widget.TableLayout {
     private final Paint backgroundPaint;
     private final Paint borderPaint;
+    private final float hw;
     private final Path path;
     private final float[] radii;
     private final Theme.ResourcesProvider resourcesProvider;
+    private final float w;
 
     public TableView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -24,6 +26,9 @@ public class TableView extends android.widget.TableLayout {
         this.radii = new float[8];
         this.backgroundPaint = new Paint(1);
         this.borderPaint = new Paint(1);
+        float max = Math.max(1, AndroidUtilities.dp(0.66f));
+        this.w = max;
+        this.hw = max / 2.0f;
         this.resourcesProvider = resourcesProvider;
         setClipToPadding(false);
         setColumnStretchable(1, true);
@@ -42,8 +47,6 @@ public class TableView extends android.widget.TableLayout {
         textView.setTextSize(1, 14.0f);
         textView.setText(charSequence2);
         TableRow tableRow = new TableRow(getContext());
-        tableRow.setClipToPadding(false);
-        tableRow.setClipChildren(false);
         tableRow.addView(new TableRowTitle(this, charSequence), new TableRow.LayoutParams(-2, -1));
         tableRow.addView(new TableRowContent(this, textView), new TableRow.LayoutParams(0, -1, 1.0f));
         addView(tableRow);
@@ -79,8 +82,8 @@ public class TableView extends android.widget.TableLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             if (!this.first && !this.last) {
-                canvas.drawRect(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), getWidth() + AndroidUtilities.dp(0.5f), getHeight() + AndroidUtilities.dp(0.5f), this.table.backgroundPaint);
-                canvas.drawRect(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), getWidth() + AndroidUtilities.dp(0.5f), getHeight() + AndroidUtilities.dp(0.5f), this.table.borderPaint);
+                canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
+                canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
                 float dp = AndroidUtilities.dp(4.0f);
                 float[] fArr = this.table.radii;
@@ -103,7 +106,7 @@ public class TableView extends android.widget.TableLayout {
                 fArr5[6] = dp;
                 this.table.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), getWidth() + AndroidUtilities.dp(0.5f), getHeight() + AndroidUtilities.dp(this.last ? -0.5f : 0.5f));
+                rectF.set(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
                 this.table.path.addRoundRect(rectF, this.table.radii, Path.Direction.CW);
                 canvas.drawPath(this.table.path, this.table.backgroundPaint);
                 canvas.drawPath(this.table.path, this.table.borderPaint);
@@ -145,7 +148,7 @@ public class TableView extends android.widget.TableLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             if (!this.first && !this.last) {
-                canvas.drawRect(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), getWidth() - AndroidUtilities.dp(0.5f), getHeight() + AndroidUtilities.dp(0.5f), this.table.borderPaint);
+                canvas.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
                 float dp = AndroidUtilities.dp(4.0f);
                 float[] fArr = this.table.radii;
@@ -168,7 +171,7 @@ public class TableView extends android.widget.TableLayout {
                 fArr6[6] = 0.0f;
                 this.table.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), getWidth() - AndroidUtilities.dp(0.5f), getHeight() + AndroidUtilities.dp(this.last ? -0.5f : 0.5f));
+                rectF.set(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
                 this.table.path.addRoundRect(rectF, this.table.radii, Path.Direction.CW);
                 canvas.drawPath(this.table.path, this.table.borderPaint);
             }
@@ -180,7 +183,7 @@ public class TableView extends android.widget.TableLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         this.borderPaint.setStyle(Paint.Style.STROKE);
-        this.borderPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.borderPaint.setStrokeWidth(this.w);
         this.borderPaint.setColor(Theme.getColor(Theme.key_table_border, this.resourcesProvider));
         this.backgroundPaint.setStyle(Paint.Style.FILL);
         this.backgroundPaint.setColor(Theme.getColor(Theme.key_table_background, this.resourcesProvider));

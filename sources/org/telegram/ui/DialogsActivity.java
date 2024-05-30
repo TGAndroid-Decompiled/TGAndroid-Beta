@@ -1183,7 +1183,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 if (DialogsActivity.this.viewPages[i3] != null && DialogsActivity.this.viewPages[i3].getVisibility() == 0) {
                     for (int i4 = 0; i4 < DialogsActivity.this.viewPages[i3].listView.getChildCount(); i4++) {
                         View childAt2 = DialogsActivity.this.viewPages[i3].listView.getChildAt(i4);
-                        if (childAt2.getY() < DialogsActivity.this.viewPages[i3].listView.blurTopPadding + AndroidUtilities.dp(100.0f)) {
+                        if (childAt2.getY() < DialogsActivity.this.viewPages[i3].listView.blurTopPadding + AndroidUtilities.dp(100.0f) + ((DialogsActivity.this.authHintCell == null || DialogsActivity.this.authHintCell.getVisibility() != 0) ? 0 : AndroidUtilities.dp(200.0f))) {
                             int save = canvas.save();
                             canvas.translate(DialogsActivity.this.viewPages[i3].getX(), DialogsActivity.this.viewPages[i3].getY() + DialogsActivity.this.viewPages[i3].listView.getY());
                             if (childAt2 instanceof DialogCell) {

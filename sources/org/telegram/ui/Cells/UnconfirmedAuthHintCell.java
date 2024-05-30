@@ -26,6 +26,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
@@ -34,10 +35,11 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-public class UnconfirmedAuthHintCell extends FrameLayout {
+public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
     private final LinearLayout buttonsLayout;
     private int height;
     private final LinearLayout linearLayout;
@@ -49,8 +51,8 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
     public static void lambda$set$1(ArrayList arrayList) {
     }
 
-    public UnconfirmedAuthHintCell(Context context) {
-        super(context);
+    public UnconfirmedAuthHintCell(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
+        super(context, sizeNotifierFrameLayout);
         setClickable(true);
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;

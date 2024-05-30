@@ -812,7 +812,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.contentView.addView(frameLayout5, LayoutHelper.createFrame(-1, 200, 48));
         TLRPC$Chat currentChat = getCurrentChat();
         if (currentChat != null) {
-            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = new ChatActivityMemberRequestsDelegate(this, currentChat, new ChatActivityMemberRequestsDelegate.Callback() {
+            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = new ChatActivityMemberRequestsDelegate(this, this.contentView, currentChat, new ChatActivityMemberRequestsDelegate.Callback() {
                 @Override
                 public final void onEnterOffsetChanged() {
                     TopicsFragment.this.updateTopView();

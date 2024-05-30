@@ -27,6 +27,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.BlurringShader;
+import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.recorder.HintView2;
 public class ItemOptions {
@@ -497,9 +498,13 @@ public class ItemOptions {
                     View itemAt2 = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
                     if (itemAt instanceof ActionBarMenuSubItem) {
                         ((ActionBarMenuSubItem) itemAt).updateSelectorBackground(true, itemAt == itemAt2);
+                    } else if (itemAt instanceof MessagePreviewView.ToggleButton) {
+                        ((MessagePreviewView.ToggleButton) itemAt).setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, this.resourcesProvider), 6, itemAt == itemAt2 ? 6 : 0));
                     }
                     if (itemAt2 instanceof ActionBarMenuSubItem) {
                         ((ActionBarMenuSubItem) itemAt2).updateSelectorBackground(itemAt2 == itemAt, true);
+                    } else if (itemAt2 instanceof MessagePreviewView.ToggleButton) {
+                        ((MessagePreviewView.ToggleButton) itemAt2).setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, this.resourcesProvider), itemAt == itemAt2 ? 6 : 0, 6));
                     }
                 }
             }

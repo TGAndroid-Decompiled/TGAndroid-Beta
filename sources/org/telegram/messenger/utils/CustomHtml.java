@@ -12,8 +12,30 @@ import org.telegram.ui.Components.URLSpanReplacement;
 public class CustomHtml {
     public static String toHtml(Spanned spanned) {
         StringBuilder sb = new StringBuilder();
-        toHTML_1_wrapTextStyle(sb, spanned, 0, spanned.length());
+        toHTML_0_wrapQuote(sb, spanned, 0, spanned.length());
         return sb.toString();
+    }
+
+    private static void toHTML_0_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
+        while (i < i2) {
+            int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
+            if (nextSpanTransition < 0) {
+                nextSpanTransition = i2;
+            }
+            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
+            if (quoteSpanArr != null) {
+                for (QuoteSpan quoteSpan : quoteSpanArr) {
+                    sb.append(quoteSpan.isCollapsing ? "<details>" : "<blockquote>");
+                }
+            }
+            toHTML_1_wrapTextStyle(sb, spanned, i, nextSpanTransition);
+            if (quoteSpanArr != null) {
+                for (int length = quoteSpanArr.length - 1; length >= 0; length--) {
+                    sb.append(quoteSpanArr[length].isCollapsing ? "</details>" : "</blockquote>");
+                }
+            }
+            i = nextSpanTransition;
+        }
     }
 
     private static void toHTML_1_wrapTextStyle(StringBuilder sb, Spanned spanned, int i, int i2) {
@@ -152,34 +174,12 @@ public class CustomHtml {
                     }
                 }
             }
-            toHTML_5_wrapQuote(sb, spanned, i, nextSpanTransition);
+            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
             if (spanArr != null) {
                 for (CodeHighlighting.Span span2 : spanArr) {
                     if (span2 != null) {
                         sb.append("</pre>");
                     }
-                }
-            }
-            i = nextSpanTransition;
-        }
-    }
-
-    private static void toHTML_5_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
-        while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
-            }
-            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
-            if (quoteSpanArr != null) {
-                for (QuoteSpan quoteSpan : quoteSpanArr) {
-                    sb.append(quoteSpan.isCollapsing ? "<details>" : "<blockquote>");
-                }
-            }
-            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
-            if (quoteSpanArr != null) {
-                for (int length = quoteSpanArr.length - 1; length >= 0; length--) {
-                    sb.append(quoteSpanArr[length].isCollapsing ? "</details>" : "</blockquote>");
                 }
             }
             i = nextSpanTransition;

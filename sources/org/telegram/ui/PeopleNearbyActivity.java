@@ -640,6 +640,9 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         if (i != 0) {
             tLRPC$TL_contacts_getLocated.flags |= 1;
             tLRPC$TL_contacts_getLocated.self_expires = i == 1 ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
+        } else if (getUserConfig().sharingMyLocationUntil != 0) {
+            tLRPC$TL_contacts_getLocated.flags |= 1;
+            tLRPC$TL_contacts_getLocated.self_expires = getUserConfig().sharingMyLocationUntil;
         }
         this.reqId = getConnectionsManager().sendRequest(tLRPC$TL_contacts_getLocated, new RequestDelegate() {
             @Override
