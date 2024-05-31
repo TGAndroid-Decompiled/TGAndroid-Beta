@@ -47,6 +47,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -1259,7 +1260,7 @@ public class StoryCaptionView extends NestedScrollView {
             if (charSequence == null) {
                 charSequence = "";
             }
-            if (TextUtils.equals(this.state[0].text, charSequence)) {
+            if (MediaDataController.stringsEqual(this.state[0].text, charSequence)) {
                 TextState[] textStateArr = this.state;
                 if (textStateArr[0].reply == reply) {
                     textStateArr[0].translating = z;

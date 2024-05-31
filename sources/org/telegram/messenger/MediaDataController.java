@@ -7768,6 +7768,16 @@ public class MediaDataController extends BaseController {
         return false;
     }
 
+    public static boolean stringsEqual(CharSequence charSequence, CharSequence charSequence2) {
+        if (charSequence == null && charSequence2 == null) {
+            return true;
+        }
+        if (charSequence == null || charSequence2 == null || !TextUtils.equals(charSequence, charSequence2)) {
+            return false;
+        }
+        return entitiesEqual(getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{charSequence}, true), getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{charSequence2}, true));
+    }
+
     public static boolean entitiesEqual(ArrayList<TLRPC$MessageEntity> arrayList, ArrayList<TLRPC$MessageEntity> arrayList2) {
         if (arrayList.size() != arrayList2.size()) {
             return false;

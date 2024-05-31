@@ -688,6 +688,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private int pressedSideButton;
     private int[] pressedState;
     private int pressedVoteButton;
+    public MessageObject.TextLayoutBlocks prevCaptionLayout;
     private CharacterStyle progressLoadingLink;
     private LoadingDrawable progressLoadingLinkCurrentDrawable;
     private ArrayList<LoadingDrawableLocation> progressLoadingLinkDrawables;
@@ -3183,8 +3184,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     private boolean checkTextSelection(MotionEvent motionEvent) {
-        MessageObject messageObject;
-        TLRPC$Message tLRPC$Message;
         int i;
         int dp;
         int i2;
@@ -3193,10 +3192,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int i3;
         MessageObject.GroupedMessages groupedMessages;
         TextSelectionHelper.ChatListTextSelectionHelper textSelectionHelper = this.delegate.getTextSelectionHelper();
-        if (textSelectionHelper == null || MessagesController.getInstance(this.currentAccount).isChatNoForwards(this.currentMessageObject.getChatId()) || ((tLRPC$Message = (messageObject = this.currentMessageObject).messageOwner) != null && tLRPC$Message.noforwards)) {
+        if (textSelectionHelper == null) {
             return false;
         }
-        ArrayList<MessageObject.TextLayoutBlock> arrayList = messageObject.textLayoutBlocks;
+        ArrayList<MessageObject.TextLayoutBlock> arrayList = this.currentMessageObject.textLayoutBlocks;
         if (((arrayList == null || arrayList.isEmpty()) ? false : true) || hasCaptionLayout()) {
             if ((this.drawSelectionBackground || this.currentMessagesGroup != null) && (this.currentMessagesGroup == null || this.delegate.hasSelectedMessages())) {
                 if (this.currentMessageObject.hasValidGroupId() && (groupedMessages = this.currentMessagesGroup) != null && !groupedMessages.isDocuments) {
@@ -3225,8 +3224,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     }
                     return false;
                 }
-                MessageObject messageObject2 = this.currentMessageObject;
-                if (messageObject2 != null && !messageObject2.preview && this.factCheckTextLayout != null && motionEvent.getY() >= this.factCheckY) {
+                MessageObject messageObject = this.currentMessageObject;
+                if (messageObject != null && !messageObject.preview && this.factCheckTextLayout != null && motionEvent.getY() >= this.factCheckY) {
                     textSelectionHelper.setIsDescription(false);
                     textSelectionHelper.setIsFactCheck(true);
                     MessageObject.GroupedMessages groupedMessages2 = this.currentMessagesGroup;
@@ -3251,8 +3250,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     textSelectionHelper.setIsFactCheck(false);
                     textSelectionHelper.setMaybeTextCord((int) this.captionX, (int) this.captionY);
                 } else {
-                    MessageObject messageObject3 = this.currentMessageObject;
-                    if (messageObject3 != null && !messageObject3.preview && this.descriptionLayout != null && (!this.linkPreviewAbove ? motionEvent.getY() > this.descriptionY : motionEvent.getY() < this.textY)) {
+                    MessageObject messageObject2 = this.currentMessageObject;
+                    if (messageObject2 != null && !messageObject2.preview && this.descriptionLayout != null && (!this.linkPreviewAbove ? motionEvent.getY() > this.descriptionY : motionEvent.getY() < this.textY)) {
                         textSelectionHelper.setIsDescription(true);
                         textSelectionHelper.setIsFactCheck(false);
                         if (this.hasGamePreview) {
@@ -12156,7 +12155,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public boolean needDrawAvatar() {
         MessageObject messageObject;
         MessageObject messageObject2;
-        return !(!this.isChat || this.isSavedPreviewChat || this.isThreadPost || (messageObject2 = this.currentMessageObject) == null || messageObject2.isOutOwner() || !this.currentMessageObject.needDrawAvatar()) || ((messageObject = this.currentMessageObject) != null && messageObject.forceAvatar);
+        return (this.isChat && !this.isSavedPreviewChat && ((!this.isThreadPost || this.isForum) && (messageObject2 = this.currentMessageObject) != null && !messageObject2.isOutOwner() && this.currentMessageObject.needDrawAvatar())) || ((messageObject = this.currentMessageObject) != null && messageObject.forceAvatar);
     }
 
     public boolean drawPhotoImage(Canvas canvas) {

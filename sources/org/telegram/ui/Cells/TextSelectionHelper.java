@@ -1175,11 +1175,15 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             Cell cell = textSelectionHelper.selectedView;
             if (cell != null) {
                 CharSequence text = textSelectionHelper.getText(cell, false);
-                TextSelectionHelper textSelectionHelper2 = TextSelectionHelper.this;
-                if (textSelectionHelper2.multiselect || (textSelectionHelper2.selectionStart <= 0 && textSelectionHelper2.selectionEnd >= text.length() - 1)) {
+                if (!TextSelectionHelper.this.canCopy()) {
                     menu.getItem(2).setVisible(false);
                 } else {
-                    menu.getItem(2).setVisible(true);
+                    TextSelectionHelper textSelectionHelper2 = TextSelectionHelper.this;
+                    if (textSelectionHelper2.multiselect || (textSelectionHelper2.selectionStart <= 0 && textSelectionHelper2.selectionEnd >= text.length() - 1)) {
+                        menu.getItem(2).setVisible(false);
+                    } else {
+                        menu.getItem(2).setVisible(true);
+                    }
                 }
             }
             if (TextSelectionHelper.this.onTranslateListener != null && LanguageDetector.hasSupport() && TextSelectionHelper.this.getSelectedText() != null) {

@@ -3526,6 +3526,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public void onUserLongPressed(final View view, final long j) {
+            long j2;
             CombinedDrawable combinedDrawable;
             Drawable drawable;
             DialogsActivity dialogsActivity = DialogsActivity.this;
@@ -3577,6 +3578,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 boolean isPremium = UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).isPremium();
                 boolean hasUnreadStories = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasUnreadStories(j);
                 if (premiumFeaturesBlocked || j <= 0 || isPremium || (drawable = ContextCompat.getDrawable(getContext(), R.drawable.msg_gallery_locked2)) == null) {
+                    j2 = 0;
                     combinedDrawable = null;
                 } else {
                     Drawable drawable2 = ContextCompat.getDrawable(getContext(), R.drawable.msg_stealth_locked);
@@ -3585,31 +3587,40 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                     drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, 0.5f), PorterDuff.Mode.MULTIPLY));
                     combinedDrawable = new CombinedDrawable(drawable2, drawable);
+                    j2 = 0;
+                }
+                if (j < j2 && DialogsActivity.this.getStoriesController().canPostStories(j)) {
+                    DialogsActivity.this.filterOptions.add(R.drawable.msg_stories_add, LocaleController.getString("AddStory", R.string.AddStory), Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_actionBarDefaultSubmenuItem, new Runnable() {
+                        @Override
+                        public final void run() {
+                            DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$3(j);
+                        }
+                    });
                 }
                 ItemOptions makeMultiline = DialogsActivity.this.filterOptions.addIf(j > 0, R.drawable.msg_discussion, LocaleController.getString("SendMessage", R.string.SendMessage), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$3(j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$4(j);
                     }
                 }).addIf(j > 0, R.drawable.msg_openprofile, LocaleController.getString("OpenProfile", R.string.OpenProfile), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$4(j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$5(j);
                     }
                 }).addIf(j < 0, R.drawable.msg_channel, LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(chat) ? R.string.OpenChannel2 : R.string.OpenGroup2), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$5(j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$6(j);
                     }
                 }).addIf(!z && j > 0, R.drawable.msg_mute, LocaleController.getString("NotificationsStoryMute2", R.string.NotificationsStoryMute2), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$6(sharedPrefKey, j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$7(sharedPrefKey, j);
                     }
                 }).makeMultiline(false).addIf(z && j > 0, R.drawable.msg_unmute, LocaleController.getString("NotificationsStoryUnmute2", R.string.NotificationsStoryUnmute2), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$7(sharedPrefKey, j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$8(sharedPrefKey, j);
                     }
                 }).makeMultiline(false);
                 boolean z2 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories;
@@ -3618,22 +3629,22 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 makeMultiline.addIf(z2, i4, LocaleController.getString(i5), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$9(view);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$10(view);
                     }
                 }).makeMultiline(false).addIf(!premiumFeaturesBlocked && j > 0 && !isPremium && hasUnreadStories, i4, combinedDrawable, LocaleController.getString(i5), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$11(view);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$12(view);
                     }
                 }).makeMultiline(false).addIf(!DialogsActivity.this.isArchive(), R.drawable.msg_archive, LocaleController.getString("ArchivePeerStories", R.string.ArchivePeerStories), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$12(j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$13(j);
                     }
                 }).makeMultiline(false).addIf(DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString("UnarchiveStories", R.string.UnarchiveStories), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$13(j);
+                        DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$14(j);
                     }
                 }).makeMultiline(false);
             }
@@ -3660,18 +3671,22 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onUserLongPressed$3(long j) {
-            DialogsActivity.this.presentFragment(ChatActivity.of(j));
+            DialogsActivity.this.dialogStoriesCell.openStoryRecorder(j);
         }
 
         public void lambda$onUserLongPressed$4(long j) {
-            DialogsActivity.this.presentFragment(ProfileActivity.of(j));
-        }
-
-        public void lambda$onUserLongPressed$5(long j) {
             DialogsActivity.this.presentFragment(ChatActivity.of(j));
         }
 
-        public void lambda$onUserLongPressed$6(String str, long j) {
+        public void lambda$onUserLongPressed$5(long j) {
+            DialogsActivity.this.presentFragment(ProfileActivity.of(j));
+        }
+
+        public void lambda$onUserLongPressed$6(long j) {
+            DialogsActivity.this.presentFragment(ChatActivity.of(j));
+        }
+
+        public void lambda$onUserLongPressed$7(String str, long j) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) DialogsActivity.this).currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
             DialogsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
@@ -3684,7 +3699,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             BulletinFactory.of(DialogsActivity.this).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, trim))).show();
         }
 
-        public void lambda$onUserLongPressed$7(String str, long j) {
+        public void lambda$onUserLongPressed$8(String str, long j) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) DialogsActivity.this).currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
             DialogsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
@@ -3697,7 +3712,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             BulletinFactory.of(DialogsActivity.this).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, trim))).show();
         }
 
-        public void lambda$onUserLongPressed$9(final View view) {
+        public void lambda$onUserLongPressed$10(final View view) {
             TL_stories$TL_storiesStealthMode stealthMode = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().getStealthMode();
             if (stealthMode != null && ConnectionsManager.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getCurrentTime() < stealthMode.active_until_date) {
                 if (view instanceof DialogStoriesCell.StoryCell) {
@@ -3710,46 +3725,46 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             stealthModeAlert.setListener(new StealthModeAlert.Listener() {
                 @Override
                 public final void onButtonClicked(boolean z) {
-                    DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$8(view, z);
+                    DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$9(view, z);
                 }
             });
             DialogsActivity.this.showDialog(stealthModeAlert);
         }
 
-        public void lambda$onUserLongPressed$8(View view, boolean z) {
+        public void lambda$onUserLongPressed$9(View view, boolean z) {
             if (view instanceof DialogStoriesCell.StoryCell) {
                 DialogsActivity.this.dialogStoriesCell.openStoryForCell((DialogStoriesCell.StoryCell) view);
                 if (z) {
-                    AndroidUtilities.runOnUIThread(DialogsActivity$29$$ExternalSyntheticLambda12.INSTANCE, 500L);
+                    AndroidUtilities.runOnUIThread(DialogsActivity$29$$ExternalSyntheticLambda13.INSTANCE, 500L);
                 }
             }
         }
 
-        public void lambda$onUserLongPressed$11(final View view) {
+        public void lambda$onUserLongPressed$12(final View view) {
             StealthModeAlert stealthModeAlert = new StealthModeAlert(getContext(), 0.0f, 1, ((BaseFragment) DialogsActivity.this).resourceProvider);
             stealthModeAlert.setListener(new StealthModeAlert.Listener() {
                 @Override
                 public final void onButtonClicked(boolean z) {
-                    DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$10(view, z);
+                    DialogsActivity.AnonymousClass29.this.lambda$onUserLongPressed$11(view, z);
                 }
             });
             DialogsActivity.this.showDialog(stealthModeAlert);
         }
 
-        public void lambda$onUserLongPressed$10(View view, boolean z) {
+        public void lambda$onUserLongPressed$11(View view, boolean z) {
             if (view instanceof DialogStoriesCell.StoryCell) {
                 DialogsActivity.this.dialogStoriesCell.openStoryForCell((DialogStoriesCell.StoryCell) view);
                 if (z) {
-                    AndroidUtilities.runOnUIThread(DialogsActivity$29$$ExternalSyntheticLambda12.INSTANCE, 500L);
+                    AndroidUtilities.runOnUIThread(DialogsActivity$29$$ExternalSyntheticLambda13.INSTANCE, 500L);
                 }
             }
         }
 
-        public void lambda$onUserLongPressed$12(long j) {
+        public void lambda$onUserLongPressed$13(long j) {
             DialogsActivity.this.toggleArciveForStory(j);
         }
 
-        public void lambda$onUserLongPressed$13(long j) {
+        public void lambda$onUserLongPressed$14(long j) {
             DialogsActivity.this.toggleArciveForStory(j);
         }
 

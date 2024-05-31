@@ -49,6 +49,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -707,28 +708,53 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void openStoryRecorder() {
-        StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
-        if (checkStoryLimit != null) {
+        openStoryRecorder(0L);
+    }
+
+    public void openStoryRecorder(final long j) {
+        final StoryCell storyCell;
+        StoriesController.StoryLimit checkStoryLimit;
+        if (j == 0 && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit()) != null) {
             this.fragment.showDialog(new LimitReachedBottomSheet(this.fragment, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, null));
             return;
         }
-        StoryCell storyCell = null;
-        int i = 0;
-        while (true) {
-            if (i >= this.recyclerListView.getChildCount()) {
-                break;
-            }
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
             StoryCell storyCell2 = (StoryCell) this.recyclerListView.getChildAt(i);
-            if (storyCell2.isSelf) {
+            if (j == 0) {
+                if (storyCell2.isSelf) {
+                    storyCell = storyCell2;
+                    break;
+                }
+            } else if (storyCell2.dialogId == j) {
                 storyCell = storyCell2;
                 break;
             }
-            i++;
         }
+        storyCell = null;
         if (storyCell == null) {
             return;
         }
+        if (j != 0) {
+            BaseFragment baseFragment = this.fragment;
+            Theme.ResourcesProvider resourceProvider = baseFragment != null ? baseFragment.getResourceProvider() : null;
+            final AlertDialog alertDialog = new AlertDialog(getContext(), 3, resourceProvider);
+            alertDialog.showDelayed(500L);
+            MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(j, new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    DialogStoriesCell.this.lambda$openStoryRecorder$11(alertDialog, j, storyCell, (Boolean) obj);
+                }
+            }, true, resourceProvider);
+            return;
+        }
         StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
+    }
+
+    public void lambda$openStoryRecorder$11(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) {
+        alertDialog.dismiss();
+        if (bool.booleanValue()) {
+            StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).selectedPeerId(j).canChangePeer(false).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
+        }
     }
 
     public void setTitleOverlayText(String str, int i) {
@@ -1576,7 +1602,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$updateCurrentState$11();
+                    DialogStoriesCell.this.lambda$updateCurrentState$12();
                 }
             });
         }
@@ -1585,7 +1611,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, (Consumer<View>) new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    DialogStoriesCell.lambda$updateCurrentState$12((View) obj);
+                    DialogStoriesCell.lambda$updateCurrentState$13((View) obj);
                 }
             });
             this.listViewMini.setVisibility(4);
@@ -1617,11 +1643,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         invalidate();
     }
 
-    public void lambda$updateCurrentState$11() {
+    public void lambda$updateCurrentState$12() {
         updateItems(true, false);
     }
 
-    public static void lambda$updateCurrentState$12(View view) {
+    public static void lambda$updateCurrentState$13(View view) {
         view.setAlpha(1.0f);
         view.setTranslationX(0.0f);
         view.setTranslationY(0.0f);
@@ -1661,7 +1687,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                DialogStoriesCell.this.lambda$makePremiumHint$13();
+                DialogStoriesCell.this.lambda$makePremiumHint$14();
             }
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
@@ -1678,7 +1704,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.premiumHint;
     }
 
-    public void lambda$makePremiumHint$13() {
+    public void lambda$makePremiumHint$14() {
         HintView2 hintView2 = this.premiumHint;
         if (hintView2 != null) {
             hintView2.hide();

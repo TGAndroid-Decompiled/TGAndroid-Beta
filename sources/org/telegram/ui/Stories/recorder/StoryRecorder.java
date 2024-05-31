@@ -95,6 +95,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$InputPeer;
+import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
@@ -2928,11 +2929,14 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             return;
         }
         destroyPhotoFilterView();
+        boolean z2 = false;
         prepareThumb(this.outputEntry, false);
-        CharSequence text = this.captionEdit.getText();
+        CharSequence[] charSequenceArr = {this.captionEdit.getText()};
+        ArrayList<TLRPC$MessageEntity> entities = MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true) : new ArrayList<>();
+        ArrayList<TLRPC$MessageEntity> entities2 = MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? MediaDataController.getInstance(this.currentAccount).getEntities(new CharSequence[]{this.outputEntry.caption}, true) : new ArrayList<>();
         StoryEntry storyEntry = this.outputEntry;
-        storyEntry.editedCaption = !TextUtils.equals(storyEntry.caption, text);
-        this.outputEntry.caption = text;
+        storyEntry.editedCaption = (TextUtils.equals(storyEntry.caption, charSequenceArr[0]) && MediaDataController.entitiesEqual(entities, entities2)) ? true : true;
+        this.outputEntry.caption = new SpannableString(this.captionEdit.getText());
         MessagesController.getInstance(this.currentAccount).getStoriesController().uploadStory(this.outputEntry, z);
         StoryEntry storyEntry2 = this.outputEntry;
         if (storyEntry2.isDraft && !storyEntry2.isEdit) {

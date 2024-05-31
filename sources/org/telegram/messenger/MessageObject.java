@@ -4255,6 +4255,15 @@ public class MessageObject {
             return i;
         }
 
+        public void bounceFrom(TextLayoutBlocks textLayoutBlocks) {
+            if (textLayoutBlocks == null) {
+                return;
+            }
+            for (int i = 0; i < Math.min(this.textLayoutBlocks.size(), textLayoutBlocks.textLayoutBlocks.size()); i++) {
+                this.textLayoutBlocks.get(i).collapsedBounce = textLayoutBlocks.textLayoutBlocks.get(i).collapsedBounce;
+            }
+        }
+
         public TextLayoutBlocks(org.telegram.messenger.MessageObject r30, java.lang.CharSequence r31, android.text.TextPaint r32, int r33) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.TextLayoutBlocks.<init>(org.telegram.messenger.MessageObject, java.lang.CharSequence, android.text.TextPaint, int):void");
         }

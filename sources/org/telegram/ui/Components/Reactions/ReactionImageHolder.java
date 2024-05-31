@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.Objects;
 import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
@@ -71,6 +72,21 @@ public class ReactionImageHolder {
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_ATOP);
         this.colorFilter = porterDuffColorFilter;
         animatedEmojiDrawable3.setColorFilter(porterDuffColorFilter);
+    }
+
+    public static void preload(int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        if (visibleReaction == null) {
+            return;
+        }
+        if (visibleReaction.emojicon != null) {
+            TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(visibleReaction.emojicon);
+            if (tLRPC$TL_availableReaction != null) {
+                FileLoader.getInstance(i).loadFile(tLRPC$TL_availableReaction.select_animation, visibleReaction, 0, 0);
+                return;
+            }
+            return;
+        }
+        new AnimatedEmojiDrawable(1, i, visibleReaction.documentId);
     }
 
     public void draw(Canvas canvas) {

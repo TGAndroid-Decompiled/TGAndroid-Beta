@@ -733,7 +733,7 @@ public class StarsController {
             callback.run(bool.booleanValue() ? "paid" : "failed");
         }
         if (callback2 != null) {
-            callback2.run(bool);
+            callback2.run(Boolean.TRUE);
         }
     }
 
@@ -752,7 +752,7 @@ public class StarsController {
 
     public static void lambda$openPaymentForm$26(Utilities.Callback callback, boolean[] zArr, Utilities.Callback callback2, Boolean bool) {
         if (callback != null) {
-            callback.run(bool);
+            callback.run(Boolean.TRUE);
         }
         zArr[0] = true;
         if (callback2 != null) {
@@ -812,19 +812,19 @@ public class StarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsController.this.lambda$payAfterConfirmed$34(callback, tLObject, context, j, str, str2, tLRPC$TL_error, resourcesProvider, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars);
+                StarsController.this.lambda$payAfterConfirmed$34(tLObject, callback, context, j, str, str2, tLRPC$TL_error, resourcesProvider, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars);
             }
         });
     }
 
-    public void lambda$payAfterConfirmed$34(final Utilities.Callback callback, TLObject tLObject, Context context, long j, String str, String str2, TLRPC$TL_error tLRPC$TL_error, Theme.ResourcesProvider resourcesProvider, final TLRPC$InputInvoice tLRPC$InputInvoice, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars) {
-        if (callback != null) {
-            callback.run(Boolean.valueOf(tLObject instanceof TLRPC$TL_payments_paymentResult));
-        }
+    public void lambda$payAfterConfirmed$34(TLObject tLObject, final Utilities.Callback callback, Context context, long j, String str, String str2, TLRPC$TL_error tLRPC$TL_error, Theme.ResourcesProvider resourcesProvider, final TLRPC$InputInvoice tLRPC$InputInvoice, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars) {
         this.paymentFormOpened = false;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         final BulletinFactory global = (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment);
         if (tLObject instanceof TLRPC$TL_payments_paymentResult) {
+            if (callback != null) {
+                callback.run(Boolean.TRUE);
+            }
             MessagesController.getInstance(this.currentAccount).processUpdates(((TLRPC$TL_payments_paymentResult) tLObject).updates, false);
             global.createSimpleBulletin(context.getResources().getDrawable(R.drawable.star_small_inner).mutate(), LocaleController.getString(R.string.StarsPurchaseCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsPurchaseCompletedInfo", (int) j, str, str2))).show();
             invalidateTransactions(true);
@@ -867,6 +867,9 @@ public class StarsController {
                 }
             });
         } else {
+            if (callback != null) {
+                callback.run(Boolean.FALSE);
+            }
             int i = R.raw.error;
             int i2 = R.string.UnknownErrorCode;
             Object[] objArr = new Object[1];
@@ -911,6 +914,9 @@ public class StarsController {
         if (tLObject instanceof TLRPC$TL_payments_paymentFormStars) {
             payAfterConfirmed(tLRPC$InputInvoice, (TLRPC$TL_payments_paymentFormStars) tLObject, callback);
             return;
+        }
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         int i = R.raw.error;
         int i2 = R.string.UnknownErrorCode;
