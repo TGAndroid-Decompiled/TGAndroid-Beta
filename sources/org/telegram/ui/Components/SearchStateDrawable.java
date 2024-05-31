@@ -138,6 +138,8 @@ public class SearchStateDrawable extends Drawable {
 
     public void setColor(int i) {
         this.paint.setColor(i);
+        this.alpha = this.paint.getAlpha();
+        this.paint.setAlpha(255);
     }
 
     @Override

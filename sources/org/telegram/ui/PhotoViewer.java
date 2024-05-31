@@ -8552,10 +8552,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (z) {
             applyCaption();
         }
-        if (this.captionEdit.editText.isPopupShowing()) {
-            this.captionEdit.editText.hidePopup(true);
-        }
-        this.captionEdit.editText.closeKeyboard();
+        this.captionEdit.onBackPressed();
     }
 
     public CharSequence applyCaption() {

@@ -31,7 +31,9 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.util.LongSparseArray;
 import android.util.Property;
+import android.view.ActionMode;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -3281,6 +3283,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             super.onLayout(z, i, i2, i3, i4);
             ChatAttachAlert.this.updateCommentTextViewPosition();
         }
+
+        @Override
+        public void extendActionMode(ActionMode actionMode, Menu menu) {
+            BaseFragment baseFragment = ChatAttachAlert.this.baseFragment;
+            if (baseFragment instanceof ChatActivity) {
+                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment).getCurrentEncryptedChat(), true);
+            }
+            super.extendActionMode(actionMode, menu);
+        }
     }
 
     public void lambda$new$17(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -5215,16 +5226,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         this.buttonsCount = i9 + 1;
                         this.locationButton = i9;
                     }
-                    if (!ChatAttachAlert.this.pollsEnabled) {
-                        if (ChatAttachAlert.this.plainTextEnabled) {
-                            int i10 = this.buttonsCount;
-                            this.buttonsCount = i10 + 1;
-                            this.contactButton = i10;
-                        }
-                    } else {
+                    if (ChatAttachAlert.this.pollsEnabled) {
+                        int i10 = this.buttonsCount;
+                        this.buttonsCount = i10 + 1;
+                        this.pollButton = i10;
+                    }
+                    if (ChatAttachAlert.this.plainTextEnabled) {
                         int i11 = this.buttonsCount;
                         this.buttonsCount = i11 + 1;
-                        this.pollButton = i11;
+                        this.contactButton = i11;
                     }
                     BaseFragment baseFragment2 = ChatAttachAlert.this.baseFragment;
                     TLRPC$User currentUser = baseFragment2 instanceof ChatActivity ? ((ChatActivity) baseFragment2).getCurrentUser() : null;

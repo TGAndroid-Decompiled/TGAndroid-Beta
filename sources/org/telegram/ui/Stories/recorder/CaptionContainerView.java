@@ -264,12 +264,22 @@ public class CaptionContainerView extends FrameLayout {
             private BlurringShader.StoryBlurDrawer blurDrawer;
 
             @Override
+            protected boolean allowSearch() {
+                return true;
+            }
+
+            @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 CaptionContainerView captionContainerView = CaptionContainerView.this;
                 if ((captionContainerView instanceof CaptionStory) && ((CaptionStory) captionContainerView).isRecording()) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
+            }
+
+            @Override
+            protected void updatedEmojiExpanded() {
+                CaptionContainerView.this.keyboardNotifier.fire();
             }
 
             @Override
@@ -869,7 +879,15 @@ public class CaptionContainerView extends FrameLayout {
     }
 
     public boolean onBackPressed() {
-        if (this.editText.isPopupShowing()) {
+        EditTextEmoji editTextEmoji = this.editText;
+        if (editTextEmoji.emojiExpanded && editTextEmoji.getEmojiView() != null) {
+            if (this.keyboardNotifier.keyboardVisible()) {
+                this.editText.getEmojiView().hideSearchKeyboard();
+            } else {
+                this.editText.collapseEmojiView();
+            }
+            return true;
+        } else if (this.editText.isPopupShowing()) {
             this.editText.hidePopup(true);
             return true;
         } else if (!this.editText.isKeyboardVisible() || this.keyboardNotifier.ignoring) {

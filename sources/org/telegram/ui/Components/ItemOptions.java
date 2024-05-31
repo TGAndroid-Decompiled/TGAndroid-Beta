@@ -433,16 +433,26 @@ public class ItemOptions {
     }
 
     public ActionBarMenuSubItem getLast() {
-        ViewGroup viewGroup = this.linearLayout;
-        if (viewGroup == null) {
-            viewGroup = this.lastLayout;
-        }
-        if (viewGroup.getChildCount() <= 0) {
+        LinearLayout linearLayout = this.linearLayout;
+        if (linearLayout != null) {
+            if (linearLayout.getChildCount() <= 0) {
+                return null;
+            }
+            LinearLayout linearLayout2 = this.linearLayout;
+            View childAt = linearLayout2.getChildAt(linearLayout2.getChildCount() - 1);
+            if (childAt instanceof ActionBarMenuSubItem) {
+                return (ActionBarMenuSubItem) childAt;
+            }
             return null;
         }
-        View childAt = viewGroup.getChildAt(viewGroup.getChildCount() - 1);
-        if (childAt instanceof ActionBarMenuSubItem) {
-            return (ActionBarMenuSubItem) childAt;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+        if (actionBarPopupWindowLayout == null || actionBarPopupWindowLayout.getItemsCount() <= 0) {
+            return null;
+        }
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.lastLayout;
+        View itemAt = actionBarPopupWindowLayout2.getItemAt(actionBarPopupWindowLayout2.getItemsCount() - 1);
+        if (itemAt instanceof ActionBarMenuSubItem) {
+            return (ActionBarMenuSubItem) itemAt;
         }
         return null;
     }
