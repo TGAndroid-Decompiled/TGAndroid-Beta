@@ -8012,7 +8012,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setupTextColors() {
+    public void setupTextColors() {
         if (this.currentMessageObject.isOutOwner()) {
             TextPaint textPaint = Theme.chat_msgTextPaint;
             int i = Theme.key_chat_messageTextOut;

@@ -4,15 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -92,7 +89,7 @@ public class EditTextCell extends FrameLayout {
         this.showLimitWhenFocused = z;
     }
 
-    public EditTextCell(Context context, String str, boolean z, final int i) {
+    public EditTextCell(Context context, String str, final boolean z, final int i) {
         super(context);
         this.limitColor = new AnimatedColor(this);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
@@ -172,17 +169,26 @@ public class EditTextCell extends FrameLayout {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (EditTextCell.this.ignoreEditText) {
+                if (!EditTextCell.this.ignoreEditText) {
+                    if (i > 0 && editable != null && editable.length() > i) {
+                        EditTextCell.this.ignoreEditText = true;
+                        EditTextCell.this.editText.setText(editable.subSequence(0, i));
+                        EditTextBoldCursor editTextBoldCursor2 = EditTextCell.this.editText;
+                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                        EditTextCell.this.ignoreEditText = false;
+                    }
+                    EditTextCell.this.onTextChanged(editable);
+                }
+                if (!z) {
                     return;
                 }
-                if (i > 0 && editable != null && editable.length() > i) {
-                    EditTextCell.this.ignoreEditText = true;
-                    EditTextCell.this.editText.setText(editable.subSequence(0, i));
-                    EditTextBoldCursor editTextBoldCursor2 = EditTextCell.this.editText;
-                    editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                    EditTextCell.this.ignoreEditText = false;
+                while (true) {
+                    int indexOf = editable.toString().indexOf("\n");
+                    if (indexOf < 0) {
+                        return;
+                    }
+                    editable.delete(indexOf, indexOf + 1);
                 }
-                EditTextCell.this.onTextChanged(editable);
             }
         });
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -195,20 +201,6 @@ public class EditTextCell extends FrameLayout {
                 EditTextCell.this.onFocusChanged(z2);
             }
         });
-        ArrayList arrayList = new ArrayList();
-        if (z) {
-            arrayList.add(new InputFilter(this) {
-                @Override
-                public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
-                    if (charSequence != null) {
-                        String charSequence2 = charSequence.toString();
-                        return charSequence2.contains("\n") ? charSequence2.replaceAll("\n", "") : charSequence2;
-                    }
-                    return null;
-                }
-            });
-        }
-        editTextBoldCursor.setFilters((InputFilter[]) arrayList.toArray(new InputFilter[0]));
         addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -1, 48));
         updateLimitText();
     }

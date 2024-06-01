@@ -30,6 +30,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
+import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -762,12 +763,14 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     }
 
     private TLRPC$TL_forumTopic getNextUnreadTopic(long j) {
+        TLRPC$Message tLRPC$Message;
+        TLRPC$Message tLRPC$Message2;
         ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(j);
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic = null;
         if (topics != null && topics.size() > 1) {
             for (int i = 0; i < topics.size(); i++) {
                 TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = topics.get(i);
-                if (tLRPC$TL_forumTopic2.id != this.topicId && !tLRPC$TL_forumTopic2.hidden && tLRPC$TL_forumTopic2.unread_count > 0 && (tLRPC$TL_forumTopic == null || tLRPC$TL_forumTopic2.topMessage.date > tLRPC$TL_forumTopic.topMessage.date)) {
+                if (tLRPC$TL_forumTopic2.id != this.topicId && !tLRPC$TL_forumTopic2.hidden && tLRPC$TL_forumTopic2.unread_count > 0 && (tLRPC$TL_forumTopic == null || ((tLRPC$Message = tLRPC$TL_forumTopic2.topMessage) != null && (tLRPC$Message2 = tLRPC$TL_forumTopic.topMessage) != null && tLRPC$Message.date > tLRPC$Message2.date))) {
                     tLRPC$TL_forumTopic = tLRPC$TL_forumTopic2;
                 }
             }

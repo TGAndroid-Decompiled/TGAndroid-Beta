@@ -5029,6 +5029,14 @@ public class AndroidUtilities {
         return !activity.isFinishing();
     }
 
+    public static boolean isSafeToShow(Context context) {
+        Activity findActivity = findActivity(context);
+        if (findActivity == null) {
+            return true;
+        }
+        return isActivityRunning(findActivity);
+    }
+
     public static Pair<Integer, Integer> getImageOrientation(InputStream inputStream) {
         try {
             return getImageOrientation(new ExifInterface(inputStream));

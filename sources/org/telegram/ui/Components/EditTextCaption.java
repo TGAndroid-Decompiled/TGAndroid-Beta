@@ -188,15 +188,17 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public void makeSelectedUrl() {
-        AlertDialogDecor.Builder builder;
+        Object builder;
         final int selectionEnd;
+        CharSequence charSequence;
         if (this.adaptiveCreateLinkDialog) {
             builder = new AlertDialogDecor.Builder(getContext(), this.resourcesProvider);
         } else {
             builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         }
-        builder.setTitle(LocaleController.getString("CreateLink", R.string.CreateLink));
-        FrameLayout frameLayout = new FrameLayout(getContext());
+        ?? r2 = builder;
+        r2.setTitle(LocaleController.getString("CreateLink", R.string.CreateLink));
+        ?? frameLayout = new FrameLayout(getContext());
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
             @Override
             public void onMeasure(int i, int i2) {
@@ -244,11 +246,11 @@ public class EditTextCaption extends EditTextBoldCursor {
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher(this) {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            public void beforeTextChanged(CharSequence charSequence2, int i, int i2, int i3) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            public void onTextChanged(CharSequence charSequence2, int i, int i2, int i3) {
             }
 
             @Override
@@ -256,8 +258,21 @@ public class EditTextCaption extends EditTextBoldCursor {
                 runnable.run();
             }
         });
+        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
+        if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+            try {
+                charSequence = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(getContext());
+            } catch (Exception e) {
+                FileLog.e(e);
+                charSequence = null;
+            }
+            if (charSequence != null) {
+                editTextBoldCursor.setText(charSequence);
+                editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
+            }
+        }
         runnable.run();
-        builder.setView(frameLayout);
+        r2.setView(frameLayout);
         final int i = this.selectionStart;
         if (i >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
             this.selectionEnd = -1;
@@ -266,15 +281,15 @@ public class EditTextCaption extends EditTextBoldCursor {
             i = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+        r2.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 EditTextCaption.this.lambda$makeSelectedUrl$2(i, selectionEnd, editTextBoldCursor, dialogInterface, i2);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        r2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
         if (this.adaptiveCreateLinkDialog) {
-            AlertDialog create = builder.create();
+            AlertDialog create = r2.create();
             this.creationLinkDialog = create;
             create.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -290,7 +305,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             });
             this.creationLinkDialog.showDelayed(250L);
         } else {
-            builder.show().setOnShowListener(new DialogInterface.OnShowListener() {
+            r2.show().setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
                     EditTextCaption.lambda$makeSelectedUrl$5(EditTextBoldCursor.this, dialogInterface);

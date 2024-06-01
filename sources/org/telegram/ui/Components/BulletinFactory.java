@@ -937,7 +937,10 @@ public final class BulletinFactory {
     }
 
     public Bulletin createAdReportedBulletin(CharSequence charSequence) {
-        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
+        if (getContext() == null) {
+            return new Bulletin.EmptyBulletin();
+        }
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setAnimation(R.raw.ic_admin, "Shield");
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(3);

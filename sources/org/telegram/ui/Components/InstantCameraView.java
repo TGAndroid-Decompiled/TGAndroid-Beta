@@ -108,6 +108,7 @@ import org.webrtc.EglBase;
 import org.webrtc.MediaStreamTrack;
 @TargetApi(18)
 public class InstantCameraView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    private static int A;
     private static final int[] ALLOW_BIG_CAMERA_WHITELIST = {285904780, -1394191079};
     public boolean WRITE_TO_FILE_IN_BACKGROUND;
     private boolean allowSendingWhileRecording;
@@ -228,6 +229,12 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         float f2 = instantCameraView.cameraTextureAlpha + f;
         instantCameraView.cameraTextureAlpha = f2;
         return f2;
+    }
+
+    static int access$5508() {
+        int i = A;
+        A = i + 1;
+        return i;
     }
 
     private boolean isCameraSessionInitiated() {
@@ -2230,7 +2237,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         private long prevAudioLast;
         private long prevVideoLast;
         private int previewSizeHandle;
-        private boolean ready;
+        public volatile boolean ready;
         private Runnable recorderRunnable;
         private int resolutionHandle;
         private volatile boolean running;
@@ -2303,10 +2310,10 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void startRecording(File file, android.opengl.EGLContext eGLContext) {
-            if (this.started) {
+            InstantCameraView.access$5508();
+            if (this.started && this.handler != null && this.handler.getLooper() != null && this.handler.getLooper().getThread() != null && this.handler.getLooper().getThread().isAlive()) {
                 this.sharedEglContext = eGLContext;
                 this.handler.sendMessage(this.handler.obtainMessage(0, 1, 0));
-                return;
             }
             this.started = true;
             int i = MessagesController.getInstance(InstantCameraView.this.currentAccount).roundVideoSize;

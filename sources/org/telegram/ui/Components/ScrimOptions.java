@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Spanned;
 import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -58,6 +59,8 @@ public class ScrimOptions extends Dialog {
     private View optionsView;
     public final Theme.ResourcesProvider resourcesProvider;
     private Drawable scrimDrawable;
+    private float scrimDrawableTx;
+    private float scrimDrawableTy;
     private final FrameLayout windowView;
 
     public ScrimOptions(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -81,7 +84,10 @@ public class ScrimOptions extends Dialog {
                 super.dispatchDraw(canvas);
                 if (ScrimOptions.this.scrimDrawable != null) {
                     ScrimOptions.this.scrimDrawable.setAlpha((int) (ScrimOptions.this.openProgress * 255.0f));
+                    canvas.save();
+                    canvas.translate(ScrimOptions.this.scrimDrawableTx * ScrimOptions.this.openProgress, ScrimOptions.this.scrimDrawableTy * ScrimOptions.this.openProgress);
                     ScrimOptions.this.scrimDrawable.draw(canvas);
+                    canvas.restore();
                 }
             }
 
@@ -154,9 +160,11 @@ public class ScrimOptions extends Dialog {
 
     @Override
     public void show() {
-        super.show();
-        prepareBlur(null);
-        animateOpenTo(true, null);
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            super.show();
+            prepareBlur(null);
+            animateOpenTo(true, null);
+        }
     }
 
     @Override
@@ -187,7 +195,38 @@ public class ScrimOptions extends Dialog {
         });
     }
 
-    private void animateOpenTo(final boolean z, final Runnable runnable) {
+    public void dismissFast() {
+        if (this.dismissing) {
+            return;
+        }
+        this.dismissing = true;
+        animateOpenTo(false, 2.0f, new Runnable() {
+            @Override
+            public final void run() {
+                ScrimOptions.this.lambda$dismissFast$4();
+            }
+        });
+        this.windowView.invalidate();
+    }
+
+    public void lambda$dismissFast$3() {
+        super.dismiss();
+    }
+
+    public void lambda$dismissFast$4() {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ScrimOptions.this.lambda$dismissFast$3();
+            }
+        });
+    }
+
+    private void animateOpenTo(boolean z, Runnable runnable) {
+        animateOpenTo(z, 1.0f, runnable);
+    }
+
+    private void animateOpenTo(final boolean z, float f, final Runnable runnable) {
         ValueAnimator valueAnimator = this.openAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -200,7 +239,7 @@ public class ScrimOptions extends Dialog {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ScrimOptions.this.lambda$animateOpenTo$3(valueAnimator2);
+                ScrimOptions.this.lambda$animateOpenTo$5(valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -223,7 +262,7 @@ public class ScrimOptions extends Dialog {
         this.openAnimator.start();
     }
 
-    public void lambda$animateOpenTo$3(ValueAnimator valueAnimator) {
+    public void lambda$animateOpenTo$5(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.openProgress = floatValue;
         this.optionsView.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue));
@@ -271,12 +310,12 @@ public class ScrimOptions extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ScrimOptions.this.lambda$prepareBlur$4(view, (Bitmap) obj);
+                ScrimOptions.this.lambda$prepareBlur$6(view, (Bitmap) obj);
             }
         }, 14.0f);
     }
 
-    public void lambda$prepareBlur$4(View view, Bitmap bitmap) {
+    public void lambda$prepareBlur$6(View view, Bitmap bitmap) {
         if (view != null) {
             view.setVisibility(0);
         }
@@ -297,6 +336,8 @@ public class ScrimOptions extends Dialog {
 
     public void layout() {
         boolean z;
+        float dp;
+        int i;
         Drawable drawable = this.scrimDrawable;
         if (drawable != null) {
             android.graphics.Rect bounds = drawable.getBounds();
@@ -313,6 +354,16 @@ public class ScrimOptions extends Dialog {
                     this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (bounds.right + AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
                     z = true;
                 }
+                float x = this.optionsContainer.getX();
+                if (z) {
+                    dp = (x + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f);
+                    i = bounds.right;
+                } else {
+                    dp = x + AndroidUtilities.dp(10.0f);
+                    i = bounds.left;
+                }
+                this.scrimDrawableTx = dp - i;
+                this.scrimDrawableTy = 0.0f;
                 if (bounds.bottom + this.optionsContainer.getMeasuredHeight() > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
                     View view2 = this.optionsView;
                     view2.setPivotY(view2.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
@@ -332,13 +383,14 @@ public class ScrimOptions extends Dialog {
         float f2;
         ArrayList<MessageObject.TextLayoutBlock> arrayList;
         float f3;
-        final Bitmap bitmap;
+        Bitmap bitmap;
         int i;
         int i2;
         boolean z;
         if (chatMessageCell == null) {
             return;
         }
+        chatMessageCell.getCurrentMessagesGroup();
         MessageObject messageObject = chatMessageCell.getMessageObject();
         if (chatMessageCell.getCaptionLayout() != null) {
             f = chatMessageCell.getCaptionX();
@@ -360,55 +412,48 @@ public class ScrimOptions extends Dialog {
         if (arrayList == null) {
             return;
         }
-        int i3 = 0;
         float f4 = f;
         float f5 = f2;
+        StaticLayout staticLayout = null;
+        int i3 = 0;
         int i4 = 0;
-        int i5 = 0;
-        int i6 = 0;
-        final StaticLayout staticLayout = null;
-        while (i4 < arrayList.size()) {
-            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i4);
+        for (int i5 = 0; i5 < arrayList.size(); i5++) {
+            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i5);
             StaticLayout staticLayout2 = textLayoutBlock.textLayout;
             if (staticLayout2 != null && (staticLayout2.getText() instanceof Spanned)) {
-                i = i6;
-                i2 = i5;
-                CharacterStyle[] characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout2.getText()).getSpans(i3, staticLayout2.getText().length(), CharacterStyle.class);
+                i = i4;
+                i2 = i3;
+                CharacterStyle[] characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout2.getText()).getSpans(0, staticLayout2.getText().length(), CharacterStyle.class);
                 if (characterStyleArr != null) {
-                    int i7 = 0;
+                    int i6 = 0;
                     while (true) {
-                        if (i7 >= characterStyleArr.length) {
+                        if (i6 >= characterStyleArr.length) {
                             z = false;
                             break;
-                        } else if (characterStyleArr[i7] == characterStyle) {
+                        } else if (characterStyleArr[i6] == characterStyle) {
                             z = true;
                             break;
                         } else {
-                            i7++;
+                            i6++;
                         }
                     }
                     if (z) {
-                        i5 = ((Spanned) staticLayout2.getText()).getSpanStart(characterStyle);
-                        i6 = ((Spanned) staticLayout2.getText()).getSpanEnd(characterStyle);
+                        i3 = ((Spanned) staticLayout2.getText()).getSpanStart(characterStyle);
+                        i4 = ((Spanned) staticLayout2.getText()).getSpanEnd(characterStyle);
                         f4 += textLayoutBlock.isRtl() ? (int) Math.ceil(f3) : 0;
                         f5 += textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams);
                         staticLayout = staticLayout2;
-                        i4++;
-                        i3 = 0;
                     }
                 }
             } else {
-                i2 = i5;
-                i = i6;
+                i2 = i3;
+                i = i4;
             }
-            i5 = i2;
-            i6 = i;
-            i4++;
-            i3 = 0;
+            i3 = i2;
+            i4 = i;
         }
-        int i8 = i5;
-        int i9 = i6;
-        float f6 = f4;
+        int i7 = i3;
+        int i8 = i4;
         if (staticLayout == null) {
             return;
         }
@@ -416,8 +461,8 @@ public class ScrimOptions extends Dialog {
         paint.setColor(Theme.getColor(messageObject.isOutOwner() ? Theme.key_chat_outBubble : Theme.key_chat_inBubble, this.resourcesProvider));
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
         final LinkPath linkPath = new LinkPath(true);
-        linkPath.setCurrentLayout(staticLayout, i8, 0.0f);
-        staticLayout.getSelectionPath(i8, i9, linkPath);
+        linkPath.setCurrentLayout(staticLayout, i7, 0.0f);
+        staticLayout.getSelectionPath(i7, i8, linkPath);
         linkPath.closeRects();
         final RectF rectF = new RectF();
         linkPath.computeBounds(rectF, true);
@@ -440,9 +485,18 @@ public class ScrimOptions extends Dialog {
         }
         final Paint paint4 = new Paint(3);
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        chatMessageCell.setupTextColors();
+        TextPaint textPaint = new TextPaint(1);
+        textPaint.setColor(staticLayout.getPaint().getColor());
+        textPaint.linkColor = staticLayout.getPaint().linkColor;
+        textPaint.setTextSize(staticLayout.getPaint().getTextSize());
+        textPaint.setTextAlign(staticLayout.getPaint().getTextAlign());
+        textPaint.setTypeface(staticLayout.getPaint().getTypeface());
+        final StaticLayout staticLayout3 = new StaticLayout(staticLayout.getText(), textPaint, staticLayout.getWidth(), staticLayout.getAlignment(), 1.0f, 0.0f, false);
         final int[] iArr = new int[2];
         chatMessageCell.getLocationOnScreen(iArr);
-        final int[] iArr2 = {iArr[0] + ((int) f6), iArr[1] + ((int) f5)};
+        final int[] iArr2 = {iArr[0] + ((int) f4), iArr[1] + ((int) f5)};
+        final Bitmap bitmap2 = bitmap;
         this.scrimDrawable = new Drawable(this) {
             private int alpha = 255;
 
@@ -477,11 +531,11 @@ public class ScrimOptions extends Dialog {
                     canvas2.translate(-iArr6[0], -iArr6[1]);
                     int[] iArr7 = iArr2;
                     canvas2.translate(iArr7[0], iArr7[1]);
-                    if (bitmap != null) {
+                    if (bitmap2 != null) {
                         canvas2.save();
-                        Bitmap bitmap2 = bitmap;
+                        Bitmap bitmap3 = bitmap2;
                         RectF rectF3 = rectF;
-                        canvas2.drawBitmap(bitmap2, rectF3.left, rectF3.top, paint4);
+                        canvas2.drawBitmap(bitmap3, rectF3.left, rectF3.top, paint4);
                         canvas2.restore();
                     }
                 } else {
@@ -489,18 +543,19 @@ public class ScrimOptions extends Dialog {
                 }
                 canvas2.clipPath(linkPath);
                 canvas2.save();
-                staticLayout.draw(canvas2);
+                canvas2.translate(0.0f, AndroidUtilities.dp(1.33f));
+                staticLayout3.draw(canvas2);
                 canvas2.restore();
                 canvas2.restore();
             }
 
             @Override
-            public void setAlpha(int i10) {
-                this.alpha = i10;
+            public void setAlpha(int i9) {
+                this.alpha = i9;
             }
         };
-        int radius = (int) (iArr[0] + f6 + rectF.left + (LinkPath.getRadius() / 2.0f));
-        int i10 = (int) (iArr[1] + f5 + rectF.top);
-        this.scrimDrawable.setBounds(radius, i10, ((int) rectF.width()) + radius, ((int) rectF.height()) + i10);
+        int radius = (int) (iArr[0] + f4 + rectF.left + (LinkPath.getRadius() / 2.0f));
+        int i9 = (int) (iArr[1] + f5 + rectF.top);
+        this.scrimDrawable.setBounds(radius, i9, ((int) rectF.width()) + radius, ((int) rectF.height()) + i9);
     }
 }

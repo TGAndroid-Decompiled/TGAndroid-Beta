@@ -4957,6 +4957,7 @@
     <string name="NoTopicsDescription">Tap the button below to start your first topic.</string>
     <string name="NoTopicsDescriptionUser">Older messages from this group have been move to the **’%s’** topic.</string>
     <string name="NoUsernameFound">There is no Telegram account with this username.</string>
+    <string name="NoUsernameFound2">This user doesn’t exist on Telegram</string>
     <string name="NoViews">No views</string>
     <string name="NoViewsStub">No one has viewed this story so far.</string>
     <string name="NoVotes">No votes</string>
@@ -6142,7 +6143,7 @@
     <string name="ProfileChannelCopy">Copy Link</string>
     <string name="ProfileColorEdit">Change profile color</string>
     <string name="ProfileCopyLink">Copy link to profile</string>
-    <string name="ProfileCopyUsername">Copy username</string>
+    <string name="ProfileCopyUsername">Copy Username</string>
     <string name="ProfileEditBio">Edit bio</string>
     <string name="ProfileHoursCopy">Copy hours</string>
     <string name="ProfileHoursEdit">Edit hours</string>
@@ -6181,8 +6182,8 @@
     <string name="ProfileStoriesCount_other">%d public stories</string>
     <string name="ProfileStoriesCount_two">%d public stories</string>
     <string name="ProfileStoriesCount_zero">%d public stories</string>
-    <string name="ProfileUsernameEdit">Change username</string>
-    <string name="ProfileUsernameSet">Set username</string>
+    <string name="ProfileUsernameEdit">Change Username</string>
+    <string name="ProfileUsernameSet">Set Username</string>
     <string name="PromoteUrl">https://ads.telegram.org</string>
     <string name="ProximityAlertCancelled">Proximity alert cancelled</string>
     <string name="ProximityAlertSet">Proximity alert set</string>
@@ -8409,11 +8410,13 @@
     <string name="Videos_zero">%1$d videos</string>
     <string name="ViewAction">View</string>
     <string name="ViewAnonymously">View\nAnonymously</string>
+    <string name="ViewChannelProfile">View Channel Info &gt;</string>
     <string name="ViewChannelStats">View Channel Stats</string>
     <string name="ViewChatList">View Chat List</string>
     <string name="ViewContact">VIEW CONTACT</string>
     <string name="ViewDiscussion">View discussion</string>
     <string name="ViewExceptions">View Exceptions</string>
+    <string name="ViewGroupProfile">View Group Info &gt;</string>
     <string name="ViewInChat">View in chat</string>
     <string name="ViewInTopic">View in Topic</string>
     <string name="ViewMessage">Open Message</string>

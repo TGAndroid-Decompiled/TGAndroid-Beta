@@ -94,6 +94,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bots.BotWebViewContainer;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 public abstract class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -376,17 +377,21 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         @Override
         public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-            new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                @Override
-                public final void run() {
-                    BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$0();
-                }
-            })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$1(dialogInterface);
-                }
-            }).show();
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity == null || !launchActivity.isFinishing()) {
+                new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                    @Override
+                    public final void run() {
+                        BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$0();
+                    }
+                })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$1(dialogInterface);
+                    }
+                }).show();
+                return true;
+            }
             return true;
         }
 
@@ -431,17 +436,21 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-                new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                    @Override
-                    public final void run() {
-                        BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$0();
-                    }
-                })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
-                    }
-                }).show();
+                LaunchActivity launchActivity = LaunchActivity.instance;
+                if (launchActivity == null || !launchActivity.isFinishing()) {
+                    new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                        @Override
+                        public final void run() {
+                            BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$0();
+                        }
+                    })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public final void onDismiss(DialogInterface dialogInterface) {
+                            BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
+                        }
+                    }).show();
+                    return true;
+                }
                 return true;
             }
 

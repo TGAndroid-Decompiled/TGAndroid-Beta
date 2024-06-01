@@ -943,7 +943,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         if (devicePerformanceClass == 1) {
             dp = AndroidUtilities.dp(12.0f);
         } else if (devicePerformanceClass == 2) {
-            dp = AndroidUtilities.dp(10.0f);
+            return AndroidUtilities.density;
         } else {
             dp = AndroidUtilities.dp(15.0f);
         }
@@ -953,7 +953,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     private float getBlurRadius() {
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         if (devicePerformanceClass != 1) {
-            return devicePerformanceClass != 2 ? 3.0f : 6.0f;
+            return devicePerformanceClass != 2 ? 3.0f : 60.0f;
         }
         return 4.0f;
     }

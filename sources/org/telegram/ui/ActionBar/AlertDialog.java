@@ -295,14 +295,16 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
     @Override
     public void show() {
-        super.show();
-        FrameLayout frameLayout = this.progressViewContainer;
-        if (frameLayout != null && this.progressViewStyle == 3) {
-            frameLayout.setScaleX(0.0f);
-            this.progressViewContainer.setScaleY(0.0f);
-            this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            super.show();
+            FrameLayout frameLayout = this.progressViewContainer;
+            if (frameLayout != null && this.progressViewStyle == 3) {
+                frameLayout.setScaleX(0.0f);
+                this.progressViewContainer.setScaleY(0.0f);
+                this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
+            }
+            this.shownAt = System.currentTimeMillis();
         }
-        this.shownAt = System.currentTimeMillis();
     }
 
     public class AnonymousClass1 extends LinearLayout {

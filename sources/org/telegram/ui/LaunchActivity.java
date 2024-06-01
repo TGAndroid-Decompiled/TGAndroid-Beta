@@ -1146,7 +1146,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     private void showAttachMenuBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
         this.drawerLayoutContainer.closeDrawer();
-        BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, getLastFragment().getResourceProvider());
+        BaseFragment lastFragment = getLastFragment();
+        BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, lastFragment != null ? lastFragment.getResourceProvider() : null);
         botWebViewSheet.setParentActivity(this);
         int i = this.currentAccount;
         long j = tLRPC$TL_attachMenuBot.bot_id;
@@ -3714,14 +3715,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$processWebAppBot$107(Runnable runnable, final int i, final TLRPC$User tLRPC$User, final TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, final String str, final boolean z, boolean z2, boolean z3) {
+        BaseFragment baseFragment;
+        ArrayList<BaseFragment> arrayList;
         runnable.run();
         final AtomicBoolean atomicBoolean = new AtomicBoolean();
-        ArrayList<BaseFragment> arrayList = mainFragmentsStack;
-        final BaseFragment baseFragment = arrayList.get(arrayList.size() - 1);
+        ArrayList<BaseFragment> arrayList2 = mainFragmentsStack;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            baseFragment = null;
+        } else {
+            baseFragment = mainFragmentsStack.get(arrayList.size() - 1);
+        }
+        final BaseFragment baseFragment2 = baseFragment;
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$processWebAppBot$105(baseFragment, i, tLRPC$User, tLRPC$TL_messages_botApp, atomicBoolean, str, z);
+                LaunchActivity.this.lambda$processWebAppBot$105(baseFragment2, i, tLRPC$User, tLRPC$TL_messages_botApp, atomicBoolean, str, z);
             }
         };
         if (z2) {
@@ -3745,7 +3753,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (!isActive || isFinishing()) {
             return;
         }
-        BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment.getResourceProvider());
+        BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment == null ? null : baseFragment.getResourceProvider());
         botWebViewSheet.setParentActivity(this);
         long j = tLRPC$User.id;
         botWebViewSheet.requestWebView(i, j, j, null, null, 3, 0, false, baseFragment, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User);
@@ -5804,10 +5812,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                     return false;
                 } else {
-                    if (!this.layersActionBarLayout.getFragmentStack().isEmpty()) {
+                    INavigationLayout iNavigationLayout9 = this.layersActionBarLayout;
+                    if (iNavigationLayout9 != null && iNavigationLayout9.getFragmentStack() != null && !this.layersActionBarLayout.getFragmentStack().isEmpty()) {
                         while (this.layersActionBarLayout.getFragmentStack().size() - 1 > 0) {
-                            INavigationLayout iNavigationLayout9 = this.layersActionBarLayout;
-                            iNavigationLayout9.removeFragmentFromStack(iNavigationLayout9.getFragmentStack().get(0));
+                            INavigationLayout iNavigationLayout10 = this.layersActionBarLayout;
+                            iNavigationLayout10.removeFragmentFromStack(iNavigationLayout10.getFragmentStack().get(0));
                         }
                         this.layersActionBarLayout.closeLastFragment(!z2);
                     }
@@ -5815,9 +5824,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     return false;
                 }
             } else {
-                INavigationLayout iNavigationLayout10 = this.layersActionBarLayout;
-                if (iNavigationLayout != iNavigationLayout10) {
-                    iNavigationLayout10.getView().setVisibility(0);
+                INavigationLayout iNavigationLayout11 = this.layersActionBarLayout;
+                if (iNavigationLayout != iNavigationLayout11) {
+                    iNavigationLayout11.getView().setVisibility(0);
                     this.drawerLayoutContainer.setAllowOpenDrawer(false, true);
                     int i = 0;
                     while (true) {

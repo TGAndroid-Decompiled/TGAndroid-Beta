@@ -2848,142 +2848,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public boolean didSelectTab(FilterTabsView.TabView tabView, boolean z) {
-            final boolean z2;
-            boolean z3;
-            int i;
-            String str;
-            int i2;
-            String str2;
-            MessagesController.DialogFilter dialogFilter;
-            boolean z4;
-            TLRPC$Chat chat;
-            if (DialogsActivity.this.initialDialogsType == 0 && !((BaseFragment) DialogsActivity.this).actionBar.isActionModeShowed() && DialogsActivity.this.storiesOverscroll == 0.0f) {
-                final MessagesController.DialogFilter dialogFilter2 = null;
-                if (DialogsActivity.this.filterOptions != null && DialogsActivity.this.filterOptions.isShown()) {
-                    DialogsActivity.this.filterOptions.dismiss();
-                    DialogsActivity.this.filterOptions = null;
-                    return false;
-                }
-                final MessagesController.DialogFilter dialogFilter3 = tabView.getId() == DialogsActivity.this.filterTabsView.getDefaultTabId() ? null : DialogsActivity.this.getMessagesController().getDialogFilters().get(tabView.getId());
-                final boolean z5 = dialogFilter3 == null;
-                final boolean[] zArr = {true};
-                MessagesController messagesController = DialogsActivity.this.getMessagesController();
-                final ArrayList arrayList = new ArrayList(z5 ? messagesController.getDialogs(DialogsActivity.this.folderId) : messagesController.getAllDialogs());
-                if (dialogFilter3 != null) {
-                    dialogFilter2 = DialogsActivity.this.getMessagesController().getDialogFilters().get(tabView.getId());
-                    int i3 = 0;
-                    if (dialogFilter2 != null) {
-                        while (i3 < arrayList.size()) {
-                            if (!dialogFilter2.includesDialog(DialogsActivity.this.getAccountInstance(), ((TLRPC$Dialog) arrayList.get(i3)).id)) {
-                                arrayList.remove(i3);
-                                i3--;
-                            }
-                            i3++;
-                        }
-                        i3 = (dialogFilter2.isChatlist() || (dialogFilter2.neverShow.isEmpty() && (dialogFilter2.flags & ((MessagesController.DIALOG_FILTER_FLAG_CHATLIST | MessagesController.DIALOG_FILTER_FLAG_CHATLIST_ADMIN) ^ (-1))) == 0)) ? 1 : 0;
-                        if (i3 != 0) {
-                            int i4 = 0;
-                            while (true) {
-                                if (i4 >= dialogFilter2.alwaysShow.size()) {
-                                    break;
-                                }
-                                long longValue = dialogFilter2.alwaysShow.get(i4).longValue();
-                                if (longValue < 0 && (chat = DialogsActivity.this.getMessagesController().getChat(Long.valueOf(-longValue))) != null && FilterCreateActivity.canAddToFolder(chat)) {
-                                    zArr[0] = false;
-                                    break;
-                                }
-                                i4++;
-                            }
-                        }
-                    }
-                    if (arrayList.isEmpty()) {
-                        z2 = false;
-                        z3 = i3;
-                    } else {
-                        int i5 = 0;
-                        while (true) {
-                            if (i5 >= arrayList.size()) {
-                                dialogFilter = dialogFilter2;
-                                z4 = true;
-                                break;
-                            }
-                            dialogFilter = dialogFilter2;
-                            if (!DialogsActivity.this.getMessagesController().isDialogMuted(((TLRPC$Dialog) arrayList.get(i5)).id, 0L)) {
-                                z4 = false;
-                                break;
-                            }
-                            i5++;
-                            dialogFilter2 = dialogFilter;
-                        }
-                        z2 = !z4;
-                        dialogFilter2 = dialogFilter;
-                        z3 = i3;
-                    }
-                } else {
-                    z2 = false;
-                    z3 = false;
-                }
-                boolean z6 = false;
-                for (int i6 = 0; i6 < arrayList.size(); i6++) {
-                    if (((TLRPC$Dialog) arrayList.get(i6)).unread_mark || ((TLRPC$Dialog) arrayList.get(i6)).unread_count > 0) {
-                        z6 = true;
-                    }
-                }
-                DialogsActivity dialogsActivity = DialogsActivity.this;
-                ItemOptions addIf = ItemOptions.makeOptions(dialogsActivity, tabView).setScrimViewBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, Theme.getColor(Theme.key_actionBarDefault))).addIf(DialogsActivity.this.getMessagesController().getDialogFilters().size() > 1, R.drawable.tabs_reorder, LocaleController.getString("FilterReorder", R.string.FilterReorder), new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass7.this.lambda$didSelectTab$1();
-                    }
-                });
-                int i7 = R.drawable.msg_edit;
-                if (z5) {
-                    i = R.string.FilterEditAll;
-                    str = "FilterEditAll";
-                } else {
-                    i = R.string.FilterEdit;
-                    str = "FilterEdit";
-                }
-                ItemOptions add = addIf.add(i7, LocaleController.getString(str, i), new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass7.this.lambda$didSelectTab$2(z5, dialogFilter3);
-                    }
-                });
-                boolean z7 = (dialogFilter3 == null || arrayList.isEmpty()) ? false : true;
-                int i8 = z2 ? R.drawable.msg_mute : R.drawable.msg_unmute;
-                if (z2) {
-                    i2 = R.string.FilterMuteAll;
-                    str2 = "FilterMuteAll";
-                } else {
-                    i2 = R.string.FilterUnmuteAll;
-                    str2 = "FilterUnmuteAll";
-                }
-                dialogsActivity.filterOptions = add.addIf(z7, i8, LocaleController.getString(str2, i2), new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass7.this.lambda$didSelectTab$3(arrayList, z2);
-                    }
-                }).addIf(z6, R.drawable.msg_markread, LocaleController.getString("MarkAllAsRead", R.string.MarkAllAsRead), new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass7.this.lambda$didSelectTab$4(arrayList);
-                    }
-                }).addIf(z3, R.drawable.msg_share, FilterCreateActivity.withNew((dialogFilter2 == null || !dialogFilter2.isMyChatlist()) ? 0 : -1, LocaleController.getString("LinkActionShare", R.string.LinkActionShare), true), new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass7.this.lambda$didSelectTab$5(zArr, dialogFilter2);
-                    }
-                }).addIf(!z5, R.drawable.msg_delete, (CharSequence) LocaleController.getString("FilterDeleteItem", R.string.FilterDeleteItem), true, new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass7.this.lambda$didSelectTab$6(dialogFilter3);
-                    }
-                }).setGravity(3).translate(AndroidUtilities.dp(-8.0f), AndroidUtilities.dp(-10.0f)).show();
-                return true;
-            }
-            return false;
+        public boolean didSelectTab(org.telegram.ui.Components.FilterTabsView.TabView r19, boolean r20) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.AnonymousClass7.didSelectTab(org.telegram.ui.Components.FilterTabsView$TabView, boolean):boolean");
         }
 
         public void lambda$didSelectTab$1() {
@@ -5772,6 +5638,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     @Override
     public void onBecomeFullyHidden() {
+        View view;
         FilterTabsView filterTabsView;
         if (this.closeSearchFieldOnHide) {
             ActionBar actionBar = this.actionBar;
@@ -5799,6 +5666,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         UndoView[] undoViewArr = this.undoView;
         if (undoViewArr[0] != null) {
             undoViewArr[0].hide(true, 0);
+        }
+        if (!isInPreviewMode() && (view = this.blurredView) != null && view.getVisibility() == 0) {
+            this.blurredView.setVisibility(8);
+            this.blurredView.setBackground(null);
         }
         super.onBecomeFullyHidden();
         this.canShowStoryHint = true;

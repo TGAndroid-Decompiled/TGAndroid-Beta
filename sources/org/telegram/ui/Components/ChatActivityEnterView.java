@@ -5149,6 +5149,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         });
         this.messageEditText.addTextChangedListener(new AnonymousClass45());
+        this.messageEditText.addTextChangedListener(new EditTextSuggestionsFix());
         this.messageEditText.setEnabled(this.messageEditTextEnabled);
         ArrayList<TextWatcher> arrayList = this.messageEditTextWatchers;
         if (arrayList != null) {

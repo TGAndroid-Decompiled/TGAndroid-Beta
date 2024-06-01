@@ -1299,41 +1299,43 @@ public class BottomSheet extends Dialog {
 
     @Override
     public void show() {
-        super.show();
-        setShowing(true);
-        if (this.focusable) {
-            getWindow().setSoftInputMode(16);
-        }
-        this.dismissed = false;
-        cancelSheetAnimation();
-        this.containerView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x + (this.backgroundPaddingLeft * 2), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        if (this.showWithoutAnimation) {
-            this.backDrawable.setAlpha(this.dimBehind ? this.dimBehindAlpha : 0);
-            this.containerView.setTranslationY(0.0f);
-            return;
-        }
-        this.backDrawable.setAlpha(0);
-        this.layoutCount = 2;
-        ViewGroup viewGroup = this.containerView;
-        viewGroup.setTranslationY((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight * (1.0f - this.hideSystemVerticalInsetsProgress) : 0.0f) + viewGroup.getMeasuredHeight() + (this.scrollNavBar ? getBottomInset() : 0));
-        long j = this.openNoDelay ? 0L : 150L;
-        if (this.waitingKeyboard) {
-            j = 500;
-        }
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                BottomSheet bottomSheet = BottomSheet.this;
-                if (bottomSheet.startAnimationRunnable != this || bottomSheet.dismissed) {
-                    return;
-                }
-                BottomSheet bottomSheet2 = BottomSheet.this;
-                bottomSheet2.startAnimationRunnable = null;
-                bottomSheet2.startOpenAnimation();
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            super.show();
+            setShowing(true);
+            if (this.focusable) {
+                getWindow().setSoftInputMode(16);
             }
-        };
-        this.startAnimationRunnable = runnable;
-        AndroidUtilities.runOnUIThread(runnable, j);
+            this.dismissed = false;
+            cancelSheetAnimation();
+            this.containerView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x + (this.backgroundPaddingLeft * 2), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+            if (this.showWithoutAnimation) {
+                this.backDrawable.setAlpha(this.dimBehind ? this.dimBehindAlpha : 0);
+                this.containerView.setTranslationY(0.0f);
+                return;
+            }
+            this.backDrawable.setAlpha(0);
+            this.layoutCount = 2;
+            ViewGroup viewGroup = this.containerView;
+            viewGroup.setTranslationY((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight * (1.0f - this.hideSystemVerticalInsetsProgress) : 0.0f) + viewGroup.getMeasuredHeight() + (this.scrollNavBar ? getBottomInset() : 0));
+            long j = this.openNoDelay ? 0L : 150L;
+            if (this.waitingKeyboard) {
+                j = 500;
+            }
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    BottomSheet bottomSheet = BottomSheet.this;
+                    if (bottomSheet.startAnimationRunnable != this || bottomSheet.dismissed) {
+                        return;
+                    }
+                    BottomSheet bottomSheet2 = BottomSheet.this;
+                    bottomSheet2.startAnimationRunnable = null;
+                    bottomSheet2.startOpenAnimation();
+                }
+            };
+            this.startAnimationRunnable = runnable;
+            AndroidUtilities.runOnUIThread(runnable, j);
+        }
     }
 
     public ColorDrawable getBackDrawable() {

@@ -310,8 +310,11 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
 
     private float getPlaybackSpeed(boolean z, MessageObject messageObject) {
         if (z) {
-            if (messageObject.isVoice() || messageObject.isRoundVideo()) {
-                return MediaController.getInstance().getPlaybackSpeed(false);
+            if (messageObject != null) {
+                if (messageObject.isVoice() || messageObject.isRoundVideo()) {
+                    return MediaController.getInstance().getPlaybackSpeed(false);
+                }
+                return 1.0f;
             }
             return 1.0f;
         }

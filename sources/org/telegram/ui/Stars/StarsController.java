@@ -71,9 +71,10 @@ public class StarsController {
     private boolean optionsLoading;
     private boolean paymentFormOpened;
     public final ArrayList<TLRPC$TL_starsTransaction>[] transactions = {new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
-    private String[] offset = new String[3];
-    private boolean[] loading = new boolean[3];
-    private boolean[] endReached = new boolean[3];
+    public final boolean[] transactionsExist = new boolean[3];
+    private final String[] offset = new String[3];
+    private final boolean[] loading = new boolean[3];
+    private final boolean[] endReached = new boolean[3];
 
     private static boolean isCollapsed(long j) {
         return (j == 15 || j == 75 || j == 250 || j == 500 || j == 1000 || j == 2500) ? false : true;
@@ -149,6 +150,7 @@ public class StarsController {
                     this.transactions[next.stars > 0 ? (char) 1 : (char) 2].add(next);
                 }
                 for (int i = 0; i < 3; i++) {
+                    this.transactionsExist[i] = !this.transactions[i].isEmpty() || this.transactionsExist[i];
                     boolean[] zArr = this.endReached;
                     zArr[i] = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
                     if (zArr[i]) {
@@ -387,6 +389,7 @@ public class StarsController {
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_payments_starsStatus.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_payments_starsStatus.chats, false);
             this.transactions[i].addAll(tLRPC$TL_payments_starsStatus.history);
+            this.transactionsExist[i] = !this.transactions[i].isEmpty() || this.transactionsExist[i];
             boolean[] zArr = this.endReached;
             zArr[i] = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
             this.offset[i] = zArr[i] ? null : tLRPC$TL_payments_starsStatus.next_offset;

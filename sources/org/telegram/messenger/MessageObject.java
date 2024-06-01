@@ -138,6 +138,7 @@ import org.telegram.tgnet.TLRPC$TL_messageActionTopicEdit;
 import org.telegram.tgnet.TLRPC$TL_messageActionUserUpdatedPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageEmpty;
 import org.telegram.tgnet.TLRPC$TL_messageEncryptedAction;
+import org.telegram.tgnet.TLRPC$TL_messageEntityBankCard;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_messageEntityItalic;
 import org.telegram.tgnet.TLRPC$TL_messageEntityMentionName;
@@ -7019,7 +7020,7 @@ public class MessageObject {
     }
 
     public static void cutIntoRanges(CharSequence charSequence, ArrayList<TextRange> arrayList) {
-        Iterator it;
+        int i;
         if (charSequence == null) {
             return;
         }
@@ -7031,71 +7032,79 @@ public class MessageObject {
         HashMap hashMap = new HashMap();
         Spanned spanned = (Spanned) charSequence;
         QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) spanned.getSpans(0, spanned.length(), QuoteSpan.QuoteStyleSpan.class);
-        for (int i = 0; i < quoteStyleSpanArr.length; i++) {
-            quoteStyleSpanArr[i].span.adaptLineHeight = false;
-            int spanStart = spanned.getSpanStart(quoteStyleSpanArr[i]);
-            int spanEnd = spanned.getSpanEnd(quoteStyleSpanArr[i]);
+        for (int i2 = 0; i2 < quoteStyleSpanArr.length; i2++) {
+            quoteStyleSpanArr[i2].span.adaptLineHeight = false;
+            int spanStart = spanned.getSpanStart(quoteStyleSpanArr[i2]);
+            int spanEnd = spanned.getSpanEnd(quoteStyleSpanArr[i2]);
             treeSet.add(Integer.valueOf(spanStart));
-            hashMap.put(Integer.valueOf(spanStart), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanStart)) ? ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue() : 0) | (quoteStyleSpanArr[i].span.isCollapsing ? 16 : 1)));
+            hashMap.put(Integer.valueOf(spanStart), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanStart)) ? ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue() : 0) | (quoteStyleSpanArr[i2].span.isCollapsing ? 16 : 1)));
             treeSet.add(Integer.valueOf(spanEnd));
             hashMap.put(Integer.valueOf(spanEnd), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanEnd)) ? ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue() : 0) | 2));
         }
+        Iterator it = treeSet.iterator();
+        while (it.hasNext()) {
+            int intValue = ((Integer) it.next()).intValue();
+            if (intValue >= 0 && intValue < spanned.length() && hashMap.containsKey(Integer.valueOf(intValue))) {
+                int intValue2 = ((Integer) hashMap.get(Integer.valueOf(intValue))).intValue();
+                if ((intValue2 & 1) != 0 && (intValue2 & 2) != 0 && spanned.charAt(intValue) != '\n' && (intValue - 1 <= 0 || spanned.charAt(i) != '\n')) {
+                    it.remove();
+                    hashMap.remove(Integer.valueOf(intValue));
+                }
+            }
+        }
         CodeHighlighting.Span[] spanArr = (CodeHighlighting.Span[]) spanned.getSpans(0, spanned.length(), CodeHighlighting.Span.class);
-        for (int i2 = 0; i2 < spanArr.length; i2++) {
-            int spanStart2 = spanned.getSpanStart(spanArr[i2]);
-            int spanEnd2 = spanned.getSpanEnd(spanArr[i2]);
+        for (int i3 = 0; i3 < spanArr.length; i3++) {
+            int spanStart2 = spanned.getSpanStart(spanArr[i3]);
+            int spanEnd2 = spanned.getSpanEnd(spanArr[i3]);
             treeSet.add(Integer.valueOf(spanStart2));
             hashMap.put(Integer.valueOf(spanStart2), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanStart2)) ? ((Integer) hashMap.get(Integer.valueOf(spanStart2))).intValue() : 0) | 4));
             treeSet.add(Integer.valueOf(spanEnd2));
             hashMap.put(Integer.valueOf(spanEnd2), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanEnd2)) ? ((Integer) hashMap.get(Integer.valueOf(spanEnd2))).intValue() : 0) | 8));
         }
+        Iterator it2 = treeSet.iterator();
         boolean z = false;
-        int i3 = 0;
         int i4 = 0;
         int i5 = 0;
         int i6 = 0;
-        for (Iterator it2 = treeSet.iterator(); it2.hasNext(); it2 = it) {
-            int intValue = ((Integer) it2.next()).intValue();
-            int intValue2 = ((Integer) hashMap.get(Integer.valueOf(intValue))).intValue();
-            if (i6 != intValue) {
-                int i7 = intValue - 1;
-                if (i7 >= 0 && i7 < charSequence.length() && charSequence.charAt(i7) == '\n') {
-                    intValue--;
+        int i7 = 0;
+        while (it2.hasNext()) {
+            int intValue3 = ((Integer) it2.next()).intValue();
+            int intValue4 = ((Integer) hashMap.get(Integer.valueOf(intValue3))).intValue();
+            if (i6 != intValue3) {
+                int i8 = intValue3 - 1;
+                if (i8 >= 0 && i8 < charSequence.length() && charSequence.charAt(i8) == '\n') {
+                    intValue3--;
                 }
-                int i8 = intValue;
+                int i9 = intValue3;
                 String str = null;
-                if ((intValue2 & 8) != 0 && i5 < spanArr.length) {
+                if ((intValue4 & 8) != 0 && i5 < spanArr.length) {
                     str = spanArr[i5].lng;
                     i5++;
                 }
-                int i9 = i5;
-                String str2 = str;
-                it = it2;
-                arrayList.add(new TextRange(i6, i8, i3 > 0, i4 > 0, z, str2));
-                i6 = i8 + 1;
-                if (i6 >= charSequence.length() || charSequence.charAt(i8) != '\n') {
-                    i6 = i8;
+                int i10 = i5;
+                arrayList.add(new TextRange(i6, i9, i4 > 0, i7 > 0, z, str));
+                i6 = i9 + 1;
+                if (i6 >= charSequence.length() || charSequence.charAt(i9) != '\n') {
+                    i6 = i9;
                 }
-                i5 = i9;
-            } else {
-                it = it2;
+                i5 = i10;
             }
-            if ((intValue2 & 2) != 0) {
-                i3--;
-            }
-            if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
-                i3++;
-                z = (intValue2 & 16) != 0;
-            }
-            if ((intValue2 & 8) != 0) {
+            if ((intValue4 & 2) != 0) {
                 i4--;
             }
-            if ((intValue2 & 4) != 0) {
+            if ((intValue4 & 1) != 0 || (intValue4 & 16) != 0) {
                 i4++;
+                z = (intValue4 & 16) != 0;
+            }
+            if ((intValue4 & 8) != 0) {
+                i7--;
+            }
+            if ((intValue4 & 4) != 0) {
+                i7++;
             }
         }
         if (i6 < charSequence.length()) {
-            arrayList.add(new TextRange(i6, charSequence.length(), i3 > 0, i4 > 0, z, null));
+            arrayList.add(new TextRange(i6, charSequence.length(), i4 > 0, i7 > 0, z, null));
         }
     }
 
@@ -7254,13 +7263,14 @@ public class MessageObject {
         return getId() >= 0 && !isSponsored() && ((i = this.type) == 0 || i == 2 || i == 1 || i == 3 || i == 8 || i == 9);
     }
 
-    public boolean hasPhoneNumberEntities() {
+    public boolean hasEntitiesFromServer() {
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message == null || tLRPC$Message.entities == null) {
             return false;
         }
         for (int i = 0; i < this.messageOwner.entities.size(); i++) {
-            if (this.messageOwner.entities.get(i) instanceof TLRPC$TL_messageEntityPhone) {
+            TLRPC$MessageEntity tLRPC$MessageEntity = this.messageOwner.entities.get(i);
+            if ((tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityPhone) || (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityBankCard)) {
                 return true;
             }
         }

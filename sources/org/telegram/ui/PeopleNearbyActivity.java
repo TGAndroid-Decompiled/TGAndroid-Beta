@@ -231,10 +231,10 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         public boolean areItemsTheSame(int i, int i2) {
             int i3;
             int i4;
-            if (i2 >= PeopleNearbyActivity.this.usersStartRow && i2 < PeopleNearbyActivity.this.usersEndRow && i >= (i4 = this.oldUsersStartRow) && i < this.oldUsersEndRow) {
-                return MessageObject.getPeerId(this.oldUsers.get(i - i4).peer) == MessageObject.getPeerId(((TLRPC$TL_peerLocated) PeopleNearbyActivity.this.users.get(i2 - PeopleNearbyActivity.this.usersStartRow)).peer);
-            } else if (i2 >= PeopleNearbyActivity.this.chatsStartRow && i2 < PeopleNearbyActivity.this.chatsEndRow && i >= (i3 = this.oldChatsStartRow) && i < this.oldChatsEndRow) {
-                return MessageObject.getPeerId(this.oldChats.get(i - i3).peer) == MessageObject.getPeerId(((TLRPC$TL_peerLocated) PeopleNearbyActivity.this.chats.get(i2 - PeopleNearbyActivity.this.chatsStartRow)).peer);
+            if (i2 >= PeopleNearbyActivity.this.usersStartRow && i2 < PeopleNearbyActivity.this.usersEndRow && i2 - PeopleNearbyActivity.this.usersStartRow < PeopleNearbyActivity.this.users.size() && i >= (i4 = this.oldUsersStartRow) && i < this.oldUsersEndRow && i - i4 < this.oldUsers.size()) {
+                return MessageObject.getPeerId(this.oldUsers.get(i - this.oldUsersStartRow).peer) == MessageObject.getPeerId(((TLRPC$TL_peerLocated) PeopleNearbyActivity.this.users.get(i2 - PeopleNearbyActivity.this.usersStartRow)).peer);
+            } else if (i2 >= PeopleNearbyActivity.this.chatsStartRow && i2 < PeopleNearbyActivity.this.chatsEndRow && i2 - PeopleNearbyActivity.this.chatsStartRow < PeopleNearbyActivity.this.chats.size() && i >= (i3 = this.oldChatsStartRow) && i < this.oldChatsEndRow && i - i3 < this.oldChats.size()) {
+                return MessageObject.getPeerId(this.oldChats.get(i - this.oldChatsStartRow).peer) == MessageObject.getPeerId(((TLRPC$TL_peerLocated) PeopleNearbyActivity.this.chats.get(i2 - PeopleNearbyActivity.this.chatsStartRow)).peer);
             } else {
                 int i5 = this.oldPositionToItem.get(i, -1);
                 return i5 == this.newPositionToItem.get(i2, -1) && i5 >= 0;

@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
@@ -20,7 +21,13 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -373,6 +380,45 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions addProfile(TLObject tLObject, CharSequence charSequence, final Runnable runnable) {
+        FrameLayout frameLayout = new FrameLayout(this.context);
+        frameLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 0, 6));
+        BackupImageView backupImageView = new BackupImageView(this.context);
+        backupImageView.setRoundRadius(AndroidUtilities.dp(17.0f));
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(tLObject);
+        backupImageView.setForUserOrChat(tLObject, avatarDrawable);
+        frameLayout.addView(backupImageView, LayoutHelper.createFrame(34, 34.0f, 19, 13.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(this.context);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
+        textView.setTextSize(1, 16.0f);
+        if (tLObject instanceof TLRPC$User) {
+            textView.setText(UserObject.getUserName((TLRPC$User) tLObject));
+        } else if (tLObject instanceof TLRPC$Chat) {
+            textView.setText(((TLRPC$Chat) tLObject).title);
+        }
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 55, 59.0f, 6.0f, 16.0f, 0.0f));
+        TextView textView2 = new TextView(this.context);
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray2, this.resourcesProvider));
+        textView2.setTextSize(1, 13.0f);
+        textView2.setText(AndroidUtilities.replaceArrows(charSequence, false, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(0.66f)));
+        frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 55, 59.0f, 27.0f, 16.0f, 0.0f));
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                ItemOptions.lambda$addProfile$4(runnable, view);
+            }
+        });
+        addView(frameLayout, LayoutHelper.createLinear(-1, 52));
+        return this;
+    }
+
+    public static void lambda$addProfile$4(Runnable runnable, View view) {
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
     public ItemOptions addText(CharSequence charSequence, int i) {
         return addText(charSequence, i, -1);
     }
@@ -387,8 +433,9 @@ public class ItemOptions {
         textView.setTextSize(1, i);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        textView.setText(charSequence);
+        textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), false));
         textView.setTag(R.id.fit_width_tag, 1);
+        NotificationCenter.listenEmojiLoading(textView);
         if (i2 > 0) {
             textView.setMaxWidth(i2);
         }
@@ -508,13 +555,13 @@ public class ItemOptions {
                     View itemAt2 = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
                     if (itemAt instanceof ActionBarMenuSubItem) {
                         ((ActionBarMenuSubItem) itemAt).updateSelectorBackground(true, itemAt == itemAt2);
-                    } else if (itemAt instanceof MessagePreviewView.ToggleButton) {
-                        ((MessagePreviewView.ToggleButton) itemAt).setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, this.resourcesProvider), 6, itemAt == itemAt2 ? 6 : 0));
+                    } else if ((itemAt instanceof MessagePreviewView.ToggleButton) || (itemAt instanceof FrameLayout)) {
+                        itemAt.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, this.resourcesProvider), 6, itemAt == itemAt2 ? 6 : 0));
                     }
                     if (itemAt2 instanceof ActionBarMenuSubItem) {
                         ((ActionBarMenuSubItem) itemAt2).updateSelectorBackground(itemAt2 == itemAt, true);
-                    } else if (itemAt2 instanceof MessagePreviewView.ToggleButton) {
-                        ((MessagePreviewView.ToggleButton) itemAt2).setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, this.resourcesProvider), itemAt == itemAt2 ? 6 : 0, 6));
+                    } else if ((itemAt2 instanceof MessagePreviewView.ToggleButton) || (itemAt2 instanceof FrameLayout)) {
+                        itemAt2.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, this.resourcesProvider), itemAt == itemAt2 ? 6 : 0, 6));
                     }
                 }
             }
@@ -561,9 +608,9 @@ public class ItemOptions {
                     this.preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                         @Override
                         public final boolean onPreDraw() {
-                            boolean lambda$show$4;
-                            lambda$show$4 = ItemOptions.lambda$show$4(dimView);
-                            return lambda$show$4;
+                            boolean lambda$show$5;
+                            lambda$show$5 = ItemOptions.lambda$show$5(dimView);
+                            return lambda$show$5;
                         }
                     };
                     viewGroup.getViewTreeObserver().addOnPreDrawListener(this.preDrawListener);
@@ -642,7 +689,7 @@ public class ItemOptions {
         return this;
     }
 
-    public static boolean lambda$show$4(View view) {
+    public static boolean lambda$show$5(View view) {
         view.invalidate();
         return true;
     }

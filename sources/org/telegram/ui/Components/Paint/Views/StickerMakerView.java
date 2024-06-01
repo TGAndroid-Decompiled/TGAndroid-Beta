@@ -1089,7 +1089,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             });
         }
         List<TLRPC$TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
-        for (int i2 = 0; i2 <= Math.min(enabledReactionsList.size(), 8); i2++) {
+        for (int i2 = 0; i2 < Math.min(enabledReactionsList.size(), 9); i2++) {
             Emoji.getEmojiDrawable(enabledReactionsList.get(i2).reaction);
         }
     }

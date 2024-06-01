@@ -1346,6 +1346,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
+            RecyclerListView currentListView;
+            int findFirstVisibleItemPosition;
             if (view == ProfileActivity.this.listView) {
                 if (ProfileActivity.this.sharedMediaRow == -1 || !ProfileActivity.this.sharedMediaLayoutAttached) {
                     return;
@@ -1355,31 +1357,27 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 boolean z = false;
                 if (i2 >= 0) {
                     if (isSearchFieldVisible) {
-                        RecyclerListView currentListView = ProfileActivity.this.sharedMediaLayout.getCurrentListView();
+                        RecyclerListView currentListView2 = ProfileActivity.this.sharedMediaLayout.getCurrentListView();
                         iArr[1] = i2;
                         if (top > 0) {
                             iArr[1] = iArr[1] - i2;
                         }
-                        if (currentListView == null || iArr[1] <= 0) {
+                        if (currentListView2 == null || iArr[1] <= 0) {
                             return;
                         }
-                        currentListView.scrollBy(0, iArr[1]);
+                        currentListView2.scrollBy(0, iArr[1]);
                         return;
                     }
                     return;
                 }
-                if (top <= 0) {
-                    RecyclerListView currentListView2 = ProfileActivity.this.sharedMediaLayout.getCurrentListView();
-                    int findFirstVisibleItemPosition = ((LinearLayoutManager) currentListView2.getLayoutManager()).findFirstVisibleItemPosition();
-                    if (findFirstVisibleItemPosition != -1) {
-                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = currentListView2.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-                        int top2 = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() : -1;
-                        int paddingTop = currentListView2.getPaddingTop();
-                        if (top2 != paddingTop || findFirstVisibleItemPosition != 0) {
-                            iArr[1] = findFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
-                            currentListView2.scrollBy(0, i2);
-                            z = true;
-                        }
+                if (top <= 0 && (currentListView = ProfileActivity.this.sharedMediaLayout.getCurrentListView()) != null && (findFirstVisibleItemPosition = ((LinearLayoutManager) currentListView.getLayoutManager()).findFirstVisibleItemPosition()) != -1) {
+                    RecyclerView.ViewHolder findViewHolderForAdapterPosition = currentListView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
+                    int top2 = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() : -1;
+                    int paddingTop = currentListView.getPaddingTop();
+                    if (top2 != paddingTop || findFirstVisibleItemPosition != 0) {
+                        iArr[1] = findFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
+                        currentListView.scrollBy(0, i2);
+                        z = true;
                     }
                 }
                 if (isSearchFieldVisible) {
@@ -3812,9 +3810,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onItemClick$2(TLRPC$User tLRPC$User, boolean z) {
-            List<BaseFragment> fragmentStack = ProfileActivity.this.getParentLayout().getFragmentStack();
-            if (((fragmentStack == null || fragmentStack.size() < 2) ? null : fragmentStack.get(fragmentStack.size() - 2)) instanceof ChatActivity) {
-                ProfileActivity.this.getParentLayout().removeFragmentFromStack(fragmentStack.size() - 2);
+            if (ProfileActivity.this.getParentLayout() != null) {
+                List<BaseFragment> fragmentStack = ProfileActivity.this.getParentLayout().getFragmentStack();
+                if (((fragmentStack == null || fragmentStack.size() < 2) ? null : fragmentStack.get(fragmentStack.size() - 2)) instanceof ChatActivity) {
+                    ProfileActivity.this.getParentLayout().removeFragmentFromStack(fragmentStack.size() - 2);
+                }
             }
             ProfileActivity.this.finishFragment();
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ProfileActivity.this.dialogId), tLRPC$User, ProfileActivity.this.currentChat, Boolean.valueOf(z));
