@@ -8410,6 +8410,7 @@
     <string name="Videos_zero">%1$d videos</string>
     <string name="ViewAction">View</string>
     <string name="ViewAnonymously">View\nAnonymously</string>
+    <string name="ViewChannel">View Channel</string>
     <string name="ViewChannelProfile">View Channel Info &gt;</string>
     <string name="ViewChannelStats">View Channel Stats</string>
     <string name="ViewChatList">View Chat List</string>

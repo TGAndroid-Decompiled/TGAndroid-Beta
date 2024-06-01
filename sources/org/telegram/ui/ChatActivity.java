@@ -27563,21 +27563,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         boolean z2 = false;
         if (tLObject instanceof TLRPC$User) {
             j = ((TLRPC$User) tLObject).id;
-            z = false;
-            z2 = true;
-        } else if (tLObject instanceof TLRPC$Chat) {
-            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
-            j = -tLRPC$Chat.id;
-            z = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
+            z = true;
         } else {
-            j = 0;
+            if (tLObject instanceof TLRPC$Chat) {
+                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
+                j = -tLRPC$Chat.id;
+                z2 = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
+            } else {
+                j = 0;
+            }
             z = false;
         }
         ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
         makeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda315(scrimOptions));
-        if (j != 0 && (z2 || ChatObject.canWriteToChat((TLRPC$Chat) tLObject))) {
-            makeOptions.add(R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
+        if (j != 0) {
+            makeOptions.add(z2 ? R.drawable.msg_channel : R.drawable.msg_discussion, LocaleController.getString(z2 ? R.string.ViewChannel : R.string.SendMessage), new Runnable() {
                 @Override
                 public final void run() {
                     ChatActivity.this.lambda$didLongPressUsername$352(j);
@@ -27592,10 +27593,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
         makeOptions.addGap();
         if (j != 0) {
-            if (z2) {
+            if (z) {
                 i = R.string.ViewProfile;
             } else {
-                i = z ? R.string.ViewChannelProfile : R.string.ViewGroupProfile;
+                i = z2 ? R.string.ViewChannelProfile : R.string.ViewGroupProfile;
             }
             makeOptions.addProfile(tLObject, LocaleController.getString(i), new Runnable() {
                 @Override

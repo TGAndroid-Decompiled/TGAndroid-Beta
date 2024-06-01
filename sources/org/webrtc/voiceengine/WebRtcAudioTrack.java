@@ -101,10 +101,17 @@ public class WebRtcAudioTrack {
 
     private class AudioTrackThread extends Thread {
         private volatile boolean keepAlive;
+        private long lastPlaybackHeadPosition;
+        private long lastTimestamp;
+        private long targetTimeNs;
+        private long writtenFrames;
 
         public AudioTrackThread(String str) {
             super(str);
             this.keepAlive = true;
+            this.writtenFrames = 0L;
+            this.lastPlaybackHeadPosition = 0L;
+            this.lastTimestamp = System.nanoTime();
         }
 
         @Override
@@ -113,6 +120,9 @@ public class WebRtcAudioTrack {
             Logging.d(WebRtcAudioTrack.TAG, "AudioTrackThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioTrack.assertTrue(WebRtcAudioTrack.this.audioTrack.getPlayState() == 3);
             int capacity = WebRtcAudioTrack.this.byteBuffer.capacity();
+            int channelCount = WebRtcAudioTrack.this.audioTrack.getChannelCount() * 2;
+            int sampleRate = WebRtcAudioTrack.this.audioTrack.getSampleRate();
+            this.targetTimeNs = System.nanoTime();
             while (this.keepAlive) {
                 try {
                     WebRtcAudioTrack webRtcAudioTrack = WebRtcAudioTrack.this;
@@ -128,11 +138,24 @@ public class WebRtcAudioTrack {
                         Logging.e(WebRtcAudioTrack.TAG, "AudioTrack.write played invalid number of bytes: " + writeBytes);
                         if (writeBytes < 0) {
                             this.keepAlive = false;
-                            WebRtcAudioTrack webRtcAudioTrack2 = WebRtcAudioTrack.this;
-                            webRtcAudioTrack2.reportWebRtcAudioTrackError("AudioTrack.write failed: " + writeBytes);
+                            WebRtcAudioTrack.this.reportWebRtcAudioTrackError("AudioTrack.write failed: " + writeBytes);
                         }
                     }
                     WebRtcAudioTrack.this.byteBuffer.rewind();
+                    this.writtenFrames += writeBytes / channelCount;
+                    long playbackHeadPosition = ((this.writtenFrames - WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition()) * 1000) / sampleRate;
+                    WebRtcAudioTrack.this.byteBuffer.rewind();
+                    this.targetTimeNs += 10000000;
+                    long nanoTime = this.targetTimeNs - System.nanoTime();
+                    if (nanoTime > 0) {
+                        try {
+                            Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
+                        } catch (InterruptedException e) {
+                            FileLog.e(e);
+                        }
+                    } else {
+                        this.targetTimeNs = System.nanoTime();
+                    }
                 } catch (Throwable unused) {
                     this.keepAlive = false;
                 }
@@ -142,8 +165,8 @@ public class WebRtcAudioTrack {
                 try {
                     WebRtcAudioTrack.this.audioTrack.stop();
                     Logging.d(WebRtcAudioTrack.TAG, "AudioTrack.stop is done.");
-                } catch (Exception e) {
-                    Logging.e(WebRtcAudioTrack.TAG, "AudioTrack.stop failed: " + e.getMessage());
+                } catch (Exception e2) {
+                    Logging.e(WebRtcAudioTrack.TAG, "AudioTrack.stop failed: " + e2.getMessage());
                 }
             }
         }

@@ -927,7 +927,8 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                         editText.removeSpan(emojiSpan);
                     }
                 }
-                editText.replace(intValue2, i, makeEmoji);
+                editText.replace(intValue2, i, "");
+                editText.insert(intValue2, makeEmoji);
             }
             try {
                 performHapticFeedback(3, 1);
