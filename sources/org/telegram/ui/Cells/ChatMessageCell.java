@@ -6954,7 +6954,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @android.annotation.SuppressLint({"Range"})
-    public void drawMessageText(float r42, float r43, android.graphics.Canvas r44, java.util.ArrayList<org.telegram.messenger.MessageObject.TextLayoutBlock> r45, float r46, boolean r47, float r48, boolean r49, boolean r50, boolean r51) {
+    public void drawMessageText(float r43, float r44, android.graphics.Canvas r45, java.util.ArrayList<org.telegram.messenger.MessageObject.TextLayoutBlock> r46, float r47, boolean r48, float r49, boolean r50, boolean r51, boolean r52) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawMessageText(float, float, android.graphics.Canvas, java.util.ArrayList, float, boolean, float, boolean, boolean, boolean):void");
     }
 

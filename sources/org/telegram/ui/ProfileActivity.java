@@ -13805,6 +13805,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     this.onlineTextView[3].setAlpha(1.0f - this.currentExpandAnimatorValue);
                     this.onlineTextView[1].setTranslationX(this.onlineX + this.customPhotoOffset);
                     this.avatarContainer2.invalidate();
+                    ShowDrawable showDrawable = this.showStatusButton;
+                    if (showDrawable != null) {
+                        showDrawable.setAlpha2(1.0f - this.currentExpandAnimatorValue);
+                        return;
+                    }
                     return;
                 }
                 return;
@@ -13814,15 +13819,27 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 simpleTextViewArr3[2].setAlpha(0.0f);
                 this.onlineTextView[3].setAlpha(0.0f);
             }
+            ShowDrawable showDrawable2 = this.showStatusButton;
+            if (showDrawable2 != null) {
+                showDrawable2.setAlpha2(1.0f);
+            }
         } else if (this.hasCustomPhoto) {
             SimpleTextView[] simpleTextViewArr4 = this.onlineTextView;
             if (simpleTextViewArr4[2] != null) {
                 simpleTextViewArr4[2].setAlpha(this.photoDescriptionProgress);
             }
+            ShowDrawable showDrawable3 = this.showStatusButton;
+            if (showDrawable3 != null) {
+                showDrawable3.setAlpha2(1.0f - this.photoDescriptionProgress);
+            }
         } else {
             SimpleTextView[] simpleTextViewArr5 = this.onlineTextView;
             if (simpleTextViewArr5[2] != null) {
                 simpleTextViewArr5[2].setAlpha(0.0f);
+            }
+            ShowDrawable showDrawable4 = this.showStatusButton;
+            if (showDrawable4 != null) {
+                showDrawable4.setAlpha2(1.0f);
             }
         }
     }
@@ -13997,6 +14014,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     public static class ShowDrawable extends Drawable implements SimpleTextView.PressableDrawable {
         private float alpha;
+        private float alpha2;
         public final Paint backgroundPaint;
         private final ButtonBounce bounce;
         private int textColor;
@@ -14016,6 +14034,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             Paint paint = new Paint(1);
             this.backgroundPaint = paint;
             this.alpha = 1.0f;
+            this.alpha2 = 1.0f;
             this.bounce = new ButtonBounce(null) {
                 {
                     ShowDrawable.this = this;
@@ -14070,7 +14089,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public void draw(Canvas canvas) {
-            if (this.alpha <= 0.0f) {
+            float f = this.alpha * this.alpha2;
+            if (f <= 0.0f) {
                 return;
             }
             RectF rectF = AndroidUtilities.rectTmp;
@@ -14079,11 +14099,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             float scale = this.bounce.getScale(0.1f);
             canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
             int alpha = this.backgroundPaint.getAlpha();
-            this.backgroundPaint.setAlpha((int) (alpha * this.alpha));
+            this.backgroundPaint.setAlpha((int) (alpha * f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.backgroundPaint);
             this.backgroundPaint.setAlpha(alpha);
             this.textDrawable.setTextColor(this.textColor);
-            this.textDrawable.setAlpha((int) (this.alpha * 255.0f));
+            this.textDrawable.setAlpha((int) (f * 255.0f));
             this.textDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             this.textDrawable.draw(canvas);
             canvas.restore();
@@ -14092,6 +14112,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public void setAlpha(int i) {
             this.alpha = i / 255.0f;
+            invalidateSelf();
+        }
+
+        public void setAlpha2(float f) {
+            this.alpha2 = f;
             invalidateSelf();
         }
 

@@ -1100,7 +1100,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (this.transitionAnimationPreviewMode) {
             return false;
         }
-        if (this.transitionAnimationInProgress && this.transitionAnimationStartTime < System.currentTimeMillis() - 1500) {
+        if (this.transitionAnimationInProgress && (this.transitionAnimationStartTime < System.currentTimeMillis() - 1500 || this.inPreviewMode)) {
             onAnimationEndCheck(true);
         }
         return this.transitionAnimationInProgress;

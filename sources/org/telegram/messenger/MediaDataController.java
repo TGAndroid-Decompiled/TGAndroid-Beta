@@ -7803,15 +7803,18 @@ public class MediaDataController extends BaseController {
             if (z) {
                 int i2 = 0;
                 while (true) {
-                    if (i2 < arrayList.size()) {
-                        if ((arrayList.get(i2) instanceof TLRPC$TL_messageEntityPre) && AndroidUtilities.intersect1d(matcher.start() - i, matcher.end() - i, arrayList.get(i2).offset, arrayList.get(i2).offset + arrayList.get(i2).length)) {
+                    if (i2 >= arrayList.size()) {
+                        break;
+                    }
+                    TLRPC$MessageEntity tLRPC$MessageEntity = arrayList.get(i2);
+                    if ((tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityPre) || (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityCode)) {
+                        int i3 = tLRPC$MessageEntity.offset;
+                        if (AndroidUtilities.intersect1d(matcher.start() - i, matcher.end() - i, i3, tLRPC$MessageEntity.length + i3)) {
                             z = false;
                             break;
                         }
-                        i2++;
-                    } else {
-                        break;
                     }
+                    i2++;
                 }
             }
             if (z) {
@@ -7820,8 +7823,8 @@ public class MediaDataController extends BaseController {
                 provide.offset = matcher.start() - i;
                 int length = group.length();
                 provide.length = length;
-                int i3 = provide.offset;
-                removeOffset4After(i3, length + i3, arrayList);
+                int i4 = provide.offset;
+                removeOffset4After(i4, length + i4, arrayList);
                 arrayList.add(provide);
             }
             i += (matcher.end() - matcher.start()) - group.length();

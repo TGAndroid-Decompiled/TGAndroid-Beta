@@ -23,6 +23,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RecyclerListView;
 public class BotCommandsMenuContainer extends FrameLayout implements NestedScrollingParent {
     Paint backgroundPaint;
+    private float containerY;
     private ObjectAnimator currentAnimation;
     boolean dismissed;
     private boolean entering;
@@ -72,6 +73,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
                     BotCommandsMenuContainer.this.shadowDrawable.setBounds(-AndroidUtilities.dp(8.0f), i - AndroidUtilities.dp(24.0f), getMeasuredWidth() + AndroidUtilities.dp(8.0f), i);
                     BotCommandsMenuContainer.this.shadowDrawable.draw(canvas);
                 }
+                BotCommandsMenuContainer.this.containerY = dp - AndroidUtilities.dp(16.0f);
                 canvas.drawRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.dp(16.0f), BotCommandsMenuContainer.this.backgroundPaint);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(12.0f), dp - AndroidUtilities.dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(12.0f), dp);
@@ -85,6 +87,10 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
         addView(this.listView);
         updateColors();
         setClipChildren(false);
+    }
+
+    public float clipBottom() {
+        return getMeasuredHeight() - this.containerY;
     }
 
     @Override

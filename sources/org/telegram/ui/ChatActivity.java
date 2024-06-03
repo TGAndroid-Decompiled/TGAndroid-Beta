@@ -2181,7 +2181,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             } else {
                 ChatActivity.this.allowStickersPanel = true;
-                if (ChatActivity.this.suggestEmojiPanel.getVisibility() == 4) {
+                if (ChatActivity.this.suggestEmojiPanel.getVisibility() == 4 && !ChatActivity.this.isInPreviewMode()) {
                     ChatActivity.this.suggestEmojiPanel.setVisibility(0);
                 }
             }
@@ -2270,12 +2270,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.requestAdjustResize(ChatActivity.this.getParentActivity(), ((BaseFragment) ChatActivity.this).classGuid);
             }
             MentionsContainerView mentionsContainerView = ChatActivity.this.mentionContainer;
+            float f = 1.0f;
             if (mentionsContainerView != null) {
-                mentionsContainerView.animate().alpha(ChatActivity.this.chatActivityEnterView.isStickersExpanded() ? 0.0f : 1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+                mentionsContainerView.animate().alpha((ChatActivity.this.chatActivityEnterView.isStickersExpanded() || ChatActivity.this.isInPreviewMode()) ? 0.0f : 1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
             }
             if (ChatActivity.this.suggestEmojiPanel != null) {
                 ChatActivity.this.suggestEmojiPanel.setVisibility(0);
-                ChatActivity.this.suggestEmojiPanel.animate().alpha(ChatActivity.this.chatActivityEnterView.isStickersExpanded() ? 0.0f : 1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).withEndAction(new Runnable() {
+                ChatActivity.this.suggestEmojiPanel.animate().alpha((ChatActivity.this.chatActivityEnterView.isStickersExpanded() || ChatActivity.this.isInPreviewMode()) ? 0.0f : 0.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
                         ChatActivity.ChatActivityEnterViewDelegate.this.lambda$onStickersExpandedChange$3();
@@ -3202,17 +3203,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity chatActivity;
             Cell cell2;
             ChatActivity chatActivity2 = this.chatActivity;
-            boolean z = (chatActivity2 != null && chatActivity2.getMessagesController().isChatNoForwards(this.chatActivity.getCurrentChat())) || !((cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().messageOwner == null || !((ChatMessageCell) this.selectedView).getMessageObject().messageOwner.noforwards);
-            if (!this.isFactCheck && (chatActivity = this.chatActivity) != null && chatActivity.getCurrentEncryptedChat() == null && !this.chatActivity.textSelectionHelper.isDescription && (cell2 = this.selectedView) != 0 && ((ChatMessageCell) cell2).getMessageObject() != null && ((ChatMessageCell) this.selectedView).getMessageObject().type != 23 && !((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() && !((ChatMessageCell) this.selectedView).getMessageObject().isInvoice() && !this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id) && !UserObject.isService(this.chatActivity.dialog_id)) {
-                if (!z) {
-                    return true;
-                }
-                ChatActivityEnterView chatActivityEnterView = this.chatActivity.chatActivityEnterView;
-                if (chatActivityEnterView != null && chatActivityEnterView.getVisibility() == 0) {
-                    return true;
-                }
-            }
-            return false;
+            return !this.isFactCheck && (chatActivity = this.chatActivity) != null && chatActivity.getCurrentEncryptedChat() == null && ((cell2 = this.selectedView) == 0 || !(((ChatMessageCell) cell2).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().type == 23 || ((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() || ((ChatMessageCell) this.selectedView).getMessageObject().isInvoice() || this.chatActivity.textSelectionHelper.isDescription)) && !this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id) && !UserObject.isService(this.chatActivity.dialog_id) && (!((chatActivity2 != null && chatActivity2.getMessagesController().isChatNoForwards(this.chatActivity.getCurrentChat())) || ((cell = this.selectedView) != 0 && ((ChatMessageCell) cell).getMessageObject() != null && ((ChatMessageCell) this.selectedView).getMessageObject().messageOwner != null && ((ChatMessageCell) this.selectedView).getMessageObject().messageOwner.noforwards)) || this.chatActivity.getCurrentChat() == null || ChatObject.canWriteToChat(this.chatActivity.getCurrentChat()));
         }
 
         @Override
@@ -3272,7 +3263,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r44) {
+    public android.view.View createView(final android.content.Context r49) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -13315,7 +13306,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void dispatchDraw(android.graphics.Canvas r31) {
+        public void dispatchDraw(android.graphics.Canvas r33) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -16902,7 +16893,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void setInPreviewMode(boolean z) {
         MessageObject messageObject;
         TLRPC$Message tLRPC$Message;
+        ChatActivityEnterView chatActivityEnterView;
         super.setInPreviewMode(z);
+        int i = 8;
         boolean z2 = false;
         if (this.currentUser != null && this.audioCallIconItem != null) {
             TLRPC$UserFull userFull = getMessagesController().getUserFull(this.currentUser.id);
@@ -16920,9 +16913,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.avatarContainer.setTitleExpand(this.showAudioCallAsIcon);
             this.avatarContainer.setLayoutParams(LayoutHelper.createFrame(-2, -1.0f, 51, z ? this.chatMode == 2 ? 10 : 0 : 56.0f, 0.0f, 40.0f, 0.0f));
         }
-        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
-        if (chatActivityEnterView != null) {
-            chatActivityEnterView.setVisibility(!z ? 0 : 4);
+        ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
+        if (chatActivityEnterView2 != null) {
+            chatActivityEnterView2.setVisibility(!z ? 0 : 4);
+        }
+        SuggestEmojiView suggestEmojiView = this.suggestEmojiPanel;
+        if (suggestEmojiView != null) {
+            if (this.allowStickersPanel && !z && ((chatActivityEnterView = this.chatActivityEnterView) == null || !chatActivityEnterView.isStickersExpanded())) {
+                i = 0;
+            }
+            suggestEmojiView.setVisibility(i);
+        }
+        MentionsContainerView mentionsContainerView = this.mentionContainer;
+        if (mentionsContainerView != null) {
+            mentionsContainerView.animate().alpha((this.chatActivityEnterView.isStickersExpanded() || isInPreviewMode()) ? 0.0f : 1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
         }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
@@ -16939,8 +16943,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         RecyclerListView recyclerListView = this.chatListView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = this.chatListView.getChildAt(i);
+            for (int i2 = 0; i2 < childCount; i2++) {
+                View childAt = this.chatListView.getChildAt(i2);
                 boolean z3 = childAt instanceof ChatMessageCell;
                 if (z3) {
                     messageObject = ((ChatMessageCell) childAt).getMessageObject();
@@ -16949,14 +16953,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null && tLRPC$Message.media_unread && tLRPC$Message.mentioned) {
                     if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                        int i2 = this.newMentionsCount - 1;
-                        this.newMentionsCount = i2;
-                        if (i2 <= 0) {
+                        int i3 = this.newMentionsCount - 1;
+                        this.newMentionsCount = i3;
+                        if (i3 <= 0) {
                             this.newMentionsCount = 0;
                             this.hasAllMentionsLocal = true;
                             showMentionDownButton(false, true);
                         } else {
-                            this.mentiondownButtonCounter.setText(String.format(Locale.US, "%d", Integer.valueOf(i2)));
+                            this.mentiondownButtonCounter.setText(String.format(Locale.US, "%d", Integer.valueOf(i3)));
                         }
                         getMessagesController().markMentionMessageAsRead(messageObject.getId(), ChatObject.isChannel(this.currentChat) ? this.currentChat.id : 0L, this.dialog_id);
                         messageObject.setContentIsRead();
@@ -16985,7 +16989,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         BlurredFrameLayout blurredFrameLayout = this.pinnedMessageView;
         if (blurredFrameLayout != null) {
-            blurredFrameLayout.setEnabled(true ^ isInPreviewMode());
+            blurredFrameLayout.setEnabled(!isInPreviewMode());
         }
     }
 
