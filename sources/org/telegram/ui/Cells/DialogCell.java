@@ -948,7 +948,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     private CharSequence formatArchivedDialogNames() {
         TLRPC$User tLRPC$User;
-        String replace;
+        String removeDiacritics;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         ArrayList<TLRPC$Dialog> dialogs = messagesController.getDialogs(this.currentDialogFolderId);
         this.currentDialogFolderDialogsCount = dialogs.size();
@@ -968,20 +968,20 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     tLRPC$User = null;
                 }
                 if (tLRPC$Chat != null) {
-                    replace = tLRPC$Chat.title.replace('\n', ' ');
+                    removeDiacritics = tLRPC$Chat.title.replace('\n', ' ');
                 } else if (tLRPC$User == null) {
                     continue;
                 } else if (UserObject.isDeleted(tLRPC$User)) {
-                    replace = LocaleController.getString("HiddenName", R.string.HiddenName);
+                    removeDiacritics = LocaleController.getString("HiddenName", R.string.HiddenName);
                 } else {
-                    replace = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' ');
+                    removeDiacritics = AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' '));
                 }
                 if (spannableStringBuilder.length() > 0) {
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
                 int length = spannableStringBuilder.length();
-                int length2 = replace.length() + length;
-                spannableStringBuilder.append((CharSequence) replace);
+                int length2 = removeDiacritics.length() + length;
+                spannableStringBuilder.append((CharSequence) removeDiacritics);
                 if (tLRPC$Dialog.unread_count > 0) {
                     spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold(), 0, Theme.getColor(Theme.key_chats_nameArchived, this.resourcesProvider)), length, length2, 33);
                 }
@@ -1912,32 +1912,32 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         if (this.currentDialogId == clientUserId) {
             if (tLRPC$User != null) {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
+                return AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", ""));
             }
             if (chat != null) {
-                return chat.title.replace("\n", "");
+                return AndroidUtilities.removeDiacritics(chat.title.replace("\n", ""));
             }
             return null;
         } else if (this.message.isOutOwner()) {
             return LocaleController.getString("FromYou", R.string.FromYou);
         } else {
             if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-                return UserObject.getFirstName(user).replace("\n", "");
+                return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", ""));
             }
             MessageObject messageObject3 = this.message;
             if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
                 if (tLRPC$User == null) {
-                    return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
+                    return (chat == null || (str = chat.title) == null) ? "DELETED" : AndroidUtilities.removeDiacritics(str.replace("\n", ""));
                 } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                     if (UserObject.isDeleted(tLRPC$User)) {
                         return LocaleController.getString("HiddenName", R.string.HiddenName);
                     }
-                    return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
+                    return AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", ""));
                 } else {
-                    return UserObject.getFirstName(tLRPC$User).replace("\n", "");
+                    return AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", ""));
                 }
             }
-            return str2;
+            return AndroidUtilities.removeDiacritics(str2);
         }
     }
 

@@ -6900,11 +6900,11 @@ public class MessageObject {
     public static CharSequence peerNameWithIcon(int i, long j, boolean z) {
         if (j >= 0) {
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-            return user != null ? UserObject.getUserName(user) : "";
+            return user != null ? AndroidUtilities.removeDiacritics(UserObject.getUserName(user)) : "";
         }
         TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         if (chat != null) {
-            return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
+            return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) AndroidUtilities.removeDiacritics(chat.title));
         }
         return "";
     }

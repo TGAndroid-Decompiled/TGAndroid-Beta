@@ -985,10 +985,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                             animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_X, layoutContainer.getMeasuredWidth()).setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
                         }
                     } else {
-                        int max3 = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), 50);
+                        int max3 = Math.max((int) ((320.0f / this.containerView.getMeasuredWidth()) * x), 120);
                         if (!shouldOverrideSlideTransition) {
                             long j2 = max3;
                             animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_X, 0.0f).setDuration(j2), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j2));
+                            animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                         }
                     }
                     Animator customSlideTransition2 = baseFragment.getCustomSlideTransition(false, z, x);

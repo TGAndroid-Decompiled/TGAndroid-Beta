@@ -7207,7 +7207,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 Double.isNaN(d);
                 i2 = (int) (d + ceil);
             }
-            dp2 = AndroidUtilities.dp((this.isAvatarVisible ? 48 : 0) + 31);
+            dp2 = AndroidUtilities.dp((needDrawAvatar() ? 48 : 0) + 31);
         } else if (i == 19) {
             return Math.max(messageObject2.textWidth, (int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(52.0f)) - (this.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0)) * 0.5f));
         } else {

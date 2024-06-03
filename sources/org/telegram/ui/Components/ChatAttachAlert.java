@@ -2920,7 +2920,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         if (view instanceof AttachButton) {
             Activity parentActivity = baseFragment.getParentActivity();
-            int intValue = ((Integer) view.getTag()).intValue();
+            int intValue = view.getTag() instanceof Integer ? ((Integer) view.getTag()).intValue() : -1;
             if (intValue == 1) {
                 if (!this.photosEnabled && !this.videosEnabled && checkCanRemoveRestrictionsByBoosts()) {
                     return;

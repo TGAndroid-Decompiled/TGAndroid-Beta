@@ -1829,7 +1829,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 for (int i3 = 0; i3 < captionLayout.textLayoutBlocks.size(); i3++) {
                     MessageObject.TextLayoutBlock textLayoutBlock = captionLayout.textLayoutBlocks.get(i3);
                     float f = i2;
-                    if (f >= textLayoutBlock.textYOffset(captionLayout.textLayoutBlocks) && f <= textLayoutBlock.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock.padTop + textLayoutBlock.height) {
+                    if (f >= textLayoutBlock.textYOffset(captionLayout.textLayoutBlocks) && f <= textLayoutBlock.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock.padTop + textLayoutBlock.height(chatMessageCell.transitionParams)) {
                         layoutBlock.layout = textLayoutBlock.textLayout;
                         layoutBlock.yOffset = textLayoutBlock.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock.padTop;
                         float f2 = -(textLayoutBlock.isRtl() ? ((int) Math.ceil(captionLayout.textXOffset)) - (textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0) : 0);
@@ -1845,7 +1845,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 for (int i4 = 0; i4 < messageObject.textLayoutBlocks.size(); i4++) {
                     MessageObject.TextLayoutBlock textLayoutBlock2 = messageObject.textLayoutBlocks.get(i4);
                     float f3 = i2;
-                    if (f3 >= textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks) && f3 <= textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock2.padTop + textLayoutBlock2.height) {
+                    if (f3 >= textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks) && f3 <= textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock2.padTop + textLayoutBlock2.height(chatMessageCell.transitionParams)) {
                         layoutBlock.layout = textLayoutBlock2.textLayout;
                         layoutBlock.yOffset = textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock2.padTop;
                         if (textLayoutBlock2.quote) {

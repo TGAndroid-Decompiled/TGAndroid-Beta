@@ -253,7 +253,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.switchCameraDrawable = null;
         this.isFrontface = true;
         this.position = new int[2];
-        this.cameraTexture = new int[2];
+        this.cameraTexture = new int[]{Integer.MIN_VALUE, Integer.MIN_VALUE};
         this.oldCameraTexture = new int[1];
         this.cameraTextureAlpha = 1.0f;
         this.previewSize = new org.telegram.messenger.camera.Size[2];
@@ -1825,9 +1825,13 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     EGLSurface eGLSurface = this.eglSurface;
                     egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext);
                 }
-                if (InstantCameraView.this.cameraTexture != null && InstantCameraView.this.cameraTexture[0] != 0) {
+                if (InstantCameraView.this.cameraTexture != null && InstantCameraView.this.cameraTexture[0] != Integer.MIN_VALUE) {
                     GLES20.glDeleteTextures(1, InstantCameraView.this.cameraTexture, 0);
-                    InstantCameraView.this.cameraTexture[0] = 0;
+                    InstantCameraView.this.cameraTexture[0] = Integer.MIN_VALUE;
+                }
+                if (InstantCameraView.this.cameraTexture != null && InstantCameraView.this.cameraTexture[1] != Integer.MIN_VALUE) {
+                    GLES20.glDeleteTextures(1, InstantCameraView.this.cameraTexture, 1);
+                    InstantCameraView.this.cameraTexture[1] = Integer.MIN_VALUE;
                 }
             }
             if (this.eglSurface != null) {
