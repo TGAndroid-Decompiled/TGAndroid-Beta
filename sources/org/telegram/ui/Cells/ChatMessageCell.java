@@ -3184,6 +3184,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     private boolean checkTextSelection(MotionEvent motionEvent) {
+        TextSelectionHelper.ChatListTextSelectionHelper textSelectionHelper;
         int i;
         int dp;
         int i2;
@@ -3191,8 +3192,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int extraTextX;
         int i3;
         MessageObject.GroupedMessages groupedMessages;
-        TextSelectionHelper.ChatListTextSelectionHelper textSelectionHelper = this.delegate.getTextSelectionHelper();
-        if (textSelectionHelper == null) {
+        ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+        if (chatMessageCellDelegate == null || (textSelectionHelper = chatMessageCellDelegate.getTextSelectionHelper()) == null || textSelectionHelper.isMenuEmpty()) {
             return false;
         }
         ArrayList<MessageObject.TextLayoutBlock> arrayList = this.currentMessageObject.textLayoutBlocks;

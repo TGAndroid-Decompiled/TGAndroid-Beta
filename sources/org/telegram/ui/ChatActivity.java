@@ -3198,9 +3198,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         protected boolean canShowQuote() {
-            ChatActivity chatActivity;
             Cell cell;
-            return (this.isFactCheck || (chatActivity = this.chatActivity) == null || chatActivity.getCurrentEncryptedChat() != null || this.chatActivity.textSelectionHelper.isDescription || (cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().type == 23 || ((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() || ((ChatMessageCell) this.selectedView).getMessageObject().isInvoice() || this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id) || UserObject.isService(this.chatActivity.dialog_id)) ? false : true;
+            ChatActivity chatActivity;
+            Cell cell2;
+            ChatActivity chatActivity2 = this.chatActivity;
+            boolean z = (chatActivity2 != null && chatActivity2.getMessagesController().isChatNoForwards(this.chatActivity.getCurrentChat())) || !((cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().messageOwner == null || !((ChatMessageCell) this.selectedView).getMessageObject().messageOwner.noforwards);
+            if (!this.isFactCheck && (chatActivity = this.chatActivity) != null && chatActivity.getCurrentEncryptedChat() == null && !this.chatActivity.textSelectionHelper.isDescription && (cell2 = this.selectedView) != 0 && ((ChatMessageCell) cell2).getMessageObject() != null && ((ChatMessageCell) this.selectedView).getMessageObject().type != 23 && !((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() && !((ChatMessageCell) this.selectedView).getMessageObject().isInvoice() && !this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id) && !UserObject.isService(this.chatActivity.dialog_id)) {
+                if (!z) {
+                    return true;
+                }
+                ChatActivityEnterView chatActivityEnterView = this.chatActivity.chatActivityEnterView;
+                if (chatActivityEnterView != null && chatActivityEnterView.getVisibility() == 0) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override

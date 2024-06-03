@@ -947,6 +947,7 @@ public class BlurringShader {
             return new Drawable() {
                 float alpha = 1.0f;
                 private final Paint dimPaint = new Paint(1);
+                private final android.graphics.Rect rect = new android.graphics.Rect();
 
                 @Override
                 public int getOpacity() {
@@ -991,10 +992,11 @@ public class BlurringShader {
                             drawable.draw(canvas);
                             canvas.drawRect(bounds, paint);
                             canvas.restore();
-                            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-                            getPadding(rect);
+                            getPadding(this.rect);
                             RectF rectF = AndroidUtilities.rectTmp;
-                            rectF.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+                            int i = bounds.left;
+                            android.graphics.Rect rect = this.rect;
+                            rectF.set(i + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
                             this.dimPaint.setColor(1711276032);
                             float f4 = f3;
                             canvas.drawRoundRect(rectF, f4, f4, this.dimPaint);
