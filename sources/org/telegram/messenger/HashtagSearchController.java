@@ -63,8 +63,11 @@ public class HashtagSearchController {
         this.history.clear();
         this.history.ensureCapacity(i);
         for (int i2 = 0; i2 < i; i2++) {
-            SharedPreferences sharedPreferences = this.historyPreferences;
-            this.history.add(sharedPreferences.getString("e_" + i2, ""));
+            String string = this.historyPreferences.getString("e_" + i2, "");
+            if (!string.startsWith("#") && !string.startsWith("$")) {
+                string = "#" + string;
+            }
+            this.history.add(string);
         }
     }
 
@@ -79,20 +82,21 @@ public class HashtagSearchController {
     }
 
     public void putToHistory(String str) {
-        String substring = str.substring(1);
-        int indexOf = this.history.indexOf(substring);
-        if (indexOf != -1) {
-            if (indexOf == 0) {
-                return;
+        if (str.startsWith("#") || str.startsWith("$")) {
+            int indexOf = this.history.indexOf(str);
+            if (indexOf != -1) {
+                if (indexOf == 0) {
+                    return;
+                }
+                this.history.remove(indexOf);
             }
-            this.history.remove(indexOf);
+            this.history.add(0, str);
+            if (this.history.size() >= 100) {
+                ArrayList<String> arrayList = this.history;
+                arrayList.subList(99, arrayList.size()).clear();
+            }
+            saveHistoryToPref();
         }
-        this.history.add(0, substring);
-        if (this.history.size() >= 100) {
-            ArrayList<String> arrayList = this.history;
-            arrayList.subList(99, arrayList.size()).clear();
-        }
-        saveHistoryToPref();
     }
 
     public void clearHistory() {
@@ -131,9 +135,7 @@ public class HashtagSearchController {
     }
 
     public void searchHashtag(String str, final int i, final int i2, final int i3) {
-        final String str2;
         TLRPC$TL_channels_searchPosts tLRPC$TL_channels_searchPosts;
-        String substring;
         final SearchResult searchResult = getSearchResult(i2);
         if (searchResult.lastHashtag == null && str == null) {
             return;
@@ -144,17 +146,8 @@ public class HashtagSearchController {
             } else if (!TextUtils.equals(str, searchResult.lastHashtag)) {
                 searchResult.clear();
             }
-            searchResult.lastHashtag = str;
-            if (str.startsWith("$")) {
-                if (i2 == 2) {
-                    substring = "#" + str.substring(1);
-                } else {
-                    substring = str.substring(1);
-                }
-                str2 = substring;
-            } else {
-                str2 = str;
-            }
+            final String str2 = str;
+            searchResult.lastHashtag = str2;
             if (i2 == 1) {
                 TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal = new TLRPC$TL_messages_searchGlobal();
                 tLRPC$TL_messages_searchGlobal.limit = 30;
@@ -171,14 +164,15 @@ public class HashtagSearchController {
             } else {
                 TLRPC$TL_channels_searchPosts tLRPC$TL_channels_searchPosts2 = new TLRPC$TL_channels_searchPosts();
                 tLRPC$TL_channels_searchPosts2.limit = 30;
-                tLRPC$TL_channels_searchPosts2.hashtag = str.substring(1);
+                tLRPC$TL_channels_searchPosts2.hashtag = str2;
                 tLRPC$TL_channels_searchPosts2.offset_peer = new TLRPC$TL_inputPeerEmpty();
+                tLRPC$TL_channels_searchPosts = tLRPC$TL_channels_searchPosts2;
                 if (searchResult.lastOffsetPeer != null) {
                     tLRPC$TL_channels_searchPosts2.offset_rate = searchResult.lastOffsetRate;
                     tLRPC$TL_channels_searchPosts2.offset_id = searchResult.lastOffsetId;
                     tLRPC$TL_channels_searchPosts2.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(searchResult.lastOffsetPeer);
+                    tLRPC$TL_channels_searchPosts = tLRPC$TL_channels_searchPosts2;
                 }
-                tLRPC$TL_channels_searchPosts = tLRPC$TL_channels_searchPosts2;
             }
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_searchPosts, new RequestDelegate() {
                 @Override

@@ -468,7 +468,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                ReactionsContainerLayout.this.lambda$new$0(i, view, i3);
+                ReactionsContainerLayout.this.lambda$new$0(view, i3);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -494,32 +494,20 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         MediaDataController.getInstance(i2).preloadDefaultReactions();
     }
 
-    public void lambda$new$0(int i, View view, int i2) {
+    public void lambda$new$0(View view, int i) {
         ReactionsContainerDelegate reactionsContainerDelegate = this.delegate;
         if (reactionsContainerDelegate == null || !(view instanceof ReactionHolderView)) {
             return;
         }
         reactionsContainerDelegate.onReactionClicked(this, ((ReactionHolderView) view).currentReaction, false, false);
-        if (i == 5) {
-            try {
-                performHapticFeedback(3, 1);
-            } catch (Exception unused) {
-            }
-        }
     }
 
     public boolean lambda$new$1(int i, View view, int i2) {
-        ReactionsContainerDelegate reactionsContainerDelegate = this.delegate;
-        if (reactionsContainerDelegate == null || !(view instanceof ReactionHolderView)) {
+        ReactionsContainerDelegate reactionsContainerDelegate;
+        if (i == 5 || (reactionsContainerDelegate = this.delegate) == null || !(view instanceof ReactionHolderView)) {
             return false;
         }
         reactionsContainerDelegate.onReactionClicked(this, ((ReactionHolderView) view).currentReaction, true, false);
-        if (i == 5) {
-            try {
-                performHapticFeedback(3, 1);
-            } catch (Exception unused) {
-            }
-        }
         return true;
     }
 
@@ -697,7 +685,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r23) {
+    protected void dispatchDraw(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReactionsContainerLayout.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -815,12 +803,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     if (System.currentTimeMillis() - this.lastReactionSentTime > 300) {
                         this.lastReactionSentTime = System.currentTimeMillis();
                         this.delegate.onReactionClicked(reactionHolderView, reactionHolderView.currentReaction, true, false);
-                        if (this.type == 5) {
-                            try {
-                                performHapticFeedback(3, 1);
-                            } catch (Exception unused) {
-                            }
-                        }
                     }
                 }
             }
@@ -2090,7 +2072,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     this.pressed = true;
                     this.pressedX = motionEvent.getX();
                     this.pressedY = motionEvent.getY();
-                    if (this.sideScale == 1.0f && !this.isLocked && ReactionsContainerLayout.this.type != 3 && ReactionsContainerLayout.this.type != 4) {
+                    if (this.sideScale == 1.0f && !this.isLocked && ReactionsContainerLayout.this.type != 3 && ReactionsContainerLayout.this.type != 4 && ReactionsContainerLayout.this.type != 5) {
                         AndroidUtilities.runOnUIThread(this.longPressRunnable, ViewConfiguration.getLongPressTimeout());
                     }
                 }
@@ -2103,12 +2085,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                         if (currentTimeMillis - reactionsContainerLayout.lastReactionSentTime > 300) {
                             reactionsContainerLayout.lastReactionSentTime = System.currentTimeMillis();
                             ReactionsContainerLayout.this.delegate.onReactionClicked(this, this.currentReaction, ReactionsContainerLayout.this.pressedProgress > 0.8f, false);
-                            if (ReactionsContainerLayout.this.type == 5) {
-                                try {
-                                    performHapticFeedback(3, 1);
-                                } catch (Exception unused) {
-                                }
-                            }
                         }
                     }
                     if (!ReactionsContainerLayout.this.clicked) {

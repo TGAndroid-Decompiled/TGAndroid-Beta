@@ -152,21 +152,23 @@ public class HashtagHistoryView extends FrameLayout {
         if (this.history.isEmpty()) {
             return;
         }
-        int i = 0;
-        while (i < this.history.size()) {
-            i++;
-            arrayList.add(UItem.asButton(i, R.drawable.menu_hashtag, this.history.get(i)));
+        for (int i = 0; i < this.history.size(); i++) {
+            String str = this.history.get(i);
+            if (str.startsWith("#") || str.startsWith("$")) {
+                arrayList.add(UItem.asButton(i + 1, str.startsWith("$") ? R.drawable.menu_cashtag : R.drawable.menu_hashtag, str.substring(1)));
+            }
         }
         arrayList.add(UItem.asButton(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        if (uItem.id == 0) {
+        int i2 = uItem.id;
+        if (i2 == 0) {
             HashtagSearchController.getInstance(this.currentAccount).clearHistory();
             update();
             return;
         }
-        onClick("#" + this.history.get(uItem.id - 1));
+        onClick(this.history.get(i2 - 1));
     }
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -175,12 +177,11 @@ public class HashtagHistoryView extends FrameLayout {
             final String str = this.history.get(i2 - 1);
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
             builder.setTitle(LocaleController.getString("ClearSearchSingleAlertTitle", R.string.ClearSearchSingleAlertTitle));
-            int i3 = R.string.ClearSearchSingleHashtagAlertText;
-            builder.setMessage(LocaleController.formatString(i3, "#" + str));
+            builder.setMessage(LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str));
             builder.setPositiveButton(LocaleController.getString("ClearSearchRemove", R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i4) {
-                    HashtagHistoryView.this.lambda$onLongClick$0(str, dialogInterface, i4);
+                public final void onClick(DialogInterface dialogInterface, int i3) {
+                    HashtagHistoryView.this.lambda$onLongClick$0(str, dialogInterface, i3);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);

@@ -2772,11 +2772,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.chatMode == 7 && !TextUtils.equals(this.searchingHashtag, str)) {
             showMessagesSearchListView(true);
             this.searchingHashtag = str;
-            if (str.startsWith("$")) {
-                this.searchingQuery = this.searchingHashtag.substring(1);
-            } else {
-                this.searchingQuery = this.searchingHashtag;
-            }
+            this.searchingQuery = str;
             clearChatData(true);
             this.startMessageAppearTransitionMs = 0L;
             this.firstMessagesLoaded = false;
@@ -20166,110 +20162,113 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$openHashtagSearch$307(final String str) {
         boolean z;
+        SpannableString spannableString;
         ActionBarMenuItem actionBarMenuItem;
         if (str.isEmpty()) {
             return;
         }
-        HintView2 hintView2 = this.savedMessagesHint;
-        if (hintView2 == null || !hintView2.shown()) {
-            z = false;
-        } else {
-            this.savedMessagesHint.hide();
-            z = true;
-        }
-        HintView2 hintView22 = this.savedMessagesSearchHint;
-        if (hintView22 != null && hintView22.shown()) {
-            this.savedMessagesSearchHint.hide();
-            z = true;
-        }
-        if (z) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatActivity.this.lambda$openHashtagSearch$307(str);
+        if (str.startsWith("#") || str.startsWith("$")) {
+            HintView2 hintView2 = this.savedMessagesHint;
+            if (hintView2 == null || !hintView2.shown()) {
+                z = false;
+            } else {
+                this.savedMessagesHint.hide();
+                z = true;
+            }
+            HintView2 hintView22 = this.savedMessagesSearchHint;
+            if (hintView22 != null && hintView22.shown()) {
+                this.savedMessagesSearchHint.hide();
+                z = true;
+            }
+            if (z) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatActivity.this.lambda$openHashtagSearch$307(str);
+                    }
+                }, 200L);
+                return;
+            }
+            this.searchingHashtag = str;
+            this.searchingQuery = str;
+            if (!this.actionBar.isSearchFieldVisible()) {
+                AndroidUtilities.updateViewVisibilityAnimated(this.avatarContainer, false, 0.95f, true);
+                ActionBarMenuItem actionBarMenuItem2 = this.headerItem;
+                if (actionBarMenuItem2 != null) {
+                    actionBarMenuItem2.setVisibility(8);
                 }
-            }, 200L);
-            return;
-        }
-        this.searchingHashtag = str;
-        if (str.startsWith("$")) {
-            this.searchingQuery = this.searchingHashtag.substring(1);
-        } else {
-            this.searchingQuery = this.searchingHashtag;
-        }
-        if (!this.actionBar.isSearchFieldVisible()) {
-            AndroidUtilities.updateViewVisibilityAnimated(this.avatarContainer, false, 0.95f, true);
-            ActionBarMenuItem actionBarMenuItem2 = this.headerItem;
-            if (actionBarMenuItem2 != null) {
-                actionBarMenuItem2.setVisibility(8);
+                ActionBarMenu.LazyItem lazyItem = this.attachItem;
+                if (lazyItem != null) {
+                    lazyItem.setVisibility(8);
+                }
+                ActionBarMenu.LazyItem lazyItem2 = this.editTextItem;
+                if (lazyItem2 != null) {
+                    lazyItem2.setVisibility(8);
+                }
+                if ((this.threadMessageId == 0 || this.chatMode == 3) && (actionBarMenuItem = this.searchItem) != null) {
+                    actionBarMenuItem.setVisibility(0);
+                }
+                ActionBarMenuItem actionBarMenuItem3 = this.searchIconItem;
+                if (actionBarMenuItem3 != null && this.showSearchAsIcon) {
+                    actionBarMenuItem3.setVisibility(8);
+                }
+                ActionBarMenu.LazyItem lazyItem3 = this.audioCallIconItem;
+                if (lazyItem3 != null && this.showAudioCallAsIcon) {
+                    lazyItem3.setVisibility(8);
+                }
+                this.searchItemVisible = true;
+                updateSearchButtons(0, 0, -1);
+                updateBottomOverlay();
             }
-            ActionBarMenu.LazyItem lazyItem = this.attachItem;
-            if (lazyItem != null) {
-                lazyItem.setVisibility(8);
+            SearchTagsList searchTagsList = this.actionBarSearchTags;
+            if (searchTagsList != null && searchTagsList.shown()) {
+                this.actionBarSearchTags.show(false);
             }
-            ActionBarMenu.LazyItem lazyItem2 = this.editTextItem;
-            if (lazyItem2 != null) {
-                lazyItem2.setVisibility(8);
+            ImageView imageView = this.searchUserButton;
+            if (imageView != null) {
+                imageView.setVisibility(8);
             }
-            if ((this.threadMessageId == 0 || this.chatMode == 3) && (actionBarMenuItem = this.searchItem) != null) {
-                actionBarMenuItem.setVisibility(0);
+            if (ChatObject.isChannelAndNotMegaGroup(this.currentChat) && ChatObject.isPublic(this.currentChat) && this.searchingHashtag != null) {
+                this.defaultSearchPage = 2;
+            } else {
+                this.defaultSearchPage = 0;
             }
-            ActionBarMenuItem actionBarMenuItem3 = this.searchIconItem;
-            if (actionBarMenuItem3 != null && this.showSearchAsIcon) {
-                actionBarMenuItem3.setVisibility(8);
+            this.openSearchKeyboard = false;
+            ActionBarMenuItem actionBarMenuItem4 = this.searchItem;
+            if (actionBarMenuItem4 != null) {
+                this.preventReopenSearchWithText = true;
+                actionBarMenuItem4.openSearch(false);
+                this.preventReopenSearchWithText = false;
             }
-            ActionBarMenu.LazyItem lazyItem3 = this.audioCallIconItem;
-            if (lazyItem3 != null && this.showAudioCallAsIcon) {
-                lazyItem3.setVisibility(8);
+            if (this.searchItem != null) {
+                if (str.startsWith("$")) {
+                    spannableString = new SpannableString("$");
+                } else {
+                    spannableString = new SpannableString("#");
+                }
+                spannableString.setSpan(new ForegroundColorSpan(getThemedColor(Theme.key_windowBackgroundWhiteGrayText)), 0, 1, 33);
+                this.searchItem.setSearchFieldCaption(spannableString);
+                this.searchItem.setSearchFieldText(str.substring(1), false);
+                this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.SearchHashtagsHint));
             }
-            this.searchItemVisible = true;
-            updateSearchButtons(0, 0, -1);
-            updateBottomOverlay();
-        }
-        SearchTagsList searchTagsList = this.actionBarSearchTags;
-        if (searchTagsList != null && searchTagsList.shown()) {
-            this.actionBarSearchTags.show(false);
-        }
-        ImageView imageView = this.searchUserButton;
-        if (imageView != null) {
-            imageView.setVisibility(8);
-        }
-        if (ChatObject.isChannelAndNotMegaGroup(this.currentChat) && ChatObject.isPublic(this.currentChat) && this.searchingHashtag != null) {
-            this.defaultSearchPage = 2;
-        } else {
-            this.defaultSearchPage = 0;
-        }
-        this.openSearchKeyboard = false;
-        ActionBarMenuItem actionBarMenuItem4 = this.searchItem;
-        if (actionBarMenuItem4 != null) {
-            this.preventReopenSearchWithText = true;
-            actionBarMenuItem4.openSearch(false);
-            this.preventReopenSearchWithText = false;
-        }
-        if (this.searchItem != null) {
-            SpannableString spannableString = new SpannableString("#");
-            spannableString.setSpan(new ForegroundColorSpan(getThemedColor(Theme.key_windowBackgroundWhiteGrayText)), 0, 1, 33);
-            this.searchItem.setSearchFieldCaption(spannableString);
-            this.searchItem.setSearchFieldText(str.substring(1), false);
-            this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.SearchHashtagsHint));
-        }
-        getMediaDataController().searchMessagesInChat(this.searchingQuery, this.dialog_id, this.mergeDialogId, this.classGuid, 0, this.threadMessageId, false, this.searchingUserMessages, this.searchingChatMessages, false, this.searchingReaction);
-        updatePinnedMessageView(true);
-        this.hashtagSearchEmptyView.showProgress(true);
-        showMessagesSearchListView(true);
-        ChatSearchTabs chatSearchTabs = this.hashtagSearchTabs;
-        if (chatSearchTabs != null) {
-            chatSearchTabs.show(true);
-            this.messagesSearchListContainer.setPadding(0, this.hashtagSearchTabs.getLayoutParams().height, 0, 0);
-            updateSearchListEmptyView();
-        }
-        HashtagSearchController.getInstance(this.currentAccount).clearSearchResults();
-        HashtagSearchController.getInstance(this.currentAccount).putToHistory(this.searchingHashtag);
-        this.hashtagHistoryView.update();
-        View currentView = this.searchViewPager.getCurrentView();
-        HashtagSearchController.getInstance(this.currentAccount).clearSearchResults();
-        if (currentView instanceof ChatActivityContainer) {
-            ((ChatActivityContainer) currentView).chatActivity.updateSearchingHashtag(this.searchingHashtag);
+            getMediaDataController().searchMessagesInChat(this.searchingQuery, this.dialog_id, this.mergeDialogId, this.classGuid, 0, this.threadMessageId, false, this.searchingUserMessages, this.searchingChatMessages, false, this.searchingReaction);
+            updatePinnedMessageView(true);
+            this.hashtagSearchEmptyView.showProgress(true);
+            showMessagesSearchListView(true);
+            ChatSearchTabs chatSearchTabs = this.hashtagSearchTabs;
+            if (chatSearchTabs != null) {
+                chatSearchTabs.show(true);
+                this.messagesSearchListContainer.setPadding(0, this.hashtagSearchTabs.getLayoutParams().height, 0, 0);
+                updateSearchListEmptyView();
+            }
+            HashtagSearchController.getInstance(this.currentAccount).clearSearchResults();
+            HashtagSearchController.getInstance(this.currentAccount).putToHistory(this.searchingHashtag);
+            this.hashtagHistoryView.update();
+            View currentView = this.searchViewPager.getCurrentView();
+            HashtagSearchController.getInstance(this.currentAccount).clearSearchResults();
+            if (currentView instanceof ChatActivityContainer) {
+                ((ChatActivityContainer) currentView).chatActivity.updateSearchingHashtag(this.searchingHashtag);
+            }
         }
     }
 
@@ -22841,10 +22840,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (TextUtils.isEmpty(ChatActivity.this.searchingQuery)) {
                     return;
                 }
-                ChatActivity chatActivity2 = ChatActivity.this;
-                chatActivity2.searchingHashtag = "#" + ChatActivity.this.searchingQuery;
-                ChatActivity chatActivity3 = ChatActivity.this;
-                chatActivity3.searchingQuery = chatActivity3.searchingHashtag;
+                if (ChatActivity.this.searchingHashtag.startsWith("$")) {
+                    ChatActivity chatActivity2 = ChatActivity.this;
+                    chatActivity2.searchingHashtag = "$" + ChatActivity.this.searchingQuery;
+                } else {
+                    ChatActivity chatActivity3 = ChatActivity.this;
+                    chatActivity3.searchingHashtag = "#" + ChatActivity.this.searchingQuery;
+                }
+                ChatActivity chatActivity4 = ChatActivity.this;
+                chatActivity4.searchingQuery = chatActivity4.searchingHashtag;
                 HashtagSearchController.getInstance(((BaseFragment) ChatActivity.this).currentAccount).putToHistory(ChatActivity.this.searchingHashtag);
                 ChatActivity.this.hashtagHistoryView.update();
                 View currentView = ChatActivity.this.searchViewPager.getCurrentView();

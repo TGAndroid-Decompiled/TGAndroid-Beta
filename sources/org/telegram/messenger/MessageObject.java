@@ -4128,9 +4128,12 @@ public class MessageObject {
                 dp -= AndroidUtilities.dp(52.0f);
             }
             if (needDrawShareButton() && (this.isSaved || !isOutOwner())) {
-                dp -= AndroidUtilities.dp((this.isSaved && isOutOwner()) ? 40.0f : 10.0f);
+                dp -= AndroidUtilities.dp((this.isSaved && isOutOwner()) ? 40.0f : 14.0f);
             }
-            i = getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame ? dp - AndroidUtilities.dp(10.0f) : dp;
+            i = dp;
+            if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame) {
+                i -= AndroidUtilities.dp(10.0f);
+            }
         }
         int i2 = this.emojiOnlyCount;
         if (i2 >= 1) {
