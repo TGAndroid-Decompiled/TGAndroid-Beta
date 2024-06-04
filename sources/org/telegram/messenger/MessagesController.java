@@ -9144,10 +9144,10 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         String str = tLRPC$User.first_name;
         if (str != null && str.length() > 0) {
-            return tLRPC$User.first_name;
+            return AndroidUtilities.removeDiacritics(tLRPC$User.first_name);
         }
         String str2 = tLRPC$User.last_name;
-        return (str2 == null || str2.length() <= 0) ? "" : tLRPC$User.last_name;
+        return (str2 == null || str2.length() <= 0) ? "" : AndroidUtilities.removeDiacritics(tLRPC$User.last_name);
     }
 
     private void updatePrintingStrings() {

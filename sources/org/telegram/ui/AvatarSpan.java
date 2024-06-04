@@ -9,6 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 public class AvatarSpan extends ReplacementSpan {
     private final AvatarDrawable avatarDrawable;
@@ -17,6 +18,7 @@ public class AvatarSpan extends ReplacementSpan {
     private View parent;
     private final View.OnAttachStateChangeListener parentAttachListener;
     private final Paint shadowPaint;
+    private int shadowPaintAlpha;
     private float sz;
     private float translateX;
     private float translateY;
@@ -37,6 +39,7 @@ public class AvatarSpan extends ReplacementSpan {
                 AvatarSpan.this.imageReceiver.onDetachedFromWindow();
             }
         };
+        this.shadowPaintAlpha = 255;
         this.currentAccount = i;
         this.imageReceiver = new ImageReceiver(view);
         this.avatarDrawable = new AvatarDrawable();
@@ -100,9 +103,17 @@ public class AvatarSpan extends ReplacementSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        if (this.shadowPaintAlpha != paint.getAlpha()) {
+            Paint paint2 = this.shadowPaint;
+            int alpha = paint.getAlpha();
+            this.shadowPaintAlpha = alpha;
+            paint2.setAlpha(alpha);
+            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(AndroidUtilities.DARK_STATUS_BAR_OVERLAY, this.shadowPaintAlpha / 255.0f));
+        }
         float f2 = (i3 + i5) / 2.0f;
         canvas.drawCircle(this.translateX + f + (AndroidUtilities.dp(this.sz) / 2.0f), this.translateY + f2, AndroidUtilities.dp(this.sz) / 2.0f, this.shadowPaint);
         this.imageReceiver.setImageCoords(this.translateX + f, (this.translateY + f2) - (AndroidUtilities.dp(this.sz) / 2.0f), AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
+        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
         this.imageReceiver.draw(canvas);
     }
 

@@ -3800,10 +3800,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     animatorSet.playTogether(ObjectAnimator.ofFloat(attachAlertLayout6, property, fArr), ObjectAnimator.ofFloat(this.currentAttachLayout, this.ATTACH_ALERT_LAYOUT_TRANSLATION, 0.0f, 1.0f), ObjectAnimator.ofFloat(actionBar, View.ALPHA, actionBar.getAlpha(), 0.0f));
                     animatorSet.setDuration(180L);
                     animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                    animatorSet.addListener(new AnonymousClass17(runnable));
+                    animatorSet.addListener(new AnonymousClass17(firstOffset, runnable));
                     this.viewChangeAnimator = animatorSet;
-                    animatorSet.start();
                     this.ATTACH_ALERT_LAYOUT_TRANSLATION.set(this.currentAttachLayout, Float.valueOf(0.0f));
+                    animatorSet.start();
                     return;
                 }
                 attachAlertLayout5.setAlpha(0.0f);
@@ -3876,15 +3876,21 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public class AnonymousClass17 extends AnimatorListenerAdapter {
         final Runnable val$onEnd;
+        final int val$t;
 
-        AnonymousClass17(Runnable runnable) {
+        AnonymousClass17(int i, Runnable runnable) {
             ChatAttachAlert.this = r1;
+            this.val$t = i;
             this.val$onEnd = runnable;
         }
 
         @Override
         public void onAnimationEnd(Animator animator) {
             ChatAttachAlert.this.currentAttachLayout.setAlpha(0.0f);
+            ChatAttachAlert.this.currentAttachLayout.setTranslationY(AndroidUtilities.dp(78.0f) + this.val$t);
+            ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
+            chatAttachAlert.ATTACH_ALERT_LAYOUT_TRANSLATION.set(chatAttachAlert.currentAttachLayout, Float.valueOf(1.0f));
+            ChatAttachAlert.this.actionBar.setAlpha(0.0f);
             SpringAnimation springAnimation = new SpringAnimation(ChatAttachAlert.this.nextAttachLayout, DynamicAnimation.TRANSLATION_Y, 0.0f);
             springAnimation.getSpring().setDampingRatio(0.75f);
             springAnimation.getSpring().setStiffness(500.0f);
@@ -3910,6 +3916,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         public void lambda$onAnimationEnd$1(Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+            ChatAttachAlert.this.nextAttachLayout.setTranslationY(0.0f);
+            ChatAttachAlert.this.nextAttachLayout.onContainerTranslationUpdated(ChatAttachAlert.this.currentPanTranslationY);
+            ((BottomSheet) ChatAttachAlert.this).containerView.invalidate();
             runnable.run();
             ChatAttachAlert.this.updateSelectedPosition(0);
         }
@@ -5245,13 +5254,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         this.quickRepliesButton = i12;
                     }
                     int i13 = this.buttonsCount;
-                    int i14 = i13 + 1;
-                    this.buttonsCount = i14;
+                    this.buttonsCount = i13 + 1;
                     this.musicButton = i13;
-                    if (currentUser != null && currentUser.bot) {
-                        this.buttonsCount = i14 + 1;
-                        this.contactButton = i14;
-                    }
                 }
             }
             super.notifyDataSetChanged();

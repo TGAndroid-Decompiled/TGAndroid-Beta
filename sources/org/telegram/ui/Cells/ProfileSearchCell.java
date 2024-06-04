@@ -254,7 +254,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         TLRPC$UserStatus tLRPC$UserStatus;
         int dp;
         String str2;
-        String userName;
+        String removeDiacritics;
         this.drawNameLock = false;
         this.drawCheck = false;
         if (this.encryptedChat != null) {
@@ -324,12 +324,12 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (str3 == null) {
             TLRPC$Chat tLRPC$Chat2 = this.chat;
             if (tLRPC$Chat2 != null) {
-                userName = tLRPC$Chat2.title;
+                removeDiacritics = AndroidUtilities.removeDiacritics(tLRPC$Chat2.title);
             } else {
                 TLRPC$User tLRPC$User2 = this.user;
-                userName = tLRPC$User2 != null ? UserObject.getUserName(tLRPC$User2) : "";
+                removeDiacritics = tLRPC$User2 != null ? AndroidUtilities.removeDiacritics(UserObject.getUserName(tLRPC$User2)) : "";
             }
-            str3 = userName.replace('\n', ' ');
+            str3 = removeDiacritics.replace('\n', ' ');
         }
         if (str3.length() == 0) {
             TLRPC$User tLRPC$User3 = this.user;

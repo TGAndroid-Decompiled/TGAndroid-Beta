@@ -467,7 +467,6 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         TLRPC$Chat tLRPC$Chat;
         TLRPC$FileLocation tLRPC$FileLocation;
         String str;
-        int i2;
         TLRPC$UserStatus tLRPC$UserStatus;
         TextView textView;
         char c;
@@ -506,9 +505,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 str = null;
             } else {
                 if (tLRPC$User != null) {
-                    str = UserObject.getUserName(tLRPC$User);
+                    str = AndroidUtilities.removeDiacritics(UserObject.getUserName(tLRPC$User));
                 } else {
-                    str = tLRPC$Chat.title;
+                    str = AndroidUtilities.removeDiacritics(tLRPC$Chat == null ? "" : tLRPC$Chat.title);
                 }
                 if (!str.equals(this.lastName)) {
                     z = true;
@@ -671,12 +670,12 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 if (str == null) {
                     str = UserObject.getUserName(tLRPC$User);
                 }
-                this.lastName = str;
+                this.lastName = AndroidUtilities.removeDiacritics(str);
             } else if (tLRPC$Chat != null) {
                 if (str == null) {
                     str = tLRPC$Chat.title;
                 }
-                this.lastName = str;
+                this.lastName = AndroidUtilities.removeDiacritics(str);
             } else {
                 this.lastName = "";
             }
@@ -720,10 +719,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             }
             this.nameTextView.setRightDrawableTopPadding(-AndroidUtilities.dp(0.5f));
-            i2 = 0;
         } else {
             this.nameTextView.setRightDrawable((Drawable) null);
-            i2 = 0;
             this.nameTextView.setRightDrawableTopPadding(0);
         }
         if (this.currentStatus != null) {
@@ -746,11 +743,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             }
         }
         if ((this.imageView.getVisibility() == 0 && this.currentDrawable == 0) || (this.imageView.getVisibility() == 8 && this.currentDrawable != 0)) {
-            ImageView imageView = this.imageView;
-            if (this.currentDrawable == 0) {
-                i2 = 8;
-            }
-            imageView.setVisibility(i2);
+            this.imageView.setVisibility(this.currentDrawable == 0 ? 8 : 0);
             this.imageView.setImageResource(this.currentDrawable);
         }
         this.lastAvatar = tLRPC$FileLocation;

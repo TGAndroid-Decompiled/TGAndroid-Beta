@@ -2466,6 +2466,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.loadingPinnedMessages = new SparseArray<>();
         this.currentPinnedMessageIndex = new int[1];
         this.dateObjectsStableIds = new SparseIntArray();
+        this.allowStickersPanel = true;
         this.allowContextBotPanelSecond = true;
         this.paused = true;
         this.firstOpen = true;
@@ -9071,9 +9072,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             float max2 = max + Math.max(-max, this.topChatPanelViewOffset);
             BlurredFrameLayout blurredFrameLayout3 = this.pinnedMessageView;
             float max3 = (blurredFrameLayout3 == null || blurredFrameLayout3.getVisibility() != 0) ? 0.0f : Math.max(0.0f, AndroidUtilities.dp(48.0f) + this.pinnedMessageEnterOffset);
-            if (isThreadChat() && (!this.isTopic || pinnedOnlyStarterMessage())) {
-                max3 = 0.0f;
-            }
             if (this.actionBarSearchTags != null) {
                 max3 = Math.max(max3, searchTagsList.getCurrentHeight());
             }
@@ -13908,9 +13906,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             } else if (UserObject.isUserSelf(tLRPC$User)) {
                 this.avatarContainer.setTitle(LocaleController.getString(R.string.MyNotes));
             } else if (tLRPC$User != null) {
-                this.avatarContainer.setTitle(UserObject.getUserName(tLRPC$User));
+                this.avatarContainer.setTitle(AndroidUtilities.removeDiacritics(UserObject.getUserName(tLRPC$User)));
             } else if (chat != null) {
-                this.avatarContainer.setTitle(chat.title);
+                this.avatarContainer.setTitle(AndroidUtilities.removeDiacritics(chat.title));
             } else {
                 this.avatarContainer.setTitle("");
             }
@@ -13943,7 +13941,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             } else {
                 TLRPC$Chat tLRPC$Chat = this.currentChat;
                 if (tLRPC$Chat != null) {
-                    this.avatarContainer.setTitle(tLRPC$Chat.title, tLRPC$Chat.scam, tLRPC$Chat.fake, tLRPC$Chat.verified, false, tLRPC$Chat.emoji_status, z);
+                    ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
+                    String removeDiacritics = AndroidUtilities.removeDiacritics(tLRPC$Chat.title);
+                    TLRPC$Chat tLRPC$Chat2 = this.currentChat;
+                    chatAvatarContainer.setTitle(removeDiacritics, tLRPC$Chat2.scam, tLRPC$Chat2.fake, tLRPC$Chat2.verified, false, tLRPC$Chat2.emoji_status, z);
                 } else {
                     TLRPC$User tLRPC$User2 = this.currentUser;
                     if (tLRPC$User2 != null) {
@@ -13951,21 +13952,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             this.avatarContainer.setTitle(LocaleController.getString("SavedMessages", R.string.SavedMessages));
                         } else if (!MessagesController.isSupportUser(tLRPC$User2) && getContactsController().contactsDict.get(Long.valueOf(this.currentUser.id)) == null && (getContactsController().contactsDict.size() != 0 || !getContactsController().isLoadingContacts())) {
                             if (!TextUtils.isEmpty(this.currentUser.phone)) {
-                                ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
+                                ChatAvatarContainer chatAvatarContainer2 = this.avatarContainer;
                                 String format = PhoneFormat.getInstance().format("+" + this.currentUser.phone);
                                 TLRPC$User tLRPC$User3 = this.currentUser;
-                                chatAvatarContainer.setTitle(format, tLRPC$User3.scam, tLRPC$User3.fake, tLRPC$User3.verified, getMessagesController().isPremiumUser(this.currentUser), this.currentUser.emoji_status, z);
+                                chatAvatarContainer2.setTitle(format, tLRPC$User3.scam, tLRPC$User3.fake, tLRPC$User3.verified, getMessagesController().isPremiumUser(this.currentUser), this.currentUser.emoji_status, z);
                             } else {
-                                ChatAvatarContainer chatAvatarContainer2 = this.avatarContainer;
-                                String userName = UserObject.getUserName(this.currentUser);
+                                ChatAvatarContainer chatAvatarContainer3 = this.avatarContainer;
+                                String removeDiacritics2 = AndroidUtilities.removeDiacritics(UserObject.getUserName(this.currentUser));
                                 TLRPC$User tLRPC$User4 = this.currentUser;
-                                chatAvatarContainer2.setTitle(userName, tLRPC$User4.scam, tLRPC$User4.fake, tLRPC$User4.verified, getMessagesController().isPremiumUser(this.currentUser), this.currentUser.emoji_status, z);
+                                chatAvatarContainer3.setTitle(removeDiacritics2, tLRPC$User4.scam, tLRPC$User4.fake, tLRPC$User4.verified, getMessagesController().isPremiumUser(this.currentUser), this.currentUser.emoji_status, z);
                             }
                         } else {
-                            ChatAvatarContainer chatAvatarContainer3 = this.avatarContainer;
-                            String userName2 = UserObject.getUserName(this.currentUser);
+                            ChatAvatarContainer chatAvatarContainer4 = this.avatarContainer;
+                            String removeDiacritics3 = AndroidUtilities.removeDiacritics(UserObject.getUserName(this.currentUser));
                             TLRPC$User tLRPC$User5 = this.currentUser;
-                            chatAvatarContainer3.setTitle(userName2, tLRPC$User5.scam, tLRPC$User5.fake, tLRPC$User5.verified, getMessagesController().isPremiumUser(this.currentUser), this.currentUser.emoji_status, z);
+                            chatAvatarContainer4.setTitle(removeDiacritics3, tLRPC$User5.scam, tLRPC$User5.fake, tLRPC$User5.verified, getMessagesController().isPremiumUser(this.currentUser), this.currentUser.emoji_status, z);
                         }
                     }
                 }

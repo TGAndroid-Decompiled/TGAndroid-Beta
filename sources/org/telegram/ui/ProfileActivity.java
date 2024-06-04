@@ -6560,6 +6560,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void onWriteButtonClick() {
+        INavigationLayout iNavigationLayout;
         if (this.userId != 0) {
             boolean z = true;
             if (this.imageUpdater != null) {
@@ -6594,7 +6595,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     return;
                 }
                 return;
-            } else if (this.playProfileAnimation != 0 && (this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
+            } else if (this.playProfileAnimation != 0 && (iNavigationLayout = this.parentLayout) != null && iNavigationLayout.getFragmentStack() != null && this.parentLayout.getFragmentStack().size() >= 2 && (this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
                 finishFragment();
                 return;
             } else {
