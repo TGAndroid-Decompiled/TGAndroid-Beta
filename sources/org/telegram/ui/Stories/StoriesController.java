@@ -88,11 +88,14 @@ import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$messages_Chats;
+import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$StoryView;
 import org.telegram.tgnet.tl.TL_stories$StoryViews;
 import org.telegram.tgnet.tl.TL_stories$StoryViewsList;
+import org.telegram.tgnet.tl.TL_stories$TL_foundStories;
+import org.telegram.tgnet.tl.TL_stories$TL_foundStory;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
 import org.telegram.tgnet.tl.TL_stories$TL_peerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
@@ -109,6 +112,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesByID;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_incrementStoryViews;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_peerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_readStories;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_searchPosts;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_sendReaction;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_stories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_togglePeerStoriesHidden;
@@ -2604,11 +2608,160 @@ public class StoriesController {
         }
     }
 
+    public static class SearchStoriesList extends StoriesList {
+        private int count;
+        private ArrayList<ArrayList<Integer>> fakeDays;
+        private String last_offset;
+        private boolean loading;
+        public final String query;
+        public final TL_stories$MediaArea queryArea;
+        private int reqId;
+
+        @Override
+        protected void invalidateCache() {
+        }
+
+        @Override
+        public boolean isOnlyCache() {
+            return false;
+        }
+
+        @Override
+        protected boolean markAsRead(int i) {
+            return false;
+        }
+
+        @Override
+        protected void preloadCache() {
+        }
+
+        @Override
+        protected void saveCache() {
+        }
+
+        public SearchStoriesList(int i, String str) {
+            super(i, 0L, 3, null, null);
+            this.fakeDays = new ArrayList<>();
+            this.last_offset = "";
+            this.query = str;
+            this.queryArea = null;
+        }
+
+        public SearchStoriesList(int i, TL_stories$MediaArea tL_stories$MediaArea) {
+            super(i, 0L, 3, null, null);
+            this.fakeDays = new ArrayList<>();
+            this.last_offset = "";
+            this.query = null;
+            this.queryArea = tL_stories$MediaArea;
+        }
+
+        public void cancel() {
+            if (this.reqId != 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
+                this.reqId = 0;
+            }
+        }
+
+        @Override
+        public boolean load(boolean z, int i, List<Integer> list) {
+            if (this.loading || this.last_offset == null) {
+                return false;
+            }
+            TL_stories$TL_stories_searchPosts tL_stories$TL_stories_searchPosts = new TL_stories$TL_stories_searchPosts();
+            tL_stories$TL_stories_searchPosts.offset = this.last_offset;
+            tL_stories$TL_stories_searchPosts.limit = i;
+            String str = this.query;
+            if (str != null) {
+                tL_stories$TL_stories_searchPosts.flags |= 1;
+                tL_stories$TL_stories_searchPosts.hashtag = str;
+            }
+            TL_stories$MediaArea tL_stories$MediaArea = this.queryArea;
+            if (tL_stories$MediaArea != null) {
+                tL_stories$TL_stories_searchPosts.flags |= 2;
+                tL_stories$TL_stories_searchPosts.area = tL_stories$MediaArea;
+            }
+            this.loading = true;
+            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_searchPosts, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    StoriesController.SearchStoriesList.this.lambda$load$1(tLObject, tLRPC$TL_error);
+                }
+            });
+            return true;
+        }
+
+        public void lambda$load$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoriesController.SearchStoriesList.this.lambda$load$0(tLObject);
+                }
+            });
+        }
+
+        public void lambda$load$0(TLObject tLObject) {
+            this.reqId = 0;
+            if (tLObject instanceof TL_stories$TL_foundStories) {
+                TL_stories$TL_foundStories tL_stories$TL_foundStories = (TL_stories$TL_foundStories) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_foundStories.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(tL_stories$TL_foundStories.chats, false);
+                Iterator<TL_stories$TL_foundStory> it = tL_stories$TL_foundStories.stories.iterator();
+                while (it.hasNext()) {
+                    TL_stories$TL_foundStory next = it.next();
+                    next.storyItem.dialogId = DialogObject.getPeerDialogId(next.peer);
+                    next.storyItem.messageId = this.messageObjects.size();
+                    MessageObject messageObject = new MessageObject(this.currentAccount, next.storyItem);
+                    messageObject.generateThumbs(false);
+                    ArrayList<Integer> arrayList = new ArrayList<>();
+                    arrayList.add(Integer.valueOf(this.messageObjects.size()));
+                    this.fakeDays.add(arrayList);
+                    this.messageObjects.add(messageObject);
+                }
+                this.count = Math.max(this.messageObjects.size(), tL_stories$TL_foundStories.count);
+                if (tL_stories$TL_foundStories.stories.isEmpty()) {
+                    this.count = this.messageObjects.size();
+                }
+                this.last_offset = (this.messageObjects.size() >= tL_stories$TL_foundStories.count || tL_stories$TL_foundStories.stories.isEmpty()) ? null : tL_stories$TL_foundStories.next_offset;
+                this.loading = false;
+                AndroidUtilities.cancelRunOnUIThread(((StoriesList) this).notify);
+                AndroidUtilities.runOnUIThread(((StoriesList) this).notify);
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return this.count;
+        }
+
+        @Override
+        public int getLoadedCount() {
+            return this.messageObjects.size();
+        }
+
+        @Override
+        public boolean isLoading() {
+            return this.loading;
+        }
+
+        @Override
+        protected ArrayList<ArrayList<Integer>> getDays() {
+            return this.fakeDays;
+        }
+
+        @Override
+        public MessageObject findMessageObject(int i) {
+            if (i < 0 || i >= this.messageObjects.size()) {
+                return null;
+            }
+            return this.messageObjects.get(i);
+        }
+    }
+
     public static class StoriesList {
         private static HashMap<Integer, Long> lastLoadTime;
         private final SortedSet<Integer> cachedObjects;
         public final int currentAccount;
-        private Runnable destroyRunnable;
+        private final Runnable destroyRunnable;
         public final long dialogId;
         private boolean done;
         private boolean error;
@@ -2649,16 +2802,21 @@ public class StoriesController {
             int i = this.maxLinkId;
             this.maxLinkId = i + 1;
             this.links.add(Integer.valueOf(i));
-            AndroidUtilities.cancelRunOnUIThread(this.destroyRunnable);
+            Runnable runnable = this.destroyRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+            }
             return i;
         }
 
         public void unlink(int i) {
+            Runnable runnable;
             this.links.remove(Integer.valueOf(i));
-            if (this.links.isEmpty()) {
-                AndroidUtilities.cancelRunOnUIThread(this.destroyRunnable);
-                AndroidUtilities.runOnUIThread(this.destroyRunnable, 300000L);
+            if (!this.links.isEmpty() || (runnable = this.destroyRunnable) == null) {
+                return;
             }
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            AndroidUtilities.runOnUIThread(this.destroyRunnable, 300000L);
         }
 
         public void updateFilters(boolean z, boolean z2) {
@@ -2683,7 +2841,7 @@ public class StoriesController {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesListUpdated, this);
         }
 
-        public void fill(boolean z) {
+        private void fill(boolean z) {
             fill(this.messageObjects, this.showPhotos, this.showVideos);
             if (z) {
                 AndroidUtilities.cancelRunOnUIThread(this.notify);
@@ -2774,7 +2932,7 @@ public class StoriesController {
             callback.run(this);
         }
 
-        private void preloadCache() {
+        protected void preloadCache() {
             if (this.preloading || this.loading || this.error) {
                 return;
             }
@@ -2906,7 +3064,7 @@ public class StoriesController {
             return (int) (l2.longValue() - l.longValue());
         }
 
-        public void invalidateCache() {
+        protected void invalidateCache() {
             if (this.preloading) {
                 this.invalidateAfterPreload = true;
                 return;
@@ -2940,7 +3098,7 @@ public class StoriesController {
             fill(true);
         }
 
-        private void saveCache() {
+        protected void saveCache() {
             if (this.saving) {
                 return;
             }
@@ -2984,12 +3142,12 @@ public class StoriesController {
             return true;
         }
 
-        private boolean canLoad() {
+        protected boolean canLoad() {
             Long l;
             return lastLoadTime == null || (l = lastLoadTime.get(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.dialogId))))) == null || System.currentTimeMillis() - l.longValue() > 120000;
         }
 
-        private void resetCanLoad() {
+        protected void resetCanLoad() {
             HashMap<Integer, Long> hashMap = lastLoadTime;
             if (hashMap != null) {
                 hashMap.remove(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.dialogId))));

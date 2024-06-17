@@ -29,6 +29,7 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.SharingLiveLocationCell;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.LocationActivity;
 
 public class LocationActivityAdapter extends BaseLocationAdapter implements LocationController.LocationFetchCallback {
@@ -44,6 +45,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     private long dialogId;
     private FrameLayout emptyCell;
     private boolean fetchingLocation;
+    private boolean fromStories;
     private Location gpsLocation;
     private int locationType;
     private Context mContext;
@@ -55,6 +57,8 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     private final Theme.ResourcesProvider resourcesProvider;
     private SendLocationCell sendLocationCell;
     private int shareLiveLocationPotistion;
+    private SharedMediaLayout sharedMediaLayout;
+    private boolean sharedMediaLayoutVisible;
     public TLRPC$TL_messageMediaVenue street;
     private Runnable updateRunnable;
 
@@ -66,19 +70,33 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         updateCell();
     }
 
-    public LocationActivityAdapter(Context context, int i, long j, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2, boolean z3) {
-        super(z2, z3);
+    public LocationActivityAdapter(Context context, int i, long j, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2, boolean z3, boolean z4) {
+        super(z2, z4);
         this.currentAccount = UserConfig.selectedAccount;
         this.shareLiveLocationPotistion = -1;
         this.currentLiveLocations = new ArrayList<>();
         this.animated = true;
         this.myLocationDenied = false;
         this.askingForMyLocation = false;
+        this.fromStories = z3;
         this.mContext = context;
         this.locationType = i;
         this.dialogId = j;
         this.needEmptyView = z;
         this.resourcesProvider = resourcesProvider;
+    }
+
+    public void setSharedMediaLayout(SharedMediaLayout sharedMediaLayout) {
+        this.sharedMediaLayout = sharedMediaLayout;
+    }
+
+    public boolean setSharedMediaLayoutVisible(boolean z) {
+        if (this.sharedMediaLayoutVisible == z) {
+            return false;
+        }
+        this.sharedMediaLayoutVisible = z;
+        notifyDataSetChanged();
+        return true;
     }
 
     public void setMyLocationDenied(boolean z, boolean z2) {
@@ -305,34 +323,43 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             }
             this.fetchingLocation = true;
             updateCell();
-            LocationController.fetchLocationAddress(location4, this);
+            LocationController.fetchLocationAddress(location4, this.stories ? 2 : 0, this);
         }
     }
 
     @Override
     public int getItemCount() {
         int i = this.locationType;
-        if (i == 6 || i == 5 || i == 4 || this.biz) {
-            return 2;
-        }
-        if (this.currentMessageObject != null) {
-            return (this.currentLiveLocations.isEmpty() ? 1 : this.currentLiveLocations.size() + 3) + 2;
-        }
-        if (i == 2) {
-            LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
-            return this.currentLiveLocations.size() + 2 + ((sharingLocationInfo == null || sharingLocationInfo.period == Integer.MAX_VALUE) ? 0 : 1);
-        }
-        if (this.searching || !this.searched || this.places.isEmpty()) {
-            int i2 = this.locationType;
-            if (i2 == 0) {
-                r1 = 5;
-            } else if (i2 == 7) {
-                r1 = (this.street == null ? 0 : 1) + 5;
+        if (i != 6 && i != 5 && i != 4 && !this.biz) {
+            int i2 = 0;
+            if (this.currentMessageObject != null) {
+                if (!this.currentLiveLocations.isEmpty()) {
+                    i2 = this.currentLiveLocations.size() + 3;
+                } else if (!this.fromStories) {
+                    i2 = 1;
+                }
+                r2 = 2 + i2;
+            } else if (i == 2) {
+                LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
+                int size = this.currentLiveLocations.size() + 2;
+                if (sharingLocationInfo != null && sharingLocationInfo.period != Integer.MAX_VALUE) {
+                    i2 = 1;
+                }
+                r2 = size + i2;
+            } else if (this.searching || !this.searched || this.places.isEmpty()) {
+                int i3 = this.locationType;
+                if (i3 == 0) {
+                    r1 = 5;
+                } else if (i3 == 7) {
+                    r1 = (this.street == null ? 0 : 1) + 5;
+                }
+                boolean z = this.myLocationDenied;
+                r2 = r1 + ((((z || (!this.searching && this.searched)) ? 0 : 2) + (this.needEmptyView ? 1 : 0)) - (z ? 2 : 0));
+            } else {
+                r2 = (this.locationType != 1 ? 5 : 6) + this.locations.size() + this.places.size() + (this.needEmptyView ? 1 : 0);
             }
-            boolean z = this.myLocationDenied;
-            return ((r1 + ((z || (!this.searching && this.searched)) ? 0 : 2)) + (this.needEmptyView ? 1 : 0)) - (z ? 2 : 0);
         }
-        return (this.locationType != 1 ? 5 : 6) + this.locations.size() + this.places.size() + (this.needEmptyView ? 1 : 0);
+        return (this.sharedMediaLayout == null || !this.sharedMediaLayoutVisible) ? r2 : r2 + 1;
     }
 
     public void lambda$onCreateViewHolder$0(View view) {
@@ -342,71 +369,79 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view;
+        View view2;
         switch (i) {
             case 0:
                 FrameLayout frameLayout = new FrameLayout(this.mContext);
                 this.emptyCell = frameLayout;
                 frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, this.overScrollHeight));
-                view = frameLayout;
+                view2 = frameLayout;
                 break;
             case 1:
                 view = new SendLocationCell(this.mContext, false, false, this.resourcesProvider);
+                view2 = view;
                 break;
             case 2:
-                view = new HeaderCell(this.mContext, this.resourcesProvider);
+                view2 = new HeaderCell(this.mContext, this.resourcesProvider);
                 break;
             case 3:
                 view = new LocationCell(this.mContext, false, this.resourcesProvider);
+                view2 = view;
                 break;
             case 4:
-                view = new LocationLoadingCell(this.mContext, this.resourcesProvider);
+                view2 = new LocationLoadingCell(this.mContext, this.resourcesProvider);
                 break;
             case 5:
-                view = new LocationPoweredCell(this.mContext, this.resourcesProvider);
+                view2 = new LocationPoweredCell(this.mContext, this.resourcesProvider);
                 break;
             case 6:
                 SendLocationCell sendLocationCell = new SendLocationCell(this.mContext, true, false, this.resourcesProvider);
                 sendLocationCell.setDialogId(this.dialogId);
                 view = sendLocationCell;
+                view2 = view;
                 break;
             case 7:
                 SendLocationCell sendLocationCell2 = new SendLocationCell(this.mContext, true, true, this.resourcesProvider);
                 sendLocationCell2.setDialogId(this.dialogId);
-                view = sendLocationCell2;
+                view2 = sendLocationCell2;
                 break;
             case 8:
                 Context context = this.mContext;
                 int i2 = this.locationType;
-                view = new SharingLiveLocationCell(context, true, (i2 == 4 || i2 == 5 || i2 == 3) ? 16 : 54, this.resourcesProvider);
+                view2 = new SharingLiveLocationCell(context, true, (i2 == 4 || i2 == 5 || i2 == 3) ? 16 : 54, this.resourcesProvider);
                 break;
             case 9:
                 LocationDirectionCell locationDirectionCell = new LocationDirectionCell(this.mContext, this.resourcesProvider);
                 locationDirectionCell.setOnButtonClick(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view2) {
-                        LocationActivityAdapter.this.lambda$onCreateViewHolder$0(view2);
+                    public final void onClick(View view3) {
+                        LocationActivityAdapter.this.lambda$onCreateViewHolder$0(view3);
                     }
                 });
-                view = locationDirectionCell;
+                view2 = locationDirectionCell;
                 break;
             case 10:
                 View shadowSectionCell = new ShadowSectionCell(this.mContext);
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackgroundDrawable(combinedDrawable);
-                view = shadowSectionCell;
+                view2 = shadowSectionCell;
                 break;
             case 11:
             default:
-                view = new View(this.mContext);
+                view2 = new View(this.mContext);
                 break;
             case 12:
                 LocationCell locationCell = new LocationCell(this.mContext, false, this.resourcesProvider);
                 locationCell.setAllowTextAnimation(true);
                 view = locationCell;
+                view2 = view;
+                break;
+            case 13:
+                view2 = this.sharedMediaLayout;
                 break;
         }
-        return new RecyclerListView.Holder(view);
+        return new RecyclerListView.Holder(view2);
     }
 
     @Override

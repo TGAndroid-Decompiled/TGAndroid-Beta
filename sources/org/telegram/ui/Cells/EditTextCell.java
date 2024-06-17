@@ -90,7 +90,7 @@ public class EditTextCell extends FrameLayout {
         this.showLimitWhenFocused = z;
     }
 
-    public EditTextCell(Context context, String str, final boolean z, final int i) {
+    public EditTextCell(Context context, String str, final boolean z, final int i, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.limitColor = new AnimatedColor(this);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
@@ -120,7 +120,7 @@ public class EditTextCell extends FrameLayout {
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 EditTextCell editTextCell = EditTextCell.this;
-                editTextCell.limit.setTextColor(editTextCell.limitColor.set(Theme.getColor(editTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, getResourcesProvider())));
+                editTextCell.limit.setTextColor(editTextCell.limitColor.set(Theme.getColor(editTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 EditTextCell.this.limit.setBounds(getScrollX(), 0, ((getScrollX() + getWidth()) - getPaddingRight()) + AndroidUtilities.dp(42.0f), getHeight());
                 EditTextCell.this.limit.draw(canvas);
             }
@@ -136,9 +136,9 @@ public class EditTextCell extends FrameLayout {
         this.editText = editTextBoldCursor;
         this.limit.setCallback(editTextBoldCursor);
         editTextBoldCursor.setTextSize(1, 17.0f);
-        editTextBoldCursor.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+        editTextBoldCursor.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor.setTextColor(Theme.getColor(i2));
+        editTextBoldCursor.setTextColor(Theme.getColor(i2, resourcesProvider));
         editTextBoldCursor.setBackground(null);
         if (z) {
             editTextBoldCursor.setMaxLines(5);
@@ -152,7 +152,7 @@ public class EditTextCell extends FrameLayout {
         editTextBoldCursor.setInputType((z ? 131072 : 0) | 16385 | LiteMode.FLAG_CHAT_SCALE | 524288);
         editTextBoldCursor.setRawInputType(573441);
         editTextBoldCursor.setHint(str);
-        editTextBoldCursor.setCursorColor(Theme.getColor(i2));
+        editTextBoldCursor.setCursorColor(Theme.getColor(i2, resourcesProvider));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {

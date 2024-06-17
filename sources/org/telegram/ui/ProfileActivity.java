@@ -122,7 +122,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AuthTokensHelper;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BillingController$$ExternalSyntheticLambda8;
+import org.telegram.messenger.BillingController$$ExternalSyntheticLambda9;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
@@ -12439,7 +12439,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             File logsDir = AndroidUtilities.getLogsDir();
             if (logsDir == null) {
                 Objects.requireNonNull(alertDialog);
-                AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda8(alertDialog));
+                AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda9(alertDialog));
                 return;
             }
             final File file = new File(logsDir, "logs.zip");

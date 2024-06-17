@@ -11,7 +11,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPController;
-import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesActivity;
@@ -256,24 +255,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         } else {
             switch (i) {
                 case VoIPController.ERROR_LOCALIZED:
-                    View view3 = new FrameLayout(this, this.context) {
-                        @Override
-                        protected void onMeasure(int i3, int i4) {
-                            int size = View.MeasureSpec.getSize(i4);
-                            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824);
-                            measureChildren(makeMeasureSpec, i4);
-                            int i5 = 0;
-                            for (int i6 = 0; i6 < getChildCount(); i6++) {
-                                i5 = Math.max(i5, getChildAt(i6).getMeasuredHeight());
-                            }
-                            if (size > 0) {
-                                i5 = Math.min(i5, size - (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight()));
-                            }
-                            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i5, 1073741824));
-                        }
-                    };
-                    view3.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                    view2 = view3;
+                    View fullscreenCustomFrameLayout = new FullscreenCustomFrameLayout(this, this.context);
+                    fullscreenCustomFrameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
+                    view2 = fullscreenCustomFrameLayout;
                     break;
                 case VoIPController.ERROR_PRIVACY:
                     view2 = new FrameLayout(this, this.context) {
@@ -303,9 +287,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     } else {
                         headerCell = new HeaderCell(this.context, this.resourcesProvider);
                     }
-                    View view4 = headerCell;
-                    view4.setBackgroundColor(getThemedColor(i2));
-                    view2 = view4;
+                    View view3 = headerCell;
+                    view3.setBackgroundColor(getThemedColor(i2));
+                    view2 = view3;
                     break;
                 case 1:
                     View headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, false, this.resourcesProvider);
@@ -419,9 +403,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     view2 = userCell3;
                     break;
                 case 28:
-                    View view5 = new View(this.context);
-                    view5.setBackgroundColor(getThemedColor(i2));
-                    view2 = view5;
+                    View view4 = new View(this.context);
+                    view4.setBackgroundColor(getThemedColor(i2));
+                    view2 = view4;
                     break;
                 case 29:
                     View businessLinkView = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
@@ -504,7 +488,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r24, int r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UniversalAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
@@ -587,7 +571,35 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         return this.items.get(i);
     }
 
-    private int getThemedColor(int i) {
+    public int getThemedColor(int i) {
         return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public class FullscreenCustomFrameLayout extends FrameLayout {
+        private int minusHeight;
+
+        public FullscreenCustomFrameLayout(UniversalAdapter universalAdapter, Context context) {
+            super(context);
+            this.minusHeight = 0;
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            int size = View.MeasureSpec.getSize(i2);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+            measureChildren(makeMeasureSpec, i2);
+            int i3 = 0;
+            for (int i4 = 0; i4 < getChildCount(); i4++) {
+                i3 = Math.max(i3, getChildAt(i4).getMeasuredHeight());
+            }
+            if (size > 0) {
+                i3 = Math.min(i3, size - this.minusHeight);
+            }
+            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i3, 1073741824));
+        }
+
+        public void setMinusHeight(int i) {
+            this.minusHeight = i;
+        }
     }
 }

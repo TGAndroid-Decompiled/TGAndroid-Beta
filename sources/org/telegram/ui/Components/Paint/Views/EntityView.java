@@ -679,13 +679,16 @@ public class EntityView extends FrameLayout {
     }
 
     public void scale(float f) {
-        float f2 = this.scale * f;
-        this.scale = f2;
-        float clamp = Utilities.clamp(Math.max(f2, 0.1f), getMaxScale(), getMinScale());
-        if (allowHaptic() && (clamp >= getMaxScale() || clamp <= getMinScale())) {
-            try {
-                performHapticFeedback(3, 1);
-            } catch (Exception unused) {
+        float f2 = this.scale;
+        float f3 = f * f2;
+        this.scale = f3;
+        float clamp = Utilities.clamp(Math.max(f3, 0.1f), getMaxScale(), getMinScale());
+        if (allowHaptic()) {
+            if ((clamp >= getMaxScale() || clamp <= getMinScale()) != (f2 >= getMaxScale() || f2 <= getMinScale())) {
+                try {
+                    performHapticFeedback(3, 1);
+                } catch (Exception unused) {
+                }
             }
         }
         setScaleX(clamp);

@@ -84,7 +84,7 @@ public class ChangeNameActivity extends BaseFragment {
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
-            public Theme.ResourcesProvider getResourcesProvider() {
+            protected Theme.ResourcesProvider getResourcesProvider() {
                 return ChangeNameActivity.this.resourcesProvider;
             }
         };
@@ -125,7 +125,7 @@ public class ChangeNameActivity extends BaseFragment {
         });
         EditTextBoldCursor editTextBoldCursor5 = new EditTextBoldCursor(context) {
             @Override
-            public Theme.ResourcesProvider getResourcesProvider() {
+            protected Theme.ResourcesProvider getResourcesProvider() {
                 return ChangeNameActivity.this.resourcesProvider;
             }
         };

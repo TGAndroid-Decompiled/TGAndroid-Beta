@@ -143,7 +143,17 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     private boolean sentEffect;
     private final FrameLayout windowView;
 
+    protected void onEffectChange(long j) {
+    }
+
     public void updateColors() {
+    }
+
+    public int getMainMessageCellPosition() {
+        if (this.groupedMessagesMap.isEmpty() || this.messageObjects.size() < 10) {
+            return 0;
+        }
+        return this.messageObjects.size() % 10;
     }
 
     public MessageSendPreview(final Context context, final Theme.ResourcesProvider resourcesProvider) {
@@ -210,7 +220,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
                     int i2 = Build.VERSION.SDK_INT;
                     if (i2 < 30) {
-                        MessageSendPreview.this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+                        MessageSendPreview.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                     } else {
                         Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
                         MessageSendPreview.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
@@ -932,12 +942,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
                 MessageObject messageObject = (MessageObject) MessageSendPreview.this.messageObjects.get((getItemCount() - 1) - i2);
                 ChatMessageCell chatMessageCell = (ChatMessageCell) viewHolder.itemView;
-                int i3 = 0;
                 chatMessageCell.setMessageObject(messageObject, MessageSendPreview.this.getValidGroupedMessage(messageObject), false, false);
-                if (!MessageSendPreview.this.groupedMessagesMap.isEmpty() && getItemCount() >= 10) {
-                    i3 = getItemCount() % 10;
-                }
-                if (i2 != i3 || messageObject.needDrawForwarded()) {
+                if (i2 != MessageSendPreview.this.getMainMessageCellPosition() || messageObject.needDrawForwarded()) {
                     return;
                 }
                 MessageSendPreview.this.mainMessageCell = chatMessageCell;
@@ -1357,6 +1363,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         };
         this.sendButton = sendButton2;
         this.anchorSendButton.copyCountTo(sendButton2);
+        this.anchorSendButton.copyEmojiTo(this.sendButton);
         ChatActivityEnterView.SendButton sendButton3 = this.sendButton;
         sendButton3.center = sendButton.center;
         sendButton3.open.set(sendButton.open.get(), true);
@@ -1497,6 +1504,10 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                         tLRPC$Message2.flags2 &= -5;
                     }
                 }
+                if (MessageSendPreview.this.sendButton != null) {
+                    MessageSendPreview.this.sendButton.setEffect(messageObject.messageOwner.effect);
+                }
+                MessageSendPreview.this.onEffectChange(messageObject.messageOwner.effect);
             } else if (MessageSendPreview.this.cameraRect != null) {
                 if (visibleReaction.effectId == MessageSendPreview.this.effectId) {
                     MessageSendPreview.this.effectId = 0L;
@@ -1505,6 +1516,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     MessageSendPreview.this.effectId = visibleReaction.effectId;
                     z3 = false;
                 }
+                if (MessageSendPreview.this.sendButton != null) {
+                    MessageSendPreview.this.sendButton.setEffect(MessageSendPreview.this.effectId);
+                }
+                MessageSendPreview messageSendPreview = MessageSendPreview.this;
+                messageSendPreview.onEffectChange(messageSendPreview.effectId);
                 if (!z5) {
                     TLRPC$TL_availableEffect effect = MessageSendPreview.this.effectId == 0 ? null : MessagesController.getInstance(MessageSendPreview.this.currentAccount).getEffect(MessageSendPreview.this.effectId);
                     if (MessageSendPreview.this.effectDrawable != null) {
@@ -1561,6 +1577,22 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         boolean z = num.intValue() - this.insets.bottom > AndroidUtilities.dp(20.0f);
         this.keyboardVisible = z;
         this.effectSelectorContainer.animate().translationY((z ? Math.min(this.effectSelectorContainerY, (this.windowView.getHeight() - num.intValue()) - this.effectSelectorContainer.getMeasuredHeight()) : this.effectSelectorContainerY) - this.effectSelectorContainer.getTop()).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
+    }
+
+    public void setEffectId(long j) {
+        TLRPC$TL_availableEffect effect;
+        this.effectId = j;
+        int mainMessageCellPosition = getMainMessageCellPosition();
+        MessageObject messageObject = (mainMessageCellPosition < 0 || mainMessageCellPosition >= this.messageObjects.size()) ? null : this.messageObjects.get(mainMessageCellPosition);
+        if (messageObject != null) {
+            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+            tLRPC$Message.flags2 |= 4;
+            tLRPC$Message.effect = j;
+        }
+        if (this.effectSelector == null || (effect = MessagesController.getInstance(this.currentAccount).getEffect(j)) == null) {
+            return;
+        }
+        this.effectSelector.setSelectedReactionAnimated(ReactionsLayoutInBubble.VisibleReaction.fromTL(effect));
     }
 
     public void showEffectSelector() {

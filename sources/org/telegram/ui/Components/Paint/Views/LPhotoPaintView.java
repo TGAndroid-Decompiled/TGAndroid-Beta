@@ -1691,10 +1691,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 return lambda$openStickersView$19;
             }
         });
-        emojiBottomSheet.whenWidgetSelected(new Utilities.Callback() {
+        emojiBottomSheet.whenWidgetSelected(new Utilities.CallbackReturn() {
             @Override
-            public final void run(Object obj) {
-                LPhotoPaintView.this.lambda$openStickersView$20((Integer) obj);
+            public final Object run(Object obj) {
+                Boolean lambda$openStickersView$20;
+                lambda$openStickersView$20 = LPhotoPaintView.this.lambda$openStickersView$20((Integer) obj);
+                return lambda$openStickersView$20;
             }
         });
         emojiBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -1721,10 +1723,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         return Boolean.TRUE;
     }
 
-    public void lambda$openStickersView$20(Integer num) {
+    public Boolean lambda$openStickersView$20(Integer num) {
         if (num.intValue() == 2) {
             showPhotoAlert();
         }
+        return Boolean.TRUE;
     }
 
     public void lambda$openStickersView$21(int i, DialogInterface dialogInterface) {

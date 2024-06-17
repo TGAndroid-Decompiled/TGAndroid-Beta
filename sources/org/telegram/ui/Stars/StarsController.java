@@ -34,6 +34,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$InputInvoice;
 import org.telegram.tgnet.TLRPC$PaymentForm;
 import org.telegram.tgnet.TLRPC$PaymentReceipt;
+import org.telegram.tgnet.TLRPC$StarsTransaction;
 import org.telegram.tgnet.TLRPC$TL_dataJSON;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputInvoiceStars;
@@ -42,13 +43,13 @@ import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStars;
 import org.telegram.tgnet.TLRPC$TL_labeledPrice;
 import org.telegram.tgnet.TLRPC$TL_payments_getPaymentForm;
 import org.telegram.tgnet.TLRPC$TL_payments_getStarsStatus;
+import org.telegram.tgnet.TLRPC$TL_payments_getStarsTopupOptions;
 import org.telegram.tgnet.TLRPC$TL_payments_getStarsTransactions;
 import org.telegram.tgnet.TLRPC$TL_payments_paymentFormStars;
 import org.telegram.tgnet.TLRPC$TL_payments_paymentResult;
 import org.telegram.tgnet.TLRPC$TL_payments_sendStarsForm;
 import org.telegram.tgnet.TLRPC$TL_payments_starsStatus;
 import org.telegram.tgnet.TLRPC$TL_starsTopupOption;
-import org.telegram.tgnet.TLRPC$TL_starsTransaction;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -71,7 +72,7 @@ public class StarsController {
     private boolean optionsLoaded;
     private boolean optionsLoading;
     private boolean paymentFormOpened;
-    public final ArrayList<TLRPC$TL_starsTransaction>[] transactions = {new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
+    public final ArrayList<TLRPC$StarsTransaction>[] transactions = {new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
     public final boolean[] transactionsExist = new boolean[3];
     private final String[] offset = new String[3];
     private final boolean[] loading = new boolean[3];
@@ -144,9 +145,9 @@ public class StarsController {
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_payments_starsStatus.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_payments_starsStatus.chats, false);
             if (this.transactions[0].isEmpty()) {
-                Iterator<TLRPC$TL_starsTransaction> it = tLRPC$TL_payments_starsStatus.history.iterator();
+                Iterator<TLRPC$StarsTransaction> it = tLRPC$TL_payments_starsStatus.history.iterator();
                 while (it.hasNext()) {
-                    TLRPC$TL_starsTransaction next = it.next();
+                    TLRPC$StarsTransaction next = it.next();
                     this.transactions[0].add(next);
                     this.transactions[next.stars > 0 ? (char) 1 : (char) 2].add(next);
                 }
@@ -196,31 +197,16 @@ public class StarsController {
         return this.balanceLoaded;
     }
 
+    public ArrayList<TLRPC$TL_starsTopupOption> getOptionsCached() {
+        return this.options;
+    }
+
     public ArrayList<TLRPC$TL_starsTopupOption> getOptions() {
         if (this.optionsLoading || this.optionsLoaded) {
             return this.options;
         }
         this.optionsLoading = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-            @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-                TLRPC$Vector tLRPC$Vector = new TLRPC$Vector();
-                int readInt32 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt32; i2++) {
-                    TLRPC$TL_starsTopupOption TLdeserialize = TLRPC$TL_starsTopupOption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize == null) {
-                        return tLRPC$Vector;
-                    }
-                    tLRPC$Vector.objects.add(TLdeserialize);
-                }
-                return tLRPC$Vector;
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(-1072773165);
-            }
-        }, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_payments_getStarsTopupOptions(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 StarsController.this.lambda$getOptions$6(tLObject, tLRPC$TL_error);

@@ -8,7 +8,7 @@ public class TL_stories$TL_mediaAreaChannelPost extends TL_stories$MediaArea {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.coordinates = TL_stories$TL_mediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.coordinates = TL_stories$MediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.channel_id = abstractSerializedData.readInt64(z);
         this.msg_id = abstractSerializedData.readInt32(z);
     }

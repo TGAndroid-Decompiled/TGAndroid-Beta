@@ -60,7 +60,8 @@ public class LocationCell extends FrameLayout {
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.nameTextView = animatedTextView;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        animatedTextView.setAnimationProperties(0.4f, 0L, 240L, cubicBezierInterpolator);
+        animatedTextView.setAnimationProperties(0.4f, 0L, 350L, cubicBezierInterpolator);
+        this.nameTextView.setScaleProperty(0.6f);
         this.nameTextView.setTextSize(AndroidUtilities.dp(16.0f));
         this.nameTextView.setEllipsizeByGradient(true);
         this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -73,7 +74,8 @@ public class LocationCell extends FrameLayout {
         addView(animatedTextView2, LayoutHelper.createFrame(-1, 22.0f, (z3 ? 5 : 3) | 48, z3 ? 16 : 73, 10.0f, z3 ? 73 : 16, 0.0f));
         AnimatedTextView animatedTextView3 = new AnimatedTextView(context, true, true, true);
         this.addressTextView = animatedTextView3;
-        animatedTextView3.setAnimationProperties(0.4f, 0L, 240L, cubicBezierInterpolator);
+        animatedTextView3.setScaleProperty(0.6f);
+        this.addressTextView.setAnimationProperties(0.4f, 0L, 350L, cubicBezierInterpolator);
         this.addressTextView.setTextSize(AndroidUtilities.dp(14.0f));
         this.addressTextView.setEllipsizeByGradient(true);
         this.addressTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));

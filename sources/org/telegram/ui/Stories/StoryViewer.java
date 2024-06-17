@@ -1590,11 +1590,17 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if (tL_stories$StoryItem == null && this.isSingleStory) {
                 tL_stories$StoryItem = this.singleStory;
             }
-            if (this.storiesList != null) {
+            long currentDialogId = this.storiesViewPager.getCurrentDialogId();
+            StoriesController.StoriesList storiesList = this.storiesList;
+            if ((storiesList instanceof StoriesController.SearchStoriesList) && tL_stories$StoryItem != null) {
+                currentDialogId = tL_stories$StoryItem.dialogId;
+                i = tL_stories$StoryItem.messageId;
+            } else if (storiesList != null) {
                 i = this.dayStoryId;
             }
+            long j = currentDialogId;
             this.transitionViewHolder.clear();
-            if (this.placeProvider.findView(this.storiesViewPager.getCurrentDialogId(), this.messageId, i, tL_stories$StoryItem == null ? -1 : tL_stories$StoryItem.messageType, this.transitionViewHolder)) {
+            if (this.placeProvider.findView(j, this.messageId, i, tL_stories$StoryItem == null ? -1 : tL_stories$StoryItem.messageType, this.transitionViewHolder)) {
                 TransitionViewHolder transitionViewHolder = this.transitionViewHolder;
                 transitionViewHolder.storyId = i;
                 View view = transitionViewHolder.view;

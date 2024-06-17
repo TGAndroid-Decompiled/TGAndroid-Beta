@@ -52,6 +52,7 @@ import org.telegram.ui.Components.EditTextEffects;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
+import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.Paint.Views.LocationMarker;
 import org.telegram.ui.Components.RLottieDrawable;
 
@@ -732,7 +733,7 @@ public class TextureRenderer {
     }
 
     private void initLocationEntity(VideoEditedInfo.MediaEntity mediaEntity) {
-        LocationMarker locationMarker = new LocationMarker(ApplicationLoader.applicationContext, mediaEntity.density);
+        LocationMarker locationMarker = new LocationMarker(ApplicationLoader.applicationContext, mediaEntity.density, 0);
         locationMarker.setText(mediaEntity.text);
         locationMarker.setType(mediaEntity.subType, mediaEntity.color);
         locationMarker.setMaxWidth(mediaEntity.viewWidth);
@@ -796,6 +797,27 @@ public class TextureRenderer {
             mediaEntity3.rotation = mediaEntity.rotation;
             initStickerEntity(mediaEntity3);
         }
+    }
+
+    private void initLinkEntity(VideoEditedInfo.MediaEntity mediaEntity) {
+        LinkPreview linkPreview = new LinkPreview(ApplicationLoader.applicationContext, mediaEntity.density);
+        linkPreview.set(UserConfig.selectedAccount, mediaEntity.linkSettings);
+        linkPreview.setType(mediaEntity.subType, mediaEntity.color);
+        linkPreview.setMaxWidth(mediaEntity.viewWidth);
+        linkPreview.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
+        linkPreview.layout(0, 0, mediaEntity.viewWidth, mediaEntity.viewHeight);
+        float f = mediaEntity.width * this.transformedWidth;
+        int i = mediaEntity.viewWidth;
+        float f2 = f / i;
+        mediaEntity.bitmap = Bitmap.createBitmap(((int) (i * f2)) + 8 + 8, ((int) (mediaEntity.viewHeight * f2)) + 8 + 8, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(mediaEntity.bitmap);
+        float f3 = 8;
+        canvas.translate(f3, f3);
+        canvas.scale(f2, f2);
+        linkPreview.draw(canvas);
+        float f4 = 16 * f2;
+        mediaEntity.additionalWidth = f4 / this.transformedWidth;
+        mediaEntity.additionalHeight = f4 / this.transformedHeight;
     }
 
     public void initStickerEntity(VideoEditedInfo.MediaEntity mediaEntity) {

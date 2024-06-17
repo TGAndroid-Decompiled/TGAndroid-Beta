@@ -20,6 +20,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.Paint.PaintTypeface;
+import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
@@ -110,6 +111,7 @@ public class VideoEditedInfo {
     }
 
     public static class MediaEntity {
+        public static final byte TYPE_LINK = 7;
         public static final byte TYPE_LOCATION = 3;
         public static final byte TYPE_MESSAGE = 6;
         public static final byte TYPE_PHOTO = 2;
@@ -134,10 +136,11 @@ public class VideoEditedInfo {
         public int fontSize;
         public float framesPerDraw;
         public float height;
+        public LinkPreview.WebPagePreview linkSettings;
         public boolean looped;
         public Matrix matrix;
+        public TLRPC$MessageMedia media;
         public TL_stories$MediaArea mediaArea;
-        public TLRPC$MessageMedia mediaGeo;
         public int[] metadata;
         public Object parentObject;
         public long ptr;
@@ -220,29 +223,41 @@ public class VideoEditedInfo {
                     this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, readInt322, z2);
                 }
             }
-            if (this.type == 3) {
+            byte b = this.type;
+            if (b == 3) {
                 this.density = abstractSerializedData.readFloat(z2);
                 this.mediaArea = TL_stories$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
-                this.mediaGeo = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
-                if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z2) == -559038737) {
-                    String readString2 = abstractSerializedData.readString(z2);
-                    TLRPC$MessageMedia tLRPC$MessageMedia = this.mediaGeo;
-                    if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaVenue) {
-                        ((TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia).emoji = readString2;
-                    }
+                this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
+                if (abstractSerializedData.remaining() <= 0 || abstractSerializedData.readInt32(z2) != -559038737) {
+                    return;
                 }
+                String readString2 = abstractSerializedData.readString(z2);
+                TLRPC$MessageMedia tLRPC$MessageMedia = this.media;
+                if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaVenue) {
+                    ((TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia).emoji = readString2;
+                    return;
+                }
+                return;
             }
-            if (this.type == 4) {
+            if (b == 7) {
+                this.density = abstractSerializedData.readFloat(z2);
                 this.mediaArea = TL_stories$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
-            }
-            if (this.type == 5) {
-                this.roundOffset = abstractSerializedData.readInt64(z2);
-                this.roundLeft = abstractSerializedData.readInt64(z2);
-                this.roundRight = abstractSerializedData.readInt64(z2);
-                this.roundDuration = abstractSerializedData.readInt64(z2);
-            }
-            if (this.type == 2) {
-                this.segmentedPath = abstractSerializedData.readString(z2);
+                this.linkSettings = LinkPreview.WebPagePreview.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
+            } else {
+                if (b == 4) {
+                    this.mediaArea = TL_stories$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
+                    return;
+                }
+                if (b != 5) {
+                    if (b == 2) {
+                        this.segmentedPath = abstractSerializedData.readString(z2);
+                    }
+                } else {
+                    this.roundOffset = abstractSerializedData.readInt64(z2);
+                    this.roundLeft = abstractSerializedData.readInt64(z2);
+                    this.roundRight = abstractSerializedData.readInt64(z2);
+                    this.roundDuration = abstractSerializedData.readInt64(z2);
+                }
             }
         }
 
@@ -288,10 +303,11 @@ public class VideoEditedInfo {
                     tLRPC$Document.serializeToStream(abstractSerializedData);
                 }
             }
-            if (this.type == 3) {
+            byte b = this.type;
+            if (b == 3) {
                 abstractSerializedData.writeFloat(this.density);
                 this.mediaArea.serializeToStream(abstractSerializedData);
-                TLRPC$MessageMedia tLRPC$MessageMedia = this.mediaGeo;
+                TLRPC$MessageMedia tLRPC$MessageMedia = this.media;
                 if (tLRPC$MessageMedia.provider == null) {
                     tLRPC$MessageMedia.provider = "";
                 }
@@ -302,25 +318,35 @@ public class VideoEditedInfo {
                     tLRPC$MessageMedia.venue_type = "";
                 }
                 tLRPC$MessageMedia.serializeToStream(abstractSerializedData);
-                TLRPC$MessageMedia tLRPC$MessageMedia2 = this.mediaGeo;
+                TLRPC$MessageMedia tLRPC$MessageMedia2 = this.media;
                 if ((tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaVenue) && ((TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia2).emoji != null) {
                     abstractSerializedData.writeInt32(-559038737);
-                    abstractSerializedData.writeString(((TLRPC$TL_messageMediaVenue) this.mediaGeo).emoji);
+                    abstractSerializedData.writeString(((TLRPC$TL_messageMediaVenue) this.media).emoji);
+                    return;
                 } else {
                     abstractSerializedData.writeInt32(1450380236);
+                    return;
                 }
             }
-            if (this.type == 4) {
+            if (b == 7) {
+                abstractSerializedData.writeFloat(this.density);
                 this.mediaArea.serializeToStream(abstractSerializedData);
-            }
-            if (this.type == 5) {
-                abstractSerializedData.writeInt64(this.roundOffset);
-                abstractSerializedData.writeInt64(this.roundLeft);
-                abstractSerializedData.writeInt64(this.roundRight);
-                abstractSerializedData.writeInt64(this.roundDuration);
-            }
-            if (this.type == 2) {
-                abstractSerializedData.writeString(this.segmentedPath);
+                this.linkSettings.serializeToStream(abstractSerializedData);
+            } else {
+                if (b == 4) {
+                    this.mediaArea.serializeToStream(abstractSerializedData);
+                    return;
+                }
+                if (b != 5) {
+                    if (b == 2) {
+                        abstractSerializedData.writeString(this.segmentedPath);
+                    }
+                } else {
+                    abstractSerializedData.writeInt64(this.roundOffset);
+                    abstractSerializedData.writeInt64(this.roundLeft);
+                    abstractSerializedData.writeInt64(this.roundRight);
+                    abstractSerializedData.writeInt64(this.roundDuration);
+                }
             }
         }
 
@@ -365,7 +391,7 @@ public class VideoEditedInfo {
             mediaEntity.animatedFileDrawable = this.animatedFileDrawable;
             mediaEntity.roundRadiusCanvas = this.roundRadiusCanvas;
             mediaEntity.mediaArea = this.mediaArea;
-            mediaEntity.mediaGeo = this.mediaGeo;
+            mediaEntity.media = this.media;
             mediaEntity.density = this.density;
             mediaEntity.W = this.W;
             mediaEntity.H = this.H;
@@ -374,6 +400,7 @@ public class VideoEditedInfo {
             mediaEntity.roundDuration = this.roundDuration;
             mediaEntity.roundLeft = this.roundLeft;
             mediaEntity.roundRight = this.roundRight;
+            mediaEntity.linkSettings = this.linkSettings;
             return mediaEntity;
         }
     }

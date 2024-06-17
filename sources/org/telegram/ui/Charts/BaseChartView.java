@@ -939,10 +939,14 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         int i;
         float f2;
         T t = this.chartData;
-        if (t == null || (i = this.selectedIndex) == -1 || !this.legendShowing) {
+        if (t == null || (i = this.selectedIndex) < 0) {
             return;
         }
-        this.legendSignatureView.setData(i, t.x[i], this.lines, false, t.yTooltipFormatter, t.yRate);
+        long[] jArr = t.x;
+        if (i >= jArr.length || !this.legendShowing) {
+            return;
+        }
+        this.legendSignatureView.setData(i, jArr[i], this.lines, false, t.yTooltipFormatter, t.yRate);
         this.legendSignatureView.setVisibility(0);
         this.legendSignatureView.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
         float f3 = (this.chartData.xPercentage[this.selectedIndex] * this.chartFullWidth) - f;
@@ -1027,7 +1031,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             this.pickerMaxHeight = 0.0f;
             this.pickerMinHeight = 2.1474836E9f;
             initPickerMaxHeight();
-            if (t.yTooltipFormatter == 1) {
+            int i2 = t.yTooltipFormatter;
+            if (i2 == 1 || i2 == 2) {
                 this.legendSignatureView.setSize(this.lines.size() * 2);
             } else {
                 this.legendSignatureView.setSize(this.lines.size());

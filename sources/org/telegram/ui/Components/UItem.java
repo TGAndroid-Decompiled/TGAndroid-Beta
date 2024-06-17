@@ -63,6 +63,13 @@ public class UItem extends AdapterWithDiffUtils.Item {
         this.withUsername = true;
     }
 
+    public static UItem asCustom(int i, View view) {
+        UItem uItem = new UItem(-1, false);
+        uItem.id = i;
+        uItem.view = view;
+        return uItem;
+    }
+
     public static UItem asCustom(View view) {
         UItem uItem = new UItem(-1, false);
         uItem.view = view;

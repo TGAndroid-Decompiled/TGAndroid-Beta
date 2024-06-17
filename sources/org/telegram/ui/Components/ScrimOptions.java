@@ -22,6 +22,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -60,14 +61,20 @@ public class ScrimOptions extends Dialog {
     private View optionsView;
     public final Theme.ResourcesProvider resourcesProvider;
     private Drawable scrimDrawable;
-    private float scrimDrawableTx;
-    private float scrimDrawableTy;
+    private float scrimDrawableSh;
+    private float scrimDrawableSw;
+    private float scrimDrawableTx1;
+    private float scrimDrawableTx2;
+    private float scrimDrawableTy1;
+    private float scrimDrawableTy2;
     private final FrameLayout windowView;
 
     public ScrimOptions(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         int i = UserConfig.selectedAccount;
         this.insets = new android.graphics.Rect();
+        this.scrimDrawableSw = 1.0f;
+        this.scrimDrawableSh = 1.0f;
         this.dismissing = false;
         this.context = context;
         this.resourcesProvider = resourcesProvider;
@@ -86,7 +93,9 @@ public class ScrimOptions extends Dialog {
                 if (ScrimOptions.this.scrimDrawable != null) {
                     ScrimOptions.this.scrimDrawable.setAlpha((int) (ScrimOptions.this.openProgress * 255.0f));
                     canvas.save();
-                    canvas.translate(ScrimOptions.this.scrimDrawableTx * ScrimOptions.this.openProgress, ScrimOptions.this.scrimDrawableTy * ScrimOptions.this.openProgress);
+                    canvas.translate(ScrimOptions.this.scrimDrawableTx2 + (ScrimOptions.this.scrimDrawableTx1 * ScrimOptions.this.openProgress), ScrimOptions.this.scrimDrawableTy2 + (ScrimOptions.this.scrimDrawableTy1 * ScrimOptions.this.openProgress));
+                    float lerp = AndroidUtilities.lerp(AndroidUtilities.lerp(Math.min(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), Math.max(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), 0.75f), 1.0f, ScrimOptions.this.openProgress);
+                    canvas.scale(lerp, lerp, (-ScrimOptions.this.scrimDrawableTx2) + ScrimOptions.this.scrimDrawable.getBounds().left + ((ScrimOptions.this.scrimDrawable.getBounds().width() / 2.0f) * ScrimOptions.this.scrimDrawableSw), (-ScrimOptions.this.scrimDrawableTy2) + ScrimOptions.this.scrimDrawable.getBounds().top + ((ScrimOptions.this.scrimDrawable.getBounds().height() / 2.0f) * ScrimOptions.this.scrimDrawableSh));
                     ScrimOptions.this.scrimDrawable.draw(canvas);
                     canvas.restore();
                 }
@@ -125,7 +134,7 @@ public class ScrimOptions extends Dialog {
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
                     int i2 = Build.VERSION.SDK_INT;
                     if (i2 < 30) {
-                        ScrimOptions.this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+                        ScrimOptions.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                     } else {
                         Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
                         ScrimOptions.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
@@ -337,39 +346,36 @@ public class ScrimOptions extends Dialog {
 
     public void layout() {
         boolean z;
-        float dp;
-        int i;
         Drawable drawable = this.scrimDrawable;
         if (drawable != null) {
             android.graphics.Rect bounds = drawable.getBounds();
-            FrameLayout frameLayout = this.optionsContainer;
-            if (frameLayout != null) {
+            if (this.optionsContainer != null) {
+                float f = bounds.left;
+                float f2 = this.scrimDrawableTx2;
+                float f3 = f + f2;
+                float f4 = bounds.right + f2;
+                float f5 = bounds.top;
+                float f6 = this.scrimDrawableTy2;
+                float f7 = f5 + f6;
+                float f8 = bounds.bottom + f6;
                 boolean z2 = true;
-                if (bounds.right - frameLayout.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
+                if (f4 - r1.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
                     this.optionsView.setPivotX(AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), bounds.left - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
+                    this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), f3 - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
                     z = false;
                 } else {
-                    this.optionsView.setPivotX(r2.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (bounds.right + AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
+                    this.optionsView.setPivotX(r1.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
+                    this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(4.0f) + f4) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
                     z = true;
                 }
-                float x = this.optionsContainer.getX();
-                if (z) {
-                    dp = (x + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f);
-                    i = bounds.right;
-                } else {
-                    dp = x + AndroidUtilities.dp(10.0f);
-                    i = bounds.left;
-                }
-                this.scrimDrawableTx = dp - i;
-                this.scrimDrawableTy = 0.0f;
-                if (bounds.bottom + this.optionsContainer.getMeasuredHeight() > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
-                    this.optionsView.setPivotY(r2.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setY(((bounds.top - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
+                this.scrimDrawableTx1 = z ? ((this.optionsContainer.getX() + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f)) - f4 : (this.optionsContainer.getX() + AndroidUtilities.dp(10.0f)) - f3;
+                this.scrimDrawableTy1 = 0.0f;
+                if (this.optionsContainer.getMeasuredHeight() + f8 > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
+                    this.optionsView.setPivotY(r0.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
+                    this.optionsContainer.setY(((f7 - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
                 } else {
                     this.optionsView.setPivotY(AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setY(Math.min((this.windowView.getHeight() - this.optionsContainer.getMeasuredHeight()) - AndroidUtilities.dp(16.0f), bounds.bottom) - this.containerView.getY());
+                    this.optionsContainer.setY(Math.min((this.windowView.getHeight() - this.optionsContainer.getMeasuredHeight()) - AndroidUtilities.dp(16.0f), f8) - this.containerView.getY());
                     z2 = false;
                 }
                 this.options.setSwipebackGravity(z, z2);
@@ -377,20 +383,22 @@ public class ScrimOptions extends Dialog {
         }
     }
 
-    public void setScrim(final ChatMessageCell chatMessageCell, CharacterStyle characterStyle) {
+    public void setScrim(final ChatMessageCell chatMessageCell, CharacterStyle characterStyle, CharSequence charSequence) {
         float f;
         float f2;
         ArrayList<MessageObject.TextLayoutBlock> arrayList;
         float f3;
-        Bitmap bitmap;
-        int i;
-        int i2;
+        RectF rectF;
+        StaticLayout staticLayout;
+        final Bitmap bitmap;
+        StaticLayout staticLayout2;
+        MessageObject messageObject;
         boolean z;
         if (chatMessageCell == null) {
             return;
         }
         chatMessageCell.getCurrentMessagesGroup();
-        MessageObject messageObject = chatMessageCell.getMessageObject();
+        MessageObject messageObject2 = chatMessageCell.getMessageObject();
         if (chatMessageCell.getCaptionLayout() != null) {
             f = chatMessageCell.getCaptionX();
             f2 = chatMessageCell.getCaptionY();
@@ -405,87 +413,97 @@ public class ScrimOptions extends Dialog {
         if (arrayList == null) {
             f = chatMessageCell.getTextX();
             f2 = chatMessageCell.getTextY();
-            arrayList = messageObject.textLayoutBlocks;
-            f3 = messageObject.textXOffset;
+            arrayList = messageObject2.textLayoutBlocks;
+            f3 = messageObject2.textXOffset;
         }
         if (arrayList == null) {
             return;
         }
         float f4 = f;
         float f5 = f2;
+        int i = 0;
+        StaticLayout staticLayout3 = null;
+        int i2 = 0;
         int i3 = 0;
-        StaticLayout staticLayout = null;
-        int i4 = 0;
-        int i5 = 0;
-        while (i3 < arrayList.size()) {
-            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i3);
-            StaticLayout staticLayout2 = textLayoutBlock.textLayout;
-            if (staticLayout2 != null && (staticLayout2.getText() instanceof Spanned)) {
-                i = i5;
-                i2 = i4;
-                CharacterStyle[] characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout2.getText()).getSpans(0, staticLayout2.getText().length(), CharacterStyle.class);
+        while (i < arrayList.size()) {
+            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i);
+            StaticLayout staticLayout4 = textLayoutBlock.textLayout;
+            if (staticLayout4 != null && (staticLayout4.getText() instanceof Spanned)) {
+                messageObject = messageObject2;
+                CharacterStyle[] characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout4.getText()).getSpans(0, staticLayout4.getText().length(), CharacterStyle.class);
                 if (characterStyleArr != null) {
-                    int i6 = 0;
+                    int i4 = 0;
                     while (true) {
-                        if (i6 >= characterStyleArr.length) {
+                        if (i4 >= characterStyleArr.length) {
                             z = false;
                             break;
                         } else {
-                            if (characterStyleArr[i6] == characterStyle) {
+                            if (characterStyleArr[i4] == characterStyle) {
                                 z = true;
                                 break;
                             }
-                            i6++;
+                            i4++;
                         }
                     }
                     if (z) {
-                        i4 = ((Spanned) staticLayout2.getText()).getSpanStart(characterStyle);
-                        i5 = ((Spanned) staticLayout2.getText()).getSpanEnd(characterStyle);
+                        i2 = ((Spanned) staticLayout4.getText()).getSpanStart(characterStyle);
+                        i3 = ((Spanned) staticLayout4.getText()).getSpanEnd(characterStyle);
                         f4 += textLayoutBlock.isRtl() ? (int) Math.ceil(f3) : 0;
                         f5 += textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams);
-                        staticLayout = staticLayout2;
-                        i3++;
-                        staticLayout = staticLayout;
+                        staticLayout3 = staticLayout4;
                     }
                 }
             } else {
-                i2 = i4;
-                i = i5;
+                messageObject = messageObject2;
             }
-            i4 = i2;
-            i5 = i;
-            i3++;
-            staticLayout = staticLayout;
+            i++;
+            messageObject2 = messageObject;
+            staticLayout3 = staticLayout3;
         }
-        int i7 = i4;
-        int i8 = i5;
-        if (staticLayout == null) {
+        MessageObject messageObject3 = messageObject2;
+        if (staticLayout3 == null) {
             return;
         }
+        if (charSequence != null) {
+            LinkPath linkPath = new LinkPath(true);
+            linkPath.setCurrentLayout(staticLayout3, i2, 0.0f);
+            staticLayout3.getSelectionPath(i2, i3, linkPath);
+            RectF rectF2 = new RectF();
+            linkPath.computeBounds(rectF2, true);
+            StaticLayout makeStaticLayout = MessageObject.makeStaticLayout(charSequence, staticLayout3.getPaint(), staticLayout3.getWidth(), 1.0f, 0.0f, true);
+            i3 = charSequence.length();
+            rectF = rectF2;
+            i2 = 0;
+            staticLayout = makeStaticLayout;
+        } else {
+            rectF = null;
+            staticLayout = staticLayout3;
+        }
         final Paint paint = new Paint(1);
-        paint.setColor(Theme.getColor(messageObject.isOutOwner() ? Theme.key_chat_outBubble : Theme.key_chat_inBubble, this.resourcesProvider));
+        paint.setColor(Theme.getColor(messageObject3.isOutOwner() ? Theme.key_chat_outBubble : Theme.key_chat_inBubble, this.resourcesProvider));
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
-        final LinkPath linkPath = new LinkPath(true);
-        linkPath.setCurrentLayout(staticLayout, i7, 0.0f);
-        staticLayout.getSelectionPath(i7, i8, linkPath);
-        linkPath.closeRects();
-        final RectF rectF = new RectF();
-        linkPath.computeBounds(rectF, true);
-        int width = (int) (rectF.width() + LinkPath.getRadius());
-        if (!chatMessageCell.drawBackgroundInParent() || width <= 0 || rectF.height() <= 0.0f) {
+        final LinkPath linkPath2 = new LinkPath(true);
+        linkPath2.setUseCornerPathImplementation(true);
+        linkPath2.setCurrentLayout(staticLayout, i2, 0.0f);
+        staticLayout.getSelectionPath(i2, i3, linkPath2);
+        linkPath2.closeRects();
+        final RectF rectF3 = new RectF();
+        linkPath2.computeBounds(rectF3, true);
+        int width = (int) (rectF3.width() + LinkPath.getRadius());
+        if (!chatMessageCell.drawBackgroundInParent() || width <= 0 || rectF3.height() <= 0.0f) {
             bitmap = null;
         } else {
-            Bitmap createBitmap = Bitmap.createBitmap(width, (int) rectF.height(), Bitmap.Config.ALPHA_8);
+            Bitmap createBitmap = Bitmap.createBitmap(width, (int) rectF3.height(), Bitmap.Config.ALPHA_8);
             Canvas canvas = new Canvas(createBitmap);
             Paint paint2 = new Paint(1);
             paint2.setColor(-1);
-            canvas.drawRect(0.0f, 0.0f, width, rectF.height(), paint2);
+            canvas.drawRect(0.0f, 0.0f, width, rectF3.height(), paint2);
             Paint paint3 = new Paint(1);
             paint3.setColor(-1);
             paint3.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
             paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            canvas.translate(-rectF.left, -rectF.top);
-            canvas.drawPath(linkPath, paint3);
+            canvas.translate(-rectF3.left, -rectF3.top);
+            canvas.drawPath(linkPath2, paint3);
             bitmap = createBitmap;
         }
         final Paint paint4 = new Paint(3);
@@ -497,11 +515,16 @@ public class ScrimOptions extends Dialog {
         textPaint.setTextSize(staticLayout.getPaint().getTextSize());
         textPaint.setTextAlign(staticLayout.getPaint().getTextAlign());
         textPaint.setTypeface(staticLayout.getPaint().getTypeface());
-        final StaticLayout staticLayout3 = new StaticLayout(staticLayout.getText(), textPaint, staticLayout.getWidth(), staticLayout.getAlignment(), 1.0f, 0.0f, false);
+        if (Build.VERSION.SDK_INT >= 24) {
+            staticLayout2 = StaticLayout.Builder.obtain(staticLayout.getText(), 0, staticLayout.getText().length(), textPaint, staticLayout.getWidth()).setLineSpacing(0.0f, 1.0f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+        } else {
+            staticLayout2 = new StaticLayout(staticLayout.getText(), textPaint, staticLayout.getWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        }
         final int[] iArr = new int[2];
         chatMessageCell.getLocationOnScreen(iArr);
         final int[] iArr2 = {iArr[0] + ((int) f4), iArr[1] + ((int) f5)};
-        final Bitmap bitmap2 = bitmap;
+        RectF rectF4 = rectF;
+        final StaticLayout staticLayout5 = staticLayout2;
         this.scrimDrawable = new Drawable(this) {
             private int alpha = 255;
 
@@ -519,48 +542,69 @@ public class ScrimOptions extends Dialog {
                 if (this.alpha <= 0) {
                     return;
                 }
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(getBounds());
-                rectF2.left -= LinkPath.getRadius() / 2.0f;
-                canvas2.saveLayerAlpha(rectF2, this.alpha, 31);
+                RectF rectF5 = AndroidUtilities.rectTmp;
+                rectF5.set(getBounds());
+                rectF5.left -= LinkPath.getRadius() / 2.0f;
+                canvas2.saveLayerAlpha(rectF5, this.alpha, 31);
                 int[] iArr3 = iArr2;
                 canvas2.translate(iArr3[0], iArr3[1]);
                 ChatMessageCell chatMessageCell2 = chatMessageCell;
                 if (chatMessageCell2 != null && chatMessageCell2.drawBackgroundInParent()) {
-                    int[] iArr4 = iArr2;
-                    canvas2.translate(-iArr4[0], -iArr4[1]);
-                    int[] iArr5 = iArr;
-                    canvas2.translate(iArr5[0], iArr5[1]);
-                    chatMessageCell.drawBackgroundInternal(canvas2, true);
-                    int[] iArr6 = iArr;
-                    canvas2.translate(-iArr6[0], -iArr6[1]);
-                    int[] iArr7 = iArr2;
-                    canvas2.translate(iArr7[0], iArr7[1]);
-                    if (bitmap2 != null) {
+                    Theme.MessageDrawable messageDrawable = chatMessageCell.currentBackgroundDrawable;
+                    if (messageDrawable != null && messageDrawable.getPaint() != null) {
                         canvas2.save();
-                        Bitmap bitmap3 = bitmap2;
-                        RectF rectF3 = rectF;
-                        canvas2.drawBitmap(bitmap3, rectF3.left, rectF3.top, paint4);
+                        canvas2.translate(0.0f, -chatMessageCell.currentBackgroundDrawable.getTopY());
+                        canvas2.drawPaint(chatMessageCell.currentBackgroundDrawable.getPaint());
+                        canvas2.restore();
+                    } else {
+                        int[] iArr4 = iArr2;
+                        canvas2.translate(-iArr4[0], -iArr4[1]);
+                        int[] iArr5 = iArr;
+                        canvas2.translate(iArr5[0], iArr5[1]);
+                        chatMessageCell.drawBackgroundInternal(canvas2, true);
+                        int[] iArr6 = iArr;
+                        canvas2.translate(-iArr6[0], -iArr6[1]);
+                        int[] iArr7 = iArr2;
+                        canvas2.translate(iArr7[0], iArr7[1]);
+                    }
+                    if (bitmap != null) {
+                        canvas2.save();
+                        Bitmap bitmap2 = bitmap;
+                        RectF rectF6 = rectF3;
+                        canvas2.drawBitmap(bitmap2, rectF6.left, rectF6.top, paint4);
                         canvas2.restore();
                     }
                 } else {
-                    canvas2.drawPath(linkPath, paint);
+                    canvas2.drawPath(linkPath2, paint);
                 }
-                canvas2.clipPath(linkPath);
+                canvas2.clipPath(linkPath2);
                 canvas2.save();
-                canvas2.translate(0.0f, AndroidUtilities.dp(1.33f));
-                staticLayout3.draw(canvas2);
+                staticLayout5.draw(canvas2);
                 canvas2.restore();
                 canvas2.restore();
             }
 
             @Override
-            public void setAlpha(int i9) {
-                this.alpha = i9;
+            public void setAlpha(int i5) {
+                this.alpha = i5;
             }
         };
-        int radius = (int) (iArr[0] + f4 + rectF.left + (LinkPath.getRadius() / 2.0f));
-        int i9 = (int) (iArr[1] + f5 + rectF.top);
-        this.scrimDrawable.setBounds(radius, i9, ((int) rectF.width()) + radius, ((int) rectF.height()) + i9);
+        int radius = (int) (iArr[0] + f4 + rectF3.left + (LinkPath.getRadius() / 2.0f));
+        int i5 = (int) (iArr[1] + f5 + rectF3.top);
+        this.scrimDrawable.setBounds(radius, i5, ((int) rectF3.width()) + radius, ((int) rectF3.height()) + i5);
+        if (charSequence != null) {
+            float f6 = radius;
+            if (rectF3.width() + f6 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f)) {
+                this.scrimDrawableTx2 -= (f6 + rectF3.width()) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f));
+            }
+            float f7 = i5;
+            if (rectF3.height() + f7 > (AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f)) {
+                this.scrimDrawableTy2 -= (f7 + rectF3.height()) - ((AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f));
+            }
+            if (rectF4 != null) {
+                this.scrimDrawableSw = rectF4.width() / rectF3.width();
+                this.scrimDrawableSh = rectF4.height() / rectF3.height();
+            }
+        }
     }
 }

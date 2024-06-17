@@ -12281,6 +12281,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int i;
         int i2;
         MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null) {
+            return null;
+        }
         int i3 = messageObject.type;
         if (i3 == 1) {
             TLRPC$PhotoSize tLRPC$PhotoSize = this.currentPhotoObject;

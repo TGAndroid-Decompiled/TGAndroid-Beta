@@ -686,7 +686,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         int i8 = this.locationType;
         long j = this.dialogId;
         ChatAttachAlert chatAttachAlert3 = this.parentAlert;
-        LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i8, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, chatAttachAlert3.isBizLocationPicker);
+        LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i8, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, false, chatAttachAlert3.isBizLocationPicker);
         this.adapter = locationActivityAdapter2;
         recyclerListView2.setAdapter(locationActivityAdapter2);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();

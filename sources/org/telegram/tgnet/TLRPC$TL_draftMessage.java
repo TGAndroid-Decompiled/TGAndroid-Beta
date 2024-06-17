@@ -32,11 +32,14 @@ public class TLRPC$TL_draftMessage extends TLRPC$DraftMessage {
             this.media = TLRPC$InputMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.date = abstractSerializedData.readInt32(z);
+        if ((this.flags & 128) != 0) {
+            this.effect = abstractSerializedData.readInt64(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1070397423);
+        abstractSerializedData.writeInt32(761606687);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.invert_media ? i | 64 : i & (-65);
@@ -58,5 +61,8 @@ public class TLRPC$TL_draftMessage extends TLRPC$DraftMessage {
             this.media.serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(this.date);
+        if ((this.flags & 128) != 0) {
+            abstractSerializedData.writeInt64(this.effect);
+        }
     }
 }

@@ -219,7 +219,7 @@ public class SecretVoicePlayer extends Dialog {
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
                     int i = Build.VERSION.SDK_INT;
                     if (i < 30) {
-                        SecretVoicePlayer.this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+                        SecretVoicePlayer.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                     } else {
                         Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
                         SecretVoicePlayer.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);

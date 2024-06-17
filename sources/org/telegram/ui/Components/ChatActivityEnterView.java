@@ -146,6 +146,7 @@ import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$RequestPeerType;
 import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
+import org.telegram.tgnet.TLRPC$TL_availableEffect;
 import org.telegram.tgnet.TLRPC$TL_botMenuButton;
 import org.telegram.tgnet.TLRPC$TL_businessChatLink;
 import org.telegram.tgnet.TLRPC$TL_channels_sendAsPeers;
@@ -212,6 +213,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksController;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
@@ -340,6 +342,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private TLRPC$TL_businessChatLink editingBusinessLink;
     private boolean editingCaption;
     private MessageObject editingMessageObject;
+    private long effectId;
     private ChatActivityEnterViewAnimatedIconView emojiButton;
     float emojiButtonAlpha;
     float emojiButtonPaddingAlpha;
@@ -687,7 +690,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         void toggleVideoRecordingPause();
     }
 
-    public static boolean lambda$createRecordPanel$50(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createRecordPanel$51(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -740,7 +743,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return f2;
     }
 
-    public static void access$9800(ChatActivityEnterView chatActivityEnterView) {
+    public static void access$9900(ChatActivityEnterView chatActivityEnterView) {
         chatActivityEnterView.checkBirthdayHint();
     }
 
@@ -2763,7 +2766,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.topViewUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatActivityEnterView.this.lambda$new$38(valueAnimator);
+                ChatActivityEnterView.this.lambda$new$39(valueAnimator);
             }
         };
         this.botCommandLastPosition = -1;
@@ -3395,9 +3398,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         } else {
                             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = ChatActivityEnterView.this.delegate;
                             ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                            int i = chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                            MessageSendPreview messageSendPreview = chatActivityEnterView.messageSendPreview;
-                            chatActivityEnterViewDelegate.needStartRecordVideo(1, true, 0, i, messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L);
+                            chatActivityEnterViewDelegate.needStartRecordVideo(1, true, 0, chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView.effectId);
+                            ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                         }
                         ChatActivityEnterView.this.recordingAudioVideo = false;
                         ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
@@ -3437,9 +3439,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate2 = ChatActivityEnterView.this.delegate;
                             ChatActivityEnterView chatActivityEnterView3 = ChatActivityEnterView.this;
-                            int i2 = chatActivityEnterView3.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                            MessageSendPreview messageSendPreview2 = chatActivityEnterView3.messageSendPreview;
-                            chatActivityEnterViewDelegate2.needStartRecordVideo(2, true, 0, i2, messageSendPreview2 != null ? messageSendPreview2.getSelectedEffect() : 0L);
+                            chatActivityEnterViewDelegate2.needStartRecordVideo(2, true, 0, chatActivityEnterView3.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView3.effectId);
+                            ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                         }
                         ChatActivityEnterView.this.millisecondsRecorded = 0L;
                         ChatActivityEnterView.this.recordingAudioVideo = false;
@@ -3464,9 +3465,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate3 = ChatActivityEnterView.this.delegate;
                         ChatActivityEnterView chatActivityEnterView4 = ChatActivityEnterView.this;
-                        int i3 = chatActivityEnterView4.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                        MessageSendPreview messageSendPreview3 = chatActivityEnterView4.messageSendPreview;
-                        chatActivityEnterViewDelegate3.needStartRecordVideo(2, true, 0, i3, messageSendPreview3 != null ? messageSendPreview3.getSelectedEffect() : 0L);
+                        chatActivityEnterViewDelegate3.needStartRecordVideo(2, true, 0, chatActivityEnterView4.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView4.effectId);
+                        ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                     }
                     ChatActivityEnterView.this.millisecondsRecorded = 0L;
                     ChatActivityEnterView.this.recordingAudioVideo = false;
@@ -3490,8 +3490,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             if (ChatActivityEnterView.this.recordingAudioVideo && ChatActivityEnterView.this.isInScheduleMode()) {
                                 AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                                     @Override
-                                    public final void didSelectDate(boolean z, int i4) {
-                                        ChatActivityEnterView.AnonymousClass20.lambda$onTouchEvent$3(z, i4);
+                                    public final void didSelectDate(boolean z, int i) {
+                                        ChatActivityEnterView.AnonymousClass20.lambda$onTouchEvent$3(z, i);
                                     }
                                 }, new Runnable() {
                                     @Override
@@ -3507,9 +3507,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate4 = ChatActivityEnterView.this.delegate;
                         ChatActivityEnterView chatActivityEnterView5 = ChatActivityEnterView.this;
-                        int i4 = chatActivityEnterView5.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                        MessageSendPreview messageSendPreview4 = chatActivityEnterView5.messageSendPreview;
-                        chatActivityEnterViewDelegate4.needStartRecordVideo(1, true, 0, i4, messageSendPreview4 != null ? messageSendPreview4.getSelectedEffect() : 0L);
+                        chatActivityEnterViewDelegate4.needStartRecordVideo(1, true, 0, chatActivityEnterView5.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView5.effectId);
+                        ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                     }
                     ChatActivityEnterView.this.recordingAudioVideo = false;
                     ChatActivityEnterView chatActivityEnterView6 = ChatActivityEnterView.this;
@@ -3561,9 +3560,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate5 = ChatActivityEnterView.this.delegate;
                         ChatActivityEnterView chatActivityEnterView8 = ChatActivityEnterView.this;
-                        int i5 = chatActivityEnterView8.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                        MessageSendPreview messageSendPreview5 = chatActivityEnterView8.messageSendPreview;
-                        chatActivityEnterViewDelegate5.needStartRecordVideo(2, true, 0, i5, messageSendPreview5 != null ? messageSendPreview5.getSelectedEffect() : 0L);
+                        chatActivityEnterViewDelegate5.needStartRecordVideo(2, true, 0, chatActivityEnterView8.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView8.effectId);
+                        ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                     }
                     ChatActivityEnterView.this.recordingAudioVideo = false;
                     ChatActivityEnterView.this.updateRecordInterface(5, true);
@@ -3758,7 +3756,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.access$9800(ChatActivityEnterView.this);
+                    ChatActivityEnterView.access$9900(ChatActivityEnterView.this);
                 }
             });
         }
@@ -4224,10 +4222,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private void resetRecordedState() {
         if (this.videoToSendMessageObject != null) {
             CameraController.getInstance().cancelOnInitRunnable(this.onFinishInitCameraRunnable);
-            ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
-            int i = this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-            MessageSendPreview messageSendPreview = this.messageSendPreview;
-            chatActivityEnterViewDelegate.needStartRecordVideo(2, true, 0, i, messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L);
+            this.delegate.needStartRecordVideo(2, true, 0, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, this.effectId);
+            SendButton sendButton = this.sendButton;
+            this.effectId = 0L;
+            sendButton.setEffect(0L);
         } else {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null && playingMessageObject == this.audioToSendMessageObject) {
@@ -4963,7 +4961,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
+        drawBackground(canvas, true);
+    }
+
+    public void drawBackground(Canvas canvas, boolean z) {
         if (this.shouldDrawBackground) {
             int intrinsicHeight = (int) (this.animatedTop + (Theme.chat_composeShadowDrawable.getIntrinsicHeight() * (1.0f - this.composeShadowAlpha)));
             View view = this.topView;
@@ -4971,9 +4973,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 intrinsicHeight = (int) (intrinsicHeight + ((1.0f - this.topViewEnterProgress) * this.topView.getLayoutParams().height));
             }
             int intrinsicHeight2 = Theme.chat_composeShadowDrawable.getIntrinsicHeight() + intrinsicHeight;
-            Theme.chat_composeShadowDrawable.setAlpha((int) (this.composeShadowAlpha * 255.0f));
-            Theme.chat_composeShadowDrawable.setBounds(0, intrinsicHeight, getMeasuredWidth(), intrinsicHeight2);
-            Theme.chat_composeShadowDrawable.draw(canvas);
+            if (z) {
+                Theme.chat_composeShadowDrawable.setAlpha((int) (this.composeShadowAlpha * 255.0f));
+                Theme.chat_composeShadowDrawable.setBounds(0, intrinsicHeight, getMeasuredWidth(), intrinsicHeight2);
+                Theme.chat_composeShadowDrawable.draw(canvas);
+            }
             int i = (int) (intrinsicHeight2 + this.chatSearchExpandOffset);
             if (this.allowBlur) {
                 this.backgroundPaint.setColor(getThemedColor(Theme.key_chat_messagePanelBackground));
@@ -5083,11 +5087,26 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
+    public class AnonymousClass37 extends MessageSendPreview {
+        AnonymousClass37(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+        }
+
+        @Override
+        protected void onEffectChange(long j) {
+            ChatActivityEnterView.this.setEffectId(j);
+        }
+    }
+
     public void lambda$onSendLongClick$31(DialogInterface dialogInterface) {
         this.messageSendPreview = null;
     }
 
-    public void lambda$onSendLongClick$32(boolean z, View view) {
+    public void lambda$onSendLongClick$32(Canvas canvas) {
+        drawBackground(canvas, false);
+    }
+
+    public void lambda$onSendLongClick$33(boolean z, View view) {
         MessageSendPreview messageSendPreview;
         this.sentFromPreview = System.currentTimeMillis();
         sendMessage();
@@ -5100,8 +5119,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass37 implements AlertsCreator.ScheduleDatePickerDelegate {
-        AnonymousClass37() {
+    public class AnonymousClass38 implements AlertsCreator.ScheduleDatePickerDelegate {
+        AnonymousClass38() {
         }
 
         @Override
@@ -5115,9 +5134,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$onSendLongClick$33() {
+    public void lambda$onSendLongClick$34() {
         AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
-            AnonymousClass37() {
+            AnonymousClass38() {
             }
 
             @Override
@@ -5132,7 +5151,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }, this.resourcesProvider);
     }
 
-    public void lambda$onSendLongClick$34() {
+    public void lambda$onSendLongClick$35() {
         sendMessageInternal(true, 2147483646, true);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -5141,7 +5160,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$onSendLongClick$35(boolean z) {
+    public void lambda$onSendLongClick$36(boolean z) {
         MessageSendPreview messageSendPreview;
         this.sentFromPreview = System.currentTimeMillis();
         sendMessageInternal(false, 0, true);
@@ -5158,10 +5177,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.botCommandsMenuContainer != null) {
             return;
         }
-        AnonymousClass38 anonymousClass38 = new BotCommandsMenuContainer(getContext()) {
+        AnonymousClass39 anonymousClass39 = new BotCommandsMenuContainer(getContext()) {
             boolean ignoreLayout = false;
 
-            AnonymousClass38(Context context) {
+            AnonymousClass39(Context context) {
                 super(context);
                 this.ignoreLayout = false;
             }
@@ -5184,15 +5203,15 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 ChatActivityEnterView.this.updateBotCommandsMenuContainerTopPadding();
             }
         };
-        this.botCommandsMenuContainer = anonymousClass38;
-        anonymousClass38.listView.setLayoutManager(new LinearLayoutManager(getContext()));
+        this.botCommandsMenuContainer = anonymousClass39;
+        anonymousClass39.listView.setLayoutManager(new LinearLayoutManager(getContext()));
         RecyclerListView recyclerListView = this.botCommandsMenuContainer.listView;
         BotCommandsMenuView.BotCommandsAdapter botCommandsAdapter = new BotCommandsMenuView.BotCommandsAdapter();
         this.botCommandsAdapter = botCommandsAdapter;
         recyclerListView.setAdapter(botCommandsAdapter);
-        this.botCommandsMenuContainer.listView.setOnItemClickListener(new AnonymousClass39());
+        this.botCommandsMenuContainer.listView.setOnItemClickListener(new AnonymousClass40());
         this.botCommandsMenuContainer.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
-            AnonymousClass40() {
+            AnonymousClass41() {
             }
 
             @Override
@@ -5216,10 +5235,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         updateBotCommandsMenuContainerTopPadding();
     }
 
-    public class AnonymousClass38 extends BotCommandsMenuContainer {
+    public class AnonymousClass39 extends BotCommandsMenuContainer {
         boolean ignoreLayout = false;
 
-        AnonymousClass38(Context context) {
+        AnonymousClass39(Context context) {
             super(context);
             this.ignoreLayout = false;
         }
@@ -5243,8 +5262,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass39 implements RecyclerListView.OnItemClickListener {
-        AnonymousClass39() {
+    public class AnonymousClass40 implements RecyclerListView.OnItemClickListener {
+        AnonymousClass40() {
         }
 
         @Override
@@ -5259,11 +5278,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(command, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, false, null, null, null, true, 0, null, false);
                         of.quick_reply_shortcut = ChatActivityEnterView.this.parentFragment != null ? ChatActivityEnterView.this.parentFragment.quickReplyShortcut : null;
                         of.quick_reply_shortcut_id = ChatActivityEnterView.this.parentFragment != null ? ChatActivityEnterView.this.parentFragment.getQuickReplyId() : 0;
-                        MessageSendPreview messageSendPreview = ChatActivityEnterView.this.messageSendPreview;
-                        of.effect_id = messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L;
+                        of.effect_id = ChatActivityEnterView.this.effectId;
                         SendMessagesHelper.getInstance(ChatActivityEnterView.this.currentAccount).sendMessage(of);
                         ChatActivityEnterView.this.setFieldText("");
                         ChatActivityEnterView.this.botCommandsMenuContainer.dismiss();
+                        ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                         return;
                     }
                     return;
@@ -5271,7 +5290,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i2) {
-                        ChatActivityEnterView.AnonymousClass39.this.lambda$onItemClick$0(command, z, i2);
+                        ChatActivityEnterView.AnonymousClass40.this.lambda$onItemClick$0(command, z, i2);
                     }
                 }, ChatActivityEnterView.this.resourcesProvider);
             }
@@ -5284,8 +5303,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass40 implements RecyclerListView.OnItemLongClickListener {
-        AnonymousClass40() {
+    public class AnonymousClass41 implements RecyclerListView.OnItemLongClickListener {
+        AnonymousClass41() {
         }
 
         @Override
@@ -5338,8 +5357,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.botWebViewMenuContainer != null) {
             return;
         }
-        AnonymousClass41 anonymousClass41 = new BotWebViewMenuContainer(getContext(), this) {
-            AnonymousClass41(Context context, ChatActivityEnterView this) {
+        AnonymousClass42 anonymousClass42 = new BotWebViewMenuContainer(getContext(), this) {
+            AnonymousClass42(Context context, ChatActivityEnterView this) {
                 super(context, this);
             }
 
@@ -5351,19 +5370,19 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
             }
         };
-        this.botWebViewMenuContainer = anonymousClass41;
-        this.sizeNotifierLayout.addView(anonymousClass41, 15, LayoutHelper.createFrame(-1, -1, 80));
+        this.botWebViewMenuContainer = anonymousClass42;
+        this.sizeNotifierLayout.addView(anonymousClass42, 15, LayoutHelper.createFrame(-1, -1, 80));
         this.botWebViewMenuContainer.setVisibility(8);
         this.botWebViewMenuContainer.setOnDismissGlobalListener(new Runnable() {
             @Override
             public final void run() {
-                ChatActivityEnterView.this.lambda$createBotWebViewMenuContainer$36();
+                ChatActivityEnterView.this.lambda$createBotWebViewMenuContainer$37();
             }
         });
     }
 
-    public class AnonymousClass41 extends BotWebViewMenuContainer {
-        AnonymousClass41(Context context, ChatActivityEnterView this) {
+    public class AnonymousClass42 extends BotWebViewMenuContainer {
+        AnonymousClass42(Context context, ChatActivityEnterView this) {
             super(context, this);
         }
 
@@ -5376,7 +5395,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$createBotWebViewMenuContainer$36() {
+    public void lambda$createBotWebViewMenuContainer$37() {
         if (this.botButtonsMessageObject != null) {
             EditTextCaption editTextCaption = this.messageEditText;
             if ((editTextCaption == null || TextUtils.isEmpty(editTextCaption.getTextToUse())) && !this.botWebViewMenuContainer.hasSavedText()) {
@@ -5806,7 +5825,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
 
         @Override
-        public Theme.ResourcesProvider getResourcesProvider() {
+        protected Theme.ResourcesProvider getResourcesProvider() {
             return ChatActivityEnterView.this.resourcesProvider;
         }
 
@@ -5837,12 +5856,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.messageEditText != null) {
             return;
         }
-        AnonymousClass42 anonymousClass42 = new ChatActivityEditTextCaption(getContext(), this.resourcesProvider) {
+        AnonymousClass43 anonymousClass43 = new ChatActivityEditTextCaption(getContext(), this.resourcesProvider) {
             boolean clickMaybe;
             float touchX;
             float touchY;
 
-            AnonymousClass42(Context context, Theme.ResourcesProvider resourcesProvider) {
+            AnonymousClass43(Context context, Theme.ResourcesProvider resourcesProvider) {
                 super(context, resourcesProvider);
             }
 
@@ -5897,14 +5916,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
             }
         };
-        this.messageEditText = anonymousClass42;
+        this.messageEditText = anonymousClass43;
         if (Build.VERSION.SDK_INT >= 28) {
-            anonymousClass42.setFallbackLineSpacing(false);
+            anonymousClass43.setFallbackLineSpacing(false);
         }
         this.messageEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                ChatActivityEnterView.this.lambda$createMessageEditText$37();
+                ChatActivityEnterView.this.lambda$createMessageEditText$38();
             }
         });
         ChatActivity chatActivity = this.parentFragment;
@@ -5946,7 +5965,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setOnKeyListener(new View.OnKeyListener() {
             boolean ctrlPressed = false;
 
-            AnonymousClass43() {
+            AnonymousClass44() {
             }
 
             @Override
@@ -5997,7 +6016,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             boolean ctrlPressed = false;
 
-            AnonymousClass44() {
+            AnonymousClass45() {
             }
 
             @Override
@@ -6016,7 +6035,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return true;
             }
         });
-        this.messageEditText.addTextChangedListener(new AnonymousClass45());
+        this.messageEditText.addTextChangedListener(new AnonymousClass46());
         this.messageEditText.addTextChangedListener(new EditTextSuggestionsFix());
         this.messageEditText.setEnabled(this.messageEditTextEnabled);
         ArrayList<TextWatcher> arrayList = this.messageEditTextWatchers;
@@ -6036,12 +6055,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass42 extends ChatActivityEditTextCaption {
+    public class AnonymousClass43 extends ChatActivityEditTextCaption {
         boolean clickMaybe;
         float touchX;
         float touchY;
 
-        AnonymousClass42(Context context, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass43(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
         }
 
@@ -6097,7 +6116,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$createMessageEditText$37() {
+    public void lambda$createMessageEditText$38() {
         this.messageEditText.invalidateEffects();
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
         if (chatActivityEnterViewDelegate != null) {
@@ -6105,10 +6124,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass43 implements View.OnKeyListener {
+    public class AnonymousClass44 implements View.OnKeyListener {
         boolean ctrlPressed = false;
 
-        AnonymousClass43() {
+        AnonymousClass44() {
         }
 
         @Override
@@ -6157,10 +6176,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass44 implements TextView.OnEditorActionListener {
+    public class AnonymousClass45 implements TextView.OnEditorActionListener {
         boolean ctrlPressed = false;
 
-        AnonymousClass44() {
+        AnonymousClass45() {
         }
 
         @Override
@@ -6180,14 +6199,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass45 implements TextWatcher {
+    public class AnonymousClass46 implements TextWatcher {
         boolean heightShouldBeChanged;
         private boolean ignorePrevTextChange;
         private boolean nextChangeIsSend;
         private CharSequence prevText;
         private boolean processChange;
 
-        AnonymousClass45() {
+        AnonymousClass46() {
         }
 
         @Override
@@ -6253,7 +6272,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         @Override
         public void afterTextChanged(android.text.Editable r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass45.afterTextChanged(android.text.Editable):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass46.afterTextChanged(android.text.Editable):void");
         }
 
         class AnonymousClass1 extends AnimatorListenerAdapter {
@@ -6322,10 +6341,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     public void cancelRecordingAudioVideo() {
         if (this.hasRecordVideo && isInVideoMode()) {
             CameraController.getInstance().cancelOnInitRunnable(this.onFinishInitCameraRunnable);
-            ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
-            int i = this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-            MessageSendPreview messageSendPreview = this.messageSendPreview;
-            chatActivityEnterViewDelegate.needStartRecordVideo(5, true, 0, i, messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L);
+            this.delegate.needStartRecordVideo(5, true, 0, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, this.effectId);
+            SendButton sendButton = this.sendButton;
+            this.effectId = 0L;
+            sendButton.setEffect(0L);
         } else {
             this.delegate.needStartRecordAudio(0);
             MediaController.getInstance().stopRecording(0, false, 0, false);
@@ -6470,7 +6489,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.emojiView.switchToGifRecent();
     }
 
-    public void lambda$new$38(ValueAnimator valueAnimator) {
+    public void lambda$new$39(ValueAnimator valueAnimator) {
         MentionsContainerView mentionsContainerView;
         if (this.topView != null) {
             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -6514,7 +6533,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.this.lambda$showTopView$39();
+                    ChatActivityEnterView.this.lambda$showTopView$40();
                 }
             };
             this.showTopViewRunnable = runnable2;
@@ -6537,7 +6556,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.currentTopViewAnimation = ofFloat;
                 ofFloat.addUpdateListener(this.topViewUpdateListener);
                 this.currentTopViewAnimation.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass46() {
+                    AnonymousClass47() {
                     }
 
                     @Override
@@ -6572,13 +6591,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$showTopView$39() {
+    public void lambda$showTopView$40() {
         showTopView(true, false, true);
         this.showTopViewRunnable = null;
     }
 
-    public class AnonymousClass46 extends AnimatorListenerAdapter {
-        AnonymousClass46() {
+    public class AnonymousClass47 extends AnimatorListenerAdapter {
+        AnonymousClass47() {
         }
 
         @Override
@@ -6640,7 +6659,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.currentTopViewAnimation = ofFloat;
                 ofFloat.addUpdateListener(this.topViewUpdateListener);
                 this.currentTopViewAnimation.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass47() {
+                    AnonymousClass48() {
                     }
 
                     @Override
@@ -6681,8 +6700,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass47 extends AnimatorListenerAdapter {
-        AnonymousClass47() {
+    public class AnonymousClass48 extends AnimatorListenerAdapter {
+        AnonymousClass48() {
         }
 
         @Override
@@ -6942,14 +6961,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivityEnterView.this.lambda$onPause$40();
+                ChatActivityEnterView.this.lambda$onPause$41();
             }
         };
         this.hideKeyboardRunnable = runnable;
         AndroidUtilities.runOnUIThread(runnable, 500L);
     }
 
-    public void lambda$onPause$40() {
+    public void lambda$onPause$41() {
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null || chatActivity.isLastFragment()) {
             closeKeyboard();
@@ -7371,7 +7390,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
                 this.recordPannelAnimation.setDuration(150L);
                 this.recordPannelAnimation.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass48() {
+                    AnonymousClass49() {
                     }
 
                     @Override
@@ -7486,7 +7505,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     animatorSet5.playTogether(animatorSet3, animatorSet4);
                 }
                 this.recordPannelAnimation.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass49() {
+                    AnonymousClass50() {
                     }
 
                     @Override
@@ -7528,8 +7547,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass48 extends AnimatorListenerAdapter {
-        AnonymousClass48() {
+    public class AnonymousClass49 extends AnimatorListenerAdapter {
+        AnonymousClass49() {
         }
 
         @Override
@@ -7546,8 +7565,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass49 extends AnimatorListenerAdapter {
-        AnonymousClass49() {
+    public class AnonymousClass50 extends AnimatorListenerAdapter {
+        AnonymousClass50() {
         }
 
         @Override
@@ -7626,8 +7645,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         isRecordingStateChanged();
     }
 
-    public class AnonymousClass50 implements AlertsCreator.ScheduleDatePickerDelegate {
-        AnonymousClass50() {
+    public class AnonymousClass51 implements AlertsCreator.ScheduleDatePickerDelegate {
+        AnonymousClass51() {
         }
 
         @Override
@@ -7644,7 +7663,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     public void sendMessage() {
         if (isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
-                AnonymousClass50() {
+                AnonymousClass51() {
                 }
 
                 @Override
@@ -7691,22 +7710,22 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (z2 && showConfirmAlert(new Runnable() {
             @Override
             public final void run() {
-                ChatActivityEnterView.this.lambda$sendMessageInternal$41(z, i);
+                ChatActivityEnterView.this.lambda$sendMessageInternal$42(z, i);
             }
         })) {
             return;
         }
         if (this.videoToSendMessageObject != null) {
-            ChatActivityEnterViewDelegate chatActivityEnterViewDelegate3 = this.delegate;
-            int i2 = this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-            MessageSendPreview messageSendPreview = this.messageSendPreview;
-            chatActivityEnterViewDelegate3.needStartRecordVideo(4, z, i, i2, messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L);
+            this.delegate.needStartRecordVideo(4, z, i, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, this.effectId);
+            SendButton sendButton = this.sendButton;
+            this.effectId = 0L;
+            sendButton.setEffect(0L);
             hideRecordedAudioPanel(true);
             checkSendButton(true);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.this.lambda$sendMessageInternal$42();
+                    ChatActivityEnterView.this.lambda$sendMessageInternal$43();
                 }
             }, 100L);
             this.millisecondsRecorded = 0L;
@@ -7726,8 +7745,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             ChatActivity chatActivity3 = this.parentFragment;
             of.quick_reply_shortcut = chatActivity3 != null ? chatActivity3.quickReplyShortcut : null;
             of.quick_reply_shortcut_id = chatActivity3 != null ? chatActivity3.getQuickReplyId() : 0;
-            MessageSendPreview messageSendPreview2 = this.messageSendPreview;
-            of.effect_id = messageSendPreview2 != null ? messageSendPreview2.getSelectedEffect() : 0L;
+            of.effect_id = this.effectId;
+            SendButton sendButton2 = this.sendButton;
+            this.effectId = 0L;
+            sendButton2.setEffect(0L);
             if (!this.delegate.hasForwardingMessages()) {
                 MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
                 sendAnimationData.fromPreview = System.currentTimeMillis() - this.sentFromPreview < 200;
@@ -7735,16 +7756,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
             applyStoryToSendMessageParams(of);
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
-            ChatActivityEnterViewDelegate chatActivityEnterViewDelegate4 = this.delegate;
-            if (chatActivityEnterViewDelegate4 != null) {
-                chatActivityEnterViewDelegate4.onMessageSend(null, z, i);
+            ChatActivityEnterViewDelegate chatActivityEnterViewDelegate3 = this.delegate;
+            if (chatActivityEnterViewDelegate3 != null) {
+                chatActivityEnterViewDelegate3.onMessageSend(null, z, i);
             }
             hideRecordedAudioPanel(true);
             checkSendButton(true);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.this.lambda$sendMessageInternal$43();
+                    ChatActivityEnterView.this.lambda$sendMessageInternal$44();
                 }
             }, 100L);
             this.millisecondsRecorded = 0L;
@@ -7771,16 +7792,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (editTextCaption2 != null) {
                     editTextCaption2.setText("");
                 }
-                ChatActivityEnterViewDelegate chatActivityEnterViewDelegate5 = this.delegate;
-                if (chatActivityEnterViewDelegate5 != null) {
-                    chatActivityEnterViewDelegate5.onMessageSend(textToUse, z, i);
+                ChatActivityEnterViewDelegate chatActivityEnterViewDelegate4 = this.delegate;
+                if (chatActivityEnterViewDelegate4 != null) {
+                    chatActivityEnterViewDelegate4.onMessageSend(textToUse, z, i);
                 }
             } else {
                 this.messageTransitionIsRunning = false;
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivityEnterView.this.lambda$sendMessageInternal$44(textToUse, z, i);
+                        ChatActivityEnterView.this.lambda$sendMessageInternal$45(textToUse, z, i);
                     }
                 };
                 this.moveToSendStateRunnable = runnable;
@@ -7795,15 +7816,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         chatActivityEnterViewDelegate.onMessageSend(null, z, i);
     }
 
-    public void lambda$sendMessageInternal$41(boolean z, int i) {
+    public void lambda$sendMessageInternal$42(boolean z, int i) {
         sendMessageInternal(z, i, false);
-    }
-
-    public void lambda$sendMessageInternal$42() {
-        RecordCircle recordCircle = this.recordCircle;
-        if (recordCircle != null) {
-            recordCircle.setSendButtonInvisible();
-        }
     }
 
     public void lambda$sendMessageInternal$43() {
@@ -7813,7 +7827,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$sendMessageInternal$44(CharSequence charSequence, boolean z, int i) {
+    public void lambda$sendMessageInternal$44() {
+        RecordCircle recordCircle = this.recordCircle;
+        if (recordCircle != null) {
+            recordCircle.setSendButtonInvisible();
+        }
+    }
+
+    public void lambda$sendMessageInternal$45(CharSequence charSequence, boolean z, int i) {
         this.moveToSendStateRunnable = null;
         hideTopView(true);
         EditTextCaption editTextCaption = this.messageEditText;
@@ -7927,7 +7948,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     BulletinFactory.of(baseFragment).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiHint", R.string.UnlockPremiumEmojiHint)), LocaleController.getString("PremiumMore", R.string.PremiumMore), new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivityEnterView.lambda$checkPremiumAnimatedEmoji$45(BaseFragment.this);
+                            ChatActivityEnterView.lambda$checkPremiumAnimatedEmoji$46(BaseFragment.this);
                         }
                     }).show();
                     return true;
@@ -7940,7 +7961,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return false;
     }
 
-    public static void lambda$checkPremiumAnimatedEmoji$45(BaseFragment baseFragment) {
+    public static void lambda$checkPremiumAnimatedEmoji$46(BaseFragment baseFragment) {
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
@@ -7956,12 +7977,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         BulletinFactory.of(this.parentFragment).createCaptionLimitBulletin(MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium, new Runnable() {
             @Override
             public final void run() {
-                ChatActivityEnterView.this.lambda$showCaptionLimitBulletin$46();
+                ChatActivityEnterView.this.lambda$showCaptionLimitBulletin$47();
             }
         }).show();
     }
 
-    public void lambda$showCaptionLimitBulletin$46() {
+    public void lambda$showCaptionLimitBulletin$47() {
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity != null) {
             chatActivity.presentFragment(new PremiumPreviewFragment("caption_limit"));
@@ -8023,13 +8044,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             BusinessLinksController.getInstance(this.currentAccount).editLinkMessage(this.editingBusinessLink.link, calculateBusinessLinkPresetMessage.text, calculateBusinessLinkPresetMessage.entities, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.this.lambda$saveBusinessLink$47();
+                    ChatActivityEnterView.this.lambda$saveBusinessLink$48();
                 }
             });
         }
     }
 
-    public void lambda$saveBusinessLink$47() {
+    public void lambda$saveBusinessLink$48() {
         BulletinFactory.of(this.parentFragment).createSuccessBulletin(LocaleController.getString(R.string.BusinessLinkSaved)).show();
     }
 
@@ -8063,7 +8084,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivityEnterView.this.lambda$doneEditingMessage$48();
+                        ChatActivityEnterView.this.lambda$doneEditingMessage$49();
                     }
                 }, 200L);
             }
@@ -8153,7 +8174,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         setEditingMessageObject(null, null, false);
     }
 
-    public void lambda$doneEditingMessage$48() {
+    public void lambda$doneEditingMessage$49() {
         this.waitingForKeyboardOpenAfterAnimation = false;
         openKeyboardInternal();
     }
@@ -8248,7 +8269,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.runningAnimation2.playTogether(arrayList);
                         this.runningAnimation2.setDuration(100L);
                         this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
-                            AnonymousClass51() {
+                            AnonymousClass52() {
                             }
 
                             @Override
@@ -8303,7 +8324,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.runningAnimation.playTogether(arrayList2);
                     this.runningAnimation.setDuration(150L);
                     this.runningAnimation.addListener(new AnimatorListenerAdapter() {
-                        AnonymousClass52() {
+                        AnonymousClass53() {
                         }
 
                         @Override
@@ -8459,7 +8480,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
                                 final boolean val$hasScheduled;
 
-                                AnonymousClass53(boolean z72) {
+                                AnonymousClass54(boolean z72) {
                                     r2 = z72;
                                 }
 
@@ -8532,7 +8553,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.runningAnimation.addListener(new AnimatorListenerAdapter() {
                             final String val$caption;
 
-                            AnonymousClass54(String caption2) {
+                            AnonymousClass55(String caption2) {
                                 r2 = caption2;
                             }
 
@@ -8683,7 +8704,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.runningAnimation2.playTogether(arrayList5);
                     this.runningAnimation2.setDuration(100L);
                     this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
-                        AnonymousClass55() {
+                        AnonymousClass56() {
                         }
 
                         @Override
@@ -8734,7 +8755,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.runningAnimation.playTogether(arrayList6);
                 this.runningAnimation.setDuration(250L);
                 this.runningAnimation.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass56() {
+                    AnonymousClass57() {
                     }
 
                     @Override
@@ -8865,7 +8886,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.runningAnimation2.playTogether(arrayList7);
                     this.runningAnimation2.setDuration(100L);
                     this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
-                        AnonymousClass57() {
+                        AnonymousClass58() {
                         }
 
                         @Override
@@ -8925,7 +8946,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.runningAnimation.playTogether(arrayList8);
                 this.runningAnimation.setDuration(150L);
                 this.runningAnimation.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass58() {
+                    AnonymousClass59() {
                     }
 
                     @Override
@@ -9002,8 +9023,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass51 extends AnimatorListenerAdapter {
-        AnonymousClass51() {
+    public class AnonymousClass52 extends AnimatorListenerAdapter {
+        AnonymousClass52() {
         }
 
         @Override
@@ -9022,8 +9043,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass52 extends AnimatorListenerAdapter {
-        AnonymousClass52() {
+    public class AnonymousClass53 extends AnimatorListenerAdapter {
+        AnonymousClass53() {
         }
 
         @Override
@@ -9048,10 +9069,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass53 extends AnimatorListenerAdapter {
+    public class AnonymousClass54 extends AnimatorListenerAdapter {
         final boolean val$hasScheduled;
 
-        AnonymousClass53(boolean z72) {
+        AnonymousClass54(boolean z72) {
             r2 = z72;
         }
 
@@ -9074,10 +9095,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass54 extends AnimatorListenerAdapter {
+    public class AnonymousClass55 extends AnimatorListenerAdapter {
         final String val$caption;
 
-        AnonymousClass54(String caption2) {
+        AnonymousClass55(String caption2) {
             r2 = caption2;
         }
 
@@ -9109,8 +9130,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass55 extends AnimatorListenerAdapter {
-        AnonymousClass55() {
+    public class AnonymousClass56 extends AnimatorListenerAdapter {
+        AnonymousClass56() {
         }
 
         @Override
@@ -9128,8 +9149,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass56 extends AnimatorListenerAdapter {
-        AnonymousClass56() {
+    public class AnonymousClass57 extends AnimatorListenerAdapter {
+        AnonymousClass57() {
         }
 
         @Override
@@ -9153,8 +9174,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass57 extends AnimatorListenerAdapter {
-        AnonymousClass57() {
+    public class AnonymousClass58 extends AnimatorListenerAdapter {
+        AnonymousClass58() {
         }
 
         @Override
@@ -9172,8 +9193,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass58 extends AnimatorListenerAdapter {
-        AnonymousClass58() {
+    public class AnonymousClass59 extends AnimatorListenerAdapter {
+        AnonymousClass59() {
         }
 
         @Override
@@ -9286,10 +9307,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.updateRecordInterface(int, boolean):void");
     }
 
-    public class AnonymousClass59 extends AnimatorListenerAdapter {
+    public class AnonymousClass60 extends AnimatorListenerAdapter {
         final boolean val$fromPause;
 
-        AnonymousClass59(boolean z) {
+        AnonymousClass60(boolean z) {
             r2 = z;
         }
 
@@ -9323,7 +9344,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$updateRecordInterface$49(ValueAnimator valueAnimator) {
+    public void lambda$updateRecordInterface$50(ValueAnimator valueAnimator) {
         this.recordCircle.setTransformToSeekbar(((Float) valueAnimator.getAnimatedValue()).floatValue());
         if (!isInVideoMode()) {
             this.seekBarWaveform.setWaveScaling(this.recordCircle.getTransformToSeekbarProgressStep3());
@@ -9337,8 +9358,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         isRecordingStateChanged();
     }
 
-    public class AnonymousClass60 extends AnimatorListenerAdapter {
-        AnonymousClass60() {
+    public class AnonymousClass61 extends AnimatorListenerAdapter {
+        AnonymousClass61() {
         }
 
         @Override
@@ -9348,8 +9369,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass61 extends AnimatorListenerAdapter {
-        AnonymousClass61() {
+    public class AnonymousClass62 extends AnimatorListenerAdapter {
+        AnonymousClass62() {
         }
 
         @Override
@@ -9361,11 +9382,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass62 extends AnimatorListenerAdapter {
+    public class AnonymousClass63 extends AnimatorListenerAdapter {
         final ViewGroup.LayoutParams val$finalOldLayoutParams;
         final ViewGroup val$finalParent;
 
-        AnonymousClass62(ViewGroup viewGroup, ViewGroup.LayoutParams layoutParams) {
+        AnonymousClass63(ViewGroup viewGroup, ViewGroup.LayoutParams layoutParams) {
             r2 = viewGroup;
             r3 = layoutParams;
         }
@@ -9400,8 +9421,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass63 extends AnimatorListenerAdapter {
-        AnonymousClass63() {
+    public class AnonymousClass64 extends AnimatorListenerAdapter {
+        AnonymousClass64() {
         }
 
         @Override
@@ -9413,10 +9434,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass64 extends AnimatorListenerAdapter {
+    public class AnonymousClass65 extends AnimatorListenerAdapter {
         final int val$recordState;
 
-        AnonymousClass64(int i) {
+        AnonymousClass65(int i) {
             r2 = i;
         }
 
@@ -9471,8 +9492,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.recordPanel != null || getContext() == null) {
             return;
         }
-        AnonymousClass65 anonymousClass65 = new FrameLayout(this, getContext()) {
-            AnonymousClass65(ChatActivityEnterView this, Context context) {
+        AnonymousClass66 anonymousClass66 = new FrameLayout(this, getContext()) {
+            AnonymousClass66(ChatActivityEnterView this, Context context) {
                 super(context);
             }
 
@@ -9481,16 +9502,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return super.onTouchEvent(motionEvent);
             }
         };
-        this.recordPanel = anonymousClass65;
-        anonymousClass65.setClipChildren(false);
+        this.recordPanel = anonymousClass66;
+        anonymousClass66.setClipChildren(false);
         this.recordPanel.setVisibility(8);
         this.messageEditTextContainer.addView(this.recordPanel, LayoutHelper.createFrame(-1, 48.0f));
         this.recordPanel.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createRecordPanel$50;
-                lambda$createRecordPanel$50 = ChatActivityEnterView.lambda$createRecordPanel$50(view, motionEvent);
-                return lambda$createRecordPanel$50;
+                boolean lambda$createRecordPanel$51;
+                lambda$createRecordPanel$51 = ChatActivityEnterView.lambda$createRecordPanel$51(view, motionEvent);
+                return lambda$createRecordPanel$51;
             }
         });
         FrameLayout frameLayout = this.recordPanel;
@@ -9513,8 +9534,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.recordPanel.addView(this.recordTimeContainer, LayoutHelper.createFrame(-1, -1, 16));
     }
 
-    public class AnonymousClass65 extends FrameLayout {
-        AnonymousClass65(ChatActivityEnterView this, Context context) {
+    public class AnonymousClass66 extends FrameLayout {
+        AnonymousClass66(ChatActivityEnterView this, Context context) {
             super(context);
         }
 
@@ -9586,8 +9607,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         ChatActivity chatActivity = this.parentFragment;
         of.quick_reply_shortcut = chatActivity != null ? chatActivity.quickReplyShortcut : null;
         of.quick_reply_shortcut_id = chatActivity != null ? chatActivity.getQuickReplyId() : 0;
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
-        of.effect_id = messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L;
+        of.effect_id = this.effectId;
+        SendButton sendButton = this.sendButton;
+        this.effectId = 0L;
+        sendButton.setEffect(0L);
         applyStoryToSendMessageParams(of);
         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
     }
@@ -9606,7 +9629,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.doneButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatActivityEnterView.this.lambda$setEditingBusinessLink$51(view);
+                    ChatActivityEnterView.this.lambda$setEditingBusinessLink$52(view);
                 }
             });
             this.doneButton.setVisibility(0);
@@ -9649,11 +9672,23 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$setEditingBusinessLink$51(View view) {
+    public void lambda$setEditingBusinessLink$52(View view) {
         saveBusinessLink();
     }
 
-    public class AnonymousClass66 extends MessageObject {
+    public void setEffectId(long j) {
+        this.effectId = j;
+        SendButton sendButton = this.sendButton;
+        if (sendButton != null) {
+            sendButton.setEffect(j);
+        }
+    }
+
+    public long getEffectId() {
+        return this.effectId;
+    }
+
+    public class AnonymousClass67 extends MessageObject {
         @Override
         public boolean isOutOwner() {
             return true;
@@ -9664,13 +9699,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return false;
         }
 
-        AnonymousClass66(ChatActivityEnterView chatActivityEnterView, int i, TLRPC$Message tLRPC$Message, boolean z, boolean z2) {
+        AnonymousClass67(ChatActivityEnterView chatActivityEnterView, int i, TLRPC$Message tLRPC$Message, boolean z, boolean z2) {
             super(i, tLRPC$Message, z, z2);
         }
     }
 
     private MessageObject editingMessageObjectPreview(MessageObject messageObject, boolean z) {
-        AnonymousClass66 anonymousClass66 = new MessageObject(this, messageObject.currentAccount, messageObject.messageOwner, true, true) {
+        AnonymousClass67 anonymousClass67 = new MessageObject(this, messageObject.currentAccount, messageObject.messageOwner, true, true) {
             @Override
             public boolean isOutOwner() {
                 return true;
@@ -9681,7 +9716,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return false;
             }
 
-            AnonymousClass66(ChatActivityEnterView this, int i, TLRPC$Message tLRPC$Message, boolean z2, boolean z22) {
+            AnonymousClass67(ChatActivityEnterView this, int i, TLRPC$Message tLRPC$Message, boolean z2, boolean z22) {
                 super(i, tLRPC$Message, z2, z22);
             }
         };
@@ -9692,9 +9727,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             ArrayList<TLRPC$MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceArr[0].toString());
             MessageObject.addEntitiesToText(spannableStringBuilder, entities, true, true, false, true);
-            anonymousClass66.caption = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), false, (int[]) null), entities, Theme.chat_msgTextPaint.getFontMetricsInt());
+            anonymousClass67.caption = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), false, (int[]) null), entities, Theme.chat_msgTextPaint.getFontMetricsInt());
         }
-        return anonymousClass66;
+        return anonymousClass67;
     }
 
     public void setEditingMessageObject(final MessageObject messageObject, final MessageObject.GroupedMessages groupedMessages, boolean z) {
@@ -9717,15 +9752,15 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ChatActivityEnterView.this.lambda$setEditingMessageObject$52(view);
+                        ChatActivityEnterView.this.lambda$setEditingMessageObject$53(view);
                     }
                 });
                 this.doneButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
-                        boolean lambda$setEditingMessageObject$55;
-                        lambda$setEditingMessageObject$55 = ChatActivityEnterView.this.lambda$setEditingMessageObject$55(messageObject, groupedMessages, view);
-                        return lambda$setEditingMessageObject$55;
+                        boolean lambda$setEditingMessageObject$56;
+                        lambda$setEditingMessageObject$56 = ChatActivityEnterView.this.lambda$setEditingMessageObject$56(messageObject, groupedMessages, view);
+                        return lambda$setEditingMessageObject$56;
                     }
                 });
                 this.doneButton.setVisibility(0);
@@ -9763,7 +9798,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivityEnterView.this.lambda$setEditingMessageObject$56(charSequence2);
+                            ChatActivityEnterView.this.lambda$setEditingMessageObject$57(charSequence2);
                         }
                     };
                     this.setTextFieldRunnable = runnable;
@@ -9898,11 +9933,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$setEditingMessageObject$52(View view) {
+    public void lambda$setEditingMessageObject$53(View view) {
         doneEditingMessage();
     }
 
-    public boolean lambda$setEditingMessageObject$55(final MessageObject messageObject, final MessageObject.GroupedMessages groupedMessages, View view) {
+    public boolean lambda$setEditingMessageObject$56(final MessageObject messageObject, final MessageObject.GroupedMessages groupedMessages, View view) {
         EditTextCaption editTextCaption;
         if (messageObject.isMediaEmpty() || (editTextCaption = this.messageEditText) == null || TextUtils.isEmpty(editTextCaption.getTextToUse())) {
             return false;
@@ -9933,7 +9968,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChatActivityEnterView.this.lambda$setEditingMessageObject$53(arrayList, toggleButton, messageSendPreview, view2);
+                ChatActivityEnterView.this.lambda$setEditingMessageObject$54(arrayList, toggleButton, messageSendPreview, view2);
             }
         });
         makeOptions.addView(toggleButton);
@@ -9942,14 +9977,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         messageSendPreview.setSendButton(this.doneButton, false, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChatActivityEnterView.this.lambda$setEditingMessageObject$54(groupedMessages, messageObject, messageSendPreview, view2);
+                ChatActivityEnterView.this.lambda$setEditingMessageObject$55(groupedMessages, messageObject, messageSendPreview, view2);
             }
         });
         messageSendPreview.show();
         return true;
     }
 
-    public void lambda$setEditingMessageObject$53(ArrayList arrayList, MessagePreviewView.ToggleButton toggleButton, MessageSendPreview messageSendPreview, View view) {
+    public void lambda$setEditingMessageObject$54(ArrayList arrayList, MessagePreviewView.ToggleButton toggleButton, MessageSendPreview messageSendPreview, View view) {
         this.captionAbove = !this.captionAbove;
         for (int i = 0; i < arrayList.size(); i++) {
             ((MessageObject) arrayList.get(i)).messageOwner.invert_media = this.captionAbove;
@@ -9961,7 +9996,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         messageSendPreview.scrollTo(!this.captionAbove);
     }
 
-    public void lambda$setEditingMessageObject$54(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) {
+    public void lambda$setEditingMessageObject$55(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) {
         if (groupedMessages != null) {
             Iterator<MessageObject> it = groupedMessages.messages.iterator();
             while (it.hasNext()) {
@@ -9976,7 +10011,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.captionAbove = false;
     }
 
-    public void lambda$setEditingMessageObject$56(CharSequence charSequence) {
+    public void lambda$setEditingMessageObject$57(CharSequence charSequence) {
         setFieldText(charSequence);
         this.setTextFieldRunnable = null;
     }
@@ -10316,7 +10351,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivityEnterView.this.lambda$setFieldFocused$57();
+                        ChatActivityEnterView.this.lambda$setFieldFocused$58();
                     }
                 };
                 this.focusRunnable = runnable;
@@ -10334,7 +10369,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$setFieldFocused$57() {
+    public void lambda$setFieldFocused$58() {
         EditTextCaption editTextCaption;
         ViewGroup viewGroup = null;
         this.focusRunnable = null;
@@ -10424,7 +10459,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.birthdayHint.setOnHiddenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.this.lambda$checkBirthdayHint$58();
+                    ChatActivityEnterView.this.lambda$checkBirthdayHint$59();
                 }
             });
             this.birthdayHint.setDuration(8000L);
@@ -10432,7 +10467,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$checkBirthdayHint$58() {
+    public void lambda$checkBirthdayHint$59() {
         removeView(this.birthdayHint);
     }
 
@@ -10462,6 +10497,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         boolean z2;
         ImageView imageView;
         ImageView imageView2;
+        ImageView imageView3;
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
         if (DialogObject.isChatDialog(this.dialog_id)) {
             TLRPC$Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id));
@@ -10489,18 +10525,18 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (z4) {
             createScheduledButton();
         }
-        ImageView imageView3 = this.scheduledButton;
+        ImageView imageView4 = this.scheduledButton;
         float f = 96.0f;
-        if (imageView3 != null) {
-            if ((imageView3.getTag() != null && z4) || (this.scheduledButton.getTag() == null && !z4)) {
+        if (imageView4 != null) {
+            if ((imageView4.getTag() != null && z4) || (this.scheduledButton.getTag() == null && !z4)) {
                 if (this.notifyButton != null) {
                     int i = (z3 || !z2 || this.scheduledButton.getVisibility() == 0) ? 8 : 0;
                     if (i != this.notifyButton.getVisibility()) {
                         this.notifyButton.setVisibility(i);
                         LinearLayout linearLayout2 = this.attachLayout;
                         if (linearLayout2 != null) {
-                            ImageView imageView4 = this.botButton;
-                            if ((imageView4 == null || imageView4.getVisibility() == 8) && ((imageView2 = this.notifyButton) == null || imageView2.getVisibility() == 8)) {
+                            ImageView imageView5 = this.botButton;
+                            if ((imageView5 == null || imageView5.getVisibility() == 8) && ((imageView3 = this.notifyButton) == null || imageView3.getVisibility() == 8)) {
                                 f = 48.0f;
                             }
                             linearLayout2.setPivotX(AndroidUtilities.dp(f));
@@ -10513,6 +10549,19 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return;
             }
             this.scheduledButton.setTag(z4 ? 1 : null);
+        } else {
+            ImageView imageView6 = this.notifyButton;
+            if (imageView6 != null) {
+                int i2 = (z3 || !z2) ? 8 : 0;
+                if (i2 != imageView6.getVisibility()) {
+                    this.notifyButton.setVisibility(i2);
+                    LinearLayout linearLayout3 = this.attachLayout;
+                    if (linearLayout3 != null) {
+                        ImageView imageView7 = this.botButton;
+                        linearLayout3.setPivotX(AndroidUtilities.dp(((imageView7 == null || imageView7.getVisibility() == 8) && ((imageView = this.notifyButton) == null || imageView.getVisibility() == 8)) ? 48.0f : 96.0f));
+                    }
+                }
+            }
         }
         AnimatorSet animatorSet = this.scheduledButtonAnimation;
         if (animatorSet != null) {
@@ -10520,52 +10569,57 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.scheduledButtonAnimation = null;
         }
         if (!z || z2) {
-            ImageView imageView5 = this.scheduledButton;
-            if (imageView5 != null) {
-                imageView5.setVisibility(z4 ? 0 : 8);
+            ImageView imageView8 = this.scheduledButton;
+            if (imageView8 != null) {
+                imageView8.setVisibility(z4 ? 0 : 8);
                 this.scheduledButton.setAlpha(z4 ? 1.0f : 0.0f);
                 this.scheduledButton.setScaleX(z4 ? 1.0f : 0.1f);
                 this.scheduledButton.setScaleY(z4 ? 1.0f : 0.1f);
-                ImageView imageView6 = this.notifyButton;
-                if (imageView6 != null) {
-                    imageView6.setVisibility((!z2 || this.scheduledButton.getVisibility() == 0) ? 8 : 0);
+                ImageView imageView9 = this.notifyButton;
+                if (imageView9 != null) {
+                    imageView9.setVisibility((!z2 || this.scheduledButton.getVisibility() == 0) ? 8 : 0);
                 }
-                ImageView imageView7 = this.giftButton;
-                if (imageView7 != null && imageView7.getVisibility() == 0) {
+                ImageView imageView10 = this.giftButton;
+                if (imageView10 != null && imageView10.getVisibility() == 0) {
                     this.scheduledButton.setTranslationX(-AndroidUtilities.dp(48.0f));
+                }
+            } else {
+                ImageView imageView11 = this.notifyButton;
+                if (imageView11 != null) {
+                    imageView11.setVisibility(z2 ? 0 : 8);
                 }
             }
         } else {
-            ImageView imageView8 = this.scheduledButton;
-            if (imageView8 != null) {
+            ImageView imageView12 = this.scheduledButton;
+            if (imageView12 != null) {
                 if (z4) {
-                    imageView8.setVisibility(0);
+                    imageView12.setVisibility(0);
                 }
                 this.scheduledButton.setPivotX(AndroidUtilities.dp(24.0f));
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.scheduledButtonAnimation = animatorSet2;
                 Animator[] animatorArr = new Animator[3];
-                ImageView imageView9 = this.scheduledButton;
+                ImageView imageView13 = this.scheduledButton;
                 Property property = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = z4 ? 1.0f : 0.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(imageView9, (Property<ImageView, Float>) property, fArr);
-                ImageView imageView10 = this.scheduledButton;
+                animatorArr[0] = ObjectAnimator.ofFloat(imageView13, (Property<ImageView, Float>) property, fArr);
+                ImageView imageView14 = this.scheduledButton;
                 Property property2 = View.SCALE_X;
                 float[] fArr2 = new float[1];
                 fArr2[0] = z4 ? 1.0f : 0.1f;
-                animatorArr[1] = ObjectAnimator.ofFloat(imageView10, (Property<ImageView, Float>) property2, fArr2);
-                ImageView imageView11 = this.scheduledButton;
+                animatorArr[1] = ObjectAnimator.ofFloat(imageView14, (Property<ImageView, Float>) property2, fArr2);
+                ImageView imageView15 = this.scheduledButton;
                 Property property3 = View.SCALE_Y;
                 float[] fArr3 = new float[1];
                 fArr3[0] = z4 ? 1.0f : 0.1f;
-                animatorArr[2] = ObjectAnimator.ofFloat(imageView11, (Property<ImageView, Float>) property3, fArr3);
+                animatorArr[2] = ObjectAnimator.ofFloat(imageView15, (Property<ImageView, Float>) property3, fArr3);
                 animatorSet2.playTogether(animatorArr);
                 this.scheduledButtonAnimation.setDuration(180L);
                 this.scheduledButtonAnimation.addListener(new AnimatorListenerAdapter() {
                     final boolean val$visible;
 
-                    AnonymousClass67(boolean z42) {
+                    AnonymousClass68(boolean z42) {
                         r2 = z42;
                     }
 
@@ -10581,20 +10635,20 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.scheduledButtonAnimation.start();
             }
         }
-        LinearLayout linearLayout3 = this.attachLayout;
-        if (linearLayout3 != null) {
-            ImageView imageView12 = this.botButton;
-            if ((imageView12 == null || imageView12.getVisibility() == 8) && ((imageView = this.notifyButton) == null || imageView.getVisibility() == 8)) {
+        LinearLayout linearLayout4 = this.attachLayout;
+        if (linearLayout4 != null) {
+            ImageView imageView16 = this.botButton;
+            if ((imageView16 == null || imageView16.getVisibility() == 8) && ((imageView2 = this.notifyButton) == null || imageView2.getVisibility() == 8)) {
                 f = 48.0f;
             }
-            linearLayout3.setPivotX(AndroidUtilities.dp(f));
+            linearLayout4.setPivotX(AndroidUtilities.dp(f));
         }
     }
 
-    public class AnonymousClass67 extends AnimatorListenerAdapter {
+    public class AnonymousClass68 extends AnimatorListenerAdapter {
         final boolean val$visible;
 
-        AnonymousClass67(boolean z42) {
+        AnonymousClass68(boolean z42) {
             r2 = z42;
         }
 
@@ -10682,7 +10736,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChatActivityEnterView.this.lambda$updateSendAsButton$59(f5, f6, f7, f8, valueAnimator2);
+                        ChatActivityEnterView.this.lambda$updateSendAsButton$60(f5, f6, f7, f8, valueAnimator2);
                     }
                 });
                 duration.addListener(new AnimatorListenerAdapter() {
@@ -10692,7 +10746,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     final float val$startAlpha;
                     final float val$startX;
 
-                    AnonymousClass68(boolean z22, float f32, float f9, final float f82, float f22) {
+                    AnonymousClass69(boolean z22, float f32, float f9, final float f82, float f22) {
                         r2 = z22;
                         r3 = f32;
                         r4 = f9;
@@ -10782,7 +10836,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$updateSendAsButton$59(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+    public void lambda$updateSendAsButton$60(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f5 = f + ((f2 - f) * floatValue);
         SenderSelectView senderSelectView = this.senderSelectView;
@@ -10795,14 +10849,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         updateMessageTextParams();
     }
 
-    public class AnonymousClass68 extends AnimatorListenerAdapter {
+    public class AnonymousClass69 extends AnimatorListenerAdapter {
         final float val$endAlpha;
         final float val$endX;
         final boolean val$isVisible;
         final float val$startAlpha;
         final float val$startX;
 
-        AnonymousClass68(boolean z22, float f32, float f9, final float f82, float f22) {
+        AnonymousClass69(boolean z22, float f32, float f9, final float f82, float f22) {
             r2 = z22;
             r3 = f32;
             r4 = f9;
@@ -10985,8 +11039,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setButtons(org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public class AnonymousClass69 extends BotKeyboardView {
-        AnonymousClass69(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public class AnonymousClass70 extends BotKeyboardView {
+        AnonymousClass70(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
         }
 
@@ -11000,7 +11054,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$setButtons$60(TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+    public void lambda$setButtons$61(TLRPC$KeyboardButton tLRPC$KeyboardButton) {
         ChatActivity chatActivity;
         boolean z = this.replyingMessageObject != null && (chatActivity = this.parentFragment) != null && chatActivity.isTopic && chatActivity.getTopicId() == ((long) this.replyingMessageObject.getId());
         MessageObject messageObject = this.replyingMessageObject;
@@ -11050,8 +11104,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             ChatActivity chatActivity2 = this.parentFragment;
             of.quick_reply_shortcut = chatActivity2 != null ? chatActivity2.quickReplyShortcut : null;
             of.quick_reply_shortcut_id = chatActivity2 != null ? chatActivity2.getQuickReplyId() : 0;
-            MessageSendPreview messageSendPreview = this.messageSendPreview;
-            of.effect_id = messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L;
+            of.effect_id = this.effectId;
+            SendButton sendButton = this.sendButton;
+            this.effectId = 0L;
+            sendButton.setEffect(0L);
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
         } else if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrl) {
             if (Browser.urlMustNotHaveConfirmation(tLRPC$KeyboardButton.url)) {
@@ -11074,13 +11130,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
                 final long j2 = j;
                 MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2));
-                final AnonymousClass70 anonymousClass70 = new Runnable() {
+                final AnonymousClass71 anonymousClass71 = new Runnable() {
                     final long val$botId;
                     final TLRPC$KeyboardButton val$button;
                     final MessageObject val$messageObject;
                     final MessageObject val$replyMessageObject;
 
-                    AnonymousClass70(final MessageObject messageObject22, final long j22, final TLRPC$KeyboardButton tLRPC$KeyboardButton2, MessageObject messageObject3) {
+                    AnonymousClass71(final MessageObject messageObject22, final long j22, final TLRPC$KeyboardButton tLRPC$KeyboardButton2, MessageObject messageObject3) {
                         r2 = messageObject22;
                         r3 = j22;
                         r5 = tLRPC$KeyboardButton2;
@@ -11113,12 +11169,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
                 };
                 if (SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j22)) {
-                    anonymousClass70.run();
+                    anonymousClass71.run();
                 } else {
                     AlertsCreator.createBotLaunchAlert(this.parentFragment, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialog_id)), new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivityEnterView.this.lambda$didPressedBotButton$61(anonymousClass70, j22);
+                            ChatActivityEnterView.this.lambda$didPressedBotButton$62(anonymousClass71, j22);
                         }
                     }, (Runnable) null);
                 }
@@ -11129,7 +11185,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        ChatActivityEnterView.this.lambda$didPressedBotButton$62(messageObject22, tLRPC$KeyboardButton2, dialogInterface, i2);
+                        ChatActivityEnterView.this.lambda$didPressedBotButton$63(messageObject22, tLRPC$KeyboardButton2, dialogInterface, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -11183,9 +11239,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
                         public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-                            boolean lambda$didPressedBotButton$63;
-                            lambda$didPressedBotButton$63 = ChatActivityEnterView.this.lambda$didPressedBotButton$63(messageObject22, tLRPC$KeyboardButton2, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
-                            return lambda$didPressedBotButton$63;
+                            boolean lambda$didPressedBotButton$64;
+                            lambda$didPressedBotButton$64 = ChatActivityEnterView.this.lambda$didPressedBotButton$64(messageObject22, tLRPC$KeyboardButton2, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                            return lambda$didPressedBotButton$64;
                         }
                     });
                     this.parentFragment.presentFragment(dialogsActivity);
@@ -11204,7 +11260,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         MultiContactsSelectorBottomSheet.open(i, new MultiContactsSelectorBottomSheet.SelectorListener() {
                             @Override
                             public final void onUserSelected(List list) {
-                                ChatActivityEnterView.this.lambda$didPressedBotButton$64(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, list);
+                                ChatActivityEnterView.this.lambda$didPressedBotButton$65(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, list);
                             }
                         });
                         return false;
@@ -11231,9 +11287,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
                         public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-                            boolean lambda$didPressedBotButton$65;
-                            lambda$didPressedBotButton$65 = ChatActivityEnterView.this.lambda$didPressedBotButton$65(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, dialogsActivity3, arrayList, charSequence, z, topicsFragment);
-                            return lambda$didPressedBotButton$65;
+                            boolean lambda$didPressedBotButton$66;
+                            lambda$didPressedBotButton$66 = ChatActivityEnterView.this.lambda$didPressedBotButton$66(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, dialogsActivity3, arrayList, charSequence, z, topicsFragment);
+                            return lambda$didPressedBotButton$66;
                         }
                     });
                     this.parentFragment.presentFragment(dialogsActivity2);
@@ -11245,13 +11301,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return true;
     }
 
-    public class AnonymousClass70 implements Runnable {
+    public class AnonymousClass71 implements Runnable {
         final long val$botId;
         final TLRPC$KeyboardButton val$button;
         final MessageObject val$messageObject;
         final MessageObject val$replyMessageObject;
 
-        AnonymousClass70(final MessageObject messageObject22, final long j22, final TLRPC$KeyboardButton tLRPC$KeyboardButton2, MessageObject messageObject3) {
+        AnonymousClass71(final MessageObject messageObject22, final long j22, final TLRPC$KeyboardButton tLRPC$KeyboardButton2, MessageObject messageObject3) {
             r2 = messageObject22;
             r3 = j22;
             r5 = tLRPC$KeyboardButton2;
@@ -11284,12 +11340,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$didPressedBotButton$61(Runnable runnable, long j) {
+    public void lambda$didPressedBotButton$62(Runnable runnable, long j) {
         runnable.run();
         SharedPrefsHelper.setWebViewConfirmShown(this.currentAccount, j, true);
     }
 
-    public void lambda$didPressedBotButton$62(MessageObject messageObject, TLRPC$KeyboardButton tLRPC$KeyboardButton, DialogInterface dialogInterface, int i) {
+    public void lambda$didPressedBotButton$63(MessageObject messageObject, TLRPC$KeyboardButton tLRPC$KeyboardButton, DialogInterface dialogInterface, int i) {
         if (Build.VERSION.SDK_INT >= 23 && this.parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
             this.parentActivity.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
             this.pendingMessageObject = messageObject;
@@ -11299,7 +11355,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         SendMessagesHelper.getInstance(this.currentAccount).sendCurrentLocation(messageObject, tLRPC$KeyboardButton);
     }
 
-    public boolean lambda$didPressedBotButton$63(MessageObject messageObject, TLRPC$KeyboardButton tLRPC$KeyboardButton, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$didPressedBotButton$64(MessageObject messageObject, TLRPC$KeyboardButton tLRPC$KeyboardButton, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
         TLRPC$Message tLRPC$Message = messageObject.messageOwner;
         long j = tLRPC$Message.from_id.user_id;
         long j2 = tLRPC$Message.via_bot_id;
@@ -11312,7 +11368,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return true;
         }
         long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-        MediaDataController.getInstance(this.currentAccount).saveDraft(j3, 0, "@" + UserObject.getPublicUsername(user) + " " + tLRPC$KeyboardButton.query, null, null, true);
+        MediaDataController.getInstance(this.currentAccount).saveDraft(j3, 0, "@" + UserObject.getPublicUsername(user) + " " + tLRPC$KeyboardButton.query, null, null, true, 0L);
         if (j3 != this.dialog_id) {
             if (!DialogObject.isEncryptedDialog(j3)) {
                 Bundle bundle = new Bundle();
@@ -11340,7 +11396,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return true;
     }
 
-    public void lambda$didPressedBotButton$64(MessageObject messageObject, TLRPC$TL_keyboardButtonRequestPeer tLRPC$TL_keyboardButtonRequestPeer, List list) {
+    public void lambda$didPressedBotButton$65(MessageObject messageObject, TLRPC$TL_keyboardButtonRequestPeer tLRPC$TL_keyboardButtonRequestPeer, List list) {
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -11355,7 +11411,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_sendBotRequestedPeer, null);
     }
 
-    public boolean lambda$didPressedBotButton$65(MessageObject messageObject, TLRPC$TL_keyboardButtonRequestPeer tLRPC$TL_keyboardButtonRequestPeer, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$didPressedBotButton$66(MessageObject messageObject, TLRPC$TL_keyboardButtonRequestPeer tLRPC$TL_keyboardButtonRequestPeer, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
         if (arrayList != null && !arrayList.isEmpty()) {
             TLRPC$TL_messages_sendBotRequestedPeer tLRPC$TL_messages_sendBotRequestedPeer = new TLRPC$TL_messages_sendBotRequestedPeer();
             tLRPC$TL_messages_sendBotRequestedPeer.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.messageOwner.peer_id);
@@ -11397,8 +11453,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.emojiView != null) {
             return;
         }
-        AnonymousClass71 anonymousClass71 = new EmojiView(this.parentFragment, this.allowAnimatedEmoji, true, true, getContext(), true, this.info, this.sizeNotifierLayout, this.shouldDrawBackground, this.resourcesProvider, this.emojiViewFrozen) {
-            AnonymousClass71(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC$ChatFull tLRPC$ChatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6) {
+        AnonymousClass72 anonymousClass72 = new EmojiView(this.parentFragment, this.allowAnimatedEmoji, true, true, getContext(), true, this.info, this.sizeNotifierLayout, this.shouldDrawBackground, this.resourcesProvider, this.emojiViewFrozen) {
+            AnonymousClass72(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC$ChatFull tLRPC$ChatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6) {
                 super(baseFragment, z, z2, z3, context, z4, tLRPC$ChatFull, viewGroup, z5, resourcesProvider, z6);
             }
 
@@ -11411,19 +11467,19 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 ChatActivityEnterView.this.delegate.bottomPanelTranslationYChanged(f);
             }
         };
-        this.emojiView = anonymousClass71;
+        this.emojiView = anonymousClass72;
         if (!this.shouldDrawBackground) {
-            anonymousClass71.updateColors();
+            anonymousClass72.updateColors();
         }
         this.emojiView.setAllow(this.allowStickers, this.allowGifs, true);
         this.emojiView.setVisibility(8);
         this.emojiView.setShowing(false);
-        this.emojiView.setDelegate(new AnonymousClass72());
+        this.emojiView.setDelegate(new AnonymousClass73());
         this.emojiView.setDragListener(new EmojiView.DragListener() {
             int initialOffset;
             boolean wasExpanded;
 
-            AnonymousClass73() {
+            AnonymousClass74() {
             }
 
             @Override
@@ -11504,8 +11560,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         checkChannelRights();
     }
 
-    public class AnonymousClass71 extends EmojiView {
-        AnonymousClass71(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC$ChatFull tLRPC$ChatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6) {
+    public class AnonymousClass72 extends EmojiView {
+        AnonymousClass72(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC$ChatFull tLRPC$ChatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6) {
             super(baseFragment, z, z2, z3, context, z4, tLRPC$ChatFull, viewGroup, z5, resourcesProvider, z6);
         }
 
@@ -11519,8 +11575,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass72 implements EmojiView.EmojiViewDelegate {
-        AnonymousClass72() {
+    public class AnonymousClass73 implements EmojiView.EmojiViewDelegate {
+        AnonymousClass73() {
         }
 
         @Override
@@ -11569,7 +11625,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.AnonymousClass72.this.lambda$onCustomEmojiSelected$0(str, tLRPC$Document, j, z);
+                    ChatActivityEnterView.AnonymousClass73.this.lambda$onCustomEmojiSelected$0(str, tLRPC$Document, j, z);
                 }
             });
         }
@@ -11641,7 +11697,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
                     ChatActivityEnterView.this.setStickersExpanded(false, true, false);
                 }
-                ChatActivityEnterView.this.lambda$onStickerSelected$66(tLRPC$Document, str, obj, sendAnimationData, false, z, i);
+                ChatActivityEnterView.this.lambda$onStickerSelected$67(tLRPC$Document, str, obj, sendAnimationData, false, z, i);
                 if (DialogObject.isEncryptedDialog(ChatActivityEnterView.this.dialog_id) && MessageObject.isGifDocument(tLRPC$Document)) {
                     ChatActivityEnterView.this.accountInstance.getMessagesController().saveGif(obj, tLRPC$Document);
                     return;
@@ -11688,7 +11744,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivityEnterView.AnonymousClass72.this.lambda$onGifSelected$2(obj, str, z, i, obj2);
+                        ChatActivityEnterView.AnonymousClass73.this.lambda$onGifSelected$2(obj, str, z, i, obj2);
                     }
                 };
                 if (ChatActivityEnterView.this.showConfirmAlert(runnable)) {
@@ -11700,7 +11756,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z2, int i2) {
-                    ChatActivityEnterView.AnonymousClass72.this.lambda$onGifSelected$1(view, obj, str, obj2, z2, i2);
+                    ChatActivityEnterView.AnonymousClass73.this.lambda$onGifSelected$1(view, obj, str, obj2, z2, i2);
                 }
             }, ChatActivityEnterView.this.resourcesProvider);
         }
@@ -11766,7 +11822,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             builder.setPositiveButton(LocaleController.getString(R.string.ClearForAll), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ChatActivityEnterView.AnonymousClass72.this.lambda$onClearEmojiRecent$3(dialogInterface, i);
+                    ChatActivityEnterView.AnonymousClass73.this.lambda$onClearEmojiRecent$3(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -11927,11 +11983,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass73 implements EmojiView.DragListener {
+    public class AnonymousClass74 implements EmojiView.DragListener {
         int initialOffset;
         boolean wasExpanded;
 
-        AnonymousClass73() {
+        AnonymousClass74() {
         }
 
         @Override
@@ -12006,7 +12062,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     @Override
-    public void lambda$onStickerSelected$66(final TLRPC$Document tLRPC$Document, final String str, final Object obj, final MessageObject.SendAnimationData sendAnimationData, final boolean z, final boolean z2, final int i) {
+    public void lambda$onStickerSelected$67(final TLRPC$Document tLRPC$Document, final String str, final Object obj, final MessageObject.SendAnimationData sendAnimationData, final boolean z, final boolean z2, final int i) {
         ChatActivity chatActivity;
         ChatActivity.ReplyQuote replyQuote = this.replyingQuote;
         if (replyQuote != null && (chatActivity = this.parentFragment) != null && replyQuote.outdated) {
@@ -12017,7 +12073,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z3, int i2) {
-                    ChatActivityEnterView.this.lambda$onStickerSelected$66(tLRPC$Document, str, obj, sendAnimationData, z, z3, i2);
+                    ChatActivityEnterView.this.lambda$onStickerSelected$67(tLRPC$Document, str, obj, sendAnimationData, z, z3, i2);
                 }
             }, this.resourcesProvider);
             return;
@@ -12025,7 +12081,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivityEnterView.this.lambda$onStickerSelected$67(tLRPC$Document, str, sendAnimationData, z2, i, obj, z);
+                ChatActivityEnterView.this.lambda$onStickerSelected$68(tLRPC$Document, str, sendAnimationData, z2, i, obj, z);
             }
         };
         if (showConfirmAlert(runnable)) {
@@ -12034,7 +12090,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         runnable.run();
     }
 
-    public void lambda$onStickerSelected$67(TLRPC$Document tLRPC$Document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, Object obj, boolean z2) {
+    public void lambda$onStickerSelected$68(TLRPC$Document tLRPC$Document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, Object obj, boolean z2) {
         if (this.slowModeTimer > 0 && !isInScheduleMode()) {
             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
             if (chatActivityEnterViewDelegate != null) {
@@ -12193,7 +12249,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivityEnterView.this.lambda$showPopup$68();
+                            ChatActivityEnterView.this.lambda$showPopup$69();
                         }
                     };
                     if (this.overrideKeyboardAnimation) {
@@ -12208,7 +12264,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.panelAnimation.addListener(new AnimatorListenerAdapter() {
                             final Runnable val$onAnimationEndRunnuble;
 
-                            AnonymousClass74(Runnable runnable2) {
+                            AnonymousClass75(Runnable runnable2) {
                                 r2 = runnable2;
                             }
 
@@ -12241,7 +12297,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         Runnable runnable2 = new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivityEnterView.this.lambda$showPopup$69(i);
+                                ChatActivityEnterView.this.lambda$showPopup$70(i);
                             }
                         };
                         if (!this.overrideKeyboardAnimation) {
@@ -12254,7 +12310,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             this.panelAnimation.addListener(new AnimatorListenerAdapter() {
                                 final Runnable val$animationEndRunnable;
 
-                                AnonymousClass75(Runnable runnable22) {
+                                AnonymousClass76(Runnable runnable22) {
                                     r2 = runnable22;
                                 }
 
@@ -12314,7 +12370,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.panelAnimation.addListener(new AnimatorListenerAdapter() {
                             final int val$show;
 
-                            AnonymousClass76(final int i7) {
+                            AnonymousClass77(final int i7) {
                                 r2 = i7;
                             }
 
@@ -12358,7 +12414,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         checkBotMenu();
     }
 
-    public void lambda$showPopup$68() {
+    public void lambda$showPopup$69() {
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
         if (chatActivityEnterViewDelegate != null) {
             chatActivityEnterViewDelegate.bottomPanelTranslationYChanged(0.0f);
@@ -12366,10 +12422,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         requestLayout();
     }
 
-    public class AnonymousClass74 extends AnimatorListenerAdapter {
+    public class AnonymousClass75 extends AnimatorListenerAdapter {
         final Runnable val$onAnimationEndRunnuble;
 
-        AnonymousClass74(Runnable runnable2) {
+        AnonymousClass75(Runnable runnable2) {
             r2 = runnable2;
         }
 
@@ -12381,7 +12437,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$showPopup$69(int i) {
+    public void lambda$showPopup$70(int i) {
         if (i == 0) {
             this.emojiPadding = 0;
         }
@@ -12403,10 +12459,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         requestLayout();
     }
 
-    public class AnonymousClass75 extends AnimatorListenerAdapter {
+    public class AnonymousClass76 extends AnimatorListenerAdapter {
         final Runnable val$animationEndRunnable;
 
-        AnonymousClass75(Runnable runnable22) {
+        AnonymousClass76(Runnable runnable22) {
             r2 = runnable22;
         }
 
@@ -12417,10 +12473,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass76 extends AnimatorListenerAdapter {
+    public class AnonymousClass77 extends AnimatorListenerAdapter {
         final int val$show;
 
-        AnonymousClass76(final int i7) {
+        AnonymousClass77(final int i7) {
             r2 = i7;
         }
 
@@ -12585,13 +12641,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChatActivityEnterView.this.lambda$setSearchingTypeInternal$70(valueAnimator2);
+                        ChatActivityEnterView.this.lambda$setSearchingTypeInternal$71(valueAnimator2);
                     }
                 });
                 this.searchAnimator.addListener(new AnimatorListenerAdapter() {
                     final boolean val$showSearchingNew;
 
-                    AnonymousClass77(boolean z22) {
+                    AnonymousClass78(boolean z22) {
                         r2 = z22;
                     }
 
@@ -12611,7 +12667,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.searchingType = i;
     }
 
-    public void lambda$setSearchingTypeInternal$70(ValueAnimator valueAnimator) {
+    public void lambda$setSearchingTypeInternal$71(ValueAnimator valueAnimator) {
         this.searchToOpenProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
@@ -12619,10 +12675,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass77 extends AnimatorListenerAdapter {
+    public class AnonymousClass78 extends AnimatorListenerAdapter {
         final boolean val$showSearchingNew;
 
-        AnonymousClass77(boolean z22) {
+        AnonymousClass78(boolean z22) {
             r2 = z22;
         }
 
@@ -12811,7 +12867,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                 this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
                                 this.panelAnimation.setDuration(250L);
                                 this.panelAnimation.addListener(new AnimatorListenerAdapter() {
-                                    AnonymousClass78() {
+                                    AnonymousClass79() {
                                     }
 
                                     @Override
@@ -12867,8 +12923,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         onWindowSizeChanged();
     }
 
-    class AnonymousClass78 extends AnimatorListenerAdapter {
-        AnonymousClass78() {
+    class AnonymousClass79 extends AnimatorListenerAdapter {
+        AnonymousClass79() {
         }
 
         @Override
@@ -13272,7 +13328,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.this.lambda$checkStickresExpandHeight$71();
+                    ChatActivityEnterView.this.lambda$checkStickresExpandHeight$72();
                 }
             };
             this.emojiView.setLayerType(2, null);
@@ -13285,7 +13341,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             ((ObjectAnimator) animatorSet.getChildAnimations().get(0)).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatActivityEnterView.this.lambda$checkStickresExpandHeight$72(valueAnimator);
+                    ChatActivityEnterView.this.lambda$checkStickresExpandHeight$73(valueAnimator);
                 }
             });
             animatorSet.setDuration(300L);
@@ -13293,7 +13349,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 final Runnable val$animationEndRunnable;
 
-                AnonymousClass79(Runnable runnable2) {
+                AnonymousClass80(Runnable runnable2) {
                     r2 = runnable2;
                 }
 
@@ -13322,13 +13378,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         ((ObjectAnimator) animatorSet2.getChildAnimations().get(0)).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatActivityEnterView.this.lambda$checkStickresExpandHeight$73(valueAnimator);
+                ChatActivityEnterView.this.lambda$checkStickresExpandHeight$74(valueAnimator);
             }
         });
         animatorSet2.setDuration(300L);
         animatorSet2.setInterpolator(CubicBezierInterpolator.DEFAULT);
         animatorSet2.addListener(new AnimatorListenerAdapter() {
-            AnonymousClass80() {
+            AnonymousClass81() {
             }
 
             @Override
@@ -13342,7 +13398,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         animatorSet2.start();
     }
 
-    public void lambda$checkStickresExpandHeight$71() {
+    public void lambda$checkStickresExpandHeight$72() {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
             emojiView.getLayoutParams().height = this.stickersExpandedHeight;
@@ -13350,14 +13406,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$checkStickresExpandHeight$72(ValueAnimator valueAnimator) {
+    public void lambda$checkStickresExpandHeight$73(ValueAnimator valueAnimator) {
         this.sizeNotifierLayout.invalidate();
     }
 
-    public class AnonymousClass79 extends AnimatorListenerAdapter {
+    public class AnonymousClass80 extends AnimatorListenerAdapter {
         final Runnable val$animationEndRunnable;
 
-        AnonymousClass79(Runnable runnable2) {
+        AnonymousClass80(Runnable runnable2) {
             r2 = runnable2;
         }
 
@@ -13368,12 +13424,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$checkStickresExpandHeight$73(ValueAnimator valueAnimator) {
+    public void lambda$checkStickresExpandHeight$74(ValueAnimator valueAnimator) {
         this.sizeNotifierLayout.invalidate();
     }
 
-    public class AnonymousClass80 extends AnimatorListenerAdapter {
-        AnonymousClass80() {
+    public class AnonymousClass81 extends AnimatorListenerAdapter {
+        AnonymousClass81() {
         }
 
         @Override
@@ -13437,11 +13493,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     ((ObjectAnimator) animatorSet.getChildAnimations().get(0)).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatActivityEnterView.this.lambda$setStickersExpanded$74(i, valueAnimator);
+                            ChatActivityEnterView.this.lambda$setStickersExpanded$75(i, valueAnimator);
                         }
                     });
                     animatorSet.addListener(new AnimatorListenerAdapter() {
-                        AnonymousClass81() {
+                        AnonymousClass82() {
                         }
 
                         @Override
@@ -13479,13 +13535,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     ((ObjectAnimator) animatorSet2.getChildAnimations().get(0)).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatActivityEnterView.this.lambda$setStickersExpanded$75(i, valueAnimator);
+                            ChatActivityEnterView.this.lambda$setStickersExpanded$76(i, valueAnimator);
                         }
                     });
                     animatorSet2.addListener(new AnimatorListenerAdapter() {
                         final int val$origHeight;
 
-                        AnonymousClass82(final int i2) {
+                        AnonymousClass83(final int i2) {
                             r2 = i2;
                         }
 
@@ -13544,13 +13600,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$setStickersExpanded$74(int i, ValueAnimator valueAnimator) {
+    public void lambda$setStickersExpanded$75(int i, ValueAnimator valueAnimator) {
         this.stickersExpansionProgress = Math.abs(getTranslationY() / (-(this.stickersExpandedHeight - i)));
         this.sizeNotifierLayout.invalidate();
     }
 
-    public class AnonymousClass81 extends AnimatorListenerAdapter {
-        AnonymousClass81() {
+    public class AnonymousClass82 extends AnimatorListenerAdapter {
+        AnonymousClass82() {
         }
 
         @Override
@@ -13561,15 +13617,15 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public void lambda$setStickersExpanded$75(int i, ValueAnimator valueAnimator) {
+    public void lambda$setStickersExpanded$76(int i, ValueAnimator valueAnimator) {
         this.stickersExpansionProgress = getTranslationY() / (-(this.stickersExpandedHeight - i));
         this.sizeNotifierLayout.invalidate();
     }
 
-    public class AnonymousClass82 extends AnimatorListenerAdapter {
+    public class AnonymousClass83 extends AnimatorListenerAdapter {
         final int val$origHeight;
 
-        AnonymousClass82(final int i2) {
+        AnonymousClass83(final int i2) {
             r2 = i2;
         }
 
@@ -13743,9 +13799,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                 ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = ChatActivityEnterView.this.delegate;
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                int i = chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                MessageSendPreview messageSendPreview = chatActivityEnterView.messageSendPreview;
-                chatActivityEnterViewDelegate.needStartRecordVideo(5, true, 0, i, messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L);
+                chatActivityEnterViewDelegate.needStartRecordVideo(5, true, 0, chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView.effectId);
+                ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
             }
             ChatActivityEnterView.this.audioToSend = null;
             ChatActivityEnterView.this.audioToSendMessageObject = null;
@@ -14006,9 +14061,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 ChatActivityEnterView.this.startedDraggingX = -1.0f;
                 ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = ChatActivityEnterView.this.delegate;
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                int i2 = chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
-                MessageSendPreview messageSendPreview = chatActivityEnterView.messageSendPreview;
-                chatActivityEnterViewDelegate.needStartRecordVideo(3, true, 0, i2, messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L);
+                chatActivityEnterViewDelegate.needStartRecordVideo(3, true, 0, chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView.effectId);
+                ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                 this.stoppedInternal = true;
             }
             if (this.isRunning && currentTimeMillis > this.lastSendTypingTime + 5000) {
@@ -14024,45 +14078,45 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.replaceIn.append((CharSequence) formatTimerDurationFast);
                 this.replaceOut.append((CharSequence) this.oldString);
                 this.replaceStable.append((CharSequence) formatTimerDurationFast);
+                int i2 = -1;
                 int i3 = -1;
-                int i4 = -1;
+                int i4 = 0;
                 int i5 = 0;
-                int i6 = 0;
-                for (int i7 = 0; i7 < length - 1; i7++) {
-                    if (this.oldString.charAt(i7) != formatTimerDurationFast.charAt(i7)) {
-                        if (i6 == 0) {
-                            i4 = i7;
-                        }
-                        i6++;
-                        if (i5 != 0) {
-                            EmptyStubSpan emptyStubSpan = new EmptyStubSpan();
-                            if (i7 == length - 2) {
-                                i5++;
-                            }
-                            int i8 = i5 + i3;
-                            this.replaceIn.setSpan(emptyStubSpan, i3, i8, 33);
-                            this.replaceOut.setSpan(emptyStubSpan, i3, i8, 33);
-                            i5 = 0;
-                        }
-                    } else {
+                for (int i6 = 0; i6 < length - 1; i6++) {
+                    if (this.oldString.charAt(i6) != formatTimerDurationFast.charAt(i6)) {
                         if (i5 == 0) {
-                            i3 = i7;
+                            i3 = i6;
                         }
                         i5++;
-                        if (i6 != 0) {
-                            this.replaceStable.setSpan(new EmptyStubSpan(), i4, i6 + i4, 33);
-                            i6 = 0;
+                        if (i4 != 0) {
+                            EmptyStubSpan emptyStubSpan = new EmptyStubSpan();
+                            if (i6 == length - 2) {
+                                i4++;
+                            }
+                            int i7 = i4 + i2;
+                            this.replaceIn.setSpan(emptyStubSpan, i2, i7, 33);
+                            this.replaceOut.setSpan(emptyStubSpan, i2, i7, 33);
+                            i4 = 0;
+                        }
+                    } else {
+                        if (i4 == 0) {
+                            i2 = i6;
+                        }
+                        i4++;
+                        if (i5 != 0) {
+                            this.replaceStable.setSpan(new EmptyStubSpan(), i3, i5 + i3, 33);
+                            i5 = 0;
                         }
                     }
                 }
-                if (i5 != 0) {
+                if (i4 != 0) {
                     EmptyStubSpan emptyStubSpan2 = new EmptyStubSpan();
-                    int i9 = i5 + i3 + 1;
-                    this.replaceIn.setSpan(emptyStubSpan2, i3, i9, 33);
-                    this.replaceOut.setSpan(emptyStubSpan2, i3, i9, 33);
+                    int i8 = i4 + i2 + 1;
+                    this.replaceIn.setSpan(emptyStubSpan2, i2, i8, 33);
+                    this.replaceOut.setSpan(emptyStubSpan2, i2, i8, 33);
                 }
-                if (i6 != 0) {
-                    this.replaceStable.setSpan(new EmptyStubSpan(), i4, i6 + i4, 33);
+                if (i5 != 0) {
+                    this.replaceStable.setSpan(new EmptyStubSpan(), i3, i5 + i3, 33);
                 }
                 this.inLayout = new StaticLayout(this.replaceIn, this.textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.outLayout = new StaticLayout(this.replaceOut, this.textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
@@ -14500,6 +14554,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         private final Drawable drawable;
         private int drawableColor;
         private final Drawable drawableInverse;
+        private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiDrawable;
         private final Drawable inactiveDrawable;
         private boolean infiniteLoading;
         private final AnimatedFloat loadingAnimatedProgress;
@@ -14550,6 +14605,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.drawable = context.getResources().getDrawable(i).mutate();
             this.inactiveDrawable = context.getResources().getDrawable(i).mutate();
             this.drawableInverse = context.getResources().getDrawable(i).mutate();
+            this.emojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(14.0f));
             paint2.setStyle(Paint.Style.STROKE);
             paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
             paint2.setStrokeJoin(Paint.Join.ROUND);
@@ -14564,7 +14620,20 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         @Override
         protected boolean verifyDrawable(Drawable drawable) {
-            return drawable == this.count || super.verifyDrawable(drawable);
+            return drawable == this.count || drawable == this.emojiDrawable || super.verifyDrawable(drawable);
+        }
+
+        public void setEffect(long j) {
+            TLRPC$TL_availableEffect effect = MessagesController.getInstance(UserConfig.selectedAccount).getEffect(j);
+            setEmoji(effect != null ? Emoji.getEmojiDrawable(effect.emoticon) : null);
+        }
+
+        public void setEmoji(Drawable drawable) {
+            this.emojiDrawable.set(drawable, true);
+        }
+
+        public void copyEmojiTo(SendButton sendButton) {
+            sendButton.setEmoji(this.emojiDrawable.getDrawable());
         }
 
         @Override
@@ -14581,6 +14650,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             int i;
             float f;
             float f2;
+            float f3;
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             boolean isOpen = isOpen();
             updateColors(isOpen);
@@ -14596,75 +14666,82 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
             int i2 = measuredWidth;
             int i3 = measuredHeight;
-            float f3 = this.loadingAnimatedShown.set(this.loadingShown);
-            float f4 = this.open.set(isOpen);
-            if (f4 < 1.0f) {
+            float f4 = this.loadingAnimatedShown.set(this.loadingShown);
+            float f5 = this.open.set(isOpen);
+            if (f5 < 1.0f) {
                 drawable.setBounds(i2, i3, drawable.getIntrinsicWidth() + i2, drawable.getIntrinsicHeight() + i3);
                 drawable.draw(canvas);
+                int measuredWidth2 = (getMeasuredWidth() / 2) + AndroidUtilities.dp(12.0f);
+                int measuredHeight2 = (getMeasuredHeight() / 2) + AndroidUtilities.dp(12.0f);
+                int dp = AndroidUtilities.dp(8.0f);
+                this.emojiDrawable.setBounds(measuredWidth2 - dp, measuredHeight2 - dp, measuredWidth2 + dp, measuredHeight2 + dp);
+                this.emojiDrawable.setAlpha((int) ((1.0f - f5) * 255.0f));
+                this.emojiDrawable.draw(canvas);
             }
-            if (f4 > 0.0f) {
-                int measuredWidth2 = getMeasuredWidth() / 2;
-                int measuredHeight2 = getMeasuredHeight() / 2;
+            if (f5 > 0.0f) {
+                int measuredWidth3 = getMeasuredWidth() / 2;
+                int measuredHeight3 = getMeasuredHeight() / 2;
                 canvas.save();
                 this.path.rewind();
-                float f5 = measuredWidth2;
-                float f6 = measuredHeight2;
-                this.path.addCircle(f5, f6, (measuredWidth2 - AndroidUtilities.dp(4.0f)) * f4, Path.Direction.CW);
-                canvas.drawCircle(f5, f6, (measuredWidth2 - AndroidUtilities.dp(4.0f)) * f4, this.backgroundPaint);
+                float f6 = measuredWidth3;
+                float f7 = measuredHeight3;
+                this.path.addCircle(f6, f7, (measuredWidth3 - AndroidUtilities.dp(4.0f)) * f5, Path.Direction.CW);
+                canvas.drawCircle(f6, f7, (measuredWidth3 - AndroidUtilities.dp(4.0f)) * f5, this.backgroundPaint);
                 canvas.clipPath(this.path);
-                if (f3 > 0.0f) {
+                if (f4 > 0.0f) {
                     this.loadingPaint.setColor(-1);
-                    this.loadingPaint.setAlpha((int) (f3 * 255.0f));
-                    float dp = AndroidUtilities.dp(8.66f);
+                    this.loadingPaint.setAlpha((int) (f4 * 255.0f));
+                    float dp2 = AndroidUtilities.dp(8.66f);
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(f5 - dp, f6 - dp, f5 + dp, dp + f6);
+                    rectF.set(f6 - dp2, f7 - dp2, f6 + dp2, dp2 + f7);
                     if (this.infiniteLoading) {
                         long currentTimeMillis = System.currentTimeMillis() % 5400;
-                        float f7 = ((float) (1520 * currentTimeMillis)) / 5400.0f;
+                        float f8 = ((float) (1520 * currentTimeMillis)) / 5400.0f;
                         int i4 = 0;
-                        float f8 = f7;
-                        float max = Math.max(0.0f, f7 - 20.0f);
+                        float f9 = f8;
+                        float max = Math.max(0.0f, f8 - 20.0f);
                         while (i4 < 4) {
-                            f8 += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (i4 * 1350))) / 667.0f) * 250.0f;
-                            max += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (r7 + 667))) / 667.0f) * 250.0f;
+                            f9 += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (i4 * 1350))) / 667.0f) * 250.0f;
+                            max += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (r15 + 667))) / 667.0f) * 250.0f;
                             i4++;
-                            f5 = f5;
                             i2 = i2;
                         }
                         i = i2;
-                        f2 = f5;
-                        canvas.drawArc(AndroidUtilities.rectTmp, max, f8 - max, false, this.loadingPaint);
+                        f3 = f7;
+                        f2 = f6;
+                        canvas.drawArc(AndroidUtilities.rectTmp, max, f9 - max, false, this.loadingPaint);
                     } else {
+                        f2 = f6;
                         i = i2;
-                        f2 = f5;
+                        f3 = f7;
                         canvas.drawArc(rectF, (((((float) (System.currentTimeMillis() % 3000)) / 1000.0f) * 120.0f) % 360.0f) - 90.0f, 360.0f * this.loadingAnimatedProgress.set(this.loadingProgress), false, this.loadingPaint);
                     }
                     canvas.save();
                     f = 1.0f;
-                    float lerp = AndroidUtilities.lerp(1.0f, 0.6f, f3);
-                    canvas.scale(lerp, lerp, f2, f6);
+                    float lerp = AndroidUtilities.lerp(1.0f, 0.6f, f4);
+                    canvas.scale(lerp, lerp, f2, f3);
                     invalidate();
                 } else {
                     i = i2;
                     f = 1.0f;
                 }
-                this.drawableInverse.setAlpha((int) ((f - f3) * 255.0f));
+                this.drawableInverse.setAlpha((int) ((f - f4) * 255.0f));
                 Drawable drawable2 = this.drawableInverse;
                 drawable2.setBounds(i, i3, i + drawable2.getIntrinsicWidth(), this.drawableInverse.getIntrinsicHeight() + i3);
                 this.drawableInverse.draw(canvas);
-                if (f3 > 0.0f) {
+                if (f4 > 0.0f) {
                     canvas.restore();
                 }
                 canvas.restore();
             }
             float max2 = Math.max(AndroidUtilities.dp(12.0f) + this.count.getCurrentWidth(), AndroidUtilities.dp(24.0f)) / 2.0f;
-            float measuredWidth3 = getMeasuredWidth() - max2;
-            float measuredHeight3 = getMeasuredHeight() - max2;
-            this.count.setBounds((int) (measuredWidth3 - max2), (int) (measuredHeight3 - max2), (int) (measuredWidth3 + max2), (int) (measuredHeight3 + max2));
+            float measuredWidth4 = getMeasuredWidth() - max2;
+            float measuredHeight4 = getMeasuredHeight() - max2;
+            this.count.setBounds((int) (measuredWidth4 - max2), (int) (measuredHeight4 - max2), (int) (measuredWidth4 + max2), (int) (measuredHeight4 + max2));
             float isNotEmpty = this.count.isNotEmpty();
             if (isNotEmpty > 0.0f) {
-                canvas.drawCircle(measuredWidth3, measuredHeight3, (AndroidUtilities.dp(2.0f) + max2) * isNotEmpty * this.countBounceScale, this.countClearPaint);
-                canvas.drawCircle(measuredWidth3, measuredHeight3, max2 * isNotEmpty * this.countBounceScale, this.backgroundPaint);
+                canvas.drawCircle(measuredWidth4, measuredHeight4, (AndroidUtilities.dp(2.0f) + max2) * isNotEmpty * this.countBounceScale, this.countClearPaint);
+                canvas.drawCircle(measuredWidth4, measuredHeight4, max2 * isNotEmpty * this.countBounceScale, this.backgroundPaint);
                 this.count.draw(canvas);
             }
             canvas.restore();

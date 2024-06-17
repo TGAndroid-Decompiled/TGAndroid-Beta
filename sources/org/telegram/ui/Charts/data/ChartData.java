@@ -117,7 +117,13 @@ public class ChartData {
     }
 
     public int getFormatter(String str) {
-        return (!TextUtils.isEmpty(str) && str.contains("TON")) ? 1 : 0;
+        if (TextUtils.isEmpty(str)) {
+            return 0;
+        }
+        if (str.contains("TON")) {
+            return 1;
+        }
+        return str.contains("XTR") ? 2 : 0;
     }
 
     public void measure() {

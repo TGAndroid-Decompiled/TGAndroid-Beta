@@ -108,7 +108,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
 
     @Override
     public View createView(Context context) {
-        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.EditProfileFirstName), false, -1) {
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.EditProfileFirstName), false, -1, this.resourceProvider) {
             @Override
             public void onTextChanged(CharSequence charSequence) {
                 super.onTextChanged(charSequence);
@@ -120,7 +120,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         editTextCell.setBackgroundColor(getThemedColor(i));
         this.firstNameEdit.setDivider(true);
         this.firstNameEdit.hideKeyboardOnEnter();
-        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileLastName), false, -1) {
+        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileLastName), false, -1, this.resourceProvider) {
             @Override
             public void onTextChanged(CharSequence charSequence) {
                 super.onTextChanged(charSequence);
@@ -130,7 +130,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         this.lastNameEdit = editTextCell2;
         editTextCell2.setBackgroundColor(getThemedColor(i));
         this.lastNameEdit.hideKeyboardOnEnter();
-        EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileBioHint), true, getMessagesController().getAboutLimit()) {
+        EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileBioHint), true, getMessagesController().getAboutLimit(), this.resourceProvider) {
             @Override
             public void onTextChanged(CharSequence charSequence) {
                 super.onTextChanged(charSequence);

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.ui.Components.ScrimOptions;
 
-public final class ChatActivity$$ExternalSyntheticLambda315 implements Runnable {
+public final class ChatActivity$$ExternalSyntheticLambda320 implements Runnable {
     public final ScrimOptions f$0;
 
     @Override

@@ -223,6 +223,8 @@ import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class MessageObject {
+    public static final int ENTITIES_ALL = 0;
+    public static final int ENTITIES_ONLY_HASHTAGS = 1;
     private static final int LINES_PER_BLOCK = 10;
     private static final int LINES_PER_BLOCK_WITH_EMOJI = 5;
     public static final int MESSAGE_SEND_STATE_EDITING = 3;
@@ -1636,7 +1638,8 @@ public class MessageObject {
         if (tL_stories$StoryItem != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             this.messageOwner = tLRPC$TL_message;
-            tLRPC$TL_message.id = tL_stories$StoryItem.id;
+            tLRPC$TL_message.id = tL_stories$StoryItem.messageId;
+            tLRPC$TL_message.realId = tL_stories$StoryItem.id;
             tLRPC$TL_message.date = tL_stories$StoryItem.date;
             tLRPC$TL_message.dialog_id = tL_stories$StoryItem.dialogId;
             tLRPC$TL_message.message = tL_stories$StoryItem.caption;
@@ -4035,8 +4038,12 @@ public class MessageObject {
         return spannableString;
     }
 
-    public static boolean addEntitiesToText(java.lang.CharSequence r17, java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r18, boolean r19, boolean r20, boolean r21, boolean r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.addEntitiesToText(java.lang.CharSequence, java.util.ArrayList, boolean, boolean, boolean, boolean):boolean");
+    public static boolean addEntitiesToText(CharSequence charSequence, ArrayList<TLRPC$MessageEntity> arrayList, boolean z, boolean z2, boolean z3, boolean z4) {
+        return addEntitiesToText(charSequence, arrayList, z, z2, z3, z4, 0);
+    }
+
+    public static boolean addEntitiesToText(java.lang.CharSequence r19, java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r20, boolean r21, boolean r22, boolean r23, boolean r24, int r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.addEntitiesToText(java.lang.CharSequence, java.util.ArrayList, boolean, boolean, boolean, boolean, int):boolean");
     }
 
     public static int lambda$addEntitiesToText$2(TLRPC$MessageEntity tLRPC$MessageEntity, TLRPC$MessageEntity tLRPC$MessageEntity2) {
@@ -4642,12 +4649,14 @@ public class MessageObject {
 
     public static long getMessageSize(TLRPC$Message tLRPC$Message) {
         TLRPC$Document tLRPC$Document;
-        if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaWebPage) {
-            tLRPC$Document = getMedia(tLRPC$Message).webpage.document;
-        } else if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaGame) {
-            tLRPC$Document = getMedia(tLRPC$Message).game.document;
+        TLRPC$WebPage tLRPC$WebPage;
+        TLRPC$MessageMedia media = getMedia(tLRPC$Message);
+        if ((media instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = media.webpage) != null) {
+            tLRPC$Document = tLRPC$WebPage.document;
+        } else if (media instanceof TLRPC$TL_messageMediaGame) {
+            tLRPC$Document = media.game.document;
         } else {
-            tLRPC$Document = getMedia(tLRPC$Message) != null ? getMedia(tLRPC$Message).document : null;
+            tLRPC$Document = media != null ? media.document : null;
         }
         if (tLRPC$Document != null) {
             return tLRPC$Document.size;

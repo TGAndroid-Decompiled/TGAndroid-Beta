@@ -123,6 +123,10 @@ public class HintView2 extends View {
     private boolean useBlur;
     private boolean useScale;
 
+    public HintView2(Context context) {
+        this(context, 0);
+    }
+
     public HintView2(Context context, int i) {
         super(context);
         this.joint = 0.5f;
@@ -170,6 +174,11 @@ public class HintView2 extends View {
         this.textDrawable.setCallback(this);
         setTextSize(14);
         setTextColor(-1);
+    }
+
+    public HintView2 setDirection(int i) {
+        this.direction = i;
+        return this;
     }
 
     public HintView2 setRounding(float f) {

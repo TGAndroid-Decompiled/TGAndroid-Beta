@@ -9,7 +9,7 @@ public class TL_stories$TL_inputMediaAreaChannelPost extends TL_stories$MediaAre
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.coordinates = TL_stories$TL_mediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.coordinates = TL_stories$MediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.channel = TLRPC$InputChannel.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.msg_id = abstractSerializedData.readInt32(z);
     }

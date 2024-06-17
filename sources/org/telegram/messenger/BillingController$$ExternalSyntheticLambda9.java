@@ -2,7 +2,7 @@ package org.telegram.messenger;
 
 import org.telegram.ui.ActionBar.AlertDialog;
 
-public final class BillingController$$ExternalSyntheticLambda8 implements Runnable {
+public final class BillingController$$ExternalSyntheticLambda9 implements Runnable {
     public final AlertDialog f$0;
 
     @Override

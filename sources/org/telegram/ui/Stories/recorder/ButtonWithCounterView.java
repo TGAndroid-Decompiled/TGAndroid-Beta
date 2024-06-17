@@ -71,6 +71,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         return false;
     }
 
+    protected boolean subTextSplitToWords() {
+        return true;
+    }
+
     public ButtonWithCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
         this(context, true, resourcesProvider);
     }
@@ -108,7 +112,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         }
         animatedTextDrawable.setGravity(1);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(subTextSplitToWords(), true, false);
         this.subText = animatedTextDrawable2;
         animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable2.setCallback(this);

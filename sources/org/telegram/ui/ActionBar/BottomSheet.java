@@ -131,6 +131,7 @@ public class BottomSheet extends Dialog {
     private boolean skipDismissAnimation;
     private long smoothContainerViewLayoutUntil;
     public boolean smoothKeyboardAnimationEnabled;
+    public boolean smoothKeyboardByBottom;
     protected Runnable startAnimationRunnable;
     private int statusBarHeight;
     private int tag;

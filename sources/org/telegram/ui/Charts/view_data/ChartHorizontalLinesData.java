@@ -9,7 +9,9 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ChannelMonetizationLayout;
+import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class ChartHorizontalLinesData {
     public int alpha;
@@ -21,13 +23,19 @@ public class ChartHorizontalLinesData {
     public CharSequence[] valuesStr;
     public CharSequence[] valuesStr2;
 
-    public ChartHorizontalLinesData(long r23, long r25, boolean r27, float r28, int r29, android.text.TextPaint r30, android.text.TextPaint r31) {
+    public ChartHorizontalLinesData(long r26, long r28, boolean r30, float r31, int r32, android.text.TextPaint r33, android.text.TextPaint r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.view_data.ChartHorizontalLinesData.<init>(long, long, boolean, float, int, android.text.TextPaint, android.text.TextPaint):void");
     }
 
     public CharSequence format(int i, TextPaint textPaint, long j, int i2) {
         if (i2 != 1) {
-            return AndroidUtilities.formatWholeNumber((int) j, 0);
+            if (i2 != 2) {
+                return AndroidUtilities.formatWholeNumber((int) j, 0);
+            }
+            if (i == 1) {
+                return "~" + BillingController.getInstance().formatCurrency(j, "USD");
+            }
+            return StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(j, ' '), 0.65f);
         }
         if (i == 1) {
             return "~" + BillingController.getInstance().formatCurrency(j, "USD");
@@ -41,7 +49,7 @@ public class ChartHorizontalLinesData {
             this.formatterTON.setMaximumFractionDigits(6);
             this.formatterTON.setGroupingUsed(false);
         }
-        this.formatterTON.setMaximumFractionDigits(j > 1000000000 ? 2 : 6);
+        this.formatterTON.setMaximumFractionDigits(j <= 1000000000 ? 6 : 2);
         StringBuilder sb = new StringBuilder();
         sb.append("TON ");
         DecimalFormat decimalFormat2 = this.formatterTON;

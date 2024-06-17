@@ -489,7 +489,7 @@ public class PollVotesAlert extends BottomSheet {
         TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) messageObject.messageOwner.media;
         this.poll = tLRPC$TL_messageMediaPoll.poll;
         Activity parentActivity = chatActivity.getParentActivity();
-        this.peer = chatActivity.getMessagesController().getInputPeer((int) messageObject.getDialogId());
+        this.peer = chatActivity.getMessagesController().getInputPeer(messageObject.getDialogId());
         final ArrayList arrayList = new ArrayList();
         int size = tLRPC$TL_messageMediaPoll.results.results.size();
         final Integer[] numArr = new Integer[size];

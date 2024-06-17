@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class TLRPC$DraftMessage extends TLObject {
     public int date;
+    public long effect;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
     public boolean invert_media;
@@ -83,8 +84,70 @@ public abstract class TLRPC$DraftMessage extends TLObject {
             case 453805082:
                 tLRPC$DraftMessage = new TLRPC$TL_draftMessageEmpty();
                 break;
-            case 1070397423:
+            case 761606687:
                 tLRPC$DraftMessage = new TLRPC$TL_draftMessage();
+                break;
+            case 1070397423:
+                tLRPC$DraftMessage = new TLRPC$TL_draftMessage() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.no_webpage = (readInt32 & 2) != 0;
+                        this.invert_media = (readInt32 & 64) != 0;
+                        if ((readInt32 & 16) != 0) {
+                            this.reply_to = TLRPC$InputReplyTo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        this.message = abstractSerializedData2.readString(z2);
+                        if ((this.flags & 8) != 0) {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                                }
+                                return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize);
+                            }
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.media = TLRPC$InputMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        this.date = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1070397423);
+                        int i2 = this.no_webpage ? this.flags | 2 : this.flags & (-3);
+                        this.flags = i2;
+                        int i3 = this.invert_media ? i2 | 64 : i2 & (-65);
+                        this.flags = i3;
+                        abstractSerializedData2.writeInt32(i3);
+                        if ((this.flags & 16) != 0) {
+                            this.reply_to.serializeToStream(abstractSerializedData2);
+                        }
+                        abstractSerializedData2.writeString(this.message);
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.entities.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i4 = 0; i4 < size; i4++) {
+                                this.entities.get(i4).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.media.serializeToStream(abstractSerializedData2);
+                        }
+                        abstractSerializedData2.writeInt32(this.date);
+                    }
+                };
                 break;
             default:
                 tLRPC$DraftMessage = null;

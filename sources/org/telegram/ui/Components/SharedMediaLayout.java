@@ -114,6 +114,7 @@ import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.tgnet.TLRPC$messages_Chats;
 import org.telegram.tgnet.TLRPC$messages_Messages;
+import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_storyViews;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -268,6 +269,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     private ActionBarMenuItem searchItem;
     public ActionBarMenuItem searchItemIcon;
     private int searchItemState;
+    private StoriesController.StoriesList searchStoriesList;
     public SearchTagsList searchTagsList;
     private boolean searchWas;
     private boolean searching;
@@ -354,6 +356,14 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return 0;
     }
 
+    public TL_stories$MediaArea getStoriesArea() {
+        return null;
+    }
+
+    public String getStoriesHashtag() {
+        return null;
+    }
+
     protected boolean includeSavedDialogs() {
         return false;
     }
@@ -407,6 +417,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
     @Override
     public void openHiddenStories() {
+    }
+
+    public int overrideColumnsCount() {
+        return -1;
     }
 
     protected int processColor(int i) {
@@ -701,11 +715,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             return 0.0f;
         }
         MediaPage[] mediaPageArr = this.mediaPages;
-        if (mediaPageArr[1] != null && (mediaPageArr[1].selectedType == 0 || this.mediaPages[1].selectedType == 8 || this.mediaPages[1].selectedType == 9 || this.mediaPages[1].selectedType == 11)) {
+        if (mediaPageArr[1] != null && (mediaPageArr[1].selectedType == 0 || ((this.mediaPages[1].selectedType == 8 && TextUtils.isEmpty(getStoriesHashtag())) || this.mediaPages[1].selectedType == 9 || this.mediaPages[1].selectedType == 11))) {
             f2 = 0.0f + f;
         }
         MediaPage[] mediaPageArr2 = this.mediaPages;
-        return mediaPageArr2[0] != null ? (mediaPageArr2[0].selectedType == 0 || this.mediaPages[0].selectedType == 8 || this.mediaPages[0].selectedType == 9 || this.mediaPages[0].selectedType == 11) ? f2 + (1.0f - f) : f2 : f2;
+        return mediaPageArr2[0] != null ? (mediaPageArr2[0].selectedType == 0 || (this.mediaPages[0].selectedType == 8 && TextUtils.isEmpty(getStoriesHashtag())) || this.mediaPages[0].selectedType == 9 || this.mediaPages[0].selectedType == 11) ? f2 + (1.0f - f) : f2 : f2;
     }
 
     public float getSearchAlpha(float f) {
@@ -1800,6 +1814,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         storiesList.updateFilters(z, z2);
     }
 
+    public int mediaPageTopMargin() {
+        return customTabs() ? 0 : 48;
+    }
+
     public void setForwardRestrictedHint(HintView hintView) {
         this.fwdRestrictedHint = hintView;
     }
@@ -2664,7 +2682,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         if (i == 7) {
             return this.delegate.canSearchMembers();
         }
-        return (i == 0 || i == 8 || i == 9 || i == 2 || i == 5 || i == 6 || i == 11 || i == 10) ? false : true;
+        return (isSearchingStories() || i == 0 || i == 8 || i == 9 || i == 2 || i == 5 || i == 6 || i == 11 || i == 10) ? false : true;
     }
 
     public boolean isCalendarItemVisible() {
@@ -2768,7 +2786,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     private void loadFastScrollData(boolean z) {
-        if (this.topicId != 0) {
+        if (this.topicId != 0 || isSearchingStories()) {
             return;
         }
         int i = 0;
@@ -5066,6 +5084,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         @Override
         public boolean fastScrollIsVisible(RecyclerListView recyclerListView) {
+            if (SharedMediaLayout.this.isSearchingStories()) {
+                return false;
+            }
             return recyclerListView.getChildCount() != 0 && ((int) Math.ceil((double) (((float) getTotalItemsCount()) / ((float) ((this == SharedMediaLayout.this.photoVideoAdapter || this == SharedMediaLayout.this.storiesAdapter || this == SharedMediaLayout.this.archivedStoriesAdapter) ? SharedMediaLayout.this.mediaColumnsCount[0] : SharedMediaLayout.this.animateToColumnsCount))))) * recyclerListView.getChildAt(0).getMeasuredHeight() > recyclerListView.getMeasuredHeight();
         }
 
@@ -6563,7 +6584,17 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             super(context);
             this.lastPinnedIds = new ArrayList<>();
             this.isArchive = z;
-            if ((!z || SharedMediaLayout.this.isStoriesView()) && (z || !SharedMediaLayout.this.isArchivedOnlyStoriesView())) {
+            if (!TextUtils.isEmpty(SharedMediaLayout.this.getStoriesHashtag())) {
+                if (SharedMediaLayout.this.searchStoriesList == null) {
+                    SharedMediaLayout.this.searchStoriesList = new StoriesController.SearchStoriesList(SharedMediaLayout.this.profileActivity.getCurrentAccount(), SharedMediaLayout.this.getStoriesHashtag());
+                }
+                this.storiesList = SharedMediaLayout.this.searchStoriesList;
+            } else if (SharedMediaLayout.this.getStoriesArea() != null) {
+                if (SharedMediaLayout.this.searchStoriesList == null) {
+                    SharedMediaLayout.this.searchStoriesList = new StoriesController.SearchStoriesList(SharedMediaLayout.this.profileActivity.getCurrentAccount(), SharedMediaLayout.this.getStoriesArea());
+                }
+                this.storiesList = SharedMediaLayout.this.searchStoriesList;
+            } else if ((!z || SharedMediaLayout.this.isStoriesView()) && (z || !SharedMediaLayout.this.isArchivedOnlyStoriesView())) {
                 this.storiesList = SharedMediaLayout.this.profileActivity.getMessagesController().getStoriesController().getStoriesList(SharedMediaLayout.this.dialog_id, z ? 1 : 0);
             } else {
                 this.storiesList = null;
@@ -6707,6 +6738,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     }
                     MessageObject messageObject = this.storiesList.messageObjects.get(topOffset);
                     sharedPhotoVideoCell2.isStoryPinned = messageObject != null && this.storiesList.isPinned(messageObject.getId());
+                    sharedPhotoVideoCell2.isSearchingHashtag = SharedMediaLayout.this.isSearchingStories();
                     sharedPhotoVideoCell2.setMessageObject(messageObject, columnsCount());
                     SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
                     if (!sharedMediaLayout.isActionModeShowed || messageObject == null) {
@@ -7557,5 +7589,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
     public void openStoryRecorder() {
         StoryRecorder.getInstance(this.profileActivity.getParentActivity(), this.profileActivity.getCurrentAccount()).open(null);
+    }
+
+    public boolean isSearchingStories() {
+        return (TextUtils.isEmpty(getStoriesHashtag()) && getStoriesArea() == null) ? false : true;
     }
 }

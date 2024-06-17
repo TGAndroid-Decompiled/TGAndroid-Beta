@@ -82,6 +82,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TwoStepVerificationActivity;
@@ -126,9 +127,9 @@ public class ChannelMonetizationLayout extends FrameLayout {
         super(context);
         this.switchOffValue = false;
         this.proceedsAvailable = false;
-        this.availableValue = ProceedOverview.as(LocaleController.getString(R.string.MonetizationOverviewAvailable));
-        this.lastWithdrawalValue = ProceedOverview.as(LocaleController.getString(R.string.MonetizationOverviewLastWithdrawal));
-        this.lifetimeValue = ProceedOverview.as(LocaleController.getString(R.string.MonetizationOverviewTotal));
+        this.availableValue = ProceedOverview.as("TON", LocaleController.getString(R.string.MonetizationOverviewAvailable));
+        this.lastWithdrawalValue = ProceedOverview.as("TON", LocaleController.getString(R.string.MonetizationOverviewLastWithdrawal));
+        this.lifetimeValue = ProceedOverview.as("TON", LocaleController.getString(R.string.MonetizationOverviewTotal));
         this.transactions = new ArrayList<>();
         this.loadingTransactions = false;
         this.sendCpmUpdateRunnable = new Runnable() {
@@ -889,16 +890,25 @@ public class ChannelMonetizationLayout extends FrameLayout {
         }
 
         public void set(ProceedOverview proceedOverview) {
+            CharSequence charSequence;
+            int indexOf;
             this.titleView.setText(proceedOverview.text);
-            StringBuilder sb = new StringBuilder();
-            sb.append("TON ");
-            DecimalFormat decimalFormat = this.formatter;
-            double d = proceedOverview.crypto_amount;
-            Double.isNaN(d);
-            sb.append(decimalFormat.format(d / 1.0E9d));
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ChannelMonetizationLayout.replaceTON(sb.toString(), this.cryptoAmountView.getPaint(), 0.87f, true));
-            int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-            if (indexOf >= 0) {
+            String str = proceedOverview.crypto_currency + " ";
+            if ("TON".equalsIgnoreCase(proceedOverview.crypto_currency)) {
+                StringBuilder sb = new StringBuilder();
+                sb.append((Object) str);
+                DecimalFormat decimalFormat = this.formatter;
+                double d = proceedOverview.crypto_amount;
+                Double.isNaN(d);
+                sb.append(decimalFormat.format(d / 1.0E9d));
+                charSequence = ChannelMonetizationLayout.replaceTON(sb.toString(), this.cryptoAmountView.getPaint(), 0.87f, true);
+            } else if ("XTR".equalsIgnoreCase(proceedOverview.crypto_currency)) {
+                charSequence = StarsIntroActivity.replaceStarsWithPlain(((Object) str) + LocaleController.formatNumber(proceedOverview.crypto_amount, ' '), 0.8f);
+            } else {
+                charSequence = ((Object) str) + Long.toString(proceedOverview.crypto_amount);
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+            if ("TON".equalsIgnoreCase(proceedOverview.crypto_currency) && (indexOf = TextUtils.indexOf(spannableStringBuilder, ".")) >= 0) {
                 spannableStringBuilder.setSpan(new RelativeSizeSpan(0.8125f), indexOf, spannableStringBuilder.length(), 33);
             }
             this.cryptoAmountView.setText(spannableStringBuilder);
@@ -914,11 +924,13 @@ public class ChannelMonetizationLayout extends FrameLayout {
     public static class ProceedOverview {
         public long amount;
         public long crypto_amount;
+        public String crypto_currency;
         public String currency;
         public CharSequence text;
 
-        public static ProceedOverview as(CharSequence charSequence) {
+        public static ProceedOverview as(String str, CharSequence charSequence) {
             ProceedOverview proceedOverview = new ProceedOverview();
+            proceedOverview.crypto_currency = str;
             proceedOverview.text = charSequence;
             return proceedOverview;
         }

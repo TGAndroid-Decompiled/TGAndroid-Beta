@@ -29,6 +29,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class LegendSignatureView extends FrameLayout {
     Drawable backgroundDrawable;
@@ -137,6 +138,7 @@ public class LegendSignatureView extends FrameLayout {
         long j2;
         TextView textView;
         int length = this.holders.length;
+        int i4 = 2;
         if (z && Build.VERSION.SDK_INT >= 19) {
             TransitionSet transitionSet = new TransitionSet();
             transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(150L)).addTransition(new Fade(1).setDuration(150L));
@@ -156,19 +158,19 @@ public class LegendSignatureView extends FrameLayout {
             }
         }
         long j3 = 0;
-        for (int i4 = 0; i4 < arrayList.size(); i4++) {
-            if (arrayList.get(i4).enabled) {
-                j3 += arrayList.get(i4).line.y[i];
+        for (int i5 = 0; i5 < arrayList.size(); i5++) {
+            if (arrayList.get(i5).enabled) {
+                j3 += arrayList.get(i5).line.y[i];
             }
         }
-        int i5 = 0;
-        while (i5 < length) {
-            Holder holder = this.holders[i5];
-            int i6 = i5 % 2;
-            LineViewData lineViewData = arrayList.get(i2 == 1 ? i5 / 2 : i5);
+        int i6 = 0;
+        while (i6 < length) {
+            Holder holder = this.holders[i6];
+            int i7 = i6 % 2;
+            LineViewData lineViewData = arrayList.get((i2 == 1 || i2 == i4) ? i6 / 2 : i6);
             if (!lineViewData.enabled) {
                 holder.root.setVisibility(8);
-                i3 = i5;
+                i3 = i6;
                 j2 = j3;
             } else {
                 if (holder.root.getMeasuredHeight() == 0) {
@@ -176,43 +178,47 @@ public class LegendSignatureView extends FrameLayout {
                 }
                 holder.root.setVisibility(0);
                 AnimatedEmojiSpan.TextViewEmojis textViewEmojis = holder.value;
-                int i7 = i5;
+                int i8 = i6;
                 long j4 = j3;
-                textViewEmojis.setText(formatWholeNumber(lineViewData.line.y[i], i2, i6, textViewEmojis, f));
+                textViewEmojis.setText(formatWholeNumber(lineViewData.line.y[i], i2, i7, textViewEmojis, f));
                 if (i2 == 1) {
-                    holder.signature.setText(LocaleController.formatString(i6 == 0 ? R.string.MonetizationChartInTON : R.string.MonetizationChartInUSD, lineViewData.line.name));
+                    holder.signature.setText(LocaleController.formatString(i7 == 0 ? R.string.ChartInTON : R.string.ChartInUSD, lineViewData.line.name));
+                } else if (i2 == 2) {
+                    holder.signature.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(i7 == 0 ? R.string.ChartInXTR : R.string.ChartInUSD, lineViewData.line.name), 0.7f));
                 } else {
                     holder.signature.setText(lineViewData.line.name);
                 }
-                int i8 = lineViewData.line.colorKey;
-                if (i8 >= 0 && Theme.hasThemeKey(i8)) {
+                int i9 = lineViewData.line.colorKey;
+                if (i9 >= 0 && Theme.hasThemeKey(i9)) {
                     holder.value.setTextColor(Theme.getColor(lineViewData.line.colorKey, this.resourcesProvider));
                 } else {
                     holder.value.setTextColor(Theme.getCurrentTheme().isDark() ? lineViewData.line.colorDark : lineViewData.line.color);
                 }
                 TextView textView2 = holder.signature;
-                int i9 = Theme.key_dialogTextBlack;
-                textView2.setTextColor(Theme.getColor(i9, this.resourcesProvider));
+                int i10 = Theme.key_dialogTextBlack;
+                textView2.setTextColor(Theme.getColor(i10, this.resourcesProvider));
                 if (!this.showPercentage || (textView = holder.percentage) == null) {
-                    i3 = i7;
+                    i3 = i8;
                     j2 = j4;
                 } else {
                     textView.setVisibility(0);
-                    holder.percentage.setTextColor(Theme.getColor(i9, this.resourcesProvider));
-                    i3 = i7;
+                    holder.percentage.setTextColor(Theme.getColor(i10, this.resourcesProvider));
+                    i3 = i8;
                     j2 = j4;
                     float f2 = ((float) arrayList.get(i3).line.y[i]) / ((float) j2);
                     if (f2 < 0.1f && f2 != 0.0f) {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%.1f%s", Float.valueOf(f2 * 100.0f), "%"));
                     } else {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%d%s", Integer.valueOf(Math.round(f2 * 100.0f)), "%"));
-                        i5 = i3 + 1;
+                        i6 = i3 + 1;
                         j3 = j2;
+                        i4 = 2;
                     }
                 }
             }
-            i5 = i3 + 1;
+            i6 = i3 + 1;
             j3 = j2;
+            i4 = 2;
         }
         long j5 = j3;
         if (this.zoomEnabled) {
@@ -239,38 +245,44 @@ public class LegendSignatureView extends FrameLayout {
     }
 
     public CharSequence formatWholeNumber(long j, int i, int i2, TextView textView, float f) {
-        if (i != 1) {
-            float f2 = (float) j;
-            if (j < 10000) {
-                return String.format("%d", Long.valueOf(j));
+        if (i == 1) {
+            if (i2 == 0) {
+                if (this.formatterTON == null) {
+                    DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+                    decimalFormatSymbols.setDecimalSeparator('.');
+                    DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+                    this.formatterTON = decimalFormat;
+                    decimalFormat.setMinimumFractionDigits(2);
+                    this.formatterTON.setMaximumFractionDigits(6);
+                    this.formatterTON.setGroupingUsed(false);
+                }
+                this.formatterTON.setMaximumFractionDigits(j <= 1000000000 ? 6 : 2);
+                StringBuilder sb = new StringBuilder();
+                sb.append("TON ");
+                DecimalFormat decimalFormat2 = this.formatterTON;
+                double d = j;
+                Double.isNaN(d);
+                sb.append(decimalFormat2.format(d / 1.0E9d));
+                return ChannelMonetizationLayout.replaceTON(sb.toString(), textView.getPaint(), 0.82f, false);
             }
-            int i3 = 0;
-            while (f2 >= 1000.0f && i3 < AndroidUtilities.numbersSignatureArray.length - 1) {
-                f2 /= 1000.0f;
-                i3++;
-            }
-            return String.format("%.2f", Float.valueOf(f2)) + AndroidUtilities.numbersSignatureArray[i3];
+            return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
         }
-        if (i2 == 0) {
-            if (this.formatterTON == null) {
-                DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-                decimalFormatSymbols.setDecimalSeparator('.');
-                DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-                this.formatterTON = decimalFormat;
-                decimalFormat.setMinimumFractionDigits(2);
-                this.formatterTON.setMaximumFractionDigits(6);
-                this.formatterTON.setGroupingUsed(false);
+        if (i == 2) {
+            if (i2 == 0) {
+                return StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(j, ' '), 0.7f);
             }
-            this.formatterTON.setMaximumFractionDigits(j > 1000000000 ? 2 : 6);
-            StringBuilder sb = new StringBuilder();
-            sb.append("TON ");
-            DecimalFormat decimalFormat2 = this.formatterTON;
-            double d = j;
-            Double.isNaN(d);
-            sb.append(decimalFormat2.format(d / 1.0E9d));
-            return ChannelMonetizationLayout.replaceTON(sb.toString(), textView.getPaint(), 0.82f, false);
+            return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
         }
-        return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
+        float f2 = (float) j;
+        if (j < 10000) {
+            return String.format("%d", Long.valueOf(j));
+        }
+        int i3 = 0;
+        while (f2 >= 1000.0f && i3 < AndroidUtilities.numbersSignatureArray.length - 1) {
+            f2 /= 1000.0f;
+            i3++;
+        }
+        return String.format("%.2f", Float.valueOf(f2)) + AndroidUtilities.numbersSignatureArray[i3];
     }
 
     public void showProgress(boolean z, boolean z2) {

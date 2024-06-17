@@ -59,6 +59,7 @@ public class LocationController extends BaseController implements NotificationCe
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final int SEND_NEW_LOCATION_TIME = 2000;
     public static final int TYPE_BIZ = 1;
+    public static final int TYPE_STORY = 2;
     private static final long UPDATE_INTERVAL = 1000;
     private static final int WATCH_LOCATION_TIMEOUT = 65000;
     private ILocationServiceProvider.IMapApiClient apiClient;
@@ -90,6 +91,7 @@ public class LocationController extends BaseController implements NotificationCe
     private boolean started;
     private boolean wasConnectedToPlayServices;
     private static volatile LocationController[] Instance = new LocationController[4];
+    public static String[] unnamedRoads = {"Unnamed Road", "Вulicya bez nazvi", "Нeizvestnaya doroga", "İsimsiz Yol", "Ceļš bez nosaukuma", "Kelias be pavadinimo", "Droga bez nazwy", "Cesta bez názvu", "Silnice bez názvu", "Drum fără nume", "Route sans nom", "Vía sin nombre", "Estrada sem nome", "Οdos xoris onomasia", "Rrugë pa emër", "Пat bez ime", "Нeimenovani put", "Strada senza nome", "Straße ohne Straßennamen"};
     private static HashMap<LocationFetchCallback, Runnable> callbacks = new HashMap<>();
 
     public interface LocationFetchCallback {
@@ -1248,7 +1250,7 @@ public class LocationController extends BaseController implements NotificationCe
     }
 
     public static void fetchLocationAddress(final Location location, final int i, final LocationFetchCallback locationFetchCallback) {
-        final Locale systemDefaultLocale;
+        Locale systemDefaultLocale;
         if (locationFetchCallback == null) {
             return;
         }
@@ -1266,19 +1268,21 @@ public class LocationController extends BaseController implements NotificationCe
         } catch (Exception unused) {
             systemDefaultLocale = LocaleController.getInstance().getSystemDefaultLocale();
         }
+        final Locale locale = systemDefaultLocale;
+        final Locale locale2 = locale.getLanguage().contains("en") ? locale : Locale.US;
         DispatchQueue dispatchQueue = Utilities.globalQueue;
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                LocationController.lambda$fetchLocationAddress$31(systemDefaultLocale, location, i, locationFetchCallback);
+                LocationController.lambda$fetchLocationAddress$31(locale, location, i, locale2, locationFetchCallback);
             }
         };
         dispatchQueue.postRunnable(runnable2, 300L);
         callbacks.put(locationFetchCallback, runnable2);
     }
 
-    public static void lambda$fetchLocationAddress$31(java.util.Locale r18, final android.location.Location r19, int r20, final org.telegram.messenger.LocationController.LocationFetchCallback r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.lambda$fetchLocationAddress$31(java.util.Locale, android.location.Location, int, org.telegram.messenger.LocationController$LocationFetchCallback):void");
+    public static void lambda$fetchLocationAddress$31(java.util.Locale r24, final android.location.Location r25, int r26, java.util.Locale r27, final org.telegram.messenger.LocationController.LocationFetchCallback r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.lambda$fetchLocationAddress$31(java.util.Locale, android.location.Location, int, java.util.Locale, org.telegram.messenger.LocationController$LocationFetchCallback):void");
     }
 
     public static void lambda$fetchLocationAddress$30(LocationFetchCallback locationFetchCallback, String str, String str2, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue2, Location location) {

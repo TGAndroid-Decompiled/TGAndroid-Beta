@@ -825,6 +825,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private DialogFilter sortingDialogFilter;
     private LongSparseArray<SponsoredMessagesInfo> sponsoredMessages;
     public boolean starsLocked;
+    public long starsRevenueWithdrawalMin;
     private int statusRequest;
     private int statusSettingState;
     public int stealthModeCooldown;
@@ -2260,6 +2261,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.showAnnualPerMonth = this.mainPreferences.getBoolean("showAnnualPerMonth", false);
         this.canEditFactcheck = this.mainPreferences.getBoolean("canEditFactcheck", false);
         this.factcheckLengthLimit = this.mainPreferences.getInt("factcheckLengthLimit", 1024);
+        this.starsRevenueWithdrawalMin = this.mainPreferences.getLong("starsRevenueWithdrawalMin", 1000L);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -4157,12 +4159,12 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j >= 0) {
             TLRPC$User user = getUser(Long.valueOf(j));
             if (z) {
-                return UserObject.getFirstName(user, true);
+                return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user, true));
             }
-            return UserObject.getUserName(user);
+            return AndroidUtilities.removeDiacritics(UserObject.getUserName(user));
         }
         TLRPC$Chat chat = getChat(Long.valueOf(-j));
-        return chat == null ? "" : chat.title;
+        return AndroidUtilities.removeDiacritics(chat == null ? "" : chat.title);
     }
 
     @Override

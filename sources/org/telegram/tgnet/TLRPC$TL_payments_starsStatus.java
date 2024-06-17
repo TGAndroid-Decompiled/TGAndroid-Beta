@@ -6,7 +6,7 @@ public class TLRPC$TL_payments_starsStatus extends TLObject {
     public long balance;
     public int flags;
     public String next_offset;
-    public ArrayList<TLRPC$TL_starsTransaction> history = new ArrayList<>();
+    public ArrayList<TLRPC$StarsTransaction> history = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class TLRPC$TL_payments_starsStatus extends TLObject {
         }
         int readInt322 = abstractSerializedData.readInt32(z);
         for (int i = 0; i < readInt322; i++) {
-            TLRPC$TL_starsTransaction TLdeserialize = TLRPC$TL_starsTransaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TLRPC$StarsTransaction TLdeserialize = TLRPC$StarsTransaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize == null) {
                 return;
             }

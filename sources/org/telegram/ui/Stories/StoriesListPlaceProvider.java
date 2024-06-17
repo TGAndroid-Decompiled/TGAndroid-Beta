@@ -320,7 +320,11 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
     public static void lambda$findView$1(SharedPhotoVideoCell2 sharedPhotoVideoCell2, RecyclerListView.FastScroll fastScroll, int[] iArr, Canvas canvas, RectF rectF, float f, boolean z) {
         sharedPhotoVideoCell2.drawDuration(canvas, rectF, f);
         sharedPhotoVideoCell2.drawViews(canvas, rectF, f);
-        sharedPhotoVideoCell2.drawPrivacy(canvas, rectF, f);
+        if (sharedPhotoVideoCell2.isSearchingHashtag) {
+            sharedPhotoVideoCell2.drawAuthor(canvas, rectF, f);
+        } else {
+            sharedPhotoVideoCell2.drawPrivacy(canvas, rectF, f);
+        }
         if (fastScroll != null && fastScroll.isVisible && fastScroll.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);

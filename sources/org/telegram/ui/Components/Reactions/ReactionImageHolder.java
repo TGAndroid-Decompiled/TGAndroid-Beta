@@ -87,7 +87,7 @@ public class ReactionImageHolder {
             }
             return;
         }
-        new AnimatedEmojiDrawable(1, i, visibleReaction.documentId);
+        new AnimatedEmojiDrawable(1, i, visibleReaction.documentId).preload();
     }
 
     public void draw(Canvas canvas) {

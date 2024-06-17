@@ -17,7 +17,6 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiftCode;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiveaway;
-import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStars;
 
 public class BillingUtilities {
     private static TLRPC$InputStorePaymentPurpose remPaymentPurpose;
@@ -45,7 +44,7 @@ public class BillingUtilities {
         tLRPC$InputStorePaymentPurpose.serializeToStream(serializedData);
         String encodeToString2 = Base64.encodeToString(serializedData.toByteArray(), 0);
         serializedData.cleanup();
-        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStars) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
+        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
             remPaymentPurpose = tLRPC$InputStorePaymentPurpose;
             return Pair.create(encodeToString, encodeToString);
         }
@@ -84,7 +83,7 @@ public class BillingUtilities {
                     serializedData.cleanup();
                     tLRPC$InputStorePaymentPurpose = TLdeserialize;
                 } catch (Exception e) {
-                    FileLog.e(e);
+                    FileLog.e("Billing: Extract payload, no remPaymentPurpose; failed to get purpose", e);
                     tLRPC$InputStorePaymentPurpose = null;
                 }
             } else {

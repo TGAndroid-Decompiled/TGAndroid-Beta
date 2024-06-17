@@ -49,9 +49,10 @@ public class LocationMarker extends View {
     private String text;
     private final TextPaint textPaint;
     private float textScale;
+    public final int type;
     private float w;
 
-    public LocationMarker(Context context, float f) {
+    public LocationMarker(Context context, float f, int i) {
         super(context);
         this.text = "";
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
@@ -67,6 +68,7 @@ public class LocationMarker extends View {
         imageReceiver.setCrossfadeWithOldImage(true);
         this.padx = (int) (3.0f * f);
         this.pady = (int) (1.0f * f);
+        this.type = i;
         this.icon = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
         textPaint.setTextSize(f * 24.0f);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
@@ -197,6 +199,9 @@ public class LocationMarker extends View {
     }
 
     public void setType(int i, int i2) {
+        if (this.type == 1) {
+            return;
+        }
         if (i == 0) {
             this.outlinePaint.setColor(i2);
             int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
@@ -264,6 +269,10 @@ public class LocationMarker extends View {
     protected void onMeasure(int i, int i2) {
         setupLayout();
         setMeasuredDimension(this.padx + Math.round(this.w) + this.padx, this.pady + Math.round(this.h) + this.pady);
+    }
+
+    public float getRadius() {
+        return this.h * 0.2f;
     }
 
     @Override

@@ -105,7 +105,6 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_documentEmpty;
-import org.telegram.tgnet.TLRPC$TL_draftMessage;
 import org.telegram.tgnet.TLRPC$TL_draftMessageEmpty;
 import org.telegram.tgnet.TLRPC$TL_emojiKeyword;
 import org.telegram.tgnet.TLRPC$TL_emojiKeywordDeleted;
@@ -195,7 +194,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_reactions;
 import org.telegram.tgnet.TLRPC$TL_messages_reactionsNotModified;
 import org.telegram.tgnet.TLRPC$TL_messages_readFeaturedStickers;
 import org.telegram.tgnet.TLRPC$TL_messages_recentStickers;
-import org.telegram.tgnet.TLRPC$TL_messages_saveDraft;
 import org.telegram.tgnet.TLRPC$TL_messages_saveGif;
 import org.telegram.tgnet.TLRPC$TL_messages_saveRecentSticker;
 import org.telegram.tgnet.TLRPC$TL_messages_savedGifs;
@@ -227,7 +225,6 @@ import org.telegram.tgnet.TLRPC$messages_StickerSet;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BackupImageView;
@@ -7781,7 +7778,7 @@ public class MediaDataController extends BaseController {
         if (charSequence == null || charSequence2 == null || !TextUtils.equals(charSequence, charSequence2)) {
             return false;
         }
-        return entitiesEqual(getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{charSequence}, true), getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{charSequence2}, true));
+        return entitiesEqual(getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true), getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true));
     }
 
     public static boolean entitiesEqual(ArrayList<TLRPC$MessageEntity> arrayList, ArrayList<TLRPC$MessageEntity> arrayList2) {
@@ -7946,104 +7943,12 @@ public class MediaDataController extends BaseController {
         return longSparseArray.get(j2);
     }
 
-    public void saveDraft(long j, int i, CharSequence charSequence, ArrayList<TLRPC$MessageEntity> arrayList, TLRPC$Message tLRPC$Message, boolean z) {
-        saveDraft(j, i, charSequence, arrayList, tLRPC$Message, null, z, false);
+    public void saveDraft(long j, int i, CharSequence charSequence, ArrayList<TLRPC$MessageEntity> arrayList, TLRPC$Message tLRPC$Message, boolean z, long j2) {
+        saveDraft(j, i, charSequence, arrayList, tLRPC$Message, null, j2, z, false);
     }
 
-    public void saveDraft(long j, long j2, CharSequence charSequence, ArrayList<TLRPC$MessageEntity> arrayList, TLRPC$Message tLRPC$Message, ChatActivity.ReplyQuote replyQuote, boolean z, boolean z2) {
-        TLRPC$DraftMessage tLRPC$TL_draftMessage;
-        TLRPC$InputReplyTo tLRPC$InputReplyTo;
-        TLRPC$Message tLRPC$Message2 = (getMessagesController().isForum(j) && j2 == 0) ? null : tLRPC$Message;
-        if (!TextUtils.isEmpty(charSequence) || tLRPC$Message2 != null) {
-            tLRPC$TL_draftMessage = new TLRPC$TL_draftMessage();
-        } else {
-            tLRPC$TL_draftMessage = new TLRPC$TL_draftMessageEmpty();
-        }
-        TLRPC$DraftMessage tLRPC$DraftMessage = tLRPC$TL_draftMessage;
-        tLRPC$DraftMessage.date = (int) (System.currentTimeMillis() / 1000);
-        tLRPC$DraftMessage.message = charSequence == null ? "" : charSequence.toString();
-        tLRPC$DraftMessage.no_webpage = z;
-        if (tLRPC$Message2 != null) {
-            TLRPC$TL_inputReplyToMessage tLRPC$TL_inputReplyToMessage = new TLRPC$TL_inputReplyToMessage();
-            tLRPC$DraftMessage.reply_to = tLRPC$TL_inputReplyToMessage;
-            tLRPC$DraftMessage.flags |= 16;
-            tLRPC$TL_inputReplyToMessage.reply_to_msg_id = tLRPC$Message2.id;
-            if (replyQuote != null) {
-                tLRPC$TL_inputReplyToMessage.quote_text = replyQuote.getText();
-                TLRPC$InputReplyTo tLRPC$InputReplyTo2 = tLRPC$DraftMessage.reply_to;
-                if (tLRPC$InputReplyTo2.quote_text != null) {
-                    int i = tLRPC$InputReplyTo2.flags | 4;
-                    tLRPC$InputReplyTo2.flags = i;
-                    tLRPC$InputReplyTo2.flags = i | 16;
-                    tLRPC$InputReplyTo2.quote_offset = replyQuote.start;
-                }
-                tLRPC$InputReplyTo2.quote_entities = replyQuote.getEntities();
-                ArrayList<TLRPC$MessageEntity> arrayList2 = tLRPC$DraftMessage.reply_to.quote_entities;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    tLRPC$DraftMessage.reply_to.quote_entities = new ArrayList<>(tLRPC$DraftMessage.reply_to.quote_entities);
-                    tLRPC$DraftMessage.reply_to.flags |= 8;
-                }
-                MessageObject messageObject = replyQuote.message;
-                if (messageObject != null && messageObject.messageOwner != null) {
-                    TLRPC$Peer peer = getMessagesController().getPeer(j);
-                    TLRPC$Peer tLRPC$Peer = replyQuote.message.messageOwner.peer_id;
-                    if (peer != null && !MessageObject.peersEqual(peer, tLRPC$Peer)) {
-                        TLRPC$InputReplyTo tLRPC$InputReplyTo3 = tLRPC$DraftMessage.reply_to;
-                        tLRPC$InputReplyTo3.flags |= 2;
-                        tLRPC$InputReplyTo3.reply_to_peer_id = getMessagesController().getInputPeer(tLRPC$Peer);
-                    }
-                }
-            } else if (j != MessageObject.getDialogId(tLRPC$Message2)) {
-                TLRPC$InputReplyTo tLRPC$InputReplyTo4 = tLRPC$DraftMessage.reply_to;
-                tLRPC$InputReplyTo4.flags |= 2;
-                tLRPC$InputReplyTo4.reply_to_peer_id = getMessagesController().getInputPeer(getMessagesController().getPeer(MessageObject.getDialogId(tLRPC$Message2)));
-            }
-        }
-        if (arrayList != null && !arrayList.isEmpty()) {
-            tLRPC$DraftMessage.entities = arrayList;
-            tLRPC$DraftMessage.flags |= 8;
-        }
-        LongSparseArray<TLRPC$DraftMessage> longSparseArray = this.drafts.get(j);
-        TLRPC$DraftMessage tLRPC$DraftMessage2 = longSparseArray == null ? null : longSparseArray.get(j2);
-        if (!z2) {
-            boolean z3 = true;
-            if (tLRPC$DraftMessage2 == null ? !TextUtils.isEmpty(tLRPC$DraftMessage.message) || ((tLRPC$InputReplyTo = tLRPC$DraftMessage.reply_to) != null && tLRPC$InputReplyTo.reply_to_msg_id != 0) : !tLRPC$DraftMessage2.message.equals(tLRPC$DraftMessage.message) || !replyToEquals(tLRPC$DraftMessage2.reply_to, tLRPC$DraftMessage.reply_to) || tLRPC$DraftMessage2.no_webpage != tLRPC$DraftMessage.no_webpage) {
-                z3 = false;
-            }
-            if (z3) {
-                return;
-            }
-        }
-        saveDraft(j, j2, tLRPC$DraftMessage, tLRPC$Message2, false);
-        if (j2 == 0 || ChatObject.isForum(this.currentAccount, j)) {
-            if (!DialogObject.isEncryptedDialog(j)) {
-                TLRPC$TL_messages_saveDraft tLRPC$TL_messages_saveDraft = new TLRPC$TL_messages_saveDraft();
-                TLRPC$InputPeer inputPeer = getMessagesController().getInputPeer(j);
-                tLRPC$TL_messages_saveDraft.peer = inputPeer;
-                if (inputPeer == null) {
-                    return;
-                }
-                tLRPC$TL_messages_saveDraft.message = tLRPC$DraftMessage.message;
-                tLRPC$TL_messages_saveDraft.no_webpage = tLRPC$DraftMessage.no_webpage;
-                TLRPC$InputReplyTo tLRPC$InputReplyTo5 = tLRPC$DraftMessage.reply_to;
-                tLRPC$TL_messages_saveDraft.reply_to = tLRPC$InputReplyTo5;
-                if (tLRPC$InputReplyTo5 != null) {
-                    tLRPC$TL_messages_saveDraft.flags |= 16;
-                }
-                if ((tLRPC$DraftMessage.flags & 8) != 0) {
-                    tLRPC$TL_messages_saveDraft.entities = tLRPC$DraftMessage.entities;
-                    tLRPC$TL_messages_saveDraft.flags |= 8;
-                }
-                getConnectionsManager().sendRequest(tLRPC$TL_messages_saveDraft, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MediaDataController.lambda$saveDraft$185(tLObject, tLRPC$TL_error);
-                    }
-                });
-            }
-            getMessagesController().sortDialogs(null);
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
-        }
+    public void saveDraft(long r19, long r21, java.lang.CharSequence r23, java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r24, org.telegram.tgnet.TLRPC$Message r25, org.telegram.ui.ChatActivity.ReplyQuote r26, long r27, boolean r29, boolean r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.saveDraft(long, long, java.lang.CharSequence, java.util.ArrayList, org.telegram.tgnet.TLRPC$Message, org.telegram.ui.ChatActivity$ReplyQuote, long, boolean, boolean):void");
     }
 
     private static boolean replyToEquals(TLRPC$InputReplyTo tLRPC$InputReplyTo, TLRPC$InputReplyTo tLRPC$InputReplyTo2) {
@@ -8421,7 +8326,7 @@ public class MediaDataController extends BaseController {
                 tLRPC$InputReplyTo.reply_to_msg_id = 0;
             }
             tLRPC$DraftMessage.flags &= -2;
-            saveDraft(j, j2, tLRPC$DraftMessage.message, tLRPC$DraftMessage.entities, null, null, tLRPC$DraftMessage.no_webpage, true);
+            saveDraft(j, j2, tLRPC$DraftMessage.message, tLRPC$DraftMessage.entities, null, null, 0L, tLRPC$DraftMessage.no_webpage, true);
         }
     }
 

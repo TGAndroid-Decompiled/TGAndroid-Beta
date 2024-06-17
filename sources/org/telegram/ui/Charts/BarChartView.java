@@ -92,7 +92,7 @@ public class BarChartView extends BaseChartView<ChartData, BarViewData> {
 
     @Override
     public BarViewData createLineViewData(ChartData.Line line) {
-        return new BarViewData(line);
+        return new BarViewData(line, this.resourcesProvider);
     }
 
     @Override

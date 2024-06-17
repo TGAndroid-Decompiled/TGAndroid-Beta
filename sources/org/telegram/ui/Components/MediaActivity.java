@@ -61,6 +61,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private boolean filterPhotos;
     private boolean filterVideos;
     private final boolean[] firstSubtitleCheck;
+    private String hashtag;
     private int initialTab;
     private int lastTab;
     private SimpleTextView[] nameTextView;
@@ -103,6 +104,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.type = getArguments().getInt("type", 0);
         this.dialogId = getArguments().getLong("dialog_id");
         this.topicId = getArguments().getLong("topic_id", 0L);
+        this.hashtag = getArguments().getString("hashtag", "");
         int i = this.type;
         this.initialTab = getArguments().getInt("start_from", i == 2 ? 9 : i == 1 ? 8 : 0);
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
@@ -405,119 +407,121 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     public void updateMediaCount() {
         SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
-        if (sharedMediaLayout == null) {
-            return;
-        }
-        int closestTab = sharedMediaLayout.getClosestTab();
-        int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
-        boolean z = !LocaleController.isRTL;
-        int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
-        if (closestTab == 8 || closestTab == 9) {
-            ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
-            if (actionBarMenuSubItem != null) {
-                actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
-                ActionBarMenuSubItem actionBarMenuSubItem2 = this.zoomOutItem;
-                actionBarMenuSubItem2.setAlpha(actionBarMenuSubItem2.isEnabled() ? 1.0f : 0.5f);
-            }
-            ActionBarMenuSubItem actionBarMenuSubItem3 = this.zoomInItem;
-            if (actionBarMenuSubItem3 != null) {
-                actionBarMenuSubItem3.setEnabled(this.sharedMediaLayout.canZoomIn());
-                ActionBarMenuSubItem actionBarMenuSubItem4 = this.zoomInItem;
-                actionBarMenuSubItem4.setAlpha(actionBarMenuSubItem4.isEnabled() ? 1.0f : 0.5f);
-            }
-            int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
-            if (storiesCount > 0) {
-                showSubtitle(0, true, true);
-                this.subtitleTextView[0].setText(LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]), z);
-            } else {
-                showSubtitle(0, false, true);
-            }
-            if (this.type == 1) {
-                int storiesCount2 = this.sharedMediaLayout.getStoriesCount(9);
-                if (storiesCount2 > 0) {
-                    showSubtitle(1, true, true);
-                    this.subtitleTextView[1].setText(LocaleController.formatPluralString("ProfileStoriesArchiveCount", storiesCount2, new Object[0]), z);
-                } else {
-                    showSubtitle(1, false, true);
-                }
-            }
-            if (this.optionsItem != null) {
-                SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
-                final boolean z2 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
-                if (!z2) {
-                    this.optionsItem.setVisibility(0);
-                }
-                this.optionsItem.animate().alpha(z2 ? 0.0f : 1.0f).withEndAction(new Runnable() {
-                    @Override
-                    public final void run() {
-                        MediaActivity.this.lambda$updateMediaCount$11(z2);
-                    }
-                }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-            }
-            ButtonWithCounterView buttonWithCounterView = this.button;
-            if (buttonWithCounterView != null) {
-                boolean z3 = z && this.lastTab == closestTab;
-                if (closestTab == 8) {
-                    SparseArray<MessageObject> sparseArray = this.actionModeMessageObjects;
-                    buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z3);
-                } else {
-                    buttonWithCounterView.setText(LocaleController.getString("SaveToProfile", R.string.SaveToProfile), z3);
-                }
-                this.lastTab = closestTab;
-            }
-            if (this.calendarItem != null) {
-                boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
-                this.calendarItem.setEnabled(z4);
-                this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
+        if (sharedMediaLayout != null) {
+            if (this.subtitleTextView[0] == null) {
                 return;
             }
-            return;
-        }
-        if (closestTab == 11) {
-            showSubtitle(i, true, true);
-            this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
-            return;
-        }
-        if (closestTab >= 0) {
-            if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
-                if (closestTab == 0) {
-                    showSubtitle(i, true, true);
-                    if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]), z);
-                        return;
-                    } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]), z);
-                        return;
+            int closestTab = sharedMediaLayout.getClosestTab();
+            int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
+            boolean z = !LocaleController.isRTL;
+            int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
+            if (closestTab == 8 || closestTab == 9) {
+                ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
+                if (actionBarMenuSubItem != null) {
+                    actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
+                    ActionBarMenuSubItem actionBarMenuSubItem2 = this.zoomOutItem;
+                    actionBarMenuSubItem2.setAlpha(actionBarMenuSubItem2.isEnabled() ? 1.0f : 0.5f);
+                }
+                ActionBarMenuSubItem actionBarMenuSubItem3 = this.zoomInItem;
+                if (actionBarMenuSubItem3 != null) {
+                    actionBarMenuSubItem3.setEnabled(this.sharedMediaLayout.canZoomIn());
+                    ActionBarMenuSubItem actionBarMenuSubItem4 = this.zoomInItem;
+                    actionBarMenuSubItem4.setAlpha(actionBarMenuSubItem4.isEnabled() ? 1.0f : 0.5f);
+                }
+                int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
+                if (storiesCount > 0) {
+                    showSubtitle(0, true, true);
+                    this.subtitleTextView[0].setText(LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]), z);
+                } else {
+                    showSubtitle(0, false, true);
+                }
+                if (this.type == 1) {
+                    int storiesCount2 = this.sharedMediaLayout.getStoriesCount(9);
+                    if (storiesCount2 > 0) {
+                        showSubtitle(1, true, true);
+                        this.subtitleTextView[1].setText(LocaleController.formatPluralString("ProfileStoriesArchiveCount", storiesCount2, new Object[0]), z);
                     } else {
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]), z);
-                        return;
+                        showSubtitle(1, false, true);
                     }
                 }
-                if (closestTab == 1) {
-                    showSubtitle(i, true, true);
-                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]), z);
+                if (this.optionsItem != null) {
+                    SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
+                    final boolean z2 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
+                    if (!z2) {
+                        this.optionsItem.setVisibility(0);
+                    }
+                    this.optionsItem.animate().alpha(z2 ? 0.0f : 1.0f).withEndAction(new Runnable() {
+                        @Override
+                        public final void run() {
+                            MediaActivity.this.lambda$updateMediaCount$11(z2);
+                        }
+                    }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                }
+                ButtonWithCounterView buttonWithCounterView = this.button;
+                if (buttonWithCounterView != null) {
+                    boolean z3 = z && this.lastTab == closestTab;
+                    if (closestTab == 8) {
+                        SparseArray<MessageObject> sparseArray = this.actionModeMessageObjects;
+                        buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z3);
+                    } else {
+                        buttonWithCounterView.setText(LocaleController.getString("SaveToProfile", R.string.SaveToProfile), z3);
+                    }
+                    this.lastTab = closestTab;
+                }
+                if (this.calendarItem != null) {
+                    boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
+                    this.calendarItem.setEnabled(z4);
+                    this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
                     return;
                 }
-                if (closestTab == 2) {
-                    showSubtitle(i, true, true);
-                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]), z);
-                    return;
-                }
-                if (closestTab == 3) {
-                    showSubtitle(i, true, true);
-                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]), z);
-                    return;
-                }
-                if (closestTab == 4) {
-                    showSubtitle(i, true, true);
-                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]), z);
-                } else if (closestTab == 5) {
-                    showSubtitle(i, true, true);
-                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]), z);
-                } else if (closestTab == 10) {
-                    showSubtitle(i, true, true);
-                    MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
-                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
+                return;
+            }
+            if (closestTab == 11) {
+                showSubtitle(i, true, true);
+                this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
+                return;
+            }
+            if (closestTab >= 0) {
+                if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
+                    if (closestTab == 0) {
+                        showSubtitle(i, true, true);
+                        if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]), z);
+                            return;
+                        } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]), z);
+                            return;
+                        } else {
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]), z);
+                            return;
+                        }
+                    }
+                    if (closestTab == 1) {
+                        showSubtitle(i, true, true);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]), z);
+                        return;
+                    }
+                    if (closestTab == 2) {
+                        showSubtitle(i, true, true);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]), z);
+                        return;
+                    }
+                    if (closestTab == 3) {
+                        showSubtitle(i, true, true);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]), z);
+                        return;
+                    }
+                    if (closestTab == 4) {
+                        showSubtitle(i, true, true);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]), z);
+                    } else if (closestTab == 5) {
+                        showSubtitle(i, true, true);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]), z);
+                    } else if (closestTab == 10) {
+                        showSubtitle(i, true, true);
+                        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
+                    }
                 }
             }
         }
@@ -538,7 +542,11 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     private void showSubtitle(final int i, final boolean z, boolean z2) {
-        if (i == 1 && this.type == 2) {
+        int i2 = this.type;
+        if (i2 == 3) {
+            return;
+        }
+        if (i == 1 && i2 == 2) {
             return;
         }
         boolean[] zArr = this.subtitleShown;
@@ -622,10 +630,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.actionBar.setItemsColor(Theme.getColor(i), true);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), false);
         this.actionBar.setTitleColor(Theme.getColor(i));
-        this.nameTextView[0].setTextColor(Theme.getColor(i));
         SimpleTextView[] simpleTextViewArr = this.nameTextView;
-        if (simpleTextViewArr[1] != null) {
-            simpleTextViewArr[1].setTextColor(Theme.getColor(i));
+        if (simpleTextViewArr[0] != null) {
+            simpleTextViewArr[0].setTextColor(Theme.getColor(i));
+        }
+        SimpleTextView[] simpleTextViewArr2 = this.nameTextView;
+        if (simpleTextViewArr2[1] != null) {
+            simpleTextViewArr2[1].setTextColor(Theme.getColor(i));
         }
     }
 

@@ -164,9 +164,11 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
 
     public void searchPlacesWithQuery(final String str, final Location location, boolean z, boolean z2) {
         String str2;
+        final Locale locale;
         if (location != null || this.stories) {
             Location location2 = this.lastSearchLocation;
             if (location2 == null || location == null || location.distanceTo(location2) >= 200.0f) {
+                Locale locale2 = null;
                 this.lastSearchLocation = location == null ? null : new Location(location);
                 this.lastSearchQuery = str;
                 if (this.searching) {
@@ -213,10 +215,24 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 if (!TextUtils.isEmpty(str) && (this.stories || this.biz)) {
                     this.searchingLocations = true;
                     final Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
+                    if (this.stories) {
+                        if (currentLocale.getLanguage().contains("en")) {
+                            locale = currentLocale;
+                            Utilities.globalQueue.postRunnable(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
+                                }
+                            });
+                        } else {
+                            locale2 = Locale.US;
+                        }
+                    }
+                    locale = locale2;
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, location, str);
+                            BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
                         }
                     });
                 } else {
@@ -236,8 +252,8 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         }
     }
 
-    public void lambda$searchPlacesWithQuery$5(java.util.Locale r26, java.lang.String r27, final android.location.Location r28, final java.lang.String r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, android.location.Location, java.lang.String):void");
+    public void lambda$searchPlacesWithQuery$5(java.util.Locale r30, java.lang.String r31, java.util.Locale r32, final android.location.Location r33, final java.lang.String r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, java.util.Locale, android.location.Location, java.lang.String):void");
     }
 
     public void lambda$searchPlacesWithQuery$4(Location location, String str, ArrayList arrayList) {

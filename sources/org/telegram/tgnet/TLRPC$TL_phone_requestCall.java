@@ -9,11 +9,6 @@ public class TLRPC$TL_phone_requestCall extends TLObject {
     public boolean video;
 
     @Override
-    public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$TL_phone_phoneCall.TLdeserialize(abstractSerializedData, i, z);
-    }
-
-    @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(1124046573);
         int i = this.video ? this.flags | 1 : this.flags & (-2);
@@ -23,5 +18,10 @@ public class TLRPC$TL_phone_requestCall extends TLObject {
         abstractSerializedData.writeInt32(this.random_id);
         abstractSerializedData.writeByteArray(this.g_a_hash);
         this.protocol.serializeToStream(abstractSerializedData);
+    }
+
+    @Override
+    public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
+        return TLRPC$TL_phone_phoneCall.TLdeserialize(abstractSerializedData, i, z);
     }
 }

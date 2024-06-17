@@ -990,6 +990,17 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
             if (characterStyle instanceof URLSpanNoUnderline) {
                 String url = ((URLSpanNoUnderline) characterStyle).getURL();
+                if (url != null && url.startsWith("#")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("type", 3);
+                    bundle.putString("hashtag", url.substring(1));
+                    StoryViewer storyViewer = this.val$storyViewer;
+                    if (storyViewer != null) {
+                        storyViewer.presentFragment(new MediaActivity(bundle, null));
+                        return;
+                    }
+                    return;
+                }
                 String extractUsername = Browser.extractUsername(url);
                 if (extractUsername != null) {
                     String lowerCase = extractUsername.toLowerCase();
@@ -2656,13 +2667,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        protected void updateRecordInterface(int i, boolean z) {
+        public void updateRecordInterface(int i, boolean z) {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
 
         @Override
-        protected void isRecordingStateChanged() {
+        public void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }
@@ -3292,7 +3303,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -3470,7 +3481,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     this.headerView.titleView.setRightDrawable((Drawable) null);
                 }
                 if (user != null) {
-                    this.headerView.titleView.setText(Emoji.replaceEmoji(ContactsController.formatName(user), this.headerView.titleView.getPaint().getFontMetricsInt(), false));
+                    this.headerView.titleView.setText(Emoji.replaceEmoji(AndroidUtilities.removeDiacritics(ContactsController.formatName(user)), this.headerView.titleView.getPaint().getFontMetricsInt(), false));
                 } else {
                     this.headerView.titleView.setText(null);
                 }
@@ -3490,7 +3501,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.isPremiumBlocked = this.isGroup && !ChatObject.canSendPlain(chat);
             this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.headerView.backupImageView.getImageReceiver().setForUserOrChat(chat, this.avatarDrawable);
-            this.headerView.titleView.setText(chat.title);
+            this.headerView.titleView.setText(AndroidUtilities.removeDiacritics(chat.title));
             if (chat.verified) {
                 Drawable mutate2 = ContextCompat.getDrawable(getContext(), R.drawable.verified_profile).mutate();
                 mutate2.setAlpha(255);
@@ -5178,6 +5189,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         public void updateCaption() {
+            int i;
             this.captionTranslated = false;
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             StoryItemHolder storyItemHolder = peerStoriesView.currentStory;
@@ -5210,11 +5222,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     }
                     SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(tLRPC$TL_textWithEntities.text), tLRPC$TL_textWithEntities.entities, PeerStoriesView.this.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
                     SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf2, PeerStoriesView.this.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
-                    TLRPC$User user2 = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
-                    if (PeerStoriesView.this.dialogId < 0 || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storyEntitiesAllowed(user2)) {
+                    i = (PeerStoriesView.this.dialogId < 0 || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storyEntitiesAllowed(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)))) ? 1 : 0;
+                    if (i != 0) {
                         MessageObject.addLinks(true, valueOf2);
-                        MessageObject.addEntitiesToText(valueOf2, tLRPC$TL_textWithEntities.entities, false, true, true, false);
                     }
+                    MessageObject.addEntitiesToText(valueOf2, tLRPC$TL_textWithEntities.entities, false, true, true, false, i ^ 1);
                     this.caption = valueOf2;
                     return;
                 }
@@ -5230,11 +5242,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
                 SpannableStringBuilder valueOf3 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(spannableStringBuilder, peerStoriesView4.currentStory.storyItem.entities, peerStoriesView4.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
                 SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf3, PeerStoriesView.this.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
-                TLRPC$User user3 = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
-                if (PeerStoriesView.this.dialogId < 0 || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storyEntitiesAllowed(user3)) {
+                i = (PeerStoriesView.this.dialogId < 0 || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storyEntitiesAllowed(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)))) ? 1 : 0;
+                if (i != 0) {
                     MessageObject.addLinks(true, valueOf3);
-                    MessageObject.addEntitiesToText(valueOf3, PeerStoriesView.this.currentStory.storyItem.entities, false, true, true, false);
                 }
+                MessageObject.addEntitiesToText(valueOf3, PeerStoriesView.this.currentStory.storyItem.entities, false, true, true, false, i ^ 1);
                 this.caption = valueOf3;
             }
         }

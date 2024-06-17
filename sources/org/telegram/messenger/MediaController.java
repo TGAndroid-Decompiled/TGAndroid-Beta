@@ -641,6 +641,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public int orientation;
         public String path;
         public long size;
+        public long starsAmount;
         public BitmapDrawable thumb;
         public int videoOrientation = -1;
         public int width;
@@ -4022,11 +4023,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void stopRecordingInternal(final int i, final boolean z, final int i2, final boolean z2) {
-        if (i != 0) {
+        final File file;
+        if (i != 0 && (file = this.recordingAudioFile) != null) {
             final TLRPC$TL_document tLRPC$TL_document = this.recordingAudio;
-            final File file = this.recordingAudioFile;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("stop recording internal filename " + this.recordingAudioFile.getPath());
+                StringBuilder sb = new StringBuilder();
+                sb.append("stop recording internal filename ");
+                sb.append(file == null ? "null" : file.getPath());
+                FileLog.d(sb.toString());
             }
             this.fileEncodingQueue.postRunnable(new Runnable() {
                 @Override
@@ -4059,9 +4063,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void lambda$stopRecordingInternal$40(final File file, final TLRPC$TL_document tLRPC$TL_document, final int i, final boolean z, final int i2, final boolean z2) {
+        String str;
         stopRecord(false);
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("stop recording internal in queue " + file.exists() + " " + file.length());
+            StringBuilder sb = new StringBuilder();
+            sb.append("stop recording internal in queue ");
+            if (file == null) {
+                str = "null";
+            } else {
+                str = file.exists() + " " + file.length();
+            }
+            sb.append(str);
+            FileLog.d(sb.toString());
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -4074,15 +4087,24 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public void lambda$stopRecordingInternal$39(File file, TLRPC$TL_document tLRPC$TL_document, int i, boolean z, int i2, boolean z2) {
         boolean z3;
         char c;
+        String str;
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("stop recording internal " + file.exists() + " " + file.length() + "  recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writedFrame);
+            StringBuilder sb = new StringBuilder();
+            sb.append("stop recording internal ");
+            if (file == null) {
+                str = "null";
+            } else {
+                str = file.exists() + " " + file.length() + "  recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writedFrame;
+            }
+            sb.append(str);
+            FileLog.d(sb.toString());
         }
-        if (!file.exists() && BuildVars.DEBUG_VERSION) {
+        if (!(file != null && file.exists()) && BuildVars.DEBUG_VERSION) {
             FileLog.e(new RuntimeException("file not found :( recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writedFrame));
         }
         MediaDataController.getInstance(this.recordingCurrentAccount).pushDraftVoiceMessage(this.recordDialogId, this.recordTopicId, null);
         tLRPC$TL_document.date = ConnectionsManager.getInstance(this.recordingCurrentAccount).getCurrentTime();
-        tLRPC$TL_document.size = (int) file.length();
+        tLRPC$TL_document.size = file == null ? 0L : (int) file.length();
         TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
         tLRPC$TL_documentAttributeAudio.voice = true;
         short[] sArr = this.recordSamples;
@@ -4119,8 +4141,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         } else {
             z3 = false;
             NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.recordingGuid), Boolean.FALSE, Integer.valueOf((int) j));
-            AutoDeleteMediaTask.unlockFile(file);
-            file.delete();
+            if (file != null) {
+                AutoDeleteMediaTask.unlockFile(file);
+                file.delete();
+            }
         }
         requestAudioFocus(z3);
     }

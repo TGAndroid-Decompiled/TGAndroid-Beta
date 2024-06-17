@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_saveDraft extends TLObject {
+    public long effect;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
     public boolean invert_media;
@@ -19,7 +20,7 @@ public class TLRPC$TL_messages_saveDraft extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(2146678790);
+        abstractSerializedData.writeInt32(-747452978);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.invert_media ? i | 64 : i & (-65);
@@ -40,6 +41,9 @@ public class TLRPC$TL_messages_saveDraft extends TLObject {
         }
         if ((this.flags & 32) != 0) {
             this.media.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 128) != 0) {
+            abstractSerializedData.writeInt64(this.effect);
         }
     }
 }

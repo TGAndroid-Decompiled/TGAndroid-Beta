@@ -98,6 +98,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     private int passwordEnabledDetailRow;
     private OutlineTextContainerView passwordOutlineView;
     private boolean postedErrorColorTimeout;
+    public boolean preloaded;
     private AlertDialog progressDialog;
     private RadialProgressView radialProgressView;
     private boolean resetPasswordOnShow;
@@ -153,15 +154,24 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     @Override
     public boolean onFragmentCreate() {
-        byte[] bArr;
         super.onFragmentCreate();
-        TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
-        if (tLRPC$account_Password == null || tLRPC$account_Password.current_algo == null || (bArr = this.currentPasswordHash) == null || bArr.length <= 0) {
-            loadPasswordInfo(true, tLRPC$account_Password != null);
+        if (!this.preloaded) {
+            preload(null);
         }
         updateRows();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.twoStepPasswordChanged);
         return true;
+    }
+
+    public void preload(Runnable runnable) {
+        byte[] bArr;
+        this.preloaded = false;
+        TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
+        if (tLRPC$account_Password == null || tLRPC$account_Password.current_algo == null || (bArr = this.currentPasswordHash) == null || bArr.length <= 0) {
+            loadPasswordInfo(true, tLRPC$account_Password != null, runnable);
+        } else if (runnable != null) {
+            runnable.run();
+        }
     }
 
     @Override
@@ -507,7 +517,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             if (objArr != null && objArr.length > 0 && objArr[0] != null) {
                 this.currentPasswordHash = (byte[]) objArr[0];
             }
-            loadPasswordInfo(false, false);
+            loadPasswordInfo(false, false, null);
             updateRows();
         }
     }
@@ -560,7 +570,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         }
     }
 
-    private void loadPasswordInfo(final boolean z, final boolean z2) {
+    private void loadPasswordInfo(final boolean z, final boolean z2, final Runnable runnable) {
         if (!z2) {
             this.loading = true;
             ListAdapter listAdapter = this.listAdapter;
@@ -571,21 +581,21 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                TwoStepVerificationActivity.this.lambda$loadPasswordInfo$19(z2, z, tLObject, tLRPC$TL_error);
+                TwoStepVerificationActivity.this.lambda$loadPasswordInfo$19(z2, z, runnable, tLObject, tLRPC$TL_error);
             }
         }, 10);
     }
 
-    public void lambda$loadPasswordInfo$19(final boolean z, final boolean z2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadPasswordInfo$19(final boolean z, final boolean z2, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TwoStepVerificationActivity.this.lambda$loadPasswordInfo$18(tLRPC$TL_error, tLObject, z, z2);
+                TwoStepVerificationActivity.this.lambda$loadPasswordInfo$18(tLRPC$TL_error, tLObject, z, z2, runnable);
             }
         });
     }
 
-    public void lambda$loadPasswordInfo$18(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, boolean z, boolean z2) {
+    public void lambda$loadPasswordInfo$18(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, boolean z, boolean z2, Runnable runnable) {
         if (tLRPC$TL_error == null) {
             this.loading = false;
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
@@ -600,6 +610,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             }
             initPasswordNewAlgo(this.currentPassword);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+        }
+        if (runnable != null) {
+            runnable.run();
         }
         updateRows();
     }

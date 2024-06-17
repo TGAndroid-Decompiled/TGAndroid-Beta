@@ -7,6 +7,7 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
@@ -84,6 +85,14 @@ public class AvatarSpan extends ReplacementSpan {
             for (AvatarSpan avatarSpan : (AvatarSpan[]) spannable.getSpans(0, spannable.length(), AvatarSpan.class)) {
                 avatarSpan.setParent(view);
             }
+        }
+    }
+
+    public void setDialogId(long j) {
+        if (j >= 0) {
+            setUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)));
+        } else {
+            setChat(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         }
     }
 

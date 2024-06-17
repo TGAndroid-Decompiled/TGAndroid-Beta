@@ -2009,10 +2009,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     if (!z || (StoryRecorder.this.paintView.getSelectedEntity() instanceof RoundView) || StoryRecorder.this.paintView.findRoundView() == null) {
                         return;
                     }
-                    StoryRecorder.this.paintView.lambda$createRound$55(StoryRecorder.this.paintView.findRoundView());
+                    StoryRecorder.this.paintView.lambda$createRound$60(StoryRecorder.this.paintView.findRoundView());
                     return;
                 }
-                StoryRecorder.this.paintView.lambda$createRound$55(null);
+                StoryRecorder.this.paintView.lambda$createRound$60(null);
             }
 
             @Override
@@ -2582,10 +2582,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 if (!z || (StoryRecorder.this.paintView.getSelectedEntity() instanceof RoundView) || StoryRecorder.this.paintView.findRoundView() == null) {
                     return;
                 }
-                StoryRecorder.this.paintView.lambda$createRound$55(StoryRecorder.this.paintView.findRoundView());
+                StoryRecorder.this.paintView.lambda$createRound$60(StoryRecorder.this.paintView.findRoundView());
                 return;
             }
-            StoryRecorder.this.paintView.lambda$createRound$55(null);
+            StoryRecorder.this.paintView.lambda$createRound$60(null);
         }
 
         @Override
@@ -5150,8 +5150,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         public static void lambda$onSwitchSegmentedAnimation$3() {
         }
 
-        AnonymousClass22(Context context, boolean z, File file, boolean z2, WindowView windowView, Activity activity, int i, Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, Runnable runnable, BlurringShader.BlurManager blurManager, Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder) {
-            super(context, z, file, z2, windowView, activity, i, bitmap, bitmap2, bitmap3, i2, arrayList, storyEntry, i3, i4, cropState, runnable, blurManager, resourcesProvider, textureViewHolder);
+        AnonymousClass22(Context context, boolean z, File file, boolean z2, WindowView windowView, Activity activity, int i, Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, Runnable runnable, BlurringShader.BlurManager blurManager, Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder, PreviewView previewView) {
+            super(context, z, file, z2, windowView, activity, i, bitmap, bitmap2, bitmap3, i2, arrayList, storyEntry, i3, i4, cropState, runnable, blurManager, resourcesProvider, textureViewHolder, previewView);
         }
 
         @Override
