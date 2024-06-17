@@ -22,6 +22,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
+
 public class SlideIntChooseView extends FrameLayout {
     private final AnimatedTextView maxText;
     private float maxTextEmojiSaturation;
@@ -118,11 +119,9 @@ public class SlideIntChooseView extends FrameLayout {
         this.value = i;
         this.options = options;
         this.whenChanged = callback;
-        int i2 = options.max;
-        int i3 = options.min;
-        int i4 = i2 - i3;
-        this.stepsCount = i4;
-        this.seekBarView.setProgress((i - i3) / i4, false);
+        int i2 = options.max - options.min;
+        this.stepsCount = i2;
+        this.seekBarView.setProgress((i - r3) / i2, false);
         updateTexts(i, false);
     }
 
@@ -133,10 +132,8 @@ public class SlideIntChooseView extends FrameLayout {
         if (!TextUtils.isEmpty(this.options.resId)) {
             this.valueText.cancelAnimation();
             this.valueText.setText(LocaleController.formatPluralString(this.options.resId, i, new Object[0]), z);
-            AnimatedTextView animatedTextView = this.minText;
-            animatedTextView.setText("" + this.options.min, z);
-            AnimatedTextView animatedTextView2 = this.maxText;
-            animatedTextView2.setText("" + this.options.max, z);
+            this.minText.setText("" + this.options.min, z);
+            this.maxText.setText("" + this.options.max, z);
         } else {
             Options options = this.options;
             if (i <= options.min) {
@@ -148,12 +145,12 @@ public class SlideIntChooseView extends FrameLayout {
             }
             this.valueText.cancelAnimation();
             this.valueText.setText(processText(i2, i), z);
-            AnimatedTextView animatedTextView3 = this.minText;
+            AnimatedTextView animatedTextView = this.minText;
             Options options2 = this.options;
-            animatedTextView3.setText(processText(options2.minStringResId, options2.min), z);
-            AnimatedTextView animatedTextView4 = this.maxText;
+            animatedTextView.setText(processText(options2.minStringResId, options2.min), z);
+            AnimatedTextView animatedTextView2 = this.maxText;
             Options options3 = this.options;
-            animatedTextView4.setText(processText(options3.maxStringResId, options3.max), z);
+            animatedTextView2.setText(processText(options3.maxStringResId, options3.max), z);
         }
         this.maxText.setTextColor(Theme.getColor(i >= this.options.max ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
         setMaxTextEmojiSaturation(i >= this.options.max ? 1.0f : 0.0f, z);
@@ -214,8 +211,7 @@ public class SlideIntChooseView extends FrameLayout {
     }
 
     private CharSequence processText(int i, int i2) {
-        String string = LocaleController.getString(i);
-        return ChannelMonetizationLayout.replaceTON(AndroidUtilities.replaceTags(string.replace("%d", "" + i2)), this.valueText.getPaint());
+        return ChannelMonetizationLayout.replaceTON(AndroidUtilities.replaceTags(LocaleController.getString(i).replace("%d", "" + i2)), this.valueText.getPaint());
     }
 
     @Override

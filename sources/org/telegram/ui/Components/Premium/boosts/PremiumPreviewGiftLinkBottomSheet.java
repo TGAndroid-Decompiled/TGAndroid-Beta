@@ -29,6 +29,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TopicsFragment;
+
 public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet {
     private static PremiumPreviewGiftLinkBottomSheet instance;
     private ActionBtnCell actionBtn;
@@ -112,24 +113,69 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
             getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.finishFragment();
+        dialogsActivity.lambda$onBackPressed$303();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }
 
     @Override
     protected View onCreateAdditionCell(int i, Context context) {
-        if (i == 6) {
-            LinkCell linkCell = new LinkCell(context, getBaseFragment(), this.resourcesProvider);
-            linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-            return linkCell;
+        if (i != 6) {
+            return null;
         }
-        return null;
+        LinkCell linkCell = new LinkCell(context, getBaseFragment(), this.resourcesProvider);
+        linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+        return linkCell;
     }
 
     @Override
     protected void onBindAdditionCell(View view, int i) {
         ((LinkCell) view).setSlug(this.slug);
+    }
+
+    public class AnonymousClass1 implements Bulletin.Delegate {
+        @Override
+        public boolean allowLayoutChanges() {
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+        }
+
+        @Override
+        public boolean bottomOffsetAnimated() {
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+        }
+
+        @Override
+        public boolean clipWithGradient(int i) {
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+        }
+
+        @Override
+        public int getTopOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+        }
+
+        @Override
+        public void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+        }
+
+        @Override
+        public void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+        }
+
+        @Override
+        public void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+        }
+
+        AnonymousClass1(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet) {
+        }
+
+        @Override
+        public int getBottomOffset(int i) {
+            return AndroidUtilities.dp(68.0f);
+        }
     }
 
     private void init() {
@@ -167,6 +213,9 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             @Override
             public void onShow(Bulletin bulletin) {
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+
+            AnonymousClass1(PremiumPreviewGiftLinkBottomSheet this) {
             }
 
             @Override

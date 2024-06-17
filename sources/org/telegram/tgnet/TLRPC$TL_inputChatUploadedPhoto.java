@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputChatUploadedPhoto extends TLRPC$InputChatPhoto {
     public TLRPC$InputFile file;
     public int flags;

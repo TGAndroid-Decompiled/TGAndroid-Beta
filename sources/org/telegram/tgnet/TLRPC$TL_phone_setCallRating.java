@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_phone_setCallRating extends TLObject {
     public String comment;
     public int flags;

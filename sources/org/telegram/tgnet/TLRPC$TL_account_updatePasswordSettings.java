@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updatePasswordSettings extends TLObject {
     public TLRPC$TL_account_passwordInputSettings new_settings;
     public TLRPC$InputCheckPasswordSRP password;

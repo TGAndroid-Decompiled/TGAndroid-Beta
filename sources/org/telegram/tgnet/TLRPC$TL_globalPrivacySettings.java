@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_globalPrivacySettings extends TLObject {
     public boolean archive_and_mute_new_noncontact_peers;
     public int flags;

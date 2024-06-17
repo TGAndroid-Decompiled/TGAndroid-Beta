@@ -34,6 +34,7 @@ import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class FeaturesPageView extends BaseListPageView {
     RecyclerListView.SelectionAdapter adapter;
     Bitmap bitmap;
@@ -151,7 +152,9 @@ public class FeaturesPageView extends BaseListPageView {
                 this.gradientTools.paint.setStyle(Paint.Style.STROKE);
                 this.gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
                 this.gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 StarParticlesView starParticlesView = new StarParticlesView(this, context, FeaturesPageView.this) {
                     @Override
                     public void onMeasure(int i2, int i3) {

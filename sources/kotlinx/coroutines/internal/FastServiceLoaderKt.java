@@ -2,6 +2,7 @@ package kotlinx.coroutines.internal;
 
 import kotlin.Result;
 import kotlin.ResultKt;
+
 public final class FastServiceLoaderKt {
     private static final boolean ANDROID_DETECTED;
 

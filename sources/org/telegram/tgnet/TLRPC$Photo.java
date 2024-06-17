@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$Photo extends TLObject {
     public long access_hash;
     public String caption;

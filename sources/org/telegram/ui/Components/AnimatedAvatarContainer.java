@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AnimatedAvatarContainer extends FrameLayout {
     private int leftPadding;
     boolean occupyStatusBar;

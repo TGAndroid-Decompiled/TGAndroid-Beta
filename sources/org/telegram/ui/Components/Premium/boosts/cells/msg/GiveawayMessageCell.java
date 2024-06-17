@@ -1,5 +1,6 @@
 package org.telegram.ui.Components.Premium.boosts.cells.msg;
 
+import android.R;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -14,18 +15,30 @@ import android.util.StateSet;
 import android.view.MotionEvent;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
+import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC$TL_stickerPack;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
+
 public class GiveawayMessageCell {
     private static final Map<Integer, String> monthsToEmoticon;
     private int additionPrizeHeight;
@@ -108,7 +121,7 @@ public class GiveawayMessageCell {
         this.chatRect = new RectF();
         this.counterTextBounds = new Rect();
         this.containerRect = new Rect();
-        this.pressedState = new int[]{16842910, 16842919};
+        this.pressedState = new int[]{R.attr.state_enabled, R.attr.state_pressed};
         this.chatTitles = new CharSequence[10];
         this.chats = new TLRPC$Chat[10];
         this.chatTitleWidths = new float[10];
@@ -204,10 +217,10 @@ public class GiveawayMessageCell {
             });
             this.selectorDrawable.setState(this.pressedState);
             this.parentView.invalidate();
-            return;
+        } else {
+            drawable.setState(StateSet.NOTHING);
+            this.parentView.invalidate();
         }
-        drawable.setState(StateSet.NOTHING);
-        this.parentView.invalidate();
     }
 
     public void setMessageContent(org.telegram.messenger.MessageObject r21, int r22, int r23) {
@@ -241,7 +254,9 @@ public class GiveawayMessageCell {
         if (this.selectorDrawable == null) {
             int color = Theme.getColor(Theme.key_listSelector);
             this.selectorColor = color;
-            this.selectorDrawable = Theme.createRadSelectorDrawable(color, 12, 12);
+            Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(color, 12, 12);
+            this.selectorDrawable = createRadSelectorDrawable;
+            createRadSelectorDrawable.setCallback(this.parentView);
         }
         this.textPaint.setColor(Theme.chat_msgTextPaint.getColor());
         this.textDividerPaint.setColor(Theme.multAlpha(Theme.chat_msgTextPaint.getColor(), 0.45f));
@@ -388,7 +403,7 @@ public class GiveawayMessageCell {
                 Theme.setSelectorDrawableColor(drawable, multAlpha, true);
             }
             this.selectorDrawable.setBounds(this.clickRect[this.pressedPos]);
-            this.selectorDrawable.draw(canvas);
+            this.selectorDrawable.setCallback(this.parentView);
         }
     }
 
@@ -472,7 +487,60 @@ public class GiveawayMessageCell {
         }
     }
 
-    private void setGiftImage(org.telegram.messenger.MessageObject r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.msg.GiveawayMessageCell.setGiftImage(org.telegram.messenger.MessageObject):void");
+    private void setGiftImage(MessageObject messageObject) {
+        TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway = (TLRPC$TL_messageMediaGiveaway) messageObject.messageOwner.media;
+        String str = UserConfig.getInstance(UserConfig.selectedAccount).premiumGiftsStickerPack;
+        if (str == null) {
+            MediaDataController.getInstance(UserConfig.selectedAccount).checkPremiumGiftStickers();
+            return;
+        }
+        TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSetByName(str);
+        if (stickerSetByName == null) {
+            stickerSetByName = MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSetByEmojiOrName(str);
+        }
+        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
+        TLRPC$Document tLRPC$Document = null;
+        if (tLRPC$TL_messages_stickerSet != null) {
+            String str2 = monthsToEmoticon.get(Integer.valueOf(tLRPC$TL_messageMediaGiveaway.months));
+            Iterator<TLRPC$TL_stickerPack> it = tLRPC$TL_messages_stickerSet.packs.iterator();
+            while (it.hasNext()) {
+                TLRPC$TL_stickerPack next = it.next();
+                if (Objects.equals(next.emoticon, str2)) {
+                    Iterator<Long> it2 = next.documents.iterator();
+                    while (it2.hasNext()) {
+                        long longValue = it2.next().longValue();
+                        Iterator<TLRPC$Document> it3 = tLRPC$TL_messages_stickerSet.documents.iterator();
+                        while (true) {
+                            if (!it3.hasNext()) {
+                                break;
+                            }
+                            TLRPC$Document next2 = it3.next();
+                            if (next2.id == longValue) {
+                                tLRPC$Document = next2;
+                                break;
+                            }
+                        }
+                        if (tLRPC$Document != null) {
+                            break;
+                        }
+                    }
+                }
+                if (tLRPC$Document != null) {
+                    break;
+                }
+            }
+            if (tLRPC$Document == null && !tLRPC$TL_messages_stickerSet.documents.isEmpty()) {
+                tLRPC$Document = tLRPC$TL_messages_stickerSet.documents.get(0);
+            }
+        }
+        if (tLRPC$Document != null) {
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
+            if (svgThumb != null) {
+                svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+            }
+            this.giftReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "160_160_firstframe", svgThumb, "tgs", tLRPC$TL_messages_stickerSet, 1);
+            return;
+        }
+        MediaDataController.getInstance(UserConfig.selectedAccount).loadStickersByEmojiOrName(str, false, tLRPC$TL_messages_stickerSet == null);
     }
 }

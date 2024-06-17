@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.PropertyReference0Impl;
 import kotlinx.coroutines.DebugStringsKt;
+
 public class LockFreeLinkedListNode {
     static final AtomicReferenceFieldUpdater _next$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_next");
     static final AtomicReferenceFieldUpdater _prev$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_prev");
@@ -14,12 +15,12 @@ public class LockFreeLinkedListNode {
 
     private final Removed removed() {
         Removed removed = (Removed) this._removedRef;
-        if (removed == null) {
-            Removed removed2 = new Removed(this);
-            _removedRef$FU.lazySet(this, removed2);
-            return removed2;
+        if (removed != null) {
+            return removed;
         }
-        return removed;
+        Removed removed2 = new Removed(this);
+        _removedRef$FU.lazySet(this, removed2);
+        return removed2;
     }
 
     public static abstract class CondAddOp extends AtomicOp<LockFreeLinkedListNode> {

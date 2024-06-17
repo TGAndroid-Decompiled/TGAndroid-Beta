@@ -14,6 +14,7 @@ import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.DispatchedTask;
 import kotlinx.coroutines.EventLoop;
 import kotlinx.coroutines.ThreadLocalEventLoop;
+
 public final class DispatchedContinuation<T> extends DispatchedTask<T> implements CoroutineStackFrame, Continuation<T> {
     private volatile Object _reusableCancellableContinuation;
     public Object _state;
@@ -108,14 +109,16 @@ public final class DispatchedContinuation<T> extends DispatchedTask<T> implement
             try {
                 CoroutineContext context2 = getContext();
                 Object updateThreadContext = ThreadContextKt.updateThreadContext(context2, this.countOrElement);
-                this.continuation.resumeWith(obj);
-                Unit unit = Unit.INSTANCE;
-                ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
-                do {
-                } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());
+                try {
+                    this.continuation.resumeWith(obj);
+                    Unit unit = Unit.INSTANCE;
+                    do {
+                    } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());
+                } finally {
+                    ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
+                }
             } finally {
                 try {
-                    return;
                 } finally {
                 }
             }

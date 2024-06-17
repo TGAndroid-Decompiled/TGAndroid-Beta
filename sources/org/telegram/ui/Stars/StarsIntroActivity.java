@@ -100,6 +100,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class StarsIntroActivity extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
     private FrameLayout aboveTitleView;
     private UniversalAdapter adapter;
@@ -922,13 +923,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             @Override
             public String getItemTitle(int i) {
                 int itemViewType = getItemViewType(i);
-                if (itemViewType != 0) {
-                    if (itemViewType != 1) {
-                        return itemViewType != 2 ? "" : LocaleController.getString(R.string.StarsTransactionsOutgoing);
-                    }
-                    return LocaleController.getString(R.string.StarsTransactionsIncoming);
+                if (itemViewType == 0) {
+                    return LocaleController.getString(R.string.StarsTransactionsAll);
                 }
-                return LocaleController.getString(R.string.StarsTransactionsAll);
+                if (itemViewType != 1) {
+                    return itemViewType != 2 ? "" : LocaleController.getString(R.string.StarsTransactionsOutgoing);
+                }
+                return LocaleController.getString(R.string.StarsTransactionsIncoming);
             }
         }
 
@@ -1140,13 +1141,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 cachedPlatformDrawables = new HashMap<>();
             }
             Drawable drawable = cachedPlatformDrawables.get(str);
-            if (drawable == null) {
-                HashMap<String, Drawable> hashMap = cachedPlatformDrawables;
-                Drawable createDrawable = SessionCell.createDrawable(44, str);
-                hashMap.put(str, createDrawable);
-                return createDrawable;
+            if (drawable != null) {
+                return drawable;
             }
-            return drawable;
+            HashMap<String, Drawable> hashMap = cachedPlatformDrawables;
+            Drawable createDrawable = SessionCell.createDrawable(44, str);
+            hashMap.put(str, createDrawable);
+            return createDrawable;
         }
 
         public void set(TLRPC$TL_starsTransaction tLRPC$TL_starsTransaction, boolean z) {
@@ -1282,12 +1283,12 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             backupImageView.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$WebDocument)), "80_80", (Drawable) null, 0, (Object) null);
         }
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(80, 80, 17));
-        StarsBalanceView starsBalanceView = new StarsBalanceView(context, i);
+        final StarsBalanceView starsBalanceView = new StarsBalanceView(context, i);
         ScaleStateListAnimator.apply(starsBalanceView);
         starsBalanceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.lambda$openConfirmPurchaseSheet$3(view);
+                StarsIntroActivity.lambda$openConfirmPurchaseSheet$3(StarsIntroActivity.StarsBalanceView.this, view);
             }
         });
         frameLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
@@ -1330,9 +1331,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return create;
     }
 
-    public static void lambda$openConfirmPurchaseSheet$3(View view) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment != null) {
+    public static void lambda$openConfirmPurchaseSheet$3(StarsBalanceView starsBalanceView, View view) {
+        BaseFragment lastFragment;
+        if (starsBalanceView.lastBalance > 0 && (lastFragment = LaunchActivity.getLastFragment()) != null) {
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
             bottomSheetParams.transitionFromLeft = true;
             bottomSheetParams.allowNestedScroll = false;
@@ -1432,6 +1433,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
         public StarsNeededSheet(Context context, Theme.ResourcesProvider resourcesProvider, long j, String str, Runnable runnable) {
             super(context, null, false, false, false, resourcesProvider);
+            this.topPadding = 0.2f;
             this.whenPurchased = runnable;
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
@@ -1637,7 +1639,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 starsBalanceView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarsIntroActivity.StarsNeededSheet.HeaderView.lambda$new$0(view);
+                        StarsIntroActivity.StarsNeededSheet.HeaderView.this.lambda$new$0(view);
                     }
                 });
                 frameLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -1658,9 +1660,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 9, 0, 18));
             }
 
-            public static void lambda$new$0(View view) {
-                BaseFragment lastFragment = LaunchActivity.getLastFragment();
-                if (lastFragment != null) {
+            public void lambda$new$0(View view) {
+                BaseFragment lastFragment;
+                if (this.balanceView.lastBalance > 0 && (lastFragment = LaunchActivity.getLastFragment()) != null) {
                     BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
                     bottomSheetParams.transitionFromLeft = true;
                     bottomSheetParams.allowNestedScroll = false;
@@ -1841,10 +1843,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 @Override
                 public void draw(Canvas canvas, CharSequence charSequence, int i3, int i4, float f, int i5, int i6, int i7, Paint paint) {
                     RectF rectF = AndroidUtilities.rectTmp;
-                    int i8 = i5 + i7;
-                    rectF.set(f, (i8 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f + this.layout.getCurrentWidth(), (AndroidUtilities.dp(20.0f) + i8) / 2.0f);
+                    rectF.set(f, (r12 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f + this.layout.getCurrentWidth(), (AndroidUtilities.dp(20.0f) + r12) / 2.0f);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.backgroundPaint);
-                    this.layout.draw(canvas, f + AndroidUtilities.dp(6.0f), i8 / 2.0f, this.val$color, 1.0f);
+                    this.layout.draw(canvas, f + AndroidUtilities.dp(6.0f), (i5 + i7) / 2.0f, this.val$color, 1.0f);
                 }
             }, 0, spannableString.length(), 33);
             spannableStringBuilder.append((CharSequence) spannableString);

@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.PushListenerController;
+
 @SuppressLint({"MissingPermission"})
 public class GoogleLocationProvider implements ILocationServiceProvider {
     private FusedLocationProviderClient locationProviderClient;
@@ -91,8 +92,10 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             int statusCode = e.getStatusCode();
             if (statusCode == 6) {
                 consumer.accept(1);
-            } else if (statusCode != 8502) {
             } else {
+                if (statusCode != 8502) {
+                    return;
+                }
                 consumer.accept(2);
             }
         }

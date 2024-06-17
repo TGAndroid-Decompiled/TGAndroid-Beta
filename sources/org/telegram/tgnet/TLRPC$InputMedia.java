@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$InputMedia extends TLObject {
     public String address;
     public TLRPC$InputFile file;

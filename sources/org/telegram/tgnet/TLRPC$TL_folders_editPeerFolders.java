@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_folders_editPeerFolders extends TLObject {
     public ArrayList<TLRPC$TL_inputFolderPeer> folder_peers = new ArrayList<>();
 

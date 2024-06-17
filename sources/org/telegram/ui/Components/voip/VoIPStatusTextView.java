@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.voip.VoIPStatusTextView;
+
 @SuppressLint({"ViewConstructor"})
 public class VoIPStatusTextView extends FrameLayout {
     boolean animationInProgress;
@@ -106,13 +107,19 @@ public class VoIPStatusTextView extends FrameLayout {
             this.textView[0].setVisibility(0);
             this.textView[1].setVisibility(8);
             this.timerView.setVisibility(8);
-        } else if (this.animationInProgress) {
+            return;
+        }
+        if (this.animationInProgress) {
             this.nextTextToSet = str;
-        } else if (this.timerShowing) {
+            return;
+        }
+        if (this.timerShowing) {
             this.textView[0].setText(str);
             replaceViews(this.timerView, this.textView[0], null);
-        } else if (this.textView[0].getText().equals(str)) {
         } else {
+            if (this.textView[0].getText().equals(str)) {
+                return;
+            }
             this.textView[1].setText(str);
             TextView[] textViewArr = this.textView;
             replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
@@ -149,7 +156,9 @@ public class VoIPStatusTextView extends FrameLayout {
             this.textView[0].setVisibility(8);
             this.textView[1].setVisibility(8);
             this.timerView.setVisibility(0);
-        } else if (this.animationInProgress) {
+            return;
+        }
+        if (this.animationInProgress) {
             this.nextTextToSet = "timer";
         } else {
             this.timerShowing = true;
@@ -250,14 +259,16 @@ public class VoIPStatusTextView extends FrameLayout {
         if (!z2) {
             this.reconnectTextView.animate().setListener(null).cancel();
             this.reconnectTextView.setVisibility(z ? 0 : 8);
-        } else if (z) {
-            if (this.reconnectTextView.getVisibility() != 0) {
-                this.reconnectTextView.setVisibility(0);
-                this.reconnectTextView.setAlpha(0.0f);
-            }
-            this.reconnectTextView.animate().setListener(null).cancel();
-            this.reconnectTextView.animate().alpha(1.0f).setDuration(150L).start();
         } else {
+            if (z) {
+                if (this.reconnectTextView.getVisibility() != 0) {
+                    this.reconnectTextView.setVisibility(0);
+                    this.reconnectTextView.setAlpha(0.0f);
+                }
+                this.reconnectTextView.animate().setListener(null).cancel();
+                this.reconnectTextView.animate().alpha(1.0f).setDuration(150L).start();
+                return;
+            }
             this.reconnectTextView.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -271,7 +282,9 @@ public class VoIPStatusTextView extends FrameLayout {
         if (!z2) {
             this.badConnectionLayer.animate().setListener(null).cancel();
             this.badConnectionLayer.setVisibility(z ? 0 : 8);
-        } else if (z) {
+            return;
+        }
+        if (z) {
             if (this.badConnectionLayer.getVisibility() == 0) {
                 return;
             }
@@ -281,15 +294,17 @@ public class VoIPStatusTextView extends FrameLayout {
             this.badConnectionLayer.setScaleX(0.6f);
             this.badConnectionLayer.animate().setListener(null).cancel();
             this.badConnectionLayer.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_BACK).setDuration(300L).start();
-        } else if (this.badConnectionLayer.getVisibility() == 8) {
-        } else {
-            this.badConnectionLayer.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(CubicBezierInterpolator.DEFAULT).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VoIPStatusTextView.this.badConnectionLayer.setVisibility(8);
-                }
-            }).setDuration(300L).start();
+            return;
         }
+        if (this.badConnectionLayer.getVisibility() == 8) {
+            return;
+        }
+        this.badConnectionLayer.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(CubicBezierInterpolator.DEFAULT).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                VoIPStatusTextView.this.badConnectionLayer.setVisibility(8);
+            }
+        }).setDuration(300L).start();
     }
 
     public void setDrawCallIcon() {

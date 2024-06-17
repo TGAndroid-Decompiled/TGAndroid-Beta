@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AttachBotIntroTopView extends View {
     private Drawable attachDrawable;
     private Paint backgroundPaint;

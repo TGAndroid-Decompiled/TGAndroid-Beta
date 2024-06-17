@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getExportedChatInvites extends TLObject {
     public TLRPC$InputUser admin_id;
     public int flags;

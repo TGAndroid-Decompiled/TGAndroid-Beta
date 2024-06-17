@@ -10,6 +10,7 @@ import java.util.Iterator;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.CacheControlActivity;
 import org.telegram.ui.Storage.CacheModel;
+
 public class CacheModel {
     public boolean allDocumentsSelected;
     public boolean allMusicSelected;
@@ -124,22 +125,39 @@ public class CacheModel {
             if (!z) {
                 if (i == 0) {
                     this.allPhotosSelected = false;
-                } else if (i == 1) {
+                    return;
+                }
+                if (i == 1) {
                     this.allVideosSelected = false;
-                } else if (i == 2) {
+                    return;
+                }
+                if (i == 2) {
                     this.allDocumentsSelected = false;
+                    return;
                 } else if (i == 3) {
                     this.allMusicSelected = false;
-                } else if (i == 4) {
-                    this.allVoiceSelected = false;
+                    return;
+                } else {
+                    if (i == 4) {
+                        this.allVoiceSelected = false;
+                        return;
+                    }
+                    return;
                 }
-            } else if (i == 0) {
+            }
+            if (i == 0) {
                 this.allPhotosSelected = checkAllFilesSelectedInArray(i, this.media);
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 this.allVideosSelected = checkAllFilesSelectedInArray(i, this.media);
-            } else if (i == 2) {
+                return;
+            }
+            if (i == 2) {
                 this.allDocumentsSelected = checkAllFilesSelectedInArray(i, this.documents);
-            } else if (i == 3) {
+                return;
+            }
+            if (i == 3) {
                 this.allMusicSelected = checkAllFilesSelectedInArray(i, this.music);
             } else if (i == 4) {
                 this.allVoiceSelected = checkAllFilesSelectedInArray(i, this.voice);
@@ -365,11 +383,17 @@ public class CacheModel {
         int i = fileInfo.type;
         if (i == 0) {
             this.photosSelectedSize += j;
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             this.videosSelectedSize += j;
-        } else if (i == 2) {
+            return;
+        }
+        if (i == 2) {
             this.documentsSelectedSize += j;
-        } else if (i == 3) {
+            return;
+        }
+        if (i == 3) {
             this.musicSelectedSize += j;
         } else if (i == 4) {
             this.voiceSelectedSize += j;

@@ -26,6 +26,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.LaunchActivity;
+
 public class FileLog {
     private static volatile FileLog Instance = null;
     public static boolean databaseIsMalformed = false;
@@ -199,7 +200,6 @@ public class FileLog {
 
         @Override
         public JsonElement serialize(TLObject tLObject, Type type, JsonSerializationContext jsonSerializationContext) {
-            Field[] fields;
             JsonObject jsonObject = new JsonObject();
             String name = tLObject.getClass().getName();
             if (name.startsWith("org.telegram.tgnet.")) {
@@ -278,39 +278,37 @@ public class FileLog {
     }
 
     public static String getNetworkLogPath() {
-        if (BuildVars.LOGS_ENABLED) {
-            try {
-                File logsDir = AndroidUtilities.getLogsDir();
-                if (logsDir == null) {
-                    return "";
-                }
-                FileLog fileLog = getInstance();
-                fileLog.networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
-                return getInstance().networkFile.getAbsolutePath();
-            } catch (Throwable th) {
-                th.printStackTrace();
+        if (!BuildVars.LOGS_ENABLED) {
+            return "";
+        }
+        try {
+            File logsDir = AndroidUtilities.getLogsDir();
+            if (logsDir == null) {
                 return "";
             }
+            getInstance().networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
+            return getInstance().networkFile.getAbsolutePath();
+        } catch (Throwable th) {
+            th.printStackTrace();
+            return "";
         }
-        return "";
     }
 
     public static String getTonlibLogPath() {
-        if (BuildVars.LOGS_ENABLED) {
-            try {
-                File logsDir = AndroidUtilities.getLogsDir();
-                if (logsDir == null) {
-                    return "";
-                }
-                FileLog fileLog = getInstance();
-                fileLog.tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
-                return getInstance().tonlibFile.getAbsolutePath();
-            } catch (Throwable th) {
-                th.printStackTrace();
+        if (!BuildVars.LOGS_ENABLED) {
+            return "";
+        }
+        try {
+            File logsDir = AndroidUtilities.getLogsDir();
+            if (logsDir == null) {
                 return "";
             }
+            getInstance().tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
+            return getInstance().tonlibFile.getAbsolutePath();
+        } catch (Throwable th) {
+            th.printStackTrace();
+            return "";
         }
-        return "";
     }
 
     public static void e(final String str, final Throwable th) {
@@ -330,8 +328,7 @@ public class FileLog {
 
     public static void lambda$e$2(String str, Throwable th) {
         try {
-            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
+            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.write(th.toString());
             getInstance().streamWriter.flush();
         } catch (Exception e) {
@@ -356,8 +353,7 @@ public class FileLog {
 
     public static void lambda$e$3(String str) {
         try {
-            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
+            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -404,12 +400,9 @@ public class FileLog {
 
     public static void lambda$e$4(Throwable th) {
         try {
-            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
-            StackTraceElement[] stackTrace = th.getStackTrace();
-            for (int i = 0; i < stackTrace.length; i++) {
-                OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
-                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + stackTrace[i] + "\n");
+            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
+            for (StackTraceElement stackTraceElement : th.getStackTrace()) {
+                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + stackTraceElement + "\n");
             }
             getInstance().streamWriter.flush();
         } catch (Exception e) {
@@ -446,12 +439,9 @@ public class FileLog {
 
     public static void lambda$fatal$5(Throwable th) {
         try {
-            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
-            StackTraceElement[] stackTrace = th.getStackTrace();
-            for (int i = 0; i < stackTrace.length; i++) {
-                OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
-                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + stackTrace[i] + "\n");
+            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
+            for (StackTraceElement stackTraceElement : th.getStackTrace()) {
+                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + stackTraceElement + "\n");
             }
             getInstance().streamWriter.flush();
         } catch (Exception e) {
@@ -483,8 +473,7 @@ public class FileLog {
 
     public static void lambda$d$6(String str) {
         try {
-            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
+            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -511,8 +500,7 @@ public class FileLog {
 
     public static void lambda$w$7(String str) {
         try {
-            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
+            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();

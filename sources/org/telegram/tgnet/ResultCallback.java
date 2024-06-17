@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public interface ResultCallback<T> {
 
     public final class CC {

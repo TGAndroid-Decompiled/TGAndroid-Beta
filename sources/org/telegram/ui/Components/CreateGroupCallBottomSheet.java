@@ -30,6 +30,7 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView {
     private final List<TLRPC$Peer> chats;
     private final boolean isChannelOrGiga;
@@ -182,17 +183,17 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public int getItemViewType(int i) {
-                if (i != 0) {
-                    int i2 = 1;
-                    if (i != 1) {
-                        i2 = 2;
-                        if (i != 2) {
-                            return 3;
-                        }
-                    }
-                    return i2;
+                if (i == 0) {
+                    return 0;
                 }
-                return 0;
+                int i2 = 1;
+                if (i != 1) {
+                    i2 = 2;
+                    if (i != 2) {
+                        return 3;
+                    }
+                }
+                return i2;
             }
 
             @Override
@@ -234,7 +235,9 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                     GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
                     groupCreateUserCell.setObject(chat, null, str, i != getItemCount() - 1);
                     groupCreateUserCell.setChecked(tLRPC$Peer == CreateGroupCallBottomSheet.this.selectedPeer, false);
-                } else if (viewHolder.getItemViewType() == 2) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 2) {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
@@ -262,7 +265,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
             rLottieImageView.setAutoRepeat(true);
             rLottieImageView.setAnimation(R.raw.utyan_schedule, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle);
             rLottieImageView.playAnimation();
-            addView(rLottieImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 49, 0, 24, 0, 0));
+            addView(rLottieImageView, LayoutHelper.createLinear(R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 49, 0, 24, 0, 0));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             if (z) {

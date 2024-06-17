@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateMessageExtendedMedia extends TLRPC$Update {
     public TLRPC$MessageExtendedMedia extended_media;
     public int msg_id;

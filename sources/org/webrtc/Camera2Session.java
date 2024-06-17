@@ -19,6 +19,7 @@ import org.webrtc.Camera2Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 import org.webrtc.VideoSink;
+
 @TargetApi(21)
 public class Camera2Session implements CameraSession {
     private static final String TAG = "Camera2Session";
@@ -58,22 +59,22 @@ public class Camera2Session implements CameraSession {
         }
 
         private String getErrorDescription(int i) {
-            if (i != 1) {
-                if (i != 2) {
-                    if (i != 3) {
-                        if (i != 4) {
-                            if (i != 5) {
-                                return "Unknown camera error: " + i;
-                            }
-                            return "Camera service has encountered a fatal error.";
-                        }
-                        return "Camera device has encountered a fatal error.";
-                    }
-                    return "Camera device could not be opened due to a device policy.";
-                }
+            if (i == 1) {
+                return "Camera device is in use already.";
+            }
+            if (i == 2) {
                 return "Camera device could not be opened because there are too many other open camera devices.";
             }
-            return "Camera device is in use already.";
+            if (i == 3) {
+                return "Camera device could not be opened due to a device policy.";
+            }
+            if (i == 4) {
+                return "Camera device has encountered a fatal error.";
+            }
+            if (i == 5) {
+                return "Camera service has encountered a fatal error.";
+            }
+            return "Unknown camera error: " + i;
         }
 
         @Override
@@ -105,8 +106,7 @@ public class Camera2Session implements CameraSession {
             try {
                 cameraDevice.createCaptureSession(Arrays.asList(Camera2Session.this.surface), new CaptureSessionCallback(), Camera2Session.this.cameraThreadHandler);
             } catch (CameraAccessException e) {
-                Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to create capture session. " + e);
+                Camera2Session.this.reportError("Failed to create capture session. " + e);
             }
         }
 
@@ -157,8 +157,7 @@ public class Camera2Session implements CameraSession {
                 Logging.d(Camera2Session.TAG, "Camera device successfully started.");
                 Camera2Session.this.callback.onDone(Camera2Session.this);
             } catch (CameraAccessException e) {
-                Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to start capture request. " + e);
+                Camera2Session.this.reportError("Failed to start capture request. " + e);
             }
         }
 

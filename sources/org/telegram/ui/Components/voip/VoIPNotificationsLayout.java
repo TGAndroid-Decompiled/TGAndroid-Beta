@@ -17,6 +17,7 @@ import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.transition.TransitionValues;
 import android.transition.Visibility;
+import android.util.Property;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -29,6 +30,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StaticLayoutEx;
+
 @SuppressLint({"ViewConstructor"})
 public class VoIPNotificationsLayout extends LinearLayout {
     VoIPBackgroundProvider backgroundProvider;
@@ -58,7 +60,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
                 view.setAlpha(0.0f);
                 view.setScaleY(0.6f);
                 view.setScaleX(0.6f);
-                animatorSet.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.6f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.6f, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.6f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.6f, 1.0f));
                 animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_BACK);
                 return animatorSet;
             }
@@ -69,7 +71,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
                 if (view instanceof NotificationView) {
                     ((NotificationView) view).ignoreShader = true;
                 }
-                animatorSet.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.7f, 0.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.0f, 0.6f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.6f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 0.7f, 0.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.0f, 0.6f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.0f, 0.6f));
                 animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
                 return animatorSet;
             }
@@ -89,10 +91,10 @@ public class VoIPNotificationsLayout extends LinearLayout {
         this.viewsByTag.put(str2, notificationView);
         if (this.lockAnimation) {
             this.viewToAdd.add(notificationView);
-            return;
+        } else {
+            this.wasChanged = true;
+            addView(notificationView, LayoutHelper.createLinear(-2, -2, 1, 4, 0, 0, 4));
         }
-        this.wasChanged = true;
-        addView(notificationView, LayoutHelper.createLinear(-2, -2, 1, 4, 0, 0, 4));
     }
 
     public CharSequence ellipsize(CharSequence charSequence) {
@@ -108,10 +110,10 @@ public class VoIPNotificationsLayout extends LinearLayout {
                     return;
                 }
                 this.viewToRemove.add(remove);
-                return;
+            } else {
+                this.wasChanged = true;
+                removeView(remove);
             }
-            this.wasChanged = true;
-            removeView(remove);
         }
     }
 
@@ -144,14 +146,14 @@ public class VoIPNotificationsLayout extends LinearLayout {
             while (true) {
                 if (i2 >= this.viewToRemove.size()) {
                     break;
-                } else if (notificationView.tag.equals(this.viewToRemove.get(i2).tag)) {
+                }
+                if (notificationView.tag.equals(this.viewToRemove.get(i2).tag)) {
                     this.viewToAdd.remove(i);
                     this.viewToRemove.remove(i2);
                     i--;
                     break;
-                } else {
-                    i2++;
                 }
+                i2++;
             }
             i++;
         }

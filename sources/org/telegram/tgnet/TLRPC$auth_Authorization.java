@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$auth_Authorization extends TLObject {
     public static TLRPC$auth_Authorization TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$auth_Authorization tLRPC$TL_auth_authorization;

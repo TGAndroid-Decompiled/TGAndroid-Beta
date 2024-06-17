@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_replyKeyboardHide extends TLRPC$ReplyMarkup {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

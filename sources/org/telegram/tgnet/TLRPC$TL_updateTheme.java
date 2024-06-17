@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateTheme extends TLRPC$Update {
     public TLRPC$Theme theme;
 

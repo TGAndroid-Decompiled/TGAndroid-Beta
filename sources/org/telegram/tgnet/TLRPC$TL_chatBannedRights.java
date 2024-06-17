@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_chatBannedRights extends TLObject {
     public boolean change_info;
     public boolean embed_links;

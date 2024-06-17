@@ -3,6 +3,7 @@ package kotlin;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.IntRange;
+
 public final class KotlinVersion implements Comparable<KotlinVersion> {
     public static final KotlinVersion CURRENT;
     private final int major;

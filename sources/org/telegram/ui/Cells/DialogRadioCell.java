@@ -11,6 +11,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
+
 public class DialogRadioCell extends FrameLayout {
     public int itemId;
     private boolean needDivider;
@@ -109,11 +110,11 @@ public class DialogRadioCell extends FrameLayout {
             this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.radioButton.animate().alpha(z ? 1.0f : 0.5f).start();
-            return;
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+            this.valueTextView.setAlpha(z ? 1.0f : 0.5f);
+            this.radioButton.setAlpha(z ? 1.0f : 0.5f);
         }
-        this.textView.setAlpha(z ? 1.0f : 0.5f);
-        this.valueTextView.setAlpha(z ? 1.0f : 0.5f);
-        this.radioButton.setAlpha(z ? 1.0f : 0.5f);
     }
 
     @Override

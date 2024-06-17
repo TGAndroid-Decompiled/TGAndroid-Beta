@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contactBirthday extends TLObject {
     public TLRPC$TL_birthday birthday;
     public long contact_id;

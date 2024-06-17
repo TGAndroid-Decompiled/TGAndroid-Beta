@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.util.Base64;
@@ -15,6 +14,7 @@ import org.telegram.tgnet.TLRPC$TL_defaultHistoryTTL;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
 import org.telegram.tgnet.TLRPC$User;
+
 public class UserConfig extends BaseController {
     private static volatile UserConfig[] Instance = new UserConfig[4];
     public static final int MAX_ACCOUNT_COUNT = 4;
@@ -335,47 +335,45 @@ public class UserConfig extends BaseController {
         if (this.currentAccount == 0) {
             return ApplicationLoader.applicationContext.getSharedPreferences("userconfing", 0);
         }
-        Context context = ApplicationLoader.applicationContext;
-        return context.getSharedPreferences("userconfig" + this.currentAccount, 0);
+        return ApplicationLoader.applicationContext.getSharedPreferences("userconfig" + this.currentAccount, 0);
     }
 
     public LongSparseArray<SaveToGallerySettingsHelper.DialogException> getSaveGalleryExceptions(int i) {
         if (i == 1) {
             if (this.userSaveGalleryExceptions == null) {
-                Context context = ApplicationLoader.applicationContext;
-                this.userSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0));
+                this.userSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0));
             }
             return this.userSaveGalleryExceptions;
-        } else if (i == 2) {
+        }
+        if (i == 2) {
             if (this.groupsSaveGalleryExceptions == null) {
-                Context context2 = ApplicationLoader.applicationContext;
-                this.groupsSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context2.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0));
+                this.groupsSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0));
             }
             return this.groupsSaveGalleryExceptions;
-        } else if (i == 4) {
-            if (this.chanelSaveGalleryExceptions == null) {
-                Context context3 = ApplicationLoader.applicationContext;
-                this.chanelSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context3.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0));
-            }
-            return this.chanelSaveGalleryExceptions;
-        } else {
+        }
+        if (i != 4) {
             return null;
         }
+        if (this.chanelSaveGalleryExceptions == null) {
+            this.chanelSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0));
+        }
+        return this.chanelSaveGalleryExceptions;
     }
 
     public void updateSaveGalleryExceptions(int i, LongSparseArray<SaveToGallerySettingsHelper.DialogException> longSparseArray) {
         if (i == 1) {
             this.userSaveGalleryExceptions = longSparseArray;
-            Context context = ApplicationLoader.applicationContext;
-            SaveToGallerySettingsHelper.saveExceptions(context.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0), this.userSaveGalleryExceptions);
-        } else if (i == 2) {
+            SaveToGallerySettingsHelper.saveExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0), this.userSaveGalleryExceptions);
+            return;
+        }
+        if (i == 2) {
             this.groupsSaveGalleryExceptions = longSparseArray;
-            Context context2 = ApplicationLoader.applicationContext;
-            SaveToGallerySettingsHelper.saveExceptions(context2.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0), this.groupsSaveGalleryExceptions);
-        } else if (i == 4) {
+            SaveToGallerySettingsHelper.saveExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0), this.groupsSaveGalleryExceptions);
+            return;
+        }
+        if (i == 4) {
             this.chanelSaveGalleryExceptions = longSparseArray;
-            Context context3 = ApplicationLoader.applicationContext;
-            SaveToGallerySettingsHelper.saveExceptions(context3.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0), this.chanelSaveGalleryExceptions);
+            SaveToGallerySettingsHelper.saveExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0), this.chanelSaveGalleryExceptions);
         }
     }
 
@@ -417,12 +415,12 @@ public class UserConfig extends BaseController {
         while (true) {
             if (i >= 4) {
                 break;
-            } else if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
+            }
+            if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
                 z = true;
                 break;
-            } else {
-                i++;
             }
+            i++;
         }
         if (!z) {
             SharedConfig.clearConfig();
@@ -431,13 +429,11 @@ public class UserConfig extends BaseController {
     }
 
     public boolean isPinnedDialogsLoaded(int i) {
-        SharedPreferences preferences = getPreferences();
-        return preferences.getBoolean("2pinnedDialogsLoaded" + i, false);
+        return getPreferences().getBoolean("2pinnedDialogsLoaded" + i, false);
     }
 
     public void setPinnedDialogsLoaded(int i, boolean z) {
-        SharedPreferences.Editor edit = getPreferences().edit();
-        edit.putBoolean("2pinnedDialogsLoaded" + i, z).commit();
+        getPreferences().edit().putBoolean("2pinnedDialogsLoaded" + i, z).commit();
     }
 
     public void clearPinnedDialogsLoaded() {

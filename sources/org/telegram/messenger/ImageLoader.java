@@ -88,6 +88,7 @@ import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
     public static final int CACHE_TYPE_CACHE = 1;
@@ -764,26 +765,23 @@ public class ImageLoader {
         }
         try {
             GZIPInputStream gZIPInputStream = new GZIPInputStream(new FileInputStream(file));
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(gZIPInputStream, "UTF-8"));
-            while (true) {
-                try {
-                    String readLine = bufferedReader.readLine();
-                    if (readLine != null) {
-                        sb.append(readLine);
-                    } else {
-                        String sb2 = sb.toString();
-                        bufferedReader.close();
-                        gZIPInputStream.close();
-                        return sb2;
-                    }
-                } catch (Throwable th) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(gZIPInputStream, "UTF-8"));
+                while (true) {
                     try {
-                        bufferedReader.close();
-                    } catch (Throwable th2) {
-                        th.addSuppressed(th2);
+                        String readLine = bufferedReader.readLine();
+                        if (readLine != null) {
+                            sb.append(readLine);
+                        } else {
+                            String sb2 = sb.toString();
+                            bufferedReader.close();
+                            gZIPInputStream.close();
+                            return sb2;
+                        }
+                    } finally {
                     }
-                    throw th;
                 }
+            } finally {
             }
         } catch (Exception unused) {
             return "";
@@ -932,15 +930,16 @@ public class ImageLoader {
                     ImageLoader.this.incrementUseCount(this.cacheImage.key);
                     str2 = this.cacheImage.key;
                 }
-            } else if (!(drawable instanceof BitmapDrawable)) {
-                str = null;
-                ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ImageLoader.CacheOutTask.this.lambda$onPostExecute$0(drawable2, str);
-                    }
-                }, this.cacheImage.priority);
             } else {
+                if (!(drawable instanceof BitmapDrawable)) {
+                    str = null;
+                    ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
+                        @Override
+                        public final void run() {
+                            ImageLoader.CacheOutTask.this.lambda$onPostExecute$0(drawable2, str);
+                        }
+                    }, this.cacheImage.priority);
+                }
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                 BitmapDrawable fromMemCache = ImageLoader.this.getFromMemCache(this.cacheImage.key);
                 boolean z2 = true;
@@ -1028,11 +1027,10 @@ public class ImageLoader {
         System.arraycopy(bArr3, 0, bArr2, 0, bArr3.length);
         System.arraycopy(bArr, 3, bArr2, Bitmaps.header.length, bArr.length - 3);
         System.arraycopy(Bitmaps.footer, 0, bArr2, (Bitmaps.header.length + bArr.length) - 3, Bitmaps.footer.length);
-        boolean z = true;
         bArr2[164] = bArr[1];
         bArr2[166] = bArr[2];
         BitmapFactory.Options options = new BitmapFactory.Options();
-        z = (TextUtils.isEmpty(str) || !str.contains("r")) ? false : false;
+        boolean z = !TextUtils.isEmpty(str) && str.contains("r");
         options.inPreferredConfig = (SharedConfig.deviceIsHigh() || z) ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
         Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr2, 0, length, options);
         if (z) {
@@ -1198,58 +1196,58 @@ public class ImageLoader {
 
         void changePriority(int i) {
             TLRPC$Document tLRPC$Document;
-            SecureDocument secureDocument;
-            WebFile webFile;
-            TLRPC$FileLocation tLRPC$FileLocation;
-            SecureDocument secureDocument2;
-            String str;
-            WebFile webFile2;
+            ?? r6;
+            TLObject tLObject;
+            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated;
+            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2;
+            ?? r9;
+            ?? r7;
             ImageLocation imageLocation = this.imageLocation;
             if (imageLocation != null) {
-                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
-                if (tLRPC$TL_fileLocationToBeDeprecated != null) {
-                    str = this.ext;
-                    tLRPC$FileLocation = tLRPC$TL_fileLocationToBeDeprecated;
+                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
+                if (tLRPC$TL_fileLocationToBeDeprecated3 != null) {
+                    r9 = this.ext;
+                    tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated3;
                     tLRPC$Document = null;
-                    secureDocument = null;
-                    webFile2 = null;
+                    r6 = null;
+                    r7 = 0;
                 } else {
                     TLRPC$Document tLRPC$Document2 = imageLocation.document;
                     if (tLRPC$Document2 != null) {
                         tLRPC$Document = tLRPC$Document2;
-                        secureDocument = null;
+                        r6 = null;
                     } else {
-                        SecureDocument secureDocument3 = imageLocation.secureDocument;
-                        if (secureDocument3 != null) {
-                            secureDocument = secureDocument3;
+                        SecureDocument secureDocument = imageLocation.secureDocument;
+                        if (secureDocument != null) {
+                            r6 = secureDocument;
                             tLRPC$Document = null;
-                            secureDocument2 = null;
-                            tLRPC$FileLocation = secureDocument2;
-                            webFile = secureDocument2;
-                            str = tLRPC$FileLocation;
-                            webFile2 = webFile;
+                            tLRPC$TL_fileLocationToBeDeprecated2 = null;
+                            tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated2;
+                            tLObject = tLRPC$TL_fileLocationToBeDeprecated2;
+                            r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                            r7 = tLObject;
                         } else {
-                            WebFile webFile3 = imageLocation.webFile;
-                            if (webFile3 != null) {
-                                webFile = webFile3;
+                            TLObject tLObject2 = imageLocation.webFile;
+                            if (tLObject2 != null) {
+                                tLObject = tLObject2;
                                 tLRPC$Document = null;
-                                secureDocument = null;
-                                tLRPC$FileLocation = null;
-                                str = tLRPC$FileLocation;
-                                webFile2 = webFile;
+                                r6 = null;
+                                tLRPC$TL_fileLocationToBeDeprecated = null;
+                                r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                                r7 = tLObject;
                             } else {
                                 tLRPC$Document = null;
-                                secureDocument = null;
+                                r6 = null;
                             }
                         }
                     }
-                    secureDocument2 = secureDocument;
-                    tLRPC$FileLocation = secureDocument2;
-                    webFile = secureDocument2;
-                    str = tLRPC$FileLocation;
-                    webFile2 = webFile;
+                    tLRPC$TL_fileLocationToBeDeprecated2 = r6;
+                    tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated2;
+                    tLObject = tLRPC$TL_fileLocationToBeDeprecated2;
+                    r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                    r7 = tLObject;
                 }
-                FileLoader.getInstance(this.currentAccount).changePriority(i, tLRPC$Document, secureDocument, webFile2, tLRPC$FileLocation, str, null);
+                FileLoader.getInstance(this.currentAccount).changePriority(i, tLRPC$Document, r6, r7, tLRPC$TL_fileLocationToBeDeprecated, r9, null);
             }
         }
 
@@ -1659,11 +1657,11 @@ public class ImageLoader {
         if (bitmapDrawable instanceof AnimatedFileDrawable) {
             AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) bitmapDrawable;
             return Math.max(animatedFileDrawable.getIntrinsicHeight() * bitmapDrawable.getIntrinsicWidth() * 4 * 3, animatedFileDrawable.getRenderingHeight() * animatedFileDrawable.getRenderingWidth() * 4 * 3);
-        } else if (bitmapDrawable instanceof RLottieDrawable) {
-            return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 4 * 2;
-        } else {
-            return bitmapDrawable.getBitmap().getByteCount();
         }
+        if (bitmapDrawable instanceof RLottieDrawable) {
+            return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 4 * 2;
+        }
+        return bitmapDrawable.getBitmap().getByteCount();
     }
 
     public void checkMediaPaths() {
@@ -1716,18 +1714,21 @@ public class ImageLoader {
             if (file2.exists() || file2.mkdir()) {
                 try {
                     Stream convert = C$r8$wrapper$java$util$stream$Stream$VWRP.convert(Files.list(file.toPath()));
-                    convert.forEach(new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
-                        }
+                    try {
+                        convert.forEach(new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
+                            }
 
-                        @Override
-                        public Consumer andThen(Consumer consumer) {
-                            return Consumer.CC.$default$andThen(this, consumer);
-                        }
-                    });
-                    convert.close();
+                            @Override
+                            public Consumer andThen(Consumer consumer) {
+                                return Consumer.CC.$default$andThen(this, consumer);
+                            }
+                        });
+                        convert.close();
+                    } finally {
+                    }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -1812,16 +1813,16 @@ public class ImageLoader {
             e = e2;
             randomAccessFile2 = randomAccessFile;
             FileLog.e(e);
-            if (randomAccessFile2 != null) {
-                try {
-                    randomAccessFile2.close();
-                    return false;
-                } catch (Exception e3) {
-                    FileLog.e(e3);
-                    return false;
-                }
+            if (randomAccessFile2 == null) {
+                return false;
             }
-            return false;
+            try {
+                randomAccessFile2.close();
+                return false;
+            } catch (Exception e3) {
+                FileLog.e(e3);
+                return false;
+            }
         } catch (Throwable th2) {
             th = th2;
             randomAccessFile2 = randomAccessFile;
@@ -2237,11 +2238,11 @@ public class ImageLoader {
 
     public BitmapDrawable getFromLottieCache(String str) {
         BitmapDrawable bitmapDrawable = this.lottieMemCache.get(str);
-        if ((bitmapDrawable instanceof AnimatedFileDrawable) && ((AnimatedFileDrawable) bitmapDrawable).isRecycled()) {
-            this.lottieMemCache.remove(str);
-            return null;
+        if (!(bitmapDrawable instanceof AnimatedFileDrawable) || !((AnimatedFileDrawable) bitmapDrawable).isRecycled()) {
+            return bitmapDrawable;
         }
-        return bitmapDrawable;
+        this.lottieMemCache.remove(str);
+        return null;
     }
 
     private boolean useLottieMemCache(ImageLocation imageLocation, String str) {
@@ -2420,8 +2421,7 @@ public class ImageLoader {
 
     public static File getHttpFilePath(String str, String str2) {
         String httpUrlExtension = getHttpUrlExtension(str, str2);
-        File directory = FileLoader.getDirectory(4);
-        return new File(directory, Utilities.MD5(str) + "." + httpUrlExtension);
+        return new File(FileLoader.getDirectory(4), Utilities.MD5(str) + "." + httpUrlExtension);
     }
 
     public void loadHttpFile(String str, String str2, int i) {
@@ -2429,8 +2429,7 @@ public class ImageLoader {
             return;
         }
         String httpUrlExtension = getHttpUrlExtension(str, str2);
-        File directory = FileLoader.getDirectory(4);
-        File file = new File(directory, Utilities.MD5(str) + "_temp." + httpUrlExtension);
+        File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str) + "_temp." + httpUrlExtension);
         file.delete();
         HttpFileTask httpFileTask = new HttpFileTask(str, file, httpUrlExtension, i);
         this.httpFileLoadTasks.add(httpFileTask);
@@ -2699,8 +2698,7 @@ public class ImageLoader {
             if (!pathToAttach.exists()) {
                 if (z) {
                     try {
-                        File internalCacheDir = FileLoader.getInternalCacheDir();
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(internalCacheDir, pathToAttach.getName() + ".key"), "rws");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(FileLoader.getInternalCacheDir(), pathToAttach.getName() + ".key"), "rws");
                         long length = randomAccessFile.length();
                         byte[] bArr2 = new byte[32];
                         byte[] bArr3 = new byte[16];
@@ -2714,8 +2712,7 @@ public class ImageLoader {
                             randomAccessFile.write(bArr3);
                         }
                         randomAccessFile.close();
-                        byte[] bArr4 = findPhotoCachedSize.bytes;
-                        Utilities.aesCtrDecryptionByteArray(bArr4, bArr2, bArr3, 0, bArr4.length, 0);
+                        Utilities.aesCtrDecryptionByteArray(findPhotoCachedSize.bytes, bArr2, bArr3, 0, r8.length, 0);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -2741,7 +2738,9 @@ public class ImageLoader {
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+            return;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
             int size2 = tLRPC$MessageMedia.document.thumbs.size();
             while (i < size2) {
                 if (tLRPC$Message.media.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
@@ -2750,7 +2749,9 @@ public class ImageLoader {
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
+            return;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
             int size3 = tLRPC$MessageMedia.webpage.photo.sizes.size();
             while (i < size3) {
                 if (tLRPC$Message.media.webpage.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
@@ -2775,41 +2776,43 @@ public class ImageLoader {
                 }
             }
             return null;
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
             TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null) {
-                int size2 = tLRPC$Document.thumbs.size();
-                while (i < size2) {
-                    tLRPC$PhotoSize = tLRPC$Message.media.document.thumbs.get(i);
-                    if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                        i++;
-                    }
-                }
+            if (tLRPC$Document == null) {
                 return null;
             }
-            return null;
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
-            if (tLRPC$Photo != null) {
-                int size3 = tLRPC$Photo.sizes.size();
-                while (i < size3) {
-                    tLRPC$PhotoSize = tLRPC$Message.media.webpage.photo.sizes.get(i);
-                    if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                        i++;
-                    }
+            int size2 = tLRPC$Document.thumbs.size();
+            while (i < size2) {
+                tLRPC$PhotoSize = tLRPC$Message.media.document.thumbs.get(i);
+                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
+                    i++;
                 }
-                return null;
             }
-            return null;
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
-            TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$MessageMedia.extended_media;
-            if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
-                return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia).thumb;
-            }
-            return null;
-        } else {
             return null;
         }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
+            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
+            if (tLRPC$Photo == null) {
+                return null;
+            }
+            int size3 = tLRPC$Photo.sizes.size();
+            while (i < size3) {
+                tLRPC$PhotoSize = tLRPC$Message.media.webpage.photo.sizes.get(i);
+                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
+                    i++;
+                }
+            }
+            return null;
+        }
+        if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice)) {
+            return null;
+        }
+        TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$MessageMedia.extended_media;
+        if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
+            return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia).thumb;
+        }
+        return null;
         return tLRPC$PhotoSize;
     }
 
@@ -2872,14 +2875,14 @@ public class ImageLoader {
                                     i = 0;
                                     i2 = 0;
                                     break;
-                                } else if (tLRPC$Message.media.document.attributes.get(i4) instanceof TLRPC$TL_documentAttributeVideo) {
+                                }
+                                if (tLRPC$Message.media.document.attributes.get(i4) instanceof TLRPC$TL_documentAttributeVideo) {
                                     TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Message.media.document.attributes.get(i4);
                                     i2 = tLRPC$TL_documentAttributeVideo.h;
                                     i = tLRPC$TL_documentAttributeVideo.w;
                                     break;
-                                } else {
-                                    i4++;
                                 }
+                                i4++;
                             }
                         } else {
                             i2 = closestPhotoSizeWithSize.h;

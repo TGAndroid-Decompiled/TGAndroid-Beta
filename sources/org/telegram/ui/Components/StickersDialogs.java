@@ -41,6 +41,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
+
 public class StickersDialogs {
     public static void lambda$showDeleteForEveryOneDialog$5() {
     }
@@ -182,11 +183,11 @@ public class StickersDialogs {
     }
 
     public static boolean lambda$showNameEditorDialog$4(AlertDialog alertDialog, TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            alertDialog.getButton(-1).callOnClick();
-            return true;
+        if (i != 6) {
+            return false;
         }
-        return false;
+        alertDialog.getButton(-1).callOnClick();
+        return true;
     }
 
     public static void showDeleteForEveryOneDialog(final TLRPC$StickerSet tLRPC$StickerSet, Theme.ResourcesProvider resourcesProvider, Context context, final Runnable runnable) {
@@ -289,7 +290,9 @@ public class StickersDialogs {
                     StickersDialogs.lambda$openStickerPickerDialog$8(TLObject.this, tLRPC$Document);
                 }
             }, 250L);
-        } else if (tLRPC$TL_error != null) {
+            return;
+        }
+        if (tLRPC$TL_error != null) {
             if (FileRefController.isFileRefError(tLRPC$TL_error.text)) {
                 FileRefController.getInstance(i).requestReference(obj, tLRPC$TL_stickers_addStickerToSet);
             } else {
@@ -353,9 +356,9 @@ public class StickersDialogs {
         actionBarPopupWindow.dismiss();
         if (((Integer) arrayList.get(intValue)).intValue() == 1) {
             openStickerPickerDialog(tLRPC$TL_messages_stickerSet, baseFragment, resourcesProvider);
-            return;
+        } else {
+            ((ChatActivity) baseFragment).openAttachMenuForCreatingSticker();
+            ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(tLRPC$TL_messages_stickerSet);
         }
-        ((ChatActivity) baseFragment).openAttachMenuForCreatingSticker();
-        ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(tLRPC$TL_messages_stickerSet);
     }
 }

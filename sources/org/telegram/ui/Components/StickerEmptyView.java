@@ -24,6 +24,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class StickerEmptyView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private boolean animateLayoutChange;
     public final ButtonWithCounterView button;
@@ -369,7 +370,9 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                     this.progressBar.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f).setDuration(150L).start();
                 }
                 this.stickerView.getImageReceiver().startAnimation();
-            } else if (z) {
+                return;
+            }
+            if (z) {
                 this.linearLayout.animate().cancel();
                 this.linearLayout.setAlpha(0.0f);
                 this.linearLayout.setScaleX(0.8f);
@@ -380,21 +383,22 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                     this.progressView.setAlpha(1.0f);
                     this.progressView.setVisibility(0);
                     return;
-                }
-                this.progressBar.setAlpha(1.0f);
-                this.progressBar.setScaleX(1.0f);
-                this.progressBar.setScaleY(1.0f);
-            } else {
-                this.linearLayout.animate().cancel();
-                this.linearLayout.setAlpha(1.0f);
-                this.linearLayout.setScaleX(1.0f);
-                this.linearLayout.setScaleY(1.0f);
-                View view3 = this.progressView;
-                if (view3 != null) {
-                    view3.animate().setListener(null).cancel();
-                    this.progressView.setVisibility(8);
+                } else {
+                    this.progressBar.setAlpha(1.0f);
+                    this.progressBar.setScaleX(1.0f);
+                    this.progressBar.setScaleY(1.0f);
                     return;
                 }
+            }
+            this.linearLayout.animate().cancel();
+            this.linearLayout.setAlpha(1.0f);
+            this.linearLayout.setScaleX(1.0f);
+            this.linearLayout.setScaleY(1.0f);
+            View view3 = this.progressView;
+            if (view3 != null) {
+                view3.animate().setListener(null).cancel();
+                this.progressView.setVisibility(8);
+            } else {
                 this.progressBar.setAlpha(0.0f);
                 this.progressBar.setScaleX(0.5f);
                 this.progressBar.setScaleY(0.5f);

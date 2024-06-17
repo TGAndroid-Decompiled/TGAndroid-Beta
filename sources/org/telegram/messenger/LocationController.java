@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.NotificationCenter;
@@ -50,6 +49,7 @@ import org.telegram.tgnet.TLRPC$Update;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_Messages;
+
 @SuppressLint({"MissingPermission"})
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {
     private static final int BACKGROUD_UPDATE_TIME = 30000;
@@ -111,22 +111,22 @@ public class LocationController extends BaseController implements NotificationCe
         if (d2 > 65.0d) {
             return "Arctic Ocean";
         }
-        if (d <= -88.0d || d >= 40.0d || d2 <= 0.0d) {
-            if (d <= -60.0d || d >= 20.0d || d2 > 0.0d) {
-                if (d2 > 30.0d || d < 20.0d || d >= 150.0d) {
-                    if ((d > 106.0d || d < -60.0d) && d2 > 0.0d) {
-                        return "Pacific Ocean";
-                    }
-                    if ((d > 150.0d || d < -60.0d) && d2 <= 0.0d) {
-                        return "Pacific Ocean";
-                    }
-                    return null;
-                }
-                return "Indian Ocean";
-            }
+        if (d > -88.0d && d < 40.0d && d2 > 0.0d) {
             return "Atlantic Ocean";
         }
-        return "Atlantic Ocean";
+        if (d > -60.0d && d < 20.0d && d2 <= 0.0d) {
+            return "Atlantic Ocean";
+        }
+        if (d2 <= 30.0d && d >= 20.0d && d < 150.0d) {
+            return "Indian Ocean";
+        }
+        if ((d > 106.0d || d < -60.0d) && d2 > 0.0d) {
+            return "Pacific Ocean";
+        }
+        if ((d > 150.0d || d < -60.0d) && d2 <= 0.0d) {
+            return "Pacific Ocean";
+        }
+        return null;
     }
 
     public static void lambda$broadcastLastKnownLocation$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -175,8 +175,10 @@ public class LocationController extends BaseController implements NotificationCe
             }
             if (LocationController.this.lastKnownLocation == null || (this != LocationController.this.networkLocationListener && this != LocationController.this.passiveLocationListener)) {
                 LocationController.this.setLastKnownLocation(location);
-            } else if (LocationController.this.started || location.distanceTo(LocationController.this.lastKnownLocation) <= 20.0f) {
             } else {
+                if (LocationController.this.started || location.distanceTo(LocationController.this.lastKnownLocation) <= 20.0f) {
+                    return;
+                }
                 LocationController.this.setLastKnownLocation(location);
                 LocationController.this.lastLocationSendTime = (SystemClock.elapsedRealtime() - 30000) + 5000;
             }
@@ -257,11 +259,12 @@ public class LocationController extends BaseController implements NotificationCe
                             if (i4 >= arrayList2.size()) {
                                 z = false;
                                 break;
-                            } else if (MessageObject.getFromChatId(arrayList2.get(i4)) == messageObject.getFromChatId()) {
-                                arrayList2.set(i4, messageObject.messageOwner);
-                                z = true;
-                                break;
                             } else {
+                                if (MessageObject.getFromChatId(arrayList2.get(i4)) == messageObject.getFromChatId()) {
+                                    arrayList2.set(i4, messageObject.messageOwner);
+                                    z = true;
+                                    break;
+                                }
                                 i4++;
                             }
                         }
@@ -278,9 +281,13 @@ public class LocationController extends BaseController implements NotificationCe
                 }
                 if (z2) {
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(longValue), Integer.valueOf(this.currentAccount));
+                    return;
                 }
+                return;
             }
-        } else if (i == NotificationCenter.messagesDeleted) {
+            return;
+        }
+        if (i == NotificationCenter.messagesDeleted) {
             if (((Boolean) objArr[2]).booleanValue() || this.sharingLocationsUI.isEmpty()) {
                 return;
             }
@@ -301,8 +308,11 @@ public class LocationController extends BaseController implements NotificationCe
                 for (int i6 = 0; i6 < arrayList5.size(); i6++) {
                     removeSharingLocation(((Long) arrayList5.get(i6)).longValue());
                 }
+                return;
             }
-        } else if (i == NotificationCenter.replaceMessagesObjects) {
+            return;
+        }
+        if (i == NotificationCenter.replaceMessagesObjects) {
             long longValue3 = ((Long) objArr[0]).longValue();
             if (isSharingLocation(longValue3) && (arrayList = this.locationsCache.get(longValue3)) != null) {
                 ArrayList arrayList6 = (ArrayList) objArr[1];
@@ -313,7 +323,8 @@ public class LocationController extends BaseController implements NotificationCe
                     while (true) {
                         if (i8 >= arrayList.size()) {
                             break;
-                        } else if (MessageObject.getFromChatId(arrayList.get(i8)) == messageObject3.getFromChatId()) {
+                        }
+                        if (MessageObject.getFromChatId(arrayList.get(i8)) == messageObject3.getFromChatId()) {
                             if (!messageObject3.isLiveLocation()) {
                                 arrayList.remove(i8);
                             } else {
@@ -362,8 +373,10 @@ public class LocationController extends BaseController implements NotificationCe
                     LocationController.this.lambda$onConnected$2(num);
                 }
             });
-        } else if (intValue != 2) {
         } else {
+            if (intValue != 2) {
+                return;
+            }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
@@ -628,8 +641,11 @@ public class LocationController extends BaseController implements NotificationCe
                 this.lastLocationStartTime = elapsedRealtime;
                 this.lastLocationSendTime = SystemClock.elapsedRealtime();
                 broadcastLastKnownLocation(z);
+                return;
             }
-        } else if (!this.sharingLocations.isEmpty() || this.shareMyCurrentLocation) {
+            return;
+        }
+        if (!this.sharingLocations.isEmpty() || this.shareMyCurrentLocation) {
             if (this.shareMyCurrentLocation || Math.abs(this.lastLocationSendTime - SystemClock.elapsedRealtime()) > 30000) {
                 this.lastLocationStartTime = SystemClock.elapsedRealtime();
                 start();
@@ -913,10 +929,11 @@ public class LocationController extends BaseController implements NotificationCe
                 if (sharingLocationInfo == null) {
                     return;
                 }
-                SQLiteDatabase database = getMessagesStorage().getDatabase();
-                database.executeFast("DELETE FROM sharing_locations WHERE uid = " + sharingLocationInfo.did).stepThis().dispose();
-            } else if (sharingLocationInfo == null) {
+                getMessagesStorage().getDatabase().executeFast("DELETE FROM sharing_locations WHERE uid = " + sharingLocationInfo.did).stepThis().dispose();
             } else {
+                if (sharingLocationInfo == null) {
+                    return;
+                }
                 SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO sharing_locations VALUES(?, ?, ?, ?, ?, ?)");
                 executeFast.requery();
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(sharingLocationInfo.messageObject.messageOwner.getObjectSize());
@@ -995,14 +1012,14 @@ public class LocationController extends BaseController implements NotificationCe
 
     private void startService() {
         try {
-            ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, LocationSharingService.class));
+            ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) LocationSharingService.class));
         } catch (Throwable th) {
             FileLog.e(th);
         }
     }
 
     private void stopService() {
-        ApplicationLoader.applicationContext.stopService(new Intent(ApplicationLoader.applicationContext, LocationSharingService.class));
+        ApplicationLoader.applicationContext.stopService(new Intent(ApplicationLoader.applicationContext, (Class<?>) LocationSharingService.class));
     }
 
     public void removeAllLocationSharings() {

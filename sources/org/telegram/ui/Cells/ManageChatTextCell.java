@@ -11,6 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ManageChatTextCell extends FrameLayout {
     private boolean divider;
     private int dividerColor;

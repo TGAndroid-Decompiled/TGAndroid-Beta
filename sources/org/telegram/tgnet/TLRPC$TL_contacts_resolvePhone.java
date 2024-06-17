@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contacts_resolvePhone extends TLObject {
     public String phone;
 

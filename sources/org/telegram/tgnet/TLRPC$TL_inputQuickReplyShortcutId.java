@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputQuickReplyShortcutId extends TLRPC$InputQuickReplyShortcut {
     public int shortcut_id;
 

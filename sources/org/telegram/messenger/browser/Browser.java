@@ -30,6 +30,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.LaunchActivity;
+
 public class Browser {
     private static WeakReference<Activity> currentCustomTabsActivity;
     private static CustomTabsClient customTabsClient;
@@ -353,47 +354,48 @@ public class Browser {
             } catch (Exception unused) {
             }
             return true;
-        } else if ("tg".equals(uri.getScheme())) {
+        }
+        if ("tg".equals(uri.getScheme())) {
             return true;
-        } else {
-            if ("telegram.dog".equals(lowerCase)) {
-                String path = uri.getPath();
-                if (path != null && path.length() > 1) {
-                    if (z) {
-                        return true;
-                    }
-                    String lowerCase2 = path.substring(1).toLowerCase();
-                    if (lowerCase2.startsWith("blog") || lowerCase2.equals("iv") || lowerCase2.startsWith("faq") || lowerCase2.equals("apps") || lowerCase2.startsWith("s/")) {
-                        if (zArr != null) {
-                            zArr[0] = true;
-                        }
-                        return false;
-                    }
+        }
+        if ("telegram.dog".equals(lowerCase)) {
+            String path = uri.getPath();
+            if (path != null && path.length() > 1) {
+                if (z) {
                     return true;
                 }
-            } else if ("telegram.me".equals(lowerCase) || "t.me".equals(lowerCase)) {
-                String path2 = uri.getPath();
-                if (path2 != null && path2.length() > 1) {
-                    if (z) {
-                        return true;
-                    }
-                    String lowerCase3 = path2.substring(1).toLowerCase();
-                    if (!lowerCase3.equals("iv") && !lowerCase3.startsWith("s/")) {
-                        return true;
-                    }
-                    if (zArr != null) {
-                        zArr[0] = true;
-                    }
-                }
-            } else if ("telegram.org".equals(lowerCase) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
-                return true;
-            } else {
-                if (z && (lowerCase.endsWith("telegram.org") || lowerCase.endsWith("telegra.ph") || lowerCase.endsWith("telesco.pe"))) {
+                String lowerCase2 = path.substring(1).toLowerCase();
+                if (!lowerCase2.startsWith("blog") && !lowerCase2.equals("iv") && !lowerCase2.startsWith("faq") && !lowerCase2.equals("apps") && !lowerCase2.startsWith("s/")) {
                     return true;
+                }
+                if (zArr != null) {
+                    zArr[0] = true;
+                }
+                return false;
+            }
+        } else if ("telegram.me".equals(lowerCase) || "t.me".equals(lowerCase)) {
+            String path2 = uri.getPath();
+            if (path2 != null && path2.length() > 1) {
+                if (z) {
+                    return true;
+                }
+                String lowerCase3 = path2.substring(1).toLowerCase();
+                if (!lowerCase3.equals("iv") && !lowerCase3.startsWith("s/")) {
+                    return true;
+                }
+                if (zArr != null) {
+                    zArr[0] = true;
                 }
             }
-            return false;
+        } else {
+            if ("telegram.org".equals(lowerCase) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
+                return true;
+            }
+            if (z && (lowerCase.endsWith("telegram.org") || lowerCase.endsWith("telegra.ph") || lowerCase.endsWith("telesco.pe"))) {
+                return true;
+            }
         }
+        return false;
     }
 
     public static String replaceHostname(Uri uri, String str) {

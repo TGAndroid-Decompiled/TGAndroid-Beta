@@ -17,6 +17,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.SeekBar;
+
 public class SeekBarWaveform {
     private static Paint paintInner;
     private static Paint paintOuter;
@@ -269,23 +270,22 @@ public class SeekBarWaveform {
                 int i8 = i3 * 5;
                 int i9 = i8 / 8;
                 int i10 = i8 - (i9 * 8);
-                int i11 = 8 - i10;
-                int i12 = 5 - i11;
-                byte min = (byte) ((this.waveformBytes[i9] >> i10) & ((2 << (Math.min(i2, i11) - 1)) - 1));
-                if (i12 > 0) {
-                    int i13 = i9 + 1;
+                int i11 = 5 - (8 - i10);
+                byte min = (byte) ((this.waveformBytes[i9] >> i10) & ((2 << (Math.min(i2, r15) - 1)) - 1));
+                if (i11 > 0) {
+                    int i12 = i9 + 1;
                     byte[] bArr2 = this.waveformBytes;
-                    if (i13 < bArr2.length) {
-                        min = (byte) (((byte) (min << i12)) | (bArr2[i13] & ((2 << (i12 - 1)) - 1)));
+                    if (i12 < bArr2.length) {
+                        min = (byte) (((byte) (min << i11)) | (bArr2[i12] & ((2 << (i11 - 1)) - 1)));
                     }
                 }
-                int i14 = 0;
-                while (i14 < i7) {
+                int i13 = 0;
+                while (i13 < i7) {
                     if (i5 >= i) {
                         return fArr;
                     }
                     fArr[i5] = Math.max(0.0f, (min * 7) / 31.0f);
-                    i14++;
+                    i13++;
                     i5++;
                 }
                 i4 = i6;
@@ -462,8 +462,6 @@ public class SeekBarWaveform {
     }
 
     private void drawFill(Canvas canvas, float f) {
-        Paint paint;
-        Paint paint2;
         float dpf2 = AndroidUtilities.dpf2(2.0f);
         MessageObject messageObject = this.messageObject;
         boolean z = messageObject != null && messageObject.isContentUnread() && !this.messageObject.isOut() && this.progress <= 0.0f;
@@ -472,11 +470,11 @@ public class SeekBarWaveform {
         paintOuter.setColor(this.outerColor);
         this.loadingFloat.setParent(this.parentView);
         float f2 = this.loadingFloat.set((!this.loading || MediaController.getInstance().isPlayingMessage(this.messageObject)) ? 0.0f : 1.0f);
-        Paint paint3 = paintInner;
-        paint3.setColor(ColorUtils.blendARGB(paint3.getColor(), this.innerColor, f2));
+        Paint paint = paintInner;
+        paint.setColor(ColorUtils.blendARGB(paint.getColor(), this.innerColor, f2));
         float f3 = 1.0f - f2;
-        paintOuter.setAlpha((int) (paint.getAlpha() * f3 * f));
-        paintInner.setAlpha((int) (paint2.getAlpha() * f));
+        paintOuter.setAlpha((int) (r6.getAlpha() * f3 * f));
+        paintInner.setAlpha((int) (r6.getAlpha() * f));
         canvas.drawRect(0.0f, 0.0f, this.width + dpf2, this.height, paintInner);
         if (f2 < 1.0f) {
             canvas.drawRect(0.0f, 0.0f, this.progress * (this.width + dpf2) * f3, this.height, paintOuter);
@@ -488,11 +486,11 @@ public class SeekBarWaveform {
                 }
                 this.loadingPaintColor1 = this.innerColor;
                 this.loadingPaintColor2 = this.outerColor;
-                Paint paint4 = this.loadingPaint;
+                Paint paint2 = this.loadingPaint;
                 float f4 = this.width;
                 this.loadingPaintWidth = f4;
                 int i = this.loadingPaintColor1;
-                paint4.setShader(new LinearGradient(0.0f, 0.0f, f4, 0.0f, new int[]{i, this.loadingPaintColor2, i}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
+                paint2.setShader(new LinearGradient(0.0f, 0.0f, f4, 0.0f, new int[]{i, this.loadingPaintColor2, i}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
             }
             this.loadingPaint.setAlpha((int) (f2 * 255.0f * f));
             canvas.save();

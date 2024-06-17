@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channels_toggleUsername extends TLObject {
     public boolean active;
     public TLRPC$InputChannel channel;

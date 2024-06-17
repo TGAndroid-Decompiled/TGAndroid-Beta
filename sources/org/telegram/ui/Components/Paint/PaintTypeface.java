@@ -12,11 +12,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
+
 public class PaintTypeface {
     public static final List<PaintTypeface> BUILT_IN_FONTS;
     public static final PaintTypeface COURIER_NEW_BOLD;
@@ -223,8 +225,9 @@ public class PaintTypeface {
                     family.fonts.add(parseFont);
                 }
             }
-            for (String str : preferable) {
-                Family family2 = (Family) hashMap.get(str);
+            Iterator<String> it = preferable.iterator();
+            while (it.hasNext()) {
+                Family family2 = (Family) hashMap.get(it.next());
                 if (family2 != null) {
                     FontData bold = family2.getBold();
                     if (bold == null) {
@@ -252,11 +255,11 @@ public class PaintTypeface {
 
     public static List<PaintTypeface> get() {
         List<PaintTypeface> list = typefaces;
-        if (list == null) {
-            load();
-            return BUILT_IN_FONTS;
+        if (list != null) {
+            return list;
         }
-        return list;
+        load();
+        return BUILT_IN_FONTS;
     }
 
     public static PaintTypeface find(String str) {
@@ -285,12 +288,12 @@ public class PaintTypeface {
                 if (i >= this.fonts.size()) {
                     fontData = null;
                     break;
-                } else if ("Regular".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
+                }
+                if ("Regular".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
                     fontData = this.fonts.get(i);
                     break;
-                } else {
-                    i++;
                 }
+                i++;
             }
             return (fontData != null || this.fonts.isEmpty()) ? fontData : this.fonts.get(0);
         }

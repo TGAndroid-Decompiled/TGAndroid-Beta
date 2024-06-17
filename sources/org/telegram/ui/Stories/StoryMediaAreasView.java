@@ -48,6 +48,7 @@ import org.telegram.ui.LocationActivity;
 import org.telegram.ui.Stories.StoryMediaAreasView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class StoryMediaAreasView extends FrameLayout implements View.OnClickListener {
     private final Path clipPath;
     private final Paint cutPaint;
@@ -126,7 +127,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     }
 
     public void set(TL_stories$StoryItem tL_stories$StoryItem, ArrayList<TL_stories$MediaArea> arrayList, EmojiAnimationsOverlay emojiAnimationsOverlay) {
-        StoryReactionWidgetView storyReactionWidgetView;
+        AreaView areaView;
         ArrayList<TL_stories$MediaArea> arrayList2 = this.lastMediaAreas;
         if (arrayList == arrayList2 && (arrayList == null || arrayList2 == null || arrayList.size() == this.lastMediaAreas.size())) {
             return;
@@ -159,17 +160,17 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             TL_stories$MediaArea tL_stories$MediaArea = arrayList.get(i2);
             if (tL_stories$MediaArea != null && tL_stories$MediaArea.coordinates != null) {
                 if (tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
-                    StoryReactionWidgetView storyReactionWidgetView2 = new StoryReactionWidgetView(getContext(), this, (TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$MediaArea, emojiAnimationsOverlay);
+                    StoryReactionWidgetView storyReactionWidgetView = new StoryReactionWidgetView(getContext(), this, (TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$MediaArea, emojiAnimationsOverlay);
                     if (tL_stories$StoryItem != null) {
-                        storyReactionWidgetView2.setViews(tL_stories$StoryItem.views, false);
+                        storyReactionWidgetView.setViews(tL_stories$StoryItem.views, false);
                     }
-                    ScaleStateListAnimator.apply(storyReactionWidgetView2);
-                    storyReactionWidgetView = storyReactionWidgetView2;
+                    ScaleStateListAnimator.apply(storyReactionWidgetView);
+                    areaView = storyReactionWidgetView;
                 } else {
-                    storyReactionWidgetView = new AreaView(getContext(), this.parentView, tL_stories$MediaArea);
+                    areaView = new AreaView(getContext(), this.parentView, tL_stories$MediaArea);
                 }
-                storyReactionWidgetView.setOnClickListener(this);
-                addView(storyReactionWidgetView);
+                areaView.setOnClickListener(this);
+                addView(areaView);
                 TL_stories$TL_mediaAreaCoordinates tL_stories$TL_mediaAreaCoordinates = tL_stories$MediaArea.coordinates;
                 double d = tL_stories$TL_mediaAreaCoordinates.w;
                 double d2 = tL_stories$TL_mediaAreaCoordinates.h;
@@ -190,12 +191,14 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof AreaView) {
                 AreaView areaView = (AreaView) getChildAt(i3);
-                double d = size;
-                Double.isNaN(d);
-                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.w / 100.0d) * d), 1073741824);
-                double d2 = size2;
+                double d = areaView.mediaArea.coordinates.w / 100.0d;
+                double d2 = size;
                 Double.isNaN(d2);
-                areaView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.h / 100.0d) * d2), 1073741824));
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) Math.ceil(d * d2), 1073741824);
+                double d3 = areaView.mediaArea.coordinates.h / 100.0d;
+                double d4 = size2;
+                Double.isNaN(d4);
+                areaView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec((int) Math.ceil(d3 * d4), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);
@@ -225,7 +228,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     invalidate();
                     return;
                 }
-                LocationActivity locationActivity = new LocationActivity(this, 3) {
+                LocationActivity locationActivity = new LocationActivity(this, r1) {
                     @Override
                     protected boolean disablePermissionCheck() {
                         return true;
@@ -246,8 +249,9 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     tLRPC$TL_message.media = tLRPC$TL_messageMediaVenue;
                 } else if (tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaGeoPoint) {
                     locationActivity.setInitialMaxZoom(true);
+                    TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint = (TL_stories$TL_mediaAreaGeoPoint) this.selectedArea.mediaArea;
                     TLRPC$TL_messageMediaGeo tLRPC$TL_messageMediaGeo = new TLRPC$TL_messageMediaGeo();
-                    tLRPC$TL_messageMediaGeo.geo = ((TL_stories$TL_mediaAreaGeoPoint) this.selectedArea.mediaArea).geo;
+                    tLRPC$TL_messageMediaGeo.geo = tL_stories$TL_mediaAreaGeoPoint.geo;
                     tLRPC$TL_message.media = tLRPC$TL_messageMediaGeo;
                 } else {
                     this.selectedArea = null;
@@ -259,65 +263,67 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 presentFragment(locationActivity);
                 this.selectedArea = null;
                 invalidate();
-            } else if (areaView != null && this.malicious) {
-                onClickAway();
-            } else {
-                AreaView areaView2 = (AreaView) view;
-                this.lastSelectedArea = areaView2;
-                this.selectedArea = areaView2;
-                invalidate();
-                HintView2 hintView2 = this.hintView;
-                if (hintView2 != null) {
-                    hintView2.hide();
-                    this.hintView = null;
-                }
-                boolean z = this.selectedArea.getTranslationY() < ((float) AndroidUtilities.dp(100.0f));
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                if (this.selectedArea.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) {
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewMessage));
-                } else {
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewLocation));
-                }
-                SpannableString spannableString = new SpannableString(">");
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.photos_arrow);
-                coloredImageSpan.translate(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
-                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-                SpannableString spannableString2 = new SpannableString("<");
-                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.attach_arrow_right);
-                coloredImageSpan2.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(1.0f));
-                coloredImageSpan2.setScale(-1.0f, 1.0f);
-                spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
-                if (AndroidUtilities.isRTL(spannableStringBuilder)) {
-                    spannableString = spannableString2;
-                }
-                AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
-                final HintView2 duration = new HintView2(getContext(), z ? 1 : 3).setText(spannableStringBuilder).setSelectorColor(687865855).setJointPx(0.0f, this.selectedArea.getTranslationX() - AndroidUtilities.dp(8.0f)).setDuration(5000L);
-                this.hintView = duration;
-                duration.setOnHiddenListener(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryMediaAreasView.this.lambda$onClick$1(duration);
-                    }
-                });
-                AreaView areaView3 = this.selectedArea;
-                if ((areaView3.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) && (!z ? (areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f) >= AndroidUtilities.dp(120.0f) : areaView3.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f) <= getMeasuredHeight() - AndroidUtilities.dp(120.0f))) {
-                    this.hintView.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
-                } else if (z) {
-                    this.hintView.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
-                } else {
-                    this.hintView.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f));
-                }
-                this.hintView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        StoryMediaAreasView.this.lambda$onClick$2(view2);
-                    }
-                });
-                this.hintView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-                this.hintsContainer.addView(this.hintView, LayoutHelper.createFrame(-1, 50.0f));
-                this.hintView.show();
-                onHintVisible(true);
+                return;
             }
+            if (areaView != null && this.malicious) {
+                onClickAway();
+                return;
+            }
+            AreaView areaView2 = (AreaView) view;
+            this.lastSelectedArea = areaView2;
+            this.selectedArea = areaView2;
+            invalidate();
+            HintView2 hintView2 = this.hintView;
+            if (hintView2 != null) {
+                hintView2.hide();
+                this.hintView = null;
+            }
+            boolean z = this.selectedArea.getTranslationY() < ((float) AndroidUtilities.dp(100.0f));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (this.selectedArea.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewMessage));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewLocation));
+            }
+            SpannableString spannableString = new SpannableString(">");
+            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.photos_arrow);
+            coloredImageSpan.translate(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
+            spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+            SpannableString spannableString2 = new SpannableString("<");
+            ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.attach_arrow_right);
+            coloredImageSpan2.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(1.0f));
+            coloredImageSpan2.setScale(-1.0f, 1.0f);
+            spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
+            if (AndroidUtilities.isRTL(spannableStringBuilder)) {
+                spannableString = spannableString2;
+            }
+            AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
+            final HintView2 duration = new HintView2(getContext(), z ? 1 : 3).setText(spannableStringBuilder).setSelectorColor(687865855).setJointPx(0.0f, this.selectedArea.getTranslationX() - AndroidUtilities.dp(8.0f)).setDuration(5000L);
+            this.hintView = duration;
+            duration.setOnHiddenListener(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryMediaAreasView.this.lambda$onClick$1(duration);
+                }
+            });
+            AreaView areaView3 = this.selectedArea;
+            if ((areaView3.mediaArea instanceof TL_stories$TL_mediaAreaChannelPost) && (!z ? (areaView3.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f) >= AndroidUtilities.dp(120.0f) : areaView3.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f) <= getMeasuredHeight() - AndroidUtilities.dp(120.0f))) {
+                this.hintView.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+            } else if (z) {
+                this.hintView.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
+            } else {
+                this.hintView.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(50.0f));
+            }
+            this.hintView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    StoryMediaAreasView.this.lambda$onClick$2(view2);
+                }
+            });
+            this.hintView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            this.hintsContainer.addView(this.hintView, LayoutHelper.createFrame(-1, 50.0f));
+            this.hintView.show();
+            onHintVisible(true);
         }
     }
 
@@ -397,12 +403,14 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 int measuredWidth = areaView.getMeasuredWidth();
                 int measuredHeight = areaView.getMeasuredHeight();
                 areaView.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
+                double d = areaView.mediaArea.coordinates.x / 100.0d;
                 double measuredWidth2 = getMeasuredWidth();
                 Double.isNaN(measuredWidth2);
-                areaView.setTranslationX((float) ((areaView.mediaArea.coordinates.x / 100.0d) * measuredWidth2));
+                areaView.setTranslationX((float) (d * measuredWidth2));
+                double d2 = areaView.mediaArea.coordinates.y / 100.0d;
                 double measuredHeight2 = getMeasuredHeight();
                 Double.isNaN(measuredHeight2);
-                areaView.setTranslationY((float) ((areaView.mediaArea.coordinates.y / 100.0d) * measuredHeight2));
+                areaView.setTranslationY((float) (d2 * measuredHeight2));
                 areaView.setRotation((float) areaView.mediaArea.coordinates.rotation);
             }
         }

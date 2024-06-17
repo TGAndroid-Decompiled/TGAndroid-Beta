@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_resolveBusinessChatLink extends TLObject {
     public String slug;
 

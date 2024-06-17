@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_chatInviteImporters extends TLObject {
     public int count;
     public ArrayList<TLRPC$TL_chatInviteImporter> importers = new ArrayList<>();

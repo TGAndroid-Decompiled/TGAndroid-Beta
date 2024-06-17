@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputChannel;
 import org.telegram.tgnet.TLRPC$InputCheckPasswordSRP;
+
 public class TL_stats$TL_getBroadcastRevenueWithdrawalUrl extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$InputCheckPasswordSRP password;

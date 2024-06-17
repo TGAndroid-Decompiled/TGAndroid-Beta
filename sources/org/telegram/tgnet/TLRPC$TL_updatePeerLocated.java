@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updatePeerLocated extends TLRPC$Update {
     public ArrayList<TLRPC$PeerLocated> peers = new ArrayList<>();
 

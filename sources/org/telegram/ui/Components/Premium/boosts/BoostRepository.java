@@ -81,6 +81,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.bots.BotWebViewSheet;
+
 public class BoostRepository {
     public static int prepareServerDate(long j) {
         if (j < System.currentTimeMillis() + 120000) {
@@ -234,9 +235,9 @@ public class BoostRepository {
                 }
             });
             LaunchActivity.getLastFragment().showAsSheet(paymentFormActivity, new BaseFragment.BottomSheetParams());
-            return;
+        } else {
+            callback.run(null);
         }
-        callback.run(null);
     }
 
     public static void lambda$payGiftCodeByInvoice$2(Utilities.Callback callback, Utilities.Callback callback2, PaymentFormActivity.InvoiceStatus invoiceStatus) {
@@ -483,9 +484,9 @@ public class BoostRepository {
                 }
             });
             LaunchActivity.getLastFragment().showAsSheet(paymentFormActivity, new BaseFragment.BottomSheetParams());
-            return;
+        } else {
+            callback.run(null);
         }
-        callback.run(null);
     }
 
     public static void lambda$payGiveAwayByInvoice$15(Utilities.Callback callback, Utilities.Callback callback2, PaymentFormActivity.InvoiceStatus invoiceStatus) {
@@ -616,16 +617,16 @@ public class BoostRepository {
     }
 
     public static List<TLRPC$TL_premiumGiftCodeOption> filterGiftOptionsByBilling(List<TLRPC$TL_premiumGiftCodeOption> list) {
-        if (isGoogleBillingAvailable()) {
-            ArrayList arrayList = new ArrayList();
-            for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption : list) {
-                if (tLRPC$TL_premiumGiftCodeOption.store_product != null) {
-                    arrayList.add(tLRPC$TL_premiumGiftCodeOption);
-                }
-            }
-            return arrayList;
+        if (!isGoogleBillingAvailable()) {
+            return list;
         }
-        return list;
+        ArrayList arrayList = new ArrayList();
+        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption : list) {
+            if (tLRPC$TL_premiumGiftCodeOption.store_product != null) {
+                arrayList.add(tLRPC$TL_premiumGiftCodeOption);
+            }
+        }
+        return arrayList;
     }
 
     public static void loadCountries(final Utilities.Callback<Pair<Map<String, List<TLRPC$TL_help_country>>, List<String>>> callback) {
@@ -671,8 +672,9 @@ public class BoostRepository {
                 comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
             }
             Collections.sort(arrayList, comparator);
-            for (List list2 : hashMap.values()) {
-                Collections.sort(list2, new Comparator() {
+            Iterator it = hashMap.values().iterator();
+            while (it.hasNext()) {
+                Collections.sort((List) it.next(), new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$loadCountries$25;

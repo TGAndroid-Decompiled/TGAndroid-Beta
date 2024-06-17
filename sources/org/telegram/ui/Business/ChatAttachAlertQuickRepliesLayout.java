@@ -31,7 +31,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -48,6 +47,7 @@ import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchField;
+
 public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private EmptyTextProgressView emptyView;
     private FrameLayout frameLayout;
@@ -131,8 +131,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
 
         public void lambda$setStatus$3() {
             if (this.currentUser != null) {
-                PhoneFormat phoneFormat = PhoneFormat.getInstance();
-                this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
+                this.formattedPhoneNumber = PhoneFormat.getInstance().format("+" + this.currentUser.phone);
                 this.formattedPhoneNumberUser = this.currentUser;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -319,13 +318,14 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             int positionInSectionForPosition = this.listAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
+            } else {
+                item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
-            item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (item instanceof QuickRepliesController.QuickReply) {
-            BaseFragment baseFragment = this.parentAlert.baseFragment;
-            if (baseFragment instanceof ChatActivityInterface) {
-                QuickRepliesController.getInstance(UserConfig.selectedAccount).sendQuickReplyTo(((ChatActivityInterface) baseFragment).getDialogId(), (QuickRepliesController.QuickReply) item);
+            Object obj = this.parentAlert.baseFragment;
+            if (obj instanceof ChatActivityInterface) {
+                QuickRepliesController.getInstance(UserConfig.selectedAccount).sendQuickReplyTo(((ChatActivityInterface) obj).getDialogId(), (QuickRepliesController.QuickReply) item);
                 this.parentAlert.dismiss();
             }
         }
@@ -422,7 +422,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
         animatorSet2.playTogether(animatorArr);
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
@@ -449,20 +449,20 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     public int getCurrentTop() {
-        if (this.listView.getChildCount() != 0) {
-            int i = 0;
-            View childAt = this.listView.getChildAt(0);
-            RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-            if (holder != null) {
-                int paddingTop = this.listView.getPaddingTop();
-                if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-                    i = childAt.getTop();
-                }
-                return paddingTop - i;
-            }
+        if (this.listView.getChildCount() == 0) {
             return -1000;
         }
-        return -1000;
+        int i = 0;
+        View childAt = this.listView.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
+        if (holder == null) {
+            return -1000;
+        }
+        int paddingTop = this.listView.getPaddingTop();
+        if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
+            i = childAt.getTop();
+        }
+        return paddingTop - i;
     }
 
     @Override
@@ -479,8 +479,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     public void updateEmptyViewPosition() {
         View childAt;
         if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            EmptyTextProgressView emptyTextProgressView = this.emptyView;
-            emptyTextProgressView.setTranslationY(((emptyTextProgressView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
+            this.emptyView.setTranslationY(((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
         }
     }
 

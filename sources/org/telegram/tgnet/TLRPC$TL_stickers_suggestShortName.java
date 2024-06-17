@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_stickers_suggestShortName extends TLObject {
     public String title;
 

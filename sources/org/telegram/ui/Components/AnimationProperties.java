@@ -7,26 +7,29 @@ import android.util.Property;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.PhotoViewer;
+
 public class AnimationProperties {
     public static final Property<ClippingImageView, Float> CLIPPING_IMAGE_VIEW_PROGRESS;
     public static final Property<DialogCell, Float> CLIP_DIALOG_CELL_PROGRESS;
     public static final Property<ColorDrawable, Integer> COLOR_DRAWABLE_ALPHA;
+    public static final Property<Paint, Integer> PAINT_ALPHA;
     public static final Property<PhotoViewer, Float> PHOTO_VIEWER_ANIMATION_VALUE;
     public static final Property<ShapeDrawable, Integer> SHAPE_DRAWABLE_ALPHA;
     public static OvershootInterpolator overshootInterpolator = new OvershootInterpolator(1.9f);
-    public static final Property<Paint, Integer> PAINT_ALPHA = new IntProperty<Paint>("alpha") {
-        @Override
-        public void setValue(Paint paint, int i) {
-            paint.setAlpha(i);
-        }
-
-        @Override
-        public Integer get(Paint paint) {
-            return Integer.valueOf(paint.getAlpha());
-        }
-    };
 
     static {
+        String str = "alpha";
+        PAINT_ALPHA = new IntProperty<Paint>(str) {
+            @Override
+            public void setValue(Paint paint, int i) {
+                paint.setAlpha(i);
+            }
+
+            @Override
+            public Integer get(Paint paint) {
+                return Integer.valueOf(paint.getAlpha());
+            }
+        };
         new IntProperty<Paint>("color") {
             @Override
             public void setValue(Paint paint, int i) {
@@ -38,7 +41,7 @@ public class AnimationProperties {
                 return Integer.valueOf(paint.getColor());
             }
         };
-        COLOR_DRAWABLE_ALPHA = new IntProperty<ColorDrawable>("alpha") {
+        COLOR_DRAWABLE_ALPHA = new IntProperty<ColorDrawable>(str) {
             @Override
             public void setValue(ColorDrawable colorDrawable, int i) {
                 colorDrawable.setAlpha(i);
@@ -49,7 +52,7 @@ public class AnimationProperties {
                 return Integer.valueOf(colorDrawable.getAlpha());
             }
         };
-        SHAPE_DRAWABLE_ALPHA = new IntProperty<ShapeDrawable>("alpha") {
+        SHAPE_DRAWABLE_ALPHA = new IntProperty<ShapeDrawable>(str) {
             @Override
             public void setValue(ShapeDrawable shapeDrawable, int i) {
                 shapeDrawable.getPaint().setAlpha(i);

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_editFactCheck extends TLObject {
     public int msg_id;
     public TLRPC$InputPeer peer;

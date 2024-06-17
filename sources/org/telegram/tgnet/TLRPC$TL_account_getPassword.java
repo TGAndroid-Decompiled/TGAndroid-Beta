@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_getPassword extends TLObject {
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {

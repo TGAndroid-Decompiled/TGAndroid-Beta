@@ -21,6 +21,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class AccountSelectCell extends FrameLayout {
     private int accountNumber;
     private AvatarDrawable avatarDrawable;

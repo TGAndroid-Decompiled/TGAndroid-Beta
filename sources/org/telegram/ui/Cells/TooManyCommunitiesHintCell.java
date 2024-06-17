@@ -15,6 +15,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TooManyCommunitiesHintCell extends FrameLayout {
     private TextView headerTextView;
     private FrameLayout imageLayout;
@@ -45,6 +46,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         final Paint paint = new Paint(1);
+        final String str = "500";
         FrameLayout frameLayout = new FrameLayout(this, context) {
             RectF rect = new RectF();
 
@@ -53,12 +55,12 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
                 super.onDraw(canvas);
                 paint.setColor(Theme.getColor(Theme.key_text_RedRegular));
                 canvas.save();
-                canvas.translate((getMeasuredWidth() - textPaint.measureText(r5)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dpf2(7.0f));
-                this.rect.set(0.0f, 0.0f, textPaint.measureText(r5), textPaint.getTextSize());
+                canvas.translate((getMeasuredWidth() - textPaint.measureText(str)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dpf2(7.0f));
+                this.rect.set(0.0f, 0.0f, textPaint.measureText(str), textPaint.getTextSize());
                 this.rect.inset(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(3.0f));
                 float textSize = (textPaint.getTextSize() / 2.0f) + AndroidUtilities.dp(3.0f);
                 canvas.drawRoundRect(this.rect, textSize, textSize, paint);
-                canvas.drawText(r5, 0.0f, textPaint.getTextSize() - AndroidUtilities.dpf2(2.0f), textPaint);
+                canvas.drawText(str, 0.0f, textPaint.getTextSize() - AndroidUtilities.dpf2(2.0f), textPaint);
                 canvas.restore();
             }
         };

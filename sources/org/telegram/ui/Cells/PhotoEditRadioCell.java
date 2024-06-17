@@ -9,6 +9,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
+
 public class PhotoEditRadioCell extends FrameLayout {
     private int currentColor;
     private int currentType;
@@ -96,8 +97,7 @@ public class PhotoEditRadioCell extends FrameLayout {
     public void setIconAndTextAndValue(String str, int i, int i2) {
         this.currentType = i;
         this.currentColor = i2;
-        TextView textView = this.nameTextView;
-        textView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        this.nameTextView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         updateSelectedTintButton(false);
     }
 }

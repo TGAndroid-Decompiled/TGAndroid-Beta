@@ -12,6 +12,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
+
 public class Text {
     private boolean doNotSave;
     private LinearGradient ellipsizeGradient;
@@ -100,12 +101,11 @@ public class Text {
     public void draw(Canvas canvas) {
         int i;
         int i2;
-        StaticLayout staticLayout = this.layout;
-        if (staticLayout == null) {
+        if (this.layout == null) {
             return;
         }
         if (!this.doNotSave && (i2 = this.ellipsizeWidth) >= 0 && this.width > i2) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, i2, staticLayout.getHeight(), 255, 31);
+            canvas.saveLayerAlpha(0.0f, 0.0f, i2, r0.getHeight(), 255, 31);
         }
         if (this.hackClipBounds) {
             canvas.drawText(this.layout.getText().toString(), 0.0f, -this.paint.getFontMetricsInt().ascent, this.paint);

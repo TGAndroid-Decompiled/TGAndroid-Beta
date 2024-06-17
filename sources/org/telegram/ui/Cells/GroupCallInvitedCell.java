@@ -19,6 +19,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class GroupCallInvitedCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;

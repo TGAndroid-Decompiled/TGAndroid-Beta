@@ -18,6 +18,7 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class HeaderCell extends FrameLayout {
     private boolean animated;
     private AnimatedTextView animatedTextView;
@@ -125,7 +126,7 @@ public class HeaderCell extends FrameLayout {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
             return;
         }
         this.textView.setAlpha(z ? 1.0f : 0.5f);
@@ -156,10 +157,10 @@ public class HeaderCell extends FrameLayout {
         if (this.animated) {
             this.animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.animatedTextView.setText(charSequence, z);
-            return;
+        } else {
+            this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            this.textView.setText(charSequence);
         }
-        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setText(charSequence);
     }
 
     public void setText2(CharSequence charSequence) {

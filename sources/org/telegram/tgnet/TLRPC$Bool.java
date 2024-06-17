@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$Bool extends TLObject {
     public static TLRPC$Bool TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Bool tLRPC$Bool;

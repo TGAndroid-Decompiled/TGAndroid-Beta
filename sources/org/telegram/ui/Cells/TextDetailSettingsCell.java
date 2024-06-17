@@ -14,6 +14,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TextDetailSettingsCell extends FrameLayout {
     private ImageView imageView;
     private boolean multiline;

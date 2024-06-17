@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionParticipantJoinByRequest extends TLRPC$ChannelAdminLogEventAction {
     public long approved_by;
     public TLRPC$ExportedChatInvite invite;

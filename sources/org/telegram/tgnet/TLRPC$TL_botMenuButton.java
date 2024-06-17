@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_botMenuButton extends TLRPC$BotMenuButton {
     public String text;
     public String url;

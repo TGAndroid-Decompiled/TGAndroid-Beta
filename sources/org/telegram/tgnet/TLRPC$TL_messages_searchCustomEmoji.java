@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_searchCustomEmoji extends TLObject {
     public String emoticon;
     public long hash;

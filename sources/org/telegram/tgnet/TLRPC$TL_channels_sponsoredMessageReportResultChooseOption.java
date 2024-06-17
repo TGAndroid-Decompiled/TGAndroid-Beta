@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_channels_sponsoredMessageReportResultChooseOption extends TLRPC$channels_SponsoredMessageReportResult {
     public ArrayList<TLRPC$TL_sponsoredMessageReportOption> options = new ArrayList<>();
     public String title;

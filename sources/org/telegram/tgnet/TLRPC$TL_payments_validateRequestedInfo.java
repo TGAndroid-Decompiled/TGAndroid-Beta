@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_validateRequestedInfo extends TLObject {
     public int flags;
     public TLRPC$TL_paymentRequestedInfo info;

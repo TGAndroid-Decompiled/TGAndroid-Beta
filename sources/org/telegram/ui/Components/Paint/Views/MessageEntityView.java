@@ -45,6 +45,7 @@ import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.PreviewView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class MessageEntityView extends EntityView {
     private boolean clipVideoMessageForBitmap;
     public final FrameLayout container;
@@ -215,45 +216,51 @@ public class MessageEntityView extends EntityView {
                         MessageEntityView.this.msgInDrawable = new Theme.MessageDrawable(0, false, false, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgInDrawable;
-                } else if (str.equals("drawableMsgInSelected")) {
+                }
+                if (str.equals("drawableMsgInSelected")) {
                     if (MessageEntityView.this.msgInDrawableSelected == null) {
                         MessageEntityView.this.msgInDrawableSelected = new Theme.MessageDrawable(0, false, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgInDrawableSelected;
-                } else if (str.equals("drawableMsgOut")) {
+                }
+                if (str.equals("drawableMsgOut")) {
                     if (MessageEntityView.this.msgOutDrawable == null) {
                         MessageEntityView.this.msgOutDrawable = new Theme.MessageDrawable(0, true, false, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgOutDrawable;
-                } else if (str.equals("drawableMsgOutSelected")) {
+                }
+                if (str.equals("drawableMsgOutSelected")) {
                     if (MessageEntityView.this.msgOutDrawableSelected == null) {
                         MessageEntityView.this.msgOutDrawableSelected = new Theme.MessageDrawable(0, true, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgOutDrawableSelected;
-                } else if (str.equals("drawableMsgInMedia")) {
+                }
+                if (str.equals("drawableMsgInMedia")) {
                     if (MessageEntityView.this.msgMediaInDrawable == null) {
                         MessageEntityView.this.msgMediaInDrawable = new Theme.MessageDrawable(1, false, false, MessageEntityView.this.resourcesProvider);
                     }
                     MessageEntityView.this.msgMediaInDrawable.invalidateSelf();
                     return MessageEntityView.this.msgMediaInDrawable;
-                } else if (str.equals("drawableMsgInMediaSelected")) {
+                }
+                if (str.equals("drawableMsgInMediaSelected")) {
                     if (MessageEntityView.this.msgMediaInDrawableSelected == null) {
                         MessageEntityView.this.msgMediaInDrawableSelected = new Theme.MessageDrawable(1, false, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgMediaInDrawableSelected;
-                } else if (str.equals("drawableMsgOutMedia")) {
+                }
+                if (str.equals("drawableMsgOutMedia")) {
                     if (MessageEntityView.this.msgMediaOutDrawable == null) {
                         MessageEntityView.this.msgMediaOutDrawable = new Theme.MessageDrawable(1, true, false, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgMediaOutDrawable;
-                } else if (str.equals("drawableMsgOutMediaSelected")) {
+                }
+                if (str.equals("drawableMsgOutMediaSelected")) {
                     if (MessageEntityView.this.msgMediaOutDrawableSelected == null) {
                         MessageEntityView.this.msgMediaOutDrawableSelected = new Theme.MessageDrawable(1, true, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgMediaOutDrawableSelected;
-                } else {
-                    return Theme.getThemeDrawable(str);
                 }
+                return Theme.getThemeDrawable(str);
             }
 
             @Override
@@ -869,11 +876,10 @@ public class MessageEntityView extends EntityView {
                 int extraInsetHeight = chatMessageCell.getExtraInsetHeight();
                 int i5 = 0;
                 while (true) {
-                    float[] fArr = currentPosition.siblingHeights;
-                    if (i5 >= fArr.length) {
+                    if (i5 >= currentPosition.siblingHeights.length) {
                         break;
                     }
-                    extraInsetHeight += (int) Math.ceil(fArr[i5] * max);
+                    extraInsetHeight += (int) Math.ceil(r3[i5] * max);
                     i5++;
                 }
                 int round = extraInsetHeight + ((currentPosition.maxY - currentPosition.minY) * Math.round(AndroidUtilities.density * 7.0f));
@@ -952,10 +958,10 @@ public class MessageEntityView extends EntityView {
         float f;
         float f2;
         float f3;
-        float f4 = -2.14748365E9f;
-        float f5 = -2.14748365E9f;
-        float f6 = 2.14748365E9f;
-        float f7 = 2.14748365E9f;
+        float f4 = -2.1474836E9f;
+        float f5 = -2.1474836E9f;
+        float f6 = 2.1474836E9f;
+        float f7 = 2.1474836E9f;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
             if (childAt instanceof ChatMessageCell) {
@@ -1059,20 +1065,21 @@ public class MessageEntityView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(19.5f);
-            float dp2 = AndroidUtilities.dp(1.0f) + dp;
-            float f3 = dp2 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f3;
-            float measuredHeight = getMeasuredHeight() - f3;
-            float f4 = (measuredHeight / 2.0f) + dp2;
-            if (f <= dp2 - dp || f2 <= f4 - dp || f >= dp2 + dp || f2 >= f4 + dp) {
-                float f5 = dp2 + measuredWidth;
-                if (f <= f5 - dp || f2 <= f4 - dp || f >= f5 + dp || f2 >= f4 + dp) {
-                    return (f <= dp2 || f >= measuredWidth || f2 <= dp2 || f2 >= measuredHeight) ? 0 : 3;
-                }
-                return 2;
+            float dp = AndroidUtilities.dp(1.0f);
+            float dp2 = AndroidUtilities.dp(19.5f);
+            float f3 = dp + dp2;
+            float f4 = f3 * 2.0f;
+            float measuredWidth = getMeasuredWidth() - f4;
+            float measuredHeight = getMeasuredHeight() - f4;
+            float f5 = (measuredHeight / 2.0f) + f3;
+            if (f > f3 - dp2 && f2 > f5 - dp2 && f < f3 + dp2 && f2 < f5 + dp2) {
+                return 1;
             }
-            return 1;
+            float f6 = f3 + measuredWidth;
+            if (f <= f6 - dp2 || f2 <= f5 - dp2 || f >= f6 + dp2 || f2 >= f5 + dp2) {
+                return (f <= f3 || f >= measuredWidth || f2 <= f3 || f2 >= measuredHeight) ? 0 : 3;
+            }
+            return 2;
         }
 
         @Override
@@ -1086,49 +1093,50 @@ public class MessageEntityView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
+            float dp = AndroidUtilities.dp(2.0f);
             float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp = AndroidUtilities.dp(2.0f) + dpf2 + AndroidUtilities.dp(15.0f);
-            float f = dp * 2.0f;
+            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
+            float f = dp2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f;
             float measuredHeight = getMeasuredHeight() - f;
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = dp + measuredWidth;
-            float f3 = dp + measuredHeight;
-            rectF.set(dp, dp, f2, f3);
-            float dp2 = AndroidUtilities.dp(12.0f);
-            float min = Math.min(dp2, measuredWidth / 2.0f);
+            float f2 = dp2 + measuredWidth;
+            float f3 = dp2 + measuredHeight;
+            rectF.set(dp2, dp2, f2, f3);
+            float dp3 = AndroidUtilities.dp(12.0f);
+            float min = Math.min(dp3, measuredWidth / 2.0f);
             float f4 = measuredHeight / 2.0f;
-            float min2 = Math.min(dp2, f4);
+            float min2 = Math.min(dp3, f4);
             this.path.rewind();
             float f5 = min * 2.0f;
-            float f6 = dp + f5;
+            float f6 = dp2 + f5;
             float f7 = 2.0f * min2;
-            float f8 = dp + f7;
-            rectF.set(dp, dp, f6, f8);
+            float f8 = dp2 + f7;
+            rectF.set(dp2, dp2, f6, f8);
             this.path.arcTo(rectF, 180.0f, 90.0f);
             float f9 = f2 - f5;
-            rectF.set(f9, dp, f2, f8);
+            rectF.set(f9, dp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
             canvas.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
-            rectF.set(dp, f10, f6, f3);
+            rectF.set(dp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
             canvas.drawPath(this.path, this.paint);
-            float f11 = dp + f4;
-            canvas.drawCircle(dp, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            float f11 = dp2 + f4;
+            canvas.drawCircle(dp2, f11, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(dp2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
             canvas.drawCircle(f2, f11, dpf2, this.dotStrokePaint);
             canvas.drawCircle(f2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            float f12 = dp + min2;
+            float f12 = dp2 + min2;
             float f13 = f3 - min2;
-            canvas.drawLine(dp, f12, dp, f13, this.paint);
+            canvas.drawLine(dp2, f12, dp2, f13, this.paint);
             canvas.drawLine(f2, f12, f2, f13, this.paint);
             canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
-            canvas.drawCircle(dp, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
+            canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
             canvas.restoreToCount(saveCount);
         }
     }

@@ -43,6 +43,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SlideChooseView;
+
 public class LinkEditActivity extends BaseFragment {
     private TextCheckCell approveCell;
     private TextView buttonTextView;
@@ -106,7 +107,7 @@ public class LinkEditActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    LinkEditActivity.this.finishFragment();
+                    LinkEditActivity.this.lambda$onBackPressed$303();
                     AndroidUtilities.hideKeyboard(LinkEditActivity.this.usesEditText);
                 }
             }
@@ -550,9 +551,9 @@ public class LinkEditActivity extends BaseFragment {
     public void lambda$createView$3(int i) {
         if (i < this.dispalyedDates.size()) {
             this.timeEditText.setText(LocaleController.formatDateAudio(this.dispalyedDates.get(i).intValue() + getConnectionsManager().getCurrentTime(), false));
-            return;
+        } else {
+            this.timeEditText.setText("");
         }
-        this.timeEditText.setText("");
     }
 
     public void lambda$createView$4(int i) {
@@ -582,7 +583,7 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$5(DialogInterface dialogInterface, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        finishFragment();
+        lambda$onBackPressed$303();
     }
 
     public void onCreateClicked(android.view.View r9) {
@@ -609,7 +610,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkCreated(tLObject);
             }
-            finishFragment();
+            lambda$onBackPressed$303();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -638,7 +639,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkEdited(this.inviteToEdit, tLObject);
             }
-            finishFragment();
+            lambda$onBackPressed$303();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -804,10 +805,10 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public void finishFragment() {
+    public void lambda$onBackPressed$303() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
         this.finished = true;
-        super.finishFragment();
+        super.lambda$onBackPressed$303();
     }
 
     @Override

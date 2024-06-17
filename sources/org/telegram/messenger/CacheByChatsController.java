@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import java.io.File;
@@ -8,6 +7,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC$Chat;
+
 public class CacheByChatsController {
     public static int KEEP_MEDIA_DELETE = 4;
     public static int KEEP_MEDIA_FOREVER = 2;
@@ -26,9 +26,7 @@ public class CacheByChatsController {
     public CacheByChatsController(int i) {
         this.currentAccount = i;
         for (int i2 = 0; i2 < 4; i2++) {
-            int[] iArr = this.keepMediaByTypes;
-            SharedPreferences preferences = SharedConfig.getPreferences();
-            iArr[i2] = preferences.getInt("keep_media_type_" + i2, getDefault(i2));
+            this.keepMediaByTypes[i2] = SharedConfig.getPreferences().getInt("keep_media_type_" + i2, getDefault(i2));
         }
     }
 
@@ -86,8 +84,7 @@ public class CacheByChatsController {
     public ArrayList<KeepMediaException> getKeepMediaExceptions(int i) {
         ArrayList<KeepMediaException> arrayList = new ArrayList<>();
         HashSet hashSet = new HashSet();
-        SharedPreferences preferences = UserConfig.getInstance(this.currentAccount).getPreferences();
-        String string = preferences.getString("keep_media_exceptions_" + i, "");
+        String string = UserConfig.getInstance(this.currentAccount).getPreferences().getString("keep_media_exceptions_" + i, "");
         if (TextUtils.isEmpty(string)) {
             return arrayList;
         }
@@ -131,8 +128,7 @@ public class CacheByChatsController {
 
     public void setKeepMedia(int i, int i2) {
         this.keepMediaByTypes[i] = i2;
-        SharedPreferences.Editor edit = SharedConfig.getPreferences().edit();
-        edit.putInt("keep_media_type_" + i, i2).apply();
+        SharedConfig.getPreferences().edit().putInt("keep_media_type_" + i, i2).apply();
     }
 
     public void lookupFiles(ArrayList<? extends KeepMediaFile> arrayList) {

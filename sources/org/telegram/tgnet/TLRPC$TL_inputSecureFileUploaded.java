@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputSecureFileUploaded extends TLRPC$InputSecureFile {
     public byte[] file_hash;
     public long id;

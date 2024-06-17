@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public abstract class TL_stats$StatsGraph extends TLObject {
     public float rate;
 

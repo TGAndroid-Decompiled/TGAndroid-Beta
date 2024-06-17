@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputInvoiceStars extends TLRPC$InputInvoice {
     public static int constructor = 497236696;
     public TLRPC$TL_starsTopupOption option;

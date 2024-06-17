@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -48,7 +49,6 @@ public class FileVideoCapturer implements VideoCapturer {
         private final long videoStart;
 
         public VideoReaderY4M(String str) throws IOException {
-            String[] split;
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
@@ -57,7 +57,8 @@ public class FileVideoCapturer implements VideoCapturer {
                 int read = this.mediaFile.read();
                 if (read == -1) {
                     throw new RuntimeException("Found end of file before end of header for file: " + str);
-                } else if (read != 10) {
+                }
+                if (read != 10) {
                     sb.append((char) read);
                 } else {
                     this.videoStart = this.mediaFileChannel.position();

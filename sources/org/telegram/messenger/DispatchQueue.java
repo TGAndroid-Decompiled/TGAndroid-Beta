@@ -6,6 +6,7 @@ import android.os.Message;
 import android.os.Process;
 import android.os.SystemClock;
 import java.util.concurrent.CountDownLatch;
+
 public class DispatchQueue extends Thread {
     private static final int THREAD_PRIORITY_DEFAULT = -1000;
     private static int indexPointer;

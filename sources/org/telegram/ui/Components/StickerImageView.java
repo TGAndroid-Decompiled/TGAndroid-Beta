@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
+
 public class StickerImageView extends BackupImageView implements NotificationCenter.NotificationCenterDelegate {
     int currentAccount;
     int stickerNum;

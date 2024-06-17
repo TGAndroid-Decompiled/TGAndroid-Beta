@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateReadChannelDiscussionOutbox extends TLRPC$Update {
     public long channel_id;
     public int read_max_id;

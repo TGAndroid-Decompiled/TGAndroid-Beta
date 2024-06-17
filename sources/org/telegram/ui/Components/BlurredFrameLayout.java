@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.SharedConfig;
+
 public class BlurredFrameLayout extends FrameLayout {
     public int backgroundColor;
     public int backgroundPaddingBottom;
@@ -40,7 +40,7 @@ public class BlurredFrameLayout extends FrameLayout {
                 SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
                 if (view != sizeNotifierFrameLayout) {
                     f += view.getY();
-                    ViewParent parent = view.getParent();
+                    Object parent = view.getParent();
                     if (parent instanceof View) {
                         view = (View) parent;
                     } else {

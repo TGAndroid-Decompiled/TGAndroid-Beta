@@ -29,6 +29,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StickerImageView;
+
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -44,7 +45,7 @@ public class FilesMigrationService extends Service {
     }
 
     public static void start() {
-        ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, FilesMigrationService.class));
+        ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) FilesMigrationService.class));
     }
 
     @Override
@@ -110,14 +111,14 @@ public class FilesMigrationService extends Service {
 
     private int getFilesCount(File file) {
         File[] listFiles;
-        if (file.exists() && (listFiles = file.listFiles()) != null) {
-            int i = 0;
-            for (int i2 = 0; i2 < listFiles.length; i2++) {
-                i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
-            }
-            return i;
+        if (!file.exists() || (listFiles = file.listFiles()) == null) {
+            return 0;
         }
-        return 0;
+        int i = 0;
+        for (int i2 = 0; i2 < listFiles.length; i2++) {
+            i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
+        }
+        return i;
     }
 
     private void moveDirectory(File file, final File file2) {
@@ -125,18 +126,21 @@ public class FilesMigrationService extends Service {
             if (file2.exists() || file2.mkdir()) {
                 try {
                     Stream convert = C$r8$wrapper$java$util$stream$Stream$VWRP.convert(Files.list(file.toPath()));
-                    convert.forEach(new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
-                        }
+                    try {
+                        convert.forEach(new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
+                            }
 
-                        @Override
-                        public Consumer andThen(Consumer consumer) {
-                            return Consumer.CC.$default$andThen(this, consumer);
-                        }
-                    });
-                    convert.close();
+                            @Override
+                            public Consumer andThen(Consumer consumer) {
+                                return Consumer.CC.$default$andThen(this, consumer);
+                            }
+                        });
+                        convert.close();
+                    } finally {
+                    }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

@@ -33,6 +33,7 @@ import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
+
 public class SharedConfig {
     private static final int[] LOW_SOC;
     public static final int PASSCODE_TYPE_PASSWORD = 1;
@@ -256,11 +257,11 @@ public class SharedConfig {
                         if (i3 >= codecInfoAt.getSupportedTypes().length) {
                             z = false;
                             break;
-                        } else if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
-                            break;
-                        } else {
-                            i3++;
                         }
+                        if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
+                            break;
+                        }
+                        i3++;
                     }
                     if (z && (maxSupportedInstances = codecInfoAt.getCapabilitiesForType("video/hevc").getMaxSupportedInstances()) > i2) {
                         i2 = maxSupportedInstances;
@@ -353,7 +354,6 @@ public class SharedConfig {
                             return name;
                         }
                     }
-                    continue;
                 }
             }
             goodHevcEncoder = "";
@@ -1308,11 +1308,11 @@ public class SharedConfig {
         int i2 = chatSwipeAction;
         if (i2 < 0) {
             return !MessagesController.getInstance(i).dialogFilters.isEmpty() ? 5 : 2;
-        } else if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
-            return 2;
-        } else {
-            return chatSwipeAction;
         }
+        if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
+            return 2;
+        }
+        return chatSwipeAction;
     }
 
     public static void updateChatListSwipeSetting(int i) {
@@ -1365,11 +1365,11 @@ public class SharedConfig {
                 int[] iArr = LOW_SOC;
                 if (i4 >= iArr.length) {
                     break;
-                } else if (iArr[i4] == hashCode) {
-                    return 0;
-                } else {
-                    i4++;
                 }
+                if (iArr[i4] == hashCode) {
+                    return 0;
+                }
+                i4++;
             }
         }
         int i5 = 0;
@@ -1507,7 +1507,7 @@ public class SharedConfig {
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
         Boolean valueOf = Boolean.valueOf(!isUsingCamera2(i));
         useCamera2Force = valueOf;
-        edit.putBoolean("useCamera2", valueOf.booleanValue()).apply();
+        edit.putBoolean("useCamera2Force_2", valueOf.booleanValue()).apply();
     }
 
     @Deprecated

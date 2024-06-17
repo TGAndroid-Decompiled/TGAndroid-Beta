@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_account_authorizationForm extends TLObject {
     public int flags;
     public String privacy_policy_url;

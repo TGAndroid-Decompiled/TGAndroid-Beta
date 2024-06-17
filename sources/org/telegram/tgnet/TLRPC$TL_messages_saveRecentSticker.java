@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_saveRecentSticker extends TLObject {
     public boolean attached;
     public int flags;

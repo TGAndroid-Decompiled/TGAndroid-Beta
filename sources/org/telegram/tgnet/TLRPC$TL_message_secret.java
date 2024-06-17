@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import android.text.TextUtils;
+
 public class TLRPC$TL_message_secret extends TLRPC$TL_message {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

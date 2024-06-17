@@ -14,6 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.PhotoCropView;
+
 public class SuggestUserPhotoView extends View {
     Drawable arrowDrawable;
     AvatarDrawable avatarDrawable;
@@ -43,24 +44,27 @@ public class SuggestUserPhotoView extends View {
     public void draw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() >> 1;
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(30.0f);
-        int dp = AndroidUtilities.dp(46.0f) + measuredWidth;
-        setImageCoords(this.currentPhoto, measuredWidth - AndroidUtilities.dp(46.0f), measuredHeight);
-        setImageCoords(this.newPhoto, dp, measuredHeight);
+        int dp = measuredWidth - AndroidUtilities.dp(46.0f);
+        int dp2 = AndroidUtilities.dp(46.0f) + measuredWidth;
+        setImageCoords(this.currentPhoto, dp, measuredHeight);
+        setImageCoords(this.newPhoto, dp2, measuredHeight);
         Drawable drawable = this.arrowDrawable;
         drawable.setBounds(measuredWidth - (drawable.getIntrinsicWidth() / 2), measuredHeight - (this.arrowDrawable.getIntrinsicHeight() / 2), measuredWidth + (this.arrowDrawable.getIntrinsicWidth() / 2), (this.arrowDrawable.getIntrinsicHeight() / 2) + measuredHeight);
         this.arrowDrawable.draw(canvas);
         this.path.reset();
-        this.path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
+        this.path.addCircle(dp2, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
         this.currentPhoto.draw(canvas);
         if (this.containterView != null) {
+            float dp3 = AndroidUtilities.dp(60.0f);
             CropAreaView cropAreaView = this.photoCropView.cropView.areaView;
-            float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.size;
+            float f = dp3 / cropAreaView.size;
+            float top = (0.0f - this.photoCropView.getTop()) - cropAreaView.top;
             float left = (0.0f - this.photoCropView.getLeft()) - cropAreaView.left;
             canvas.save();
             canvas.clipPath(this.path);
-            canvas.scale(dp2, dp2, 0.0f, 0.0f);
-            canvas.translate(left, (0.0f - this.photoCropView.getTop()) - cropAreaView.top);
-            canvas.translate((dp - AndroidUtilities.dp(30.0f)) / dp2, (measuredHeight - AndroidUtilities.dp(30.0f)) / dp2);
+            canvas.scale(f, f, 0.0f, 0.0f);
+            canvas.translate(left, top);
+            canvas.translate((dp2 - AndroidUtilities.dp(30.0f)) / f, (measuredHeight - AndroidUtilities.dp(30.0f)) / f);
             PhotoViewer.getInstance().skipLastFrameDraw = true;
             this.containterView.draw(canvas);
             PhotoViewer.getInstance().skipLastFrameDraw = false;

@@ -14,6 +14,7 @@ import kotlinx.coroutines.EventLoop;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.ThreadLocalEventLoop;
 import kotlinx.coroutines.UndispatchedCoroutine;
+
 public final class DispatchedContinuationKt {
     private static final Symbol UNDEFINED = new Symbol("UNDEFINED");
     public static final Symbol REUSABLE_CLAIMED = new Symbol("REUSABLE_CLAIMED");
@@ -61,10 +62,17 @@ public final class DispatchedContinuationKt {
                         CoroutineContext context = continuation2.getContext();
                         Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj2);
                         UndispatchedCoroutine<?> updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
-                        dispatchedContinuation.continuation.resumeWith(obj);
-                        Unit unit = Unit.INSTANCE;
-                        if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                            ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                        try {
+                            dispatchedContinuation.continuation.resumeWith(obj);
+                            Unit unit = Unit.INSTANCE;
+                            if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
+                                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                            }
+                        } catch (Throwable th) {
+                            if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
+                                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                            }
+                            throw th;
                         }
                     }
                     do {

@@ -18,6 +18,7 @@ import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesViewPager;
 import org.telegram.ui.Stories.StoryViewer;
+
 public class StoriesViewPager extends ViewPager {
     int currentAccount;
     public int currentState;
@@ -225,8 +226,9 @@ public class StoriesViewPager extends ViewPager {
             PageLayout pageLayout = (PageLayout) getChildAt(i);
             if (pageLayout.isVisible && !pageLayout.peerStoryView.currentStory.allowScreenshots()) {
                 break;
+            } else {
+                i++;
             }
-            i++;
         }
         this.storyViewer.allowScreenshots(z);
     }

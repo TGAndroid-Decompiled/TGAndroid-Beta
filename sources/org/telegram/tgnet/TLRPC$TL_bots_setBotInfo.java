@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_bots_setBotInfo extends TLObject {
     public String about;
     public TLRPC$InputUser bot;

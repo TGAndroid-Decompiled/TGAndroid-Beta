@@ -20,6 +20,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class GroupCreateSpan extends View {
     private AvatarDrawable avatarDrawable;
     private int[] colors;
@@ -118,7 +119,6 @@ public class GroupCreateSpan extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int color;
         boolean z = this.deleting;
         if ((z && this.progress != 1.0f) || (!z && this.progress != 0.0f)) {
             long currentTimeMillis = System.currentTimeMillis() - this.lastUpdateTime;
@@ -154,7 +154,7 @@ public class GroupCreateSpan extends View {
         }
         if (this.progress != 0.0f) {
             backPaint.setColor(this.avatarDrawable.getColor());
-            backPaint.setAlpha((int) (this.progress * 255.0f * (Color.alpha(color) / 255.0f)));
+            backPaint.setAlpha((int) (this.progress * 255.0f * (Color.alpha(r0) / 255.0f)));
             canvas.drawCircle(AndroidUtilities.dp(this.small ? 14.0f : 16.0f), AndroidUtilities.dp(this.small ? 14.0f : 16.0f), AndroidUtilities.dp(this.small ? 14.0f : 16.0f), backPaint);
             canvas.save();
             canvas.rotate((1.0f - this.progress) * 45.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));

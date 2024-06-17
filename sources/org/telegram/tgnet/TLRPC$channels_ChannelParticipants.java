@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$channels_ChannelParticipants extends TLObject {
     public int count;
     public ArrayList<TLRPC$ChannelParticipant> participants = new ArrayList<>();

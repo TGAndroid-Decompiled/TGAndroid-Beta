@@ -12,6 +12,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ReportAlert extends BottomSheet {
     private BottomSheetCell clearButton;
     private EditTextBoldCursor editText;
@@ -134,11 +135,11 @@ public class ReportAlert extends BottomSheet {
     }
 
     public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            this.clearButton.background.callOnClick();
-            return true;
+        if (i != 6) {
+            return false;
         }
-        return false;
+        this.clearButton.background.callOnClick();
+        return true;
     }
 
     public void lambda$new$1(int i, View view) {

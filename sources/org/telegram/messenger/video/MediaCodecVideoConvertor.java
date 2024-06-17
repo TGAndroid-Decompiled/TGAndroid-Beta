@@ -19,6 +19,7 @@ import org.telegram.messenger.video.audio_input.AudioInput;
 import org.telegram.messenger.video.audio_input.GeneralAudioInput;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class MediaCodecVideoConvertor {
     private static final int MEDIACODEC_TIMEOUT_DEFAULT = 2500;
     private static final int MEDIACODEC_TIMEOUT_INCREASED = 22000;
@@ -85,11 +86,11 @@ public class MediaCodecVideoConvertor {
             }
             createEncoderByType = MediaCodec.createEncoderByType(this.outputMimeType);
         }
-        if (createEncoderByType == null && this.outputMimeType.equals("video/hevc")) {
-            this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
-            return MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
+        if (createEncoderByType != null || !this.outputMimeType.equals("video/hevc")) {
+            return createEncoderByType;
         }
-        return createEncoderByType;
+        this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
+        return MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
     }
 
     public static void cutOfNalData(String str, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
@@ -182,11 +183,11 @@ public class MediaCodecVideoConvertor {
             if (mediaMuxer != null) {
                 mediaMuxer.stop();
                 this.mediaMuxer.release();
-                return;
-            }
-            MP4Builder mP4Builder = this.mp4Builder;
-            if (mP4Builder != null) {
-                mP4Builder.finishMovie();
+            } else {
+                MP4Builder mP4Builder = this.mp4Builder;
+                if (mP4Builder != null) {
+                    mP4Builder.finishMovie();
+                }
             }
         }
     }
@@ -204,17 +205,15 @@ public class MediaCodecVideoConvertor {
 
     private static String hdrFragmentShader(int i, int i2, int i3, int i4, boolean z, StoryEntry.HDRInfo hDRInfo) {
         String readRes;
-        if (z) {
-            if (hDRInfo.getHDRType() == 1) {
-                readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
-            } else {
-                readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
-            }
-            String replace = readRes.replace("$dstWidth", i3 + ".0");
-            String replace2 = replace.replace("$dstHeight", i4 + ".0");
-            return replace2 + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
+        if (!z) {
+            return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
         }
-        return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
+        if (hDRInfo.getHDRType() == 1) {
+            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
+        } else {
+            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
+        }
+        return readRes.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
     }
 
     private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5) {

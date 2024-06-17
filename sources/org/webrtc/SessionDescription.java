@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import java.util.Locale;
+
 public class SessionDescription {
     public final String description;
     public final Type type;

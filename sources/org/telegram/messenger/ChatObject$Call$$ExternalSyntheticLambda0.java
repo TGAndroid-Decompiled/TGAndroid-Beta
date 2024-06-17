@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ChatObject;
+
 public final class ChatObject$Call$$ExternalSyntheticLambda0 implements Runnable {
     public final ChatObject.Call f$0;
 

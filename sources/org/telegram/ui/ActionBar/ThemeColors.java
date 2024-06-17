@@ -3,6 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.util.SparseArray;
 import androidx.core.graphics.ColorUtils;
 import java.util.HashMap;
+
 public class ThemeColors {
     private static SparseArray<String> colorKeysMap;
     private static HashMap<String, Integer> colorKeysStringMap;

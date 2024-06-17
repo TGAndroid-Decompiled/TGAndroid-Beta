@@ -17,6 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class EnterPrizeCell extends LinearLayout {
     private AfterTextChangedListener afterTextChangedListener;

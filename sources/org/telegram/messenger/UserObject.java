@@ -18,6 +18,7 @@ import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
+
 public class UserObject {
     public static final long ANONYMOUS = 2666000;
     public static final long REPLY_BOT = 1271266957;
@@ -68,8 +69,7 @@ public class UserObject {
         if (formatName.length() != 0 || TextUtils.isEmpty(tLRPC$User.phone)) {
             return formatName;
         }
-        PhoneFormat phoneFormat = PhoneFormat.getInstance();
-        return phoneFormat.format("+" + tLRPC$User.phone);
+        return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
     }
 
     public static String getPublicUsername(TLRPC$User tLRPC$User, boolean z) {

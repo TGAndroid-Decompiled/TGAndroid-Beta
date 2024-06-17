@@ -1,6 +1,7 @@
 package kotlin.ranges;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
+
 public final class IntRange extends IntProgression {
     public IntRange(int i, int i2) {
         super(i, i2, 1);

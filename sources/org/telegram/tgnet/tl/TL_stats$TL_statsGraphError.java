@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
+
 public class TL_stats$TL_statsGraphError extends TL_stats$StatsGraph {
     public String error;
 

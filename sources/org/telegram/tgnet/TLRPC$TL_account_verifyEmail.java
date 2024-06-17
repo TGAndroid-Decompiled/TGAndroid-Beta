@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_verifyEmail extends TLObject {
     public TLRPC$EmailVerifyPurpose purpose;
     public TLRPC$EmailVerification verification;

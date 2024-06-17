@@ -80,6 +80,7 @@ import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
+
 public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener {
     private final long chatId;
     private final MemberRequestsController controller;
@@ -300,7 +301,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             bundle.putLong("user_id", tLRPC$User.id);
             bundle.putBoolean("removeFragmentOnChatOpen", false);
             this.fragment.presentFragment(profileActivity);
-        } else if (this.previewDialog == null) {
+            return;
+        }
+        if (this.previewDialog == null) {
             PreviewDialog previewDialog = new PreviewDialog(this.fragment.getParentActivity(), (RecyclerListView) memberRequestCell.getParent(), this.fragment.getResourceProvider(), this.isChannel);
             this.previewDialog = previewDialog;
             previewDialog.setImporter(this.importer, memberRequestCell.getAvatarImageView());
@@ -320,11 +323,11 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
     public boolean onBackPressed() {
         PreviewDialog previewDialog = this.previewDialog;
-        if (previewDialog != null) {
-            previewDialog.dismiss();
-            return false;
+        if (previewDialog == null) {
+            return true;
         }
-        return true;
+        previewDialog.dismiss();
+        return false;
     }
 
     public void setSearchExpanded(boolean z) {
@@ -491,10 +494,10 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             if (this.hasMore) {
                 Adapter adapter = this.adapter;
                 adapter.notifyItemInserted(adapter.getItemCount() - 1);
-                return;
+            } else {
+                Adapter adapter2 = this.adapter;
+                adapter2.notifyItemRemoved(adapter2.getItemCount());
             }
-            Adapter adapter2 = this.adapter;
-            adapter2.notifyItemRemoved(adapter2.getItemCount());
         }
     }
 
@@ -604,12 +607,12 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             while (true) {
                 if (i >= this.allImporters.size()) {
                     break;
-                } else if (this.allImporters.get(i).user_id == tLRPC$TL_chatInviteImporter.user_id) {
+                }
+                if (this.allImporters.get(i).user_id == tLRPC$TL_chatInviteImporter.user_id) {
                     this.allImporters.remove(i);
                     break;
-                } else {
-                    i++;
                 }
+                i++;
             }
             this.adapter.removeItem(tLRPC$TL_chatInviteImporter);
             onImportersChanged(this.query, false, true);
@@ -674,26 +677,26 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
         @Override
         public RecyclerListView.Holder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            MemberRequestCell memberRequestCell;
+            View view;
             if (i == 1) {
-                View view = new View(viewGroup.getContext());
-                view.setBackground(Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                memberRequestCell = view;
+                View view2 = new View(viewGroup.getContext());
+                view2.setBackground(Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                view = view2;
             } else if (i == 2) {
-                memberRequestCell = new View(this, viewGroup.getContext()) {
+                view = new View(this, viewGroup.getContext()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
                     }
                 };
             } else if (i == 3) {
-                memberRequestCell = new View(viewGroup.getContext());
+                view = new View(viewGroup.getContext());
             } else if (i != 4) {
                 Context context = viewGroup.getContext();
                 MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
-                MemberRequestCell memberRequestCell2 = new MemberRequestCell(context, memberRequestsDelegate, memberRequestsDelegate.isChannel);
-                memberRequestCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MemberRequestsDelegate.this.fragment.getResourceProvider()));
-                memberRequestCell = memberRequestCell2;
+                MemberRequestCell memberRequestCell = new MemberRequestCell(context, memberRequestsDelegate, memberRequestsDelegate.isChannel);
+                memberRequestCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MemberRequestsDelegate.this.fragment.getResourceProvider()));
+                view = memberRequestCell;
             } else {
                 FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this, MemberRequestsDelegate.this.fragment.getParentActivity(), MemberRequestsDelegate.this.fragment.getResourceProvider()) {
                     @Override
@@ -709,9 +712,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 flickerLoadingView.setMemberRequestButton(MemberRequestsDelegate.this.isChannel);
                 flickerLoadingView.setIsSingleCell(true);
                 flickerLoadingView.setItemsCount(1);
-                memberRequestCell = flickerLoadingView;
+                view = flickerLoadingView;
             }
-            return new RecyclerListView.Holder(memberRequestCell);
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -726,7 +729,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                     z = false;
                 }
                 memberRequestCell.setData(longSparseArray, tLRPC$TL_chatInviteImporter, z);
-            } else if (viewHolder.getItemViewType() == 2) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 2) {
                 viewHolder.itemView.requestLayout();
             }
         }
@@ -759,13 +764,13 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 while (true) {
                     if (i2 >= list.size()) {
                         break;
-                    } else if (list.get(i2).user_id == j) {
+                    }
+                    if (list.get(i2).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
-                    } else {
-                        i2++;
                     }
+                    i2++;
                 }
                 i++;
             }
@@ -786,13 +791,13 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 while (true) {
                     if (i2 >= MemberRequestsDelegate.this.currentImporters.size()) {
                         break;
-                    } else if (((TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
+                    }
+                    if (((TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
-                    } else {
-                        i2++;
                     }
+                    i2++;
                 }
                 i++;
             }

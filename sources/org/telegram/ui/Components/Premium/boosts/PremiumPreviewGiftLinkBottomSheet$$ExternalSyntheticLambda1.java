@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts;
+
 public final class PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1 implements Runnable {
     public final PremiumPreviewGiftLinkBottomSheet f$0;
 

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_setChatAvailableReactions extends TLObject {
     public TLRPC$ChatReactions available_reactions;
     public int flags;

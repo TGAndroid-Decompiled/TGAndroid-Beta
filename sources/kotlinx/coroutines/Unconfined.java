@@ -1,6 +1,7 @@
 package kotlinx.coroutines;
 
 import kotlin.coroutines.CoroutineContext;
+
 public final class Unconfined extends CoroutineDispatcher {
     public static final Unconfined INSTANCE = new Unconfined();
 

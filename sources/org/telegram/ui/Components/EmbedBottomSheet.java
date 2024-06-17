@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.TextureView;
@@ -60,8 +61,10 @@ import org.telegram.ui.Components.EmbedBottomSheet;
 import org.telegram.ui.Components.WebPlayerView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
+
 @SuppressLint({"WrongConstant"})
 public class EmbedBottomSheet extends BottomSheet {
+
     @SuppressLint({"StaticFieldLeak"})
     private static EmbedBottomSheet instance;
     private boolean animationInProgress;
@@ -137,11 +140,11 @@ public class EmbedBottomSheet extends BottomSheet {
         if (((messageObject == null || (tLRPC$MessageMedia = messageObject.messageOwner.media) == null || tLRPC$MessageMedia.webpage == null) ? null : WebPlayerView.getYouTubeVideoId(str4)) != null) {
             PhotoViewer.getInstance().setParentActivity(baseFragment);
             PhotoViewer.getInstance().openPhoto(messageObject, i3, null, 0L, 0L, 0L, photoViewerProvider);
-            return;
+        } else {
+            EmbedBottomSheet embedBottomSheet2 = new EmbedBottomSheet(baseFragment.getParentActivity(), str, str2, str3, str4, i, i2, i3);
+            embedBottomSheet2.setCalcMandatoryInsets(z);
+            embedBottomSheet2.show();
         }
-        EmbedBottomSheet embedBottomSheet2 = new EmbedBottomSheet(baseFragment.getParentActivity(), str, str2, str3, str4, i, i2, i3);
-        embedBottomSheet2.setCalcMandatoryInsets(z);
-        embedBottomSheet2.show();
     }
 
     @SuppressLint({"SetJavaScriptEnabled"})
@@ -348,39 +351,39 @@ public class EmbedBottomSheet extends BottomSheet {
                     EmbedBottomSheet.this.fullscreenVideoContainer.addView(EmbedBottomSheet.this.videoView.getAspectRatioView());
                     EmbedBottomSheet.this.wasInLandscape = false;
                     EmbedBottomSheet.this.fullscreenedByButton = z2;
-                    if (EmbedBottomSheet.this.parentActivity != null) {
-                        try {
-                            EmbedBottomSheet embedBottomSheet = EmbedBottomSheet.this;
-                            embedBottomSheet.prevOrientation = embedBottomSheet.parentActivity.getRequestedOrientation();
-                            if (z2) {
-                                if (((WindowManager) EmbedBottomSheet.this.parentActivity.getSystemService("window")).getDefaultDisplay().getRotation() == 3) {
-                                    EmbedBottomSheet.this.parentActivity.setRequestedOrientation(8);
-                                } else {
-                                    EmbedBottomSheet.this.parentActivity.setRequestedOrientation(0);
-                                }
-                            }
-                            ((BottomSheet) EmbedBottomSheet.this).containerView.setSystemUiVisibility(1028);
-                            return null;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return null;
-                        }
+                    if (EmbedBottomSheet.this.parentActivity == null) {
+                        return null;
                     }
-                    return null;
+                    try {
+                        EmbedBottomSheet embedBottomSheet = EmbedBottomSheet.this;
+                        embedBottomSheet.prevOrientation = embedBottomSheet.parentActivity.getRequestedOrientation();
+                        if (z2) {
+                            if (((WindowManager) EmbedBottomSheet.this.parentActivity.getSystemService("window")).getDefaultDisplay().getRotation() == 3) {
+                                EmbedBottomSheet.this.parentActivity.setRequestedOrientation(8);
+                            } else {
+                                EmbedBottomSheet.this.parentActivity.setRequestedOrientation(0);
+                            }
+                        }
+                        ((BottomSheet) EmbedBottomSheet.this).containerView.setSystemUiVisibility(1028);
+                        return null;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return null;
+                    }
                 }
                 EmbedBottomSheet.this.fullscreenVideoContainer.setVisibility(4);
                 EmbedBottomSheet.this.fullscreenedByButton = false;
-                if (EmbedBottomSheet.this.parentActivity != null) {
-                    try {
-                        ((BottomSheet) EmbedBottomSheet.this).containerView.setSystemUiVisibility(0);
-                        EmbedBottomSheet.this.parentActivity.setRequestedOrientation(EmbedBottomSheet.this.prevOrientation);
-                        return null;
-                    } catch (Exception e2) {
-                        FileLog.e(e2);
-                        return null;
-                    }
+                if (EmbedBottomSheet.this.parentActivity == null) {
+                    return null;
                 }
-                return null;
+                try {
+                    ((BottomSheet) EmbedBottomSheet.this).containerView.setSystemUiVisibility(0);
+                    EmbedBottomSheet.this.parentActivity.setRequestedOrientation(EmbedBottomSheet.this.prevOrientation);
+                    return null;
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                    return null;
+                }
             }
 
             @Override
@@ -415,7 +418,7 @@ public class EmbedBottomSheet extends BottomSheet {
                         Rect pipRect = PipVideoOverlay.getPipRect(true, f);
                         float width = pipRect.width / textureView.getWidth();
                         AnimatorSet animatorSet = new AnimatorSet();
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(textureImageView, View.SCALE_X, width), ObjectAnimator.ofFloat(textureImageView, View.SCALE_Y, width), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_X, pipRect.x), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_Y, pipRect.y), ObjectAnimator.ofFloat(textureView, View.SCALE_X, width), ObjectAnimator.ofFloat(textureView, View.SCALE_Y, width), ObjectAnimator.ofFloat(textureView, View.TRANSLATION_X, pipRect.x), ObjectAnimator.ofFloat(textureView, View.TRANSLATION_Y, pipRect.y), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, View.TRANSLATION_Y, ((BottomSheet) EmbedBottomSheet.this).containerView.getMeasuredHeight() + AndroidUtilities.dp(10.0f)), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0), ObjectAnimator.ofFloat(EmbedBottomSheet.this.fullscreenVideoContainer, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(controlsView, View.ALPHA, 0.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.SCALE_X, width), ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.SCALE_Y, width), ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.TRANSLATION_X, pipRect.x), ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.TRANSLATION_Y, pipRect.y), ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) View.SCALE_X, width), ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) View.SCALE_Y, width), ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) View.TRANSLATION_X, pipRect.x), ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) View.TRANSLATION_Y, pipRect.y), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, ((BottomSheet) EmbedBottomSheet.this).containerView.getMeasuredHeight() + AndroidUtilities.dp(10.0f)), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0), ObjectAnimator.ofFloat(EmbedBottomSheet.this.fullscreenVideoContainer, (Property<FrameLayout, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(controlsView, (Property<View, Float>) View.ALPHA, 0.0f));
                         animatorSet.setInterpolator(new DecelerateInterpolator());
                         animatorSet.setDuration(250L);
                         animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -441,7 +444,7 @@ public class EmbedBottomSheet extends BottomSheet {
                 }
                 if (ApplicationLoader.mainInterfacePaused) {
                     try {
-                        EmbedBottomSheet.this.parentActivity.startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
+                        EmbedBottomSheet.this.parentActivity.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) BringAppForegroundService.class));
                     } catch (Throwable th) {
                         FileLog.e(th);
                     }
@@ -478,23 +481,22 @@ public class EmbedBottomSheet extends BottomSheet {
                 if (z) {
                     view.setTranslationY(0.0f);
                     TextureView textureView = new TextureView(EmbedBottomSheet.this.parentActivity);
-                    if (PipVideoOverlay.show(false, EmbedBottomSheet.this.parentActivity, textureView, i5, i6)) {
-                        PipVideoOverlay.setParentSheet(EmbedBottomSheet.this);
-                        return textureView;
+                    if (!PipVideoOverlay.show(false, EmbedBottomSheet.this.parentActivity, textureView, i5, i6)) {
+                        return null;
                     }
-                    return null;
+                    PipVideoOverlay.setParentSheet(EmbedBottomSheet.this);
+                    return textureView;
                 }
                 if (z2) {
                     EmbedBottomSheet.this.animationInProgress = true;
                     EmbedBottomSheet.this.videoView.getAspectRatioView().getLocationInWindow(EmbedBottomSheet.this.position);
                     int[] iArr = EmbedBottomSheet.this.position;
                     iArr[0] = iArr[0] - EmbedBottomSheet.this.getLeftInset();
-                    int[] iArr2 = EmbedBottomSheet.this.position;
-                    iArr2[1] = (int) (iArr2[1] - ((BottomSheet) EmbedBottomSheet.this).containerView.getTranslationY());
+                    EmbedBottomSheet.this.position[1] = (int) (r8[1] - ((BottomSheet) EmbedBottomSheet.this).containerView.getTranslationY());
                     TextureView textureView2 = EmbedBottomSheet.this.videoView.getTextureView();
                     ImageView textureImageView = EmbedBottomSheet.this.videoView.getTextureImageView();
                     AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(textureImageView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(textureImageView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_X, EmbedBottomSheet.this.position[0]), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_Y, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(textureView2, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(textureView2, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(textureView2, View.TRANSLATION_X, EmbedBottomSheet.this.position[0]), ObjectAnimator.ofFloat(textureView2, View.TRANSLATION_Y, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 51));
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.TRANSLATION_X, EmbedBottomSheet.this.position[0]), ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) View.TRANSLATION_Y, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) View.TRANSLATION_X, EmbedBottomSheet.this.position[0]), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) View.TRANSLATION_Y, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 51));
                     animatorSet.setInterpolator(new DecelerateInterpolator());
                     animatorSet.setDuration(250L);
                     animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -698,6 +700,7 @@ public class EmbedBottomSheet extends BottomSheet {
                         EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(0);
                         EmbedBottomSheet.this.isYouTube = true;
                         String str5 = null;
+                        Object[] objArr = 0;
                         if (Build.VERSION.SDK_INT >= 17) {
                             EmbedBottomSheet.this.webView.addJavascriptInterface(new YoutubeProxy(), "YoutubeProxy");
                         }
@@ -805,15 +808,15 @@ public class EmbedBottomSheet extends BottomSheet {
         @Override
         public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
             LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity == null || !launchActivity.isFinishing()) {
-                new AlertDialog.Builder(EmbedBottomSheet.this.getContext(), ((BottomSheet) EmbedBottomSheet.this).resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                    @Override
-                    public final void run() {
-                        EmbedBottomSheet.AnonymousClass5.this.lambda$onRenderProcessGone$0();
-                    }
-                })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+            if (launchActivity != null && launchActivity.isFinishing()) {
                 return true;
             }
+            new AlertDialog.Builder(EmbedBottomSheet.this.getContext(), ((BottomSheet) EmbedBottomSheet.this).resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                @Override
+                public final void run() {
+                    EmbedBottomSheet.AnonymousClass5.this.lambda$onRenderProcessGone$0();
+                }
+            })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
             return true;
         }
 
@@ -900,8 +903,7 @@ public class EmbedBottomSheet extends BottomSheet {
             return;
         }
         try {
-            WebView webView = this.webView;
-            webView.loadUrl("javascript:" + str);
+            this.webView.loadUrl("javascript:" + str);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -971,7 +973,7 @@ public class EmbedBottomSheet extends BottomSheet {
         }
         if (ApplicationLoader.mainInterfacePaused) {
             try {
-                this.parentActivity.startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
+                this.parentActivity.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) BringAppForegroundService.class));
             } catch (Throwable th) {
                 FileLog.e(th);
             }
@@ -1037,10 +1039,10 @@ public class EmbedBottomSheet extends BottomSheet {
 
     @Override
     protected boolean onCustomLayout(View view, int i, int i2, int i3, int i4) {
-        if (view == this.videoView.getControlsView()) {
-            updateTextureViewPosition();
+        if (view != this.videoView.getControlsView()) {
             return false;
         }
+        updateTextureViewPosition();
         return false;
     }
 
@@ -1061,9 +1063,9 @@ public class EmbedBottomSheet extends BottomSheet {
             if (i2 == 0) {
                 this.videoView.updateTextureImageView();
                 PipVideoOverlay.dismiss();
-                return;
+            } else {
+                this.container.invalidate();
             }
-            this.container.invalidate();
         }
     }
 }

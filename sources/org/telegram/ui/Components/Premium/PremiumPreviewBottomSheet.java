@@ -65,6 +65,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.PremiumFeatureCell;
 import org.telegram.ui.PremiumPreviewFragment;
+
 public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     public Integer accentColor;
     protected int additionEndRow;
@@ -364,12 +365,12 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                         while (true) {
                             if (i2 >= stickerSet.documents.size()) {
                                 break;
-                            } else if (stickerSet.documents.get(i2).id == stickerSet.set.thumb_document_id) {
+                            }
+                            if (stickerSet.documents.get(i2).id == stickerSet.set.thumb_document_id) {
                                 tLRPC$Document = stickerSet.documents.get(i2);
                                 break;
-                            } else {
-                                i2++;
                             }
+                            i2++;
                         }
                     }
                 }
@@ -554,6 +555,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 onCreateAdditionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(onCreateAdditionCell);
             }
+            int i2 = 1;
             if (i == 0) {
                 LinearLayout linearLayout = new LinearLayout(context) {
                     @Override
@@ -570,7 +572,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 PremiumPreviewBottomSheet premiumPreviewBottomSheet = PremiumPreviewBottomSheet.this;
                 View view2 = premiumPreviewBottomSheet.overrideTitleIcon;
                 if (view2 == null) {
-                    premiumPreviewBottomSheet.iconTextureView = new GLIconTextureView(this, context, 1) {
+                    premiumPreviewBottomSheet.iconTextureView = new GLIconTextureView(this, context, i2) {
                         @Override
                         public void onAttachedToWindow() {
                             super.onAttachedToWindow();
@@ -586,11 +588,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     PremiumPreviewBottomSheet premiumPreviewBottomSheet2 = PremiumPreviewBottomSheet.this;
-                    int i2 = Theme.key_premiumGradient2;
-                    canvas.drawColor(ColorUtils.blendARGB(premiumPreviewBottomSheet2.getThemedColor(i2), PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_dialogBackground), 0.5f));
+                    int i3 = Theme.key_premiumGradient2;
+                    canvas.drawColor(ColorUtils.blendARGB(premiumPreviewBottomSheet2.getThemedColor(i3), PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_dialogBackground), 0.5f));
                     PremiumPreviewBottomSheet.this.iconTextureView.setBackgroundBitmap(createBitmap);
                     GLIconRenderer gLIconRenderer = PremiumPreviewBottomSheet.this.iconTextureView.mRenderer;
-                    gLIconRenderer.colorKey1 = i2;
+                    gLIconRenderer.colorKey1 = i3;
                     gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
                     gLIconRenderer.updateColors();
                     linearLayout.addView(PremiumPreviewBottomSheet.this.iconTextureView, LayoutHelper.createLinear(160, 160, 1));
@@ -607,24 +609,24 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     Integer num = premiumPreviewBottomSheet3.accentColor;
                     new PorterDuffColorFilter(num == null ? premiumPreviewBottomSheet3.getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon) : num.intValue(), PorterDuff.Mode.SRC_IN);
                     PremiumPreviewBottomSheet.this.titleView = new LinkSpanDrawable.LinksTextView[2];
-                    int i3 = 0;
-                    while (i3 < 2) {
-                        PremiumPreviewBottomSheet.this.titleView[i3] = new LinkSpanDrawable.LinksTextView(this, context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
+                    int i4 = 0;
+                    while (i4 < 2) {
+                        PremiumPreviewBottomSheet.this.titleView[i4] = new LinkSpanDrawable.LinksTextView(this, context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
                             @Override
                             protected int emojiCacheType() {
                                 return 3;
                             }
                         };
-                        PremiumPreviewBottomSheet.this.titleView[i3].setVisibility(i3 == 0 ? 0 : 8);
-                        PremiumPreviewBottomSheet.this.titleView[i3].setTextSize(1, 16.0f);
-                        PremiumPreviewBottomSheet.this.titleView[i3].setTypeface(AndroidUtilities.bold());
-                        PremiumPreviewBottomSheet.this.titleView[i3].setGravity(1);
+                        PremiumPreviewBottomSheet.this.titleView[i4].setVisibility(i4 == 0 ? 0 : 8);
+                        PremiumPreviewBottomSheet.this.titleView[i4].setTextSize(1, 16.0f);
+                        PremiumPreviewBottomSheet.this.titleView[i4].setTypeface(AndroidUtilities.bold());
+                        PremiumPreviewBottomSheet.this.titleView[i4].setGravity(1);
                         PremiumPreviewBottomSheet premiumPreviewBottomSheet4 = PremiumPreviewBottomSheet.this;
-                        premiumPreviewBottomSheet4.titleView[i3].setTextColor(premiumPreviewBottomSheet4.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                        premiumPreviewBottomSheet4.titleView[i4].setTextColor(premiumPreviewBottomSheet4.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
                         PremiumPreviewBottomSheet premiumPreviewBottomSheet5 = PremiumPreviewBottomSheet.this;
-                        premiumPreviewBottomSheet5.titleView[i3].setLinkTextColor(premiumPreviewBottomSheet5.getThemedColor(Theme.key_windowBackgroundWhiteLinkText));
-                        PremiumPreviewBottomSheet.this.titleViewContainer.addView(PremiumPreviewBottomSheet.this.titleView[i3], LayoutHelper.createFrame(-1, -2.0f));
-                        i3++;
+                        premiumPreviewBottomSheet5.titleView[i4].setLinkTextColor(premiumPreviewBottomSheet5.getThemedColor(Theme.key_windowBackgroundWhiteLinkText));
+                        PremiumPreviewBottomSheet.this.titleViewContainer.addView(PremiumPreviewBottomSheet.this.titleView[i4], LayoutHelper.createFrame(-1, -2.0f));
+                        i4++;
                     }
                 }
                 if (PremiumPreviewBottomSheet.this.titleViewContainer.getParent() != null) {
@@ -648,8 +650,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 PremiumPreviewBottomSheet.this.setTitle(false);
                 PremiumPreviewBottomSheet.this.starParticlesView = new StarParticlesView(this, context) {
                     @Override
-                    public void onMeasure(int i4, int i5) {
-                        super.onMeasure(i4, i5);
+                    public void onMeasure(int i5, int i6) {
+                        super.onMeasure(i5, i6);
                         this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                     }
 
@@ -666,12 +668,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 };
                 FrameLayout frameLayout = new FrameLayout(context) {
                     @Override
-                    protected void onMeasure(int i4, int i5) {
+                    protected void onMeasure(int i5, int i6) {
                         float f;
                         float top;
                         int measuredHeight;
-                        StarParticlesView starParticlesView;
-                        super.onMeasure(i4, i5);
+                        super.onMeasure(i5, i6);
                         PremiumPreviewBottomSheet premiumPreviewBottomSheet9 = PremiumPreviewBottomSheet.this;
                         GLIconTextureView gLIconTextureView = premiumPreviewBottomSheet9.iconTextureView;
                         if (gLIconTextureView != null) {
@@ -684,11 +685,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                                 measuredHeight = PremiumPreviewBottomSheet.this.overrideTitleIcon.getMeasuredHeight();
                             } else {
                                 f = 0.0f;
-                                PremiumPreviewBottomSheet.this.starParticlesView.setTranslationY(f - (starParticlesView.getMeasuredHeight() / 2.0f));
+                                PremiumPreviewBottomSheet.this.starParticlesView.setTranslationY(f - (r4.getMeasuredHeight() / 2.0f));
                             }
                         }
                         f = top + (measuredHeight / 2.0f);
-                        PremiumPreviewBottomSheet.this.starParticlesView.setTranslationY(f - (starParticlesView.getMeasuredHeight() / 2.0f));
+                        PremiumPreviewBottomSheet.this.starParticlesView.setTranslationY(f - (r4.getMeasuredHeight() / 2.0f));
                     }
                 };
                 frameLayout.setClipChildren(false);
@@ -706,8 +707,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             } else if (i == 3) {
                 view = new View(this, context) {
                     @Override
-                    protected void onMeasure(int i4, int i5) {
-                        super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+                    protected void onMeasure(int i5, int i6) {
+                        super.onMeasure(i5, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
                     }
                 };
             } else if (i == 4) {
@@ -727,13 +728,13 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 TextInfoCell textInfoCell = new TextInfoCell(context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider);
                 textInfoCell.setBackground(true);
                 String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
-                int i4 = Theme.key_chat_messageLinkIn;
-                textInfoCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i4, 0, new Runnable() {
+                int i5 = Theme.key_chat_messageLinkIn;
+                textInfoCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i5, 0, new Runnable() {
                     @Override
                     public final void run() {
                         PremiumPreviewBottomSheet.Adapter.this.lambda$onCreateViewHolder$0();
                     }
-                }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i4, 0, new Runnable() {
+                }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i5, 0, new Runnable() {
                     @Override
                     public final void run() {
                         PremiumPreviewBottomSheet.Adapter.this.lambda$onCreateViewHolder$1();
@@ -760,8 +761,10 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             int i2 = premiumPreviewBottomSheet.featuresStartRow;
             if (i >= i2 && i < premiumPreviewBottomSheet.featuresEndRow) {
                 ((PremiumFeatureCell) viewHolder.itemView).setData(premiumPreviewBottomSheet.premiumFeatures.get(i - i2), i != PremiumPreviewBottomSheet.this.featuresEndRow - 1);
-            } else if (i < premiumPreviewBottomSheet.additionStartRow || i >= premiumPreviewBottomSheet.additionEndRow) {
             } else {
+                if (i < premiumPreviewBottomSheet.additionStartRow || i >= premiumPreviewBottomSheet.additionEndRow) {
+                    return;
+                }
                 premiumPreviewBottomSheet.onBindAdditionCell(viewHolder.itemView, i);
             }
         }
@@ -780,22 +783,22 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             if (i >= premiumPreviewBottomSheet.additionStartRow && i < premiumPreviewBottomSheet.additionEndRow) {
                 return premiumPreviewBottomSheet.getAdditionItemViewType(i);
             }
-            if (i < premiumPreviewBottomSheet.featuresStartRow || i >= premiumPreviewBottomSheet.featuresEndRow) {
-                if (i == premiumPreviewBottomSheet.sectionRow) {
-                    return 2;
-                }
-                if (i == premiumPreviewBottomSheet.buttonRow) {
-                    return 3;
-                }
-                if (i == premiumPreviewBottomSheet.helpUsRow) {
-                    return 4;
-                }
-                if (i == premiumPreviewBottomSheet.termsRow) {
-                    return 5;
-                }
-                return super.getItemViewType(i);
+            if (i >= premiumPreviewBottomSheet.featuresStartRow && i < premiumPreviewBottomSheet.featuresEndRow) {
+                return 1;
             }
-            return 1;
+            if (i == premiumPreviewBottomSheet.sectionRow) {
+                return 2;
+            }
+            if (i == premiumPreviewBottomSheet.buttonRow) {
+                return 3;
+            }
+            if (i == premiumPreviewBottomSheet.helpUsRow) {
+                return 4;
+            }
+            if (i == premiumPreviewBottomSheet.termsRow) {
+                return 5;
+            }
+            return super.getItemViewType(i);
         }
 
         @Override

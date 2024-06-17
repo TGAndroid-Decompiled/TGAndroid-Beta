@@ -15,6 +15,8 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.telegram.messenger.FileLog;
+
 public abstract class JobIntentService extends Service {
     static final boolean DEBUG = false;
     static final String TAG = "JobIntentService";
@@ -70,8 +72,10 @@ public abstract class JobIntentService extends Service {
             if (!this.mHasJobId) {
                 this.mHasJobId = true;
                 this.mJobId = i;
-            } else if (this.mJobId == i) {
             } else {
+                if (this.mJobId == i) {
+                    return;
+                }
                 throw new IllegalArgumentException("Given job ID " + i + " is different than previous " + this.mJobId);
             }
         }
@@ -124,8 +128,13 @@ public abstract class JobIntentService extends Service {
             synchronized (this) {
                 if (!this.mServiceProcessing) {
                     this.mServiceProcessing = true;
-                    this.mRunWakeLock.acquire(120000L);
-                    this.mLaunchWakeLock.release();
+                    try {
+                        this.mRunWakeLock.acquire(120000L);
+                        this.mLaunchWakeLock.release();
+                    } catch (Throwable th) {
+                        FileLog.e(th);
+                        this.mServiceProcessing = false;
+                    }
                 }
             }
         }
@@ -214,11 +223,11 @@ public abstract class JobIntentService extends Service {
                 } catch (Throwable unused) {
                     jobWorkItem = null;
                 }
-                if (jobWorkItem != null) {
-                    jobWorkItem.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
-                    return new WrapperWorkItem(jobWorkItem);
+                if (jobWorkItem == null) {
+                    return null;
                 }
-                return null;
+                jobWorkItem.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
+                return new WrapperWorkItem(jobWorkItem);
             }
         }
     }
@@ -304,27 +313,27 @@ public abstract class JobIntentService extends Service {
         if (Build.VERSION.SDK_INT >= 26) {
             this.mJobImpl = new JobServiceEngineImpl(this);
             this.mCompatWorkEnqueuer = null;
-            return;
+        } else {
+            this.mJobImpl = null;
+            this.mCompatWorkEnqueuer = getWorkEnqueuer(this, new ComponentName(this, getClass()), false, 0);
         }
-        this.mJobImpl = null;
-        this.mCompatWorkEnqueuer = getWorkEnqueuer(this, new ComponentName(this, getClass()), false, 0);
     }
 
     @Override
     public int onStartCommand(Intent intent, int i, int i2) {
-        if (this.mCompatQueue != null) {
-            this.mCompatWorkEnqueuer.serviceStartReceived();
-            synchronized (this.mCompatQueue) {
-                ArrayList<CompatWorkItem> arrayList = this.mCompatQueue;
-                if (intent == null) {
-                    intent = new Intent();
-                }
-                arrayList.add(new CompatWorkItem(intent, i2));
-                ensureProcessorRunningLocked(true);
-            }
-            return 3;
+        if (this.mCompatQueue == null) {
+            return 2;
         }
-        return 2;
+        this.mCompatWorkEnqueuer.serviceStartReceived();
+        synchronized (this.mCompatQueue) {
+            ArrayList<CompatWorkItem> arrayList = this.mCompatQueue;
+            if (intent == null) {
+                intent = new Intent();
+            }
+            arrayList.add(new CompatWorkItem(intent, i2));
+            ensureProcessorRunningLocked(true);
+        }
+        return 3;
     }
 
     @Override
@@ -349,7 +358,7 @@ public abstract class JobIntentService extends Service {
     }
 
     public static void enqueueWork(Context context, Class cls, int i, Intent intent) {
-        enqueueWork(context, new ComponentName(context, cls), i, intent);
+        enqueueWork(context, new ComponentName(context, (Class<?>) cls), i, intent);
     }
 
     public static void enqueueWork(Context context, ComponentName componentName, int i, Intent intent) {
@@ -367,19 +376,20 @@ public abstract class JobIntentService extends Service {
         WorkEnqueuer compatWorkEnqueuer;
         HashMap<ComponentName, WorkEnqueuer> hashMap = sClassWorkEnqueuer;
         WorkEnqueuer workEnqueuer = hashMap.get(componentName);
-        if (workEnqueuer == null) {
-            if (Build.VERSION.SDK_INT < 26) {
-                compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
-            } else if (!z) {
-                throw new IllegalArgumentException("Can't be here without a job id");
-            } else {
-                compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
-            }
-            WorkEnqueuer workEnqueuer2 = compatWorkEnqueuer;
-            hashMap.put(componentName, workEnqueuer2);
-            return workEnqueuer2;
+        if (workEnqueuer != null) {
+            return workEnqueuer;
         }
-        return workEnqueuer;
+        if (Build.VERSION.SDK_INT < 26) {
+            compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
+        } else {
+            if (!z) {
+                throw new IllegalArgumentException("Can't be here without a job id");
+            }
+            compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
+        }
+        WorkEnqueuer workEnqueuer2 = compatWorkEnqueuer;
+        hashMap.put(componentName, workEnqueuer2);
+        return workEnqueuer2;
     }
 
     public void setInterruptIfStopped(boolean z) {
@@ -431,10 +441,10 @@ public abstract class JobIntentService extends Service {
             return compatJobEngine.dequeueWork();
         }
         synchronized (this.mCompatQueue) {
-            if (this.mCompatQueue.size() > 0) {
-                return this.mCompatQueue.remove(0);
+            if (this.mCompatQueue.size() <= 0) {
+                return null;
             }
-            return null;
+            return this.mCompatQueue.remove(0);
         }
     }
 }

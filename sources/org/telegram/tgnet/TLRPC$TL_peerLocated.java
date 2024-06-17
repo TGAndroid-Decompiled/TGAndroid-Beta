@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_peerLocated extends TLRPC$PeerLocated {
     public int distance;
     public int expires;

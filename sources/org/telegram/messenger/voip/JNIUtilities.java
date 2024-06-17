@@ -16,8 +16,10 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
+import java.util.Iterator;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
+
 public class JNIUtilities {
     public static int getMaxVideoResolution() {
         return 320;
@@ -47,9 +49,10 @@ public class JNIUtilities {
             if (activeNetwork == null || (linkProperties = connectivityManager.getLinkProperties(activeNetwork)) == null) {
                 return null;
             }
+            Iterator<LinkAddress> it = linkProperties.getLinkAddresses().iterator();
             String str2 = null;
-            for (LinkAddress linkAddress : linkProperties.getLinkAddresses()) {
-                InetAddress address = linkAddress.getAddress();
+            while (it.hasNext()) {
+                InetAddress address = it.next().getAddress();
                 if (address instanceof Inet4Address) {
                     if (!address.isLinkLocalAddress()) {
                         str = address.getHostAddress();

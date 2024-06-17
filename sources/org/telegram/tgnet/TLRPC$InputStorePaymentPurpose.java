@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$InputStorePaymentPurpose extends TLObject {
     public static TLRPC$InputStorePaymentPurpose TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InputStorePaymentPurpose tLRPC$TL_inputStorePaymentPremiumGiftCode;

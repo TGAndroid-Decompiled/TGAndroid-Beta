@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import kotlin.Result;
 import kotlin.ResultKt;
@@ -13,6 +14,7 @@ import kotlin.jvm.JvmClassMappingKt;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.CopyableThrowable;
+
 public final class ExceptionsConstructorKt {
     private static final CtorCache ctorCache;
     private static final int throwableFields = fieldsCountOrDefault(Throwable.class, -1);
@@ -46,7 +48,7 @@ public final class ExceptionsConstructorKt {
     }
 
     public static final <E extends Throwable> Function1<Throwable, Throwable> createConstructor(Class<E> cls) {
-        List<Constructor> sortedWith;
+        List sortedWith;
         ExceptionsConstructorKt$createConstructor$nullResult$1 exceptionsConstructorKt$createConstructor$nullResult$1 = new Function1() {
             @Override
             public final Void invoke(Throwable th) {
@@ -64,8 +66,9 @@ public final class ExceptionsConstructorKt {
                 return compareValues;
             }
         });
-        for (Constructor constructor : sortedWith) {
-            Function1<Throwable, Throwable> createSafeConstructor = createSafeConstructor(constructor);
+        Iterator it = sortedWith.iterator();
+        while (it.hasNext()) {
+            Function1<Throwable, Throwable> createSafeConstructor = createSafeConstructor((Constructor) it.next());
             if (createSafeConstructor != null) {
                 return createSafeConstructor;
             }
@@ -76,40 +79,38 @@ public final class ExceptionsConstructorKt {
     private static final Function1<Throwable, Throwable> createSafeConstructor(final Constructor<?> constructor) {
         Class<?>[] parameterTypes = constructor.getParameterTypes();
         int length = parameterTypes.length;
-        if (length != 0) {
-            if (length != 1) {
-                if (length == 2 && Intrinsics.areEqual(parameterTypes[0], String.class) && Intrinsics.areEqual(parameterTypes[1], Throwable.class)) {
-                    return new Function1<Throwable, Throwable>() {
-                        {
-                            super(1);
-                        }
-
-                        @Override
-                        public final Throwable invoke(Throwable th) {
-                            Object m156constructorimpl;
-                            Object newInstance;
-                            try {
-                                Result.Companion companion = Result.Companion;
-                                newInstance = constructor.newInstance(th.getMessage(), th);
-                            } catch (Throwable th2) {
-                                Result.Companion companion2 = Result.Companion;
-                                m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
-                            }
-                            if (newInstance == null) {
-                                throw new NullPointerException("null cannot be cast to non-null type kotlin.Throwable");
-                            }
-                            m156constructorimpl = Result.m156constructorimpl((Throwable) newInstance);
-                            if (Result.m158isFailureimpl(m156constructorimpl)) {
-                                m156constructorimpl = null;
-                            }
-                            return (Throwable) m156constructorimpl;
-                        }
-                    };
+        if (length == 0) {
+            return new Function1<Throwable, Throwable>() {
+                {
+                    super(1);
                 }
-                return null;
-            }
-            Class<?> cls = parameterTypes[0];
-            if (Intrinsics.areEqual(cls, Throwable.class)) {
+
+                @Override
+                public final Throwable invoke(Throwable th) {
+                    Object m156constructorimpl;
+                    Object newInstance;
+                    try {
+                        Result.Companion companion = Result.Companion;
+                        newInstance = constructor.newInstance(new Object[0]);
+                    } catch (Throwable th2) {
+                        Result.Companion companion2 = Result.Companion;
+                        m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
+                    }
+                    if (newInstance == null) {
+                        throw new NullPointerException("null cannot be cast to non-null type kotlin.Throwable");
+                    }
+                    Throwable th3 = (Throwable) newInstance;
+                    th3.initCause(th);
+                    m156constructorimpl = Result.m156constructorimpl(th3);
+                    if (Result.m158isFailureimpl(m156constructorimpl)) {
+                        m156constructorimpl = null;
+                    }
+                    return (Throwable) m156constructorimpl;
+                }
+            };
+        }
+        if (length != 1) {
+            if (length == 2 && Intrinsics.areEqual(parameterTypes[0], String.class) && Intrinsics.areEqual(parameterTypes[1], Throwable.class)) {
                 return new Function1<Throwable, Throwable>() {
                     {
                         super(1);
@@ -121,7 +122,7 @@ public final class ExceptionsConstructorKt {
                         Object newInstance;
                         try {
                             Result.Companion companion = Result.Companion;
-                            newInstance = constructor.newInstance(th);
+                            newInstance = constructor.newInstance(th.getMessage(), th);
                         } catch (Throwable th2) {
                             Result.Companion companion2 = Result.Companion;
                             m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
@@ -137,70 +138,72 @@ public final class ExceptionsConstructorKt {
                     }
                 };
             }
-            if (Intrinsics.areEqual(cls, String.class)) {
-                return new Function1<Throwable, Throwable>() {
-                    {
-                        super(1);
-                    }
-
-                    @Override
-                    public final Throwable invoke(Throwable th) {
-                        Object m156constructorimpl;
-                        Object newInstance;
-                        try {
-                            Result.Companion companion = Result.Companion;
-                            newInstance = constructor.newInstance(th.getMessage());
-                        } catch (Throwable th2) {
-                            Result.Companion companion2 = Result.Companion;
-                            m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
-                        }
-                        if (newInstance == null) {
-                            throw new NullPointerException("null cannot be cast to non-null type kotlin.Throwable");
-                        }
-                        Throwable th3 = (Throwable) newInstance;
-                        th3.initCause(th);
-                        m156constructorimpl = Result.m156constructorimpl(th3);
-                        if (Result.m158isFailureimpl(m156constructorimpl)) {
-                            m156constructorimpl = null;
-                        }
-                        return (Throwable) m156constructorimpl;
-                    }
-                };
-            }
             return null;
         }
-        return new Function1<Throwable, Throwable>() {
-            {
-                super(1);
-            }
+        Class<?> cls = parameterTypes[0];
+        if (Intrinsics.areEqual(cls, Throwable.class)) {
+            return new Function1<Throwable, Throwable>() {
+                {
+                    super(1);
+                }
 
-            @Override
-            public final Throwable invoke(Throwable th) {
-                Object m156constructorimpl;
-                Object newInstance;
-                try {
-                    Result.Companion companion = Result.Companion;
-                    newInstance = constructor.newInstance(new Object[0]);
-                } catch (Throwable th2) {
-                    Result.Companion companion2 = Result.Companion;
-                    m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
+                @Override
+                public final Throwable invoke(Throwable th) {
+                    Object m156constructorimpl;
+                    Object newInstance;
+                    try {
+                        Result.Companion companion = Result.Companion;
+                        newInstance = constructor.newInstance(th);
+                    } catch (Throwable th2) {
+                        Result.Companion companion2 = Result.Companion;
+                        m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
+                    }
+                    if (newInstance == null) {
+                        throw new NullPointerException("null cannot be cast to non-null type kotlin.Throwable");
+                    }
+                    m156constructorimpl = Result.m156constructorimpl((Throwable) newInstance);
+                    if (Result.m158isFailureimpl(m156constructorimpl)) {
+                        m156constructorimpl = null;
+                    }
+                    return (Throwable) m156constructorimpl;
                 }
-                if (newInstance == null) {
-                    throw new NullPointerException("null cannot be cast to non-null type kotlin.Throwable");
+            };
+        }
+        if (Intrinsics.areEqual(cls, String.class)) {
+            return new Function1<Throwable, Throwable>() {
+                {
+                    super(1);
                 }
-                Throwable th3 = (Throwable) newInstance;
-                th3.initCause(th);
-                m156constructorimpl = Result.m156constructorimpl(th3);
-                if (Result.m158isFailureimpl(m156constructorimpl)) {
-                    m156constructorimpl = null;
+
+                @Override
+                public final Throwable invoke(Throwable th) {
+                    Object m156constructorimpl;
+                    Object newInstance;
+                    try {
+                        Result.Companion companion = Result.Companion;
+                        newInstance = constructor.newInstance(th.getMessage());
+                    } catch (Throwable th2) {
+                        Result.Companion companion2 = Result.Companion;
+                        m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th2));
+                    }
+                    if (newInstance == null) {
+                        throw new NullPointerException("null cannot be cast to non-null type kotlin.Throwable");
+                    }
+                    Throwable th3 = (Throwable) newInstance;
+                    th3.initCause(th);
+                    m156constructorimpl = Result.m156constructorimpl(th3);
+                    if (Result.m158isFailureimpl(m156constructorimpl)) {
+                        m156constructorimpl = null;
+                    }
+                    return (Throwable) m156constructorimpl;
                 }
-                return (Throwable) m156constructorimpl;
-            }
-        };
+            };
+        }
+        return null;
     }
 
     private static final int fieldsCountOrDefault(Class<?> cls, int i) {
-        Integer m156constructorimpl;
+        Object m156constructorimpl;
         JvmClassMappingKt.getKotlinClass(cls);
         try {
             Result.Companion companion = Result.Companion;

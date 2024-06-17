@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.LineViewData;
+
 public class LinearBarChartView extends BaseChartView<ChartData, LineViewData> {
     public LinearBarChartView(Context context) {
         super(context);

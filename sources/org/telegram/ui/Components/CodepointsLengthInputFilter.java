@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.text.InputFilter;
 import android.text.Spanned;
+
 public class CodepointsLengthInputFilter implements InputFilter {
     private final int mMax;
 

@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Reaction;
+
 public class TL_stories$MediaArea extends TLObject {
     public TL_stories$TL_mediaAreaCoordinates coordinates;
     public boolean dark;

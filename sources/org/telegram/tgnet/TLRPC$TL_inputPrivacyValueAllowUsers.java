@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_inputPrivacyValueAllowUsers extends TLRPC$InputPrivacyRule {
     public ArrayList<TLRPC$InputUser> users = new ArrayList<>();
 

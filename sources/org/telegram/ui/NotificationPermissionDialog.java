@@ -33,6 +33,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.NotificationPermissionDialog;
+
 public class NotificationPermissionDialog extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private CounterView counterView;
     private boolean mayBeAccidentalDismiss;
@@ -66,7 +67,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 NotificationPermissionDialog.this.lambda$new$0(view);
             }
         });
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, (int) R.styleable.AppCompatTheme_textColorAlertDialogListItem));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, R.styleable.AppCompatTheme_textColorAlertDialogListItem));
         TextView textView = new TextView(context);
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2));

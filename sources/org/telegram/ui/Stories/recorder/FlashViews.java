@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class FlashViews {
     private ValueAnimator animator;
     public final View backgroundView;
@@ -240,13 +241,9 @@ public class FlashViews {
             return;
         }
         if (Build.VERSION.SDK_INT >= 29) {
-            int i = this.lastWidth;
-            int i2 = this.lastHeight;
-            this.gradient = new RadialGradient(i * 0.5f, i2 * 0.4f, (Math.min(i, i2) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = new RadialGradient(this.lastWidth * 0.5f, this.lastHeight * 0.4f, (Math.min(r2, r7) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         } else {
-            int i3 = this.lastWidth;
-            int i4 = this.lastHeight;
-            this.gradient = new RadialGradient(i3 * 0.5f, 0.4f * i4, (Math.min(i3, i4) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = new RadialGradient(this.lastWidth * 0.5f, 0.4f * this.lastHeight, (Math.min(r2, r7) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         }
         this.paint.setShader(this.gradient);
         invalidate();

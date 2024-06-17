@@ -47,6 +47,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlertContactsLayout;
+
 public class PhonebookShareAlert extends BottomSheet {
     private ActionBar actionBar;
     private AnimatorSet actionBarAnimation;
@@ -298,27 +299,28 @@ public class PhonebookShareAlert extends BottomSheet {
                     FileLog.e(e);
                     return;
                 }
-            } else if (i4 == 1) {
+            }
+            if (i4 == 1) {
                 Browser.openUrl(this.parentFragment.getParentActivity(), "mailto:" + vcardItem.getValue(false));
                 return;
-            } else if (i4 == 3) {
+            }
+            if (i4 == 3) {
                 String value = vcardItem.getValue(false);
                 if (!value.startsWith("http")) {
                     value = "http://" + value;
                 }
                 Browser.openUrl(this.parentFragment.getParentActivity(), value);
                 return;
-            } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
-                builder.setItems(new CharSequence[]{LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i5) {
-                        PhonebookShareAlert.this.lambda$new$1(vcardItem, dialogInterface, i5);
-                    }
-                });
-                builder.show();
-                return;
             }
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
+            builder.setItems(new CharSequence[]{LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    PhonebookShareAlert.this.lambda$new$1(vcardItem, dialogInterface, i5);
+                }
+            });
+            builder.show();
+            return;
         }
         vcardItem.checked = !vcardItem.checked;
         if (i >= this.phoneStartRow && i < this.phoneEndRow) {
@@ -405,27 +407,49 @@ public class PhonebookShareAlert extends BottomSheet {
                     if (str.startsWith("X-")) {
                         contentValues.put("data2", (Integer) 0);
                         contentValues.put("data3", str.substring(2));
-                    } else if ("PREF".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("PREF".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 12);
-                    } else if ("HOME".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("HOME".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 1);
-                    } else if ("MOBILE".equalsIgnoreCase(str) || "CELL".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("MOBILE".equalsIgnoreCase(str) || "CELL".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 2);
-                    } else if ("OTHER".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("OTHER".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 7);
-                    } else if ("WORK".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("WORK".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 3);
-                    } else if ("RADIO".equalsIgnoreCase(str) || "VOICE".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("RADIO".equalsIgnoreCase(str) || "VOICE".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 14);
-                    } else if ("PAGER".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("PAGER".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 6);
-                    } else if ("CALLBACK".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("CALLBACK".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 8);
-                    } else if ("CAR".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("CAR".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 9);
-                    } else if ("ASSISTANT".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("ASSISTANT".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 19);
-                    } else if ("MMS".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("MMS".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 20);
                     } else if (str.startsWith("FAX")) {
                         contentValues.put("data2", (Integer) 4);
@@ -439,17 +463,29 @@ public class PhonebookShareAlert extends BottomSheet {
                     if (str.startsWith("X-")) {
                         contentValues.put("data2", (Integer) 0);
                         contentValues.put("data3", str.substring(2));
-                    } else if ("HOMEPAGE".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("HOMEPAGE".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 1);
-                    } else if ("BLOG".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("BLOG".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 2);
-                    } else if ("PROFILE".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("PROFILE".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 3);
-                    } else if ("HOME".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("HOME".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 4);
-                    } else if ("WORK".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("WORK".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 5);
-                    } else if ("FTP".equalsIgnoreCase(str)) {
+                        return;
+                    }
+                    if ("FTP".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 6);
                     } else if ("OTHER".equalsIgnoreCase(str)) {
                         contentValues.put("data2", (Integer) 7);
@@ -705,10 +741,10 @@ public class PhonebookShareAlert extends BottomSheet {
                     PhonebookShareAlert.this.lambda$new$4(z, i2);
                 }
             }, resourcesProvider);
-            return;
+        } else {
+            this.delegate.didSelectContact(this.currentUser, true, 0, 0L, false);
+            dismiss();
         }
-        this.delegate.didSelectContact(this.currentUser, true, 0, 0L, false);
-        dismiss();
     }
 
     public void lambda$new$4(boolean z, int i) {
@@ -796,12 +832,12 @@ public class PhonebookShareAlert extends BottomSheet {
                 Property property = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = z2 ? 1.0f : 0.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(actionBar, property, fArr);
+                animatorArr[0] = ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, fArr);
                 View view = this.actionBarShadow;
                 Property property2 = View.ALPHA;
                 float[] fArr2 = new float[1];
                 fArr2[0] = z2 ? 1.0f : 0.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(view, property2, fArr2);
+                animatorArr[1] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, fArr2);
                 animatorSet3.playTogether(animatorArr);
                 this.actionBarAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -841,7 +877,7 @@ public class PhonebookShareAlert extends BottomSheet {
             Property property3 = View.ALPHA;
             float[] fArr3 = new float[1];
             fArr3[0] = z3 ? 1.0f : 0.0f;
-            animatorArr2[0] = ObjectAnimator.ofFloat(view2, property3, fArr3);
+            animatorArr2[0] = ObjectAnimator.ofFloat(view2, (Property<View, Float>) property3, fArr3);
             animatorSet6.playTogether(animatorArr2);
             this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override

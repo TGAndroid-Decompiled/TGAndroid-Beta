@@ -16,6 +16,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TextCheckbox2Cell extends FrameLayout {
     private int animatedColorBackground;
     private Paint animationPaint;

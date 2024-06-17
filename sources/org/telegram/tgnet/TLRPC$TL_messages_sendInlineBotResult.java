@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
     public boolean background;
     public boolean clear_draft;

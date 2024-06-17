@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_missingInvitee extends TLObject {
     public int flags;
     public boolean premium_required_for_pm;

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
 import org.telegram.messenger.FileLog;
+
 @TargetApi(23)
 public final class FingerprintManagerCompatApi23 {
     private static FingerprintManager getFingerprintManager(Context context) {

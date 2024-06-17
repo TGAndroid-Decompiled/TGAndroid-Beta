@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_emojiStatuses extends TLRPC$account_EmojiStatuses {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

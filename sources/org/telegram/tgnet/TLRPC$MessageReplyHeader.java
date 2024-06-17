@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
+
 public abstract class TLRPC$MessageReplyHeader extends TLObject {
     public int flags;
     public boolean forum_topic;

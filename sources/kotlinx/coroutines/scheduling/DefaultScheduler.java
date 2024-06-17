@@ -1,4 +1,5 @@
 package kotlinx.coroutines.scheduling;
+
 public final class DefaultScheduler extends SchedulerCoroutineDispatcher {
     public static final DefaultScheduler INSTANCE = new DefaultScheduler();
 

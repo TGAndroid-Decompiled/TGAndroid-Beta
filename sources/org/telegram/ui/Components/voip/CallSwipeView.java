@@ -11,6 +11,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CallSwipeView extends View {
     private boolean animatingArrows;
     private Path arrow;

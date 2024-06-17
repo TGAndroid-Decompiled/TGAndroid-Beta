@@ -61,6 +61,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
+
 public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private int buttonRow;
     private PremiumGiftTierCell dummyCell;
@@ -194,8 +195,9 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                 }
             }
             if (BuildVars.useInvoiceBilling()) {
-                for (GiftTier giftTier2 : this.giftTiers) {
-                    giftTier2.setPricePerMonthRegular(j);
+                Iterator<GiftTier> it2 = this.giftTiers.iterator();
+                while (it2.hasNext()) {
+                    it2.next().setPricePerMonthRegular(j);
                 }
             } else if (!arrayList.isEmpty()) {
                 final long currentTimeMillis = System.currentTimeMillis();
@@ -245,8 +247,9 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                 }
             }
         }
-        for (GiftTier giftTier : this.giftTiers) {
-            giftTier.setPricePerMonthRegular(j2);
+        Iterator<GiftTier> it3 = this.giftTiers.iterator();
+        while (it3.hasNext()) {
+            it3.next().setPricePerMonthRegular(j2);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -292,15 +295,15 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                 }
             }, !LocaleController.isRTL);
             this.premiumButtonView.setFlickerDisabled(true);
-            return;
+        } else {
+            this.premiumButtonView.setButton(LocaleController.formatString(R.string.GiftSubscriptionFor, this.giftTiers.get(this.selectedTierIndex).getFormattedPrice()), new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    GiftPremiumBottomSheet.this.lambda$updateButtonText$5(view);
+                }
+            }, z);
+            this.premiumButtonView.setFlickerDisabled(false);
         }
-        this.premiumButtonView.setButton(LocaleController.formatString(R.string.GiftSubscriptionFor, this.giftTiers.get(this.selectedTierIndex).getFormattedPrice()), new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                GiftPremiumBottomSheet.this.lambda$updateButtonText$5(view);
-            }
-        }, z);
-        this.premiumButtonView.setFlickerDisabled(false);
     }
 
     public void lambda$updateButtonText$5(View view) {
@@ -326,7 +329,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.finishFragment();
+                        baseFragment.lambda$onBackPressed$303();
                     } else {
                         baseFragment.removeSelfFromStack();
                     }
@@ -359,32 +362,35 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                 }
                 Browser.openUrl(getBaseFragment().getParentActivity(), giftTier.giftOption.bot_url);
                 dismiss();
+                return;
             }
-        } else if (!BillingController.getInstance().isReady() || giftTier.googlePlayProductDetails == null) {
-        } else {
-            final TLRPC$TL_inputStorePaymentGiftPremium tLRPC$TL_inputStorePaymentGiftPremium = new TLRPC$TL_inputStorePaymentGiftPremium();
-            tLRPC$TL_inputStorePaymentGiftPremium.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(this.user);
-            ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = giftTier.googlePlayProductDetails.getOneTimePurchaseOfferDetails();
-            tLRPC$TL_inputStorePaymentGiftPremium.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
-            double priceAmountMicros = oneTimePurchaseOfferDetails.getPriceAmountMicros();
-            double pow = Math.pow(10.0d, 6.0d);
-            Double.isNaN(priceAmountMicros);
-            tLRPC$TL_inputStorePaymentGiftPremium.amount = (long) ((priceAmountMicros / pow) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tLRPC$TL_inputStorePaymentGiftPremium.currency)));
-            BillingController.getInstance().addResultListener(giftTier.giftOption.store_product, new Consumer() {
-                @Override
-                public final void accept(Object obj) {
-                    GiftPremiumBottomSheet.this.lambda$onGiftPremium$8((BillingResult) obj);
-                }
-            });
-            final TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium = new TLRPC$TL_payments_canPurchasePremium();
-            tLRPC$TL_payments_canPurchasePremium.purpose = tLRPC$TL_inputStorePaymentGiftPremium;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_canPurchasePremium, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    GiftPremiumBottomSheet.this.lambda$onGiftPremium$10(tLRPC$TL_inputStorePaymentGiftPremium, giftTier, tLRPC$TL_payments_canPurchasePremium, tLObject, tLRPC$TL_error);
-                }
-            });
+            return;
         }
+        if (!BillingController.getInstance().isReady() || giftTier.googlePlayProductDetails == null) {
+            return;
+        }
+        final TLRPC$TL_inputStorePaymentGiftPremium tLRPC$TL_inputStorePaymentGiftPremium = new TLRPC$TL_inputStorePaymentGiftPremium();
+        tLRPC$TL_inputStorePaymentGiftPremium.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(this.user);
+        ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = giftTier.googlePlayProductDetails.getOneTimePurchaseOfferDetails();
+        tLRPC$TL_inputStorePaymentGiftPremium.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
+        double priceAmountMicros = oneTimePurchaseOfferDetails.getPriceAmountMicros();
+        double pow = Math.pow(10.0d, 6.0d);
+        Double.isNaN(priceAmountMicros);
+        tLRPC$TL_inputStorePaymentGiftPremium.amount = (long) ((priceAmountMicros / pow) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tLRPC$TL_inputStorePaymentGiftPremium.currency)));
+        BillingController.getInstance().addResultListener(giftTier.giftOption.store_product, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                GiftPremiumBottomSheet.this.lambda$onGiftPremium$8((BillingResult) obj);
+            }
+        });
+        final TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium = new TLRPC$TL_payments_canPurchasePremium();
+        tLRPC$TL_payments_canPurchasePremium.purpose = tLRPC$TL_inputStorePaymentGiftPremium;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_canPurchasePremium, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                GiftPremiumBottomSheet.this.lambda$onGiftPremium$10(tLRPC$TL_inputStorePaymentGiftPremium, giftTier, tLRPC$TL_payments_canPurchasePremium, tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public void lambda$onGiftPremium$6() {
@@ -552,8 +558,10 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (i == GiftPremiumBottomSheet.this.headerRow) {
                 ((PremiumGiftHeaderCell) viewHolder.itemView).bind(GiftPremiumBottomSheet.this.user);
-            } else if (i < GiftPremiumBottomSheet.this.tiersStartRow || i >= GiftPremiumBottomSheet.this.tiersEndRow) {
             } else {
+                if (i < GiftPremiumBottomSheet.this.tiersStartRow || i >= GiftPremiumBottomSheet.this.tiersEndRow) {
+                    return;
+                }
                 PremiumGiftTierCell premiumGiftTierCell = (PremiumGiftTierCell) viewHolder.itemView;
                 premiumGiftTierCell.bind((GiftTier) GiftPremiumBottomSheet.this.giftTiers.get(i - GiftPremiumBottomSheet.this.tiersStartRow));
                 premiumGiftTierCell.setChecked(i - GiftPremiumBottomSheet.this.tiersStartRow == GiftPremiumBottomSheet.this.selectedTierIndex, false);
@@ -565,13 +573,13 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
             if (i == GiftPremiumBottomSheet.this.headerRow) {
                 return 0;
             }
-            if (i < GiftPremiumBottomSheet.this.tiersStartRow || i >= GiftPremiumBottomSheet.this.tiersEndRow) {
-                if (i == GiftPremiumBottomSheet.this.footerRow) {
-                    return 2;
-                }
-                return i == GiftPremiumBottomSheet.this.buttonRow ? 3 : 0;
+            if (i >= GiftPremiumBottomSheet.this.tiersStartRow && i < GiftPremiumBottomSheet.this.tiersEndRow) {
+                return 1;
             }
-            return 1;
+            if (i == GiftPremiumBottomSheet.this.footerRow) {
+                return 2;
+            }
+            return i == GiftPremiumBottomSheet.this.buttonRow ? 3 : 0;
         }
 
         @Override

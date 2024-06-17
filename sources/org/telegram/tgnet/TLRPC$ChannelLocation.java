@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$ChannelLocation extends TLObject {
     public static TLRPC$ChannelLocation TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$ChannelLocation tLRPC$ChannelLocation;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageMediaVenue extends TLRPC$MessageMedia {
     public String emoji;
     public String icon;

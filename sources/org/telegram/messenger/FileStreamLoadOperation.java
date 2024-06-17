@@ -22,6 +22,7 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.webrtc.MediaStreamTrack;
+
 public class FileStreamLoadOperation extends BaseDataSource implements FileLoadOperationStream {
     public static final ConcurrentHashMap<Long, FileStreamLoadOperation> allStreams = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<Long, Integer> priorityMap = new ConcurrentHashMap<>();
@@ -214,8 +215,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
                 bArr = new byte[0];
             }
             sb.append(Utilities.bytesToHex(bArr));
-            String sb2 = sb.toString();
-            return Uri.parse("tg://" + attachFileName + sb2);
+            return Uri.parse("tg://" + attachFileName + sb.toString());
         } catch (UnsupportedEncodingException e) {
             FileLog.e(e);
             return null;

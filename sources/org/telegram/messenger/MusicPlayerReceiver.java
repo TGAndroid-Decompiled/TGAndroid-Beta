@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
+
 public class MusicPlayerReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -21,18 +22,21 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                     MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
                     return;
                 }
-            } else if (keyCode == 87) {
+            }
+            if (keyCode == 87) {
                 MediaController.getInstance().playNextMessage();
                 return;
-            } else if (keyCode == 88) {
+            }
+            if (keyCode == 88) {
                 MediaController.getInstance().playPreviousMessage();
                 return;
             } else if (keyCode == 126) {
                 MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
                 return;
-            } else if (keyCode != 127) {
-                return;
             } else {
+                if (keyCode != 127) {
+                    return;
+                }
                 MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
                 return;
             }

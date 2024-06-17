@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_getPremiumGiftCodeOptions extends TLObject {
     public static int constructor = 660060756;
     public TLRPC$InputPeer boost_peer;

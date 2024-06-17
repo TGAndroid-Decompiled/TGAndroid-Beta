@@ -16,6 +16,7 @@ import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
 import org.webrtc.VideoEncoder;
 import org.webrtc.VideoFrame;
+
 @TargetApi(19)
 public class HardwareVideoEncoder implements VideoEncoder {
     private static final int DEQUEUE_OUTPUT_BUFFER_TIMEOUT_US = 100000;
@@ -225,33 +226,33 @@ public class HardwareVideoEncoder implements VideoEncoder {
         int width = videoFrame.getBuffer().getWidth();
         int height = videoFrame.getBuffer().getHeight();
         boolean z2 = canUseSurface() && z;
-        if ((width == this.width && height == this.height && z2 == this.useSurfaceMode) || (resetCodec = resetCodec(width, height, z2)) == VideoCodecStatus.OK) {
-            if (this.outputBuilders.size() > 2) {
-                Logging.e(TAG, "Dropped frame, encoder queue full");
-                return VideoCodecStatus.NO_OUTPUT;
-            }
-            boolean z3 = false;
-            for (EncodedImage.FrameType frameType : encodeInfo.frameTypes) {
-                if (frameType == EncodedImage.FrameType.VideoFrameKey) {
-                    z3 = true;
-                }
-            }
-            if (z3 || shouldForceKeyFrame(videoFrame.getTimestampNs())) {
-                requestKeyFrame(videoFrame.getTimestampNs());
-            }
-            int height2 = ((buffer.getHeight() * buffer.getWidth()) * 3) / 2;
-            this.outputBuilders.offer(EncodedImage.builder().setCaptureTimeNs(videoFrame.getTimestampNs()).setEncodedWidth(videoFrame.getBuffer().getWidth()).setEncodedHeight(videoFrame.getBuffer().getHeight()).setRotation(videoFrame.getRotation()));
-            if (this.useSurfaceMode) {
-                encodeByteBuffer = encodeTextureBuffer(videoFrame);
-            } else {
-                encodeByteBuffer = encodeByteBuffer(videoFrame, buffer, height2);
-            }
-            if (encodeByteBuffer != VideoCodecStatus.OK) {
-                this.outputBuilders.pollLast();
-            }
-            return encodeByteBuffer;
+        if ((width != this.width || height != this.height || z2 != this.useSurfaceMode) && (resetCodec = resetCodec(width, height, z2)) != VideoCodecStatus.OK) {
+            return resetCodec;
         }
-        return resetCodec;
+        if (this.outputBuilders.size() > 2) {
+            Logging.e(TAG, "Dropped frame, encoder queue full");
+            return VideoCodecStatus.NO_OUTPUT;
+        }
+        boolean z3 = false;
+        for (EncodedImage.FrameType frameType : encodeInfo.frameTypes) {
+            if (frameType == EncodedImage.FrameType.VideoFrameKey) {
+                z3 = true;
+            }
+        }
+        if (z3 || shouldForceKeyFrame(videoFrame.getTimestampNs())) {
+            requestKeyFrame(videoFrame.getTimestampNs());
+        }
+        int height2 = ((buffer.getHeight() * buffer.getWidth()) * 3) / 2;
+        this.outputBuilders.offer(EncodedImage.builder().setCaptureTimeNs(videoFrame.getTimestampNs()).setEncodedWidth(videoFrame.getBuffer().getWidth()).setEncodedHeight(videoFrame.getBuffer().getHeight()).setRotation(videoFrame.getRotation()));
+        if (this.useSurfaceMode) {
+            encodeByteBuffer = encodeTextureBuffer(videoFrame);
+        } else {
+            encodeByteBuffer = encodeByteBuffer(videoFrame, buffer, height2);
+        }
+        if (encodeByteBuffer != VideoCodecStatus.OK) {
+            this.outputBuilders.pollLast();
+        }
+        return encodeByteBuffer;
     }
 
     private VideoCodecStatus encodeTextureBuffer(VideoFrame videoFrame) {
@@ -502,13 +503,13 @@ public class HardwareVideoEncoder implements VideoEncoder {
         abstract void fillBuffer(ByteBuffer byteBuffer, VideoFrame.Buffer buffer);
 
         static YuvFormat valueOf(int i) {
-            if (i != 19) {
-                if (i == 21 || i == 2141391872 || i == 2141391876) {
-                    return NV12;
-                }
-                throw new IllegalArgumentException("Unsupported colorFormat: " + i);
+            if (i == 19) {
+                return I420;
             }
-            return I420;
+            if (i == 21 || i == 2141391872 || i == 2141391876) {
+                return NV12;
+            }
+            throw new IllegalArgumentException("Unsupported colorFormat: " + i);
         }
     }
 }

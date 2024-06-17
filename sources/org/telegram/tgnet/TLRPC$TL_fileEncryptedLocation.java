@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_fileEncryptedLocation extends TLRPC$FileLocation {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

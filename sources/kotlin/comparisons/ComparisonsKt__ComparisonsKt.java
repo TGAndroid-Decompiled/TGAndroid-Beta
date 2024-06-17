@@ -1,4 +1,5 @@
 package kotlin.comparisons;
+
 public class ComparisonsKt__ComparisonsKt {
     public static <T extends Comparable<?>> int compareValues(T t, T t2) {
         if (t == t2) {

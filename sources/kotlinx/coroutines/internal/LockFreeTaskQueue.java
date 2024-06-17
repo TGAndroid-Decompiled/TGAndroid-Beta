@@ -1,6 +1,7 @@
 package kotlinx.coroutines.internal;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
 public class LockFreeTaskQueue<E> {
     private static final AtomicReferenceFieldUpdater _cur$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeTaskQueue.class, Object.class, "_cur");
     private volatile Object _cur;
@@ -18,8 +19,9 @@ public class LockFreeTaskQueue<E> {
             LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) this._cur;
             if (lockFreeTaskQueueCore.close()) {
                 return;
+            } else {
+                _cur$FU.compareAndSet(this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
             }
-            _cur$FU.compareAndSet(this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
         }
     }
 

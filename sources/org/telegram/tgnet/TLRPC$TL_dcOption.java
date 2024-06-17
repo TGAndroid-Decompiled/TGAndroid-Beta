@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_dcOption extends TLObject {
     public boolean cdn;
     public int flags;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_documentAttributeSticker_layer55 extends TLRPC$TL_documentAttributeSticker {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

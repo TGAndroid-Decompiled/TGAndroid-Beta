@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_account_connectedBots extends TLObject {
     public static int constructor = 400029819;
     public ArrayList<TLRPC$TL_connectedBot> connected_bots = new ArrayList<>();
@@ -36,11 +37,11 @@ public class TLRPC$TL_account_connectedBots extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
             }
-            return;
-        }
-        int readInt324 = abstractSerializedData.readInt32(z);
-        for (int i2 = 0; i2 < readInt324; i2++) {
-            this.users.add(TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+        } else {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt324; i2++) {
+                this.users.add(TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+            }
         }
     }
 

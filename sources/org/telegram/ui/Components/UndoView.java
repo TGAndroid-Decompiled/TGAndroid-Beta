@@ -20,6 +20,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.CharacterStyle;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -46,6 +47,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.PaymentFormActivity;
+
 @Deprecated
 public class UndoView extends FrameLayout {
     public static int ACTION_RINGTONE_ADDED = 83;
@@ -325,7 +327,7 @@ public class UndoView extends FrameLayout {
                     animatorSet.playTogether(animatorArr);
                     animatorSet.setDuration(250L);
                 } else {
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f));
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.ALPHA, 0.0f));
                     animatorSet.setDuration(180L);
                 }
                 animatorSet.setInterpolator(new DecelerateInterpolator());
@@ -449,18 +451,16 @@ public class UndoView extends FrameLayout {
         }
         int i = this.currentAction;
         if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
-            long j = this.timeLeft;
-            int ceil = j > 0 ? (int) Math.ceil(((float) j) / 1000.0f) : 0;
+            int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) r6) / 1000.0f) : 0;
             if (this.prevSeconds != ceil) {
                 this.prevSeconds = ceil;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, ceil)));
-                this.timeLeftString = format;
+                this.timeLeftString = String.format("%d", Integer.valueOf(Math.max(1, ceil)));
                 StaticLayout staticLayout = this.timeLayout;
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
                     this.timeReplaceProgress = 0.0f;
                 }
-                this.textWidth = (int) Math.ceil(this.textPaint.measureText(format));
+                this.textWidth = (int) Math.ceil(this.textPaint.measureText(r0));
                 this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, ConnectionsManager.DEFAULT_DATACENTER_ID, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             float f = this.timeReplaceProgress;
@@ -501,10 +501,10 @@ public class UndoView extends FrameLayout {
             canvas.drawArc(this.rect, -90.0f, (((float) this.timeLeft) / 5000.0f) * (-360.0f), false, this.progressPaint);
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j2 = this.timeLeft - (elapsedRealtime - this.lastUpdateTime);
-        this.timeLeft = j2;
+        long j = this.timeLeft - (elapsedRealtime - this.lastUpdateTime);
+        this.timeLeft = j;
         this.lastUpdateTime = elapsedRealtime;
-        if (j2 <= 0) {
+        if (j <= 0) {
             hide(true, this.hideAnimationType);
         }
         if (this.currentAction != 82) {

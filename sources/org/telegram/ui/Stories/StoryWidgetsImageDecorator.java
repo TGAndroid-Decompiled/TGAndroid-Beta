@@ -11,6 +11,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaCoordinates;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+
 public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
     ArrayList<DrawingObject> drawingObjects;
     float imageH;
@@ -119,12 +120,13 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                 double d7 = f2;
                 double d8 = tL_stories$TL_mediaAreaCoordinates.w;
                 Double.isNaN(d7);
+                float f6 = (float) ((d7 * d8) / 100.0d);
                 double d9 = f4;
                 double d10 = tL_stories$TL_mediaAreaCoordinates.h;
                 Double.isNaN(d9);
-                float f6 = ((float) ((d7 * d8) / 100.0d)) / 2.0f;
-                float f7 = ((float) ((d9 * d10) / 100.0d)) / 2.0f;
-                this.storyReactionWidgetBackground.setBounds((int) (f3 - f6), (int) (f5 - f7), (int) (f6 + f3), (int) (f7 + f5));
+                float f7 = f6 / 2.0f;
+                float f8 = ((float) ((d9 * d10) / 100.0d)) / 2.0f;
+                this.storyReactionWidgetBackground.setBounds((int) (f3 - f7), (int) (f5 - f8), (int) (f7 + f3), (int) (f8 + f5));
                 this.storyReactionWidgetBackground.setAlpha((int) (255.0f * f));
                 canvas.save();
                 double d11 = this.mediaArea.coordinates.rotation;

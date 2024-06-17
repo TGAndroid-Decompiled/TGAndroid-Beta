@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_groupCall extends TLRPC$GroupCall {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

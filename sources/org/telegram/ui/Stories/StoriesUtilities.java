@@ -63,6 +63,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 public class StoriesUtilities {
     public static GradientTools closeFriendsGradientTools;
     public static GradientTools errorGradientTools;
@@ -195,9 +196,9 @@ public class StoriesUtilities {
         if (f == 0.0f) {
             RectF rectF2 = rectTmp;
             canvas.drawCircle(rectF2.centerX(), rectF2.centerY(), rectF2.width() / 2.0f, paint);
-            return;
+        } else {
+            canvas.drawArc(rectTmp, (f / 2.0f) + 360.0f, 360.0f - f, false, paint);
         }
-        canvas.drawArc(rectTmp, (f / 2.0f) + 360.0f, 360.0f - f, false, paint);
     }
 
     private static void drawSegment(Canvas canvas, RectF rectF, Paint paint, float f, float f2, AvatarStoryParams avatarStoryParams, boolean z) {
@@ -205,6 +206,8 @@ public class StoriesUtilities {
             float height = rectF.height() * 0.32f;
             float f3 = ((((int) f) / 90) * 90) + 90;
             float f4 = (-199.0f) + f3;
+            float f5 = (f - f4) / 360.0f;
+            float f6 = (f2 - f4) / 360.0f;
             Path path = forumRoundRectPath;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
@@ -217,7 +220,7 @@ public class StoriesUtilities {
             float length = pathMeasure.getLength();
             Path path2 = forumSegmentPath;
             path2.reset();
-            pathMeasure.getSegment(((f - f4) / 360.0f) * length, length * ((f2 - f4) / 360.0f), path2, true);
+            pathMeasure.getSegment(f5 * length, length * f6, path2, true);
             path2.rLineTo(0.0f, 0.0f);
             canvas.drawPath(path2, paint);
             return;
@@ -225,18 +228,21 @@ public class StoriesUtilities {
         boolean z2 = avatarStoryParams.isFirst;
         if (!z2 && !avatarStoryParams.isLast) {
             if (f < 90.0f) {
-                float f5 = avatarStoryParams.progressToArc;
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f5) / 2.0f, f5 / 2.0f);
+                float f7 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f7) / 2.0f, f7 / 2.0f);
+                return;
+            } else {
+                float f8 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f8) / 2.0f) + 180.0f, (f8 / 2.0f) + 180.0f);
                 return;
             }
-            float f6 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f6) / 2.0f) + 180.0f, (f6 / 2.0f) + 180.0f);
-        } else if (avatarStoryParams.isLast) {
-            float f7 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f7) / 2.0f) + 180.0f, (f7 / 2.0f) + 180.0f);
+        }
+        if (avatarStoryParams.isLast) {
+            float f9 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f9) / 2.0f) + 180.0f, (f9 / 2.0f) + 180.0f);
         } else if (z2) {
-            float f8 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f8) / 2.0f, f8 / 2.0f);
+            float f10 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f10) / 2.0f, f10 / 2.0f);
         } else {
             canvas.drawArc(rectF, f, f2 - f, false, paint);
         }
@@ -389,7 +395,9 @@ public class StoriesUtilities {
             createBitmap.eraseColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
             imageReceiver.setImageBitmap(createBitmap);
             imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tL_stories$StoryItem));
-        } else if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
+            return;
+        }
+        if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
             imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), tLRPC$Photo), str, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
             imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tL_stories$StoryItem));
         } else {
@@ -410,14 +418,12 @@ public class StoriesUtilities {
         TLRPC$Document tLRPC$Document;
         TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
         if (tLRPC$MessageMedia != null && (tLRPC$Document = tLRPC$MessageMedia.document) != null) {
-            ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), tL_stories$StoryItem.media.document);
-            imageReceiver.setImage(forDocument, i + "_" + i2, null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), tL_stories$StoryItem.media.document), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
             return;
         }
         TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
         if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-            ImageLocation forPhoto = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), tLRPC$Photo);
-            imageReceiver.setImage(null, null, forPhoto, i + "_" + i2, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
+            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), tLRPC$Photo), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
             return;
         }
         imageReceiver.clearImage();
@@ -446,14 +452,14 @@ public class StoriesUtilities {
         } else {
             string = LocaleController.getString("UploadingStory", R.string.UploadingStory);
         }
-        if (string.indexOf("…") > 0) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
-            UploadingDotsSpannable uploadingDotsSpannable = new UploadingDotsSpannable();
-            valueOf.setSpan(uploadingDotsSpannable, valueOf.length() - 1, valueOf.length(), 0);
-            uploadingDotsSpannable.setParent(textView, z);
-            return valueOf;
+        if (string.indexOf("…") <= 0) {
+            return string;
         }
-        return string;
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
+        UploadingDotsSpannable uploadingDotsSpannable = new UploadingDotsSpannable();
+        valueOf.setSpan(uploadingDotsSpannable, valueOf.length() - 1, valueOf.length(), 0);
+        uploadingDotsSpannable.setParent(textView, z);
+        return valueOf;
     }
 
     public static void applyUploadingStr(SimpleTextView simpleTextView, boolean z, boolean z2) {
@@ -529,8 +535,10 @@ public class StoriesUtilities {
         float min = Math.min(f2, f3 + 360.0f);
         if (min >= max) {
             canvas.drawArc(rectF, max, min - max, false, paint);
-        } else if (z) {
         } else {
+            if (z) {
+                return;
+            }
             if (f <= f3 || f2 >= f4) {
                 canvas.drawArc(rectF, f, f5, false, paint);
             }
@@ -570,7 +578,6 @@ public class StoriesUtilities {
         ArrayList<TLRPC$PhotoSize> arrayList;
         ArrayList<TLRPC$PhotoSize> arrayList2;
         TLRPC$Document tLRPC$Document;
-        int lastIndexOf;
         if (tL_stories$PeerStories == null || tL_stories$PeerStories.stories.isEmpty() || DialogObject.getPeerDialogId(tL_stories$PeerStories.peer) == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
             runnable.run();
             return null;
@@ -582,12 +589,12 @@ public class StoriesUtilities {
             if (i2 >= tL_stories$PeerStories.stories.size()) {
                 tL_stories$StoryItem = null;
                 break;
-            } else if (tL_stories$PeerStories.stories.get(i2).id > i) {
+            }
+            if (tL_stories$PeerStories.stories.get(i2).id > i) {
                 tL_stories$StoryItem = tL_stories$PeerStories.stories.get(i2);
                 break;
-            } else {
-                i2++;
             }
+            i2++;
         }
         if (tL_stories$StoryItem == null) {
             tL_stories$StoryItem = tL_stories$PeerStories.stories.get(0);
@@ -602,7 +609,8 @@ public class StoriesUtilities {
             File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, "", true);
             if (pathToAttach2 != null) {
                 try {
-                    if (pathToAttach2.getName().lastIndexOf(".") > 0) {
+                    int lastIndexOf = pathToAttach2.getName().lastIndexOf(".");
+                    if (lastIndexOf > 0) {
                         File file = new File(pathToAttach2.getParentFile(), pathToAttach2.getName().substring(0, lastIndexOf) + ".temp");
                         if (file.exists() && file.length() > 0) {
                             runnable.run();
@@ -877,7 +885,9 @@ public class StoriesUtilities {
             StoriesController storiesController = messagesController.getStoriesController();
             if (this.drawHiddenStoriesAsSegments) {
                 openStory(0L, null);
-            } else if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+                return;
+            }
+            if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
                 if (storiesController.hasStories(this.dialogId)) {
                     openStory(this.dialogId, null);
                     return;

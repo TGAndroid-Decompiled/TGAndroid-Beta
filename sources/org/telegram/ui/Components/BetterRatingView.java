@@ -10,6 +10,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class BetterRatingView extends View {
     private Bitmap filledStar;
     private Bitmap hollowStar;

@@ -30,6 +30,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StaticLayoutEx;
+
 public class BotCommandsMenuView extends View {
     final MenuDrawable backDrawable;
     Drawable backgroundDrawable;
@@ -215,8 +216,7 @@ public class BotCommandsMenuView extends View {
                 for (int i2 = 0; i2 < valueAt.commands.size(); i2++) {
                     TLRPC$TL_botCommand tLRPC$TL_botCommand = valueAt.commands.get(i2);
                     if (tLRPC$TL_botCommand != null && tLRPC$TL_botCommand.command != null) {
-                        ArrayList<String> arrayList = this.newResult;
-                        arrayList.add("/" + tLRPC$TL_botCommand.command);
+                        this.newResult.add("/" + tLRPC$TL_botCommand.command);
                         this.newResultHelp.add(tLRPC$TL_botCommand.description);
                     }
                 }

@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public abstract class TL_stats$PublicForward extends TLObject {
     public static TL_stats$PublicForward TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_stats$PublicForward tL_stories$TL_publicForwardStory;

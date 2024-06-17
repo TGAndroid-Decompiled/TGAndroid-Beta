@@ -26,6 +26,7 @@ import org.telegram.ui.Components.NestedSizeNotifierLayout;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StorageDiagramView;
 import org.telegram.ui.Storage.CacheModel;
+
 public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     private CacheControlActivity.ClearCacheButton button;
     private final Delegate cacheDelegate;
@@ -247,8 +248,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             } else {
                 CheckBoxCell checkBoxCell = (CheckBoxCell) view;
                 int intValue = ((Integer) checkBoxCell.getTag()).intValue();
-                StorageDiagramView.ClearViewData[] clearViewDataArr2 = this.clearViewData;
-                clearViewDataArr2[intValue].setClear(!clearViewDataArr2[intValue].clear);
+                this.clearViewData[intValue].setClear(!r1[intValue].clear);
                 checkBoxCell.setChecked(this.clearViewData[intValue].clear, true);
                 cacheModel.allFilesSelcetedByType(intValue, this.clearViewData[intValue].clear);
                 this.cachedMediaLayout.update();
@@ -310,9 +310,8 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 super.onScrolled(recyclerView, i, i2);
                 DilogCacheBottomSheet dilogCacheBottomSheet = DilogCacheBottomSheet.this;
-                NestedSizeNotifierLayout nestedSizeNotifierLayout = dilogCacheBottomSheet.nestedSizeNotifierLayout;
-                if (nestedSizeNotifierLayout != null) {
-                    dilogCacheBottomSheet.setShowShadow(!nestedSizeNotifierLayout.isPinnedToTop());
+                if (dilogCacheBottomSheet.nestedSizeNotifierLayout != null) {
+                    dilogCacheBottomSheet.setShowShadow(!r2.isPinnedToTop());
                 }
             }
         });

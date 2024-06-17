@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_phone_startScheduledGroupCall extends TLObject {
     public TLRPC$TL_inputGroupCall call;
 

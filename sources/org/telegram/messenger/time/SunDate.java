@@ -2,6 +2,7 @@ package org.telegram.messenger.time;
 
 import java.util.Calendar;
 import java.util.TimeZone;
+
 public class SunDate {
     private static final double DEGRAD = 0.017453292519943295d;
     private static final double INV360 = 0.002777777777777778d;
@@ -45,12 +46,13 @@ public class SunDate {
 
     private static void sunposAtDay(double d, double[] dArr, double[] dArr2) {
         double revolution = revolution((0.9856002585d * d) + 356.047d);
-        double d2 = 0.016709d - (d * 1.151E-9d);
-        double sind = (RADEG * d2 * sind(revolution) * ((cosd(revolution) * d2) + 1.0d)) + revolution;
-        double cosd = cosd(sind) - d2;
-        double sqrt = Math.sqrt(1.0d - (d2 * d2)) * sind(sind);
+        double d2 = (4.70935E-5d * d) + 282.9404d;
+        double d3 = 0.016709d - (d * 1.151E-9d);
+        double sind = (RADEG * d3 * sind(revolution) * ((cosd(revolution) * d3) + 1.0d)) + revolution;
+        double cosd = cosd(sind) - d3;
+        double sqrt = Math.sqrt(1.0d - (d3 * d3)) * sind(sind);
         dArr2[0] = Math.sqrt((cosd * cosd) + (sqrt * sqrt));
-        dArr[0] = atan2d(sqrt, cosd) + (4.70935E-5d * d) + 282.9404d;
+        dArr[0] = atan2d(sqrt, cosd) + d2;
         if (dArr[0] >= 360.0d) {
             dArr[0] = dArr[0] - 360.0d;
         }

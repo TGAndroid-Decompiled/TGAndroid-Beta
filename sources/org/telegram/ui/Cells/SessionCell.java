@@ -33,6 +33,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
+
 public class SessionCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private int currentAccount;

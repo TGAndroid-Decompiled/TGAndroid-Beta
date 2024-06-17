@@ -20,6 +20,7 @@ import j$.util.Collection$EL;
 import j$.util.function.Predicate;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -43,6 +44,7 @@ import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TranslateAlert2;
+
 public class RestrictedLanguagesSelectActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private static boolean gotRestrictedLanguages;
     private static HashSet<String> restrictedLanguages;
@@ -147,7 +149,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    RestrictedLanguagesSelectActivity.this.finishFragment();
+                    RestrictedLanguagesSelectActivity.this.lambda$onBackPressed$303();
                 }
             }
         });
@@ -414,20 +416,20 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            HeaderCell headerCell;
+            View view;
             if (i == 0) {
                 View textCheckbox2Cell = new TextCheckbox2Cell(this.mContext);
                 textCheckbox2Cell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                headerCell = textCheckbox2Cell;
+                view = textCheckbox2Cell;
             } else if (i == 2) {
-                HeaderCell headerCell2 = new HeaderCell(this.mContext);
-                headerCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                headerCell2.setText(LocaleController.getString("ChooseLanguages", R.string.ChooseLanguages));
-                headerCell = headerCell2;
+                HeaderCell headerCell = new HeaderCell(this.mContext);
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                headerCell.setText(LocaleController.getString("ChooseLanguages", R.string.ChooseLanguages));
+                view = headerCell;
             } else {
-                headerCell = new ShadowSectionCell(this.mContext);
+                view = new ShadowSectionCell(this.mContext);
             }
-            return new RecyclerListView.Holder(headerCell);
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -526,7 +528,6 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Runnable runnable = (Runnable) obj;
                 Utilities.Callback.this.run(hashSet);
             }
         });
@@ -559,8 +560,9 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
     public static void lambda$getExtendedDoNotTranslate$5(HashSet hashSet, Runnable runnable) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager) ApplicationLoader.applicationContext.getSystemService("input_method");
-            for (InputMethodInfo inputMethodInfo : inputMethodManager.getEnabledInputMethodList()) {
-                for (InputMethodSubtype inputMethodSubtype : inputMethodManager.getEnabledInputMethodSubtypeList(inputMethodInfo, true)) {
+            Iterator<InputMethodInfo> it = inputMethodManager.getEnabledInputMethodList().iterator();
+            while (it.hasNext()) {
+                for (InputMethodSubtype inputMethodSubtype : inputMethodManager.getEnabledInputMethodSubtypeList(it.next(), true)) {
                     if ("keyboard".equals(inputMethodSubtype.getMode())) {
                         String locale = inputMethodSubtype.getLocale();
                         if (locale != null && locale.contains("_")) {

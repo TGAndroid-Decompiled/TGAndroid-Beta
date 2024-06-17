@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.R;
 import org.telegram.messenger.audioinfo.AudioInfo;
+
 public class ID3v2Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
     private byte coverPictureType;
@@ -50,13 +51,67 @@ public class ID3v2Info extends AudioInfo {
         }
     }
 
-    public ID3v2Info(java.io.InputStream r12, java.util.logging.Level r13) throws java.io.IOException, org.telegram.messenger.audioinfo.mp3.ID3v2Exception {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.ID3v2Info.<init>(java.io.InputStream, java.util.logging.Level):void");
+    public ID3v2Info(InputStream inputStream, Level level) throws IOException, ID3v2Exception {
+        ID3v2DataInput data;
+        long remainingLength;
+        this.debugLevel = level;
+        if (isID3v2StartPosition(inputStream)) {
+            ID3v2TagHeader iD3v2TagHeader = new ID3v2TagHeader(inputStream);
+            this.brand = "ID3";
+            String.format("2.%d.%d", Integer.valueOf(iD3v2TagHeader.getVersion()), Integer.valueOf(iD3v2TagHeader.getRevision()));
+            ID3v2TagBody tagBody = iD3v2TagHeader.tagBody(inputStream);
+            while (true) {
+                try {
+                    if (tagBody.getRemainingLength() <= 10) {
+                        break;
+                    }
+                    ID3v2FrameHeader iD3v2FrameHeader = new ID3v2FrameHeader(tagBody);
+                    if (iD3v2FrameHeader.isPadding()) {
+                        break;
+                    }
+                    if (iD3v2FrameHeader.getBodySize() > tagBody.getRemainingLength()) {
+                        Logger logger = LOGGER;
+                        if (logger.isLoggable(level)) {
+                            logger.log(level, "ID3 frame claims to extend frames area");
+                        }
+                    } else if (iD3v2FrameHeader.isValid() && !iD3v2FrameHeader.isEncryption()) {
+                        ID3v2FrameBody frameBody = tagBody.frameBody(iD3v2FrameHeader);
+                        try {
+                            try {
+                                parseFrame(frameBody);
+                                data = frameBody.getData();
+                                remainingLength = frameBody.getRemainingLength();
+                            } catch (ID3v2Exception e) {
+                                if (LOGGER.isLoggable(level)) {
+                                    LOGGER.log(level, String.format("ID3 exception occured in frame %s: %s", iD3v2FrameHeader.getFrameId(), e.getMessage()));
+                                }
+                                data = frameBody.getData();
+                                remainingLength = frameBody.getRemainingLength();
+                            }
+                            data.skipFully(remainingLength);
+                        } catch (Throwable th) {
+                            frameBody.getData().skipFully(frameBody.getRemainingLength());
+                            throw th;
+                        }
+                    } else {
+                        tagBody.getData().skipFully(iD3v2FrameHeader.getBodySize());
+                    }
+                } catch (ID3v2Exception e2) {
+                    Logger logger2 = LOGGER;
+                    if (logger2.isLoggable(level)) {
+                        logger2.log(level, "ID3 exception occured: " + e2.getMessage());
+                    }
+                }
+            }
+            tagBody.getData().skipFully(tagBody.getRemainingLength());
+            if (iD3v2TagHeader.getFooterSize() > 0) {
+                inputStream.skip(iD3v2TagHeader.getFooterSize());
+            }
+        }
     }
 
     void parseFrame(ID3v2FrameBody iD3v2FrameBody) throws IOException, ID3v2Exception {
         String str;
-        Bitmap bitmap;
         byte b;
         int i;
         Logger logger = LOGGER;
@@ -298,7 +353,7 @@ public class ID3v2Info extends AudioInfo {
                             if (decodeByteArray != null) {
                                 float max2 = Math.max(decodeByteArray.getWidth(), this.cover.getHeight()) / 120.0f;
                                 if (max2 > 0.0f) {
-                                    this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (bitmap.getWidth() / max2), (int) (this.cover.getHeight() / max2), true);
+                                    this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r1.getWidth() / max2), (int) (this.cover.getHeight() / max2), true);
                                 } else {
                                     this.smallCover = this.cover;
                                 }

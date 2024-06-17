@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+
 public abstract class TLRPC$MessageMedia extends TLObject {
     public String address;
     public TLRPC$Document alt_document;

@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.BuildVars;
+
 public class ThreadUtils {
 
     public interface BlockingOperation {
@@ -100,10 +101,8 @@ public class ThreadUtils {
             } catch (InterruptedException unused) {
                 z2 = true;
                 j2 = j - (SystemClock.elapsedRealtime() - elapsedRealtime);
-                if (j2 <= 0) {
-                }
             }
-        } while (j2 <= 0);
+        } while (j2 > 0);
         if (z2) {
             Thread.currentThread().interrupt();
         }

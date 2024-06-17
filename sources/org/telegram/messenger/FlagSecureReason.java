@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.view.Window;
 import java.util.HashMap;
+
 public class FlagSecureReason {
     private static HashMap<Window, Integer> currentSecureReasons;
     private final FlagSecureCondition condition;

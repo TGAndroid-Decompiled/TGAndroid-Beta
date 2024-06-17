@@ -37,6 +37,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+
 public class GreetMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public TLRPC$TL_businessGreetingMessage currentValue;
     private final int[] daysOfInactivity;
@@ -76,7 +77,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (GreetMessagesActivity.this.onBackPressed()) {
-                        GreetMessagesActivity.this.finishFragment();
+                        GreetMessagesActivity.this.lambda$onBackPressed$303();
                     }
                 } else if (i == 1) {
                     GreetMessagesActivity.this.processDone();
@@ -153,22 +154,22 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     }
 
     public boolean hasChanges() {
-        if (this.valueSet) {
-            boolean z = this.enabled;
-            TLRPC$TL_businessGreetingMessage tLRPC$TL_businessGreetingMessage = this.currentValue;
-            if (z != (tLRPC$TL_businessGreetingMessage != null)) {
+        if (!this.valueSet) {
+            return false;
+        }
+        boolean z = this.enabled;
+        TLRPC$TL_businessGreetingMessage tLRPC$TL_businessGreetingMessage = this.currentValue;
+        if (z != (tLRPC$TL_businessGreetingMessage != null)) {
+            return true;
+        }
+        if (z && tLRPC$TL_businessGreetingMessage != null) {
+            if (tLRPC$TL_businessGreetingMessage.no_activity_days != this.inactivityDays || tLRPC$TL_businessGreetingMessage.recipients.exclude_selected != this.exclude) {
                 return true;
             }
-            if (z && tLRPC$TL_businessGreetingMessage != null) {
-                if (tLRPC$TL_businessGreetingMessage.no_activity_days != this.inactivityDays || tLRPC$TL_businessGreetingMessage.recipients.exclude_selected != this.exclude) {
-                    return true;
-                }
-                BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-                if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
-                    return true;
-                }
+            BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
+            if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
+                return true;
             }
-            return false;
         }
         return false;
     }
@@ -193,7 +194,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             return;
         }
         if (!hasChanges()) {
-            finishFragment();
+            lambda$onBackPressed$303();
             return;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
@@ -204,7 +205,9 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             int i = -this.shiftDp;
             this.shiftDp = i;
             AndroidUtilities.shakeViewSpring(findViewByItemId, i);
-        } else if (!z || this.recipientsHelper.validate(this.listView)) {
+            return;
+        }
+        if (!z || this.recipientsHelper.validate(this.listView)) {
             this.doneButtonDrawable.animateToProgress(1.0f);
             TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
             TLRPC$TL_account_updateBusinessGreetingMessage tLRPC$TL_account_updateBusinessGreetingMessage = new TLRPC$TL_account_updateBusinessGreetingMessage();
@@ -254,7 +257,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            finishFragment();
+            lambda$onBackPressed$303();
         }
     }
 
@@ -291,7 +294,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     }
 
     public void lambda$onBackPressed$4(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$303();
     }
 
     public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
@@ -319,12 +322,12 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
                 int[] iArr = this.daysOfInactivity;
                 if (i2 >= iArr.length) {
                     break;
-                } else if (iArr[i2] == this.inactivityDays) {
+                }
+                if (iArr[i2] == this.inactivityDays) {
                     i = i2;
                     break;
-                } else {
-                    i2++;
                 }
+                i2++;
             }
             arrayList.add(UItem.asSlideView(this.daysOfInactivityTexts, i, new Utilities.Callback() {
                 @Override
@@ -352,22 +355,28 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "hello");
             presentFragment(new ChatActivity(bundle));
-        } else if (i2 == 1) {
+            return;
+        }
+        if (i2 == 1) {
             this.enabled = !this.enabled;
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (i2 == 3) {
-            BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-            this.exclude = true;
-            businessRecipientsHelper.setExclude(true);
-            this.listView.adapter.update(true);
-            checkDone(true);
-        } else if (i2 == 4) {
-            BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
-            this.exclude = false;
-            businessRecipientsHelper2.setExclude(false);
-            this.listView.adapter.update(true);
-            checkDone(true);
+        } else {
+            if (i2 == 3) {
+                BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
+                this.exclude = true;
+                businessRecipientsHelper.setExclude(true);
+                this.listView.adapter.update(true);
+                checkDone(true);
+                return;
+            }
+            if (i2 == 4) {
+                BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
+                this.exclude = false;
+                businessRecipientsHelper2.setExclude(false);
+                this.listView.adapter.update(true);
+                checkDone(true);
+            }
         }
     }
 
@@ -380,7 +389,9 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
                 universalAdapter.update(true);
             }
             checkDone(true);
-        } else if (i == NotificationCenter.userInfoDidLoad) {
+            return;
+        }
+        if (i == NotificationCenter.userInfoDidLoad) {
             setValue();
         }
     }

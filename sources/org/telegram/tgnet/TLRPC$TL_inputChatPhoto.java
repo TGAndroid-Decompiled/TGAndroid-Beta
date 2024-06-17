@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputChatPhoto extends TLRPC$InputChatPhoto {
     public TLRPC$InputPhoto id;
 

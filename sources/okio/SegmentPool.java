@@ -1,4 +1,5 @@
 package okio;
+
 public final class SegmentPool {
     static long byteCount;
     static Segment next;

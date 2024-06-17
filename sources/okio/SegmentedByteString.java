@@ -1,6 +1,7 @@
 package okio;
 
 import java.util.Arrays;
+
 final class SegmentedByteString extends ByteString {
     final transient int[] directory;
     final transient byte[][] segments;

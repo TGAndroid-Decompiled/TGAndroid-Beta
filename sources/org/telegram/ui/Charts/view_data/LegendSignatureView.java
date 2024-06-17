@@ -29,6 +29,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
+
 public class LegendSignatureView extends FrameLayout {
     Drawable backgroundDrawable;
     public boolean canGoZoom;
@@ -217,10 +218,10 @@ public class LegendSignatureView extends FrameLayout {
         if (this.zoomEnabled) {
             this.canGoZoom = j5 > 0;
             this.chevron.setVisibility(j5 <= 0 ? 8 : 0);
-            return;
+        } else {
+            this.canGoZoom = false;
+            this.chevron.setVisibility(8);
         }
-        this.canGoZoom = false;
-        this.chevron.setVisibility(8);
     }
 
     private String formatData(Date date) {
@@ -231,10 +232,10 @@ public class LegendSignatureView extends FrameLayout {
     }
 
     private String capitalize(String str) {
-        if (str.length() > 0) {
-            return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+        if (str.length() <= 0) {
+            return str;
         }
-        return str;
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
     }
 
     public CharSequence formatWholeNumber(long j, int i, int i2, TextView textView, float f) {
@@ -249,7 +250,8 @@ public class LegendSignatureView extends FrameLayout {
                 i3++;
             }
             return String.format("%.2f", Float.valueOf(f2)) + AndroidUtilities.numbersSignatureArray[i3];
-        } else if (i2 == 0) {
+        }
+        if (i2 == 0) {
             if (this.formatterTON == null) {
                 DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
                 decimalFormatSymbols.setDecimalSeparator('.');
@@ -267,9 +269,8 @@ public class LegendSignatureView extends FrameLayout {
             Double.isNaN(d);
             sb.append(decimalFormat2.format(d / 1.0E9d));
             return ChannelMonetizationLayout.replaceTON(sb.toString(), textView.getPaint(), 0.82f, false);
-        } else {
-            return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
         }
+        return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
     }
 
     public void showProgress(boolean z, boolean z2) {

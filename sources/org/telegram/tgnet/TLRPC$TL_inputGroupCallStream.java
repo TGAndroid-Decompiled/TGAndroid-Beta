@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputGroupCallStream extends TLRPC$InputFileLocation {
     public TLRPC$TL_inputGroupCall call;
     public int scale;

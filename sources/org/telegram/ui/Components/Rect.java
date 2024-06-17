@@ -1,4 +1,5 @@
 package org.telegram.ui.Components;
+
 public class Rect {
     public float height;
     public float width;

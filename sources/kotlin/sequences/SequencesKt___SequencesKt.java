@@ -2,15 +2,18 @@ package kotlin.sequences;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import kotlin.collections.CollectionsKt__CollectionsKt;
 import kotlin.jvm.internal.Intrinsics;
+
 public class SequencesKt___SequencesKt extends SequencesKt___SequencesJvmKt {
     public static final <T, C extends Collection<? super T>> C toCollection(Sequence<? extends T> sequence, C destination) {
         Intrinsics.checkNotNullParameter(sequence, "<this>");
         Intrinsics.checkNotNullParameter(destination, "destination");
-        for (T t : sequence) {
-            destination.add(t);
+        Iterator<? extends T> it = sequence.iterator();
+        while (it.hasNext()) {
+            destination.add(it.next());
         }
         return destination;
     }

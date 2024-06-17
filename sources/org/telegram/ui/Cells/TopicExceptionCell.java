@@ -13,6 +13,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TopicExceptionCell extends FrameLayout {
     BackupImageView backupImageView;
     public boolean drawDivider;

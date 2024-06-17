@@ -50,6 +50,7 @@ import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.CountrySelectActivity;
 import org.telegram.ui.NewContactBottomSheet;
+
 public class NewContactBottomSheet extends BottomSheet implements AdapterView.OnItemSelectedListener {
     int classGuid;
     private View codeDividerView;
@@ -107,22 +108,22 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5) {
-            this.lastNameField.requestFocus();
-            this.lastNameField.getEditText().setSelection(this.lastNameField.getEditText().length());
-            return true;
+        if (i != 5) {
+            return false;
         }
-        return false;
+        this.lastNameField.requestFocus();
+        this.lastNameField.getEditText().setSelection(this.lastNameField.getEditText().length());
+        return true;
     }
 
     public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5) {
-            this.codeField.requestFocus();
-            AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.codeField;
-            animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
-            return true;
+        if (i != 5) {
+            return false;
         }
-        return false;
+        this.codeField.requestFocus();
+        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.codeField;
+        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
+        return true;
     }
 
     public class AnonymousClass1 extends TextView {
@@ -184,21 +185,21 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public boolean lambda$createView$4(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5) {
-            this.phoneField.requestFocus();
-            AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
-            animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
-            return true;
+        if (i != 5) {
+            return false;
         }
-        return false;
+        this.phoneField.requestFocus();
+        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
+        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
+        return true;
     }
 
     public boolean lambda$createView$5(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5) {
-            this.doneButtonContainer.callOnClick();
-            return true;
+        if (i != 5) {
+            return false;
         }
-        return false;
+        this.doneButtonContainer.callOnClick();
+        return true;
     }
 
     public void lambda$createView$7(View view) {
@@ -216,34 +217,38 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 vibrator.vibrate(200L);
             }
             AndroidUtilities.shakeView(this.firstNameField);
-        } else if (this.codeField.length() == 0) {
+            return;
+        }
+        if (this.codeField.length() == 0) {
             Vibrator vibrator2 = (Vibrator) this.parentFragment.getParentActivity().getSystemService("vibrator");
             if (vibrator2 != null) {
                 vibrator2.vibrate(200L);
             }
             AndroidUtilities.shakeView(this.codeField);
-        } else if (this.phoneField.length() == 0) {
+            return;
+        }
+        if (this.phoneField.length() == 0) {
             Vibrator vibrator3 = (Vibrator) this.parentFragment.getParentActivity().getSystemService("vibrator");
             if (vibrator3 != null) {
                 vibrator3.vibrate(200L);
             }
             AndroidUtilities.shakeView(this.phoneField);
-        } else {
-            this.donePressed = true;
-            showEditDoneProgress(true, true);
-            final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts = new TLRPC$TL_contacts_importContacts();
-            final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact = new TLRPC$TL_inputPhoneContact();
-            tLRPC$TL_inputPhoneContact.first_name = this.firstNameField.getEditText().getText().toString();
-            tLRPC$TL_inputPhoneContact.last_name = this.lastNameField.getEditText().getText().toString();
-            tLRPC$TL_inputPhoneContact.phone = "+" + this.codeField.getText().toString() + this.phoneField.getText().toString();
-            tLRPC$TL_contacts_importContacts.contacts.add(tLRPC$TL_inputPhoneContact);
-            ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_contacts_importContacts, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    NewContactBottomSheet.this.lambda$doOnDone$9(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
-                }
-            }, 2), this.classGuid);
+            return;
         }
+        this.donePressed = true;
+        showEditDoneProgress(true, true);
+        final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts = new TLRPC$TL_contacts_importContacts();
+        final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact = new TLRPC$TL_inputPhoneContact();
+        tLRPC$TL_inputPhoneContact.first_name = this.firstNameField.getEditText().getText().toString();
+        tLRPC$TL_inputPhoneContact.last_name = this.lastNameField.getEditText().getText().toString();
+        tLRPC$TL_inputPhoneContact.phone = "+" + this.codeField.getText().toString() + this.phoneField.getText().toString();
+        tLRPC$TL_contacts_importContacts.contacts.add(tLRPC$TL_inputPhoneContact);
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_contacts_importContacts, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                NewContactBottomSheet.this.lambda$doOnDone$9(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
+            }
+        }, 2), this.classGuid);
     }
 
     public void lambda$doOnDone$9(final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -264,9 +269,10 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 MessagesController.openChatOrProfileWith(tLRPC$TL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
                 dismiss();
                 return;
-            } else if (this.parentFragment.getParentActivity() == null) {
-                return;
             } else {
+                if (this.parentFragment.getParentActivity() == null) {
+                    return;
+                }
                 showEditDoneProgress(false, true);
                 AlertsCreator.createContactInviteDialog(this.parentFragment, tLRPC$TL_inputPhoneContact.first_name, tLRPC$TL_inputPhoneContact.last_name, tLRPC$TL_inputPhoneContact.phone);
                 return;
@@ -457,19 +463,21 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         int i5 = ThemeDescription.FLAG_BACKGROUNDFILTER;
         int i6 = Theme.key_windowBackgroundWhiteInputField;
         arrayList.add(new ThemeDescription(outlineEditText3, i5, null, null, null, null, i6));
-        int i7 = Theme.key_windowBackgroundWhiteInputFieldActivated;
-        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i7));
+        OutlineEditText outlineEditText4 = this.firstNameField;
+        int i7 = ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE;
+        int i8 = Theme.key_windowBackgroundWhiteInputFieldActivated;
+        arrayList.add(new ThemeDescription(outlineEditText4, i7, null, null, null, null, i8));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i8));
         arrayList.add(new ThemeDescription(this.codeField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.codeField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.codeField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.codeField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i8));
         arrayList.add(new ThemeDescription(this.phoneField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.phoneField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.phoneField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.phoneField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.phoneField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i8));
         arrayList.add(new ThemeDescription(this.editDoneItemProgress, 0, null, null, null, null, Theme.key_contextProgressInner2));
         arrayList.add(new ThemeDescription(this.editDoneItemProgress, 0, null, null, null, null, Theme.key_contextProgressOuter2));
         return arrayList;

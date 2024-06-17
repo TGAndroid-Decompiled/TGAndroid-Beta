@@ -6,6 +6,7 @@ import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import java.util.UUID;
 import org.webrtc.Logging;
+
 class WebRtcAudioEffects {
     private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
     private static final UUID AOSP_NOISE_SUPPRESSOR = UUID.fromString("c06c8400-8e06-11e0-9cb6-0002a5d5c51b");
@@ -41,13 +42,13 @@ class WebRtcAudioEffects {
             Logging.w(TAG, "Platform AEC is not supported");
             this.shouldEnableAec = false;
             return false;
-        } else if (this.aec != null && z != this.shouldEnableAec) {
+        }
+        if (this.aec != null && z != this.shouldEnableAec) {
             Logging.e(TAG, "Platform AEC state can't be modified while recording");
             return false;
-        } else {
-            this.shouldEnableAec = z;
-            return true;
         }
+        this.shouldEnableAec = z;
+        return true;
     }
 
     public boolean setNS(boolean z) {
@@ -56,18 +57,17 @@ class WebRtcAudioEffects {
             Logging.w(TAG, "Platform NS is not supported");
             this.shouldEnableNs = false;
             return false;
-        } else if (this.ns != null && z != this.shouldEnableNs) {
+        }
+        if (this.ns != null && z != this.shouldEnableNs) {
             Logging.e(TAG, "Platform NS state can't be modified while recording");
             return false;
-        } else {
-            this.shouldEnableNs = z;
-            return true;
         }
+        this.shouldEnableNs = z;
+        return true;
     }
 
     public void enable(int i) {
         Logging.d(TAG, "enable(audioSession=" + i + ")");
-        boolean z = true;
         assertTrue(this.aec == null);
         assertTrue(this.ns == null);
         if (isAcousticEchoCancelerSupported()) {
@@ -75,15 +75,15 @@ class WebRtcAudioEffects {
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
-                boolean z2 = this.shouldEnableAec && isAcousticEchoCancelerSupported();
-                if (this.aec.setEnabled(z2) != 0) {
+                boolean z = this.shouldEnableAec && isAcousticEchoCancelerSupported();
+                if (this.aec.setEnabled(z) != 0) {
                     Logging.e(TAG, "Failed to set the AcousticEchoCanceler state");
                 }
                 StringBuilder sb = new StringBuilder();
                 sb.append("AcousticEchoCanceler: was ");
                 sb.append(enabled ? "enabled" : "disabled");
                 sb.append(", enable: ");
-                sb.append(z2);
+                sb.append(z);
                 sb.append(", is now: ");
                 sb.append(this.aec.getEnabled() ? "enabled" : "disabled");
                 Logging.d(TAG, sb.toString());
@@ -96,15 +96,15 @@ class WebRtcAudioEffects {
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
-                z = (this.shouldEnableNs && isNoiseSuppressorSupported()) ? false : false;
-                if (this.ns.setEnabled(z) != 0) {
+                boolean z2 = this.shouldEnableNs && isNoiseSuppressorSupported();
+                if (this.ns.setEnabled(z2) != 0) {
                     Logging.e(TAG, "Failed to set the NoiseSuppressor state");
                 }
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("NoiseSuppressor: was ");
                 sb2.append(enabled2 ? "enabled" : "disabled");
                 sb2.append(", enable: ");
-                sb2.append(z);
+                sb2.append(z2);
                 sb2.append(", is now: ");
                 sb2.append(this.ns.getEnabled() ? "enabled" : "disabled");
                 Logging.d(TAG, sb2.toString());
@@ -158,7 +158,7 @@ class WebRtcAudioEffects {
         }
         for (AudioEffect.Descriptor descriptor : availableEffects) {
             if (descriptor.type.equals(uuid)) {
-                return !descriptor.uuid.equals(uuid2);
+                return !r4.uuid.equals(uuid2);
             }
         }
         return false;

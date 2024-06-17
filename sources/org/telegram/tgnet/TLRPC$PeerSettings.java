@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$PeerSettings extends TLObject {
     public boolean add_contact;
     public boolean autoarchived;

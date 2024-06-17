@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
+
 public abstract class TLRPC$PhotoSize extends TLObject {
     public byte[] bytes;
     public int gradientBottomColor;

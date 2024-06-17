@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$messages_SavedGifs extends TLObject {
     public ArrayList<TLRPC$Document> gifs = new ArrayList<>();
     public long hash;

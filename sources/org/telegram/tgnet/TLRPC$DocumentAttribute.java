@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$DocumentAttribute extends TLObject {
     public String alt;
     public double duration;

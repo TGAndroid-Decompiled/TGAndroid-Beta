@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class StarParticlesView extends View {
     private LinearGradient clipGradient;
     private Matrix clipGradientMatrix;
@@ -330,14 +331,18 @@ public class StarParticlesView extends View {
                     fArr[i2 * 2] = this.x;
                     fArr[(i2 * 2) + 1] = this.y;
                     drawable.pointsCount1 = i2 + 1;
-                } else if (i == 1) {
+                    return;
+                }
+                if (i == 1) {
                     Drawable drawable2 = Drawable.this;
                     float[] fArr2 = drawable2.points2;
                     int i3 = drawable2.pointsCount2;
                     fArr2[i3 * 2] = this.x;
                     fArr2[(i3 * 2) + 1] = this.y;
                     drawable2.pointsCount2 = i3 + 1;
-                } else if (i == 2) {
+                    return;
+                }
+                if (i == 2) {
                     Drawable drawable3 = Drawable.this;
                     float[] fArr3 = drawable3.points3;
                     int i4 = drawable3.pointsCount3;
@@ -357,12 +362,11 @@ public class StarParticlesView extends View {
                 int i;
                 float f2;
                 float f3;
-                float nextFloat;
                 if (Drawable.this.type != 28) {
                     this.starIndex = Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.stars.length);
                 } else {
                     if (Utilities.fastRandom.nextFloat() >= 0.13f) {
-                        this.starIndex = (int) Math.floor((nextFloat * (Drawable.this.stars.length - 1)) + 1.0f);
+                        this.starIndex = (int) Math.floor((r0 * (Drawable.this.stars.length - 1)) + 1.0f);
                     } else {
                         this.starIndex = 0;
                     }
@@ -381,7 +385,7 @@ public class StarParticlesView extends View {
                     for (int i2 = 0; i2 < 10; i2++) {
                         float abs3 = Drawable.this.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
                         float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                        float f5 = 2.14748365E9f;
+                        float f5 = 2.1474836E9f;
                         for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
                             Drawable drawable3 = Drawable.this;
                             if (drawable3.startFromCenter) {
@@ -460,11 +464,11 @@ public class StarParticlesView extends View {
                     this.inProgress = 0.0f;
                 }
                 if (drawable6.startFromCenter) {
-                    float nextFloat2 = (((Utilities.fastRandom.nextFloat() * 1.2f) + 0.6f) * Math.min(Drawable.this.rect.width(), Drawable.this.rect.height())) / 2.0f;
-                    float centerX2 = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(atan2)) * nextFloat2);
+                    float nextFloat = (((Utilities.fastRandom.nextFloat() * 1.2f) + 0.6f) * Math.min(Drawable.this.rect.width(), Drawable.this.rect.height())) / 2.0f;
+                    float centerX2 = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(atan2)) * nextFloat);
                     this.x = centerX2;
                     this.x2 = centerX2;
-                    float centerY3 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(atan2)) * nextFloat2);
+                    float centerY3 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(atan2)) * nextFloat);
                     this.y = centerY3;
                     this.y2 = centerY3;
                 }

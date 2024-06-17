@@ -11,6 +11,7 @@ import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt__StringsJVMKt;
 import kotlinx.coroutines.CopyableThrowable;
+
 public final class StackTraceRecoveryKt {
     private static final String baseContinuationImplClassName;
 
@@ -39,7 +40,6 @@ public final class StackTraceRecoveryKt {
         if (Result.m157exceptionOrNullimpl(m156constructorimpl) != null) {
             m156constructorimpl = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
         }
-        String str = (String) m156constructorimpl;
     }
 
     public static final <E extends Throwable> E recoverFromStackFrame(E e, CoroutineStackFrame coroutineStackFrame) {
@@ -204,8 +204,9 @@ public final class StackTraceRecoveryKt {
             int i2 = i + 1;
             if (isArtificial(stackTraceElementArr[i])) {
                 break;
+            } else {
+                i = i2;
             }
-            i = i2;
         }
         int i3 = i + 1;
         int length2 = stackTraceElementArr.length - 1;
@@ -220,8 +221,9 @@ public final class StackTraceRecoveryKt {
             arrayDeque.addFirst(stackTraceElementArr[length2]);
             if (length2 == i3) {
                 return;
+            } else {
+                length2 = i4;
             }
-            length2 = i4;
         }
     }
 }

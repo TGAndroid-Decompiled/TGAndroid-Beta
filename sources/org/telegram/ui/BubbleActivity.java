@@ -24,6 +24,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.Components.ThemeEditorView;
+
 public class BubbleActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate {
     private INavigationLayout actionBarLayout;
     private long dialogId;
@@ -271,10 +272,10 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         onPasscodeResume();
         if (this.passcodeView.getVisibility() != 0) {
             this.actionBarLayout.onResume();
-            return;
+        } else {
+            this.actionBarLayout.dismissDialogs();
+            this.passcodeView.onResume();
         }
-        this.actionBarLayout.dismissDialogs();
-        this.passcodeView.onResume();
     }
 
     private void onPasscodePause() {
@@ -341,9 +342,13 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     public void onBackPressed() {
         if (this.mainFragmentsStack.size() == 1) {
             super.onBackPressed();
-        } else if (this.passcodeView.getVisibility() == 0) {
+            return;
+        }
+        if (this.passcodeView.getVisibility() == 0) {
             finish();
-        } else if (PhotoViewer.getInstance().isVisible()) {
+            return;
+        }
+        if (PhotoViewer.getInstance().isVisible()) {
             PhotoViewer.getInstance().closePhoto(true, false);
         } else if (this.drawerLayoutContainer.isDrawerOpened()) {
             this.drawerLayoutContainer.closeDrawer(false);
@@ -360,11 +365,11 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
-        if (iNavigationLayout.getFragmentStack().size() <= 1) {
-            onFinish();
-            finish();
-            return false;
+        if (iNavigationLayout.getFragmentStack().size() > 1) {
+            return true;
         }
-        return true;
+        onFinish();
+        finish();
+        return false;
     }
 }

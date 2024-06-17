@@ -48,6 +48,7 @@ import org.telegram.ui.Components.Paint.ColorPickerBottomSheet;
 import org.telegram.ui.Components.Paint.Views.PaintColorsListView;
 import org.telegram.ui.Components.Paint.Views.PipettePickerView;
 import org.telegram.ui.Components.ViewPagerFixed;
+
 public class ColorPickerBottomSheet extends BottomSheet {
     private AlphaPickerView alphaPickerView;
     private Consumer<Integer> colorListener;
@@ -208,8 +209,9 @@ public class ColorPickerBottomSheet extends BottomSheet {
         if (!this.initialized) {
             if (i2 != 2) {
                 return;
+            } else {
+                this.initialized = true;
             }
-            this.initialized = true;
         }
         if (i2 != 5 && (findFocus = this.pickerView.findFocus()) != null) {
             findFocus.clearFocus();
@@ -272,13 +274,13 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
                 @Override
                 public String getItemTitle(int i) {
-                    if (i != 1) {
-                        if (i != 2) {
-                            return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
-                        }
-                        return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
+                    if (i == 1) {
+                        return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
                     }
-                    return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
+                    if (i != 2) {
+                        return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
+                    }
+                    return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
                 }
 
                 @Override
@@ -353,8 +355,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             for (Map.Entry<Long, Integer> entry : this.colorMap.entrySet()) {
                 if (entry.getValue().intValue() == i) {
                     long longValue = entry.getKey().longValue();
-                    int i2 = (int) (longValue >> 16);
-                    setCurrentColor(i2, (int) (longValue - (i2 << 16)));
+                    setCurrentColor((int) (longValue >> 16), (int) (longValue - (r5 << 16)));
                     return;
                 }
             }
@@ -372,8 +373,10 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         private void updatePosition(MotionEvent motionEvent) {
-            int x = (int) ((motionEvent.getX() - getPaddingLeft()) / (((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12));
-            int y = (int) (motionEvent.getY() / (((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10));
+            int width = ((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12;
+            int height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10;
+            int x = (int) ((motionEvent.getX() - getPaddingLeft()) / width);
+            int y = (int) (motionEvent.getY() / height);
             Integer num = this.colorMap.get(Long.valueOf((x << 16) + y));
             if (num != null) {
                 ColorPickerBottomSheet.this.onSetColor(num.intValue(), 3);
@@ -494,6 +497,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.gradientPaint);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.whiteBlackPaint);
             float dp = AndroidUtilities.dp(13.0f);
+            float strokeWidth = dp - (this.outlinePaint.getStrokeWidth() / 2.0f);
             float dp2 = AndroidUtilities.dp(16.0f);
             int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
             int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
@@ -504,11 +508,14 @@ public class ColorPickerBottomSheet extends BottomSheet {
             Drawable drawable = this.shadowDrawable;
             Rect rect = AndroidUtilities.rectTmp2;
             drawable.getPadding(rect);
-            int i = rect.bottom;
-            this.shadowDrawable.setBounds((int) ((paddingLeft - dp) - rect.left), (int) ((paddingTop - dp) - rect.top), (int) (paddingLeft + dp + i), (int) (paddingTop + dp + i));
+            Drawable drawable2 = this.shadowDrawable;
+            int i = (int) ((paddingLeft - dp) - rect.left);
+            int i2 = (int) ((paddingTop - dp) - rect.top);
+            int i3 = rect.bottom;
+            drawable2.setBounds(i, i2, (int) (paddingLeft + dp + i3), (int) (paddingTop + dp + i3));
             this.shadowDrawable.draw(canvas);
             canvas.drawCircle(paddingLeft, paddingTop, dp, this.outlinePaint);
-            PaintColorsListView.drawColorCircle(canvas, paddingLeft, paddingTop, dp - (this.outlinePaint.getStrokeWidth() / 2.0f), ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255));
+            PaintColorsListView.drawColorCircle(canvas, paddingLeft, paddingTop, strokeWidth, ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255));
         }
 
         @Override
@@ -650,11 +657,11 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         public static boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-            if (i == 6) {
-                textView.clearFocus();
-                AndroidUtilities.hideKeyboard(textView);
+            if (i != 6) {
                 return false;
             }
+            textView.clearFocus();
+            AndroidUtilities.hideKeyboard(textView);
             return false;
         }
 
@@ -754,11 +761,11 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         public static boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-            if (i == 6) {
-                textView.clearFocus();
-                AndroidUtilities.hideKeyboard(textView);
+            if (i != 6) {
                 return false;
             }
+            textView.clearFocus();
+            AndroidUtilities.hideKeyboard(textView);
             return false;
         }
 

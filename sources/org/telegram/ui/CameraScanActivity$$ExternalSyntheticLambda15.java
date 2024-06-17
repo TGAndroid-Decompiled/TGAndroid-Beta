@@ -1,4 +1,5 @@
 package org.telegram.ui;
+
 public final class CameraScanActivity$$ExternalSyntheticLambda15 implements Runnable {
     public final CameraScanActivity f$0;
 

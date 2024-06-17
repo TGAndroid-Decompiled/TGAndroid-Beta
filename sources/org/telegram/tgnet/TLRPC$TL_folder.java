@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_folder extends TLObject {
     public boolean autofill_new_broadcasts;
     public boolean autofill_new_correspondents;

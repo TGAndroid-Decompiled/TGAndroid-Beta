@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_messageMediaDocument extends TLRPC$MessageMedia {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

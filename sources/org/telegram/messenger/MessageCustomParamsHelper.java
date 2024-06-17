@@ -5,6 +5,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_textWithEntities;
+
 public class MessageCustomParamsHelper {
     public static boolean isEmpty(TLRPC$Message tLRPC$Message) {
         return tLRPC$Message.voiceTranscription == null && !tLRPC$Message.voiceTranscriptionOpen && !tLRPC$Message.voiceTranscriptionFinal && !tLRPC$Message.voiceTranscriptionRated && !tLRPC$Message.voiceTranscriptionForce && tLRPC$Message.voiceTranscriptionId == 0 && !tLRPC$Message.premiumEffectWasPlayed && tLRPC$Message.originalLanguage == null && tLRPC$Message.translatedToLanguage == null && tLRPC$Message.translatedText == null;

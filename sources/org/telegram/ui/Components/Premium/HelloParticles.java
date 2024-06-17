@@ -9,9 +9,11 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+
 public class HelloParticles {
     private static final String[] hellos = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
 
@@ -76,8 +78,9 @@ public class HelloParticles {
         }
 
         public void recycle() {
-            for (Bitmap bitmap : this.bitmaps.values()) {
-                bitmap.recycle();
+            Iterator<Bitmap> it = this.bitmaps.values().iterator();
+            while (it.hasNext()) {
+                it.next().recycle();
             }
             this.bitmaps.clear();
         }
@@ -169,7 +172,7 @@ public class HelloParticles {
                 for (int i3 = 0; i3 < 10; i3++) {
                     float abs3 = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
                     float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                    float f6 = 2.14748365E9f;
+                    float f6 = 2.1474836E9f;
                     for (int i4 = 0; i4 < Drawable.this.particles.size(); i4++) {
                         Particle particle = Drawable.this.particles.get(i4);
                         if (particle.set) {

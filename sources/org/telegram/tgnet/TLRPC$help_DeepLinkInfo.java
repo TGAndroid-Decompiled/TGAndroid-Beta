@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$help_DeepLinkInfo extends TLObject {
     public static TLRPC$help_DeepLinkInfo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$help_DeepLinkInfo tLRPC$help_DeepLinkInfo;

@@ -5,6 +5,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
+
 public class TL_stories$TL_stories_stories extends TLObject {
     public int count;
     public int flags;
@@ -51,10 +52,11 @@ public class TL_stories$TL_stories_stories extends TLObject {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
                 return;
-            }
-            int readInt324 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt324; i2++) {
-                this.pinned_to_top.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+            } else {
+                int readInt324 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt324; i2++) {
+                    this.pinned_to_top.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+                }
             }
         }
         int readInt325 = abstractSerializedData.readInt32(z);

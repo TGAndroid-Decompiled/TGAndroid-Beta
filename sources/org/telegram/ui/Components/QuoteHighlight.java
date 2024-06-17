@@ -10,6 +10,7 @@ import android.view.ViewParent;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
+
 public class QuoteHighlight extends Path {
     private float currentOffsetX;
     private float currentOffsetY;

@@ -18,6 +18,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class GraySectionCell extends FrameLayout {
     private int layerHeight;
     private final Theme.ResourcesProvider resourcesProvider;

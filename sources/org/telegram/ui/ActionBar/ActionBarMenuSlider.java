@@ -44,6 +44,7 @@ import org.telegram.ui.Components.FloatSeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.SeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.SpeedIconDrawable;
+
 public class ActionBarMenuSlider extends FrameLayout {
     private boolean backgroundDark;
     private Paint backgroundPaint;
@@ -117,7 +118,7 @@ public class ActionBarMenuSlider extends FrameLayout {
         };
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true) {
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, r7, r7) {
             @Override
             public void invalidateSelf() {
                 ActionBarMenuSlider.this.invalidate();
@@ -138,9 +139,9 @@ public class ActionBarMenuSlider extends FrameLayout {
         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.1f);
         this.pseudoBlurPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         this.backgroundPaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider));
-        boolean z = AndroidUtilities.computePerceivedBrightness(this.backgroundPaint.getColor()) <= 0.721f;
-        this.backgroundDark = z;
-        this.textDrawable.setTextColor(z ? -1 : -16777216);
+        r7 = AndroidUtilities.computePerceivedBrightness(this.backgroundPaint.getColor()) <= 0.721f;
+        this.backgroundDark = r7;
+        this.textDrawable.setTextColor(r7 ? -1 : -16777216);
         this.darkenBlurPaint.setColor(Theme.multAlpha(-16777216, 0.025f));
         this.brightenBlurPaint.setColor(Theme.multAlpha(-1, 0.35f));
     }
@@ -389,15 +390,13 @@ public class ActionBarMenuSlider extends FrameLayout {
         }
         int[] iArr = this.location;
         float f = iArr[0] / AndroidUtilities.displaySize.x;
-        float measuredWidth = (iArr[0] + getMeasuredWidth()) / AndroidUtilities.displaySize.x;
-        float currentActionBarHeight = ((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y;
         int width = (int) (f * bitmap.getWidth());
-        int width2 = (int) (measuredWidth * bitmap.getWidth());
-        int height = (int) (currentActionBarHeight * bitmap.getHeight());
-        if (width < 0 || width >= bitmap.getWidth() || width2 < 0 || width2 >= bitmap.getWidth() || height < 0 || height >= bitmap.getHeight()) {
+        int measuredWidth = (int) (((iArr[0] + getMeasuredWidth()) / AndroidUtilities.displaySize.x) * bitmap.getWidth());
+        int currentActionBarHeight = (int) ((((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y) * bitmap.getHeight());
+        if (width < 0 || width >= bitmap.getWidth() || measuredWidth < 0 || measuredWidth >= bitmap.getWidth() || currentActionBarHeight < 0 || currentActionBarHeight >= bitmap.getHeight()) {
             return null;
         }
-        return new Pair<>(Integer.valueOf(bitmap.getPixel(width, height)), Integer.valueOf(bitmap.getPixel(width2, height)));
+        return new Pair<>(Integer.valueOf(bitmap.getPixel(width, currentActionBarHeight)), Integer.valueOf(bitmap.getPixel(measuredWidth, currentActionBarHeight)));
     }
 
     private void updatePseudoBlurColors() {

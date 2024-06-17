@@ -16,6 +16,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
+
 public class ActionBarMenuSubItem extends FrameLayout {
     boolean bottom;
     private CheckBox2 checkView;
@@ -182,14 +183,13 @@ public class ActionBarMenuSubItem extends FrameLayout {
             }
             this.imageView.setVisibility(0);
             TextView textView = this.textView;
-            float f = 0.0f;
             if (this.checkViewLeft) {
                 dp = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
             } else {
                 dp = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
             }
             if (this.checkViewLeft) {
-                dp2 = AndroidUtilities.dp((i == 0 && drawable == null) ? 43.0f : 43.0f);
+                dp2 = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
             } else {
                 dp2 = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
             }

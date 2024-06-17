@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_saveWallPaper extends TLObject {
     public TLRPC$TL_wallPaperSettings settings;
     public boolean unsave;

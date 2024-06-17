@@ -61,6 +61,7 @@ import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.ReplaceableIconDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.TopicCreateFragment;
+
 public class TopicCreateFragment extends BaseFragment {
     BackupImageView[] backupImageView;
     long chatId;
@@ -448,8 +449,7 @@ public class TopicCreateFragment extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        TextCheckCell2 textCheckCell2 = this.checkBoxCell;
-        textCheckCell2.setChecked(!textCheckCell2.isChecked());
+        this.checkBoxCell.setChecked(!r2.isChecked());
     }
 
     public void selectEmoji(Long l, boolean z) {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_documentAttributeVideo_layer159 extends TLRPC$TL_documentAttributeVideo {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

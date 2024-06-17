@@ -1,4 +1,5 @@
 package org.telegram.messenger.video;
+
 public class AudioConversions {
     private static final int BYTES_PER_SAMPLE_PER_CHANNEL = 2;
     private static final int BYTES_PER_SHORT = 2;

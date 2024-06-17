@@ -27,6 +27,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -83,6 +84,7 @@ import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class ChatActionCell extends BaseCell implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private static Map<Integer, String> monthsToEmoticon;
     private int TAG;
@@ -279,21 +281,29 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         MessageObject messageObject;
         if (i == NotificationCenter.startSpoilers) {
             setSpoilersSuppressed(false);
-        } else if (i == NotificationCenter.stopSpoilers) {
+            return;
+        }
+        if (i == NotificationCenter.stopSpoilers) {
             setSpoilersSuppressed(true);
-        } else if (i == NotificationCenter.didUpdatePremiumGiftStickers) {
+            return;
+        }
+        if (i == NotificationCenter.didUpdatePremiumGiftStickers) {
             MessageObject messageObject2 = this.currentMessageObject;
             if (messageObject2 != null) {
                 setMessageObject(messageObject2, true);
+                return;
             }
-        } else if (i == NotificationCenter.diceStickersDidLoad && Objects.equals(objArr[0], UserConfig.getInstance(this.currentAccount).premiumGiftsStickerPack) && (messageObject = this.currentMessageObject) != null) {
+            return;
+        }
+        if (i == NotificationCenter.diceStickersDidLoad && Objects.equals(objArr[0], UserConfig.getInstance(this.currentAccount).premiumGiftsStickerPack) && (messageObject = this.currentMessageObject) != null) {
             setMessageObject(messageObject, true);
         }
     }
 
     public void setSpoilersSuppressed(boolean z) {
-        for (SpoilerEffect spoilerEffect : this.spoilers) {
-            spoilerEffect.setSuppressUpdates(z);
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().setSuppressUpdates(z);
         }
     }
 
@@ -605,12 +615,12 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     private boolean isSelfGiftCode() {
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if ((tLRPC$Message.action instanceof TLRPC$TL_messageActionGiftCode) && (tLRPC$Message.from_id instanceof TLRPC$TL_peerUser)) {
-                return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentMessageObject.messageOwner.from_id.user_id)).self;
-            }
+        if (messageObject == null) {
             return false;
+        }
+        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+        if ((tLRPC$Message.action instanceof TLRPC$TL_messageActionGiftCode) && (tLRPC$Message.from_id instanceof TLRPC$TL_peerUser)) {
+            return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentMessageObject.messageOwner.from_id.user_id)).self;
         }
         return false;
     }
@@ -768,14 +778,12 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         TLRPC$MessageMedia tLRPC$MessageMedia;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null) {
-            if (messageObject.isExpiredStory()) {
-                if (messageObject.messageOwner.media.user_id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                    charSequence = StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMention", R.string.ExpiredStoryMention, new Object[0]);
-                } else {
-                    charSequence = StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMentioned", R.string.ExpiredStoryMentioned, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name);
-                }
-            } else {
+            if (!messageObject.isExpiredStory()) {
                 charSequence = (this.delegate.getTopicId() == 0 && MessageObject.isTopicActionMessage(messageObject)) ? ForumUtilities.createActionTextWithTopic(MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(this.currentAccount, messageObject.messageOwner, true)), messageObject) : null;
+            } else if (messageObject.messageOwner.media.user_id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                charSequence = StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMention", R.string.ExpiredStoryMention, new Object[0]);
+            } else {
+                charSequence = StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMentioned", R.string.ExpiredStoryMentioned, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name);
             }
             if (charSequence == null) {
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
@@ -807,13 +815,20 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (messageObject != null) {
             int i = messageObject.type;
             if (i == 11) {
+                float dp = this.textHeight + AndroidUtilities.dp(19.0f);
                 int i2 = AndroidUtilities.roundMessageSize;
-                this.imageReceiver.setImageCoords((this.previousWidth - AndroidUtilities.roundMessageSize) / 2.0f, this.textHeight + AndroidUtilities.dp(19.0f), i2, i2);
-            } else if (i == 25) {
+                this.imageReceiver.setImageCoords((this.previousWidth - AndroidUtilities.roundMessageSize) / 2.0f, dp, i2, i2);
+                return;
+            }
+            if (i == 25) {
                 createGiftPremiumChannelLayouts();
-            } else if (i == 18) {
+                return;
+            }
+            if (i == 18) {
                 createGiftPremiumLayouts(LocaleController.getString(R.string.ActionGiftPremiumTitle), LocaleController.formatString(R.string.ActionGiftPremiumSubtitle, LocaleController.formatPluralString("Months", messageObject.messageOwner.action.months, new Object[0])), (!isGiftCode() || isSelfGiftCode()) ? LocaleController.getString("ActionGiftPremiumView", R.string.ActionGiftPremiumView) : LocaleController.getString("GiftPremiumUseGiftBtn", R.string.GiftPremiumUseGiftBtn), this.giftRectSize, true);
-            } else if (i == 21) {
+                return;
+            }
+            if (i == 21) {
                 TLRPC$TL_messageActionSuggestProfilePhoto tLRPC$TL_messageActionSuggestProfilePhoto = (TLRPC$TL_messageActionSuggestProfilePhoto) messageObject.messageOwner.action;
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
                 boolean z2 = tLRPC$TL_messageActionSuggestProfilePhoto.video || !((tLRPC$Photo = tLRPC$TL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = tLRPC$Photo.video_sizes) == null || arrayList2.isEmpty());
@@ -839,28 +854,35 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 this.textLayout = null;
                 this.textHeight = 0;
                 this.textY = 0;
-            } else if (i == 22) {
+                return;
+            }
+            if (i == 22) {
                 TLRPC$User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
                 if (messageObject.getDialogId() < 0) {
                     charSequence3 = messageObject.messageText;
-                } else if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {
-                    charSequence2 = messageObject.messageText;
-                    string = LocaleController.getString(R.string.RemoveWallpaperAction);
-                    z = false;
-                    createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
-                    this.textLayout = null;
-                    this.textHeight = 0;
-                    this.textY = 0;
-                } else if (user3 != null && user3.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    charSequence3 = messageObject.messageText;
                 } else {
-                    charSequence2 = messageObject.messageText;
-                    string = LocaleController.getString(R.string.ViewWallpaperAction);
-                    z = true;
-                    createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
-                    this.textLayout = null;
-                    this.textHeight = 0;
-                    this.textY = 0;
+                    if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {
+                        charSequence2 = messageObject.messageText;
+                        string = LocaleController.getString(R.string.RemoveWallpaperAction);
+                        z = false;
+                        createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
+                        this.textLayout = null;
+                        this.textHeight = 0;
+                        this.textY = 0;
+                        return;
+                    }
+                    if (user3 != null && user3.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                        charSequence3 = messageObject.messageText;
+                    } else {
+                        charSequence2 = messageObject.messageText;
+                        string = LocaleController.getString(R.string.ViewWallpaperAction);
+                        z = true;
+                        createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
+                        this.textLayout = null;
+                        this.textHeight = 0;
+                        this.textY = 0;
+                        return;
+                    }
                 }
                 charSequence2 = charSequence3;
                 string = null;
@@ -869,7 +891,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 this.textLayout = null;
                 this.textHeight = 0;
                 this.textY = 0;
-            } else if (messageObject.isStoryMention()) {
+                return;
+            }
+            if (messageObject.isStoryMention()) {
                 TLRPC$User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
                 createGiftPremiumLayouts(null, user4.self ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryYouMentionedTitle", R.string.StoryYouMentionedTitle, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name)) : AndroidUtilities.replaceTags(LocaleController.formatString("StoryMentionedTitle", R.string.StoryMentionedTitle, user4.first_name)), LocaleController.getString(R.string.StoryMentionedAction), this.giftRectSize, true);
                 this.textLayout = null;
@@ -1014,21 +1038,17 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         Paint paint4;
         int i;
         float f;
-        int i2;
-        int i3;
         Paint paint5;
         Paint paint6;
-        int i4;
+        int i2;
         float f2;
-        int i5;
+        int i3;
         float f3;
+        int i4;
+        int i5;
         int i6;
-        int i7;
-        int i8;
         float f4;
-        int i9;
-        int i10;
-        int i11;
+        int i7;
         if (this.canDrawInParent) {
             if (hasGradientService() && !z) {
                 return;
@@ -1040,9 +1060,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         Paint themedPaint = getThemedPaint("paintChatActionBackground");
         Paint themedPaint2 = getThemedPaint("paintChatActionBackgroundDarken");
         this.textPaint = (TextPaint) getThemedPaint("paintChatActionText");
-        int i12 = this.overrideBackground;
-        if (i12 >= 0) {
-            int themedColor = getThemedColor(i12);
+        int i8 = this.overrideBackground;
+        if (i8 >= 0) {
+            int themedColor = getThemedColor(i8);
             if (this.overrideBackgroundPaint == null) {
                 Paint paint7 = new Paint(1);
                 this.overrideBackgroundPaint = paint7;
@@ -1065,162 +1085,162 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             int lineCount = staticLayout == null ? 0 : staticLayout.getLineCount();
             int dp = AndroidUtilities.dp(11.0f);
             int dp2 = AndroidUtilities.dp(8.0f);
-            int i13 = 0;
-            int i14 = 0;
+            int i9 = 0;
+            int i10 = 0;
             while (true) {
                 f = 1.5f;
-                if (i13 >= lineCount) {
+                if (i9 >= lineCount) {
                     break;
                 }
-                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i13));
-                if (i13 == 0 || (i11 = i14 - ceil) <= 0 || i11 > (dp * 1.5f) + dp2) {
-                    i14 = ceil;
+                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i9));
+                if (i9 == 0 || (i7 = i10 - ceil) <= 0 || i7 > (dp * 1.5f) + dp2) {
+                    i10 = ceil;
                 }
-                this.lineWidths.add(Integer.valueOf(i14));
-                i13++;
+                this.lineWidths.add(Integer.valueOf(i10));
+                i9++;
             }
-            int i15 = lineCount - 2;
-            while (i15 >= 0) {
-                int intValue = this.lineWidths.get(i15).intValue();
-                int i16 = i14 - intValue;
-                if (i16 <= 0 || i16 > (dp * f) + dp2) {
-                    i14 = intValue;
+            int i11 = lineCount - 2;
+            while (i11 >= 0) {
+                int intValue = this.lineWidths.get(i11).intValue();
+                int i12 = i10 - intValue;
+                if (i12 <= 0 || i12 > (dp * f) + dp2) {
+                    i10 = intValue;
                 }
-                this.lineWidths.set(i15, Integer.valueOf(i14));
-                i15--;
+                this.lineWidths.set(i11, Integer.valueOf(i10));
+                i11--;
                 f = 1.5f;
             }
             int dp3 = AndroidUtilities.dp(4.0f);
             int measuredWidth = getMeasuredWidth() / 2;
             int dp4 = AndroidUtilities.dp(3.0f);
             int dp5 = AndroidUtilities.dp(6.0f);
-            int i17 = dp - dp4;
+            int i13 = dp - dp4;
             this.lineHeights.clear();
             this.backgroundPath.reset();
             float f5 = measuredWidth;
             this.backgroundPath.moveTo(f5, dp3);
-            int i18 = 0;
-            int i19 = 0;
-            while (i18 < lineCount) {
-                int intValue2 = this.lineWidths.get(i18).intValue();
-                int i20 = dp5;
-                int lineBottom = this.textLayout.getLineBottom(i18);
-                int i21 = lineCount - 1;
-                if (i18 < i21) {
+            int i14 = 0;
+            int i15 = 0;
+            while (i14 < lineCount) {
+                int intValue2 = this.lineWidths.get(i14).intValue();
+                int i16 = dp5;
+                int lineBottom = this.textLayout.getLineBottom(i14);
+                int i17 = lineCount - 1;
+                if (i14 < i17) {
                     paint6 = themedPaint2;
                     paint5 = themedPaint;
-                    i4 = this.lineWidths.get(i18 + 1).intValue();
+                    i2 = this.lineWidths.get(i14 + 1).intValue();
                 } else {
                     paint5 = themedPaint;
                     paint6 = themedPaint2;
-                    i4 = 0;
+                    i2 = 0;
                 }
-                int i22 = lineBottom - i19;
-                if (i18 == 0 || intValue2 > i14) {
+                int i18 = lineBottom - i15;
+                if (i14 == 0 || intValue2 > i10) {
                     f2 = 3.0f;
-                    i22 += AndroidUtilities.dp(3.0f);
+                    i18 += AndroidUtilities.dp(3.0f);
                 } else {
                     f2 = 3.0f;
                 }
-                if (i18 == i21 || intValue2 > i4) {
-                    i22 += AndroidUtilities.dp(f2);
+                if (i14 == i17 || intValue2 > i2) {
+                    i18 += AndroidUtilities.dp(f2);
                 }
                 float f6 = (intValue2 / 2.0f) + f5;
-                int i23 = (i18 == i21 || intValue2 >= i4 || i18 == 0 || intValue2 >= i14) ? dp2 : i20;
-                if (i18 == 0 || intValue2 > i14) {
-                    i5 = measuredWidth;
+                int i19 = (i14 == i17 || intValue2 >= i2 || i14 == 0 || intValue2 >= i10) ? dp2 : i16;
+                if (i14 == 0 || intValue2 > i10) {
+                    i3 = measuredWidth;
                     f3 = f5;
-                    i6 = lineCount;
-                    i7 = i14;
-                    i8 = lineBottom;
-                    this.rect.set((f6 - dp4) - dp, dp3, i17 + f6, (dp * 2) + dp3);
+                    i4 = lineCount;
+                    i5 = i10;
+                    i6 = lineBottom;
+                    this.rect.set((f6 - dp4) - dp, dp3, i13 + f6, (dp * 2) + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, -90.0f, 90.0f);
-                } else if (intValue2 < i14) {
+                } else if (intValue2 < i10) {
                     f3 = f5;
-                    i8 = lineBottom;
-                    float f7 = i17 + f6;
-                    i5 = measuredWidth;
-                    i6 = lineCount;
-                    i7 = i14;
-                    this.rect.set(f7, dp3, (i23 * 2) + f7, i10 + dp3);
+                    i6 = lineBottom;
+                    float f7 = i13 + f6;
+                    i3 = measuredWidth;
+                    i4 = lineCount;
+                    i5 = i10;
+                    this.rect.set(f7, dp3, (i19 * 2) + f7, r9 + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, -90.0f, -90.0f);
                 } else {
-                    i5 = measuredWidth;
+                    i3 = measuredWidth;
                     f3 = f5;
-                    i6 = lineCount;
-                    i7 = i14;
-                    i8 = lineBottom;
+                    i4 = lineCount;
+                    i5 = i10;
+                    i6 = lineBottom;
                 }
-                dp3 += i22;
-                if (i18 == i21 || intValue2 >= i4) {
+                dp3 += i18;
+                if (i14 == i17 || intValue2 >= i2) {
                     f4 = 3.0f;
                 } else {
                     f4 = 3.0f;
                     dp3 -= AndroidUtilities.dp(3.0f);
-                    i22 -= AndroidUtilities.dp(3.0f);
+                    i18 -= AndroidUtilities.dp(3.0f);
                 }
-                if (i18 != 0 && intValue2 < i7) {
+                if (i14 != 0 && intValue2 < i5) {
                     dp3 -= AndroidUtilities.dp(f4);
-                    i22 -= AndroidUtilities.dp(f4);
+                    i18 -= AndroidUtilities.dp(f4);
                 }
-                this.lineHeights.add(Integer.valueOf(i22));
-                if (i18 == i21 || intValue2 > i4) {
-                    this.rect.set((f6 - dp4) - dp, dp3 - (dp * 2), f6 + i17, dp3);
+                this.lineHeights.add(Integer.valueOf(i18));
+                if (i14 == i17 || intValue2 > i2) {
+                    this.rect.set((f6 - dp4) - dp, dp3 - (dp * 2), f6 + i13, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 0.0f, 90.0f);
-                } else if (intValue2 < i4) {
-                    float f8 = f6 + i17;
-                    this.rect.set(f8, dp3 - i9, (i23 * 2) + f8, dp3);
+                } else if (intValue2 < i2) {
+                    float f8 = f6 + i13;
+                    this.rect.set(f8, dp3 - r2, (i19 * 2) + f8, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 180.0f, -90.0f);
                 }
-                i18++;
-                i14 = intValue2;
-                dp5 = i20;
+                i14++;
+                i10 = intValue2;
+                dp5 = i16;
                 themedPaint2 = paint6;
                 themedPaint = paint5;
                 f5 = f3;
-                i19 = i8;
-                measuredWidth = i5;
-                lineCount = i6;
+                i15 = i6;
+                measuredWidth = i3;
+                lineCount = i4;
             }
             paint = themedPaint;
             paint2 = themedPaint2;
-            int i24 = measuredWidth;
-            int i25 = dp5;
-            int i26 = lineCount - 1;
-            int i27 = i26;
-            while (i27 >= 0) {
-                int intValue3 = i27 != 0 ? this.lineWidths.get(i27 - 1).intValue() : 0;
-                int intValue4 = this.lineWidths.get(i27).intValue();
-                int intValue5 = i27 != i26 ? this.lineWidths.get(i27 + 1).intValue() : 0;
-                this.textLayout.getLineBottom(i27);
-                float f9 = i24 - (intValue4 / 2);
-                int i28 = (i27 == i26 || intValue4 >= intValue5 || i27 == 0 || intValue4 >= intValue3) ? dp2 : i25;
-                if (i27 == i26 || intValue4 > intValue5) {
-                    this.rect.set(f9 - i17, dp3 - (dp * 2), dp4 + f9 + dp, dp3);
+            int i20 = measuredWidth;
+            int i21 = dp5;
+            int i22 = lineCount - 1;
+            int i23 = i22;
+            while (i23 >= 0) {
+                int intValue3 = i23 != 0 ? this.lineWidths.get(i23 - 1).intValue() : 0;
+                int intValue4 = this.lineWidths.get(i23).intValue();
+                int intValue5 = i23 != i22 ? this.lineWidths.get(i23 + 1).intValue() : 0;
+                this.textLayout.getLineBottom(i23);
+                float f9 = i20 - (intValue4 / 2);
+                int i24 = (i23 == i22 || intValue4 >= intValue5 || i23 == 0 || intValue4 >= intValue3) ? dp2 : i21;
+                if (i23 == i22 || intValue4 > intValue5) {
+                    this.rect.set(f9 - i13, dp3 - (dp * 2), dp4 + f9 + dp, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 90.0f, 90.0f);
                 } else if (intValue4 < intValue5) {
-                    float f10 = f9 - i17;
-                    this.rect.set(f10 - (i28 * 2), dp3 - i3, f10, dp3);
+                    float f10 = f9 - i13;
+                    this.rect.set(f10 - (i24 * 2), dp3 - r12, f10, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 90.0f, -90.0f);
                 }
-                dp3 -= this.lineHeights.get(i27).intValue();
-                if (i27 == 0 || intValue4 > intValue3) {
-                    this.rect.set(f9 - i17, dp3, f9 + dp4 + dp, (dp * 2) + dp3);
+                dp3 -= this.lineHeights.get(i23).intValue();
+                if (i23 == 0 || intValue4 > intValue3) {
+                    this.rect.set(f9 - i13, dp3, f9 + dp4 + dp, (dp * 2) + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 180.0f, 90.0f);
                 } else if (intValue4 < intValue3) {
-                    float f11 = f9 - i17;
-                    this.rect.set(f11 - (i28 * 2), dp3, f11, i2 + dp3);
+                    float f11 = f9 - i13;
+                    this.rect.set(f11 - (i24 * 2), dp3, f11, r7 + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 0.0f, -90.0f);
                 }
-                i27--;
+                i23--;
             }
             this.backgroundPath.close();
         } else {
@@ -1236,21 +1256,21 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         } else {
             Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
         }
-        int i29 = -1;
+        int i25 = -1;
         if (z && (getAlpha() != 1.0f || isFloating())) {
-            i29 = paint.getAlpha();
+            i25 = paint.getAlpha();
             i = paint2.getAlpha();
             paint4 = paint;
-            paint4.setAlpha((int) (i29 * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
+            paint4.setAlpha((int) (i25 * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
             paint3 = paint2;
             paint3.setAlpha((int) (i * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
         } else {
             paint3 = paint2;
             paint4 = paint;
             if (isFloating()) {
-                i29 = paint4.getAlpha();
+                i25 = paint4.getAlpha();
                 i = paint3.getAlpha();
-                paint4.setAlpha((int) (i29 * (isFloating() ? 0.75f : 1.0f)));
+                paint4.setAlpha((int) (i25 * (isFloating() ? 0.75f : 1.0f)));
                 paint3.setAlpha((int) (i * (isFloating() ? 0.75f : 1.0f)));
             } else {
                 i = -1;
@@ -1277,8 +1297,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             } else {
                 float dp7 = f12 + AndroidUtilities.dp(12.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                int i30 = this.giftRectSize;
-                rectF.set(width, dp7, i30 + width, i30 + dp7 + this.giftPremiumAdditionalHeight);
+                int i26 = this.giftRectSize;
+                rectF.set(width, dp7, i26 + width, i26 + dp7 + this.giftPremiumAdditionalHeight);
             }
             if (this.backgroundRect == null) {
                 this.backgroundRect = new RectF();
@@ -1289,8 +1309,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 canvas.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
             }
         }
-        if (i29 >= 0) {
-            paint4.setAlpha(i29);
+        if (i25 >= 0) {
+            paint4.setAlpha(i25);
             paint3.setAlpha(i);
         }
     }
@@ -1351,7 +1371,6 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        CharacterStyle[] characterStyleArr;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         MessageObject messageObject = this.currentMessageObject;
         if (TextUtils.isEmpty(this.customText) && messageObject == null) {

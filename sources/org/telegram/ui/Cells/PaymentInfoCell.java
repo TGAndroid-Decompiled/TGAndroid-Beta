@@ -17,6 +17,7 @@ import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class PaymentInfoCell extends FrameLayout {
     private TextView detailExTextView;
     private TextView detailTextView;

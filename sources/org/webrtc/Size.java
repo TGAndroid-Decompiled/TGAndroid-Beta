@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public class Size {
     public int height;
     public int width;
@@ -13,11 +14,11 @@ public class Size {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof Size) {
-            Size size = (Size) obj;
-            return this.width == size.width && this.height == size.height;
+        if (!(obj instanceof Size)) {
+            return false;
         }
-        return false;
+        Size size = (Size) obj;
+        return this.width == size.width && this.height == size.height;
     }
 
     public int hashCode() {

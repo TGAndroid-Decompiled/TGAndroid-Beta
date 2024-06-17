@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public abstract class TL_stats$PostInteractionCounters extends TLObject {
     public static TL_stats$PostInteractionCounters TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_stats$PostInteractionCounters tL_stats$TL_postInteractionCountersStory;

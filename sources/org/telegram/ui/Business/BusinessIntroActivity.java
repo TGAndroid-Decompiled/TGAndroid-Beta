@@ -56,6 +56,7 @@ import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 import org.telegram.ui.Stories.recorder.PreviewView;
+
 public class BusinessIntroActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private ChatAttachAlert chatAttachAlert;
     private String currentMessage;
@@ -243,7 +244,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (BusinessIntroActivity.this.onBackPressed()) {
-                        BusinessIntroActivity.this.finishFragment();
+                        BusinessIntroActivity.this.lambda$onBackPressed$303();
                     }
                 } else if (i2 == 1) {
                     BusinessIntroActivity.this.processDone();
@@ -299,8 +300,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     public void updateGreetingScale() {
         if (this.previewContainer.getParent() instanceof View) {
             int top = ((View) this.previewContainer.getParent()).getTop();
-            int measuredHeight = this.previewContainer.getMeasuredHeight() - AndroidUtilities.dp(36.0f);
-            float clamp = Utilities.clamp((top + measuredHeight) / measuredHeight, 1.0f, 0.65f);
+            float clamp = Utilities.clamp((top + r1) / (this.previewContainer.getMeasuredHeight() - AndroidUtilities.dp(36.0f)), 1.0f, 0.65f);
             this.greetingsView.setScaleX(clamp);
             this.greetingsView.setScaleY(clamp);
             this.greetingsView.setAlpha(Utilities.clamp(clamp * 2.0f, 1.0f, 0.0f));
@@ -414,7 +414,9 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
                 }
             });
             showDialog(emojiBottomSheet);
-        } else if (i2 == 2) {
+            return;
+        }
+        if (i2 == 2) {
             this.titleEdit.setText("");
             this.messageEdit.setText("");
             AndroidUtilities.hideKeyboard(this.titleEdit.editText);
@@ -553,7 +555,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             if (this.inputSticker != null) {
                 getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
             }
-            finishFragment();
+            lambda$onBackPressed$303();
         }
     }
 
@@ -586,7 +588,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     public void lambda$onBackPressed$6(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$303();
     }
 
     public void openCustomStickerEditor() {

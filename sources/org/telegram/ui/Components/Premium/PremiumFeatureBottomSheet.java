@@ -48,6 +48,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ThemePreviewActivity;
+
 public class PremiumFeatureBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     ActionBar actionBar;
     private final BaseFragment baseFragment;
@@ -134,11 +135,12 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             }
         }
         if (z2) {
+            PremiumPreviewFragment.PremiumFeatureData premiumFeatureData = this.premiumFeatures.get(i3);
             this.premiumFeatures.clear();
-            this.premiumFeatures.add(this.premiumFeatures.get(i3));
+            this.premiumFeatures.add(premiumFeatureData);
             i3 = 0;
         }
-        final PremiumPreviewFragment.PremiumFeatureData premiumFeatureData = this.premiumFeatures.get(i3);
+        final PremiumPreviewFragment.PremiumFeatureData premiumFeatureData2 = this.premiumFeatures.get(i3);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         this.useBackgroundTopPadding = false;
@@ -305,7 +307,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumFeatureBottomSheet.this.lambda$new$1(baseFragment, z2, premiumFeatureData, view);
+                PremiumFeatureBottomSheet.this.lambda$new$1(baseFragment, z2, premiumFeatureData2, view);
             }
         });
         this.premiumButtonView.overlayTextView.setOnClickListener(new View.OnClickListener() {
@@ -492,13 +494,13 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     }
 
     private static Theme.ResourcesProvider getResourceProvider(BaseFragment baseFragment) {
-        if (baseFragment != null) {
-            if (baseFragment.getLastStoryViewer() != null && baseFragment.getLastStoryViewer().isShown()) {
-                return baseFragment.getLastStoryViewer().getResourceProvider();
-            }
-            return baseFragment.getResourceProvider();
+        if (baseFragment == null) {
+            return null;
         }
-        return null;
+        if (baseFragment.getLastStoryViewer() != null && baseFragment.getLastStoryViewer().isShown()) {
+            return baseFragment.getLastStoryViewer().getResourceProvider();
+        }
+        return baseFragment.getResourceProvider();
     }
 
     public PremiumFeatureBottomSheet setForceAbout() {
@@ -511,20 +513,24 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     private void setButtonText() {
         if (this.forceAbout) {
             this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.AboutTelegramPremium));
-        } else if (this.onlySelectedType) {
+            return;
+        }
+        if (this.onlySelectedType) {
             int i = this.startType;
             if (i == 4) {
                 this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.UnlockPremiumReactions));
                 this.premiumButtonView.setIcon(R.raw.unlock_icon);
+                return;
             } else if (i == 10) {
                 this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.UnlockPremiumIcons));
                 this.premiumButtonView.setIcon(R.raw.unlock_icon);
+                return;
             } else {
                 this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.AboutTelegramPremium));
+                return;
             }
-        } else {
-            this.premiumButtonView.buttonTextView.setText(PremiumPreviewFragment.getPremiumButtonText(this.currentAccount, this.selectedTier));
         }
+        this.premiumButtonView.buttonTextView.setText(PremiumPreviewFragment.getPremiumButtonText(this.currentAccount, this.selectedTier));
     }
 
     @Override
@@ -782,7 +788,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
             });
             return doubleLimitsPageView;
-        } else if (i2 == 14 || i2 == 28) {
+        }
+        if (i2 == 14 || i2 == 28) {
             FeaturesPageView featuresPageView = new FeaturesPageView(context, i2 == 28 ? 1 : 0, this.resourcesProvider);
             featuresPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -793,7 +800,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
             });
             return featuresPageView;
-        } else if (i2 == 5) {
+        }
+        if (i2 == 5) {
             return new PremiumStickersPreviewRecycler(this, context, this.currentAccount) {
                 @Override
                 public void setOffset(float f) {
@@ -801,23 +809,21 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                     super.setOffset(f);
                 }
             };
-        } else {
-            if (i2 == 10) {
-                return new PremiumAppIconsPreviewView(context, this.resourcesProvider);
-            }
-            return new VideoScreenPreview(context, this.svgIcon, this.currentAccount, premiumFeatureData.type, this.resourcesProvider);
         }
+        if (i2 == 10) {
+            return new PremiumAppIconsPreviewView(context, this.resourcesProvider);
+        }
+        return new VideoScreenPreview(context, this.svgIcon, this.currentAccount, premiumFeatureData.type, this.resourcesProvider);
     }
 
     @Override
     public boolean onCustomOpenAnimation() {
         if (this.viewPager.getChildCount() > 0) {
-            ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(0);
-            View view = viewPage.topView;
+            View view = ((ViewPage) this.viewPager.getChildAt(0)).topView;
             if (view instanceof PremiumAppIconsPreviewView) {
                 final PremiumAppIconsPreviewView premiumAppIconsPreviewView = (PremiumAppIconsPreviewView) view;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(viewPage.getMeasuredWidth(), 0.0f);
-                premiumAppIconsPreviewView.setOffset(viewPage.getMeasuredWidth());
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(r0.getMeasuredWidth(), 0.0f);
+                premiumAppIconsPreviewView.setOffset(r0.getMeasuredWidth());
                 this.enterAnimationIsRunning = true;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
                     @Override
@@ -877,8 +883,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         } else {
             this.closeLayout.setVisibility(0);
         }
-        FrameLayout frameLayout = this.content;
-        frameLayout.setTranslationX((this.fullscreenNext ? frameLayout.getMeasuredWidth() : -frameLayout.getMeasuredWidth()) * this.progressToGradient);
+        this.content.setTranslationX((this.fullscreenNext ? r0.getMeasuredWidth() : -r0.getMeasuredWidth()) * this.progressToGradient);
         if (i4 != this.topCurrentOffset) {
             this.topCurrentOffset = i4;
             for (int i5 = 0; i5 < this.viewPager.getChildCount(); i5++) {
@@ -911,9 +916,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         for (int i = 0; i < this.viewPager.getChildCount(); i++) {
             ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i);
             if (viewPage.position == this.selectedPosition) {
-                View view = viewPage.topView;
-                if (view instanceof BaseListPageView) {
-                    return !((BaseListPageView) view).recyclerListView.canScrollVertically(-1);
+                if (viewPage.topView instanceof BaseListPageView) {
+                    return !((BaseListPageView) r1).recyclerListView.canScrollVertically(-1);
                 }
             }
         }

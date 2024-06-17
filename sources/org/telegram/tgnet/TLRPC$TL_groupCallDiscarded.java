@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_groupCallDiscarded extends TLRPC$GroupCall {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -30,6 +30,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.LaunchActivity;
+
 public class BotBiometry {
     private static KeyStore keyStore;
     public boolean access_granted;
@@ -50,8 +51,7 @@ public class BotBiometry {
     }
 
     public void load() {
-        Context context = this.context;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0);
+        SharedPreferences sharedPreferences = this.context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0);
         String string = sharedPreferences.getString(String.valueOf(this.botId), null);
         this.encrypted_token = string;
         boolean z = true;
@@ -195,17 +195,17 @@ public class BotBiometry {
 
     private BiometricPrompt.CryptoObject makeCryptoObject(boolean z) {
         try {
-            if (Build.VERSION.SDK_INT >= 23) {
-                Cipher cipher = getCipher();
-                SecretKey secretKey = getSecretKey();
-                if (z) {
-                    cipher.init(2, secretKey, new IvParameterSpec(Utilities.hexToBytes(this.encrypted_token.split(";")[1])));
-                } else {
-                    cipher.init(1, secretKey);
-                }
-                return new BiometricPrompt.CryptoObject(cipher);
+            if (Build.VERSION.SDK_INT < 23) {
+                return null;
             }
-            return null;
+            Cipher cipher = getCipher();
+            SecretKey secretKey = getSecretKey();
+            if (z) {
+                cipher.init(2, secretKey, new IvParameterSpec(Utilities.hexToBytes(this.encrypted_token.split(";")[1])));
+            } else {
+                cipher.init(1, secretKey);
+            }
+            return new BiometricPrompt.CryptoObject(cipher);
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -257,10 +257,8 @@ public class BotBiometry {
             keyStore = keyStore2;
             keyStore2.load(null);
         }
-        KeyStore keyStore3 = keyStore;
-        if (keyStore3.containsAlias("6bot_" + this.botId)) {
-            KeyStore keyStore4 = keyStore;
-            return (SecretKey) keyStore4.getKey("6bot_" + this.botId, null);
+        if (keyStore.containsAlias("6bot_" + this.botId)) {
+            return (SecretKey) keyStore.getKey("6bot_" + this.botId, null);
         }
         KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder("6bot_" + this.botId, 3);
         builder.setBlockModes("CBC");
@@ -307,19 +305,18 @@ public class BotBiometry {
     public static String getDeviceId(Context context, int i, long j) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
         String string = sharedPreferences.getString("device_id" + j, null);
-        if (string == null) {
-            byte[] bArr = new byte[32];
-            new SecureRandom().nextBytes(bArr);
-            String bytesToHex = Utilities.bytesToHex(bArr);
-            sharedPreferences.edit().putString("device_id" + j, bytesToHex).apply();
-            return bytesToHex;
+        if (string != null) {
+            return string;
         }
-        return string;
+        byte[] bArr = new byte[32];
+        new SecureRandom().nextBytes(bArr);
+        String bytesToHex = Utilities.bytesToHex(bArr);
+        sharedPreferences.edit().putString("device_id" + j, bytesToHex).apply();
+        return bytesToHex;
     }
 
     public void save() {
-        Context context = this.context;
-        SharedPreferences.Editor edit = context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0).edit();
+        SharedPreferences.Editor edit = this.context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0).edit();
         if (this.access_requested) {
             edit.putBoolean(this.botId + "_requested", true);
         } else {

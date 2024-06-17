@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.BarViewData;
+
 public class BarChartView extends BaseChartView<ChartData, BarViewData> {
     @Override
     public void drawSelection(Canvas canvas) {

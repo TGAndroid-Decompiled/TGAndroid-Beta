@@ -63,6 +63,7 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.LocationActivity;
+
 public class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String address;
     private boolean clearVisible;
@@ -92,7 +93,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (LocationActivity.this.onBackPressed()) {
-                        LocationActivity.this.finishFragment();
+                        LocationActivity.this.lambda$onBackPressed$303();
                     }
                 } else if (i == 1) {
                     LocationActivity.this.processDone();
@@ -187,12 +188,12 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.editText.setFilters(new InputFilter[]{new InputFilter(this) {
             @Override
             public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
-                if (charSequence != null) {
-                    String charSequence2 = charSequence.toString();
-                    if (charSequence2.contains("\n")) {
-                        return charSequence2.replaceAll("\n", "");
-                    }
+                if (charSequence == null) {
                     return null;
+                }
+                String charSequence2 = charSequence.toString();
+                if (charSequence2.contains("\n")) {
+                    return charSequence2.replaceAll("\n", "");
                 }
                 return null;
             }
@@ -363,8 +364,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             int min = Math.min(2, (int) Math.ceil(f));
             BackupImageView backupImageView2 = this.mapPreview;
             TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
-            ImageLocation forWebFile = ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, 0L, min * i, min * 240, 15, min));
-            backupImageView2.setImage(forWebFile, i + "_240", this.mapLoadingDrawable, 0, (Object) null);
+            backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, 0L, min * i, min * 240, 15, min)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
             return;
         }
         backupImageView.setImageBitmap(null);
@@ -380,16 +380,16 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         if (z != ((tLRPC$TL_businessLocation == null || (tLRPC$TL_businessLocation.geo_point instanceof TLRPC$TL_geoPointEmpty)) ? false : true)) {
             return true;
         }
-        if (TextUtils.equals(this.address, tLRPC$TL_businessLocation != null ? tLRPC$TL_businessLocation.address : "")) {
-            TLRPC$GeoPoint tLRPC$GeoPoint2 = this.geo;
-            boolean z2 = tLRPC$GeoPoint2 != null;
-            TLRPC$TL_businessLocation tLRPC$TL_businessLocation2 = this.currentLocation;
-            if (z2 != ((tLRPC$TL_businessLocation2 == null || tLRPC$TL_businessLocation2.geo_point == null) ? false : true)) {
-                return true;
-            }
-            return tLRPC$GeoPoint2 != null && (tLRPC$TL_businessLocation2 == null || (tLRPC$GeoPoint = tLRPC$TL_businessLocation2.geo_point) == null || !((tLRPC$GeoPoint instanceof TLRPC$TL_geoPointEmpty) || (tLRPC$GeoPoint2.lat == tLRPC$GeoPoint.lat && tLRPC$GeoPoint2._long == tLRPC$GeoPoint._long)));
+        if (!TextUtils.equals(this.address, tLRPC$TL_businessLocation != null ? tLRPC$TL_businessLocation.address : "")) {
+            return true;
         }
-        return true;
+        TLRPC$GeoPoint tLRPC$GeoPoint2 = this.geo;
+        boolean z2 = tLRPC$GeoPoint2 != null;
+        TLRPC$TL_businessLocation tLRPC$TL_businessLocation2 = this.currentLocation;
+        if (z2 != ((tLRPC$TL_businessLocation2 == null || tLRPC$TL_businessLocation2.geo_point == null) ? false : true)) {
+            return true;
+        }
+        return tLRPC$GeoPoint2 != null && (tLRPC$TL_businessLocation2 == null || (tLRPC$GeoPoint = tLRPC$TL_businessLocation2.geo_point) == null || !((tLRPC$GeoPoint instanceof TLRPC$TL_geoPointEmpty) || (tLRPC$GeoPoint2.lat == tLRPC$GeoPoint.lat && tLRPC$GeoPoint2._long == tLRPC$GeoPoint._long)));
     }
 
     public void checkDone(boolean z) {
@@ -421,7 +421,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         boolean z = this.geo == null && TextUtils.isEmpty(this.address);
         if (!z) {
             if (!hasChanges()) {
-                finishFragment();
+                lambda$onBackPressed$303();
                 return;
             }
             String str = this.address;
@@ -493,7 +493,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            finishFragment();
+            lambda$onBackPressed$303();
         }
     }
 
@@ -527,7 +527,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$303();
     }
 
     @Override
@@ -562,10 +562,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             if (this.geo == null || uItem.view == this.mapPreviewContainer) {
                 showLocationAlert();
                 return;
+            } else {
+                this.geo = null;
+                this.listView.adapter.update(true);
+                return;
             }
-            this.geo = null;
-            this.listView.adapter.update(true);
-        } else if (i2 == 2) {
+        }
+        if (i2 == 2) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.BusinessLocationClearTitle));
             builder.setMessage(LocaleController.getString(R.string.BusinessLocationClearMessage));
@@ -612,7 +615,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            finishFragment();
+            lambda$onBackPressed$303();
         }
     }
 

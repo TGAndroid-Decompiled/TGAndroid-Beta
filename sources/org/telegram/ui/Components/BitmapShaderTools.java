@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
+
 public class BitmapShaderTools {
     final Bitmap bitmap;
     final RectF bounds;

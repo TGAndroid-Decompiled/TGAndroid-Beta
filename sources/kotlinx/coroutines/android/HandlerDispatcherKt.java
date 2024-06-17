@@ -7,6 +7,7 @@ import android.view.Choreographer;
 import java.util.Objects;
 import kotlin.Result;
 import kotlin.ResultKt;
+
 public final class HandlerDispatcherKt {
     private static volatile Choreographer choreographer;
 
@@ -29,13 +30,14 @@ public final class HandlerDispatcherKt {
 
     static {
         Object m156constructorimpl;
+        Object[] objArr = 0;
+        Object[] objArr2 = 0;
         try {
             Result.Companion companion = Result.Companion;
-            m156constructorimpl = Result.m156constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
+            m156constructorimpl = Result.m156constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), objArr2 == true ? 1 : 0, 2, objArr == true ? 1 : 0));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
             m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th));
         }
-        HandlerDispatcher handlerDispatcher = Result.m158isFailureimpl(m156constructorimpl) ? null : m156constructorimpl;
     }
 }

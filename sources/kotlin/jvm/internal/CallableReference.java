@@ -3,6 +3,7 @@ package kotlin.jvm.internal;
 import java.io.Serializable;
 import kotlin.reflect.KCallable;
 import kotlin.reflect.KDeclarationContainer;
+
 public abstract class CallableReference implements KCallable, Serializable {
     public static final Object NO_RECEIVER = NoReceiver.INSTANCE;
     private final boolean isTopLevel;
@@ -43,12 +44,12 @@ public abstract class CallableReference implements KCallable, Serializable {
 
     public KCallable compute() {
         KCallable kCallable = this.reflected;
-        if (kCallable == null) {
-            KCallable computeReflected = computeReflected();
-            this.reflected = computeReflected;
-            return computeReflected;
+        if (kCallable != null) {
+            return kCallable;
         }
-        return kCallable;
+        KCallable computeReflected = computeReflected();
+        this.reflected = computeReflected;
+        return computeReflected;
     }
 
     public KDeclarationContainer getOwner() {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getOnlines extends TLObject {
     public TLRPC$InputPeer peer;
 

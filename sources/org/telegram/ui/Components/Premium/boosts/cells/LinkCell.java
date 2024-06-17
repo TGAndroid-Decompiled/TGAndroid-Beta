@@ -16,6 +16,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+
 @SuppressLint({"ViewConstructor"})
 public class LinkCell extends FrameLayout {
     private ImageView imageView;
@@ -75,8 +76,7 @@ public class LinkCell extends FrameLayout {
     public void setSlug(String str) {
         this.slug = str;
         this.link = "https://t.me/giftcode/" + str;
-        SpoilersTextView spoilersTextView = this.linkView;
-        spoilersTextView.setText("t.me/giftcode/" + str);
+        this.linkView.setText("t.me/giftcode/" + str);
     }
 
     public void hideSlug(final Runnable runnable) {

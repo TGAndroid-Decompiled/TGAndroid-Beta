@@ -23,6 +23,7 @@ import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+
 public class SenderSelectView extends View {
     private static final FloatPropertyCompat<SenderSelectView> MENU_PROGRESS = new SimpleFloatPropertyCompat("menuProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override

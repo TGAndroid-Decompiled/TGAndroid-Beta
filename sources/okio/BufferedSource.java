@@ -2,6 +2,7 @@ package okio;
 
 import java.io.IOException;
 import java.nio.channels.ReadableByteChannel;
+
 public interface BufferedSource extends Source, ReadableByteChannel {
     @Deprecated
     Buffer buffer();

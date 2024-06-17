@@ -27,6 +27,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Loadable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+
 public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private float countAlpha;
     private final AnimatedFloat countAlphaAnimated;
@@ -385,8 +386,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText("" + i, z);
+        this.countText.setText("" + i, z);
         invalidate();
     }
 

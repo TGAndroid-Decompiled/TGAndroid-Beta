@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public class BuiltinAudioDecoderFactoryFactory implements AudioDecoderFactoryFactory {
     private static native long nativeCreateBuiltinAudioDecoderFactory();
 

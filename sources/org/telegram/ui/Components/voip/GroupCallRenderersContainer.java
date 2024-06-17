@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -50,6 +51,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.GroupCallActivity;
+
 @SuppressLint({"ViewConstructor"})
 public class GroupCallRenderersContainer extends FrameLayout {
     private LongSparseIntArray attachedPeerIds;
@@ -354,9 +356,12 @@ public class GroupCallRenderersContainer extends FrameLayout {
                 RTMPStreamPipOverlay.show();
                 groupCallActivity.dismiss();
                 return;
+            } else {
+                AlertsCreator.createDrawOverlayPermissionDialog(groupCallActivity.getParentActivity(), null).show();
+                return;
             }
-            AlertsCreator.createDrawOverlayPermissionDialog(groupCallActivity.getParentActivity(), null).show();
-        } else if (AndroidUtilities.checkInlinePermissions(groupCallActivity.getParentActivity())) {
+        }
+        if (AndroidUtilities.checkInlinePermissions(groupCallActivity.getParentActivity())) {
             GroupCallPip.clearForce();
             groupCallActivity.dismiss();
         } else {
@@ -389,16 +394,16 @@ public class GroupCallRenderersContainer extends FrameLayout {
     @Override
     public boolean drawChild(Canvas canvas, View view, long j) {
         if (this.drawFirst) {
-            if ((view instanceof GroupCallMiniTextureView) && ((GroupCallMiniTextureView) view).drawFirst) {
-                float y = this.listView.getY() - getTop();
-                float measuredHeight = (this.listView.getMeasuredHeight() + y) - this.listView.getTranslationY();
-                canvas.save();
-                canvas.clipRect(0.0f, y, getMeasuredWidth(), measuredHeight);
-                boolean drawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
-                return drawChild;
+            if (!(view instanceof GroupCallMiniTextureView) || !((GroupCallMiniTextureView) view).drawFirst) {
+                return true;
             }
-            return true;
+            float y = this.listView.getY() - getTop();
+            float measuredHeight = (this.listView.getMeasuredHeight() + y) - this.listView.getTranslationY();
+            canvas.save();
+            canvas.clipRect(0.0f, y, getMeasuredWidth(), measuredHeight);
+            boolean drawChild = super.drawChild(canvas, view, j);
+            canvas.restore();
+            return drawChild;
         }
         UndoView[] undoViewArr = this.undoView;
         if (view == undoViewArr[0] || view == undoViewArr[1]) {
@@ -422,20 +427,20 @@ public class GroupCallRenderersContainer extends FrameLayout {
                 boolean drawChild2 = super.drawChild(canvas, view, j);
                 canvas.restore();
                 return drawChild2;
-            } else if (GroupCallActivity.isTabletMode) {
+            }
+            if (GroupCallActivity.isTabletMode) {
                 canvas.save();
                 canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 boolean drawChild3 = super.drawChild(canvas, view, j);
                 canvas.restore();
                 return drawChild3;
-            } else {
-                return super.drawChild(canvas, view, j);
             }
-        } else if (this.drawRenderesOnly) {
-            return true;
-        } else {
             return super.drawChild(canvas, view, j);
         }
+        if (this.drawRenderesOnly) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j);
     }
 
     @Override
@@ -517,10 +522,11 @@ public class GroupCallRenderersContainer extends FrameLayout {
                     if (i >= this.attachedRenderers.size()) {
                         groupCallMiniTextureView = null;
                         break;
-                    } else if (this.attachedRenderers.get(i).participant.equals(videoParticipant)) {
-                        groupCallMiniTextureView = this.attachedRenderers.get(i);
-                        break;
                     } else {
+                        if (this.attachedRenderers.get(i).participant.equals(videoParticipant)) {
+                            groupCallMiniTextureView = this.attachedRenderers.get(i);
+                            break;
+                        }
                         i++;
                     }
                 }
@@ -585,7 +591,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
                         groupCallMiniTextureView8.animateEnter = true;
                         groupCallMiniTextureView8.setAlpha(0.0f);
                         this.outFullscreenTextureView = this.fullscreenTextureView;
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(groupCallMiniTextureView8, View.ALPHA, 0.0f, 1.0f);
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(groupCallMiniTextureView8, (Property<GroupCallMiniTextureView, Float>) View.ALPHA, 0.0f, 1.0f);
                         this.replaceFullscreenViewAnimator = ofFloat;
                         ofFloat.addListener(new AnimatorListenerAdapter() {
                             @Override
@@ -738,7 +744,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
                     groupCallMiniTextureView13.setFullscreenMode(this.inFullscreenMode, false);
                     this.fullscreenTextureView.setShowingInFullscreen(true, false);
                     this.fullscreenTextureView.setShowingInFullscreen(true, false);
-                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.fullscreenTextureView, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.fullscreenTextureView, (Property<GroupCallMiniTextureView, Float>) View.ALPHA, 0.0f, 1.0f);
                     this.replaceFullscreenViewAnimator = ofFloat3;
                     ofFloat3.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -1172,11 +1178,12 @@ public class GroupCallRenderersContainer extends FrameLayout {
         boolean z4 = this.showSpeakingMembersToast;
         if (!z4 && z3) {
             z2 = false;
-        } else if (!z3 && z4) {
-            this.showSpeakingMembersToast = z3;
-            invalidate();
-            return;
         } else {
+            if (!z3 && z4) {
+                this.showSpeakingMembersToast = z3;
+                invalidate();
+                return;
+            }
             if (z4 && z3) {
                 this.speakingMembersToastFromLeft = this.speakingMembersToast.getLeft();
                 this.speakingMembersToastFromRight = this.speakingMembersToast.getRight();
@@ -1247,8 +1254,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
     public void detach(GroupCallMiniTextureView groupCallMiniTextureView) {
         this.attachedRenderers.remove(groupCallMiniTextureView);
         long peerId = MessageObject.getPeerId(groupCallMiniTextureView.participant.participant.peer);
-        LongSparseIntArray longSparseIntArray = this.attachedPeerIds;
-        longSparseIntArray.put(peerId, longSparseIntArray.get(peerId, 0) - 1);
+        this.attachedPeerIds.put(peerId, r4.get(peerId, 0) - 1);
     }
 
     public void setGroupCall(ChatObject.Call call) {

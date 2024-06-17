@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_toggleDialogFilterTags extends TLObject {
     public boolean enabled;
 

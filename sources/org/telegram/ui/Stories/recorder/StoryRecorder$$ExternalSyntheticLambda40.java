@@ -1,4 +1,5 @@
 package org.telegram.ui.Stories.recorder;
+
 public final class StoryRecorder$$ExternalSyntheticLambda40 implements Runnable {
     public final StoryRecorder f$0;
 

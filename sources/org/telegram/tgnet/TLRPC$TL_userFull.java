@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
+
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

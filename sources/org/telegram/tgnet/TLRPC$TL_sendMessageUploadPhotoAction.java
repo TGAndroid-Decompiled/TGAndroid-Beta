@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_sendMessageUploadPhotoAction extends TLRPC$SendMessageAction {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

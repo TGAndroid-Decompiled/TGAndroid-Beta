@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_stats$TL_broadcastRevenueWithdrawalUrl extends TLObject {
     public String url;
 

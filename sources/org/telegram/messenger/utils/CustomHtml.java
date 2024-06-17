@@ -9,6 +9,7 @@ import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
+
 public class CustomHtml {
     public static String toHtml(Spanned spanned) {
         StringBuilder sb = new StringBuilder();
@@ -244,8 +245,9 @@ public class CustomHtml {
                     sb.append(charAt2);
                 }
             } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
+                int i5 = 65536 | ((charAt2 - CharacterCompat.MIN_HIGH_SURROGATE) << 10) | (charAt - CharacterCompat.MIN_LOW_SURROGATE);
                 sb.append("&#");
-                sb.append(65536 | ((charAt2 - CharacterCompat.MIN_HIGH_SURROGATE) << 10) | (charAt - CharacterCompat.MIN_LOW_SURROGATE));
+                sb.append(i5);
                 sb.append(";");
                 i = i3;
             }

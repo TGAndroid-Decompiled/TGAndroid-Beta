@@ -87,6 +87,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.PhotoAlbumPickerActivity;
+
 @TargetApi(18)
 public class CameraScanActivity extends BaseFragment {
     private float averageProcessTime;
@@ -192,13 +193,13 @@ public class CameraScanActivity extends BaseFragment {
             this.val$gallery = z2;
             this.val$cameraDelegate = cameraScanActivityDelegate;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
-            CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
-                {
-                    AnonymousClass1.this = this;
+            C00121 c00121 = new CameraScanActivity(i) {
+                C00121(int i2) {
+                    super(i2);
                 }
 
                 @Override
-                public void finishFragment() {
+                public void lambda$onBackPressed$303() {
                     setFinishing(true);
                     AnonymousClass1.this.dismiss();
                 }
@@ -208,9 +209,9 @@ public class CameraScanActivity extends BaseFragment {
                     AnonymousClass1.this.dismiss();
                 }
             };
-            this.fragment = cameraScanActivity;
-            cameraScanActivity.shownAsBottomSheet = true;
-            cameraScanActivity.needGalleryButton = z2;
+            this.fragment = c00121;
+            c00121.shownAsBottomSheet = true;
+            ((CameraScanActivity) c00121).needGalleryButton = z2;
             iNavigationLayoutArr[0].addFragmentToStack(this.fragment);
             iNavigationLayoutArr[0].showLastFragment();
             ViewGroup view = iNavigationLayoutArr[0].getView();
@@ -229,6 +230,23 @@ public class CameraScanActivity extends BaseFragment {
                     CameraScanActivity.AnonymousClass1.this.lambda$new$0(dialogInterface);
                 }
             });
+        }
+
+        public class C00121 extends CameraScanActivity {
+            C00121(int i2) {
+                super(i2);
+            }
+
+            @Override
+            public void lambda$onBackPressed$303() {
+                setFinishing(true);
+                AnonymousClass1.this.dismiss();
+            }
+
+            @Override
+            public void removeSelfFromStack() {
+                AnonymousClass1.this.dismiss();
+            }
         }
 
         public void lambda$new$0(DialogInterface dialogInterface) {
@@ -351,25 +369,25 @@ public class CameraScanActivity extends BaseFragment {
             this.actionBar.showActionModeTop();
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            {
-                CameraScanActivity.this = this;
+            AnonymousClass2() {
             }
 
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    CameraScanActivity.this.finishFragment();
+                    CameraScanActivity.this.lambda$onBackPressed$303();
                 }
             }
         });
         this.paint.setColor(2130706432);
         this.cornerPaint.setColor(-1);
         this.cornerPaint.setStyle(Paint.Style.FILL);
-        ViewGroup viewGroup = new ViewGroup(context) {
+        AnonymousClass3 anonymousClass3 = new ViewGroup(context) {
             Path path = new Path();
 
-            {
-                CameraScanActivity.this = this;
+            AnonymousClass3(Context context2) {
+                super(context2);
+                this.path = new Path();
             }
 
             @Override
@@ -458,71 +476,74 @@ public class CameraScanActivity extends BaseFragment {
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
                 boolean drawChild = super.drawChild(canvas, view, j);
-                if (CameraScanActivity.this.isQr() && view == CameraScanActivity.this.cameraView) {
-                    RectF bounds = CameraScanActivity.this.getBounds();
-                    int height = (int) (view.getHeight() * bounds.centerY());
-                    int width = (int) (((int) (view.getWidth() * bounds.width())) * ((CameraScanActivity.this.qrAppearingValue * 0.5f) + 0.5f));
-                    int height2 = (int) (((int) (view.getHeight() * bounds.height())) * ((CameraScanActivity.this.qrAppearingValue * 0.5f) + 0.5f));
-                    int width2 = ((int) (view.getWidth() * bounds.centerX())) - (width / 2);
-                    int i = height - (height2 / 2);
-                    CameraScanActivity.this.paint.setAlpha((int) ((1.0f - ((1.0f - CameraScanActivity.this.backShadowAlpha) * Math.min(1.0f, CameraScanActivity.this.qrAppearingValue))) * 255.0f));
-                    float f = i;
-                    canvas.drawRect(0.0f, 0.0f, view.getMeasuredWidth(), f, CameraScanActivity.this.paint);
-                    int i2 = i + height2;
-                    float f2 = i2;
-                    canvas.drawRect(0.0f, f2, view.getMeasuredWidth(), view.getMeasuredHeight(), CameraScanActivity.this.paint);
-                    float f3 = width2;
-                    canvas.drawRect(0.0f, f, f3, f2, CameraScanActivity.this.paint);
-                    int i3 = width2 + width;
-                    float f4 = i3;
-                    canvas.drawRect(f4, f, view.getMeasuredWidth(), f2, CameraScanActivity.this.paint);
-                    CameraScanActivity.this.paint.setAlpha((int) (Math.max(0.0f, 1.0f - CameraScanActivity.this.qrAppearingValue) * 255.0f));
-                    canvas.drawRect(f3, f, f4, f2, CameraScanActivity.this.paint);
-                    int lerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), Math.min(1.0f, CameraScanActivity.this.qrAppearingValue * 20.0f));
-                    int i4 = lerp / 2;
-                    int lerp2 = AndroidUtilities.lerp(Math.min(width, height2), AndroidUtilities.dp(20.0f), Math.min(1.2f, (float) Math.pow(CameraScanActivity.this.qrAppearingValue, 1.7999999523162842d)));
-                    CameraScanActivity.this.cornerPaint.setAlpha((int) (Math.min(1.0f, CameraScanActivity.this.qrAppearingValue) * 255.0f));
-                    this.path.reset();
-                    int i5 = i + lerp2;
-                    this.path.arcTo(aroundPoint(width2, i5, i4), 0.0f, 180.0f);
-                    float f5 = lerp * 1.5f;
-                    int i6 = (int) (f3 + f5);
-                    int i7 = (int) (f + f5);
-                    int i8 = lerp * 2;
-                    this.path.arcTo(aroundPoint(i6, i7, i8), 180.0f, 90.0f);
-                    int i9 = width2 + lerp2;
-                    this.path.arcTo(aroundPoint(i9, i, i4), 270.0f, 180.0f);
-                    this.path.lineTo(width2 + i4, i + i4);
-                    this.path.arcTo(aroundPoint(i6, i7, lerp), 270.0f, -90.0f);
-                    this.path.close();
-                    canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
-                    this.path.reset();
-                    this.path.arcTo(aroundPoint(i3, i5, i4), 180.0f, -180.0f);
-                    int i10 = (int) (f4 - f5);
-                    this.path.arcTo(aroundPoint(i10, i7, i8), 0.0f, -90.0f);
-                    int i11 = i3 - lerp2;
-                    this.path.arcTo(aroundPoint(i11, i, i4), 270.0f, -180.0f);
-                    this.path.arcTo(aroundPoint(i10, i7, lerp), 270.0f, 90.0f);
-                    this.path.close();
-                    canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
-                    this.path.reset();
-                    int i12 = i2 - lerp2;
-                    this.path.arcTo(aroundPoint(width2, i12, i4), 0.0f, -180.0f);
-                    int i13 = (int) (f2 - f5);
-                    this.path.arcTo(aroundPoint(i6, i13, i8), 180.0f, -90.0f);
-                    this.path.arcTo(aroundPoint(i9, i2, i4), 90.0f, -180.0f);
-                    this.path.arcTo(aroundPoint(i6, i13, lerp), 90.0f, 90.0f);
-                    this.path.close();
-                    canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
-                    this.path.reset();
-                    this.path.arcTo(aroundPoint(i3, i12, i4), 180.0f, 180.0f);
-                    this.path.arcTo(aroundPoint(i10, i13, i8), 0.0f, 90.0f);
-                    this.path.arcTo(aroundPoint(i11, i2, i4), 90.0f, 180.0f);
-                    this.path.arcTo(aroundPoint(i10, i13, lerp), 90.0f, -90.0f);
-                    this.path.close();
-                    canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+                if (!CameraScanActivity.this.isQr() || view != CameraScanActivity.this.cameraView) {
                     return drawChild;
                 }
+                RectF bounds = CameraScanActivity.this.getBounds();
+                int width = (int) (view.getWidth() * bounds.width());
+                int height = (int) (view.getHeight() * bounds.height());
+                int width2 = (int) (view.getWidth() * bounds.centerX());
+                int height2 = (int) (view.getHeight() * bounds.centerY());
+                int i = (int) (width * ((CameraScanActivity.this.qrAppearingValue * 0.5f) + 0.5f));
+                int i2 = (int) (height * ((CameraScanActivity.this.qrAppearingValue * 0.5f) + 0.5f));
+                int i3 = width2 - (i / 2);
+                int i4 = height2 - (i2 / 2);
+                CameraScanActivity.this.paint.setAlpha((int) ((1.0f - ((1.0f - CameraScanActivity.this.backShadowAlpha) * Math.min(1.0f, CameraScanActivity.this.qrAppearingValue))) * 255.0f));
+                float f = i4;
+                canvas.drawRect(0.0f, 0.0f, view.getMeasuredWidth(), f, CameraScanActivity.this.paint);
+                int i5 = i4 + i2;
+                float f2 = i5;
+                canvas.drawRect(0.0f, f2, view.getMeasuredWidth(), view.getMeasuredHeight(), CameraScanActivity.this.paint);
+                float f3 = i3;
+                canvas.drawRect(0.0f, f, f3, f2, CameraScanActivity.this.paint);
+                int i6 = i3 + i;
+                float f4 = i6;
+                canvas.drawRect(f4, f, view.getMeasuredWidth(), f2, CameraScanActivity.this.paint);
+                CameraScanActivity.this.paint.setAlpha((int) (Math.max(0.0f, 1.0f - CameraScanActivity.this.qrAppearingValue) * 255.0f));
+                canvas.drawRect(f3, f, f4, f2, CameraScanActivity.this.paint);
+                int lerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), Math.min(1.0f, CameraScanActivity.this.qrAppearingValue * 20.0f));
+                int i7 = lerp / 2;
+                int lerp2 = AndroidUtilities.lerp(Math.min(i, i2), AndroidUtilities.dp(20.0f), Math.min(1.2f, (float) Math.pow(CameraScanActivity.this.qrAppearingValue, 1.7999999523162842d)));
+                CameraScanActivity.this.cornerPaint.setAlpha((int) (Math.min(1.0f, CameraScanActivity.this.qrAppearingValue) * 255.0f));
+                this.path.reset();
+                int i8 = i4 + lerp2;
+                this.path.arcTo(aroundPoint(i3, i8, i7), 0.0f, 180.0f);
+                float f5 = lerp * 1.5f;
+                int i9 = (int) (f3 + f5);
+                int i10 = (int) (f + f5);
+                int i11 = lerp * 2;
+                this.path.arcTo(aroundPoint(i9, i10, i11), 180.0f, 90.0f);
+                int i12 = i3 + lerp2;
+                this.path.arcTo(aroundPoint(i12, i4, i7), 270.0f, 180.0f);
+                this.path.lineTo(i3 + i7, i4 + i7);
+                this.path.arcTo(aroundPoint(i9, i10, lerp), 270.0f, -90.0f);
+                this.path.close();
+                canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+                this.path.reset();
+                this.path.arcTo(aroundPoint(i6, i8, i7), 180.0f, -180.0f);
+                int i13 = (int) (f4 - f5);
+                this.path.arcTo(aroundPoint(i13, i10, i11), 0.0f, -90.0f);
+                int i14 = i6 - lerp2;
+                this.path.arcTo(aroundPoint(i14, i4, i7), 270.0f, -180.0f);
+                this.path.arcTo(aroundPoint(i13, i10, lerp), 270.0f, 90.0f);
+                this.path.close();
+                canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+                this.path.reset();
+                int i15 = i5 - lerp2;
+                this.path.arcTo(aroundPoint(i3, i15, i7), 0.0f, -180.0f);
+                int i16 = (int) (f2 - f5);
+                this.path.arcTo(aroundPoint(i9, i16, i11), 180.0f, -90.0f);
+                this.path.arcTo(aroundPoint(i12, i5, i7), 90.0f, -180.0f);
+                this.path.arcTo(aroundPoint(i9, i16, lerp), 90.0f, 90.0f);
+                this.path.close();
+                canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+                this.path.reset();
+                this.path.arcTo(aroundPoint(i6, i15, i7), 180.0f, 180.0f);
+                this.path.arcTo(aroundPoint(i13, i16, i11), 0.0f, 90.0f);
+                this.path.arcTo(aroundPoint(i14, i5, i7), 90.0f, 180.0f);
+                this.path.arcTo(aroundPoint(i13, i16, lerp), 90.0f, -90.0f);
+                this.path.close();
+                canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
                 return drawChild;
             }
 
@@ -532,7 +553,7 @@ public class CameraScanActivity extends BaseFragment {
                 return rectF;
             }
         };
-        viewGroup.setOnTouchListener(new View.OnTouchListener() {
+        anonymousClass3.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
                 boolean lambda$createView$1;
@@ -540,7 +561,7 @@ public class CameraScanActivity extends BaseFragment {
                 return lambda$createView$1;
             }
         });
-        this.fragmentView = viewGroup;
+        this.fragmentView = anonymousClass3;
         if (isQr()) {
             this.fragmentView.postDelayed(new Runnable() {
                 @Override
@@ -562,20 +583,27 @@ public class CameraScanActivity extends BaseFragment {
             this.actionBar.setTitleColor(-1);
             this.actionBar.setItemsColor(-1, false);
             this.actionBar.setItemsBackgroundColor(587202559, false);
-            viewGroup.setBackgroundColor(-16777216);
-            viewGroup.addView(this.actionBar);
+            anonymousClass3.setBackgroundColor(-16777216);
+            anonymousClass3.addView(this.actionBar);
         }
         int i2 = this.currentType;
         if (i2 == 2 || i2 == 3) {
             this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", R.string.AuthAnotherClientScan));
         }
-        final Paint paint = new Paint(1);
+        Paint paint = new Paint(1);
         paint.setPathEffect(LinkPath.getRoundedEffect());
         paint.setColor(ColorUtils.setAlphaComponent(-1, 40));
-        TextView textView = new TextView(this, context) {
+        AnonymousClass4 anonymousClass4 = new TextView(this, context2) {
             LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector(this);
             private LinkSpanDrawable<URLSpanNoUnderline> pressedLink;
             LinkPath textPath;
+            final Paint val$selectionPaint;
+
+            AnonymousClass4(CameraScanActivity this, Context context2, Paint paint2) {
+                super(context2);
+                r3 = paint2;
+                this.links = new LinkSpanDrawable.LinkCollector(this);
+            }
 
             @Override
             protected void onMeasure(int i3, int i4) {
@@ -649,7 +677,7 @@ public class CameraScanActivity extends BaseFragment {
             protected void onDraw(Canvas canvas) {
                 LinkPath linkPath = this.textPath;
                 if (linkPath != null) {
-                    canvas.drawPath(linkPath, paint);
+                    canvas.drawPath(linkPath, r3);
                 }
                 if (this.links.draw(canvas)) {
                     invalidate();
@@ -657,19 +685,19 @@ public class CameraScanActivity extends BaseFragment {
                 super.onDraw(canvas);
             }
         };
-        this.titleTextView = textView;
-        textView.setGravity(1);
+        this.titleTextView = anonymousClass4;
+        anonymousClass4.setGravity(1);
         this.titleTextView.setTextSize(1, 24.0f);
-        viewGroup.addView(this.titleTextView);
-        TextView textView2 = new TextView(context);
-        this.descriptionText = textView2;
-        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
+        anonymousClass3.addView(this.titleTextView);
+        TextView textView = new TextView(context2);
+        this.descriptionText = textView;
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
         this.descriptionText.setGravity(1);
         this.descriptionText.setTextSize(1, 16.0f);
-        viewGroup.addView(this.descriptionText);
-        TextView textView3 = new TextView(context);
-        this.recognizedMrzView = textView3;
-        textView3.setTextColor(-1);
+        anonymousClass3.addView(this.descriptionText);
+        TextView textView2 = new TextView(context2);
+        this.recognizedMrzView = textView2;
+        textView2.setTextColor(-1);
         this.recognizedMrzView.setGravity(81);
         this.recognizedMrzView.setAlpha(0.0f);
         int i3 = this.currentType;
@@ -719,14 +747,14 @@ public class CameraScanActivity extends BaseFragment {
             if (!this.needGalleryButton) {
                 this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", R.string.AuthAnotherClientNotFound));
             }
-            viewGroup.addView(this.recognizedMrzView);
+            anonymousClass3.addView(this.recognizedMrzView);
             if (this.needGalleryButton) {
-                ImageView imageView = new ImageView(context);
+                ImageView imageView = new ImageView(context2);
                 this.galleryButton = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 this.galleryButton.setImageResource(R.drawable.qr_gallery);
                 this.galleryButton.setBackgroundDrawable(Theme.createSelectorDrawableFromDrawables(Theme.createCircleDrawable(AndroidUtilities.dp(60.0f), 587202559), Theme.createCircleDrawable(AndroidUtilities.dp(60.0f), 1157627903)));
-                viewGroup.addView(this.galleryButton);
+                anonymousClass3.addView(this.galleryButton);
                 this.galleryButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -734,12 +762,12 @@ public class CameraScanActivity extends BaseFragment {
                     }
                 });
             }
-            ImageView imageView2 = new ImageView(context);
+            ImageView imageView2 = new ImageView(context2);
             this.flashButton = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             this.flashButton.setImageResource(R.drawable.qr_flashlight);
             this.flashButton.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(60.0f), 587202559));
-            viewGroup.addView(this.flashButton);
+            anonymousClass3.addView(this.flashButton);
             this.flashButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -752,6 +780,283 @@ public class CameraScanActivity extends BaseFragment {
         }
         this.fragmentView.setKeepScreenOn(true);
         return this.fragmentView;
+    }
+
+    class AnonymousClass2 extends ActionBar.ActionBarMenuOnItemClick {
+        AnonymousClass2() {
+        }
+
+        @Override
+        public void onItemClick(int i) {
+            if (i == -1) {
+                CameraScanActivity.this.lambda$onBackPressed$303();
+            }
+        }
+    }
+
+    class AnonymousClass3 extends ViewGroup {
+        Path path = new Path();
+
+        AnonymousClass3(Context context2) {
+            super(context2);
+            this.path = new Path();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            int size = View.MeasureSpec.getSize(i);
+            int size2 = View.MeasureSpec.getSize(i2);
+            ((BaseFragment) CameraScanActivity.this).actionBar.measure(i, i2);
+            if (CameraScanActivity.this.currentType == 0) {
+                if (CameraScanActivity.this.cameraView != null) {
+                    CameraScanActivity.this.cameraView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size * 0.704f), 1073741824));
+                }
+            } else {
+                if (CameraScanActivity.this.cameraView != null) {
+                    CameraScanActivity.this.cameraView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                }
+                CameraScanActivity.this.recognizedMrzView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                if (CameraScanActivity.this.galleryButton != null) {
+                    CameraScanActivity.this.galleryButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                }
+                CameraScanActivity.this.flashButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+            }
+            CameraScanActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+            if (CameraScanActivity.this.currentType == 3) {
+                CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+            } else {
+                CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec((int) (size * 0.9f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+            }
+            setMeasuredDimension(size, size2);
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            int measuredHeight;
+            int dp;
+            int measuredWidth;
+            int i5 = i3 - i;
+            int i6 = i4 - i2;
+            if (CameraScanActivity.this.currentType == 0) {
+                if (CameraScanActivity.this.cameraView != null) {
+                    CameraScanActivity.this.cameraView.layout(0, 0, CameraScanActivity.this.cameraView.getMeasuredWidth(), CameraScanActivity.this.cameraView.getMeasuredHeight() + 0);
+                }
+                CameraScanActivity.this.recognizedMrzView.setTextSize(0, i6 / 22);
+                CameraScanActivity.this.recognizedMrzView.setPadding(0, 0, 0, i6 / 15);
+                int i7 = (int) (i6 * 0.65f);
+                CameraScanActivity.this.titleTextView.layout(AndroidUtilities.dp(36.0f), i7, AndroidUtilities.dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i7);
+            } else {
+                ((BaseFragment) CameraScanActivity.this).actionBar.layout(0, 0, ((BaseFragment) CameraScanActivity.this).actionBar.getMeasuredWidth(), ((BaseFragment) CameraScanActivity.this).actionBar.getMeasuredHeight());
+                if (CameraScanActivity.this.cameraView != null) {
+                    CameraScanActivity.this.cameraView.layout(0, 0, CameraScanActivity.this.cameraView.getMeasuredWidth(), CameraScanActivity.this.cameraView.getMeasuredHeight());
+                }
+                int min = (int) (Math.min(i5, i6) / 1.5f);
+                if (CameraScanActivity.this.currentType == 1) {
+                    measuredHeight = ((i6 - min) / 2) - CameraScanActivity.this.titleTextView.getMeasuredHeight();
+                    dp = AndroidUtilities.dp(30.0f);
+                } else {
+                    measuredHeight = ((i6 - min) / 2) - CameraScanActivity.this.titleTextView.getMeasuredHeight();
+                    dp = AndroidUtilities.dp(64.0f);
+                }
+                int i8 = measuredHeight - dp;
+                CameraScanActivity.this.titleTextView.layout(AndroidUtilities.dp(36.0f), i8, AndroidUtilities.dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i8);
+                if (CameraScanActivity.this.currentType == 3) {
+                    int measuredHeight2 = i8 + CameraScanActivity.this.titleTextView.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                    CameraScanActivity.this.descriptionText.layout(AndroidUtilities.dp(36.0f), measuredHeight2, AndroidUtilities.dp(36.0f) + CameraScanActivity.this.descriptionText.getMeasuredWidth(), CameraScanActivity.this.descriptionText.getMeasuredHeight() + measuredHeight2);
+                }
+                CameraScanActivity.this.recognizedMrzView.layout(0, getMeasuredHeight() - CameraScanActivity.this.recognizedMrzView.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+                if (!CameraScanActivity.this.needGalleryButton) {
+                    measuredWidth = (i5 / 2) - (CameraScanActivity.this.flashButton.getMeasuredWidth() / 2);
+                } else {
+                    measuredWidth = (i5 / 2) + AndroidUtilities.dp(35.0f);
+                }
+                int dp2 = ((i6 - min) / 2) + min + AndroidUtilities.dp(80.0f);
+                CameraScanActivity.this.flashButton.layout(measuredWidth, dp2, CameraScanActivity.this.flashButton.getMeasuredWidth() + measuredWidth, CameraScanActivity.this.flashButton.getMeasuredHeight() + dp2);
+                if (CameraScanActivity.this.galleryButton != null) {
+                    int dp3 = ((i5 / 2) - AndroidUtilities.dp(35.0f)) - CameraScanActivity.this.galleryButton.getMeasuredWidth();
+                    CameraScanActivity.this.galleryButton.layout(dp3, dp2, CameraScanActivity.this.galleryButton.getMeasuredWidth() + dp3, CameraScanActivity.this.galleryButton.getMeasuredHeight() + dp2);
+                }
+            }
+            if (CameraScanActivity.this.currentType != 3) {
+                int i9 = (int) (i6 * 0.74f);
+                int i10 = (int) (i5 * 0.05f);
+                CameraScanActivity.this.descriptionText.layout(i10, i9, CameraScanActivity.this.descriptionText.getMeasuredWidth() + i10, CameraScanActivity.this.descriptionText.getMeasuredHeight() + i9);
+            }
+            CameraScanActivity.this.updateNormalBounds();
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            boolean drawChild = super.drawChild(canvas, view, j);
+            if (!CameraScanActivity.this.isQr() || view != CameraScanActivity.this.cameraView) {
+                return drawChild;
+            }
+            RectF bounds = CameraScanActivity.this.getBounds();
+            int width = (int) (view.getWidth() * bounds.width());
+            int height = (int) (view.getHeight() * bounds.height());
+            int width2 = (int) (view.getWidth() * bounds.centerX());
+            int height2 = (int) (view.getHeight() * bounds.centerY());
+            int i = (int) (width * ((CameraScanActivity.this.qrAppearingValue * 0.5f) + 0.5f));
+            int i2 = (int) (height * ((CameraScanActivity.this.qrAppearingValue * 0.5f) + 0.5f));
+            int i3 = width2 - (i / 2);
+            int i4 = height2 - (i2 / 2);
+            CameraScanActivity.this.paint.setAlpha((int) ((1.0f - ((1.0f - CameraScanActivity.this.backShadowAlpha) * Math.min(1.0f, CameraScanActivity.this.qrAppearingValue))) * 255.0f));
+            float f = i4;
+            canvas.drawRect(0.0f, 0.0f, view.getMeasuredWidth(), f, CameraScanActivity.this.paint);
+            int i5 = i4 + i2;
+            float f2 = i5;
+            canvas.drawRect(0.0f, f2, view.getMeasuredWidth(), view.getMeasuredHeight(), CameraScanActivity.this.paint);
+            float f3 = i3;
+            canvas.drawRect(0.0f, f, f3, f2, CameraScanActivity.this.paint);
+            int i6 = i3 + i;
+            float f4 = i6;
+            canvas.drawRect(f4, f, view.getMeasuredWidth(), f2, CameraScanActivity.this.paint);
+            CameraScanActivity.this.paint.setAlpha((int) (Math.max(0.0f, 1.0f - CameraScanActivity.this.qrAppearingValue) * 255.0f));
+            canvas.drawRect(f3, f, f4, f2, CameraScanActivity.this.paint);
+            int lerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), Math.min(1.0f, CameraScanActivity.this.qrAppearingValue * 20.0f));
+            int i7 = lerp / 2;
+            int lerp2 = AndroidUtilities.lerp(Math.min(i, i2), AndroidUtilities.dp(20.0f), Math.min(1.2f, (float) Math.pow(CameraScanActivity.this.qrAppearingValue, 1.7999999523162842d)));
+            CameraScanActivity.this.cornerPaint.setAlpha((int) (Math.min(1.0f, CameraScanActivity.this.qrAppearingValue) * 255.0f));
+            this.path.reset();
+            int i8 = i4 + lerp2;
+            this.path.arcTo(aroundPoint(i3, i8, i7), 0.0f, 180.0f);
+            float f5 = lerp * 1.5f;
+            int i9 = (int) (f3 + f5);
+            int i10 = (int) (f + f5);
+            int i11 = lerp * 2;
+            this.path.arcTo(aroundPoint(i9, i10, i11), 180.0f, 90.0f);
+            int i12 = i3 + lerp2;
+            this.path.arcTo(aroundPoint(i12, i4, i7), 270.0f, 180.0f);
+            this.path.lineTo(i3 + i7, i4 + i7);
+            this.path.arcTo(aroundPoint(i9, i10, lerp), 270.0f, -90.0f);
+            this.path.close();
+            canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+            this.path.reset();
+            this.path.arcTo(aroundPoint(i6, i8, i7), 180.0f, -180.0f);
+            int i13 = (int) (f4 - f5);
+            this.path.arcTo(aroundPoint(i13, i10, i11), 0.0f, -90.0f);
+            int i14 = i6 - lerp2;
+            this.path.arcTo(aroundPoint(i14, i4, i7), 270.0f, -180.0f);
+            this.path.arcTo(aroundPoint(i13, i10, lerp), 270.0f, 90.0f);
+            this.path.close();
+            canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+            this.path.reset();
+            int i15 = i5 - lerp2;
+            this.path.arcTo(aroundPoint(i3, i15, i7), 0.0f, -180.0f);
+            int i16 = (int) (f2 - f5);
+            this.path.arcTo(aroundPoint(i9, i16, i11), 180.0f, -90.0f);
+            this.path.arcTo(aroundPoint(i12, i5, i7), 90.0f, -180.0f);
+            this.path.arcTo(aroundPoint(i9, i16, lerp), 90.0f, 90.0f);
+            this.path.close();
+            canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+            this.path.reset();
+            this.path.arcTo(aroundPoint(i6, i15, i7), 180.0f, 180.0f);
+            this.path.arcTo(aroundPoint(i13, i16, i11), 0.0f, 90.0f);
+            this.path.arcTo(aroundPoint(i14, i5, i7), 90.0f, 180.0f);
+            this.path.arcTo(aroundPoint(i13, i16, lerp), 90.0f, -90.0f);
+            this.path.close();
+            canvas.drawPath(this.path, CameraScanActivity.this.cornerPaint);
+            return drawChild;
+        }
+
+        private RectF aroundPoint(int i, int i2, int i3) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(i - i3, i2 - i3, i + i3, i2 + i3);
+            return rectF;
+        }
+    }
+
+    class AnonymousClass4 extends TextView {
+        LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector(this);
+        private LinkSpanDrawable<URLSpanNoUnderline> pressedLink;
+        LinkPath textPath;
+        final Paint val$selectionPaint;
+
+        AnonymousClass4(CameraScanActivity this, Context context2, Paint paint2) {
+            super(context2);
+            r3 = paint2;
+            this.links = new LinkSpanDrawable.LinkCollector(this);
+        }
+
+        @Override
+        protected void onMeasure(int i3, int i4) {
+            super.onMeasure(i3, i4);
+            if (getText() instanceof Spanned) {
+                Spanned spanned = (Spanned) getText();
+                URLSpanNoUnderline[] uRLSpanNoUnderlineArr = (URLSpanNoUnderline[]) spanned.getSpans(0, spanned.length(), URLSpanNoUnderline.class);
+                if (uRLSpanNoUnderlineArr == null || uRLSpanNoUnderlineArr.length <= 0) {
+                    return;
+                }
+                LinkPath linkPath = new LinkPath(true);
+                this.textPath = linkPath;
+                linkPath.setAllowReset(false);
+                for (int i5 = 0; i5 < uRLSpanNoUnderlineArr.length; i5++) {
+                    int spanStart = spanned.getSpanStart(uRLSpanNoUnderlineArr[i5]);
+                    int spanEnd = spanned.getSpanEnd(uRLSpanNoUnderlineArr[i5]);
+                    this.textPath.setCurrentLayout(getLayout(), spanStart, 0.0f);
+                    int i6 = getText() != null ? getPaint().baselineShift : 0;
+                    this.textPath.setBaselineShift(i6 != 0 ? i6 + AndroidUtilities.dp(i6 > 0 ? 5.0f : -2.0f) : 0);
+                    getLayout().getSelectionPath(spanStart, spanEnd, this.textPath);
+                }
+                this.textPath.setAllowReset(true);
+            }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            Layout layout = getLayout();
+            float f = 0;
+            int x = (int) (motionEvent.getX() - f);
+            int y = (int) (motionEvent.getY() - f);
+            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 1) {
+                int lineForVertical = layout.getLineForVertical(y);
+                float f2 = x;
+                int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f2);
+                float lineLeft = layout.getLineLeft(lineForVertical);
+                if (lineLeft <= f2 && lineLeft + layout.getLineWidth(lineForVertical) >= f2 && y >= 0 && y <= layout.getHeight()) {
+                    Spannable spannable = (Spannable) layout.getText();
+                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+                    if (clickableSpanArr.length != 0) {
+                        this.links.clear();
+                        if (motionEvent.getAction() == 0) {
+                            LinkSpanDrawable<URLSpanNoUnderline> linkSpanDrawable = new LinkSpanDrawable<>(clickableSpanArr[0], null, motionEvent.getX(), motionEvent.getY());
+                            this.pressedLink = linkSpanDrawable;
+                            linkSpanDrawable.setColor(771751935);
+                            this.links.addLink(this.pressedLink);
+                            int spanStart = spannable.getSpanStart(this.pressedLink.getSpan());
+                            int spanEnd = spannable.getSpanEnd(this.pressedLink.getSpan());
+                            LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
+                            obtainNewPath.setCurrentLayout(layout, spanStart, f);
+                            layout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
+                        } else if (motionEvent.getAction() == 1) {
+                            LinkSpanDrawable<URLSpanNoUnderline> linkSpanDrawable2 = this.pressedLink;
+                            if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanArr[0]) {
+                                clickableSpanArr[0].onClick(this);
+                            }
+                            this.pressedLink = null;
+                        }
+                        return true;
+                    }
+                }
+            }
+            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.links.clear();
+                this.pressedLink = null;
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            LinkPath linkPath = this.textPath;
+            if (linkPath != null) {
+                canvas.drawPath(linkPath, r3);
+            }
+            if (this.links.draw(canvas)) {
+                invalidate();
+            }
+            super.onDraw(canvas);
+        }
     }
 
     public void lambda$createView$2(View view) {
@@ -773,8 +1078,7 @@ public class CameraScanActivity extends BaseFragment {
         photoAlbumPickerActivity.setMaxSelectedPhotos(1, false);
         photoAlbumPickerActivity.setAllowSearchImages(false);
         photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
-            {
-                CameraScanActivity.this = this;
+            AnonymousClass5() {
             }
 
             @Override
@@ -813,6 +1117,44 @@ public class CameraScanActivity extends BaseFragment {
         presentFragment(photoAlbumPickerActivity);
     }
 
+    public class AnonymousClass5 implements PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate {
+        AnonymousClass5() {
+        }
+
+        @Override
+        public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i2) {
+            try {
+                if (arrayList.isEmpty()) {
+                    return;
+                }
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = arrayList.get(0);
+                if (sendingMediaInfo.path != null) {
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    QrResult tryReadQr = CameraScanActivity.this.tryReadQr(null, null, 0, 0, 0, ImageLoader.loadBitmap(sendingMediaInfo.path, null, realScreenSize.x, realScreenSize.y, true));
+                    if (tryReadQr != null) {
+                        if (CameraScanActivity.this.delegate != null) {
+                            CameraScanActivity.this.delegate.didFindQr(tryReadQr.text);
+                        }
+                        CameraScanActivity.this.removeSelfFromStack();
+                    }
+                }
+            } catch (Throwable th) {
+                FileLog.e(th);
+            }
+        }
+
+        @Override
+        public void startPhotoSelectActivity() {
+            try {
+                Intent intent = new Intent("android.intent.action.PICK");
+                intent.setType("image/*");
+                CameraScanActivity.this.getParentActivity().startActivityForResult(intent, 11);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
+
     public void lambda$createView$4(View view) {
         CameraSessionWrapper cameraSession;
         CameraView cameraView = this.cameraView;
@@ -840,8 +1182,7 @@ public class CameraScanActivity extends BaseFragment {
         this.flashAnimator.setDuration(200L);
         this.flashAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.flashAnimator.addListener(new AnimatorListenerAdapter() {
-            {
-                CameraScanActivity.this = this;
+            AnonymousClass6() {
             }
 
             @Override
@@ -853,14 +1194,24 @@ public class CameraScanActivity extends BaseFragment {
         if (this.flashButton.getTag() == null) {
             this.flashButton.setTag(1);
             cameraSession.setCurrentFlashMode("torch");
-            return;
+        } else {
+            this.flashButton.setTag(null);
+            cameraSession.setCurrentFlashMode("off");
         }
-        this.flashButton.setTag(null);
-        cameraSession.setCurrentFlashMode("off");
     }
 
     public void lambda$createView$3(ValueAnimator valueAnimator) {
         this.flashButton.invalidate();
+    }
+
+    public class AnonymousClass6 extends AnimatorListenerAdapter {
+        AnonymousClass6() {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            CameraScanActivity.this.flashAnimator = null;
+        }
     }
 
     public void updateRecognized() {
@@ -1054,15 +1405,14 @@ public class CameraScanActivity extends BaseFragment {
     }
 
     public void updateNormalBounds() {
-        int max;
         if (this.normalBounds == null) {
             this.normalBounds = new RectF();
         }
-        int max2 = Math.max(AndroidUtilities.displaySize.x, this.fragmentView.getWidth());
-        int min = (int) (Math.min(max2, max) / 1.5f);
-        float f = max2;
-        float max3 = Math.max(AndroidUtilities.displaySize.y, this.fragmentView.getHeight());
-        this.normalBounds.set(((max2 - min) / 2.0f) / f, ((max - min) / 2.0f) / max3, ((max2 + min) / 2.0f) / f, ((max + min) / 2.0f) / max3);
+        int max = Math.max(AndroidUtilities.displaySize.x, this.fragmentView.getWidth());
+        int min = (int) (Math.min(max, r1) / 1.5f);
+        float f = max;
+        float max2 = Math.max(AndroidUtilities.displaySize.y, this.fragmentView.getHeight());
+        this.normalBounds.set(((max - min) / 2.0f) / f, ((r1 - min) / 2.0f) / max2, ((max + min) / 2.0f) / f, ((r1 + min) / 2.0f) / max2);
     }
 
     public RectF getBounds() {
@@ -1089,7 +1439,7 @@ public class CameraScanActivity extends BaseFragment {
                 if (cameraScanActivityDelegate != null) {
                     cameraScanActivityDelegate.didFindQr(tryReadQr.text);
                 }
-                finishFragment();
+                lambda$onBackPressed$303();
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -1111,7 +1461,6 @@ public class CameraScanActivity extends BaseFragment {
 
     public class AnonymousClass7 implements Runnable {
         AnonymousClass7() {
-            CameraScanActivity.this = r1;
         }
 
         @Override
@@ -1256,9 +1605,10 @@ public class CameraScanActivity extends BaseFragment {
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         float f = this.averageProcessTime;
         long j = this.processTimesCount;
+        float f2 = (f * ((float) j)) + ((float) elapsedRealtime2);
         long j2 = j + 1;
         this.processTimesCount = j2;
-        this.averageProcessTime = ((f * ((float) j)) + ((float) elapsedRealtime2)) / ((float) j2);
+        this.averageProcessTime = f2 / ((float) j2);
         this.processTimesCount = Math.max(j2, 30L);
         if (this.recognized) {
             return;
@@ -1276,7 +1626,7 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CameraScanActivity.this.finishFragment();
+                CameraScanActivity.this.lambda$onBackPressed$303();
             }
         }, 1200L);
     }
@@ -1299,7 +1649,7 @@ public class CameraScanActivity extends BaseFragment {
         if (cameraScanActivityDelegate != null) {
             cameraScanActivityDelegate.didFindQr(this.recognizedText);
         }
-        finishFragment();
+        lambda$onBackPressed$303();
     }
 
     public void lambda$processShot$14(QrResult qrResult) {
@@ -1312,7 +1662,7 @@ public class CameraScanActivity extends BaseFragment {
             cameraScanActivityDelegate.didFindQr(str);
         }
         if (this.currentType != 3) {
-            finishFragment();
+            lambda$onBackPressed$303();
         }
     }
 
@@ -1390,7 +1740,6 @@ public class CameraScanActivity extends BaseFragment {
         PointF[] pointFArr;
         int i4;
         LuminanceSource planarYUVLuminanceSource;
-        ResultPoint[] resultPoints;
         Frame build;
         int i5;
         String str2;

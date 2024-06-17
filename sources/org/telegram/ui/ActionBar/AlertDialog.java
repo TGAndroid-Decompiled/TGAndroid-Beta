@@ -61,6 +61,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+
 public class AlertDialog extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
     private View aboveMessageView;
     private int additioanalHorizontalPadding;
@@ -226,10 +227,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 this.imageView.setImageResource(i);
                 this.imageView.setVisibility(0);
                 this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(56.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(56.0f) : 0, 0);
-                return;
+            } else {
+                this.imageView.setVisibility(4);
+                this.textView.setPadding(0, 0, 0, 0);
             }
-            this.imageView.setVisibility(4);
-            this.textView.setPadding(0, 0, 0, 0);
         }
 
         protected int getThemedColor(int i) {
@@ -422,7 +423,6 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         @Override
         public void draw(Canvas canvas) {
             float dp;
-            Paint paint;
             if (AlertDialog.this.blurredBackground && !AlertDialog.this.blurredNativeBackground) {
                 if (AlertDialog.this.progressViewStyle == 3 && AlertDialog.this.progressViewContainer != null) {
                     dp = AndroidUtilities.dp(18.0f);
@@ -445,7 +445,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 RectF rectF = AndroidUtilities.rectTmp;
                 canvas.drawRoundRect(rectF, dp, dp, AlertDialog.this.dimBlurPaint);
                 this.backgroundPaint.setColor(AlertDialog.this.backgroundColor);
-                this.backgroundPaint.setAlpha((int) (paint.getAlpha() * ((f * (AlertDialog.this.blurOpacity - 1.0f)) + 1.0f)));
+                this.backgroundPaint.setAlpha((int) (r4.getAlpha() * ((f * (AlertDialog.this.blurOpacity - 1.0f)) + 1.0f)));
                 canvas.drawRoundRect(rectF, dp, dp, this.backgroundPaint);
             }
             super.draw(canvas);
@@ -1270,16 +1270,16 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         if (view.onCheckIsTextEditor()) {
             return true;
         }
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            int childCount = viewGroup.getChildCount();
-            while (childCount > 0) {
-                childCount--;
-                if (canTextInput(viewGroup.getChildAt(childCount))) {
-                    return true;
-                }
-            }
+        if (!(view instanceof ViewGroup)) {
             return false;
+        }
+        ViewGroup viewGroup = (ViewGroup) view;
+        int childCount = viewGroup.getChildCount();
+        while (childCount > 0) {
+            childCount--;
+            if (canTextInput(viewGroup.getChildAt(childCount))) {
+                return true;
+            }
         }
         return false;
     }
@@ -1382,9 +1382,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             if (!TextUtils.isEmpty(charSequence)) {
                 this.messageTextView.setText(this.message);
                 this.messageTextView.setVisibility(0);
-                return;
+            } else {
+                this.messageTextView.setVisibility(8);
             }
-            this.messageTextView.setVisibility(8);
         }
     }
 

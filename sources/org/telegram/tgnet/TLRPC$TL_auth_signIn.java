@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_signIn extends TLObject {
     public TLRPC$EmailVerification email_verification;
     public int flags;

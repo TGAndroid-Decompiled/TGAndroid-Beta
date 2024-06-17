@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Peer;
+
 public class TL_stories$TL_myBoost extends TLObject {
     public static int constructor = -1001897636;
     public int cooldown_until_date;

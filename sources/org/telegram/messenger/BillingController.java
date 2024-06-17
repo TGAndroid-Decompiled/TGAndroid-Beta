@@ -46,6 +46,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.PremiumPreviewFragment;
+
 public class BillingController implements PurchasesUpdatedListener, BillingClientStateListener {
     public static ProductDetails PREMIUM_PRODUCT_DETAILS = null;
     public static boolean billingClientEmpty;
@@ -318,39 +319,43 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (runnable != null) {
                 runnable.run();
                 this.onCanceled = null;
+                return;
             }
-        } else if (list != null && !list.isEmpty()) {
-            this.lastPremiumTransaction = null;
-            for (final Purchase purchase : list) {
-                if (purchase.getProducts().contains(PREMIUM_PRODUCT_ID)) {
-                    this.lastPremiumTransaction = purchase.getOrderId();
-                    this.lastPremiumToken = purchase.getPurchaseToken();
-                }
-                if (!this.requestingTokens.contains(purchase.getPurchaseToken()) && purchase.getPurchaseState() == 1 && (extractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase)) != null) {
-                    if (!purchase.isAcknowledged()) {
-                        this.requestingTokens.add(purchase.getPurchaseToken());
-                        final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
-                        TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
-                        tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
-                        tLRPC$TL_dataJSON.data = purchase.getOriginalJson();
-                        tLRPC$TL_payments_assignPlayMarketTransaction.purpose = extractDeveloperPayload.second;
-                        final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                AlertDialog.this.showDelayed(500L);
-                            }
-                        });
-                        final AccountInstance accountInstance = extractDeveloperPayload.first;
-                        accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                BillingController.this.lambda$onPurchasesUpdated$4(alertDialog, purchase, accountInstance, billingResult, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
-                            }
-                        }, 65602);
-                    } else {
-                        consumeGiftPurchase(purchase, extractDeveloperPayload.second);
-                    }
+            return;
+        }
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        this.lastPremiumTransaction = null;
+        for (final Purchase purchase : list) {
+            if (purchase.getProducts().contains(PREMIUM_PRODUCT_ID)) {
+                this.lastPremiumTransaction = purchase.getOrderId();
+                this.lastPremiumToken = purchase.getPurchaseToken();
+            }
+            if (!this.requestingTokens.contains(purchase.getPurchaseToken()) && purchase.getPurchaseState() == 1 && (extractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase)) != null) {
+                if (!purchase.isAcknowledged()) {
+                    this.requestingTokens.add(purchase.getPurchaseToken());
+                    final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
+                    TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
+                    tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
+                    tLRPC$TL_dataJSON.data = purchase.getOriginalJson();
+                    tLRPC$TL_payments_assignPlayMarketTransaction.purpose = extractDeveloperPayload.second;
+                    final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            AlertDialog.this.showDelayed(500L);
+                        }
+                    });
+                    final AccountInstance accountInstance = extractDeveloperPayload.first;
+                    accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            BillingController.this.lambda$onPurchasesUpdated$4(alertDialog, purchase, accountInstance, billingResult, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
+                        }
+                    }, 65602);
+                } else {
+                    consumeGiftPurchase(purchase, extractDeveloperPayload.second);
                 }
             }
         }
@@ -362,14 +367,17 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         this.requestingTokens.remove(purchase.getPurchaseToken());
         if (tLObject instanceof TLRPC$Updates) {
             accountInstance.getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
-            for (String str : purchase.getProducts()) {
-                Consumer<BillingResult> remove = this.resultListeners.remove(str);
+            Iterator<String> it = purchase.getProducts().iterator();
+            while (it.hasNext()) {
+                Consumer<BillingResult> remove = this.resultListeners.remove(it.next());
                 if (remove != null) {
                     remove.accept(billingResult);
                 }
             }
             consumeGiftPurchase(purchase, tLRPC$TL_payments_assignPlayMarketTransaction.purpose);
-        } else if (tLRPC$TL_error != null) {
+            return;
+        }
+        if (tLRPC$TL_error != null) {
             Runnable runnable = this.onCanceled;
             if (runnable != null) {
                 runnable.run();
@@ -437,9 +445,12 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 AndroidUtilities.runOnUIThread(this.setupListeners.get(i));
             }
             this.setupListeners.clear();
-        } else if (!this.isDisconnected) {
-            switchToInvoice();
+            return;
         }
+        if (this.isDisconnected) {
+            return;
+        }
+        switchToInvoice();
     }
 
     public void onQueriedPremiumProductDetails(BillingResult billingResult, List<ProductDetails> list) {
@@ -453,10 +464,11 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (PREMIUM_PRODUCT_DETAILS == null) {
                 switchToInvoice();
                 return;
+            } else {
+                switchBackFromInvoice();
+                NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+                return;
             }
-            switchBackFromInvoice();
-            NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
-            return;
         }
         switchToInvoice();
         int i = this.triesLeft - 1;

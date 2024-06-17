@@ -1,4 +1,5 @@
 package kotlinx.coroutines.internal;
+
 public final class Symbol {
     public final String symbol;
 

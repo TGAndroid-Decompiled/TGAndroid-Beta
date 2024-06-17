@@ -15,6 +15,7 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class CodeFieldContainer extends LinearLayout {
     Paint bitmapPaint;
     public CodeNumberField[] codeField;
@@ -94,16 +95,16 @@ public class CodeFieldContainer extends LinearLayout {
             super.drawChild(canvas, view, j);
             canvas.restore();
             float f4 = codeNumberField.exitAnimation;
-            if (f4 < 1.0f) {
-                canvas.save();
-                float f5 = 1.0f - f4;
-                float f6 = (f5 * 0.5f) + 0.5f;
-                canvas.scale(f6, f6, codeNumberField.getX() + (codeNumberField.getMeasuredWidth() / 2.0f), codeNumberField.getY() + (codeNumberField.getMeasuredHeight() / 2.0f));
-                this.bitmapPaint.setAlpha((int) (f5 * 255.0f));
-                canvas.drawBitmap(codeNumberField.exitBitmap, codeNumberField.getX(), codeNumberField.getY(), this.bitmapPaint);
-                canvas.restore();
+            if (f4 >= 1.0f) {
                 return true;
             }
+            canvas.save();
+            float f5 = 1.0f - f4;
+            float f6 = (f5 * 0.5f) + 0.5f;
+            canvas.scale(f6, f6, codeNumberField.getX() + (codeNumberField.getMeasuredWidth() / 2.0f), codeNumberField.getY() + (codeNumberField.getMeasuredHeight() / 2.0f));
+            this.bitmapPaint.setAlpha((int) (f5 * 255.0f));
+            canvas.drawBitmap(codeNumberField.exitBitmap, codeNumberField.getX(), codeNumberField.getY(), this.bitmapPaint);
+            canvas.restore();
             return true;
         }
         return super.drawChild(canvas, view, j);
@@ -140,7 +141,8 @@ public class CodeFieldContainer extends LinearLayout {
                                 CodeFieldContainer.this.codeField[i6].startExitAnimation();
                                 CodeFieldContainer.this.codeField[i6].setText("");
                                 return true;
-                            } else if (keyCode != 67 || CodeFieldContainer.this.codeField[i6].length() != 0 || (i7 = i6) <= 0) {
+                            }
+                            if (keyCode != 67 || CodeFieldContainer.this.codeField[i6].length() != 0 || (i7 = i6) <= 0) {
                                 if (keyCode >= 7 && keyCode <= 16) {
                                     String num = Integer.toString(keyCode - 7);
                                     if (CodeFieldContainer.this.codeField[i6].getText() != null && num.equals(CodeFieldContainer.this.codeField[i6].getText().toString())) {
@@ -158,23 +160,22 @@ public class CodeFieldContainer extends LinearLayout {
                                     CodeFieldContainer.this.codeField[i6].setText(num);
                                 }
                                 return true;
-                            } else {
-                                CodeNumberField[] codeNumberFieldArr2 = CodeFieldContainer.this.codeField;
-                                codeNumberFieldArr2[i7 - 1].setSelection(codeNumberFieldArr2[i7 - 1].length());
-                                while (true) {
-                                    int i10 = i6;
-                                    if (i8 >= i10) {
-                                        CodeFieldContainer.this.codeField[i10 - 1].startExitAnimation();
-                                        CodeFieldContainer.this.codeField[i6 - 1].setText("");
-                                        return true;
-                                    }
-                                    if (i8 == i10 - 1) {
-                                        CodeFieldContainer.this.codeField[i10 - 1].requestFocus();
-                                    } else {
-                                        CodeFieldContainer.this.codeField[i8].clearFocus();
-                                    }
-                                    i8++;
+                            }
+                            CodeNumberField[] codeNumberFieldArr2 = CodeFieldContainer.this.codeField;
+                            codeNumberFieldArr2[i7 - 1].setSelection(codeNumberFieldArr2[i7 - 1].length());
+                            while (true) {
+                                int i10 = i6;
+                                if (i8 >= i10) {
+                                    CodeFieldContainer.this.codeField[i10 - 1].startExitAnimation();
+                                    CodeFieldContainer.this.codeField[i6 - 1].setText("");
+                                    return true;
                                 }
+                                if (i8 == i10 - 1) {
+                                    CodeFieldContainer.this.codeField[i10 - 1].requestFocus();
+                                } else {
+                                    CodeFieldContainer.this.codeField[i8].clearFocus();
+                                }
+                                i8++;
                             }
                         } else {
                             return isFocused();
@@ -278,11 +279,11 @@ public class CodeFieldContainer extends LinearLayout {
     }
 
     public boolean lambda$setNumbersCount$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5) {
-            processNextPressed();
-            return true;
+        if (i != 5) {
+            return false;
         }
-        return false;
+        processNextPressed();
+        return true;
     }
 
     public String getCode() {
@@ -321,12 +322,12 @@ public class CodeFieldContainer extends LinearLayout {
                 CodeNumberField[] codeNumberFieldArr = this.codeField;
                 if (i2 >= codeNumberFieldArr.length) {
                     break;
-                } else if (codeNumberFieldArr[i2].isFocused()) {
+                }
+                if (codeNumberFieldArr[i2].isFocused()) {
                     i = i2;
                     break;
-                } else {
-                    i2++;
                 }
+                i2++;
             }
         }
         for (int i3 = i; i3 < Math.min(this.codeField.length, str.length() + i); i3++) {

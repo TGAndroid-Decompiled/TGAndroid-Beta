@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
+
 public class Bitmaps {
     private static volatile Matrix sScaleMatrix;
     private static final ThreadLocal<byte[]> jpegData = new ThreadLocal<byte[]>() {

@@ -3,6 +3,7 @@ package okio;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Objects;
+
 final class RealBufferedSource implements BufferedSource {
     public final Buffer buffer = new Buffer();
     boolean closed;
@@ -20,20 +21,20 @@ final class RealBufferedSource implements BufferedSource {
 
     @Override
     public long read(Buffer buffer, long j) throws IOException {
-        if (buffer != null) {
-            if (j < 0) {
-                throw new IllegalArgumentException("byteCount < 0: " + j);
-            } else if (this.closed) {
-                throw new IllegalStateException("closed");
-            } else {
-                Buffer buffer2 = this.buffer;
-                if (buffer2.size == 0 && this.source.read(buffer2, 8192L) == -1) {
-                    return -1L;
-                }
-                return this.buffer.read(buffer, Math.min(j, this.buffer.size));
-            }
+        if (buffer == null) {
+            throw new IllegalArgumentException("sink == null");
         }
-        throw new IllegalArgumentException("sink == null");
+        if (j < 0) {
+            throw new IllegalArgumentException("byteCount < 0: " + j);
+        }
+        if (this.closed) {
+            throw new IllegalStateException("closed");
+        }
+        Buffer buffer2 = this.buffer;
+        if (buffer2.size == 0 && this.source.read(buffer2, 8192L) == -1) {
+            return -1L;
+        }
+        return this.buffer.read(buffer, Math.min(j, this.buffer.size));
     }
 
     @Override
@@ -41,17 +42,17 @@ final class RealBufferedSource implements BufferedSource {
         Buffer buffer;
         if (j < 0) {
             throw new IllegalArgumentException("byteCount < 0: " + j);
-        } else if (this.closed) {
-            throw new IllegalStateException("closed");
-        } else {
-            do {
-                buffer = this.buffer;
-                if (buffer.size >= j) {
-                    return true;
-                }
-            } while (this.source.read(buffer, 8192L) != -1);
-            return false;
         }
+        if (this.closed) {
+            throw new IllegalStateException("closed");
+        }
+        do {
+            buffer = this.buffer;
+            if (buffer.size >= j) {
+                return true;
+            }
+        } while (this.source.read(buffer, 8192L) != -1);
+        return false;
     }
 
     @Override

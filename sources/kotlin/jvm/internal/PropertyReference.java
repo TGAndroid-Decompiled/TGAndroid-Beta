@@ -2,6 +2,7 @@ package kotlin.jvm.internal;
 
 import kotlin.reflect.KCallable;
 import kotlin.reflect.KProperty;
+
 public abstract class PropertyReference extends CallableReference implements KProperty {
     public PropertyReference() {
     }
@@ -17,11 +18,11 @@ public abstract class PropertyReference extends CallableReference implements KPr
         if (obj instanceof PropertyReference) {
             PropertyReference propertyReference = (PropertyReference) obj;
             return getOwner().equals(propertyReference.getOwner()) && getName().equals(propertyReference.getName()) && getSignature().equals(propertyReference.getSignature()) && Intrinsics.areEqual(getBoundReceiver(), propertyReference.getBoundReceiver());
-        } else if (obj instanceof KProperty) {
-            return obj.equals(compute());
-        } else {
-            return false;
         }
+        if (obj instanceof KProperty) {
+            return obj.equals(compute());
+        }
+        return false;
     }
 
     public int hashCode() {

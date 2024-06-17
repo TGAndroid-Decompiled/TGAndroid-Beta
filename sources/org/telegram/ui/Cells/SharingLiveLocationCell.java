@@ -48,6 +48,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
 import org.telegram.ui.LocationActivity;
+
 public class SharingLiveLocationCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
@@ -79,8 +80,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.invalidateRunnable = new Runnable() {
             @Override
             public void run() {
-                SharingLiveLocationCell sharingLiveLocationCell = SharingLiveLocationCell.this;
-                sharingLiveLocationCell.invalidate(((int) sharingLiveLocationCell.rect.left) - 5, ((int) SharingLiveLocationCell.this.rect.top) - 5, ((int) SharingLiveLocationCell.this.rect.right) + 5, ((int) SharingLiveLocationCell.this.rect.bottom) + 5);
+                SharingLiveLocationCell.this.invalidate(((int) r0.rect.left) - 5, ((int) SharingLiveLocationCell.this.rect.top) - 5, ((int) SharingLiveLocationCell.this.rect.right) + 5, ((int) SharingLiveLocationCell.this.rect.bottom) + 5);
                 AndroidUtilities.runOnUIThread(SharingLiveLocationCell.this.invalidateRunnable, 1000L);
             }
         };
@@ -246,7 +246,7 @@ public class SharingLiveLocationCell extends FrameLayout {
     }
 
     public void setDialog(MessageObject messageObject, Location location, boolean z) {
-        String str;
+        CharSequence charSequence;
         TLRPC$Message tLRPC$Message;
         if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null && tLRPC$Message.local_id == -1) {
             Drawable drawable = getResources().getDrawable(R.drawable.pin);
@@ -260,9 +260,9 @@ public class SharingLiveLocationCell extends FrameLayout {
             TextView textView = this.distanceTextView;
             this.distanceTextViewSingle = false;
             textView.setSingleLine(false);
-            String str2 = messageObject.messageOwner.media.address;
-            this.distanceTextViewHeight = new StaticLayout(str2, this.distanceTextView.getPaint(), AndroidUtilities.displaySize.x - AndroidUtilities.dp(this.padding + 73), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false).getHeight();
-            this.distanceTextView.setText(str2);
+            String str = messageObject.messageOwner.media.address;
+            this.distanceTextViewHeight = new StaticLayout(str, this.distanceTextView.getPaint(), AndroidUtilities.displaySize.x - AndroidUtilities.dp(this.padding + 73), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false).getHeight();
+            this.distanceTextView.setText(str);
             requestLayout();
             return;
         }
@@ -274,7 +274,7 @@ public class SharingLiveLocationCell extends FrameLayout {
             fromChatId = MessageObject.getPeerId(messageObject.messageOwner.fwd_from.from_id);
         }
         this.currentAccount = messageObject.currentAccount;
-        String str3 = !TextUtils.isEmpty(messageObject.messageOwner.media.address) ? messageObject.messageOwner.media.address : null;
+        String str2 = !TextUtils.isEmpty(messageObject.messageOwner.media.address) ? messageObject.messageOwner.media.address : null;
         boolean isEmpty = TextUtils.isEmpty(messageObject.messageOwner.media.title);
         if (isEmpty) {
             this.avatarDrawable = null;
@@ -282,11 +282,11 @@ public class SharingLiveLocationCell extends FrameLayout {
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
                 if (user != null) {
                     this.avatarDrawable = new AvatarDrawable(user);
-                    str = UserObject.getUserName(user);
+                    charSequence = UserObject.getUserName(user);
                     this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
                 } else {
                     TLRPC$GeoPoint tLRPC$GeoPoint = messageObject.messageOwner.media.geo;
-                    str = getName(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long);
+                    charSequence = getName(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long);
                     isEmpty = false;
                 }
             } else {
@@ -294,29 +294,29 @@ public class SharingLiveLocationCell extends FrameLayout {
                 if (chat != null) {
                     AvatarDrawable avatarDrawable = new AvatarDrawable(chat);
                     this.avatarDrawable = avatarDrawable;
-                    String str4 = chat.title;
+                    String str3 = chat.title;
                     this.avatarImageView.setForUserOrChat(chat, avatarDrawable);
-                    str = str4;
+                    charSequence = str3;
                 } else {
                     TLRPC$GeoPoint tLRPC$GeoPoint2 = messageObject.messageOwner.media.geo;
-                    str = getName(tLRPC$GeoPoint2.lat, tLRPC$GeoPoint2._long);
+                    charSequence = getName(tLRPC$GeoPoint2.lat, tLRPC$GeoPoint2._long);
                     isEmpty = false;
                 }
             }
         } else {
-            str = "";
+            charSequence = "";
         }
-        if (TextUtils.isEmpty(str)) {
+        if (TextUtils.isEmpty(charSequence)) {
             if (this.loadingString == null) {
                 SpannableString spannableString = new SpannableString("dkaraush has been here");
                 this.loadingString = spannableString;
                 spannableString.setSpan(new LoadingSpan(this.nameTextView, AndroidUtilities.dp(100.0f), 0, this.resourcesProvider), 0, this.loadingString.length(), 33);
             }
-            str = this.loadingString;
+            charSequence = this.loadingString;
         }
         if (!isEmpty) {
             if (!TextUtils.isEmpty(messageObject.messageOwner.media.title)) {
-                str = messageObject.messageOwner.media.title;
+                charSequence = messageObject.messageOwner.media.title;
             }
             Drawable drawable2 = getResources().getDrawable(R.drawable.pin);
             drawable2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
@@ -326,18 +326,21 @@ public class SharingLiveLocationCell extends FrameLayout {
             combinedDrawable2.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.avatarImageView.setImageDrawable(combinedDrawable2);
         }
-        this.nameTextView.setText(str);
+        this.nameTextView.setText(charSequence);
         this.location.setLatitude(messageObject.messageOwner.media.geo.lat);
         this.location.setLongitude(messageObject.messageOwner.media.geo._long);
         if (location != null) {
             float distanceTo = this.location.distanceTo(location);
-            if (str3 != null) {
-                this.distanceTextView.setText(String.format("%s - %s", str3, LocaleController.formatDistance(distanceTo, 0)));
+            if (str2 != null) {
+                this.distanceTextView.setText(String.format("%s - %s", str2, LocaleController.formatDistance(distanceTo, 0)));
+                return;
             } else {
                 this.distanceTextView.setText(LocaleController.formatDistance(distanceTo, 0));
+                return;
             }
-        } else if (str3 != null) {
-            this.distanceTextView.setText(str3);
+        }
+        if (str2 != null) {
+            this.distanceTextView.setText(str2);
         } else if (!z) {
             this.distanceTextView.setText(LocaleController.getString("Loading", R.string.Loading));
         } else {
@@ -365,9 +368,8 @@ public class SharingLiveLocationCell extends FrameLayout {
         IMapsProvider.LatLng position = liveLocation.marker.getPosition();
         this.location.setLatitude(position.latitude);
         this.location.setLongitude(position.longitude);
-        TLRPC$Message tLRPC$Message = liveLocation.object;
-        int i = tLRPC$Message.edit_date;
-        String formatLocationUpdateDate = LocaleController.formatLocationUpdateDate(i != 0 ? i : tLRPC$Message.date);
+        int i = liveLocation.object.edit_date;
+        String formatLocationUpdateDate = LocaleController.formatLocationUpdateDate(i != 0 ? i : r5.date);
         if (location != null) {
             this.distanceTextView.setText(String.format("%s - %s", formatLocationUpdateDate, LocaleController.formatDistance(this.location.distanceTo(location), 0)));
         } else {

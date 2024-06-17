@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.FileLog;
+
 class MediaCodecUtils {
     static final String EXYNOS_PREFIX = "OMX.Exynos.";
     static final String EXYNOS_PREFIX_C2 = "c2.exynos.";
@@ -61,7 +62,6 @@ class MediaCodecUtils {
     }
 
     public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        int[] iArr2;
         for (int i : iArr) {
             for (int i2 : codecCapabilities.colorFormats) {
                 if (i2 == i) {

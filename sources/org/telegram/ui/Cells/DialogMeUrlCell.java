@@ -28,6 +28,7 @@ import org.telegram.tgnet.TLRPC$TL_recentMeUrlUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
+
 public class DialogMeUrlCell extends BaseCell {
     private AvatarDrawable avatarDrawable;
     private ImageReceiver avatarImage;

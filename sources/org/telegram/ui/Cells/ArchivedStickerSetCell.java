@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
@@ -36,6 +37,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.ViewHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
     private final ProgressButton addButton;
@@ -218,7 +220,8 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
                     this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", imageLocation, (String) null, 0, tLRPC$StickerSetCovered);
                     return;
                 }
-            } else if (imageLocation != null && imageLocation.imageType == 1) {
+            }
+            if (imageLocation != null && imageLocation.imageType == 1) {
                 this.imageView.setImage(imageLocation, "50_50", "tgs", svgThumb, tLRPC$StickerSetCovered);
                 return;
             } else {
@@ -249,7 +252,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animatorSet = animatorSet2;
                 animatorSet2.setDuration(250L);
-                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.deleteButton, View.ALPHA, f), ObjectAnimator.ofFloat(this.deleteButton, View.SCALE_X, f), ObjectAnimator.ofFloat(this.deleteButton, View.SCALE_Y, f), ObjectAnimator.ofFloat(this.addButton, View.ALPHA, f2), ObjectAnimator.ofFloat(this.addButton, View.SCALE_X, f2), ObjectAnimator.ofFloat(this.addButton, View.SCALE_Y, f2));
+                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.deleteButton, (Property<Button, Float>) View.ALPHA, f), ObjectAnimator.ofFloat(this.deleteButton, (Property<Button, Float>) View.SCALE_X, f), ObjectAnimator.ofFloat(this.deleteButton, (Property<Button, Float>) View.SCALE_Y, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) View.ALPHA, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) View.SCALE_X, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) View.SCALE_Y, f2));
                 this.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {

@@ -18,6 +18,7 @@ import j$.util.Comparator$CC;
 import j$.util.function.ToLongFunction;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
@@ -45,6 +46,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
+
 public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSheet {
     private GradientButtonWithCounterView actionBtn;
     private SelectorBtnCell buttonContainer;
@@ -149,13 +151,13 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     @Override
     protected View onCreateAdditionCell(int i, Context context) {
         if (i != 6) {
-            if (i != 7) {
-                if (i != 8) {
-                    return null;
-                }
-                return new DurationWithDiscountCell(context, this.resourcesProvider);
+            if (i == 7) {
+                return new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
             }
-            return new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+            if (i != 8) {
+                return null;
+            }
+            return new DurationWithDiscountCell(context, this.resourcesProvider);
         }
         HeaderCell headerCell = new HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 12, false, this.resourcesProvider);
         headerCell.setTextSize(15.0f);
@@ -216,8 +218,9 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     }
 
     private void chooseMaxSelectedMonths() {
-        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption : this.giftCodeOptions) {
-            this.selectedMonths = Math.max(tLRPC$TL_premiumGiftCodeOption.months, this.selectedMonths);
+        Iterator<TLRPC$TL_premiumGiftCodeOption> it = this.giftCodeOptions.iterator();
+        while (it.hasNext()) {
+            this.selectedMonths = Math.max(it.next().months, this.selectedMonths);
         }
     }
 
@@ -348,8 +351,9 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
                 frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
                 int i = 0;
                 for (int i2 = 0; i2 < list.size(); i2++) {
+                    TLRPC$User tLRPC$User = list.get(i2);
                     AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
-                    avatarHolderView2.setUser(list.get(i2));
+                    avatarHolderView2.setUser(tLRPC$User);
                     frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
                     avatarHolderView2.setTranslationX((-i2) * AndroidUtilities.dp(29.0f));
                     if (i2 == 0 && list.size() > 3) {

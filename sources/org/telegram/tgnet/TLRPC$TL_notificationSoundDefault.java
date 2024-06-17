@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_notificationSoundDefault extends TLRPC$NotificationSound {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

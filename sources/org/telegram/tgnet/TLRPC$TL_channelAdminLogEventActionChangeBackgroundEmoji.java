@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionChangeBackgroundEmoji extends TLRPC$ChannelAdminLogEventAction {
     public long new_value;
     public long prev_value;

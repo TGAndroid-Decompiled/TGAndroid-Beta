@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_stats$TL_statsDateRangeDays extends TLObject {
     public int max_date;
     public int min_date;

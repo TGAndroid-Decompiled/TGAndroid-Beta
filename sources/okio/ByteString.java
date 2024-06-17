@@ -2,6 +2,7 @@ package okio;
 
 import java.io.Serializable;
 import java.util.Arrays;
+
 public class ByteString implements Serializable, Comparable<ByteString> {
     final byte[] data;
     transient int hashCode;

@@ -57,6 +57,7 @@ import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.LiteModeSettingsActivity;
+
 public class LiteModeSettingsActivity extends BaseFragment {
     private int FLAGS_CHAT;
     Adapter adapter;
@@ -83,7 +84,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LiteModeSettingsActivity.this.finishFragment();
+                    LiteModeSettingsActivity.this.lambda$onBackPressed$303();
                 }
             }
         });
@@ -138,16 +139,19 @@ public class LiteModeSettingsActivity extends BaseFragment {
         if (i2 == 3 || i2 == 4) {
             if (LiteMode.isPowerSaverApplied()) {
                 this.restrictBulletin = BulletinFactory.of(this).createSimpleBulletin(new BatteryDrawable(0.1f, -1, Theme.getColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString("LiteBatteryRestricted", R.string.LiteBatteryRestricted)).show();
-            } else if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = getExpandedIndex(item.flags)) != -1) {
-                boolean[] zArr = this.expanded;
-                zArr[expandedIndex] = !zArr[expandedIndex];
+                return;
+            }
+            if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = getExpandedIndex(item.flags)) != -1) {
+                this.expanded[expandedIndex] = !r5[expandedIndex];
                 updateValues();
                 updateItems();
-            } else {
-                LiteMode.toggleFlag(item.flags, !LiteMode.isEnabledSetting(item.flags));
-                updateValues();
+                return;
             }
-        } else if (i2 == 5 && item.type == 1) {
+            LiteMode.toggleFlag(item.flags, !LiteMode.isEnabledSetting(item.flags));
+            updateValues();
+            return;
+        }
+        if (i2 == 5 && item.type == 1) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             boolean z = globalMainSettings.getBoolean("view_animations", true);
             SharedPreferences.Editor edit = globalMainSettings.edit();
@@ -288,7 +292,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
         if (this.items.isEmpty()) {
             updateItems();
-        } else if (this.items.size() >= 2) {
+            return;
+        }
+        if (this.items.size() >= 2) {
             ArrayList<Item> arrayList = this.items;
             if (LiteMode.getPowerSaverLevel() <= 0) {
                 formatString = LocaleController.getString(R.string.LiteBatteryInfoDisabled);
@@ -377,40 +383,48 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 ((HeaderCell) viewHolder.itemView).setText(item.text);
                 return;
             }
-            boolean z = true;
             if (itemViewType == 1) {
                 ((PowerSaverSlider) viewHolder.itemView).update();
-            } else if (itemViewType != 2) {
+                return;
+            }
+            if (itemViewType != 2) {
                 if (itemViewType == 3 || itemViewType == 4) {
                     int i2 = i + 1;
-                    ((SwitchCell) viewHolder.itemView).set(item, (i2 >= LiteModeSettingsActivity.this.items.size() || ((Item) LiteModeSettingsActivity.this.items.get(i2)).viewType == 2) ? false : false);
-                } else if (itemViewType == 5) {
-                    TextCell textCell = (TextCell) viewHolder.itemView;
-                    if (item.type == 1) {
-                        textCell.setTextAndCheck(item.text, MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), false);
+                    ((SwitchCell) viewHolder.itemView).set(item, i2 < LiteModeSettingsActivity.this.items.size() && ((Item) LiteModeSettingsActivity.this.items.get(i2)).viewType != 2);
+                    return;
+                } else {
+                    if (itemViewType == 5) {
+                        TextCell textCell = (TextCell) viewHolder.itemView;
+                        if (item.type == 1) {
+                            textCell.setTextAndCheck(item.text, MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), false);
+                            return;
+                        }
+                        return;
                     }
+                    return;
                 }
+            }
+            TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+            if (TextUtils.isEmpty(item.text)) {
+                textInfoPrivacyCell.setFixedSize(12);
             } else {
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                if (TextUtils.isEmpty(item.text)) {
-                    textInfoPrivacyCell.setFixedSize(12);
-                } else {
-                    textInfoPrivacyCell.setFixedSize(0);
-                }
-                textInfoPrivacyCell.setText(item.text);
-                textInfoPrivacyCell.setContentDescription(item.text);
-                boolean z2 = i > 0 && ((Item) LiteModeSettingsActivity.this.items.get(i + (-1))).viewType != 2;
-                int i3 = i + 1;
-                z = (i3 >= LiteModeSettingsActivity.this.items.size() || ((Item) LiteModeSettingsActivity.this.items.get(i3)).viewType == 2) ? false : false;
-                if (z2 && z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                } else if (z2) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                } else if (z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
-                } else {
-                    textInfoPrivacyCell.setBackground(null);
-                }
+                textInfoPrivacyCell.setFixedSize(0);
+            }
+            textInfoPrivacyCell.setText(item.text);
+            textInfoPrivacyCell.setContentDescription(item.text);
+            boolean z = i > 0 && ((Item) LiteModeSettingsActivity.this.items.get(i + (-1))).viewType != 2;
+            int i3 = i + 1;
+            boolean z2 = i3 < LiteModeSettingsActivity.this.items.size() && ((Item) LiteModeSettingsActivity.this.items.get(i3)).viewType != 2;
+            if (z && z2) {
+                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                return;
+            }
+            if (z) {
+                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            } else if (z2) {
+                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+            } else {
+                textInfoPrivacyCell.setBackground(null);
             }
         }
 
@@ -548,15 +562,14 @@ public class LiteModeSettingsActivity extends BaseFragment {
 
         public void set(Item item, boolean z) {
             float f;
-            boolean z2 = true;
             if (item.viewType == 3) {
                 this.checkBoxView.setVisibility(8);
                 this.imageView.setVisibility(0);
                 this.imageView.setImageResource(item.iconResId);
                 this.textView.setText(item.text);
-                boolean z3 = item.getFlagsCount() > 1;
-                this.containing = z3;
-                if (z3) {
+                boolean z2 = item.getFlagsCount() > 1;
+                this.containing = z2;
+                if (z2) {
                     updateCount(item, false);
                     this.countTextView.setVisibility(0);
                     this.arrowView.setVisibility(0);
@@ -588,7 +601,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
             marginLayoutParams.rightMargin = AndroidUtilities.dp(f);
             this.needDivider = z;
-            setWillNotDraw((z || this.needLine) ? false : false);
+            setWillNotDraw((z || this.needLine) ? false : true);
             setDisabled(LiteMode.isPowerSaverApplied(), false);
         }
 
@@ -610,10 +623,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
 
         private void updateCount(Item item, boolean z) {
-            boolean z2 = true;
             this.enabled = preprocessFlagsCount(LiteMode.getValue(true) & item.flags);
             this.all = preprocessFlagsCount(item.flags);
-            this.countTextView.setText(String.format("%d/%d", Integer.valueOf(this.enabled), Integer.valueOf(this.all)), (!z || LocaleController.isRTL) ? false : false);
+            this.countTextView.setText(String.format("%d/%d", Integer.valueOf(this.enabled), Integer.valueOf(this.all)), z && !LocaleController.isRTL);
         }
 
         private int preprocessFlagsCount(int r4) {
@@ -1025,25 +1037,25 @@ public class LiteModeSettingsActivity extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj instanceof Item) {
-                Item item = (Item) obj;
-                int i = item.viewType;
-                int i2 = this.viewType;
-                if (i != i2) {
-                    return false;
-                }
-                if (i2 != 3 || item.iconResId == this.iconResId) {
-                    if (i2 != 5 || item.type == this.type) {
-                        if ((i2 == 3 || i2 == 4) && item.flags != this.flags) {
-                            return false;
-                        }
-                        return !(i2 == 0 || i2 == 2 || i2 == 3 || i2 == 4 || i2 == 5) || TextUtils.equals(item.text, this.text);
-                    }
-                    return false;
-                }
+            if (!(obj instanceof Item)) {
                 return false;
             }
-            return false;
+            Item item = (Item) obj;
+            int i = item.viewType;
+            int i2 = this.viewType;
+            if (i != i2) {
+                return false;
+            }
+            if (i2 == 3 && item.iconResId != this.iconResId) {
+                return false;
+            }
+            if (i2 == 5 && item.type != this.type) {
+                return false;
+            }
+            if ((i2 == 3 || i2 == 4) && item.flags != this.flags) {
+                return false;
+            }
+            return !(i2 == 0 || i2 == 2 || i2 == 3 || i2 == 4 || i2 == 5) || TextUtils.equals(item.text, this.text);
         }
     }
 

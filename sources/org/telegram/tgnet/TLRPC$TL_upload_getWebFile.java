@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_upload_getWebFile extends TLObject {
     public int limit;
     public TLRPC$InputWebFileLocation location;

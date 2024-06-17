@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_help_country extends TLObject {
     public ArrayList<TLRPC$TL_help_countryCode> country_codes = new ArrayList<>();
     public String default_name;

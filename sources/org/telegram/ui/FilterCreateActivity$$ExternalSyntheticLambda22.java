@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_chatlists$TL_exportedChatlistInvite;
+
 public final class FilterCreateActivity$$ExternalSyntheticLambda22 implements Utilities.Callback {
     public final FilterCreateActivity f$0;
 

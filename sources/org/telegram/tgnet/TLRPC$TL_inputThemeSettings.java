@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_inputThemeSettings extends TLObject {
     public int accent_color;
     public TLRPC$BaseTheme base_theme;
@@ -28,10 +29,11 @@ public class TLRPC$TL_inputThemeSettings extends TLObject {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
                 return;
-            }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.message_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+            } else {
+                int readInt323 = abstractSerializedData.readInt32(z);
+                for (int i = 0; i < readInt323; i++) {
+                    this.message_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+                }
             }
         }
         if ((this.flags & 2) != 0) {

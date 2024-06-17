@@ -9,6 +9,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import java.nio.ByteBuffer;
 import java.util.regex.Pattern;
+
 public class AudioRecordJNI {
     private AcousticEchoCanceler aec;
     private AutomaticGainControl agc;
@@ -242,29 +243,29 @@ public class AudioRecordJNI {
         Pattern makeNonEmptyRegex2 = makeNonEmptyRegex("adsp_good_names");
         AudioEffect.Descriptor descriptor = audioEffect.getDescriptor();
         VLog.d(audioEffect.getClass().getSimpleName() + ": implementor=" + descriptor.implementor + ", name=" + descriptor.name);
-        if (makeNonEmptyRegex == null || !makeNonEmptyRegex.matcher(descriptor.implementor).find()) {
-            if (makeNonEmptyRegex2 == null || !makeNonEmptyRegex2.matcher(descriptor.name).find()) {
-                if (audioEffect instanceof AcousticEchoCanceler) {
-                    Pattern makeNonEmptyRegex3 = makeNonEmptyRegex("aaec_good_impls");
-                    Pattern makeNonEmptyRegex4 = makeNonEmptyRegex("aaec_good_names");
-                    if (makeNonEmptyRegex3 != null && makeNonEmptyRegex3.matcher(descriptor.implementor).find()) {
-                        return true;
-                    }
-                    if (makeNonEmptyRegex4 != null && makeNonEmptyRegex4.matcher(descriptor.name).find()) {
-                        return true;
-                    }
-                }
-                if (audioEffect instanceof NoiseSuppressor) {
-                    Pattern makeNonEmptyRegex5 = makeNonEmptyRegex("ans_good_impls");
-                    Pattern makeNonEmptyRegex6 = makeNonEmptyRegex("ans_good_names");
-                    if (makeNonEmptyRegex5 == null || !makeNonEmptyRegex5.matcher(descriptor.implementor).find()) {
-                        return makeNonEmptyRegex6 != null && makeNonEmptyRegex6.matcher(descriptor.name).find();
-                    }
-                    return true;
-                }
-                return false;
-            }
+        if (makeNonEmptyRegex != null && makeNonEmptyRegex.matcher(descriptor.implementor).find()) {
             return true;
+        }
+        if (makeNonEmptyRegex2 != null && makeNonEmptyRegex2.matcher(descriptor.name).find()) {
+            return true;
+        }
+        if (audioEffect instanceof AcousticEchoCanceler) {
+            Pattern makeNonEmptyRegex3 = makeNonEmptyRegex("aaec_good_impls");
+            Pattern makeNonEmptyRegex4 = makeNonEmptyRegex("aaec_good_names");
+            if (makeNonEmptyRegex3 != null && makeNonEmptyRegex3.matcher(descriptor.implementor).find()) {
+                return true;
+            }
+            if (makeNonEmptyRegex4 != null && makeNonEmptyRegex4.matcher(descriptor.name).find()) {
+                return true;
+            }
+        }
+        if (!(audioEffect instanceof NoiseSuppressor)) {
+            return false;
+        }
+        Pattern makeNonEmptyRegex5 = makeNonEmptyRegex("ans_good_impls");
+        Pattern makeNonEmptyRegex6 = makeNonEmptyRegex("ans_good_names");
+        if (makeNonEmptyRegex5 == null || !makeNonEmptyRegex5.matcher(descriptor.implementor).find()) {
+            return makeNonEmptyRegex6 != null && makeNonEmptyRegex6.matcher(descriptor.name).find();
         }
         return true;
     }

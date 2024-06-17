@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_phone_requestCall extends TLObject {
     public int flags;
     public byte[] g_a_hash;

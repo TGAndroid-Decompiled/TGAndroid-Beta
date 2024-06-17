@@ -44,6 +44,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public final class BulletinFactory {
     private final FrameLayout containerLayout;
     private final BaseFragment fragment;
@@ -171,7 +172,7 @@ public final class BulletinFactory {
             SAVED_TO_GALLERY(R.raw.ic_save_to_gallery, 0, "Box", "Arrow", "Mask", "Arrow 2", "Splash"),
             SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
             SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
-            
+
             private final String[] layers;
             private final int paddingBottom;
             private final int resId;
@@ -189,11 +190,11 @@ public final class BulletinFactory {
             this.fragment = null;
             this.containerLayout = baseFragment.getLastStoryViewer().getContainerForBulletin();
             this.resourcesProvider = baseFragment.getLastStoryViewer().getResourceProvider();
-            return;
+        } else {
+            this.fragment = baseFragment;
+            this.containerLayout = null;
+            this.resourcesProvider = baseFragment != null ? baseFragment.getResourceProvider() : null;
         }
-        this.fragment = baseFragment;
-        this.containerLayout = null;
-        this.resourcesProvider = baseFragment != null ? baseFragment.getResourceProvider() : null;
     }
 
     private BulletinFactory(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
@@ -509,11 +510,9 @@ public final class BulletinFactory {
             spannableStringBuilder = null;
         } else if (arrayList.size() == 1) {
             if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
-                int i = R.string.HasBeenAddedToChannel;
-                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", i, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
+                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
             } else {
-                int i2 = R.string.HasBeenAddedToGroup;
-                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", i2, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
+                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
             }
         } else if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
             spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedMembersToChannel", arrayList.size(), new Object[0]));
@@ -798,20 +797,20 @@ public final class BulletinFactory {
     }
 
     public Bulletin createCopyLinkBulletin(boolean z, Theme.ResourcesProvider resourcesProvider) {
-        if (AndroidUtilities.shouldShowClipboardToast()) {
-            if (z) {
-                Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), resourcesProvider);
-                twoLineLottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-                twoLineLottieLayout.titleTextView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
-                twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("LinkCopiedPrivateInfo", R.string.LinkCopiedPrivateInfo));
-                return create(twoLineLottieLayout, 2750);
-            }
-            Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
-            lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            lottieLayout.textView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
-            return create(lottieLayout, 1500);
+        if (!AndroidUtilities.shouldShowClipboardToast()) {
+            return new Bulletin.EmptyBulletin();
         }
-        return new Bulletin.EmptyBulletin();
+        if (z) {
+            Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), resourcesProvider);
+            twoLineLottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+            twoLineLottieLayout.titleTextView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
+            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("LinkCopiedPrivateInfo", R.string.LinkCopiedPrivateInfo));
+            return create(twoLineLottieLayout, 2750);
+        }
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
+        lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+        lottieLayout.textView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
+        return create(lottieLayout, 1500);
     }
 
     public Bulletin createCopyLinkBulletin(String str, Theme.ResourcesProvider resourcesProvider) {
@@ -880,10 +879,10 @@ public final class BulletinFactory {
     public static Bulletin createUnpinAllMessagesBulletin(BaseFragment baseFragment, int i, boolean z, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
         Bulletin.LottieLayout lottieLayout;
         if (baseFragment.getParentActivity() == null) {
-            if (runnable2 != null) {
-                runnable2.run();
+            if (runnable2 == null) {
                 return null;
             }
+            runnable2.run();
             return null;
         }
         if (z) {
@@ -950,27 +949,27 @@ public final class BulletinFactory {
 
     public boolean showForwardedBulletinWithTag(long j, int i) {
         SpannableStringBuilder replaceSingleTag;
-        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-            Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
-            if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
-                if (i <= 1) {
-                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
-                } else {
-                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
-                }
-                lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
-                lottieLayoutWithReactions.textView.setText(replaceSingleTag);
-                lottieLayoutWithReactions.textView.setSingleLine(false);
-                lottieLayoutWithReactions.textView.setMaxLines(2);
-                Bulletin create = create(lottieLayoutWithReactions, 3500);
-                lottieLayoutWithReactions.setBulletin(create);
-                create.hideAfterBottomSheet(false);
-                create.show(true);
-                return true;
-            }
+        if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
             return false;
         }
-        return false;
+        Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
+        if (j != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            return false;
+        }
+        if (i <= 1) {
+            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+        } else {
+            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+        }
+        lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
+        lottieLayoutWithReactions.textView.setText(replaceSingleTag);
+        lottieLayoutWithReactions.textView.setSingleLine(false);
+        lottieLayoutWithReactions.textView.setMaxLines(2);
+        Bulletin create = create(lottieLayoutWithReactions, 3500);
+        lottieLayoutWithReactions.setBulletin(create);
+        create.hideAfterBottomSheet(false);
+        create.show(true);
+        return true;
     }
 
     public static org.telegram.ui.Components.Bulletin createForwardedBulletin(android.content.Context r4, android.widget.FrameLayout r5, int r6, long r7, int r9, int r10, int r11) {

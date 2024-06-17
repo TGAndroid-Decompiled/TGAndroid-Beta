@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateGroupCall extends TLRPC$Update {
     public TLRPC$GroupCall call;
     public long chat_id;

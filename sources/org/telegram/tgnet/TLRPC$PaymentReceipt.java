@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$PaymentReceipt extends TLObject {
     public long bot_id;
     public String credentials_title;

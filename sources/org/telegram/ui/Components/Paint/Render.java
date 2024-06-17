@@ -8,6 +8,7 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+
 public class Render {
     public static RectF RenderPath(Path path, RenderState renderState, boolean z) {
         renderState.baseWeight = path.getBaseWeight();
@@ -63,8 +64,9 @@ public class Render {
         double d6 = renderState.remainder;
         Double.isNaN(distanceTo);
         Double.isNaN(max);
+        int ceil = (int) Math.ceil((distanceTo - d6) / max);
         int count = renderState.getCount();
-        renderState.appendValuesCount((int) Math.ceil((distanceTo - d6) / max));
+        renderState.appendValuesCount(ceil);
         renderState.setPosition(count);
         Point add = point.add(point4.multiplyByScalar(renderState.remainder));
         double d7 = renderState.remainder;

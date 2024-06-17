@@ -15,6 +15,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+
 public class ChatActivityBotWebViewButton extends FrameLayout {
     public static final SimpleFloatPropertyCompat<ChatActivityBotWebViewButton> PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("progress", new SimpleFloatPropertyCompat.Getter() {
         @Override

@@ -78,6 +78,7 @@ import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.bots.BotWebViewContainer;
 import org.telegram.ui.bots.BotWebViewMenuContainer;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
+
 public class BotWebViewMenuContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final SimpleFloatPropertyCompat<BotWebViewMenuContainer> ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
@@ -380,8 +381,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         @Override
         public void onWebAppSwitchInlineQuery(final TLRPC$User tLRPC$User, final String str, List<String> list) {
             if (list.isEmpty()) {
-                ChatActivityEnterView chatActivityEnterView = this.val$parentEnterView;
-                chatActivityEnterView.setFieldText("@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+                this.val$parentEnterView.setFieldText("@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
                 BotWebViewMenuContainer.this.dismiss();
                 return;
             }
@@ -612,11 +612,11 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         if (this.webViewContainer.onBackPressed()) {
             return true;
         }
-        if (getVisibility() == 0) {
-            onCheckDismissByUser();
-            return true;
+        if (getVisibility() != 0) {
+            return false;
         }
-        return false;
+        onCheckDismissByUser();
+        return true;
     }
 
     public boolean onCheckDismissByUser() {
@@ -716,7 +716,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                             return;
                         }
                         BotWebViewMenuContainer.this.onCheckDismissByUser();
-                    } else if (i == R.id.menu_reload_page) {
+                        return;
+                    }
+                    if (i == R.id.menu_reload_page) {
                         if (BotWebViewMenuContainer.this.webViewContainer.getWebView() != null) {
                             BotWebViewMenuContainer.this.webViewContainer.getWebView().animate().cancel();
                             BotWebViewMenuContainer.this.webViewContainer.getWebView().animate().alpha(0.0f).start();
@@ -728,7 +730,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                         BotWebViewMenuContainer.this.webViewContainer.setBotUser(MessagesController.getInstance(BotWebViewMenuContainer.this.currentAccount).getUser(Long.valueOf(BotWebViewMenuContainer.this.botId)));
                         BotWebViewMenuContainer.this.webViewContainer.loadFlickerAndSettingsItem(BotWebViewMenuContainer.this.currentAccount, BotWebViewMenuContainer.this.botId, BotWebViewMenuContainer.this.settingsItem);
                         BotWebViewMenuContainer.this.webViewContainer.reload();
-                    } else if (i == R.id.menu_settings) {
+                        return;
+                    }
+                    if (i == R.id.menu_settings) {
                         BotWebViewMenuContainer.this.webViewContainer.onSettingsButtonPressed();
                     } else if (i == R.id.menu_add_to_home_screen_bot) {
                         MediaDataController.getInstance(BotWebViewMenuContainer.this.currentAccount).installShortcut(BotWebViewMenuContainer.this.botId, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT);
@@ -831,8 +835,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     }
 
     private void updateLightStatusBar() {
-        boolean z = true;
-        z = (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) < 0.9d || this.actionBarTransitionProgress < 0.85f) ? false : false;
+        boolean z = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d && this.actionBarTransitionProgress >= 0.85f;
         Boolean bool = this.wasLightStatusBar;
         if (bool == null || bool.booleanValue() != z) {
             this.wasLightStatusBar = Boolean.valueOf(z);
@@ -878,8 +881,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         int color = this.actionBarColors.getColor(Theme.key_sheet_scrollUp);
         this.lineColor = color;
         this.linePaint.setColor(color);
-        Paint paint = this.linePaint;
-        paint.setAlpha((int) (paint.getAlpha() * (1.0f - (Math.min(0.5f, this.actionBarTransitionProgress) / 0.5f))));
+        this.linePaint.setAlpha((int) (r0.getAlpha() * (1.0f - (Math.min(0.5f, this.actionBarTransitionProgress) / 0.5f))));
         canvas.save();
         float f = 1.0f - this.actionBarTransitionProgress;
         float lerp = AndroidUtilities.lerp(this.swipeContainer.getTranslationY(), AndroidUtilities.statusBarHeight + (ActionBar.getCurrentActionBarHeight() / 2.0f), this.actionBarTransitionProgress) + AndroidUtilities.dp(12.0f);
@@ -1009,8 +1011,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             return;
         }
         this.dismissed = true;
-        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;
-        webViewSwipeContainer.stickTo(webViewSwipeContainer.getHeight() + this.parentEnterView.getSizeNotifierLayout().measureKeyboardHeight(), new Runnable() {
+        this.swipeContainer.stickTo(r0.getHeight() + this.parentEnterView.getSizeNotifierLayout().measureKeyboardHeight(), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewMenuContainer.this.lambda$dismiss$18(runnable);
@@ -1124,8 +1125,11 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         if (i == NotificationCenter.webViewResultSent) {
             if (this.queryId == ((Long) objArr[0]).longValue()) {
                 dismiss();
+                return;
             }
-        } else if (i == NotificationCenter.didSetNewTheme) {
+            return;
+        }
+        if (i == NotificationCenter.didSetNewTheme) {
             this.webViewContainer.updateFlickerBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
             invalidate();
             invalidateActionBar();

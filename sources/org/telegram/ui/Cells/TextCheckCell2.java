@@ -19,6 +19,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
+
 public class TextCheckCell2 extends FrameLayout {
     private AnimatedTextView animatedTextView;
     private Switch checkBox;
@@ -195,7 +196,9 @@ public class TextCheckCell2 extends FrameLayout {
             this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.checkBox.animate().alpha(z ? 1.0f : 0.5f).start();
-        } else if (z) {
+            return;
+        }
+        if (z) {
             this.textView.setAlpha(1.0f);
             this.valueTextView.setAlpha(1.0f);
             this.checkBox.setAlpha(1.0f);

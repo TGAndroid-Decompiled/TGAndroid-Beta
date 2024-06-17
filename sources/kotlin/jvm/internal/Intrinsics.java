@@ -2,6 +2,7 @@ package kotlin.jvm.internal;
 
 import java.util.Arrays;
 import kotlin.UninitializedPropertyAccessException;
+
 public class Intrinsics {
     public static int compare(int i, int i2) {
         if (i < i2) {
@@ -73,9 +74,7 @@ public class Intrinsics {
             i++;
         }
         StackTraceElement stackTraceElement = stackTrace[i];
-        String className = stackTraceElement.getClassName();
-        String methodName = stackTraceElement.getMethodName();
-        return "Parameter specified as non-null is null: method " + className + "." + methodName + ", parameter " + str;
+        return "Parameter specified as non-null is null: method " + stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName() + ", parameter " + str;
     }
 
     public static boolean areEqual(Object obj, Object obj2) {

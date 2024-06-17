@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_groupCallParticipant extends TLObject {
     public String about;
     public int active_date;

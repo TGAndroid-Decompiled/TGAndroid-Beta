@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_forumTopic_layer147 extends TLRPC$TL_forumTopic {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

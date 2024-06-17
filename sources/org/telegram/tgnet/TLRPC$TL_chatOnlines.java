@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_chatOnlines extends TLObject {
     public int onlines;
 

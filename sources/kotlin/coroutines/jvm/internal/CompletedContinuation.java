@@ -2,6 +2,7 @@ package kotlin.coroutines.jvm.internal;
 
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
+
 public final class CompletedContinuation implements Continuation<Object> {
     public static final CompletedContinuation INSTANCE = new CompletedContinuation();
 

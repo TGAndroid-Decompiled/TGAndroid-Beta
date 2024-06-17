@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_account_unregisterDevice extends TLObject {
     public ArrayList<Long> other_uids = new ArrayList<>();
     public String token;

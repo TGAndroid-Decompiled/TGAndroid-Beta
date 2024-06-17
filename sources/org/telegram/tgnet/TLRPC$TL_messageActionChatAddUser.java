@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionChatAddUser extends TLRPC$MessageAction {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -7,11 +8,11 @@ public class TLRPC$TL_messageActionChatAddUser extends TLRPC$MessageAction {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-            return;
-        }
-        int readInt322 = abstractSerializedData.readInt32(z);
-        for (int i = 0; i < readInt322; i++) {
-            this.users.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+        } else {
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                this.users.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            }
         }
     }
 

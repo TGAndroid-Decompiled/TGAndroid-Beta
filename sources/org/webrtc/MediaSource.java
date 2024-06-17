@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public class MediaSource {
     private long nativeSource;
     private final RefCountDelegate refCountDelegate;

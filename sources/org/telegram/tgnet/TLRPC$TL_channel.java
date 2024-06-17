@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_channel extends TLRPC$Chat {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageBlockPhoto extends TLRPC$PageBlock {
     public TLRPC$TL_pageCaption caption;
     public int flags;

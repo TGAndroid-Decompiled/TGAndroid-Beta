@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ServiceLoader;
@@ -19,6 +20,7 @@ import kotlin.io.CloseableKt;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt__StringsJVMKt;
 import kotlin.text.StringsKt__StringsKt;
+
 public final class FastServiceLoader {
     public static final FastServiceLoader INSTANCE = new FastServiceLoader();
 
@@ -66,13 +68,14 @@ public final class FastServiceLoader {
     }
 
     public final <S> List<S> loadProviders$kotlinx_coroutines_core(Class<S> cls, ClassLoader classLoader) {
-        Set<String> set;
+        Set set;
         int collectionSizeOrDefault;
-        ArrayList<URL> list = Collections.list(classLoader.getResources(Intrinsics.stringPlus("META-INF/services/", cls.getName())));
+        ArrayList list = Collections.list(classLoader.getResources(Intrinsics.stringPlus("META-INF/services/", cls.getName())));
         Intrinsics.checkNotNullExpressionValue(list, "list(this)");
         ArrayList arrayList = new ArrayList();
-        for (URL url : list) {
-            CollectionsKt__MutableCollectionsKt.addAll(arrayList, INSTANCE.parse(url));
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            CollectionsKt__MutableCollectionsKt.addAll(arrayList, INSTANCE.parse((URL) it.next()));
         }
         set = CollectionsKt___CollectionsKt.toSet(arrayList);
         if (!(!set.isEmpty())) {
@@ -80,8 +83,9 @@ public final class FastServiceLoader {
         }
         collectionSizeOrDefault = CollectionsKt__IterablesKt.collectionSizeOrDefault(set, 10);
         ArrayList arrayList2 = new ArrayList(collectionSizeOrDefault);
-        for (String str : set) {
-            arrayList2.add(INSTANCE.getProviderInstance(str, classLoader, cls));
+        Iterator it2 = set.iterator();
+        while (it2.hasNext()) {
+            arrayList2.add(INSTANCE.getProviderInstance((String) it2.next(), classLoader, cls));
         }
         return arrayList2;
     }
@@ -96,6 +100,7 @@ public final class FastServiceLoader {
 
     private final List<String> parse(URL url) {
         boolean startsWith$default;
+        BufferedReader bufferedReader;
         String substringAfter$default;
         String substringBefore$default;
         String substringAfter$default2;
@@ -107,11 +112,14 @@ public final class FastServiceLoader {
             substringAfter$default2 = StringsKt__StringsKt.substringAfter$default(url2, "!/", null, 2, null);
             JarFile jarFile = new JarFile(substringBefore$default, false);
             try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(jarFile.getInputStream(new ZipEntry(substringAfter$default2)), "UTF-8"));
-                List<String> parseFile = INSTANCE.parseFile(bufferedReader);
-                CloseableKt.closeFinally(bufferedReader, null);
-                jarFile.close();
-                return parseFile;
+                bufferedReader = new BufferedReader(new InputStreamReader(jarFile.getInputStream(new ZipEntry(substringAfter$default2)), "UTF-8"));
+                try {
+                    List<String> parseFile = INSTANCE.parseFile(bufferedReader);
+                    CloseableKt.closeFinally(bufferedReader, null);
+                    jarFile.close();
+                    return parseFile;
+                } finally {
+                }
             } catch (Throwable th) {
                 try {
                     throw th;
@@ -125,18 +133,17 @@ public final class FastServiceLoader {
                     }
                 }
             }
-        }
-        BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(url.openStream()));
-        try {
-            List<String> parseFile2 = INSTANCE.parseFile(bufferedReader2);
-            CloseableKt.closeFinally(bufferedReader2, null);
-            return parseFile2;
-        } catch (Throwable th4) {
+        } else {
+            bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
             try {
-                throw th4;
-            } catch (Throwable th5) {
-                CloseableKt.closeFinally(bufferedReader2, th4);
-                throw th5;
+                List<String> parseFile2 = INSTANCE.parseFile(bufferedReader);
+                CloseableKt.closeFinally(bufferedReader, null);
+                return parseFile2;
+            } catch (Throwable th4) {
+                try {
+                    throw th4;
+                } finally {
+                }
             }
         }
     }
@@ -146,7 +153,6 @@ public final class FastServiceLoader {
         String substringBefore$default;
         CharSequence trim;
         boolean z;
-        boolean z2;
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         while (true) {
             String readLine = bufferedReader.readLine();
@@ -162,14 +168,7 @@ public final class FastServiceLoader {
                     }
                     char charAt = obj.charAt(i);
                     i++;
-                    if (charAt == '.' || Character.isJavaIdentifierPart(charAt)) {
-                        z2 = true;
-                        continue;
-                    } else {
-                        z2 = false;
-                        continue;
-                    }
-                    if (!z2) {
+                    if (!(charAt == '.' || Character.isJavaIdentifierPart(charAt))) {
                         z = false;
                         break;
                     }

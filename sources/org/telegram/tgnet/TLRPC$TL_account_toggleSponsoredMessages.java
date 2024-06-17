@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_toggleSponsoredMessages extends TLObject {
     public boolean enabled;
 

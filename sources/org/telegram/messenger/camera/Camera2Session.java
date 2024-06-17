@@ -27,6 +27,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.Camera2Session;
+
 @TargetApi(21)
 public class Camera2Session {
     private CameraCharacteristics cameraCharacteristics;
@@ -80,8 +81,7 @@ public class Camera2Session {
                     CameraCharacteristics cameraCharacteristics = cameraManager2.getCameraCharacteristics(str2);
                     if (cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == (!z)) {
                         StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                        android.util.Size size2 = (android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE);
-                        float width = size2 == null ? 0.0f : size2.getWidth() / size2.getHeight();
+                        float width = ((android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)) == null ? 0.0f : r14.getWidth() / r14.getHeight();
                         float f2 = i / i2;
                         cameraManager = cameraManager2;
                         if ((f2 >= 1.0f) != (width >= 1.0f)) {
@@ -253,9 +253,9 @@ public class Camera2Session {
         if (isInitiated()) {
             runnable.run();
             this.doneCallback = null;
-            return;
+        } else {
+            this.doneCallback = runnable;
         }
-        this.doneCallback = runnable;
     }
 
     public void open(final SurfaceTexture surfaceTexture) {

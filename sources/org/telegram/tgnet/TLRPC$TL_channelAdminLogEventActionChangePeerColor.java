@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionChangePeerColor extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$TL_peerColor new_value;
     public TLRPC$TL_peerColor prev_value;

@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$GeoPoint;
+
 public class TL_stories$TL_mediaAreaGeoPoint extends TL_stories$MediaArea {
     public TLRPC$GeoPoint geo;
 

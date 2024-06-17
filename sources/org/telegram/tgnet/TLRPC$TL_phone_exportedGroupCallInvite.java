@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_phone_exportedGroupCallInvite extends TLObject {
     public String link;
 

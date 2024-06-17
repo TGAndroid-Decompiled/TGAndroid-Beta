@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contacts_search extends TLObject {
     public int limit;
     public String q;

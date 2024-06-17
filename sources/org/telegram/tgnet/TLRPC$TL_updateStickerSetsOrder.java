@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updateStickerSetsOrder extends TLRPC$Update {
     public boolean emojis;
     public int flags;
@@ -18,11 +19,11 @@ public class TLRPC$TL_updateStickerSetsOrder extends TLRPC$Update {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            return;
-        }
-        int readInt323 = abstractSerializedData.readInt32(z);
-        for (int i = 0; i < readInt323; i++) {
-            this.order.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+        } else {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                this.order.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            }
         }
     }
 

@@ -14,6 +14,7 @@ import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+
 class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private AccountInstance accountInstance;
     private int appWidgetId;
@@ -52,7 +53,6 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     public ChatsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
         Theme.createDialogsResources(context);
-        boolean z = false;
         this.appWidgetId = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
         int i = sharedPreferences.getInt("account" + this.appWidgetId, -1);
@@ -62,7 +62,7 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         StringBuilder sb = new StringBuilder();
         sb.append("deleted");
         sb.append(this.appWidgetId);
-        this.deleted = (sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null) ? true : true;
+        this.deleted = sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null;
     }
 
     @Override

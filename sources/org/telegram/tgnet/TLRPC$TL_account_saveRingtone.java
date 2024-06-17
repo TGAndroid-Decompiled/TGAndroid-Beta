@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_saveRingtone extends TLObject {
     public TLRPC$InputDocument id;
     public boolean unsave;

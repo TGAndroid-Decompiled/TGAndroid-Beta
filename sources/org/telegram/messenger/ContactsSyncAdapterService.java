@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SyncResult;
 import android.os.Bundle;
 import android.os.IBinder;
+
 public class ContactsSyncAdapterService extends Service {
     private static SyncAdapterImpl sSyncAdapter;
 

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_secureRequiredType extends TLRPC$SecureRequiredType {
     public int flags;
     public boolean native_names;

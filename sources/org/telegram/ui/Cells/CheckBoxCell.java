@@ -34,6 +34,7 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 public class CheckBoxCell extends FrameLayout {
     private AnimatedTextView animatedTextView;
     private AvatarDrawable avatarDrawable;
@@ -426,9 +427,9 @@ public class CheckBoxCell extends FrameLayout {
         }
         if (this.textAnimated) {
             this.animatedTextView.setText(Emoji.replaceEmoji(formatName, this.animatedTextView.getPaint().getFontMetricsInt(), false));
-            return;
+        } else {
+            this.linksTextView.setText(formatName);
         }
-        this.linksTextView.setText(formatName);
     }
 
     public void setPad(int i) {

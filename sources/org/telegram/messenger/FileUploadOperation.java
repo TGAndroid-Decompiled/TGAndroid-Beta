@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
+
 public class FileUploadOperation {
     private static final int initialRequestsCount = 8;
     private static final int initialRequestsSlowNetworkCount = 1;
@@ -194,14 +195,7 @@ public class FileUploadOperation {
         if (this.preferences == null) {
             this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
         }
-        SharedPreferences.Editor edit = this.preferences.edit();
-        SharedPreferences.Editor remove = edit.remove(this.fileKey + "_time");
-        SharedPreferences.Editor remove2 = remove.remove(this.fileKey + "_size");
-        SharedPreferences.Editor remove3 = remove2.remove(this.fileKey + "_uploaded");
-        SharedPreferences.Editor remove4 = remove3.remove(this.fileKey + "_id");
-        SharedPreferences.Editor remove5 = remove4.remove(this.fileKey + "_iv");
-        SharedPreferences.Editor remove6 = remove5.remove(this.fileKey + "_key");
-        remove6.remove(this.fileKey + "_ivc").commit();
+        this.preferences.edit().remove(this.fileKey + "_time").remove(this.fileKey + "_size").remove(this.fileKey + "_uploaded").remove(this.fileKey + "_id").remove(this.fileKey + "_iv").remove(this.fileKey + "_key").remove(this.fileKey + "_ivc").commit();
         try {
             RandomAccessFile randomAccessFile = this.stream;
             if (randomAccessFile != null) {
@@ -248,14 +242,16 @@ public class FileUploadOperation {
                 int i = this.uploadChunkSize;
                 this.totalPartsCount = ((int) ((((j - i) + i) - 1) / i)) + 1;
                 return;
+            } else {
+                long j2 = this.totalFileSize - 1024;
+                int i2 = this.uploadChunkSize;
+                this.totalPartsCount = ((int) (((j2 + i2) - 1) / i2)) + 1;
+                return;
             }
-            int i2 = this.uploadChunkSize;
-            this.totalPartsCount = ((int) ((((this.totalFileSize - 1024) + i2) - 1) / i2)) + 1;
-            return;
         }
-        long j2 = this.totalFileSize;
+        long j3 = this.totalFileSize;
         int i3 = this.uploadChunkSize;
-        this.totalPartsCount = (int) (((j2 + i3) - 1) / i3);
+        this.totalPartsCount = (int) (((j3 + i3) - 1) / i3);
     }
 
     public void setForceSmallFile() {

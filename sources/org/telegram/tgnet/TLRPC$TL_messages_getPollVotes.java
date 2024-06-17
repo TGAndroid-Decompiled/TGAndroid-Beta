@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getPollVotes extends TLObject {
     public int flags;
     public int id;

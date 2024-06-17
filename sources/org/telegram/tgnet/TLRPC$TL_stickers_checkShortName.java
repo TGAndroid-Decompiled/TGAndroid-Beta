@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_stickers_checkShortName extends TLObject {
     public String short_name;
 

@@ -85,6 +85,7 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TwoStepVerificationActivity;
+
 public class ChannelMonetizationLayout extends FrameLayout {
     public static ChannelMonetizationLayout instance;
     private static HashMap<Integer, SpannableString> tonString;
@@ -406,7 +407,8 @@ public class ChannelMonetizationLayout extends FrameLayout {
                     this.fragment.showDialog(builder.create());
                     return;
                 }
-            } else if ("SRP_ID_INVALID".equals(tLRPC$TL_error.text)) {
+            }
+            if ("SRP_ID_INVALID".equals(tLRPC$TL_error.text)) {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -414,17 +416,16 @@ public class ChannelMonetizationLayout extends FrameLayout {
                     }
                 }, 8);
                 return;
-            } else {
-                if (twoStepVerificationActivity != null) {
-                    twoStepVerificationActivity.needHideProgress();
-                    twoStepVerificationActivity.finishFragment();
-                }
-                BulletinFactory.showError(tLRPC$TL_error);
-                return;
             }
+            if (twoStepVerificationActivity != null) {
+                twoStepVerificationActivity.needHideProgress();
+                twoStepVerificationActivity.lambda$onBackPressed$303();
+            }
+            BulletinFactory.showError(tLRPC$TL_error);
+            return;
         }
         twoStepVerificationActivity.needHideProgress();
-        twoStepVerificationActivity.finishFragment();
+        twoStepVerificationActivity.lambda$onBackPressed$303();
         if (tLObject instanceof TL_stats$TL_broadcastRevenueWithdrawalUrl) {
             Browser.openUrl(getContext(), ((TL_stats$TL_broadcastRevenueWithdrawalUrl) tLObject).url);
         }
@@ -453,7 +454,6 @@ public class ChannelMonetizationLayout extends FrameLayout {
     }
 
     private void setBalance(long j, long j2) {
-        double d;
         if (this.formatter == null) {
             DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
             decimalFormatSymbols.setDecimalSeparator('.');
@@ -464,10 +464,11 @@ public class ChannelMonetizationLayout extends FrameLayout {
             this.formatter.setGroupingUsed(false);
         }
         DecimalFormat decimalFormat2 = this.formatter;
-        double d2 = j;
-        Double.isNaN(d2);
-        decimalFormat2.setMaximumFractionDigits(d2 / 1.0E9d > 1.5d ? 2 : 6);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTON("TON " + this.formatter.format(d), this.balanceTitle.getPaint(), 0.9f, true));
+        double d = j;
+        Double.isNaN(d);
+        double d2 = d / 1.0E9d;
+        decimalFormat2.setMaximumFractionDigits(d2 > 1.5d ? 2 : 6);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTON("TON " + this.formatter.format(d2), this.balanceTitle.getPaint(), 0.9f, true));
         int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
         if (indexOf >= 0) {
             spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
@@ -964,11 +965,9 @@ public class ChannelMonetizationLayout extends FrameLayout {
         }
 
         public void set(TL_stats$BroadcastRevenueTransaction tL_stats$BroadcastRevenueTransaction, boolean z) {
-            TL_stats$TL_broadcastRevenueTransactionRefund tL_stats$TL_broadcastRevenueTransactionRefund;
             long j;
             char c;
             boolean z2;
-            TL_stats$TL_broadcastRevenueTransactionProceeds tL_stats$TL_broadcastRevenueTransactionProceeds;
             String str;
             if (tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionWithdrawal) {
                 TL_stats$TL_broadcastRevenueTransactionWithdrawal tL_stats$TL_broadcastRevenueTransactionWithdrawal = (TL_stats$TL_broadcastRevenueTransactionWithdrawal) tL_stats$BroadcastRevenueTransaction;
@@ -994,13 +993,14 @@ public class ChannelMonetizationLayout extends FrameLayout {
             } else {
                 if (tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionProceeds) {
                     this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionProceed));
-                    this.dateView.setText(LocaleController.formatShortDateTime(tL_stats$TL_broadcastRevenueTransactionProceeds.from_date) + " - " + LocaleController.formatShortDateTime(tL_stats$TL_broadcastRevenueTransactionProceeds.to_date));
+                    this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date) + " - " + LocaleController.formatShortDateTime(r9.to_date));
                     j = ((TL_stats$TL_broadcastRevenueTransactionProceeds) tL_stats$BroadcastRevenueTransaction).amount;
-                } else if (!(tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionRefund)) {
-                    return;
                 } else {
+                    if (!(tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionRefund)) {
+                        return;
+                    }
                     this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionRefund));
-                    this.dateView.setText(LocaleController.formatShortDateTime(tL_stats$TL_broadcastRevenueTransactionRefund.from_date));
+                    this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date));
                     j = ((TL_stats$TL_broadcastRevenueTransactionRefund) tL_stats$BroadcastRevenueTransaction).amount;
                 }
                 c = 1;
@@ -1052,9 +1052,9 @@ public class ChannelMonetizationLayout extends FrameLayout {
         boolean z2;
         char c;
         boolean z3;
-        final BottomSheet bottomSheet;
+        BottomSheet bottomSheet;
         String userName;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC$User tLRPC$User;
         BottomSheet bottomSheet2 = new BottomSheet(getContext(), false, this.resourcesProvider);
         bottomSheet2.fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(getContext());
@@ -1075,12 +1075,13 @@ public class ChannelMonetizationLayout extends FrameLayout {
             TL_stats$TL_broadcastRevenueTransactionProceeds tL_stats$TL_broadcastRevenueTransactionProceeds = (TL_stats$TL_broadcastRevenueTransactionProceeds) tL_stats$BroadcastRevenueTransaction;
             string = LocaleController.getString(R.string.MonetizationTransactionDetailProceed);
             j2 = tL_stats$TL_broadcastRevenueTransactionProceeds.from_date;
+            long j5 = tL_stats$TL_broadcastRevenueTransactionProceeds.to_date;
             z = z4;
             c = 1;
             z3 = false;
             z2 = false;
             j3 = tL_stats$TL_broadcastRevenueTransactionProceeds.amount;
-            j4 = tL_stats$TL_broadcastRevenueTransactionProceeds.to_date;
+            j4 = j5;
         } else {
             z = z4;
             if (!(tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionRefund)) {
@@ -1145,23 +1146,23 @@ public class ChannelMonetizationLayout extends FrameLayout {
             frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_groupcreate_spanBackground, this.resourcesProvider)));
             if (j < 0) {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-                if (chat == null) {
+                if (chat == 0) {
                     userName = "";
-                    tLRPC$Chat = chat;
+                    tLRPC$User = chat;
                 } else {
                     userName = chat.title;
-                    tLRPC$Chat = chat;
+                    tLRPC$User = chat;
                 }
             } else {
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
                 userName = UserObject.getUserName(user);
-                tLRPC$Chat = user;
+                tLRPC$User = user;
             }
             BackupImageView backupImageView = new BackupImageView(getContext());
             backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
             AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setInfo((TLObject) tLRPC$Chat);
-            backupImageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
+            avatarDrawable.setInfo((TLObject) tLRPC$User);
+            backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
             frameLayout.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
             TextView textView4 = new TextView(getContext());
             textView4.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
@@ -1189,13 +1190,14 @@ public class ChannelMonetizationLayout extends FrameLayout {
             }
         }
         buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
-        bottomSheet = bottomSheet2;
+        final BottomSheet bottomSheet3 = bottomSheet2;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 BottomSheet.this.dismiss();
             }
         });
+        bottomSheet = bottomSheet3;
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 55, 18, 30, 18, 14));
         bottomSheet.setCustomView(linearLayout);
         this.fragment.showDialog(bottomSheet);

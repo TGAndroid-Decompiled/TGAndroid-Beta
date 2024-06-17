@@ -38,6 +38,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 @SuppressLint({"ViewConstructor"})
 public class TableCell extends FrameLayout {
     private final TextView dateNameTextView;

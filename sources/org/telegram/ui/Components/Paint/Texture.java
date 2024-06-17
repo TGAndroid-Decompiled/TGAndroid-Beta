@@ -6,6 +6,7 @@ import android.opengl.GLUtils;
 import android.os.Build;
 import java.nio.ByteBuffer;
 import org.telegram.ui.Components.Size;
+
 public class Texture {
     private Bitmap bitmap;
     private int texture;

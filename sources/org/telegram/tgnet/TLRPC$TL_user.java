@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_user extends TLRPC$User {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

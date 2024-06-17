@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateBroadcastRevenueTransactions extends TLRPC$Update {
     public TLRPC$TL_broadcastRevenueBalances balances;
     public TLRPC$Peer peer;

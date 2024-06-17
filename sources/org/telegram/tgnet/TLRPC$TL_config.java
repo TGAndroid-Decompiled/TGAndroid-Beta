@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_config extends TLObject {
     public String autologin_token;
     public String autoupdate_url_prefix;

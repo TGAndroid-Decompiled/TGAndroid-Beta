@@ -44,6 +44,7 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.ReportAdBottomSheet;
+
 public class ReportAdBottomSheet extends BottomSheet {
     private final Paint backgroundPaint;
     private final TLRPC$Chat chat;
@@ -138,11 +139,10 @@ public class ReportAdBottomSheet extends BottomSheet {
     @Override
     public void onBackPressed() {
         if (this.viewPager.getCurrentPosition() > 0) {
-            ViewPagerFixed viewPagerFixed = this.viewPager;
-            viewPagerFixed.scrollToPosition(viewPagerFixed.getCurrentPosition() - 1);
-            return;
+            this.viewPager.scrollToPosition(r0.getCurrentPosition() - 1);
+        } else {
+            super.onBackPressed();
         }
-        super.onBackPressed();
     }
 
     @Override
@@ -190,8 +190,11 @@ public class ReportAdBottomSheet extends BottomSheet {
                     listener.onReported();
                 }
                 dismiss();
+                return;
             }
-        } else if (tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultChooseOption) {
+            return;
+        }
+        if (tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultChooseOption) {
             TLRPC$TL_channels_sponsoredMessageReportResultChooseOption tLRPC$TL_channels_sponsoredMessageReportResultChooseOption = (TLRPC$TL_channels_sponsoredMessageReportResultChooseOption) tLObject;
             ViewPagerFixed viewPagerFixed = this.viewPager;
             viewPagerFixed.scrollToPosition(viewPagerFixed.currentPosition + 1);
@@ -200,20 +203,27 @@ public class ReportAdBottomSheet extends BottomSheet {
                 page.setOption(tLRPC$TL_channels_sponsoredMessageReportResultChooseOption);
                 if (charSequence != null) {
                     page.setHeaderText(charSequence);
+                    return;
                 }
+                return;
             }
-        } else if (tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultAdsHidden) {
+            return;
+        }
+        if (tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultAdsHidden) {
             MessagesController.getInstance(this.currentAccount).disableAds(false);
             Listener listener4 = this.listener;
             if (listener4 != null) {
                 listener4.onHidden();
                 dismiss();
+                return;
             }
-        } else if (!(tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultReported) || (listener2 = this.listener) == null) {
-        } else {
-            listener2.onReported();
-            dismiss();
+            return;
         }
+        if (!(tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultReported) || (listener2 = this.listener) == null) {
+            return;
+        }
+        listener2.onReported();
+        dismiss();
     }
 
     private class ContainerView extends FrameLayout {
@@ -449,10 +459,10 @@ public class ReportAdBottomSheet extends BottomSheet {
             if (this.listView != null) {
                 if (((BottomSheet) ReportAdBottomSheet.this).containerView.getMeasuredHeight() - AndroidUtilities.statusBarHeight < AndroidUtilities.dp(measuredHeight)) {
                     this.listView.layoutManager.setReverseLayout(false);
-                    return;
+                } else {
+                    Collections.reverse(arrayList);
+                    this.listView.layoutManager.setReverseLayout(true);
                 }
-                Collections.reverse(arrayList);
-                this.listView.layoutManager.setReverseLayout(true);
             }
         }
 

@@ -33,6 +33,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class LogoutActivity extends BaseFragment {
     private int addAccountRow;
     private int alternativeHeaderRow;
@@ -100,7 +101,7 @@ public class LogoutActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LogoutActivity.this.finishFragment();
+                    LogoutActivity.this.lambda$onBackPressed$303();
                 }
             }
         });
@@ -108,11 +109,12 @@ public class LogoutActivity extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setVerticalScrollBarEnabled(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-        ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
@@ -150,18 +152,33 @@ public class LogoutActivity extends BaseFragment {
             }
             if (i2 > 0 && num != null) {
                 presentFragment(new LoginActivity(num.intValue()));
-            } else if (!UserConfig.hasPremiumOnAccounts()) {
+                return;
+            } else {
+                if (UserConfig.hasPremiumOnAccounts()) {
+                    return;
+                }
                 showDialog(new LimitReachedBottomSheet(this, getContext(), 7, this.currentAccount, null));
+                return;
             }
-        } else if (i == this.passcodeRow) {
+        }
+        if (i == this.passcodeRow) {
             presentFragment(PasscodeActivity.determineOpenFragment());
-        } else if (i == this.cacheRow) {
+            return;
+        }
+        if (i == this.cacheRow) {
             presentFragment(new CacheControlActivity());
-        } else if (i == this.phoneRow) {
+            return;
+        }
+        if (i == this.phoneRow) {
             presentFragment(new ActionIntroActivity(3));
-        } else if (i == this.supportRow) {
+            return;
+        }
+        if (i == this.supportRow) {
             showDialog(AlertsCreator.createSupportAlert(this, null));
-        } else if (i == this.logoutRow && getParentActivity() != null) {
+        } else {
+            if (i != this.logoutRow || getParentActivity() == null) {
+                return;
+            }
             showDialog(makeLogOutDialog(getParentActivity(), this.currentAccount));
         }
     }
@@ -223,44 +240,51 @@ public class LogoutActivity extends BaseFragment {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (i == LogoutActivity.this.alternativeHeaderRow) {
                     headerCell.setText(LocaleController.getString("AlternativeOptions", R.string.AlternativeOptions));
+                    return;
                 }
-            } else if (itemViewType != 1) {
+                return;
+            }
+            if (itemViewType != 1) {
                 if (itemViewType == 3) {
                     TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
                     if (i == LogoutActivity.this.logoutRow) {
                         textSettingsCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
                         textSettingsCell.setText(LocaleController.getString("LogOutTitle", R.string.LogOutTitle), false);
-                    }
-                } else if (itemViewType != 4) {
-                } else {
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                    if (i == LogoutActivity.this.logoutSectionRow) {
-                        textInfoPrivacyCell.setText(LocaleController.getString("LogOutInfo", R.string.LogOutInfo));
-                    }
-                }
-            } else {
-                TextDetailSettingsCell textDetailSettingsCell = (TextDetailSettingsCell) viewHolder.itemView;
-                if (i != LogoutActivity.this.addAccountRow) {
-                    if (i != LogoutActivity.this.passcodeRow) {
-                        if (i != LogoutActivity.this.cacheRow) {
-                            if (i != LogoutActivity.this.phoneRow) {
-                                if (i == LogoutActivity.this.supportRow) {
-                                    textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ContactSupport", R.string.ContactSupport), LocaleController.getString("ContactSupportInfo", R.string.ContactSupportInfo), R.drawable.msg_help, false);
-                                    return;
-                                }
-                                return;
-                            }
-                            textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ChangePhoneNumber", R.string.ChangePhoneNumber), LocaleController.getString("ChangePhoneNumberInfo", R.string.ChangePhoneNumberInfo), R.drawable.msg_newphone, true);
-                            return;
-                        }
-                        textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ClearCache", R.string.ClearCache), LocaleController.getString("ClearCacheInfo", R.string.ClearCacheInfo), R.drawable.msg_clearcache, true);
                         return;
                     }
-                    textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("SetPasscode", R.string.SetPasscode), LocaleController.getString("SetPasscodeInfo", R.string.SetPasscodeInfo), R.drawable.msg_permissions, true);
                     return;
                 }
-                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("AddAnotherAccount", R.string.AddAnotherAccount), LocaleController.getString("AddAnotherAccountInfo", R.string.AddAnotherAccountInfo), R.drawable.msg_contact_add, true);
+                if (itemViewType != 4) {
+                    return;
+                }
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                if (i == LogoutActivity.this.logoutSectionRow) {
+                    textInfoPrivacyCell.setText(LocaleController.getString("LogOutInfo", R.string.LogOutInfo));
+                    return;
+                }
+                return;
             }
+            TextDetailSettingsCell textDetailSettingsCell = (TextDetailSettingsCell) viewHolder.itemView;
+            if (i != LogoutActivity.this.addAccountRow) {
+                if (i != LogoutActivity.this.passcodeRow) {
+                    if (i != LogoutActivity.this.cacheRow) {
+                        if (i != LogoutActivity.this.phoneRow) {
+                            if (i == LogoutActivity.this.supportRow) {
+                                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ContactSupport", R.string.ContactSupport), LocaleController.getString("ContactSupportInfo", R.string.ContactSupportInfo), R.drawable.msg_help, false);
+                                return;
+                            }
+                            return;
+                        }
+                        textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ChangePhoneNumber", R.string.ChangePhoneNumber), LocaleController.getString("ChangePhoneNumberInfo", R.string.ChangePhoneNumberInfo), R.drawable.msg_newphone, true);
+                        return;
+                    }
+                    textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ClearCache", R.string.ClearCache), LocaleController.getString("ClearCacheInfo", R.string.ClearCacheInfo), R.drawable.msg_clearcache, true);
+                    return;
+                }
+                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("SetPasscode", R.string.SetPasscode), LocaleController.getString("SetPasscodeInfo", R.string.SetPasscodeInfo), R.drawable.msg_permissions, true);
+                return;
+            }
+            textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("AddAnotherAccount", R.string.AddAnotherAccount), LocaleController.getString("AddAnotherAccountInfo", R.string.AddAnotherAccountInfo), R.drawable.msg_contact_add, true);
         }
 
         @Override

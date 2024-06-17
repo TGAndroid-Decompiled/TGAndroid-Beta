@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import kotlin.jvm.internal.Intrinsics;
+
 public class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
     public static final <T> boolean contains(T[] tArr, T t) {
         Intrinsics.checkNotNullParameter(tArr, "<this>");
@@ -39,13 +40,13 @@ public class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
     public static char single(char[] cArr) {
         Intrinsics.checkNotNullParameter(cArr, "<this>");
         int length = cArr.length;
-        if (length != 0) {
-            if (length == 1) {
-                return cArr[0];
-            }
-            throw new IllegalArgumentException("Array has more than one element.");
+        if (length == 0) {
+            throw new NoSuchElementException("Array is empty.");
         }
-        throw new NoSuchElementException("Array is empty.");
+        if (length == 1) {
+            return cArr[0];
+        }
+        throw new IllegalArgumentException("Array has more than one element.");
     }
 
     public static <T> T singleOrNull(T[] tArr) {
@@ -93,13 +94,13 @@ public class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
     public static <T> List<T> toList(T[] tArr) {
         Intrinsics.checkNotNullParameter(tArr, "<this>");
         int length = tArr.length;
-        if (length != 0) {
-            if (length == 1) {
-                return CollectionsKt.listOf(tArr[0]);
-            }
-            return toMutableList(tArr);
+        if (length == 0) {
+            return CollectionsKt__CollectionsKt.emptyList();
         }
-        return CollectionsKt__CollectionsKt.emptyList();
+        if (length == 1) {
+            return CollectionsKt.listOf(tArr[0]);
+        }
+        return toMutableList(tArr);
     }
 
     public static final <T> List<T> toMutableList(T[] tArr) {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_peerBlocked extends TLObject {
     public int date;
     public TLRPC$Peer peer_id;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$PrivacyRule extends TLObject {
     public static TLRPC$PrivacyRule TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PrivacyRule tLRPC$PrivacyRule;

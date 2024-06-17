@@ -1,5 +1,6 @@
 package org.telegram.ui.Stories.recorder;
 
+import android.R;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -11,8 +12,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+
 public class StoryUploadingService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private NotificationCompat.Builder builder;
     private int currentAccount = -1;
@@ -56,10 +57,13 @@ public class StoryUploadingService extends Service implements NotificationCenter
             this.builder.setProgress(100, Math.round(floatValue * 100.0f), this.currentProgress <= 0.0f);
             try {
                 NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(33, this.builder.build());
+                return;
             } catch (Throwable th) {
                 FileLog.e(th);
+                return;
             }
-        } else if (i == NotificationCenter.uploadStoryEnd && (str = this.path) != null && str.equals((String) objArr[0])) {
+        }
+        if (i == NotificationCenter.uploadStoryEnd && (str = this.path) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -94,12 +98,12 @@ public class StoryUploadingService extends Service implements NotificationCenter
             NotificationsController.checkOtherNotificationsChannel();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationLoader.applicationContext);
             this.builder = builder;
-            builder.setSmallIcon(17301640);
+            builder.setSmallIcon(R.drawable.stat_sys_upload);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-            this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
+            this.builder.setContentTitle(LocaleController.getString("AppName", org.telegram.messenger.R.string.AppName));
             NotificationCompat.Builder builder2 = this.builder;
-            int i5 = R.string.StoryUploading;
+            int i5 = org.telegram.messenger.R.string.StoryUploading;
             builder2.setTicker(LocaleController.getString("StoryUploading", i5));
             this.builder.setContentText(LocaleController.getString("StoryUploading", i5));
         }

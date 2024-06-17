@@ -34,7 +34,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -122,6 +121,7 @@ import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
+
 public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPaintView, PaintToolsView.Delegate, EntityView.EntityViewDelegate, PaintTextOptionsView.Delegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, NotificationCenter.NotificationCenterDelegate {
     private float baseScale;
     private Bitmap bitmapToEdit;
@@ -302,7 +302,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         super(context, activity, true);
         int i3;
         Emoji.EmojiSpan[] emojiSpanArr;
-        StickerView stickerView;
+        PhotoView photoView;
         this.tabsSelectedIndex = 0;
         this.tabsNewSelectedIndex = -1;
         this.weightDefaultValueOverride = new PaintWeightChooserView.ValueOverride() {
@@ -486,10 +486,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             public void resetBrush() {
                 if (LPhotoPaintView.this.ignoreToolChangeAnimationOnce) {
                     LPhotoPaintView.this.ignoreToolChangeAnimationOnce = false;
-                    return;
+                } else {
+                    LPhotoPaintView.this.paintToolsView.select(1);
+                    LPhotoPaintView.this.onBrushSelected(Brush.BRUSHES_LIST.get(0));
                 }
-                LPhotoPaintView.this.paintToolsView.select(1);
-                LPhotoPaintView.this.onBrushSelected(Brush.BRUSHES_LIST.get(0));
             }
         });
         this.renderView.setUndoStore(this.undoStore);
@@ -553,7 +553,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     layoutParams.width = mediaEntity.viewWidth;
                     layoutParams.height = mediaEntity.viewHeight;
                     i3 = size;
-                    stickerView = createSticker;
+                    photoView = createSticker;
                 } else if (b == 1) {
                     TextPaintView createText = createText(false);
                     createText.setType(mediaEntity.subType);
@@ -580,7 +580,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     Swatch swatch = createText.getSwatch();
                     swatch.color = mediaEntity.color;
                     createText.setSwatch(swatch);
-                    stickerView = createText;
+                    photoView = createText;
                 } else {
                     i3 = size;
                     if (b == 2) {
@@ -595,19 +595,19 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                         ViewGroup.LayoutParams layoutParams2 = createPhoto.getLayoutParams();
                         layoutParams2.width = mediaEntity.viewWidth;
                         layoutParams2.height = mediaEntity.viewHeight;
-                        stickerView = createPhoto;
+                        photoView = createPhoto;
                     } else {
                         i4++;
                         size = i3;
                     }
                 }
-                stickerView.setX((mediaEntity.x * this.paintingSize.width) - ((mediaEntity.viewWidth * (1.0f - mediaEntity.scale)) / 2.0f));
-                stickerView.setY((mediaEntity.y * this.paintingSize.height) - ((mediaEntity.viewHeight * (1.0f - mediaEntity.scale)) / 2.0f));
-                stickerView.setPosition(new Point(stickerView.getX() + (mediaEntity.viewWidth / 2.0f), stickerView.getY() + (mediaEntity.viewHeight / 2.0f)));
-                stickerView.setScale(mediaEntity.scale);
+                photoView.setX((mediaEntity.x * this.paintingSize.width) - ((mediaEntity.viewWidth * (1.0f - mediaEntity.scale)) / 2.0f));
+                photoView.setY((mediaEntity.y * this.paintingSize.height) - ((mediaEntity.viewHeight * (1.0f - mediaEntity.scale)) / 2.0f));
+                photoView.setPosition(new Point(photoView.getX() + (mediaEntity.viewWidth / 2.0f), photoView.getY() + (mediaEntity.viewHeight / 2.0f)));
+                photoView.setScale(mediaEntity.scale);
                 double d = -mediaEntity.rotation;
                 Double.isNaN(d);
-                stickerView.setRotation((float) ((d / 3.141592653589793d) * 180.0d));
+                photoView.setRotation((float) ((d / 3.141592653589793d) * 180.0d));
                 i4++;
                 size = i3;
             }
@@ -819,7 +819,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.bottomLayout = frameLayout3;
         frameLayout3.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0);
         this.bottomLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, Integer.MIN_VALUE}));
-        addView(this.bottomLayout, LayoutHelper.createFrame(-1, (int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, 80));
+        addView(this.bottomLayout, LayoutHelper.createFrame(-1, R.styleable.AppCompatTheme_textAppearanceListItemSecondary, 80));
         PaintToolsView paintToolsView = new PaintToolsView(context, bitmap2 != null);
         this.paintToolsView = paintToolsView;
         paintToolsView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -1253,8 +1253,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         MediaController.CropState cropState = this.currentCropState;
         if (cropState != null) {
             textPaintView.scale(1.0f / cropState.cropScale);
-            MediaController.CropState cropState2 = this.currentCropState;
-            textPaintView.rotate(-(cropState2.transformRotation + cropState2.cropRotate));
+            textPaintView.rotate(-(r0.transformRotation + this.currentCropState.cropRotate));
         }
         if (z) {
             registerRemovalUndo(textPaintView);
@@ -1337,15 +1336,16 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         EntityView entityView2 = this.currentEntityView;
         if (entityView2 == null) {
             z2 = false;
-        } else if (entityView2 == entityView) {
-            if (!this.editingText) {
-                showMenuForEntity(entityView2);
-            } else if (entityView2 instanceof TextPaintView) {
-                AndroidUtilities.showKeyboard(((TextPaintView) entityView2).getFocusedView());
-                hideEmojiPopup(false);
-            }
-            return true;
         } else {
+            if (entityView2 == entityView) {
+                if (!this.editingText) {
+                    showMenuForEntity(entityView2);
+                } else if (entityView2 instanceof TextPaintView) {
+                    AndroidUtilities.showKeyboard(((TextPaintView) entityView2).getFocusedView());
+                    hideEmojiPopup(false);
+                }
+                return true;
+            }
             entityView2.deselect();
             EntityView entityView3 = this.currentEntityView;
             if (entityView3 instanceof TextPaintView) {
@@ -1995,14 +1995,15 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
             i7 = AndroidUtilities.statusBarHeight;
         }
+        int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + i7;
         int ceil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
-        int currentActionBarHeight = ((((i6 - (ActionBar.getCurrentActionBarHeight() + i7)) - AndroidUtilities.dp(48.0f)) - this.renderView.getMeasuredHeight()) / 2) + AndroidUtilities.dp(8.0f) + i7 + ((getAdditionalTop() - getAdditionalBottom()) / 2);
+        int dp = ((((i6 - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) - this.renderView.getMeasuredHeight()) / 2) + AndroidUtilities.dp(8.0f) + i7 + ((getAdditionalTop() - getAdditionalBottom()) / 2);
         RenderView renderView = this.renderView;
-        renderView.layout(ceil, currentActionBarHeight, renderView.getMeasuredWidth() + ceil, this.renderView.getMeasuredHeight() + currentActionBarHeight);
+        renderView.layout(ceil, dp, renderView.getMeasuredWidth() + ceil, this.renderView.getMeasuredHeight() + dp);
         View view = this.renderInputView;
-        view.layout(ceil, currentActionBarHeight, view.getMeasuredWidth() + ceil, this.renderInputView.getMeasuredHeight() + currentActionBarHeight);
+        view.layout(ceil, dp, view.getMeasuredWidth() + ceil, this.renderInputView.getMeasuredHeight() + dp);
         int measuredWidth = ((this.renderView.getMeasuredWidth() - this.entitiesView.getMeasuredWidth()) / 2) + ceil;
-        int measuredHeight = ((this.renderView.getMeasuredHeight() - this.entitiesView.getMeasuredHeight()) / 2) + currentActionBarHeight;
+        int measuredHeight = ((this.renderView.getMeasuredHeight() - this.entitiesView.getMeasuredHeight()) / 2) + dp;
         EntitiesContainerView entitiesContainerView = this.entitiesView;
         entitiesContainerView.layout(measuredWidth, measuredHeight, entitiesContainerView.getMeasuredWidth() + measuredWidth, this.entitiesView.getMeasuredHeight() + measuredHeight);
         ThanosEffect thanosEffect = this.thanosEffect;
@@ -2010,7 +2011,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             thanosEffect.layout(measuredWidth, measuredHeight, this.entitiesView.getMeasuredWidth() + measuredWidth, this.entitiesView.getMeasuredHeight() + measuredHeight);
         }
         FrameLayout frameLayout = this.selectionContainerView;
-        frameLayout.layout(ceil, currentActionBarHeight, frameLayout.getMeasuredWidth() + ceil, this.selectionContainerView.getMeasuredHeight() + currentActionBarHeight);
+        frameLayout.layout(ceil, dp, frameLayout.getMeasuredWidth() + ceil, this.selectionContainerView.getMeasuredHeight() + dp);
     }
 
     private Size getPaintingSize() {
@@ -2044,13 +2045,13 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
     private int getFrameRotation() {
         int i = this.originalBitmapRotation;
-        if (i != 90) {
-            if (i != 180) {
-                return i != 270 ? 0 : 3;
-            }
-            return 2;
+        if (i == 90) {
+            return 1;
         }
-        return 1;
+        if (i != 180) {
+            return i != 270 ? 0 : 3;
+        }
+        return 2;
     }
 
     private boolean isSidewardOrientation() {
@@ -2153,9 +2154,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (!z) {
             this.topLayout.setTranslationY(-f);
             this.bottomLayout.setTranslationY(f);
-            return;
+        } else {
+            setTranslationY(0.0f);
         }
-        setTranslationY(0.0f);
     }
 
     public float getOffsetTranslationY() {
@@ -2193,26 +2194,34 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     public void maybeShowDismissalAlert(PhotoViewer photoViewer, Activity activity, final Runnable runnable) {
         if (this.isColorListShown) {
             showColorList(false);
-        } else if (this.emojiViewVisible) {
-            hideEmojiPopup(true);
-        } else if (this.editingText && this.currentEntityView != null) {
-            selectEntity(null);
-        } else if (!hasChanges()) {
-            runnable.run();
-        } else if (activity == null) {
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity, this.resourcesProvider);
-            builder.setMessage(LocaleController.getString("PhotoEditorDiscardAlert", R.string.PhotoEditorDiscardAlert));
-            builder.setTitle(LocaleController.getString("DiscardChanges", R.string.DiscardChanges));
-            builder.setPositiveButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    runnable.run();
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            photoViewer.showAlertDialog(builder);
+            return;
         }
+        if (this.emojiViewVisible) {
+            hideEmojiPopup(true);
+            return;
+        }
+        if (this.editingText && this.currentEntityView != null) {
+            selectEntity(null);
+            return;
+        }
+        if (!hasChanges()) {
+            runnable.run();
+            return;
+        }
+        if (activity == null) {
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, this.resourcesProvider);
+        builder.setMessage(LocaleController.getString("PhotoEditorDiscardAlert", R.string.PhotoEditorDiscardAlert));
+        builder.setTitle(LocaleController.getString("DiscardChanges", R.string.DiscardChanges));
+        builder.setPositiveButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                runnable.run();
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        photoViewer.showAlertDialog(builder);
     }
 
     public boolean onTouch(MotionEvent motionEvent) {
@@ -2260,16 +2269,14 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         float f9;
         float f10;
         float f11;
-        MediaController.CropState cropState;
-        float f12;
         this.scale = f;
         this.imageWidth = f4;
         this.imageHeight = f5;
         this.inputTransformX = f2;
         this.inputTransformY = f3;
         this.transformX = f2;
-        float f13 = f3 + this.panTranslationY;
-        this.transformY = f13;
+        float f12 = f3 + this.panTranslationY;
+        this.transformY = f12;
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 view = this.entitiesView;
@@ -2280,9 +2287,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             } else {
                 view = this.renderInputView;
             }
-            MediaController.CropState cropState2 = this.currentCropState;
-            if (cropState2 != null) {
-                float f14 = cropState2.cropScale * 1.0f;
+            MediaController.CropState cropState = this.currentCropState;
+            if (cropState != null) {
+                float f13 = cropState.cropScale * 1.0f;
                 int measuredWidth = view.getMeasuredWidth();
                 int measuredHeight = view.getMeasuredHeight();
                 if (measuredWidth == 0 || measuredHeight == 0) {
@@ -2293,14 +2300,15 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     measuredHeight = measuredWidth;
                     measuredWidth = measuredHeight;
                 }
-                float f15 = measuredWidth;
-                float max = Math.max(f4 / ((int) (cropState.cropPw * f15)), f5 / ((int) (cropState.cropPh * f12)));
-                f10 = f14 * max;
-                MediaController.CropState cropState3 = this.currentCropState;
-                float f16 = cropState3.cropScale;
-                f8 = (cropState3.cropPx * f15 * f * max * f16) + f2;
-                f11 = cropState3.cropRotate + i2;
-                f9 = (cropState3.cropPy * measuredHeight * f * max * f16) + f13;
+                float max = Math.max(f4 / ((int) (r12.cropPw * r9)), f5 / ((int) (r12.cropPh * r11)));
+                f10 = f13 * max;
+                MediaController.CropState cropState2 = this.currentCropState;
+                float f14 = cropState2.cropPx * measuredWidth * f * max;
+                float f15 = cropState2.cropScale;
+                f8 = (f14 * f15) + f2;
+                float f16 = (cropState2.cropPy * measuredHeight * f * max * f15) + f12;
+                f11 = cropState2.cropRotate + i2;
+                f9 = f16;
                 f6 = 1.0f;
             } else {
                 if (i == 0) {
@@ -2311,7 +2319,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     f7 = 1.0f;
                 }
                 f8 = f2;
-                f9 = f13;
+                f9 = f12;
                 f10 = f7;
                 f11 = 0.0f;
             }
@@ -2593,15 +2601,16 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (this.isColorListShown) {
             showColorList(false);
             return true;
-        } else if (this.emojiViewVisible) {
+        }
+        if (this.emojiViewVisible) {
             hideEmojiPopup(true);
             return true;
-        } else if (this.editingText) {
-            selectEntity(null);
-            return true;
-        } else {
+        }
+        if (!this.editingText) {
             return false;
         }
+        selectEntity(null);
+        return true;
     }
 
     @Override
@@ -2657,10 +2666,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     boolean z;
                     PopupButton popupButton = PopupButton.this;
                     if (popupButton.imageSwitchAnimator != null && (((z = popupButton.imageSwitchFill) && view == popupButton.image2View) || (!z && view == popupButton.imageView))) {
-                        float f = z ? popupButton.imageSwitchT : 1.0f - popupButton.imageSwitchT;
+                        float measuredWidth = ((z ? popupButton.imageSwitchT : 1.0f - popupButton.imageSwitchT) * getMeasuredWidth()) / 2.0f;
                         canvas.save();
                         this.path.rewind();
-                        this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (f * getMeasuredWidth()) / 2.0f, Path.Direction.CW);
+                        this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, measuredWidth, Path.Direction.CW);
                         canvas.clipPath(this.path);
                         boolean drawChild = super.drawChild(canvas, view, j);
                         canvas.restore();
@@ -3044,23 +3053,23 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (entityView == null) {
             return;
         }
-        StickerView stickerView = null;
+        EntityView entityView2 = null;
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(entityView);
-        EntityView entityView2 = this.currentEntityView;
-        if (entityView2 instanceof StickerView) {
-            StickerView stickerView2 = new StickerView(getContext(), (StickerView) this.currentEntityView, startPositionRelativeToEntity);
-            stickerView2.setDelegate(this);
-            this.entitiesView.addView(stickerView2);
-            stickerView = stickerView2;
-        } else if (entityView2 instanceof TextPaintView) {
+        EntityView entityView3 = this.currentEntityView;
+        if (entityView3 instanceof StickerView) {
+            StickerView stickerView = new StickerView(getContext(), (StickerView) this.currentEntityView, startPositionRelativeToEntity);
+            stickerView.setDelegate(this);
+            this.entitiesView.addView(stickerView);
+            entityView2 = stickerView;
+        } else if (entityView3 instanceof TextPaintView) {
             TextPaintView textPaintView = new TextPaintView(getContext(), (TextPaintView) this.currentEntityView, startPositionRelativeToEntity);
             textPaintView.setDelegate(this);
             textPaintView.setMaxWidth((int) (getPaintingSize().width - 20.0f));
             this.entitiesView.addView(textPaintView, LayoutHelper.createFrame(-2, -2.0f));
-            stickerView = textPaintView;
+            entityView2 = textPaintView;
         }
-        registerRemovalUndo(stickerView);
-        selectEntity(stickerView);
+        registerRemovalUndo(entityView2);
+        selectEntity(entityView2);
     }
 
     private Point startPositionRelativeToEntity(EntityView entityView) {
@@ -3149,14 +3158,14 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
     public boolean lambda$showPopup$42(View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (motionEvent.getActionMasked() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
-            view.getHitRect(this.popupRect);
-            if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return false;
-            }
-            this.popupWindow.dismiss();
+        if (motionEvent.getActionMasked() != 0 || (actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
             return false;
         }
+        view.getHitRect(this.popupRect);
+        if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+            return false;
+        }
+        this.popupWindow.dismiss();
         return false;
     }
 
@@ -3188,12 +3197,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     private Point centerPositionForEntity() {
-        MediaController.CropState cropState;
         Size paintingSize = getPaintingSize();
         float f = paintingSize.width / 2.0f;
         float f2 = paintingSize.height / 2.0f;
         if (this.currentCropState != null) {
-            float radians = (float) Math.toRadians(-(cropState.transformRotation + cropState.cropRotate));
+            float radians = (float) Math.toRadians(-(r2.transformRotation + r2.cropRotate));
             double d = this.currentCropState.cropPx;
             double d2 = radians;
             double cos = Math.cos(d2);
@@ -3259,15 +3267,18 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         double sin = Math.sin(d3);
         double d4 = widthForAnchor;
         Double.isNaN(d4);
+        float f3 = (float) (sin * d4 * tLRPC$TL_maskCoords.x);
         double cos = Math.cos(d3);
         Double.isNaN(d4);
+        float f4 = (float) (cos * d4 * tLRPC$TL_maskCoords.x);
         Double.isNaN(radians);
         double d5 = radians + 1.5707963267948966d;
         double cos2 = Math.cos(d5);
         Double.isNaN(d4);
+        float f5 = (float) (cos2 * d4 * tLRPC$TL_maskCoords.y);
         double sin2 = Math.sin(d5);
         Double.isNaN(d4);
-        return new StickerPosition(new Point(pointForAnchor.x + ((float) (sin * d4 * tLRPC$TL_maskCoords.x)) + ((float) (cos2 * d4 * tLRPC$TL_maskCoords.y)), pointForAnchor.y + ((float) (cos * d4 * tLRPC$TL_maskCoords.x)) + ((float) (sin2 * d4 * tLRPC$TL_maskCoords.y))), (float) (d * d2), angle);
+        return new StickerPosition(new Point(pointForAnchor.x + f3 + f5, pointForAnchor.y + f4 + ((float) (sin2 * d4 * tLRPC$TL_maskCoords.y))), (float) (d * d2), angle);
     }
 
     private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC$TL_maskCoords tLRPC$TL_maskCoords) {
@@ -3286,8 +3297,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     private boolean isFaceAnchorOccupied(PhotoFace photoFace, int i, long j, TLRPC$TL_maskCoords tLRPC$TL_maskCoords) {
-        Point pointForAnchor = photoFace.getPointForAnchor(i);
-        if (pointForAnchor == null) {
+        if (photoFace.getPointForAnchor(i) == null) {
             return true;
         }
         float widthForAnchor = photoFace.getWidthForAnchor(0) * 1.1f;
@@ -3299,7 +3309,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     continue;
                 } else {
                     Point position = stickerView.getPosition();
-                    float hypot = (float) Math.hypot(position.x - pointForAnchor.x, position.y - pointForAnchor.y);
+                    float hypot = (float) Math.hypot(position.x - r14.x, position.y - r14.y);
                     if ((j == stickerView.getSticker().id || this.faces.size() > 1) && hypot < widthForAnchor) {
                         return true;
                     }
@@ -3414,7 +3424,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         fArr[0] = fArr[0] + view.getLeft();
         float[] fArr2 = this.position;
         fArr2[1] = fArr2[1] + view.getTop();
-        ViewParent parent = view.getParent();
+        Object parent = view.getParent();
         while (parent instanceof View) {
             View view2 = (View) parent;
             float[] fArr3 = this.position;
@@ -3430,23 +3440,26 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
         this.pos2[0] = Math.round(this.position[0]);
         this.pos2[1] = Math.round(this.position[1]);
-        int[] iArr = this.pos2;
+        float f = this.pos2[0];
         android.graphics.Point point = AndroidUtilities.displaySize;
+        float f2 = f - (point.x / 2.0f);
+        float f3 = r14[1] - (point.y / 2.0f);
+        float radians = (float) Math.toRadians(-this.entitiesView.getRotation());
+        int[] iArr = this.pos2;
+        double d = f2;
+        double d2 = radians;
+        double cos = Math.cos(d2);
+        Double.isNaN(d);
+        double d3 = f3;
+        double sin = Math.sin(d2);
+        Double.isNaN(d3);
+        iArr[0] = ((int) ((cos * d) - (sin * d3))) + (AndroidUtilities.displaySize.x / 2);
         int[] iArr2 = this.pos2;
-        double d = iArr[0] - (point.x / 2.0f);
-        double radians = (float) Math.toRadians(-this.entitiesView.getRotation());
-        double cos = Math.cos(radians);
+        double sin2 = Math.sin(d2);
         Double.isNaN(d);
-        double d2 = iArr[1] - (point.y / 2.0f);
-        double sin = Math.sin(radians);
-        Double.isNaN(d2);
-        iArr2[0] = ((int) ((cos * d) - (sin * d2))) + (AndroidUtilities.displaySize.x / 2);
-        int[] iArr3 = this.pos2;
-        double sin2 = Math.sin(radians);
-        Double.isNaN(d);
-        double cos2 = Math.cos(radians);
-        Double.isNaN(d2);
-        iArr3[1] = ((int) ((d * sin2) + (d2 * cos2))) + (AndroidUtilities.displaySize.y / 2);
+        double cos2 = Math.cos(d2);
+        Double.isNaN(d3);
+        iArr2[1] = ((int) ((d * sin2) + (d3 * cos2))) + (AndroidUtilities.displaySize.y / 2);
         return this.pos2;
     }
 
@@ -3797,7 +3810,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
 
         @Override
-        public void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i) {
+        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i) {
             EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
         }
 
@@ -3964,20 +3977,20 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     public ThanosEffect getThanosEffect() {
-        if (ThanosEffect.supports()) {
-            if (this.thanosEffect == null) {
-                ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
-                    @Override
-                    public final void run() {
-                        LPhotoPaintView.this.lambda$getThanosEffect$48();
-                    }
-                });
-                this.thanosEffect = thanosEffect;
-                addView(thanosEffect);
-            }
-            return this.thanosEffect;
+        if (!ThanosEffect.supports()) {
+            return null;
         }
-        return null;
+        if (this.thanosEffect == null) {
+            ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
+                @Override
+                public final void run() {
+                    LPhotoPaintView.this.lambda$getThanosEffect$48();
+                }
+            });
+            this.thanosEffect = thanosEffect;
+            addView(thanosEffect);
+        }
+        return this.thanosEffect;
     }
 
     public void lambda$getThanosEffect$48() {
@@ -4025,8 +4038,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             float f7 = height / 2.0f;
             float sqrt2 = ((float) Math.sqrt((f6 * f6) + (f7 * f7))) * 2.0f;
             f2 = (-(sqrt2 - width)) / 2.0f;
+            float f8 = (-(sqrt2 - height)) / 2.0f;
             height = sqrt2;
-            f = (-(sqrt2 - height)) / 2.0f;
+            f = f8;
             width = height;
             segmentedOutBitmap = createBitmap;
         } else {

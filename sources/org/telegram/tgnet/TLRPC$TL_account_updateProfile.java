@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateProfile extends TLObject {
     public String about;
     public String first_name;

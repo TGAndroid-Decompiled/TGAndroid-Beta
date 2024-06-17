@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_stats$TL_statsAbsValueAndPrev extends TLObject {
     public double current;
     public double previous;

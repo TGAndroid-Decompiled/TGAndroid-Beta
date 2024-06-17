@@ -5,6 +5,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Updates;
+
 public class TL_chatlists$TL_chatlists_leaveChatlist extends TLObject {
     public TL_chatlists$TL_inputChatlistDialogFilter chatlist;
     public ArrayList<TLRPC$InputPeer> peers = new ArrayList<>();

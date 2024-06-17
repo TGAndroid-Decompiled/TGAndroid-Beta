@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import java.util.Map;
+
 public class RTCStatsReport {
     private final Map<String, RTCStats> stats;
     private final long timestampUs;

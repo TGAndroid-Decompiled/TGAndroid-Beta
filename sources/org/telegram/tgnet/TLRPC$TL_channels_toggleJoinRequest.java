@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channels_toggleJoinRequest extends TLObject {
     public TLRPC$InputChannel channel;
     public boolean enabled;

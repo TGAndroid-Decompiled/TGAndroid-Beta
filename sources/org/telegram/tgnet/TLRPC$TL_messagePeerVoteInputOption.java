@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messagePeerVoteInputOption extends TLRPC$MessagePeerVote {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

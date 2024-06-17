@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
+
 public abstract class TLRPC$VideoSize extends TLObject {
     public ArrayList<Integer> background_colors = new ArrayList<>();
     public int flags;

@@ -17,6 +17,7 @@ import org.telegram.ui.Charts.view_data.LegendSignatureView;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.PieLegendView;
 import org.telegram.ui.Charts.view_data.TransitionParams;
+
 public class PieChartView extends StackLinearChartView<PieChartViewData> {
     float MAX_TEXT_SIZE;
     float MIN_TEXT_SIZE;
@@ -66,8 +67,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         this.lastStartIndex = -1;
         this.lastEndIndex = -1;
         for (int i = 1; i <= 100; i++) {
-            String[] strArr = this.lookupTable;
-            strArr[i] = i + "%";
+            this.lookupTable[i] = i + "%";
         }
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
@@ -382,8 +382,9 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                         } else {
                             if (f7 != f6) {
                                 if (z) {
+                                    float f12 = ((float) jArr[i3]) / f7;
                                     f2 = lineViewData2.alpha;
-                                    f = (((float) jArr[i3]) / f7) * f2;
+                                    f = f12 * f2;
                                 } else {
                                     f = ((float) jArr[i3]) / f7;
                                     f2 = lineViewData2.alpha;
@@ -437,10 +438,10 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                 i3++;
                 length2 = f9;
             }
-            float f12 = length2;
+            float f13 = length2;
             for (int i13 = 0; i13 < size; i13++) {
                 LineViewData lineViewData3 = (LineViewData) this.lines.get(i13);
-                lineViewData3.paint.setStrokeWidth(f12);
+                lineViewData3.paint.setStrokeWidth(f13);
                 lineViewData3.paint.setAlpha(255);
                 lineViewData3.paint.setAntiAlias(false);
                 canvas.drawLines(lineViewData3.linesPath, 0, lineViewData3.linesPathBottomSize, lineViewData3.paint);
@@ -504,33 +505,34 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             LineViewData lineViewData = (LineViewData) this.lines.get(i3);
             this.pieLegendView.setData(lineViewData.line.name, (int) this.values[this.currentSelection], lineViewData.lineColor);
             this.pieLegendView.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
+            float width = this.rectF.width() / 2.0f;
             double centerX = this.rectF.centerX();
-            double width = this.rectF.width() / 2.0f;
-            double d2 = (f * 360.0f) - 90.0f;
-            double cos = Math.cos(Math.toRadians(d2));
-            Double.isNaN(width);
+            double d2 = width;
+            double d3 = (f * 360.0f) - 90.0f;
+            double cos = Math.cos(Math.toRadians(d3));
+            Double.isNaN(d2);
             Double.isNaN(centerX);
-            double d3 = centerX + (cos * width);
+            double d4 = centerX + (cos * d2);
             double centerX2 = this.rectF.centerX();
-            double d4 = (f3 * 360.0f) - 90.0f;
-            double cos2 = Math.cos(Math.toRadians(d4));
-            Double.isNaN(width);
+            double d5 = (f3 * 360.0f) - 90.0f;
+            double cos2 = Math.cos(Math.toRadians(d5));
+            Double.isNaN(d2);
             Double.isNaN(centerX2);
-            int min = (int) Math.min(d3, centerX2 + (cos2 * width));
+            int min = (int) Math.min(d4, centerX2 + (cos2 * d2));
             int i5 = min < 0 ? 0 : min;
             if (this.pieLegendView.getMeasuredWidth() + i5 > getMeasuredWidth() - AndroidUtilities.dp(16.0f)) {
                 i5 -= (this.pieLegendView.getMeasuredWidth() + i5) - (getMeasuredWidth() - AndroidUtilities.dp(16.0f));
             }
             double centerY = this.rectF.centerY();
-            double sin = Math.sin(Math.toRadians(d4));
-            Double.isNaN(width);
+            double sin = Math.sin(Math.toRadians(d5));
+            Double.isNaN(d2);
             Double.isNaN(centerY);
-            double d5 = centerY + (sin * width);
+            double d6 = centerY + (sin * d2);
             double centerY2 = this.rectF.centerY();
-            double sin2 = Math.sin(Math.toRadians(d2));
-            Double.isNaN(width);
+            double sin2 = Math.sin(Math.toRadians(d3));
+            Double.isNaN(d2);
             Double.isNaN(centerY2);
-            int min2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(d5, centerY2 + (width * sin2)))) - AndroidUtilities.dp(50.0f);
+            int min2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(d6, centerY2 + (d2 * sin2)))) - AndroidUtilities.dp(50.0f);
             this.pieLegendView.setTranslationX(i5);
             this.pieLegendView.setTranslationY(min2);
             AndroidUtilities.vibrateCursor(this);
@@ -595,11 +597,13 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
             chartPickerDelegate.pickerStart = 0.0f;
             chartPickerDelegate.pickerEnd = length2;
-        } else if (i >= chartData.x.length - 1) {
-            ChartPickerDelegate chartPickerDelegate2 = this.pickerDelegate;
-            chartPickerDelegate2.pickerStart = 1.0f - length2;
-            chartPickerDelegate2.pickerEnd = 1.0f;
         } else {
+            if (i >= chartData.x.length - 1) {
+                ChartPickerDelegate chartPickerDelegate2 = this.pickerDelegate;
+                chartPickerDelegate2.pickerStart = 1.0f - length2;
+                chartPickerDelegate2.pickerEnd = 1.0f;
+                return;
+            }
             ChartPickerDelegate chartPickerDelegate3 = this.pickerDelegate;
             float f = i * length2;
             chartPickerDelegate3.pickerStart = f;
@@ -714,10 +718,10 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         }
         if (z) {
             updateCharValues(f, f2, false);
-            return;
+        } else {
+            updateIndexes();
+            invalidate();
         }
-        updateIndexes();
-        invalidate();
     }
 
     @Override

@@ -50,6 +50,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.StoryViewer;
+
 public abstract class BaseFragment {
     protected ActionBar actionBar;
     protected Bundle arguments;
@@ -340,7 +341,6 @@ public abstract class BaseFragment {
         ViewGroup viewGroup;
         if (this.parentLayout != iNavigationLayout) {
             this.parentLayout = iNavigationLayout;
-            boolean z = true;
             this.inBubbleMode = iNavigationLayout != null && iNavigationLayout.isInBubbleMode();
             View view = this.fragmentView;
             if (view != null) {
@@ -361,7 +361,7 @@ public abstract class BaseFragment {
             }
             if (this.actionBar != null) {
                 INavigationLayout iNavigationLayout3 = this.parentLayout;
-                z = (iNavigationLayout3 == null || iNavigationLayout3.getView().getContext() == this.actionBar.getContext()) ? false : false;
+                boolean z = (iNavigationLayout3 == null || iNavigationLayout3.getView().getContext() == this.actionBar.getContext()) ? false : true;
                 if ((this.actionBar.shouldAddToContainer() || z) && (viewGroup = (ViewGroup) this.actionBar.getParent()) != null) {
                     try {
                         viewGroup.removeViewInLayout(this.actionBar);
@@ -525,13 +525,13 @@ public abstract class BaseFragment {
 
     public boolean closeStoryViewer() {
         ArrayList<StoryViewer> arrayList = this.storyViewerStack;
-        if (arrayList != null) {
-            for (int size = arrayList.size() - 1; size >= 0; size--) {
-                if (this.storyViewerStack.get(size).isShown()) {
-                    return this.storyViewerStack.get(size).onBackPressed();
-                }
-            }
+        if (arrayList == null) {
             return false;
+        }
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (this.storyViewerStack.get(size).isShown()) {
+                return this.storyViewerStack.get(size).onBackPressed();
+            }
         }
         return false;
     }
@@ -547,12 +547,12 @@ public abstract class BaseFragment {
 
     public FrameLayout getLayoutContainer() {
         View view = this.fragmentView;
-        if (view != null) {
-            ViewParent parent = view.getParent();
-            if (parent instanceof FrameLayout) {
-                return (FrameLayout) parent;
-            }
+        if (view == null) {
             return null;
+        }
+        ViewParent parent = view.getParent();
+        if (parent instanceof FrameLayout) {
+            return (FrameLayout) parent;
         }
         return null;
     }
@@ -988,7 +988,9 @@ public abstract class BaseFragment {
         Activity parentActivity = getParentActivity();
         if (parentActivity instanceof LaunchActivity) {
             ((LaunchActivity) parentActivity).setNavigationBarColor(i, true);
-        } else if (parentActivity != null) {
+            return;
+        }
+        if (parentActivity != null) {
             Window window = parentActivity.getWindow();
             if (Build.VERSION.SDK_INT < 26 || window == null || window.getNavigationBarColor() == i) {
                 return;
@@ -1020,24 +1022,24 @@ public abstract class BaseFragment {
 
     public boolean isLightStatusBar() {
         int color;
-        if (getLastStoryViewer() == null || !getLastStoryViewer().isShown()) {
-            if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
-                Theme.ResourcesProvider resourceProvider = getResourceProvider();
-                int i = Theme.key_actionBarDefault;
-                ActionBar actionBar = this.actionBar;
-                if (actionBar != null && actionBar.isActionModeShowed()) {
-                    i = Theme.key_actionBarActionModeDefault;
-                }
-                if (resourceProvider != null) {
-                    color = resourceProvider.getColorOrDefault(i);
-                } else {
-                    color = Theme.getColor(i, null, true);
-                }
-                return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
-            }
+        if (getLastStoryViewer() != null && getLastStoryViewer().isShown()) {
+            return false;
+        }
+        if (hasForceLightStatusBar() && !Theme.getCurrentTheme().isDark()) {
             return true;
         }
-        return false;
+        Theme.ResourcesProvider resourceProvider = getResourceProvider();
+        int i = Theme.key_actionBarDefault;
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.isActionModeShowed()) {
+            i = Theme.key_actionBarActionModeDefault;
+        }
+        if (resourceProvider != null) {
+            color = resourceProvider.getColorOrDefault(i);
+        } else {
+            color = Theme.getColor(i, null, true);
+        }
+        return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
     }
 
     public void setPreviewDelegate(PreviewDelegate previewDelegate) {

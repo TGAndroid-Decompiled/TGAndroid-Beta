@@ -29,6 +29,7 @@ import org.telegram.ui.Components.voip.VoIPButtonsLayout;
 import org.telegram.ui.Components.voip.VoIPToggleButton;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.LaunchActivity;
+
 public class GroupCallPipAlertView extends LinearLayout implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate {
     BackupImageView avatarImageView;
     int currentAccount;
@@ -173,7 +174,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     public void lambda$new$0(View view) {
         if (VoIPService.getSharedInstance() != null) {
-            Intent action = new Intent(getContext(), LaunchActivity.class).setAction("voip_chat");
+            Intent action = new Intent(getContext(), (Class<?>) LaunchActivity.class).setAction("voip_chat");
             action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
             getContext().startActivity(action);
         }

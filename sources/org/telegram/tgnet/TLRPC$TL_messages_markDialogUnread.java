@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_markDialogUnread extends TLObject {
     public int flags;
     public TLRPC$InputDialogPeer peer;

@@ -8,6 +8,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.JobKt;
+
 public final class HandlerContext extends HandlerDispatcher {
     private volatile HandlerContext _immediate;
     private final Handler handler;
@@ -63,14 +64,14 @@ public final class HandlerContext extends HandlerDispatcher {
     @Override
     public String toString() {
         String stringInternalImpl = toStringInternalImpl();
-        if (stringInternalImpl == null) {
-            String str = this.name;
-            if (str == null) {
-                str = this.handler.toString();
-            }
-            return this.invokeImmediately ? Intrinsics.stringPlus(str, ".immediate") : str;
+        if (stringInternalImpl != null) {
+            return stringInternalImpl;
         }
-        return stringInternalImpl;
+        String str = this.name;
+        if (str == null) {
+            str = this.handler.toString();
+        }
+        return this.invokeImmediately ? Intrinsics.stringPlus(str, ".immediate") : str;
     }
 
     public boolean equals(Object obj) {

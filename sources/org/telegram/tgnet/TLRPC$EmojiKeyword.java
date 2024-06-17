@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$EmojiKeyword extends TLObject {
     public static TLRPC$EmojiKeyword TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$EmojiKeyword tLRPC$TL_emojiKeyword;

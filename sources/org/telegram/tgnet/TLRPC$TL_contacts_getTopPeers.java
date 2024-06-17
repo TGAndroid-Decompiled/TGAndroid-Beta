@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_contacts_getTopPeers extends TLObject {
     public boolean bots_inline;
     public boolean bots_pm;

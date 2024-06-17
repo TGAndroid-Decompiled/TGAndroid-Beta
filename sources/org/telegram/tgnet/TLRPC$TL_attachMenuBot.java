@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
     public long bot_id;
     public int flags;

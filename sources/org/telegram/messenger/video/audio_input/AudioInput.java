@@ -1,4 +1,5 @@
 package org.telegram.messenger.video.audio_input;
+
 public abstract class AudioInput {
     private boolean loopingEnabled;
     private float volume = 1.0f;

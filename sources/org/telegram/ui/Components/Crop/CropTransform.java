@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Crop;
+
 public class CropTransform {
     private float cropAreaX;
     private float cropAreaY;
@@ -29,8 +30,9 @@ public class CropTransform {
             int i2 = this.cropOrientation;
             if (i2 >= 0) {
                 break;
+            } else {
+                this.cropOrientation = i2 + 360;
             }
-            this.cropOrientation = i2 + 360;
         }
         while (true) {
             int i3 = this.cropOrientation;

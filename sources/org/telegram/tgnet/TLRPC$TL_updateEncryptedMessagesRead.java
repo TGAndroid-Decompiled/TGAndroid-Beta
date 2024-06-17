@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateEncryptedMessagesRead extends TLRPC$Update {
     public int chat_id;
     public int date;

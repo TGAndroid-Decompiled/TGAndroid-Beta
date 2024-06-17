@@ -1,4 +1,5 @@
 package org.telegram.messenger;
+
 public final class KeepAliveJob$$ExternalSyntheticLambda0 implements Runnable {
     public static final KeepAliveJob$$ExternalSyntheticLambda0 INSTANCE = new KeepAliveJob$$ExternalSyntheticLambda0();
 

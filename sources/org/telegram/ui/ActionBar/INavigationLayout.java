@@ -18,6 +18,7 @@ import java.util.List;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackButtonMenu;
+
 public interface INavigationLayout {
 
     public enum BackButtonState {
@@ -205,11 +206,18 @@ public interface INavigationLayout {
             return new ActionBarLayout(context);
         }
 
-        public static INavigationLayout newLayout(Context context, final Supplier<BottomSheet> supplier) {
+        public static INavigationLayout newLayout(Context context, Supplier<BottomSheet> supplier) {
             return new ActionBarLayout(context) {
+                final Supplier val$supplier;
+
+                AnonymousClass1(Context context2, Supplier supplier2) {
+                    super(context2);
+                    r2 = supplier2;
+                }
+
                 @Override
                 public BottomSheet getBottomSheet() {
-                    return (BottomSheet) supplier.get();
+                    return (BottomSheet) r2.get();
                 }
             };
         }
@@ -217,10 +225,10 @@ public interface INavigationLayout {
         public static void $default$rebuildFragments(INavigationLayout _this, int i) {
             if ((i & 2) != 0) {
                 _this.showLastFragment();
-                return;
+            } else {
+                boolean z = (i & 1) != 0;
+                _this.rebuildAllFragmentViews(z, z);
             }
-            boolean z = (i & 1) != 0;
-            _this.rebuildAllFragmentViews(z, z);
         }
 
         public static BaseFragment $default$getBackgroundFragment(INavigationLayout _this) {
@@ -251,9 +259,9 @@ public interface INavigationLayout {
             throw new IllegalArgumentException("NavigationLayout added in non-activity context!");
         }
 
-        public static ViewGroup $default$getView(INavigationLayout _this) {
-            if (_this instanceof ViewGroup) {
-                return (ViewGroup) _this;
+        public static ViewGroup $default$getView(INavigationLayout iNavigationLayout) {
+            if (iNavigationLayout instanceof ViewGroup) {
+                return (ViewGroup) iNavigationLayout;
             }
             throw new IllegalArgumentException("You should override getView() if you're not inheriting from it.");
         }
@@ -271,6 +279,20 @@ public interface INavigationLayout {
                 return;
             }
             fragmentStack.get(fragmentStack.size() - 1).dismissCurrentDialog();
+        }
+    }
+
+    public class AnonymousClass1 extends ActionBarLayout {
+        final Supplier val$supplier;
+
+        AnonymousClass1(Context context2, Supplier supplier2) {
+            super(context2);
+            r2 = supplier2;
+        }
+
+        @Override
+        public BottomSheet getBottomSheet() {
+            return (BottomSheet) r2.get();
         }
     }
 
@@ -447,7 +469,6 @@ public interface INavigationLayout {
         }
 
         public void saveColors(Theme.ResourcesProvider resourcesProvider) {
-            int[] iArr;
             this.colors.clear();
             for (int i : this.keysToSave) {
                 this.colors.put(i, resourcesProvider.getCurrentColor(i));

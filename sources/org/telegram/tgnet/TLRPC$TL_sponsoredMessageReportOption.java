@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_sponsoredMessageReportOption extends TLObject {
     public static int constructor = 1124938064;
     public byte[] option;

@@ -18,6 +18,7 @@ import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.internal.ResizableAtomicArray;
 import kotlinx.coroutines.internal.Symbol;
 import org.telegram.tgnet.ConnectionsManager;
+
 public final class CoroutineScheduler implements Executor, Closeable {
     public static final Symbol NOT_IN_STACK;
     private static final AtomicIntegerFieldUpdater _isTerminated$FU;
@@ -117,13 +118,12 @@ public final class CoroutineScheduler implements Executor, Closeable {
                 CoroutineScheduler coroutineScheduler = CoroutineScheduler.this;
                 while (true) {
                     long j = coroutineScheduler.controlState;
-                    if (((int) ((9223367638808264704L & j) >> 42)) != 0) {
-                        if (CoroutineScheduler.controlState$FU.compareAndSet(coroutineScheduler, j, j - 4398046511104L)) {
-                            z = true;
-                            break;
-                        }
-                    } else {
+                    if (((int) ((9223367638808264704L & j) >> 42)) == 0) {
                         z = false;
+                        break;
+                    }
+                    if (CoroutineScheduler.controlState$FU.compareAndSet(coroutineScheduler, j, j - 4398046511104L)) {
+                        z = true;
                         break;
                     }
                 }
@@ -520,8 +520,9 @@ public final class CoroutineScheduler implements Executor, Closeable {
                     }
                     if (i2 == i) {
                         break;
+                    } else {
+                        i2 = i3;
                     }
-                    i2 = i3;
                 }
             }
             this.globalBlockingQueue.close();
@@ -530,8 +531,9 @@ public final class CoroutineScheduler implements Executor, Closeable {
                 Task findTask = currentWorker == null ? null : currentWorker.findTask(true);
                 if (findTask == null && (findTask = this.globalCpuQueue.removeFirstOrNull()) == null && (findTask = this.globalBlockingQueue.removeFirstOrNull()) == null) {
                     break;
+                } else {
+                    runSafely(findTask);
                 }
-                runSafely(findTask);
             }
             if (currentWorker != null) {
                 currentWorker.tryReleaseCpu(WorkerState.TERMINATED);
@@ -566,9 +568,10 @@ public final class CoroutineScheduler implements Executor, Closeable {
             if (createTask.taskContext.getTaskMode() != 0) {
                 signalBlockingWork(z2);
                 return;
-            } else if (z2) {
-                return;
             } else {
+                if (z2) {
+                    return;
+                }
                 signalCpuWork();
                 return;
             }

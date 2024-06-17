@@ -26,6 +26,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupColorActivity;
+
 public class GroupColorActivity extends ChannelColorActivity {
     private boolean isLoading;
     private ChannelColorActivity.ProfilePreview profilePreview;
@@ -281,23 +282,22 @@ public class GroupColorActivity extends ChannelColorActivity {
                 View findViewByPosition;
                 super.onScrollStateChanged(recyclerView, i);
                 if (i == 0) {
-                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f || GroupColorActivity.this.profilePreviewPercent >= 1.0f) {
-                        if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
-                            View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                            if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
-                                return;
-                            }
-                            GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
+                    if (GroupColorActivity.this.profilePreviewPercent >= 0.5f && GroupColorActivity.this.profilePreviewPercent < 1.0f) {
+                        int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
+                        RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
+                        if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
                             return;
                         }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
                         return;
                     }
-                    int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
-                    RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
-                    if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
-                        return;
+                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
+                        View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                        if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
+                            return;
+                        }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
                     }
-                    GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
                 }
             }
         });

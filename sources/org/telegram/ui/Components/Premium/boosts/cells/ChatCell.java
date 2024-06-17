@@ -14,6 +14,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class ChatCell extends BaseCell {
     private TLRPC$Chat chat;

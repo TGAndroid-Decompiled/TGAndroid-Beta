@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_phone_inviteToGroupCall extends TLObject {
     public TLRPC$TL_inputGroupCall call;
     public ArrayList<TLRPC$InputUser> users = new ArrayList<>();

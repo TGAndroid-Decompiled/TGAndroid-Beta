@@ -36,6 +36,7 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     private ArrayList<ContactEntry> allUnregistredContacts;
     private boolean allowBots;
@@ -182,7 +183,9 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             return;
         }
         String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-        translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
+        if (lowerCase.equals(translitString) || translitString.length() == 0) {
+            translitString = null;
+        }
         int i4 = (translitString != null ? 1 : 0) + 1;
         String[] strArr3 = new String[i4];
         strArr3[0] = lowerCase;
@@ -338,11 +341,11 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         int size2 = this.unregistredContacts.size();
         int size3 = this.searchAdapterHelper.getGlobalSearch().size();
         int size4 = this.searchAdapterHelper.getPhoneSearch().size();
-        if (i < 0 || i >= size) {
-            if (i <= size || i >= size + size2 + 1) {
-                return (i <= (size + size2) + 1 || i >= ((size + size4) + size2) + 1) && i > ((size + size4) + size2) + 1 && i <= (((size3 + size4) + size) + size2) + 1;
-            }
+        if (i >= 0 && i < size) {
             return false;
+        }
+        if (i <= size || i >= size + size2 + 1) {
+            return (i <= (size + size2) + 1 || i >= ((size + size4) + size2) + 1) && i > ((size + size4) + size2) + 1 && i <= (((size3 + size4) + size) + size2) + 1;
         }
         return false;
     }
@@ -352,27 +355,27 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         int size2 = this.unregistredContacts.size();
         int size3 = this.searchAdapterHelper.getGlobalSearch().size();
         int size4 = this.searchAdapterHelper.getPhoneSearch().size();
-        if (i < 0 || i >= size) {
-            int i2 = i - size;
-            if (size2 > 0) {
-                if (i2 == 0) {
-                    return null;
-                }
-                if (i2 > 0 && i2 <= size2) {
-                    return this.unregistredContacts.get(i2 - 1);
-                }
-                i2 -= size2 + 1;
+        if (i >= 0 && i < size) {
+            return this.searchResult.get(i);
+        }
+        int i2 = i - size;
+        if (size2 > 0) {
+            if (i2 == 0) {
+                return null;
             }
-            if (i2 < 0 || i2 >= size4) {
-                int i3 = i2 - size4;
-                if (i3 <= 0 || i3 > size3) {
-                    return null;
-                }
-                return this.searchAdapterHelper.getGlobalSearch().get(i3 - 1);
+            if (i2 > 0 && i2 <= size2) {
+                return this.unregistredContacts.get(i2 - 1);
             }
+            i2 -= size2 + 1;
+        }
+        if (i2 >= 0 && i2 < size4) {
             return this.searchAdapterHelper.getPhoneSearch().get(i2);
         }
-        return this.searchResult.get(i);
+        int i3 = i2 - size4;
+        if (i3 <= 0 || i3 > size3) {
+            return null;
+        }
+        return this.searchAdapterHelper.getGlobalSearch().get(i3 - 1);
     }
 
     @Override
@@ -414,20 +417,22 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                     graySectionCell.setText(LocaleController.getString("PhoneNumberSearch", R.string.PhoneNumberSearch));
                     return;
                 }
-            } else if (itemViewType == 2) {
+            }
+            if (itemViewType == 2) {
+                String str2 = (String) getItem(i);
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 textCell.setColors(-1, Theme.key_windowBackgroundWhiteBlueText2);
-                textCell.setText(LocaleController.formatString("AddContactByPhone", R.string.AddContactByPhone, PhoneFormat.getInstance().format("+" + ((String) getItem(i)))), false);
-                return;
-            } else if (itemViewType != 3) {
-                return;
-            } else {
-                ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
-                ContactsController.Contact contact = (ContactsController.Contact) getItem(i);
-                profileSearchCell.useSeparator = getItem(i + 1) instanceof ContactsController.Contact;
-                profileSearchCell.setData(contact, null, ContactsController.formatName(contact.first_name, contact.last_name), PhoneFormat.getInstance().format("+" + contact.shortPhones.get(0)), false, false);
+                textCell.setText(LocaleController.formatString("AddContactByPhone", R.string.AddContactByPhone, PhoneFormat.getInstance().format("+" + str2)), false);
                 return;
             }
+            if (itemViewType != 3) {
+                return;
+            }
+            ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
+            ContactsController.Contact contact = (ContactsController.Contact) getItem(i);
+            profileSearchCell.useSeparator = getItem(i + 1) instanceof ContactsController.Contact;
+            profileSearchCell.setData(contact, null, ContactsController.formatName(contact.first_name, contact.last_name), PhoneFormat.getInstance().format("+" + contact.shortPhones.get(0)), false, false);
+            return;
         }
         TLObject tLObject = (TLObject) getItem(i);
         if (tLObject != null) {
@@ -500,12 +505,12 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 userCell.setData(tLObject, charSequence2, charSequence, 0);
                 userCell.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
-                return;
+            } else {
+                ProfileSearchCell profileSearchCell2 = (ProfileSearchCell) viewHolder.itemView;
+                profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : charSequence2, charSequence, false, z);
+                profileSearchCell2.useSeparator = (i == getItemCount() - 1 || i == this.searchResult.size() - 1) ? false : true;
+                profileSearchCell2.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
             }
-            ProfileSearchCell profileSearchCell2 = (ProfileSearchCell) viewHolder.itemView;
-            profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : charSequence2, charSequence, false, z);
-            profileSearchCell2.useSeparator = (i == getItemCount() - 1 || i == this.searchResult.size() - 1) ? false : true;
-            profileSearchCell2.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
         }
     }
 

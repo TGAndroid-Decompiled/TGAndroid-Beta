@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+
 public class TLRPC$TL_webPageAttributeStory extends TLRPC$WebPageAttribute {
     public int id;
     public TLRPC$Peer peer;

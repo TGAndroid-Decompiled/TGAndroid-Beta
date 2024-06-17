@@ -1,4 +1,5 @@
 package kotlin;
+
 final class KotlinVersionCurrentValue {
     static {
         new KotlinVersionCurrentValue();

@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
@@ -21,6 +22,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class BotCommandsMenuContainer extends FrameLayout implements NestedScrollingParent {
     Paint backgroundPaint;
     private float containerY;
@@ -90,7 +92,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
     }
 
     public float clipBottom() {
-        return getMeasuredHeight() - this.containerY;
+        return Math.max(0.0f, getMeasuredHeight() - (this.containerY + this.listView.getTranslationY()));
     }
 
     @Override
@@ -179,7 +181,9 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
             this.listView.scrollToPosition(0);
             this.entering = true;
             this.dismissed = false;
-        } else if (this.dismissed) {
+            return;
+        }
+        if (this.dismissed) {
             this.dismissed = false;
             cancelCurrentAnimation();
             playEnterAnim(false);
@@ -192,8 +196,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
         if (!this.entering || this.dismissed) {
             return;
         }
-        RecyclerListView recyclerListView = this.listView;
-        recyclerListView.setTranslationY((recyclerListView.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.dp(16.0f));
+        this.listView.setTranslationY((r2.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.dp(16.0f));
         playEnterAnim(true);
         this.entering = false;
     }
@@ -203,7 +206,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
             return;
         }
         RecyclerListView recyclerListView = this.listView;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), 0.0f);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), 0.0f);
         this.currentAnimation = ofFloat;
         if (z) {
             ofFloat.setDuration(320L);
@@ -222,7 +225,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
         this.dismissed = true;
         cancelCurrentAnimation();
         RecyclerListView recyclerListView = this.listView;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), (getMeasuredHeight() - this.scrollYOffset) + AndroidUtilities.dp(40.0f));
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), (getMeasuredHeight() - this.scrollYOffset) + AndroidUtilities.dp(40.0f));
         this.currentAnimation = ofFloat;
         ofFloat.addListener(new AnimatorListenerAdapter() {
             @Override

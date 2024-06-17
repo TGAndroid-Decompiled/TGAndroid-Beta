@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -64,10 +65,11 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
                 return;
-            }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt325; i2++) {
-                this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            } else {
+                int readInt325 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt325; i2++) {
+                    this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+                }
             }
         }
         if ((this.flags & 262144) != 0) {

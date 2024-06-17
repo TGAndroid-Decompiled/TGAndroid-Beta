@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_webViewResultUrl extends TLObject {
     public long query_id;
     public String url;

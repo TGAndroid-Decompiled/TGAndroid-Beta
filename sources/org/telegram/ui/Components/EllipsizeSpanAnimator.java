@@ -11,6 +11,7 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.Reactions.HwEmojis;
+
 public class EllipsizeSpanAnimator {
     boolean attachedToWindow;
     private final AnimatorSet ellAnimator;

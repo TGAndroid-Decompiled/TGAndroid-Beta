@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
+
 public abstract class TLRPC$StickerSet extends TLObject {
     public long access_hash;
     public boolean archived;

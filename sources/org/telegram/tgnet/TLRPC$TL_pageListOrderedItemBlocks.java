@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_pageListOrderedItemBlocks extends TLRPC$PageListOrderedItem {
     public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
     public String num;

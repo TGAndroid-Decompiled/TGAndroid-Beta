@@ -50,6 +50,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 public class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private TextView addButton;
     private TextView adminTextView;
@@ -397,16 +398,19 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 return;
             }
             setData(user, encryptedChat, charSequence, str, 0, false);
-        } else if (DialogObject.isUserDialog(notificationException.did)) {
+            return;
+        }
+        if (DialogObject.isUserDialog(notificationException.did)) {
             TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(notificationException.did));
             if (user2 != null) {
                 setData(user2, null, charSequence, str, 0, z);
+                return;
             }
-        } else {
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-notificationException.did));
-            if (chat != null) {
-                setData(chat, null, charSequence, str, 0, z);
-            }
+            return;
+        }
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-notificationException.did));
+        if (chat != null) {
+            setData(chat, null, charSequence, str, 0, z);
         }
     }
 
@@ -433,11 +437,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 this.checkBoxBig.setVisibility(0);
             }
             this.checkBoxBig.setChecked(z, z2);
-            return;
-        }
-        ImageView imageView = this.checkBox3;
-        if (imageView != null) {
-            imageView.setVisibility(z ? 0 : 8);
+        } else {
+            ImageView imageView = this.checkBox3;
+            if (imageView != null) {
+                imageView.setVisibility(z ? 0 : 8);
+            }
         }
     }
 

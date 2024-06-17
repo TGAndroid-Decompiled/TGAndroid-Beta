@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$updates_Difference extends TLObject {
     public int date;
     public TLRPC$TL_updates_state intermediate_state;

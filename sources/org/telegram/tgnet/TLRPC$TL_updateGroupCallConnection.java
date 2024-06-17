@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateGroupCallConnection extends TLRPC$Update {
     public int flags;
     public TLRPC$TL_dataJSON params;

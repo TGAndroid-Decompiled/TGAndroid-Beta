@@ -1,4 +1,5 @@
 package org.telegram.messenger;
+
 public final class MessagesController$$ExternalSyntheticLambda32 implements Runnable {
     public final MessagesController f$0;
 

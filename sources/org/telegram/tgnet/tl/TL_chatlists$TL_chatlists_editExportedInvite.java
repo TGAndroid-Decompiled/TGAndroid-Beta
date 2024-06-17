@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
+
 public class TL_chatlists$TL_chatlists_editExportedInvite extends TLObject {
     public TL_chatlists$TL_inputChatlistDialogFilter chatlist;
     public int flags;

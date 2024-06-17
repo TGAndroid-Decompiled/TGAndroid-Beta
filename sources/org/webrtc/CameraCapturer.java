@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
+
 abstract class CameraCapturer implements CameraVideoCapturer {
     private static final int MAX_OPEN_CAMERA_ATTEMPTS = 3;
     private static final int OPEN_CAMERA_DELAY_MS = 500;
@@ -115,9 +116,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 if (cameraSession == CameraCapturer.this.currentSession) {
                     CameraCapturer.this.eventsHandler.onCameraError(str);
                     CameraCapturer.this.stopCapture();
-                    return;
+                } else {
+                    Logging.w(CameraCapturer.TAG, "onCameraError from another session: " + str);
                 }
-                Logging.w(CameraCapturer.TAG, "onCameraError from another session: " + str);
             }
         }
 
@@ -128,9 +129,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 if (cameraSession == CameraCapturer.this.currentSession) {
                     CameraCapturer.this.eventsHandler.onCameraDisconnected();
                     CameraCapturer.this.stopCapture();
-                    return;
+                } else {
+                    Logging.w(CameraCapturer.TAG, "onCameraDisconnected from another session.");
                 }
-                Logging.w(CameraCapturer.TAG, "onCameraDisconnected from another session.");
             }
         }
 
@@ -337,9 +338,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 List asList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
                 if (asList.size() < 2) {
                     CameraCapturer.this.reportCameraSwitchError("No camera to switch to.", cameraSwitchHandler);
-                    return;
+                } else {
+                    CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) asList.get((asList.indexOf(CameraCapturer.this.cameraName) + 1) % asList.size()));
                 }
-                CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) asList.get((asList.indexOf(CameraCapturer.this.cameraName) + 1) % asList.size()));
             }
         });
     }

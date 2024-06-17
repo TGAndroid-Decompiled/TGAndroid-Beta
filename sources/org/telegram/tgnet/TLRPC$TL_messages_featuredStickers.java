@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedStickers {
     public int count;
     public int flags;
@@ -36,11 +37,11 @@ public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedS
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
             }
-            return;
-        }
-        int readInt325 = abstractSerializedData.readInt32(z);
-        for (int i2 = 0; i2 < readInt325; i2++) {
-            this.unread.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+        } else {
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.unread.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.util.Calendar;
 import java.util.HashMap;
+
 public class MrzRecognizer {
 
     public static class Result {
@@ -71,20 +72,20 @@ public class MrzRecognizer {
     public static Result recognize(Bitmap bitmap, boolean z) {
         Result recognizeBarcode;
         Result recognizeBarcode2;
-        if (!z || (recognizeBarcode2 = recognizeBarcode(bitmap)) == null) {
-            try {
-                Result recognizeMRZ = recognizeMRZ(bitmap);
-                if (recognizeMRZ != null) {
-                    return recognizeMRZ;
-                }
-            } catch (Exception unused) {
-            }
-            if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
-                return null;
-            }
-            return recognizeBarcode;
+        if (z && (recognizeBarcode2 = recognizeBarcode(bitmap)) != null) {
+            return recognizeBarcode2;
         }
-        return recognizeBarcode2;
+        try {
+            Result recognizeMRZ = recognizeMRZ(bitmap);
+            if (recognizeMRZ != null) {
+                return recognizeMRZ;
+            }
+        } catch (Exception unused) {
+        }
+        if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
+            return null;
+        }
+        return recognizeBarcode;
     }
 
     private static Result recognizeBarcode(Bitmap bitmap) {

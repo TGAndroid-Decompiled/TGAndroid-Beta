@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLObject {
     private static final ThreadLocal<NativeByteBuffer> sizeCalculator = new ThreadLocal<NativeByteBuffer>() {
         @Override

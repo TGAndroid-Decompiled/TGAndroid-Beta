@@ -11,6 +11,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestTimeDelegate;
+
 public class ProxyRotationController implements NotificationCenter.NotificationCenterDelegate {
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
@@ -126,10 +127,15 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         if (i == NotificationCenter.proxyCheckDone) {
             if (SharedConfig.isProxyEnabled() && SharedConfig.proxyRotationEnabled && SharedConfig.proxyList.size() > 1 && this.isCurrentlyChecking) {
                 switchToAvailable();
+                return;
             }
-        } else if (i == NotificationCenter.proxySettingsChanged) {
+            return;
+        }
+        if (i == NotificationCenter.proxySettingsChanged) {
             AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);
-        } else if (i == NotificationCenter.didUpdateConnectionState && i2 == UserConfig.selectedAccount) {
+            return;
+        }
+        if (i == NotificationCenter.didUpdateConnectionState && i2 == UserConfig.selectedAccount) {
             if ((SharedConfig.isProxyEnabled() || SharedConfig.proxyRotationEnabled) && SharedConfig.proxyList.size() > 1) {
                 if (ConnectionsManager.getInstance(i2).getConnectionState() == 4) {
                     if (this.isCurrentlyChecking) {

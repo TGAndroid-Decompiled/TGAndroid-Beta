@@ -37,6 +37,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.SessionBottomSheet;
+
 public class SessionBottomSheet extends BottomSheet {
     RLottieImageView imageView;
     BaseFragment parentFragment;
@@ -180,8 +181,7 @@ public class SessionBottomSheet extends BottomSheet {
             itemView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Switch r3 = itemView4.switchView;
-                    r3.setChecked(!r3.isChecked(), true);
+                    itemView4.switchView.setChecked(!r3.isChecked(), true);
                     tLRPC$TL_authorization.encrypted_requests_disabled = !itemView4.switchView.isChecked();
                     SessionBottomSheet.this.uploadSessionSettings();
                 }
@@ -201,8 +201,7 @@ public class SessionBottomSheet extends BottomSheet {
         itemView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Switch r3 = itemView5.switchView;
-                r3.setChecked(!r3.isChecked(), true);
+                itemView5.switchView.setChecked(!r3.isChecked(), true);
                 tLRPC$TL_authorization.call_requests_disabled = !itemView5.switchView.isChecked();
                 SessionBottomSheet.this.uploadSessionSettings();
             }

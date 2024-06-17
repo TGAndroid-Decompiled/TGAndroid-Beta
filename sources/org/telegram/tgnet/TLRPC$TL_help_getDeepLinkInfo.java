@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_help_getDeepLinkInfo extends TLObject {
     public String path;
 

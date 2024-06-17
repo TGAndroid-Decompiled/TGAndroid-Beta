@@ -43,6 +43,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
+
 public class ScrimOptions extends Dialog {
     private Bitmap blurBitmap;
     private Paint blurBitmapPaint;
@@ -349,8 +350,7 @@ public class ScrimOptions extends Dialog {
                     this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), bounds.left - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
                     z = false;
                 } else {
-                    View view = this.optionsView;
-                    view.setPivotX(view.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
+                    this.optionsView.setPivotX(r2.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
                     this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (bounds.right + AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
                     z = true;
                 }
@@ -365,8 +365,7 @@ public class ScrimOptions extends Dialog {
                 this.scrimDrawableTx = dp - i;
                 this.scrimDrawableTy = 0.0f;
                 if (bounds.bottom + this.optionsContainer.getMeasuredHeight() > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
-                    View view2 = this.optionsView;
-                    view2.setPivotY(view2.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
+                    this.optionsView.setPivotY(r2.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
                     this.optionsContainer.setY(((bounds.top - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
                 } else {
                     this.optionsView.setPivotY(AndroidUtilities.dp(6.0f));
@@ -414,15 +413,16 @@ public class ScrimOptions extends Dialog {
         }
         float f4 = f;
         float f5 = f2;
-        StaticLayout staticLayout = null;
         int i3 = 0;
+        StaticLayout staticLayout = null;
         int i4 = 0;
-        for (int i5 = 0; i5 < arrayList.size(); i5++) {
-            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i5);
+        int i5 = 0;
+        while (i3 < arrayList.size()) {
+            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i3);
             StaticLayout staticLayout2 = textLayoutBlock.textLayout;
             if (staticLayout2 != null && (staticLayout2.getText() instanceof Spanned)) {
-                i = i4;
-                i2 = i3;
+                i = i5;
+                i2 = i4;
                 CharacterStyle[] characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout2.getText()).getSpans(0, staticLayout2.getText().length(), CharacterStyle.class);
                 if (characterStyleArr != null) {
                     int i6 = 0;
@@ -430,30 +430,35 @@ public class ScrimOptions extends Dialog {
                         if (i6 >= characterStyleArr.length) {
                             z = false;
                             break;
-                        } else if (characterStyleArr[i6] == characterStyle) {
-                            z = true;
-                            break;
                         } else {
+                            if (characterStyleArr[i6] == characterStyle) {
+                                z = true;
+                                break;
+                            }
                             i6++;
                         }
                     }
                     if (z) {
-                        i3 = ((Spanned) staticLayout2.getText()).getSpanStart(characterStyle);
-                        i4 = ((Spanned) staticLayout2.getText()).getSpanEnd(characterStyle);
+                        i4 = ((Spanned) staticLayout2.getText()).getSpanStart(characterStyle);
+                        i5 = ((Spanned) staticLayout2.getText()).getSpanEnd(characterStyle);
                         f4 += textLayoutBlock.isRtl() ? (int) Math.ceil(f3) : 0;
                         f5 += textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams);
                         staticLayout = staticLayout2;
+                        i3++;
+                        staticLayout = staticLayout;
                     }
                 }
             } else {
-                i2 = i3;
-                i = i4;
+                i2 = i4;
+                i = i5;
             }
-            i3 = i2;
-            i4 = i;
+            i4 = i2;
+            i5 = i;
+            i3++;
+            staticLayout = staticLayout;
         }
-        int i7 = i3;
-        int i8 = i4;
+        int i7 = i4;
+        int i8 = i5;
         if (staticLayout == null) {
             return;
         }

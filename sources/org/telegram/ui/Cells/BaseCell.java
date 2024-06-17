@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
+
 public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLayout.IViewWithInvalidateCallback {
     private boolean cachingBottom;
     private boolean cachingTop;
@@ -169,11 +170,10 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
     }
 
     public void setCaching(boolean z, boolean z2) {
-        boolean z3 = true;
         if (z) {
-            this.cachingTop = (SharedConfig.useNewBlur && z2) ? false : false;
+            this.cachingTop = SharedConfig.useNewBlur && z2;
         } else {
-            this.cachingBottom = (SharedConfig.useNewBlur && z2) ? false : false;
+            this.cachingBottom = SharedConfig.useNewBlur && z2;
         }
     }
 

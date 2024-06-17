@@ -27,6 +27,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
+
 public class StickerCell extends FrameLayout {
     private boolean clearsInputField;
     private BackupImageView imageView;
@@ -138,17 +139,16 @@ public class StickerCell extends FrameLayout {
 
     public MessageObject.SendAnimationData getSendAnimationData() {
         ImageReceiver imageReceiver = this.imageView.getImageReceiver();
-        if (imageReceiver.hasNotThumb()) {
-            MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-            int[] iArr = new int[2];
-            this.imageView.getLocationInWindow(iArr);
-            sendAnimationData.x = imageReceiver.getCenterX() + iArr[0];
-            sendAnimationData.y = imageReceiver.getCenterY() + iArr[1];
-            sendAnimationData.width = imageReceiver.getImageWidth();
-            sendAnimationData.height = imageReceiver.getImageHeight();
-            return sendAnimationData;
+        if (!imageReceiver.hasNotThumb()) {
+            return null;
         }
-        return null;
+        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
+        this.imageView.getLocationInWindow(new int[2]);
+        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
+        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
+        sendAnimationData.width = imageReceiver.getImageWidth();
+        sendAnimationData.height = imageReceiver.getImageHeight();
+        return sendAnimationData;
     }
 
     @Override

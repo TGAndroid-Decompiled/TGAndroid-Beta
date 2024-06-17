@@ -16,6 +16,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class RecyclerAnimationScrollHelper {
     private AnimationCallback animationCallback;
     private ValueAnimator animator;
@@ -393,40 +394,40 @@ public class RecyclerAnimationScrollHelper {
         public void notifyItemInserted(int i) {
             if (!this.animationRunning) {
                 super.notifyItemInserted(i);
-                return;
+            } else {
+                this.rangeInserted.add(Integer.valueOf(i));
+                this.rangeInserted.add(1);
             }
-            this.rangeInserted.add(Integer.valueOf(i));
-            this.rangeInserted.add(1);
         }
 
         @Override
         public void notifyItemRangeInserted(int i, int i2) {
             if (!this.animationRunning) {
                 super.notifyItemRangeInserted(i, i2);
-                return;
+            } else {
+                this.rangeInserted.add(Integer.valueOf(i));
+                this.rangeInserted.add(Integer.valueOf(i2));
             }
-            this.rangeInserted.add(Integer.valueOf(i));
-            this.rangeInserted.add(Integer.valueOf(i2));
         }
 
         @Override
         public void notifyItemRemoved(int i) {
             if (!this.animationRunning) {
                 super.notifyItemRemoved(i);
-                return;
+            } else {
+                this.rangeRemoved.add(Integer.valueOf(i));
+                this.rangeRemoved.add(1);
             }
-            this.rangeRemoved.add(Integer.valueOf(i));
-            this.rangeRemoved.add(1);
         }
 
         @Override
         public void notifyItemRangeRemoved(int i, int i2) {
             if (!this.animationRunning) {
                 super.notifyItemRangeRemoved(i, i2);
-                return;
+            } else {
+                this.rangeRemoved.add(Integer.valueOf(i));
+                this.rangeRemoved.add(Integer.valueOf(i2));
             }
-            this.rangeRemoved.add(Integer.valueOf(i));
-            this.rangeRemoved.add(Integer.valueOf(i2));
         }
 
         @Override

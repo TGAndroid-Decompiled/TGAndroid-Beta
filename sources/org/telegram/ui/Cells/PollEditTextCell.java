@@ -35,6 +35,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SuggestEmojiView;
+
 public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.AnchorViewDelegate {
     private boolean alwaysShowText2;
     private CheckBox2 checkBox;
@@ -109,13 +110,13 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (isEnabled()) {
-                    if (motionEvent.getAction() == 1) {
-                        PollEditTextCell.this.onFieldTouchUp(this);
-                    }
-                    return super.onTouchEvent(motionEvent);
+                if (!isEnabled()) {
+                    return false;
                 }
-                return false;
+                if (motionEvent.getAction() == 1) {
+                    PollEditTextCell.this.onFieldTouchUp(this);
+                }
+                return super.onTouchEvent(motionEvent);
             }
 
             @Override
@@ -356,12 +357,12 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(checkBox2, property, fArr);
+            animatorArr[0] = ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, fArr);
             ImageView imageView = this.moveImageView;
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 0.0f : 1.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(imageView, property2, fArr2);
+            animatorArr[1] = ObjectAnimator.ofFloat(imageView, (Property<ImageView, Float>) property2, fArr2);
             animatorSet2.playTogether(animatorArr);
             this.checkBoxAnimation.setDuration(180L);
             this.checkBoxAnimation.start();

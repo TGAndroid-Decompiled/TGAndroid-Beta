@@ -8,9 +8,11 @@ import android.graphics.Paint;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.BitmapShaderTools;
+
 public class VoIPBackgroundProvider {
     private final Paint darkPaint;
     private final BitmapShaderTools darkShaderTools;
@@ -52,8 +54,9 @@ public class VoIPBackgroundProvider {
     }
 
     public void invalidateViews() {
-        for (View view : this.views) {
-            view.invalidate();
+        Iterator<View> it = this.views.iterator();
+        while (it.hasNext()) {
+            it.next().invalidate();
         }
     }
 
@@ -157,12 +160,13 @@ public class VoIPBackgroundProvider {
     }
 
     public void setLightTranslation(float f, float f2) {
-        float height = (this.totalHeight * 1.12f) / this.lightShaderTools.getBitmap().getHeight();
         int i = this.totalHeight;
-        float f3 = -f;
-        float f4 = -f2;
-        this.lightShaderTools.setMatrix(f3 - (((i * 1.12f) - this.totalWidth) / 2.0f), f4 - (((i * 1.12f) - i) / 2.0f), height, this.degree);
-        this.revealShaderTools.setBounds(f3, f4, this.totalWidth - f, this.totalHeight - f2);
+        float f3 = ((i * 1.12f) - this.totalWidth) / 2.0f;
+        float f4 = ((i * 1.12f) - i) / 2.0f;
+        float f5 = -f;
+        float f6 = -f2;
+        this.lightShaderTools.setMatrix(f5 - f3, f6 - f4, (this.totalHeight * 1.12f) / this.lightShaderTools.getBitmap().getHeight(), this.degree);
+        this.revealShaderTools.setBounds(f5, f6, this.totalWidth - f, this.totalHeight - f2);
     }
 
     public void setDarkTranslation(float f, float f2) {

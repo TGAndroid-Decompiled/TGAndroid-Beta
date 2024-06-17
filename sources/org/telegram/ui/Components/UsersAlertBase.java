@@ -39,6 +39,7 @@ import org.telegram.ui.Cells.GroupCallUserCell;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UsersAlertBase;
+
 public class UsersAlertBase extends BottomSheet {
     private int backgroundColor;
     private float colorProgress;
@@ -329,13 +330,13 @@ public class UsersAlertBase extends BottomSheet {
         }
 
         public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-            if (keyEvent != null) {
-                if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                    AndroidUtilities.hideKeyboard(this.searchEditText);
-                    return false;
-                }
+            if (keyEvent == null) {
                 return false;
             }
+            if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
+                return false;
+            }
+            AndroidUtilities.hideKeyboard(this.searchEditText);
             return false;
         }
 
@@ -447,7 +448,7 @@ public class UsersAlertBase extends BottomSheet {
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
         animatorSet2.playTogether(animatorArr);
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
@@ -491,8 +492,9 @@ public class UsersAlertBase extends BottomSheet {
                                 childAt = ((GraySectionCell) childAt).getTextView();
                             }
                             childAt.setAlpha(0.0f);
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay((int) ((Math.min(UsersAlertBase.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / UsersAlertBase.this.listView.getMeasuredHeight()) * 100.0f));
+                            int min = (int) ((Math.min(UsersAlertBase.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / UsersAlertBase.this.listView.getMeasuredHeight()) * 100.0f);
+                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                            ofFloat.setStartDelay(min);
                             ofFloat.setDuration(200L);
                             animatorSet.playTogether(ofFloat);
                         }

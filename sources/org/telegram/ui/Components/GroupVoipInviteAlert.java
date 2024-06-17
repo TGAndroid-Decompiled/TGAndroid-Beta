@@ -47,6 +47,7 @@ import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
 import org.telegram.ui.Components.GroupVoipInviteAlert;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class GroupVoipInviteAlert extends UsersAlertBase {
     private int addNewRow;
     private ArrayList<TLObject> contacts;
@@ -334,12 +335,12 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             while (true) {
                 if (i >= tLRPC$TL_channels_channelParticipants.participants.size()) {
                     break;
-                } else if (MessageObject.getPeerId(tLRPC$TL_channels_channelParticipants.participants.get(i).peer) == clientUserId) {
+                }
+                if (MessageObject.getPeerId(tLRPC$TL_channels_channelParticipants.participants.get(i).peer) == clientUserId) {
                     tLRPC$TL_channels_channelParticipants.participants.remove(i);
                     break;
-                } else {
-                    i++;
                 }
+                i++;
             }
             this.delayResults--;
             if (tLRPC$TL_channels_getParticipants.filter instanceof TLRPC$TL_channelParticipantsContacts) {
@@ -436,16 +437,17 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 return 1;
             }
             return i2 < i3 ? -1 : 0;
-        } else if (i2 < 0 && i3 < 0) {
+        }
+        if (i2 < 0 && i3 < 0) {
             if (i2 > i3) {
                 return 1;
             }
             return i2 < i3 ? -1 : 0;
-        } else if ((i2 >= 0 || i3 <= 0) && (i2 != 0 || i3 == 0)) {
-            return ((i3 >= 0 || i2 <= 0) && (i3 != 0 || i2 == 0)) ? 0 : 1;
-        } else {
-            return -1;
         }
+        if ((i2 >= 0 || i3 <= 0) && (i2 != 0 || i3 == 0)) {
+            return ((i3 >= 0 || i2 <= 0) && (i3 != 0 || i2 == 0)) ? 0 : 1;
+        }
+        return -1;
     }
 
     public class SearchAdapter extends RecyclerListView.SelectionAdapter {
@@ -795,29 +797,35 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 if (user != null) {
                     manageChatUserCell.setCustomImageVisible(GroupVoipInviteAlert.this.invitedUsers.contains(Long.valueOf(user.id)));
                     manageChatUserCell.setData(user, null, null, i != i2 - 1);
+                    return;
                 }
-            } else if (itemViewType == 1) {
+                return;
+            }
+            if (itemViewType == 1) {
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 if (i == GroupVoipInviteAlert.this.addNewRow) {
                     manageChatTextCell.setText(LocaleController.getString("VoipGroupCopyInviteLink", R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, (!GroupVoipInviteAlert.this.loadingUsers || GroupVoipInviteAlert.this.firstLoaded) && GroupVoipInviteAlert.this.membersHeaderRow == -1 && !GroupVoipInviteAlert.this.participants.isEmpty());
-                }
-            } else if (itemViewType != 2) {
-            } else {
-                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
-                if (i != GroupVoipInviteAlert.this.membersHeaderRow) {
-                    if (i == GroupVoipInviteAlert.this.contactsHeaderRow) {
-                        if (GroupVoipInviteAlert.this.showContacts) {
-                            graySectionCell.setText(LocaleController.getString("YourContactsToInvite", R.string.YourContactsToInvite));
-                            return;
-                        } else {
-                            graySectionCell.setText(LocaleController.getString("GroupContacts", R.string.GroupContacts));
-                            return;
-                        }
-                    }
                     return;
                 }
-                graySectionCell.setText(LocaleController.getString("ChannelOtherMembers", R.string.ChannelOtherMembers));
+                return;
             }
+            if (itemViewType != 2) {
+                return;
+            }
+            GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+            if (i != GroupVoipInviteAlert.this.membersHeaderRow) {
+                if (i == GroupVoipInviteAlert.this.contactsHeaderRow) {
+                    if (GroupVoipInviteAlert.this.showContacts) {
+                        graySectionCell.setText(LocaleController.getString("YourContactsToInvite", R.string.YourContactsToInvite));
+                        return;
+                    } else {
+                        graySectionCell.setText(LocaleController.getString("GroupContacts", R.string.GroupContacts));
+                        return;
+                    }
+                }
+                return;
+            }
+            graySectionCell.setText(LocaleController.getString("ChannelOtherMembers", R.string.ChannelOtherMembers));
         }
 
         @Override
@@ -830,22 +838,22 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
 
         @Override
         public int getItemViewType(int i) {
-            if ((i < GroupVoipInviteAlert.this.participantsStartRow || i >= GroupVoipInviteAlert.this.participantsEndRow) && (i < GroupVoipInviteAlert.this.contactsStartRow || i >= GroupVoipInviteAlert.this.contactsEndRow)) {
-                if (i == GroupVoipInviteAlert.this.addNewRow) {
-                    return 1;
-                }
-                if (i == GroupVoipInviteAlert.this.membersHeaderRow || i == GroupVoipInviteAlert.this.contactsHeaderRow) {
-                    return 2;
-                }
-                if (i == GroupVoipInviteAlert.this.emptyRow) {
-                    return 3;
-                }
-                if (i == GroupVoipInviteAlert.this.lastRow) {
-                    return 4;
-                }
-                return i == GroupVoipInviteAlert.this.flickerProgressRow ? 5 : 0;
+            if ((i >= GroupVoipInviteAlert.this.participantsStartRow && i < GroupVoipInviteAlert.this.participantsEndRow) || (i >= GroupVoipInviteAlert.this.contactsStartRow && i < GroupVoipInviteAlert.this.contactsEndRow)) {
+                return 0;
             }
-            return 0;
+            if (i == GroupVoipInviteAlert.this.addNewRow) {
+                return 1;
+            }
+            if (i == GroupVoipInviteAlert.this.membersHeaderRow || i == GroupVoipInviteAlert.this.contactsHeaderRow) {
+                return 2;
+            }
+            if (i == GroupVoipInviteAlert.this.emptyRow) {
+                return 3;
+            }
+            if (i == GroupVoipInviteAlert.this.lastRow) {
+                return 4;
+            }
+            return i == GroupVoipInviteAlert.this.flickerProgressRow ? 5 : 0;
         }
 
         public TLObject getItem(int i) {

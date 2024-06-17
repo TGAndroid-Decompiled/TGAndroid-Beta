@@ -1,6 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
+
 public final class LaunchActivity$$ExternalSyntheticLambda112 implements Utilities.Callback {
     public final LaunchActivity f$0;
 

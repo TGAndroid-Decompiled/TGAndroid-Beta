@@ -11,6 +11,7 @@ import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class CheckBoxSquare extends View {
     private boolean attachedToWindow;
     private ObjectAnimator checkAnimator;
@@ -107,10 +108,10 @@ public class CheckBoxSquare extends View {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-            return;
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        cancelCheckAnimator();
-        setProgress(z ? 1.0f : 0.0f);
     }
 
     public void setDisabled(boolean z) {

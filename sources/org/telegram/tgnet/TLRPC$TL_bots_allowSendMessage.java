@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_bots_allowSendMessage extends TLObject {
     public TLRPC$InputUser bot;
 

@@ -26,6 +26,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputBusinessChatLink;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.BulletinFactory;
+
 public class BusinessLinksController {
     private static volatile BusinessLinksController[] Instance = new BusinessLinksController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -90,24 +91,24 @@ public class BusinessLinksController {
                         BusinessLinksController.this.lambda$load$1(messagesStorage, z2);
                     }
                 });
-                return;
-            }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-                @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z3) {
-                    return TLRPC$TL_account_businessChatLinks.TLdeserialize(abstractSerializedData, i, z3);
-                }
+            } else {
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
+                    @Override
+                    public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z3) {
+                        return TLRPC$TL_account_businessChatLinks.TLdeserialize(abstractSerializedData, i, z3);
+                    }
 
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(1869667809);
-                }
-            }, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BusinessLinksController.this.lambda$load$3(tLObject, tLRPC$TL_error);
-                }
-            });
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+                        abstractSerializedData.writeInt32(1869667809);
+                    }
+                }, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        BusinessLinksController.this.lambda$load$3(tLObject, tLRPC$TL_error);
+                    }
+                });
+            }
         }
     }
 
@@ -355,12 +356,9 @@ public class BusinessLinksController {
         for (int i = 0; i < this.links.size(); i++) {
             TLRPC$TL_businessChatLink tLRPC$TL_businessChatLink = this.links.get(i);
             if (!TextUtils.equals(tLRPC$TL_businessChatLink.link, str)) {
-                String str2 = tLRPC$TL_businessChatLink.link;
-                if (!TextUtils.equals(str2, "https://" + str)) {
-                    String str3 = tLRPC$TL_businessChatLink.link;
-                    if (!TextUtils.equals(str3, "https://t.me/m/" + str)) {
-                        String str4 = tLRPC$TL_businessChatLink.link;
-                        if (!TextUtils.equals(str4, "tg://message?slug=" + str)) {
+                if (!TextUtils.equals(tLRPC$TL_businessChatLink.link, "https://" + str)) {
+                    if (!TextUtils.equals(tLRPC$TL_businessChatLink.link, "https://t.me/m/" + str)) {
+                        if (!TextUtils.equals(tLRPC$TL_businessChatLink.link, "tg://message?slug=" + str)) {
                         }
                     }
                 }

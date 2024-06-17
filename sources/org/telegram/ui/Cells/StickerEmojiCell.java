@@ -35,6 +35,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.RecyclerListViewWithOverlayDraw;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
+
 public class StickerEmojiCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, RecyclerListViewWithOverlayDraw.OverlayView {
     private static AccelerateInterpolator interpolator = new AccelerateInterpolator(0.5f);
     private float alpha;
@@ -146,17 +147,16 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
 
     public MessageObject.SendAnimationData getSendAnimationData() {
         ImageReceiver imageReceiver = this.imageView;
-        if (imageReceiver.hasNotThumb()) {
-            MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-            int[] iArr = new int[2];
-            getLocationInWindow(iArr);
-            sendAnimationData.x = imageReceiver.getCenterX() + iArr[0];
-            sendAnimationData.y = imageReceiver.getCenterY() + iArr[1];
-            sendAnimationData.width = imageReceiver.getImageWidth();
-            sendAnimationData.height = imageReceiver.getImageHeight();
-            return sendAnimationData;
+        if (!imageReceiver.hasNotThumb()) {
+            return null;
         }
-        return null;
+        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
+        getLocationInWindow(new int[2]);
+        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
+        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
+        sendAnimationData.width = imageReceiver.getImageWidth();
+        sendAnimationData.height = imageReceiver.getImageHeight();
+        return sendAnimationData;
     }
 
     public void setSticker(TLRPC$Document tLRPC$Document, SendMessagesHelper.ImportingSticker importingSticker, Object obj, String str, boolean z) {
@@ -296,9 +296,9 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         if (this.drawInParentView) {
             this.imageView.setInvalidateAll(z3);
             this.imageView.setParentView((View) getParent());
-            return;
+        } else {
+            this.imageView.setParentView(this);
         }
-        this.imageView.setParentView(this);
     }
 
     private void updatePremiumStatus(boolean z) {

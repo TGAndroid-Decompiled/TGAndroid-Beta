@@ -34,6 +34,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StickerImageView;
 import org.telegram.ui.UsersSelectActivity;
+
 public class AutoDeleteMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     RadioCellInternal afterOneDay;
     RadioCellInternal afterOneMonth;
@@ -75,7 +76,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    AutoDeleteMessagesActivity.this.finishFragment();
+                    AutoDeleteMessagesActivity.this.lambda$onBackPressed$303();
                 }
             }
         });
@@ -287,12 +288,12 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         while (true) {
             if (i4 >= this.arrayList.size()) {
                 break;
-            } else if (i < this.arrayList.get(i4).time) {
+            }
+            if (i < this.arrayList.get(i4).time) {
                 size = i4 + 1;
                 break;
-            } else {
-                i4++;
             }
+            i4++;
         }
         RadioCellInternal radioCellInternal = new RadioCellInternal(this, getContext());
         radioCellInternal.custom = true;

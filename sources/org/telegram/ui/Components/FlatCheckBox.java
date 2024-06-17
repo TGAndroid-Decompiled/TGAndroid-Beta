@@ -11,6 +11,7 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class FlatCheckBox extends View {
     int HEIGHT;
     int INNER_PADDING;

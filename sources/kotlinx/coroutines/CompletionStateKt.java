@@ -7,12 +7,13 @@ import kotlin.coroutines.Continuation;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlin.jvm.functions.Function1;
 import kotlinx.coroutines.internal.StackTraceRecoveryKt;
+
 public final class CompletionStateKt {
     public static Object toState$default(Object obj, Function1 function1, int i, Object obj2) {
         if ((i & 1) != 0) {
             function1 = null;
         }
-        return toState(obj, function1);
+        return toState(obj, (Function1<? super Throwable, Unit>) function1);
     }
 
     public static final <T> Object toState(Object obj, Function1<? super Throwable, Unit> function1) {

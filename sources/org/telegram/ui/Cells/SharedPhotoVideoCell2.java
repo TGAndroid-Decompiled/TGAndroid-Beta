@@ -42,6 +42,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
+
 public class SharedPhotoVideoCell2 extends FrameLayout {
     static boolean lastAutoDownload;
     static long lastUpdateDownloadSettingsTime;
@@ -301,10 +302,10 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             int i = tL_stories$StoryViews.views_count;
             this.drawViews = i > 0;
             this.viewsText.setText(AndroidUtilities.formatWholeNumber(i, 0), true);
-            return;
+        } else {
+            this.drawViews = false;
+            this.viewsText.setText("", false);
         }
-        this.drawViews = false;
-        this.viewsText.setText("", false);
     }
 
     public boolean viewsOnLeft(float f) {
@@ -480,14 +481,13 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         if (messageObject != null && messageObject.hasMediaSpoilers() && SpoilerEffect2.supports()) {
             if (this.mediaSpoilerEffect2 == null) {
                 this.mediaSpoilerEffect2 = SpoilerEffect2.getInstance(this);
-                return;
             }
-            return;
-        }
-        SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
-        if (spoilerEffect2 != null) {
-            spoilerEffect2.detach(this);
-            this.mediaSpoilerEffect2 = null;
+        } else {
+            SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+            if (spoilerEffect2 != null) {
+                spoilerEffect2.detach(this);
+                this.mediaSpoilerEffect2 = null;
+            }
         }
     }
 
@@ -631,12 +631,12 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
 
         public String getFilterString(int i) {
             String str = this.imageFilters.get(i);
-            if (str == null) {
-                String str2 = i + "_" + i + "_isc";
-                this.imageFilters.put(i, str2);
-                return str2;
+            if (str != null) {
+                return str;
             }
-            return str;
+            String str2 = i + "_" + i + "_isc";
+            this.imageFilters.put(i, str2);
+            return str2;
         }
 
         public Bitmap getPrivacyBitmap(Context context, int i) {

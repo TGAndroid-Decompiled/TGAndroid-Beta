@@ -5,6 +5,7 @@ import android.app.AppOpsManager;
 import android.content.Intent;
 import android.os.Process;
 import android.text.TextUtils;
+
 public class XiaomiUtilities {
     public static final int OP_ACCESS_XIAOMI_ACCOUNT = 10015;
     public static final int OP_AUTO_START = 10008;
@@ -37,8 +38,9 @@ public class XiaomiUtilities {
     @TargetApi(19)
     public static boolean isCustomPermissionGranted(int i) {
         try {
+            AppOpsManager appOpsManager = (AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops");
             Class cls = Integer.TYPE;
-            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops"), Integer.valueOf(i), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
+            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke(appOpsManager, Integer.valueOf(i), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
         } catch (Exception e) {
             FileLog.e(e);
             return true;
@@ -47,14 +49,14 @@ public class XiaomiUtilities {
 
     public static int getMIUIMajorVersion() {
         String systemProperty = AndroidUtilities.getSystemProperty("ro.miui.ui.version.name");
-        if (systemProperty != null) {
-            try {
-                return Integer.parseInt(systemProperty.replace("V", ""));
-            } catch (NumberFormatException unused) {
-                return -1;
-            }
+        if (systemProperty == null) {
+            return -1;
         }
-        return -1;
+        try {
+            return Integer.parseInt(systemProperty.replace("V", ""));
+        } catch (NumberFormatException unused) {
+            return -1;
+        }
     }
 
     public static Intent getPermissionManagerIntent() {

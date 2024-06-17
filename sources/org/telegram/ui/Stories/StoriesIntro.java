@@ -28,6 +28,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
+
 @SuppressLint({"ViewConstructor"})
 public class StoriesIntro extends FrameLayout {
     private int current;
@@ -256,22 +257,24 @@ public class StoriesIntro extends FrameLayout {
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
             int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
             int dp2 = AndroidUtilities.dp(36.0f);
             int i3 = dp2 / 2;
             int i4 = dp - i3;
-            int measuredHeight = (getMeasuredHeight() / 2) - i3;
-            this.lottieDrawable.setBounds(i4, measuredHeight, i4 + dp2, dp2 + measuredHeight);
+            int i5 = measuredHeight - i3;
+            this.lottieDrawable.setBounds(i4, i5, i4 + dp2, dp2 + i5);
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
             int dp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
             int i = dp2 / 2;
             int i2 = dp - i;
-            int measuredHeight = (getMeasuredHeight() / 2) - i;
-            this.lottieDrawable.setBounds(i2, measuredHeight, i2 + dp2, dp2 + measuredHeight);
+            int i3 = measuredHeight - i;
+            this.lottieDrawable.setBounds(i2, i3, i2 + dp2, dp2 + i3);
             this.lottieDrawable.draw(canvas);
             if (this.progress > 0.0f) {
                 float dpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);

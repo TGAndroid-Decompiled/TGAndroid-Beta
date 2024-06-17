@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_bots_reorderUsernames extends TLObject {
     public TLRPC$InputUser bot;
     public ArrayList<String> order = new ArrayList<>();

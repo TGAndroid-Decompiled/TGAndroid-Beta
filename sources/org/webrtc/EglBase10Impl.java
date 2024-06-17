@@ -12,7 +12,8 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 import org.webrtc.EglBase;
 import org.webrtc.EglBase10;
-class EglBase10Impl implements EglBase10 {
+
+public class EglBase10Impl implements EglBase10 {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final String TAG = "EglBase10Impl";
     private final EGL10 egl;
@@ -110,16 +111,16 @@ class EglBase10Impl implements EglBase10 {
                 return;
             }
             throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
-        } else if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
-            throw new RuntimeException("Already has an EGLSurface");
-        } else {
-            EGLSurface eglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
-            this.eglSurface = eglCreateWindowSurface2;
-            if (eglCreateWindowSurface2 != EGL10.EGL_NO_SURFACE) {
-                return;
-            }
-            throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
         }
+        if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("Already has an EGLSurface");
+        }
+        EGLSurface eglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
+        this.eglSurface = eglCreateWindowSurface2;
+        if (eglCreateWindowSurface2 != EGL10.EGL_NO_SURFACE) {
+            return;
+        }
+        throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
     @Override
@@ -289,15 +290,15 @@ class EglBase10Impl implements EglBase10 {
         int[] iArr2 = new int[1];
         if (!egl10.eglChooseConfig(eGLDisplay, iArr, eGLConfigArr, 1, iArr2)) {
             throw new RuntimeException("eglChooseConfig failed: 0x" + Integer.toHexString(egl10.eglGetError()));
-        } else if (iArr2[0] <= 0) {
-            throw new RuntimeException("Unable to find any matching EGL config");
-        } else {
-            EGLConfig eGLConfig = eGLConfigArr[0];
-            if (eGLConfig != null) {
-                return eGLConfig;
-            }
-            throw new RuntimeException("eglChooseConfig returned null");
         }
+        if (iArr2[0] <= 0) {
+            throw new RuntimeException("Unable to find any matching EGL config");
+        }
+        EGLConfig eGLConfig = eGLConfigArr[0];
+        if (eGLConfig != null) {
+            return eGLConfig;
+        }
+        throw new RuntimeException("eglChooseConfig returned null");
     }
 
     private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {

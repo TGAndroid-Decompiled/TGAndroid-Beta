@@ -30,6 +30,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.voip.EndCloseLayout;
+
 public class EndCloseLayout extends FrameLayout {
     private final EndCloseView endCloseView;
     private boolean isClosedState;
@@ -94,11 +95,16 @@ public class EndCloseLayout extends FrameLayout {
                 if (createAnimator != null) {
                     animatorSet.playTogether(createAnimator);
                 }
-                Integer num = (Integer) transitionValues2.values.get("decline_call_alpha_end_close");
-                Integer num2 = (Integer) transitionValues.values.get("close_text_alpha_end_close");
-                Integer num3 = (Integer) transitionValues2.values.get("close_text_alpha_end_close");
+                Integer num = (Integer) transitionValues.values.get("back_color_end_close");
+                Integer num2 = (Integer) transitionValues2.values.get("back_color_end_close");
+                Integer num3 = (Integer) transitionValues.values.get("round_end_close");
+                Integer num4 = (Integer) transitionValues2.values.get("round_end_close");
+                Integer num5 = (Integer) transitionValues.values.get("decline_call_alpha_end_close");
+                Integer num6 = (Integer) transitionValues2.values.get("decline_call_alpha_end_close");
+                Integer num7 = (Integer) transitionValues.values.get("close_text_alpha_end_close");
+                Integer num8 = (Integer) transitionValues2.values.get("close_text_alpha_end_close");
                 ValueAnimator valueAnimator = new ValueAnimator();
-                valueAnimator.setIntValues(((Integer) transitionValues.values.get("back_color_end_close")).intValue(), ((Integer) transitionValues2.values.get("back_color_end_close")).intValue());
+                valueAnimator.setIntValues(num.intValue(), num2.intValue());
                 valueAnimator.setEvaluator(new ArgbEvaluator());
                 valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -107,7 +113,7 @@ public class EndCloseLayout extends FrameLayout {
                     }
                 });
                 animatorSet.playTogether(valueAnimator);
-                ValueAnimator ofInt = ValueAnimator.ofInt(((Integer) transitionValues.values.get("round_end_close")).intValue(), ((Integer) transitionValues2.values.get("round_end_close")).intValue());
+                ValueAnimator ofInt = ValueAnimator.ofInt(num3.intValue(), num4.intValue());
                 ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
@@ -115,7 +121,7 @@ public class EndCloseLayout extends FrameLayout {
                     }
                 });
                 animatorSet.playTogether(ofInt);
-                ValueAnimator ofInt2 = ValueAnimator.ofInt(((Integer) transitionValues.values.get("decline_call_alpha_end_close")).intValue(), num.intValue(), num.intValue(), num.intValue(), num.intValue(), num.intValue(), num.intValue());
+                ValueAnimator ofInt2 = ValueAnimator.ofInt(num5.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue());
                 ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
@@ -123,7 +129,7 @@ public class EndCloseLayout extends FrameLayout {
                     }
                 });
                 animatorSet.playTogether(ofInt2);
-                ValueAnimator ofInt3 = ValueAnimator.ofInt(num2.intValue(), num2.intValue(), (int) (num3.intValue() * 0.25f), (int) (num3.intValue() * 0.5f), (int) (num3.intValue() * 0.75f), num3.intValue());
+                ValueAnimator ofInt3 = ValueAnimator.ofInt(num7.intValue(), num7.intValue(), (int) (num8.intValue() * 0.25f), (int) (num8.intValue() * 0.5f), (int) (num8.intValue() * 0.75f), num8.intValue());
                 ofInt3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
@@ -280,8 +286,7 @@ public class EndCloseLayout extends FrameLayout {
             RectF rectF = this.backgroundRect;
             int i = this.round;
             canvas.drawRoundRect(rectF, i, i, this.backgroundPaint);
-            Drawable drawable = this.callDeclineDrawable;
-            drawable.setBounds((int) (width - (drawable.getIntrinsicWidth() / 2.0f)), (int) (height - (this.callDeclineDrawable.getIntrinsicHeight() / 2)), (int) ((this.callDeclineDrawable.getIntrinsicWidth() / 2) + width), (int) ((this.callDeclineDrawable.getIntrinsicHeight() / 2) + height));
+            this.callDeclineDrawable.setBounds((int) (width - (r3.getIntrinsicWidth() / 2.0f)), (int) (height - (this.callDeclineDrawable.getIntrinsicHeight() / 2)), (int) ((this.callDeclineDrawable.getIntrinsicWidth() / 2) + width), (int) ((this.callDeclineDrawable.getIntrinsicHeight() / 2) + height));
             this.callDeclineDrawable.setAlpha(this.callDeclineAlpha);
             this.callDeclineDrawable.draw(canvas);
             this.textPaintMask.setAlpha(this.closeTextAlpha);

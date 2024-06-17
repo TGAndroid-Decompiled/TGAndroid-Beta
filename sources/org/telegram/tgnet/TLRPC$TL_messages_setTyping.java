@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_setTyping extends TLObject {
     public TLRPC$SendMessageAction action;
     public int flags;

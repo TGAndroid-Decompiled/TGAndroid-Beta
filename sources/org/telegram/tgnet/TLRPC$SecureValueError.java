@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$SecureValueError extends TLObject {
     public static TLRPC$SecureValueError TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$SecureValueError tLRPC$TL_secureValueErrorReverseSide;

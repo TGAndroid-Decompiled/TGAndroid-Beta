@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_langpack_getLangPack extends TLObject {
     public String lang_code;
 

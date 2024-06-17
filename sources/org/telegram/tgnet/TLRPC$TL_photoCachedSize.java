@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_photoCachedSize extends TLRPC$PhotoSize {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

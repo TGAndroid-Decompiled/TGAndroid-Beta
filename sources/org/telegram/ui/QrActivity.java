@@ -92,6 +92,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.ThemeSmallPreviewView;
 import org.telegram.ui.QrActivity;
+
 public class QrActivity extends BaseFragment {
     private static List<EmojiThemes> cachedThemes;
     private static boolean firstOpen;
@@ -180,7 +181,7 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        finishFragment();
+        lambda$onBackPressed$303();
     }
 
     public void lambda$createView$2(EmojiThemes emojiThemes, int i) {
@@ -243,9 +244,11 @@ public class QrActivity extends BaseFragment {
             if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowAll) {
                 c = 0;
                 break;
-            } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueDisallowAll) {
+            }
+            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueDisallowAll) {
                 break;
-            } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowContacts) {
+            }
+            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowContacts) {
                 c = 1;
                 break;
             }
@@ -337,10 +340,11 @@ public class QrActivity extends BaseFragment {
             if (i == arrayList.size()) {
                 i = -1;
                 break;
-            } else if (((ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i)).chatTheme.getEmoticon().equals(this.currentTheme.getEmoticon())) {
-                this.themesViewController.selectedItem = (ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i);
-                break;
             } else {
+                if (((ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i)).chatTheme.getEmoticon().equals(this.currentTheme.getEmoticon())) {
+                    this.themesViewController.selectedItem = (ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i);
+                    break;
+                }
                 i++;
             }
         }
@@ -356,8 +360,7 @@ public class QrActivity extends BaseFragment {
             if (bitmap == null) {
                 bitmap = Bitmap.createBitmap(this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bitmap);
-                ArrayMap<String, int[]> arrayMap = qrColorsMap;
-                int[] iArr = arrayMap.get(emojiThemes.emoji + "n");
+                int[] iArr = qrColorsMap.get(emojiThemes.emoji + "n");
                 if (iArr != null) {
                     if (this.tempMotionDrawable == null) {
                         this.tempMotionDrawable = new MotionBackgroundDrawable(0, 0, 0, 0, true);
@@ -808,7 +811,8 @@ public class QrActivity extends BaseFragment {
             BitmapShader bitmapShader2 = new BitmapShader(bitmap2, tileMode2, tileMode2);
             this.gradientTextShader = bitmapShader2;
             paint.setShader(bitmapShader);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, false) {
+            boolean z = false;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(z, true, z) {
                 @Override
                 public void invalidateSelf() {
                     QrView.this.invalidate();
@@ -861,8 +865,9 @@ public class QrActivity extends BaseFragment {
             }
             Paint paint = new Paint(1);
             paint.setColor(-1);
+            float dp = AndroidUtilities.dp(4.0f);
             float f = SHADOW_SIZE;
-            paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, f, AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY);
+            paint.setShadowLayer(dp, 0.0f, f, AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY);
             this.backgroundBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(this.backgroundBitmap);
             float f2 = i;
@@ -888,7 +893,6 @@ public class QrActivity extends BaseFragment {
         }
 
         private void drawLoading(Canvas canvas) {
-            float f;
             QrCenterChangedListener qrCenterChangedListener;
             if (this.loadingMatrix != null) {
                 int width = (getWidth() - AndroidUtilities.dp(60.0f)) / 33;
@@ -912,12 +916,12 @@ public class QrActivity extends BaseFragment {
                 canvas.restore();
                 canvas.restore();
                 float width3 = getWidth() / 2.0f;
-                float f2 = i2;
-                float f3 = width2;
-                float width4 = ((getWidth() / 2.0f) + f2) - f3;
-                float round = ((Math.round(((i - 32) / 4.65f) / f) * width) / 2) * 0.75f;
+                float f = i2;
+                float f2 = width2;
+                float width4 = ((getWidth() / 2.0f) + f) - f2;
+                float round = ((Math.round(((i - 32) / 4.65f) / r6) * width) / 2) * 0.75f;
                 canvas.drawCircle(width3, width4, round, this.bitmapGradientPaint);
-                QRCodeWriter.drawSideQuads(canvas, f3, f2, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
+                QRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
                 if (this.logoCenterSet || (qrCenterChangedListener = this.centerChangedListener) == null) {
                     return;
                 }
@@ -1429,12 +1433,13 @@ public class QrActivity extends BaseFragment {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            FrameLayout frameLayout = (FrameLayout) this.window.getDecorView();
-            final Bitmap createBitmap = Bitmap.createBitmap(frameLayout.getWidth(), frameLayout.getHeight(), Bitmap.Config.ARGB_8888);
+            FrameLayout frameLayout = (FrameLayout) this.fragment.getParentActivity().getWindow().getDecorView();
+            FrameLayout frameLayout2 = (FrameLayout) this.window.getDecorView();
+            final Bitmap createBitmap = Bitmap.createBitmap(frameLayout2.getWidth(), frameLayout2.getHeight(), Bitmap.Config.ARGB_8888);
             final Canvas canvas = new Canvas(createBitmap);
             this.darkThemeView.setAlpha(0.0f);
-            ((FrameLayout) this.fragment.getParentActivity().getWindow().getDecorView()).draw(canvas);
             frameLayout.draw(canvas);
+            frameLayout2.draw(canvas);
             this.darkThemeView.setAlpha(1.0f);
             final Paint paint = new Paint(1);
             paint.setColor(-16777216);
@@ -1454,13 +1459,13 @@ public class QrActivity extends BaseFragment {
                 @Override
                 protected void onDraw(Canvas canvas2) {
                     super.onDraw(canvas2);
-                    if (z) {
+                    if (!z) {
+                        canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemeListViewController.this.changeDayNightViewProgress), paint2);
+                    } else {
                         if (ThemeListViewController.this.changeDayNightViewProgress > 0.0f) {
                             canvas.drawCircle(measuredWidth, measuredHeight, max * ThemeListViewController.this.changeDayNightViewProgress, paint);
                         }
                         canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
-                    } else {
-                        canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemeListViewController.this.changeDayNightViewProgress), paint2);
                     }
                     canvas2.save();
                     canvas2.translate(f, f2);
@@ -1493,7 +1498,7 @@ public class QrActivity extends BaseFragment {
             this.changeDayNightViewAnimator.setDuration(400L);
             this.changeDayNightViewAnimator.setInterpolator(Easings.easeInOutQuad);
             this.changeDayNightViewAnimator.start();
-            frameLayout.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
+            frameLayout2.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1561,8 +1566,9 @@ public class QrActivity extends BaseFragment {
             List<ChatThemeBottomSheet.ChatThemeItem> list;
             ChatThemeBottomSheet.Adapter adapter = this.adapter;
             if (adapter != null && (list = adapter.items) != null) {
-                for (ChatThemeBottomSheet.ChatThemeItem chatThemeItem : list) {
-                    chatThemeItem.themeIndex = this.forceDark ? 1 : 0;
+                Iterator<ChatThemeBottomSheet.ChatThemeItem> it = list.iterator();
+                while (it.hasNext()) {
+                    it.next().themeIndex = this.forceDark ? 1 : 0;
                 }
             }
             if (this.isLightDarkChangeAnimation) {

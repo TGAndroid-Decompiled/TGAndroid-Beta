@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateNewChannelMessage extends TLRPC$Update {
     public TLRPC$Message message;
     public int pts;

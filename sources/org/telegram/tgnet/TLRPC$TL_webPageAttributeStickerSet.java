@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_webPageAttributeStickerSet extends TLRPC$WebPageAttribute {
     public boolean emojis;
     public ArrayList<TLRPC$Document> stickers = new ArrayList<>();

@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 import org.telegram.messenger.LiteMode;
+
 public class LineBlobDrawable {
     private final float N;
     public float maxRadius;
@@ -84,15 +85,16 @@ public class LineBlobDrawable {
                 float[] fArr2 = this.radius;
                 float f11 = fArr2[i2] * (1.0f - f10);
                 float[] fArr3 = this.radiusNext;
-                float f12 = fArr[i];
-                float f13 = (fArr2[i] * (1.0f - f12)) + (fArr3[i] * f12);
-                float f14 = f3 - f;
-                float f15 = (f14 / f8) * i2;
-                float f16 = (f14 / f8) * f7;
-                float f17 = f15 + ((f16 - f15) / 2.0f);
-                float f18 = (1.0f - f6) * f5;
-                float f19 = ((f2 - f13) * f6) + f18;
-                this.path.cubicTo(f17, ((f2 - (f11 + (fArr3[i2] * f10))) * f6) + f18, f17, f19, f16, f19);
+                float f12 = f11 + (fArr3[i2] * f10);
+                float f13 = fArr[i];
+                float f14 = (fArr2[i] * (1.0f - f13)) + (fArr3[i] * f13);
+                float f15 = f3 - f;
+                float f16 = (f15 / f8) * i2;
+                float f17 = (f15 / f8) * f7;
+                float f18 = f16 + ((f17 - f16) / 2.0f);
+                float f19 = (1.0f - f6) * f5;
+                float f20 = ((f2 - f14) * f6) + f19;
+                this.path.cubicTo(f18, ((f2 - f12) * f6) + f19, f18, f20, f17, f20);
                 if (f7 == this.N) {
                     this.path.lineTo(f3, f4);
                 }

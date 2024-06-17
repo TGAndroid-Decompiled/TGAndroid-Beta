@@ -12,6 +12,7 @@ import org.webrtc.Camera1Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 import org.webrtc.VideoSink;
+
 public class Camera1Session implements CameraSession {
     private static final int NUMBER_OF_CAPTURE_BUFFERS = 3;
     private static final String TAG = "Camera1Session";
@@ -44,8 +45,7 @@ public class Camera1Session implements CameraSession {
         try {
             Camera open = Camera.open(i);
             if (open == null) {
-                CameraSession.FailureType failureType = CameraSession.FailureType.ERROR;
-                createSessionCallback.onFailure(failureType, "android.hardware.Camera.open returned null for camera id = " + i);
+                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, "android.hardware.Camera.open returned null for camera id = " + i);
                 return;
             }
             try {

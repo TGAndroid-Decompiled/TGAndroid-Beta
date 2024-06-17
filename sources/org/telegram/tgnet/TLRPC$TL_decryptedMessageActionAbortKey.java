@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_decryptedMessageActionAbortKey extends TLRPC$DecryptedMessageAction {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_bots_invokeWebViewCustomMethod extends TLObject {
     public TLRPC$InputUser bot;
     public String custom_method;

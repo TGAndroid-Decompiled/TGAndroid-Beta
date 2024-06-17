@@ -40,6 +40,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.IdenticonDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.URLSpanReplacement;
+
 public class IdenticonActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private AnimatorSet animatorSet;
     private int chat_id;
@@ -97,7 +98,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    IdenticonActivity.this.finishFragment();
+                    IdenticonActivity.this.lambda$onBackPressed$303();
                 }
             }
         });

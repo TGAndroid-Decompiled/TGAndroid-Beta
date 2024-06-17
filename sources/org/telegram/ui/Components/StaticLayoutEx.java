@@ -8,6 +8,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+
 public class StaticLayoutEx {
     public static Layout.Alignment[] alignments = Layout.Alignment.values();
 
@@ -44,11 +45,10 @@ public class StaticLayoutEx {
         try {
             if (i3 == 1) {
                 int indexOf = TextUtils.indexOf(charSequence3, "\n") - 1;
-                SpannableStringBuilder spannableStringBuilder = charSequence3;
                 if (indexOf > 0) {
-                    spannableStringBuilder = SpannableStringBuilder.valueOf(charSequence3.subSequence(0, indexOf)).append((CharSequence) "…");
+                    charSequence3 = SpannableStringBuilder.valueOf(charSequence3.subSequence(0, indexOf)).append((CharSequence) "…");
                 }
-                CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, textPaint, i2, TextUtils.TruncateAt.END);
+                CharSequence ellipsize = TextUtils.ellipsize(charSequence3, textPaint, i2, TextUtils.TruncateAt.END);
                 try {
                     return new StaticLayout(ellipsize, 0, ellipsize.length(), textPaint, i, alignment, f, f2, z);
                 } catch (Exception e) {
@@ -63,12 +63,12 @@ public class StaticLayoutEx {
                         if (i5 >= staticLayout2.getLineCount()) {
                             z3 = false;
                             break;
-                        } else if (staticLayout2.getLineRight(i5) > i) {
+                        }
+                        if (staticLayout2.getLineRight(i5) > i) {
                             z3 = true;
                             break;
-                        } else {
-                            i5++;
                         }
+                        i5++;
                     }
                     if (z3) {
                         staticLayout2 = StaticLayout.Builder.obtain(charSequence3, 0, charSequence.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(null).setEllipsizedWidth(i2).setMaxLines(i3).setBreakStrategy(0).setHyphenationFrequency(0).build();
@@ -101,12 +101,12 @@ public class StaticLayoutEx {
                 if (lineWidth < i2 - AndroidUtilities.dp(10.0f)) {
                     offsetForHorizontal += 3;
                 }
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence3.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
-                spannableStringBuilder2.append(charSequence2);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence3.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
+                spannableStringBuilder.append(charSequence2);
                 if (Build.VERSION.SDK_INT >= 23) {
-                    return StaticLayout.Builder.obtain(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(((AnimatedEmojiSpan[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), AnimatedEmojiSpan.class)).length > 0 ? truncateAt2 : truncateAt).setEllipsizedWidth(i2).setMaxLines(i4).setBreakStrategy(z2 ? 1 : 0).setHyphenationFrequency(0).build();
+                    return StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(((AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)).length > 0 ? truncateAt2 : truncateAt).setEllipsizedWidth(i2).setMaxLines(i4).setBreakStrategy(z2 ? 1 : 0).setHyphenationFrequency(0).build();
                 }
-                return new StaticLayout(spannableStringBuilder2, textPaint, i, alignment, f, f2, z);
+                return new StaticLayout(spannableStringBuilder, textPaint, i, alignment, f, f2, z);
             }
         } catch (Exception e3) {
             e = e3;

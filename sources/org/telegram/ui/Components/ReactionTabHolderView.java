@@ -25,6 +25,7 @@ import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+
 public class ReactionTabHolderView extends FrameLayout {
     private Paint bgPaint;
     private int count;

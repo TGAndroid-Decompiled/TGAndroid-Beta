@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$DialogPeer extends TLObject {
     public static TLRPC$DialogPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$DialogPeer tLRPC$TL_dialogPeer;

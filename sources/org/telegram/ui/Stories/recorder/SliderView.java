@@ -21,6 +21,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class SliderView extends View {
     private final Path clipPath;
     private final int currentType;

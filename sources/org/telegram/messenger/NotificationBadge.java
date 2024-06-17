@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import org.telegram.messenger.NotificationBadge;
+
 public class NotificationBadge {
     private static final List<Class<? extends Badger>> BADGERS;
     private static Badger badger;

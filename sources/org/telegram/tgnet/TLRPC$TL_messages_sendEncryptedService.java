@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_sendEncryptedService extends TLObject {
     public NativeByteBuffer data;
     public TLRPC$TL_inputEncryptedChat peer;

@@ -19,6 +19,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
@@ -51,6 +52,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.WebPlayerView;
 import org.webrtc.MediaStreamTrack;
+
 public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerDelegate, AudioManager.OnAudioFocusChangeListener {
     private static int lastContainerId = 4001;
     private boolean allowInlineAnimation;
@@ -184,7 +186,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 while (true) {
                     if (!matcher.find()) {
                         break;
-                    } else if (matcher.group(0).indexOf(48) == 40) {
+                    }
+                    if (matcher.group(0).indexOf(48) == 40) {
                         i2++;
                     } else {
                         i2--;
@@ -373,8 +376,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 if (matcher.find()) {
                     String group = matcher.group();
                     if (!this.codeLines.contains(group)) {
-                        ArrayList<String> arrayList = this.codeLines;
-                        arrayList.add(group + ";");
+                        this.codeLines.add(group + ";");
                     }
                     buildFunction(matcher.group(1).split(","), matcher.group(2));
                 }
@@ -434,8 +436,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             }
             try {
                 String encodeToString = Base64.encodeToString(("<script>" + str + "</script>").getBytes("UTF-8"), 0);
-                WebView webView = WebPlayerView.this.webView;
-                webView.loadUrl("data:text/html;charset=utf-8;base64," + encodeToString);
+                WebPlayerView.this.webView.loadUrl("data:text/html;charset=utf-8;base64," + encodeToString);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -443,17 +444,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
         public void lambda$doInBackground$0(String str) {
             String[] strArr = this.result;
-            String str2 = strArr[0];
-            String str3 = this.sig;
-            strArr[0] = str2.replace(str3, "/signature/" + str.substring(1, str.length() - 1));
+            strArr[0] = strArr[0].replace(this.sig, "/signature/" + str.substring(1, str.length() - 1));
             this.countDownLatch.countDown();
         }
 
         public void onInterfaceResult(String str) {
             String[] strArr = this.result;
-            String str2 = strArr[0];
-            String str3 = this.sig;
-            strArr[0] = str2.replace(str3, "/signature/" + str);
+            strArr[0] = strArr[0].replace(this.sig, "/signature/" + str);
             this.countDownLatch.countDown();
         }
 
@@ -474,10 +471,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -529,10 +528,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -585,10 +586,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -632,10 +635,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -691,10 +696,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -745,10 +752,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -841,7 +850,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 if (z2) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.currentAnimation = animatorSet2;
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 1.0f));
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) View.ALPHA, 1.0f));
                     this.currentAnimation.setDuration(150L);
                     this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -856,7 +865,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             } else if (z2) {
                 AnimatorSet animatorSet3 = new AnimatorSet();
                 this.currentAnimation = animatorSet3;
-                animatorSet3.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f));
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) View.ALPHA, 0.0f));
                 this.currentAnimation.setDuration(150L);
                 this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -992,16 +1001,16 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
             @Override
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                if (WebPlayerView.this.changingTextureView) {
-                    if (WebPlayerView.this.switchingInlineMode) {
-                        WebPlayerView.this.waitingForFirstTextureUpload = 2;
-                    }
-                    WebPlayerView.this.textureView.setSurfaceTexture(surfaceTexture);
-                    WebPlayerView.this.textureView.setVisibility(0);
-                    WebPlayerView.this.changingTextureView = false;
-                    return false;
+                if (!WebPlayerView.this.changingTextureView) {
+                    return true;
                 }
-                return true;
+                if (WebPlayerView.this.switchingInlineMode) {
+                    WebPlayerView.this.waitingForFirstTextureUpload = 2;
+                }
+                WebPlayerView.this.textureView.setSurfaceTexture(surfaceTexture);
+                WebPlayerView.this.textureView.setVisibility(0);
+                WebPlayerView.this.changingTextureView = false;
+                return false;
             }
 
             public class AnonymousClass1 implements ViewTreeObserver.OnPreDrawListener {
@@ -1341,9 +1350,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (this.currentBitmap != null) {
             this.textureImageView.setVisibility(0);
             this.textureImageView.setImageBitmap(this.currentBitmap);
-            return;
+        } else {
+            this.textureImageView.setImageDrawable(null);
         }
-        this.textureImageView.setImageDrawable(null);
     }
 
     public String getYoutubeId() {
@@ -1366,7 +1375,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
         if (this.videoPlayer.isPlaying() && i != 4) {
             updatePlayButton();
-        } else if (i == 4) {
+            return;
+        }
+        if (i == 4) {
             this.isCompleted = true;
             this.videoPlayer.pause();
             this.videoPlayer.seekTo(0L);
@@ -1500,8 +1511,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (this.hasAudioFocus) {
             return;
         }
+        AudioManager audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
         this.hasAudioFocus = true;
-        ((AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND)).requestAudioFocus(this, 3, 1);
+        audioManager.requestAudioFocus(this, 3, 1);
     }
 
     @Override
@@ -1521,12 +1533,17 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 updatePlayButton();
             }
             this.hasAudioFocus = false;
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             if (this.resumeAudioOnFocusGain) {
                 this.resumeAudioOnFocusGain = false;
                 this.videoPlayer.play();
+                return;
             }
-        } else if (i != -3 && i == -2 && this.videoPlayer.isPlaying()) {
+            return;
+        }
+        if (i != -3 && i == -2 && this.videoPlayer.isPlaying()) {
             this.resumeAudioOnFocusGain = true;
             this.videoPlayer.pause();
             updatePlayButton();
@@ -1542,10 +1559,10 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (!this.inFullscreen) {
             this.fullscreenButton.setImageResource(R.drawable.ic_gofullscreen);
             this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 5.0f));
-            return;
+        } else {
+            this.fullscreenButton.setImageResource(R.drawable.ic_outfullscreen);
+            this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 1.0f));
         }
-        this.fullscreenButton.setImageResource(R.drawable.ic_outfullscreen);
-        this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 1.0f));
     }
 
     public void updateShareButton() {
@@ -1598,9 +1615,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         updateShareButton();
         updateInlineButton();
         this.controlsView.invalidate();
-        int i = this.seekToTime;
-        if (i != -1) {
-            this.videoPlayer.seekTo(i * 1000);
+        if (this.seekToTime != -1) {
+            this.videoPlayer.seekTo(r0 * 1000);
         }
     }
 
@@ -1709,59 +1725,59 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public boolean canHandleUrl(String str) {
-        if (str != null) {
-            if (str.endsWith(".mp4")) {
+        if (str == null) {
+            return false;
+        }
+        if (str.endsWith(".mp4")) {
+            return true;
+        }
+        try {
+            Matcher matcher = youtubeIdRegex.matcher(str);
+            if ((matcher.find() ? matcher.group(1) : null) != null) {
                 return true;
             }
-            try {
-                Matcher matcher = youtubeIdRegex.matcher(str);
-                if ((matcher.find() ? matcher.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            try {
-                Matcher matcher2 = vimeoIdRegex.matcher(str);
-                if ((matcher2.find() ? matcher2.group(3) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-            try {
-                Matcher matcher3 = aparatIdRegex.matcher(str);
-                if ((matcher3.find() ? matcher3.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e3) {
-                FileLog.e(e3);
-            }
-            try {
-                Matcher matcher4 = twitchClipIdRegex.matcher(str);
-                if ((matcher4.find() ? matcher4.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e4) {
-                FileLog.e(e4);
-            }
-            try {
-                Matcher matcher5 = twitchStreamIdRegex.matcher(str);
-                if ((matcher5.find() ? matcher5.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e5) {
-                FileLog.e(e5);
-            }
-            try {
-                Matcher matcher6 = coubIdRegex.matcher(str);
-                return (matcher6.find() ? matcher6.group(1) : null) != null;
-            } catch (Exception e6) {
-                FileLog.e(e6);
-                return false;
-            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        return false;
+        try {
+            Matcher matcher2 = vimeoIdRegex.matcher(str);
+            if ((matcher2.find() ? matcher2.group(3) : null) != null) {
+                return true;
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        try {
+            Matcher matcher3 = aparatIdRegex.matcher(str);
+            if ((matcher3.find() ? matcher3.group(1) : null) != null) {
+                return true;
+            }
+        } catch (Exception e3) {
+            FileLog.e(e3);
+        }
+        try {
+            Matcher matcher4 = twitchClipIdRegex.matcher(str);
+            if ((matcher4.find() ? matcher4.group(1) : null) != null) {
+                return true;
+            }
+        } catch (Exception e4) {
+            FileLog.e(e4);
+        }
+        try {
+            Matcher matcher5 = twitchStreamIdRegex.matcher(str);
+            if ((matcher5.find() ? matcher5.group(1) : null) != null) {
+                return true;
+            }
+        } catch (Exception e5) {
+            FileLog.e(e5);
+        }
+        try {
+            Matcher matcher6 = coubIdRegex.matcher(str);
+            return (matcher6.find() ? matcher6.group(1) : null) != null;
+        } catch (Exception e6) {
+            FileLog.e(e6);
+            return false;
+        }
     }
 
     public void willHandle() {

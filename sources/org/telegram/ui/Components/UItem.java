@@ -18,6 +18,7 @@ import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.StatisticActivity;
+
 public class UItem extends AdapterWithDiffUtils.Item {
     private static LongSparseArray<UItemFactory<?>> factories = null;
     private static HashMap<Class<? extends UItemFactory<?>>, UItemFactory<?>> factoryInstances = null;
@@ -459,14 +460,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         }
         if (i == 36 || i == 35) {
             return this.id == uItem.id;
-        } else if (i == 31) {
-            return TextUtils.equals(this.text, uItem.text);
-        } else {
-            if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
-                return findFactory.equals(this, uItem);
-            }
-            return itemEquals(uItem);
         }
+        if (i == 31) {
+            return TextUtils.equals(this.text, uItem.text);
+        }
+        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+            return findFactory.equals(this, uItem);
+        }
+        return itemEquals(uItem);
     }
 
     @Override
@@ -485,13 +486,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         }
         if (i == 31) {
             return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
-        } else if (i == 35 || i == 37) {
-            return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
-        } else if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
-            return findFactory.contentsEquals(this, uItem);
-        } else {
-            return itemContentEquals(uItem);
         }
+        if (i == 35 || i == 37) {
+            return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
+        }
+        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+            return findFactory.contentsEquals(this, uItem);
+        }
+        return itemContentEquals(uItem);
     }
 
     public boolean itemEquals(UItem uItem) {

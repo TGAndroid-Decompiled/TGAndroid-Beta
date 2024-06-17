@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
+
 public class AvatarSpan extends ReplacementSpan {
     private final AvatarDrawable avatarDrawable;
     private final int currentAccount;

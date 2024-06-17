@@ -4,6 +4,7 @@ import android.view.View;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import org.telegram.messenger.AndroidUtilities;
+
 public final class VerticalPositionAutoAnimator {
     private final AnimatorLayoutChangeListener animatorLayoutChangeListener;
     private SpringAnimation floatingButtonAnimator;

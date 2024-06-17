@@ -90,6 +90,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private LocationActivityAdapter adapter;
     private AnimatorSet animatorSet;
@@ -279,7 +280,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     float lerp = AndroidUtilities.lerp(this.animatorValues, valueAnimator.getAnimatedFraction());
                     if (lerp >= 0.7f && !this.startedInner && ChatAttachAlertLocationLayout.this.lastPressedMarkerView != null) {
                         AnimatorSet animatorSet = new AnimatorSet();
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, View.ALPHA, 0.0f, 1.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, (Property<FrameLayout, Float>) View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, (Property<FrameLayout, Float>) View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f));
                         animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
                         animatorSet.setDuration(250L);
                         animatorSet.start();
@@ -311,10 +312,10 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                         ChatAttachAlertLocationLayout.MapOverlayView.this.lambda$addInfoView$0(venueLocation, z, i);
                     }
                 }, ChatAttachAlertLocationLayout.this.resourcesProvider);
-                return;
+            } else {
+                ChatAttachAlertLocationLayout.this.delegate.didSelectLocation(venueLocation.venue, ChatAttachAlertLocationLayout.this.locationType, true, 0);
+                ChatAttachAlertLocationLayout.this.parentAlert.dismiss(true);
             }
-            ChatAttachAlertLocationLayout.this.delegate.didSelectLocation(venueLocation.venue, ChatAttachAlertLocationLayout.this.locationType, true, 0);
-            ChatAttachAlertLocationLayout.this.parentAlert.dismiss(true);
         }
 
         public void lambda$addInfoView$0(VenueLocation venueLocation, boolean z, int i) {
@@ -336,8 +337,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
             IMapsProvider.IProjection projection = ChatAttachAlertLocationLayout.this.map.getProjection();
             for (Map.Entry<IMapsProvider.IMarker, View> entry : this.views.entrySet()) {
+                IMapsProvider.IMarker key = entry.getKey();
                 View value = entry.getValue();
-                android.graphics.Point screenLocation = projection.toScreenLocation(entry.getKey().getPosition());
+                android.graphics.Point screenLocation = projection.toScreenLocation(key.getPosition());
                 value.setTranslationX(screenLocation.x - (value.getMeasuredWidth() / 2));
                 value.setTranslationY((screenLocation.y - value.getMeasuredHeight()) + AndroidUtilities.dp(22.0f));
             }
@@ -520,10 +522,11 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             createSimpleSelectorRoundRectDrawable = combinedDrawable;
         } else {
             StateListAnimator stateListAnimator = new StateListAnimator();
+            int[] iArr = {android.R.attr.state_pressed};
             SearchButton searchButton2 = this.searchAreaButton;
             Property property = View.TRANSLATION_Z;
-            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(searchButton2, property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.searchAreaButton, property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
+            stateListAnimator.addState(iArr, ObjectAnimator.ofFloat(searchButton2, (Property<SearchButton, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.searchAreaButton, (Property<SearchButton, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.searchAreaButton.setStateListAnimator(stateListAnimator);
             this.searchAreaButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
@@ -568,10 +571,11 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             createSimpleSelectorCircleDrawable = combinedDrawable2;
         } else {
             StateListAnimator stateListAnimator2 = new StateListAnimator();
+            int[] iArr2 = {android.R.attr.state_pressed};
             ActionBarMenuItem actionBarMenuItem3 = this.mapTypeButton;
             Property property2 = View.TRANSLATION_Z;
-            stateListAnimator2.addState(new int[]{16842919}, ObjectAnimator.ofFloat(actionBarMenuItem3, property2, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-            stateListAnimator2.addState(new int[0], ObjectAnimator.ofFloat(this.mapTypeButton, property2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
+            stateListAnimator2.addState(iArr2, ObjectAnimator.ofFloat(actionBarMenuItem3, (Property<ActionBarMenuItem, Float>) property2, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
+            stateListAnimator2.addState(new int[0], ObjectAnimator.ofFloat(this.mapTypeButton, (Property<ActionBarMenuItem, Float>) property2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.mapTypeButton.setStateListAnimator(stateListAnimator2);
             this.mapTypeButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
@@ -606,10 +610,11 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             createSimpleSelectorCircleDrawable2 = combinedDrawable3;
         } else {
             StateListAnimator stateListAnimator3 = new StateListAnimator();
+            int[] iArr3 = {android.R.attr.state_pressed};
             ImageView imageView = this.locationButton;
             Property property3 = View.TRANSLATION_Z;
-            stateListAnimator3.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView, property3, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-            stateListAnimator3.addState(new int[0], ObjectAnimator.ofFloat(this.locationButton, property3, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
+            stateListAnimator3.addState(iArr3, ObjectAnimator.ofFloat(imageView, (Property<ImageView, Float>) property3, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
+            stateListAnimator3.addState(new int[0], ObjectAnimator.ofFloat(this.locationButton, (Property<ImageView, Float>) property3, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.locationButton.setStateListAnimator(stateListAnimator3);
             this.locationButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
@@ -901,47 +906,51 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 this.parentAlert.dismiss(true);
                 return;
             }
-        } else if (i == 1) {
-            if (this.delegate != null && this.userLocation != null) {
-                FrameLayout frameLayout = this.lastPressedMarkerView;
-                if (frameLayout != null) {
-                    frameLayout.callOnClick();
+        } else {
+            if (i == 1) {
+                if (this.delegate != null && this.userLocation != null) {
+                    FrameLayout frameLayout = this.lastPressedMarkerView;
+                    if (frameLayout != null) {
+                        frameLayout.callOnClick();
+                        return;
+                    }
+                    final TLRPC$TL_messageMediaGeo tLRPC$TL_messageMediaGeo = new TLRPC$TL_messageMediaGeo();
+                    TLRPC$TL_geoPoint tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
+                    tLRPC$TL_messageMediaGeo.geo = tLRPC$TL_geoPoint;
+                    tLRPC$TL_geoPoint.lat = AndroidUtilities.fixLocationCoord(this.userLocation.getLatitude());
+                    tLRPC$TL_messageMediaGeo.geo._long = AndroidUtilities.fixLocationCoord(this.userLocation.getLongitude());
+                    if (chatActivity.isInScheduleMode()) {
+                        AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+                            @Override
+                            public final void didSelectDate(boolean z, int i3) {
+                                ChatAttachAlertLocationLayout.this.lambda$new$5(tLRPC$TL_messageMediaGeo, z, i3);
+                            }
+                        }, resourcesProvider);
+                        return;
+                    } else {
+                        this.delegate.didSelectLocation(tLRPC$TL_messageMediaGeo, this.locationType, true, 0);
+                        this.parentAlert.dismiss(true);
+                        return;
+                    }
+                }
+                if (this.locationDenied) {
+                    AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
                     return;
                 }
-                final TLRPC$TL_messageMediaGeo tLRPC$TL_messageMediaGeo = new TLRPC$TL_messageMediaGeo();
-                TLRPC$TL_geoPoint tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
-                tLRPC$TL_messageMediaGeo.geo = tLRPC$TL_geoPoint;
-                tLRPC$TL_geoPoint.lat = AndroidUtilities.fixLocationCoord(this.userLocation.getLatitude());
-                tLRPC$TL_messageMediaGeo.geo._long = AndroidUtilities.fixLocationCoord(this.userLocation.getLongitude());
-                if (chatActivity.isInScheduleMode()) {
-                    AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
-                        @Override
-                        public final void didSelectDate(boolean z, int i3) {
-                            ChatAttachAlertLocationLayout.this.lambda$new$5(tLRPC$TL_messageMediaGeo, z, i3);
-                        }
-                    }, resourcesProvider);
-                    return;
-                }
-                this.delegate.didSelectLocation(tLRPC$TL_messageMediaGeo, this.locationType, true, 0);
-                this.parentAlert.dismiss(true);
-                return;
-            } else if (this.locationDenied) {
-                AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
-                return;
-            } else {
                 return;
             }
-        } else if (i == 2 && i2 == 1) {
-            if (getLocationController().isSharingLocation(this.dialogId)) {
-                getLocationController().removeSharingLocation(this.dialogId);
-                this.parentAlert.dismiss(true);
-                return;
-            } else if (this.myLocation == null && this.locationDenied) {
-                AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
-                return;
-            } else {
-                openShareLiveLocation();
-                return;
+            if (i == 2 && i2 == 1) {
+                if (getLocationController().isSharingLocation(this.dialogId)) {
+                    getLocationController().removeSharingLocation(this.dialogId);
+                    this.parentAlert.dismiss(true);
+                    return;
+                } else if (this.myLocation == null && this.locationDenied) {
+                    AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
+                    return;
+                } else {
+                    openShareLiveLocation();
+                    return;
+                }
             }
         }
         final Object item = this.adapter.getItem(i);
@@ -954,10 +963,13 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     }
                 }, resourcesProvider);
                 return;
+            } else {
+                this.delegate.didSelectLocation((TLRPC$TL_messageMediaVenue) item, this.locationType, true, 0);
+                this.parentAlert.dismiss(true);
+                return;
             }
-            this.delegate.didSelectLocation((TLRPC$TL_messageMediaVenue) item, this.locationType, true, 0);
-            this.parentAlert.dismiss(true);
-        } else if (item instanceof LiveLocation) {
+        }
+        if (item instanceof LiveLocation) {
             LiveLocation liveLocation = (LiveLocation) item;
             this.map.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(new IMapsProvider.LatLng(liveLocation.marker.getPosition().latitude, liveLocation.marker.getPosition().longitude), this.map.getMaxZoomLevel() - 4.0f));
         }
@@ -999,7 +1011,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.setDuration(200L);
-            this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.markerImageView, View.TRANSLATION_Y, this.markerTop - AndroidUtilities.dp(10.0f)));
+            this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.markerImageView, (Property<ImageView, Float>) View.TRANSLATION_Y, this.markerTop - AndroidUtilities.dp(10.0f)));
             this.animatorSet.start();
         } else if (motionEvent.getAction() == 1) {
             AnimatorSet animatorSet3 = this.animatorSet;
@@ -1010,7 +1022,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             AnimatorSet animatorSet4 = new AnimatorSet();
             this.animatorSet = animatorSet4;
             animatorSet4.setDuration(200L);
-            this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.markerImageView, View.TRANSLATION_Y, this.markerTop));
+            this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.markerImageView, (Property<ImageView, Float>) View.TRANSLATION_Y, this.markerTop));
             this.animatorSet.start();
         }
         if (motionEvent.getAction() == 2) {
@@ -1112,10 +1124,10 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     ChatAttachAlertLocationLayout.this.lambda$new$16(item, z, i2);
                 }
             }, resourcesProvider);
-            return;
+        } else {
+            this.delegate.didSelectLocation(item, this.locationType, true, 0);
+            this.parentAlert.dismiss(true);
         }
-        this.delegate.didSelectLocation(item, this.locationType, true, 0);
-        this.parentAlert.dismiss(true);
     }
 
     public void lambda$new$16(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, boolean z, int i) {
@@ -1268,9 +1280,10 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 this.searchListView.setEmptyView(null);
                 this.emptyView.setVisibility(8);
                 return;
+            } else {
+                this.searchListView.setEmptyView(this.emptyView);
+                return;
             }
-            this.searchListView.setEmptyView(this.emptyView);
-            return;
         }
         this.emptyView.setVisibility(8);
     }
@@ -1300,7 +1313,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     Property property = View.TRANSLATION_X;
                     float[] fArr = new float[1];
                     fArr[0] = z ? 0.0f : -AndroidUtilities.dp(80.0f);
-                    animatorArr[0] = ObjectAnimator.ofFloat(searchButton3, property, fArr);
+                    animatorArr[0] = ObjectAnimator.ofFloat(searchButton3, (Property<SearchButton, Float>) property, fArr);
                     animatorSet.playTogether(animatorArr);
                     animatorSet.setDuration(180L);
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -1558,18 +1571,18 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     public boolean lambda$onMapInit$22(IMapsProvider.IMarker iMarker) {
-        if (iMarker.getTag() instanceof VenueLocation) {
-            this.markerImageView.setVisibility(4);
-            if (!this.userLocationMoved) {
-                ImageView imageView = this.locationButton;
-                int i = Theme.key_location_actionIcon;
-                imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
-                this.locationButton.setTag(Integer.valueOf(i));
-                this.userLocationMoved = true;
-            }
-            this.overlayView.addInfoView(iMarker);
+        if (!(iMarker.getTag() instanceof VenueLocation)) {
             return true;
         }
+        this.markerImageView.setVisibility(4);
+        if (!this.userLocationMoved) {
+            ImageView imageView = this.locationButton;
+            int i = Theme.key_location_actionIcon;
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
+            this.locationButton.setTag(Integer.valueOf(i));
+            this.userLocationMoved = true;
+        }
+        this.overlayView.addInfoView(iMarker);
         return true;
     }
 
@@ -1832,7 +1845,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     }
                 });
                 return;
-            } else if (!this.locationDenied) {
+            }
+            if (!this.locationDenied) {
                 File file = chatAttachAlert.storyLocationPickerPhotoFile;
                 boolean z = chatAttachAlert.storyLocationPickerFileIsVideo;
                 boolean z2 = true;
@@ -1880,15 +1894,14 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     return;
                 }
                 return;
-            } else {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatAttachAlertLocationLayout.this.lambda$positionMarker$29();
-                    }
-                });
-                return;
             }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatAttachAlertLocationLayout.this.lambda$positionMarker$29();
+                }
+            });
+            return;
         }
         Location lastLocation2 = getLastLocation();
         this.myLocation = lastLocation2;
@@ -1930,10 +1943,11 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             if (this.firstWas) {
                 this.map.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLng(latLng));
                 return;
+            } else {
+                this.firstWas = true;
+                this.map.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng, this.map.getMaxZoomLevel() - 4.0f));
+                return;
             }
-            this.firstWas = true;
-            this.map.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng, this.map.getMaxZoomLevel() - 4.0f));
-            return;
         }
         this.adapter.setGpsLocation(location2);
     }
@@ -2047,7 +2061,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 locationActivityAdapter.setMyLocationDenied(this.locationDenied, true);
             }
             parentActivity.requestPermissions(strArr, 2);
-        } else if (i >= 29) {
+            return;
+        }
+        if (i >= 29) {
             ChatAttachAlert chatAttachAlert2 = this.parentAlert;
             if (!chatAttachAlert2.isStoryLocationPicker || chatAttachAlert2.storyLocationPickerPhotoFile == null || parentActivity.checkSelfPermission("android.permission.ACCESS_MEDIA_LOCATION") == 0) {
                 return;
@@ -2094,22 +2110,28 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         int i4 = Theme.key_dialogEmptyText;
         arrayList.add(new ThemeDescription(textView, i3, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.emptySubtitleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
-        int i5 = Theme.key_location_actionIcon;
-        arrayList.add(new ThemeDescription(this.locationButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i5));
-        int i6 = Theme.key_location_actionActiveIcon;
-        arrayList.add(new ThemeDescription(this.locationButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i6));
         ImageView imageView2 = this.locationButton;
-        int i7 = ThemeDescription.FLAG_BACKGROUNDFILTER;
-        int i8 = Theme.key_location_actionBackground;
-        arrayList.add(new ThemeDescription(imageView2, i7, null, null, null, null, i8));
-        int i9 = Theme.key_location_actionPressedBackground;
-        arrayList.add(new ThemeDescription(this.locationButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i9));
-        arrayList.add(new ThemeDescription(this.mapTypeButton, 0, null, null, null, themeDescriptionDelegate, i5));
-        arrayList.add(new ThemeDescription(this.mapTypeButton, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i8));
-        arrayList.add(new ThemeDescription(this.mapTypeButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i9));
-        arrayList.add(new ThemeDescription(this.searchAreaButton, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.searchAreaButton, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i8));
-        arrayList.add(new ThemeDescription(this.searchAreaButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i9));
+        int i5 = ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_CHECKTAG;
+        int i6 = Theme.key_location_actionIcon;
+        arrayList.add(new ThemeDescription(imageView2, i5, null, null, null, null, i6));
+        ImageView imageView3 = this.locationButton;
+        int i7 = ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_CHECKTAG;
+        int i8 = Theme.key_location_actionActiveIcon;
+        arrayList.add(new ThemeDescription(imageView3, i7, null, null, null, null, i8));
+        ImageView imageView4 = this.locationButton;
+        int i9 = ThemeDescription.FLAG_BACKGROUNDFILTER;
+        int i10 = Theme.key_location_actionBackground;
+        arrayList.add(new ThemeDescription(imageView4, i9, null, null, null, null, i10));
+        ImageView imageView5 = this.locationButton;
+        int i11 = ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE;
+        int i12 = Theme.key_location_actionPressedBackground;
+        arrayList.add(new ThemeDescription(imageView5, i11, null, null, null, null, i12));
+        arrayList.add(new ThemeDescription(this.mapTypeButton, 0, null, null, null, themeDescriptionDelegate, i6));
+        arrayList.add(new ThemeDescription(this.mapTypeButton, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i10));
+        arrayList.add(new ThemeDescription(this.mapTypeButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i12));
+        arrayList.add(new ThemeDescription(this.searchAreaButton, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i8));
+        arrayList.add(new ThemeDescription(this.searchAreaButton, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i10));
+        arrayList.add(new ThemeDescription(this.searchAreaButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i12));
         arrayList.add(new ThemeDescription(null, 0, null, null, Theme.avatarDrawables, themeDescriptionDelegate, Theme.key_avatar_text));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundRed));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundOrange));
@@ -2125,8 +2147,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_CHECKTAG, new Class[]{SendLocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_location_sendLiveLocationIcon));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_CHECKTAG, new Class[]{SendLocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_location_sendLocationBackground));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_CHECKTAG, new Class[]{SendLocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_location_sendLiveLocationBackground));
-        int i10 = Theme.key_windowBackgroundWhiteGrayText3;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SendLocationCell.class}, new String[]{"accurateTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
+        int i13 = Theme.key_windowBackgroundWhiteGrayText3;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SendLocationCell.class}, new String[]{"accurateTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{SendLocationCell.class}, new String[]{"titleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_location_sendLiveLocationText));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{SendLocationCell.class}, new String[]{"titleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_location_sendLocationText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationDirectionCell.class}, new String[]{"buttonTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_featuredStickers_buttonText));
@@ -2135,19 +2157,19 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGray));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_dialogTextBlue2));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{LocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        int i11 = Theme.key_windowBackgroundWhiteBlackText;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i11));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationCell.class}, new String[]{"addressTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        arrayList.add(new ThemeDescription(this.searchListView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{LocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        arrayList.add(new ThemeDescription(this.searchListView, 0, new Class[]{LocationCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i11));
-        arrayList.add(new ThemeDescription(this.searchListView, 0, new Class[]{LocationCell.class}, new String[]{"addressTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SharingLiveLocationCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i11));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SharingLiveLocationCell.class}, new String[]{"distanceTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{LocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
+        int i14 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i14));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationCell.class}, new String[]{"addressTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
+        arrayList.add(new ThemeDescription(this.searchListView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{LocationCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
+        arrayList.add(new ThemeDescription(this.searchListView, 0, new Class[]{LocationCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i14));
+        arrayList.add(new ThemeDescription(this.searchListView, 0, new Class[]{LocationCell.class}, new String[]{"addressTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SharingLiveLocationCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i14));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SharingLiveLocationCell.class}, new String[]{"distanceTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationLoadingCell.class}, new String[]{"progressBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_progressCircle));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationLoadingCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationLoadingCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationPoweredCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationLoadingCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationLoadingCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationPoweredCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i13));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{LocationPoweredCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LocationPoweredCell.class}, new String[]{"textView2"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
         return arrayList;
@@ -2165,7 +2187,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 }
                 this.currentMapStyleDark = true;
                 this.map.setMapStyle(ApplicationLoader.getMapsProvider().loadRawResourceStyle(ApplicationLoader.applicationContext, R.raw.mapstyle_night));
-            } else if (this.currentMapStyleDark) {
+                return;
+            }
+            if (this.currentMapStyleDark) {
                 this.currentMapStyleDark = false;
                 this.map.setMapStyle(null);
             }

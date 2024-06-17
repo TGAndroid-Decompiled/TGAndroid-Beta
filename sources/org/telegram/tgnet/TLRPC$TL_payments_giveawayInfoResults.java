@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_giveawayInfoResults extends TLRPC$payments_GiveawayInfo {
     public int activated_count;
     public int finish_date;

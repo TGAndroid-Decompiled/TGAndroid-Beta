@@ -13,6 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
+
 public class SimpleAvatarView extends View {
     private ValueAnimator animator;
     private AvatarDrawable avatarDrawable;
@@ -50,8 +51,7 @@ public class SimpleAvatarView extends View {
         float f = (this.selectProgress * 0.1f) + 0.9f;
         canvas.scale(f, f);
         this.selectPaint.setColor(Theme.getColor(Theme.key_dialogTextBlue));
-        Paint paint = this.selectPaint;
-        paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.selectProgress));
+        this.selectPaint.setAlpha((int) (Color.alpha(r0.getColor()) * this.selectProgress));
         float strokeWidth = this.selectPaint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);

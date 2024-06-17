@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class BoostTypeCell extends BaseCell {
     public static int TYPE_GIVEAWAY = 0;

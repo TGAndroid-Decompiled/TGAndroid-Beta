@@ -16,6 +16,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
     public int flickerCount;
     private boolean isSavedMessages;
@@ -65,9 +66,9 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter {
         if (itemCount < itemCount2) {
             notifyItemRangeChanged(itemCount - i3, i3);
             notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
-            return;
+        } else {
+            super.notifyDataSetChanged();
         }
-        super.notifyDataSetChanged();
     }
 
     @Override

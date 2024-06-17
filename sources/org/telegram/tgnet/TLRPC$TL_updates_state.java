@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updates_state extends TLObject {
     public int date;
     public int pts;

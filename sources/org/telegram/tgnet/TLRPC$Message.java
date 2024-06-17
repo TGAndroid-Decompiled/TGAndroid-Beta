@@ -7,6 +7,7 @@ import java.util.Map;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+
 public class TLRPC$Message extends TLObject {
     public TLRPC$MessageAction action;
     public int date;

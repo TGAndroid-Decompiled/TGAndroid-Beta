@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_chatReactionsSome extends TLRPC$ChatReactions {
     public ArrayList<TLRPC$Reaction> reactions = new ArrayList<>();
 

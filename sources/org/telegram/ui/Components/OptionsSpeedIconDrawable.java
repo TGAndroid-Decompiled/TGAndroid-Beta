@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedTextView;
+
 public class OptionsSpeedIconDrawable extends Drawable {
     private AnimatedTextView.AnimatedTextDrawable textDrawable;
     private boolean textDrawableVisible;

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CheckBox extends View {
     private static Paint backgroundPaint;
     private static Paint eraser;
@@ -209,10 +210,10 @@ public class CheckBox extends View {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-            return;
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        cancelCheckAnimator();
-        setProgress(z ? 1.0f : 0.0f);
     }
 
     public boolean isChecked() {

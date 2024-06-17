@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import j$.util.function.Function;
 import org.telegram.messenger.MessageObject;
+
 public final class DeleteMessagesBottomSheet$$ExternalSyntheticLambda4 implements Function {
     public static final DeleteMessagesBottomSheet$$ExternalSyntheticLambda4 INSTANCE = new DeleteMessagesBottomSheet$$ExternalSyntheticLambda4();
 

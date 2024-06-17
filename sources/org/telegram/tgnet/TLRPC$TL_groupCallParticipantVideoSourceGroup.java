@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_groupCallParticipantVideoSourceGroup extends TLObject {
     public String semantics;
     public ArrayList<Integer> sources = new ArrayList<>();
@@ -25,11 +26,11 @@ public class TLRPC$TL_groupCallParticipantVideoSourceGroup extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-            return;
-        }
-        int readInt322 = abstractSerializedData.readInt32(z);
-        for (int i = 0; i < readInt322; i++) {
-            this.sources.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        } else {
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                this.sources.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+            }
         }
     }
 

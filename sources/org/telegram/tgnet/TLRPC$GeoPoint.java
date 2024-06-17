@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$GeoPoint extends TLObject {
     public double _long;
     public long access_hash;

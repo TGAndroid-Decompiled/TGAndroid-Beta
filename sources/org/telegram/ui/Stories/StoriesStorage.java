@@ -44,6 +44,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemSkipped;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
+
 public class StoriesStorage {
     int currentAccount;
     MessagesStorage storage;
@@ -67,8 +68,7 @@ public class StoriesStorage {
     }
 
     public static int lambda$getAllStories$1(TL_stories$PeerStories tL_stories$PeerStories) {
-        ArrayList<TL_stories$StoryItem> arrayList = tL_stories$PeerStories.stories;
-        return -arrayList.get(arrayList.size() - 1).date;
+        return -tL_stories$PeerStories.stories.get(r1.size() - 1).date;
     }
 
     private void checkExpiredStories(long j, ArrayList<TL_stories$StoryItem> arrayList) {
@@ -483,11 +483,12 @@ public class StoriesStorage {
                     if (i2 >= tL_stories$TL_stories_stories.stories.size()) {
                         z2 = false;
                         break;
-                    } else if (tL_stories$TL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
-                        applyStory(this.currentAccount, j, messageObject, tL_stories$TL_stories_stories.stories.get(i2));
-                        z2 = true;
-                        break;
                     } else {
+                        if (tL_stories$TL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
+                            applyStory(this.currentAccount, j, messageObject, tL_stories$TL_stories_stories.stories.get(i2));
+                            z2 = true;
+                            break;
+                        }
                         i2++;
                     }
                 }

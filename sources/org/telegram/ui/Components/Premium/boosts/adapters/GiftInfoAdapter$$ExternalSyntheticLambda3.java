@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.adapters;
+
 public final class GiftInfoAdapter$$ExternalSyntheticLambda3 implements Runnable {
     public final GiftInfoAdapter f$0;
 

@@ -27,6 +27,7 @@ import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
+
 public class BoostPagerBottomSheet extends BottomSheet {
     private static BoostPagerBottomSheet instance;
     private boolean isLandscapeOrientation;

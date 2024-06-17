@@ -12,6 +12,7 @@ import org.telegram.ui.Charts.data.DoubleLinearChartData;
 import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
+
 public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, LineViewData> {
     public DoubleLinearChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
@@ -235,23 +236,24 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
         if (i < 0 || !this.legendShowing) {
             return;
         }
+        int i2 = (int) (this.chartActiveLineAlpha * this.selectionA);
         float f = this.chartWidth;
         ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
         float f2 = chartPickerDelegate.pickerEnd;
         float f3 = chartPickerDelegate.pickerStart;
         float f4 = f / (f2 - f3);
         float f5 = (((DoubleLinearChartData) this.chartData).xPercentage[i] * f4) - ((f3 * f4) - BaseChartView.HORIZONTAL_PADDING);
-        this.selectedLinePaint.setAlpha((int) (this.chartActiveLineAlpha * this.selectionA));
+        this.selectedLinePaint.setAlpha(i2);
         canvas.drawLine(f5, 0.0f, f5, this.chartArea.bottom, this.selectedLinePaint);
         this.tmpN = this.lines.size();
-        int i2 = 0;
+        int i3 = 0;
         while (true) {
-            this.tmpI = i2;
-            int i3 = this.tmpI;
-            if (i3 >= this.tmpN) {
+            this.tmpI = i3;
+            int i4 = this.tmpI;
+            if (i4 >= this.tmpN) {
                 return;
             }
-            LineViewData lineViewData = (LineViewData) this.lines.get(i3);
+            LineViewData lineViewData = (LineViewData) this.lines.get(i4);
             if (lineViewData.enabled || lineViewData.alpha != 0.0f) {
                 float f6 = ((float) lineViewData.line.y[this.selectedIndex]) * ((DoubleLinearChartData) this.chartData).linesK[this.tmpI];
                 float f7 = this.currentMinHeight;
@@ -261,7 +263,7 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                 canvas.drawPoint(f5, measuredHeight, lineViewData.selectionPaint);
                 canvas.drawPoint(f5, measuredHeight, this.selectionBackgroundPaint);
             }
-            i2 = this.tmpI + 1;
+            i3 = this.tmpI + 1;
         }
     }
 

@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TextStyleSpan;
+
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
     public static final int MATCH_CONSTANT = 3;
@@ -70,10 +71,10 @@ public class CodeHighlighting {
             TextStyleSpan.TextStyleRun textStyleRun = this.style;
             if (textStyleRun != null) {
                 textStyleRun.applyStyle(textPaint);
-                return;
+            } else {
+                textPaint.setTypeface(Typeface.MONOSPACE);
+                textPaint.setUnderlineText(false);
             }
-            textPaint.setTypeface(Typeface.MONOSPACE);
-            textPaint.setUnderlineText(false);
         }
     }
 
@@ -418,7 +419,9 @@ public class CodeHighlighting {
                     } else {
                         i4 = 0;
                         matchPattern = matchPattern(tokenPattern3, 0, str3);
-                        i5 = matchPattern != null ? 1 : 1;
+                        if (matchPattern != null) {
+                            i5 = 1;
+                        }
                     }
                     int i13 = matchPattern.index;
                     String substring = str3.substring(i4, i13);
@@ -489,20 +492,20 @@ public class CodeHighlighting {
     private static Match matchPattern(TokenPattern tokenPattern, int i, String str) {
         Matcher matcher = tokenPattern.pattern.getPattern().matcher(str);
         matcher.region(i, str.length());
-        if (matcher.find()) {
-            Match match = new Match();
-            match.index = matcher.start();
-            if (tokenPattern.lookbehind && matcher.groupCount() >= 1) {
-                match.index += matcher.end(1) - matcher.start(1);
-            }
-            int end = matcher.end();
-            int i2 = match.index;
-            int i3 = end - i2;
-            match.length = i3;
-            match.string = str.substring(i2, i3 + i2);
-            return match;
+        if (!matcher.find()) {
+            return null;
         }
-        return null;
+        Match match = new Match();
+        match.index = matcher.start();
+        if (tokenPattern.lookbehind && matcher.groupCount() >= 1) {
+            match.index += matcher.end(1) - matcher.start(1);
+        }
+        int end = matcher.end();
+        int i2 = match.index;
+        int i3 = end - i2;
+        match.length = i3;
+        match.string = str.substring(i2, i3 + i2);
+        return match;
     }
 
     public static class RematchOptions {
@@ -523,11 +526,12 @@ public class CodeHighlighting {
     }
 
     public static class LinkedList {
-        public Node tail;
+        public Node head;
         public int length = 0;
-        public Node head = new Node();
+        public Node tail;
 
         public LinkedList() {
+            this.head = new Node();
             Node node = new Node();
             this.tail = node;
             Node node2 = this.head;

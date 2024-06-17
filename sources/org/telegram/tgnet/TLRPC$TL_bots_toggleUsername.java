@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_bots_toggleUsername extends TLObject {
     public boolean active;
     public TLRPC$InputUser bot;

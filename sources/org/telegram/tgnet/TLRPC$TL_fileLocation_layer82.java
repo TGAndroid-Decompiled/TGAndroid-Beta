@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_fileLocation_layer82 extends TLRPC$TL_fileLocation_layer97 {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

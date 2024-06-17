@@ -15,6 +15,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.Components.Paint.Brush;
+
 public class ShapeDetector {
     private static final double diagonal;
     private static final double halfDiagonal;
@@ -396,6 +397,7 @@ public class ShapeDetector {
         int i = 0;
         while (i < min) {
             Point point3 = arrayList.get(i);
+            Point point4 = arrayList2.get(i);
             double d3 = point3.x;
             int i2 = i;
             double d4 = point2.x;
@@ -403,7 +405,7 @@ public class ShapeDetector {
             int i3 = min;
             double d6 = point2.y;
             double d7 = cos;
-            d2 += arrayList2.get(i).distance((((d3 - d4) * cos) - ((d5 - d6) * sin)) + d4, ((d3 - d4) * sin) + ((d5 - d6) * d7) + d6);
+            d2 += point4.distance((((d3 - d4) * cos) - ((d5 - d6) * sin)) + d4, ((d3 - d4) * sin) + ((d5 - d6) * d7) + d6);
             i = i2 + 1;
             point2 = point;
             min = i3;

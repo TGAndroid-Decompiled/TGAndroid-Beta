@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_signUp extends TLObject {
     public String first_name;
     public String last_name;

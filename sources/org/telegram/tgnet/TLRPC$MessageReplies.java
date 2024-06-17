@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$MessageReplies extends TLObject {
     public long channel_id;
     public boolean comments;

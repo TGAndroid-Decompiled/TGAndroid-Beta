@@ -17,6 +17,7 @@ import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
+
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
     private TextureView backgroundRenderer;
@@ -49,29 +50,29 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             if (textureView == null) {
                 ThreadUtils.checkIsOnMainThread();
                 this.eglRenderer.releaseEglSurface(null, true);
-                return;
+            } else {
+                textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+                    @Override
+                    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+                    }
+
+                    @Override
+                    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                    }
+
+                    @Override
+                    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+                        TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
+                    }
+
+                    @Override
+                    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+                        ThreadUtils.checkIsOnMainThread();
+                        TextureViewRenderer.this.eglRenderer.releaseEglSurface(null, true);
+                        return false;
+                    }
+                });
             }
-            textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
-                @Override
-                public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-                }
-
-                @Override
-                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-                }
-
-                @Override
-                public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-                    TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
-                }
-
-                @Override
-                public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                    ThreadUtils.checkIsOnMainThread();
-                    TextureViewRenderer.this.eglRenderer.releaseEglSurface(null, true);
-                    return false;
-                }
-            });
         }
     }
 

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_reportMissingCode extends TLObject {
     public String mnc;
     public String phone_code_hash;

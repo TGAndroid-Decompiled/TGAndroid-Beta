@@ -4,13 +4,14 @@ import kotlin.Result;
 import kotlin.ResultKt;
 import kotlin.coroutines.Continuation;
 import kotlinx.coroutines.internal.DispatchedContinuation;
+
 public final class DebugStringsKt {
     public static final String getHexAddress(Object obj) {
         return Integer.toHexString(System.identityHashCode(obj));
     }
 
     public static final String toDebugString(Continuation<?> continuation) {
-        String m156constructorimpl;
+        Object m156constructorimpl;
         if (continuation instanceof DispatchedContinuation) {
             return continuation.toString();
         }

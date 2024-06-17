@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$account_EmojiStatuses extends TLObject {
     public long hash;
     public ArrayList<TLRPC$EmojiStatus> statuses = new ArrayList<>();

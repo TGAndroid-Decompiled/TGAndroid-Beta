@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_businessBotRecipients extends TLObject {
     public boolean contacts;
     public boolean exclude_selected;
@@ -39,10 +40,11 @@ public class TLRPC$TL_businessBotRecipients extends TLObject {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
                 return;
-            }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.users.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            } else {
+                int readInt323 = abstractSerializedData.readInt32(z);
+                for (int i = 0; i < readInt323; i++) {
+                    this.users.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+                }
             }
         }
         if ((this.flags & 64) != 0) {
@@ -51,11 +53,11 @@ public class TLRPC$TL_businessBotRecipients extends TLObject {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
-                return;
-            }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt325; i2++) {
-                this.exclude_users.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            } else {
+                int readInt325 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt325; i2++) {
+                    this.exclude_users.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+                }
             }
         }
     }

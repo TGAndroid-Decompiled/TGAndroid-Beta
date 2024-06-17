@@ -12,6 +12,7 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
     public CameraInfo cameraInfo;
@@ -80,10 +81,10 @@ public class CameraSession {
         this.orientationEventListener = orientationEventListener;
         if (orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-            return;
+        } else {
+            this.orientationEventListener.disable();
+            this.orientationEventListener = null;
         }
-        this.orientationEventListener.disable();
-        this.orientationEventListener = null;
     }
 
     private void updateCameraInfo() {

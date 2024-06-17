@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import org.telegram.messenger.FileLog;
 import org.webrtc.RendererCommon;
+
 public class GlGenericDrawer implements RendererCommon.GlDrawer {
     private static final String DEFAULT_VERTEX_SHADER_STRING = "varying vec2 tc;\nattribute vec4 in_pos;\nattribute vec4 in_tc;\nuniform mat4 tex_mat;\nvoid main() {\n  gl_Position = in_pos;\n  tc = (tex_mat * in_tc).xy;\n}\n";
     private static final FloatBuffer FULL_RECTANGLE_BUFFER = GlUtil.createFloatBuffer(new float[]{-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f});
@@ -109,11 +110,11 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
     }
 
     public GlGenericDrawer(String str, String str2, ShaderCallbacks shaderCallbacks) {
-        this.currentShader = (GlShader[][]) Array.newInstance(GlShader.class, 3, 3);
-        this.inPosLocation = (int[][]) Array.newInstance(int.class, 3, 3);
-        this.inTcLocation = (int[][]) Array.newInstance(int.class, 3, 3);
-        this.texMatrixLocation = (int[][]) Array.newInstance(int.class, 3, 3);
-        this.texelLocation = (int[][]) Array.newInstance(int.class, 3, 3);
+        this.currentShader = (GlShader[][]) Array.newInstance((Class<?>) GlShader.class, 3, 3);
+        this.inPosLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
+        this.inTcLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
+        this.texMatrixLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
+        this.texelLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
         this.renderTexture = new int[2];
         this.renderTextureWidth = new int[2];
         this.renderTextureHeight = new int[2];
@@ -170,9 +171,10 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
             float[] fArr2 = this.textureMatrix;
             i = (int) ((-Math.atan((-fArr2[1]) / fArr2[0])) / 0.017453292519943295d);
         }
-        float f = this.renderTextureDownscale;
-        int i2 = (int) (this.renderTextureWidth[0] / f);
-        int i3 = (int) (this.renderTextureHeight[0] / f);
+        float f = this.renderTextureWidth[0];
+        float f2 = this.renderTextureDownscale;
+        int i2 = (int) (f / f2);
+        int i3 = (int) (this.renderTextureHeight[0] / f2);
         GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[0]);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[0], 0);
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(i2 * i3 * 4);

@@ -13,6 +13,7 @@ import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
+
 public class WebRtcAudioTrack {
     private static final int AUDIO_TRACK_START = 0;
     private static final int AUDIO_TRACK_STOP = 1;
@@ -80,8 +81,7 @@ public class WebRtcAudioTrack {
                     Logging.e(WebRtcAudioTrack.TAG, "AudioTrack.write played invalid number of bytes: " + writeBytes);
                     if (writeBytes < 0) {
                         this.keepAlive = false;
-                        WebRtcAudioTrack webRtcAudioTrack = WebRtcAudioTrack.this;
-                        webRtcAudioTrack.reportWebRtcAudioTrackError("AudioTrack.write failed: " + writeBytes);
+                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError("AudioTrack.write failed: " + writeBytes);
                     }
                 }
                 if (WebRtcAudioTrack.this.useLowLatency) {
@@ -194,8 +194,7 @@ public class WebRtcAudioTrack {
         try {
             this.audioTrack.play();
             if (this.audioTrack.getPlayState() != 3) {
-                JavaAudioDeviceModule.AudioTrackStartErrorCode audioTrackStartErrorCode = JavaAudioDeviceModule.AudioTrackStartErrorCode.AUDIO_TRACK_START_STATE_MISMATCH;
-                reportWebRtcAudioTrackStartError(audioTrackStartErrorCode, "AudioTrack.play failed - incorrect state :" + this.audioTrack.getPlayState());
+                reportWebRtcAudioTrackStartError(JavaAudioDeviceModule.AudioTrackStartErrorCode.AUDIO_TRACK_START_STATE_MISMATCH, "AudioTrack.play failed - incorrect state :" + this.audioTrack.getPlayState());
                 releaseAudioResources();
                 return false;
             }
@@ -204,8 +203,7 @@ public class WebRtcAudioTrack {
             audioTrackThread.start();
             return true;
         } catch (IllegalStateException e) {
-            JavaAudioDeviceModule.AudioTrackStartErrorCode audioTrackStartErrorCode2 = JavaAudioDeviceModule.AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION;
-            reportWebRtcAudioTrackStartError(audioTrackStartErrorCode2, "AudioTrack.play failed: " + e.getMessage());
+            reportWebRtcAudioTrackStartError(JavaAudioDeviceModule.AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e.getMessage());
             releaseAudioResources();
             return false;
         }
@@ -276,14 +274,14 @@ public class WebRtcAudioTrack {
 
     @CalledByNative
     private int GetPlayoutUnderrunCount() {
-        if (Build.VERSION.SDK_INT >= 24) {
-            AudioTrack audioTrack = this.audioTrack;
-            if (audioTrack != null) {
-                return audioTrack.getUnderrunCount();
-            }
-            return -1;
+        if (Build.VERSION.SDK_INT < 24) {
+            return -2;
         }
-        return -2;
+        AudioTrack audioTrack = this.audioTrack;
+        if (audioTrack != null) {
+            return audioTrack.getUnderrunCount();
+        }
+        return -1;
     }
 
     private void logMainParameters() {

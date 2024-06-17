@@ -16,6 +16,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+
 public class BasePermissionsActivity extends FragmentActivity {
     protected int currentAccount = -1;
 

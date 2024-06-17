@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_stories$TL_mediaAreaCoordinates extends TLObject {
     public double h;
     public double rotation;

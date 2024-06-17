@@ -72,6 +72,7 @@ import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$contacts_Contacts;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.Bulletin;
+
 public class ContactsController extends BaseController {
     private static volatile ContactsController[] Instance = new ContactsController[4];
     public static final int PRIVACY_RULES_TYPE_ADDED_BY_PHONE = 7;
@@ -467,8 +468,7 @@ public class ContactsController extends BaseController {
                     }
                     TLRPC$User currentUser = UserConfig.getInstance(i2).getCurrentUser();
                     if (currentUser != null) {
-                        String str = account.name;
-                        if (str.equals("" + currentUser.id)) {
+                        if (account.name.equals("" + currentUser.id)) {
                             if (i2 == this.currentAccount) {
                                 this.systemAccount = account;
                             }
@@ -515,8 +515,7 @@ public class ContactsController extends BaseController {
                     }
                     TLRPC$User currentUser = UserConfig.getInstance(i2).getCurrentUser();
                     if (currentUser != null) {
-                        String str = account.name;
-                        if (str.equals("" + currentUser.id)) {
+                        if (account.name.equals("" + currentUser.id)) {
                             z = true;
                             break;
                         }
@@ -623,7 +622,6 @@ public class ContactsController extends BaseController {
     }
 
     public void lambda$deleteAllContacts$7(Runnable runnable) {
-        TLRPC$User currentUser;
         AccountManager accountManager = AccountManager.get(ApplicationLoader.applicationContext);
         try {
             Account[] accountsByType = accountManager.getAccountsByType(BuildConfig.LIBRARY_PACKAGE_NAME);
@@ -634,7 +632,8 @@ public class ContactsController extends BaseController {
                     if (i >= 4) {
                         break;
                     }
-                    if (UserConfig.getInstance(i).getCurrentUser() != null) {
+                    TLRPC$User currentUser = UserConfig.getInstance(i).getCurrentUser();
+                    if (currentUser != null) {
                         if (account.name.equals("" + currentUser.id)) {
                             accountManager.removeAccount(account, null, null);
                             break;
@@ -696,10 +695,13 @@ public class ContactsController extends BaseController {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (hasContactsPermission()) {
-            try {
-                Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI, new String[]{"version"}, null, null, null);
-                if (query != null) {
+        if (!hasContactsPermission()) {
+            return false;
+        }
+        try {
+            Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI, new String[]{"version"}, null, null, null);
+            if (query != null) {
+                try {
                     StringBuilder sb = new StringBuilder();
                     while (query.moveToNext()) {
                         sb.append(query.getString(query.getColumnIndex("version")));
@@ -709,16 +711,16 @@ public class ContactsController extends BaseController {
                         z = true;
                     }
                     this.lastContactsVersions = sb2;
+                } finally {
                 }
-                if (query != null) {
-                    query.close();
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
             }
-            return z;
+            if (query != null) {
+                query.close();
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
         }
-        return false;
+        return z;
     }
 
     public void readContacts() {
@@ -859,8 +861,9 @@ public class ContactsController extends BaseController {
                         hashMap2.put(user.phone, user);
                     }
                 }
-                for (Map.Entry entry : hashMap.entrySet()) {
-                    Contact contact = (Contact) entry.getValue();
+                Iterator it = hashMap.entrySet().iterator();
+                while (it.hasNext()) {
+                    Contact contact = (Contact) ((Map.Entry) it.next()).getValue();
                     int i2 = 0;
                     boolean z = false;
                     while (i2 < contact.shortPhones.size()) {
@@ -1104,19 +1107,19 @@ public class ContactsController extends BaseController {
                 FileLog.d("load contacts from cache");
             }
             getMessagesStorage().getContacts();
-            return;
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("load contacts from server");
-        }
-        TLRPC$TL_contacts_getContacts tLRPC$TL_contacts_getContacts = new TLRPC$TL_contacts_getContacts();
-        tLRPC$TL_contacts_getContacts.hash = j;
-        getConnectionsManager().sendRequest(tLRPC$TL_contacts_getContacts, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ContactsController.this.lambda$loadContacts$27(j, tLObject, tLRPC$TL_error);
+        } else {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("load contacts from server");
             }
-        });
+            TLRPC$TL_contacts_getContacts tLRPC$TL_contacts_getContacts = new TLRPC$TL_contacts_getContacts();
+            tLRPC$TL_contacts_getContacts.hash = j;
+            getConnectionsManager().sendRequest(tLRPC$TL_contacts_getContacts, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ContactsController.this.lambda$loadContacts$27(j, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
     }
 
     public void lambda$loadContacts$27(long j, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1200,7 +1203,6 @@ public class ContactsController extends BaseController {
         int i3;
         HashMap hashMap3;
         ArrayList arrayList3;
-        String str;
         ArrayList arrayList4 = arrayList;
         final LongSparseArray longSparseArray2 = longSparseArray;
         if (BuildVars.LOGS_ENABLED) {
@@ -1275,7 +1277,7 @@ public class ContactsController extends BaseController {
                 } else {
                     hashMap2.put(tLRPC$User.phone, tLRPC$TL_contact2);
                     i3 = 0;
-                    hashMap.put(tLRPC$User.phone.substring(Math.max(0, str.length() - 7)), tLRPC$TL_contact2);
+                    hashMap.put(tLRPC$User.phone.substring(Math.max(0, r13.length() - 7)), tLRPC$TL_contact2);
                 }
                 String firstName = UserObject.getFirstName(tLRPC$User);
                 hashMap3 = hashMap;
@@ -1283,9 +1285,9 @@ public class ContactsController extends BaseController {
                     firstName = firstName.substring(i3, 1);
                 }
                 String upperCase = firstName.length() == 0 ? "#" : firstName.toUpperCase();
-                String str2 = this.sectionsToReplace.get(upperCase);
-                if (str2 != null) {
-                    upperCase = str2;
+                String str = this.sectionsToReplace.get(upperCase);
+                if (str != null) {
+                    upperCase = str;
                 }
                 ArrayList arrayList8 = (ArrayList) hashMap4.get(upperCase);
                 if (arrayList8 == null) {
@@ -1476,8 +1478,7 @@ public class ContactsController extends BaseController {
             for (int i = 0; i < size; i++) {
                 TLRPC$User user = getMessagesController().getUser(Long.valueOf(((TLRPC$TL_contact) arrayList.get(i)).user_id));
                 if (user != null && !TextUtils.isEmpty(user.phone)) {
-                    String str = user.phone;
-                    Contact contact = (Contact) hashMap.get(str.substring(Math.max(0, str.length() - 7)));
+                    Contact contact = (Contact) hashMap.get(user.phone.substring(Math.max(0, r3.length() - 7)));
                     if (contact != null) {
                         if (contact.user == null) {
                             contact.user = user;
@@ -1496,8 +1497,9 @@ public class ContactsController extends BaseController {
             }
         }
         final Collator localeCollator = getLocaleCollator();
-        for (ArrayList arrayList4 : hashMap2.values()) {
-            Collections.sort(arrayList4, new Comparator() {
+        Iterator it = hashMap2.values().iterator();
+        while (it.hasNext()) {
+            Collections.sort((ArrayList) it.next(), new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
                     int lambda$mergePhonebookAndTelegramContacts$37;
@@ -1586,8 +1588,9 @@ public class ContactsController extends BaseController {
             }
         }
         ArrayList<Contact> arrayList = new ArrayList<>();
-        for (Map.Entry<String, Contact> entry : this.contactsBook.entrySet()) {
-            Contact value = entry.getValue();
+        Iterator<Map.Entry<String, Contact>> it = this.contactsBook.entrySet().iterator();
+        while (it.hasNext()) {
+            Contact value = it.next().getValue();
             int i2 = 0;
             while (true) {
                 z = true;
@@ -1693,24 +1696,36 @@ public class ContactsController extends BaseController {
     }
 
     private boolean hasContactsPermission() {
-        Cursor query;
         if (Build.VERSION.SDK_INT >= 23) {
             return ApplicationLoader.applicationContext.checkSelfPermission("android.permission.READ_CONTACTS") == 0;
         }
+        Cursor cursor = null;
         try {
-            query = ApplicationLoader.applicationContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, this.projectionPhones, null, null, null);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        if (query != null && query.getCount() != 0) {
-            query.close();
-            return true;
-        }
-        if (query != null) {
             try {
-                query.close();
-            } catch (Exception e2) {
-                FileLog.e(e2);
+                cursor = ApplicationLoader.applicationContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, this.projectionPhones, null, null, null);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } catch (Throwable th) {
+            try {
+                FileLog.e(th);
+                if (cursor != null) {
+                    cursor.close();
+                }
+            } finally {
+                if (cursor != null) {
+                    try {
+                        cursor.close();
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                    }
+                }
+            }
+        }
+        if (cursor != null) {
+            if (cursor.getCount() != 0) {
+                cursor.close();
+                return true;
             }
         }
         return false;
@@ -1913,8 +1928,7 @@ public class ContactsController extends BaseController {
         ContentResolver contentResolver = ApplicationLoader.applicationContext.getContentResolver();
         if (z) {
             try {
-                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.systemAccount.name).appendQueryParameter("account_type", this.systemAccount.type).build();
-                contentResolver.delete(build, "sync2 = " + tLRPC$User.id, null);
+                contentResolver.delete(ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.systemAccount.name).appendQueryParameter("account_type", this.systemAccount.type).build(), "sync2 = " + tLRPC$User.id, null);
             } catch (Exception unused) {
             }
         }
@@ -1989,9 +2003,7 @@ public class ContactsController extends BaseController {
                 this.ignoreChanges = true;
             }
             try {
-                ContentResolver contentResolver = ApplicationLoader.applicationContext.getContentResolver();
-                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.systemAccount.name).appendQueryParameter("account_type", this.systemAccount.type).build();
-                contentResolver.delete(build, "sync2 = " + j, null);
+                ApplicationLoader.applicationContext.getContentResolver().delete(ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.systemAccount.name).appendQueryParameter("account_type", this.systemAccount.type).build(), "sync2 = " + j, null);
             } catch (Exception e) {
                 FileLog.e((Throwable) e, false);
             }
@@ -2437,104 +2449,44 @@ public class ContactsController extends BaseController {
                     switch (i) {
                         case 0:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyStatusTimestamp();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 1:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyChatInvite();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 2:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyPhoneCall();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 3:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyPhoneP2P();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 4:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyProfilePhoto();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 5:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyForwards();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 6:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyPhoneNumber();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 7:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyAddedByPhone();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 8:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyVoiceMessages();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 9:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyAbout();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                         case 11:
                             tLRPC$TL_account_getPrivacy.key = new TLRPC$TL_inputPrivacyKeyBirthday();
-                            getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
-                                @Override
-                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
-                                }
-                            });
                             break;
                     }
+                    getConnectionsManager().sendRequest(tLRPC$TL_account_getPrivacy, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            ContactsController.this.lambda$loadPrivacySettings$64(i, tLObject, tLRPC$TL_error);
+                        }
+                    });
                 }
                 i++;
             } else {
@@ -2747,29 +2699,23 @@ public class ContactsController extends BaseController {
                 if (query != null) {
                     query.close();
                 }
-                String[] strArr = {"vnd.android.cursor.item/group_membership", parseInt + ""};
                 String str5 = str3;
-                Cursor query2 = contentResolver.query(ContactsContract.Data.CONTENT_URI, new String[]{"raw_contact_id"}, "mimetype=? AND data1=?", strArr, null);
+                Cursor query2 = contentResolver.query(ContactsContract.Data.CONTENT_URI, new String[]{"raw_contact_id"}, "mimetype=? AND data1=?", new String[]{"vnd.android.cursor.item/group_membership", parseInt + ""}, null);
                 int size = arrayList2.size();
                 int i = parseInt;
                 if (query2 != null && query2.moveToFirst()) {
                     int i2 = query2.getInt(0);
-                    ContentProviderOperation.Builder newUpdate = ContentProviderOperation.newUpdate(build2);
                     cursor = query2;
                     arrayList = arrayList2;
-                    arrayList.add(newUpdate.withSelection("_id=?", new String[]{i2 + ""}).withValue("deleted", 0).build());
-                    ContentProviderOperation.Builder newUpdate2 = ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI);
-                    ContentProviderOperation.Builder withSelection = newUpdate2.withSelection("raw_contact_id=? AND mimetype=?", new String[]{i2 + "", "vnd.android.cursor.item/phone_v2"});
-                    arrayList.add(withSelection.withValue("data1", "+99084" + j).build());
-                    ContentProviderOperation.Builder newUpdate3 = ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI);
-                    arrayList.add(newUpdate3.withSelection("raw_contact_id=? AND mimetype=?", new String[]{i2 + "", "vnd.android.cursor.item/name"}).withValue("data2", str).withValue("data3", str2).build());
+                    arrayList.add(ContentProviderOperation.newUpdate(build2).withSelection("_id=?", new String[]{i2 + ""}).withValue("deleted", 0).build());
+                    arrayList.add(ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI).withSelection("raw_contact_id=? AND mimetype=?", new String[]{i2 + "", "vnd.android.cursor.item/phone_v2"}).withValue("data1", "+99084" + j).build());
+                    arrayList.add(ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI).withSelection("raw_contact_id=? AND mimetype=?", new String[]{i2 + "", "vnd.android.cursor.item/name"}).withValue("data2", str).withValue("data3", str2).build());
                 } else {
                     cursor = query2;
                     arrayList = arrayList2;
                     arrayList.add(ContentProviderOperation.newInsert(build2).withValue(str5, this.systemAccount.type).withValue(str4, this.systemAccount.name).withValue("raw_contact_is_read_only", 1).withValue("aggregation_mode", 3).build());
                     arrayList.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/name").withValue("data2", str).withValue("data3", str2).build());
-                    ContentProviderOperation.Builder withValue = ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/phone_v2");
-                    arrayList.add(withValue.withValue("data1", "+99084" + j).build());
+                    arrayList.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/phone_v2").withValue("data1", "+99084" + j).build());
                     arrayList.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/group_membership").withValue("data1", Integer.valueOf(i)).build());
                 }
                 if (cursor != null) {
@@ -2807,8 +2753,7 @@ public class ContactsController extends BaseController {
                 }
                 int i2 = query2.getInt(0);
                 query2.close();
-                Uri uri = ContactsContract.RawContacts.CONTENT_URI;
-                contentResolver.delete(uri, "_id=?", new String[]{i2 + ""});
+                contentResolver.delete(ContactsContract.RawContacts.CONTENT_URI, "_id=?", new String[]{i2 + ""});
             } catch (Exception e) {
                 FileLog.e(e);
             }

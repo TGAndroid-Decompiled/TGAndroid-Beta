@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
+
 public abstract class TLRPC$User extends TLObject {
     public long access_hash;
     public boolean apply_min_photo;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
+
 public class LauncherIconController {
     public static void tryFixLauncherIconIfNeeded() {
         for (LauncherIcon launcherIcon : LauncherIcon.values()) {
@@ -76,8 +77,7 @@ public class LauncherIconController {
 
         public ComponentName getComponentName(Context context) {
             if (this.componentName == null) {
-                String packageName = context.getPackageName();
-                this.componentName = new ComponentName(packageName, "org.telegram.messenger." + this.key);
+                this.componentName = new ComponentName(context.getPackageName(), "org.telegram.messenger." + this.key);
             }
             return this.componentName;
         }

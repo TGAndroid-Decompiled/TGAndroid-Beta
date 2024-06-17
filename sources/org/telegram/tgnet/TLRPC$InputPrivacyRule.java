@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$InputPrivacyRule extends TLObject {
     public static TLRPC$InputPrivacyRule TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InputPrivacyRule tLRPC$TL_inputPrivacyValueAllowChatParticipants;

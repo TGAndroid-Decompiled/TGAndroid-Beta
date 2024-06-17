@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_businessWorkHours extends TLObject {
     public int flags;
     public boolean open_now;
@@ -30,11 +31,11 @@ public class TLRPC$TL_businessWorkHours extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            return;
-        }
-        int readInt323 = abstractSerializedData.readInt32(z);
-        for (int i = 0; i < readInt323; i++) {
-            this.weekly_open.add(TLRPC$TL_businessWeeklyOpen.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+        } else {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                this.weekly_open.add(TLRPC$TL_businessWeeklyOpen.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+            }
         }
     }
 

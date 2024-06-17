@@ -1,4 +1,5 @@
 package org.telegram.messenger;
+
 public class AnimationNotificationsLocker {
     final int[] allowedNotifications;
     int currentAccount;

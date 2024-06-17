@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_stickers extends TLRPC$messages_Stickers {
     public long hash;
     public ArrayList<TLRPC$Document> stickers = new ArrayList<>();

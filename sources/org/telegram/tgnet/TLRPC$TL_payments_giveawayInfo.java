@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_giveawayInfo extends TLRPC$payments_GiveawayInfo {
     public long admin_disallowed_chat_id;
     public String disallowed_country;

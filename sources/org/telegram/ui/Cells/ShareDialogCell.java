@@ -48,6 +48,7 @@ import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final AvatarDrawable avatarDrawable;
     private final CheckBox2 checkBox;

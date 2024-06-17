@@ -24,6 +24,7 @@ import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class VideoEditedInfo {
     public int account;
     public boolean alreadyScheduledConverting;

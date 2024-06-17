@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import org.telegram.messenger.AndroidUtilities;
+
 public class MP4Builder {
     private boolean splitMdat;
     private boolean wasFirstVideoFrame;
@@ -123,14 +124,14 @@ public class MP4Builder {
         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
         this.fc.write(byteBuffer);
         this.dataOffset += bufferInfo.size;
-        if (z2) {
-            this.fos.flush();
-            if (this.allowSyncFiles) {
-                this.fos.getFD().sync();
-            }
-            return this.fc.position();
+        if (!z2) {
+            return 0L;
         }
-        return 0L;
+        this.fos.flush();
+        if (this.allowSyncFiles) {
+            this.fos.getFD().sync();
+        }
+        return this.fc.position();
     }
 
     public long getLastFrameTimestamp(int i) {
@@ -179,27 +180,30 @@ public class MP4Builder {
         RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
         try {
             FileChannel channel = randomAccessFile.getChannel();
-            channel.position(position);
-            if (this.mdat.getContentSize() != 0) {
-                channel.position(this.mdat.getOffset());
-                this.mdat.getBox(channel);
+            try {
                 channel.position(position);
-            }
-            this.track2SampleSizes.clear();
-            Iterator<Track> it = this.currentMp4Movie.getTracks().iterator();
-            while (it.hasNext()) {
-                Track next = it.next();
-                ArrayList<Sample> samples = next.getSamples();
-                int size = samples.size();
-                long[] jArr = new long[size];
-                for (int i = 0; i < size; i++) {
-                    jArr[i] = samples.get(i).getSize();
+                if (this.mdat.getContentSize() != 0) {
+                    channel.position(this.mdat.getOffset());
+                    this.mdat.getBox(channel);
+                    channel.position(position);
                 }
-                this.track2SampleSizes.put(next, jArr);
+                this.track2SampleSizes.clear();
+                Iterator<Track> it = this.currentMp4Movie.getTracks().iterator();
+                while (it.hasNext()) {
+                    Track next = it.next();
+                    ArrayList<Sample> samples = next.getSamples();
+                    int size = samples.size();
+                    long[] jArr = new long[size];
+                    for (int i = 0; i < size; i++) {
+                        jArr[i] = samples.get(i).getSize();
+                    }
+                    this.track2SampleSizes.put(next, jArr);
+                }
+                createMovieBox(this.currentMp4Movie).getBox(channel);
+                channel.close();
+                randomAccessFile.close();
+            } finally {
             }
-            createMovieBox(this.currentMp4Movie).getBox(channel);
-            channel.close();
-            randomAccessFile.close();
         } catch (Throwable th) {
             try {
                 randomAccessFile.close();
@@ -421,7 +425,6 @@ public class MP4Builder {
     }
 
     protected void createStts(Track track, SampleTableBox sampleTableBox) {
-        long[] sampleDurations;
         ArrayList arrayList = new ArrayList();
         TimeToSampleBox.Entry entry = null;
         for (long j : track.getSampleDurations()) {

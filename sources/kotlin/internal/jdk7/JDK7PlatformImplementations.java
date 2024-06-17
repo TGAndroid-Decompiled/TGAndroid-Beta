@@ -2,6 +2,7 @@ package kotlin.internal.jdk7;
 
 import kotlin.internal.PlatformImplementations;
 import kotlin.jvm.internal.Intrinsics;
+
 public class JDK7PlatformImplementations extends PlatformImplementations {
 
     public static final class ReflectSdkVersion {

@@ -45,6 +45,7 @@ import org.telegram.ui.Components.Paint.ShapeDetector;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class MediaActivity extends BaseFragment implements SharedMediaLayout.SharedMediaPreloaderDelegate, FloatingDebugProvider, NotificationCenter.NotificationCenterDelegate {
     private SparseArray<MessageObject> actionModeMessageObjects;
     private Runnable applyBulletin;
@@ -136,17 +137,17 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.userInfoDidLoad) {
-            if (((Long) objArr[0]).longValue() == this.dialogId) {
-                TLRPC$UserFull tLRPC$UserFull = (TLRPC$UserFull) objArr[1];
-                this.currentUserInfo = tLRPC$UserFull;
-                SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
-                if (sharedMediaLayout != null) {
-                    sharedMediaLayout.setUserInfo(tLRPC$UserFull);
-                }
+        if (i != NotificationCenter.userInfoDidLoad) {
+            if (i != NotificationCenter.currentUserPremiumStatusChanged) {
+                int i3 = NotificationCenter.storiesEnabledUpdate;
             }
-        } else if (i != NotificationCenter.currentUserPremiumStatusChanged) {
-            int i3 = NotificationCenter.storiesEnabledUpdate;
+        } else if (((Long) objArr[0]).longValue() == this.dialogId) {
+            TLRPC$UserFull tLRPC$UserFull = (TLRPC$UserFull) objArr[1];
+            this.currentUserInfo = tLRPC$UserFull;
+            SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
+            if (sharedMediaLayout != null) {
+                sharedMediaLayout.setUserInfo(tLRPC$UserFull);
+            }
         }
     }
 
@@ -167,16 +168,24 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
                 }
-                MediaActivity.this.finishFragment();
-            } else if (i != 2) {
+                MediaActivity.this.lambda$onBackPressed$303();
+                return;
+            }
+            if (i != 2) {
                 if (i == 10) {
                     SharedMediaLayout sharedMediaLayout = MediaActivity.this.sharedMediaLayout;
                     sharedMediaLayout.showMediaCalendar(sharedMediaLayout.getClosestTab(), false);
-                } else if (i == 11) {
-                    MediaActivity.this.sharedMediaLayout.closeActionMode(true);
-                    MediaActivity.this.sharedMediaLayout.getSearchItem().openSearch(false);
+                    return;
+                } else {
+                    if (i == 11) {
+                        MediaActivity.this.sharedMediaLayout.closeActionMode(true);
+                        MediaActivity.this.sharedMediaLayout.getSearchItem().openSearch(false);
+                        return;
+                    }
+                    return;
                 }
-            } else if (MediaActivity.this.actionModeMessageObjects != null) {
+            }
+            if (MediaActivity.this.actionModeMessageObjects != null) {
                 final ArrayList arrayList = new ArrayList();
                 for (int i3 = 0; i3 < MediaActivity.this.actionModeMessageObjects.size(); i3++) {
                     TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i3)).storyItem;
@@ -460,31 +469,46 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
                 this.calendarItem.setEnabled(z4);
                 this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
+                return;
             }
-        } else if (closestTab == 11) {
+            return;
+        }
+        if (closestTab == 11) {
             showSubtitle(i, true, true);
             this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
-        } else if (closestTab >= 0) {
+            return;
+        }
+        if (closestTab >= 0) {
             if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
                 if (closestTab == 0) {
                     showSubtitle(i, true, true);
                     if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
                         this.subtitleTextView[i].setText(LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]), z);
+                        return;
                     } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
                         this.subtitleTextView[i].setText(LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]), z);
+                        return;
                     } else {
                         this.subtitleTextView[i].setText(LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]), z);
+                        return;
                     }
-                } else if (closestTab == 1) {
+                }
+                if (closestTab == 1) {
                     showSubtitle(i, true, true);
                     this.subtitleTextView[i].setText(LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]), z);
-                } else if (closestTab == 2) {
+                    return;
+                }
+                if (closestTab == 2) {
                     showSubtitle(i, true, true);
                     this.subtitleTextView[i].setText(LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]), z);
-                } else if (closestTab == 3) {
+                    return;
+                }
+                if (closestTab == 3) {
                     showSubtitle(i, true, true);
                     this.subtitleTextView[i].setText(LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]), z);
-                } else if (closestTab == 4) {
+                    return;
+                }
+                if (closestTab == 4) {
                     showSubtitle(i, true, true);
                     this.subtitleTextView[i].setText(LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]), z);
                 } else if (closestTab == 5) {
@@ -628,14 +652,14 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     @Override
     public boolean isLightStatusBar() {
-        if (getLastStoryViewer() == null || !getLastStoryViewer().isShown()) {
-            int color = Theme.getColor(Theme.key_windowBackgroundWhite);
-            if (this.actionBar.isActionModeShowed()) {
-                color = Theme.getColor(Theme.key_actionBarActionModeDefault);
-            }
-            return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
+        if (getLastStoryViewer() != null && getLastStoryViewer().isShown()) {
+            return false;
         }
-        return false;
+        int color = Theme.getColor(Theme.key_windowBackgroundWhite);
+        if (this.actionBar.isActionModeShowed()) {
+            color = Theme.getColor(Theme.key_actionBarActionModeDefault);
+        }
+        return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
     }
 
     @Override

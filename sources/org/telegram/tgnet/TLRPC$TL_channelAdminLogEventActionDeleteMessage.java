@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionDeleteMessage extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$Message message;
 

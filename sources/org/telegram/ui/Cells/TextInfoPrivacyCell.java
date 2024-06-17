@@ -19,6 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 public class TextInfoPrivacyCell extends FrameLayout {
     private int bottomPadding;
     private int fixedSize;
@@ -184,7 +185,7 @@ public class TextInfoPrivacyCell extends FrameLayout {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
             return;
         }
         this.textView.setAlpha(z ? 1.0f : 0.5f);

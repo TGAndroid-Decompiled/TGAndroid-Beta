@@ -21,9 +21,11 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import org.webrtc.NetworkChangeDetector;
 import org.webrtc.NetworkMonitorAutoDetect;
+
 public class NetworkMonitorAutoDetect extends BroadcastReceiver implements NetworkChangeDetector {
     private static final long INVALID_NET_ID = -1;
     private static final String TAG = "NetworkMonitorAutoDetect";
@@ -147,20 +149,21 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             if (networkInfo == null) {
                 Logging.w(NetworkMonitorAutoDetect.TAG, "Couldn't retrieve information from network " + network.toString());
                 return new NetworkState(false, -1, -1, -1, -1);
-            } else if (networkInfo.getType() != 17) {
+            }
+            if (networkInfo.getType() != 17) {
                 NetworkCapabilities networkCapabilities = this.connectivityManager.getNetworkCapabilities(network);
                 if (networkCapabilities == null || !networkCapabilities.hasTransport(4)) {
                     return getNetworkState(networkInfo);
                 }
                 return new NetworkState(networkInfo.isConnected(), 17, -1, networkInfo.getType(), networkInfo.getSubtype());
-            } else if (networkInfo.getType() == 17) {
+            }
+            if (networkInfo.getType() == 17) {
                 if (Build.VERSION.SDK_INT >= 23 && network.equals(this.connectivityManager.getActiveNetwork()) && (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) != null && activeNetworkInfo.getType() != 17) {
                     return new NetworkState(networkInfo.isConnected(), 17, -1, activeNetworkInfo.getType(), activeNetworkInfo.getSubtype());
                 }
                 return new NetworkState(networkInfo.isConnected(), 17, -1, -1, -1);
-            } else {
-                return getNetworkState(networkInfo);
             }
+            return getNetworkState(networkInfo);
         }
 
         private NetworkState getNetworkState(NetworkInfo networkInfo) {
@@ -177,38 +180,37 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         }
 
         List<NetworkChangeDetector.NetworkInformation> getActiveNetworkList() {
-            if (supportNetworkCallback()) {
-                ArrayList arrayList = new ArrayList();
-                for (Network network : getAllNetworks()) {
-                    NetworkChangeDetector.NetworkInformation networkToInfo = networkToInfo(network);
-                    if (networkToInfo != null) {
-                        arrayList.add(networkToInfo);
-                    }
-                }
-                return arrayList;
+            if (!supportNetworkCallback()) {
+                return null;
             }
-            return null;
+            ArrayList arrayList = new ArrayList();
+            for (Network network : getAllNetworks()) {
+                NetworkChangeDetector.NetworkInformation networkToInfo = networkToInfo(network);
+                if (networkToInfo != null) {
+                    arrayList.add(networkToInfo);
+                }
+            }
+            return arrayList;
         }
 
         @SuppressLint({"NewApi"})
         long getDefaultNetId() {
             NetworkInfo activeNetworkInfo;
-            Network[] allNetworks;
             NetworkInfo networkInfo;
-            if (supportNetworkCallback() && (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) != null) {
-                long j = -1;
-                for (Network network : getAllNetworks()) {
-                    if (hasInternetCapability(network) && (networkInfo = this.connectivityManager.getNetworkInfo(network)) != null && networkInfo.getType() == activeNetworkInfo.getType()) {
-                        if (j == NetworkMonitorAutoDetect.INVALID_NET_ID) {
-                            j = NetworkMonitorAutoDetect.networkToNetId(network);
-                        } else {
-                            throw new RuntimeException("Multiple connected networks of same type are not supported.");
-                        }
+            if (!supportNetworkCallback() || (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) == null) {
+                return NetworkMonitorAutoDetect.INVALID_NET_ID;
+            }
+            long j = -1;
+            for (Network network : getAllNetworks()) {
+                if (hasInternetCapability(network) && (networkInfo = this.connectivityManager.getNetworkInfo(network)) != null && networkInfo.getType() == activeNetworkInfo.getType()) {
+                    if (j == NetworkMonitorAutoDetect.INVALID_NET_ID) {
+                        j = NetworkMonitorAutoDetect.networkToNetId(network);
+                    } else {
+                        throw new RuntimeException("Multiple connected networks of same type are not supported.");
                     }
                 }
-                return j;
             }
-            return NetworkMonitorAutoDetect.INVALID_NET_ID;
+            return j;
         }
 
         @SuppressLint({"NewApi"})
@@ -221,21 +223,21 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             if (linkProperties == null) {
                 Logging.w(NetworkMonitorAutoDetect.TAG, "Detected unknown network: " + network.toString());
                 return null;
-            } else if (linkProperties.getInterfaceName() == null) {
+            }
+            if (linkProperties.getInterfaceName() == null) {
                 Logging.w(NetworkMonitorAutoDetect.TAG, "Null interface name for network " + network.toString());
                 return null;
-            } else {
-                NetworkState networkState = getNetworkState(network);
-                NetworkChangeDetector.ConnectionType connectionType = NetworkMonitorAutoDetect.getConnectionType(networkState);
-                if (connectionType == NetworkChangeDetector.ConnectionType.CONNECTION_NONE) {
-                    Logging.d(NetworkMonitorAutoDetect.TAG, "Network " + network.toString() + " is disconnected");
-                    return null;
-                }
-                if (connectionType == NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN || connectionType == NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR) {
-                    Logging.d(NetworkMonitorAutoDetect.TAG, "Network " + network.toString() + " connection type is " + connectionType + " because it has type " + networkState.getNetworkType() + " and subtype " + networkState.getNetworkSubType());
-                }
-                return new NetworkChangeDetector.NetworkInformation(linkProperties.getInterfaceName(), connectionType, NetworkMonitorAutoDetect.getUnderlyingConnectionTypeForVpn(networkState), NetworkMonitorAutoDetect.networkToNetId(network), getIPAddresses(linkProperties));
             }
+            NetworkState networkState = getNetworkState(network);
+            NetworkChangeDetector.ConnectionType connectionType = NetworkMonitorAutoDetect.getConnectionType(networkState);
+            if (connectionType == NetworkChangeDetector.ConnectionType.CONNECTION_NONE) {
+                Logging.d(NetworkMonitorAutoDetect.TAG, "Network " + network.toString() + " is disconnected");
+                return null;
+            }
+            if (connectionType == NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN || connectionType == NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR) {
+                Logging.d(NetworkMonitorAutoDetect.TAG, "Network " + network.toString() + " connection type is " + connectionType + " because it has type " + networkState.getNetworkType() + " and subtype " + networkState.getNetworkSubType());
+            }
+            return new NetworkChangeDetector.NetworkInformation(linkProperties.getInterfaceName(), connectionType, NetworkMonitorAutoDetect.getUnderlyingConnectionTypeForVpn(networkState), NetworkMonitorAutoDetect.networkToNetId(network), getIPAddresses(linkProperties));
         }
 
         @SuppressLint({"NewApi"})
@@ -260,9 +262,10 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         @SuppressLint({"NewApi"})
         NetworkChangeDetector.IPAddress[] getIPAddresses(LinkProperties linkProperties) {
             NetworkChangeDetector.IPAddress[] iPAddressArr = new NetworkChangeDetector.IPAddress[linkProperties.getLinkAddresses().size()];
+            Iterator<LinkAddress> it = linkProperties.getLinkAddresses().iterator();
             int i = 0;
-            for (LinkAddress linkAddress : linkProperties.getLinkAddresses()) {
-                iPAddressArr[i] = new NetworkChangeDetector.IPAddress(linkAddress.getAddress().getAddress());
+            while (it.hasNext()) {
+                iPAddressArr[i] = new NetworkChangeDetector.IPAddress(it.next().getAddress().getAddress());
                 i++;
             }
             return iPAddressArr;
@@ -476,55 +479,55 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
     }
 
     private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z, int i, int i2) {
-        if (z) {
-            if (i == 0) {
-                switch (i2) {
-                    case 1:
-                    case 2:
-                    case 4:
-                    case 7:
-                    case 11:
-                    case 16:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_2G;
-                    case 3:
-                    case 5:
-                    case 6:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 12:
-                    case 14:
-                    case 15:
-                    case 17:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_3G;
-                    case 13:
-                    case 18:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
-                    case 19:
-                    default:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR;
-                    case 20:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_5G;
-                }
-            } else if (i != 1) {
-                if (i != 6) {
-                    if (i != 7) {
-                        if (i != 9) {
-                            if (i == 17) {
-                                return NetworkChangeDetector.ConnectionType.CONNECTION_VPN;
-                            }
-                            return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN;
-                        }
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_ETHERNET;
-                    }
-                    return NetworkChangeDetector.ConnectionType.CONNECTION_BLUETOOTH;
-                }
-                return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
-            } else {
-                return NetworkChangeDetector.ConnectionType.CONNECTION_WIFI;
+        if (!z) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_NONE;
+        }
+        if (i == 0) {
+            switch (i2) {
+                case 1:
+                case 2:
+                case 4:
+                case 7:
+                case 11:
+                case 16:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_2G;
+                case 3:
+                case 5:
+                case 6:
+                case 8:
+                case 9:
+                case 10:
+                case 12:
+                case 14:
+                case 15:
+                case 17:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_3G;
+                case 13:
+                case 18:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
+                case 19:
+                default:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR;
+                case 20:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_5G;
             }
         }
-        return NetworkChangeDetector.ConnectionType.CONNECTION_NONE;
+        if (i == 1) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_WIFI;
+        }
+        if (i == 6) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
+        }
+        if (i == 7) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_BLUETOOTH;
+        }
+        if (i == 9) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_ETHERNET;
+        }
+        if (i == 17) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_VPN;
+        }
+        return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN;
     }
 
     public static NetworkChangeDetector.ConnectionType getConnectionType(NetworkState networkState) {

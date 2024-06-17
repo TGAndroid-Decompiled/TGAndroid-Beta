@@ -57,9 +57,10 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerCategoriesListView;
+
 public class StickerCategoriesListView extends RecyclerListView {
-    private static EmojiGroupFetcher fetcher = new EmojiGroupFetcher();
-    public static CacheFetcher<String, TLRPC$TL_emojiList> search = new EmojiSearch();
+    private static EmojiGroupFetcher fetcher;
+    public static CacheFetcher<String, TLRPC$TL_emojiList> search;
     private Adapter adapter;
     private Paint backgroundPaint;
     private EmojiCategory[] categories;
@@ -93,6 +94,8 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     static {
+        fetcher = new EmojiGroupFetcher();
+        search = new EmojiSearch();
         new HashSet();
     }
 
@@ -217,14 +220,14 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     private int getScrollToStartWidth() {
-        if (getChildCount() > 0) {
-            View childAt = getChildAt(0);
-            if (childAt instanceof CategoryButton) {
-                return this.paddingWidth + Math.max(0, (getChildAdapterPosition(childAt) - 1) * getHeight()) + (-childAt.getLeft());
-            }
-            return -childAt.getLeft();
+        if (getChildCount() <= 0) {
+            return 0;
         }
-        return 0;
+        View childAt = getChildAt(0);
+        if (childAt instanceof CategoryButton) {
+            return this.paddingWidth + Math.max(0, (getChildAdapterPosition(childAt) - 1) * getHeight()) + (-childAt.getLeft());
+        }
+        return -childAt.getLeft();
     }
 
     public void scrollToStart() {
@@ -343,9 +346,7 @@ public class StickerCategoriesListView extends RecyclerListView {
                 }
             });
             this.categoriesShownAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator valueAnimator2 = this.categoriesShownAnimator;
-            EmojiCategory[] emojiCategoryArr = this.categories;
-            valueAnimator2.setDuration((emojiCategoryArr == null ? 5 : emojiCategoryArr.length) * 120);
+            this.categoriesShownAnimator.setDuration((this.categories == null ? 5 : r6.length) * 120);
             this.categoriesShownAnimator.start();
             return;
         }
@@ -452,7 +453,6 @@ public class StickerCategoriesListView extends RecyclerListView {
     @Override
     public void draw(Canvas canvas) {
         Drawable drawable;
-        float f = 1.0f;
         if (this.backgroundPaint != null) {
             int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
             int i2 = Integer.MIN_VALUE;
@@ -464,12 +464,13 @@ public class StickerCategoriesListView extends RecyclerListView {
                 }
             }
             if (i < i2) {
-                int width = (int) (i2 + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
-                canvas.drawRect((int) (i + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT))), 0.0f, width, getHeight(), this.backgroundPaint);
-                if (width < getWidth() && (drawable = this.leftBoundDrawable) != null) {
+                int width = (int) (i + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
+                int width2 = (int) (i2 + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
+                canvas.drawRect(width, 0.0f, width2, getHeight(), this.backgroundPaint);
+                if (width2 < getWidth() && (drawable = this.leftBoundDrawable) != null) {
                     drawable.setAlpha(255);
                     Drawable drawable2 = this.leftBoundDrawable;
-                    drawable2.setBounds(width, 0, drawable2.getIntrinsicWidth() + width, getHeight());
+                    drawable2.setBounds(width2, 0, drawable2.getIntrinsicWidth() + width2, getHeight());
                     this.leftBoundDrawable.draw(canvas);
                 }
             }
@@ -478,7 +479,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         super.draw(canvas);
         Drawable drawable3 = this.leftBoundDrawable;
         if (drawable3 != null) {
-            drawable3.setAlpha((int) (255.0f * this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 0.0f : 0.0f) * this.categoriesShownT));
+            drawable3.setAlpha((int) (255.0f * this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 1.0f : 0.0f) * this.categoriesShownT));
             if (this.leftBoundDrawable.getAlpha() > 0) {
                 Drawable drawable4 = this.leftBoundDrawable;
                 drawable4.setBounds(0, 0, drawable4.getIntrinsicWidth(), getHeight());
@@ -942,8 +943,7 @@ public class StickerCategoriesListView extends RecyclerListView {
             } else if (!(tLObject instanceof TLRPC$TL_messages_emojiGroups)) {
                 callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
             } else {
-                TLRPC$TL_messages_emojiGroups tLRPC$TL_messages_emojiGroups = (TLRPC$TL_messages_emojiGroups) tLObject;
-                callback4.run(Boolean.FALSE, tLRPC$TL_messages_emojiGroups, Long.valueOf(tLRPC$TL_messages_emojiGroups.hash), Boolean.TRUE);
+                callback4.run(Boolean.FALSE, (TLRPC$TL_messages_emojiGroups) tLObject, Long.valueOf(r3.hash), Boolean.TRUE);
             }
         }
 

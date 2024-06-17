@@ -6,6 +6,7 @@ import kotlin.ResultKt;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt;
 import kotlin.jvm.internal.Intrinsics;
+
 public abstract class BaseContinuationImpl implements Continuation<Object>, CoroutineStackFrame, Serializable {
     private final Continuation<Object> completion;
 

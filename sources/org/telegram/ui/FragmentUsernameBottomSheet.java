@@ -35,6 +35,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class FragmentUsernameBottomSheet {
     public static void open(final Context context, final int i, String str, TLObject tLObject, final TL_fragment$TL_collectibleInfo tL_fragment$TL_collectibleInfo, final Theme.ResourcesProvider resourcesProvider) {
         String str2;
@@ -86,8 +87,9 @@ public class FragmentUsernameBottomSheet {
                 str4 = "(" + formatCurrency + ")";
             }
             objArr[2] = str4;
+            String formatString4 = LocaleController.formatString(i3, objArr);
             format = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/" + str;
-            formatString2 = LocaleController.formatString(i3, objArr);
+            formatString2 = formatString4;
             formatString = formatString3;
         } else {
             obj = linearLayout;

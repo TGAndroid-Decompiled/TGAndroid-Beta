@@ -1,5 +1,6 @@
 package org.telegram.ui.Stories.recorder;
 
+import android.R;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -28,6 +29,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+
 public class StoryPrivacySelector extends View {
     private final Paint backgroundPaint;
     private final RectF clickRect;
@@ -78,7 +80,7 @@ public class StoryPrivacySelector extends View {
                 this.rippleDrawable = createRadSelectorDrawable;
                 RectF rectF = this.rect;
                 createRadSelectorDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-                this.rippleDrawable.setState(new int[]{16842919, 16842910});
+                this.rippleDrawable.setState(new int[]{R.attr.state_pressed, R.attr.state_enabled});
                 if (Build.VERSION.SDK_INT >= 21) {
                     this.rippleDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
                 }
@@ -234,10 +236,11 @@ public class StoryPrivacySelector extends View {
         }
         HashSet hashSet = new HashSet();
         hashSet.addAll(arrayList2);
-        for (ArrayList arrayList4 : hashMap.values()) {
-            hashSet.addAll(arrayList4);
+        Iterator it = hashMap.values().iterator();
+        while (it.hasNext()) {
+            hashSet.addAll((ArrayList) it.next());
         }
-        StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(readInt32, arrayList, 0);
+        StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(readInt32, (ArrayList<TLRPC$InputUser>) arrayList, 0);
         storyPrivacy.selectedUserIds.clear();
         storyPrivacy.selectedUserIds.addAll(arrayList2);
         storyPrivacy.selectedUserIdsByGroup.clear();
@@ -300,8 +303,9 @@ public class StoryPrivacySelector extends View {
             }
             final HashSet hashSet = new HashSet();
             hashSet.addAll(read.selectedUserIds);
-            for (ArrayList<Long> arrayList : read.selectedUserIdsByGroup.values()) {
-                hashSet.addAll(arrayList);
+            Iterator<ArrayList<Long>> it = read.selectedUserIdsByGroup.values().iterator();
+            while (it.hasNext()) {
+                hashSet.addAll(it.next());
             }
             if (!hashSet.isEmpty()) {
                 final MessagesStorage messagesStorage = MessagesStorage.getInstance(i);

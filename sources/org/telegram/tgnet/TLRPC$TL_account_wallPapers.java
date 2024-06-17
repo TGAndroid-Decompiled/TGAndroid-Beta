@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_account_wallPapers extends TLRPC$account_WallPapers {
     public long hash;
     public ArrayList<TLRPC$WallPaper> wallpapers = new ArrayList<>();

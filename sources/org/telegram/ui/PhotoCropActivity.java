@@ -20,6 +20,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.PhotoCropActivity;
+
 public class PhotoCropActivity extends BaseFragment {
     private String bitmapKey;
     private PhotoEditActivityDelegate delegate;
@@ -100,31 +101,28 @@ public class PhotoCropActivity extends BaseFragment {
         }
 
         private void updateBitmapSize() {
-            float f;
-            int i;
-            int i2;
             if (this.viewWidth == 0 || this.viewHeight == 0 || PhotoCropActivity.this.imageToCrop == null) {
                 return;
             }
-            float f2 = this.rectX - this.bitmapX;
-            int i3 = this.bitmapWidth;
-            float f3 = f2 / i3;
-            float f4 = this.rectY - this.bitmapY;
-            int i4 = this.bitmapHeight;
-            float f5 = f4 / i4;
-            float f6 = this.rectSizeX / i3;
-            float f7 = this.rectSizeY / i4;
+            float f = this.rectX - this.bitmapX;
+            int i = this.bitmapWidth;
+            float f2 = f / i;
+            float f3 = this.rectY - this.bitmapY;
+            int i2 = this.bitmapHeight;
+            float f4 = f3 / i2;
+            float f5 = this.rectSizeX / i;
+            float f6 = this.rectSizeY / i2;
             float width = PhotoCropActivity.this.imageToCrop.getWidth();
             float height = PhotoCropActivity.this.imageToCrop.getHeight();
-            int i5 = this.viewWidth;
-            float f8 = i5 / width;
-            int i6 = this.viewHeight;
-            if (f8 > i6 / height) {
-                this.bitmapHeight = i6;
-                this.bitmapWidth = (int) Math.ceil(width * f);
+            int i3 = this.viewWidth;
+            float f7 = i3 / width;
+            int i4 = this.viewHeight;
+            if (f7 > i4 / height) {
+                this.bitmapHeight = i4;
+                this.bitmapWidth = (int) Math.ceil(width * r9);
             } else {
-                this.bitmapWidth = i5;
-                this.bitmapHeight = (int) Math.ceil(height * f8);
+                this.bitmapWidth = i3;
+                this.bitmapHeight = (int) Math.ceil(height * f7);
             }
             this.bitmapX = ((this.viewWidth - this.bitmapWidth) / 2) + AndroidUtilities.dp(14.0f);
             int dp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.dp(14.0f);
@@ -138,25 +136,25 @@ public class PhotoCropActivity extends BaseFragment {
                 } else {
                     if (this.bitmapWidth > this.bitmapHeight) {
                         this.rectY = dp;
-                        this.rectX = ((this.viewWidth - i2) / 2) + AndroidUtilities.dp(14.0f);
-                        int i7 = this.bitmapHeight;
-                        this.rectSizeX = i7;
-                        this.rectSizeY = i7;
+                        this.rectX = ((this.viewWidth - r1) / 2) + AndroidUtilities.dp(14.0f);
+                        int i5 = this.bitmapHeight;
+                        this.rectSizeX = i5;
+                        this.rectSizeY = i5;
                     } else {
                         this.rectX = this.bitmapX;
-                        this.rectY = ((this.viewHeight - i) / 2) + AndroidUtilities.dp(14.0f);
-                        int i8 = this.bitmapWidth;
-                        this.rectSizeX = i8;
-                        this.rectSizeY = i8;
+                        this.rectY = ((this.viewHeight - r0) / 2) + AndroidUtilities.dp(14.0f);
+                        int i6 = this.bitmapWidth;
+                        this.rectSizeX = i6;
+                        this.rectSizeY = i6;
                     }
                 }
             } else {
-                int i9 = this.bitmapWidth;
-                this.rectX = (f3 * i9) + this.bitmapX;
-                int i10 = this.bitmapHeight;
-                this.rectY = (f5 * i10) + dp;
-                this.rectSizeX = f6 * i9;
-                this.rectSizeY = f7 * i10;
+                int i7 = this.bitmapWidth;
+                this.rectX = (f2 * i7) + this.bitmapX;
+                int i8 = this.bitmapHeight;
+                this.rectY = (f4 * i8) + dp;
+                this.rectSizeX = f5 * i7;
+                this.rectSizeY = f6 * i8;
             }
             invalidate();
         }
@@ -275,8 +273,10 @@ public class PhotoCropActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    PhotoCropActivity.this.finishFragment();
-                } else if (i == 1) {
+                    PhotoCropActivity.this.lambda$onBackPressed$303();
+                    return;
+                }
+                if (i == 1) {
                     if (PhotoCropActivity.this.delegate != null && !PhotoCropActivity.this.doneButtonPressed) {
                         Bitmap bitmap = PhotoCropActivity.this.view.getBitmap();
                         if (bitmap == PhotoCropActivity.this.imageToCrop) {
@@ -285,7 +285,7 @@ public class PhotoCropActivity extends BaseFragment {
                         PhotoCropActivity.this.delegate.didFinishEdit(bitmap);
                         PhotoCropActivity.this.doneButtonPressed = true;
                     }
-                    PhotoCropActivity.this.finishFragment();
+                    PhotoCropActivity.this.lambda$onBackPressed$303();
                 }
             }
         });

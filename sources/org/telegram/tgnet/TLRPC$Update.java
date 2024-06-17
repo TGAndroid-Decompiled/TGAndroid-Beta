@@ -5,6 +5,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.tl.TL_stories$TL_updateReadStories;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStoriesStealthMode;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
+
 public abstract class TLRPC$Update extends TLObject {
     public static TLRPC$Update TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Update tLRPC$TL_updateTheme;
@@ -209,11 +210,11 @@ public abstract class TLRPC$Update extends TLObject {
                             if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            return;
-                        }
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.order.add(Integer.valueOf(abstractSerializedData2.readInt32(z2)));
+                        } else {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt322; i2++) {
+                                this.order.add(Integer.valueOf(abstractSerializedData2.readInt32(z2)));
+                            }
                         }
                     }
 

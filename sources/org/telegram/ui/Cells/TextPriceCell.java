@@ -10,6 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TextPriceCell extends FrameLayout {
     private TextView textView;
     private TextView valueTextView;

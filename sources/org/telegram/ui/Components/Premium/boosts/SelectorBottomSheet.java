@@ -52,6 +52,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
     private final HashMap<Long, TLObject> allSelectedObjects;
@@ -362,8 +363,11 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 SelectedObjectsListener selectedObjectsListener = this.selectedObjectsListener;
                 if (selectedObjectsListener != null) {
                     selectedObjectsListener.onUsersSelected(arrayList);
+                    return;
                 }
-            } else if (i == 2) {
+                return;
+            }
+            if (i == 2) {
                 ArrayList arrayList2 = new ArrayList();
                 for (TLObject tLObject2 : this.allSelectedObjects.values()) {
                     if (tLObject2 instanceof TLRPC$Chat) {
@@ -376,21 +380,22 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 SelectedObjectsListener selectedObjectsListener2 = this.selectedObjectsListener;
                 if (selectedObjectsListener2 != null) {
                     selectedObjectsListener2.onChatsSelected(arrayList2, true);
-                }
-            } else {
-                if (i != 3) {
                     return;
                 }
-                ArrayList arrayList3 = new ArrayList();
-                for (TLRPC$TL_help_country tLRPC$TL_help_country : this.countriesList) {
-                    if (this.selectedIds.contains(Long.valueOf(tLRPC$TL_help_country.default_name.hashCode()))) {
-                        arrayList3.add(tLRPC$TL_help_country);
-                    }
+                return;
+            }
+            if (i != 3) {
+                return;
+            }
+            ArrayList arrayList3 = new ArrayList();
+            for (TLRPC$TL_help_country tLRPC$TL_help_country : this.countriesList) {
+                if (this.selectedIds.contains(Long.valueOf(tLRPC$TL_help_country.default_name.hashCode()))) {
+                    arrayList3.add(tLRPC$TL_help_country);
                 }
-                SelectedObjectsListener selectedObjectsListener3 = this.selectedObjectsListener;
-                if (selectedObjectsListener3 != null) {
-                    selectedObjectsListener3.onCountrySelected(arrayList3);
-                }
+            }
+            SelectedObjectsListener selectedObjectsListener3 = this.selectedObjectsListener;
+            if (selectedObjectsListener3 != null) {
+                selectedObjectsListener3.onCountrySelected(arrayList3);
             }
         }
     }
@@ -442,8 +447,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     SelectorBottomSheet.this.lambda$loadData$6((List) obj);
                 }
             });
-        } else if (i != 3) {
         } else {
+            if (i != 3) {
+                return;
+            }
             BoostRepository.loadCountries(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
@@ -642,8 +649,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 }
             }
             if (childAt instanceof SelectorCountryCell) {
-                SelectorCountryCell selectorCountryCell = (SelectorCountryCell) childAt;
-                selectorCountryCell.setChecked(this.selectedIds.contains(Long.valueOf(selectorCountryCell.getCountry().default_name.hashCode())), true);
+                ((SelectorCountryCell) childAt).setChecked(this.selectedIds.contains(Long.valueOf(r1.getCountry().default_name.hashCode())), true);
             }
         }
     }
@@ -688,22 +694,26 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (i == 1) {
             AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
             AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
-        } else if (i != 2) {
+            return;
+        }
+        if (i != 2) {
             if (i != 3) {
                 return;
             }
             updateItems(false, true);
             scrollToTop(true);
-        } else if (!isSearching()) {
+            return;
+        }
+        if (!isSearching()) {
             AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
             this.peers.clear();
             this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
             updateItems(false, true);
             scrollToTop(true);
-        } else {
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
+            return;
         }
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
     }
 
     private void updateSectionCell(boolean z) {
@@ -783,22 +793,22 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (TextUtils.isEmpty(str)) {
             return true;
         }
-        if (tLObject instanceof TLRPC$TL_help_country) {
-            TLRPC$TL_help_country tLRPC$TL_help_country = (TLRPC$TL_help_country) tLObject;
-            String lowerCase = AndroidUtilities.translitSafe(tLRPC$TL_help_country.default_name).toLowerCase();
-            if (!lowerCase.startsWith(str)) {
-                if (!lowerCase.contains(" " + str)) {
-                    String lowerCase2 = AndroidUtilities.translitSafe(tLRPC$TL_help_country.iso2).toLowerCase();
-                    if (!lowerCase2.startsWith(str)) {
-                        if (!lowerCase2.contains(" " + str)) {
-                            return false;
-                        }
+        if (!(tLObject instanceof TLRPC$TL_help_country)) {
+            return false;
+        }
+        TLRPC$TL_help_country tLRPC$TL_help_country = (TLRPC$TL_help_country) tLObject;
+        String lowerCase = AndroidUtilities.translitSafe(tLRPC$TL_help_country.default_name).toLowerCase();
+        if (!lowerCase.startsWith(str)) {
+            if (!lowerCase.contains(" " + str)) {
+                String lowerCase2 = AndroidUtilities.translitSafe(tLRPC$TL_help_country.iso2).toLowerCase();
+                if (!lowerCase2.startsWith(str)) {
+                    if (!lowerCase2.contains(" " + str)) {
+                        return false;
                     }
                 }
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -810,13 +820,13 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     @Override
     protected CharSequence getTitle() {
         int i = this.type;
-        if (i != 1) {
-            if (i != 2) {
-                return i != 3 ? "" : LocaleController.getString("BoostingSelectCountry", R.string.BoostingSelectCountry);
-            }
-            return LocaleController.getString("BoostingAddChannelOrGroup", R.string.BoostingAddChannelOrGroup);
+        if (i == 1) {
+            return LocaleController.getString("GiftPremium", R.string.GiftPremium);
         }
-        return LocaleController.getString("GiftPremium", R.string.GiftPremium);
+        if (i != 2) {
+            return i != 3 ? "" : LocaleController.getString("BoostingSelectCountry", R.string.BoostingSelectCountry);
+        }
+        return LocaleController.getString("BoostingAddChannelOrGroup", R.string.BoostingAddChannelOrGroup);
     }
 
     @Override

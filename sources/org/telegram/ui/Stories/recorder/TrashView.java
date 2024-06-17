@@ -15,6 +15,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class TrashView extends View {
     private final ButtonBounce bounce;
     private final Paint circlePaint;

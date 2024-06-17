@@ -27,6 +27,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.ui.ActionBar.Theme;
+
 public class EmojiThemes {
     private static final int[] previewColorKeys = {Theme.key_chat_inBubble, Theme.key_chat_outBubble, Theme.key_featuredStickers_addButton, Theme.key_chat_wallpaper, Theme.key_chat_wallpaper_gradient_to1, Theme.key_chat_wallpaper_gradient_to2, Theme.key_chat_wallpaper_gradient_to3, Theme.key_chat_wallpaper_gradient_rotation};
     private final int currentAccount;
@@ -388,8 +389,7 @@ public class EmojiThemes {
         Point point = AndroidUtilities.displaySize;
         int min = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
-        int max = Math.max(point2.x, point2.y);
-        imageReceiver.setImage(forDocument, ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_f", null, ".jpg", tLRPC$WallPaper, 1);
+        imageReceiver.setImage(forDocument, ((int) (min / AndroidUtilities.density)) + "_" + ((int) (Math.max(point2.x, point2.y) / AndroidUtilities.density)) + "_f", null, ".jpg", tLRPC$WallPaper, 1);
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
@@ -457,31 +457,30 @@ public class EmojiThemes {
         if (tLRPC$Document == null) {
             if (resultCallback != null) {
                 resultCallback.onComplete(new Pair<>(Long.valueOf(j), null));
-                return;
             }
-            return;
+        } else {
+            ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 140), wallpaper.document);
+            ImageReceiver imageReceiver = new ImageReceiver();
+            imageReceiver.setAllowLoadingOnAttachedOnly(false);
+            imageReceiver.setImage(forDocument, "120_140", null, null, null, 1);
+            imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+                @Override
+                public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
+                    EmojiThemes.lambda$loadWallpaperThumb$3(ResultCallback.this, j, wallpaperThumbFile, imageReceiver2, z, z2, z3);
+                }
+
+                @Override
+                public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
+                }
+
+                @Override
+                public void onAnimationReady(ImageReceiver imageReceiver2) {
+                    ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
+                }
+            });
+            ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
         }
-        ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 140), wallpaper.document);
-        ImageReceiver imageReceiver = new ImageReceiver();
-        imageReceiver.setAllowLoadingOnAttachedOnly(false);
-        imageReceiver.setImage(forDocument, "120_140", null, null, null, 1);
-        imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-            @Override
-            public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.lambda$loadWallpaperThumb$3(ResultCallback.this, j, wallpaperThumbFile, imageReceiver2, z, z2, z3);
-            }
-
-            @Override
-            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
-                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
-            }
-
-            @Override
-            public void onAnimationReady(ImageReceiver imageReceiver2) {
-                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
-            }
-        });
-        ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
     public static void lambda$loadWallpaperThumb$3(ResultCallback resultCallback, long j, final File file, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
@@ -514,8 +513,11 @@ public class EmojiThemes {
     public static void lambda$loadWallpaperThumb$2(File file, Bitmap bitmap) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-            fileOutputStream.close();
+            try {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+                fileOutputStream.close();
+            } finally {
+            }
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -529,8 +531,7 @@ public class EmojiThemes {
     }
 
     private File getWallpaperThumbFile(long j) {
-        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-        return new File(filesDirFixed, "wallpaper_thumb_" + j + ".png");
+        return new File(ApplicationLoader.getFilesDirFixed(), "wallpaper_thumb_" + j + ".png");
     }
 
     public static Theme.ThemeInfo getDefaultThemeInfo(boolean z) {

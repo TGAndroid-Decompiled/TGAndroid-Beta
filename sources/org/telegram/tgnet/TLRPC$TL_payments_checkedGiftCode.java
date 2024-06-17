@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stories$TL_boost;
+
 public class TLRPC$TL_payments_checkedGiftCode extends TLObject {
     public TL_stories$TL_boost boost;
     public int date;

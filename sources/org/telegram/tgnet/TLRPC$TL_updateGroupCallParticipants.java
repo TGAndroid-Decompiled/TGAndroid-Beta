@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updateGroupCallParticipants extends TLRPC$Update {
     public TLRPC$TL_inputGroupCall call;
     public ArrayList<TLRPC$TL_groupCallParticipant> participants = new ArrayList<>();

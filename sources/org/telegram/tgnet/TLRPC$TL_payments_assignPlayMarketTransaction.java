@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_assignPlayMarketTransaction extends TLObject {
     public TLRPC$InputStorePaymentPurpose purpose;
     public TLRPC$TL_dataJSON receipt;

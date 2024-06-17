@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$ReactionCount;
+
 public class TL_stories$TL_storyViews extends TL_stories$StoryViews {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -38,11 +39,11 @@ public class TL_stories$TL_storyViews extends TL_stories$StoryViews {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
-                return;
-            }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt325; i2++) {
-                this.recent_viewers.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            } else {
+                int readInt325 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt325; i2++) {
+                    this.recent_viewers.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+                }
             }
         }
     }

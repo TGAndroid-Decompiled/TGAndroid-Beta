@@ -20,6 +20,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
+
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static volatile DispatchQueue videoPlayerQueue;
@@ -196,8 +197,7 @@ public class Utilities {
         } else {
             createBitmap = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
         }
-        Paint paint = new Paint(2);
-        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), paint);
+        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), new Paint(2));
         stackBlurBitmap(createBitmap, 12);
         return createBitmap;
     }
@@ -592,19 +592,18 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length == 0) {
             if (runnable != null) {
                 runnable.run();
-                return;
             }
-            return;
-        }
-        final int[] iArr = {0};
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+        } else {
+            final int[] iArr = {0};
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+                }
+            };
+            for (Callback<Runnable> callback : callbackArr) {
+                callback.run(runnable2);
             }
-        };
-        for (Callback<Runnable> callback : callbackArr) {
-            callback.run(runnable2);
         }
     }
 

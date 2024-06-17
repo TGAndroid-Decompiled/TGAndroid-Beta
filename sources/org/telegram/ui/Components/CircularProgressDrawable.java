@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CircularProgressDrawable extends Drawable {
     private static final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
     private float angleOffset;
@@ -68,9 +69,8 @@ public class CircularProgressDrawable extends Drawable {
         for (int i = 0; i < 4; i++) {
             float f3 = fArr[1];
             FastOutSlowInInterpolator fastOutSlowInInterpolator = interpolator;
-            int i2 = i * 1350;
-            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - i2) / 667.0f) * 250.0f);
-            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (i2 + 667)) / 667.0f) * 250.0f);
+            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - (i * 1350)) / 667.0f) * 250.0f);
+            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (r5 + 667)) / 667.0f) * 250.0f);
         }
     }
 

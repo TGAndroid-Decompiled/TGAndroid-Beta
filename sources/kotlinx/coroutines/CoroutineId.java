@@ -6,6 +6,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt__StringsKt;
 import org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement;
+
 @IgnoreJRERequirement
 public final class CoroutineId extends AbstractCoroutineContextElement implements ThreadContextElement<String> {
     public static final Key Key = new Key(null);

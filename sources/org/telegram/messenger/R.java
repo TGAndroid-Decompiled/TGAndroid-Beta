@@ -1,4 +1,5 @@
 package org.telegram.messenger;
+
 public final class R {
 
     public static final class anim {
@@ -2047,79 +2048,153 @@ public final class R {
         public static final int zoom_round_b = 0x7f08054f;
         public static final int zoom_slide = 0x7f080550;
         public static final int zoom_slide_a = 0x7f080551;
+
         public static final int res_0x7f080000_avd_flip__0 = 0x7f080000;
+
         public static final int res_0x7f080001_avd_flip__1 = 0x7f080001;
+
         public static final int res_0x7f080002_avd_flip__2 = 0x7f080002;
+
         public static final int res_0x7f080003_avd_flip__3 = 0x7f080003;
+
         public static final int res_0x7f080004_avd_flip__4 = 0x7f080004;
+
         public static final int res_0x7f080005_avd_speed__0 = 0x7f080005;
+
         public static final int res_0x7f080006_avd_speed__1 = 0x7f080006;
+
         public static final int res_0x7f080007_avd_speed__2 = 0x7f080007;
+
         public static final int res_0x7f080008_avd_speed__3 = 0x7f080008;
+
         public static final int res_0x7f080009_fingerprint_dialog_error_to_fp__0 = 0x7f080009;
+
         public static final int res_0x7f08000a_fingerprint_dialog_error_to_fp__1 = 0x7f08000a;
+
         public static final int res_0x7f08000b_fingerprint_dialog_error_to_fp__10 = 0x7f08000b;
+
         public static final int res_0x7f08000c_fingerprint_dialog_error_to_fp__11 = 0x7f08000c;
+
         public static final int res_0x7f08000d_fingerprint_dialog_error_to_fp__12 = 0x7f08000d;
+
         public static final int res_0x7f08000e_fingerprint_dialog_error_to_fp__13 = 0x7f08000e;
+
         public static final int res_0x7f08000f_fingerprint_dialog_error_to_fp__14 = 0x7f08000f;
+
         public static final int res_0x7f080010_fingerprint_dialog_error_to_fp__15 = 0x7f080010;
+
         public static final int res_0x7f080011_fingerprint_dialog_error_to_fp__16 = 0x7f080011;
+
         public static final int res_0x7f080012_fingerprint_dialog_error_to_fp__17 = 0x7f080012;
+
         public static final int res_0x7f080013_fingerprint_dialog_error_to_fp__18 = 0x7f080013;
+
         public static final int res_0x7f080014_fingerprint_dialog_error_to_fp__19 = 0x7f080014;
+
         public static final int res_0x7f080015_fingerprint_dialog_error_to_fp__2 = 0x7f080015;
+
         public static final int res_0x7f080016_fingerprint_dialog_error_to_fp__20 = 0x7f080016;
+
         public static final int res_0x7f080017_fingerprint_dialog_error_to_fp__21 = 0x7f080017;
+
         public static final int res_0x7f080018_fingerprint_dialog_error_to_fp__22 = 0x7f080018;
+
         public static final int res_0x7f080019_fingerprint_dialog_error_to_fp__23 = 0x7f080019;
+
         public static final int res_0x7f08001a_fingerprint_dialog_error_to_fp__24 = 0x7f08001a;
+
         public static final int res_0x7f08001b_fingerprint_dialog_error_to_fp__25 = 0x7f08001b;
+
         public static final int res_0x7f08001c_fingerprint_dialog_error_to_fp__26 = 0x7f08001c;
+
         public static final int res_0x7f08001d_fingerprint_dialog_error_to_fp__27 = 0x7f08001d;
+
         public static final int res_0x7f08001e_fingerprint_dialog_error_to_fp__28 = 0x7f08001e;
+
         public static final int res_0x7f08001f_fingerprint_dialog_error_to_fp__29 = 0x7f08001f;
+
         public static final int res_0x7f080020_fingerprint_dialog_error_to_fp__3 = 0x7f080020;
+
         public static final int res_0x7f080021_fingerprint_dialog_error_to_fp__4 = 0x7f080021;
+
         public static final int res_0x7f080022_fingerprint_dialog_error_to_fp__5 = 0x7f080022;
+
         public static final int res_0x7f080023_fingerprint_dialog_error_to_fp__6 = 0x7f080023;
+
         public static final int res_0x7f080024_fingerprint_dialog_error_to_fp__7 = 0x7f080024;
+
         public static final int res_0x7f080025_fingerprint_dialog_error_to_fp__8 = 0x7f080025;
+
         public static final int res_0x7f080026_fingerprint_dialog_error_to_fp__9 = 0x7f080026;
+
         public static final int res_0x7f080027_fingerprint_dialog_fp_to_error__0 = 0x7f080027;
+
         public static final int res_0x7f080028_fingerprint_dialog_fp_to_error__1 = 0x7f080028;
+
         public static final int res_0x7f080029_fingerprint_dialog_fp_to_error__10 = 0x7f080029;
+
         public static final int res_0x7f08002a_fingerprint_dialog_fp_to_error__11 = 0x7f08002a;
+
         public static final int res_0x7f08002b_fingerprint_dialog_fp_to_error__12 = 0x7f08002b;
+
         public static final int res_0x7f08002c_fingerprint_dialog_fp_to_error__13 = 0x7f08002c;
+
         public static final int res_0x7f08002d_fingerprint_dialog_fp_to_error__14 = 0x7f08002d;
+
         public static final int res_0x7f08002e_fingerprint_dialog_fp_to_error__15 = 0x7f08002e;
+
         public static final int res_0x7f08002f_fingerprint_dialog_fp_to_error__16 = 0x7f08002f;
+
         public static final int res_0x7f080030_fingerprint_dialog_fp_to_error__17 = 0x7f080030;
+
         public static final int res_0x7f080031_fingerprint_dialog_fp_to_error__18 = 0x7f080031;
+
         public static final int res_0x7f080032_fingerprint_dialog_fp_to_error__19 = 0x7f080032;
+
         public static final int res_0x7f080033_fingerprint_dialog_fp_to_error__2 = 0x7f080033;
+
         public static final int res_0x7f080034_fingerprint_dialog_fp_to_error__20 = 0x7f080034;
+
         public static final int res_0x7f080035_fingerprint_dialog_fp_to_error__21 = 0x7f080035;
+
         public static final int res_0x7f080036_fingerprint_dialog_fp_to_error__22 = 0x7f080036;
+
         public static final int res_0x7f080037_fingerprint_dialog_fp_to_error__23 = 0x7f080037;
+
         public static final int res_0x7f080038_fingerprint_dialog_fp_to_error__24 = 0x7f080038;
+
         public static final int res_0x7f080039_fingerprint_dialog_fp_to_error__25 = 0x7f080039;
+
         public static final int res_0x7f08003a_fingerprint_dialog_fp_to_error__26 = 0x7f08003a;
+
         public static final int res_0x7f08003b_fingerprint_dialog_fp_to_error__27 = 0x7f08003b;
+
         public static final int res_0x7f08003c_fingerprint_dialog_fp_to_error__3 = 0x7f08003c;
+
         public static final int res_0x7f08003d_fingerprint_dialog_fp_to_error__4 = 0x7f08003d;
+
         public static final int res_0x7f08003e_fingerprint_dialog_fp_to_error__5 = 0x7f08003e;
+
         public static final int res_0x7f08003f_fingerprint_dialog_fp_to_error__6 = 0x7f08003f;
+
         public static final int res_0x7f080040_fingerprint_dialog_fp_to_error__7 = 0x7f080040;
+
         public static final int res_0x7f080041_fingerprint_dialog_fp_to_error__8 = 0x7f080041;
+
         public static final int res_0x7f080042_fingerprint_dialog_fp_to_error__9 = 0x7f080042;
+
         public static final int res_0x7f080043_map_pin3__0 = 0x7f080043;
+
         public static final int res_0x7f080044_star_small_inner__0 = 0x7f080044;
+
         public static final int res_0x7f080045_star_small_inner__1 = 0x7f080045;
+
         public static final int res_0x7f080046_tg_splash_320__0 = 0x7f080046;
+
         public static final int res_0x7f080047_tg_splash_320__1 = 0x7f080047;
+
         public static final int res_0x7f080048_tg_splash_320__2 = 0x7f080048;
+
         public static final int res_0x7f080049_tg_splash_320__3 = 0x7f080049;
 
         private drawable() {
@@ -2451,24 +2526,43 @@ public final class R {
         public static final int widget_edititem_text = 0x7f090153;
         public static final int width_tag = 0x7f090154;
         public static final int wrap_content = 0x7f090156;
+
         public static final int ALT = 0x7f090000;
+
         public static final int CTRL = 0x7f090001;
+
         public static final int FUNCTION = 0x7f090002;
+
         public static final int META = 0x7f090003;
+
         public static final int SHIFT = 0x7f090004;
+
         public static final int SYM = 0x7f090005;
+
         public static final int always = 0x7f090043;
+
         public static final int beginning = 0x7f09004d;
+
         public static final int collapseActionView = 0x7f09005c;
+
         public static final int disableHome = 0x7f090078;
+
         public static final int homeAsUp = 0x7f090096;
+
         public static final int ifRoom = 0x7f09009d;
+
         public static final int middle = 0x7f0900c7;
+
         public static final int never = 0x7f0900cb;
+
         public static final int showCustom = 0x7f090115;
+
         public static final int showHome = 0x7f090116;
+
         public static final int showTitle = 0x7f090117;
+
         public static final int useLogo = 0x7f09014a;
+
         public static final int withText = 0x7f090155;
 
         private id() {
@@ -11912,37 +12006,69 @@ public final class R {
         public static final int search_menu_title = 0x7f0f2338;
         public static final int status_bar_notification_info_overflow = 0x7f0f2339;
         public static final int wallet_buy_button_place_holder = 0x7f0f233a;
+
         public static final int androidx_startup = 0x7f0f22cd;
+
         public static final int appcenter_distribute_dialog_actioned_on_disabled_toast = 0x7f0f22ce;
+
         public static final int appcenter_distribute_download_progress_number_format = 0x7f0f22cf;
+
         public static final int appcenter_distribute_downloading_error = 0x7f0f22d0;
+
         public static final int appcenter_distribute_downloading_mandatory_update = 0x7f0f22d1;
+
         public static final int appcenter_distribute_downloading_update = 0x7f0f22d2;
+
         public static final int appcenter_distribute_install = 0x7f0f22d3;
+
         public static final int appcenter_distribute_install_ready_message = 0x7f0f22d4;
+
         public static final int appcenter_distribute_install_ready_title = 0x7f0f22d5;
+
         public static final int appcenter_distribute_notification_category = 0x7f0f22d6;
+
         public static final int appcenter_distribute_unknown_sources_dialog_message = 0x7f0f22d7;
+
         public static final int appcenter_distribute_unknown_sources_dialog_settings = 0x7f0f22d8;
+
         public static final int appcenter_distribute_update_dialog_download = 0x7f0f22d9;
+
         public static final int appcenter_distribute_update_dialog_message_mandatory = 0x7f0f22da;
+
         public static final int appcenter_distribute_update_dialog_message_optional = 0x7f0f22db;
+
         public static final int appcenter_distribute_update_dialog_postpone = 0x7f0f22dc;
+
         public static final int appcenter_distribute_update_dialog_title = 0x7f0f22dd;
+
         public static final int appcenter_distribute_update_dialog_view_release_notes = 0x7f0f22de;
+
         public static final int appcenter_distribute_update_failed_dialog_ignore = 0x7f0f22df;
+
         public static final int appcenter_distribute_update_failed_dialog_message = 0x7f0f22e0;
+
         public static final int appcenter_distribute_update_failed_dialog_reinstall = 0x7f0f22e1;
+
         public static final int appcenter_distribute_update_failed_dialog_title = 0x7f0f22e2;
+
         public static final int default_web_client_id = 0x7f0f2300;
+
         public static final int firebase_database_url = 0x7f0f2309;
+
         public static final int gcm_defaultSenderId = 0x7f0f2321;
+
         public static final int google_api_key = 0x7f0f2325;
+
         public static final int google_app_id = 0x7f0f2326;
+
         public static final int google_assistant_verification_channel_name = 0x7f0f2327;
+
         public static final int google_assistant_verification_notification_title = 0x7f0f2328;
+
         public static final int google_crash_reporting_api_key = 0x7f0f2329;
+
         public static final int google_storage_bucket = 0x7f0f232a;
+
         public static final int project_id = 0x7f0f2337;
 
         private string() {
@@ -12898,66 +13024,66 @@ public final class R {
         public static final int WalletFragmentStyle_maskedWalletDetailsLogoTextColor = 0x00000009;
         public static final int WalletFragmentStyle_maskedWalletDetailsTextAppearance = 0x0000000a;
         public static final int[] ActionBar = {R.attr.background, R.attr.backgroundSplit, R.attr.backgroundStacked, R.attr.contentInsetEnd, R.attr.contentInsetEndWithActions, R.attr.contentInsetLeft, R.attr.contentInsetRight, R.attr.contentInsetStart, R.attr.contentInsetStartWithNavigation, R.attr.customNavigationLayout, R.attr.displayOptions, R.attr.divider, R.attr.elevation, R.attr.height, R.attr.hideOnContentScroll, R.attr.homeAsUpIndicator, R.attr.homeLayout, R.attr.icon, R.attr.indeterminateProgressStyle, R.attr.itemPadding, R.attr.logo, R.attr.navigationMode, R.attr.popupTheme, R.attr.progressBarPadding, R.attr.progressBarStyle, R.attr.subtitle, R.attr.subtitleTextStyle, R.attr.title, R.attr.titleTextStyle};
-        public static final int[] ActionBarLayout = {16842931};
-        public static final int[] ActionMenuItemView = {16843071};
+        public static final int[] ActionBarLayout = {android.R.attr.layout_gravity};
+        public static final int[] ActionMenuItemView = {android.R.attr.minWidth};
         public static final int[] ActionMenuView = new int[0];
         public static final int[] ActionMode = {R.attr.background, R.attr.backgroundSplit, R.attr.closeItemLayout, R.attr.height, R.attr.subtitleTextStyle, R.attr.titleTextStyle};
         public static final int[] ActivityChooserView = {R.attr.expandActivityOverflowButtonDrawable, R.attr.initialActivityCount};
-        public static final int[] AlertDialog = {16842994, R.attr.buttonIconDimen, R.attr.buttonPanelSideLayout, R.attr.listItemLayout, R.attr.listLayout, R.attr.multiChoiceItemLayout, R.attr.showTitle, R.attr.singleChoiceItemLayout};
-        public static final int[] AnimatedStateListDrawableCompat = {16843036, 16843156, 16843157, 16843158, 16843532, 16843533};
-        public static final int[] AnimatedStateListDrawableItem = {16842960, 16843161};
-        public static final int[] AnimatedStateListDrawableTransition = {16843161, 16843849, 16843850, 16843851};
+        public static final int[] AlertDialog = {android.R.attr.layout, R.attr.buttonIconDimen, R.attr.buttonPanelSideLayout, R.attr.listItemLayout, R.attr.listLayout, R.attr.multiChoiceItemLayout, R.attr.showTitle, R.attr.singleChoiceItemLayout};
+        public static final int[] AnimatedStateListDrawableCompat = {android.R.attr.dither, android.R.attr.visible, android.R.attr.variablePadding, android.R.attr.constantSize, android.R.attr.enterFadeDuration, android.R.attr.exitFadeDuration};
+        public static final int[] AnimatedStateListDrawableItem = {android.R.attr.id, android.R.attr.drawable};
+        public static final int[] AnimatedStateListDrawableTransition = {android.R.attr.drawable, android.R.attr.toId, android.R.attr.fromId, android.R.attr.reversible};
         public static final int[] AppCompatEmojiHelper = new int[0];
-        public static final int[] AppCompatImageView = {16843033, R.attr.srcCompat, R.attr.tint, R.attr.tintMode};
-        public static final int[] AppCompatSeekBar = {16843074, R.attr.tickMark, R.attr.tickMarkTint, R.attr.tickMarkTintMode};
-        public static final int[] AppCompatTextHelper = {16842804, 16843117, 16843118, 16843119, 16843120, 16843666, 16843667};
-        public static final int[] AppCompatTextView = {16842804, R.attr.autoSizeMaxTextSize, R.attr.autoSizeMinTextSize, R.attr.autoSizePresetSizes, R.attr.autoSizeStepGranularity, R.attr.autoSizeTextType, R.attr.drawableBottomCompat, R.attr.drawableEndCompat, R.attr.drawableLeftCompat, R.attr.drawableRightCompat, R.attr.drawableStartCompat, R.attr.drawableTint, R.attr.drawableTintMode, R.attr.drawableTopCompat, R.attr.emojiCompatEnabled, R.attr.firstBaselineToTopHeight, R.attr.fontFamily, R.attr.fontVariationSettings, R.attr.lastBaselineToBottomHeight, R.attr.lineHeight, R.attr.textAllCaps, R.attr.textLocale};
-        public static final int[] AppCompatTheme = {16842839, 16842926, R.attr.actionBarDivider, R.attr.actionBarItemBackground, R.attr.actionBarPopupTheme, R.attr.actionBarSize, R.attr.actionBarSplitStyle, R.attr.actionBarStyle, R.attr.actionBarTabBarStyle, R.attr.actionBarTabStyle, R.attr.actionBarTabTextStyle, R.attr.actionBarTheme, R.attr.actionBarWidgetTheme, R.attr.actionButtonStyle, R.attr.actionDropDownStyle, R.attr.actionMenuTextAppearance, R.attr.actionMenuTextColor, R.attr.actionModeBackground, R.attr.actionModeCloseButtonStyle, R.attr.actionModeCloseContentDescription, R.attr.actionModeCloseDrawable, R.attr.actionModeCopyDrawable, R.attr.actionModeCutDrawable, R.attr.actionModeFindDrawable, R.attr.actionModePasteDrawable, R.attr.actionModePopupWindowStyle, R.attr.actionModeSelectAllDrawable, R.attr.actionModeShareDrawable, R.attr.actionModeSplitBackground, R.attr.actionModeStyle, R.attr.actionModeTheme, R.attr.actionModeWebSearchDrawable, R.attr.actionOverflowButtonStyle, R.attr.actionOverflowMenuStyle, R.attr.activityChooserViewStyle, R.attr.alertDialogButtonGroupStyle, R.attr.alertDialogCenterButtons, R.attr.alertDialogStyle, R.attr.alertDialogTheme, R.attr.autoCompleteTextViewStyle, R.attr.borderlessButtonStyle, R.attr.buttonBarButtonStyle, R.attr.buttonBarNegativeButtonStyle, R.attr.buttonBarNeutralButtonStyle, R.attr.buttonBarPositiveButtonStyle, R.attr.buttonBarStyle, R.attr.buttonStyle, R.attr.buttonStyleSmall, R.attr.checkboxStyle, R.attr.checkedTextViewStyle, R.attr.colorAccent, R.attr.colorBackgroundFloating, R.attr.colorButtonNormal, R.attr.colorControlActivated, R.attr.colorControlHighlight, R.attr.colorControlNormal, R.attr.colorError, R.attr.colorPrimary, R.attr.colorPrimaryDark, R.attr.colorSwitchThumbNormal, R.attr.controlBackground, R.attr.dialogCornerRadius, R.attr.dialogPreferredPadding, R.attr.dialogTheme, R.attr.dividerHorizontal, R.attr.dividerVertical, R.attr.dropDownListViewStyle, R.attr.dropdownListPreferredItemHeight, R.attr.editTextBackground, R.attr.editTextColor, R.attr.editTextStyle, R.attr.homeAsUpIndicator, R.attr.imageButtonStyle, R.attr.listChoiceBackgroundIndicator, R.attr.listChoiceIndicatorMultipleAnimated, R.attr.listChoiceIndicatorSingleAnimated, R.attr.listDividerAlertDialog, R.attr.listMenuViewStyle, R.attr.listPopupWindowStyle, R.attr.listPreferredItemHeight, R.attr.listPreferredItemHeightLarge, R.attr.listPreferredItemHeightSmall, R.attr.listPreferredItemPaddingEnd, R.attr.listPreferredItemPaddingLeft, R.attr.listPreferredItemPaddingRight, R.attr.listPreferredItemPaddingStart, R.attr.panelBackground, R.attr.panelMenuListTheme, R.attr.panelMenuListWidth, R.attr.popupMenuStyle, R.attr.popupWindowStyle, R.attr.radioButtonStyle, R.attr.ratingBarStyle, R.attr.ratingBarStyleIndicator, R.attr.ratingBarStyleSmall, R.attr.searchViewStyle, R.attr.seekBarStyle, R.attr.selectableItemBackground, R.attr.selectableItemBackgroundBorderless, R.attr.spinnerDropDownItemStyle, R.attr.spinnerStyle, R.attr.switchStyle, R.attr.textAppearanceLargePopupMenu, R.attr.textAppearanceListItem, R.attr.textAppearanceListItemSecondary, R.attr.textAppearanceListItemSmall, R.attr.textAppearancePopupMenuHeader, R.attr.textAppearanceSearchResultSubtitle, R.attr.textAppearanceSearchResultTitle, R.attr.textAppearanceSmallPopupMenu, R.attr.textColorAlertDialogListItem, R.attr.textColorSearchUrl, R.attr.toolbarNavigationButtonStyle, R.attr.toolbarStyle, R.attr.tooltipForegroundColor, R.attr.tooltipFrameBackground, R.attr.viewInflaterClass, R.attr.windowActionBar, R.attr.windowActionBarOverlay, R.attr.windowActionModeOverlay, R.attr.windowFixedHeightMajor, R.attr.windowFixedHeightMinor, R.attr.windowFixedWidthMajor, R.attr.windowFixedWidthMinor, R.attr.windowMinWidthMajor, R.attr.windowMinWidthMinor, R.attr.windowNoTitle};
+        public static final int[] AppCompatImageView = {android.R.attr.src, R.attr.srcCompat, R.attr.tint, R.attr.tintMode};
+        public static final int[] AppCompatSeekBar = {android.R.attr.thumb, R.attr.tickMark, R.attr.tickMarkTint, R.attr.tickMarkTintMode};
+        public static final int[] AppCompatTextHelper = {android.R.attr.textAppearance, android.R.attr.drawableTop, android.R.attr.drawableBottom, android.R.attr.drawableLeft, android.R.attr.drawableRight, android.R.attr.drawableStart, android.R.attr.drawableEnd};
+        public static final int[] AppCompatTextView = {android.R.attr.textAppearance, R.attr.autoSizeMaxTextSize, R.attr.autoSizeMinTextSize, R.attr.autoSizePresetSizes, R.attr.autoSizeStepGranularity, R.attr.autoSizeTextType, R.attr.drawableBottomCompat, R.attr.drawableEndCompat, R.attr.drawableLeftCompat, R.attr.drawableRightCompat, R.attr.drawableStartCompat, R.attr.drawableTint, R.attr.drawableTintMode, R.attr.drawableTopCompat, R.attr.emojiCompatEnabled, R.attr.firstBaselineToTopHeight, R.attr.fontFamily, R.attr.fontVariationSettings, R.attr.lastBaselineToBottomHeight, R.attr.lineHeight, R.attr.textAllCaps, R.attr.textLocale};
+        public static final int[] AppCompatTheme = {android.R.attr.windowIsFloating, android.R.attr.windowAnimationStyle, R.attr.actionBarDivider, R.attr.actionBarItemBackground, R.attr.actionBarPopupTheme, R.attr.actionBarSize, R.attr.actionBarSplitStyle, R.attr.actionBarStyle, R.attr.actionBarTabBarStyle, R.attr.actionBarTabStyle, R.attr.actionBarTabTextStyle, R.attr.actionBarTheme, R.attr.actionBarWidgetTheme, R.attr.actionButtonStyle, R.attr.actionDropDownStyle, R.attr.actionMenuTextAppearance, R.attr.actionMenuTextColor, R.attr.actionModeBackground, R.attr.actionModeCloseButtonStyle, R.attr.actionModeCloseContentDescription, R.attr.actionModeCloseDrawable, R.attr.actionModeCopyDrawable, R.attr.actionModeCutDrawable, R.attr.actionModeFindDrawable, R.attr.actionModePasteDrawable, R.attr.actionModePopupWindowStyle, R.attr.actionModeSelectAllDrawable, R.attr.actionModeShareDrawable, R.attr.actionModeSplitBackground, R.attr.actionModeStyle, R.attr.actionModeTheme, R.attr.actionModeWebSearchDrawable, R.attr.actionOverflowButtonStyle, R.attr.actionOverflowMenuStyle, R.attr.activityChooserViewStyle, R.attr.alertDialogButtonGroupStyle, R.attr.alertDialogCenterButtons, R.attr.alertDialogStyle, R.attr.alertDialogTheme, R.attr.autoCompleteTextViewStyle, R.attr.borderlessButtonStyle, R.attr.buttonBarButtonStyle, R.attr.buttonBarNegativeButtonStyle, R.attr.buttonBarNeutralButtonStyle, R.attr.buttonBarPositiveButtonStyle, R.attr.buttonBarStyle, R.attr.buttonStyle, R.attr.buttonStyleSmall, R.attr.checkboxStyle, R.attr.checkedTextViewStyle, R.attr.colorAccent, R.attr.colorBackgroundFloating, R.attr.colorButtonNormal, R.attr.colorControlActivated, R.attr.colorControlHighlight, R.attr.colorControlNormal, R.attr.colorError, R.attr.colorPrimary, R.attr.colorPrimaryDark, R.attr.colorSwitchThumbNormal, R.attr.controlBackground, R.attr.dialogCornerRadius, R.attr.dialogPreferredPadding, R.attr.dialogTheme, R.attr.dividerHorizontal, R.attr.dividerVertical, R.attr.dropDownListViewStyle, R.attr.dropdownListPreferredItemHeight, R.attr.editTextBackground, R.attr.editTextColor, R.attr.editTextStyle, R.attr.homeAsUpIndicator, R.attr.imageButtonStyle, R.attr.listChoiceBackgroundIndicator, R.attr.listChoiceIndicatorMultipleAnimated, R.attr.listChoiceIndicatorSingleAnimated, R.attr.listDividerAlertDialog, R.attr.listMenuViewStyle, R.attr.listPopupWindowStyle, R.attr.listPreferredItemHeight, R.attr.listPreferredItemHeightLarge, R.attr.listPreferredItemHeightSmall, R.attr.listPreferredItemPaddingEnd, R.attr.listPreferredItemPaddingLeft, R.attr.listPreferredItemPaddingRight, R.attr.listPreferredItemPaddingStart, R.attr.panelBackground, R.attr.panelMenuListTheme, R.attr.panelMenuListWidth, R.attr.popupMenuStyle, R.attr.popupWindowStyle, R.attr.radioButtonStyle, R.attr.ratingBarStyle, R.attr.ratingBarStyleIndicator, R.attr.ratingBarStyleSmall, R.attr.searchViewStyle, R.attr.seekBarStyle, R.attr.selectableItemBackground, R.attr.selectableItemBackgroundBorderless, R.attr.spinnerDropDownItemStyle, R.attr.spinnerStyle, R.attr.switchStyle, R.attr.textAppearanceLargePopupMenu, R.attr.textAppearanceListItem, R.attr.textAppearanceListItemSecondary, R.attr.textAppearanceListItemSmall, R.attr.textAppearancePopupMenuHeader, R.attr.textAppearanceSearchResultSubtitle, R.attr.textAppearanceSearchResultTitle, R.attr.textAppearanceSmallPopupMenu, R.attr.textColorAlertDialogListItem, R.attr.textColorSearchUrl, R.attr.toolbarNavigationButtonStyle, R.attr.toolbarStyle, R.attr.tooltipForegroundColor, R.attr.tooltipFrameBackground, R.attr.viewInflaterClass, R.attr.windowActionBar, R.attr.windowActionBarOverlay, R.attr.windowActionModeOverlay, R.attr.windowFixedHeightMajor, R.attr.windowFixedHeightMinor, R.attr.windowFixedWidthMajor, R.attr.windowFixedWidthMinor, R.attr.windowMinWidthMajor, R.attr.windowMinWidthMinor, R.attr.windowNoTitle};
         public static final int[] AppDataSearch = new int[0];
         public static final int[] ButtonBarLayout = {R.attr.allowStacking};
         public static final int[] Capability = {R.attr.queryPatterns, R.attr.shortcutMatchRequired};
-        public static final int[] CheckedTextView = {16843016, R.attr.checkMarkCompat, R.attr.checkMarkTint, R.attr.checkMarkTintMode};
-        public static final int[] ColorStateListItem = {16843173, 16843551, 16844359, R.attr.alpha, R.attr.lStar};
-        public static final int[] CompoundButton = {16843015, R.attr.buttonCompat, R.attr.buttonTint, R.attr.buttonTintMode};
+        public static final int[] CheckedTextView = {android.R.attr.checkMark, R.attr.checkMarkCompat, R.attr.checkMarkTint, R.attr.checkMarkTintMode};
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, 16844359, R.attr.alpha, R.attr.lStar};
+        public static final int[] CompoundButton = {android.R.attr.button, R.attr.buttonCompat, R.attr.buttonTint, R.attr.buttonTintMode};
         public static final int[] Corpus = {R.attr.contentProviderUri, R.attr.corpusId, R.attr.corpusVersion, R.attr.documentMaxAgeSecs, R.attr.perAccountTemplate, R.attr.schemaOrgType, R.attr.semanticallySearchable, R.attr.trimmable};
         public static final int[] CustomWalletTheme = {R.attr.customThemeStyle, R.attr.toolbarTextColorStyle, R.attr.windowTransitionStyle};
         public static final int[] DrawerArrowToggle = {R.attr.arrowHeadLength, R.attr.arrowShaftLength, R.attr.barLength, R.attr.color, R.attr.drawableSize, R.attr.gapBetweenBars, R.attr.spinBars, R.attr.thickness};
         public static final int[] FeatureParam = {R.attr.paramName, R.attr.paramValue};
         public static final int[] FontFamily = {R.attr.fontProviderAuthority, R.attr.fontProviderCerts, R.attr.fontProviderFetchStrategy, R.attr.fontProviderFetchTimeout, R.attr.fontProviderPackage, R.attr.fontProviderQuery, R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {16844082, 16844083, 16844095, 16844143, 16844144, R.attr.font, R.attr.fontStyle, R.attr.fontVariationSettings, R.attr.fontWeight, R.attr.ttcIndex};
-        public static final int[] Fragment = {16842755, 16842960, 16842961};
-        public static final int[] FragmentContainerView = {16842755, 16842961};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, R.attr.font, R.attr.fontStyle, R.attr.fontVariationSettings, R.attr.fontWeight, R.attr.ttcIndex};
+        public static final int[] Fragment = {android.R.attr.name, android.R.attr.id, android.R.attr.tag};
+        public static final int[] FragmentContainerView = {android.R.attr.name, android.R.attr.tag};
         public static final int[] GlobalSearch = {R.attr.defaultIntentAction, R.attr.defaultIntentActivity, R.attr.defaultIntentData, R.attr.searchEnabled, R.attr.searchLabel, R.attr.settingsDescription};
         public static final int[] GlobalSearchCorpus = {R.attr.allowShortcuts};
         public static final int[] GlobalSearchSection = {R.attr.sectionContent, R.attr.sectionType};
-        public static final int[] GradientColor = {16843165, 16843166, 16843169, 16843170, 16843171, 16843172, 16843265, 16843275, 16844048, 16844049, 16844050, 16844051};
-        public static final int[] GradientColorItem = {16843173, 16844052};
+        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
+        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
         public static final int[] IMECorpus = {R.attr.inputEnabled, R.attr.sourceClass, R.attr.toAddressesSection, R.attr.userInputSection, R.attr.userInputTag, R.attr.userInputValue};
-        public static final int[] LinearLayoutCompat = {16842927, 16842948, 16843046, 16843047, 16843048, R.attr.divider, R.attr.dividerPadding, R.attr.measureWithLargestChild, R.attr.showDividers};
-        public static final int[] LinearLayoutCompat_Layout = {16842931, 16842996, 16842997, 16843137};
-        public static final int[] ListPopupWindow = {16843436, 16843437};
+        public static final int[] LinearLayoutCompat = {android.R.attr.gravity, android.R.attr.orientation, android.R.attr.baselineAligned, android.R.attr.baselineAlignedChildIndex, android.R.attr.weightSum, R.attr.divider, R.attr.dividerPadding, R.attr.measureWithLargestChild, R.attr.showDividers};
+        public static final int[] LinearLayoutCompat_Layout = {android.R.attr.layout_gravity, android.R.attr.layout_width, android.R.attr.layout_height, android.R.attr.layout_weight};
+        public static final int[] ListPopupWindow = {android.R.attr.dropDownHorizontalOffset, android.R.attr.dropDownVerticalOffset};
         public static final int[] LoadingImageView = {R.attr.circleCrop, R.attr.imageAspectRatio, R.attr.imageAspectRatioAdjust};
         public static final int[] LottieAnimationView = {R.attr.lottie_asyncUpdates, R.attr.lottie_autoPlay, R.attr.lottie_cacheComposition, R.attr.lottie_clipTextToBoundingBox, R.attr.lottie_clipToCompositionBounds, R.attr.lottie_colorFilter, R.attr.lottie_defaultFontFileExtension, R.attr.lottie_enableMergePathsForKitKatAndAbove, R.attr.lottie_fallbackRes, R.attr.lottie_fileName, R.attr.lottie_ignoreDisabledSystemAnimations, R.attr.lottie_imageAssetsFolder, R.attr.lottie_loop, R.attr.lottie_progress, R.attr.lottie_rawRes, R.attr.lottie_renderMode, R.attr.lottie_repeatCount, R.attr.lottie_repeatMode, R.attr.lottie_speed, R.attr.lottie_url, R.attr.lottie_useCompositionFrameRate};
         public static final int[] MapAttrs = {R.attr.ambientEnabled, R.attr.backgroundColor, R.attr.cameraBearing, R.attr.cameraMaxZoomPreference, R.attr.cameraMinZoomPreference, R.attr.cameraTargetLat, R.attr.cameraTargetLng, R.attr.cameraTilt, R.attr.cameraZoom, R.attr.latLngBoundsNorthEastLatitude, R.attr.latLngBoundsNorthEastLongitude, R.attr.latLngBoundsSouthWestLatitude, R.attr.latLngBoundsSouthWestLongitude, R.attr.liteMode, R.attr.mapId, R.attr.mapType, R.attr.uiCompass, R.attr.uiMapToolbar, R.attr.uiRotateGestures, R.attr.uiScrollGestures, R.attr.uiScrollGesturesDuringRotateOrZoom, R.attr.uiTiltGestures, R.attr.uiZoomControls, R.attr.uiZoomGestures, R.attr.useViewLifecycle, R.attr.zOrderOnTop};
-        public static final int[] MenuGroup = {16842766, 16842960, 16843156, 16843230, 16843231, 16843232};
-        public static final int[] MenuItem = {16842754, 16842766, 16842960, 16843014, 16843156, 16843230, 16843231, 16843233, 16843234, 16843235, 16843236, 16843237, 16843375, R.attr.actionLayout, R.attr.actionProviderClass, R.attr.actionViewClass, R.attr.alphabeticModifiers, R.attr.contentDescription, R.attr.iconTint, R.attr.iconTintMode, R.attr.numericModifiers, R.attr.showAsAction, R.attr.tooltipText};
-        public static final int[] MenuView = {16842926, 16843052, 16843053, 16843054, 16843055, 16843056, 16843057, R.attr.preserveIconSpacing, R.attr.subMenuArrow};
-        public static final int[] PopupWindow = {16843126, 16843465, R.attr.overlapAnchor};
+        public static final int[] MenuGroup = {android.R.attr.enabled, android.R.attr.id, android.R.attr.visible, android.R.attr.menuCategory, android.R.attr.orderInCategory, android.R.attr.checkableBehavior};
+        public static final int[] MenuItem = {android.R.attr.icon, android.R.attr.enabled, android.R.attr.id, android.R.attr.checked, android.R.attr.visible, android.R.attr.menuCategory, android.R.attr.orderInCategory, android.R.attr.title, android.R.attr.titleCondensed, android.R.attr.alphabeticShortcut, android.R.attr.numericShortcut, android.R.attr.checkable, android.R.attr.onClick, R.attr.actionLayout, R.attr.actionProviderClass, R.attr.actionViewClass, R.attr.alphabeticModifiers, R.attr.contentDescription, R.attr.iconTint, R.attr.iconTintMode, R.attr.numericModifiers, R.attr.showAsAction, R.attr.tooltipText};
+        public static final int[] MenuView = {android.R.attr.windowAnimationStyle, android.R.attr.itemTextAppearance, android.R.attr.horizontalDivider, android.R.attr.verticalDivider, android.R.attr.headerBackground, android.R.attr.itemBackground, android.R.attr.itemIconDisabledAlpha, R.attr.preserveIconSpacing, R.attr.subMenuArrow};
+        public static final int[] PopupWindow = {android.R.attr.popupBackground, android.R.attr.popupAnimationStyle, R.attr.overlapAnchor};
         public static final int[] PopupWindowBackgroundState = {R.attr.state_above_anchor};
         public static final int[] RecycleListView = {R.attr.paddingBottomNoButtons, R.attr.paddingTopNoTitle};
-        public static final int[] SearchView = {16842970, 16843039, 16843296, 16843364, R.attr.closeIcon, R.attr.commitIcon, R.attr.defaultQueryHint, R.attr.goIcon, R.attr.iconifiedByDefault, R.attr.layout, R.attr.queryBackground, R.attr.queryHint, R.attr.searchHintIcon, R.attr.searchIcon, R.attr.submitBackground, R.attr.suggestionRowLayout, R.attr.voiceIcon};
+        public static final int[] SearchView = {android.R.attr.focusable, android.R.attr.maxWidth, android.R.attr.inputType, android.R.attr.imeOptions, R.attr.closeIcon, R.attr.commitIcon, R.attr.defaultQueryHint, R.attr.goIcon, R.attr.iconifiedByDefault, R.attr.layout, R.attr.queryBackground, R.attr.queryHint, R.attr.searchHintIcon, R.attr.searchIcon, R.attr.submitBackground, R.attr.suggestionRowLayout, R.attr.voiceIcon};
         public static final int[] Section = {R.attr.indexPrefixes, R.attr.noIndex, R.attr.schemaOrgProperty, R.attr.sectionFormat, R.attr.sectionId, R.attr.sectionWeight, R.attr.subsectionSeparator};
         public static final int[] SectionFeature = {R.attr.featureType};
         public static final int[] SignInButton = {R.attr.buttonSize, R.attr.colorScheme, R.attr.scopeUris};
-        public static final int[] Spinner = {16842930, 16843126, 16843131, 16843362, R.attr.popupTheme};
-        public static final int[] StateListDrawable = {16843036, 16843156, 16843157, 16843158, 16843532, 16843533};
-        public static final int[] StateListDrawableItem = {16843161};
-        public static final int[] SwitchCompat = {16843044, 16843045, 16843074, R.attr.showText, R.attr.splitTrack, R.attr.switchMinWidth, R.attr.switchPadding, R.attr.switchTextAppearance, R.attr.thumbTextPadding, R.attr.thumbTint, R.attr.thumbTintMode, R.attr.track, R.attr.trackTint, R.attr.trackTintMode};
-        public static final int[] TextAppearance = {16842901, 16842902, 16842903, 16842904, 16842906, 16842907, 16843105, 16843106, 16843107, 16843108, 16843692, 16844165, R.attr.fontFamily, R.attr.fontVariationSettings, R.attr.textAllCaps, R.attr.textLocale};
-        public static final int[] Toolbar = {16842927, 16843072, R.attr.buttonGravity, R.attr.collapseContentDescription, R.attr.collapseIcon, R.attr.contentInsetEnd, R.attr.contentInsetEndWithActions, R.attr.contentInsetLeft, R.attr.contentInsetRight, R.attr.contentInsetStart, R.attr.contentInsetStartWithNavigation, R.attr.logo, R.attr.logoDescription, R.attr.maxButtonHeight, R.attr.menu, R.attr.navigationContentDescription, R.attr.navigationIcon, R.attr.popupTheme, R.attr.subtitle, R.attr.subtitleTextAppearance, R.attr.subtitleTextColor, R.attr.title, R.attr.titleMargin, R.attr.titleMarginBottom, R.attr.titleMarginEnd, R.attr.titleMarginStart, R.attr.titleMarginTop, R.attr.titleMargins, R.attr.titleTextAppearance, R.attr.titleTextColor};
-        public static final int[] View = {16842752, 16842970, R.attr.paddingEnd, R.attr.paddingStart, R.attr.theme};
-        public static final int[] ViewBackgroundHelper = {16842964, R.attr.backgroundTint, R.attr.backgroundTintMode};
-        public static final int[] ViewStubCompat = {16842960, 16842994, 16842995};
+        public static final int[] Spinner = {android.R.attr.entries, android.R.attr.popupBackground, android.R.attr.prompt, android.R.attr.dropDownWidth, R.attr.popupTheme};
+        public static final int[] StateListDrawable = {android.R.attr.dither, android.R.attr.visible, android.R.attr.variablePadding, android.R.attr.constantSize, android.R.attr.enterFadeDuration, android.R.attr.exitFadeDuration};
+        public static final int[] StateListDrawableItem = {android.R.attr.drawable};
+        public static final int[] SwitchCompat = {android.R.attr.textOn, android.R.attr.textOff, android.R.attr.thumb, R.attr.showText, R.attr.splitTrack, R.attr.switchMinWidth, R.attr.switchPadding, R.attr.switchTextAppearance, R.attr.thumbTextPadding, R.attr.thumbTint, R.attr.thumbTintMode, R.attr.track, R.attr.trackTint, R.attr.trackTintMode};
+        public static final int[] TextAppearance = {android.R.attr.textSize, android.R.attr.typeface, android.R.attr.textStyle, android.R.attr.textColor, android.R.attr.textColorHint, android.R.attr.textColorLink, android.R.attr.shadowColor, android.R.attr.shadowDx, android.R.attr.shadowDy, android.R.attr.shadowRadius, android.R.attr.fontFamily, android.R.attr.textFontWeight, R.attr.fontFamily, R.attr.fontVariationSettings, R.attr.textAllCaps, R.attr.textLocale};
+        public static final int[] Toolbar = {android.R.attr.gravity, android.R.attr.minHeight, R.attr.buttonGravity, R.attr.collapseContentDescription, R.attr.collapseIcon, R.attr.contentInsetEnd, R.attr.contentInsetEndWithActions, R.attr.contentInsetLeft, R.attr.contentInsetRight, R.attr.contentInsetStart, R.attr.contentInsetStartWithNavigation, R.attr.logo, R.attr.logoDescription, R.attr.maxButtonHeight, R.attr.menu, R.attr.navigationContentDescription, R.attr.navigationIcon, R.attr.popupTheme, R.attr.subtitle, R.attr.subtitleTextAppearance, R.attr.subtitleTextColor, R.attr.title, R.attr.titleMargin, R.attr.titleMarginBottom, R.attr.titleMarginEnd, R.attr.titleMarginStart, R.attr.titleMarginTop, R.attr.titleMargins, R.attr.titleTextAppearance, R.attr.titleTextColor};
+        public static final int[] View = {android.R.attr.theme, android.R.attr.focusable, R.attr.paddingEnd, R.attr.paddingStart, R.attr.theme};
+        public static final int[] ViewBackgroundHelper = {android.R.attr.background, R.attr.backgroundTint, R.attr.backgroundTintMode};
+        public static final int[] ViewStubCompat = {android.R.attr.id, android.R.attr.layout, android.R.attr.inflatedId};
         public static final int[] WalletFragmentOptions = {R.attr.appTheme, R.attr.environment, R.attr.fragmentMode, R.attr.fragmentStyle};
         public static final int[] WalletFragmentStyle = {R.attr.buyButtonAppearance, R.attr.buyButtonHeight, R.attr.buyButtonText, R.attr.buyButtonWidth, R.attr.maskedWalletDetailsBackground, R.attr.maskedWalletDetailsButtonBackground, R.attr.maskedWalletDetailsButtonTextAppearance, R.attr.maskedWalletDetailsHeaderTextAppearance, R.attr.maskedWalletDetailsLogoImageType, R.attr.maskedWalletDetailsLogoTextColor, R.attr.maskedWalletDetailsTextAppearance};
 

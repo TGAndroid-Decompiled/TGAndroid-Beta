@@ -39,6 +39,7 @@ import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SimpleThemeDescription;
+
 public abstract class GradientHeaderActivity extends BaseFragment {
     public BackgroundView backgroundView;
     protected FrameLayout contentView;
@@ -146,8 +147,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                     GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
                     gradientHeaderActivity.firstViewHeight = (gradientHeaderActivity.statusBarHeight + ((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
                 }
-                GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-                GradientHeaderActivity.access$124(gradientHeaderActivity2, gradientHeaderActivity2.yOffset * 2.5f);
+                GradientHeaderActivity.access$124(GradientHeaderActivity.this, r5.yOffset * 2.5f);
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(GradientHeaderActivity.this.firstViewHeight, 1073741824));
             }
         };
@@ -231,7 +231,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GradientHeaderActivity.this.finishFragment();
+                    GradientHeaderActivity.this.lambda$onBackPressed$303();
                 }
             }
         });
@@ -347,10 +347,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             View findViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
             GradientHeaderActivity.this.currentYOffset = findViewByPosition == null ? 0 : findViewByPosition.getBottom();
             int bottom = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
+            GradientHeaderActivity.this.totalProgress = 1.0f - ((r7.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
             GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-            gradientHeaderActivity2.totalProgress = 1.0f - ((gradientHeaderActivity2.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
-            GradientHeaderActivity gradientHeaderActivity3 = GradientHeaderActivity.this;
-            gradientHeaderActivity3.totalProgress = Utilities.clamp(gradientHeaderActivity3.totalProgress, 1.0f, 0.0f);
+            gradientHeaderActivity2.totalProgress = Utilities.clamp(gradientHeaderActivity2.totalProgress, 1.0f, 0.0f);
             int bottom2 = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
             if (GradientHeaderActivity.this.currentYOffset < bottom2) {
                 GradientHeaderActivity.this.currentYOffset = bottom2;
@@ -377,8 +376,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             backgroundView.aboveTitleLayout.setAlpha(f3);
             backgroundView.belowSubTitleLayout.setAlpha(f3);
             backgroundView.subtitleView.setAlpha(f3);
-            GradientHeaderActivity gradientHeaderActivity4 = GradientHeaderActivity.this;
-            gradientHeaderActivity4.particlesView.setAlpha(1.0f - gradientHeaderActivity4.totalProgress);
+            GradientHeaderActivity gradientHeaderActivity3 = GradientHeaderActivity.this;
+            gradientHeaderActivity3.particlesView.setAlpha(1.0f - gradientHeaderActivity3.totalProgress);
             GradientHeaderActivity.this.particlesView.setTranslationY((backgroundView.getY() + backgroundView.aboveTitleLayout.getY()) - AndroidUtilities.dp(30.0f));
             backgroundView.titleView.setTranslationX((AndroidUtilities.dp(72.0f) - backgroundView.titleView.getLeft()) * (1.0f - CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(1.0f - (GradientHeaderActivity.this.totalProgress > 0.3f ? (GradientHeaderActivity.this.totalProgress - 0.3f) / 0.7f : 0.0f))));
             if (!GradientHeaderActivity.this.isDialogVisible) {
@@ -396,8 +395,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), this.backgroundGradientPaint);
             }
             int themedColor = GradientHeaderActivity.this.getThemedColor(Theme.key_dialogTextBlack);
-            GradientHeaderActivity gradientHeaderActivity5 = GradientHeaderActivity.this;
-            int blendARGB = ColorUtils.blendARGB(themedColor, gradientHeaderActivity5.getThemedColor(gradientHeaderActivity5.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), f3);
+            GradientHeaderActivity gradientHeaderActivity4 = GradientHeaderActivity.this;
+            int blendARGB = ColorUtils.blendARGB(themedColor, gradientHeaderActivity4.getThemedColor(gradientHeaderActivity4.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), f3);
             ((BaseFragment) GradientHeaderActivity.this).actionBar.getBackButton().setColorFilter(blendARGB);
             backgroundView.titleView.setTextColor(blendARGB);
             GradientHeaderActivity.this.headerBgPaint.setAlpha((int) ((1.0f - f3) * 255.0f));

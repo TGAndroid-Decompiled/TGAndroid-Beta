@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputInvoiceMessage extends TLRPC$InputInvoice {
     public int msg_id;
     public TLRPC$InputPeer peer;

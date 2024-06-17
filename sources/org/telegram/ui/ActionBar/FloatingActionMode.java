@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.PopupMenu;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
+
 @TargetApi(23)
 public final class FloatingActionMode extends ActionMode {
     private final int mBottomAllowance;
@@ -320,10 +321,10 @@ public final class FloatingActionMode extends ActionMode {
             if (this.mActive) {
                 if (this.mHideRequested || this.mMoving || this.mOutOfBounds || !this.mWindowFocused) {
                     this.mToolbar.hide();
-                    return;
+                } else {
+                    this.mToolbar.show();
+                    this.mLastShowTime = System.currentTimeMillis();
                 }
-                this.mToolbar.show();
-                this.mLastShowTime = System.currentTimeMillis();
             }
         }
     }

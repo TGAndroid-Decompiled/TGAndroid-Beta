@@ -13,6 +13,7 @@ import kotlinx.coroutines.internal.StackTraceRecoveryKt;
 import kotlinx.coroutines.internal.ThreadContextKt;
 import kotlinx.coroutines.scheduling.Task;
 import kotlinx.coroutines.scheduling.TaskContext;
+
 public abstract class DispatchedTask<T> extends Task {
     public int resumeMode;
 
@@ -70,39 +71,42 @@ public abstract class DispatchedTask<T> extends Task {
             CoroutineContext context = continuation.getContext();
             Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
             UndispatchedCoroutine<?> updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation, context, updateThreadContext) : null;
-            CoroutineContext context2 = continuation.getContext();
-            Object takeState$kotlinx_coroutines_core = takeState$kotlinx_coroutines_core();
-            Throwable exceptionalResult$kotlinx_coroutines_core = getExceptionalResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
-            Job job = (exceptionalResult$kotlinx_coroutines_core == null && DispatchedTaskKt.isCancellableMode(this.resumeMode)) ? (Job) context2.get(Job.Key) : null;
-            if (job != null && !job.isActive()) {
-                Throwable cancellationException = job.getCancellationException();
-                cancelCompletedResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core, cancellationException);
-                Result.Companion companion = Result.Companion;
-                if (DebugKt.getRECOVER_STACK_TRACES() && (continuation instanceof CoroutineStackFrame)) {
-                    cancellationException = StackTraceRecoveryKt.access$recoverFromStackFrame(cancellationException, (CoroutineStackFrame) continuation);
-                }
-                continuation.resumeWith(Result.m156constructorimpl(ResultKt.createFailure(cancellationException)));
-            } else if (exceptionalResult$kotlinx_coroutines_core != null) {
-                Result.Companion companion2 = Result.Companion;
-                continuation.resumeWith(Result.m156constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core)));
-            } else {
-                T successfulResult$kotlinx_coroutines_core = getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
-                Result.Companion companion3 = Result.Companion;
-                continuation.resumeWith(Result.m156constructorimpl(successfulResult$kotlinx_coroutines_core));
-            }
-            Unit unit = Unit.INSTANCE;
-            if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
-            }
             try {
-                Result.Companion companion4 = Result.Companion;
-                taskContext.afterTask();
-                m156constructorimpl2 = Result.m156constructorimpl(unit);
-            } catch (Throwable th) {
-                Result.Companion companion5 = Result.Companion;
-                m156constructorimpl2 = Result.m156constructorimpl(ResultKt.createFailure(th));
+                CoroutineContext context2 = continuation.getContext();
+                Object takeState$kotlinx_coroutines_core = takeState$kotlinx_coroutines_core();
+                Throwable exceptionalResult$kotlinx_coroutines_core = getExceptionalResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
+                Job job = (exceptionalResult$kotlinx_coroutines_core == null && DispatchedTaskKt.isCancellableMode(this.resumeMode)) ? (Job) context2.get(Job.Key) : null;
+                if (job != null && !job.isActive()) {
+                    Throwable cancellationException = job.getCancellationException();
+                    cancelCompletedResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core, cancellationException);
+                    Result.Companion companion = Result.Companion;
+                    if (DebugKt.getRECOVER_STACK_TRACES() && (continuation instanceof CoroutineStackFrame)) {
+                        cancellationException = StackTraceRecoveryKt.access$recoverFromStackFrame(cancellationException, (CoroutineStackFrame) continuation);
+                    }
+                    continuation.resumeWith(Result.m156constructorimpl(ResultKt.createFailure(cancellationException)));
+                } else if (exceptionalResult$kotlinx_coroutines_core != null) {
+                    Result.Companion companion2 = Result.Companion;
+                    continuation.resumeWith(Result.m156constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core)));
+                } else {
+                    T successfulResult$kotlinx_coroutines_core = getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
+                    Result.Companion companion3 = Result.Companion;
+                    continuation.resumeWith(Result.m156constructorimpl(successfulResult$kotlinx_coroutines_core));
+                }
+                Unit unit = Unit.INSTANCE;
+                try {
+                    Result.Companion companion4 = Result.Companion;
+                    taskContext.afterTask();
+                    m156constructorimpl2 = Result.m156constructorimpl(unit);
+                } catch (Throwable th) {
+                    Result.Companion companion5 = Result.Companion;
+                    m156constructorimpl2 = Result.m156constructorimpl(ResultKt.createFailure(th));
+                }
+                handleFatalException(null, Result.m157exceptionOrNullimpl(m156constructorimpl2));
+            } finally {
+                if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
+                    ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                }
             }
-            handleFatalException(null, Result.m157exceptionOrNullimpl(m156constructorimpl2));
         } catch (Throwable th2) {
             try {
                 Result.Companion companion6 = Result.Companion;

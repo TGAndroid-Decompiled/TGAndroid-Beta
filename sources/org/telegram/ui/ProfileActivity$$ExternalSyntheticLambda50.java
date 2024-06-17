@@ -1,4 +1,5 @@
 package org.telegram.ui;
+
 public final class ProfileActivity$$ExternalSyntheticLambda50 implements Runnable {
     public final ProfileActivity f$0;
 

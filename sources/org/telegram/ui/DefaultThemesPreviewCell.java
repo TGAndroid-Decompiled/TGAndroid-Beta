@@ -36,6 +36,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ThemeSmallPreviewView;
+
 @SuppressLint({"ViewConstructor"})
 public class DefaultThemesPreviewCell extends LinearLayout {
     private final ChatThemeBottomSheet.Adapter adapter;
@@ -242,10 +243,12 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 final int i3 = (DefaultThemesPreviewCell.this.navBarAnimator == null || !DefaultThemesPreviewCell.this.navBarAnimator.isRunning()) ? i2 : DefaultThemesPreviewCell.this.navBarColor;
                 DefaultThemesPreviewCell.this.navBarAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
                 final float f = z ? 50.0f : 200.0f;
+                final float f2 = 150.0f;
+                final float f3 = 350.0f;
                 DefaultThemesPreviewCell.this.navBarAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        DefaultThemesPreviewCell.this.navBarColor = ColorUtils.blendARGB(i3, color2, Math.max(0.0f, Math.min(1.0f, ((((Float) valueAnimator.getAnimatedValue()).floatValue() * r2) - f) / r4)));
+                        DefaultThemesPreviewCell.this.navBarColor = ColorUtils.blendARGB(i3, color2, Math.max(0.0f, Math.min(1.0f, ((((Float) valueAnimator.getAnimatedValue()).floatValue() * f3) - f) / f2)));
                         AndroidUtilities.setNavigationBarColor(window, DefaultThemesPreviewCell.this.navBarColor, false);
                         AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(DefaultThemesPreviewCell.this.navBarColor) >= 0.721f);
                     }
@@ -362,10 +365,11 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             if (tlTheme != null) {
                 if (!Theme.getActiveTheme().name.equals(Theme.getBaseThemeKey(tlTheme.settings.get(this.adapter.items.get(i).chatTheme.getSettingsIndex(this.themeIndex))))) {
                     continue;
-                } else if (Theme.getActiveTheme().accentsByThemeId == null) {
-                    this.selectedPosition = i;
-                    break;
                 } else {
+                    if (Theme.getActiveTheme().accentsByThemeId == null) {
+                        this.selectedPosition = i;
+                        break;
+                    }
                     Theme.ThemeAccent themeAccent = Theme.getActiveTheme().accentsByThemeId.get(tlTheme.id);
                     if (themeAccent != null && themeAccent.id == Theme.getActiveTheme().currentAccentId) {
                         this.selectedPosition = i;

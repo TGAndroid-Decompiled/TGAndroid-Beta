@@ -92,7 +92,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.OverlayActionBarLayoutDialog;
@@ -110,6 +109,7 @@ import org.telegram.ui.bots.BotWebViewContainer;
 import org.telegram.ui.bots.BotWebViewMenuContainer;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
+
 public class BotWebViewSheet extends Dialog implements NotificationCenter.NotificationCenterDelegate {
     private static final SimpleFloatPropertyCompat<BotWebViewSheet> ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
@@ -173,10 +173,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             if (!it.hasNext()) {
                 tLRPC$TL_attachMenuBot = null;
                 break;
-            }
-            tLRPC$TL_attachMenuBot = it.next();
-            if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
-                break;
+            } else {
+                tLRPC$TL_attachMenuBot = it.next();
+                if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
+                    break;
+                }
             }
         }
         if (tLRPC$TL_attachMenuBot == null) {
@@ -457,8 +458,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 super.onMeasure(i2, i3);
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+                    float dp2 = AndroidUtilities.dp(10.0f);
                     Point point = AndroidUtilities.displaySize;
-                    marginLayoutParams.rightMargin = (int) (AndroidUtilities.dp(10.0f) + (Math.min(point.x, point.y) * 0.1f));
+                    marginLayoutParams.rightMargin = (int) (dp2 + (Math.min(point.x, point.y) * 0.1f));
                     return;
                 }
                 marginLayoutParams.rightMargin = AndroidUtilities.dp(10.0f);
@@ -757,8 +759,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
                     BaseFragment lastFragment = ((LaunchActivity) BotWebViewSheet.this.parentActivity).getActionBarLayout().getLastFragment();
                     if (lastFragment instanceof ChatActivity) {
-                        ChatActivityEnterView chatActivityEnterView = ((ChatActivity) lastFragment).getChatActivityEnterView();
-                        chatActivityEnterView.setFieldText("@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+                        ((ChatActivity) lastFragment).getChatActivityEnterView().setFieldText("@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
                         BotWebViewSheet.this.dismiss();
                         return;
                     }
@@ -984,11 +985,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
     public void updateLightStatusBar() {
         boolean z;
-        boolean z2 = true;
         if (this.overrideBackgroundColor) {
             z = !this.actionBarIsLight;
         } else {
-            z = (AndroidUtilities.isTablet() || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) < 0.7210000157356262d || this.actionBarTransitionProgress < 0.85f) ? false : false;
+            z = !AndroidUtilities.isTablet() && ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.7210000157356262d && this.actionBarTransitionProgress >= 0.85f;
         }
         Boolean bool = this.wasLightStatusBar;
         if (bool == null || bool.booleanValue() != z) {
@@ -1129,10 +1129,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             if (!it.hasNext()) {
                 tLRPC$TL_attachMenuBot = null;
                 break;
-            }
-            tLRPC$TL_attachMenuBot = it.next();
-            if (tLRPC$TL_attachMenuBot.bot_id == j2) {
-                break;
+            } else {
+                tLRPC$TL_attachMenuBot = it.next();
+                if (tLRPC$TL_attachMenuBot.bot_id == j2) {
+                    break;
+                }
             }
         }
         ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_other);
@@ -1179,7 +1180,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 }
             });
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.webViewResultSent);
-        } else if (i2 == 1) {
+            return;
+        }
+        if (i2 == 1) {
             TLRPC$TL_messages_requestSimpleWebView tLRPC$TL_messages_requestSimpleWebView = new TLRPC$TL_messages_requestSimpleWebView();
             tLRPC$TL_messages_requestSimpleWebView.from_switch_webview = (i4 & 1) != 0;
             tLRPC$TL_messages_requestSimpleWebView.bot = MessagesController.getInstance(i).getInputUser(j2);
@@ -1205,7 +1208,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     BotWebViewSheet.this.lambda$requestWebView$18(i, tLObject, tLRPC$TL_error);
                 }
             });
-        } else if (i2 == 2) {
+            return;
+        }
+        if (i2 == 2) {
             TLRPC$TL_messages_requestWebView tLRPC$TL_messages_requestWebView2 = new TLRPC$TL_messages_requestWebView();
             tLRPC$TL_messages_requestWebView2.bot = MessagesController.getInstance(i).getInputUser(j2);
             tLRPC$TL_messages_requestWebView2.peer = MessagesController.getInstance(i).getInputPeer(j2);
@@ -1225,39 +1230,41 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 }
             });
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.webViewResultSent);
-        } else if (i2 != 3) {
-        } else {
-            TLRPC$TL_messages_requestAppWebView tLRPC$TL_messages_requestAppWebView = new TLRPC$TL_messages_requestAppWebView();
-            TLRPC$TL_inputBotAppID tLRPC$TL_inputBotAppID = new TLRPC$TL_inputBotAppID();
-            tLRPC$TL_inputBotAppID.id = tLRPC$BotApp.id;
-            tLRPC$TL_inputBotAppID.access_hash = tLRPC$BotApp.access_hash;
-            tLRPC$TL_messages_requestAppWebView.app = tLRPC$TL_inputBotAppID;
-            tLRPC$TL_messages_requestAppWebView.write_allowed = z2;
-            tLRPC$TL_messages_requestAppWebView.platform = "android";
-            if (baseFragment instanceof ChatActivity) {
-                ChatActivity chatActivity = (ChatActivity) baseFragment;
-                inputPeer = chatActivity.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity.getCurrentUser()) : MessagesController.getInputPeer(chatActivity.getCurrentChat());
-            } else {
-                inputPeer = MessagesController.getInputPeer(tLRPC$User);
-            }
-            tLRPC$TL_messages_requestAppWebView.peer = inputPeer;
-            if (!TextUtils.isEmpty(str3)) {
-                tLRPC$TL_messages_requestAppWebView.start_param = str3;
-                tLRPC$TL_messages_requestAppWebView.flags |= 2;
-            }
-            if (makeThemeParams != null) {
-                TLRPC$TL_dataJSON tLRPC$TL_dataJSON4 = new TLRPC$TL_dataJSON();
-                tLRPC$TL_messages_requestAppWebView.theme_params = tLRPC$TL_dataJSON4;
-                tLRPC$TL_dataJSON4.data = makeThemeParams.toString();
-                tLRPC$TL_messages_requestAppWebView.flags |= 4;
-            }
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestAppWebView, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewSheet.this.lambda$requestWebView$22(i, tLObject, tLRPC$TL_error);
-                }
-            }, 66);
+            return;
         }
+        if (i2 != 3) {
+            return;
+        }
+        TLRPC$TL_messages_requestAppWebView tLRPC$TL_messages_requestAppWebView = new TLRPC$TL_messages_requestAppWebView();
+        TLRPC$TL_inputBotAppID tLRPC$TL_inputBotAppID = new TLRPC$TL_inputBotAppID();
+        tLRPC$TL_inputBotAppID.id = tLRPC$BotApp.id;
+        tLRPC$TL_inputBotAppID.access_hash = tLRPC$BotApp.access_hash;
+        tLRPC$TL_messages_requestAppWebView.app = tLRPC$TL_inputBotAppID;
+        tLRPC$TL_messages_requestAppWebView.write_allowed = z2;
+        tLRPC$TL_messages_requestAppWebView.platform = "android";
+        if (baseFragment instanceof ChatActivity) {
+            ChatActivity chatActivity = (ChatActivity) baseFragment;
+            inputPeer = chatActivity.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity.getCurrentUser()) : MessagesController.getInputPeer(chatActivity.getCurrentChat());
+        } else {
+            inputPeer = MessagesController.getInputPeer(tLRPC$User);
+        }
+        tLRPC$TL_messages_requestAppWebView.peer = inputPeer;
+        if (!TextUtils.isEmpty(str3)) {
+            tLRPC$TL_messages_requestAppWebView.start_param = str3;
+            tLRPC$TL_messages_requestAppWebView.flags |= 2;
+        }
+        if (makeThemeParams != null) {
+            TLRPC$TL_dataJSON tLRPC$TL_dataJSON4 = new TLRPC$TL_dataJSON();
+            tLRPC$TL_messages_requestAppWebView.theme_params = tLRPC$TL_dataJSON4;
+            tLRPC$TL_dataJSON4.data = makeThemeParams.toString();
+            tLRPC$TL_messages_requestAppWebView.flags |= 4;
+        }
+        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestAppWebView, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                BotWebViewSheet.this.lambda$requestWebView$22(i, tLObject, tLRPC$TL_error);
+            }
+        }, 66);
     }
 
     public class AnonymousClass11 extends ActionBar.ActionBarMenuOnItemClick {
@@ -1276,16 +1283,22 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     return;
                 }
                 BotWebViewSheet.this.onCheckDismissByUser();
-            } else if (i == R.id.menu_open_bot) {
+                return;
+            }
+            if (i == R.id.menu_open_bot) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", this.val$botId);
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
                     ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$88(new ChatActivity(bundle));
                 }
                 BotWebViewSheet.this.dismiss();
-            } else if (i == R.id.menu_tos_bot) {
+                return;
+            }
+            if (i == R.id.menu_tos_bot) {
                 Browser.openUrl(BotWebViewSheet.this.getContext(), LocaleController.getString(R.string.BotWebViewToSLink));
-            } else if (i == R.id.menu_reload_page) {
+                return;
+            }
+            if (i == R.id.menu_reload_page) {
                 if (BotWebViewSheet.this.webViewContainer.getWebView() != null) {
                     BotWebViewSheet.this.webViewContainer.getWebView().animate().cancel();
                     BotWebViewSheet.this.webViewContainer.getWebView().animate().alpha(0.0f).start();
@@ -1296,7 +1309,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 BotWebViewSheet.this.webViewContainer.setBotUser(MessagesController.getInstance(this.val$currentAccount).getUser(Long.valueOf(this.val$botId)));
                 BotWebViewSheet.this.webViewContainer.loadFlickerAndSettingsItem(this.val$currentAccount, this.val$botId, BotWebViewSheet.this.settingsItem);
                 BotWebViewSheet.this.webViewContainer.reload();
-            } else if (i == R.id.menu_settings) {
+                return;
+            }
+            if (i == R.id.menu_settings) {
                 BotWebViewSheet.this.webViewContainer.onSettingsButtonPressed();
             } else if (i == R.id.menu_delete_bot) {
                 BotWebViewSheet.deleteBot(this.val$currentAccount, this.val$botId, new Runnable() {
@@ -1496,8 +1511,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
             }
-        } else if (this.webViewContainer.onBackPressed()) {
         } else {
+            if (this.webViewContainer.onBackPressed()) {
+                return;
+            }
             onCheckDismissByUser();
         }
     }
@@ -1537,8 +1554,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.webViewContainer.destroyWebView();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;
-        webViewSwipeContainer.stickTo(webViewSwipeContainer.getHeight() + this.frameLayout.measureKeyboardHeight(), new Runnable() {
+        this.swipeContainer.stickTo(r0.getHeight() + this.frameLayout.measureKeyboardHeight(), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewSheet.this.lambda$dismiss$27(runnable);
@@ -1562,8 +1578,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (i == NotificationCenter.webViewResultSent) {
             if (this.queryId == ((Long) objArr[0]).longValue()) {
                 dismiss();
+                return;
             }
-        } else if (i == NotificationCenter.didSetNewTheme) {
+            return;
+        }
+        if (i == NotificationCenter.didSetNewTheme) {
             this.frameLayout.invalidate();
             this.webViewContainer.updateFlickerBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
             updateActionBarColors();

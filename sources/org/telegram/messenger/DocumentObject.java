@@ -16,6 +16,7 @@ import org.telegram.tgnet.TLRPC$TL_wallPaper;
 import org.telegram.tgnet.TLRPC$ThemeSettings;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DocumentObject {
 
     public static class ThemeDocument extends TLRPC$TL_document {

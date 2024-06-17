@@ -18,6 +18,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Stories.StoriesStorage;
+
 public class ChatMessagesMetadataController {
     final ChatActivity chatActivity;
     private ArrayList<MessageObject> reactionsToCheck = new ArrayList<>(10);

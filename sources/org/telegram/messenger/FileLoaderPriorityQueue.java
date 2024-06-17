@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+
 public class FileLoaderPriorityQueue {
     public static final int PRIORITY_VALUE_LOW = 0;
     public static final int PRIORITY_VALUE_MAX = 1048576;
@@ -77,8 +78,10 @@ public class FileLoaderPriorityQueue {
         if (z) {
             this.workerQueue.cancelRunnable(this.checkOperationsRunnable);
             this.checkOperationsRunnable.run();
-        } else if (this.checkOperationsScheduled) {
         } else {
+            if (this.checkOperationsScheduled) {
+                return;
+            }
             this.checkOperationsScheduled = true;
             this.workerQueue.cancelRunnable(this.checkOperationsRunnable);
             this.workerQueue.postRunnable(this.checkOperationsRunnable, 20L);

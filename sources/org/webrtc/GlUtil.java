@@ -4,6 +4,7 @@ import android.opengl.GLES20;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+
 public class GlUtil {
     public static void checkNoGLES2Error(String str) {
     }
