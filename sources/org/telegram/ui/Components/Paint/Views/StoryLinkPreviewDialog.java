@@ -35,8 +35,10 @@ import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -437,7 +439,9 @@ public class StoryLinkPreviewDialog extends Dialog {
     }
 
     public void set(LinkPreview.WebPagePreview webPagePreview, Utilities.Callback<LinkPreview.WebPagePreview> callback) {
+        TLRPC$WebPage tLRPC$WebPage;
         this.link = webPagePreview;
+        this.photoButton.setVisibility(webPagePreview != null && (tLRPC$WebPage = webPagePreview.webpage) != null && (tLRPC$WebPage.photo != null || MessageObject.isVideoDocument(tLRPC$WebPage.document)) ? 0 : 8);
         this.linkView.set(this.currentAccount, webPagePreview, false);
         this.captionButton.setState(!webPagePreview.captionAbove, false);
         this.photoButton.setState(!webPagePreview.largePhoto, false);

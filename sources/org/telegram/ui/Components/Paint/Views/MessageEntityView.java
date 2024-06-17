@@ -955,13 +955,13 @@ public class MessageEntityView extends EntityView {
 
     public float getBubbleBounds(RectF rectF) {
         float y;
+        float y2;
         float f;
         float f2;
-        float f3;
+        float f3 = -2.1474836E9f;
         float f4 = -2.1474836E9f;
-        float f5 = -2.1474836E9f;
+        float f5 = 2.1474836E9f;
         float f6 = 2.1474836E9f;
-        float f7 = 2.1474836E9f;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
             if (childAt instanceof ChatMessageCell) {
@@ -969,27 +969,26 @@ public class MessageEntityView extends EntityView {
                 if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().isRoundVideo() && chatMessageCell.getPhotoImage() != null) {
                     f = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX();
                     f2 = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX2();
-                    f3 = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY();
-                    y = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY2();
+                    y = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY();
+                    y2 = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY2();
                 } else {
                     float x = this.container.getX() + childAt.getX() + chatMessageCell.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
                     if (this.groupedMessages == null) {
                         x += AndroidUtilities.dp(8.0f);
                     }
-                    float x2 = ((this.container.getX() + childAt.getX()) + chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.0f);
-                    float y2 = this.container.getY() + childAt.getY() + chatMessageCell.getBackgroundDrawableTop() + AndroidUtilities.dp(1.33f);
-                    y = ((this.container.getY() + childAt.getY()) + chatMessageCell.getBackgroundDrawableBottom()) - AndroidUtilities.dp(0.66f);
+                    float x2 = ((this.container.getX() + childAt.getX()) + chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
+                    y = this.container.getY() + childAt.getY() + chatMessageCell.getBackgroundDrawableTop() + AndroidUtilities.dp(2.0f);
+                    y2 = ((this.container.getY() + childAt.getY()) + chatMessageCell.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
                     f = x;
                     f2 = x2;
-                    f3 = y2;
                 }
-                f6 = Math.min(Math.min(f6, f), f2);
-                f4 = Math.max(Math.max(f4, f), f2);
-                f7 = Math.min(Math.min(f7, f3), y);
-                f5 = Math.max(Math.max(f5, f3), y);
+                f5 = Math.min(Math.min(f5, f), f2);
+                f3 = Math.max(Math.max(f3, f), f2);
+                f6 = Math.min(Math.min(f6, y), y2);
+                f4 = Math.max(Math.max(f4, y), y2);
             }
         }
-        rectF.set(f6, f7, f4, f5);
+        rectF.set(f5, f6, f3, f4);
         return AndroidUtilities.dp(SharedConfig.bubbleRadius);
     }
 

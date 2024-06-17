@@ -801,15 +801,18 @@ public class TextureRenderer {
 
     private void initLinkEntity(VideoEditedInfo.MediaEntity mediaEntity) {
         LinkPreview linkPreview = new LinkPreview(ApplicationLoader.applicationContext, mediaEntity.density);
+        linkPreview.setVideoTexture();
         linkPreview.set(UserConfig.selectedAccount, mediaEntity.linkSettings);
         linkPreview.setType(mediaEntity.subType, mediaEntity.color);
-        linkPreview.setMaxWidth(mediaEntity.viewWidth);
+        int i = mediaEntity.viewWidth;
+        int i2 = linkPreview.padx;
+        linkPreview.setMaxWidth(i + i2 + i2);
         linkPreview.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
         linkPreview.layout(0, 0, mediaEntity.viewWidth, mediaEntity.viewHeight);
         float f = mediaEntity.width * this.transformedWidth;
-        int i = mediaEntity.viewWidth;
-        float f2 = f / i;
-        mediaEntity.bitmap = Bitmap.createBitmap(((int) (i * f2)) + 8 + 8, ((int) (mediaEntity.viewHeight * f2)) + 8 + 8, Bitmap.Config.ARGB_8888);
+        int i3 = mediaEntity.viewWidth;
+        float f2 = f / i3;
+        mediaEntity.bitmap = Bitmap.createBitmap(((int) (i3 * f2)) + 8 + 8, ((int) (mediaEntity.viewHeight * f2)) + 8 + 8, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(mediaEntity.bitmap);
         float f3 = 8;
         canvas.translate(f3, f3);

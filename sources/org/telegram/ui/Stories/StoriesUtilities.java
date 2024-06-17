@@ -1009,13 +1009,8 @@ public class StoriesUtilities {
         private final boolean isDialogCell;
         private final GradientTools tools;
 
-        public StoryGradientTools(final View view, boolean z) {
-            this(new Runnable() {
-                @Override
-                public final void run() {
-                    view.invalidate();
-                }
-            }, z);
+        public StoryGradientTools(View view, boolean z) {
+            this(new StoriesUtilities$StoryGradientTools$$ExternalSyntheticLambda0(view), z);
             Objects.requireNonNull(view);
         }
 

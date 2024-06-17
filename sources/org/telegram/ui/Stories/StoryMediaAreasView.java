@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
+import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.tgnet.tl.TL_stories$MediaAreaCoordinates;
@@ -526,6 +527,12 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
             if (motionEvent.getAction() == 0) {
+                if (getParent() instanceof View) {
+                    ButtonBounce buttonBounce = this.bounce;
+                    View view = (View) getParent();
+                    Objects.requireNonNull(view);
+                    buttonBounce.setAdditionalInvalidate(new StoriesUtilities$StoryGradientTools$$ExternalSyntheticLambda0(view));
+                }
                 this.bounce.setPressed(true);
                 if (Build.VERSION.SDK_INT >= 21) {
                     this.rippleDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());

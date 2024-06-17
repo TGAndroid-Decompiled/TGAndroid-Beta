@@ -500,7 +500,7 @@ public class RenderView extends TextureView {
                 if (RenderView.this.blurBitmap.getWidth() == size.width && RenderView.this.blurBitmap.getHeight() == size.height) {
                     return;
                 }
-                Bitmap createBitmap2 = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ALPHA_8);
+                Bitmap createBitmap2 = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ARGB_8888);
                 new Canvas(createBitmap2).drawBitmap(RenderView.this.blurBitmap, (Rect) null, new RectF(0.0f, 0.0f, size.width, size.height), (Paint) null);
                 RenderView.this.blurBitmap = createBitmap2;
                 RenderView.this.transformedBitmap = true;
