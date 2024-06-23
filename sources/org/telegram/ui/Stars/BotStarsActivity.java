@@ -553,7 +553,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             this.revenueChartData = createViewData;
             if (createViewData != null && (chartData = createViewData.chartData) != null && (arrayList = chartData.lines) != null && !arrayList.isEmpty() && this.revenueChartData.chartData.lines.get(0) != null) {
                 this.revenueChartData.chartData.lines.get(0).colorKey = Theme.key_statisticChartLine_golden;
-                this.revenueChartData.chartData.yRate = (float) (this.rate * 100.0d);
+                this.revenueChartData.chartData.yRate = (float) ((1.0d / this.rate) / 100.0d);
             }
             TLRPC$TL_starsRevenueStatus tLRPC$TL_starsRevenueStatus = revenueStats.status;
             setBalance(tLRPC$TL_starsRevenueStatus.available_balance, tLRPC$TL_starsRevenueStatus.next_withdrawal_at);
