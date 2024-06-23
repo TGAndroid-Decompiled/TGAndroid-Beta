@@ -1530,15 +1530,8 @@
     <string name="FeaturedStickers">Angesagte Sticker</string>
     <string name="FeaturedStickersInfo">Diese Sticker sind gerade auf Telegram angesagt. Du kannst eigene Sticker über den @stickers Bot hinzufügen.</string>
     <string name="February">Februar</string>
-    <string name="FileSavedHint">Datei in Downloads gespeichert</string>
     <string name="FileUploadLimit">Die Datei darf nicht größer als %1$s sein</string>
     <string name="FilesDataUsage">Dateien</string>
-    <string name="FilesSavedHint_few">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_many">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_one">Datei in Downloads gespeichert</string>
-    <string name="FilesSavedHint_other">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_two">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_zero">%1$d Dateien in Downloads gespeichert</string>
     <string name="Files_few">%1$d Dateien</string>
     <string name="Files_many">%1$d Dateien</string>
     <string name="Files_one">%1$d Datei</string>
@@ -1747,7 +1740,6 @@
     <string name="GetQRCode">QR-Code erstellen</string>
     <string name="GettingLinkInfo">Lade Linkvorschau...</string>
     <string name="GifCaption">GIF Beschriftung</string>
-    <string name="GifSavedToDownloadsHint">GIF in Downloads gespeichert</string>
     <string name="GifsTab2">GIFs</string>
     <string name="GigagroupAlertLearnMore">MEHR DAZU</string>
     <string name="GigagroupAlertText">Limit von 200.000 Mitgliedern in der Gruppe erreicht.\n\nDu kannst das Limit erhöhen, indem du die Gruppe in eine **Broadcast-Gruppe** umwandelst, in der nur Admins schreiben können. Interessiert?</string>
@@ -2998,7 +2990,6 @@
     <string name="PhotoCaption">Bildbeschriftung</string>
     <string name="PhotoEditorDiscardAlert">Möchtest du wirklich alle Änderungen verwerfen?</string>
     <string name="PhotoSavedHint">Bild in Galerie gespeichert</string>
-    <string name="PhotoSavedToDownloadsHint">Bild in Downloads gespeichert</string>
     <string name="PhotosSavedHint_few">%1$d Bilder in Galerie gespeichert</string>
     <string name="PhotosSavedHint_many">%1$d Bilder in Galerie gespeichert</string>
     <string name="PhotosSavedHint_one">Bild in Galerie gespeichert</string>
@@ -4041,7 +4032,6 @@
     <string name="VideoPreview">Videovorschau</string>
     <string name="VideoQualityIsTooLow">Die Videoqualität ist zu niedrig, um die Komprimierung zu ändern.</string>
     <string name="VideoSavedHint">Video in Galerie gespeichert</string>
-    <string name="VideoSavedToDownloadsHint">Video in Downloads gespeichert</string>
     <string name="VideosSavedHint_few">%1$d Videos in Galerie gespeichert</string>
     <string name="VideosSavedHint_many">%1$d Videos in Galerie gespeichert</string>
     <string name="VideosSavedHint_one">Video in Galerie gespeichert</string>

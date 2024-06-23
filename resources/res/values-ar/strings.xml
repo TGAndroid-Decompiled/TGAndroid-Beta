@@ -1531,15 +1531,8 @@
     <string name="FeaturedStickers">الملصقات الشائعة</string>
     <string name="FeaturedStickersInfo">هذه الملصقات شائعة حاليًا على تيليجرام، يمكنك إضافة ملصقات مخصصة عبر البوت @stickers.</string>
     <string name="February">فبراير</string>
-    <string name="FileSavedHint">تم حفظ الملف في التنزيلات</string>
     <string name="FileUploadLimit">لا يمكن أن يتجاوز حجم الملف %1$s</string>
     <string name="FilesDataUsage">الملفات</string>
-    <string name="FilesSavedHint_few">تم حفظ %1$d ملفات في التنزيلات</string>
-    <string name="FilesSavedHint_many">تم حفظ ١١ ملفًا في التنزيلات</string>
-    <string name="FilesSavedHint_one">تم حفظ ملف في التنزيلات</string>
-    <string name="FilesSavedHint_other">تم حفظ %1$d ملف في التنزيلات</string>
-    <string name="FilesSavedHint_two">تم حفظ ملفين في التنزيلات</string>
-    <string name="FilesSavedHint_zero">تم حفظ %1$d ملفات في التنزيلات</string>
     <string name="Files_few">%1$d ملفات</string>
     <string name="Files_many">%1$d ملفًا</string>
     <string name="Files_one">ملف واحد</string>
@@ -1749,7 +1742,6 @@
     <string name="GetQRCode">رمز QR</string>
     <string name="GettingLinkInfo">يتم جلب معلومات الرابط...</string>
     <string name="GifCaption">وصف الصورة المتحركة</string>
-    <string name="GifSavedToDownloadsHint">تم حفظ الصورة المتحركة في التنزيلات</string>
     <string name="GifsTab2">الصور المتحركة</string>
     <string name="GigagroupAlertLearnMore">معرفة المزيد</string>
     <string name="GigagroupAlertText">وصلت مجموعتك إلى الحد المسموح لعدد الأعضاء **200,000**.\n\nيمكنك زيادة هذا الحد بتحويل المجموعة إلى **مجموعة نشر** حيث يمكن للمشرفين فقط النشر.\nمتابعة؟</string>
@@ -3000,7 +2992,6 @@
     <string name="PhotoCaption">وصف الصورة</string>
     <string name="PhotoEditorDiscardAlert">هل ترغب حقًا في تجاهل جميع التغييرات؟</string>
     <string name="PhotoSavedHint">تم حفظ الصورة في المعرض</string>
-    <string name="PhotoSavedToDownloadsHint">تم حفظ الصورة في التنزيلات</string>
     <string name="PhotosSavedHint_few">تم حفظ %1$d صور في المعرض</string>
     <string name="PhotosSavedHint_many">تم حفظ %1$d صورة في المعرض</string>
     <string name="PhotosSavedHint_one">تم حفظ الصورة في المعرض</string>
@@ -4043,7 +4034,6 @@
     <string name="VideoPreview">معاينة الفيديو</string>
     <string name="VideoQualityIsTooLow">جودة المقطع المرئي أقل مما ينبغي لتغيير إعدادات الضغط.</string>
     <string name="VideoSavedHint">تم حفظ المقطع المرئي في المعرض</string>
-    <string name="VideoSavedToDownloadsHint">تم حفظ المقطع في التنزيلات</string>
     <string name="VideosSavedHint_few">تم حفظ %1$dمقاطع مرئية في المعرض</string>
     <string name="VideosSavedHint_many">تم حفظ %1$d مقطعًا مرئيًا في المعرض</string>
     <string name="VideosSavedHint_one">تم حفظ المقطع المرئي في المعرض</string>

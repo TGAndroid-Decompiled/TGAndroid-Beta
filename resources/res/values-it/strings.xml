@@ -1531,15 +1531,8 @@
     <string name="FeaturedStickers">Sticker in primo piano</string>
     <string name="FeaturedStickersInfo">Questi sticker sono al momento in primo piano su Telegram. Puoi aggiungere sticker personalizzati tramite il bot @stickers.</string>
     <string name="February">Febbraio</string>
-    <string name="FileSavedHint">File salvato nei download</string>
     <string name="FileUploadLimit">La dimensione del file non dovrebbe superare i %1$s</string>
     <string name="FilesDataUsage">File</string>
-    <string name="FilesSavedHint_few">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_many">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_one">File salvato nei download</string>
-    <string name="FilesSavedHint_other">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_two">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_zero">%1$d file salvati nei download</string>
     <string name="Files_few">%1$d file</string>
     <string name="Files_many">%1$d file</string>
     <string name="Files_one">%1$d file</string>
@@ -1748,7 +1741,6 @@
     <string name="GetQRCode">Ottieni QR</string>
     <string name="GettingLinkInfo">Recupero le info del link...</string>
     <string name="GifCaption">Didascalia GIF</string>
-    <string name="GifSavedToDownloadsHint">GIF salvata nei download</string>
     <string name="GifsTab2">GIF</string>
     <string name="GigagroupAlertLearnMore">SCOPRI DI PIÙ</string>
     <string name="GigagroupAlertText">Il tuo gruppo ha raggiunto il limite di **200.000** membri.\n\nPuoi aumentare questo limite convertendo il gruppo in un **gruppo broadcast** dove solo gli amministratori possono scrivere.\nTi interessa?</string>
@@ -2999,7 +2991,6 @@
     <string name="PhotoCaption">Didascalia foto</string>
     <string name="PhotoEditorDiscardAlert">Sei sicuro di voler scartare tutte le modifiche?</string>
     <string name="PhotoSavedHint">Foto salvata nella galleria</string>
-    <string name="PhotoSavedToDownloadsHint">Foto salvata nei download</string>
     <string name="PhotosSavedHint_few">%1$d foto salvate nella galleria</string>
     <string name="PhotosSavedHint_many">%1$d foto salvate nella galleria</string>
     <string name="PhotosSavedHint_one">Foto salvata nella galleria</string>
@@ -4042,7 +4033,6 @@
     <string name="VideoPreview">Anteprima video</string>
     <string name="VideoQualityIsTooLow">Qualità video troppo bassa per cambiare le impostazioni di compressione.</string>
     <string name="VideoSavedHint">Video salvato nella galleria</string>
-    <string name="VideoSavedToDownloadsHint">Video salvato nei download</string>
     <string name="VideosSavedHint_few">%1$d video salvati nella galleria</string>
     <string name="VideosSavedHint_many">%1$d video salvati nella galleria</string>
     <string name="VideosSavedHint_one">Video salvato nella galleria</string>

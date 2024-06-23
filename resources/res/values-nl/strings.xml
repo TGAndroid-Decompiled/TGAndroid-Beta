@@ -1531,15 +1531,8 @@
     <string name="FeaturedStickers">Populaire stickers</string>
     <string name="FeaturedStickersInfo">Deze stickers zijn momenteel populair op Telegram. Je kunt persoonlijke stickers toevoegen via de @stickers bot.</string>
     <string name="February">februari</string>
-    <string name="FileSavedHint">Bestand opgeslagen in downloads</string>
     <string name="FileUploadLimit">Bestanden mogen maximaal %1$s zijn</string>
     <string name="FilesDataUsage">Bestanden</string>
-    <string name="FilesSavedHint_few">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_many">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_one">%1$d bestand opgeslagen in downloads</string>
-    <string name="FilesSavedHint_other">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_two">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_zero">%1$d bestanden opgeslagen in downloads</string>
     <string name="Files_few">%1$d bestanden</string>
     <string name="Files_many">%1$d bestanden</string>
     <string name="Files_one">%1$d bestand</string>
@@ -1748,7 +1741,6 @@
     <string name="GetQRCode">Get QR code</string>
     <string name="GettingLinkInfo">Link-preview ophalen...</string>
     <string name="GifCaption">GIF-Onderschrift</string>
-    <string name="GifSavedToDownloadsHint">GIF opgeslagen in downloads</string>
     <string name="GifsTab2">GIF\'s</string>
     <string name="GigagroupAlertLearnMore">LEARN MORE</string>
     <string name="GigagroupAlertText">Your group has reached the limit of **200,000** members.\n\nYou can increase this limit by converting the group to a **broadcast group** where only admins can post.\nInterested?</string>
@@ -2999,7 +2991,6 @@
     <string name="PhotoCaption">Foto-onderschrift</string>
     <string name="PhotoEditorDiscardAlert">Alle wijzigingen echt weggooien?</string>
     <string name="PhotoSavedHint">Foto opgeslagen in galerij</string>
-    <string name="PhotoSavedToDownloadsHint">Foto opgeslagen in downloads</string>
     <string name="PhotosSavedHint_few">%1$d foto\'s opgeslagen in galerij</string>
     <string name="PhotosSavedHint_many">%1$d foto\'s opgeslagen in galerij</string>
     <string name="PhotosSavedHint_one">%1$d foto opgeslagen in galerij</string>
@@ -4042,7 +4033,6 @@
     <string name="VideoPreview">Video Preview</string>
     <string name="VideoQualityIsTooLow">Videokwaliteit is te laag om de compressie-instellingen te wijzigen.</string>
     <string name="VideoSavedHint">Video opgeslagen in galerij</string>
-    <string name="VideoSavedToDownloadsHint">Video opgeslagen in downloads</string>
     <string name="VideosSavedHint_few">%1$d video\'s opgeslagen in galerij</string>
     <string name="VideosSavedHint_many">%1$d video\'s opgeslagen in galerij</string>
     <string name="VideosSavedHint_one">%1$d video opgeslagen in galerij</string>

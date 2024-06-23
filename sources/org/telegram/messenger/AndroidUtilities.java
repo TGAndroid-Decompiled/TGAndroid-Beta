@@ -592,6 +592,37 @@ public class AndroidUtilities {
         return spannableStringBuilder;
     }
 
+    public static SpannableStringBuilder replaceMultipleTags(String str, Runnable... runnableArr) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        for (final Runnable runnable : runnableArr) {
+            int charSequenceIndexOf = charSequenceIndexOf(spannableStringBuilder, "**");
+            int i = charSequenceIndexOf + 2;
+            int charSequenceIndexOf2 = charSequenceIndexOf(spannableStringBuilder, "**", i);
+            if (charSequenceIndexOf < 0 || charSequenceIndexOf2 < 0) {
+                break;
+            }
+            spannableStringBuilder.delete(charSequenceIndexOf, i);
+            int i2 = charSequenceIndexOf2 - 2;
+            spannableStringBuilder.delete(i2, i2 + 2);
+            spannableStringBuilder.setSpan(new ClickableSpan() {
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    super.updateDrawState(textPaint);
+                    textPaint.setUnderlineText(false);
+                }
+
+                @Override
+                public void onClick(View view) {
+                    Runnable runnable2 = runnable;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                }
+            }, charSequenceIndexOf, i2, 33);
+        }
+        return spannableStringBuilder;
+    }
+
     public static SpannableStringBuilder replaceSingleLink(String str, int i) {
         return replaceSingleLink(str, i, null);
     }

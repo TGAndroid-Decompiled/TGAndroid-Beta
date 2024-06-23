@@ -1531,15 +1531,8 @@
     <string name="FeaturedStickers">인기 스티커</string>
     <string name="FeaturedStickersInfo">이 스티커들이 텔레그램에서 한창 인기를 끌고 있습니다. @sticker 봇으로 맞춤 스티커를 추가하실 수 있습니다.</string>
     <string name="February">2월</string>
-    <string name="FileSavedHint">다운로드로 파일이 저장됐습니다</string>
     <string name="FileUploadLimit">파일 크기는 %1$s보다 작아야 합니다</string>
     <string name="FilesDataUsage">파일</string>
-    <string name="FilesSavedHint_few">다운로드에 %1$d개의 파일이 저장됐습니다</string>
-    <string name="FilesSavedHint_many">다운로드에 %1$d개의 파일이 저장됐습니다</string>
-    <string name="FilesSavedHint_one">다운로드에 %1$d개의 파일이 저장됐습니다</string>
-    <string name="FilesSavedHint_other">다운로드에 %1$d개의 파일이 저장됐습니다</string>
-    <string name="FilesSavedHint_two">다운로드에 %1$d개의 파일이 저장됐습니다</string>
-    <string name="FilesSavedHint_zero">다운로드에 %1$d개의 파일이 저장됐습니다</string>
     <string name="Files_few">파일 %1$d개</string>
     <string name="Files_many">파일 %1$d개</string>
     <string name="Files_one">파일 %1$d개</string>
@@ -1748,7 +1741,6 @@
     <string name="GetQRCode">QR 코드 생성</string>
     <string name="GettingLinkInfo">링크 정보 가져오는 중...</string>
     <string name="GifCaption">GIF 설명</string>
-    <string name="GifSavedToDownloadsHint">다운로드로 GIF가 저장됐습니다</string>
     <string name="GifsTab2">GIF</string>
     <string name="GigagroupAlertLearnMore">더 자세히</string>
     <string name="GigagroupAlertText">그룹이 한계치인 **200,000** 참가자에 도달했습니다.\n\n관리자만 메시지를 보낼 수 있는 **브로드캐스트 그룹** 으로 변경할 경우 이 제한을 해제할 수 있습니다. 관심있으신가요?</string>
@@ -2999,7 +2991,6 @@
     <string name="PhotoCaption">사진 설명</string>
     <string name="PhotoEditorDiscardAlert">정말 모든 변경 사항을 폐기하시겠습니까?</string>
     <string name="PhotoSavedHint">갤러리로 사진이 저장됐습니다</string>
-    <string name="PhotoSavedToDownloadsHint">다운로드로 사진이 저장됐습니다</string>
     <string name="PhotosSavedHint_few">갤러리에 %1$d개의 사진이 저장됐습니다</string>
     <string name="PhotosSavedHint_many">갤러리에 %1$d개의 사진이 저장됐습니다</string>
     <string name="PhotosSavedHint_one">갤러리에 %1$d개의 사진이 저장됐습니다</string>
@@ -4042,7 +4033,6 @@
     <string name="VideoPreview">영상 미리보기</string>
     <string name="VideoQualityIsTooLow">압축 설정을 바꾸기엔 동영상 품질이 너무 낮습니다.</string>
     <string name="VideoSavedHint">갤러리로 영상이 저장됐습니다</string>
-    <string name="VideoSavedToDownloadsHint">다운로드로 동영상이 저장됐습니다</string>
     <string name="VideosSavedHint_few">갤러리로 %1$d개의 비디오가 저장됐습니다</string>
     <string name="VideosSavedHint_many">갤러리로 %1$d개의 비디오가 저장됐습니다</string>
     <string name="VideosSavedHint_one">갤러리로 %1$d개의 비디오가 저장됐습니다</string>

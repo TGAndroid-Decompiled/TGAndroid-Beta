@@ -100,6 +100,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
     private Bulletin withdrawalBulletin;
     private final ChannelMonetizationLayout.ProceedOverview availableValue = ChannelMonetizationLayout.ProceedOverview.as("XTR", LocaleController.getString(R.string.BotStarsOverviewAvailableBalance));
     private final ChannelMonetizationLayout.ProceedOverview totalValue = ChannelMonetizationLayout.ProceedOverview.as("XTR", LocaleController.getString(R.string.BotStarsOverviewTotalBalance));
+    private final ChannelMonetizationLayout.ProceedOverview totalProceedsValue = ChannelMonetizationLayout.ProceedOverview.as("XTR", LocaleController.getString(R.string.BotStarsOverviewTotalProceeds));
     private boolean balanceEditTextIgnore = false;
     private boolean balanceEditTextAll = true;
     private ColoredImageSpan[] starRef = new ColoredImageSpan[1];
@@ -435,16 +436,24 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             Double.isNaN(d);
             proceedOverview.amount = (long) (d * d2 * 100.0d);
             ChannelMonetizationLayout.ProceedOverview proceedOverview2 = this.totalValue;
-            long j2 = tLRPC$TL_starsRevenueStatus.overall_revenue;
+            long j2 = tLRPC$TL_starsRevenueStatus.current_balance;
             proceedOverview2.crypto_amount = j2;
             proceedOverview2.currency = "USD";
             double d3 = j2;
             Double.isNaN(d3);
             proceedOverview2.amount = (long) (d3 * d2 * 100.0d);
+            ChannelMonetizationLayout.ProceedOverview proceedOverview3 = this.totalProceedsValue;
+            long j3 = tLRPC$TL_starsRevenueStatus.overall_revenue;
+            proceedOverview3.crypto_amount = j3;
+            proceedOverview3.currency = "USD";
+            double d4 = j3;
+            Double.isNaN(d4);
+            proceedOverview3.amount = (long) (d4 * d2 * 100.0d);
             setBalance(j, tLRPC$TL_starsRevenueStatus.next_withdrawal_at);
         }
         arrayList.add(UItem.asProceedOverview(this.availableValue));
         arrayList.add(UItem.asProceedOverview(this.totalValue));
+        arrayList.add(UItem.asProceedOverview(this.totalProceedsValue));
         arrayList.add(UItem.asShadow(-2, LocaleController.getString(R.string.BotStarsOverviewInfo)));
         arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.BotStarsAvailableBalance)));
         arrayList.add(UItem.asCustom(1, this.balanceLayout));
@@ -472,7 +481,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
         }
         this.balanceTitle.setText(spannableStringBuilder);
-        this.balanceSubtitle.setText("~" + BillingController.getInstance().formatCurrency(j2, "USD"));
+        this.balanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
         if (this.balanceEditTextAll) {
             this.balanceEditTextIgnore = true;
             EditTextBoldCursor editTextBoldCursor = this.balanceEditText;
