@@ -95,21 +95,23 @@ public class BotBiometry {
         String str = null;
         if (authenticationResult != null) {
             try {
-                BiometricPrompt.CryptoObject cryptoObject = authenticationResult.getCryptoObject();
                 if (Build.VERSION.SDK_INT < 23) {
                     if (!TextUtils.isEmpty(this.encrypted_token)) {
                         str = this.encrypted_token.split(";")[0];
                     } else {
                         str = this.encrypted_token;
                     }
-                } else if (cryptoObject != null) {
-                    if (!TextUtils.isEmpty(this.encrypted_token)) {
-                        str = new String(cryptoObject.getCipher().doFinal(Utilities.hexToBytes(this.encrypted_token.split(";")[0])), StandardCharsets.UTF_8);
-                    } else {
-                        str = this.encrypted_token;
+                } else {
+                    BiometricPrompt.CryptoObject makeCryptoObject = makeCryptoObject(true);
+                    if (makeCryptoObject != null) {
+                        if (!TextUtils.isEmpty(this.encrypted_token)) {
+                            str = new String(makeCryptoObject.getCipher().doFinal(Utilities.hexToBytes(this.encrypted_token.split(";")[0])), StandardCharsets.UTF_8);
+                        } else {
+                            str = this.encrypted_token;
+                        }
+                    } else if (!TextUtils.isEmpty(this.encrypted_token)) {
+                        throw new RuntimeException("No cryptoObject found");
                     }
-                } else if (!TextUtils.isEmpty(this.encrypted_token)) {
-                    throw new RuntimeException("No cryptoObject found");
                 }
             } catch (Exception e) {
                 FileLog.e(e);
