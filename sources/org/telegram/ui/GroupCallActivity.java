@@ -3659,7 +3659,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         PinchToZoomHelper pinchToZoomHelper = new PinchToZoomHelper(viewGroup, this.containerView) {
             @Override
-            protected void invalidateViews() {
+            public void invalidateViews() {
                 super.invalidateViews();
                 for (int i27 = 0; i27 < GroupCallActivity.this.avatarsViewPager.getChildCount(); i27++) {
                     GroupCallActivity.this.avatarsViewPager.getChildAt(i27).invalidate();

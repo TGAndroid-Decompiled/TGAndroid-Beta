@@ -58,6 +58,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     private FrameLayout buttonContainer;
     private boolean captionAbove;
     private boolean ignoreUrlEdit;
+    private String lastCheckedStr;
     private boolean loading;
     private EditTextCell nameEditText;
     private boolean nameOpen;
@@ -329,32 +330,34 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.didReceivedWebpagesInUpdates && this.webpageId == 0) {
-            LongSparseArray longSparseArray = (LongSparseArray) objArr[0];
-            for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
-                TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) longSparseArray.valueAt(i3);
-                if (tLRPC$WebPage != null && this.webpageId == tLRPC$WebPage.id) {
-                    if (isPreviewEmpty(tLRPC$WebPage)) {
-                        tLRPC$WebPage = null;
-                    }
-                    this.webpage = tLRPC$WebPage;
-                    this.loading = false;
-                    this.webpageId = 0L;
-                    UniversalAdapter universalAdapter = this.adapter;
-                    if (universalAdapter != null) {
-                        universalAdapter.update(true);
-                        return;
-                    }
+        if (i != NotificationCenter.didReceivedWebpagesInUpdates || this.webpageId == 0) {
+            return;
+        }
+        LongSparseArray longSparseArray = (LongSparseArray) objArr[0];
+        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
+            TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) longSparseArray.valueAt(i3);
+            if (tLRPC$WebPage != null && this.webpageId == tLRPC$WebPage.id) {
+                if (isPreviewEmpty(tLRPC$WebPage)) {
+                    tLRPC$WebPage = null;
+                }
+                this.webpage = tLRPC$WebPage;
+                this.loading = false;
+                this.webpageId = 0L;
+                UniversalAdapter universalAdapter = this.adapter;
+                if (universalAdapter != null) {
+                    universalAdapter.update(true);
                     return;
                 }
+                return;
             }
         }
     }
 
     public void checkEditURL(String str) {
-        if (str == null) {
+        if (str == null || TextUtils.equals(str, this.lastCheckedStr)) {
             return;
         }
+        this.lastCheckedStr = str;
         boolean containsURL = containsURL(str);
         AndroidUtilities.cancelRunOnUIThread(this.requestPreview);
         if (containsURL) {
@@ -366,7 +369,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                     universalAdapter.update(true);
                 }
             }
-            AndroidUtilities.runOnUIThread(this.requestPreview, 1000L);
+            AndroidUtilities.runOnUIThread(this.requestPreview, 700L);
         } else if (this.loading || this.webpage != null) {
             this.loading = false;
             this.webpage = null;
