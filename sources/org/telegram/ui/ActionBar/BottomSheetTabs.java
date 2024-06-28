@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
-import android.R;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -11,13 +11,21 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedColor;
@@ -35,14 +43,18 @@ public class BottomSheetTabs extends FrameLayout {
     private AnimatedColor backgroundColorAnimated;
     private final Paint backgroundPaint;
     private boolean closeRippleHit;
+    public int currentAccount;
     public boolean drawTabs;
     private final RectF rect;
     private int tabColor;
     private AnimatedColor tabColorAnimated;
     private AnimatedFloat tabDarkAnimated;
-    public final ArrayList<TabDrawable> tabDrawables;
+    public final HashMap<Integer, ArrayList<TabDrawable>> tabDrawables;
     private boolean tabIsDark;
-    public final ArrayList<WebTabData> tabs;
+    public final HashMap<Integer, ArrayList<WebTabData>> tabs;
+
+    public static void lambda$onTouchEvent$7(Boolean bool) {
+    }
 
     public BottomSheetTabs(Context context, ActionBarLayout actionBarLayout) {
         super(context);
@@ -52,8 +64,9 @@ public class BottomSheetTabs extends FrameLayout {
         this.backgroundColorAnimated = new AnimatedColor(this, 0L, 200L, cubicBezierInterpolator);
         this.tabColorAnimated = new AnimatedColor(this, 0L, 200L, cubicBezierInterpolator);
         this.tabDarkAnimated = new AnimatedFloat(this, 0L, 200L, cubicBezierInterpolator);
-        this.tabs = new ArrayList<>();
-        this.tabDrawables = new ArrayList<>();
+        this.currentAccount = UserConfig.selectedAccount;
+        this.tabs = new HashMap<>();
+        this.tabDrawables = new HashMap<>();
         this.rect = new RectF();
         this.actionBarLayout = actionBarLayout;
         setNavigationBarColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -63,15 +76,16 @@ public class BottomSheetTabs extends FrameLayout {
                 BottomSheetTabs.this.lambda$new$0(view);
             }
         });
+        updateMultipleTitle();
     }
 
     public void lambda$new$0(View view) {
-        int size = this.tabs.size();
+        ArrayList<WebTabData> tabs = getTabs();
+        int size = tabs.size();
         if (size == 0) {
             return;
         }
-        ArrayList<WebTabData> arrayList = this.tabs;
-        WebTabData webTabData = arrayList.get(arrayList.size() - 1);
+        WebTabData webTabData = tabs.get(tabs.size() - 1);
         BottomSheetTabsOverlay bottomSheetTabsOverlay = LaunchActivity.instance.getBottomSheetTabsOverlay();
         if (size == 1 || bottomSheetTabsOverlay == null) {
             openTab(webTabData);
@@ -80,43 +94,80 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public void openTab(WebTabData webTabData) {
+    public void openTab(final WebTabData webTabData) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null || lastFragment.getParentActivity() == null) {
             return;
         }
-        if (lastFragment instanceof ChatActivity) {
+        boolean z = lastFragment instanceof ChatActivity;
+        if (z) {
             ChatActivity chatActivity = (ChatActivity) lastFragment;
             if (chatActivity.getChatActivityEnterView() != null) {
                 chatActivity.getChatActivityEnterView().closeKeyboard();
                 chatActivity.getChatActivityEnterView().hidePopup(true, false);
             }
         }
-        boolean closeAttachedSheets = closeAttachedSheets();
+        final boolean closeAttachedSheets = closeAttachedSheets();
+        final Utilities.Callback callback = new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                BottomSheetTabs.this.lambda$openTab$1(webTabData, closeAttachedSheets, (BaseFragment) obj);
+            }
+        };
+        if (webTabData.needsContext && (!z || ((ChatActivity) lastFragment).getDialogId() != webTabData.props.botId)) {
+            final ChatActivity of = ChatActivity.of(webTabData.props.botId);
+            lastFragment.presentFragment(of);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(of);
+                }
+            }, 200L);
+            return;
+        }
+        callback.run(lastFragment);
+    }
+
+    public void lambda$openTab$1(WebTabData webTabData, boolean z, BaseFragment baseFragment) {
+        if (baseFragment instanceof ChatActivity) {
+            ChatActivity chatActivity = (ChatActivity) baseFragment;
+            if (chatActivity.getChatActivityEnterView() != null) {
+                chatActivity.getChatActivityEnterView().closeKeyboard();
+                chatActivity.getChatActivityEnterView().hidePopup(true, false);
+            }
+        }
         if (AndroidUtilities.isTablet()) {
-            BotWebViewSheet botWebViewSheet = new BotWebViewSheet(lastFragment.getContext(), lastFragment.getResourceProvider());
-            botWebViewSheet.setParentActivity(lastFragment.getParentActivity());
-            if (botWebViewSheet.restoreState(lastFragment, webTabData)) {
+            BotWebViewSheet botWebViewSheet = new BotWebViewSheet(baseFragment.getContext(), baseFragment.getResourceProvider());
+            botWebViewSheet.setParentActivity(baseFragment.getParentActivity());
+            if (botWebViewSheet.restoreState(baseFragment, webTabData)) {
                 removeTab(webTabData, false);
                 botWebViewSheet.show();
                 return;
             }
             return;
         }
-        BotWebViewAttachedSheet createBotViewer = lastFragment.createBotViewer();
-        createBotViewer.setParentActivity(lastFragment.getParentActivity());
-        if (createBotViewer.restoreState(lastFragment, webTabData)) {
+        BotWebViewAttachedSheet createBotViewer = baseFragment.createBotViewer();
+        createBotViewer.setParentActivity(baseFragment.getParentActivity());
+        if (createBotViewer.restoreState(baseFragment, webTabData)) {
             removeTab(webTabData, false);
-            createBotViewer.show(closeAttachedSheets);
+            createBotViewer.show(z);
         }
     }
 
     public WebTabData tryReopenTab(BotWebViewAttachedSheet.WebViewRequestProps webViewRequestProps) {
+        ArrayList<WebTabData> arrayList = this.tabs.get(Integer.valueOf(this.currentAccount));
+        if (arrayList == null) {
+            HashMap<Integer, ArrayList<WebTabData>> hashMap = this.tabs;
+            Integer valueOf = Integer.valueOf(this.currentAccount);
+            ArrayList<WebTabData> arrayList2 = new ArrayList<>();
+            hashMap.put(valueOf, arrayList2);
+            arrayList = arrayList2;
+        }
         if (webViewRequestProps == null) {
             return null;
         }
-        for (int i = 0; i < this.tabs.size(); i++) {
-            WebTabData webTabData = this.tabs.get(i);
+        for (int i = 0; i < arrayList.size(); i++) {
+            WebTabData webTabData = arrayList.get(i);
             if (webViewRequestProps.equals(webTabData.props)) {
                 openTab(webTabData);
                 return webTabData;
@@ -174,8 +225,20 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
+    public void updateCurrentAccount() {
+        setCurrentAccount(UserConfig.selectedAccount);
+    }
+
+    public void setCurrentAccount(int i) {
+        if (this.currentAccount != i) {
+            this.currentAccount = i;
+            this.actionBarLayout.updateBottomTabsVisibility(false);
+            invalidate();
+        }
+    }
+
     public int getExpandedHeight() {
-        int size = this.tabs.size();
+        int size = getTabs().size();
         if (size == 0) {
             return 0;
         }
@@ -185,24 +248,51 @@ public class BottomSheetTabs extends FrameLayout {
         return AndroidUtilities.dp(68.0f);
     }
 
+    public ArrayList<WebTabData> getTabs() {
+        ArrayList<WebTabData> arrayList = this.tabs.get(Integer.valueOf(this.currentAccount));
+        if (arrayList != null) {
+            return arrayList;
+        }
+        HashMap<Integer, ArrayList<WebTabData>> hashMap = this.tabs;
+        Integer valueOf = Integer.valueOf(this.currentAccount);
+        ArrayList<WebTabData> arrayList2 = new ArrayList<>();
+        hashMap.put(valueOf, arrayList2);
+        return arrayList2;
+    }
+
+    public ArrayList<TabDrawable> getTabDrawables() {
+        ArrayList<TabDrawable> arrayList = this.tabDrawables.get(Integer.valueOf(this.currentAccount));
+        if (arrayList != null) {
+            return arrayList;
+        }
+        HashMap<Integer, ArrayList<TabDrawable>> hashMap = this.tabDrawables;
+        Integer valueOf = Integer.valueOf(this.currentAccount);
+        ArrayList<TabDrawable> arrayList2 = new ArrayList<>();
+        hashMap.put(valueOf, arrayList2);
+        return arrayList2;
+    }
+
     public TabDrawable findTabDrawable(WebTabData webTabData) {
-        for (int i = 0; i < this.tabDrawables.size(); i++) {
-            if (this.tabDrawables.get(i).tab == webTabData) {
-                return this.tabDrawables.get(i);
+        ArrayList<TabDrawable> tabDrawables = getTabDrawables();
+        for (int i = 0; i < tabDrawables.size(); i++) {
+            if (tabDrawables.get(i).tab == webTabData) {
+                return tabDrawables.get(i);
             }
         }
         return null;
     }
 
     public TabDrawable pushTab(WebTabData webTabData) {
+        ArrayList<WebTabData> tabs = getTabs();
+        ArrayList<TabDrawable> tabDrawables = getTabDrawables();
         TabDrawable tabDrawable = new TabDrawable(this, webTabData);
         tabDrawable.animatedPosition.set(-1.0f, true);
         tabDrawable.animatedAlpha.set(0.0f, true);
-        this.tabDrawables.add(tabDrawable);
-        this.tabs.add(0, webTabData);
-        for (int i = 0; i < this.tabDrawables.size(); i++) {
-            TabDrawable tabDrawable2 = this.tabDrawables.get(i);
-            int indexOf = this.tabs.indexOf(tabDrawable2.tab);
+        tabDrawables.add(tabDrawable);
+        tabs.add(0, webTabData);
+        for (int i = 0; i < tabDrawables.size(); i++) {
+            TabDrawable tabDrawable2 = tabDrawables.get(i);
+            int indexOf = tabs.indexOf(tabDrawable2.tab);
             tabDrawable2.index = indexOf;
             if (indexOf >= 0) {
                 tabDrawable2.position = indexOf;
@@ -221,38 +311,116 @@ public class BottomSheetTabs extends FrameLayout {
     }
 
     private void updateMultipleTitle() {
-        for (int i = 0; i < this.tabDrawables.size(); i++) {
-            TabDrawable tabDrawable = this.tabDrawables.get(i);
-            if (this.tabs.size() > 1 && tabDrawable.position == 0) {
-                tabDrawable.setOverrideTitle(LocaleController.formatPluralString("BotMoreTabs", this.tabs.size() - 1, UserObject.getUserName(MessagesController.getInstance(tabDrawable.tab.props.currentAccount).getUser(Long.valueOf(tabDrawable.tab.props.botId)))));
+        String userName;
+        ArrayList<WebTabData> tabs = getTabs();
+        ArrayList<TabDrawable> tabDrawables = getTabDrawables();
+        String str = null;
+        for (int i = 0; i < tabDrawables.size(); i++) {
+            TabDrawable tabDrawable = tabDrawables.get(i);
+            if (tabs.size() > 1 && tabDrawable.position == 0) {
+                userName = LocaleController.formatPluralString("BotMoreTabs", tabs.size() - 1, UserObject.getUserName(MessagesController.getInstance(tabDrawable.tab.props.currentAccount).getUser(Long.valueOf(tabDrawable.tab.props.botId))));
+                tabDrawable.setOverrideTitle(userName);
             } else {
+                userName = UserObject.getUserName(MessagesController.getInstance(tabDrawable.tab.props.currentAccount).getUser(Long.valueOf(tabDrawable.tab.props.botId)));
                 tabDrawable.setOverrideTitle(null);
             }
+            str = userName;
         }
+        if (tabs.isEmpty()) {
+            setImportantForAccessibility(2);
+            setContentDescription(LocaleController.formatString(R.string.AccDescrTabs, ""));
+            return;
+        }
+        setImportantForAccessibility(1);
+        int i2 = R.string.AccDescrTabs;
+        Object[] objArr = new Object[1];
+        if (str == null) {
+            str = "";
+        }
+        objArr[0] = str;
+        setContentDescription(LocaleController.formatString(i2, objArr));
     }
 
     public boolean removeAll() {
-        for (int i = 0; i < this.tabs.size(); i++) {
-            this.tabs.get(i).destroy();
+        ArrayList<WebTabData> tabs = getTabs();
+        ArrayList<TabDrawable> tabDrawables = getTabDrawables();
+        for (int i = 0; i < tabs.size(); i++) {
+            tabs.get(i).destroy();
         }
-        this.tabs.clear();
-        for (int i2 = 0; i2 < this.tabDrawables.size(); i2++) {
-            this.tabDrawables.get(i2).index = -1;
+        tabs.clear();
+        for (int i2 = 0; i2 < tabDrawables.size(); i2++) {
+            tabDrawables.get(i2).index = -1;
         }
         updateMultipleTitle();
         this.actionBarLayout.updateBottomTabsVisibility(true);
         invalidate();
-        return this.tabs.isEmpty();
+        return tabs.isEmpty();
+    }
+
+    public void removeTab(final WebTabData webTabData, final Utilities.Callback<Boolean> callback) {
+        if (webTabData == null) {
+            callback.run(Boolean.TRUE);
+            return;
+        }
+        if (!webTabData.confirmDismiss) {
+            removeTab(webTabData, true);
+            callback.run(Boolean.TRUE);
+            return;
+        }
+        TLRPC$User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
+        final boolean[] zArr = {false};
+        final AlertDialog[] alertDialogArr = {new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                BottomSheetTabs.this.lambda$removeTab$3(zArr, webTabData, callback, alertDialogArr, dialogInterface, i);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                BottomSheetTabs.lambda$removeTab$4(zArr, callback, alertDialogArr, dialogInterface, i);
+            }
+        }).create()};
+        alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                BottomSheetTabs.lambda$removeTab$5(zArr, callback, dialogInterface);
+            }
+        });
+        alertDialogArr[0].show();
+        ((TextView) alertDialogArr[0].getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold));
+    }
+
+    public void lambda$removeTab$3(boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, DialogInterface dialogInterface, int i) {
+        zArr[0] = true;
+        removeTab(webTabData, true);
+        callback.run(Boolean.TRUE);
+        alertDialogArr[0].dismiss();
+    }
+
+    public static void lambda$removeTab$4(boolean[] zArr, Utilities.Callback callback, AlertDialog[] alertDialogArr, DialogInterface dialogInterface, int i) {
+        zArr[0] = true;
+        callback.run(Boolean.FALSE);
+        alertDialogArr[0].dismiss();
+    }
+
+    public static void lambda$removeTab$5(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+        if (zArr[0]) {
+            return;
+        }
+        callback.run(Boolean.FALSE);
+        zArr[0] = true;
     }
 
     public boolean removeTab(final WebTabData webTabData, boolean z) {
-        this.tabs.remove(webTabData);
+        ArrayList<WebTabData> tabs = getTabs();
+        final ArrayList<TabDrawable> tabDrawables = getTabDrawables();
+        tabs.remove(webTabData);
         if (z) {
             webTabData.destroy();
         }
-        for (int i = 0; i < this.tabDrawables.size(); i++) {
-            TabDrawable tabDrawable = this.tabDrawables.get(i);
-            int indexOf = this.tabs.indexOf(tabDrawable.tab);
+        for (int i = 0; i < tabDrawables.size(); i++) {
+            TabDrawable tabDrawable = tabDrawables.get(i);
+            int indexOf = tabs.indexOf(tabDrawable.tab);
             tabDrawable.index = indexOf;
             if (indexOf >= 0) {
                 tabDrawable.position = indexOf;
@@ -262,19 +430,19 @@ public class BottomSheetTabs extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BottomSheetTabs.this.lambda$removeTab$1(webTabData);
+                BottomSheetTabs.this.lambda$removeTab$6(tabDrawables, webTabData);
             }
         }, 320L);
         this.actionBarLayout.updateBottomTabsVisibility(true);
         invalidate();
-        return this.tabs.isEmpty();
+        return tabs.isEmpty();
     }
 
-    public void lambda$removeTab$1(WebTabData webTabData) {
+    public void lambda$removeTab$6(ArrayList arrayList, WebTabData webTabData) {
         int i = 0;
-        while (i < this.tabDrawables.size()) {
-            if (this.tabDrawables.get(i).tab == webTabData) {
-                this.tabDrawables.remove(i);
+        while (i < arrayList.size()) {
+            if (((TabDrawable) arrayList.get(i)).tab == webTabData) {
+                arrayList.remove(i);
                 i--;
             }
             i++;
@@ -284,25 +452,32 @@ public class BottomSheetTabs extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
+        ArrayList<WebTabData> tabs = getTabs();
+        ArrayList<TabDrawable> tabDrawables = getTabDrawables();
         if (this.drawTabs) {
-            WebTabData webTabData = this.tabs.isEmpty() ? null : this.tabs.get(0);
+            WebTabData webTabData = tabs.isEmpty() ? null : tabs.get(0);
             TabDrawable findTabDrawable = findTabDrawable(webTabData);
             if (findTabDrawable != null) {
                 getTabBounds(this.rect, findTabDrawable.getPosition());
                 boolean contains = findTabDrawable.closeRipple.getBounds().contains((int) (motionEvent.getX() - this.rect.left), (int) (motionEvent.getY() - this.rect.centerY()));
                 if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
                     this.closeRippleHit = contains;
-                    findTabDrawable.closeRipple.setState(contains ? new int[]{R.attr.state_pressed, R.attr.state_enabled} : new int[0]);
+                    findTabDrawable.closeRipple.setState(contains ? new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled} : new int[0]);
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                     if (this.closeRippleHit && motionEvent.getAction() == 1) {
-                        removeTab(webTabData, true);
+                        removeTab(webTabData, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj) {
+                                BottomSheetTabs.lambda$onTouchEvent$7((Boolean) obj);
+                            }
+                        });
                     }
                     this.closeRippleHit = false;
                     findTabDrawable.closeRipple.setState(new int[0]);
                 }
-                for (int i = 0; i < this.tabDrawables.size(); i++) {
-                    if (this.tabDrawables.get(i) != findTabDrawable) {
-                        this.tabDrawables.get(i).closeRipple.setState(new int[0]);
+                for (int i = 0; i < tabDrawables.size(); i++) {
+                    if (tabDrawables.get(i) != findTabDrawable) {
+                        tabDrawables.get(i).closeRipple.setState(new int[0]);
                     }
                 }
             } else {
@@ -317,14 +492,16 @@ public class BottomSheetTabs extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        getTabs();
+        ArrayList<TabDrawable> tabDrawables = getTabDrawables();
         this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.backgroundPaint);
         super.dispatchDraw(canvas);
         int i = this.tabColorAnimated.set(this.tabColor);
         float f = this.tabDarkAnimated.set(this.tabIsDark);
         if (this.drawTabs) {
-            for (int i2 = 0; i2 < this.tabDrawables.size(); i2++) {
-                TabDrawable tabDrawable = this.tabDrawables.get(i2);
+            for (int i2 = 0; i2 < tabDrawables.size(); i2++) {
+                TabDrawable tabDrawable = tabDrawables.get(i2);
                 float position = tabDrawable.getPosition();
                 float alpha = tabDrawable.getAlpha();
                 if (alpha > 0.0f && position <= 1.99f) {
@@ -455,7 +632,7 @@ public class BottomSheetTabs extends FrameLayout {
             float f3 = 255.0f * f2;
             int i = (int) f3;
             this.backgroundPaint.setAlpha(i);
-            this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(1.0f), Theme.multAlpha(268435456, f2 > 0.9f ? 1.0f : 0.0f));
+            this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(1.0f), Theme.multAlpha(268435456, f2));
             float[] fArr = this.radii;
             fArr[3] = f;
             fArr[2] = f;
@@ -507,17 +684,24 @@ public class BottomSheetTabs extends FrameLayout {
         public int actionBarColorKey;
         public boolean backButton;
         public int backgroundColor;
+        public boolean confirmDismiss;
         public boolean expanded;
+        public float expandedOffset = Float.MAX_VALUE;
+        public boolean fullsize;
         public String lastUrl;
+        public BotWebViewAttachedSheet.MainButtonSettings main;
+        public boolean needsContext;
         public boolean overrideActionBarColor;
         public Bitmap previewBitmap;
         public Object previewNode;
         public BotWebViewAttachedSheet.WebViewRequestProps props;
         public boolean ready;
+        public boolean settings;
         public boolean themeIsDark;
         public BotWebViewContainer.MyWebView webView;
         public int webViewHeight;
         public BotWebViewContainer.WebViewProxy webViewProxy;
+        public int webViewScroll;
         public int webViewWidth;
 
         public long getBotId() {

@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -126,6 +125,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     private Paint linePaint;
     private TLObject loadedResponse;
     private long loadedResponseTime;
+    private BotWebViewAttachedSheet.MainButtonSettings mainButtonSettings;
     private boolean needCloseConfirmation;
     private int overrideActionBarBackground;
     private float overrideActionBarBackgroundProgress;
@@ -207,13 +207,25 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         webViewRequestProps.botId = j;
         webViewRequestProps.peerId = j;
         webViewRequestProps.buttonUrl = this.botUrl;
+        webViewRequestProps.type = 2;
         webViewRequestProps.response = this.loadedResponse;
         webViewRequestProps.responseTime = this.loadedResponseTime;
         BotWebViewContainer botWebViewContainer = this.webViewContainer;
+        boolean z = false;
         webTabData.ready = botWebViewContainer != null && botWebViewContainer.isPageLoaded();
         BotWebViewContainer botWebViewContainer2 = this.webViewContainer;
         webTabData.lastUrl = botWebViewContainer2 != null ? botWebViewContainer2.getUrlLoaded() : null;
         webTabData.themeIsDark = Theme.isCurrentThemeDark();
+        ActionBarMenuSubItem actionBarMenuSubItem = this.settingsItem;
+        webTabData.settings = actionBarMenuSubItem != null && actionBarMenuSubItem.getVisibility() == 0;
+        webTabData.main = this.mainButtonSettings;
+        webTabData.confirmDismiss = this.needCloseConfirmation;
+        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;
+        if (webViewSwipeContainer != null && 1.0f - (Math.min(webViewSwipeContainer.getTopActionBarOffsetY(), this.swipeContainer.getTranslationY() - this.swipeContainer.getTopActionBarOffsetY()) / this.swipeContainer.getTopActionBarOffsetY()) > 0.5f) {
+            z = true;
+        }
+        webTabData.expanded = z;
+        webTabData.needsContext = true;
         BotWebViewContainer botWebViewContainer3 = this.webViewContainer;
         BotWebViewContainer.MyWebView webView = botWebViewContainer3 == null ? null : botWebViewContainer3.getWebView();
         if (webView != null) {
@@ -222,13 +234,8 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             BotWebViewContainer botWebViewContainer4 = this.webViewContainer;
             webTabData.webViewProxy = botWebViewContainer4 == null ? null : botWebViewContainer4.getProxy();
             webTabData.webViewWidth = webView.getWidth();
-            int height = webView.getHeight();
-            webTabData.webViewHeight = height;
-            int i = webTabData.webViewWidth;
-            if (i > 0 && height > 0) {
-                webTabData.previewBitmap = Bitmap.createBitmap(i, height, Bitmap.Config.RGB_565);
-                webView.draw(new Canvas(webTabData.previewBitmap));
-            }
+            webTabData.webViewScroll = webView.getScrollY();
+            webTabData.webViewHeight = webView.getHeight();
             webView.onPause();
             webView.setContainers(null, null);
         }
@@ -279,6 +286,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         this.backgroundPaint = new Paint(1);
         this.actionBarPaint = new Paint(1);
         this.linePaint = new Paint();
+        this.actionBarColorKey = -1;
         this.pollRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -552,21 +560,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
 
         @Override
         public void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3) {
-            ChatActivityBotWebViewButton botWebViewButton = this.val$parentEnterView.getBotWebViewButton();
-            botWebViewButton.setupButtonParams(z2, str, i, i2, z3);
-            botWebViewButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    BotWebViewMenuContainer.AnonymousClass2.this.lambda$onSetupMainButton$6(view);
-                }
-            });
-            if (z != BotWebViewMenuContainer.this.botWebViewButtonWasVisible) {
-                BotWebViewMenuContainer.this.animateBotButton(z);
-            }
-        }
-
-        public void lambda$onSetupMainButton$6(View view) {
-            BotWebViewMenuContainer.this.webViewContainer.onMainButtonPressed();
+            BotWebViewMenuContainer.this.setMainButton(BotWebViewAttachedSheet.MainButtonSettings.of(z, z2, str, i, i2, z3));
         }
 
         @Override
@@ -731,7 +725,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         dismiss();
     }
 
-    public void animateBotButton(final boolean z) {
+    private void animateBotButton(final boolean z) {
         final ChatActivityBotWebViewButton botWebViewButton = this.parentEnterView.getBotWebViewButton();
         SpringAnimation springAnimation = this.botWebViewButtonAnimator;
         if (springAnimation != null) {
@@ -1204,6 +1198,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             this.botWebViewButtonWasVisible = false;
             animateBotButton(false);
         }
+        this.mainButtonSettings = null;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1388,5 +1383,25 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
         canvas.restore();
         return lerp;
+    }
+
+    public void setMainButton(BotWebViewAttachedSheet.MainButtonSettings mainButtonSettings) {
+        this.mainButtonSettings = mainButtonSettings;
+        ChatActivityBotWebViewButton botWebViewButton = this.parentEnterView.getBotWebViewButton();
+        botWebViewButton.setupButtonParams(mainButtonSettings.isActive, mainButtonSettings.text, mainButtonSettings.color, mainButtonSettings.textColor, mainButtonSettings.isProgressVisible);
+        botWebViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                BotWebViewMenuContainer.this.lambda$setMainButton$23(view);
+            }
+        });
+        boolean z = mainButtonSettings.isVisible;
+        if (z != this.botWebViewButtonWasVisible) {
+            animateBotButton(z);
+        }
+    }
+
+    public void lambda$setMainButton$23(View view) {
+        this.webViewContainer.onMainButtonPressed();
     }
 }

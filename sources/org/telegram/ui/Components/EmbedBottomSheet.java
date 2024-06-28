@@ -807,8 +807,7 @@ public class EmbedBottomSheet extends BottomSheet {
 
         @Override
         public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity != null && launchActivity.isFinishing()) {
+            if (!AndroidUtilities.isSafeToShow(EmbedBottomSheet.this.getContext())) {
                 return true;
             }
             new AlertDialog.Builder(EmbedBottomSheet.this.getContext(), ((BottomSheet) EmbedBottomSheet.this).resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {

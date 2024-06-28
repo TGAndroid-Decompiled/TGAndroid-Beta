@@ -771,7 +771,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -1131,7 +1131,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$40(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void lambda$checkDiscard$41(DialogInterface dialogInterface, int i) {
@@ -1139,7 +1139,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$42(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     private int getAdminCount() {
@@ -1269,7 +1269,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
             }
         }
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void lambda$processDone$44(TLRPC$TL_bots_setBotInfo tLRPC$TL_bots_setBotInfo, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1288,7 +1288,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$processDone$43() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void lambda$processDone$45(int i, DialogInterface dialogInterface) {

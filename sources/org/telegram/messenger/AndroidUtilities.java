@@ -5382,4 +5382,8 @@ public class AndroidUtilities {
             }
         });
     }
+
+    public static boolean isWebAppLink(java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.isWebAppLink(java.lang.String):boolean");
+    }
 }

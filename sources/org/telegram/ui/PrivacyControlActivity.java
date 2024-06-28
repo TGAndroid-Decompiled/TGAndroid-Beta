@@ -898,7 +898,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (PrivacyControlActivity.this.checkDiscard()) {
-                        PrivacyControlActivity.this.lambda$onBackPressed$305();
+                        PrivacyControlActivity.this.lambda$onBackPressed$306();
                     }
                 } else if (i2 == 1) {
                     PrivacyControlActivity.this.processDone();
@@ -1324,7 +1324,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         if (tLRPC$TL_globalPrivacySettings != null) {
             tLRPC$TL_globalPrivacySettings.new_noncontact_peers_require_premium = tLRPC$TL_account_setGlobalPrivacySettings.settings.new_noncontact_peers_require_premium;
         }
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);
     }
 
@@ -1365,7 +1365,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_account_privacyRules.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_account_privacyRules.chats, false);
             ContactsController.getInstance(this.currentAccount).setPrivacyRules(tLRPC$TL_account_privacyRules.rules, this.rulesType);
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         showErrorAlert();
@@ -1831,7 +1831,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$20(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     @Override

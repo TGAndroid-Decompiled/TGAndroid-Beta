@@ -2668,13 +2668,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
-        public void updateRecordInterface(int i, boolean z) {
+        protected void updateRecordInterface(int i, boolean z) {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
 
         @Override
-        public void isRecordingStateChanged() {
+        protected void isRecordingStateChanged() {
             super.isRecordingStateChanged();
             checkRecording();
         }

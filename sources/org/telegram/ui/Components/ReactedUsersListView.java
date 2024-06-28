@@ -80,7 +80,7 @@ public class ReactedUsersListView extends FrameLayout {
         void onProfileSelected(ReactedUsersListView reactedUsersListView, long j, TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction);
     }
 
-    public ReactedUsersListView(final Context context, final Theme.ResourcesProvider resourcesProvider, final int i, MessageObject messageObject, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z) {
+    public ReactedUsersListView(final Context context, final Theme.ResourcesProvider resourcesProvider, final int i, MessageObject messageObject, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, final boolean z2) {
         super(context);
         TLRPC$Reaction tLRPC$Reaction;
         this.userReactions = new ArrayList();
@@ -119,7 +119,7 @@ public class ReactedUsersListView extends FrameLayout {
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
                 FrameLayout reactedUserHolderView;
                 if (i2 == 0) {
-                    reactedUserHolderView = new ReactedUserHolderView(ReactedUserHolderView.STYLE_DEFAULT, i, context, null);
+                    reactedUserHolderView = new ReactedUserHolderView(ReactedUserHolderView.STYLE_DEFAULT, i, context, resourcesProvider, true, z2);
                 } else {
                     ReactedUsersListView reactedUsersListView = ReactedUsersListView.this;
                     MessageContainsEmojiButton messageContainsEmojiButton = reactedUsersListView.messageContainsEmojiButton;

@@ -3725,6 +3725,19 @@ public class MessageObject {
         return (arrayList.size() <= 0 || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) == null) ? "" : FileLoader.getAttachFileName(closestPhotoSizeWithSize);
     }
 
+    public static String getFileName(TLRPC$MessageMedia tLRPC$MessageMedia) {
+        TLRPC$WebPage tLRPC$WebPage;
+        TLRPC$PhotoSize closestPhotoSizeWithSize;
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+            return FileLoader.getAttachFileName(tLRPC$MessageMedia.document);
+        }
+        if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto)) {
+            return (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) || (tLRPC$WebPage = tLRPC$MessageMedia.webpage) == null) ? "" : FileLoader.getAttachFileName(tLRPC$WebPage.document);
+        }
+        ArrayList<TLRPC$PhotoSize> arrayList = tLRPC$MessageMedia.photo.sizes;
+        return (arrayList.size() <= 0 || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) == null) ? "" : FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+    }
+
     public int getMediaType() {
         if (isVideo()) {
             return 2;
@@ -5153,13 +5166,20 @@ public class MessageObject {
     }
 
     public static TLRPC$Document getDocument(TLRPC$Message tLRPC$Message) {
+        TLRPC$MessageMedia tLRPC$MessageMedia;
+        TLRPC$Document tLRPC$Document;
         if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaWebPage) {
             return getMedia(tLRPC$Message).webpage.document;
         }
         if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaGame) {
             return getMedia(tLRPC$Message).game.document;
         }
-        if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPaidMedia) {
+        if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaStory) {
+            TL_stories$StoryItem tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) getMedia(tLRPC$Message)).storyItem;
+            if (tL_stories$StoryItem != null && (tLRPC$MessageMedia = tL_stories$StoryItem.media) != null && (tLRPC$Document = tLRPC$MessageMedia.document) != null) {
+                return tLRPC$Document;
+            }
+        } else if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPaidMedia) {
             TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) getMedia(tLRPC$Message);
             if (tLRPC$TL_messageMediaPaidMedia.extended_media.size() == 1 && (tLRPC$TL_messageMediaPaidMedia.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMedia)) {
                 return ((TLRPC$TL_messageExtendedMedia) tLRPC$TL_messageMediaPaidMedia.extended_media.get(0)).media.document;

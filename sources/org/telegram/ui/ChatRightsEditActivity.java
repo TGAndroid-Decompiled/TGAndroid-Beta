@@ -529,7 +529,7 @@ public class ChatRightsEditActivity extends BaseFragment {
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (ChatRightsEditActivity.this.checkDiscard()) {
-                        ChatRightsEditActivity.this.lambda$onBackPressed$305();
+                        ChatRightsEditActivity.this.lambda$onBackPressed$306();
                     }
                 } else if (i2 == 1) {
                     ChatRightsEditActivity.this.onDonePressed();
@@ -685,7 +685,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                     if (chatRightsEditActivityDelegate != null) {
                         chatRightsEditActivityDelegate.didSetRights(0, this.adminRights, this.bannedRights, this.currentRank);
                     }
-                    lambda$onBackPressed$305();
+                    lambda$onBackPressed$306();
                     return;
                 }
                 if (i4 == 1) {
@@ -1178,7 +1178,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 this.delegate.didChangeOwner(this.currentUser);
                 removeSelfFromStack();
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$305();
+                twoStepVerificationActivity.lambda$onBackPressed$306();
                 return;
             }
             return;
@@ -1312,7 +1312,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         }
         if (twoStepVerificationActivity != null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$305();
+            twoStepVerificationActivity.lambda$onBackPressed$306();
         }
         AlertsCreator.showAddUserAlert(tLRPC$TL_error.text, this, this.isChannel, tLRPC$TL_channels_editCreator);
     }
@@ -1655,7 +1655,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         if (chatRightsEditActivityDelegate != null) {
             TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = this.adminRights;
             chatRightsEditActivityDelegate.didSetRights((tLRPC$TL_chatAdminRights.change_info || tLRPC$TL_chatAdminRights.post_messages || tLRPC$TL_chatAdminRights.edit_messages || tLRPC$TL_chatAdminRights.delete_messages || tLRPC$TL_chatAdminRights.ban_users || tLRPC$TL_chatAdminRights.invite_users || (this.isForum && tLRPC$TL_chatAdminRights.manage_topics) || tLRPC$TL_chatAdminRights.pin_messages || tLRPC$TL_chatAdminRights.add_admins || tLRPC$TL_chatAdminRights.anonymous || tLRPC$TL_chatAdminRights.manage_call || ((this.isChannel && (tLRPC$TL_chatAdminRights.post_stories || tLRPC$TL_chatAdminRights.edit_stories || tLRPC$TL_chatAdminRights.delete_stories)) || tLRPC$TL_chatAdminRights.other)) ? 1 : 0, tLRPC$TL_chatAdminRights, this.bannedRights, this.currentRank);
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
         }
     }
 
@@ -1817,7 +1817,7 @@ public class ChatRightsEditActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$24(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void setTextLeft(View view) {

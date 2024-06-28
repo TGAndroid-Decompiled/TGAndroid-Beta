@@ -291,7 +291,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatLinkActivity.this.lambda$onBackPressed$305();
+                    ChatLinkActivity.this.lambda$onBackPressed$306();
                 }
             }
         });
@@ -515,7 +515,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (this.isChannel) {
             return;
         }
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void lambda$createView$0() {
@@ -699,9 +699,9 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         }, 1000L);
         if (baseFragment != null) {
             removeSelfFromStack();
-            baseFragment.lambda$onBackPressed$305();
+            baseFragment.lambda$onBackPressed$306();
         } else {
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
         }
     }
 

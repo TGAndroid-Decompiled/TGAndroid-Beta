@@ -144,7 +144,7 @@ public class ProxySettingsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 boolean z;
                 if (i == -1) {
-                    ProxySettingsActivity.this.lambda$onBackPressed$305();
+                    ProxySettingsActivity.this.lambda$onBackPressed$306();
                     return;
                 }
                 if (i != 1 || ProxySettingsActivity.this.getParentActivity() == null) {
@@ -183,7 +183,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 }
                 edit.commit();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
-                ProxySettingsActivity.this.lambda$onBackPressed$305();
+                ProxySettingsActivity.this.lambda$onBackPressed$306();
             }
         });
         ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f));
@@ -424,7 +424,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i != 6) {
                 return false;
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return true;
         }
         int intValue = ((Integer) textView.getTag()).intValue() + 1;

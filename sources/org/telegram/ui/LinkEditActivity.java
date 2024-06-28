@@ -107,7 +107,7 @@ public class LinkEditActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    LinkEditActivity.this.lambda$onBackPressed$305();
+                    LinkEditActivity.this.lambda$onBackPressed$306();
                     AndroidUtilities.hideKeyboard(LinkEditActivity.this.usesEditText);
                 }
             }
@@ -583,7 +583,7 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$5(DialogInterface dialogInterface, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void onCreateClicked(android.view.View r9) {
@@ -610,7 +610,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkCreated(tLObject);
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -639,7 +639,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkEdited(this.inviteToEdit, tLObject);
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -805,10 +805,10 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public void lambda$onBackPressed$305() {
+    public void lambda$onBackPressed$306() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
         this.finished = true;
-        super.lambda$onBackPressed$305();
+        super.lambda$onBackPressed$306();
     }
 
     @Override

@@ -362,7 +362,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    NotificationsCustomSettingsActivity.this.lambda$onBackPressed$305();
+                    NotificationsCustomSettingsActivity.this.lambda$onBackPressed$306();
                 }
             }
         });

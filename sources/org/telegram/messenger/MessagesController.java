@@ -897,6 +897,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public String venueSearchBot;
     private ArrayList<Long> visibleDialogMainThreadIds;
     private ArrayList<Long> visibleScheduledDialogMainThreadIds;
+    public Set<String> webAppAllowedProtocols;
     public int webFileDatacenterId;
     public String youtubePipType;
     public static int UPDATE_MASK_ALL = (((((((((2 | 4) | 1) | 8) | 16) | 32) | 64) | 128) | LiteMode.FLAG_CHAT_BLUR) | 1024) | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
@@ -2264,6 +2265,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.factcheckLengthLimit = this.mainPreferences.getInt("factcheckLengthLimit", 1024);
         this.starsRevenueWithdrawalMin = this.mainPreferences.getLong("starsRevenueWithdrawalMin", 1000L);
         this.starsPaidPostAmountMax = this.mainPreferences.getLong("starsPaidPostAmountMax", 10000L);
+        this.webAppAllowedProtocols = this.mainPreferences.getStringSet("webAppAllowedProtocols", new HashSet(Arrays.asList("http", "https")));
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {

@@ -55,7 +55,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    CacheChatsExceptionsFragment.this.lambda$onBackPressed$305();
+                    CacheChatsExceptionsFragment.this.lambda$onBackPressed$306();
                 }
             }
         });
@@ -144,7 +144,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
     }
 
     public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-        dialogsActivity.lambda$onBackPressed$305();
+        dialogsActivity.lambda$onBackPressed$306();
         int i = 0;
         CacheByChatsController.KeepMediaException keepMediaException = null;
         int i2 = 0;
@@ -213,7 +213,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         this.exceptionsDialogs.clear();
         getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(this.currentType, this.exceptionsDialogs);
         updateRows();
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void showPopupFor(final CacheByChatsController.KeepMediaException keepMediaException) {

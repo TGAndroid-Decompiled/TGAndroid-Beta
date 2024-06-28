@@ -23,12 +23,15 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_account_autoDownloadSettings;
 import org.telegram.tgnet.TLRPC$TL_account_saveAutoDownloadSettings;
 import org.telegram.tgnet.TLRPC$TL_autoDownloadSettings;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.LaunchActivity;
 
 public class DownloadController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
@@ -671,7 +674,9 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public boolean canDownloadMedia(MessageObject messageObject) {
-        return canDownloadMedia(messageObject.messageOwner) == 1;
+        TL_stories$StoryItem tL_stories$StoryItem;
+        TLRPC$MessageMedia tLRPC$MessageMedia;
+        return messageObject.type == 23 ? (!SharedConfig.isAutoplayVideo() || (tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || tLRPC$MessageMedia.document == null || !tL_stories$StoryItem.isPublic) ? false : true : canDownloadMedia(messageObject.messageOwner) == 1;
     }
 
     public boolean canDownloadMedia(int i, long j) {

@@ -46,7 +46,6 @@ import androidx.core.util.Consumer;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -102,13 +101,11 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
-import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bots.BotWebViewContainer;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 
 public abstract class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private static final List<String> WHITELISTED_SCHEMES = Arrays.asList("http", "https");
-    private static int tags = 0;
+    private static int tags;
     private BotBiometry biometry;
     private long blockedDialogsUntil;
     private TLRPC$User botUser;
@@ -1636,7 +1633,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-                LaunchActivity launchActivity;
                 MyWebView myWebView = MyWebView.this;
                 StringBuilder sb = new StringBuilder();
                 sb.append("onRenderProcessGone priority=");
@@ -1644,10 +1640,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 sb.append(" didCrash=");
                 sb.append(renderProcessGoneDetail == null ? null : Boolean.valueOf(renderProcessGoneDetail.didCrash()));
                 myWebView.d(sb.toString());
-                if (MyWebView.this.botWebViewContainer != null && (launchActivity = LaunchActivity.instance) != null && launchActivity.isFinishing()) {
+                if (!AndroidUtilities.isSafeToShow(MyWebView.this.getContext())) {
                     return true;
                 }
-                new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer == null ? null : MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
                     @Override
                     public final void run() {
                         BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onRenderProcessGone$0();
@@ -1676,7 +1672,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             public boolean shouldOverrideUrlLoading(WebView webView, String str) {
                 Uri parse = Uri.parse(str);
                 if (MyWebView.this.botWebViewContainer != null && Browser.isInternalUri(parse, null)) {
-                    if (BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse.getScheme())) {
+                    if (MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols != null && MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols.contains(parse.getScheme())) {
                         MyWebView.this.botWebViewContainer.onOpenUri(parse);
                     }
                     MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true");
@@ -1762,7 +1758,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
                 @Override
                 public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-                    LaunchActivity launchActivity;
                     MyWebView myWebView = MyWebView.this;
                     StringBuilder sb = new StringBuilder();
                     sb.append("newWebView.onRenderProcessGone priority=");
@@ -1770,19 +1765,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     sb.append(" didCrash=");
                     sb.append(renderProcessGoneDetail == null ? null : Boolean.valueOf(renderProcessGoneDetail.didCrash()));
                     myWebView.d(sb.toString());
-                    if (MyWebView.this.botWebViewContainer != null && ((launchActivity = LaunchActivity.instance) == null || !launchActivity.isFinishing())) {
-                        new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                            @Override
-                            public final void run() {
-                                BotWebViewContainer.MyWebView.AnonymousClass2.AnonymousClass1.this.lambda$onRenderProcessGone$0();
-                            }
-                        })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public final void onDismiss(DialogInterface dialogInterface) {
-                                BotWebViewContainer.MyWebView.AnonymousClass2.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
-                            }
-                        }).show();
+                    if (!AndroidUtilities.isSafeToShow(MyWebView.this.getContext())) {
+                        return true;
                     }
+                    new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer == null ? null : MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                        @Override
+                        public final void run() {
+                            BotWebViewContainer.MyWebView.AnonymousClass2.AnonymousClass1.this.lambda$onRenderProcessGone$0();
+                        }
+                    })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public final void onDismiss(DialogInterface dialogInterface) {
+                            BotWebViewContainer.MyWebView.AnonymousClass2.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
+                        }
+                    }).show();
                     return true;
                 }
 

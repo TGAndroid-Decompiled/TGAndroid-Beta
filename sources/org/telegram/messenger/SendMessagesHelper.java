@@ -1848,6 +1848,36 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public void cancelSendingMessage(MessageObject messageObject) {
         ArrayList<MessageObject> arrayList = new ArrayList<>();
         arrayList.add(messageObject);
+        if (messageObject != null && messageObject.type == 29) {
+            DelayedMessage delayedMessage = null;
+            Iterator<Map.Entry<String, ArrayList<DelayedMessage>>> it = this.delayedMessages.entrySet().iterator();
+            while (it.hasNext()) {
+                ArrayList<DelayedMessage> value = it.next().getValue();
+                for (int i = 0; i < value.size(); i++) {
+                    DelayedMessage delayedMessage2 = value.get(i);
+                    if (delayedMessage2.type == 4) {
+                        int i2 = 0;
+                        while (true) {
+                            if (i2 >= delayedMessage2.messageObjects.size()) {
+                                break;
+                            }
+                            if (delayedMessage2.messageObjects.get(i2).getId() == messageObject.getId()) {
+                                delayedMessage = delayedMessage2;
+                                break;
+                            }
+                            i2++;
+                        }
+                    }
+                    if (delayedMessage != null) {
+                        break;
+                    }
+                }
+            }
+            if (delayedMessage != null) {
+                arrayList.clear();
+                arrayList.addAll(delayedMessage.messageObjects);
+            }
+        }
         cancelSendingMessage(arrayList);
     }
 
@@ -2764,7 +2794,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if (tLObject != null) {
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$305();
+                twoStepVerificationActivity.lambda$onBackPressed$306();
             }
             long fromChatId = messageObject.getFromChatId();
             long j = messageObject.messageOwner.via_bot_id;
@@ -2987,7 +3017,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }, 8);
         } else if (twoStepVerificationActivity != null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$305();
+            twoStepVerificationActivity.lambda$onBackPressed$306();
         }
     }
 

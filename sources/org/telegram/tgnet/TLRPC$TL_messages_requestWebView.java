@@ -4,6 +4,7 @@ import org.telegram.messenger.LiteMode;
 
 public class TLRPC$TL_messages_requestWebView extends TLObject {
     public TLRPC$InputUser bot;
+    public boolean compact;
     public int flags;
     public boolean from_bot_menu;
     public TLRPC$InputPeer peer;
@@ -27,7 +28,9 @@ public class TLRPC$TL_messages_requestWebView extends TLObject {
         this.flags = i;
         int i2 = this.silent ? i | 32 : i & (-33);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.compact ? i2 | 128 : i2 & (-129);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         this.peer.serializeToStream(abstractSerializedData);
         this.bot.serializeToStream(abstractSerializedData);
         if ((this.flags & 2) != 0) {

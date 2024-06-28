@@ -800,7 +800,7 @@ public class FileRefController extends BaseController {
                         }
                     });
                 }
-            } else if (!(requester.args[1] instanceof TLRPC$TL_messages_sendMedia) || !(((TLRPC$TL_messages_sendMedia) requester.args[1]).media instanceof TLRPC$TL_inputMediaPaidMedia) || (!(requester.args[0] instanceof TLRPC$TL_inputMediaPhoto) && !(requester.args[0] instanceof TLRPC$TL_inputMediaDocument))) {
+            } else if (requester.args.length < 2 || !(requester.args[1] instanceof TLRPC$TL_messages_sendMedia) || !(((TLRPC$TL_messages_sendMedia) requester.args[1]).media instanceof TLRPC$TL_inputMediaPaidMedia) || (!(requester.args[0] instanceof TLRPC$TL_inputMediaPhoto) && !(requester.args[0] instanceof TLRPC$TL_inputMediaDocument))) {
                 if (!(requester.args[0] instanceof TLRPC$TL_messages_sendMedia)) {
                     if (!(requester.args[0] instanceof TLRPC$TL_messages_editMessage)) {
                         if (requester.args[0] instanceof TLRPC$TL_messages_saveGif) {

@@ -6566,7 +6566,7 @@ public class AlertsCreator {
         }
         if (baseFragment instanceof ThemePreviewActivity) {
             Theme.applyPreviousTheme();
-            baseFragment.lambda$onBackPressed$305();
+            baseFragment.lambda$onBackPressed$306();
         }
         if (themeAccent != null) {
             themeInfo.setCurrentAccentId(themeAccent.id);

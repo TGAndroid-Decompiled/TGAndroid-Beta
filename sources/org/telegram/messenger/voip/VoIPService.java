@@ -1265,7 +1265,15 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     private void acknowledgeCall(final boolean z) {
-        if (this.privateCall instanceof TLRPC$TL_phoneCallDiscarded) {
+        TLRPC$PhoneCall tLRPC$PhoneCall = this.privateCall;
+        if (tLRPC$PhoneCall == null) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.w("Call is null, wtf");
+            }
+            stopSelf();
+            return;
+        }
+        if (tLRPC$PhoneCall instanceof TLRPC$TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.w("Call " + this.privateCall.id + " was discarded before the service started, stopping");
             }
@@ -1282,9 +1290,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         TLRPC$TL_phone_receivedCall tLRPC$TL_phone_receivedCall = new TLRPC$TL_phone_receivedCall();
         TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
         tLRPC$TL_phone_receivedCall.peer = tLRPC$TL_inputPhoneCall;
-        TLRPC$PhoneCall tLRPC$PhoneCall = this.privateCall;
-        tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
-        tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall.access_hash;
+        TLRPC$PhoneCall tLRPC$PhoneCall2 = this.privateCall;
+        tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall2.id;
+        tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall2.access_hash;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_phone_receivedCall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

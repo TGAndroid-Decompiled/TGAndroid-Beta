@@ -74,7 +74,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (AwayMessagesActivity.this.onBackPressed()) {
-                        AwayMessagesActivity.this.lambda$onBackPressed$305();
+                        AwayMessagesActivity.this.lambda$onBackPressed$306();
                     }
                 } else if (i == 1) {
                     AwayMessagesActivity.this.processDone();
@@ -236,7 +236,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
@@ -313,7 +313,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
         }
     }
 
@@ -350,7 +350,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$onBackPressed$4(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {

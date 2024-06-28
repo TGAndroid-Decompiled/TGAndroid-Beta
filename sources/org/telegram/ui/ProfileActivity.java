@@ -3627,7 +3627,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (i == -1) {
-                ProfileActivity.this.lambda$onBackPressed$305();
+                ProfileActivity.this.lambda$onBackPressed$306();
                 return;
             }
             String str = null;
@@ -3682,7 +3682,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             ProfileActivity.AnonymousClass6.this.lambda$onItemClick$3();
                         }
                     });
-                    ProfileActivity.this.lambda$onBackPressed$305();
+                    ProfileActivity.this.lambda$onBackPressed$306();
                     return;
                 } else {
                     ProfileActivity profileActivity2 = ProfileActivity.this;
@@ -3775,7 +3775,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                 }
                             }
                         }
-                        ProfileActivity.this.lambda$onBackPressed$305();
+                        ProfileActivity.this.lambda$onBackPressed$306();
                         Context context = ProfileActivity.this.getContext();
                         if (context != null) {
                             BulletinFactory.of(Bulletin.BulletinWindow.make(context), ProfileActivity.this.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getPluralString("TopicsDeleted", 1)).show();
@@ -4132,7 +4132,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 notificationCenter.removeObserver(profileActivity, i2);
                 ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
                 ProfileActivity.this.playProfileAnimation = 0;
-                ProfileActivity.this.lambda$onBackPressed$305();
+                ProfileActivity.this.lambda$onBackPressed$306();
                 return;
             }
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ProfileActivity.this.userId));
@@ -4152,7 +4152,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.getParentLayout().removeFragmentFromStack(fragmentStack.size() - 2);
                 }
             }
-            ProfileActivity.this.lambda$onBackPressed$305();
+            ProfileActivity.this.lambda$onBackPressed$306();
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ProfileActivity.this.dialogId), tLRPC$User, ProfileActivity.this.currentChat, Boolean.valueOf(z));
         }
 
@@ -4188,7 +4188,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
                     }
                 }
-                ProfileActivity.this.lambda$onBackPressed$305();
+                ProfileActivity.this.lambda$onBackPressed$306();
                 Context context = ProfileActivity.this.getContext();
                 if (context != null) {
                     BulletinFactory.of(Bulletin.BulletinWindow.make(context), ProfileActivity.this.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getPluralString("TopicsDeleted", 1)).show();
@@ -7947,7 +7947,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (this.playProfileAnimation != 0 && (iNavigationLayout = this.parentLayout) != null && iNavigationLayout.getFragmentStack() != null && this.parentLayout.getFragmentStack().size() >= 2 && (this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
-                lambda$onBackPressed$305();
+                lambda$onBackPressed$306();
                 return;
             }
             TLRPC$User user2 = getMessagesController().getUser(Long.valueOf(this.userId));
@@ -7972,7 +7972,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 chatActivity.setPreloadedSticker(getMediaDataController().getGreetingsSticker(), false);
                 presentFragment(chatActivity, z);
                 if (AndroidUtilities.isTablet()) {
-                    lambda$onBackPressed$305();
+                    lambda$onBackPressed$306();
                     return;
                 }
                 return;
@@ -9135,7 +9135,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         int i = NotificationCenter.closeChats;
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -11429,7 +11429,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         getMessagesController().deleteParticipantFromChat(this.chatId, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())));
         this.playProfileAnimation = 0;
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public boolean isChat() {
@@ -15380,7 +15380,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             BaseFragment baseFragment = this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2);
             if (baseFragment instanceof ChatActivity) {
-                lambda$onBackPressed$305();
+                lambda$onBackPressed$306();
                 ((ChatActivity) baseFragment).chatActivityEnterView.setCommand(null, str, false, false);
             }
         }

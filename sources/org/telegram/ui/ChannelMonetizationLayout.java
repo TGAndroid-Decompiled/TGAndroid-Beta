@@ -842,13 +842,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$305();
+                twoStepVerificationActivity.lambda$onBackPressed$306();
             }
             BulletinFactory.showError(tLRPC$TL_error);
             return;
         }
         twoStepVerificationActivity.needHideProgress();
-        twoStepVerificationActivity.lambda$onBackPressed$305();
+        twoStepVerificationActivity.lambda$onBackPressed$306();
         if (tLObject instanceof TL_stats$TL_broadcastRevenueWithdrawalUrl) {
             Browser.openUrl(getContext(), ((TL_stats$TL_broadcastRevenueWithdrawalUrl) tLObject).url);
         } else if (tLObject instanceof TLRPC$TL_payments_starsRevenueWithdrawalUrl) {

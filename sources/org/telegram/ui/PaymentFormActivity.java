@@ -608,6 +608,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+            if (!AndroidUtilities.isSafeToShow(PaymentFormActivity.this.getContext())) {
+                return true;
+            }
             new AlertDialog.Builder(PaymentFormActivity.this.getContext(), PaymentFormActivity.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
                 @Override
                 public final void run() {
@@ -920,8 +923,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity != null && launchActivity.isFinishing()) {
+            if (!AndroidUtilities.isSafeToShow(PaymentFormActivity.this.getContext())) {
                 return true;
             }
             new AlertDialog.Builder(PaymentFormActivity.this.getContext(), PaymentFormActivity.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
@@ -1808,7 +1810,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivityDelegate paymentFormActivityDelegate = this.delegate;
             if (paymentFormActivityDelegate != null) {
                 paymentFormActivityDelegate.didSelectNewAddress(this.validateRequest);
-                lambda$onBackPressed$305();
+                lambda$onBackPressed$306();
                 return;
             }
             if (this.paymentForm.invoice.flexible) {
@@ -1906,7 +1908,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivityDelegate paymentFormActivityDelegate2 = this.delegate;
             if (paymentFormActivityDelegate2 != null) {
                 paymentFormActivityDelegate2.didSelectNewCard(this.paymentJson, this.cardName, this.saveCardInfo, this.googlePayCredentials, null);
-                lambda$onBackPressed$305();
+                lambda$onBackPressed$306();
                 return;
             } else {
                 presentFragment(new PaymentFormActivity(this.invoiceInput, tLRPC$PaymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
@@ -1925,7 +1927,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 presentFragment(new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), true);
                 return;
             } else {
-                lambda$onBackPressed$305();
+                lambda$onBackPressed$306();
                 return;
             }
         }
@@ -1937,7 +1939,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (onCheckoutSuccess(getParentLayout(), getParentActivity()) || isFinishing()) {
                 return;
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1957,13 +1959,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (paymentFormCallback != null) {
                 paymentFormCallback.onInvoiceStatusChanged(invoiceStatus);
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         if (this.invoiceStatus != InvoiceStatus.PAID || isFinishing()) {
             return;
         }
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     private boolean onCheckoutSuccess(INavigationLayout iNavigationLayout, Activity activity) {
@@ -2218,7 +2220,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$account_Password.has_password = false;
             tLRPC$account_Password.current_algo = null;
             this.delegate.currentPasswordUpdated(tLRPC$account_Password);
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             return;
         }
         if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {

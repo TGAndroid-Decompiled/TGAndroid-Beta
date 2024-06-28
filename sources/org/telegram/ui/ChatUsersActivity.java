@@ -373,7 +373,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             public void onItemClick(int i4) {
                 if (i4 == -1) {
                     if (ChatUsersActivity.this.checkDiscard()) {
-                        ChatUsersActivity.this.lambda$onBackPressed$305();
+                        ChatUsersActivity.this.lambda$onBackPressed$306();
                     }
                 } else if (i4 == 1) {
                     ChatUsersActivity.this.processDone();
@@ -815,11 +815,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 ChatEditActivity chatEditActivity = new ChatEditActivity(bundle);
                 chatEditActivity.setInfo(ChatUsersActivity.this.info);
                 ((BaseFragment) ChatUsersActivity.this).parentLayout.addFragmentToStack(chatEditActivity, ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 1);
-                ChatUsersActivity.this.lambda$onBackPressed$305();
+                ChatUsersActivity.this.lambda$onBackPressed$306();
                 chatEditActivity.showConvertTooltip();
                 return;
             }
-            ChatUsersActivity.this.lambda$onBackPressed$305();
+            ChatUsersActivity.this.lambda$onBackPressed$306();
         }
     }
 
@@ -1189,7 +1189,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (chatUsersActivityDelegate != null) {
                 chatUsersActivityDelegate.didKickParticipant(j);
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
         }
     }
 
@@ -1674,7 +1674,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$checkDiscard$24(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public boolean hasSelectType() {
@@ -1833,7 +1833,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 getMessagesController().setBoostsToUnblockRestrictions(this.chatId, this.notRestrictBoosters);
             }
         }
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void lambda$processDone$25(long j) {

@@ -181,7 +181,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$305();
+                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$306();
             }
         });
     }
@@ -192,7 +192,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
         this.actionButton.setLoading(false);
         if (tLRPC$TL_error.text.equals("CHAT_NOT_MODIFIED")) {
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -578,7 +578,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$checkChangesBeforeExit$13(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$305();
+        lambda$onBackPressed$306();
     }
 
     public void checkMaxCustomReactions(boolean z) {

@@ -1187,11 +1187,11 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     if (baseFragment2 instanceof ProfileActivity) {
                         getBaseFragment().getParentLayout().removeFragmentFromStack(baseFragment2);
                     }
-                    lastFragment.lambda$onBackPressed$305();
+                    lastFragment.lambda$onBackPressed$306();
                     BoostDialogs.showBulletin(r5, tLRPC$Chat, true);
                     return;
                 }
-                lastFragment.lambda$onBackPressed$305();
+                lastFragment.lambda$onBackPressed$306();
                 BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
                 return;
             }
@@ -1217,7 +1217,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 while (it.hasNext()) {
                     getBaseFragment().getParentLayout().removeFragmentFromStack((BaseFragment) it.next());
                 }
-                getBaseFragment().lambda$onBackPressed$305();
+                getBaseFragment().lambda$onBackPressed$306();
                 dismiss();
                 BoostDialogs.showBulletin(r5, tLRPC$Chat, true);
                 return;
@@ -1233,7 +1233,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 }
                 List<BaseFragment> fragmentStack3 = getBaseFragment().getParentLayout().getFragmentStack();
                 r5 = fragmentStack3.size() >= 2 ? fragmentStack3.get(fragmentStack3.size() - 2) : null;
-                getBaseFragment().lambda$onBackPressed$305();
+                getBaseFragment().lambda$onBackPressed$306();
                 dismiss();
                 if (r5 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(r5, tLRPC$Chat, true);

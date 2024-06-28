@@ -554,14 +554,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lambda$onBackPressed$305();
+                lambda$onBackPressed$306();
                 if (baseFragment3 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(baseFragment3, tLRPC$Chat, true);
                     return;
                 }
                 return;
             }
-            lambda$onBackPressed$305();
+            lambda$onBackPressed$306();
             if (baseFragment2 instanceof ProfileActivity) {
                 BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
                 return;
@@ -847,7 +847,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    StatisticActivity.this.lambda$onBackPressed$305();
+                    StatisticActivity.this.lambda$onBackPressed$306();
                 }
             }
         });

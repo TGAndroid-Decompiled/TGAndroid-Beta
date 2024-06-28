@@ -377,7 +377,7 @@ public class EditWidgetActivity extends BaseFragment {
                         EditWidgetActivity.this.finishActivity();
                         return;
                     } else {
-                        EditWidgetActivity.this.lambda$onBackPressed$305();
+                        EditWidgetActivity.this.lambda$onBackPressed$306();
                         return;
                     }
                 }

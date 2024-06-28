@@ -677,7 +677,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0);
             }
-            dialogsActivity.lambda$onBackPressed$305();
+            dialogsActivity.lambda$onBackPressed$306();
         } else {
             long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();

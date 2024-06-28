@@ -6883,10 +6883,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             canvas.restore();
             if (!(botButton2.button instanceof TLRPC$TL_keyboardButtonWebView)) {
                 if (botButton2.button instanceof TLRPC$TL_keyboardButtonUrl) {
-                    if (botButton2.isInviteButton) {
-                        themedDrawable = getThemedDrawable("drawable_botInvite");
+                    if (!AndroidUtilities.isWebAppLink(botButton2.button.url)) {
+                        if (botButton2.isInviteButton) {
+                            themedDrawable = getThemedDrawable("drawable_botInvite");
+                        } else {
+                            themedDrawable = getThemedDrawable("drawableBotLink");
+                        }
                     } else {
-                        themedDrawable = getThemedDrawable("drawableBotLink");
+                        themedDrawable = getThemedDrawable("drawableBotWebView");
                     }
                     BaseCell.setDrawableBounds(themedDrawable, (((botButton2.x + botButton2.width) - AndroidUtilities.dp(3.0f)) - themedDrawable.getIntrinsicWidth()) + dp, dp3 + AndroidUtilities.dp(3.0f));
                     themedDrawable.draw(canvas);
