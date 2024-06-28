@@ -335,7 +335,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    PeopleNearbyActivity.this.lambda$onBackPressed$303();
+                    PeopleNearbyActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

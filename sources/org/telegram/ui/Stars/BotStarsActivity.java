@@ -151,7 +151,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    BotStarsActivity.this.lambda$onBackPressed$303();
+                    BotStarsActivity.this.lambda$onBackPressed$305();
                 }
             }
         });
@@ -209,6 +209,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         };
         this.balanceEditTextContainer = outlineTextContainerView;
         outlineTextContainerView.setText(LocaleController.getString(R.string.BotStarsWithdrawPlaceholder));
+        this.balanceEditTextContainer.setLeftPadding(AndroidUtilities.dp(36.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, context) {
             @Override
             public void onDetachedFromWindow() {
@@ -463,7 +464,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
 
     public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(StarsIntroActivity.StarsTransactionView.Factory.class)) {
-            StarsIntroActivity.showTransactionSheet(getContext(), this.currentAccount, (TLRPC$StarsTransaction) uItem.object, getResourceProvider());
+            StarsIntroActivity.showTransactionSheet(getContext(), true, this.bot_id, this.currentAccount, (TLRPC$StarsTransaction) uItem.object, getResourceProvider());
         }
     }
 
@@ -523,7 +524,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceButton.setText(StarsIntroActivity.replaceStars(this.balanceEditTextAll ? LocaleController.getString(R.string.BotStarsButtonWithdrawAll) : LocaleController.formatPluralStringComma("BotStarsButtonWithdraw", (int) this.balanceEditTextValue, ' '), this.starRef), true);
     }
 
-    private String untilString(int i) {
+    public static String untilString(int i) {
         int i2 = i / 86400;
         int i3 = i - (86400 * i2);
         int i4 = i3 / 3600;
@@ -844,13 +845,13 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$303();
+                twoStepVerificationActivity.lambda$onBackPressed$305();
             }
             BulletinFactory.showError(tLRPC$TL_error);
             return;
         }
         twoStepVerificationActivity.needHideProgress();
-        twoStepVerificationActivity.lambda$onBackPressed$303();
+        twoStepVerificationActivity.lambda$onBackPressed$305();
         if (tLObject instanceof TLRPC$TL_payments_starsRevenueWithdrawalUrl) {
             this.balanceEditTextAll = true;
             Browser.openUrl(getContext(), ((TLRPC$TL_payments_starsRevenueWithdrawalUrl) tLObject).url);

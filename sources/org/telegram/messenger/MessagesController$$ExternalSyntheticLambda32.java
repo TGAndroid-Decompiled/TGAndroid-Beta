@@ -9,6 +9,6 @@ public final class MessagesController$$ExternalSyntheticLambda32 implements Runn
 
     @Override
     public final void run() {
-        MessagesController.m441$r8$lambda$3glUIU4Rpam_ZmjiPRPcrBSWg8(this.f$0);
+        MessagesController.m445$r8$lambda$3glUIU4Rpam_ZmjiPRPcrBSWg8(this.f$0);
     }
 }

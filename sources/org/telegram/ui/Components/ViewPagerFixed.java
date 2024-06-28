@@ -596,6 +596,19 @@ public class ViewPagerFixed extends FrameLayout {
         }
     }
 
+    public void updateCurrent() {
+        if (this.viewTypes[0] != this.adapter.getItemViewType(this.currentPosition)) {
+            updateViewForIndex(0);
+            View[] viewArr = this.viewPages;
+            if (viewArr[1] != null) {
+                this.viewsByType.put(this.viewTypes[1], viewArr[1]);
+                removeView(this.viewPages[1]);
+                this.viewPages[1] = null;
+            }
+            this.viewPages[0].setTranslationX(0.0f);
+        }
+    }
+
     public View[] getViewPages() {
         return this.viewPages;
     }
@@ -1109,10 +1122,11 @@ public class ViewPagerFixed extends FrameLayout {
                 }
             };
             this.listView = recyclerListView;
+            recyclerListView.setOverScrollMode(2);
             if (z) {
-                recyclerListView.setItemAnimator(null);
+                this.listView.setItemAnimator(null);
             } else {
-                ((DefaultItemAnimator) recyclerListView.getItemAnimator()).setDelayAnimations(false);
+                ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
             }
             this.listView.setSelectorType(i);
             if (i == 3) {

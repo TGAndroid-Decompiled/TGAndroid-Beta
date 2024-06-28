@@ -275,6 +275,9 @@ public abstract class TLRPC$Update extends TLObject {
             case -761649164:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelMessageForwards();
                 break;
+            case -710666460:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageExtendedMedia();
+                break;
             case -693004986:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateReadChannelDiscussionInbox();
                 break;
@@ -583,9 +586,6 @@ public abstract class TLRPC$Update extends TLObject {
                         abstractSerializedData2.writeInt32(1461528386);
                     }
                 };
-                break;
-            case 1517529484:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageExtendedMedia();
                 break;
             case 1538885128:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updatePinnedChannelMessages();

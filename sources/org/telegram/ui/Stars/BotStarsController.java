@@ -18,6 +18,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_starsStatus;
 import org.telegram.tgnet.TLRPC$TL_starsRevenueStatus;
 import org.telegram.tgnet.TLRPC$TL_updateStarsRevenueStatus;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChannelMonetizationLayout;
 
 public class BotStarsController {
     private static volatile BotStarsController[] Instance = new BotStarsController[4];
@@ -122,6 +123,15 @@ public class BotStarsController {
             return;
         }
         long peerDialogId = DialogObject.getPeerDialogId(tLRPC$TL_updateStarsRevenueStatus.peer);
+        if (peerDialogId < 0) {
+            ChannelMonetizationLayout channelMonetizationLayout = ChannelMonetizationLayout.instance;
+            if (channelMonetizationLayout == null || channelMonetizationLayout.dialogId != DialogObject.getPeerDialogId(tLRPC$TL_updateStarsRevenueStatus.peer)) {
+                return;
+            }
+            ChannelMonetizationLayout.instance.setupBalances(tLRPC$TL_updateStarsRevenueStatus.status);
+            ChannelMonetizationLayout.instance.reloadTransactions();
+            return;
+        }
         TLRPC$TL_payments_starsRevenueStats revenueStats = getRevenueStats(peerDialogId, true);
         if (revenueStats != null) {
             revenueStats.status = tLRPC$TL_updateStarsRevenueStatus.status;

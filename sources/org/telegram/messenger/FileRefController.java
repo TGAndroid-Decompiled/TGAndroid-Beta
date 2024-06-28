@@ -19,6 +19,7 @@ import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$InputStickeredMedia;
 import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.tgnet.TLRPC$Page;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$Photo;
@@ -41,6 +42,7 @@ import org.telegram.tgnet.TLRPC$TL_help_premiumPromo;
 import org.telegram.tgnet.TLRPC$TL_inputDocumentFileLocation;
 import org.telegram.tgnet.TLRPC$TL_inputFileLocation;
 import org.telegram.tgnet.TLRPC$TL_inputMediaDocument;
+import org.telegram.tgnet.TLRPC$TL_inputMediaPaidMedia;
 import org.telegram.tgnet.TLRPC$TL_inputMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterChatPhotos;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
@@ -94,15 +96,12 @@ public class FileRefController extends BaseController {
     private ArrayList<Waiter> favStickersWaiter;
     private long lastCleanupTime;
     private HashMap<String, ArrayList<Requester>> locationRequester;
-    private HashMap<TLRPC$TL_messages_sendMultiMedia, Object[]> multiMediaCache;
+    private HashMap<TLObject, Object[]> multiMediaCache;
     private HashMap<String, ArrayList<Requester>> parentRequester;
     private ArrayList<Waiter> recentStickersWaiter;
     private HashMap<String, CachedResult> responseCache;
     private ArrayList<Waiter> savedGifsWaiters;
     private ArrayList<Waiter> wallpaperWaiters;
-
-    public static void lambda$onUpdateObjectReference$30(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-    }
 
     public static void lambda$onUpdateObjectReference$31(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
@@ -111,6 +110,9 @@ public class FileRefController extends BaseController {
     }
 
     public static void lambda$onUpdateObjectReference$33(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    }
+
+    public static void lambda$onUpdateObjectReference$34(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
     public static class Requester {
@@ -171,6 +173,9 @@ public class FileRefController extends BaseController {
     }
 
     public static String getKeyForParentObject(Object obj) {
+        TLRPC$Message tLRPC$Message;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        TLRPC$Peer tLRPC$Peer;
         if (obj instanceof TL_stories$StoryItem) {
             TL_stories$StoryItem tL_stories$StoryItem = (TL_stories$StoryItem) obj;
             if (tL_stories$StoryItem.dialogId == 0) {
@@ -193,12 +198,16 @@ public class FileRefController extends BaseController {
         }
         if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
-            return "message" + messageObject.getRealId() + "_" + messageObject.getChannelId() + "_" + messageObject.scheduled + "_" + messageObject.getQuickReplyId();
+            long channelId = messageObject.getChannelId();
+            if (messageObject.type == 29 && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
+                channelId = DialogObject.getPeerDialogId(tLRPC$Peer);
+            }
+            return "message" + messageObject.getRealId() + "_" + channelId + "_" + messageObject.scheduled + "_" + messageObject.getQuickReplyId();
         }
         if (obj instanceof TLRPC$Message) {
-            TLRPC$Message tLRPC$Message = (TLRPC$Message) obj;
-            TLRPC$Peer tLRPC$Peer = tLRPC$Message.peer_id;
-            return "message" + tLRPC$Message.id + "_" + (tLRPC$Peer != null ? tLRPC$Peer.channel_id : 0L) + "_" + tLRPC$Message.from_scheduled;
+            TLRPC$Message tLRPC$Message2 = (TLRPC$Message) obj;
+            TLRPC$Peer tLRPC$Peer2 = tLRPC$Message2.peer_id;
+            return "message" + tLRPC$Message2.id + "_" + (tLRPC$Peer2 != null ? tLRPC$Peer2.channel_id : 0L) + "_" + tLRPC$Message2.from_scheduled;
         }
         if (obj instanceof TLRPC$WebPage) {
             return "webpage" + ((TLRPC$WebPage) obj).id;
@@ -744,6 +753,7 @@ public class FileRefController extends BaseController {
 
     private boolean onUpdateObjectReference(final Requester requester, byte[] bArr, TLRPC$InputFileLocation tLRPC$InputFileLocation, boolean z) {
         String str;
+        TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto;
         if (BuildVars.DEBUG_VERSION) {
             FileLog.d("fileref updated for " + requester.args[0] + " " + requester.locationKey);
         }
@@ -763,11 +773,11 @@ public class FileRefController extends BaseController {
                     }
                     tLRPC$TL_inputMediaDocument.id.file_reference = bArr;
                 } else if (tLRPC$InputMedia instanceof TLRPC$TL_inputMediaPhoto) {
-                    TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto = (TLRPC$TL_inputMediaPhoto) tLRPC$InputMedia;
-                    if (z && isSameReference(tLRPC$TL_inputMediaPhoto.id.file_reference, bArr)) {
+                    TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto2 = (TLRPC$TL_inputMediaPhoto) tLRPC$InputMedia;
+                    if (z && isSameReference(tLRPC$TL_inputMediaPhoto2.id.file_reference, bArr)) {
                         return false;
                     }
-                    tLRPC$TL_inputMediaPhoto.id.file_reference = bArr;
+                    tLRPC$TL_inputMediaPhoto2.id.file_reference = bArr;
                 }
                 int indexOf = tLRPC$TL_messages_sendMultiMedia.multi_media.indexOf(tLRPC$TL_inputSingleMedia);
                 if (indexOf < 0) {
@@ -790,115 +800,138 @@ public class FileRefController extends BaseController {
                         }
                     });
                 }
-            } else if (!(requester.args[0] instanceof TLRPC$TL_messages_sendMedia)) {
-                if (!(requester.args[0] instanceof TLRPC$TL_messages_editMessage)) {
-                    if (requester.args[0] instanceof TLRPC$TL_messages_saveGif) {
-                        TLRPC$TL_messages_saveGif tLRPC$TL_messages_saveGif = (TLRPC$TL_messages_saveGif) requester.args[0];
-                        if (z && isSameReference(tLRPC$TL_messages_saveGif.id.file_reference, bArr)) {
-                            return false;
-                        }
-                        tLRPC$TL_messages_saveGif.id.file_reference = bArr;
-                        getConnectionsManager().sendRequest(tLRPC$TL_messages_saveGif, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                FileRefController.lambda$onUpdateObjectReference$30(tLObject, tLRPC$TL_error);
-                            }
-                        });
-                    } else if (requester.args[0] instanceof TLRPC$TL_messages_saveRecentSticker) {
-                        TLRPC$TL_messages_saveRecentSticker tLRPC$TL_messages_saveRecentSticker = (TLRPC$TL_messages_saveRecentSticker) requester.args[0];
-                        if (z && isSameReference(tLRPC$TL_messages_saveRecentSticker.id.file_reference, bArr)) {
-                            return false;
-                        }
-                        tLRPC$TL_messages_saveRecentSticker.id.file_reference = bArr;
-                        getConnectionsManager().sendRequest(tLRPC$TL_messages_saveRecentSticker, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                FileRefController.lambda$onUpdateObjectReference$31(tLObject, tLRPC$TL_error);
-                            }
-                        });
-                    } else if (requester.args[0] instanceof TLRPC$TL_stickers_addStickerToSet) {
-                        TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = (TLRPC$TL_stickers_addStickerToSet) requester.args[0];
-                        if (z && isSameReference(tLRPC$TL_stickers_addStickerToSet.sticker.document.file_reference, bArr)) {
-                            return false;
-                        }
-                        tLRPC$TL_stickers_addStickerToSet.sticker.document.file_reference = bArr;
-                        getConnectionsManager().sendRequest(tLRPC$TL_stickers_addStickerToSet, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                FileRefController.lambda$onUpdateObjectReference$32(tLObject, tLRPC$TL_error);
-                            }
-                        });
-                    } else if (requester.args[0] instanceof TLRPC$TL_messages_faveSticker) {
-                        TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = (TLRPC$TL_messages_faveSticker) requester.args[0];
-                        if (z && isSameReference(tLRPC$TL_messages_faveSticker.id.file_reference, bArr)) {
-                            return false;
-                        }
-                        tLRPC$TL_messages_faveSticker.id.file_reference = bArr;
-                        getConnectionsManager().sendRequest(tLRPC$TL_messages_faveSticker, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                FileRefController.lambda$onUpdateObjectReference$33(tLObject, tLRPC$TL_error);
-                            }
-                        });
-                    } else if (requester.args[0] instanceof TLRPC$TL_messages_getAttachedStickers) {
-                        TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = (TLRPC$TL_messages_getAttachedStickers) requester.args[0];
-                        TLRPC$InputStickeredMedia tLRPC$InputStickeredMedia = tLRPC$TL_messages_getAttachedStickers.media;
-                        if (tLRPC$InputStickeredMedia instanceof TLRPC$TL_inputStickeredMediaDocument) {
-                            TLRPC$TL_inputStickeredMediaDocument tLRPC$TL_inputStickeredMediaDocument = (TLRPC$TL_inputStickeredMediaDocument) tLRPC$InputStickeredMedia;
-                            if (z && isSameReference(tLRPC$TL_inputStickeredMediaDocument.id.file_reference, bArr)) {
+            } else if (!(requester.args[1] instanceof TLRPC$TL_messages_sendMedia) || !(((TLRPC$TL_messages_sendMedia) requester.args[1]).media instanceof TLRPC$TL_inputMediaPaidMedia) || (!(requester.args[0] instanceof TLRPC$TL_inputMediaPhoto) && !(requester.args[0] instanceof TLRPC$TL_inputMediaDocument))) {
+                if (!(requester.args[0] instanceof TLRPC$TL_messages_sendMedia)) {
+                    if (!(requester.args[0] instanceof TLRPC$TL_messages_editMessage)) {
+                        if (requester.args[0] instanceof TLRPC$TL_messages_saveGif) {
+                            TLRPC$TL_messages_saveGif tLRPC$TL_messages_saveGif = (TLRPC$TL_messages_saveGif) requester.args[0];
+                            if (z && isSameReference(tLRPC$TL_messages_saveGif.id.file_reference, bArr)) {
                                 return false;
                             }
-                            tLRPC$TL_inputStickeredMediaDocument.id.file_reference = bArr;
-                        } else if (tLRPC$InputStickeredMedia instanceof TLRPC$TL_inputStickeredMediaPhoto) {
-                            TLRPC$TL_inputStickeredMediaPhoto tLRPC$TL_inputStickeredMediaPhoto = (TLRPC$TL_inputStickeredMediaPhoto) tLRPC$InputStickeredMedia;
-                            if (z && isSameReference(tLRPC$TL_inputStickeredMediaPhoto.id.file_reference, bArr)) {
+                            tLRPC$TL_messages_saveGif.id.file_reference = bArr;
+                            getConnectionsManager().sendRequest(tLRPC$TL_messages_saveGif, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    FileRefController.lambda$onUpdateObjectReference$31(tLObject, tLRPC$TL_error);
+                                }
+                            });
+                        } else if (requester.args[0] instanceof TLRPC$TL_messages_saveRecentSticker) {
+                            TLRPC$TL_messages_saveRecentSticker tLRPC$TL_messages_saveRecentSticker = (TLRPC$TL_messages_saveRecentSticker) requester.args[0];
+                            if (z && isSameReference(tLRPC$TL_messages_saveRecentSticker.id.file_reference, bArr)) {
                                 return false;
                             }
-                            tLRPC$TL_inputStickeredMediaPhoto.id.file_reference = bArr;
-                        }
-                        getConnectionsManager().sendRequest(tLRPC$TL_messages_getAttachedStickers, (RequestDelegate) requester.args[1]);
-                    } else if (requester.args[1] instanceof FileLoadOperation) {
-                        FileLoadOperation fileLoadOperation = (FileLoadOperation) requester.args[1];
-                        if (tLRPC$InputFileLocation == null) {
-                            if (z && isSameReference(requester.location.file_reference, bArr)) {
+                            tLRPC$TL_messages_saveRecentSticker.id.file_reference = bArr;
+                            getConnectionsManager().sendRequest(tLRPC$TL_messages_saveRecentSticker, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    FileRefController.lambda$onUpdateObjectReference$32(tLObject, tLRPC$TL_error);
+                                }
+                            });
+                        } else if (requester.args[0] instanceof TLRPC$TL_stickers_addStickerToSet) {
+                            TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = (TLRPC$TL_stickers_addStickerToSet) requester.args[0];
+                            if (z && isSameReference(tLRPC$TL_stickers_addStickerToSet.sticker.document.file_reference, bArr)) {
                                 return false;
                             }
-                            String bytesToHex = BuildVars.LOGS_ENABLED ? Utilities.bytesToHex(fileLoadOperation.location.file_reference) : null;
-                            TLRPC$InputFileLocation tLRPC$InputFileLocation2 = fileLoadOperation.location;
-                            requester.location.file_reference = bArr;
-                            tLRPC$InputFileLocation2.file_reference = bArr;
-                            r4 = BuildVars.LOGS_ENABLED ? Utilities.bytesToHex(fileLoadOperation.location.file_reference) : null;
-                            str = bytesToHex;
-                        } else {
-                            if (z && isSameReference(fileLoadOperation.location.file_reference, tLRPC$InputFileLocation.file_reference)) {
+                            tLRPC$TL_stickers_addStickerToSet.sticker.document.file_reference = bArr;
+                            getConnectionsManager().sendRequest(tLRPC$TL_stickers_addStickerToSet, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    FileRefController.lambda$onUpdateObjectReference$33(tLObject, tLRPC$TL_error);
+                                }
+                            });
+                        } else if (requester.args[0] instanceof TLRPC$TL_messages_faveSticker) {
+                            TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = (TLRPC$TL_messages_faveSticker) requester.args[0];
+                            if (z && isSameReference(tLRPC$TL_messages_faveSticker.id.file_reference, bArr)) {
                                 return false;
                             }
-                            str = BuildVars.LOGS_ENABLED ? Utilities.bytesToHex(fileLoadOperation.location.file_reference) : null;
-                            fileLoadOperation.location = tLRPC$InputFileLocation;
+                            tLRPC$TL_messages_faveSticker.id.file_reference = bArr;
+                            getConnectionsManager().sendRequest(tLRPC$TL_messages_faveSticker, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    FileRefController.lambda$onUpdateObjectReference$34(tLObject, tLRPC$TL_error);
+                                }
+                            });
+                        } else if (requester.args[0] instanceof TLRPC$TL_messages_getAttachedStickers) {
+                            TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = (TLRPC$TL_messages_getAttachedStickers) requester.args[0];
+                            TLRPC$InputStickeredMedia tLRPC$InputStickeredMedia = tLRPC$TL_messages_getAttachedStickers.media;
+                            if (tLRPC$InputStickeredMedia instanceof TLRPC$TL_inputStickeredMediaDocument) {
+                                TLRPC$TL_inputStickeredMediaDocument tLRPC$TL_inputStickeredMediaDocument = (TLRPC$TL_inputStickeredMediaDocument) tLRPC$InputStickeredMedia;
+                                if (z && isSameReference(tLRPC$TL_inputStickeredMediaDocument.id.file_reference, bArr)) {
+                                    return false;
+                                }
+                                tLRPC$TL_inputStickeredMediaDocument.id.file_reference = bArr;
+                            } else if (tLRPC$InputStickeredMedia instanceof TLRPC$TL_inputStickeredMediaPhoto) {
+                                TLRPC$TL_inputStickeredMediaPhoto tLRPC$TL_inputStickeredMediaPhoto = (TLRPC$TL_inputStickeredMediaPhoto) tLRPC$InputStickeredMedia;
+                                if (z && isSameReference(tLRPC$TL_inputStickeredMediaPhoto.id.file_reference, bArr)) {
+                                    return false;
+                                }
+                                tLRPC$TL_inputStickeredMediaPhoto.id.file_reference = bArr;
+                            }
+                            getConnectionsManager().sendRequest(tLRPC$TL_messages_getAttachedStickers, (RequestDelegate) requester.args[1]);
+                        } else if (requester.args[1] instanceof FileLoadOperation) {
+                            FileLoadOperation fileLoadOperation = (FileLoadOperation) requester.args[1];
+                            if (tLRPC$InputFileLocation == null) {
+                                if (z && isSameReference(requester.location.file_reference, bArr)) {
+                                    return false;
+                                }
+                                String bytesToHex = BuildVars.LOGS_ENABLED ? Utilities.bytesToHex(fileLoadOperation.location.file_reference) : null;
+                                TLRPC$InputFileLocation tLRPC$InputFileLocation2 = fileLoadOperation.location;
+                                requester.location.file_reference = bArr;
+                                tLRPC$InputFileLocation2.file_reference = bArr;
+                                r5 = BuildVars.LOGS_ENABLED ? Utilities.bytesToHex(fileLoadOperation.location.file_reference) : null;
+                                str = bytesToHex;
+                            } else {
+                                if (z && isSameReference(fileLoadOperation.location.file_reference, tLRPC$InputFileLocation.file_reference)) {
+                                    return false;
+                                }
+                                str = BuildVars.LOGS_ENABLED ? Utilities.bytesToHex(fileLoadOperation.location.file_reference) : null;
+                                fileLoadOperation.location = tLRPC$InputFileLocation;
+                                if (BuildVars.LOGS_ENABLED) {
+                                    r5 = Utilities.bytesToHex(tLRPC$InputFileLocation.file_reference);
+                                }
+                            }
+                            fileLoadOperation.requestingReference = false;
                             if (BuildVars.LOGS_ENABLED) {
-                                r4 = Utilities.bytesToHex(tLRPC$InputFileLocation.file_reference);
+                                FileLog.d("debug_loading: " + fileLoadOperation.getCacheFileFinal().getName() + " " + str + " " + r5 + " reference updated resume download");
                             }
+                            fileLoadOperation.startDownloadRequest(-1);
                         }
-                        fileLoadOperation.requestingReference = false;
-                        if (BuildVars.LOGS_ENABLED) {
-                            FileLog.d("debug_loading: " + fileLoadOperation.getCacheFileFinal().getName() + " " + str + " " + r4 + " reference updated resume download");
+                    } else {
+                        TLRPC$InputMedia tLRPC$InputMedia2 = ((TLRPC$TL_messages_editMessage) requester.args[0]).media;
+                        if (tLRPC$InputMedia2 instanceof TLRPC$TL_inputMediaDocument) {
+                            TLRPC$TL_inputMediaDocument tLRPC$TL_inputMediaDocument2 = (TLRPC$TL_inputMediaDocument) tLRPC$InputMedia2;
+                            if (z && isSameReference(tLRPC$TL_inputMediaDocument2.id.file_reference, bArr)) {
+                                return false;
+                            }
+                            tLRPC$TL_inputMediaDocument2.id.file_reference = bArr;
+                        } else if (tLRPC$InputMedia2 instanceof TLRPC$TL_inputMediaPhoto) {
+                            TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto3 = (TLRPC$TL_inputMediaPhoto) tLRPC$InputMedia2;
+                            if (z && isSameReference(tLRPC$TL_inputMediaPhoto3.id.file_reference, bArr)) {
+                                return false;
+                            }
+                            tLRPC$TL_inputMediaPhoto3.id.file_reference = bArr;
                         }
-                        fileLoadOperation.startDownloadRequest(-1);
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                FileRefController.this.lambda$onUpdateObjectReference$30(requester);
+                            }
+                        });
                     }
                 } else {
-                    TLRPC$InputMedia tLRPC$InputMedia2 = ((TLRPC$TL_messages_editMessage) requester.args[0]).media;
-                    if (tLRPC$InputMedia2 instanceof TLRPC$TL_inputMediaDocument) {
-                        TLRPC$TL_inputMediaDocument tLRPC$TL_inputMediaDocument2 = (TLRPC$TL_inputMediaDocument) tLRPC$InputMedia2;
-                        if (z && isSameReference(tLRPC$TL_inputMediaDocument2.id.file_reference, bArr)) {
+                    TLRPC$InputMedia tLRPC$InputMedia3 = ((TLRPC$TL_messages_sendMedia) requester.args[0]).media;
+                    if (tLRPC$InputMedia3 instanceof TLRPC$TL_inputMediaDocument) {
+                        TLRPC$TL_inputMediaDocument tLRPC$TL_inputMediaDocument3 = (TLRPC$TL_inputMediaDocument) tLRPC$InputMedia3;
+                        if (z && isSameReference(tLRPC$TL_inputMediaDocument3.id.file_reference, bArr)) {
                             return false;
                         }
-                        tLRPC$TL_inputMediaDocument2.id.file_reference = bArr;
-                    } else if (tLRPC$InputMedia2 instanceof TLRPC$TL_inputMediaPhoto) {
-                        TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto2 = (TLRPC$TL_inputMediaPhoto) tLRPC$InputMedia2;
-                        if (z && isSameReference(tLRPC$TL_inputMediaPhoto2.id.file_reference, bArr)) {
+                        tLRPC$TL_inputMediaDocument3.id.file_reference = bArr;
+                    } else if (tLRPC$InputMedia3 instanceof TLRPC$TL_inputMediaPhoto) {
+                        TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto4 = (TLRPC$TL_inputMediaPhoto) tLRPC$InputMedia3;
+                        if (z && isSameReference(tLRPC$TL_inputMediaPhoto4.id.file_reference, bArr)) {
                             return false;
                         }
-                        tLRPC$TL_inputMediaPhoto2.id.file_reference = bArr;
+                        tLRPC$TL_inputMediaPhoto4.id.file_reference = bArr;
                     }
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -908,26 +941,49 @@ public class FileRefController extends BaseController {
                     });
                 }
             } else {
-                TLRPC$InputMedia tLRPC$InputMedia3 = ((TLRPC$TL_messages_sendMedia) requester.args[0]).media;
-                if (tLRPC$InputMedia3 instanceof TLRPC$TL_inputMediaDocument) {
-                    TLRPC$TL_inputMediaDocument tLRPC$TL_inputMediaDocument3 = (TLRPC$TL_inputMediaDocument) tLRPC$InputMedia3;
-                    if (z && isSameReference(tLRPC$TL_inputMediaDocument3.id.file_reference, bArr)) {
-                        return false;
-                    }
-                    tLRPC$TL_inputMediaDocument3.id.file_reference = bArr;
-                } else if (tLRPC$InputMedia3 instanceof TLRPC$TL_inputMediaPhoto) {
-                    TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto3 = (TLRPC$TL_inputMediaPhoto) tLRPC$InputMedia3;
-                    if (z && isSameReference(tLRPC$TL_inputMediaPhoto3.id.file_reference, bArr)) {
-                        return false;
-                    }
-                    tLRPC$TL_inputMediaPhoto3.id.file_reference = bArr;
+                final TLRPC$TL_messages_sendMedia tLRPC$TL_messages_sendMedia = (TLRPC$TL_messages_sendMedia) requester.args[1];
+                final Object[] objArr2 = this.multiMediaCache.get(tLRPC$TL_messages_sendMedia);
+                if (objArr2 == null) {
+                    return true;
                 }
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        FileRefController.this.lambda$onUpdateObjectReference$28(requester);
+                if (requester.args[0] instanceof TLRPC$TL_inputMediaDocument) {
+                    TLRPC$TL_inputMediaDocument tLRPC$TL_inputMediaDocument4 = (TLRPC$TL_inputMediaDocument) requester.args[0];
+                    if (z && isSameReference(tLRPC$TL_inputMediaDocument4.id.file_reference, bArr)) {
+                        return false;
                     }
-                });
+                    tLRPC$TL_inputMediaDocument4.id.file_reference = bArr;
+                    tLRPC$TL_inputMediaPhoto = tLRPC$TL_inputMediaDocument4;
+                } else if (requester.args[0] instanceof TLRPC$TL_inputMediaPhoto) {
+                    TLRPC$TL_inputMediaPhoto tLRPC$TL_inputMediaPhoto5 = (TLRPC$TL_inputMediaPhoto) requester.args[0];
+                    if (z && isSameReference(tLRPC$TL_inputMediaPhoto5.id.file_reference, bArr)) {
+                        return false;
+                    }
+                    tLRPC$TL_inputMediaPhoto5.id.file_reference = bArr;
+                    tLRPC$TL_inputMediaPhoto = tLRPC$TL_inputMediaPhoto5;
+                } else {
+                    tLRPC$TL_inputMediaPhoto = null;
+                }
+                int indexOf2 = ((TLRPC$TL_inputMediaPaidMedia) tLRPC$TL_messages_sendMedia.media).extended_media.indexOf(tLRPC$TL_inputMediaPhoto);
+                if (indexOf2 < 0) {
+                    return true;
+                }
+                ArrayList arrayList2 = (ArrayList) objArr2[3];
+                arrayList2.set(indexOf2, null);
+                boolean z3 = true;
+                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                    if (arrayList2.get(i2) != null) {
+                        z3 = false;
+                    }
+                }
+                if (z3) {
+                    this.multiMediaCache.remove(tLRPC$TL_messages_sendMedia);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            FileRefController.this.lambda$onUpdateObjectReference$28(tLRPC$TL_messages_sendMedia, objArr2);
+                        }
+                    });
+                }
             }
             return true;
         }
@@ -939,11 +995,15 @@ public class FileRefController extends BaseController {
         getSendMessagesHelper().performSendMessageRequestMulti(tLRPC$TL_messages_sendMultiMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$onUpdateObjectReference$28(Requester requester) {
-        getSendMessagesHelper().performSendMessageRequest((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
+    public void lambda$onUpdateObjectReference$28(TLRPC$TL_messages_sendMedia tLRPC$TL_messages_sendMedia, Object[] objArr) {
+        getSendMessagesHelper().performSendMessageRequestMulti(tLRPC$TL_messages_sendMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
     public void lambda$onUpdateObjectReference$29(Requester requester) {
+        getSendMessagesHelper().performSendMessageRequest((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
+    }
+
+    public void lambda$onUpdateObjectReference$30(Requester requester) {
         getSendMessagesHelper().performSendMessageRequest((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
     }
 
@@ -956,18 +1016,33 @@ public class FileRefController extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FileRefController.this.lambda$sendErrorToObject$34(tLRPC$TL_messages_sendMultiMedia, objArr2);
+                        FileRefController.this.lambda$sendErrorToObject$35(tLRPC$TL_messages_sendMultiMedia, objArr2);
                     }
                 });
                 return;
             }
             return;
         }
-        if ((objArr[0] instanceof TLRPC$TL_messages_sendMedia) || (objArr[0] instanceof TLRPC$TL_messages_editMessage)) {
+        if (((objArr[0] instanceof TLRPC$TL_inputMediaDocument) || (objArr[0] instanceof TLRPC$TL_inputMediaPhoto)) && (objArr[1] instanceof TLRPC$TL_messages_sendMedia)) {
+            final TLRPC$TL_messages_sendMedia tLRPC$TL_messages_sendMedia = (TLRPC$TL_messages_sendMedia) objArr[1];
+            final Object[] objArr3 = this.multiMediaCache.get(tLRPC$TL_messages_sendMedia);
+            if (objArr3 != null) {
+                this.multiMediaCache.remove(tLRPC$TL_messages_sendMedia);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        FileRefController.this.lambda$sendErrorToObject$36(tLRPC$TL_messages_sendMedia, objArr3);
+                    }
+                });
+                return;
+            }
+            return;
+        }
+        if (((objArr[0] instanceof TLRPC$TL_messages_sendMedia) && !(((TLRPC$TL_messages_sendMedia) objArr[0]).media instanceof TLRPC$TL_inputMediaPaidMedia)) || (objArr[0] instanceof TLRPC$TL_messages_editMessage)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FileRefController.this.lambda$sendErrorToObject$35(objArr);
+                    FileRefController.this.lambda$sendErrorToObject$37(objArr);
                 }
             });
             return;
@@ -994,11 +1069,15 @@ public class FileRefController extends BaseController {
         }
     }
 
-    public void lambda$sendErrorToObject$34(TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia, Object[] objArr) {
+    public void lambda$sendErrorToObject$35(TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia, Object[] objArr) {
         getSendMessagesHelper().performSendMessageRequestMulti(tLRPC$TL_messages_sendMultiMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$sendErrorToObject$35(Object[] objArr) {
+    public void lambda$sendErrorToObject$36(TLRPC$TL_messages_sendMedia tLRPC$TL_messages_sendMedia, Object[] objArr) {
+        getSendMessagesHelper().performSendMessageRequestMulti(tLRPC$TL_messages_sendMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
+    }
+
+    public void lambda$sendErrorToObject$37(Object[] objArr) {
         getSendMessagesHelper().performSendMessageRequest((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
     }
 
@@ -1006,19 +1085,19 @@ public class FileRefController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileRefController.onRequestComplete(java.lang.String, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error, boolean, boolean):boolean");
     }
 
-    public void lambda$onRequestComplete$37(TLRPC$User tLRPC$User) {
+    public void lambda$onRequestComplete$39(TLRPC$User tLRPC$User) {
         getMessagesController().putUser(tLRPC$User, false);
     }
 
-    public void lambda$onRequestComplete$38(TLRPC$Chat tLRPC$Chat) {
+    public void lambda$onRequestComplete$40(TLRPC$Chat tLRPC$Chat) {
         getMessagesController().putChat(tLRPC$Chat, false);
     }
 
-    public void lambda$onRequestComplete$39(TLRPC$Chat tLRPC$Chat) {
+    public void lambda$onRequestComplete$41(TLRPC$Chat tLRPC$Chat) {
         getMessagesController().putChat(tLRPC$Chat, false);
     }
 
-    public void lambda$onRequestComplete$40(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+    public void lambda$onRequestComplete$42(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
         getMediaDataController().replaceStickerSet(tLRPC$TL_messages_stickerSet);
     }
 
@@ -1270,5 +1349,15 @@ public class FileRefController extends BaseController {
 
     public static boolean isFileRefError(String str) {
         return "FILEREF_EXPIRED".equals(str) || "FILE_REFERENCE_EXPIRED".equals(str) || "FILE_REFERENCE_EMPTY".equals(str) || (str != null && str.startsWith("FILE_REFERENCE_"));
+    }
+
+    public static int getFileRefErrorIndex(String str) {
+        if (str != null && str.startsWith("FILE_REFERENCE_") && str.endsWith("_EXPIRED")) {
+            try {
+                return Integer.parseInt(str.substring(15, str.length() - 8));
+            } catch (Exception unused) {
+            }
+        }
+        return -1;
     }
 }

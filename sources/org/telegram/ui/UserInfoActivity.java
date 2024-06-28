@@ -152,7 +152,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (UserInfoActivity.this.onBackPressed()) {
-                        UserInfoActivity.this.lambda$onBackPressed$303();
+                        UserInfoActivity.this.lambda$onBackPressed$305();
                     }
                 } else if (i2 == 1) {
                     UserInfoActivity.this.processDone(true);
@@ -526,7 +526,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             arrayList.add(tLRPC$TL_account_updatePersonalChannel);
         }
         if (arrayList.isEmpty()) {
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             return;
         }
         final int[] iArr = {0};
@@ -586,7 +586,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         this.wasSaved = true;
         iArr[0] = iArr[0] + 1;
         if (iArr[0] == arrayList.size()) {
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
         }
     }
 
@@ -792,7 +792,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             int i2 = uItem.id;
             if (i2 == 1) {
                 this.whenSelected.run(null);
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 return;
             }
             if (i2 == 2) {
@@ -810,7 +810,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 }
             }
             if (uItem.viewType == 12) {
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 this.whenSelected.run(getMessagesController().getChat(Long.valueOf(-uItem.dialogId)));
             }
         }

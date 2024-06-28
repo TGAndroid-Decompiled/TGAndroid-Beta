@@ -102,7 +102,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupInviteActivity.this.lambda$onBackPressed$303();
+                    GroupInviteActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

@@ -66,6 +66,7 @@ import org.telegram.tgnet.TLRPC$ForumTopic;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
 import org.telegram.tgnet.TLRPC$MessageEntity;
+import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
@@ -74,8 +75,11 @@ import org.telegram.tgnet.TLRPC$TL_dialogFolder;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_messageActionSetChatTheme;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
+import org.telegram.tgnet.TLRPC$TL_messageExtendedMedia;
+import org.telegram.tgnet.TLRPC$TL_messageExtendedMediaPreview;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGame;
 import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
+import org.telegram.tgnet.TLRPC$TL_messageMediaPaidMedia;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_messageService;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
@@ -105,6 +109,7 @@ import org.telegram.ui.Components.TimerDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
@@ -1770,11 +1775,39 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     public void updateMessageThumbs() {
+        TLRPC$Message tLRPC$Message;
+        int i;
         MessageObject messageObject = this.message;
         if (messageObject == null) {
             return;
         }
         String restrictionReason = MessagesController.getRestrictionReason(messageObject.messageOwner.restriction_reason);
+        MessageObject messageObject2 = this.message;
+        int i2 = 0;
+        if (messageObject2 != null && (tLRPC$Message = messageObject2.messageOwner) != null) {
+            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
+            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
+                this.thumbsCount = 0;
+                this.hasVideoThumb = false;
+                TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia;
+                int i3 = 0;
+                while (i2 < tLRPC$TL_messageMediaPaidMedia.extended_media.size() && this.thumbsCount < 3) {
+                    TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i2);
+                    if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
+                        i = i3 + 1;
+                        setThumb(i3, ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia).thumb);
+                    } else if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
+                        i = i3 + 1;
+                        setThumb(i3, ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media);
+                    } else {
+                        i2++;
+                    }
+                    i3 = i;
+                    i2++;
+                }
+                return;
+            }
+        }
         ArrayList<MessageObject> arrayList = this.groupMessages;
         if (arrayList != null && arrayList.size() > 1 && TextUtils.isEmpty(restrictionReason) && this.currentDialogFolderId == 0 && this.encryptedChat == null) {
             this.thumbsCount = 0;
@@ -1785,24 +1818,25 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     return ((MessageObject) obj).getId();
                 }
             }));
-            for (int i = 0; i < Math.min(3, this.groupMessages.size()); i++) {
-                MessageObject messageObject2 = this.groupMessages.get(i);
-                if (messageObject2 != null && !messageObject2.needDrawBluredPreview() && (messageObject2.isPhoto() || messageObject2.isNewGif() || messageObject2.isVideo() || messageObject2.isRoundVideo() || messageObject2.isStoryMedia())) {
-                    String str = messageObject2.isWebpage() ? messageObject2.messageOwner.media.webpage.type : null;
+            while (i2 < Math.min(3, this.groupMessages.size())) {
+                MessageObject messageObject3 = this.groupMessages.get(i2);
+                if (messageObject3 != null && !messageObject3.needDrawBluredPreview() && (messageObject3.isPhoto() || messageObject3.isNewGif() || messageObject3.isVideo() || messageObject3.isRoundVideo() || messageObject3.isStoryMedia())) {
+                    String str = messageObject3.isWebpage() ? messageObject3.messageOwner.media.webpage.type : null;
                     if (!"app".equals(str) && !"profile".equals(str) && !"article".equals(str) && (str == null || !str.startsWith("telegram_"))) {
-                        setThumb(i, messageObject2);
+                        setThumb(i2, messageObject3);
                     }
                 }
+                i2++;
             }
             return;
         }
-        MessageObject messageObject3 = this.message;
-        if (messageObject3 == null || this.currentDialogFolderId != 0) {
+        MessageObject messageObject4 = this.message;
+        if (messageObject4 == null || this.currentDialogFolderId != 0) {
             return;
         }
         this.thumbsCount = 0;
         this.hasVideoThumb = false;
-        if (messageObject3.needDrawBluredPreview()) {
+        if (messageObject4.needDrawBluredPreview()) {
             return;
         }
         if (this.message.isPhoto() || this.message.isNewGif() || this.message.isVideo() || this.message.isRoundVideo() || this.message.isStoryMedia()) {
@@ -1854,6 +1888,25 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 String str = messageObject.hasMediaSpoilers() ? "5_5_b" : "20_20";
                 this.thumbImage[i].setImage(ImageLocation.getForObject(tLRPC$PhotoSize, tLObject), str, ImageLocation.getForObject(closestPhotoSizeWithSize, tLObject), str, i3, null, messageObject, 0);
                 this.thumbImage[i].setRoundRadius(AndroidUtilities.dp(messageObject.isRoundVideo() ? 18.0f : 2.0f));
+                this.needEmoji = false;
+            }
+        }
+    }
+
+    private void setThumb(int r19, org.telegram.tgnet.TLRPC$MessageMedia r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.setThumb(int, org.telegram.tgnet.TLRPC$MessageMedia):void");
+    }
+
+    private void setThumb(int i, TLRPC$PhotoSize tLRPC$PhotoSize) {
+        if (tLRPC$PhotoSize != null) {
+            this.hasVideoThumb = false;
+            int i2 = this.thumbsCount;
+            if (i2 < 3) {
+                this.thumbsCount = i2 + 1;
+                this.drawPlay[i] = false;
+                this.drawSpoiler[i] = true;
+                this.thumbImage[i].setImage(ImageLocation.getForObject(tLRPC$PhotoSize, this.message.messageOwner), "2_2_b", null, null, 0, null, this.message, 0);
+                this.thumbImage[i].setRoundRadius(AndroidUtilities.dp(2.0f));
                 this.needEmoji = false;
             }
         }
@@ -1945,6 +1998,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         TLRPC$Message tLRPC$Message;
         CharSequence charSequence2;
         String formatPluralString;
+        String formatPluralString2;
         CharSequence charSequence3;
         String str2;
         SpannableStringBuilder valueOf;
@@ -2059,6 +2113,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 charSequence2 = tLRPC$MessageMedia.title;
             } else if (messageObject3.type == 14) {
                 charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎧 \u2068%s - %s\u2069", messageObject3.getMusicAuthor(), this.message.getMusicTitle()) : String.format("🎧 %s - %s", messageObject3.getMusicAuthor(), this.message.getMusicTitle());
+            } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
+                int size = ((TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia).extended_media.size();
+                if (this.hasVideoThumb) {
+                    formatPluralString2 = size > 1 ? LocaleController.formatPluralString("Media", size, new Object[0]) : LocaleController.getString(R.string.AttachVideo);
+                } else {
+                    formatPluralString2 = size > 1 ? LocaleController.formatPluralString("Photos", size, new Object[0]) : LocaleController.getString(R.string.AttachPhoto);
+                }
+                charSequence2 = StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.AttachPaidMedia, formatPluralString2));
+                i2 = Theme.key_chats_actionMessage;
             } else if (this.thumbsCount > 1) {
                 if (this.hasVideoThumb) {
                     ArrayList<MessageObject> arrayList2 = this.groupMessages;

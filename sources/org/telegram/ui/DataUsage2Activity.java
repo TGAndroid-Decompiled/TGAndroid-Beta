@@ -85,7 +85,7 @@ public class DataUsage2Activity extends BaseFragment {
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    DataUsage2Activity.this.lambda$onBackPressed$303();
+                    DataUsage2Activity.this.lambda$onBackPressed$305();
                 }
             }
         });

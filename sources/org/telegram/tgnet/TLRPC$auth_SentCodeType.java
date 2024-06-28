@@ -11,6 +11,7 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
     public byte[] nonce;
     public String pattern;
     public byte[] play_integrity_nonce;
+    public long play_integrity_project_id;
     public String prefix;
     public int push_timeout;
     public String receipt;
@@ -182,7 +183,7 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
                     }
                 };
                 break;
-            case 331943703:
+            case 10475318:
                 tLRPC$auth_SentCodeType = new TLRPC$auth_SentCodeType() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -192,6 +193,7 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
                             this.nonce = abstractSerializedData2.readByteArray(z2);
                         }
                         if ((this.flags & 4) != 0) {
+                            this.play_integrity_project_id = abstractSerializedData2.readInt64(z2);
                             this.play_integrity_nonce = abstractSerializedData2.readByteArray(z2);
                         }
                         if ((this.flags & 2) != 0) {
@@ -205,7 +207,7 @@ public abstract class TLRPC$auth_SentCodeType extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(331943703);
+                        abstractSerializedData2.writeInt32(10475318);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeByteArray(this.nonce);

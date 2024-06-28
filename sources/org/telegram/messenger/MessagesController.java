@@ -825,6 +825,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private DialogFilter sortingDialogFilter;
     private LongSparseArray<SponsoredMessagesInfo> sponsoredMessages;
     public boolean starsLocked;
+    public long starsPaidPostAmountMax;
     public long starsRevenueWithdrawalMin;
     private int statusRequest;
     private int statusSettingState;
@@ -2262,6 +2263,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.canEditFactcheck = this.mainPreferences.getBoolean("canEditFactcheck", false);
         this.factcheckLengthLimit = this.mainPreferences.getInt("factcheckLengthLimit", 1024);
         this.starsRevenueWithdrawalMin = this.mainPreferences.getLong("starsRevenueWithdrawalMin", 1000L);
+        this.starsPaidPostAmountMax = this.mainPreferences.getLong("starsPaidPostAmountMax", 10000L);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {

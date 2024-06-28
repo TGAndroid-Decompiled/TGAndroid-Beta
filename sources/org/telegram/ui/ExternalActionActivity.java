@@ -115,7 +115,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         AndroidUtilities.fillStatusBarHeight(this, false);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
-        this.actionBarLayout = INavigationLayout.CC.newLayout(this);
+        this.actionBarLayout = INavigationLayout.CC.newLayout(this, false);
         DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
         this.drawerLayoutContainer = drawerLayoutContainer;
         drawerLayoutContainer.setAllowOpenDrawer(false, false);
@@ -156,7 +156,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                     ExternalActionActivity.lambda$onCreate$1(view);
                 }
             });
-            INavigationLayout newLayout = INavigationLayout.CC.newLayout(this);
+            INavigationLayout newLayout = INavigationLayout.CC.newLayout(this, false);
             this.layersActionBarLayout = newLayout;
             newLayout.setRemoveActionBarExtraHeight(true);
             this.layersActionBarLayout.setBackgroundView(frameLayout);

@@ -77,6 +77,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inspector.WindowInspector;
@@ -4265,6 +4266,17 @@ public class AndroidUtilities {
         }
     }
 
+    public static void lerpCentered(RectF rectF, RectF rectF2, float f, RectF rectF3) {
+        if (rectF3 == null) {
+            return;
+        }
+        float lerp = lerp(rectF.centerX(), rectF2.centerX(), f);
+        float lerp2 = lerp(rectF.centerY(), rectF2.centerY(), f);
+        float lerp3 = lerp(rectF.width(), rectF2.width(), Math.min(1.0f, f)) / 2.0f;
+        float lerp4 = lerp(rectF.height(), rectF2.height(), Math.min(1.0f, f)) / 2.0f;
+        rectF3.set(lerp - lerp3, lerp2 - lerp4, lerp + lerp3, lerp2 + lerp4);
+    }
+
     public static void lerp(int[] iArr, int[] iArr2, float f, int[] iArr3) {
         if (iArr3 == null) {
             return;
@@ -5327,5 +5339,47 @@ public class AndroidUtilities {
             } catch (Exception unused) {
             }
         }
+    }
+
+    public static void applySpring(Animator animator, float f, float f2) {
+        applySpring(animator, f, f2, 1.0f);
+    }
+
+    public static void applySpring(Animator animator, float f, float f2, float f3) {
+        double d = f2;
+        double d2 = f * f3;
+        double sqrt = Math.sqrt(d2) * 2.0d;
+        Double.isNaN(d);
+        final double d3 = d / sqrt;
+        double d4 = f / f3;
+        final double sqrt2 = Math.sqrt(d4);
+        double sqrt3 = Math.sqrt(d4);
+        double sqrt4 = Math.sqrt(d2) * 2.0d;
+        Double.isNaN(d);
+        animator.setDuration((long) ((Math.log(0.0025d) / ((-(d / sqrt4)) * sqrt3)) * 1000.0d));
+        animator.setInterpolator(new Interpolator() {
+            @Override
+            public float getInterpolation(float f4) {
+                double exp;
+                double d5 = d3;
+                if (d5 < 1.0d) {
+                    double sqrt5 = sqrt2 * Math.sqrt(1.0d - (d5 * d5));
+                    double d6 = (-d3) * sqrt2;
+                    double d7 = f4;
+                    Double.isNaN(d7);
+                    double exp2 = Math.exp(d6 * d7);
+                    Double.isNaN(d7);
+                    double d8 = d7 * sqrt5;
+                    exp = 1.0d - (exp2 * (Math.cos(d8) + (((d3 * sqrt2) / sqrt5) * Math.sin(d8))));
+                } else {
+                    double d9 = (-d5) * sqrt2;
+                    double d10 = f4;
+                    Double.isNaN(d10);
+                    double d11 = d9 * d10;
+                    exp = 1.0d - ((d11 + 1.0d) * Math.exp(d11));
+                }
+                return (float) exp;
+            }
+        });
     }
 }

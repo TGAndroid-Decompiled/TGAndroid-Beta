@@ -376,7 +376,7 @@ public class ImageLocation {
     }
 
     public static String getStrippedKey(Object obj, Object obj2, Object obj3) {
-        if (obj instanceof TLRPC$WebPage) {
+        if ((obj instanceof TLRPC$WebPage) || ((obj instanceof MessageObject) && ((MessageObject) obj).type == 29)) {
             if (obj2 instanceof ImageLocation) {
                 ImageLocation imageLocation = (ImageLocation) obj2;
                 Object obj4 = imageLocation.document;
@@ -419,10 +419,13 @@ public class ImageLocation {
         }
         TLRPC$PhotoSize tLRPC$PhotoSize = this.photoSize;
         if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) || (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize)) {
-            if (tLRPC$PhotoSize.bytes.length > 0) {
-                return getStrippedKey(obj, obj2, tLRPC$PhotoSize);
+            if (tLRPC$PhotoSize.bytes.length <= 0) {
+                return null;
             }
-            return null;
+            if (obj2 == null) {
+                obj2 = this;
+            }
+            return getStrippedKey(obj, obj2, tLRPC$PhotoSize);
         }
         if (this.location != null) {
             return this.location.volume_id + "_" + this.location.local_id;

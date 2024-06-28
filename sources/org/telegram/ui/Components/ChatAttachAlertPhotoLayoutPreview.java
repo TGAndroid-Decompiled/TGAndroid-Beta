@@ -51,8 +51,9 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.spoilers.SpoilerEffect;
+import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAlertLayout {
     private static HashMap<MediaController.PhotoEntry, Boolean> photoRotate = new HashMap<>();
@@ -684,13 +685,16 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         public void fromPhotoArrays() {
+            for (int i = 0; i < this.groupCells.size(); i++) {
+                this.groupCells.get(i).detach();
+            }
             this.groupCells.clear();
             ArrayList arrayList = new ArrayList();
             int size = this.photosOrder.size();
-            int i = size - 1;
-            for (int i2 = 0; i2 < size; i2++) {
-                arrayList.add((MediaController.PhotoEntry) this.photosMap.get(Integer.valueOf(((Integer) this.photosOrder.get(i2)).intValue())));
-                if (i2 % 10 == 9 || i2 == i) {
+            int i2 = size - 1;
+            for (int i3 = 0; i3 < size; i3++) {
+                arrayList.add((MediaController.PhotoEntry) this.photosMap.get(Integer.valueOf(((Integer) this.photosOrder.get(i3)).intValue())));
+                if (i3 % 10 == 9 || i3 == i2) {
                     PreviewGroupCell previewGroupCell = new PreviewGroupCell();
                     previewGroupCell.setGroup(new GroupCalculator(arrayList), false);
                     this.groupCells.add(previewGroupCell);
@@ -1288,6 +1292,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         public class PreviewGroupCell {
             private Theme.MessageDrawable.PathDrawParams backgroundCacheParams;
             private float bottom;
+            private Text buttonText;
+            private Paint buttonTextBgPaint;
+            private long buttonTextPrice;
+            private RectF buttonTextRect;
             final int gap;
             private GroupCalculator group;
             private float groupHeight;
@@ -1304,6 +1312,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             private float previousGroupHeight;
             private float previousGroupWidth;
             private float right;
+            public long stars;
             private float top;
             private float width;
             public float y;
@@ -1322,8 +1331,16 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 int dp = AndroidUtilities.dp(2.0f);
                 this.gap = dp;
                 this.halfGap = dp / 2;
+                this.buttonTextRect = new RectF();
+                this.buttonTextBgPaint = new Paint(1);
                 this.messageBackground = (Theme.MessageDrawable) ChatAttachAlertPhotoLayoutPreview.this.getThemedDrawable("drawableMsgOutMedia");
                 this.backgroundCacheParams = new Theme.MessageDrawable.PathDrawParams();
+            }
+
+            public void detach() {
+                for (int i = 0; i < this.media.size(); i++) {
+                    this.media.get(i).detach();
+                }
             }
 
             public class MediaCell {
@@ -1353,7 +1370,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private Bitmap spoilerCrossfadeBitmap;
                 private Paint spoilerCrossfadePaint;
                 private float spoilerCrossfadeProgress;
-                private SpoilerEffect spoilerEffect;
+                private SpoilerEffect2 spoilerEffect;
                 private float spoilerMaxRadius;
                 private float spoilerRevealProgress;
                 private float spoilerRevealX;
@@ -1379,7 +1396,6 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.fromRoundRadiuses = null;
                     this.roundRadiuses = new RectF();
                     this.videoDurationText = null;
-                    this.spoilerEffect = new SpoilerEffect();
                     this.path = new Path();
                     this.radii = new float[8];
                     this.spoilerCrossfadeProgress = 1.0f;
@@ -1415,6 +1431,14 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.spoilerCrossfadeBitmap = createBitmap;
                     this.spoilerCrossfadeProgress = 0.0f;
                     PreviewGroupsView.this.invalidate();
+                }
+
+                public void detach() {
+                    SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
+                    if (spoilerEffect2 != null) {
+                        spoilerEffect2.detach(PreviewGroupsView.this);
+                        this.spoilerEffect = null;
+                    }
                 }
 
                 public void setImage(final MediaController.PhotoEntry photoEntry) {
@@ -1781,27 +1805,30 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 this.groupWidth = groupCalculator.width / 1000.0f;
                 this.groupHeight = groupCalculator.height;
                 this.lastMediaUpdate = z ? elapsedRealtime : 0L;
+                this.stars = 0L;
                 ArrayList arrayList = new ArrayList(groupCalculator.positions.keySet());
                 int size = arrayList.size();
                 int i = 0;
+                int i2 = 0;
                 while (true) {
-                    if (i >= size) {
+                    if (i2 >= size) {
                         break;
                     }
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(i);
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(i2);
                     MessageObject.GroupedMessagePosition groupedMessagePosition = groupCalculator.positions.get(photoEntry);
+                    this.stars = Math.max(this.stars, photoEntry.starsAmount);
                     int size2 = this.media.size();
-                    int i2 = 0;
+                    int i3 = 0;
                     while (true) {
-                        if (i2 >= size2) {
+                        if (i3 >= size2) {
                             mediaCell = null;
                             break;
                         }
-                        mediaCell = this.media.get(i2);
+                        mediaCell = this.media.get(i3);
                         if (mediaCell.photoEntry == photoEntry) {
                             break;
                         } else {
-                            i2++;
+                            i3++;
                         }
                     }
                     if (mediaCell != null) {
@@ -1812,21 +1839,21 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         mediaCell2.layout(groupCalculator, groupedMessagePosition, z);
                         this.media.add(mediaCell2);
                     }
-                    i++;
+                    i2++;
                 }
                 int size3 = this.media.size();
-                int i3 = 0;
-                while (i3 < size3) {
-                    MediaCell mediaCell3 = this.media.get(i3);
+                while (i < size3) {
+                    MediaCell mediaCell3 = this.media.get(i);
                     if (!groupCalculator.positions.containsKey(mediaCell3.photoEntry)) {
                         if (mediaCell3.scale <= 0.0f && mediaCell3.lastUpdate + 200 <= elapsedRealtime) {
-                            this.media.remove(i3);
-                            i3--;
+                            mediaCell3.detach();
+                            this.media.remove(i);
+                            i--;
                             size3--;
                         }
                         mediaCell3.layout(null, null, z);
                     }
-                    i3++;
+                    i++;
                 }
                 PreviewGroupsView.this.invalidate();
             }
@@ -1877,7 +1904,31 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         z = true;
                     }
                 }
+                drawStarsButton(canvas);
                 return z;
+            }
+
+            public void drawStarsButton(Canvas canvas) {
+                long j = this.stars;
+                if (j <= 0) {
+                    return;
+                }
+                if (this.buttonText == null || this.buttonTextPrice != j) {
+                    this.buttonTextPrice = j;
+                    this.buttonText = new Text(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatPluralStringComma("UnlockPaidContent", (int) j), 0.7f), 14.0f, AndroidUtilities.bold());
+                }
+                float dp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
+                float dp2 = AndroidUtilities.dp(32.0f);
+                RectF rectF = this.buttonTextRect;
+                float f = this.left;
+                float f2 = this.width;
+                float f3 = this.top;
+                float f4 = this.height;
+                rectF.set(((f2 - dp) / 2.0f) + f, ((f4 - dp2) / 2.0f) + f3, f + ((f2 + dp) / 2.0f), f3 + ((f4 + dp2) / 2.0f));
+                this.buttonTextBgPaint.setColor(1610612736);
+                float f5 = dp2 / 2.0f;
+                canvas.drawRoundRect(this.buttonTextRect, f5, f5, this.buttonTextBgPaint);
+                this.buttonText.draw(canvas, ((this.left + (this.width / 2.0f)) - (dp / 2.0f)) + AndroidUtilities.dp(14.0f), this.top + (this.height / 2.0f), -1, 1.0f);
             }
         }
     }

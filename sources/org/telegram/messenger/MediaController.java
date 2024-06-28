@@ -690,7 +690,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         @Override
         public void copyFrom(MediaEditState mediaEditState) {
             super.copyFrom(mediaEditState);
-            this.hasSpoiler = (mediaEditState instanceof PhotoEntry) && ((PhotoEntry) mediaEditState).hasSpoiler;
+            boolean z = mediaEditState instanceof PhotoEntry;
+            this.hasSpoiler = z && ((PhotoEntry) mediaEditState).hasSpoiler;
+            this.starsAmount = z ? ((PhotoEntry) mediaEditState).starsAmount : 0L;
         }
 
         public PhotoEntry clone() {
@@ -699,6 +701,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             photoEntry.isMuted = this.isMuted;
             photoEntry.canDeleteAfter = this.canDeleteAfter;
             photoEntry.hasSpoiler = this.hasSpoiler;
+            photoEntry.starsAmount = this.starsAmount;
             photoEntry.isChatPreviewSpoilerRevealed = this.isChatPreviewSpoilerRevealed;
             photoEntry.isAttachSpoilerRevealed = this.isAttachSpoilerRevealed;
             photoEntry.emojiMarkup = this.emojiMarkup;
@@ -720,6 +723,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 this.filterPath = null;
             }
             this.hasSpoiler = false;
+            this.starsAmount = 0L;
             super.reset();
         }
 

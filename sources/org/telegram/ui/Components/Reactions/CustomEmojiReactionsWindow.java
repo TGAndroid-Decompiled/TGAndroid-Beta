@@ -368,7 +368,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        public void lambda$new$3() {
+        protected void lambda$new$3() {
             CustomEmojiReactionsWindow.this.containerView.invalidate();
         }
     }

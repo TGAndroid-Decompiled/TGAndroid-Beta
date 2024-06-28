@@ -6,8 +6,10 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
@@ -60,9 +62,11 @@ import org.telegram.tgnet.TLRPC$TL_payments_paymentFormStars;
 import org.telegram.tgnet.TLRPC$TL_webViewResultUrl;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
@@ -72,9 +76,11 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewContainer;
 import org.telegram.ui.bots.BotWebViewMenuContainer;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
@@ -93,6 +99,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             BotWebViewMenuContainer.lambda$static$1((BotWebViewMenuContainer) obj, f);
         }
     }).setMultiplier(100.0f);
+    private int actionBarColorKey;
     ActionBarColorsAnimating actionBarColors;
     private boolean actionBarIsLight;
     private ActionBar.ActionBarMenuOnItemClick actionBarOnItemClick;
@@ -100,28 +107,35 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     private float actionBarTransitionProgress;
     private ActionBarMenuSubItem addToHomeScreenItem;
     private Paint backgroundPaint;
+    private ActionBarMenuItem botCollapseItem;
     private long botId;
     private ActionBarMenuItem botMenuItem;
     private String botUrl;
     private SpringAnimation botWebViewButtonAnimator;
     private boolean botWebViewButtonWasVisible;
+    private final Path clipPath;
     private int currentAccount;
     private Paint dimPaint;
     private boolean dismissed;
+    private boolean drawingFromOverlay;
     private Runnable globalOnDismissListener;
     private boolean ignoreLayout;
     private boolean ignoreMeasure;
     private boolean isLoaded;
     private int lineColor;
     private Paint linePaint;
+    private TLObject loadedResponse;
+    private long loadedResponseTime;
     private boolean needCloseConfirmation;
     private int overrideActionBarBackground;
     private float overrideActionBarBackgroundProgress;
     private boolean overrideBackgroundColor;
     private ChatActivityEnterView parentEnterView;
     private Runnable pollRunnable;
+    private boolean preserving;
     private ChatAttachAlertBotWebViewLayout.WebProgressView progressView;
     private long queryId;
+    private final RectF rect;
     private MessageObject savedEditMessageObject;
     private Editable savedEditText;
     private MessageObject savedReplyMessageObject;
@@ -137,6 +151,10 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         botWebViewMenuContainer.actionBarTransitionProgress = f;
         botWebViewMenuContainer.invalidate();
         botWebViewMenuContainer.invalidateActionBar();
+        ActionBarMenuItem actionBarMenuItem = botWebViewMenuContainer.botCollapseItem;
+        if (actionBarMenuItem != null) {
+            actionBarMenuItem.setAlpha(f);
+        }
     }
 
     public void lambda$new$4() {
@@ -175,11 +193,68 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
     }
 
+    public BottomSheetTabs.WebTabData saveState() {
+        this.preserving = true;
+        BottomSheetTabs.WebTabData webTabData = new BottomSheetTabs.WebTabData();
+        webTabData.actionBarColor = this.overrideBackgroundColor ? this.overrideActionBarBackground : this.actionBarColors.getColor(Theme.key_windowBackgroundWhite);
+        webTabData.actionBarColorKey = this.actionBarColorKey;
+        webTabData.overrideActionBarColor = this.overrideBackgroundColor;
+        webTabData.backgroundColor = this.backgroundPaint.getColor();
+        BotWebViewAttachedSheet.WebViewRequestProps webViewRequestProps = new BotWebViewAttachedSheet.WebViewRequestProps();
+        webTabData.props = webViewRequestProps;
+        webViewRequestProps.currentAccount = this.currentAccount;
+        long j = this.botId;
+        webViewRequestProps.botId = j;
+        webViewRequestProps.peerId = j;
+        webViewRequestProps.buttonUrl = this.botUrl;
+        webViewRequestProps.response = this.loadedResponse;
+        webViewRequestProps.responseTime = this.loadedResponseTime;
+        BotWebViewContainer botWebViewContainer = this.webViewContainer;
+        webTabData.ready = botWebViewContainer != null && botWebViewContainer.isPageLoaded();
+        BotWebViewContainer botWebViewContainer2 = this.webViewContainer;
+        webTabData.lastUrl = botWebViewContainer2 != null ? botWebViewContainer2.getUrlLoaded() : null;
+        webTabData.themeIsDark = Theme.isCurrentThemeDark();
+        BotWebViewContainer botWebViewContainer3 = this.webViewContainer;
+        BotWebViewContainer.MyWebView webView = botWebViewContainer3 == null ? null : botWebViewContainer3.getWebView();
+        if (webView != null) {
+            this.webViewContainer.preserveWebView();
+            webTabData.webView = webView;
+            BotWebViewContainer botWebViewContainer4 = this.webViewContainer;
+            webTabData.webViewProxy = botWebViewContainer4 == null ? null : botWebViewContainer4.getProxy();
+            webTabData.webViewWidth = webView.getWidth();
+            int height = webView.getHeight();
+            webTabData.webViewHeight = height;
+            int i = webTabData.webViewWidth;
+            if (i > 0 && height > 0) {
+                webTabData.previewBitmap = Bitmap.createBitmap(i, height, Bitmap.Config.RGB_565);
+                webView.draw(new Canvas(webTabData.previewBitmap));
+            }
+            webView.onPause();
+            webView.setContainers(null, null);
+        }
+        return webTabData;
+    }
+
     private void checkBotMenuItem() {
+        if (this.botCollapseItem == null) {
+            ActionBarMenu createMenu = this.parentEnterView.getParentFragment().getActionBar().createMenu();
+            ActionBarMenuItem addItem = createMenu.addItem(R.id.menu_collapse_bot, R.drawable.arrow_more);
+            this.botCollapseItem = addItem;
+            createMenu.removeView(addItem);
+            createMenu.addView(this.botCollapseItem, 0);
+            this.botCollapseItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    BotWebViewMenuContainer.this.lambda$checkBotMenuItem$5(view);
+                }
+            });
+            this.botCollapseItem.setAlpha(this.actionBarTransitionProgress);
+            this.botCollapseItem.setVisibility(8);
+        }
         if (this.botMenuItem == null) {
-            ActionBarMenuItem addItem = this.parentEnterView.getParentFragment().getActionBar().createMenu().addItem(1000, R.drawable.ic_ab_other);
-            this.botMenuItem = addItem;
-            addItem.setVisibility(8);
+            ActionBarMenuItem addItem2 = this.parentEnterView.getParentFragment().getActionBar().createMenu().addItem(1000, R.drawable.ic_ab_other);
+            this.botMenuItem = addItem2;
+            addItem2.setVisibility(8);
             this.botMenuItem.addSubItem(R.id.menu_reload_page, R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage));
             ActionBarMenuSubItem addSubItem = this.botMenuItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
             this.settingsItem = addSubItem;
@@ -194,6 +269,10 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
     }
 
+    public void lambda$checkBotMenuItem$5(View view) {
+        dismiss(true);
+    }
+
     public BotWebViewMenuContainer(Context context, final ChatActivityEnterView chatActivityEnterView) {
         super(context);
         this.dimPaint = new Paint();
@@ -206,6 +285,8 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                 BotWebViewMenuContainer.this.lambda$new$4();
             }
         };
+        this.rect = new RectF();
+        this.clipPath = new Path();
         ActionBarColorsAnimating actionBarColorsAnimating = new ActionBarColorsAnimating();
         this.actionBarColors = actionBarColorsAnimating;
         actionBarColorsAnimating.setTo(0, null);
@@ -245,20 +326,20 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         webViewSwipeContainer.setScrollListener(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewMenuContainer.this.lambda$new$5(actionBar);
+                BotWebViewMenuContainer.this.lambda$new$6(actionBar);
             }
         });
         this.swipeContainer.setScrollEndListener(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewMenuContainer.this.lambda$new$6();
+                BotWebViewMenuContainer.this.lambda$new$7();
             }
         });
         this.swipeContainer.addView(this.webViewContainer);
         this.swipeContainer.setDelegate(new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.Delegate() {
             @Override
             public final void onDismiss() {
-                BotWebViewMenuContainer.this.lambda$new$7();
+                BotWebViewMenuContainer.this.lambda$new$8();
             }
         });
         this.swipeContainer.setTopActionBarOffsetY((ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(24.0f));
@@ -266,9 +347,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         this.swipeContainer.setIsKeyboardVisible(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                Boolean lambda$new$8;
-                lambda$new$8 = BotWebViewMenuContainer.lambda$new$8(ChatActivityEnterView.this, (Void) obj);
-                return lambda$new$8;
+                Boolean lambda$new$9;
+                lambda$new$9 = BotWebViewMenuContainer.lambda$new$9(ChatActivityEnterView.this, (Void) obj);
+                return lambda$new$9;
             }
         });
         addView(this.swipeContainer, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 24.0f, 0.0f, 0.0f));
@@ -278,7 +359,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         this.webViewContainer.setWebViewProgressListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                BotWebViewMenuContainer.this.lambda$new$10((Float) obj);
+                BotWebViewMenuContainer.this.lambda$new$11((Float) obj);
             }
         });
         setWillNotDraw(false);
@@ -314,24 +395,25 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
 
         @Override
-        public void onWebAppSetActionBarColor(final int i, boolean z) {
-            final int i2 = BotWebViewMenuContainer.this.overrideActionBarBackground;
+        public void onWebAppSetActionBarColor(int i, final int i2, boolean z) {
+            final int i3 = BotWebViewMenuContainer.this.overrideActionBarBackground;
+            BotWebViewMenuContainer.this.actionBarColorKey = i;
             BotWebViewMenuContainer.this.actionBarColors = new ActionBarColorsAnimating();
             BotWebViewMenuContainer botWebViewMenuContainer = BotWebViewMenuContainer.this;
-            botWebViewMenuContainer.actionBarColors.setFrom(botWebViewMenuContainer.overrideBackgroundColor ? i2 : 0, null);
+            botWebViewMenuContainer.actionBarColors.setFrom(botWebViewMenuContainer.overrideBackgroundColor ? i3 : 0, null);
             BotWebViewMenuContainer.this.overrideBackgroundColor = z;
-            BotWebViewMenuContainer.this.actionBarIsLight = ColorUtils.calculateLuminance(i) < 0.5d;
+            BotWebViewMenuContainer.this.actionBarIsLight = ColorUtils.calculateLuminance(i2) < 0.5d;
             BotWebViewMenuContainer botWebViewMenuContainer2 = BotWebViewMenuContainer.this;
-            botWebViewMenuContainer2.actionBarColors.setTo(botWebViewMenuContainer2.overrideBackgroundColor ? i : 0, null);
-            if (i2 == 0) {
-                BotWebViewMenuContainer.this.overrideActionBarBackground = i;
+            botWebViewMenuContainer2.actionBarColors.setTo(botWebViewMenuContainer2.overrideBackgroundColor ? i2 : 0, null);
+            if (i3 == 0) {
+                BotWebViewMenuContainer.this.overrideActionBarBackground = i2;
             }
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewMenuContainer.AnonymousClass2.this.lambda$onWebAppSetActionBarColor$0(i2, i, valueAnimator);
+                    BotWebViewMenuContainer.AnonymousClass2.this.lambda$onWebAppSetActionBarColor$0(i3, i2, valueAnimator);
                 }
             });
             duration.start();
@@ -429,7 +511,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             if (tLObject instanceof TLRPC$TL_payments_paymentFormStars) {
                 final AlertDialog alertDialog = new AlertDialog(BotWebViewMenuContainer.this.getContext(), 3);
                 alertDialog.showDelayed(150L);
-                StarsController.getInstance(BotWebViewMenuContainer.this.currentAccount).openPaymentForm(tLRPC$InputInvoice, (TLRPC$TL_payments_paymentFormStars) tLObject, new Runnable() {
+                StarsController.getInstance(BotWebViewMenuContainer.this.currentAccount).openPaymentForm(null, tLRPC$InputInvoice, (TLRPC$TL_payments_paymentFormStars) tLObject, new Runnable() {
                     @Override
                     public final void run() {
                         AlertDialog.this.dismiss();
@@ -511,7 +593,8 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
     }
 
-    public void lambda$new$5(ActionBar actionBar) {
+    public void lambda$new$6(ActionBar actionBar) {
+        float f = 0.0f;
         if (this.swipeContainer.getSwipeOffsetY() > 0.0f) {
             this.dimPaint.setAlpha((int) ((1.0f - (Math.min(this.swipeContainer.getSwipeOffsetY(), this.swipeContainer.getHeight()) / this.swipeContainer.getHeight())) * 64.0f));
         } else {
@@ -520,12 +603,23 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         invalidate();
         this.webViewContainer.invalidateViewPortHeight();
         if (this.springAnimation != null) {
-            float f = ((getVisibility() == 0 ? 1.0f - (Math.min(this.swipeContainer.getTopActionBarOffsetY(), this.swipeContainer.getTranslationY() - this.swipeContainer.getTopActionBarOffsetY()) / this.swipeContainer.getTopActionBarOffsetY()) : 0.0f) > 0.5f ? 1 : 0) * 100.0f;
-            if (this.springAnimation.getSpring().getFinalPosition() != f) {
-                this.springAnimation.getSpring().setFinalPosition(f);
+            float min = 1.0f - (Math.min(this.swipeContainer.getTopActionBarOffsetY(), this.swipeContainer.getTranslationY() - this.swipeContainer.getTopActionBarOffsetY()) / this.swipeContainer.getTopActionBarOffsetY());
+            if (getVisibility() == 0 && !this.preserving) {
+                f = min;
+            }
+            float f2 = (f > 0.5f ? 1 : 0) * 100.0f;
+            if (this.springAnimation.getSpring().getFinalPosition() != f2) {
+                this.springAnimation.getSpring().setFinalPosition(f2);
+                if (f2 == 100.0f) {
+                    checkBotMenuItem();
+                    ActionBarMenuItem actionBarMenuItem = this.botCollapseItem;
+                    if (actionBarMenuItem != null) {
+                        actionBarMenuItem.setVisibility(0);
+                    }
+                }
                 this.springAnimation.start();
                 if (!this.webViewContainer.isBackButtonVisible()) {
-                    if (f == 100.0f) {
+                    if (f2 == 100.0f) {
                         AndroidUtilities.updateImageViewImageAnimated(actionBar.getBackButton(), R.drawable.ic_close_white);
                     } else {
                         AndroidUtilities.updateImageViewImageAnimated(actionBar.getBackButton(), actionBar.getBackButtonDrawable());
@@ -536,22 +630,19 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         System.currentTimeMillis();
     }
 
-    public void lambda$new$6() {
+    public void lambda$new$7() {
         this.webViewContainer.invalidateViewPortHeight(true);
     }
 
-    public void lambda$new$7() {
-        if (onCheckDismissByUser()) {
-            return;
-        }
-        this.swipeContainer.stickTo(0.0f);
+    public void lambda$new$8() {
+        dismiss(true, null);
     }
 
-    public static Boolean lambda$new$8(ChatActivityEnterView chatActivityEnterView, Void r1) {
+    public static Boolean lambda$new$9(ChatActivityEnterView chatActivityEnterView, Void r1) {
         return Boolean.valueOf(chatActivityEnterView.getSizeNotifierLayout().getKeyboardHeight() >= AndroidUtilities.dp(20.0f));
     }
 
-    public void lambda$new$10(Float f) {
+    public void lambda$new$11(Float f) {
         this.progressView.setLoadProgressAnimated(f.floatValue());
         if (f.floatValue() == 1.0f) {
             ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
@@ -559,7 +650,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewMenuContainer.this.lambda$new$9(valueAnimator);
+                    BotWebViewMenuContainer.this.lambda$new$10(valueAnimator);
                 }
             });
             duration.addListener(new AnimatorListenerAdapter() {
@@ -572,7 +663,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
     }
 
-    public void lambda$new$9(ValueAnimator valueAnimator) {
+    public void lambda$new$10(ValueAnimator valueAnimator) {
         this.progressView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -615,7 +706,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         if (getVisibility() != 0) {
             return false;
         }
-        onCheckDismissByUser();
+        dismiss(true);
         return true;
     }
 
@@ -625,7 +716,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    BotWebViewMenuContainer.this.lambda$onCheckDismissByUser$11(dialogInterface, i);
+                    BotWebViewMenuContainer.this.lambda$onCheckDismissByUser$12(dialogInterface, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
@@ -636,7 +727,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         return true;
     }
 
-    public void lambda$onCheckDismissByUser$11(DialogInterface dialogInterface, int i) {
+    public void lambda$onCheckDismissByUser$12(DialogInterface dialogInterface, int i) {
         dismiss();
     }
 
@@ -655,12 +746,12 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         SpringAnimation addEndListener = new SpringAnimation(botWebViewButton, simpleFloatPropertyCompat).setSpring(new SpringForce((z ? 1.0f : 0.0f) * simpleFloatPropertyCompat.getMultiplier()).setStiffness(z ? 600.0f : 750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                BotWebViewMenuContainer.this.lambda$animateBotButton$12(dynamicAnimation, f, f2);
+                BotWebViewMenuContainer.this.lambda$animateBotButton$13(dynamicAnimation, f, f2);
             }
         }).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                BotWebViewMenuContainer.this.lambda$animateBotButton$13(z, botWebViewButton, dynamicAnimation, z2, f, f2);
+                BotWebViewMenuContainer.this.lambda$animateBotButton$14(z, botWebViewButton, dynamicAnimation, z2, f, f2);
             }
         });
         this.botWebViewButtonAnimator = addEndListener;
@@ -668,13 +759,13 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         this.botWebViewButtonWasVisible = z;
     }
 
-    public void lambda$animateBotButton$12(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public void lambda$animateBotButton$13(DynamicAnimation dynamicAnimation, float f, float f2) {
         float multiplier = f / ChatActivityBotWebViewButton.PROGRESS_PROPERTY.getMultiplier();
         this.parentEnterView.setBotWebViewButtonOffsetX(AndroidUtilities.dp(64.0f) * multiplier);
         this.parentEnterView.setComposeShadowAlpha(1.0f - multiplier);
     }
 
-    public void lambda$animateBotButton$13(boolean z, ChatActivityBotWebViewButton chatActivityBotWebViewButton, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+    public void lambda$animateBotButton$14(boolean z, ChatActivityBotWebViewButton chatActivityBotWebViewButton, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
         if (!z) {
             chatActivityBotWebViewButton.setVisibility(8);
         }
@@ -690,7 +781,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             this.springAnimation = new SpringAnimation(this, ACTION_BAR_TRANSITION_PROGRESS_VALUE).setSpring(new SpringForce().setStiffness(1200.0f).setDampingRatio(1.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                    BotWebViewMenuContainer.this.lambda$onAttachedToWindow$14(dynamicAnimation, z, f, f2);
+                    BotWebViewMenuContainer.this.lambda$onAttachedToWindow$15(dynamicAnimation, z, f, f2);
                 }
             });
         }
@@ -698,7 +789,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
     }
 
-    public void lambda$onAttachedToWindow$14(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public void lambda$onAttachedToWindow$15(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         ChatActivity parentFragment = this.parentEnterView.getParentFragment();
         ChatAvatarContainer avatarContainer = parentFragment.getAvatarContainer();
         avatarContainer.setClickable(f == 0.0f);
@@ -708,6 +799,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             parentFragment.showHeaderItem(false);
             checkBotMenuItem();
             this.botMenuItem.setVisibility(0);
+            this.botCollapseItem.setVisibility(0);
             actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
                 @Override
                 public void onItemClick(int i) {
@@ -747,6 +839,10 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         ActionBarMenuItem actionBarMenuItem = this.botMenuItem;
         if (actionBarMenuItem != null) {
             actionBarMenuItem.setVisibility(8);
+        }
+        ActionBarMenuItem actionBarMenuItem2 = this.botCollapseItem;
+        if (actionBarMenuItem2 != null) {
+            actionBarMenuItem2.setVisibility(8);
         }
         actionBar.setActionBarMenuOnItemClick(this.actionBarOnItemClick);
     }
@@ -803,7 +899,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                 this.webViewScrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        BotWebViewMenuContainer.this.lambda$onPanTransitionStart$15(valueAnimator2);
+                        BotWebViewMenuContainer.this.lambda$onPanTransitionStart$16(valueAnimator2);
                     }
                 });
                 this.webViewScrollAnimator.addListener(new AnimatorListenerAdapter() {
@@ -822,7 +918,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
     }
 
-    public void lambda$onPanTransitionStart$15(ValueAnimator valueAnimator) {
+    public void lambda$onPanTransitionStart$16(ValueAnimator valueAnimator) {
         int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         if (this.webViewContainer.getWebView() != null) {
             this.webViewContainer.getWebView().setScrollY(intValue);
@@ -835,7 +931,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     }
 
     private void updateLightStatusBar() {
-        boolean z = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d && this.actionBarTransitionProgress >= 0.85f;
+        boolean z = ColorUtils.calculateLuminance(this.backgroundPaint.getColor()) >= 0.9d && this.actionBarTransitionProgress >= 0.85f;
         Boolean bool = this.wasLightStatusBar;
         if (bool == null || bool.booleanValue() != z) {
             this.wasLightStatusBar = Boolean.valueOf(z);
@@ -848,6 +944,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (this.drawingFromOverlay) {
+            return;
+        }
         super.onDraw(canvas);
         if (!this.overrideBackgroundColor) {
             this.backgroundPaint.setColor(getColor(Theme.key_windowBackgroundWhite));
@@ -869,7 +968,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     @SuppressLint({"ClickableViewAccessibility"})
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0 && motionEvent.getY() <= AndroidUtilities.lerp(this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f), 0.0f, this.actionBarTransitionProgress)) {
-            onCheckDismissByUser();
+            dismiss(true);
             return true;
         }
         return super.onTouchEvent(motionEvent);
@@ -877,6 +976,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
 
     @Override
     public void draw(Canvas canvas) {
+        if (this.drawingFromOverlay) {
+            return;
+        }
         super.draw(canvas);
         int color = this.actionBarColors.getColor(Theme.key_sheet_scrollUp);
         this.lineColor = color;
@@ -915,6 +1017,8 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             parentFragment.getOrCreateWebBotTitleView().setText(parentFragment.getCurrentUser().first_name);
         }
         if (!this.isLoaded) {
+            this.overrideBackgroundColor = false;
+            this.backgroundPaint.setColor(getColor(Theme.key_windowBackgroundWhite));
             loadWebView();
         }
         setVisibility(0);
@@ -969,23 +1073,25 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestWebView, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BotWebViewMenuContainer.this.lambda$loadWebView$17(tLObject, tLRPC$TL_error);
+                BotWebViewMenuContainer.this.lambda$loadWebView$18(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadWebView$17(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadWebView$18(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewMenuContainer.this.lambda$loadWebView$16(tLObject);
+                BotWebViewMenuContainer.this.lambda$loadWebView$17(tLObject);
             }
         });
     }
 
-    public void lambda$loadWebView$16(TLObject tLObject) {
+    public void lambda$loadWebView$17(TLObject tLObject) {
         if (tLObject instanceof TLRPC$TL_webViewResultUrl) {
             this.isLoaded = true;
+            this.loadedResponse = tLObject;
+            this.loadedResponseTime = System.currentTimeMillis();
             TLRPC$TL_webViewResultUrl tLRPC$TL_webViewResultUrl = (TLRPC$TL_webViewResultUrl) tLObject;
             this.queryId = tLRPC$TL_webViewResultUrl.query_id;
             this.webViewContainer.loadUrl(this.currentAccount, tLRPC$TL_webViewResultUrl.url);
@@ -1003,23 +1109,49 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     }
 
     public void dismiss() {
-        dismiss(null);
+        dismiss(false, null);
     }
 
-    public void dismiss(final Runnable runnable) {
+    public void dismiss(Runnable runnable) {
+        dismiss(false, runnable);
+    }
+
+    public void dismiss(boolean z) {
+        dismiss(z, null);
+    }
+
+    public void dismiss(boolean z, final Runnable runnable) {
+        ActionBar actionBar;
+        LaunchActivity launchActivity;
         if (this.dismissed) {
             return;
         }
         this.dismissed = true;
-        this.swipeContainer.stickTo(r0.getHeight() + this.parentEnterView.getSizeNotifierLayout().measureKeyboardHeight(), new Runnable() {
+        if (z && ((launchActivity = LaunchActivity.instance) == null || launchActivity.getBottomSheetTabsOverlay() == null)) {
+            z = false;
+        }
+        if (z) {
+            SpringAnimation springAnimation = this.springAnimation;
+            if (springAnimation != null) {
+                springAnimation.getSpring().setFinalPosition(0.0f);
+                this.springAnimation.start();
+            }
+            ChatActivity parentFragment = this.parentEnterView.getParentFragment();
+            if (parentFragment != null && (actionBar = parentFragment.getActionBar()) != null) {
+                AndroidUtilities.updateImageViewImageAnimated(actionBar.getBackButton(), actionBar.getBackButtonDrawable());
+            }
+            LaunchActivity.instance.getBottomSheetTabsOverlay().dismissSheet(this);
+            return;
+        }
+        this.swipeContainer.stickTo(r3.getHeight() + this.parentEnterView.getSizeNotifierLayout().measureKeyboardHeight(), new Runnable() {
             @Override
             public final void run() {
-                BotWebViewMenuContainer.this.lambda$dismiss$18(runnable);
+                BotWebViewMenuContainer.this.lambda$dismiss$19(runnable);
             }
         });
     }
 
-    public void lambda$dismiss$18(Runnable runnable) {
+    public void lambda$dismiss$19(Runnable runnable) {
         onDismiss();
         if (runnable != null) {
             runnable.run();
@@ -1031,6 +1163,16 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     }
 
     public void onDismiss() {
+        ChatActivityEnterView chatActivityEnterView = this.parentEnterView;
+        final ChatActivity parentFragment = chatActivityEnterView == null ? null : chatActivityEnterView.getParentFragment();
+        ActionBarMenuItem actionBarMenuItem = this.botMenuItem;
+        if (actionBarMenuItem != null) {
+            actionBarMenuItem.setVisibility(8);
+        }
+        ActionBarMenuItem actionBarMenuItem2 = this.botCollapseItem;
+        if (actionBarMenuItem2 != null) {
+            actionBarMenuItem2.setVisibility(8);
+        }
         setVisibility(8);
         this.needCloseConfirmation = false;
         this.overrideActionBarBackground = 0;
@@ -1051,7 +1193,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         this.webViewContainer.setWebViewProgressListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                BotWebViewMenuContainer.this.lambda$onDismiss$20((Float) obj);
+                BotWebViewMenuContainer.this.lambda$onDismiss$21((Float) obj);
             }
         });
         this.swipeContainer.addView(this.webViewContainer);
@@ -1065,12 +1207,13 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewMenuContainer.this.lambda$onDismiss$21();
+                BotWebViewMenuContainer.this.lambda$onDismiss$22(parentFragment);
             }
         }, z ? 200L : 0L);
+        this.preserving = false;
     }
 
-    public void lambda$onDismiss$20(Float f) {
+    public void lambda$onDismiss$21(Float f) {
         this.progressView.setLoadProgressAnimated(f.floatValue());
         if (f.floatValue() == 1.0f) {
             ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
@@ -1078,7 +1221,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewMenuContainer.this.lambda$onDismiss$19(valueAnimator);
+                    BotWebViewMenuContainer.this.lambda$onDismiss$20(valueAnimator);
                 }
             });
             duration.addListener(new AnimatorListenerAdapter() {
@@ -1091,26 +1234,26 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
     }
 
-    public void lambda$onDismiss$19(ValueAnimator valueAnimator) {
+    public void lambda$onDismiss$20(ValueAnimator valueAnimator) {
         this.progressView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void lambda$onDismiss$21() {
+    public void lambda$onDismiss$22(ChatActivity chatActivity) {
         if (this.savedEditText != null && this.parentEnterView.getEditField() != null) {
             this.parentEnterView.getEditField().setText(this.savedEditText);
             this.savedEditText = null;
         }
-        if (this.savedReplyMessageObject != null) {
-            ChatActivity parentFragment = this.parentEnterView.getParentFragment();
-            if (parentFragment != null) {
-                parentFragment.showFieldPanelForReply(this.savedReplyMessageObject);
+        MessageObject messageObject = this.savedReplyMessageObject;
+        if (messageObject != null) {
+            if (chatActivity != null) {
+                chatActivity.showFieldPanelForReply(messageObject);
             }
             this.savedReplyMessageObject = null;
         }
-        if (this.savedEditMessageObject != null) {
-            ChatActivity parentFragment2 = this.parentEnterView.getParentFragment();
-            if (parentFragment2 != null) {
-                parentFragment2.showFieldPanelForEdit(true, this.savedEditMessageObject);
+        MessageObject messageObject2 = this.savedEditMessageObject;
+        if (messageObject2 != null) {
+            if (chatActivity != null) {
+                chatActivity.showFieldPanelForEdit(true, messageObject2);
             }
             this.savedEditMessageObject = null;
         }
@@ -1211,5 +1354,39 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             actionBar.setPopupItemsColor(getColor(Theme.key_actionBarDefaultSubmenuItemIcon), true, false);
             actionBar.setPopupItemsSelectorColor(getColor(Theme.key_dialogButtonSelector), false);
         }
+    }
+
+    public void setDrawingFromOverlay(boolean z) {
+        if (this.drawingFromOverlay != z) {
+            this.drawingFromOverlay = z;
+            invalidate();
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        if (this.drawingFromOverlay) {
+            return;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    public float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2) {
+        this.rect.set(this.swipeContainer.getLeft(), this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f), this.swipeContainer.getRight(), getHeight());
+        AndroidUtilities.lerpCentered(this.rect, rectF, f, rectF2);
+        canvas.save();
+        this.clipPath.rewind();
+        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(16.0f) * (AndroidUtilities.isTablet() ? 1.0f : 1.0f - this.actionBarTransitionProgress), AndroidUtilities.dp(10.0f), f);
+        this.clipPath.addRoundRect(rectF2, lerp, lerp, Path.Direction.CW);
+        canvas.clipPath(this.clipPath);
+        canvas.drawPaint(this.backgroundPaint);
+        if (this.swipeContainer != null) {
+            canvas.saveLayerAlpha(rectF2, (int) ((1.0f - f) * 255.0f), 31);
+            canvas.translate(this.swipeContainer.getX(), Math.max(this.swipeContainer.getY(), rectF2.top) + (f * AndroidUtilities.dp(51.0f)));
+            this.swipeContainer.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
+        return lerp;
     }
 }

@@ -55,6 +55,7 @@ public class SharedConfig {
     public static int autoLockIn = 0;
     public static int badPasscodeTries = 0;
     public static boolean bigCameraForRound = false;
+    public static boolean botTabs3DEffect = false;
     public static int bubbleRadius = 0;
     public static int callEncryptionHintDisplayedCount = 0;
     public static boolean chatBubbles = false;
@@ -884,6 +885,13 @@ public class SharedConfig {
         callEncryptionHintDisplayedCount += i;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putInt("callEncryptionHintDisplayedCount", callEncryptionHintDisplayedCount);
+        edit.apply();
+    }
+
+    public static void setBotTabs3DEffect(boolean z) {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        botTabs3DEffect = z;
+        edit.putBoolean("botTabs3DEffect", z);
         edit.apply();
     }
 

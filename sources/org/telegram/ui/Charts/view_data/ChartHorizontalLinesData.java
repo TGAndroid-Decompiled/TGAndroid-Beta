@@ -33,12 +33,12 @@ public class ChartHorizontalLinesData {
                 return AndroidUtilities.formatWholeNumber((int) j, 0);
             }
             if (i == 1) {
-                return "~" + BillingController.getInstance().formatCurrency(j, "USD");
+                return "≈" + BillingController.getInstance().formatCurrency(j, "USD");
             }
             return StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(j, ' '), 0.65f);
         }
         if (i == 1) {
-            return "~" + BillingController.getInstance().formatCurrency(j, "USD");
+            return "≈" + BillingController.getInstance().formatCurrency(j, "USD");
         }
         if (this.formatterTON == null) {
             DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);

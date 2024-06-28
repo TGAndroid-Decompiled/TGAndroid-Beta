@@ -273,7 +273,7 @@ public class PhotoCropActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    PhotoCropActivity.this.lambda$onBackPressed$303();
+                    PhotoCropActivity.this.lambda$onBackPressed$305();
                     return;
                 }
                 if (i == 1) {
@@ -285,7 +285,7 @@ public class PhotoCropActivity extends BaseFragment {
                         PhotoCropActivity.this.delegate.didFinishEdit(bitmap);
                         PhotoCropActivity.this.doneButtonPressed = true;
                     }
-                    PhotoCropActivity.this.lambda$onBackPressed$303();
+                    PhotoCropActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

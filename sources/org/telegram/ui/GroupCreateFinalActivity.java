@@ -304,7 +304,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    GroupCreateFinalActivity.this.lambda$onBackPressed$303();
+                    GroupCreateFinalActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

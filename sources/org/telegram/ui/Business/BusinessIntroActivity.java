@@ -244,7 +244,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (BusinessIntroActivity.this.onBackPressed()) {
-                        BusinessIntroActivity.this.lambda$onBackPressed$303();
+                        BusinessIntroActivity.this.lambda$onBackPressed$305();
                     }
                 } else if (i2 == 1) {
                     BusinessIntroActivity.this.processDone();
@@ -555,7 +555,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             if (this.inputSticker != null) {
                 getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
             }
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
         }
     }
 
@@ -588,7 +588,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     public void lambda$onBackPressed$6(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
     }
 
     public void openCustomStickerEditor() {

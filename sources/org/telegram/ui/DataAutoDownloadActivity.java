@@ -121,7 +121,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    DataAutoDownloadActivity.this.lambda$onBackPressed$303();
+                    DataAutoDownloadActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

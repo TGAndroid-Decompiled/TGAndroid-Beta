@@ -526,7 +526,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.sizedp = (int) (((Math.abs(Theme.chat_msgTextPaint.ascent()) + Math.abs(Theme.chat_msgTextPaint.descent())) * 1.15f) / AndroidUtilities.density);
             return;
         }
-        if (i == 1 || i == 4 || i == 19 || i == 20 || i == 21) {
+        if (i == 1 || i == 4 || i == 19 || i == 20) {
             this.sizedp = (int) (((Math.abs(Theme.chat_msgTextPaintEmoji[2].ascent()) + Math.abs(Theme.chat_msgTextPaintEmoji[2].descent())) * 1.15f) / AndroidUtilities.density);
             return;
         }
@@ -540,6 +540,10 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
         if (i == 11 || i == 22) {
             this.sizedp = 56;
+            return;
+        }
+        if (i == 24) {
+            this.sizedp = 140;
         } else if (i == 23) {
             this.sizedp = 14;
         } else {

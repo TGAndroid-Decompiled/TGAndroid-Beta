@@ -336,7 +336,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 182, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 183, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -1692,29 +1692,34 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void onIntegrityCheckClassic(final int i, final int i2, final String str) {
+    public static void onIntegrityCheckClassic(final int i, final int i2, final String str, final String str2) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, str, i2);
+                ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, str, str2, i2);
             }
         });
     }
 
-    public static void lambda$onIntegrityCheckClassic$22(final int i, final String str, final int i2) {
+    public static void lambda$onIntegrityCheckClassic$22(final int i, String str, final String str2, final int i2) {
         final long currentTimeMillis = System.currentTimeMillis();
-        FileLog.d("account" + i + ": server requests integrity classic check with nonce = " + str);
-        IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str).setCloudProjectNumber(760348033671L).build()).addOnSuccessListener(new OnSuccessListener() {
-            @Override
-            public final void onSuccess(Object obj) {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$20(i, currentTimeMillis, i2, str, (IntegrityTokenResponse) obj);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public final void onFailure(Exception exc) {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$21(i, currentTimeMillis, i2, str, exc);
-            }
-        });
+        FileLog.d("account" + i + ": server requests integrity classic check with project = " + str + " nonce = " + str2);
+        try {
+            IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public final void onSuccess(Object obj) {
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$20(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public final void onFailure(Exception exc) {
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$21(i, currentTimeMillis, i2, str2, exc);
+                }
+            });
+        } catch (Exception unused) {
+            FileLog.d("account" + i + ": integrity check failes to parse project id");
+            native_receivedIntegrityCheckClassic(i, i2, str2, "PLAYINTEGRITY_FAILED_EXCEPTION_NOPROJECT");
+        }
     }
 
     public static void lambda$onIntegrityCheckClassic$20(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {

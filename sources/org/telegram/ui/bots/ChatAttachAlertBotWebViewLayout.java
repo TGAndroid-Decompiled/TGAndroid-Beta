@@ -41,6 +41,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -1050,10 +1051,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         }
 
         public void stickTo(float f) {
-            stickTo(f, null);
+            stickTo(f, null, null);
         }
 
-        public void stickTo(float f, final Runnable runnable) {
+        public void stickTo(float f, Runnable runnable) {
+            stickTo(f, null, runnable);
+        }
+
+        public void stickTo(float f, Utilities.Callback<Float> callback, final Runnable runnable) {
             SpringAnimation springAnimation;
             if (this.swipeOffsetY == f || ((springAnimation = this.scrollAnimator) != null && springAnimation.getSpring().getFinalPosition() == f)) {
                 if (runnable != null) {

@@ -251,6 +251,10 @@ public class SessionCell extends FrameLayout {
                 i2 = R.drawable.filled_star_plus;
                 i3 = Theme.key_color_yellow;
                 i4 = Theme.key_color_orange;
+            } else if (lowerCase.contains("ads")) {
+                i2 = R.drawable.msg_channel;
+                i3 = Theme.key_avatar_backgroundPink;
+                i4 = Theme.key_avatar_background2Pink;
             } else if (lowerCase.equals("?")) {
                 i2 = R.drawable.msg_emoji_question;
             } else if (tLRPC$TL_authorization.app_name.toLowerCase().contains("desktop")) {

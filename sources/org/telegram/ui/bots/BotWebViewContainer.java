@@ -11,12 +11,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Message;
 import android.text.TextUtils;
@@ -28,8 +30,12 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.PermissionRequest;
 import android.webkit.RenderProcessGoneDetail;
+import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -44,6 +50,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONException;
@@ -101,6 +108,7 @@ import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 
 public abstract class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final List<String> WHITELISTED_SCHEMES = Arrays.asList("http", "https");
+    private static int tags = 0;
     private BotBiometry biometry;
     private long blockedDialogsUntil;
     private TLRPC$User botUser;
@@ -131,14 +139,18 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private boolean lastExpanded;
     private String lastQrText;
     private ValueCallback<Uri[]> mFilePathCallback;
+    private String mUrl;
     private Runnable onPermissionsRequestResultCallback;
     private Activity parentActivity;
+    private boolean preserving;
     private Theme.ResourcesProvider resourcesProvider;
     private int shownDialogsCount;
-    private WebView webView;
+    private final int tag;
+    private MyWebView webView;
     private boolean webViewNotAvailable;
     private TextView webViewNotAvailableText;
     private Consumer<Float> webViewProgressListener;
+    private WebViewProxy webViewProxy;
     private WebViewScrollListener webViewScrollListener;
 
     public interface Delegate {
@@ -169,7 +181,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         void onWebAppReady();
 
-        void onWebAppSetActionBarColor(int i, boolean z);
+        void onWebAppSetActionBarColor(int i, int i2, boolean z);
 
         void onWebAppSetBackgroundColor(int i);
 
@@ -188,6 +200,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void onWebViewCreated() {
     }
 
+    static int access$808() {
+        int i = tags;
+        tags = i + 1;
+        return i;
+    }
+
     public BotWebViewContainer(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
@@ -197,14 +215,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.lastButtonText = "";
         this.lastDialogType = -1;
         this.shownDialogsCount = 0;
+        int i2 = tags;
+        tags = i2 + 1;
+        this.tag = i2;
         this.resourcesProvider = resourcesProvider;
+        d("created new webview container");
         if (context instanceof Activity) {
             this.parentActivity = (Activity) context;
         }
         cellFlickerDrawable.drawFrame = false;
         cellFlickerDrawable.setColors(i, 153, 204);
-        BackupImageView backupImageView = new BackupImageView(context) {
-            {
+        AnonymousClass1 anonymousClass1 = new BackupImageView(context) {
+            AnonymousClass1(Context context2) {
+                super(context2);
                 this.imageReceiver = new C00491(this);
             }
 
@@ -245,11 +268,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
             }
         };
-        this.flickerView = backupImageView;
-        backupImageView.setColorFilter(new PorterDuffColorFilter(getColor(Theme.key_dialogSearchHint), PorterDuff.Mode.SRC_IN));
+        this.flickerView = anonymousClass1;
+        anonymousClass1.setColorFilter(new PorterDuffColorFilter(getColor(Theme.key_dialogSearchHint), PorterDuff.Mode.SRC_IN));
         this.flickerView.getImageReceiver().setAspectFit(true);
         addView(this.flickerView, LayoutHelper.createFrame(-1, -2, 48));
-        TextView textView = new TextView(context);
+        TextView textView = new TextView(context2);
         this.webViewNotAvailableText = textView;
         textView.setText(LocaleController.getString(R.string.BotWebViewNotAvailablePlaceholder));
         this.webViewNotAvailableText.setTextColor(getColor(Theme.key_windowBackgroundWhiteGrayText));
@@ -262,6 +285,50 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         setFocusable(false);
     }
 
+    public class AnonymousClass1 extends BackupImageView {
+        AnonymousClass1(Context context2) {
+            super(context2);
+            this.imageReceiver = new C00491(this);
+        }
+
+        public class C00491 extends ImageReceiver {
+            C00491(View view) {
+                super(view);
+            }
+
+            @Override
+            public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
+                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i, z, i2);
+                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
+                duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        BotWebViewContainer.AnonymousClass1.C00491.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                    }
+                });
+                duration.start();
+                return imageBitmapByKey;
+            }
+
+            public void lambda$setImageBitmapByKey$0(ValueAnimator valueAnimator) {
+                ((BackupImageView) AnonymousClass1.this).imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                invalidate();
+            }
+        }
+
+        @Override
+        public void onDraw(Canvas canvas) {
+            if (BotWebViewContainer.this.isFlickeringCenter) {
+                super.onDraw(canvas);
+                return;
+            }
+            if (this.imageReceiver.getDrawable() != null) {
+                this.imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), r0.getIntrinsicHeight() * (getWidth() / r0.getIntrinsicWidth()));
+                this.imageReceiver.draw(canvas);
+            }
+        }
+    }
+
     public void setViewPortByMeasureSuppressed(boolean z) {
         this.isViewPortByMeasureSuppressed = z;
     }
@@ -271,7 +338,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             return;
         }
         try {
-            setupWebView();
+            setupWebView(null);
         } catch (Throwable th) {
             FileLog.e(th);
             this.flickerView.setVisibility(8);
@@ -283,72 +350,32 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
+    public void replaceWebView(MyWebView myWebView, WebViewProxy webViewProxy) {
+        setupWebView(myWebView, webViewProxy);
+    }
+
+    private void setupWebView(MyWebView myWebView) {
+        setupWebView(myWebView, null);
+    }
+
+    public WebViewProxy getProxy() {
+        return this.webViewProxy;
+    }
+
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    private void setupWebView() {
-        WebView webView = this.webView;
-        if (webView != null) {
-            webView.destroy();
+    private void setupWebView(MyWebView myWebView, WebViewProxy webViewProxy) {
+        MyWebView myWebView2 = this.webView;
+        if (myWebView2 != null) {
+            myWebView2.destroy();
             removeView(this.webView);
         }
-        WebView webView2 = new WebView(getContext()) {
-            private int prevScrollX;
-            private int prevScrollY;
-
-            @Override
-            protected void onScrollChanged(int i, int i2, int i3, int i4) {
-                super.onScrollChanged(i, i2, i3, i4);
-                if (BotWebViewContainer.this.webViewScrollListener != null) {
-                    BotWebViewContainer.this.webViewScrollListener.onWebViewScrolled(this, getScrollX() - this.prevScrollX, getScrollY() - this.prevScrollY);
-                }
-                this.prevScrollX = getScrollX();
-                this.prevScrollY = getScrollY();
-            }
-
-            @Override
-            public void setScrollX(int i) {
-                super.setScrollX(i);
-                this.prevScrollX = i;
-            }
-
-            @Override
-            public void setScrollY(int i) {
-                super.setScrollY(i);
-                this.prevScrollY = i;
-            }
-
-            @Override
-            public boolean onCheckIsTextEditor() {
-                return BotWebViewContainer.this.isFocusable();
-            }
-
-            @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-            }
-
-            @Override
-            @SuppressLint({"ClickableViewAccessibility"})
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 0) {
-                    BotWebViewContainer.this.lastClickMs = System.currentTimeMillis();
-                }
-                return super.onTouchEvent(motionEvent);
-            }
-
-            @Override
-            protected void onAttachedToWindow() {
-                AndroidUtilities.checkAndroidTheme(getContext(), true);
-                super.onAttachedToWindow();
-            }
-
-            @Override
-            protected void onDetachedFromWindow() {
-                AndroidUtilities.checkAndroidTheme(getContext(), false);
-                super.onDetachedFromWindow();
-            }
-        };
-        this.webView = webView2;
-        webView2.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
+        if (myWebView != null) {
+            AndroidUtilities.removeFromParent(myWebView);
+        }
+        MyWebView myWebView3 = myWebView == null ? new MyWebView(getContext()) : myWebView;
+        this.webView = myWebView3;
+        myWebView3.setContainers(this, this.webViewScrollListener);
+        this.webView.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
         WebSettings settings = this.webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setGeolocationEnabled(true);
@@ -362,340 +389,22 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
         GeolocationPermissions.getInstance().clearAll();
         this.webView.setVerticalScrollBarEnabled(false);
-        this.webView.setWebViewClient(new AnonymousClass3());
-        this.webView.setWebChromeClient(new AnonymousClass4());
-        this.webView.setAlpha(0.0f);
+        if (myWebView == null) {
+            this.webView.setAlpha(0.0f);
+        }
         addView(this.webView);
         if (Build.VERSION.SDK_INT >= 17) {
-            this.webView.addJavascriptInterface(new WebViewProxy(), "TelegramWebviewProxy");
+            if (webViewProxy != null) {
+                this.webViewProxy = webViewProxy;
+            }
+            if (this.webViewProxy == null) {
+                WebViewProxy webViewProxy2 = new WebViewProxy(this);
+                this.webViewProxy = webViewProxy2;
+                this.webView.addJavascriptInterface(webViewProxy2, "TelegramWebviewProxy");
+            }
+            this.webViewProxy.setContainer(this);
         }
         onWebViewCreated();
-    }
-
-    public class AnonymousClass3 extends WebViewClient {
-        AnonymousClass3() {
-        }
-
-        @Override
-        public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity != null && launchActivity.isFinishing()) {
-                return true;
-            }
-            new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                @Override
-                public final void run() {
-                    BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$0();
-                }
-            })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    BotWebViewContainer.AnonymousClass3.this.lambda$onRenderProcessGone$1(dialogInterface);
-                }
-            }).show();
-            return true;
-        }
-
-        public void lambda$onRenderProcessGone$0() {
-            Browser.openUrl(BotWebViewContainer.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
-        }
-
-        public void lambda$onRenderProcessGone$1(DialogInterface dialogInterface) {
-            if (BotWebViewContainer.this.delegate != null) {
-                BotWebViewContainer.this.delegate.onCloseRequested(null);
-            }
-        }
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-            Uri parse = Uri.parse(str);
-            if (!Browser.isInternalUri(parse, null)) {
-                return false;
-            }
-            if (!BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse.getScheme())) {
-                return true;
-            }
-            BotWebViewContainer.this.onOpenUri(parse);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView webView, String str) {
-            BotWebViewContainer.this.setPageLoaded(str);
-        }
-    }
-
-    public class AnonymousClass4 extends WebChromeClient {
-        private Dialog lastPermissionsDialog;
-
-        AnonymousClass4() {
-        }
-
-        public class AnonymousClass1 extends WebViewClient {
-            AnonymousClass1() {
-            }
-
-            @Override
-            public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-                LaunchActivity launchActivity = LaunchActivity.instance;
-                if (launchActivity != null && launchActivity.isFinishing()) {
-                    return true;
-                }
-                new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                    @Override
-                    public final void run() {
-                        BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$0();
-                    }
-                })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        BotWebViewContainer.AnonymousClass4.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
-                    }
-                }).show();
-                return true;
-            }
-
-            public void lambda$onRenderProcessGone$0() {
-                Browser.openUrl(BotWebViewContainer.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
-            }
-
-            public void lambda$onRenderProcessGone$1(DialogInterface dialogInterface) {
-                if (BotWebViewContainer.this.delegate != null) {
-                    BotWebViewContainer.this.delegate.onCloseRequested(null);
-                }
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-                BotWebViewContainer.this.onOpenUri(Uri.parse(str));
-                return true;
-            }
-        }
-
-        @Override
-        public boolean onCreateWindow(WebView webView, boolean z, boolean z2, Message message) {
-            WebView webView2 = new WebView(webView.getContext());
-            webView2.setWebViewClient(new AnonymousClass1());
-            ((WebView.WebViewTransport) message.obj).setWebView(webView2);
-            message.sendToTarget();
-            return true;
-        }
-
-        @Override
-        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-            Activity findActivity = AndroidUtilities.findActivity(BotWebViewContainer.this.getContext());
-            if (findActivity == null) {
-                return false;
-            }
-            if (BotWebViewContainer.this.mFilePathCallback != null) {
-                BotWebViewContainer.this.mFilePathCallback.onReceiveValue(null);
-            }
-            BotWebViewContainer.this.mFilePathCallback = valueCallback;
-            if (Build.VERSION.SDK_INT >= 21) {
-                findActivity.startActivityForResult(fileChooserParams.createIntent(), 3000);
-                return true;
-            }
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.addCategory("android.intent.category.OPENABLE");
-            intent.setType("*/*");
-            findActivity.startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.BotWebViewFileChooserTitle)), 3000);
-            return true;
-        }
-
-        @Override
-        public void onProgressChanged(WebView webView, int i) {
-            if (BotWebViewContainer.this.webViewProgressListener != null) {
-                BotWebViewContainer.this.webViewProgressListener.accept(Float.valueOf(i / 100.0f));
-            }
-        }
-
-        @Override
-        public void onGeolocationPermissionsShowPrompt(final String str, final GeolocationPermissions.Callback callback) {
-            if (BotWebViewContainer.this.parentActivity != null) {
-                Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, R.raw.permission_request_location, LocaleController.formatString(R.string.BotWebViewRequestGeolocationPermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(R.string.BotWebViewRequestGeolocationPermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
-                    @Override
-                    public final void accept(Object obj) {
-                        BotWebViewContainer.AnonymousClass4.this.lambda$onGeolocationPermissionsShowPrompt$1(callback, str, (Boolean) obj);
-                    }
-                });
-                this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
-                createWebViewPermissionsRequestDialog.show();
-                return;
-            }
-            callback.invoke(str, false, false);
-        }
-
-        public void lambda$onGeolocationPermissionsShowPrompt$1(final GeolocationPermissions.Callback callback, final String str, Boolean bool) {
-            if (this.lastPermissionsDialog != null) {
-                this.lastPermissionsDialog = null;
-                if (bool.booleanValue()) {
-                    BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            BotWebViewContainer.AnonymousClass4.this.lambda$onGeolocationPermissionsShowPrompt$0(callback, str, (Boolean) obj);
-                        }
-                    });
-                } else {
-                    callback.invoke(str, false, false);
-                }
-            }
-        }
-
-        public void lambda$onGeolocationPermissionsShowPrompt$0(GeolocationPermissions.Callback callback, String str, Boolean bool) {
-            callback.invoke(str, bool.booleanValue(), false);
-            if (bool.booleanValue()) {
-                BotWebViewContainer.this.hasUserPermissions = true;
-            }
-        }
-
-        @Override
-        public void onGeolocationPermissionsHidePrompt() {
-            Dialog dialog = this.lastPermissionsDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.lastPermissionsDialog = null;
-            }
-        }
-
-        @Override
-        public void onPermissionRequest(final PermissionRequest permissionRequest) {
-            Dialog dialog = this.lastPermissionsDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.lastPermissionsDialog = null;
-            }
-            final String[] resources = permissionRequest.getResources();
-            if (resources.length == 1) {
-                final String str = resources[0];
-                if (BotWebViewContainer.this.parentActivity == null) {
-                    permissionRequest.deny();
-                    return;
-                }
-                str.hashCode();
-                if (str.equals("android.webkit.resource.VIDEO_CAPTURE")) {
-                    Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.CAMERA"}, R.raw.permission_request_camera, LocaleController.formatString(R.string.BotWebViewRequestCameraPermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(R.string.BotWebViewRequestCameraPermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$5(permissionRequest, str, (Boolean) obj);
-                        }
-                    });
-                    this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
-                    createWebViewPermissionsRequestDialog.show();
-                    return;
-                } else {
-                    if (str.equals("android.webkit.resource.AUDIO_CAPTURE")) {
-                        Dialog createWebViewPermissionsRequestDialog2 = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.RECORD_AUDIO"}, R.raw.permission_request_microphone, LocaleController.formatString(R.string.BotWebViewRequestMicrophonePermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(R.string.BotWebViewRequestMicrophonePermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
-                            @Override
-                            public final void accept(Object obj) {
-                                BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$3(permissionRequest, str, (Boolean) obj);
-                            }
-                        });
-                        this.lastPermissionsDialog = createWebViewPermissionsRequestDialog2;
-                        createWebViewPermissionsRequestDialog2.show();
-                        return;
-                    }
-                    return;
-                }
-            }
-            if (resources.length == 2) {
-                if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[0]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[0])) {
-                    if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[1]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[1])) {
-                        Dialog createWebViewPermissionsRequestDialog3 = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, R.raw.permission_request_camera, LocaleController.formatString(R.string.BotWebViewRequestCameraMicPermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(R.string.BotWebViewRequestCameraMicPermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
-                            @Override
-                            public final void accept(Object obj) {
-                                BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$7(permissionRequest, resources, (Boolean) obj);
-                            }
-                        });
-                        this.lastPermissionsDialog = createWebViewPermissionsRequestDialog3;
-                        createWebViewPermissionsRequestDialog3.show();
-                    }
-                }
-            }
-        }
-
-        public void lambda$onPermissionRequest$3(final PermissionRequest permissionRequest, final String str, Boolean bool) {
-            if (this.lastPermissionsDialog != null) {
-                this.lastPermissionsDialog = null;
-                if (bool.booleanValue()) {
-                    BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.RECORD_AUDIO"}, new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$2(permissionRequest, str, (Boolean) obj);
-                        }
-                    });
-                } else {
-                    permissionRequest.deny();
-                }
-            }
-        }
-
-        public void lambda$onPermissionRequest$2(PermissionRequest permissionRequest, String str, Boolean bool) {
-            if (bool.booleanValue()) {
-                permissionRequest.grant(new String[]{str});
-                BotWebViewContainer.this.hasUserPermissions = true;
-            } else {
-                permissionRequest.deny();
-            }
-        }
-
-        public void lambda$onPermissionRequest$5(final PermissionRequest permissionRequest, final String str, Boolean bool) {
-            if (this.lastPermissionsDialog != null) {
-                this.lastPermissionsDialog = null;
-                if (bool.booleanValue()) {
-                    BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.CAMERA"}, new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$4(permissionRequest, str, (Boolean) obj);
-                        }
-                    });
-                } else {
-                    permissionRequest.deny();
-                }
-            }
-        }
-
-        public void lambda$onPermissionRequest$4(PermissionRequest permissionRequest, String str, Boolean bool) {
-            if (bool.booleanValue()) {
-                permissionRequest.grant(new String[]{str});
-                BotWebViewContainer.this.hasUserPermissions = true;
-            } else {
-                permissionRequest.deny();
-            }
-        }
-
-        public void lambda$onPermissionRequest$7(final PermissionRequest permissionRequest, final String[] strArr, Boolean bool) {
-            if (this.lastPermissionsDialog != null) {
-                this.lastPermissionsDialog = null;
-                if (bool.booleanValue()) {
-                    BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$6(permissionRequest, strArr, (Boolean) obj);
-                        }
-                    });
-                } else {
-                    permissionRequest.deny();
-                }
-            }
-        }
-
-        public void lambda$onPermissionRequest$6(PermissionRequest permissionRequest, String[] strArr, Boolean bool) {
-            if (bool.booleanValue()) {
-                permissionRequest.grant(new String[]{strArr[0], strArr[1]});
-                BotWebViewContainer.this.hasUserPermissions = true;
-            } else {
-                permissionRequest.deny();
-            }
-        }
-
-        @Override
-        public void onPermissionRequestCanceled(PermissionRequest permissionRequest) {
-            Dialog dialog = this.lastPermissionsDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.lastPermissionsDialog = null;
-            }
-        }
     }
 
     public void onOpenUri(Uri uri) {
@@ -749,20 +458,46 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public void setPageLoaded(String str) {
         if (this.isPageLoaded) {
+            d("setPageLoaded: already loaded");
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.webView, (Property<WebView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.flickerView, (Property<BackupImageView, Float>) View.ALPHA, 0.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.webView, (Property<MyWebView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.flickerView, (Property<BackupImageView, Float>) View.ALPHA, 0.0f));
         animatorSet.addListener(new AnimatorListenerAdapter() {
+            AnonymousClass2() {
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 BotWebViewContainer.this.flickerView.setVisibility(8);
             }
         });
         animatorSet.start();
+        this.mUrl = str;
+        d("setPageLoaded: isPageLoaded = true!");
         this.isPageLoaded = true;
         setFocusable(true);
         this.delegate.onWebAppReady();
+    }
+
+    public class AnonymousClass2 extends AnimatorListenerAdapter {
+        AnonymousClass2() {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            BotWebViewContainer.this.flickerView.setVisibility(8);
+        }
+    }
+
+    public void setState(boolean z, String str) {
+        d("setState(" + z + ", " + str + ")");
+        this.isPageLoaded = z;
+        this.mUrl = str;
+    }
+
+    public String getUrlLoaded() {
+        return this.mUrl;
     }
 
     public boolean hasUserPermissions() {
@@ -943,7 +678,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.webViewProgressListener = consumer;
     }
 
-    public WebView getWebView() {
+    public MyWebView getWebView() {
         return this.webView;
     }
 
@@ -1062,9 +797,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.isPageLoaded = false;
         this.lastClickMs = 0L;
         this.hasUserPermissions = false;
-        WebView webView = this.webView;
-        if (webView != null) {
-            webView.reload();
+        MyWebView myWebView = this.webView;
+        if (myWebView != null) {
+            myWebView.onResume();
+            this.webView.reload();
         }
     }
 
@@ -1082,16 +818,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.isPageLoaded = false;
         this.lastClickMs = 0L;
         this.hasUserPermissions = false;
+        this.mUrl = str;
         checkCreateWebView();
-        WebView webView = this.webView;
-        if (webView != null) {
-            webView.loadUrl(str);
+        MyWebView myWebView = this.webView;
+        if (myWebView != null) {
+            myWebView.onResume();
+            this.webView.loadUrl(str);
         }
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        d("attached");
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.onActivityResultReceived);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.onRequestPermissionResultReceived);
@@ -1131,6 +870,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
 
+            AnonymousClass3() {
+            }
+
             @Override
             public int getBottomOffset(int i) {
                 if (!(BotWebViewContainer.this.getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer)) {
@@ -1142,22 +884,80 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         });
     }
 
+    class AnonymousClass3 implements Bulletin.Delegate {
+        @Override
+        public boolean allowLayoutChanges() {
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+        }
+
+        @Override
+        public boolean bottomOffsetAnimated() {
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+        }
+
+        @Override
+        public boolean clipWithGradient(int i) {
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+        }
+
+        @Override
+        public int getTopOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+        }
+
+        @Override
+        public void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+        }
+
+        @Override
+        public void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+        }
+
+        @Override
+        public void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+        }
+
+        AnonymousClass3() {
+        }
+
+        @Override
+        public int getBottomOffset(int i) {
+            if (!(BotWebViewContainer.this.getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer)) {
+                return 0;
+            }
+            ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = (ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) BotWebViewContainer.this.getParent();
+            return (int) ((webViewSwipeContainer.getOffsetY() + webViewSwipeContainer.getSwipeOffsetY()) - webViewSwipeContainer.getTopActionBarOffsetY());
+        }
+    }
+
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        d("detached");
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onRequestPermissionResultReceived);
         Bulletin.removeDelegate(this);
     }
 
+    public void preserveWebView() {
+        d("preserveWebView");
+        this.preserving = true;
+    }
+
     public void destroyWebView() {
-        WebView webView = this.webView;
-        if (webView != null) {
-            if (webView.getParent() != null) {
+        d("destroyWebView");
+        MyWebView myWebView = this.webView;
+        if (myWebView != null) {
+            if (myWebView.getParent() != null) {
                 removeView(this.webView);
             }
-            this.webView.destroy();
+            if (!this.preserving) {
+                this.webView.destroy();
+            }
             this.isPageLoaded = false;
         }
     }
@@ -1179,12 +979,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (z) {
             checkCreateWebView();
         }
-        WebView webView = this.webView;
-        if (webView == null) {
+        MyWebView myWebView = this.webView;
+        if (myWebView == null) {
             return;
         }
         if (Build.VERSION.SDK_INT >= 19) {
-            webView.evaluateJavascript(str, new ValueCallback() {
+            myWebView.evaluateJavascript(str, new ValueCallback() {
                 @Override
                 public final void onReceiveValue(Object obj) {
                     BotWebViewContainer.lambda$evaluateJs$5((String) obj);
@@ -1193,7 +993,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             return;
         }
         try {
-            webView.loadUrl("javascript:" + URLEncoder.encode(str, "UTF-8"));
+            myWebView.loadUrl("javascript:" + URLEncoder.encode(str, "UTF-8"));
         } catch (UnsupportedEncodingException unused) {
             this.webView.loadUrl("javascript:" + URLEncoder.encode(str));
         }
@@ -1202,9 +1002,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.didSetNewTheme) {
-            WebView webView = this.webView;
-            if (webView != null) {
-                webView.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
+            MyWebView myWebView = this.webView;
+            if (myWebView != null) {
+                myWebView.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
             }
             this.flickerView.setColorFilter(new PorterDuffColorFilter(getColor(Theme.key_dialogSearchHint), PorterDuff.Mode.SRC_IN));
             notifyThemeChanged();
@@ -1217,16 +1017,21 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void notifyThemeChanged() {
+    public void notifyThemeChanged() {
         notifyEvent("theme_changed", buildThemeParams());
     }
 
     public void notifyEvent(String str, JSONObject jSONObject) {
+        d("notifyEvent " + str);
         evaluateJs("window.Telegram.WebView.receiveEvent('" + str + "', " + jSONObject + ");", false);
     }
 
     public void setWebViewScrollListener(WebViewScrollListener webViewScrollListener) {
         this.webViewScrollListener = webViewScrollListener;
+        MyWebView myWebView = this.webView;
+        if (myWebView != null) {
+            myWebView.setContainers(this, webViewScrollListener);
+        }
     }
 
     public void setDelegate(Delegate delegate) {
@@ -1235,6 +1040,28 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public void onEventReceived(java.lang.String r24, java.lang.String r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotWebViewContainer.onEventReceived(java.lang.String, java.lang.String):void");
+    }
+
+    public class AnonymousClass4 implements NotificationCenter.NotificationCenterDelegate {
+        AnonymousClass4() {
+        }
+
+        @Override
+        public void didReceivedNotification(int i, int i2, Object... objArr) {
+            int i3 = NotificationCenter.onRequestPermissionResultReceived;
+            if (i == i3) {
+                int intValue = ((Integer) objArr[0]).intValue();
+                int[] iArr = (int[]) objArr[2];
+                if (intValue == 5000) {
+                    NotificationCenter.getGlobalInstance().removeObserver(this, i3);
+                    if (iArr[0] == 0) {
+                        BotWebViewContainer.this.openQrScanActivity();
+                    } else {
+                        BotWebViewContainer.this.notifyEvent("scan_qr_popup_closed", new JSONObject());
+                    }
+                }
+            }
+        }
     }
 
     public void lambda$onEventReceived$7(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
@@ -1624,7 +1451,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (activity == null) {
             return;
         }
-        this.cameraBottomSheet = CameraScanActivity.showAsSheet(activity, false, 3, new CameraScanActivity.CameraScanActivityDelegate() {
+        this.cameraBottomSheet = CameraScanActivity.showAsSheet(activity, false, 3, (CameraScanActivity.CameraScanActivityDelegate) new CameraScanActivity.CameraScanActivityDelegate() {
             @Override
             public void didFindMrzInfo(MrzRecognizer.Result result) {
                 CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
@@ -1633,6 +1460,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public boolean processQr(String str, Runnable runnable) {
                 return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
+            }
+
+            AnonymousClass5() {
             }
 
             @Override
@@ -1657,6 +1487,41 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         });
     }
 
+    public class AnonymousClass5 implements CameraScanActivity.CameraScanActivityDelegate {
+        @Override
+        public void didFindMrzInfo(MrzRecognizer.Result result) {
+            CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
+        }
+
+        @Override
+        public boolean processQr(String str, Runnable runnable) {
+            return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
+        }
+
+        AnonymousClass5() {
+        }
+
+        @Override
+        public void didFindQr(String str) {
+            try {
+                BotWebViewContainer.this.notifyEvent("qr_text_received", new JSONObject().put("data", str));
+            } catch (JSONException e) {
+                FileLog.e(e);
+            }
+        }
+
+        @Override
+        public String getSubtitleText() {
+            return BotWebViewContainer.this.lastQrText;
+        }
+
+        @Override
+        public void onDismiss() {
+            BotWebViewContainer.this.notifyEvent("scan_qr_popup_closed", null);
+            BotWebViewContainer.this.hasQRPending = false;
+        }
+    }
+
     private JSONObject buildThemeParams() {
         try {
             JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider);
@@ -1677,22 +1542,33 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return Theme.getColor(i);
     }
 
-    public class WebViewProxy {
-        private WebViewProxy() {
+    public static class WebViewProxy {
+        public BotWebViewContainer container;
+
+        public WebViewProxy(BotWebViewContainer botWebViewContainer) {
+            this.container = botWebViewContainer;
         }
 
-        public void lambda$postEvent$0(String str, String str2) {
-            BotWebViewContainer.this.onEventReceived(str, str2);
+        public void setContainer(BotWebViewContainer botWebViewContainer) {
+            this.container = botWebViewContainer;
         }
 
         @JavascriptInterface
         public void postEvent(final String str, final String str2) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    BotWebViewContainer.WebViewProxy.this.lambda$postEvent$0(str, str2);
-                }
-            });
+            if (this.container == null) {
+                FileLog.d("webviewproxy.postEvent: no container");
+            } else {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        BotWebViewContainer.WebViewProxy.this.lambda$postEvent$0(str, str2);
+                    }
+                });
+            }
+        }
+
+        public void lambda$postEvent$0(String str, String str2) {
+            this.container.onEventReceived(str, str2);
         }
     }
 
@@ -1704,5 +1580,605 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         public PopupButton(org.json.JSONObject r9) throws org.json.JSONException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotWebViewContainer.PopupButton.<init>(org.json.JSONObject):void");
         }
+    }
+
+    public static class MyWebView extends WebView {
+        private BotWebViewContainer botWebViewContainer;
+        private int prevScrollX;
+        private int prevScrollY;
+        private final int tag;
+        private WebViewScrollListener webViewScrollListener;
+
+        public void d(String str) {
+            FileLog.d("[webview] #" + this.tag + " " + str);
+        }
+
+        public MyWebView(Context context) {
+            super(context);
+            this.tag = BotWebViewContainer.access$808();
+            d("created new webview");
+            setWebViewClient(new AnonymousClass1());
+            setWebChromeClient(new AnonymousClass2());
+        }
+
+        public class AnonymousClass1 extends WebViewClient {
+            AnonymousClass1() {
+            }
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+                MyWebView myWebView = MyWebView.this;
+                StringBuilder sb = new StringBuilder();
+                sb.append("shouldInterceptRequest ");
+                sb.append(webResourceRequest == null ? null : webResourceRequest.getUrl());
+                myWebView.d(sb.toString());
+                return super.shouldInterceptRequest(webView, webResourceRequest);
+            }
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
+                MyWebView.this.d("shouldInterceptRequest " + str);
+                return super.shouldInterceptRequest(webView, str);
+            }
+
+            @Override
+            public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+                LaunchActivity launchActivity;
+                MyWebView myWebView = MyWebView.this;
+                StringBuilder sb = new StringBuilder();
+                sb.append("onRenderProcessGone priority=");
+                sb.append(renderProcessGoneDetail == null ? null : Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit()));
+                sb.append(" didCrash=");
+                sb.append(renderProcessGoneDetail == null ? null : Boolean.valueOf(renderProcessGoneDetail.didCrash()));
+                myWebView.d(sb.toString());
+                if (MyWebView.this.botWebViewContainer != null && (launchActivity = LaunchActivity.instance) != null && launchActivity.isFinishing()) {
+                    return true;
+                }
+                new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                    @Override
+                    public final void run() {
+                        BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onRenderProcessGone$0();
+                    }
+                })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
+                    }
+                }).show();
+                return true;
+            }
+
+            public void lambda$onRenderProcessGone$0() {
+                Browser.openUrl(MyWebView.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+            }
+
+            public void lambda$onRenderProcessGone$1(DialogInterface dialogInterface) {
+                if (MyWebView.this.botWebViewContainer == null || MyWebView.this.botWebViewContainer.delegate == null) {
+                    return;
+                }
+                MyWebView.this.botWebViewContainer.delegate.onCloseRequested(null);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+                Uri parse = Uri.parse(str);
+                if (MyWebView.this.botWebViewContainer != null && Browser.isInternalUri(parse, null)) {
+                    if (BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse.getScheme())) {
+                        MyWebView.this.botWebViewContainer.onOpenUri(parse);
+                    }
+                    MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true");
+                    return true;
+                }
+                MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = false");
+                return false;
+            }
+
+            @Override
+            public void onPageStarted(WebView webView, String str, Bitmap bitmap) {
+                MyWebView.this.d("onPageStarted " + str);
+                super.onPageStarted(webView, str, bitmap);
+            }
+
+            @Override
+            public void onPageFinished(WebView webView, String str) {
+                MyWebView.this.d("onPageFinished");
+                if (MyWebView.this.botWebViewContainer != null) {
+                    MyWebView.this.botWebViewContainer.setPageLoaded(str);
+                } else {
+                    MyWebView.this.d("onPageFinished: no container");
+                }
+            }
+
+            @Override
+            public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
+                MyWebView.this.d("onReceivedError: " + webResourceError.getErrorCode() + " " + ((Object) webResourceError.getDescription()));
+                super.onReceivedError(webView, webResourceRequest, webResourceError);
+            }
+
+            @Override
+            public void onReceivedError(WebView webView, int i, String str, String str2) {
+                MyWebView.this.d("onReceivedError: " + i + " " + str + " url=" + str2);
+                super.onReceivedError(webView, i, str, str2);
+            }
+
+            @Override
+            public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
+                MyWebView myWebView = MyWebView.this;
+                StringBuilder sb = new StringBuilder();
+                sb.append("onReceivedHttpError: statusCode=");
+                sb.append(webResourceResponse == null ? null : Integer.valueOf(webResourceResponse.getStatusCode()));
+                sb.append(" request=");
+                sb.append(webResourceRequest != null ? webResourceRequest.getUrl() : null);
+                myWebView.d(sb.toString());
+                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
+            }
+
+            @Override
+            public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+                MyWebView myWebView = MyWebView.this;
+                StringBuilder sb = new StringBuilder();
+                sb.append("onReceivedSslError: error=");
+                sb.append(sslError);
+                sb.append(" url=");
+                sb.append(sslError == null ? null : sslError.getUrl());
+                myWebView.d(sb.toString());
+                super.onReceivedSslError(webView, sslErrorHandler, sslError);
+            }
+        }
+
+        public class AnonymousClass2 extends WebChromeClient {
+            private Dialog lastPermissionsDialog;
+
+            AnonymousClass2() {
+            }
+
+            @Override
+            public boolean onCreateWindow(WebView webView, boolean z, boolean z2, Message message) {
+                MyWebView.this.d("onCreateWindow isDialog=" + z + " isUserGesture=" + z2 + " resultMsg=" + message);
+                WebView webView2 = new WebView(webView.getContext());
+                webView2.setWebViewClient(new AnonymousClass1());
+                ((WebView.WebViewTransport) message.obj).setWebView(webView2);
+                message.sendToTarget();
+                return true;
+            }
+
+            public class AnonymousClass1 extends WebViewClient {
+                AnonymousClass1() {
+                }
+
+                @Override
+                public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+                    LaunchActivity launchActivity;
+                    MyWebView myWebView = MyWebView.this;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("newWebView.onRenderProcessGone priority=");
+                    sb.append(renderProcessGoneDetail == null ? null : Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit()));
+                    sb.append(" didCrash=");
+                    sb.append(renderProcessGoneDetail == null ? null : Boolean.valueOf(renderProcessGoneDetail.didCrash()));
+                    myWebView.d(sb.toString());
+                    if (MyWebView.this.botWebViewContainer != null && ((launchActivity = LaunchActivity.instance) == null || !launchActivity.isFinishing())) {
+                        new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                            @Override
+                            public final void run() {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.AnonymousClass1.this.lambda$onRenderProcessGone$0();
+                            }
+                        })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public final void onDismiss(DialogInterface dialogInterface) {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.AnonymousClass1.this.lambda$onRenderProcessGone$1(dialogInterface);
+                            }
+                        }).show();
+                    }
+                    return true;
+                }
+
+                public void lambda$onRenderProcessGone$0() {
+                    Browser.openUrl(MyWebView.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                }
+
+                public void lambda$onRenderProcessGone$1(DialogInterface dialogInterface) {
+                    if (MyWebView.this.botWebViewContainer.delegate != null) {
+                        MyWebView.this.botWebViewContainer.delegate.onCloseRequested(null);
+                    }
+                }
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+                    if (MyWebView.this.botWebViewContainer == null) {
+                        return true;
+                    }
+                    MyWebView.this.botWebViewContainer.onOpenUri(Uri.parse(str));
+                    return true;
+                }
+            }
+
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+                Activity findActivity = AndroidUtilities.findActivity(MyWebView.this.getContext());
+                if (findActivity != null) {
+                    if (MyWebView.this.botWebViewContainer != null) {
+                        if (MyWebView.this.botWebViewContainer.mFilePathCallback != null) {
+                            MyWebView.this.botWebViewContainer.mFilePathCallback.onReceiveValue(null);
+                        }
+                        MyWebView.this.botWebViewContainer.mFilePathCallback = valueCallback;
+                        if (Build.VERSION.SDK_INT >= 21) {
+                            findActivity.startActivityForResult(fileChooserParams.createIntent(), 3000);
+                        } else {
+                            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                            intent.addCategory("android.intent.category.OPENABLE");
+                            intent.setType("*/*");
+                            findActivity.startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.BotWebViewFileChooserTitle)), 3000);
+                        }
+                        MyWebView.this.d("onShowFileChooser: true");
+                        return true;
+                    }
+                    MyWebView.this.d("onShowFileChooser: no container, false");
+                    return false;
+                }
+                MyWebView.this.d("onShowFileChooser: no activity, false");
+                return false;
+            }
+
+            @Override
+            public void onProgressChanged(WebView webView, int i) {
+                if (MyWebView.this.botWebViewContainer != null && MyWebView.this.botWebViewContainer.webViewProgressListener != null) {
+                    MyWebView.this.d("onProgressChanged " + i + "%");
+                    MyWebView.this.botWebViewContainer.webViewProgressListener.accept(Float.valueOf(((float) i) / 100.0f));
+                    return;
+                }
+                MyWebView.this.d("onProgressChanged " + i + "%: no container");
+            }
+
+            @Override
+            public void onGeolocationPermissionsShowPrompt(final String str, final GeolocationPermissions.Callback callback) {
+                if (MyWebView.this.botWebViewContainer == null || MyWebView.this.botWebViewContainer.parentActivity == null) {
+                    MyWebView.this.d("onGeolocationPermissionsShowPrompt: no container");
+                    callback.invoke(str, false, false);
+                    return;
+                }
+                MyWebView.this.d("onGeolocationPermissionsShowPrompt " + str);
+                Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, R.raw.permission_request_location, LocaleController.formatString(R.string.BotWebViewRequestGeolocationPermission, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), LocaleController.formatString(R.string.BotWebViewRequestGeolocationPermissionWithHint, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), new Consumer() {
+                    @Override
+                    public final void accept(Object obj) {
+                        BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onGeolocationPermissionsShowPrompt$1(callback, str, (Boolean) obj);
+                    }
+                });
+                this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
+                createWebViewPermissionsRequestDialog.show();
+            }
+
+            public void lambda$onGeolocationPermissionsShowPrompt$1(final GeolocationPermissions.Callback callback, final String str, Boolean bool) {
+                if (this.lastPermissionsDialog != null) {
+                    this.lastPermissionsDialog = null;
+                    if (bool.booleanValue()) {
+                        MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onGeolocationPermissionsShowPrompt$0(callback, str, (Boolean) obj);
+                            }
+                        });
+                    } else {
+                        callback.invoke(str, false, false);
+                    }
+                }
+            }
+
+            public void lambda$onGeolocationPermissionsShowPrompt$0(GeolocationPermissions.Callback callback, String str, Boolean bool) {
+                callback.invoke(str, bool.booleanValue(), false);
+                if (bool.booleanValue()) {
+                    MyWebView.this.botWebViewContainer.hasUserPermissions = true;
+                }
+            }
+
+            @Override
+            public void onGeolocationPermissionsHidePrompt() {
+                if (this.lastPermissionsDialog != null) {
+                    MyWebView.this.d("onGeolocationPermissionsHidePrompt: dialog.dismiss");
+                    this.lastPermissionsDialog.dismiss();
+                    this.lastPermissionsDialog = null;
+                    return;
+                }
+                MyWebView.this.d("onGeolocationPermissionsHidePrompt: no dialog");
+            }
+
+            @Override
+            public void onPermissionRequest(final PermissionRequest permissionRequest) {
+                Dialog dialog = this.lastPermissionsDialog;
+                if (dialog != null) {
+                    dialog.dismiss();
+                    this.lastPermissionsDialog = null;
+                }
+                if (MyWebView.this.botWebViewContainer == null) {
+                    MyWebView.this.d("onPermissionRequest: no container");
+                    permissionRequest.deny();
+                    return;
+                }
+                MyWebView.this.d("onPermissionRequest " + permissionRequest);
+                final String[] resources = permissionRequest.getResources();
+                if (resources.length == 1) {
+                    final String str = resources[0];
+                    if (MyWebView.this.botWebViewContainer.parentActivity == null) {
+                        permissionRequest.deny();
+                        return;
+                    }
+                    str.hashCode();
+                    if (str.equals("android.webkit.resource.VIDEO_CAPTURE")) {
+                        Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA"}, R.raw.permission_request_camera, LocaleController.formatString(R.string.BotWebViewRequestCameraPermission, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), LocaleController.formatString(R.string.BotWebViewRequestCameraPermissionWithHint, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onPermissionRequest$5(permissionRequest, str, (Boolean) obj);
+                            }
+                        });
+                        this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
+                        createWebViewPermissionsRequestDialog.show();
+                        return;
+                    } else {
+                        if (str.equals("android.webkit.resource.AUDIO_CAPTURE")) {
+                            Dialog createWebViewPermissionsRequestDialog2 = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.RECORD_AUDIO"}, R.raw.permission_request_microphone, LocaleController.formatString(R.string.BotWebViewRequestMicrophonePermission, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), LocaleController.formatString(R.string.BotWebViewRequestMicrophonePermissionWithHint, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), new Consumer() {
+                                @Override
+                                public final void accept(Object obj) {
+                                    BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onPermissionRequest$3(permissionRequest, str, (Boolean) obj);
+                                }
+                            });
+                            this.lastPermissionsDialog = createWebViewPermissionsRequestDialog2;
+                            createWebViewPermissionsRequestDialog2.show();
+                            return;
+                        }
+                        return;
+                    }
+                }
+                if (resources.length == 2) {
+                    if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[0]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[0])) {
+                        if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[1]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[1])) {
+                            Dialog createWebViewPermissionsRequestDialog3 = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, R.raw.permission_request_camera, LocaleController.formatString(R.string.BotWebViewRequestCameraMicPermission, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), LocaleController.formatString(R.string.BotWebViewRequestCameraMicPermissionWithHint, UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser)), new Consumer() {
+                                @Override
+                                public final void accept(Object obj) {
+                                    BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onPermissionRequest$7(permissionRequest, resources, (Boolean) obj);
+                                }
+                            });
+                            this.lastPermissionsDialog = createWebViewPermissionsRequestDialog3;
+                            createWebViewPermissionsRequestDialog3.show();
+                        }
+                    }
+                }
+            }
+
+            public void lambda$onPermissionRequest$3(final PermissionRequest permissionRequest, final String str, Boolean bool) {
+                if (this.lastPermissionsDialog != null) {
+                    this.lastPermissionsDialog = null;
+                    if (bool.booleanValue()) {
+                        MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.RECORD_AUDIO"}, new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onPermissionRequest$2(permissionRequest, str, (Boolean) obj);
+                            }
+                        });
+                    } else {
+                        permissionRequest.deny();
+                    }
+                }
+            }
+
+            public void lambda$onPermissionRequest$2(PermissionRequest permissionRequest, String str, Boolean bool) {
+                if (bool.booleanValue()) {
+                    permissionRequest.grant(new String[]{str});
+                    MyWebView.this.botWebViewContainer.hasUserPermissions = true;
+                } else {
+                    permissionRequest.deny();
+                }
+            }
+
+            public void lambda$onPermissionRequest$5(final PermissionRequest permissionRequest, final String str, Boolean bool) {
+                if (this.lastPermissionsDialog != null) {
+                    this.lastPermissionsDialog = null;
+                    if (bool.booleanValue()) {
+                        MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.CAMERA"}, new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onPermissionRequest$4(permissionRequest, str, (Boolean) obj);
+                            }
+                        });
+                    } else {
+                        permissionRequest.deny();
+                    }
+                }
+            }
+
+            public void lambda$onPermissionRequest$4(PermissionRequest permissionRequest, String str, Boolean bool) {
+                if (bool.booleanValue()) {
+                    permissionRequest.grant(new String[]{str});
+                    MyWebView.this.botWebViewContainer.hasUserPermissions = true;
+                } else {
+                    permissionRequest.deny();
+                }
+            }
+
+            public void lambda$onPermissionRequest$7(final PermissionRequest permissionRequest, final String[] strArr, Boolean bool) {
+                if (this.lastPermissionsDialog != null) {
+                    this.lastPermissionsDialog = null;
+                    if (bool.booleanValue()) {
+                        MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onPermissionRequest$6(permissionRequest, strArr, (Boolean) obj);
+                            }
+                        });
+                    } else {
+                        permissionRequest.deny();
+                    }
+                }
+            }
+
+            public void lambda$onPermissionRequest$6(PermissionRequest permissionRequest, String[] strArr, Boolean bool) {
+                if (bool.booleanValue()) {
+                    permissionRequest.grant(new String[]{strArr[0], strArr[1]});
+                    MyWebView.this.botWebViewContainer.hasUserPermissions = true;
+                } else {
+                    permissionRequest.deny();
+                }
+            }
+
+            @Override
+            public void onPermissionRequestCanceled(PermissionRequest permissionRequest) {
+                if (this.lastPermissionsDialog != null) {
+                    MyWebView.this.d("onPermissionRequestCanceled: dialog.dismiss");
+                    this.lastPermissionsDialog.dismiss();
+                    this.lastPermissionsDialog = null;
+                    return;
+                }
+                MyWebView.this.d("onPermissionRequestCanceled: no dialog");
+            }
+        }
+
+        public void setContainers(BotWebViewContainer botWebViewContainer, WebViewScrollListener webViewScrollListener) {
+            d("setContainers(" + botWebViewContainer + ", " + webViewScrollListener + ")");
+            this.botWebViewContainer = botWebViewContainer;
+            this.webViewScrollListener = webViewScrollListener;
+        }
+
+        @Override
+        protected void onScrollChanged(int i, int i2, int i3, int i4) {
+            super.onScrollChanged(i, i2, i3, i4);
+            WebViewScrollListener webViewScrollListener = this.webViewScrollListener;
+            if (webViewScrollListener != null) {
+                webViewScrollListener.onWebViewScrolled(this, getScrollX() - this.prevScrollX, getScrollY() - this.prevScrollY);
+            }
+            this.prevScrollX = getScrollX();
+            this.prevScrollY = getScrollY();
+        }
+
+        @Override
+        public void setScrollX(int i) {
+            super.setScrollX(i);
+            this.prevScrollX = i;
+        }
+
+        @Override
+        public void setScrollY(int i) {
+            super.setScrollY(i);
+            this.prevScrollY = i;
+        }
+
+        @Override
+        public boolean onCheckIsTextEditor() {
+            BotWebViewContainer botWebViewContainer = this.botWebViewContainer;
+            if (botWebViewContainer == null) {
+                d("onCheckIsTextEditor: no container");
+                return false;
+            }
+            boolean isFocusable = botWebViewContainer.isFocusable();
+            d("onCheckIsTextEditor: " + isFocusable);
+            return isFocusable;
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+        }
+
+        @Override
+        @SuppressLint({"ClickableViewAccessibility"})
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (motionEvent.getAction() == 0) {
+                this.botWebViewContainer.lastClickMs = System.currentTimeMillis();
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            d("attached");
+            AndroidUtilities.checkAndroidTheme(getContext(), true);
+            super.onAttachedToWindow();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            d("detached");
+            AndroidUtilities.checkAndroidTheme(getContext(), false);
+            super.onDetachedFromWindow();
+        }
+
+        @Override
+        public void destroy() {
+            d("destroy");
+            super.destroy();
+        }
+
+        @Override
+        public void loadUrl(String str) {
+            d("loadUrl " + str);
+            super.loadUrl(str);
+        }
+
+        @Override
+        public void loadUrl(String str, Map<String, String> map) {
+            d("loadUrl " + str + " " + map);
+            super.loadUrl(str, map);
+        }
+
+        @Override
+        public void reload() {
+            d("reload");
+            super.reload();
+        }
+
+        @Override
+        public void loadData(String str, String str2, String str3) {
+            d("loadData " + str + " " + str2 + " " + str3);
+            super.loadData(str, str2, str3);
+        }
+
+        @Override
+        public void loadDataWithBaseURL(String str, String str2, String str3, String str4, String str5) {
+            d("loadDataWithBaseURL " + str + " " + str2 + " " + str3 + " " + str4 + " " + str5);
+            super.loadDataWithBaseURL(str, str2, str3, str4, str5);
+        }
+
+        @Override
+        public void stopLoading() {
+            d("stopLoading");
+            super.stopLoading();
+        }
+
+        @Override
+        public void stopNestedScroll() {
+            d("stopNestedScroll");
+            super.stopNestedScroll();
+        }
+
+        @Override
+        public void postUrl(String str, byte[] bArr) {
+            d("postUrl " + str + " " + bArr);
+            super.postUrl(str, bArr);
+        }
+
+        @Override
+        public void onPause() {
+            d("onPause");
+            super.onPause();
+        }
+
+        @Override
+        public void onResume() {
+            d("onResume");
+            super.onResume();
+        }
+
+        @Override
+        public void pauseTimers() {
+            d("pauseTimers");
+            super.pauseTimers();
+        }
+
+        @Override
+        public void resumeTimers() {
+            d("resumeTimers");
+            super.resumeTimers();
+        }
+    }
+
+    public void d(String str) {
+        FileLog.d("[webviewcontainer] #" + this.tag + " " + str);
     }
 }

@@ -54,7 +54,7 @@ public class ChatMessagesMetadataController {
                 messageObject.reactionsLastCheckTime = j;
                 this.reactionsToCheck.add(messageObject);
             }
-            if (this.chatActivity.getThreadMessage() != messageObject && messageObject.getId() > 0 && messageObject.hasExtendedMediaPreview() && j - messageObject.extendedMediaLastCheckTime > 30000) {
+            if (this.chatActivity.getThreadMessage() != messageObject && messageObject.getId() > 0 && ((messageObject.hasExtendedMediaPreview() || messageObject.hasPaidMediaPreview()) && j - messageObject.extendedMediaLastCheckTime > 30000)) {
                 messageObject.extendedMediaLastCheckTime = j;
                 this.extendedMediaToCheck.add(messageObject);
             }

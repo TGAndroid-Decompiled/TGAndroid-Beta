@@ -21,7 +21,8 @@ public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
         this.total_amount = abstractSerializedData.readInt64(z);
         this.start_param = abstractSerializedData.readString(z);
         if ((this.flags & 16) != 0) {
-            this.extended_media = TLRPC$MessageExtendedMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.extended_media.clear();
+            this.extended_media.add(TLRPC$MessageExtendedMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
         }
     }
 
@@ -45,7 +46,7 @@ public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
         abstractSerializedData.writeInt64(this.total_amount);
         abstractSerializedData.writeString(this.start_param);
         if ((this.flags & 16) != 0) {
-            this.extended_media.serializeToStream(abstractSerializedData);
+            this.extended_media.get(0).serializeToStream(abstractSerializedData);
         }
     }
 }

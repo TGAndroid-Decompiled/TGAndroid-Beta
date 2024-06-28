@@ -74,6 +74,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.integrity.IntegrityManager;
 import com.google.android.play.core.integrity.IntegrityManagerFactory;
 import com.google.android.play.core.integrity.IntegrityTokenRequest;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
@@ -422,7 +423,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$3(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
         }
     }
 
@@ -1409,7 +1410,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
                 this.pendingSwitchingAccount = false;
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 return;
             }
             if (z && z2) {
@@ -1562,7 +1563,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 this.isRequestingFirebaseSms = true;
                 final String string = bundle.getString("phoneFormated");
                 if (tLRPC$TL_auth_sentCodeTypeFirebaseSms.play_integrity_nonce != null) {
-                    IntegrityManagerFactory.create(getContext()).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(Utilities.bytesToHex(tLRPC$TL_auth_sentCodeTypeFirebaseSms.play_integrity_nonce)).setCloudProjectNumber(760348033671L).build()).addOnSuccessListener(new OnSuccessListener() {
+                    IntegrityManager create = IntegrityManagerFactory.create(getContext());
+                    String str = new String(Base64.encode(tLRPC$TL_auth_sentCodeTypeFirebaseSms.play_integrity_nonce, 8));
+                    FileLog.d("getting classic integrity with nonce = " + str);
+                    create.requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str).setCloudProjectNumber(tLRPC$TL_auth_sentCodeTypeFirebaseSms.play_integrity_project_id).build()).addOnSuccessListener(new OnSuccessListener() {
                         @Override
                         public final void onSuccess(Object obj) {
                             LoginActivity.this.lambda$fillNextCodeParams$25(bundle, tLRPC$auth_SentCode, string, z, (IntegrityTokenResponse) obj);
@@ -1574,20 +1578,19 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         }
                     });
                     return;
-                } else {
-                    SafetyNet.getClient(ApplicationLoader.applicationContext).attest(tLRPC$auth_SentCode.type.nonce, BuildVars.SAFETYNET_KEY).addOnSuccessListener(new OnSuccessListener() {
-                        @Override
-                        public final void onSuccess(Object obj) {
-                            LoginActivity.this.lambda$fillNextCodeParams$29(string, tLRPC$auth_SentCode, bundle, z, (SafetyNetApi$AttestationResponse) obj);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public final void onFailure(Exception exc) {
-                            LoginActivity.this.lambda$fillNextCodeParams$30(bundle, tLRPC$auth_SentCode, exc);
-                        }
-                    });
-                    return;
                 }
+                SafetyNet.getClient(ApplicationLoader.applicationContext).attest(tLRPC$auth_SentCode.type.nonce, BuildVars.SAFETYNET_KEY).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public final void onSuccess(Object obj) {
+                        LoginActivity.this.lambda$fillNextCodeParams$29(string, tLRPC$auth_SentCode, bundle, z, (SafetyNetApi$AttestationResponse) obj);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public final void onFailure(Exception exc) {
+                        LoginActivity.this.lambda$fillNextCodeParams$30(bundle, tLRPC$auth_SentCode, exc);
+                    }
+                });
+                return;
             }
             FileLog.d("{GOOGLE_PLAY_SERVICES_NOT_AVAILABLE} Resend firebase sms because firebase is not available");
             resendCodeFromSafetyNet(bundle, tLRPC$auth_SentCode, "GOOGLE_PLAY_SERVICES_NOT_AVAILABLE");
@@ -1666,17 +1669,17 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return;
         }
         if (tLRPC$auth_SentCodeType2 instanceof TLRPC$TL_auth_sentCodeTypeSmsWord) {
-            String str = tLRPC$auth_SentCodeType2.beginning;
-            if (str != null) {
-                bundle.putString("beginning", str);
+            String str2 = tLRPC$auth_SentCodeType2.beginning;
+            if (str2 != null) {
+                bundle.putString("beginning", str2);
             }
             setPage(16, z, bundle, false);
             return;
         }
         if (tLRPC$auth_SentCodeType2 instanceof TLRPC$TL_auth_sentCodeTypeSmsPhrase) {
-            String str2 = tLRPC$auth_SentCodeType2.beginning;
-            if (str2 != null) {
-                bundle.putString("beginning", str2);
+            String str3 = tLRPC$auth_SentCodeType2.beginning;
+            if (str3 != null) {
+                bundle.putString("beginning", str3);
             }
             setPage(17, z, bundle, false);
         }
@@ -2909,7 +2912,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (UserConfig.selectedAccount != i) {
                 ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
             }
-            LoginActivity.this.lambda$onBackPressed$303();
+            LoginActivity.this.lambda$onBackPressed$305();
         }
 
         public void lambda$onNextPressed$20(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLObject tLObject2, final TLRPC$TL_error tLRPC$TL_error) {
@@ -3955,7 +3958,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$22(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$303();
+            LoginActivity.this.lambda$onBackPressed$305();
         }
 
         public void lambda$onNextPressed$29(final TLRPC$TL_account_confirmPhone tLRPC$TL_account_confirmPhone, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -4023,7 +4026,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$26(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$303();
+            LoginActivity.this.lambda$onBackPressed$305();
         }
 
         public void lambda$onNextPressed$37(final TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -4197,7 +4200,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         @Override
         public boolean onBackPressed(boolean z) {
             if (LoginActivity.this.activityMode != 0) {
-                LoginActivity.this.lambda$onBackPressed$303();
+                LoginActivity.this.lambda$onBackPressed$305();
                 return false;
             }
             int i = this.prevType;
@@ -4754,7 +4757,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             if (tLObject instanceof TL_stats$TL_broadcastRevenueWithdrawalUrl) {
                 LoginActivity.this.passwordFinishCallback.run((TL_stats$TL_broadcastRevenueWithdrawalUrl) tLObject, null);
-                LoginActivity.this.lambda$onBackPressed$303();
+                LoginActivity.this.lambda$onBackPressed$305();
                 return;
             }
             if (tLObject instanceof TLRPC$TL_auth_authorization) {
@@ -5303,7 +5306,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$5(TLObject tLObject, Bundle bundle, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_verifyEmail tLRPC$TL_account_verifyEmail) {
             if ((tLObject instanceof TLRPC$TL_account_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$303();
+                LoginActivity.this.lambda$onBackPressed$305();
                 LoginActivity.this.emailChangeFinishCallback.run();
                 return;
             }
@@ -6034,7 +6037,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(TLObject tLObject, Bundle bundle) {
             if ((tLObject instanceof TLRPC$TL_account_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$303();
+                LoginActivity.this.lambda$onBackPressed$305();
                 LoginActivity.this.emailChangeFinishCallback.run();
             } else if (tLObject instanceof TLRPC$TL_account_emailVerifiedLogin) {
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, ((TLRPC$TL_account_emailVerifiedLogin) tLObject).sent_code);
@@ -9253,7 +9256,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             this.actionBar = null;
         }
-        clearStoryViewers();
+        clearSheets();
         this.parentLayout = null;
     }
 }

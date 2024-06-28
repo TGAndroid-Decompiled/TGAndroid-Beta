@@ -96,7 +96,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this, false);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
-        INavigationLayout newLayout = INavigationLayout.CC.newLayout(this);
+        INavigationLayout newLayout = INavigationLayout.CC.newLayout(this, false);
         this.actionBarLayout = newLayout;
         newLayout.setInBubbleMode(true);
         this.actionBarLayout.setRemoveActionBarExtraHeight(true);

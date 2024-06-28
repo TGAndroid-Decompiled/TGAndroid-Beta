@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -28,7 +29,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.RLottieDrawable;
 
 public class SpoilerEffect2 {
-    private static SpoilerEffect2 instance;
+    private static HashMap<Integer, SpoilerEffect2> instance;
     private final double MAX_DELTA;
     public final int MAX_FPS;
     private final double MIN_DELTA;
@@ -37,6 +38,7 @@ public class SpoilerEffect2 {
     private final TextureView textureView;
     private final ViewGroup textureViewContainer;
     private SpoilerThread thread;
+    public final int type;
     private int width;
     private final ArrayList<View> holders = new ArrayList<>();
     private final HashMap<View, Integer> holdersToIndex = new HashMap<>();
@@ -53,19 +55,34 @@ public class SpoilerEffect2 {
     }
 
     public static SpoilerEffect2 getInstance(View view) {
+        return getInstance(0, view);
+    }
+
+    public static SpoilerEffect2 getInstance(int i, View view) {
+        return getInstance(i, view, getRootView(view));
+    }
+
+    public static SpoilerEffect2 getInstance(int i, View view, ViewGroup viewGroup) {
         if (view == null || !supports()) {
             return null;
         }
         if (instance == null) {
+            instance = new HashMap<>();
+        }
+        SpoilerEffect2 spoilerEffect2 = instance.get(Integer.valueOf(i));
+        if (spoilerEffect2 == null) {
             int size = getSize();
-            ViewGroup rootView = getRootView(view);
-            if (rootView == null) {
+            if (viewGroup == null) {
                 return null;
             }
-            instance = new SpoilerEffect2(makeTextureViewContainer(rootView), size, size);
+            HashMap<Integer, SpoilerEffect2> hashMap = instance;
+            Integer valueOf = Integer.valueOf(i);
+            SpoilerEffect2 spoilerEffect22 = new SpoilerEffect2(i, makeTextureViewContainer(viewGroup), size, size);
+            hashMap.put(valueOf, spoilerEffect22);
+            spoilerEffect2 = spoilerEffect22;
         }
-        instance.attach(view);
-        return instance;
+        spoilerEffect2.attach(view);
+        return spoilerEffect2;
     }
 
     private static ViewGroup getRootView(View view) {
@@ -81,12 +98,30 @@ public class SpoilerEffect2 {
     }
 
     public static void pause(boolean z) {
-        SpoilerThread spoilerThread;
-        SpoilerEffect2 spoilerEffect2 = instance;
-        if (spoilerEffect2 == null || (spoilerThread = spoilerEffect2.thread) == null) {
+        HashMap<Integer, SpoilerEffect2> hashMap = instance;
+        if (hashMap == null) {
             return;
         }
-        spoilerThread.pause(z);
+        Iterator<SpoilerEffect2> it = hashMap.values().iterator();
+        while (it.hasNext()) {
+            SpoilerThread spoilerThread = it.next().thread;
+            if (spoilerThread != null) {
+                spoilerThread.pause(z);
+            }
+        }
+    }
+
+    public static void pause(int i, boolean z) {
+        SpoilerThread spoilerThread;
+        HashMap<Integer, SpoilerEffect2> hashMap = instance;
+        if (hashMap == null) {
+            return;
+        }
+        for (SpoilerEffect2 spoilerEffect2 : hashMap.values()) {
+            if (spoilerEffect2.type == i && (spoilerThread = spoilerEffect2.thread) != null) {
+                spoilerThread.pause(z);
+            }
+        }
     }
 
     private static int getSize() {
@@ -224,20 +259,21 @@ public class SpoilerEffect2 {
         }
     }
 
-    private SpoilerEffect2(ViewGroup viewGroup, int i, int i2) {
-        int i3 = (int) AndroidUtilities.screenRefreshRate;
-        this.MAX_FPS = i3;
-        double d = i3;
+    private SpoilerEffect2(int i, ViewGroup viewGroup, int i2, int i3) {
+        int i4 = (int) AndroidUtilities.screenRefreshRate;
+        this.MAX_FPS = i4;
+        double d = i4;
         Double.isNaN(d);
         double d2 = 1.0d / d;
         this.MIN_DELTA = d2;
         this.MAX_DELTA = d2 * 4.0d;
-        this.width = i;
-        this.height = i2;
+        this.type = i;
+        this.width = i2;
+        this.height = i3;
         this.textureViewContainer = viewGroup;
         TextureView textureView = new TextureView(viewGroup.getContext()) {
             @Override
-            protected void onMeasure(int i4, int i5) {
+            protected void onMeasure(int i5, int i6) {
                 setMeasuredDimension(SpoilerEffect2.this.width, SpoilerEffect2.this.height);
             }
         };
@@ -248,11 +284,11 @@ public class SpoilerEffect2 {
             }
 
             @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i4, int i5) {
+            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i5, int i6) {
                 if (SpoilerEffect2.this.thread == null) {
                     SpoilerEffect2 spoilerEffect2 = SpoilerEffect2.this;
                     final SpoilerEffect2 spoilerEffect22 = SpoilerEffect2.this;
-                    spoilerEffect2.thread = new SpoilerThread(surfaceTexture, i4, i5, new Runnable() {
+                    spoilerEffect2.thread = new SpoilerThread(surfaceTexture, i5, i6, new Runnable() {
                         @Override
                         public final void run() {
                             SpoilerEffect2.this.invalidate();
@@ -263,9 +299,9 @@ public class SpoilerEffect2 {
             }
 
             @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i4, int i5) {
+            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i5, int i6) {
                 if (SpoilerEffect2.this.thread != null) {
-                    SpoilerEffect2.this.thread.updateSize(i4, i5);
+                    SpoilerEffect2.this.thread.updateSize(i5, i6);
                 }
             }
 

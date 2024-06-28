@@ -913,6 +913,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             return 2;
         }
         sharedInstance = this;
+        FileLog.e("(4) set sharedInstance = this");
         synchronized (sync) {
             if (setModeRunnable != null) {
                 Utilities.globalQueue.cancelRunnable(setModeRunnable);
@@ -975,6 +976,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 setAudioOutput(0);
             }
             callIShouldHavePutIntoIntent = null;
+            FileLog.e("(3) set VoIPService.callIShouldHavePutIntoIntent = null");
             if (USE_CONNECTION_SERVICE) {
                 acknowledgeCall(z);
                 showNotification();
@@ -1237,6 +1239,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall.access_hash;
         tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
         tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonMissed();
+        FileLog.e("discardCall " + tLRPC$TL_phone_discardCall.reason);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_phone_discardCall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -3577,6 +3580,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         super.onDestroy();
         sharedInstance = null;
+        FileLog.e("(5) set sharedInstance = null");
         Arrays.fill(this.mySource, 0);
         cancelGroupCheckShortPoll();
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -3921,6 +3925,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else {
             tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonHangup();
         }
+        FileLog.e("discardCall " + tLRPC$TL_phone_discardCall.reason);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_phone_discardCall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -4648,6 +4653,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             NativeInstance[] nativeInstanceArr = this.tgVoip;
             tLRPC$TL_phone_discardCall.connection_id = nativeInstanceArr[0] != null ? nativeInstanceArr[0].getPreferredRelayId() : 0L;
             tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonDisconnect();
+            FileLog.e("discardCall " + tLRPC$TL_phone_discardCall.reason);
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_phone_discardCall, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

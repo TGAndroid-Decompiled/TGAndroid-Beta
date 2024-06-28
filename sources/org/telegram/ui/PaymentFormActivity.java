@@ -1808,7 +1808,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivityDelegate paymentFormActivityDelegate = this.delegate;
             if (paymentFormActivityDelegate != null) {
                 paymentFormActivityDelegate.didSelectNewAddress(this.validateRequest);
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 return;
             }
             if (this.paymentForm.invoice.flexible) {
@@ -1906,7 +1906,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivityDelegate paymentFormActivityDelegate2 = this.delegate;
             if (paymentFormActivityDelegate2 != null) {
                 paymentFormActivityDelegate2.didSelectNewCard(this.paymentJson, this.cardName, this.saveCardInfo, this.googlePayCredentials, null);
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 return;
             } else {
                 presentFragment(new PaymentFormActivity(this.invoiceInput, tLRPC$PaymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
@@ -1925,7 +1925,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 presentFragment(new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), true);
                 return;
             } else {
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 return;
             }
         }
@@ -1937,7 +1937,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (onCheckoutSuccess(getParentLayout(), getParentActivity()) || isFinishing()) {
                 return;
             }
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1957,13 +1957,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (paymentFormCallback != null) {
                 paymentFormCallback.onInvoiceStatusChanged(invoiceStatus);
             }
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             return;
         }
         if (this.invoiceStatus != InvoiceStatus.PAID || isFinishing()) {
             return;
         }
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
     }
 
     private boolean onCheckoutSuccess(INavigationLayout iNavigationLayout, Activity activity) {
@@ -2218,7 +2218,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$account_Password.has_password = false;
             tLRPC$account_Password.current_algo = null;
             this.delegate.currentPasswordUpdated(tLRPC$account_Password);
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             return;
         }
         if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {
@@ -2873,7 +2873,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void lambda$sendData$56(TLObject tLObject) {
         BaseFragment lastFragment;
         if (tLObject instanceof TLRPC$TL_payments_paymentReceiptStars) {
-            StarsIntroActivity.showTransactionSheet(getContext(), this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, getResourceProvider());
+            StarsIntroActivity.showTransactionSheet(getContext(), false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, getResourceProvider());
             return;
         }
         if (!(tLObject instanceof TLRPC$PaymentReceipt) || (lastFragment = LaunchActivity.getLastFragment()) == null) {
@@ -3001,7 +3001,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void lambda$sendData$60(TLObject tLObject) {
         BaseFragment lastFragment;
         if (tLObject instanceof TLRPC$TL_payments_paymentReceiptStars) {
-            StarsIntroActivity.showTransactionSheet(getContext(), this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, getResourceProvider());
+            StarsIntroActivity.showTransactionSheet(getContext(), false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, getResourceProvider());
             return;
         }
         if (!(tLObject instanceof TLRPC$PaymentReceipt) || (lastFragment = LaunchActivity.getLastFragment()) == null) {

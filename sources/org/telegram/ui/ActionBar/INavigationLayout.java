@@ -8,7 +8,6 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -56,11 +55,11 @@ public interface INavigationLayout {
 
     void expandPreviewFragment();
 
-    boolean extendActionMode(Menu menu);
-
     void finishPreviewFragment();
 
     BottomSheet getBottomSheet();
+
+    int getBottomTabsHeight(boolean z);
 
     float getCurrentPreviewFragmentAlpha();
 
@@ -106,10 +105,6 @@ public interface INavigationLayout {
 
     void movePreviewFragment(float f);
 
-    void onActionModeFinished(Object obj);
-
-    void onActionModeStarted(Object obj);
-
     void onBackPressed();
 
     void onLowMemory();
@@ -117,8 +112,6 @@ public interface INavigationLayout {
     void onPause();
 
     void onResume();
-
-    void onUserLeaveHint();
 
     boolean presentFragment(BaseFragment baseFragment);
 
@@ -141,9 +134,6 @@ public interface INavigationLayout {
 
     void rebuildFragments(int i);
 
-    @Deprecated
-    void rebuildLogout();
-
     void removeAllFragments();
 
     void removeFragmentFromStack(int i);
@@ -164,19 +154,17 @@ public interface INavigationLayout {
 
     void setFragmentStack(List<BaseFragment> list);
 
-    void setFragmentStackChangedListener(Runnable runnable);
-
     void setHighlightActionButtons(boolean z);
 
     void setInBubbleMode(boolean z);
 
     void setIsSheet(boolean z);
 
+    void setNavigationBarColor(int i);
+
     void setPulledDialogs(List<BackButtonMenu.PulledDialog> list);
 
     void setRemoveActionBarExtraHeight(boolean z);
-
-    void setTitleOverlayText(String str, int i, Runnable runnable);
 
     void setUseAlphaAnimations(boolean z);
 
@@ -186,8 +174,6 @@ public interface INavigationLayout {
     void showLastFragment();
 
     void startActivityForResult(Intent intent, int i);
-
-    void updateTitleOverlay();
 
     public final class CC {
         public static BottomSheet $default$getBottomSheet(INavigationLayout iNavigationLayout) {
@@ -202,22 +188,22 @@ public interface INavigationLayout {
             return false;
         }
 
-        public static INavigationLayout newLayout(Context context) {
-            return new ActionBarLayout(context);
+        public static INavigationLayout newLayout(Context context, boolean z) {
+            return new ActionBarLayout(context, z);
         }
 
-        public static INavigationLayout newLayout(Context context, Supplier<BottomSheet> supplier) {
-            return new ActionBarLayout(context) {
+        public static INavigationLayout newLayout(Context context, boolean z, Supplier<BottomSheet> supplier) {
+            return new ActionBarLayout(context, z) {
                 final Supplier val$supplier;
 
-                AnonymousClass1(Context context2, Supplier supplier2) {
-                    super(context2);
-                    r2 = supplier2;
+                AnonymousClass1(Context context2, boolean z2, Supplier supplier2) {
+                    super(context2, z2);
+                    r3 = supplier2;
                 }
 
                 @Override
                 public BottomSheet getBottomSheet() {
-                    return (BottomSheet) r2.get();
+                    return (BottomSheet) r3.get();
                 }
             };
         }
@@ -285,14 +271,14 @@ public interface INavigationLayout {
     public class AnonymousClass1 extends ActionBarLayout {
         final Supplier val$supplier;
 
-        AnonymousClass1(Context context2, Supplier supplier2) {
-            super(context2);
-            r2 = supplier2;
+        AnonymousClass1(Context context2, boolean z2, Supplier supplier2) {
+            super(context2, z2);
+            r3 = supplier2;
         }
 
         @Override
         public BottomSheet getBottomSheet() {
-            return (BottomSheet) r2.get();
+            return (BottomSheet) r3.get();
         }
     }
 

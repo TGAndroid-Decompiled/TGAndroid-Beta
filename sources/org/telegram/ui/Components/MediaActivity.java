@@ -170,7 +170,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
                 }
-                MediaActivity.this.lambda$onBackPressed$303();
+                MediaActivity.this.lambda$onBackPressed$305();
                 return;
             }
             if (i != 2) {
@@ -379,7 +379,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     @Override
     public boolean onBackPressed() {
-        if (closeStoryViewer()) {
+        if (closeSheet()) {
             return false;
         }
         if (this.sharedMediaLayout.isActionModeShown()) {

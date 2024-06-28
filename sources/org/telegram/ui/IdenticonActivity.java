@@ -98,7 +98,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    IdenticonActivity.this.lambda$onBackPressed$303();
+                    IdenticonActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

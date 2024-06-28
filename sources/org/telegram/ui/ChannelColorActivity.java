@@ -503,7 +503,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     if (channelColorActivity.currentLevel >= channelColorActivity.minLevelRequired() && ChannelColorActivity.this.hasUnsavedChanged()) {
                         ChannelColorActivity.this.showUnsavedAlert();
                     } else {
-                        ChannelColorActivity.this.lambda$onBackPressed$303();
+                        ChannelColorActivity.this.lambda$onBackPressed$305();
                     }
                 }
             }
@@ -925,7 +925,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             });
         }
         if (iArr[0] == 0) {
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             this.button.setLoading(false);
         } else {
             getMessagesController().putChat(chat, false);
@@ -959,7 +959,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
         iArr[0] = iArr[0] + 1;
         if (iArr[0] == iArr2[0]) {
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             showBulletin();
             this.button.setLoading(false);
         }
@@ -1038,7 +1038,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$showUnsavedAlert$14(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
     }
 
     public void lambda$showUnsavedAlert$15(DialogInterface dialogInterface, int i) {

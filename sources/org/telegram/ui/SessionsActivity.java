@@ -182,7 +182,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    SessionsActivity.this.lambda$onBackPressed$303();
+                    SessionsActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

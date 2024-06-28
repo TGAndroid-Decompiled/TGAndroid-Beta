@@ -297,7 +297,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    NotificationsSettingsActivity.this.lambda$onBackPressed$303();
+                    NotificationsSettingsActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

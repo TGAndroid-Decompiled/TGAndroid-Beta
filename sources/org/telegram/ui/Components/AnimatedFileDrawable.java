@@ -47,6 +47,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     BitmapsCache.Metadata cacheMetadata;
     private Runnable cancelCache;
     private int currentAccount;
+    public long currentTime;
     private DispatchQueue decodeQueue;
     private boolean decodeSingleFrame;
     private boolean decoderCreated;

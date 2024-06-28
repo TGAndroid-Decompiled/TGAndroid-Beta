@@ -379,6 +379,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     private float viewsThumbAlpha;
     private SelfStoriesPreviewView.ImageHolder viewsThumbImageReceiver;
     private float viewsThumbScale;
+    private boolean wasBigScreen;
 
     public interface Delegate {
         int getKeyboardHeight();
@@ -5562,6 +5563,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         } else {
             this.enterViewBottomOffset = ((-dp) + size) - size2;
         }
+        if (this.BIG_SCREEN != this.wasBigScreen) {
+            this.storyContainer.setLayoutParams(layoutParams);
+        }
         FrameLayout frameLayout = this.selfView;
         if (frameLayout != null) {
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
@@ -5595,10 +5599,18 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ((FrameLayout.LayoutParams) this.bottomActionsLinearLayout.getLayoutParams()).topMargin = ((dp + size2) - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(40.0f);
             int dp2 = this.isSelf ? AndroidUtilities.dp(40.0f) : AndroidUtilities.dp(56.0f);
             ((FrameLayout.LayoutParams) this.storyCaptionView.getLayoutParams()).bottomMargin = dp2;
+            if (this.wasBigScreen != this.BIG_SCREEN) {
+                StoryCaptionView storyCaptionView = this.storyCaptionView;
+                storyCaptionView.setLayoutParams((FrameLayout.LayoutParams) storyCaptionView.getLayoutParams());
+            }
             this.storyCaptionView.blackoutBottomOffset = dp2;
         } else {
             ((FrameLayout.LayoutParams) this.bottomActionsLinearLayout.getLayoutParams()).topMargin = dp + size2 + AndroidUtilities.dp(12.0f);
             ((FrameLayout.LayoutParams) this.storyCaptionView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(8.0f);
+            if (this.wasBigScreen != this.BIG_SCREEN) {
+                StoryCaptionView storyCaptionView2 = this.storyCaptionView;
+                storyCaptionView2.setLayoutParams((FrameLayout.LayoutParams) storyCaptionView2.getLayoutParams());
+            }
             this.storyCaptionView.blackoutBottomOffset = AndroidUtilities.dp(8.0f);
         }
         this.forceUpdateOffsets = true;
@@ -5618,6 +5630,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.headerView.forceLayout();
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        this.wasBigScreen = this.BIG_SCREEN;
     }
 
     public void lambda$onMeasure$43(ValueAnimator valueAnimator) {

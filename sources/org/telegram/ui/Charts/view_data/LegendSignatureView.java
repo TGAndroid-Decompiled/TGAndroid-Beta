@@ -265,13 +265,13 @@ public class LegendSignatureView extends FrameLayout {
                 sb.append(decimalFormat2.format(d / 1.0E9d));
                 return ChannelMonetizationLayout.replaceTON(sb.toString(), textView.getPaint(), 0.82f, false);
             }
-            return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
+            return "≈" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
         }
         if (i == 2) {
             if (i2 == 0) {
                 return StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(j, ' '), 0.7f);
             }
-            return "~" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
+            return "≈" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
         }
         float f2 = (float) j;
         if (j < 10000) {

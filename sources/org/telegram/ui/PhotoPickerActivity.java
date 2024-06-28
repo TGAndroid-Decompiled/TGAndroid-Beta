@@ -384,7 +384,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$303();
+            PhotoPickerActivity.this.lambda$onBackPressed$305();
             return true;
         }
 
@@ -620,7 +620,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             @Override
             public boolean cancelButtonPressed() {
                 PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0);
-                PhotoPickerActivity.this.lambda$onBackPressed$303();
+                PhotoPickerActivity.this.lambda$onBackPressed$305();
                 return true;
             }
 
@@ -734,7 +734,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoPickerActivity.this.lambda$onBackPressed$303();
+                    PhotoPickerActivity.this.lambda$onBackPressed$305();
                     return;
                 }
                 if (i3 != 1) {
@@ -742,7 +742,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                         if (PhotoPickerActivity.this.delegate != null) {
                             PhotoPickerActivity.this.delegate.onOpenInPressed();
                         }
-                        PhotoPickerActivity.this.lambda$onBackPressed$303();
+                        PhotoPickerActivity.this.lambda$onBackPressed$305();
                         return;
                     }
                     return;
@@ -1124,7 +1124,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public void onItemClick(int i3) {
             if (i3 == -1) {
-                PhotoPickerActivity.this.lambda$onBackPressed$303();
+                PhotoPickerActivity.this.lambda$onBackPressed$305();
                 return;
             }
             if (i3 != 1) {
@@ -1132,7 +1132,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     if (PhotoPickerActivity.this.delegate != null) {
                         PhotoPickerActivity.this.delegate.onOpenInPressed();
                     }
-                    PhotoPickerActivity.this.lambda$onBackPressed$303();
+                    PhotoPickerActivity.this.lambda$onBackPressed$305();
                     return;
                 }
                 return;
@@ -1182,7 +1182,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean canCollapseSearch() {
-            PhotoPickerActivity.this.lambda$onBackPressed$303();
+            PhotoPickerActivity.this.lambda$onBackPressed$305();
             return false;
         }
 
@@ -2368,7 +2368,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         if (this.selectPhotoType != PhotoAlbumPickerActivity.SELECT_TYPE_WALLPAPER) {
             PhotoPickerActivityDelegate photoPickerActivityDelegate = this.delegate;
             if (photoPickerActivityDelegate == null || photoPickerActivityDelegate.canFinishFragment()) {
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
             }
         }
     }
@@ -2561,7 +2561,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 imageView.setOrientation(0, true);
                 if (PhotoPickerActivity.this.selectedAlbum != null) {
                     MediaController.PhotoEntry photoEntry = PhotoPickerActivity.this.selectedAlbum.photos.get(i);
-                    photoAttachPhotoCell.setPhotoEntry(photoEntry, true, false);
+                    photoAttachPhotoCell.setPhotoEntry(photoEntry, PhotoPickerActivity.this.selectedPhotosOrder.size() > 1, true, false);
                     photoAttachPhotoCell.setChecked(PhotoPickerActivity.this.allowIndices ? PhotoPickerActivity.this.selectedPhotosOrder.indexOf(Integer.valueOf(photoEntry.imageId)) : -1, PhotoPickerActivity.this.selectedPhotos.containsKey(Integer.valueOf(photoEntry.imageId)), false);
                     isShowingImage = PhotoViewer.isShowingImage(photoEntry.path);
                 } else {

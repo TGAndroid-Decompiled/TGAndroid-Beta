@@ -59,10 +59,10 @@ public class ChangeNameActivity extends BaseFragment {
                         return;
                     }
                     ChangeNameActivity.this.saveName();
-                    ChangeNameActivity.this.lambda$onBackPressed$303();
+                    ChangeNameActivity.this.lambda$onBackPressed$305();
                     return;
                 }
-                ChangeNameActivity.this.lambda$onBackPressed$303();
+                ChangeNameActivity.this.lambda$onBackPressed$305();
             }
         });
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));

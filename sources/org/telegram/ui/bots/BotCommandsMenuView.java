@@ -43,6 +43,7 @@ public class BotCommandsMenuView extends View {
     int lastSize;
     private String menuText;
     StaticLayout menuTextLayout;
+    private float menuTextWidth;
     final Paint paint;
     final RectF rectTmp;
     final TextPaint textPaint;
@@ -136,13 +137,15 @@ public class BotCommandsMenuView extends View {
             this.backDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.lastSize = size;
-            int measureText = (int) this.textPaint.measureText(this.menuText);
-            this.menuTextLayout = StaticLayoutEx.createStaticLayout(this.menuText, this.textPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, measureText, 1);
+            int i3 = (int) (AndroidUtilities.displaySize.x * 0.6f);
+            StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false), this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
+            this.menuTextLayout = createStaticLayout;
+            this.menuTextWidth = createStaticLayout.getLineCount() > 0 ? this.menuTextLayout.getLineWidth(0) : 0.0f;
         }
-        onTranslationChanged((this.menuTextLayout.getWidth() + AndroidUtilities.dp(4.0f)) * this.expandProgress);
+        onTranslationChanged((this.menuTextWidth + AndroidUtilities.dp(4.0f)) * this.expandProgress);
         int dp = AndroidUtilities.dp(40.0f);
         if (this.expanded) {
-            dp += this.menuTextLayout.getWidth() + AndroidUtilities.dp(4.0f);
+            dp += ((int) this.menuTextWidth) + AndroidUtilities.dp(4.0f);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }

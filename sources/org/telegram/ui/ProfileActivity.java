@@ -3627,7 +3627,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (i == -1) {
-                ProfileActivity.this.lambda$onBackPressed$303();
+                ProfileActivity.this.lambda$onBackPressed$305();
                 return;
             }
             String str = null;
@@ -3682,7 +3682,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             ProfileActivity.AnonymousClass6.this.lambda$onItemClick$3();
                         }
                     });
-                    ProfileActivity.this.lambda$onBackPressed$303();
+                    ProfileActivity.this.lambda$onBackPressed$305();
                     return;
                 } else {
                     ProfileActivity profileActivity2 = ProfileActivity.this;
@@ -3775,7 +3775,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                 }
                             }
                         }
-                        ProfileActivity.this.lambda$onBackPressed$303();
+                        ProfileActivity.this.lambda$onBackPressed$305();
                         Context context = ProfileActivity.this.getContext();
                         if (context != null) {
                             BulletinFactory.of(Bulletin.BulletinWindow.make(context), ProfileActivity.this.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getPluralString("TopicsDeleted", 1)).show();
@@ -4132,7 +4132,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 notificationCenter.removeObserver(profileActivity, i2);
                 ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
                 ProfileActivity.this.playProfileAnimation = 0;
-                ProfileActivity.this.lambda$onBackPressed$303();
+                ProfileActivity.this.lambda$onBackPressed$305();
                 return;
             }
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ProfileActivity.this.userId));
@@ -4152,7 +4152,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.getParentLayout().removeFragmentFromStack(fragmentStack.size() - 2);
                 }
             }
-            ProfileActivity.this.lambda$onBackPressed$303();
+            ProfileActivity.this.lambda$onBackPressed$305();
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ProfileActivity.this.dialogId), tLRPC$User, ProfileActivity.this.currentChat, Boolean.valueOf(z));
         }
 
@@ -4188,7 +4188,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
                     }
                 }
-                ProfileActivity.this.lambda$onBackPressed$303();
+                ProfileActivity.this.lambda$onBackPressed$305();
                 Context context = ProfileActivity.this.getContext();
                 if (context != null) {
                     BulletinFactory.of(Bulletin.BulletinWindow.make(context), ProfileActivity.this.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getPluralString("TopicsDeleted", 1)).show();
@@ -5969,7 +5969,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i4 >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.getString("DebugMenu", R.string.DebugMenu));
-                CharSequence[] charSequenceArr = new CharSequence[31];
+                CharSequence[] charSequenceArr = new CharSequence[32];
                 charSequenceArr[0] = LocaleController.getString("DebugMenuImportContacts", R.string.DebugMenuImportContacts);
                 charSequenceArr[1] = LocaleController.getString("DebugMenuReloadContacts", R.string.DebugMenuReloadContacts);
                 charSequenceArr[2] = LocaleController.getString("DebugMenuResetContacts", R.string.DebugMenuResetContacts);
@@ -6038,6 +6038,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 charSequenceArr[28] = BuildVars.DEBUG_VERSION ? "Clear bot biometry data" : null;
                 charSequenceArr[29] = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
                 charSequenceArr[30] = (!SharedConfig.canBlurChat() || i5 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
+                charSequenceArr[31] = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.botTabs3DEffect ? "disable tabs 3d effect" : "enable tabs 3d effect" : null;
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -6059,8 +6060,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         public void lambda$onItemClick$3(Context context, DialogInterface dialogInterface, int i) {
             long j;
-            String str;
-            int i2 = 0;
+            int i2;
+            int i3 = 0;
             if (i == 0) {
                 ProfileActivity.this.getUserConfig().syncContacts = true;
                 ProfileActivity.this.getUserConfig().saveConfig(false);
@@ -6126,9 +6127,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 SharedPreferences mainSettings = ProfileActivity.this.getMessagesController().getMainSettings();
                 SharedPreferences.Editor edit = mainSettings.edit();
                 edit.remove("peerColors").remove("profilePeerColors").remove("boostingappearance").remove("bizbothint");
-                for (String str2 : mainSettings.getAll().keySet()) {
-                    if (str2.contains("show_gift_for_") || str2.contains("bdayhint_") || str2.contains("bdayanim_")) {
-                        edit.remove(str2);
+                for (String str : mainSettings.getAll().keySet()) {
+                    if (str.contains("show_gift_for_") || str.contains("bdayhint_") || str.contains("bdayanim_")) {
+                        edit.remove(str);
                     }
                 }
                 edit.commit();
@@ -6225,8 +6226,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     charSequenceArr[2] = AndroidUtilities.replaceTags(sb3.toString());
                     builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface2, int i3) {
-                            ProfileActivity.AnonymousClass16.lambda$onItemClick$2(measureDevicePerformanceClass, dialogInterface2, i3);
+                        public final void onClick(DialogInterface dialogInterface2, int i4) {
+                            ProfileActivity.AnonymousClass16.lambda$onItemClick$2(measureDevicePerformanceClass, dialogInterface2, i4);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -6249,9 +6250,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 if (i == 23) {
                     SharedConfig.toggleSurfaceInStories();
-                    while (i2 < ProfileActivity.this.getParentLayout().getFragmentStack().size()) {
-                        ProfileActivity.this.getParentLayout().getFragmentStack().get(i2).clearStoryViewers();
-                        i2++;
+                    while (i3 < ProfileActivity.this.getParentLayout().getFragmentStack().size()) {
+                        ProfileActivity.this.getParentLayout().getFragmentStack().get(i3).clearSheets();
+                        i3++;
                     }
                     return;
                 }
@@ -6274,19 +6275,22 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (i == 28) {
                     BotBiometry.clear();
                     return;
-                } else if (i == 29) {
+                }
+                if (i == 29) {
                     AuthTokensHelper.clearLogInTokens();
                     return;
+                } else if (i == 30) {
+                    SharedConfig.toggleUseNewBlur();
+                    return;
                 } else {
-                    if (i == 30) {
-                        SharedConfig.toggleUseNewBlur();
+                    if (i == 31) {
+                        SharedConfig.setBotTabs3DEffect(!SharedConfig.botTabs3DEffect);
                         return;
                     }
                     return;
                 }
             }
-            int i3 = ConnectionsManager.CPU_COUNT;
-            String str3 = "activity";
+            int i4 = ConnectionsManager.CPU_COUNT;
             int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
             StringBuilder sb4 = new StringBuilder();
             long j2 = 0;
@@ -6297,39 +6301,29 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             long j7 = 0;
             long j8 = 0;
             long j9 = 0;
-            while (i2 < i3) {
+            while (i3 < i4) {
+                Long sysInfoLong = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i3 + "/cpufreq/cpuinfo_min_freq");
+                Long sysInfoLong2 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i3 + "/cpufreq/cpuinfo_cur_freq");
                 StringBuilder sb5 = new StringBuilder();
                 sb5.append("/sys/devices/system/cpu/cpu");
-                sb5.append(i2);
-                int i4 = i3;
-                sb5.append("/cpufreq/cpuinfo_min_freq");
-                Long sysInfoLong = AndroidUtilities.getSysInfoLong(sb5.toString());
-                StringBuilder sb6 = new StringBuilder();
-                sb6.append("/sys/devices/system/cpu/cpu");
-                sb6.append(i2);
-                int i5 = memoryClass;
-                sb6.append("/cpufreq/cpuinfo_cur_freq");
-                Long sysInfoLong2 = AndroidUtilities.getSysInfoLong(sb6.toString());
-                StringBuilder sb7 = new StringBuilder();
-                sb7.append("/sys/devices/system/cpu/cpu");
-                sb7.append(i2);
-                String str4 = str3;
-                sb7.append("/cpufreq/cpuinfo_max_freq");
-                Long sysInfoLong3 = AndroidUtilities.getSysInfoLong(sb7.toString());
-                Long sysInfoLong4 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i2 + "/cpu_capacity");
+                sb5.append(i3);
+                int i5 = i4;
+                sb5.append("/cpufreq/cpuinfo_max_freq");
+                Long sysInfoLong3 = AndroidUtilities.getSysInfoLong(sb5.toString());
+                Long sysInfoLong4 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i3 + "/cpu_capacity");
                 sb4.append("#");
-                sb4.append(i2);
+                sb4.append(i3);
                 sb4.append(" ");
-                int i6 = i2;
+                int i6 = memoryClass;
                 if (sysInfoLong != null) {
                     sb4.append("min=");
-                    str = "\n";
+                    i2 = i3;
                     sb4.append(sysInfoLong.longValue() / 1000);
                     sb4.append(" ");
                     j2 += sysInfoLong.longValue() / 1000;
                     j3++;
                 } else {
-                    str = "\n";
+                    i2 = i3;
                 }
                 if (sysInfoLong2 != null) {
                     sb4.append("cur=");
@@ -6352,113 +6346,111 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     j8 += sysInfoLong4.longValue();
                     j9++;
                 }
-                sb4.append(str);
-                i2 = i6 + 1;
-                i3 = i4;
-                memoryClass = i5;
-                str3 = str4;
+                sb4.append("\n");
+                i3 = i2 + 1;
+                i4 = i5;
+                memoryClass = i6;
             }
-            int i7 = i3;
+            int i7 = i4;
             int i8 = memoryClass;
-            String str5 = str3;
-            StringBuilder sb8 = new StringBuilder();
-            sb8.append(Build.MANUFACTURER);
-            sb8.append(", ");
-            sb8.append(Build.MODEL);
-            sb8.append(" (");
-            sb8.append(Build.PRODUCT);
-            sb8.append(", ");
-            sb8.append(Build.DEVICE);
-            sb8.append(") ");
-            sb8.append(" (android ");
+            StringBuilder sb6 = new StringBuilder();
+            sb6.append(Build.MANUFACTURER);
+            sb6.append(", ");
+            sb6.append(Build.MODEL);
+            sb6.append(" (");
+            sb6.append(Build.PRODUCT);
+            sb6.append(", ");
+            sb6.append(Build.DEVICE);
+            sb6.append(") ");
+            sb6.append(" (android ");
             int i9 = Build.VERSION.SDK_INT;
-            sb8.append(i9);
-            sb8.append(")\n");
+            sb6.append(i9);
+            sb6.append(")\n");
             if (i9 >= 31) {
-                sb8.append("SoC: ");
-                sb8.append(Build.SOC_MANUFACTURER);
-                sb8.append(", ");
-                sb8.append(Build.SOC_MODEL);
-                sb8.append("\n");
+                sb6.append("SoC: ");
+                sb6.append(Build.SOC_MANUFACTURER);
+                sb6.append(", ");
+                sb6.append(Build.SOC_MODEL);
+                sb6.append("\n");
             }
             String sysInfoString = AndroidUtilities.getSysInfoString("/sys/kernel/gpu/gpu_model");
             if (sysInfoString != null) {
-                sb8.append("GPU: ");
-                sb8.append(sysInfoString);
+                sb6.append("GPU: ");
+                sb6.append(sysInfoString);
                 Long sysInfoLong5 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_min_clock");
                 Long sysInfoLong6 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_mm_min_clock");
                 Long sysInfoLong7 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_max_clock");
                 if (sysInfoLong5 != null) {
-                    sb8.append(", min=");
+                    sb6.append(", min=");
                     j = j4;
-                    sb8.append(sysInfoLong5.longValue() / 1000);
+                    sb6.append(sysInfoLong5.longValue() / 1000);
                 } else {
                     j = j4;
                 }
                 if (sysInfoLong6 != null) {
-                    sb8.append(", mmin=");
-                    sb8.append(sysInfoLong6.longValue() / 1000);
+                    sb6.append(", mmin=");
+                    sb6.append(sysInfoLong6.longValue() / 1000);
                 }
                 if (sysInfoLong7 != null) {
-                    sb8.append(", max=");
-                    sb8.append(sysInfoLong7.longValue() / 1000);
+                    sb6.append(", max=");
+                    sb6.append(sysInfoLong7.longValue() / 1000);
                 }
-                sb8.append("\n");
+                sb6.append("\n");
             } else {
                 j = j4;
             }
-            ConfigurationInfo deviceConfigurationInfo = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService(str5)).getDeviceConfigurationInfo();
-            sb8.append("GLES Version: ");
-            sb8.append(deviceConfigurationInfo.getGlEsVersion());
-            sb8.append("\n");
-            sb8.append("Memory: class=");
-            sb8.append(AndroidUtilities.formatFileSize(i8 * 1024 * 1024));
+            ConfigurationInfo deviceConfigurationInfo = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getDeviceConfigurationInfo();
+            sb6.append("GLES Version: ");
+            sb6.append(deviceConfigurationInfo.getGlEsVersion());
+            sb6.append("\n");
+            sb6.append("Memory: class=");
+            sb6.append(AndroidUtilities.formatFileSize(i8 * 1024 * 1024));
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            ((ActivityManager) ApplicationLoader.applicationContext.getSystemService(str5)).getMemoryInfo(memoryInfo);
-            sb8.append(", total=");
-            sb8.append(AndroidUtilities.formatFileSize(memoryInfo.totalMem));
-            sb8.append(", avail=");
-            sb8.append(AndroidUtilities.formatFileSize(memoryInfo.availMem));
-            sb8.append(", low?=");
-            sb8.append(memoryInfo.lowMemory);
-            sb8.append(" (threshold=");
-            sb8.append(AndroidUtilities.formatFileSize(memoryInfo.threshold));
-            sb8.append(")");
-            sb8.append("\n");
-            sb8.append("Current class: ");
-            sb8.append(SharedConfig.performanceClassName(SharedConfig.getDevicePerformanceClass()));
-            sb8.append(", measured: ");
-            sb8.append(SharedConfig.performanceClassName(SharedConfig.measureDevicePerformanceClass()));
+            ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
+            sb6.append(", total=");
+            sb6.append(AndroidUtilities.formatFileSize(memoryInfo.totalMem));
+            sb6.append(", avail=");
+            sb6.append(AndroidUtilities.formatFileSize(memoryInfo.availMem));
+            sb6.append(", low?=");
+            sb6.append(memoryInfo.lowMemory);
+            sb6.append(" (threshold=");
+            sb6.append(AndroidUtilities.formatFileSize(memoryInfo.threshold));
+            sb6.append(")");
+            sb6.append("\n");
+            sb6.append("Current class: ");
+            sb6.append(SharedConfig.performanceClassName(SharedConfig.getDevicePerformanceClass()));
+            sb6.append(", measured: ");
+            sb6.append(SharedConfig.performanceClassName(SharedConfig.measureDevicePerformanceClass()));
             if (i9 >= 31) {
-                sb8.append(", suggest=");
-                sb8.append(Build.VERSION.MEDIA_PERFORMANCE_CLASS);
+                sb6.append(", suggest=");
+                sb6.append(Build.VERSION.MEDIA_PERFORMANCE_CLASS);
             }
-            sb8.append("\n");
-            sb8.append(i7);
-            sb8.append(" CPUs");
+            sb6.append("\n");
+            sb6.append(i7);
+            sb6.append(" CPUs");
             if (j3 > 0) {
-                sb8.append(", avgMinFreq=");
-                sb8.append(j2 / j3);
+                sb6.append(", avgMinFreq=");
+                sb6.append(j2 / j3);
             }
             if (j5 > 0) {
-                sb8.append(", avgCurFreq=");
-                sb8.append(j / j5);
+                sb6.append(", avgCurFreq=");
+                sb6.append(j / j5);
             }
             if (j7 > 0) {
-                sb8.append(", avgMaxFreq=");
-                sb8.append(j6 / j7);
+                sb6.append(", avgMaxFreq=");
+                sb6.append(j6 / j7);
             }
             if (j9 > 0) {
-                sb8.append(", avgCapacity=");
-                sb8.append(j8 / j9);
+                sb6.append(", avgCapacity=");
+                sb6.append(j8 / j9);
             }
-            sb8.append("\n");
-            sb8.append((CharSequence) sb4);
-            ProfileActivity.this.listCodecs(MediaController.VIDEO_MIME_TYPE, sb8);
-            ProfileActivity.this.listCodecs("video/hevc", sb8);
-            ProfileActivity.this.listCodecs("video/x-vnd.on2.vp8", sb8);
-            ProfileActivity.this.listCodecs("video/x-vnd.on2.vp9", sb8);
-            ProfileActivity.this.showDialog(new AnonymousClass1(ProfileActivity.this.getParentActivity(), null, sb8.toString(), false, null, false));
+            sb6.append("\n");
+            sb6.append((CharSequence) sb4);
+            ProfileActivity.this.listCodecs(MediaController.VIDEO_MIME_TYPE, sb6);
+            ProfileActivity.this.listCodecs("video/hevc", sb6);
+            ProfileActivity.this.listCodecs("video/x-vnd.on2.vp8", sb6);
+            ProfileActivity.this.listCodecs("video/x-vnd.on2.vp9", sb6);
+            ProfileActivity.this.showDialog(new AnonymousClass1(ProfileActivity.this.getParentActivity(), null, sb6.toString(), false, null, false));
         }
 
         public void lambda$onItemClick$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -7955,7 +7947,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (this.playProfileAnimation != 0 && (iNavigationLayout = this.parentLayout) != null && iNavigationLayout.getFragmentStack() != null && this.parentLayout.getFragmentStack().size() >= 2 && (this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 return;
             }
             TLRPC$User user2 = getMessagesController().getUser(Long.valueOf(this.userId));
@@ -7980,7 +7972,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 chatActivity.setPreloadedSticker(getMediaDataController().getGreetingsSticker(), false);
                 presentFragment(chatActivity, z);
                 if (AndroidUtilities.isTablet()) {
-                    lambda$onBackPressed$303();
+                    lambda$onBackPressed$305();
                     return;
                 }
                 return;
@@ -9143,7 +9135,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         int i = NotificationCenter.closeChats;
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -11005,7 +10997,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     @Override
     public boolean onBackPressed() {
         SharedMediaLayout sharedMediaLayout;
-        if (!closeStoryViewer() && this.actionBar.isEnabled()) {
+        if (!closeSheet() && this.actionBar.isEnabled()) {
             return this.sharedMediaRow == -1 || (sharedMediaLayout = this.sharedMediaLayout) == null || !sharedMediaLayout.closeActionMode();
         }
         return false;
@@ -11437,7 +11429,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         getMessagesController().deleteParticipantFromChat(this.chatId, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())));
         this.playProfileAnimation = 0;
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
     }
 
     public boolean isChat() {
@@ -15388,7 +15380,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             BaseFragment baseFragment = this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2);
             if (baseFragment instanceof ChatActivity) {
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 ((ChatActivity) baseFragment).chatActivityEnterView.setCommand(null, str, false, false);
             }
         }

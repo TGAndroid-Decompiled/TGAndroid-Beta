@@ -388,6 +388,9 @@ public class ScrimOptions extends Dialog {
         float f2;
         ArrayList<MessageObject.TextLayoutBlock> arrayList;
         float f3;
+        float f4;
+        float f5;
+        int i;
         RectF rectF;
         StaticLayout staticLayout;
         final Bitmap bitmap;
@@ -419,44 +422,42 @@ public class ScrimOptions extends Dialog {
         if (arrayList == null) {
             return;
         }
-        float f4 = f;
-        float f5 = f2;
-        int i = 0;
-        StaticLayout staticLayout3 = null;
         int i2 = 0;
+        StaticLayout staticLayout3 = null;
         int i3 = 0;
-        while (i < arrayList.size()) {
-            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i);
+        int i4 = 0;
+        while (i2 < arrayList.size()) {
+            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
             StaticLayout staticLayout4 = textLayoutBlock.textLayout;
             if (staticLayout4 != null && (staticLayout4.getText() instanceof Spanned)) {
                 messageObject = messageObject2;
                 CharacterStyle[] characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout4.getText()).getSpans(0, staticLayout4.getText().length(), CharacterStyle.class);
                 if (characterStyleArr != null) {
-                    int i4 = 0;
+                    int i5 = 0;
                     while (true) {
-                        if (i4 >= characterStyleArr.length) {
+                        if (i5 >= characterStyleArr.length) {
                             z = false;
                             break;
                         } else {
-                            if (characterStyleArr[i4] == characterStyle) {
+                            if (characterStyleArr[i5] == characterStyle) {
                                 z = true;
                                 break;
                             }
-                            i4++;
+                            i5++;
                         }
                     }
                     if (z) {
-                        i2 = ((Spanned) staticLayout4.getText()).getSpanStart(characterStyle);
-                        i3 = ((Spanned) staticLayout4.getText()).getSpanEnd(characterStyle);
-                        f4 += textLayoutBlock.isRtl() ? (int) Math.ceil(f3) : 0;
-                        f5 += textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams);
+                        i3 = ((Spanned) staticLayout4.getText()).getSpanStart(characterStyle);
+                        i4 = ((Spanned) staticLayout4.getText()).getSpanEnd(characterStyle);
+                        f += textLayoutBlock.isRtl() ? (int) Math.ceil(f3) : 0;
+                        f2 += textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams);
                         staticLayout3 = staticLayout4;
                     }
                 }
             } else {
                 messageObject = messageObject2;
             }
-            i++;
+            i2++;
             messageObject2 = messageObject;
             staticLayout3 = staticLayout3;
         }
@@ -465,17 +466,34 @@ public class ScrimOptions extends Dialog {
             return;
         }
         if (charSequence != null) {
+            int lineForOffset = staticLayout3.getLineForOffset(i3);
+            float lineTop = staticLayout3.getLineTop(lineForOffset) + f2;
+            float primaryHorizontal = staticLayout3.getPrimaryHorizontal(i3);
+            float lineWidth = staticLayout3.getLineWidth(lineForOffset);
             LinkPath linkPath = new LinkPath(true);
-            linkPath.setCurrentLayout(staticLayout3, i2, 0.0f);
-            staticLayout3.getSelectionPath(i2, i3, linkPath);
+            linkPath.setCurrentLayout(staticLayout3, i3, 0.0f);
+            staticLayout3.getSelectionPath(i3, i4, linkPath);
             RectF rectF2 = new RectF();
             linkPath.computeBounds(rectF2, true);
             StaticLayout makeStaticLayout = MessageObject.makeStaticLayout(charSequence, staticLayout3.getPaint(), staticLayout3.getWidth(), 1.0f, 0.0f, true);
-            i3 = charSequence.length();
+            int length = charSequence.length();
+            float width = makeStaticLayout.getWidth();
+            float f6 = 0.0f;
+            for (int i6 = 0; i6 < makeStaticLayout.getLineCount(); i6++) {
+                width = Math.min(width, makeStaticLayout.getLineLeft(i6));
+                f6 = Math.max(f6, makeStaticLayout.getLineRight(i6));
+            }
+            float min = f + Math.min(primaryHorizontal, lineWidth - Math.max(0.0f, f6 - width));
+            f5 = lineTop;
+            i = length;
+            i3 = 0;
             rectF = rectF2;
-            i2 = 0;
+            f4 = min;
             staticLayout = makeStaticLayout;
         } else {
+            f4 = f;
+            f5 = f2;
+            i = i4;
             rectF = null;
             staticLayout = staticLayout3;
         }
@@ -484,20 +502,20 @@ public class ScrimOptions extends Dialog {
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
         final LinkPath linkPath2 = new LinkPath(true);
         linkPath2.setUseCornerPathImplementation(true);
-        linkPath2.setCurrentLayout(staticLayout, i2, 0.0f);
-        staticLayout.getSelectionPath(i2, i3, linkPath2);
+        linkPath2.setCurrentLayout(staticLayout, i3, 0.0f);
+        staticLayout.getSelectionPath(i3, i, linkPath2);
         linkPath2.closeRects();
         final RectF rectF3 = new RectF();
         linkPath2.computeBounds(rectF3, true);
-        int width = (int) (rectF3.width() + LinkPath.getRadius());
-        if (!chatMessageCell.drawBackgroundInParent() || width <= 0 || rectF3.height() <= 0.0f) {
+        int width2 = (int) (rectF3.width() + LinkPath.getRadius());
+        if (!chatMessageCell.drawBackgroundInParent() || width2 <= 0 || rectF3.height() <= 0.0f) {
             bitmap = null;
         } else {
-            Bitmap createBitmap = Bitmap.createBitmap(width, (int) rectF3.height(), Bitmap.Config.ALPHA_8);
+            Bitmap createBitmap = Bitmap.createBitmap(width2, (int) rectF3.height(), Bitmap.Config.ALPHA_8);
             Canvas canvas = new Canvas(createBitmap);
             Paint paint2 = new Paint(1);
             paint2.setColor(-1);
-            canvas.drawRect(0.0f, 0.0f, width, rectF3.height(), paint2);
+            canvas.drawRect(0.0f, 0.0f, width2, rectF3.height(), paint2);
             Paint paint3 = new Paint(1);
             paint3.setColor(-1);
             paint3.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
@@ -585,21 +603,21 @@ public class ScrimOptions extends Dialog {
             }
 
             @Override
-            public void setAlpha(int i5) {
-                this.alpha = i5;
+            public void setAlpha(int i7) {
+                this.alpha = i7;
             }
         };
         int radius = (int) (iArr[0] + f4 + rectF3.left + (LinkPath.getRadius() / 2.0f));
-        int i5 = (int) (iArr[1] + f5 + rectF3.top);
-        this.scrimDrawable.setBounds(radius, i5, ((int) rectF3.width()) + radius, ((int) rectF3.height()) + i5);
+        int i7 = (int) (iArr[1] + f5 + rectF3.top);
+        this.scrimDrawable.setBounds(radius, i7, ((int) rectF3.width()) + radius, ((int) rectF3.height()) + i7);
         if (charSequence != null) {
-            float f6 = radius;
-            if (rectF3.width() + f6 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f)) {
-                this.scrimDrawableTx2 -= (f6 + rectF3.width()) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f));
+            float f7 = radius;
+            if (rectF3.width() + f7 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f)) {
+                this.scrimDrawableTx2 -= (f7 + rectF3.width()) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f));
             }
-            float f7 = i5;
-            if (rectF3.height() + f7 > (AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f)) {
-                this.scrimDrawableTy2 -= (f7 + rectF3.height()) - ((AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f));
+            float f8 = i7;
+            if (rectF3.height() + f8 > (AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f)) {
+                this.scrimDrawableTy2 -= (f8 + rectF3.height()) - ((AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f));
             }
             if (rectF4 != null) {
                 this.scrimDrawableSw = rectF4.width() / rectF3.width();

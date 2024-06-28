@@ -119,7 +119,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    PrivacyUsersActivity.this.lambda$onBackPressed$303();
+                    PrivacyUsersActivity.this.lambda$onBackPressed$305();
                 }
             }
         });
@@ -262,7 +262,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     public void lambda$createView$1() {
         this.uidArray.clear();
         updateRows();
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
         PrivacyActivityDelegate privacyActivityDelegate = this.delegate;
         if (privacyActivityDelegate != null) {
             privacyActivityDelegate.didUpdateUserList(this.uidArray, true);
@@ -328,7 +328,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             privacyActivityDelegate.didUpdateUserList(this.uidArray, false);
         }
         if (this.uidArray.isEmpty()) {
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
         }
     }
 

@@ -137,7 +137,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TooManyCommunitiesActivity.this.lambda$onBackPressed$303();
+                    TooManyCommunitiesActivity.this.lambda$onBackPressed$305();
                 }
             }
         });
@@ -288,7 +288,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             getMessagesController().putChat(tLRPC$Chat, false);
             getMessagesController().deleteParticipantFromChat(tLRPC$Chat.id, user);
         }
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
     }
 
     private void onSelectedCountChange() {

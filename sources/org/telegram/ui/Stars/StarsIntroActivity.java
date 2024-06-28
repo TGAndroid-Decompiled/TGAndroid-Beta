@@ -8,17 +8,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.style.ClickableSpan;
+import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
@@ -32,15 +36,18 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -51,11 +58,25 @@ import org.telegram.messenger.WebFile;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$FileLocation;
+import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
+import org.telegram.tgnet.TLRPC$MessageFwdHeader;
+import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$StarsTransaction;
 import org.telegram.tgnet.TLRPC$StarsTransactionPeer;
+import org.telegram.tgnet.TLRPC$TL_message;
+import org.telegram.tgnet.TLRPC$TL_messageExtendedMedia;
+import org.telegram.tgnet.TLRPC$TL_messageExtendedMediaPreview;
+import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
+import org.telegram.tgnet.TLRPC$TL_messageMediaPaidMedia;
+import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_payments_paymentReceiptStars;
+import org.telegram.tgnet.TLRPC$TL_peerChannel;
 import org.telegram.tgnet.TLRPC$TL_starsTopupOption;
 import org.telegram.tgnet.TLRPC$TL_starsTransactionPeer;
+import org.telegram.tgnet.TLRPC$TL_starsTransactionPeerAds;
 import org.telegram.tgnet.TLRPC$TL_starsTransactionPeerAppStore;
 import org.telegram.tgnet.TLRPC$TL_starsTransactionPeerFragment;
 import org.telegram.tgnet.TLRPC$TL_starsTransactionPeerPlayMarket;
@@ -67,7 +88,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SessionCell;
 import org.telegram.ui.ChatActivity;
@@ -78,25 +98,27 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
-import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.FireworksOverlay;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingSpan;
+import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Components.TableView;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -1113,7 +1135,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
             public void onClick(UItem uItem, View view, int i, float f, float f2) {
                 if (uItem.object instanceof TLRPC$StarsTransaction) {
-                    StarsIntroActivity.showTransactionSheet(getContext(), this.currentAccount, (TLRPC$StarsTransaction) uItem.object, this.resourcesProvider);
+                    StarsIntroActivity.showTransactionSheet(getContext(), false, 0L, this.currentAccount, (TLRPC$StarsTransaction) uItem.object, this.resourcesProvider);
                 }
             }
         }
@@ -1126,6 +1148,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         private final int currentAccount;
         private final TextView dateTextView;
         private final BackupImageView imageView;
+        private final BackupImageView imageView2;
+        private final FrameLayout imageViewContainer;
+        private int imageViewCount;
         private boolean needDivider;
         private final SpannableString star;
         private final TextView subtitleTextView;
@@ -1134,15 +1159,37 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         private final TextView titleTextView;
         private final LinearLayout.LayoutParams titleTextViewParams;
 
-        public StarsTransactionView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        public StarsTransactionView(Context context, int i, final Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.imageViewCount = 1;
             this.currentAccount = i;
             setOrientation(0);
-            this.avatarDrawable = new AvatarDrawable();
+            FrameLayout frameLayout = new FrameLayout(context) {
+                private final Paint backgroundPaint = new Paint(1);
+
+                @Override
+                protected boolean drawChild(Canvas canvas, View view, long j) {
+                    if (StarsTransactionView.this.imageViewCount > 1) {
+                        this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        rectF.set(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
+                        rectF.inset(-AndroidUtilities.dp(1.66f), -AndroidUtilities.dp(1.66f));
+                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.backgroundPaint);
+                    }
+                    return super.drawChild(canvas, view, j);
+                }
+            };
+            this.imageViewContainer = frameLayout;
+            addView(frameLayout, LayoutHelper.createLinear(72, -1, R.styleable.AppCompatTheme_tooltipFrameBackground));
             BackupImageView backupImageView = new BackupImageView(context);
-            this.imageView = backupImageView;
+            this.imageView2 = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(46.0f));
-            addView(backupImageView, LayoutHelper.createLinear(46, 46, 16, 13, 0, 13, 0));
+            frameLayout.addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, 16, 13.0f, 0.0f, 13.0f, 0.0f));
+            this.avatarDrawable = new AvatarDrawable();
+            BackupImageView backupImageView2 = new BackupImageView(context);
+            this.imageView = backupImageView2;
+            backupImageView2.setRoundRadius(AndroidUtilities.dp(46.0f));
+            frameLayout.addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, 16, 13.0f, 0.0f, 13.0f, 0.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             this.textLayout = linearLayout;
             linearLayout.setOrientation(1);
@@ -1195,11 +1242,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
 
         public void set(TLRPC$StarsTransaction tLRPC$StarsTransaction, boolean z, boolean z2) {
+            boolean z3;
             String str;
+            ImageLocation imageLocation;
+            ImageLocation forDocument;
             long peerDialogId = DialogObject.getPeerDialogId(tLRPC$StarsTransaction.peer.peer);
-            boolean z3 = peerDialogId != 0;
-            this.threeLines = z3;
-            this.titleTextViewParams.bottomMargin = z3 ? 0 : AndroidUtilities.dp(4.33f);
+            boolean z4 = peerDialogId != 0;
+            this.threeLines = z4;
+            this.titleTextViewParams.bottomMargin = z4 ? 0 : AndroidUtilities.dp(4.33f);
             this.subtitleTextView.setVisibility(this.threeLines ? 0 : 8);
             this.dateTextView.setTextSize(1, this.threeLines ? 13.0f : 14.0f);
             this.dateTextView.setText(LocaleController.formatShortDateTime(tLRPC$StarsTransaction.date));
@@ -1213,9 +1263,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 TextView textView3 = this.dateTextView;
                 textView3.setText(TextUtils.concat(textView3.getText(), " — ", LocaleController.getString(R.string.StarsPending)));
             }
+            this.imageView.setTranslationX(0.0f);
+            this.imageView.setTranslationY(0.0f);
+            this.imageView2.setVisibility(8);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(46.0f));
             if (peerDialogId != 0) {
                 if (peerDialogId >= 0) {
                     TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+                    z3 = user == null;
                     if (tLRPC$StarsTransaction.photo == null) {
                         this.avatarDrawable.setInfo(user);
                         this.imageView.setForUserOrChat(user, this.avatarDrawable);
@@ -1223,19 +1278,67 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     str = UserObject.getUserName(user);
                 } else {
                     TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                    z3 = chat == null;
                     if (tLRPC$StarsTransaction.photo == null) {
                         this.avatarDrawable.setInfo(chat);
                         this.imageView.setForUserOrChat(chat, this.avatarDrawable);
                     }
                     str = chat == null ? "" : chat.title;
                 }
-                TextView textView4 = this.titleTextView;
-                String str2 = tLRPC$StarsTransaction.title;
-                textView4.setText(str2 != null ? str2 : "");
-                this.subtitleTextView.setText(str);
-                TLRPC$WebDocument tLRPC$WebDocument = tLRPC$StarsTransaction.photo;
-                if (tLRPC$WebDocument != null) {
-                    this.imageView.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$WebDocument)), "46_46", (Drawable) null, 0, (Object) null);
+                if (!tLRPC$StarsTransaction.extended_media.isEmpty()) {
+                    if (z) {
+                        this.titleTextView.setText(str);
+                        this.subtitleTextView.setVisibility(0);
+                        this.subtitleTextView.setText(LocaleController.getString(R.string.StarMediaPurchase));
+                    } else {
+                        this.titleTextView.setText(LocaleController.getString(R.string.StarMediaPurchase));
+                        this.subtitleTextView.setVisibility(z3 ? 8 : 0);
+                        this.subtitleTextView.setText(str);
+                    }
+                    this.imageViewCount = 0;
+                    int i = 0;
+                    while (i < Math.min(2, tLRPC$StarsTransaction.extended_media.size())) {
+                        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StarsTransaction.extended_media.get(i);
+                        BackupImageView backupImageView = i == 0 ? this.imageView : this.imageView2;
+                        backupImageView.setRoundRadius(AndroidUtilities.dp(12.0f));
+                        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+                            forDocument = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$MessageMedia.photo.sizes, AndroidUtilities.dp(46.0f), true), tLRPC$MessageMedia.photo);
+                        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+                            forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$MessageMedia.document.thumbs, AndroidUtilities.dp(46.0f), true), tLRPC$MessageMedia.document);
+                        } else {
+                            imageLocation = null;
+                            backupImageView.setVisibility(0);
+                            backupImageView.setImage(imageLocation, "46_46", (ImageLocation) null, (String) null, (Drawable) null, (Object) 0);
+                            this.imageViewCount++;
+                            i++;
+                        }
+                        imageLocation = forDocument;
+                        backupImageView.setVisibility(0);
+                        backupImageView.setImage(imageLocation, "46_46", (ImageLocation) null, (String) null, (Drawable) null, (Object) 0);
+                        this.imageViewCount++;
+                        i++;
+                    }
+                    int i2 = 0;
+                    while (i2 < this.imageViewCount) {
+                        BackupImageView backupImageView2 = i2 == 0 ? this.imageView : this.imageView2;
+                        float f = i2;
+                        backupImageView2.setTranslationX(AndroidUtilities.dp(2.0f) + ((f - (this.imageViewCount / 2.0f)) * AndroidUtilities.dp(4.33f)));
+                        backupImageView2.setTranslationY((f - (this.imageViewCount / 2.0f)) * AndroidUtilities.dp(4.33f));
+                        i2++;
+                    }
+                } else if (tLRPC$StarsTransaction.photo != null) {
+                    TextView textView4 = this.titleTextView;
+                    String str2 = tLRPC$StarsTransaction.title;
+                    textView4.setText(str2 != null ? str2 : "");
+                    this.subtitleTextView.setVisibility(z3 ? 8 : 0);
+                    this.subtitleTextView.setText(str);
+                    this.imageView.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$StarsTransaction.photo)), "46_46", (Drawable) null, 0, (Object) null);
+                } else {
+                    TextView textView5 = this.titleTextView;
+                    String str3 = tLRPC$StarsTransaction.title;
+                    textView5.setText(str3 != null ? str3 : "");
+                    this.subtitleTextView.setVisibility(z3 ? 8 : 0);
+                    this.subtitleTextView.setText(str);
                 }
             } else {
                 TLRPC$StarsTransactionPeer tLRPC$StarsTransactionPeer = tLRPC$StarsTransaction.peer;
@@ -1254,6 +1357,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 } else if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerUnsupported) {
                     this.titleTextView.setText(LocaleController.getString(R.string.StarsTransactionUnsupported));
                     this.imageView.setImageDrawable(getPlatformDrawable("?"));
+                } else if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerAds) {
+                    this.titleTextView.setText(LocaleController.getString(R.string.StarsTransactionAds));
+                    this.imageView.setImageDrawable(getPlatformDrawable("ads"));
                 } else {
                     this.titleTextView.setText("");
                     this.imageView.setImageDrawable(null);
@@ -1309,25 +1415,139 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static BottomSheet openConfirmPurchaseSheet(Context context, Theme.ResourcesProvider resourcesProvider, int i, long j, String str, long j2, TLRPC$WebDocument tLRPC$WebDocument, final Utilities.Callback<Utilities.Callback<Boolean>> callback, final Runnable runnable) {
-        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+    public static BottomSheet openConfirmPurchaseSheet(Context context, Theme.ResourcesProvider resourcesProvider, int i, MessageObject messageObject, long j, String str, long j2, TLRPC$WebDocument tLRPC$WebDocument, final Utilities.Callback<Utilities.Callback<Boolean>> callback, final Runnable runnable) {
+        FrameLayout frameLayout;
+        BottomSheet.Builder builder;
+        int i2;
+        int i3;
+        TLRPC$Message tLRPC$Message;
+        String str2;
+        String formatString;
+        int i4;
+        String formatPluralString;
+        int i5;
+        String formatPluralString2;
+        boolean z;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        TLRPC$Peer tLRPC$Peer;
+        TLRPC$Message tLRPC$Message2;
+        BackupImageView backupImageView;
+        FrameLayout frameLayout2;
+        ImageLocation imageLocation;
+        ImageLocation forDocument;
+        BottomSheet.Builder builder2 = new BottomSheet.Builder(context, false, resourcesProvider);
         TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.addView(makeParticlesView(context, 40, 0), LayoutHelper.createFrame(-1, -1.0f));
-        BackupImageView backupImageView = new BackupImageView(context);
-        if (tLRPC$WebDocument == null) {
-            backupImageView.setRoundRadius(AndroidUtilities.dp(80.0f));
-            AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setInfo(user);
-            backupImageView.setForUserOrChat(user, avatarDrawable);
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        frameLayout3.addView(makeParticlesView(context, 40, 0), LayoutHelper.createFrame(-1, -1.0f));
+        if (messageObject == null || (tLRPC$Message2 = messageObject.messageOwner) == null || !(tLRPC$Message2.media instanceof TLRPC$TL_messageMediaPaidMedia)) {
+            frameLayout = frameLayout3;
+            builder = builder2;
+            i2 = 17;
+            i3 = 1;
+            if (tLRPC$WebDocument == null) {
+                BackupImageView backupImageView2 = new BackupImageView(context);
+                backupImageView2.setRoundRadius(AndroidUtilities.dp(80.0f));
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
+                avatarDrawable.setInfo(user);
+                backupImageView2.setForUserOrChat(user, avatarDrawable);
+                frameLayout.addView(backupImageView2, LayoutHelper.createFrame(80, 80, 17));
+            } else {
+                BackupImageView backupImageView3 = new BackupImageView(context);
+                backupImageView3.setRoundRadius(AndroidUtilities.dp(80.0f));
+                backupImageView3.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$WebDocument)), "80_80", (Drawable) null, 0, (Object) null);
+                frameLayout.addView(backupImageView3, LayoutHelper.createFrame(80, 80, 17));
+            }
         } else {
-            backupImageView.setRoundRadius(AndroidUtilities.dp(80.0f));
-            backupImageView.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$WebDocument)), "80_80", (Drawable) null, 0, (Object) null);
+            BackupImageView backupImageView4 = new BackupImageView(context, context) {
+                private Path clipPath = new Path();
+                private RectF clipRect = new RectF();
+                private Drawable lock;
+                private SpoilerEffect2 spoilerEffect2;
+                final Context val$context;
+
+                {
+                    this.val$context = context;
+                    this.lock = context.getResources().getDrawable(R.drawable.large_locked_post).mutate();
+                }
+
+                @Override
+                protected void dispatchDraw(Canvas canvas) {
+                    super.dispatchDraw(canvas);
+                    if (this.spoilerEffect2 == null) {
+                        this.spoilerEffect2 = SpoilerEffect2.getInstance(this);
+                    }
+                    if (this.spoilerEffect2 != null) {
+                        this.clipRect.set(0.0f, 0.0f, getWidth(), getHeight());
+                        this.clipPath.rewind();
+                        this.clipPath.addRoundRect(this.clipRect, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
+                        canvas.save();
+                        canvas.clipPath(this.clipPath);
+                        this.spoilerEffect2.draw(canvas, this, getWidth(), getHeight(), 1.0f);
+                        canvas.restore();
+                    }
+                    this.lock.setBounds((getWidth() - this.lock.getIntrinsicWidth()) / 2, (getHeight() - this.lock.getIntrinsicHeight()) / 2, (getWidth() + this.lock.getIntrinsicWidth()) / 2, (getHeight() + this.lock.getIntrinsicHeight()) / 2);
+                    this.lock.draw(canvas);
+                }
+
+                @Override
+                public void onAttachedToWindow() {
+                    SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
+                    if (spoilerEffect2 != null) {
+                        spoilerEffect2.attach(this);
+                    }
+                    super.onAttachedToWindow();
+                }
+
+                @Override
+                public void onDetachedFromWindow() {
+                    SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
+                    if (spoilerEffect2 != null) {
+                        spoilerEffect2.detach(this);
+                    }
+                    super.onDetachedFromWindow();
+                }
+            };
+            backupImageView4.setRoundRadius(AndroidUtilities.dp(24.0f));
+            TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) messageObject.messageOwner.media;
+            if (tLRPC$TL_messageMediaPaidMedia.extended_media.isEmpty()) {
+                backupImageView = backupImageView4;
+                frameLayout2 = frameLayout3;
+                builder = builder2;
+                i3 = 1;
+            } else {
+                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(0);
+                if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
+                    forDocument = ImageLocation.getForObject(((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia).thumb, messageObject.messageOwner);
+                } else {
+                    if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
+                        TLRPC$MessageMedia tLRPC$MessageMedia = ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media;
+                        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+                            forDocument = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$MessageMedia.photo.sizes, AndroidUtilities.dp(80.0f), true), tLRPC$MessageMedia.photo);
+                        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+                            forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$MessageMedia.document.thumbs, AndroidUtilities.dp(80.0f), true), tLRPC$MessageMedia.document);
+                        }
+                    }
+                    imageLocation = null;
+                    backupImageView = backupImageView4;
+                    frameLayout2 = frameLayout3;
+                    builder = builder2;
+                    i3 = 1;
+                    backupImageView4.setImage(imageLocation, "80_80_b2", (ImageLocation) null, (String) null, (Drawable) null, messageObject);
+                }
+                imageLocation = forDocument;
+                backupImageView = backupImageView4;
+                frameLayout2 = frameLayout3;
+                builder = builder2;
+                i3 = 1;
+                backupImageView4.setImage(imageLocation, "80_80_b2", (ImageLocation) null, (String) null, (Drawable) null, messageObject);
+            }
+            i2 = 17;
+            frameLayout = frameLayout2;
+            frameLayout.addView(backupImageView, LayoutHelper.createFrame(80, 80, 17));
         }
-        frameLayout.addView(backupImageView, LayoutHelper.createFrame(80, 80, 17));
         final StarsBalanceView starsBalanceView = new StarsBalanceView(context, i);
         ScaleStateListAnimator.apply(starsBalanceView);
         starsBalanceView.setOnClickListener(new View.OnClickListener() {
@@ -1339,26 +1559,100 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         frameLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 117, 7));
         TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
+        textView.setTextSize(i3, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        int i2 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
+        int i6 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i6, resourcesProvider));
         textView.setText(LocaleController.getString(R.string.StarsConfirmPurchaseTitle));
-        textView.setGravity(17);
+        textView.setGravity(i2);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
         TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
-        int i3 = (int) j2;
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText", i3, str, UserObject.getUserName(user))));
+        textView2.setTextSize(i3, 14.0f);
+        textView2.setTextColor(Theme.getColor(i6, resourcesProvider));
+        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !(tLRPC$Message.media instanceof TLRPC$TL_messageMediaPaidMedia)) {
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText", (int) j2, str, UserObject.getUserName(user))));
+        } else {
+            long dialogId = messageObject.getDialogId();
+            TLRPC$Message tLRPC$Message3 = messageObject.messageOwner;
+            if (tLRPC$Message3 != null && (tLRPC$MessageFwdHeader = tLRPC$Message3.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
+                dialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
+            }
+            if (dialogId >= 0) {
+                str2 = UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(dialogId)));
+            } else {
+                TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-dialogId));
+                str2 = chat == null ? "" : chat.title;
+            }
+            TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia2 = (TLRPC$TL_messageMediaPaidMedia) messageObject.messageOwner.media;
+            int i7 = 0;
+            int i8 = 0;
+            for (int i9 = 0; i9 < tLRPC$TL_messageMediaPaidMedia2.extended_media.size(); i9++) {
+                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia2 = tLRPC$TL_messageMediaPaidMedia2.extended_media.get(i9);
+                if (tLRPC$MessageExtendedMedia2 instanceof TLRPC$TL_messageExtendedMediaPreview) {
+                    if ((((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia2).flags & 4) != 0) {
+                        z = true;
+                    }
+                    z = false;
+                } else {
+                    if (tLRPC$MessageExtendedMedia2 instanceof TLRPC$TL_messageExtendedMedia) {
+                        z = ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia2).media instanceof TLRPC$TL_messageMediaDocument;
+                    }
+                    z = false;
+                }
+                if (z) {
+                    i7++;
+                } else {
+                    i8++;
+                }
+            }
+            if (i7 == 0) {
+                int i10 = R.string.StarsConfirmPurchaseMedia1;
+                Object[] objArr = new Object[3];
+                if (i8 == i3) {
+                    formatPluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
+                    i5 = 0;
+                } else {
+                    i5 = 0;
+                    formatPluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i8, new Object[0]);
+                }
+                objArr[i5] = formatPluralString2;
+                objArr[i3] = str2;
+                objArr[2] = LocaleController.formatPluralString("Stars", (int) j2, new Object[i5]);
+                formatString = LocaleController.formatString(i10, objArr);
+            } else if (i8 == 0) {
+                int i11 = R.string.StarsConfirmPurchaseMedia1;
+                Object[] objArr2 = new Object[3];
+                if (i7 == i3) {
+                    formatPluralString = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
+                    i4 = 0;
+                } else {
+                    i4 = 0;
+                    formatPluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i7, new Object[0]);
+                }
+                objArr2[i4] = formatPluralString;
+                objArr2[i3] = str2;
+                objArr2[2] = LocaleController.formatPluralString("Stars", (int) j2, new Object[i4]);
+                formatString = LocaleController.formatString(i11, objArr2);
+            } else {
+                int i12 = R.string.StarsConfirmPurchaseMedia2;
+                Object[] objArr3 = new Object[4];
+                objArr3[0] = i8 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i8, new Object[0]);
+                objArr3[1] = i7 == 1 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i7, new Object[0]);
+                objArr3[2] = str2;
+                objArr3[3] = LocaleController.formatPluralString("Stars", (int) j2, new Object[0]);
+                formatString = LocaleController.formatString(i12, objArr3);
+            }
+            textView2.setText(AndroidUtilities.replaceTags(formatString));
+        }
         textView2.setMaxWidth(HintView2.cutInFancyHalf(textView2.getText(), textView2.getPaint()));
         textView2.setGravity(17);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 6, 0, 24));
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseButton", i3))), false);
+        buttonWithCounterView.setText(replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseButton", (int) j2))), false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f));
-        builder.setCustomView(linearLayout);
-        final BottomSheet create = builder.create();
+        BottomSheet.Builder builder3 = builder;
+        builder3.setCustomView(linearLayout);
+        final BottomSheet create = builder3.create();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -1576,22 +1870,24 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 int i2 = 0;
                 int i3 = 0;
                 int i4 = 1;
+                boolean z = false;
                 for (int i5 = 0; i5 < options.size(); i5++) {
                     TLRPC$TL_starsTopupOption tLRPC$TL_starsTopupOption = options.get(i5);
                     if (tLRPC$TL_starsTopupOption.stars >= this.starsNeeded) {
-                        if (!tLRPC$TL_starsTopupOption.collapsed || this.expanded) {
+                        if (tLRPC$TL_starsTopupOption.collapsed && !this.expanded && z) {
+                            i3++;
+                        } else {
                             arrayList.add(StarTierView.Factory.asStarTier(i5, i4, tLRPC$TL_starsTopupOption));
                             i2++;
                             i4++;
-                        } else {
-                            i3++;
+                            z = true;
                         }
                     }
                 }
                 if (i2 > 0) {
-                    boolean z = this.expanded;
-                    if (!z && i3 > 0) {
-                        arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), true ^ this.expanded).accent());
+                    boolean z2 = this.expanded;
+                    if (!z2 && i3 > 0) {
+                        arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z2 ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), true ^ this.expanded).accent());
                     }
                 } else {
                     while (i < options.size()) {
@@ -1718,6 +2014,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static SpannableStringBuilder replaceStars(CharSequence charSequence) {
+        return replaceStars(charSequence, 1.13f);
+    }
+
+    public static SpannableStringBuilder replaceStars(CharSequence charSequence, float f) {
         SpannableStringBuilder spannableStringBuilder;
         if (charSequence == null) {
             return null;
@@ -1729,7 +2029,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
         SpannableString spannableString = new SpannableString("⭐ ");
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_premium_liststar);
-        coloredImageSpan.setScale(1.13f, 1.13f);
+        coloredImageSpan.setScale(f, f);
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length() - 1, 33);
         AndroidUtilities.replaceMultipleCharSequence("⭐️", spannableStringBuilder, "⭐");
         AndroidUtilities.replaceMultipleCharSequence("⭐ ", spannableStringBuilder, "⭐");
@@ -1792,7 +2092,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return spannableStringBuilder;
     }
 
-    public static CharSequence getTransactionTitle(TLRPC$StarsTransaction tLRPC$StarsTransaction) {
+    public static CharSequence getTransactionTitle(boolean z, TLRPC$StarsTransaction tLRPC$StarsTransaction) {
+        if (!tLRPC$StarsTransaction.extended_media.isEmpty()) {
+            return LocaleController.getString(R.string.StarMediaPurchase);
+        }
         String str = tLRPC$StarsTransaction.title;
         if (str != null) {
             return str;
@@ -1807,7 +2110,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
         TLRPC$StarsTransactionPeer tLRPC$StarsTransactionPeer = tLRPC$StarsTransaction.peer;
         if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerFragment) {
-            return LocaleController.getString(R.string.StarsTransactionFragment);
+            return LocaleController.getString(z ? R.string.StarsTransactionWithdrawFragment : R.string.StarsTransactionFragment);
         }
         if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerPremiumBot) {
             return LocaleController.getString(R.string.StarsTransactionBot);
@@ -1815,7 +2118,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return LocaleController.getString(R.string.StarsTransactionUnsupported);
     }
 
-    public static BottomSheet showTransactionSheet(Context context, int i, TLRPC$TL_payments_paymentReceiptStars tLRPC$TL_payments_paymentReceiptStars, Theme.ResourcesProvider resourcesProvider) {
+    public static BottomSheet showTransactionSheet(Context context, boolean z, int i, TLRPC$TL_payments_paymentReceiptStars tLRPC$TL_payments_paymentReceiptStars, Theme.ResourcesProvider resourcesProvider) {
         TLRPC$StarsTransaction tLRPC$StarsTransaction = new TLRPC$StarsTransaction();
         tLRPC$StarsTransaction.title = tLRPC$TL_payments_paymentReceiptStars.title;
         tLRPC$StarsTransaction.description = tLRPC$TL_payments_paymentReceiptStars.description;
@@ -1826,235 +2129,92 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         tLRPC$StarsTransaction.date = tLRPC$TL_payments_paymentReceiptStars.date;
         tLRPC$StarsTransaction.stars = tLRPC$TL_payments_paymentReceiptStars.total_amount;
         tLRPC$StarsTransaction.id = tLRPC$TL_payments_paymentReceiptStars.transaction_id;
-        return showTransactionSheet(context, i, tLRPC$StarsTransaction, resourcesProvider);
+        return showTransactionSheet(context, z, 0L, i, tLRPC$StarsTransaction, resourcesProvider);
     }
 
-    public static BottomSheet showTransactionSheet(final Context context, int i, final TLRPC$StarsTransaction tLRPC$StarsTransaction, final Theme.ResourcesProvider resourcesProvider) {
-        String str;
-        char c;
-        String str2;
-        if (tLRPC$StarsTransaction == null || context == null) {
-            return null;
-        }
-        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
-        final BottomSheet[] bottomSheetArr = new BottomSheet[1];
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        BackupImageView backupImageView = new BackupImageView(context);
-        TLRPC$StarsTransactionPeer tLRPC$StarsTransactionPeer = tLRPC$StarsTransaction.peer;
-        if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeer) {
-            if (tLRPC$StarsTransaction.photo != null) {
-                backupImageView.setRoundRadius(AndroidUtilities.dp(50.0f));
-                backupImageView.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$StarsTransaction.photo)), "100_100", (Drawable) null, 0, (Object) null);
-            } else {
-                backupImageView.setRoundRadius(AndroidUtilities.dp(50.0f));
-                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$StarsTransaction.peer.peer);
-                AvatarDrawable avatarDrawable = new AvatarDrawable();
-                if (peerDialogId >= 0) {
-                    TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(peerDialogId));
-                    avatarDrawable.setInfo(user);
-                    backupImageView.setForUserOrChat(user, avatarDrawable);
-                } else {
-                    TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(peerDialogId));
-                    avatarDrawable.setInfo(chat);
-                    backupImageView.setForUserOrChat(chat, avatarDrawable);
-                }
-            }
-            linearLayout.addView(backupImageView, LayoutHelper.createLinear(100, 100, 17, 0, 0, 0, 10));
-        } else {
-            if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerAppStore) {
-                str = "ios";
-            } else if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerPlayMarket) {
-                str = "android";
-            } else if (tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerPremiumBot) {
-                str = "premiumbot";
-            } else {
-                str = tLRPC$StarsTransactionPeer instanceof TLRPC$TL_starsTransactionPeerFragment ? "fragment" : "?";
-            }
-            CombinedDrawable combinedDrawable = (CombinedDrawable) SessionCell.createDrawable(100, str);
-            combinedDrawable.setIconSize(AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-            backupImageView.setImageDrawable(combinedDrawable);
-        }
-        TextView textView = new TextView(context);
-        int i2 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        textView.setText(getTransactionTitle(tLRPC$StarsTransaction));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
-        TextView textView2 = new TextView(context);
-        textView2.setTextColor(Theme.getColor(tLRPC$StarsTransaction.stars >= 0 ? Theme.key_color_green : Theme.key_color_red, resourcesProvider));
-        textView2.setTextSize(1, 18.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setGravity(17);
-        StringBuilder sb = new StringBuilder();
-        sb.append(tLRPC$StarsTransaction.stars >= 0 ? "+" : "-");
-        sb.append(LocaleController.formatNumber((int) Math.abs(tLRPC$StarsTransaction.stars), ' '));
-        sb.append("\u2009⭐️");
-        textView2.setText(replaceStarsWithPlain(sb.toString(), 0.8f));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(textView2.getText());
-        if (tLRPC$StarsTransaction.refund) {
-            appendStatus(spannableStringBuilder, textView2, LocaleController.getString(R.string.StarsRefunded));
-        } else if (tLRPC$StarsTransaction.failed) {
-            textView2.setTextColor(Theme.getColor(Theme.key_color_red, resourcesProvider));
-            appendStatus(spannableStringBuilder, textView2, LocaleController.getString(R.string.StarsFailed));
-        } else if (tLRPC$StarsTransaction.pending) {
-            textView2.setTextColor(Theme.getColor(Theme.key_color_yellow, resourcesProvider));
-            appendStatus(spannableStringBuilder, textView2, LocaleController.getString(R.string.StarsPending));
-        }
-        textView2.setText(spannableStringBuilder);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
-        if (tLRPC$StarsTransaction.description != null) {
-            TextView textView3 = new TextView(context);
-            textView3.setTextColor(Theme.getColor(i2, resourcesProvider));
-            textView3.setTextSize(1, 16.0f);
-            textView3.setGravity(17);
-            textView3.setText(tLRPC$StarsTransaction.description);
-            linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
-        }
-        TableView tableView = new TableView(context, resourcesProvider);
-        TLRPC$StarsTransactionPeer tLRPC$StarsTransactionPeer2 = tLRPC$StarsTransaction.peer;
-        if (tLRPC$StarsTransactionPeer2 instanceof TLRPC$TL_starsTransactionPeer) {
-            final long peerDialogId2 = DialogObject.getPeerDialogId(tLRPC$StarsTransactionPeer2.peer);
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-            linksTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-            linksTextView.setEllipsize(TextUtils.TruncateAt.END);
-            int i3 = Theme.key_chat_messageLinkIn;
-            linksTextView.setTextColor(Theme.getColor(i3, resourcesProvider));
-            linksTextView.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setDisablePaddingsOffsetY(true);
-            AvatarSpan avatarSpan = new AvatarSpan(linksTextView, i, 24.0f);
-            if (peerDialogId2 >= 0) {
-                TLRPC$User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(peerDialogId2));
-                str2 = UserObject.getUserName(user2);
-                avatarSpan.setUser(user2);
-            } else {
-                TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-peerDialogId2));
-                str2 = chat2 == null ? "" : chat2.title;
-                avatarSpan.setChat(chat2);
-            }
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  " + ((Object) str2));
-            spannableStringBuilder2.setSpan(avatarSpan, 0, 1, 33);
-            spannableStringBuilder2.setSpan(new ClickableSpan() {
-                @Override
-                public void onClick(View view) {
-                    bottomSheetArr[0].dismiss();
-                    BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-                    if (safeLastFragment != null) {
-                        safeLastFragment.presentFragment(ChatActivity.of(peerDialogId2));
-                    }
-                }
+    public static org.telegram.ui.ActionBar.BottomSheet showTransactionSheet(final android.content.Context r40, final boolean r41, final long r42, final int r44, final org.telegram.tgnet.TLRPC$StarsTransaction r45, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r46) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.showTransactionSheet(android.content.Context, boolean, long, int, org.telegram.tgnet.TLRPC$StarsTransaction, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.ActionBar.BottomSheet");
+    }
 
-                @Override
-                public void updateDrawState(TextPaint textPaint) {
-                    textPaint.setUnderlineText(false);
-                }
-            }, 3, spannableStringBuilder2.length(), 33);
-            linksTextView.setText(spannableStringBuilder2);
-            tableView.addRowUnpadded(LocaleController.getString(R.string.StarsTransactionRecipient), linksTextView);
-        } else if (tLRPC$StarsTransactionPeer2 instanceof TLRPC$TL_starsTransactionPeerFragment) {
-            tableView.addRow(LocaleController.getString(R.string.StarsTransactionSource), LocaleController.getString(R.string.Fragment));
-        } else if (tLRPC$StarsTransactionPeer2 instanceof TLRPC$TL_starsTransactionPeerAppStore) {
-            tableView.addRow(LocaleController.getString(R.string.StarsTransactionSource), LocaleController.getString(R.string.AppStore));
-        } else if (tLRPC$StarsTransactionPeer2 instanceof TLRPC$TL_starsTransactionPeerPlayMarket) {
-            tableView.addRow(LocaleController.getString(R.string.StarsTransactionSource), LocaleController.getString(R.string.PlayMarket));
-        } else if (tLRPC$StarsTransactionPeer2 instanceof TLRPC$TL_starsTransactionPeerPremiumBot) {
-            tableView.addRow(LocaleController.getString(R.string.StarsTransactionSource), LocaleController.getString(R.string.StarsTransactionBot));
+    public static void lambda$showTransactionSheet$8(boolean z, long j, TLRPC$StarsTransaction tLRPC$StarsTransaction, int i, Theme.ResourcesProvider resourcesProvider, final BackupImageView backupImageView, final LinearLayout linearLayout, View view) {
+        final long peerDialogId = z ? j : DialogObject.getPeerDialogId(tLRPC$StarsTransaction.peer.peer);
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
+        for (int i2 = 0; i2 < tLRPC$StarsTransaction.extended_media.size(); i2++) {
+            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StarsTransaction.extended_media.get(i2);
+            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
+            tLRPC$TL_message.id = tLRPC$StarsTransaction.msg_id;
+            tLRPC$TL_message.dialog_id = peerDialogId;
+            TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
+            tLRPC$TL_message.from_id = tLRPC$TL_peerChannel;
+            long j2 = -peerDialogId;
+            tLRPC$TL_peerChannel.channel_id = j2;
+            TLRPC$TL_peerChannel tLRPC$TL_peerChannel2 = new TLRPC$TL_peerChannel();
+            tLRPC$TL_message.peer_id = tLRPC$TL_peerChannel2;
+            tLRPC$TL_peerChannel2.channel_id = j2;
+            tLRPC$TL_message.date = tLRPC$StarsTransaction.date;
+            tLRPC$TL_message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+            tLRPC$TL_message.media = tLRPC$MessageMedia;
+            tLRPC$TL_message.noforwards = true;
+            arrayList.add(new MessageObject(i, tLRPC$TL_message, false, false));
         }
-        if (!TextUtils.isEmpty(tLRPC$StarsTransaction.id)) {
-            FrameLayout frameLayout = new FrameLayout(context);
-            frameLayout.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(10.66f), AndroidUtilities.dp(9.33f));
-            TextView textView4 = new TextView(context);
-            textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO));
-            textView4.setTextSize(1, 13.0f);
-            textView4.setTextColor(Theme.getColor(i2, resourcesProvider));
-            textView4.setMaxLines(4);
-            textView4.setSingleLine(false);
-            textView4.setText(tLRPC$StarsTransaction.id);
-            frameLayout.addView(textView4, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 32.0f, 0.0f));
-            ImageView imageView = new ImageView(context);
-            imageView.setImageResource(R.drawable.msg_copy);
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i4 = Theme.key_windowBackgroundWhiteBlueIcon;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    StarsIntroActivity.lambda$showTransactionSheet$8(TLRPC$StarsTransaction.this, bottomSheetArr, resourcesProvider, view);
-                }
-            });
-            ScaleStateListAnimator.apply(imageView);
-            imageView.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i4, resourcesProvider), 0.1f), 7));
-            frameLayout.addView(imageView, LayoutHelper.createFrame(30, 30, 21));
-            tableView.addRowUnpadded(LocaleController.getString(R.string.StarsTransactionID), frameLayout);
+        if (arrayList.isEmpty()) {
+            return;
         }
-        CharSequence string = LocaleController.getString(R.string.StarsTransactionDate);
-        int i5 = R.string.formatDateAtTime;
-        tableView.addRow(string, LocaleController.formatString(i5, LocaleController.getInstance().formatterGiveawayCard.format(new Date(tLRPC$StarsTransaction.date * 1000)), LocaleController.getInstance().formatterDay.format(new Date(tLRPC$StarsTransaction.date * 1000))));
-        linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 0.0f, 17.0f, 0.0f, 0.0f));
-        if ((tLRPC$StarsTransaction.flags & 32) != 0) {
-            tableView.addRow(LocaleController.getString(R.string.StarsTransactionTONDate), LocaleController.formatString(i5, LocaleController.getInstance().formatterGiveawayCard.format(new Date(tLRPC$StarsTransaction.transaction_date * 1000)), LocaleController.getInstance().formatterDay.format(new Date(tLRPC$StarsTransaction.transaction_date * 1000))));
-        }
-        LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-        linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        linksTextView2.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        linksTextView2.setTextSize(1, 14.0f);
-        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTransactionTOS), new Runnable() {
+        PhotoViewer.getInstance().setParentActivity(LaunchActivity.getLastFragment(), resourcesProvider);
+        PhotoViewer.getInstance().openPhoto(arrayList, 0, peerDialogId, 0L, 0L, new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
-            public final void run() {
-                StarsIntroActivity.lambda$showTransactionSheet$9(context);
+            public boolean forceAllInGroup() {
+                return true;
             }
-        }));
-        linksTextView2.setGravity(17);
-        linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 0.0f, 15.0f, 0.0f, 15.0f));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        if ((tLRPC$StarsTransaction.flags & 32) != 0) {
-            c = 0;
-            buttonWithCounterView.setText(LocaleController.getString(R.string.StarsTransactionViewInBlockchainExplorer), false);
-        } else {
-            c = 0;
-            buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
-        }
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
-        builder.setCustomView(linearLayout);
-        bottomSheetArr[c] = builder.create();
-        if ((tLRPC$StarsTransaction.flags & 32) != 0) {
-            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    StarsIntroActivity.lambda$showTransactionSheet$10(context, tLRPC$StarsTransaction, view);
+
+            @Override
+            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i3, boolean z2) {
+                ImageReceiver imageReceiver = BackupImageView.this.getImageReceiver();
+                int[] iArr = new int[2];
+                BackupImageView.this.getLocationInWindow(iArr);
+                PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
+                placeProviderObject.viewX = iArr[0];
+                placeProviderObject.viewY = iArr[1] - (Build.VERSION.SDK_INT >= 21 ? 0 : AndroidUtilities.statusBarHeight);
+                placeProviderObject.parentView = linearLayout;
+                placeProviderObject.animatingImageView = null;
+                placeProviderObject.imageReceiver = imageReceiver;
+                if (z2) {
+                    placeProviderObject.thumb = imageReceiver.getBitmapSafe();
                 }
-            });
-        } else {
-            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    StarsIntroActivity.lambda$showTransactionSheet$11(bottomSheetArr, view);
-                }
-            });
-        }
-        bottomSheetArr[0].fixNavigationBar();
-        bottomSheetArr[0].show();
-        return bottomSheetArr[0];
+                placeProviderObject.radius = imageReceiver.getRoundRadius(true);
+                placeProviderObject.dialogId = peerDialogId;
+                placeProviderObject.clipTopAddition = 0;
+                placeProviderObject.clipBottomAddition = 0;
+                return placeProviderObject;
+            }
+        });
     }
 
-    public static void lambda$showTransactionSheet$8(TLRPC$StarsTransaction tLRPC$StarsTransaction, BottomSheet[] bottomSheetArr, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void lambda$showTransactionSheet$9(BottomSheet[] bottomSheetArr, long j, TLRPC$StarsTransaction tLRPC$StarsTransaction) {
+        bottomSheetArr[0].dismiss();
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -j);
+            bundle.putInt("message_id", tLRPC$StarsTransaction.msg_id);
+            safeLastFragment.presentFragment(new ChatActivity(bundle));
+        }
+    }
+
+    public static void lambda$showTransactionSheet$11(TLRPC$StarsTransaction tLRPC$StarsTransaction, BottomSheet[] bottomSheetArr, Theme.ResourcesProvider resourcesProvider, View view) {
         AndroidUtilities.addToClipboard(tLRPC$StarsTransaction.id);
         BulletinFactory.of(bottomSheetArr[0].topBulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.StarsTransactionIDCopied)).show(false);
     }
 
-    public static void lambda$showTransactionSheet$9(Context context) {
+    public static void lambda$showTransactionSheet$12(Context context) {
         Browser.openUrl(context, LocaleController.getString(R.string.StarsTOSLink));
     }
 
-    public static void lambda$showTransactionSheet$10(Context context, TLRPC$StarsTransaction tLRPC$StarsTransaction, View view) {
+    public static void lambda$showTransactionSheet$13(Context context, TLRPC$StarsTransaction tLRPC$StarsTransaction, View view) {
         Browser.openUrl(context, tLRPC$StarsTransaction.transaction_url);
     }
 
-    public static void lambda$showTransactionSheet$11(BottomSheet[] bottomSheetArr, View view) {
+    public static void lambda$showTransactionSheet$14(BottomSheet[] bottomSheetArr, View view) {
         bottomSheetArr[0].dismiss();
     }
 
@@ -2091,5 +2251,234 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }, 0, spannableString.length(), 33);
         spannableStringBuilder.append((CharSequence) spannableString);
         return spannableStringBuilder;
+    }
+
+    public static BottomSheet showMediaPriceSheet(final Context context, final long j, final boolean z, final Utilities.Callback2<Long, Runnable> callback2, Theme.ResourcesProvider resourcesProvider) {
+        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+        final BottomSheet[] bottomSheetArr = new BottomSheet[1];
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
+        TextView textView = new TextView(context);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setText(LocaleController.getString(R.string.PaidContentTitle));
+        textView.setTextSize(1, 20.0f);
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 4.0f, 0.0f, 4.0f, 18.0f));
+        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        final OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context, resourcesProvider);
+        outlineTextContainerView.setForceForceUseCenter(true);
+        outlineTextContainerView.setText(LocaleController.getString(R.string.PaidContentPriceTitle));
+        outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(36.0f));
+        editTextBoldCursor.setTextColor(Theme.getColor(i, resourcesProvider));
+        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
+        editTextBoldCursor.setCursorWidth(1.5f);
+        ButtonWithCounterView buttonWithCounterView = null;
+        editTextBoldCursor.setBackground(null);
+        editTextBoldCursor.setTextSize(1, 18.0f);
+        editTextBoldCursor.setMaxLines(1);
+        int dp = AndroidUtilities.dp(16.0f);
+        editTextBoldCursor.setPadding(AndroidUtilities.dp(6.0f), dp, dp, dp);
+        editTextBoldCursor.setInputType(2);
+        editTextBoldCursor.setTypeface(Typeface.DEFAULT);
+        editTextBoldCursor.setSelectAllOnFocus(true);
+        editTextBoldCursor.setHighlightColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, resourcesProvider));
+        editTextBoldCursor.setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
+        editTextBoldCursor.setGravity(LocaleController.isRTL ? 5 : 3);
+        editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public final void onFocusChange(View view, boolean z2) {
+                StarsIntroActivity.lambda$showMediaPriceSheet$15(OutlineTextContainerView.this, editTextBoldCursor, view, z2);
+            }
+        });
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView.setImageResource(R.drawable.star_small_inner);
+        linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 19, 14, 0, 0, 0));
+        linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 1.0f, 119));
+        outlineTextContainerView.attachEditText(editTextBoldCursor);
+        outlineTextContainerView.addView(linearLayout2, LayoutHelper.createFrame(-1, -2, 48));
+        linearLayout.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, -2));
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PaidContentInfo), new Runnable() {
+            @Override
+            public final void run() {
+                StarsIntroActivity.lambda$showMediaPriceSheet$16(context);
+            }
+        }), true));
+        linksTextView.setTextSize(1, 12.0f);
+        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 14.0f, 3.0f, 14.0f, 24.0f));
+        final ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider);
+        buttonWithCounterView2.setText(LocaleController.getString(j > 0 ? R.string.PaidContentUpdateButton : R.string.PaidContentButton), false);
+        linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
+        if (j > 0 && z) {
+            buttonWithCounterView = new ButtonWithCounterView(context, false, resourcesProvider);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.PaidContentClearButton), false, false);
+            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 4.0f, 0.0f, 0.0f));
+        }
+        final ButtonWithCounterView buttonWithCounterView3 = buttonWithCounterView;
+        builder.setCustomView(linearLayout);
+        bottomSheetArr[0] = builder.create();
+        editTextBoldCursor.setText(j <= 0 ? "" : Long.toString(j));
+        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
+            private boolean ignore;
+            private int shakeDp = 2;
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable r9) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.AnonymousClass9.afterTextChanged(android.text.Editable):void");
+            }
+        });
+        final boolean[] zArr = {false};
+        editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView2, int i2, KeyEvent keyEvent) {
+                boolean lambda$showMediaPriceSheet$18;
+                lambda$showMediaPriceSheet$18 = StarsIntroActivity.lambda$showMediaPriceSheet$18(zArr, callback2, buttonWithCounterView2, editTextBoldCursor, bottomSheetArr, textView2, i2, keyEvent);
+                return lambda$showMediaPriceSheet$18;
+            }
+        });
+        buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                StarsIntroActivity.lambda$showMediaPriceSheet$20(zArr, callback2, editTextBoldCursor, buttonWithCounterView2, bottomSheetArr, view);
+            }
+        });
+        if (buttonWithCounterView3 != null) {
+            buttonWithCounterView3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    StarsIntroActivity.lambda$showMediaPriceSheet$22(zArr, callback2, buttonWithCounterView3, editTextBoldCursor, bottomSheetArr, view);
+                }
+            });
+        }
+        bottomSheetArr[0].fixNavigationBar();
+        bottomSheetArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+            }
+        });
+        bottomSheetArr[0].show();
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StarsIntroActivity.lambda$showMediaPriceSheet$25(bottomSheetArr, editTextBoldCursor);
+            }
+        }, lastFragment instanceof ChatActivity ? ((ChatActivity) lastFragment).needEnterText() : false ? 200L : 80L);
+        return bottomSheetArr[0];
+    }
+
+    public static void lambda$showMediaPriceSheet$15(OutlineTextContainerView outlineTextContainerView, EditTextBoldCursor editTextBoldCursor, View view, boolean z) {
+        outlineTextContainerView.animateSelection(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
+    }
+
+    public static void lambda$showMediaPriceSheet$16(Context context) {
+        Browser.openUrl(context, LocaleController.getString(R.string.PaidContentInfoLink));
+    }
+
+    public static boolean lambda$showMediaPriceSheet$18(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, final EditTextBoldCursor editTextBoldCursor, final BottomSheet[] bottomSheetArr, TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
+        }
+        if (zArr[0]) {
+            return true;
+        }
+        if (callback2 != null) {
+            zArr[0] = true;
+            buttonWithCounterView.setLoading(true);
+            callback2.run(Long.valueOf(Long.parseLong(editTextBoldCursor.getText().toString())), new Runnable() {
+                @Override
+                public final void run() {
+                    StarsIntroActivity.lambda$showMediaPriceSheet$17(EditTextBoldCursor.this, bottomSheetArr);
+                }
+            });
+        } else {
+            AndroidUtilities.hideKeyboard(editTextBoldCursor);
+            bottomSheetArr[0].dismiss();
+        }
+        return true;
+    }
+
+    public static void lambda$showMediaPriceSheet$17(EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
+        AndroidUtilities.hideKeyboard(editTextBoldCursor);
+        bottomSheetArr[0].dismiss();
+    }
+
+    public static void lambda$showMediaPriceSheet$20(boolean[] zArr, Utilities.Callback2 callback2, final EditTextBoldCursor editTextBoldCursor, ButtonWithCounterView buttonWithCounterView, final BottomSheet[] bottomSheetArr, View view) {
+        if (zArr[0]) {
+            return;
+        }
+        if (callback2 != null) {
+            String obj = editTextBoldCursor.getText().toString();
+            zArr[0] = true;
+            buttonWithCounterView.setLoading(true);
+            callback2.run(Long.valueOf(TextUtils.isEmpty(obj) ? 0L : Long.parseLong(obj)), new Runnable() {
+                @Override
+                public final void run() {
+                    StarsIntroActivity.lambda$showMediaPriceSheet$19(EditTextBoldCursor.this, bottomSheetArr);
+                }
+            });
+            return;
+        }
+        AndroidUtilities.hideKeyboard(editTextBoldCursor);
+        bottomSheetArr[0].dismiss();
+    }
+
+    public static void lambda$showMediaPriceSheet$19(EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
+        AndroidUtilities.hideKeyboard(editTextBoldCursor);
+        bottomSheetArr[0].dismiss();
+    }
+
+    public static void lambda$showMediaPriceSheet$22(final boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, final EditTextBoldCursor editTextBoldCursor, final BottomSheet[] bottomSheetArr, View view) {
+        if (zArr[0]) {
+            return;
+        }
+        if (callback2 != null) {
+            zArr[0] = true;
+            buttonWithCounterView.setLoading(true);
+            callback2.run(0L, new Runnable() {
+                @Override
+                public final void run() {
+                    StarsIntroActivity.lambda$showMediaPriceSheet$21(zArr, editTextBoldCursor, bottomSheetArr);
+                }
+            });
+        } else {
+            AndroidUtilities.hideKeyboard(editTextBoldCursor);
+            bottomSheetArr[0].dismiss();
+        }
+    }
+
+    public static void lambda$showMediaPriceSheet$21(boolean[] zArr, EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
+        zArr[0] = false;
+        AndroidUtilities.hideKeyboard(editTextBoldCursor);
+        bottomSheetArr[0].dismiss();
+    }
+
+    public static void lambda$showMediaPriceSheet$25(BottomSheet[] bottomSheetArr, final EditTextBoldCursor editTextBoldCursor) {
+        bottomSheetArr[0].setFocusable(true);
+        editTextBoldCursor.requestFocus();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+            }
+        });
     }
 }

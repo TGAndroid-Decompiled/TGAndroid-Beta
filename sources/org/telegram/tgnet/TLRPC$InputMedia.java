@@ -37,6 +37,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
             case -1759532989:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGeoLive();
                 break;
+            case -1436147773:
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPaidMedia();
+                break;
             case -1279654347:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPhoto();
                 break;

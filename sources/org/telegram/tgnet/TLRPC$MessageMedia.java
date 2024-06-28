@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 
@@ -12,7 +13,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public String currency;
     public String description;
     public TLRPC$Document document;
-    public TLRPC$MessageExtendedMedia extended_media;
+    public ArrayList<TLRPC$MessageExtendedMedia> extended_media = new ArrayList<>();
     public String first_name;
     public int flags;
     public boolean force_large_media;
@@ -35,6 +36,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public boolean safe;
     public boolean shipping_address_requested;
     public boolean spoiler;
+    public long stars_amount;
     public String start_param;
     public TL_stories$StoryItem storyItem;
     public boolean test;

@@ -1,11 +1,16 @@
 package org.telegram.tgnet;
 
+import java.util.ArrayList;
+
 public class TLRPC$StarsTransaction extends TLObject {
+    public byte[] bot_payload;
     public int date;
     public String description;
+    public ArrayList<TLRPC$MessageMedia> extended_media = new ArrayList<>();
     public boolean failed;
     public int flags;
     public String id;
+    public int msg_id;
     public TLRPC$StarsTransactionPeer peer;
     public boolean pending;
     public TLRPC$WebDocument photo;
@@ -16,7 +21,7 @@ public class TLRPC$StarsTransaction extends TLObject {
     public String transaction_url;
 
     public static TLRPC$StarsTransaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$StarsTransaction tLRPC$StarsTransaction = i != -1442789224 ? i != -865044046 ? null : new TLRPC$StarsTransaction() {
+        TLRPC$StarsTransaction tLRPC$TL_starsTransaction = i != -1442789224 ? i != -865044046 ? i != 766853519 ? null : new TLRPC$TL_starsTransaction() : new TLRPC$StarsTransaction() {
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                 int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -56,7 +61,7 @@ public class TLRPC$StarsTransaction extends TLObject {
                     this.photo.serializeToStream(abstractSerializedData2);
                 }
             }
-        } : new TLRPC$StarsTransaction() {
+        } : new TLRPC$TL_starsTransaction() {
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                 int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -111,12 +116,12 @@ public class TLRPC$StarsTransaction extends TLObject {
                 }
             }
         };
-        if (tLRPC$StarsTransaction == null && z) {
+        if (tLRPC$TL_starsTransaction == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in StarsTransaction", Integer.valueOf(i)));
         }
-        if (tLRPC$StarsTransaction != null) {
-            tLRPC$StarsTransaction.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_starsTransaction != null) {
+            tLRPC$TL_starsTransaction.readParams(abstractSerializedData, z);
         }
-        return tLRPC$StarsTransaction;
+        return tLRPC$TL_starsTransaction;
     }
 }

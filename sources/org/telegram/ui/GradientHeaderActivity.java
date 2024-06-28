@@ -231,7 +231,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GradientHeaderActivity.this.lambda$onBackPressed$303();
+                    GradientHeaderActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

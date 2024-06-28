@@ -803,6 +803,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public boolean forceAllInGroup() {
+            return PhotoViewerProvider.CC.$default$forceAllInGroup(this);
+        }
+
+        @Override
         public String getDeleteMessageString() {
             return null;
         }
@@ -971,6 +976,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return true;
             }
 
+            public static boolean $default$forceAllInGroup(PhotoViewerProvider photoViewerProvider) {
+                return false;
+            }
+
             public static boolean $default$onDeletePhoto(PhotoViewerProvider photoViewerProvider, int i) {
                 return true;
             }
@@ -1005,6 +1014,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         boolean closeKeyboard();
 
         void deleteImageAtIndex(int i);
+
+        boolean forceAllInGroup();
 
         String getDeleteMessageString();
 
@@ -4709,6 +4720,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     PhotoViewer.this.checkProgress(0, false, true);
                 }
             }
+
+            @Override
+            public boolean forceAll() {
+                return PhotoViewer.this.placeProvider != null && PhotoViewer.this.placeProvider.forceAllInGroup();
+            }
         });
         for (int i4 = 0; i4 < 3; i4++) {
             this.fullscreenButton[i4] = new ImageView(this.parentActivity);
@@ -5973,7 +5989,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     SendMessagesHelper.getInstance(PhotoViewer.this.currentAccount).sendMessage(arrayList, j, false, false, true, 0);
                 }
-                dialogsActivity.lambda$onBackPressed$303();
+                dialogsActivity.lambda$onBackPressed$305();
                 if (chatActivity != null && (undoView = chatActivity.getUndoView()) != null) {
                     if (arrayList2.size() == 1) {
                         undoView.showWithAction(((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId, 53, Integer.valueOf(arrayList.size()));
@@ -6000,7 +6016,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (((LaunchActivity) PhotoViewer.this.parentActivity).presentFragment(chatActivity2, true, false)) {
                     chatActivity2.showFieldPanelForForward(true, arrayList);
                 } else {
-                    dialogsActivity.lambda$onBackPressed$303();
+                    dialogsActivity.lambda$onBackPressed$305();
                 }
             }
             return true;
@@ -6335,6 +6351,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 PhotoViewer.this.onActionClick(true);
                 PhotoViewer.this.checkProgress(0, false, true);
             }
+        }
+
+        @Override
+        public boolean forceAll() {
+            return PhotoViewer.this.placeProvider != null && PhotoViewer.this.placeProvider.forceAllInGroup();
         }
     }
 
@@ -16522,7 +16543,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
                 if (chatActivity != null) {
-                    chatActivity.lambda$openDiscussionMessageChat$319(PhotoViewer.this.animationEndRunnable);
+                    chatActivity.lambda$openDiscussionMessageChat$321(PhotoViewer.this.animationEndRunnable);
                 } else {
                     PhotoViewer.this.animationEndRunnable.run();
                     PhotoViewer.this.animationEndRunnable = null;

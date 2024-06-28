@@ -554,14 +554,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lambda$onBackPressed$303();
+                lambda$onBackPressed$305();
                 if (baseFragment3 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(baseFragment3, tLRPC$Chat, true);
                     return;
                 }
                 return;
             }
-            lambda$onBackPressed$303();
+            lambda$onBackPressed$305();
             if (baseFragment2 instanceof ProfileActivity) {
                 BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
                 return;
@@ -662,7 +662,9 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.boostLayout = new ChannelBoostLayout(this, -this.chatId, getResourceProvider());
         }
         if (z) {
-            this.monetizationLayout = new ChannelMonetizationLayout(getContext(), this, this.currentAccount, -this.chatId, getResourceProvider());
+            ChannelMonetizationLayout channelMonetizationLayout = new ChannelMonetizationLayout(getContext(), this, this.currentAccount, -this.chatId, getResourceProvider());
+            this.monetizationLayout = channelMonetizationLayout;
+            channelMonetizationLayout.setActionBar(this.actionBar);
         }
         boolean z2 = isBoostSupported && !this.onlyBoostsStat;
         if (z2 && this.startFromBoosts) {
@@ -845,7 +847,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    StatisticActivity.this.lambda$onBackPressed$303();
+                    StatisticActivity.this.lambda$onBackPressed$305();
                 }
             }
         });

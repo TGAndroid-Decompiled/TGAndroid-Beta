@@ -466,7 +466,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i5) {
                 if (i5 == -1) {
-                    GroupCreateActivity.this.lambda$onBackPressed$303();
+                    GroupCreateActivity.this.lambda$onBackPressed$305();
                 } else if (i5 == 1) {
                     GroupCreateActivity.this.onDonePressed(true);
                 }
@@ -1107,7 +1107,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         if (contactsAddActivityDelegate != null) {
             contactsAddActivityDelegate.didSelectUsers(arrayList, i);
         }
-        lambda$onBackPressed$303();
+        lambda$onBackPressed$305();
     }
 
     public boolean onDonePressed(boolean z) {
@@ -1216,7 +1216,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     if (groupCreateActivityDelegate != null) {
                         groupCreateActivityDelegate.didSelectUsers(this.selectedPremium != null, arrayList2);
                     }
-                    lambda$onBackPressed$303();
+                    lambda$onBackPressed$305();
                 } else {
                     Bundle bundle2 = new Bundle();
                     int size2 = arrayList2.size();

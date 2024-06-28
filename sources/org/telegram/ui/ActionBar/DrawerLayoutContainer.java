@@ -581,7 +581,7 @@ public class DrawerLayoutContainer extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         INavigationLayout iNavigationLayout;
         super.dispatchDraw(canvas);
         if (!this.drawCurrentPreviewFragmentAbove || (iNavigationLayout = this.parentActionBarLayout) == null) {
