@@ -58,7 +58,7 @@ public class BotStarsController {
         if (revenueStats == null) {
             return 0L;
         }
-        return revenueStats.status.available_balance;
+        return revenueStats.status.current_balance;
     }
 
     public boolean isBalanceAvailable(long j) {
