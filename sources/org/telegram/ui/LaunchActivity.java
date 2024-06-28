@@ -1201,12 +1201,22 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (lastFragment == null) {
             return;
         }
-        BotWebViewAttachedSheet createBotViewer = lastFragment.createBotViewer();
-        createBotViewer.setParentActivity(this);
         int i = this.currentAccount;
         long j = tLRPC$TL_attachMenuBot.bot_id;
-        createBotViewer.requestWebView(null, BotWebViewAttachedSheet.WebViewRequestProps.of(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, false, str, null, 2));
-        createBotViewer.show();
+        BotWebViewAttachedSheet.WebViewRequestProps of = BotWebViewAttachedSheet.WebViewRequestProps.of(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, false, str, null, 2);
+        if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
+            if (AndroidUtilities.isTablet()) {
+                BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, lastFragment.getResourceProvider());
+                botWebViewSheet.setParentActivity(this);
+                botWebViewSheet.requestWebView(null, of);
+                botWebViewSheet.show();
+                return;
+            }
+            BotWebViewAttachedSheet createBotViewer = lastFragment.createBotViewer();
+            createBotViewer.setParentActivity(this);
+            createBotViewer.requestWebView(null, of);
+            createBotViewer.show();
+        }
     }
 
     @Override
@@ -3631,13 +3641,27 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (baseFragment == null || !isActive || isFinishing() || isDestroyed()) {
             return;
         }
-        BotWebViewAttachedSheet createBotViewer = baseFragment.createBotViewer();
-        createBotViewer.setParentActivity(this);
         long j = tLRPC$User.id;
-        createBotViewer.requestWebView(i, j, j, null, null, 3, 0, false, baseFragment, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User);
-        createBotViewer.show();
-        if (tLRPC$TL_messages_botApp.inactive || z) {
-            createBotViewer.showJustAddedBulletin();
+        BotWebViewAttachedSheet.WebViewRequestProps of = BotWebViewAttachedSheet.WebViewRequestProps.of(i, j, j, null, null, 3, 0, false, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User, 0);
+        if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
+            if (AndroidUtilities.isTablet()) {
+                BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment.getResourceProvider());
+                botWebViewSheet.setParentActivity(this);
+                botWebViewSheet.requestWebView(baseFragment, of);
+                botWebViewSheet.show();
+                if (tLRPC$TL_messages_botApp.inactive || z) {
+                    botWebViewSheet.showJustAddedBulletin();
+                    return;
+                }
+                return;
+            }
+            BotWebViewAttachedSheet createBotViewer = baseFragment.createBotViewer();
+            createBotViewer.setParentActivity(this);
+            createBotViewer.requestWebView(baseFragment, of);
+            createBotViewer.show();
+            if (tLRPC$TL_messages_botApp.inactive || z) {
+                createBotViewer.showJustAddedBulletin();
+            }
         }
     }
 

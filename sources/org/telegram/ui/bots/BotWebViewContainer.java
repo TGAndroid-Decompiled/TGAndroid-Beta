@@ -200,7 +200,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void onWebViewCreated() {
     }
 
-    static int access$808() {
+    static int access$908() {
         int i = tags;
         tags = i + 1;
         return i;
@@ -457,6 +457,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void setPageLoaded(String str) {
+        MyWebView myWebView = this.webView;
+        if (myWebView != null) {
+            myWebView.isPageLoaded = true;
+        }
         if (this.isPageLoaded) {
             d("setPageLoaded: already loaded");
             return;
@@ -494,6 +498,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         d("setState(" + z + ", " + str + ")");
         this.isPageLoaded = z;
         this.mUrl = str;
+    }
+
+    public void setIsBackButtonVisible(boolean z) {
+        this.isBackButtonVisible = z;
     }
 
     public String getUrlLoaded() {
@@ -1584,10 +1592,15 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public static class MyWebView extends WebView {
         private BotWebViewContainer botWebViewContainer;
+        private boolean isPageLoaded;
         private int prevScrollX;
         private int prevScrollY;
         private final int tag;
         private WebViewScrollListener webViewScrollListener;
+
+        public boolean isPageLoaded() {
+            return this.isPageLoaded;
+        }
 
         public void d(String str) {
             FileLog.d("[webview] #" + this.tag + " " + str);
@@ -1595,7 +1608,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         public MyWebView(Context context) {
             super(context);
-            this.tag = BotWebViewContainer.access$808();
+            this.tag = BotWebViewContainer.access$908();
             d("created new webview");
             setWebViewClient(new AnonymousClass1());
             setWebChromeClient(new AnonymousClass2());
@@ -1681,6 +1694,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public void onPageFinished(WebView webView, String str) {
+                MyWebView.this.isPageLoaded = true;
                 MyWebView.this.d("onPageFinished");
                 if (MyWebView.this.botWebViewContainer != null) {
                     MyWebView.this.botWebViewContainer.setPageLoaded(str);

@@ -9854,12 +9854,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$processInlineBotWebView$103(TLRPC$TL_inlineBotWebView tLRPC$TL_inlineBotWebView) {
-        BotWebViewAttachedSheet createBotViewer = createBotViewer();
-        createBotViewer.setParentActivity(getParentActivity());
         int i = this.currentAccount;
         TLRPC$User tLRPC$User = this.currentUser;
-        createBotViewer.requestWebView(i, tLRPC$User != null ? tLRPC$User.id : this.currentChat.id, this.mentionContainer.getAdapter().getFoundContextBot().id, tLRPC$TL_inlineBotWebView.text, tLRPC$TL_inlineBotWebView.url, 1, 0, false, 1);
-        createBotViewer.show();
+        BotWebViewAttachedSheet.WebViewRequestProps of = BotWebViewAttachedSheet.WebViewRequestProps.of(i, tLRPC$User != null ? tLRPC$User.id : this.currentChat.id, this.mentionContainer.getAdapter().getFoundContextBot().id, tLRPC$TL_inlineBotWebView.text, tLRPC$TL_inlineBotWebView.url, 1, 0, false, null, false, null, null, 1);
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        if (launchActivity == null || launchActivity.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(of) == null) {
+            if (AndroidUtilities.isTablet()) {
+                BotWebViewSheet botWebViewSheet = new BotWebViewSheet(getContext(), getResourceProvider());
+                botWebViewSheet.setParentActivity(getParentActivity());
+                botWebViewSheet.requestWebView(null, of);
+                botWebViewSheet.show();
+                return;
+            }
+            BotWebViewAttachedSheet createBotViewer = createBotViewer();
+            createBotViewer.setParentActivity(getParentActivity());
+            createBotViewer.requestWebView(null, of);
+            createBotViewer.show();
+        }
     }
 
     public void lambda$processInlineBotWebView$104(Runnable runnable, Boolean bool) {
@@ -20621,10 +20632,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     @Override
     public boolean isSecretChat() {
         return this.currentEncryptedChat != null;
-    }
-
-    public boolean isChannel() {
-        return ChatObject.isChannelAndNotMegaGroup(this.currentChat);
     }
 
     public boolean canScheduleMessage() {

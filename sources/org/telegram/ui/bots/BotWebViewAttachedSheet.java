@@ -11,7 +11,6 @@ import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -126,6 +125,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     private int actionBarColor;
     private boolean actionBarIsLight;
     private Drawable actionBarShadow;
+    private boolean backButtonShown;
     private BackDrawable backDrawable;
     private long botId;
     private String buttonText;
@@ -271,6 +271,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             z = false;
         }
         webTabData.expanded = z;
+        webTabData.backButton = this.backButtonShown;
         BotWebViewContainer botWebViewContainer3 = this.webViewContainer;
         BotWebViewContainer.MyWebView webView = botWebViewContainer3 == null ? null : botWebViewContainer3.getWebView();
         if (webView != null) {
@@ -304,11 +305,19 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
         setActionBarColor(i, webTabData.overrideActionBarColor, false);
         this.showExpanded = webTabData.expanded;
+        BotWebViewContainer botWebViewContainer = this.webViewContainer;
+        boolean z = webTabData.backButton;
+        this.backButtonShown = z;
+        botWebViewContainer.setIsBackButtonVisible(z);
+        BackDrawable backDrawable = this.backDrawable;
+        if (backDrawable != null) {
+            backDrawable.setRotation(this.backButtonShown ? 0.0f : 1.0f, false);
+        }
         BotWebViewContainer.MyWebView myWebView = webTabData.webView;
         if (myWebView != null) {
             myWebView.onResume();
             this.webViewContainer.replaceWebView(webTabData.webView, webTabData.webViewProxy);
-            this.webViewContainer.setState(webTabData.ready, webTabData.lastUrl);
+            this.webViewContainer.setState(webTabData.ready || webTabData.webView.isPageLoaded(), webTabData.lastUrl);
             if (Theme.isCurrentThemeDark() != webTabData.themeIsDark) {
                 if (this.webViewContainer.getWebView() != null) {
                     this.webViewContainer.getWebView().animate().cancel();
@@ -415,10 +424,6 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         TextView textView = new TextView(this, getContext()) {
             @Override
             protected void onMeasure(int i2, int i3) {
-                if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-                    Point point = AndroidUtilities.displaySize;
-                    i2 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
-                }
                 super.onMeasure(i2, i3);
             }
         };
@@ -443,14 +448,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
-                if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-                    float dp2 = AndroidUtilities.dp(10.0f);
-                    Point point = AndroidUtilities.displaySize;
-                    marginLayoutParams.rightMargin = (int) (dp2 + (Math.min(point.x, point.y) * 0.1f));
-                    return;
-                }
-                marginLayoutParams.rightMargin = AndroidUtilities.dp(10.0f);
+                ((ViewGroup.MarginLayoutParams) getLayoutParams()).rightMargin = AndroidUtilities.dp(10.0f);
             }
         };
         this.radialProgressView = radialProgressView;
@@ -465,10 +463,6 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         ActionBar actionBar = new ActionBar(this, getContext(), this.resourcesProvider) {
             @Override
             public void onMeasure(int i2, int i3) {
-                if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-                    Point point = AndroidUtilities.displaySize;
-                    i2 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
-                }
                 super.onMeasure(i2, i3);
             }
         };
@@ -492,16 +486,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         });
         this.actionBar.setAlpha(0.0f);
         windowView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2, 49));
-        ChatAttachAlertBotWebViewLayout.WebProgressView webProgressView = new ChatAttachAlertBotWebViewLayout.WebProgressView(this, getContext(), this.resourcesProvider) {
-            @Override
-            protected void onMeasure(int i2, int i3) {
-                if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-                    Point point = AndroidUtilities.displaySize;
-                    i2 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
-                }
-                super.onMeasure(i2, i3);
-            }
-        };
+        ChatAttachAlertBotWebViewLayout.WebProgressView webProgressView = new ChatAttachAlertBotWebViewLayout.WebProgressView(getContext(), this.resourcesProvider);
         this.progressView = webProgressView;
         windowView.addView(webProgressView, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
         this.webViewContainer.setWebViewProgressListener(new Consumer() {
@@ -609,6 +594,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
 
         @Override
         public void onSetBackButtonVisible(boolean z) {
+            BotWebViewAttachedSheet.this.backButtonShown = z;
             BotWebViewAttachedSheet.this.backDrawable.setRotation(z ? 0.0f : 1.0f, true);
         }
 
@@ -961,18 +947,6 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void requestWebView(int i, long j, long j2, String str, String str2, int i2, int i3, boolean z, int i4) {
-        requestWebView(null, WebViewRequestProps.of(i, j, j2, str, str2, i2, i3, z, null, false, null, null, i4));
-    }
-
-    public void requestWebView(int i, long j, long j2, String str, String str2, int i2, int i3, boolean z) {
-        requestWebView(null, WebViewRequestProps.of(i, j, j2, str, str2, i2, i3, z, null, false, null, null, 0));
-    }
-
-    public void requestWebView(int i, long j, long j2, String str, String str2, int i2, int i3, boolean z, BaseFragment baseFragment, TLRPC$BotApp tLRPC$BotApp, boolean z2, String str3, TLRPC$User tLRPC$User) {
-        requestWebView(baseFragment, WebViewRequestProps.of(i, j, j2, str, str2, i2, i3, z, tLRPC$BotApp, z2, str3, tLRPC$User, 0));
-    }
-
     public static class WebViewRequestProps {
         public boolean allowWrite;
         public TLRPC$BotApp app;
@@ -1011,6 +985,26 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         public void applyResponse(TLObject tLObject) {
             this.response = tLObject;
             this.responseTime = System.currentTimeMillis();
+        }
+
+        public boolean equals(Object obj) {
+            if (!(obj instanceof WebViewRequestProps)) {
+                return false;
+            }
+            WebViewRequestProps webViewRequestProps = (WebViewRequestProps) obj;
+            if (this.currentAccount != webViewRequestProps.currentAccount || this.peerId != webViewRequestProps.peerId || this.botId != webViewRequestProps.botId || !TextUtils.equals(this.buttonText, webViewRequestProps.buttonText) || !TextUtils.equals(this.buttonUrl, webViewRequestProps.buttonUrl) || this.type != webViewRequestProps.type || this.replyToMsgId != webViewRequestProps.replyToMsgId || this.silent != webViewRequestProps.silent) {
+                return false;
+            }
+            TLRPC$BotApp tLRPC$BotApp = this.app;
+            long j = tLRPC$BotApp == null ? 0L : tLRPC$BotApp.id;
+            TLRPC$BotApp tLRPC$BotApp2 = webViewRequestProps.app;
+            if (j != (tLRPC$BotApp2 == null ? 0L : tLRPC$BotApp2.id) || this.allowWrite != webViewRequestProps.allowWrite || !TextUtils.equals(this.startParam, webViewRequestProps.startParam)) {
+                return false;
+            }
+            TLRPC$User tLRPC$User = this.botUser;
+            long j2 = tLRPC$User == null ? 0L : tLRPC$User.id;
+            TLRPC$User tLRPC$User2 = webViewRequestProps.botUser;
+            return j2 == (tLRPC$User2 != null ? tLRPC$User2.id : 0L) && this.flags == webViewRequestProps.flags;
         }
     }
 
@@ -1060,7 +1054,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         if (tLRPC$TL_attachMenuBot != null && (tLRPC$TL_attachMenuBot.show_in_side_menu || tLRPC$TL_attachMenuBot.show_in_attach_menu)) {
             addItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass10());
+        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass9());
         JSONObject makeThemeParams = makeThemeParams(this.resourcesProvider);
         this.webViewContainer.setBotUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
         this.webViewContainer.loadFlickerAndSettingsItem(this.currentAccount, this.botId, this.settingsItem);
@@ -1185,8 +1179,8 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }, 66);
     }
 
-    public class AnonymousClass10 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass10() {
+    public class AnonymousClass9 extends ActionBar.ActionBarMenuOnItemClick {
+        AnonymousClass9() {
         }
 
         @Override
@@ -1232,7 +1226,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 BotWebViewAttachedSheet.deleteBot(BotWebViewAttachedSheet.this.currentAccount, BotWebViewAttachedSheet.this.botId, new Runnable() {
                     @Override
                     public final void run() {
-                        BotWebViewAttachedSheet.AnonymousClass10.this.lambda$onItemClick$0();
+                        BotWebViewAttachedSheet.AnonymousClass9.this.lambda$onItemClick$0();
                     }
                 });
                 return;
@@ -1422,15 +1416,15 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     public void show(boolean z) {
         if (AndroidUtilities.isSafeToShow(getContext())) {
             this.windowView.setAlpha(0.0f);
-            this.windowView.addOnLayoutChangeListener(new AnonymousClass11(z));
+            this.windowView.addOnLayoutChangeListener(new AnonymousClass10(z));
             attachInternal();
         }
     }
 
-    public class AnonymousClass11 implements View.OnLayoutChangeListener {
+    public class AnonymousClass10 implements View.OnLayoutChangeListener {
         final boolean val$lowBounce;
 
-        AnonymousClass11(boolean z) {
+        AnonymousClass10(boolean z) {
             this.val$lowBounce = z;
         }
 

@@ -27,6 +27,7 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewContainer;
+import org.telegram.ui.bots.BotWebViewSheet;
 
 public class BottomSheetTabs extends FrameLayout {
     private final ActionBarLayout actionBarLayout;
@@ -81,7 +82,7 @@ public class BottomSheetTabs extends FrameLayout {
 
     public void openTab(WebTabData webTabData) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null) {
+        if (lastFragment == null || lastFragment.getParentActivity() == null) {
             return;
         }
         if (lastFragment instanceof ChatActivity) {
@@ -92,12 +93,36 @@ public class BottomSheetTabs extends FrameLayout {
             }
         }
         boolean closeAttachedSheets = closeAttachedSheets();
+        if (AndroidUtilities.isTablet()) {
+            BotWebViewSheet botWebViewSheet = new BotWebViewSheet(lastFragment.getContext(), lastFragment.getResourceProvider());
+            botWebViewSheet.setParentActivity(lastFragment.getParentActivity());
+            if (botWebViewSheet.restoreState(lastFragment, webTabData)) {
+                removeTab(webTabData, false);
+                botWebViewSheet.show();
+                return;
+            }
+            return;
+        }
         BotWebViewAttachedSheet createBotViewer = lastFragment.createBotViewer();
         createBotViewer.setParentActivity(lastFragment.getParentActivity());
         if (createBotViewer.restoreState(lastFragment, webTabData)) {
             removeTab(webTabData, false);
             createBotViewer.show(closeAttachedSheets);
         }
+    }
+
+    public WebTabData tryReopenTab(BotWebViewAttachedSheet.WebViewRequestProps webViewRequestProps) {
+        if (webViewRequestProps == null) {
+            return null;
+        }
+        for (int i = 0; i < this.tabs.size(); i++) {
+            WebTabData webTabData = this.tabs.get(i);
+            if (webViewRequestProps.equals(webTabData.props)) {
+                openTab(webTabData);
+                return webTabData;
+            }
+        }
+        return null;
     }
 
     public boolean closeAttachedSheets() {
@@ -480,6 +505,7 @@ public class BottomSheetTabs extends FrameLayout {
     public static class WebTabData {
         public int actionBarColor;
         public int actionBarColorKey;
+        public boolean backButton;
         public int backgroundColor;
         public boolean expanded;
         public String lastUrl;
