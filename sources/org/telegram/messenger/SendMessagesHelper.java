@@ -4503,7 +4503,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         updateMediaPaths(messageObject, tLRPC$Message, i, Collections.singletonList(str), z, -1);
     }
 
-    private void updateMediaPaths(org.telegram.messenger.MessageObject r24, org.telegram.tgnet.TLRPC$Message r25, int r26, java.util.List<java.lang.String> r27, boolean r28, int r29) {
+    private void updateMediaPaths(org.telegram.messenger.MessageObject r22, org.telegram.tgnet.TLRPC$Message r23, int r24, java.util.List<java.lang.String> r25, boolean r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.updateMediaPaths(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Message, int, java.util.List, boolean, int):void");
     }
 

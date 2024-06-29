@@ -198,11 +198,6 @@ public class BotBiometry {
             @Override
             public void onAuthenticationFailed() {
                 FileLog.d("BotBiometry onAuthenticationFailed");
-                if (BotBiometry.this.callback != null) {
-                    Utilities.Callback callback = BotBiometry.this.callback;
-                    BotBiometry.this.callback = null;
-                    callback.run(null);
-                }
             }
         });
     }
