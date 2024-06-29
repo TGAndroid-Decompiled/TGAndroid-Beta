@@ -2,53 +2,8 @@ package org.telegram.tgnet;
 
 public class TLRPC$TL_messages_stickerSet extends TLRPC$messages_StickerSet {
     @Override
-    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.set = TLRPC$StickerSet.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-        int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
-            }
-            return;
-        }
-        int readInt322 = abstractSerializedData.readInt32(z);
-        for (int i = 0; i < readInt322; i++) {
-            TLRPC$TL_stickerPack TLdeserialize = TLRPC$TL_stickerPack.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-            if (TLdeserialize == null) {
-                return;
-            }
-            this.packs.add(TLdeserialize);
-        }
-        int readInt323 = abstractSerializedData.readInt32(z);
-        if (readInt323 != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
-            }
-            return;
-        }
-        int readInt324 = abstractSerializedData.readInt32(z);
-        for (int i2 = 0; i2 < readInt324; i2++) {
-            TLRPC$TL_stickerKeyword TLdeserialize2 = TLRPC$TL_stickerKeyword.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-            if (TLdeserialize2 == null) {
-                return;
-            }
-            this.keywords.add(TLdeserialize2);
-        }
-        int readInt325 = abstractSerializedData.readInt32(z);
-        if (readInt325 != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-            }
-            return;
-        }
-        int readInt326 = abstractSerializedData.readInt32(z);
-        for (int i3 = 0; i3 < readInt326; i3++) {
-            TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-            if (TLdeserialize3 == null) {
-                return;
-            }
-            this.documents.add(TLdeserialize3);
-        }
+    public void readParams(org.telegram.tgnet.AbstractSerializedData r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC$TL_messages_stickerSet.readParams(org.telegram.tgnet.AbstractSerializedData, boolean):void");
     }
 
     @Override

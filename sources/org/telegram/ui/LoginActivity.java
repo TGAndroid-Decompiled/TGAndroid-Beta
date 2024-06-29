@@ -5172,6 +5172,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$new$2(GoogleSignInClient googleSignInClient, Task task) {
+            if (LoginActivity.this.getParentActivity() == null || LoginActivity.this.getParentActivity().isFinishing()) {
+                return;
+            }
             LoginActivity.this.getParentActivity().startActivityForResult(googleSignInClient.getSignInIntent(), 200);
         }
 

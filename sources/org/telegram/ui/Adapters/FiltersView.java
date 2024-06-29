@@ -792,7 +792,7 @@ public class FiltersView extends RecyclerListView {
         return false;
     }
 
-    private static class UpdateCallback implements ListUpdateCallback {
+    public static class UpdateCallback implements ListUpdateCallback {
         final RecyclerView.Adapter adapter;
         boolean changed;
 

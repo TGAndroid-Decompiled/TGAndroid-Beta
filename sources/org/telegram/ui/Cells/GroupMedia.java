@@ -4,15 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import java.util.ArrayList;
@@ -54,6 +48,12 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 public class GroupMedia {
     private final AnimatedFloat animatedHidden;
     public boolean attached;
+    private Bitmap blurBitmap;
+    private int blurBitmapHeight;
+    private int blurBitmapMessageId;
+    private Paint blurBitmapPaint;
+    private int blurBitmapState;
+    private int blurBitmapWidth;
     private final ButtonBounce bounce;
     private Text buttonText;
     public final ChatMessageCell cell;
@@ -265,7 +265,7 @@ public class GroupMedia {
             canvas.save();
             canvas.clipPath(this.clipPath);
             drawBlurred(canvas, f);
-            canvas.drawColor(Theme.multAlpha(1073741824, f));
+            canvas.drawColor(Theme.multAlpha(805306368, f));
             this.buttonText.draw(canvas, ((this.x + (this.width / 2.0f)) - (dp / 2.0f)) + AndroidUtilities.dp(14.0f), (this.height / 2.0f) + this.y, -1, f);
             canvas.restore();
             if (isLoading()) {
@@ -331,36 +331,63 @@ public class GroupMedia {
         canvas.restore();
     }
 
+    public void checkBlurBitmap() {
+        int id = this.cell.getMessageObject() != null ? this.cell.getMessageObject().getId() : 0;
+        int i = this.width;
+        int i2 = this.height;
+        int max = (int) Math.max(1.0f, i > i2 ? 100.0f : (i / i2) * 100.0f);
+        int i3 = this.height;
+        int i4 = this.width;
+        int max2 = (int) Math.max(1.0f, i3 <= i4 ? 100.0f * (i3 / i4) : 100.0f);
+        int i5 = 0;
+        for (int i6 = 0; i6 < this.holders.size(); i6++) {
+            MediaHolder mediaHolder = this.holders.get(i6);
+            if (mediaHolder.imageReceiver.hasImageSet() && mediaHolder.imageReceiver.getBitmap() != null) {
+                i5 |= 1 << i6;
+            }
+        }
+        Bitmap bitmap = this.blurBitmap;
+        if (bitmap != null && this.blurBitmapMessageId == id && this.blurBitmapState == i5 && this.blurBitmapWidth == max && this.blurBitmapHeight == max2) {
+            return;
+        }
+        this.blurBitmapState = i5;
+        this.blurBitmapMessageId = id;
+        this.blurBitmapWidth = max;
+        this.blurBitmapHeight = max2;
+        if (bitmap != null) {
+            bitmap.recycle();
+        }
+        this.blurBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(this.blurBitmap);
+        float f = max;
+        int i7 = this.width;
+        canvas.scale(f / i7, f / i7);
+        for (int i8 = 0; i8 < this.holders.size(); i8++) {
+            MediaHolder mediaHolder2 = this.holders.get(i8);
+            mediaHolder2.imageReceiver.setImageCoords(mediaHolder2.l, mediaHolder2.t, mediaHolder2.r - r4, mediaHolder2.b - r6);
+            mediaHolder2.imageReceiver.draw(canvas);
+        }
+        Utilities.stackBlurBitmap(this.blurBitmap, 12);
+        if (this.blurBitmapPaint == null) {
+            this.blurBitmapPaint = new Paint(3);
+            ColorMatrix colorMatrix = new ColorMatrix();
+            colorMatrix.setSaturation(1.5f);
+            this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        }
+    }
+
     public void drawBlurred(Canvas canvas, float f) {
         if (this.layout == null) {
             return;
         }
-        for (int i = 0; i < this.holders.size(); i++) {
-            MediaHolder mediaHolder = this.holders.get(i);
-            ImageReceiver imageReceiver = mediaHolder.imageReceiver;
-            int i2 = this.x;
-            int i3 = mediaHolder.l;
-            int i4 = this.y;
-            int i5 = mediaHolder.t;
-            imageReceiver.setImageCoords(i2 + i3, i4 + i5, mediaHolder.r - i3, mediaHolder.b - i5);
-            if (mediaHolder.blurBitmap != null) {
-                canvas.save();
-                int i6 = this.x;
-                int i7 = mediaHolder.l;
-                float f2 = i6 + i7 + ((mediaHolder.r - i7) / 2.0f);
-                int i8 = this.y;
-                int i9 = mediaHolder.t;
-                canvas.translate(f2, i8 + i9 + ((mediaHolder.b - i9) / 2.0f));
-                float dp = ((mediaHolder.r - mediaHolder.l) + AndroidUtilities.dp(2.0f)) / (mediaHolder.blurBitmap.getWidth() - (mediaHolder.blurBitmapPadding * 2));
-                float dp2 = ((mediaHolder.b - mediaHolder.t) + AndroidUtilities.dp(2.0f)) / (mediaHolder.blurBitmap.getHeight() - (mediaHolder.blurBitmapPadding * 2));
-                canvas.scale(Math.max(dp, dp2), Math.max(dp, dp2));
-                canvas.translate((-mediaHolder.blurBitmap.getWidth()) / 2.0f, (-mediaHolder.blurBitmap.getHeight()) / 2.0f);
-                mediaHolder.blurBitmapPaint.setAlpha((int) (255.0f * f));
-                canvas.drawBitmap(mediaHolder.blurBitmap, 0.0f, 0.0f, mediaHolder.blurBitmapPaint);
-                canvas.restore();
-            } else {
-                mediaHolder.imageReceiver.draw(canvas);
-            }
+        checkBlurBitmap();
+        if (this.blurBitmap != null) {
+            canvas.save();
+            canvas.translate(this.x, this.y);
+            canvas.scale(this.width / this.blurBitmap.getWidth(), this.width / this.blurBitmap.getWidth());
+            this.blurBitmapPaint.setAlpha((int) (f * 255.0f));
+            canvas.drawBitmap(this.blurBitmap, 0.0f, 0.0f, this.blurBitmapPaint);
+            canvas.restore();
         }
     }
 
@@ -472,8 +499,6 @@ public class GroupMedia {
         public boolean attached;
         public boolean autoplay;
         public int b;
-        private Bitmap blurBitmap;
-        private int blurBitmapPadding;
         public final ChatMessageCell cell;
         private int duration;
         private Text durationText;
@@ -487,11 +512,10 @@ public class GroupMedia {
         public TLRPC$MessageExtendedMedia media;
         public int r;
         public final RadialProgress2 radialProgress;
+        public final float[] radii = new float[8];
         public int t;
         public boolean video;
         private final int w;
-        private final Paint blurBitmapPaint = new Paint(3);
-        public final float[] radii = new float[8];
 
         @Override
         public void onFailedDownload(String str, boolean z) {
@@ -518,7 +542,7 @@ public class GroupMedia {
             this.durationText = new Text(AndroidUtilities.formatLongDuration(max), 12.0f);
         }
 
-        public MediaHolder(final ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, boolean z, int i, int i2) {
+        public MediaHolder(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, boolean z, int i, int i2) {
             new RectF();
             new Path();
             this.icon = 4;
@@ -543,58 +567,6 @@ public class GroupMedia {
             }
             ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
             this.imageReceiver = imageReceiver;
-            imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-                @Override
-                public void didSetImageBitmap(int i4, String str, Drawable drawable) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i4, str, drawable);
-                }
-
-                @Override
-                public void onAnimationReady(ImageReceiver imageReceiver2) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
-                }
-
-                @Override
-                public void didSetImage(ImageReceiver imageReceiver2, boolean z2, boolean z3, boolean z4) {
-                    if (imageReceiver2.getBitmap() == null || MediaHolder.this.blurBitmap != null) {
-                        return;
-                    }
-                    Bitmap bitmap = imageReceiver2.getBitmap();
-                    Utilities.stackBlurBitmap(bitmap, 3);
-                    int width = bitmap.getWidth();
-                    int max = (int) Math.max(1.0f, (MediaHolder.this.h / MediaHolder.this.w) * bitmap.getWidth());
-                    MediaHolder.this.blurBitmap = Bitmap.createBitmap(width, max, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(MediaHolder.this.blurBitmap);
-                    canvas.save();
-                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-                    canvas.restore();
-                    int i4 = MediaHolder.this.blurBitmapPadding = Math.min(8, Math.min(width, max));
-                    Paint paint = new Paint(1);
-                    float f = i4;
-                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f, 0.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                    Matrix matrix = new Matrix();
-                    paint.setShader(linearGradient);
-                    float f2 = max;
-                    canvas.drawRect(0.0f, 0.0f, f, f2, paint);
-                    matrix.reset();
-                    matrix.postRotate(180.0f);
-                    float f3 = width;
-                    matrix.postTranslate(f3, 0.0f);
-                    linearGradient.setLocalMatrix(matrix);
-                    canvas.drawRect(width - i4, 0.0f, f3, f2, paint);
-                    matrix.reset();
-                    matrix.postRotate(90.0f);
-                    linearGradient.setLocalMatrix(matrix);
-                    canvas.drawRect(0.0f, 0.0f, f3, f, paint);
-                    matrix.reset();
-                    matrix.postRotate(-90.0f);
-                    matrix.postTranslate(0.0f, f2);
-                    linearGradient.setLocalMatrix(matrix);
-                    canvas.drawRect(0.0f, max - i4, f3, f2, paint);
-                    chatMessageCell.invalidate();
-                }
-            });
             imageReceiver.setColorFilter(null);
             this.w = i;
             this.h = i2;
@@ -623,14 +595,11 @@ public class GroupMedia {
                 colorMatrix.setSaturation(1.4f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.1f);
                 this.imageReceiver.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                ColorMatrix colorMatrix2 = new ColorMatrix();
-                colorMatrix2.setSaturation(1.7f);
-                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, -0.1f);
-                this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
                 return;
             }
             if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
                 this.hidden = false;
+                this.imageReceiver.setColorFilter(null);
                 TLRPC$MessageMedia tLRPC$MessageMedia = ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media;
                 this.filename = MessageObject.getFileName(tLRPC$MessageMedia);
                 if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
