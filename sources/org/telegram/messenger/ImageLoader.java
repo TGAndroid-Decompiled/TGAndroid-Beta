@@ -65,6 +65,7 @@ import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
 import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
@@ -72,9 +73,11 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
 import org.telegram.tgnet.TLRPC$TL_fileLocationUnavailable;
+import org.telegram.tgnet.TLRPC$TL_messageExtendedMedia;
 import org.telegram.tgnet.TLRPC$TL_messageExtendedMediaPreview;
 import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
+import org.telegram.tgnet.TLRPC$TL_messageMediaPaidMedia;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_photoCachedSize;
@@ -2666,10 +2669,26 @@ public class ImageLoader {
     }
 
     public static void saveMessageThumbs(TLRPC$Message tLRPC$Message) {
-        TLRPC$PhotoSize findPhotoCachedSize;
         byte[] bArr;
         TLRPC$PhotoSize tLRPC$TL_photoSize_layer127;
-        if (tLRPC$Message.media == null || (findPhotoCachedSize = findPhotoCachedSize(tLRPC$Message)) == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
+        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
+        if (tLRPC$MessageMedia == null) {
+            return;
+        }
+        int i = 0;
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
+            TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia;
+            while (i < tLRPC$TL_messageMediaPaidMedia.extended_media.size()) {
+                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i);
+                if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
+                    saveMessageThumbs(tLRPC$Message, ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media);
+                }
+                i++;
+            }
+            return;
+        }
+        TLRPC$PhotoSize findPhotoCachedSize = findPhotoCachedSize(tLRPC$Message);
+        if (findPhotoCachedSize == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
             return;
         }
         TLRPC$FileLocation tLRPC$FileLocation = findPhotoCachedSize.location;
@@ -2679,7 +2698,6 @@ public class ImageLoader {
             tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
             tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
-        int i = 0;
         if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.w <= 50) {
             tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoStrippedSize();
             tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
@@ -2727,9 +2745,9 @@ public class ImageLoader {
             tLRPC$TL_photoSize_layer127.size = findPhotoCachedSize.size;
             tLRPC$TL_photoSize_layer127.type = findPhotoCachedSize.type;
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
-            int size = tLRPC$MessageMedia.photo.sizes.size();
+        TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
+        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPhoto) {
+            int size = tLRPC$MessageMedia2.photo.sizes.size();
             while (i < size) {
                 if (tLRPC$Message.media.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
                     tLRPC$Message.media.photo.sizes.set(i, tLRPC$TL_photoSize_layer127);
@@ -2739,8 +2757,8 @@ public class ImageLoader {
             }
             return;
         }
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
-            int size2 = tLRPC$MessageMedia.document.thumbs.size();
+        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaDocument) {
+            int size2 = tLRPC$MessageMedia2.document.thumbs.size();
             while (i < size2) {
                 if (tLRPC$Message.media.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
                     tLRPC$Message.media.document.thumbs.set(i, tLRPC$TL_photoSize_layer127);
@@ -2750,11 +2768,107 @@ public class ImageLoader {
             }
             return;
         }
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-            int size3 = tLRPC$MessageMedia.webpage.photo.sizes.size();
+        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaWebPage) {
+            int size3 = tLRPC$MessageMedia2.webpage.photo.sizes.size();
             while (i < size3) {
                 if (tLRPC$Message.media.webpage.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
                     tLRPC$Message.media.webpage.photo.sizes.set(i, tLRPC$TL_photoSize_layer127);
+                    return;
+                }
+                i++;
+            }
+        }
+    }
+
+    public static void saveMessageThumbs(TLRPC$Message tLRPC$Message, TLRPC$MessageMedia tLRPC$MessageMedia) {
+        TLRPC$PhotoSize findPhotoCachedSize;
+        byte[] bArr;
+        TLRPC$PhotoSize tLRPC$TL_photoSize_layer127;
+        if (tLRPC$Message == null || tLRPC$MessageMedia == null || (findPhotoCachedSize = findPhotoCachedSize(tLRPC$MessageMedia)) == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
+            return;
+        }
+        TLRPC$FileLocation tLRPC$FileLocation = findPhotoCachedSize.location;
+        if (tLRPC$FileLocation == null || (tLRPC$FileLocation instanceof TLRPC$TL_fileLocationUnavailable)) {
+            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
+            findPhotoCachedSize.location = tLRPC$TL_fileLocationToBeDeprecated;
+            tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
+            tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
+        }
+        int i = 0;
+        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.w <= 50) {
+            tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoStrippedSize();
+            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tLRPC$TL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
+            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
+        } else {
+            boolean z = true;
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
+            if (MessageObject.shouldEncryptPhotoOrVideo(UserConfig.selectedAccount, tLRPC$Message)) {
+                pathToAttach = new File(pathToAttach.getAbsolutePath() + ".enc");
+            } else {
+                z = false;
+            }
+            if (!pathToAttach.exists()) {
+                if (z) {
+                    try {
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(FileLoader.getInternalCacheDir(), pathToAttach.getName() + ".key"), "rws");
+                        long length = randomAccessFile.length();
+                        byte[] bArr2 = new byte[32];
+                        byte[] bArr3 = new byte[16];
+                        if (length > 0 && length % 48 == 0) {
+                            randomAccessFile.read(bArr2, 0, 32);
+                            randomAccessFile.read(bArr3, 0, 16);
+                        } else {
+                            Utilities.random.nextBytes(bArr2);
+                            Utilities.random.nextBytes(bArr3);
+                            randomAccessFile.write(bArr2);
+                            randomAccessFile.write(bArr3);
+                        }
+                        randomAccessFile.close();
+                        Utilities.aesCtrDecryptionByteArray(findPhotoCachedSize.bytes, bArr2, bArr3, 0, r7.length, 0);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+                RandomAccessFile randomAccessFile2 = new RandomAccessFile(pathToAttach, "rws");
+                randomAccessFile2.write(findPhotoCachedSize.bytes);
+                randomAccessFile2.close();
+            }
+            tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
+            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
+            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tLRPC$TL_photoSize_layer127.size = findPhotoCachedSize.size;
+            tLRPC$TL_photoSize_layer127.type = findPhotoCachedSize.type;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+            int size = tLRPC$MessageMedia.photo.sizes.size();
+            while (i < size) {
+                if (tLRPC$MessageMedia.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
+                    tLRPC$MessageMedia.photo.sizes.set(i, tLRPC$TL_photoSize_layer127);
+                    return;
+                }
+                i++;
+            }
+            return;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+            int size2 = tLRPC$MessageMedia.document.thumbs.size();
+            while (i < size2) {
+                if (tLRPC$MessageMedia.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
+                    tLRPC$MessageMedia.document.thumbs.set(i, tLRPC$TL_photoSize_layer127);
+                    return;
+                }
+                i++;
+            }
+            return;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
+            int size3 = tLRPC$MessageMedia.webpage.photo.sizes.size();
+            while (i < size3) {
+                if (tLRPC$MessageMedia.webpage.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
+                    tLRPC$MessageMedia.webpage.photo.sizes.set(i, tLRPC$TL_photoSize_layer127);
                     return;
                 }
                 i++;
@@ -2806,6 +2920,54 @@ public class ImageLoader {
         }
         if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) && !tLRPC$MessageMedia.extended_media.isEmpty() && (tLRPC$Message.media.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMediaPreview)) {
             return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$Message.media.extended_media.get(0)).thumb;
+        }
+        return null;
+        return tLRPC$PhotoSize;
+    }
+
+    private static TLRPC$PhotoSize findPhotoCachedSize(TLRPC$MessageMedia tLRPC$MessageMedia) {
+        TLRPC$PhotoSize tLRPC$PhotoSize;
+        int i = 0;
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+            int size = tLRPC$MessageMedia.photo.sizes.size();
+            while (i < size) {
+                tLRPC$PhotoSize = tLRPC$MessageMedia.photo.sizes.get(i);
+                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
+                    i++;
+                }
+            }
+            return null;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
+            if (tLRPC$Document == null) {
+                return null;
+            }
+            int size2 = tLRPC$Document.thumbs.size();
+            while (i < size2) {
+                tLRPC$PhotoSize = tLRPC$MessageMedia.document.thumbs.get(i);
+                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
+                    i++;
+                }
+            }
+            return null;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
+            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
+            if (tLRPC$Photo == null) {
+                return null;
+            }
+            int size3 = tLRPC$Photo.sizes.size();
+            while (i < size3) {
+                tLRPC$PhotoSize = tLRPC$MessageMedia.webpage.photo.sizes.get(i);
+                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
+                    i++;
+                }
+            }
+            return null;
+        }
+        if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) && !tLRPC$MessageMedia.extended_media.isEmpty() && (tLRPC$MessageMedia.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMediaPreview)) {
+            return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageMedia.extended_media.get(0)).thumb;
         }
         return null;
         return tLRPC$PhotoSize;

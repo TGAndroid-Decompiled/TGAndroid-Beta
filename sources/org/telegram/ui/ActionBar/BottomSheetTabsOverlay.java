@@ -885,7 +885,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         float dp = AndroidUtilities.statusBarHeight + AndroidUtilities.dp(40.0f) + AndroidUtilities.dp(55.0f);
         float dp2 = AndroidUtilities.dp(68.0f);
         int min2 = (int) Math.min(AndroidUtilities.dp(340.0f), 0.95f * width);
-        int minTabletSide = (int) (AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() * 0.75f : height * 0.75f);
+        int min3 = (int) (AndroidUtilities.isTablet() ? Math.min(width, height) * 0.75f : height * 0.75f);
         float f6 = width / 2.0f;
         int i3 = 0;
         float f7 = 0.0f;
@@ -912,7 +912,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             if (SharedConfig.botTabs3DEffect) {
                 i = i4;
                 float dp3 = (AndroidUtilities.dp(6.0f) * Math.min(5.0f, position)) + dp;
-                min = dp3 + ((((height - dp2) - (minTabletSide * 0.26f)) - dp3) * scrollOffset);
+                min = dp3 + ((((height - dp2) - (min3 * 0.26f)) - dp3) * scrollOffset);
                 f3 = dp;
                 f4 = dp2;
                 f2 = f8;
@@ -922,10 +922,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
                 float dp4 = (AndroidUtilities.dp(20.0f) * (((float) Math.pow(1.100000023841858d, position)) - 1.0f)) + dp;
                 f3 = dp;
                 f4 = dp2;
-                min = Math.min(dp4 + ((((height - dp2) - (minTabletSide * 0.26f)) - dp4) * ((float) Math.pow(max, 2.0d))), height);
+                min = Math.min(dp4 + ((((height - dp2) - (min3 * 0.26f)) - dp4) * ((float) Math.pow(max, 2.0d))), height);
             }
             float f10 = min2 / 2.0f;
-            this.rect2.set(f6 - f10, min, f10 + f6, minTabletSide + min);
+            this.rect2.set(f6 - f10, min, f10 + f6, min3 + min);
             this.tabsView.getTabBounds(this.rect, Utilities.clamp(tabPreview.tabDrawable.getPosition(), 1.0f, 0.0f));
             this.rect.offset(this.tabsView.getX(), this.tabsView.getY());
             RectF rectF2 = this.rect;

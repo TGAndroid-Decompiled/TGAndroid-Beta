@@ -37,6 +37,7 @@ import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -3988,7 +3989,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.this.lambda$performSendMessageRequestMulti$46(tLRPC$TL_error, tLObject2, arrayList2, arrayList3, z, tLObject);
+                SendMessagesHelper.this.lambda$performSendMessageRequestMulti$46(tLRPC$TL_error, tLObject2, arrayList2, arrayList3, tLObject, z);
             }
         });
     }
@@ -3997,70 +3998,73 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$performSendMessageRequestMulti$39(org.telegram.tgnet.TLObject, int, org.telegram.messenger.SendMessagesHelper$DelayedMessage, java.util.ArrayList, boolean):void");
     }
 
-    public void lambda$performSendMessageRequestMulti$46(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, final boolean z, TLObject tLObject2) {
-        final SendMessagesHelper sendMessagesHelper;
+    public void lambda$performSendMessageRequestMulti$46(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2, final boolean z) {
         boolean z2;
         final TLRPC$Updates tLRPC$Updates;
-        boolean z3;
         TLRPC$Message tLRPC$Message;
         TLRPC$Updates tLRPC$Updates2;
+        ArrayList arrayList3;
         int i;
+        TLRPC$Message tLRPC$Message2;
+        MessageObject messageObject;
         int i2;
-        int i3;
-        String quickReplyName;
+        LongSparseArray longSparseArray;
+        SparseArray sparseArray;
+        TLRPC$Updates tLRPC$Updates3;
         TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader;
-        int i4;
+        ArrayList arrayList4 = arrayList;
+        Object[] objArr = z ? 1 : 0;
         if (tLRPC$TL_error == null) {
-            SparseArray sparseArray = new SparseArray();
-            LongSparseArray longSparseArray = new LongSparseArray();
-            TLRPC$Updates tLRPC$Updates3 = (TLRPC$Updates) tLObject;
-            ArrayList<TLRPC$Update> arrayList3 = tLRPC$Updates3.updates;
-            int i5 = 0;
-            LongSparseArray<SparseArray<TLRPC$MessageReplies>> longSparseArray2 = null;
-            while (i5 < arrayList3.size()) {
-                TLRPC$Update tLRPC$Update = arrayList3.get(i5);
+            SparseArray sparseArray2 = new SparseArray();
+            LongSparseArray longSparseArray2 = new LongSparseArray();
+            TLRPC$Updates tLRPC$Updates4 = (TLRPC$Updates) tLObject;
+            ArrayList<TLRPC$Update> arrayList5 = tLRPC$Updates4.updates;
+            int i3 = 0;
+            LongSparseArray<SparseArray<TLRPC$MessageReplies>> longSparseArray3 = null;
+            while (i3 < arrayList5.size()) {
+                TLRPC$Update tLRPC$Update = arrayList5.get(i3);
                 if (tLRPC$Update instanceof TLRPC$TL_updateMessageID) {
                     TLRPC$TL_updateMessageID tLRPC$TL_updateMessageID = (TLRPC$TL_updateMessageID) tLRPC$Update;
-                    longSparseArray.put(tLRPC$TL_updateMessageID.random_id, Integer.valueOf(tLRPC$TL_updateMessageID.id));
-                    arrayList3.remove(i5);
+                    longSparseArray2.put(tLRPC$TL_updateMessageID.random_id, Integer.valueOf(tLRPC$TL_updateMessageID.id));
+                    arrayList5.remove(i3);
                 } else if (tLRPC$Update instanceof TLRPC$TL_updateNewMessage) {
                     final TLRPC$TL_updateNewMessage tLRPC$TL_updateNewMessage = (TLRPC$TL_updateNewMessage) tLRPC$Update;
-                    TLRPC$Message tLRPC$Message2 = tLRPC$TL_updateNewMessage.message;
-                    sparseArray.put(tLRPC$Message2.id, tLRPC$Message2);
+                    TLRPC$Message tLRPC$Message3 = tLRPC$TL_updateNewMessage.message;
+                    sparseArray2.put(tLRPC$Message3.id, tLRPC$Message3);
                     Utilities.stageQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
                             SendMessagesHelper.this.lambda$performSendMessageRequestMulti$40(tLRPC$TL_updateNewMessage);
                         }
                     });
-                    arrayList3.remove(i5);
+                    arrayList5.remove(i3);
                 } else {
                     if (tLRPC$Update instanceof TLRPC$TL_updateNewChannelMessage) {
                         final TLRPC$TL_updateNewChannelMessage tLRPC$TL_updateNewChannelMessage = (TLRPC$TL_updateNewChannelMessage) tLRPC$Update;
                         final long updateChannelId = MessagesController.getUpdateChannelId(tLRPC$TL_updateNewChannelMessage);
                         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(updateChannelId));
                         if (!(chat == null || chat.megagroup) || (tLRPC$MessageReplyHeader = tLRPC$TL_updateNewChannelMessage.message.reply_to) == null || (tLRPC$MessageReplyHeader.reply_to_top_id == 0 && tLRPC$MessageReplyHeader.reply_to_msg_id == 0)) {
-                            i4 = i5;
+                            tLRPC$Updates3 = tLRPC$Updates4;
                         } else {
-                            if (longSparseArray2 == null) {
-                                longSparseArray2 = new LongSparseArray<>();
+                            if (longSparseArray3 == null) {
+                                longSparseArray3 = new LongSparseArray<>();
                             }
-                            i4 = i5;
+                            tLRPC$Updates3 = tLRPC$Updates4;
                             long dialogId = MessageObject.getDialogId(tLRPC$TL_updateNewChannelMessage.message);
-                            SparseArray<TLRPC$MessageReplies> sparseArray2 = longSparseArray2.get(dialogId);
-                            if (sparseArray2 == null) {
-                                sparseArray2 = new SparseArray<>();
-                                longSparseArray2.put(dialogId, sparseArray2);
+                            SparseArray<TLRPC$MessageReplies> sparseArray3 = longSparseArray3.get(dialogId);
+                            if (sparseArray3 == null) {
+                                sparseArray3 = new SparseArray<>();
+                                longSparseArray3.put(dialogId, sparseArray3);
                             }
                             TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader2 = tLRPC$TL_updateNewChannelMessage.message.reply_to;
-                            int i6 = tLRPC$MessageReplyHeader2.reply_to_top_id;
-                            if (i6 == 0) {
-                                i6 = tLRPC$MessageReplyHeader2.reply_to_msg_id;
+                            int i4 = tLRPC$MessageReplyHeader2.reply_to_top_id;
+                            if (i4 == 0) {
+                                i4 = tLRPC$MessageReplyHeader2.reply_to_msg_id;
                             }
-                            TLRPC$MessageReplies tLRPC$MessageReplies = sparseArray2.get(i6);
+                            TLRPC$MessageReplies tLRPC$MessageReplies = sparseArray3.get(i4);
                             if (tLRPC$MessageReplies == null) {
                                 tLRPC$MessageReplies = new TLRPC$TL_messageReplies();
-                                sparseArray2.put(i6, tLRPC$MessageReplies);
+                                sparseArray3.put(i4, tLRPC$MessageReplies);
                             }
                             TLRPC$Peer tLRPC$Peer = tLRPC$TL_updateNewChannelMessage.message.from_id;
                             if (tLRPC$Peer != null) {
@@ -4068,17 +4072,16 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                             }
                             tLRPC$MessageReplies.replies++;
                         }
-                        TLRPC$Message tLRPC$Message3 = tLRPC$TL_updateNewChannelMessage.message;
-                        sparseArray.put(tLRPC$Message3.id, tLRPC$Message3);
+                        TLRPC$Message tLRPC$Message4 = tLRPC$TL_updateNewChannelMessage.message;
+                        sparseArray2.put(tLRPC$Message4.id, tLRPC$Message4);
                         Utilities.stageQueue.postRunnable(new Runnable() {
                             @Override
                             public final void run() {
                                 SendMessagesHelper.this.lambda$performSendMessageRequestMulti$41(tLRPC$TL_updateNewChannelMessage);
                             }
                         });
-                        int i7 = i4;
-                        arrayList3.remove(i7);
-                        i2 = i7 - 1;
+                        arrayList5.remove(i3);
+                        i3--;
                         if (tLRPC$TL_updateNewChannelMessage.message.pinned) {
                             Utilities.stageQueue.postRunnable(new Runnable() {
                                 @Override
@@ -4088,120 +4091,135 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                             });
                         }
                     } else {
-                        int i8 = i5;
+                        tLRPC$Updates3 = tLRPC$Updates4;
                         if (tLRPC$Update instanceof TLRPC$TL_updateNewScheduledMessage) {
-                            TLRPC$Message tLRPC$Message4 = ((TLRPC$TL_updateNewScheduledMessage) tLRPC$Update).message;
-                            sparseArray.put(tLRPC$Message4.id, tLRPC$Message4);
-                            arrayList3.remove(i8);
+                            TLRPC$Message tLRPC$Message5 = ((TLRPC$TL_updateNewScheduledMessage) tLRPC$Update).message;
+                            sparseArray2.put(tLRPC$Message5.id, tLRPC$Message5);
+                            arrayList5.remove(i3);
                         } else if (tLRPC$Update instanceof TLRPC$TL_updateQuickReplyMessage) {
-                            QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(this.currentAccount);
-                            if (arrayList.isEmpty()) {
-                                i3 = 0;
-                                quickReplyName = null;
-                            } else {
-                                i3 = 0;
-                                quickReplyName = ((MessageObject) arrayList.get(0)).getQuickReplyName();
-                            }
-                            quickRepliesController.processUpdate(tLRPC$Update, quickReplyName, (arrayList.isEmpty() ? null : Integer.valueOf(((MessageObject) arrayList.get(i3)).getQuickReplyId())).intValue());
-                            TLRPC$Message tLRPC$Message5 = ((TLRPC$TL_updateQuickReplyMessage) tLRPC$Update).message;
-                            sparseArray.put(tLRPC$Message5.id, tLRPC$Message5);
-                            arrayList3.remove(i8);
-                        } else {
-                            i2 = i8;
+                            QuickRepliesController.getInstance(this.currentAccount).processUpdate(tLRPC$Update, arrayList.isEmpty() ? null : ((MessageObject) arrayList4.get(0)).getQuickReplyName(), (arrayList.isEmpty() ? null : Integer.valueOf(((MessageObject) arrayList4.get(0)).getQuickReplyId())).intValue());
+                            TLRPC$Message tLRPC$Message6 = ((TLRPC$TL_updateQuickReplyMessage) tLRPC$Update).message;
+                            sparseArray2.put(tLRPC$Message6.id, tLRPC$Message6);
+                            arrayList5.remove(i3);
                         }
-                        i2 = i8 - 1;
+                        i3--;
                     }
-                    i5 = i2 + 1;
+                    i3++;
+                    tLRPC$Updates4 = tLRPC$Updates3;
                 }
-                i2 = i5 - 1;
-                i5 = i2 + 1;
+                i3--;
+                tLRPC$Updates3 = tLRPC$Updates4;
+                i3++;
+                tLRPC$Updates4 = tLRPC$Updates3;
             }
-            if (longSparseArray2 != null) {
-                getMessagesStorage().putChannelViews(null, null, longSparseArray2, true);
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateMessagesViews, null, null, longSparseArray2, Boolean.TRUE);
+            TLRPC$Updates tLRPC$Updates5 = tLRPC$Updates4;
+            if (longSparseArray3 != null) {
+                getMessagesStorage().putChannelViews(null, null, longSparseArray3, true);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateMessagesViews, null, null, longSparseArray3, Boolean.TRUE);
             }
-            int i9 = 0;
-            while (i9 < arrayList.size()) {
-                MessageObject messageObject = (MessageObject) arrayList.get(i9);
-                String str = (String) arrayList2.get(i9);
-                final TLRPC$Message tLRPC$Message6 = messageObject.messageOwner;
-                final int i10 = tLRPC$Message6.id;
-                final ArrayList arrayList4 = new ArrayList();
-                Integer num = (Integer) longSparseArray.get(tLRPC$Message6.random_id);
-                if (num == null || (tLRPC$Message = (TLRPC$Message) sparseArray.get(num.intValue())) == null) {
-                    tLRPC$Updates = tLRPC$Updates3;
-                    z3 = true;
+            int i5 = 0;
+            while (i5 < arrayList.size()) {
+                MessageObject messageObject2 = (MessageObject) arrayList4.get(i5);
+                String str = (String) arrayList2.get(i5);
+                TLRPC$Message tLRPC$Message7 = messageObject2.messageOwner;
+                int i6 = tLRPC$Message7.id;
+                ArrayList arrayList6 = new ArrayList();
+                Integer num = (Integer) longSparseArray2.get(tLRPC$Message7.random_id);
+                if (num == null || (tLRPC$Message = (TLRPC$Message) sparseArray2.get(num.intValue())) == null) {
+                    tLRPC$Updates = tLRPC$Updates5;
+                    z2 = true;
                     break;
                 }
                 MessageObject.getDialogId(tLRPC$Message);
-                arrayList4.add(tLRPC$Message);
+                arrayList6.add(tLRPC$Message);
                 if ((tLRPC$Message.flags & ConnectionsManager.FileTypeVideo) != 0) {
-                    TLRPC$Message tLRPC$Message7 = messageObject.messageOwner;
-                    tLRPC$Message7.ttl_period = tLRPC$Message.ttl_period;
-                    tLRPC$Message7.flags = 33554432 | tLRPC$Message7.flags;
+                    TLRPC$Message tLRPC$Message8 = messageObject2.messageOwner;
+                    tLRPC$Message8.ttl_period = tLRPC$Message.ttl_period;
+                    tLRPC$Message8.flags = 33554432 | tLRPC$Message8.flags;
                 }
-                updateMediaPaths(messageObject, tLRPC$Message, tLRPC$Message.id, str, false);
+                if (tLObject2 instanceof TLRPC$TL_messages_sendMedia) {
+                    arrayList3 = arrayList6;
+                    i = i6;
+                    tLRPC$Message2 = tLRPC$Message7;
+                    messageObject = messageObject2;
+                    tLRPC$Updates2 = tLRPC$Updates5;
+                    i2 = i5;
+                    updateMediaPaths((MessageObject) arrayList4.get(0), tLRPC$Message, tLRPC$Message.id, arrayList2, false, -1);
+                } else {
+                    tLRPC$Updates2 = tLRPC$Updates5;
+                    arrayList3 = arrayList6;
+                    i = i6;
+                    tLRPC$Message2 = tLRPC$Message7;
+                    messageObject = messageObject2;
+                    i2 = i5;
+                    updateMediaPaths(messageObject, tLRPC$Message, tLRPC$Message.id, str, false);
+                }
                 final int mediaExistanceFlags = messageObject.getMediaExistanceFlags();
-                tLRPC$Message6.id = tLRPC$Message.id;
-                int i11 = tLRPC$Message.quick_reply_shortcut_id;
-                tLRPC$Message6.quick_reply_shortcut_id = i11;
-                if (i11 != 0) {
-                    tLRPC$Message6.flags |= 1073741824;
+                final TLRPC$Message tLRPC$Message9 = tLRPC$Message2;
+                tLRPC$Message9.id = tLRPC$Message.id;
+                int i7 = tLRPC$Message.quick_reply_shortcut_id;
+                tLRPC$Message9.quick_reply_shortcut_id = i7;
+                if (i7 != 0) {
+                    tLRPC$Message9.flags |= 1073741824;
                 }
                 final long j = tLRPC$Message.grouped_id;
-                if (z) {
-                    tLRPC$Updates2 = tLRPC$Updates3;
-                    i = i9;
+                if (objArr == true) {
+                    longSparseArray = longSparseArray2;
+                    sparseArray = sparseArray2;
                 } else {
                     Integer num2 = getMessagesController().dialogs_read_outbox_max.get(Long.valueOf(tLRPC$Message.dialog_id));
                     if (num2 == null) {
-                        tLRPC$Updates2 = tLRPC$Updates3;
-                        i = i9;
+                        longSparseArray = longSparseArray2;
+                        sparseArray = sparseArray2;
                         num2 = Integer.valueOf(getMessagesStorage().getDialogReadMax(tLRPC$Message.out, tLRPC$Message.dialog_id));
                         getMessagesController().dialogs_read_outbox_max.put(Long.valueOf(tLRPC$Message.dialog_id), num2);
                     } else {
-                        tLRPC$Updates2 = tLRPC$Updates3;
-                        i = i9;
+                        longSparseArray = longSparseArray2;
+                        sparseArray = sparseArray2;
                     }
                     tLRPC$Message.unread = num2.intValue() < tLRPC$Message.id;
                 }
                 getStatsController().incrementSentItemsCount(ApplicationLoader.getCurrentNetworkType(), 1, 1);
-                tLRPC$Message6.send_state = 0;
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(i10), Integer.valueOf(tLRPC$Message6.id), tLRPC$Message6, Long.valueOf(tLRPC$Message6.dialog_id), Long.valueOf(j), Integer.valueOf(mediaExistanceFlags), Boolean.valueOf(z));
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer2, Integer.valueOf(i10), Integer.valueOf(tLRPC$Message6.id), tLRPC$Message6, Long.valueOf(tLRPC$Message6.dialog_id), Long.valueOf(j), Integer.valueOf(mediaExistanceFlags), Boolean.valueOf(z));
+                tLRPC$Message9.send_state = 0;
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(i), Integer.valueOf(tLRPC$Message9.id), tLRPC$Message9, Long.valueOf(tLRPC$Message9.dialog_id), Long.valueOf(j), Integer.valueOf(mediaExistanceFlags), Boolean.valueOf(z));
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer2, Integer.valueOf(i), Integer.valueOf(tLRPC$Message9.id), tLRPC$Message9, Long.valueOf(tLRPC$Message9.dialog_id), Long.valueOf(j), Integer.valueOf(mediaExistanceFlags), Boolean.valueOf(z));
+                final int i8 = i;
+                final ArrayList arrayList7 = arrayList3;
+                LongSparseArray longSparseArray4 = longSparseArray;
+                SparseArray sparseArray4 = sparseArray;
                 getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        SendMessagesHelper.this.lambda$performSendMessageRequestMulti$44(z, tLRPC$Message6, i10, arrayList4, j, mediaExistanceFlags);
+                        SendMessagesHelper.this.lambda$performSendMessageRequestMulti$44(z, tLRPC$Message9, i8, arrayList7, j, mediaExistanceFlags);
                     }
                 });
-                i9 = i + 1;
-                tLRPC$Updates3 = tLRPC$Updates2;
-                longSparseArray = longSparseArray;
+                i5 = i2 + 1;
+                objArr = z ? 1 : 0;
+                tLRPC$Updates5 = tLRPC$Updates2;
+                longSparseArray2 = longSparseArray4;
+                sparseArray2 = sparseArray4;
+                arrayList4 = arrayList;
             }
-            tLRPC$Updates = tLRPC$Updates3;
-            z3 = false;
-            sendMessagesHelper = this;
+            tLRPC$Updates = tLRPC$Updates5;
+            z2 = false;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
                     SendMessagesHelper.this.lambda$performSendMessageRequestMulti$45(tLRPC$Updates);
                 }
             });
-            z2 = z3;
         } else {
-            sendMessagesHelper = this;
-            AlertsCreator.processError(sendMessagesHelper.currentAccount, tLRPC$TL_error, null, tLObject2, new Object[0]);
+            AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, null, tLObject2, new Object[0]);
             z2 = true;
         }
         if (z2) {
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                TLRPC$Message tLRPC$Message8 = ((MessageObject) arrayList.get(i12)).messageOwner;
-                getMessagesStorage().markMessageAsSendError(tLRPC$Message8, z ? 1 : 0);
-                tLRPC$Message8.send_state = 2;
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageSendError, Integer.valueOf(tLRPC$Message8.id));
-                sendMessagesHelper.processSentMessage(tLRPC$Message8.id);
-                sendMessagesHelper.removeFromSendingMessages(tLRPC$Message8.id, z);
+            for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                TLRPC$Message tLRPC$Message10 = ((MessageObject) arrayList.get(i9)).messageOwner;
+                getMessagesStorage().markMessageAsSendError(tLRPC$Message10, z ? 1 : 0);
+                tLRPC$Message10.send_state = 2;
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageSendError, Integer.valueOf(tLRPC$Message10.id));
+                processSentMessage(tLRPC$Message10.id);
+                removeFromSendingMessages(tLRPC$Message10.id, z);
             }
         }
     }
@@ -4481,8 +4499,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByAck, Integer.valueOf(i));
     }
 
-    private void updateMediaPaths(org.telegram.messenger.MessageObject r20, org.telegram.tgnet.TLRPC$Message r21, int r22, java.lang.String r23, boolean r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.updateMediaPaths(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Message, int, java.lang.String, boolean):void");
+    private void updateMediaPaths(MessageObject messageObject, TLRPC$Message tLRPC$Message, int i, String str, boolean z) {
+        updateMediaPaths(messageObject, tLRPC$Message, i, Collections.singletonList(str), z, -1);
+    }
+
+    private void updateMediaPaths(org.telegram.messenger.MessageObject r24, org.telegram.tgnet.TLRPC$Message r25, int r26, java.util.List<java.lang.String> r27, boolean r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.updateMediaPaths(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Message, int, java.util.List, boolean, int):void");
     }
 
     private void putToDelayedMessages(String str, DelayedMessage delayedMessage) {

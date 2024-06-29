@@ -867,7 +867,6 @@ public class StarsController {
     private void payAfterConfirmed(final MessageObject messageObject, final TLRPC$InputInvoice tLRPC$InputInvoice, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final Utilities.Callback<Boolean> callback) {
         long j;
         String str;
-        TLRPC$Message tLRPC$Message;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         TLRPC$Peer tLRPC$Peer;
         if (tLRPC$TL_payments_paymentFormStars == null) {
@@ -883,8 +882,13 @@ public class StarsController {
         while (it.hasNext()) {
             j2 += it.next().amount;
         }
-        if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
-            j = DialogObject.getPeerDialogId(tLRPC$Peer);
+        if (messageObject != null) {
+            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+            if (tLRPC$Message != null && (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
+                j = DialogObject.getPeerDialogId(tLRPC$Peer);
+            } else {
+                j = messageObject.getDialogId();
+            }
         } else {
             j = tLRPC$TL_payments_paymentFormStars.bot_id;
         }

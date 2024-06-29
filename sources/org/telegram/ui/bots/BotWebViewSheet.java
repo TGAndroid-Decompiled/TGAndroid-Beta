@@ -278,7 +278,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         BotWebViewContainer botWebViewContainer2 = this.webViewContainer;
         webTabData.lastUrl = botWebViewContainer2 != null ? botWebViewContainer2.getUrlLoaded() : null;
         ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;
-        if ((webViewSwipeContainer == null || webViewSwipeContainer.getSwipeOffsetY() >= 0.0f) && !this.forceExpnaded && !this.fullsize.booleanValue()) {
+        if ((webViewSwipeContainer == null || webViewSwipeContainer.getSwipeOffsetY() >= 0.0f) && !this.forceExpnaded && !getFullSize()) {
             z = false;
         }
         webTabData.expanded = z;

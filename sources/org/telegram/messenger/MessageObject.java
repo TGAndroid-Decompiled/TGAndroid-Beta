@@ -4687,15 +4687,18 @@ public class MessageObject {
     }
 
     public static long getMessageSize(TLRPC$Message tLRPC$Message) {
+        return getMediaSize(getMedia(tLRPC$Message));
+    }
+
+    public static long getMediaSize(TLRPC$MessageMedia tLRPC$MessageMedia) {
         TLRPC$Document tLRPC$Document;
         TLRPC$WebPage tLRPC$WebPage;
-        TLRPC$MessageMedia media = getMedia(tLRPC$Message);
-        if ((media instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = media.webpage) != null) {
+        if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = tLRPC$MessageMedia.webpage) != null) {
             tLRPC$Document = tLRPC$WebPage.document;
-        } else if (media instanceof TLRPC$TL_messageMediaGame) {
-            tLRPC$Document = media.game.document;
+        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGame) {
+            tLRPC$Document = tLRPC$MessageMedia.game.document;
         } else {
-            tLRPC$Document = media != null ? media.document : null;
+            tLRPC$Document = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.document : null;
         }
         if (tLRPC$Document != null) {
             return tLRPC$Document.size;

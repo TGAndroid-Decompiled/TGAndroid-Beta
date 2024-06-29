@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 public class TLRPC$MessageExtendedMedia extends TLObject {
     public String attachPath;
+    public float downloadProgress;
     public float uploadProgress;
 
     public static TLRPC$MessageExtendedMedia TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {

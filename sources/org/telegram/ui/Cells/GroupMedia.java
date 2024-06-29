@@ -22,6 +22,7 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -88,7 +89,6 @@ public class GroupMedia {
 
     public void setMessageObject(MessageObject messageObject, boolean z, boolean z2) {
         TLRPC$Message tLRPC$Message;
-        boolean z3;
         if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return;
         }
@@ -115,33 +115,14 @@ public class GroupMedia {
                 }
             }
             int i2 = 0;
-            while (i2 < this.holders.size()) {
-                MediaHolder mediaHolder = this.holders.get(i2);
-                if (!tLRPC$TL_messageMediaPaidMedia.extended_media.contains(mediaHolder.media)) {
-                    mediaHolder.detach();
-                    this.holders.remove(i2);
-                    i2--;
+            while (true) {
+                if (i2 >= tLRPC$TL_messageMediaPaidMedia.extended_media.size()) {
+                    break;
                 }
-                i2++;
-            }
-            for (int i3 = 0; i3 < tLRPC$TL_messageMediaPaidMedia.extended_media.size(); i3++) {
-                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i3);
-                MessageObject.GroupedMessagePosition position = this.layout.getPosition(tLRPC$MessageExtendedMedia);
-                int i4 = 0;
-                while (true) {
-                    if (i4 >= this.holders.size()) {
-                        z3 = false;
-                        break;
-                    } else {
-                        if (this.holders.get(i4).media == tLRPC$MessageExtendedMedia) {
-                            z3 = true;
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-                if (!z3) {
-                    MediaHolder mediaHolder2 = new MediaHolder(this.cell, messageObject, tLRPC$MessageExtendedMedia, tLRPC$TL_messageMediaPaidMedia.extended_media.size() != 1, (int) ((position.pw / 1000.0f) * this.maxWidth), (int) (position.ph * this.layout.maxSizeHeight));
+                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i2);
+                MediaHolder mediaHolder = i2 >= this.holders.size() ? null : this.holders.get(i2);
+                if (mediaHolder == null) {
+                    MediaHolder mediaHolder2 = new MediaHolder(this.cell, messageObject, tLRPC$MessageExtendedMedia, tLRPC$TL_messageMediaPaidMedia.extended_media.size() != 1, (int) ((r5.pw / 1000.0f) * this.maxWidth), (int) (this.layout.getPosition(tLRPC$MessageExtendedMedia).ph * this.layout.maxSizeHeight));
                     String str = tLRPC$MessageExtendedMedia.attachPath;
                     if (str != null) {
                         mediaHolder2.attachPath = str;
@@ -159,7 +140,20 @@ public class GroupMedia {
                         mediaHolder2.attach();
                     }
                     this.holders.add(mediaHolder2);
+                } else {
+                    mediaHolder.updateMedia(tLRPC$MessageExtendedMedia, messageObject);
                 }
+                i2++;
+            }
+            int size = tLRPC$TL_messageMediaPaidMedia.extended_media.size();
+            while (size < this.holders.size()) {
+                MediaHolder mediaHolder3 = size >= this.holders.size() ? null : this.holders.get(size);
+                if (mediaHolder3 != null) {
+                    mediaHolder3.detach();
+                    this.holders.remove(size);
+                    size--;
+                }
+                size++;
             }
             updateHolders(messageObject);
             GroupedMessages groupedMessages = this.layout;
@@ -333,8 +327,7 @@ public class GroupMedia {
         this.clipPath.rewind();
         this.clipPath.addRoundRect(rectF, f, f, Path.Direction.CW);
         canvas.clipPath(this.clipPath);
-        drawBlurred(canvas, f2);
-        canvas.drawColor(536870912);
+        canvas.drawColor(1073741824);
         canvas.restore();
     }
 
@@ -372,6 +365,7 @@ public class GroupMedia {
     }
 
     public void drawImages(Canvas canvas, boolean z) {
+        float progress;
         float f = this.animatedHidden.set(this.hidden);
         MessageObject messageObject = this.cell.getMessageObject();
         this.clipPath2.rewind();
@@ -406,7 +400,24 @@ public class GroupMedia {
             mediaHolder.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
             float f7 = f2;
             mediaHolder.radialProgress.setProgressRect(mediaHolder.imageReceiver.getImageX() + ((mediaHolder.imageReceiver.getImageWidth() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageY() + ((mediaHolder.imageReceiver.getImageHeight() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageX() + (mediaHolder.imageReceiver.getImageWidth() / 2.0f) + mediaHolder.radialProgress.getRadius(), mediaHolder.imageReceiver.getImageY() + (mediaHolder.imageReceiver.getImageHeight() / 2.0f) + mediaHolder.radialProgress.getRadius());
-            if (messageObject == null || !messageObject.isSending()) {
+            int i7 = 3;
+            if (messageObject.isSending()) {
+                SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(messageObject.currentAccount);
+                long[] fileProgressSizes = ImageLoader.getInstance().getFileProgressSizes(mediaHolder.attachPath);
+                boolean isSendingMessage = sendMessagesHelper.isSendingMessage(messageObject.getId());
+                if (fileProgressSizes == null && isSendingMessage) {
+                    progress = 1.0f;
+                } else {
+                    progress = fileProgressSizes != null ? DownloadController.getProgress(fileProgressSizes) : 0.0f;
+                }
+                mediaHolder.radialProgress.setProgress(progress, false);
+                if (!isSendingMessage || progress >= 1.0f) {
+                    i7 = mediaHolder.album ? 6 : mediaHolder.getDefaultIcon();
+                }
+                mediaHolder.setIcon(i7);
+            } else if (FileLoader.getInstance(messageObject.currentAccount).isLoadingFile(mediaHolder.filename)) {
+                mediaHolder.setIcon(3);
+            } else {
                 mediaHolder.setIcon(mediaHolder.getDefaultIcon());
             }
             canvas.saveLayerAlpha(mediaHolder.radialProgress.getProgressRect(), (int) ((1.0f - f) * 255.0f), 31);
@@ -419,26 +430,26 @@ public class GroupMedia {
             canvas.save();
             canvas.clipPath(this.clipPath2);
             canvas.translate(f4, f5);
-            int i7 = (int) (f2 - f4);
-            int i8 = (int) (f3 - f5);
-            canvas.saveLayerAlpha(0.0f, 0.0f, i7, i8, (int) (f * 255.0f), 31);
-            this.spoilerEffect.draw(canvas, this.cell, i7, i8, 1.0f);
+            int i8 = (int) (f2 - f4);
+            int i9 = (int) (f3 - f5);
+            canvas.saveLayerAlpha(0.0f, 0.0f, i8, i9, (int) (255.0f * f), 31);
+            this.spoilerEffect.draw(canvas, this.cell, i8, i9, 1.0f);
             canvas.restore();
             canvas.restore();
             this.cell.invalidate();
         }
-        for (int i9 = 0; i9 < this.holders.size(); i9++) {
-            MediaHolder mediaHolder2 = this.holders.get(i9);
+        for (int i10 = 0; i10 < this.holders.size(); i10++) {
+            MediaHolder mediaHolder2 = this.holders.get(i10);
             if (mediaHolder2.durationText != null) {
                 float dp = AndroidUtilities.dp(11.4f) + mediaHolder2.durationText.getCurrentWidth();
                 float dp2 = AndroidUtilities.dp(17.0f);
                 float dp3 = AndroidUtilities.dp(5.0f);
                 RectF rectF2 = this.clipRect;
-                int i10 = this.x;
-                int i11 = mediaHolder2.l;
-                int i12 = this.y;
-                int i13 = mediaHolder2.t;
-                rectF2.set(i10 + i11 + dp3, i12 + i13 + dp3, i10 + i11 + dp3 + dp, i12 + i13 + dp3 + dp2);
+                int i11 = this.x;
+                int i12 = mediaHolder2.l;
+                int i13 = this.y;
+                int i14 = mediaHolder2.t;
+                rectF2.set(i11 + i12 + dp3, i13 + i14 + dp3, i11 + i12 + dp3 + dp, i13 + i14 + dp3 + dp2);
                 if (this.priceText == null || this.clipRect.right <= ((this.x + this.width) - (AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth())) - dp3 || this.clipRect.top > this.y + dp3) {
                     this.clipPath.rewind();
                     float f8 = dp2 / 2.0f;
@@ -467,6 +478,7 @@ public class GroupMedia {
         private int duration;
         private Text durationText;
         private int durationValue;
+        public String filename;
         private final int h;
         public boolean hidden;
         public int icon;
@@ -483,10 +495,6 @@ public class GroupMedia {
 
         @Override
         public void onFailedDownload(String str, boolean z) {
-        }
-
-        @Override
-        public void onProgressDownload(String str, long j, long j2) {
         }
 
         @Override
@@ -609,6 +617,7 @@ public class GroupMedia {
             String str = this.w + "_" + this.h;
             if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
                 this.hidden = true;
+                this.filename = null;
                 this.imageReceiver.setImage(ImageLocation.getForObject(((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia).thumb, messageObject.messageOwner), str + "_b2", null, null, messageObject, 0);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 colorMatrix.setSaturation(1.4f);
@@ -623,9 +632,10 @@ public class GroupMedia {
             if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
                 this.hidden = false;
                 TLRPC$MessageMedia tLRPC$MessageMedia = ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media;
+                this.filename = MessageObject.getFileName(tLRPC$MessageMedia);
                 if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
                     TLRPC$TL_messageMediaPhoto tLRPC$TL_messageMediaPhoto = (TLRPC$TL_messageMediaPhoto) tLRPC$MessageMedia;
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaPhoto.photo.sizes, Math.min(this.w, this.h), true, null, true);
+                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaPhoto.photo.sizes, AndroidUtilities.getPhotoSize(), true, null, true);
                     this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tLRPC$TL_messageMediaPhoto.photo), str, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaPhoto.photo.sizes, Math.min(this.w, this.h) / 100, false, closestPhotoSizeWithSize, false), tLRPC$TL_messageMediaPhoto.photo), str, 0L, null, messageObject, 0);
                     return;
                 }
@@ -633,20 +643,22 @@ public class GroupMedia {
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = (TLRPC$TL_messageMediaDocument) tLRPC$MessageMedia;
                     this.autoplay = !this.album && this.video && SharedConfig.isAutoplayVideo();
                     if (!this.album && this.video && (tLRPC$Document = tLRPC$TL_messageMediaDocument.document) != null) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, Math.min(this.w, this.h), true, null, true);
-                        TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaDocument.document.thumbs, Math.min(this.w, this.h) / 100, false, null, false);
-                        ImageReceiver imageReceiver = this.imageReceiver;
+                        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, AndroidUtilities.getPhotoSize(), true, null, true);
+                        TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaDocument.document.thumbs, Math.min(this.w, this.h), false, closestPhotoSizeWithSize2, false);
                         ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_messageMediaDocument.document);
+                        ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize2, tLRPC$TL_messageMediaDocument.document);
+                        ImageLocation forDocument3 = ImageLocation.getForDocument(closestPhotoSizeWithSize3, tLRPC$TL_messageMediaDocument.document);
+                        ImageReceiver imageReceiver = this.imageReceiver;
                         StringBuilder sb = new StringBuilder();
                         sb.append(str);
                         sb.append(this.autoplay ? "_g" : "");
-                        imageReceiver.setImage(forDocument, sb.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize2, tLRPC$TL_messageMediaDocument.document), str, ImageLocation.getForDocument(closestPhotoSizeWithSize3, tLRPC$TL_messageMediaDocument.document), str, null, 0L, null, messageObject, 0);
+                        imageReceiver.setImage(forDocument, sb.toString(), forDocument2, str, forDocument3, str, null, 0L, null, messageObject, 0);
                         return;
                     }
                     TLRPC$Document tLRPC$Document2 = tLRPC$TL_messageMediaDocument.document;
                     if (tLRPC$Document2 != null) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document2.thumbs, Math.min(this.w, this.h), true, null, true);
-                        this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, tLRPC$TL_messageMediaDocument.document), str, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaDocument.document.thumbs, Math.min(this.w, this.h) / 100, false, closestPhotoSizeWithSize4, false), tLRPC$TL_messageMediaDocument.document), str, 0L, null, messageObject, 0);
+                        TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document2.thumbs, AndroidUtilities.getPhotoSize(), true, null, true);
+                        this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, tLRPC$TL_messageMediaDocument.document), str, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaDocument.document.thumbs, Math.min(this.w, this.h), false, closestPhotoSizeWithSize4, false), tLRPC$TL_messageMediaDocument.document), str, 0L, null, messageObject, 0);
                     }
                 }
             }
@@ -665,6 +677,16 @@ public class GroupMedia {
                 this.attached = false;
                 this.imageReceiver.onDetachedFromWindow();
             }
+        }
+
+        @Override
+        public void onProgressDownload(String str, long j, long j2) {
+            float min = j2 == 0 ? 0.0f : Math.min(1.0f, ((float) j) / ((float) j2));
+            RadialProgress2 radialProgress2 = this.radialProgress;
+            this.media.downloadProgress = min;
+            radialProgress2.setProgress(min, true);
+            setIcon(min < 1.0f ? 3 : getDefaultIcon());
+            this.cell.invalidate();
         }
 
         @Override
