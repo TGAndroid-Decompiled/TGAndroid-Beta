@@ -650,8 +650,11 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
 
         @Override
         public void onWebAppOpenInvoice(TLRPC$InputInvoice tLRPC$InputInvoice, final String str, TLObject tLObject) {
-            PaymentFormActivity paymentFormActivity;
+            if (BotWebViewAttachedSheet.this.getContext() == null) {
+                return;
+            }
             BaseFragment lastFragment = ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).getActionBarLayout().getLastFragment();
+            PaymentFormActivity paymentFormActivity = null;
             if (tLObject instanceof TLRPC$TL_payments_paymentFormStars) {
                 AndroidUtilities.hideKeyboard(BotWebViewAttachedSheet.this.windowView);
                 final AlertDialog alertDialog = new AlertDialog(BotWebViewAttachedSheet.this.getContext(), 3);
@@ -673,8 +676,8 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 TLRPC$PaymentForm tLRPC$PaymentForm = (TLRPC$PaymentForm) tLObject;
                 MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).putUsers(tLRPC$PaymentForm.users, false);
                 paymentFormActivity = new PaymentFormActivity(tLRPC$PaymentForm, str, lastFragment);
-            } else {
-                paymentFormActivity = tLObject instanceof TLRPC$PaymentReceipt ? new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject) : null;
+            } else if (tLObject instanceof TLRPC$PaymentReceipt) {
+                paymentFormActivity = new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject);
             }
             if (paymentFormActivity != null) {
                 BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY());
@@ -868,7 +871,6 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    @Override
     public void release() {
         BotWebViewContainer botWebViewContainer = this.webViewContainer;
         if (botWebViewContainer != null) {
@@ -1564,6 +1566,11 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     @Override
     public void dismiss() {
         dismiss(false, null);
+    }
+
+    @Override
+    public void dismiss(boolean z) {
+        dismiss(z, null);
     }
 
     public boolean onCheckDismissByUser() {

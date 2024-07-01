@@ -130,7 +130,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
         this.greetingsView = new ChatGreetingsView(this, context, getUserConfig().getCurrentUser(), 1, this.currentAccount, this.sticker, getResourceProvider()) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
                 setPivotX(getMeasuredWidth() / 2.0f);
                 setPivotY(getMeasuredHeight());

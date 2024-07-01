@@ -76,30 +76,6 @@ public abstract class BaseFragment {
     protected boolean inTransitionAnimation = false;
     protected int classGuid = ConnectionsManager.generateClassGuid();
 
-    public interface AttachedSheet {
-        boolean attachedToParent();
-
-        void dismiss();
-
-        int getNavigationBarColor(int i);
-
-        View getWindowView();
-
-        boolean isFullyVisible();
-
-        boolean isShown();
-
-        boolean onBackPressed();
-
-        void release();
-
-        void setKeyboardHeightFromParent(int i);
-
-        void setOnDismissListener(Runnable runnable);
-
-        boolean showDialog(Dialog dialog);
-    }
-
     public interface AttachedSheetWindow {
     }
 
@@ -200,9 +176,6 @@ public abstract class BaseFragment {
     public void onPreviewOpenAnimationEnd() {
     }
 
-    public void onRemoveFromParent() {
-    }
-
     public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
     }
 
@@ -235,6 +208,36 @@ public abstract class BaseFragment {
 
     public boolean shouldOverrideSlideTransition(boolean z, boolean z2) {
         return false;
+    }
+
+    public interface AttachedSheet {
+        boolean attachedToParent();
+
+        void dismiss();
+
+        void dismiss(boolean z);
+
+        int getNavigationBarColor(int i);
+
+        View getWindowView();
+
+        boolean isFullyVisible();
+
+        boolean isShown();
+
+        boolean onBackPressed();
+
+        void setKeyboardHeightFromParent(int i);
+
+        void setOnDismissListener(Runnable runnable);
+
+        boolean showDialog(Dialog dialog);
+
+        public final class CC {
+            public static void $default$dismiss(AttachedSheet _this, boolean z) {
+                _this.dismiss();
+            }
+        }
     }
 
     public StoryViewer getLastStoryViewer() {
@@ -271,7 +274,7 @@ public abstract class BaseFragment {
             return;
         }
         for (int size = this.sheetsStack.size() - 1; size >= 0; size--) {
-            this.sheetsStack.get(size).release();
+            this.sheetsStack.get(size).dismiss(true);
         }
         this.sheetsStack.clear();
     }
@@ -370,6 +373,10 @@ public abstract class BaseFragment {
         }
         clearSheets();
         this.parentLayout = null;
+    }
+
+    public void onRemoveFromParent() {
+        clearSheets();
     }
 
     public void setParentFragment(BaseFragment baseFragment) {
@@ -932,7 +939,7 @@ public abstract class BaseFragment {
         }
 
         @Override
-        protected void onCreate(Bundle bundle) {
+        public void onCreate(Bundle bundle) {
             super.onCreate(bundle);
             this.val$actionBarLayout[0].setWindow(this.val$bottomSheet[0].getWindow());
             BottomSheetParams bottomSheetParams = this.val$params;

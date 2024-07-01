@@ -10882,6 +10882,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
+        public void dismiss(boolean z) {
+            BaseFragment.AttachedSheet.CC.$default$dismiss(this, z);
+        }
+
+        @Override
         public int getNavigationBarColor(int i) {
             return 0;
         }
@@ -10899,10 +10904,6 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public boolean onBackPressed() {
             return false;
-        }
-
-        @Override
-        public void release() {
         }
 
         @Override

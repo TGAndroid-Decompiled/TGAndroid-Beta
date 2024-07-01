@@ -212,6 +212,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
+    public void dismiss(boolean z) {
+        dismiss();
+    }
+
+    @Override
     public void setOnDismissListener(Runnable runnable) {
     }
 
@@ -2135,7 +2140,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    @Override
     public void release() {
         ArrayList<BaseFragment.AttachedSheet> arrayList;
         this.lastUri = null;

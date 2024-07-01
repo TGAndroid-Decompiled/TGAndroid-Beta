@@ -2036,6 +2036,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     @Override
     public void onRemoveFromParent() {
         MediaController.getInstance().setTextureView(this.videoTextureView, null, null, false);
+        super.onRemoveFromParent();
     }
 
     public void hideFloatingDateView(boolean z) {

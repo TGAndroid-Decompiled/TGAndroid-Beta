@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="49209"
+    android:versionCode="49259"
     android:versionName="10.14.3"
     android:installLocation="auto"
     android:compileSdkVersion="33"

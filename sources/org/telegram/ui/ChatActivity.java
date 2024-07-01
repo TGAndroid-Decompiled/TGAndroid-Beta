@@ -11067,6 +11067,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         } else {
             MediaController.getInstance().setTextureView(this.videoTextureView, null, null, false);
         }
+        super.onRemoveFromParent();
     }
 
     public void setIgnoreAttachOnPause(boolean z) {

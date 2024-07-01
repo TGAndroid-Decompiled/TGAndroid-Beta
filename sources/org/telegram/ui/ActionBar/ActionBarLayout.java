@@ -781,9 +781,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             } else if (view == this.containerViewBack) {
                 scrimPaint.setColor(Color.argb((int) (MathUtils.clamp(i / width, 0.0f, 0.8f) * 153.0f), 0, 0, 0));
                 if (this.overrideWidthOffset != -1) {
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight() - getBottomTabsHeight(true), scrimPaint);
+                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight() * 1.5f, scrimPaint);
                 } else {
-                    canvas.drawRect(paddingLeft, 0.0f, paddingLeft2, getHeight() - getBottomTabsHeight(true), scrimPaint);
+                    canvas.drawRect(paddingLeft, 0.0f, paddingLeft2, getHeight() * 1.5f, scrimPaint);
                 }
             }
         }
