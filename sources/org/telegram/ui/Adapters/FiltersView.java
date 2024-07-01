@@ -342,7 +342,7 @@ public class FiltersView extends RecyclerListView {
             calendar3.set(i9, i10, i11, 0, 0, 0);
             long timeInMillis4 = calendar3.getTimeInMillis();
             calendar3.set(i9, i10, i11 + 1, 0, 0, 0);
-            arrayList.add(new DateData(LocaleController.getInstance().formatterWeekLong.format(timeInMillis4), timeInMillis4, calendar3.getTimeInMillis() - 1));
+            arrayList.add(new DateData(LocaleController.getInstance().getFormatterWeekLong().format(timeInMillis4), timeInMillis4, calendar3.getTimeInMillis() - 1));
             return;
         }
         Matcher matcher = shortDate.matcher(trim);
@@ -390,7 +390,7 @@ public class FiltersView extends RecyclerListView {
                 calendar4.set(i13, parseInt4, parseInt3, 0, 0, 0);
                 long timeInMillis5 = calendar4.getTimeInMillis();
                 calendar4.set(i13, parseInt4, parseInt3 + 1, 0, 0, 0);
-                arrayList.add(new DateData(LocaleController.getInstance().formatterYearMax.format(timeInMillis5), timeInMillis5, calendar4.getTimeInMillis() - 1));
+                arrayList.add(new DateData(LocaleController.getInstance().getFormatterYearMax().format(timeInMillis5), timeInMillis5, calendar4.getTimeInMillis() - 1));
                 return;
             }
             return;
@@ -461,7 +461,7 @@ public class FiltersView extends RecyclerListView {
                 long timeInMillis9 = calendar7.getTimeInMillis();
                 if (timeInMillis9 <= timeInMillis8) {
                     calendar7.add(2, 1);
-                    arrayList.add(new DateData(LocaleController.getInstance().formatterMonthYear.format(timeInMillis9), timeInMillis9, calendar7.getTimeInMillis() - 1));
+                    arrayList.add(new DateData(LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis9), timeInMillis9, calendar7.getTimeInMillis() - 1));
                 }
             }
         }
@@ -480,7 +480,7 @@ public class FiltersView extends RecyclerListView {
             return;
         }
         calendar.add(2, 1);
-        arrayList.add(new DateData(LocaleController.getInstance().formatterMonthYear.format(timeInMillis2), timeInMillis2, calendar.getTimeInMillis() - 1));
+        arrayList.add(new DateData(LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis2), timeInMillis2, calendar.getTimeInMillis() - 1));
     }
 
     private static void createForDayMonth(ArrayList<DateData> arrayList, int i, int i2) {
@@ -501,9 +501,9 @@ public class FiltersView extends RecyclerListView {
                         calendar.set(i5, i2, i + 2, 0, 0, 0);
                         long timeInMillis3 = calendar.getTimeInMillis() - 1;
                         if (i5 == i4) {
-                            arrayList.add(new DateData(LocaleController.getInstance().formatterDayMonth.format(timeInMillis2), timeInMillis2, timeInMillis3));
+                            arrayList.add(new DateData(LocaleController.getInstance().getFormatterDayMonth().format(timeInMillis2), timeInMillis2, timeInMillis3));
                         } else {
-                            arrayList.add(new DateData(LocaleController.getInstance().formatterYearMax.format(timeInMillis2), timeInMillis2, timeInMillis3));
+                            arrayList.add(new DateData(LocaleController.getInstance().getFormatterYearMax().format(timeInMillis2), timeInMillis2, timeInMillis3));
                         }
                         i5--;
                         timeInMillis = j;
@@ -531,7 +531,7 @@ public class FiltersView extends RecyclerListView {
         int i = 0;
         while (i < 7) {
             calendar.set(7, i);
-            if (LocaleController.getInstance().formatterWeekLong.format(calendar.getTime()).toLowerCase().startsWith(str) || simpleDateFormat.format(calendar.getTime()).toLowerCase().startsWith(str)) {
+            if (LocaleController.getInstance().getFormatterWeekLong().format(calendar.getTime()).toLowerCase().startsWith(str) || simpleDateFormat.format(calendar.getTime()).toLowerCase().startsWith(str)) {
                 return i;
             }
             i++;
@@ -792,7 +792,7 @@ public class FiltersView extends RecyclerListView {
         return false;
     }
 
-    private static class UpdateCallback implements ListUpdateCallback {
+    public static class UpdateCallback implements ListUpdateCallback {
         final RecyclerView.Adapter adapter;
         boolean changed;
 

@@ -27,6 +27,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         this.view_forum_as_messages = (readInt322 & 64) != 0;
         this.restricted_sponsored = (readInt322 & 2048) != 0;
         this.can_view_revenue = (readInt322 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
+        this.can_view_stars_revenue = (this.flags & LiteMode.FLAG_CHAT_SCALE) != 0;
         this.paid_media_allowed = (readInt322 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
         this.id = abstractSerializedData.readInt64(z);
         this.about = abstractSerializedData.readString(z);
@@ -209,7 +210,9 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         this.flags2 = i16;
         int i17 = this.paid_media_allowed ? i16 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i16 & (-16385);
         this.flags2 = i17;
-        abstractSerializedData.writeInt32(i17);
+        int i18 = this.can_view_stars_revenue ? i17 | LiteMode.FLAG_CHAT_SCALE : i17 & (-32769);
+        this.flags2 = i18;
+        abstractSerializedData.writeInt32(i18);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeString(this.about);
         if ((this.flags & 1) != 0) {
@@ -238,8 +241,8 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         abstractSerializedData.writeInt32(481674261);
         int size = this.bot_info.size();
         abstractSerializedData.writeInt32(size);
-        for (int i18 = 0; i18 < size; i18++) {
-            this.bot_info.get(i18).serializeToStream(abstractSerializedData);
+        for (int i19 = 0; i19 < size; i19++) {
+            this.bot_info.get(i19).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt64(this.migrated_from_chat_id);
@@ -285,8 +288,8 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.pending_suggestions.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i19 = 0; i19 < size2; i19++) {
-                abstractSerializedData.writeString(this.pending_suggestions.get(i19));
+            for (int i20 = 0; i20 < size2; i20++) {
+                abstractSerializedData.writeString(this.pending_suggestions.get(i20));
             }
         }
         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -302,8 +305,8 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
             abstractSerializedData.writeInt32(481674261);
             int size3 = this.recent_requesters.size();
             abstractSerializedData.writeInt32(size3);
-            for (int i20 = 0; i20 < size3; i20++) {
-                abstractSerializedData.writeInt64(this.recent_requesters.get(i20).longValue());
+            for (int i21 = 0; i21 < size3; i21++) {
+                abstractSerializedData.writeInt64(this.recent_requesters.get(i21).longValue());
             }
         }
         if ((this.flags & 536870912) != 0) {

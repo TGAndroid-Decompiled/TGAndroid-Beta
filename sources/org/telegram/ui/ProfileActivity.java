@@ -8802,7 +8802,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 getMessagesController().getChat(Long.valueOf(this.chatId));
             }
             String str2 = "@" + tLRPC$TL_username.username;
-            String format = LocaleController.getInstance().formatterBoostExpired.format(new Date(tL_fragment$TL_collectibleInfo.purchase_date * 1000));
+            String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_fragment$TL_collectibleInfo.purchase_date * 1000));
             String formatCurrency = BillingController.getInstance().formatCurrency(tL_fragment$TL_collectibleInfo.crypto_amount, tL_fragment$TL_collectibleInfo.crypto_currency);
             String formatCurrency2 = BillingController.getInstance().formatCurrency(tL_fragment$TL_collectibleInfo.amount, tL_fragment$TL_collectibleInfo.currency);
             BulletinFactory of = BulletinFactory.of(shareAlert.bulletinContainer2, this.resourcesProvider);
@@ -12551,7 +12551,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         intent.setType("message/rfc822");
         intent.putExtra("android.intent.extra.EMAIL", "");
-        intent.putExtra("android.intent.extra.SUBJECT", "Logs from " + LocaleController.getInstance().formatterStats.format(System.currentTimeMillis()));
+        intent.putExtra("android.intent.extra.SUBJECT", "Logs from " + LocaleController.getInstance().getFormatterStats().format(System.currentTimeMillis()));
         intent.putExtra("android.intent.extra.STREAM", fromFile);
         if (activity != null) {
             try {

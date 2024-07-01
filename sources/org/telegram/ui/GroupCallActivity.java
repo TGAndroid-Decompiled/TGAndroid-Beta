@@ -5233,9 +5233,9 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         long j2 = j + (i2 * 86400000);
         calendar.setTimeInMillis(j2);
         if (calendar.get(1) == i) {
-            return LocaleController.getInstance().formatterWeek.format(j2) + " " + LocaleController.getInstance().formatterScheduleDay.format(j2);
+            return LocaleController.getInstance().getFormatterWeek().format(j2) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j2);
         }
-        return LocaleController.getInstance().formatterScheduleYear.format(j2);
+        return LocaleController.getInstance().getFormatterScheduleYear().format(j2);
     }
 
     public void lambda$new$32(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {

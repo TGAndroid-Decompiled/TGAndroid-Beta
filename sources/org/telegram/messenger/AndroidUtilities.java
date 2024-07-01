@@ -1851,7 +1851,7 @@ public class AndroidUtilities {
                             calendar.set(1, Utilities.parseInt((CharSequence) split4[0]).intValue());
                             calendar.set(2, Utilities.parseInt((CharSequence) split4[1]).intValue() - 1);
                             calendar.set(5, Utilities.parseInt((CharSequence) split4[2]).intValue());
-                            return LocaleController.getInstance().formatterYearMax.format(calendar.getTime());
+                            return LocaleController.getInstance().getFormatterYearMax().format(calendar.getTime());
                         }
                     }
                 }

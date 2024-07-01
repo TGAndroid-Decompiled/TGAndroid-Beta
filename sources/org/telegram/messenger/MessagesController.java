@@ -10915,7 +10915,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tLRPC$TL_messages_getDialogs.offset_id = i;
         tLRPC$TL_messages_getDialogs.offset_date = i2;
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start migrate with id " + i + " date " + LocaleController.getInstance().formatterStats.format(i2 * 1000));
+            FileLog.d("start migrate with id " + i + " date " + LocaleController.getInstance().getFormatterStats().format(i2 * 1000));
         }
         if (i == 0) {
             tLRPC$TL_messages_getDialogs.offset_peer = new TLRPC$TL_inputPeerEmpty();

@@ -111,9 +111,9 @@ public class ChartHeaderView extends FrameLayout {
             j2 += 604800000;
         }
         if (j2 - j >= 86400000) {
-            format = LocaleController.getInstance().formatterYear.format(new Date(j)) + " — " + LocaleController.getInstance().formatterYear.format(new Date(j2));
+            format = LocaleController.getInstance().getFormatterYear().format(new Date(j)) + " — " + LocaleController.getInstance().getFormatterYear().format(new Date(j2));
         } else {
-            format = LocaleController.getInstance().formatterYear.format(new Date(j));
+            format = LocaleController.getInstance().getFormatterYear().format(new Date(j));
         }
         this.dates.setText(format);
         this.dates.setVisibility(0);

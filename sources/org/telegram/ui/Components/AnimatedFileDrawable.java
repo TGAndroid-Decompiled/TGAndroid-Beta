@@ -38,8 +38,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private boolean applyTransformation;
     private Bitmap backgroundBitmap;
     private int backgroundBitmapTime;
-    private Paint[] backgroundPaint;
-    private BitmapShader[] backgroundShader;
+    private final Paint[] backgroundPaint;
+    private final BitmapShader[] backgroundShader;
     BitmapsCache bitmapsCache;
     Runnable cacheGenRunnable;
     long cacheGenerateNativePtr;
@@ -55,7 +55,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private boolean destroyWhenDone;
     private final TLRPC$Document document;
     private final RectF dstRect;
-    private RectF[] dstRectBackground;
+    private final RectF[] dstRectBackground;
     private float endTime;
     private boolean forceDecodeAfterNextFrame;
     boolean generatingCache;
@@ -82,10 +82,10 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private Bitmap nextRenderingBitmap2;
     private int nextRenderingBitmapTime;
     private int nextRenderingBitmapTime2;
-    private BitmapShader[] nextRenderingShader;
-    private BitmapShader[] nextRenderingShader2;
+    private final BitmapShader[] nextRenderingShader;
+    private final BitmapShader[] nextRenderingShader2;
     private View parentView;
-    private ArrayList<ImageReceiver> parents;
+    private final ArrayList<ImageReceiver> parents;
     private File path;
     private boolean pendingRemoveLoading;
     private int pendingRemoveLoadingFramesReset;
@@ -97,7 +97,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private Bitmap renderingBitmap;
     private int renderingBitmapTime;
     private int renderingHeight;
-    private BitmapShader[] renderingShader;
+    private final BitmapShader[] renderingShader;
     private int renderingWidth;
     public int repeatCount;
     private Path[] roundPath;
@@ -106,7 +106,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private float scaleFactor;
     private float scaleX;
     private float scaleY;
-    private ArrayList<View> secondParentViews;
+    private final ArrayList<View> secondParentViews;
     private Matrix[] shaderMatrix;
     private boolean singleFrameDecoded;
     public boolean skipFrameUpdate;

@@ -374,7 +374,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         if (sb.length() > 0) {
             sb.append(", ");
         }
-        sb.append(LocaleController.getInstance().formatterStats.format(photoEntry.dateTaken));
+        sb.append(LocaleController.getInstance().getFormatterStats().format(photoEntry.dateTaken));
         this.dateTextView.setText(sb);
         this.placeholderImageView.setVisibility(8);
     }
@@ -524,7 +524,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             this.dateTextView.setText(new SpannableStringBuilder().append((CharSequence) format).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.message, true, 2, this.dateTextView.getPaint())));
             this.rightDateTextView.setText(LocaleController.stringForMessageListDate(this.message.messageOwner.date));
         } else {
-            this.dateTextView.setText(String.format("%s, %s", format, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(new Date(j)), LocaleController.getInstance().formatterDay.format(new Date(j)))));
+            this.dateTextView.setText(String.format("%s, %s", format, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j)))));
         }
     }
 

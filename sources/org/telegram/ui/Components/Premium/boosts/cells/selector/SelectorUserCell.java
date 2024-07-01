@@ -164,7 +164,7 @@ public class SelectorUserCell extends BaseCell {
         this.imageView.setForUserOrChat(this.chat, this.avatarDrawable);
         this.titleTextView.setText(this.chat.title);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().formatterBoostExpired.format(new Date(tL_stories$TL_myBoost.expires * 1000))));
+        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_stories$TL_myBoost.expires * 1000))));
         int i = tL_stories$TL_myBoost.cooldown_until_date;
         if (i > 0) {
             setSubtitle(LocaleController.formatString("BoostingAvailableIn", R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
@@ -187,7 +187,7 @@ public class SelectorUserCell extends BaseCell {
             setCheckboxAlpha(0.3f, false);
             return;
         }
-        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().formatterBoostExpired.format(new Date(this.boost.expires * 1000))));
+        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(this.boost.expires * 1000))));
         if (this.titleTextView.getAlpha() < 1.0f) {
             this.titleTextView.animate().alpha(1.0f).start();
             this.subtitleTextView.animate().alpha(1.0f).start();

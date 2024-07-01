@@ -380,19 +380,19 @@ public class MessagePrivateSeenView extends FrameLayout {
             this.minWidth = max2;
             float max3 = Math.max(max2, AndroidUtilities.dp(64.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))));
             this.minWidth = max3;
-            float max4 = Math.max(max3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+            float max4 = Math.max(max3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
             this.minWidth = max4;
             if (this.messageDiff > 86400) {
-                this.minWidth = Math.max(max4, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+                this.minWidth = Math.max(max4, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
             }
             if (this.messageDiff > 172800) {
                 float f = this.minWidth;
                 float dp = AndroidUtilities.dp(48.0f);
                 TextPaint paint = this.valueTextView.getPaint();
                 int i3 = R.string.PmReadDateTimeAt;
-                float max5 = Math.max(f, dp + paint.measureText(LocaleController.formatString(i3, LocaleController.getInstance().formatterDayMonth.format(new Date(currentTimeMillis)), LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+                float max5 = Math.max(f, dp + paint.measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterDayMonth().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
                 this.minWidth = max5;
-                this.minWidth = Math.max(max5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().formatterYear.format(new Date(currentTimeMillis)), LocaleController.getInstance().formatterDay.format(new Date(currentTimeMillis)))));
+                this.minWidth = Math.max(max5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterYear().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
             }
         }
         int i4 = 1073741824;

@@ -341,9 +341,9 @@ public class DataUsage2Activity extends BaseFragment {
             this.itemInners.clear();
             this.itemInners.add(new ItemInner(0));
             if (this.totalSize > 0) {
-                formatString = LocaleController.formatString("YourNetworkUsageSince", R.string.YourNetworkUsageSince, LocaleController.getInstance().formatterStats.format(getResetStatsDate()));
+                formatString = LocaleController.formatString("YourNetworkUsageSince", R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
             } else {
-                formatString = LocaleController.formatString("NoNetworkUsageSince", R.string.NoNetworkUsageSince, LocaleController.getInstance().formatterStats.format(getResetStatsDate()));
+                formatString = LocaleController.formatString("NoNetworkUsageSince", R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
             }
             this.itemInners.add(ItemInner.asSubtitle(formatString));
             ArrayList arrayList = new ArrayList();

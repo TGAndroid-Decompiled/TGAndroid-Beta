@@ -23,6 +23,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
     public boolean can_set_username;
     public boolean can_view_participants;
     public boolean can_view_revenue;
+    public boolean can_view_stars_revenue;
     public boolean can_view_stats;
     public TLRPC$Photo chat_photo;
     public TLRPC$Peer default_send_as;
@@ -4575,6 +4576,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         this.view_forum_as_messages = (readInt322 & 64) != 0;
                         this.restricted_sponsored = (readInt322 & 2048) != 0;
                         this.can_view_revenue = (readInt322 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
+                        this.can_view_stars_revenue = (this.flags & LiteMode.FLAG_CHAT_SCALE) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
                         this.about = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
@@ -4751,7 +4753,9 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         this.flags2 = i16;
                         int i17 = this.can_view_revenue ? i16 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i16 & (-4097);
                         this.flags2 = i17;
-                        abstractSerializedData2.writeInt32(i17);
+                        int i18 = this.can_view_stars_revenue ? i17 | LiteMode.FLAG_CHAT_SCALE : i17 & (-32769);
+                        this.flags2 = i18;
+                        abstractSerializedData2.writeInt32(i18);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeString(this.about);
                         if ((this.flags & 1) != 0) {
@@ -4780,8 +4784,8 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.bot_info.size();
                         abstractSerializedData2.writeInt32(size);
-                        for (int i18 = 0; i18 < size; i18++) {
-                            this.bot_info.get(i18).serializeToStream(abstractSerializedData2);
+                        for (int i19 = 0; i19 < size; i19++) {
+                            this.bot_info.get(i19).serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 16) != 0) {
                             abstractSerializedData2.writeInt64(this.migrated_from_chat_id);
@@ -4827,8 +4831,8 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             abstractSerializedData2.writeInt32(481674261);
                             int size2 = this.pending_suggestions.size();
                             abstractSerializedData2.writeInt32(size2);
-                            for (int i19 = 0; i19 < size2; i19++) {
-                                abstractSerializedData2.writeString(this.pending_suggestions.get(i19));
+                            for (int i20 = 0; i20 < size2; i20++) {
+                                abstractSerializedData2.writeString(this.pending_suggestions.get(i20));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -4844,8 +4848,8 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             abstractSerializedData2.writeInt32(481674261);
                             int size3 = this.recent_requesters.size();
                             abstractSerializedData2.writeInt32(size3);
-                            for (int i20 = 0; i20 < size3; i20++) {
-                                abstractSerializedData2.writeInt64(this.recent_requesters.get(i20).longValue());
+                            for (int i21 = 0; i21 < size3; i21++) {
+                                abstractSerializedData2.writeInt64(this.recent_requesters.get(i21).longValue());
                             }
                         }
                         if ((this.flags & 536870912) != 0) {

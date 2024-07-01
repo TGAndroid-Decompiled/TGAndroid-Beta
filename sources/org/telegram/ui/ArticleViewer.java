@@ -3074,7 +3074,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             webpageAdapterArr[i] = webpageAdapter;
             this.listView[i] = new RecyclerListView(activity) {
                 @Override
-                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                     super.onLayout(z, i2, i3, i4, i5);
                     int childCount = getChildCount();
                     for (int i6 = 0; i6 < childCount; i6++) {
@@ -3123,7 +3123,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                protected void dispatchDraw(Canvas canvas) {
+                public void dispatchDraw(Canvas canvas) {
                     ArticleViewer.this.checkVideoPlayer();
                     super.dispatchDraw(canvas);
                 }
@@ -3800,7 +3800,15 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             return;
         }
         if (i == 3) {
-            Browser.openUrl((Context) this.parentActivity, !TextUtils.isEmpty(this.adapter[0].currentPage.cached_page.url) ? this.adapter[0].currentPage.cached_page.url : this.adapter[0].currentPage.url, true, false);
+            String str = !TextUtils.isEmpty(this.adapter[0].currentPage.cached_page.url) ? this.adapter[0].currentPage.cached_page.url : this.adapter[0].currentPage.url;
+            Activity activity = this.parentActivity;
+            if (activity == null || activity.isFinishing()) {
+                return;
+            }
+            Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+            intent.putExtra("create_new_tab", true);
+            intent.putExtra("com.android.browser.application_id", this.parentActivity.getPackageName());
+            this.parentActivity.startActivity(intent);
             return;
         }
         if (i == 4) {
@@ -6820,7 +6828,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         this.nameLayout.y = AndroidUtilities.dp(this.dateLayout != null ? 10.0f : 19.0f);
                     }
                     if (this.currentBlock.date != 0) {
-                        this.dateLayout = ArticleViewer.this.createLayoutForText(this, LocaleController.getInstance().chatFullDate.format(this.currentBlock.date * 1000), null, size - AndroidUtilities.dp((this.avatarVisible ? 54 : 0) + 50), AndroidUtilities.dp(29.0f), this.currentBlock, this.parentAdapter);
+                        this.dateLayout = ArticleViewer.this.createLayoutForText(this, LocaleController.getInstance().getChatFullDate().format(this.currentBlock.date * 1000), null, size - AndroidUtilities.dp((this.avatarVisible ? 54 : 0) + 50), AndroidUtilities.dp(29.0f), this.currentBlock, this.parentAdapter);
                     } else {
                         this.dateLayout = null;
                     }
@@ -8881,11 +8889,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 i4 = 4;
             }
             if (tLRPC$TL_pageRelatedArticle.published_date != 0 && !TextUtils.isEmpty(tLRPC$TL_pageRelatedArticle.author)) {
-                str = LocaleController.formatString("ArticleDateByAuthor", R.string.ArticleDateByAuthor, LocaleController.getInstance().chatFullDate.format(tLRPC$TL_pageRelatedArticle.published_date * 1000), tLRPC$TL_pageRelatedArticle.author);
+                str = LocaleController.formatString("ArticleDateByAuthor", R.string.ArticleDateByAuthor, LocaleController.getInstance().getChatFullDate().format(tLRPC$TL_pageRelatedArticle.published_date * 1000), tLRPC$TL_pageRelatedArticle.author);
             } else if (!TextUtils.isEmpty(tLRPC$TL_pageRelatedArticle.author)) {
                 str = LocaleController.formatString("ArticleByAuthor", R.string.ArticleByAuthor, tLRPC$TL_pageRelatedArticle.author);
             } else if (tLRPC$TL_pageRelatedArticle.published_date != 0) {
-                str = LocaleController.getInstance().chatFullDate.format(tLRPC$TL_pageRelatedArticle.published_date * 1000);
+                str = LocaleController.getInstance().getChatFullDate().format(tLRPC$TL_pageRelatedArticle.published_date * 1000);
             } else if (!TextUtils.isEmpty(tLRPC$TL_pageRelatedArticle.description)) {
                 str = tLRPC$TL_pageRelatedArticle.description;
             } else {
@@ -9995,11 +10003,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     spannable = null;
                 }
                 if (this.currentBlock.published_date != 0 && !TextUtils.isEmpty(text)) {
-                    charSequence = LocaleController.formatString("ArticleDateByAuthor", R.string.ArticleDateByAuthor, LocaleController.getInstance().chatFullDate.format(this.currentBlock.published_date * 1000), text);
+                    charSequence = LocaleController.formatString("ArticleDateByAuthor", R.string.ArticleDateByAuthor, LocaleController.getInstance().getChatFullDate().format(this.currentBlock.published_date * 1000), text);
                 } else if (!TextUtils.isEmpty(text)) {
                     charSequence = LocaleController.formatString("ArticleByAuthor", R.string.ArticleByAuthor, text);
                 } else {
-                    charSequence = LocaleController.getInstance().chatFullDate.format(this.currentBlock.published_date * 1000);
+                    charSequence = LocaleController.getInstance().getChatFullDate().format(this.currentBlock.published_date * 1000);
                 }
                 if (metricAffectingSpanArr != null) {
                     try {

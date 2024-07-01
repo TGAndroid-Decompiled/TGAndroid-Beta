@@ -647,7 +647,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         }
         if (this.photoEntry != null) {
             sb.append(". ");
-            sb.append(LocaleController.getInstance().formatterStats.format(this.photoEntry.dateTaken * 1000));
+            sb.append(LocaleController.getInstance().getFormatterStats().format(this.photoEntry.dateTaken * 1000));
         }
         accessibilityNodeInfo.setText(sb);
         if (this.checkBox.isChecked()) {

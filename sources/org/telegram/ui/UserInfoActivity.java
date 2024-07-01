@@ -245,12 +245,12 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             calendar.set(1, tLRPC$TL_birthday.year);
             calendar.set(2, tLRPC$TL_birthday.month - 1);
             calendar.set(5, tLRPC$TL_birthday.day);
-            return LocaleController.getInstance().formatterBoostExpired.format(calendar.getTimeInMillis());
+            return LocaleController.getInstance().getFormatterBoostExpired().format(calendar.getTimeInMillis());
         }
         Calendar calendar2 = Calendar.getInstance();
         calendar2.set(2, tLRPC$TL_birthday.month - 1);
         calendar2.set(5, tLRPC$TL_birthday.day);
-        return LocaleController.getInstance().formatterDayMonth.format(calendar2.getTimeInMillis());
+        return LocaleController.getInstance().getFormatterDayMonth().format(calendar2.getTimeInMillis());
     }
 
     @Override

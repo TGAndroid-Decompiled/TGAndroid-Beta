@@ -3057,7 +3057,7 @@ public class AlertsCreator {
             } else if (i5 == 3) {
                 i6 += 9;
             }
-            textView.setText(LocaleController.getInstance().formatterScheduleSend[i6].format(timeInMillis2));
+            textView.setText(LocaleController.getInstance().getFormatterScheduleSend(i6).format(timeInMillis2));
         }
         if (textView2 != null) {
             int i11 = (int) ((timeInMillis2 - currentTimeMillis) / 1000);
@@ -3395,9 +3395,9 @@ public class AlertsCreator {
         long j2 = j + (i2 * 86400000);
         calendar.setTimeInMillis(j2);
         if (calendar.get(1) == i) {
-            return LocaleController.getInstance().formatterWeek.format(j2) + ", " + LocaleController.getInstance().formatterScheduleDay.format(j2);
+            return LocaleController.getInstance().getFormatterWeek().format(j2) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(j2);
         }
-        return LocaleController.getInstance().formatterScheduleYear.format(j2);
+        return LocaleController.getInstance().getFormatterScheduleYear().format(j2);
     }
 
     public static void lambda$createScheduleDatePickerDialog$75(TextView textView, long j, long j2, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {
@@ -3611,9 +3611,9 @@ public class AlertsCreator {
         long j2 = j + (i2 * 86400000);
         calendar.setTimeInMillis(j2);
         if (calendar.get(1) == i) {
-            return LocaleController.getInstance().formatterScheduleDay.format(j2);
+            return LocaleController.getInstance().getFormatterScheduleDay().format(j2);
         }
-        return LocaleController.getInstance().formatterScheduleYear.format(j2);
+        return LocaleController.getInstance().getFormatterScheduleYear().format(j2);
     }
 
     public static String lambda$createDatePickerDialog$83(int i) {
@@ -4147,11 +4147,11 @@ public class AlertsCreator {
         int i5 = calendar.get(6);
         if (i4 != i || i5 >= i2 + 7) {
             if (i4 == i) {
-                return LocaleController.getInstance().formatterScheduleDay.format(j2);
+                return LocaleController.getInstance().getFormatterScheduleDay().format(j2);
             }
-            return LocaleController.getInstance().formatterScheduleYear.format(j2);
+            return LocaleController.getInstance().getFormatterScheduleYear().format(j2);
         }
-        return LocaleController.getInstance().formatterWeek.format(j2) + ", " + LocaleController.getInstance().formatterScheduleDay.format(j2);
+        return LocaleController.getInstance().getFormatterWeek().format(j2) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(j2);
     }
 
     public static String lambda$createStatusUntilDatePickerDialog$99(int i) {

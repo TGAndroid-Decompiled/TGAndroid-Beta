@@ -3913,7 +3913,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         dismiss();
     }
 
-    public boolean lambda$new$26(final android.content.Context r32, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r33, final org.telegram.ui.ActionBar.BaseFragment r34, android.view.View r35) {
+    public boolean lambda$new$26(final android.content.Context r33, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r34, final org.telegram.ui.ActionBar.BaseFragment r35, android.view.View r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.lambda$new$26(android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, org.telegram.ui.ActionBar.BaseFragment, android.view.View):boolean");
     }
 

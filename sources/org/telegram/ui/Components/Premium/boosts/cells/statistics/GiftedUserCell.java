@@ -87,8 +87,8 @@ public class GiftedUserCell extends UserCell {
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             }
-            String format = LocaleController.getInstance().formatterScheduleDay.format(new Date(tL_stories$TL_boost.expires * 1000));
-            String format2 = LocaleController.getInstance().formatterDay.format(new Date(tL_stories$TL_boost.expires * 1000));
+            String format = LocaleController.getInstance().getFormatterScheduleDay().format(new Date(tL_stories$TL_boost.expires * 1000));
+            String format2 = LocaleController.getInstance().getFormatterDay().format(new Date(tL_stories$TL_boost.expires * 1000));
             this.statusTextView.setText(LocaleController.formatString("BoostingShortMonths", R.string.BoostingShortMonths, Integer.valueOf(i)) + " • " + LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, format, format2));
             if (tL_stories$TL_boost.gift) {
                 if (this.giftDrawable == null) {

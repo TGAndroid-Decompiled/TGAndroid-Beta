@@ -160,10 +160,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     private final LinearLayout starsBalanceLayout;
     private final AnimatedTextView starsBalanceSubtitle;
     private final AnimatedTextView starsBalanceTitle;
+    public final boolean starsRevenueAvailable;
     private StatisticActivity.ChartViewData starsRevenueChart;
     private double stars_rate;
     private boolean switchOffValue;
     private final CharSequence titleInfo;
+    public final boolean tonRevenueAvailable;
     private double ton_rate;
     private final ChannelTransactionsView transactionsLayout;
     private Bulletin withdrawalBulletin;
@@ -192,7 +194,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
     }
 
-    public ChannelMonetizationLayout(final Context context, final BaseFragment baseFragment, final int i, final long j, Theme.ResourcesProvider resourcesProvider) {
+    public ChannelMonetizationLayout(final Context context, final BaseFragment baseFragment, final int i, final long j, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
         this.starRef = new ColoredImageSpan[1];
         this.starsBalanceEditTextIgnore = false;
@@ -210,6 +212,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         };
         this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
+        this.tonRevenueAvailable = z;
+        this.starsRevenueAvailable = z2;
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
@@ -353,8 +357,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.starsBalanceEditText.setGravity(LocaleController.isRTL ? 5 : 3);
         this.starsBalanceEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public final void onFocusChange(View view, boolean z) {
-                ChannelMonetizationLayout.this.lambda$new$6(view, z);
+            public final void onFocusChange(View view, boolean z3) {
+                ChannelMonetizationLayout.this.lambda$new$6(view, z3);
             }
         });
         this.starsBalanceEditText.addTextChangedListener(new TextWatcher() {
@@ -935,15 +939,17 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     }
 
     private void loadStarsStats() {
-        TLRPC$TL_payments_getStarsRevenueStats tLRPC$TL_payments_getStarsRevenueStats = new TLRPC$TL_payments_getStarsRevenueStats();
-        tLRPC$TL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        tLRPC$TL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_getStarsRevenueStats, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelMonetizationLayout.this.lambda$loadStarsStats$25(tLObject, tLRPC$TL_error);
-            }
-        });
+        if (this.starsRevenueAvailable) {
+            TLRPC$TL_payments_getStarsRevenueStats tLRPC$TL_payments_getStarsRevenueStats = new TLRPC$TL_payments_getStarsRevenueStats();
+            tLRPC$TL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            tLRPC$TL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_getStarsRevenueStats, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ChannelMonetizationLayout.this.lambda$loadStarsStats$25(tLObject, tLRPC$TL_error);
+                }
+            });
+        }
     }
 
     public void lambda$loadStarsStats$25(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -988,7 +994,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         });
         loadStarsStats();
-        if (ChatObject.isMegagroup(chat)) {
+        if (!this.tonRevenueAvailable || ChatObject.isMegagroup(chat)) {
             return;
         }
         TL_stats$TL_getBroadcastRevenueStats tL_stats$TL_getBroadcastRevenueStats = new TL_stats$TL_getBroadcastRevenueStats();
@@ -1082,6 +1088,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             return;
         }
         ProceedOverview proceedOverview = this.availableValue;
+        proceedOverview.contains1 = true;
         long j = tLRPC$TL_broadcastRevenueBalances.available_balance;
         proceedOverview.crypto_amount = j;
         double d2 = j;
@@ -1091,6 +1098,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         setBalance(j, j2);
         this.availableValue.currency = "USD";
         ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
+        proceedOverview2.contains1 = true;
         long j3 = tLRPC$TL_broadcastRevenueBalances.current_balance;
         proceedOverview2.crypto_amount = j3;
         double d3 = j3;
@@ -1099,6 +1107,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         proceedOverview2.amount = (long) ((d3 / 1.0E9d) * d4 * 100.0d);
         proceedOverview2.currency = "USD";
         ProceedOverview proceedOverview3 = this.lifetimeValue;
+        proceedOverview3.contains1 = true;
         long j4 = tLRPC$TL_broadcastRevenueBalances.overall_revenue;
         proceedOverview3.crypto_amount = j4;
         double d5 = j4;
@@ -1188,23 +1197,25 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     }
 
     public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
+        StatisticActivity.ChartViewData chartViewData;
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
         TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
         int i = chatFull != null ? chatFull.stats_dc : -1;
-        arrayList.add(UItem.asCenterShadow(this.titleInfo));
-        StatisticActivity.ChartViewData chartViewData = this.impressionsChart;
-        if (chartViewData != null && !chartViewData.isEmpty) {
-            arrayList.add(UItem.asChart(5, i, chartViewData));
-            arrayList.add(UItem.asShadow(-1, null));
+        if (this.tonRevenueAvailable) {
+            arrayList.add(UItem.asCenterShadow(this.titleInfo));
+            StatisticActivity.ChartViewData chartViewData2 = this.impressionsChart;
+            if (chartViewData2 != null && !chartViewData2.isEmpty) {
+                arrayList.add(UItem.asChart(5, i, chartViewData2));
+                arrayList.add(UItem.asShadow(-1, null));
+            }
+            StatisticActivity.ChartViewData chartViewData3 = this.revenueChart;
+            if (chartViewData3 != null && !chartViewData3.isEmpty) {
+                arrayList.add(UItem.asChart(2, i, chartViewData3));
+                arrayList.add(UItem.asShadow(-2, null));
+            }
         }
-        StatisticActivity.ChartViewData chartViewData2 = this.revenueChart;
-        if (chartViewData2 != null && !chartViewData2.isEmpty) {
-            arrayList.add(UItem.asChart(2, i, chartViewData2));
-            arrayList.add(UItem.asShadow(-2, null));
-        }
-        StatisticActivity.ChartViewData chartViewData3 = this.starsRevenueChart;
-        if (chartViewData3 != null && !chartViewData3.isEmpty) {
-            arrayList.add(UItem.asChart(2, i, chartViewData3));
+        if (this.starsRevenueAvailable && (chartViewData = this.starsRevenueChart) != null && !chartViewData.isEmpty) {
+            arrayList.add(UItem.asChart(2, i, chartViewData));
             arrayList.add(UItem.asShadow(-3, null));
         }
         if (this.proceedsAvailable) {
@@ -1215,19 +1226,19 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             arrayList.add(UItem.asShadow(-4, null));
         }
         if (chat != null && chat.creator) {
-            arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.MonetizationBalance)));
-            arrayList.add(UItem.asCustom(this.balanceLayout));
-            arrayList.add(UItem.asShadow(-5, this.balanceInfo));
-        }
-        if (chat != null && chat.creator) {
-            int i2 = MessagesController.getInstance(this.currentAccount).channelRestrictSponsoredLevelMin;
-            arrayList.add(UItem.asCheck(1, PeerColorActivity.withLevelLock(LocaleController.getString(R.string.MonetizationSwitchOff), this.currentBoostLevel < i2 ? i2 : 0)).setChecked(this.currentBoostLevel >= i2 && this.switchOffValue));
-            arrayList.add(UItem.asShadow(-8, LocaleController.getString(R.string.MonetizationSwitchOffInfo)));
-        }
-        if (chat != null && chat.creator) {
-            arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.MonetizationStarsBalance)));
-            arrayList.add(UItem.asCustom(3, this.starsBalanceLayout));
-            arrayList.add(UItem.asShadow(-6, this.starsBalanceInfo));
+            if (this.tonRevenueAvailable) {
+                arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.MonetizationBalance)));
+                arrayList.add(UItem.asCustom(this.balanceLayout));
+                arrayList.add(UItem.asShadow(-5, this.balanceInfo));
+                int i2 = MessagesController.getInstance(this.currentAccount).channelRestrictSponsoredLevelMin;
+                arrayList.add(UItem.asCheck(1, PeerColorActivity.withLevelLock(LocaleController.getString(R.string.MonetizationSwitchOff), this.currentBoostLevel < i2 ? i2 : 0)).setChecked(this.currentBoostLevel >= i2 && this.switchOffValue));
+                arrayList.add(UItem.asShadow(-8, LocaleController.getString(R.string.MonetizationSwitchOffInfo)));
+            }
+            if (this.starsRevenueAvailable) {
+                arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.MonetizationStarsBalance)));
+                arrayList.add(UItem.asCustom(3, this.starsBalanceLayout));
+                arrayList.add(UItem.asShadow(-6, this.starsBalanceInfo));
+            }
         }
         if (this.transactionsLayout.hasTransactions()) {
             arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, 0));
@@ -1391,7 +1402,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 String str = i == 0 ? proceedOverview.crypto_currency : proceedOverview.crypto_currency2;
                 long j = i == 0 ? proceedOverview.crypto_amount : proceedOverview.crypto_amount2;
                 long j2 = i == 0 ? proceedOverview.amount : proceedOverview.amount2;
-                if (i != 1 || proceedOverview.contains2) {
+                if (i == 0 && !proceedOverview.contains1) {
+                    this.amountContainer[i].setVisibility(8);
+                } else if (i == 1 && !proceedOverview.contains2) {
+                    this.amountContainer[i].setVisibility(8);
+                } else {
                     String str2 = str + " ";
                     if ("TON".equalsIgnoreCase(str)) {
                         StringBuilder sb = new StringBuilder();
@@ -1410,6 +1425,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                     if ("TON".equalsIgnoreCase(str) && (indexOf = TextUtils.indexOf(spannableStringBuilder, ".")) >= 0) {
                         spannableStringBuilder.setSpan(new RelativeSizeSpan(0.8125f), indexOf, spannableStringBuilder.length(), 33);
                     }
+                    this.amountContainer[i].setVisibility(0);
                     this.cryptoAmountView[i].setText(spannableStringBuilder);
                     this.amountView[i].setText("≈" + BillingController.getInstance().formatCurrency(j2, proceedOverview.currency));
                 }
@@ -1426,6 +1442,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     public static class ProceedOverview {
         public long amount;
         public long amount2;
+        public boolean contains1 = true;
         public boolean contains2;
         public long crypto_amount;
         public long crypto_amount2;

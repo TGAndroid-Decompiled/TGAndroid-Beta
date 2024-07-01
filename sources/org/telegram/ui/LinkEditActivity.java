@@ -722,9 +722,9 @@ public class LinkEditActivity extends BaseFragment {
                 if (j2 < 86400) {
                     strArr[i4] = LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
                 } else if (j2 < 31449600) {
-                    strArr[i4] = LocaleController.getInstance().formatterScheduleDay.format(j * 1000);
+                    strArr[i4] = LocaleController.getInstance().getFormatterScheduleDay().format(j * 1000);
                 } else {
-                    strArr[i4] = LocaleController.getInstance().formatterYear.format(j * 1000);
+                    strArr[i4] = LocaleController.getInstance().getFormatterYear().format(j * 1000);
                 }
             }
         }
