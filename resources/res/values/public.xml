@@ -10175,8 +10175,8 @@
     <public type="string" name="StarsBalance" id="0x7f0f1c9c" />
     <public type="string" name="StarsConfirmPurchaseButton_one" id="0x7f0f1c9d" />
     <public type="string" name="StarsConfirmPurchaseButton_other" id="0x7f0f1c9e" />
-    <public type="string" name="StarsConfirmPurchaseMedia1" id="0x7f0f1c9f" />
-    <public type="string" name="StarsConfirmPurchaseMedia2" id="0x7f0f1ca0" />
+    <public type="string" name="StarsConfirmPurchaseMediaOne" id="0x7f0f1c9f" />
+    <public type="string" name="StarsConfirmPurchaseMediaTwo" id="0x7f0f1ca0" />
     <public type="string" name="StarsConfirmPurchaseMedia_Photos_one" id="0x7f0f1ca1" />
     <public type="string" name="StarsConfirmPurchaseMedia_Photos_other" id="0x7f0f1ca2" />
     <public type="string" name="StarsConfirmPurchaseMedia_SinglePhoto" id="0x7f0f1ca3" />

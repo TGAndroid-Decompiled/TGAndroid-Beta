@@ -58,6 +58,7 @@ public abstract class BaseFragment {
     protected boolean finishing;
     protected boolean fragmentBeginToShow;
     public View fragmentView;
+    private Runnable fullyVisibleListener;
     protected boolean inBubbleMode;
     protected boolean inMenuMode;
     protected boolean inPreviewMode;
@@ -97,6 +98,9 @@ public abstract class BaseFragment {
         void setOnDismissListener(Runnable runnable);
 
         boolean showDialog(Dialog dialog);
+    }
+
+    public interface AttachedSheetWindow {
     }
 
     public static class BottomSheetParams {
@@ -691,14 +695,21 @@ public abstract class BaseFragment {
 
     public void onBecomeFullyVisible() {
         ActionBar actionBar;
-        if (!((AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility")).isEnabled() || (actionBar = getActionBar()) == null) {
-            return;
+        if (((AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility")).isEnabled() && (actionBar = getActionBar()) != null) {
+            String title = actionBar.getTitle();
+            if (!TextUtils.isEmpty(title)) {
+                setParentActivityTitle(title);
+            }
         }
-        String title = actionBar.getTitle();
-        if (TextUtils.isEmpty(title)) {
-            return;
+        Runnable runnable = this.fullyVisibleListener;
+        if (runnable != null) {
+            this.fullyVisibleListener = null;
+            runnable.run();
         }
-        setParentActivityTitle(title);
+    }
+
+    public void whenFullyVisible(Runnable runnable) {
+        this.fullyVisibleListener = runnable;
     }
 
     public Dialog showDialog(Dialog dialog) {

@@ -151,13 +151,6 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         }
     }
 
-    public void updateLiveLocationCell() {
-        int i = this.shareLiveLocationPotistion;
-        if (i > 0) {
-            notifyItemChanged(i);
-        }
-    }
-
     public void updateLiveLocations() {
         if (this.currentLiveLocations.isEmpty()) {
             return;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -226,15 +227,15 @@ public class Browser {
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
-        openUrl(context, uri, z, z2, false, null);
+        openUrl(context, uri, z, z2, false, null, null);
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2, Progress progress) {
-        openUrl(context, uri, z, z2, false, progress);
+        openUrl(context, uri, z, z2, false, progress, null);
     }
 
-    public static void openUrl(final android.content.Context r18, final android.net.Uri r19, final boolean r20, boolean r21, boolean r22, final org.telegram.messenger.browser.Browser.Progress r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress):void");
+    public static void openUrl(final android.content.Context r20, final android.net.Uri r21, boolean r22, boolean r23, boolean r24, final org.telegram.messenger.browser.Browser.Progress r25, java.lang.String r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String):void");
     }
 
     public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -396,6 +397,195 @@ public class Browser {
             }
         }
         return false;
+    }
+
+    public static String getBrowserPackageName(String str) {
+        if (str == null) {
+            return null;
+        }
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -1973822757:
+                if (str.equals("brave-browser")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case -1451156338:
+                if (str.equals("google-chrome")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case -1361128838:
+                if (str.equals("chrome")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case -1270430916:
+                if (str.equals("microsoft-edge")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case -1249474382:
+                if (str.equals("tor-browser")) {
+                    c = 4;
+                    break;
+                }
+                break;
+            case -1051190859:
+                if (str.equals("duckduckgo-browser")) {
+                    c = 5;
+                    break;
+                }
+                break;
+            case -849452327:
+                if (str.equals("firefox")) {
+                    c = 6;
+                    break;
+                }
+                break;
+            case -329108395:
+                if (str.equals("samsung-browser")) {
+                    c = 7;
+                    break;
+                }
+                break;
+            case -220816629:
+                if (str.equals("kiwi-browser")) {
+                    c = '\b';
+                    break;
+                }
+                break;
+            case -61272559:
+                if (str.equals("opera-mini")) {
+                    c = '\t';
+                    break;
+                }
+                break;
+            case 3726:
+                if (str.equals("uc")) {
+                    c = '\n';
+                    break;
+                }
+                break;
+            case 115031:
+                if (str.equals("tor")) {
+                    c = 11;
+                    break;
+                }
+                break;
+            case 3108285:
+                if (str.equals("edge")) {
+                    c = '\f';
+                    break;
+                }
+                break;
+            case 3292336:
+                if (str.equals("kiwi")) {
+                    c = '\r';
+                    break;
+                }
+                break;
+            case 93998208:
+                if (str.equals("brave")) {
+                    c = 14;
+                    break;
+                }
+                break;
+            case 105948115:
+                if (str.equals("opera")) {
+                    c = 15;
+                    break;
+                }
+                break;
+            case 469285011:
+                if (str.equals("vivaldi")) {
+                    c = 16;
+                    break;
+                }
+                break;
+            case 557649660:
+                if (str.equals("mozilla-firefox")) {
+                    c = 17;
+                    break;
+                }
+                break;
+            case 696911194:
+                if (str.equals("duckduckgo")) {
+                    c = 18;
+                    break;
+                }
+                break;
+            case 1117815790:
+                if (str.equals("vivaldi-browser")) {
+                    c = 19;
+                    break;
+                }
+                break;
+            case 1201385193:
+                if (str.equals("uc-browser")) {
+                    c = 20;
+                    break;
+                }
+                break;
+            case 1864941562:
+                if (str.equals("samsung")) {
+                    c = 21;
+                    break;
+                }
+                break;
+        }
+        switch (c) {
+            case 0:
+            case 14:
+                return "com.brave.browser";
+            case 1:
+            case 2:
+                return "com.android.chrome";
+            case 3:
+            case '\f':
+                return "com.microsoft.emmx";
+            case 4:
+            case 11:
+                return "org.torproject.torbrowser";
+            case 5:
+            case 18:
+                return "com.duckduckgo.mobile.android";
+            case 6:
+            case 17:
+                return "org.mozilla.firefox";
+            case 7:
+            case 21:
+                return "com.sec.android.app.sbrowser";
+            case '\b':
+            case '\r':
+                return "com.kiwibrowser.browser";
+            case '\t':
+                return "com.opera.mini.native";
+            case '\n':
+            case 20:
+                return "com.UCMobile.intl";
+            case 15:
+                return "com.opera.browser";
+            case 16:
+            case 19:
+                return "com.vivaldi.browser";
+            default:
+                return null;
+        }
+    }
+
+    public static boolean isBrowserPackageInstalled(Context context, String str, Uri uri) {
+        if (str == null) {
+            return false;
+        }
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = new Intent("android.intent.action.VIEW", uri);
+        intent.setPackage(str);
+        return packageManager.resolveActivity(intent, 0) != null;
     }
 
     public static String replaceHostname(Uri uri, String str) {

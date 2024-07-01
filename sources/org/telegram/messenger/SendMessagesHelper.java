@@ -3939,6 +3939,37 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return this.sendingMessages.indexOfKey(i) >= 0 || this.editingMessages.indexOfKey(i) >= 0;
     }
 
+    public boolean isSendingPaidMessage(int i, int i2) {
+        Iterator<ArrayList<DelayedMessage>> it = this.delayedMessages.values().iterator();
+        DelayedMessage delayedMessage = null;
+        while (it.hasNext()) {
+            Iterator<DelayedMessage> it2 = it.next().iterator();
+            while (it2.hasNext()) {
+                DelayedMessage next = it2.next();
+                Iterator<TLRPC$Message> it3 = next.messages.iterator();
+                while (true) {
+                    if (!it3.hasNext()) {
+                        break;
+                    }
+                    if (it3.next().id == i) {
+                        delayedMessage = next;
+                        break;
+                    }
+                }
+                if (delayedMessage != null) {
+                    break;
+                }
+            }
+            if (delayedMessage != null) {
+                break;
+            }
+        }
+        if (delayedMessage != null && i2 >= 0 && i2 < delayedMessage.messages.size()) {
+            i = delayedMessage.messages.get(i2).id;
+        }
+        return this.sendingMessages.indexOfKey(i) >= 0 || this.editingMessages.indexOfKey(i) >= 0;
+    }
+
     public boolean isSendingMessageIdDialog(long j) {
         return this.sendingMessagesIdDialogs.get(j, 0).intValue() > 0;
     }

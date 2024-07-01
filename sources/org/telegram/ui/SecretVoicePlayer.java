@@ -619,8 +619,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell6, tLRPC$Chat, i3, f, f2);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell6, tLRPC$Chat, i3, f, f2, z);
                 }
 
                 @Override
@@ -749,8 +749,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressUserAvatar(ChatMessageCell chatMessageCell6, TLRPC$User tLRPC$User, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell6, tLRPC$User, f, f2);
+                public void didPressUserAvatar(ChatMessageCell chatMessageCell6, TLRPC$User tLRPC$User, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell6, tLRPC$User, f, f2, z);
                 }
 
                 @Override

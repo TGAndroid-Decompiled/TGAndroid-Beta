@@ -1423,10 +1423,6 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         TLRPC$Message tLRPC$Message;
         String str2;
         String formatString;
-        int i4;
-        String formatPluralString;
-        int i5;
-        String formatPluralString2;
         boolean z;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         TLRPC$Peer tLRPC$Peer;
@@ -1561,17 +1557,15 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         TextView textView = new TextView(context);
         textView.setTextSize(i3, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        int i6 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i6, resourcesProvider));
+        int i4 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i4, resourcesProvider));
         textView.setText(LocaleController.getString(R.string.StarsConfirmPurchaseTitle));
         textView.setGravity(i2);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(i3, 14.0f);
-        textView2.setTextColor(Theme.getColor(i6, resourcesProvider));
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !(tLRPC$Message.media instanceof TLRPC$TL_messageMediaPaidMedia)) {
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText", (int) j2, str, UserObject.getUserName(user))));
-        } else {
+        textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
+        if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$Message.media instanceof TLRPC$TL_messageMediaPaidMedia)) {
             long dialogId = messageObject.getDialogId();
             TLRPC$Message tLRPC$Message3 = messageObject.messageOwner;
             if (tLRPC$Message3 != null && (tLRPC$MessageFwdHeader = tLRPC$Message3.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
@@ -1584,10 +1578,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 str2 = chat == null ? "" : chat.title;
             }
             TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia2 = (TLRPC$TL_messageMediaPaidMedia) messageObject.messageOwner.media;
-            int i7 = 0;
-            int i8 = 0;
-            for (int i9 = 0; i9 < tLRPC$TL_messageMediaPaidMedia2.extended_media.size(); i9++) {
-                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia2 = tLRPC$TL_messageMediaPaidMedia2.extended_media.get(i9);
+            int i5 = 0;
+            int i6 = 0;
+            for (int i7 = 0; i7 < tLRPC$TL_messageMediaPaidMedia2.extended_media.size(); i7++) {
+                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia2 = tLRPC$TL_messageMediaPaidMedia2.extended_media.get(i7);
                 if (tLRPC$MessageExtendedMedia2 instanceof TLRPC$TL_messageExtendedMediaPreview) {
                     if ((((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia2).flags & 4) != 0) {
                         z = true;
@@ -1600,49 +1594,40 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     z = false;
                 }
                 if (z) {
-                    i7++;
+                    i5++;
                 } else {
-                    i8++;
+                    i6++;
                 }
             }
-            if (i7 == 0) {
-                int i10 = R.string.StarsConfirmPurchaseMedia1;
+            if (i5 == 0) {
+                int i8 = R.string.StarsConfirmPurchaseMediaOne;
                 Object[] objArr = new Object[3];
-                if (i8 == i3) {
-                    formatPluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
-                    i5 = 0;
-                } else {
-                    i5 = 0;
-                    formatPluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i8, new Object[0]);
-                }
-                objArr[i5] = formatPluralString2;
-                objArr[i3] = str2;
-                objArr[2] = LocaleController.formatPluralString("Stars", (int) j2, new Object[i5]);
-                formatString = LocaleController.formatString(i10, objArr);
-            } else if (i8 == 0) {
-                int i11 = R.string.StarsConfirmPurchaseMedia1;
+                objArr[0] = Integer.valueOf((int) j2);
+                objArr[i3] = i6 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
+                objArr[2] = str2;
+                formatString = LocaleController.formatString(i8, objArr);
+            } else if (i6 == 0) {
+                int i9 = R.string.StarsConfirmPurchaseMediaOne;
                 Object[] objArr2 = new Object[3];
-                if (i7 == i3) {
-                    formatPluralString = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
-                    i4 = 0;
-                } else {
-                    i4 = 0;
-                    formatPluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i7, new Object[0]);
-                }
-                objArr2[i4] = formatPluralString;
-                objArr2[i3] = str2;
-                objArr2[2] = LocaleController.formatPluralString("Stars", (int) j2, new Object[i4]);
-                formatString = LocaleController.formatString(i11, objArr2);
+                objArr2[0] = Integer.valueOf((int) j2);
+                objArr2[i3] = i5 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
+                objArr2[2] = str2;
+                formatString = LocaleController.formatString(i9, objArr2);
             } else {
-                int i12 = R.string.StarsConfirmPurchaseMedia2;
+                int i10 = R.string.StarsConfirmPurchaseMediaTwo;
                 Object[] objArr3 = new Object[4];
-                objArr3[0] = i8 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i8, new Object[0]);
-                objArr3[1] = i7 == 1 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i7, new Object[0]);
-                objArr3[2] = str2;
-                objArr3[3] = LocaleController.formatPluralString("Stars", (int) j2, new Object[0]);
-                formatString = LocaleController.formatString(i12, objArr3);
+                objArr3[0] = Integer.valueOf((int) j2);
+                objArr3[i3] = i6 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
+                objArr3[2] = i5 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
+                objArr3[3] = str2;
+                formatString = LocaleController.formatString(i10, objArr3);
             }
             textView2.setText(AndroidUtilities.replaceTags(formatString));
+        } else {
+            Object[] objArr4 = new Object[2];
+            objArr4[0] = str;
+            objArr4[i3] = UserObject.getUserName(user);
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText", (int) j2, objArr4)));
         }
         textView2.setMaxWidth(HintView2.cutInFancyHalf(textView2.getText(), textView2.getPaint()));
         textView2.setGravity(17);

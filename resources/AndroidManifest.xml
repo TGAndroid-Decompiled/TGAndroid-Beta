@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="49119"
-    android:versionName="10.14.2"
+    android:versionCode="49189"
+    android:versionName="10.14.3"
     android:installLocation="auto"
     android:compileSdkVersion="33"
     android:compileSdkVersionCodename="13"
@@ -126,6 +126,18 @@
             <action android:name="android.intent.action.VIEW"/>
             <data android:scheme="ton"/>
         </intent>
+        <package android:name="com.android.chrome"/>
+        <package android:name="org.mozilla.firefox"/>
+        <package android:name="com.microsoft.emmx"/>
+        <package android:name="com.opera.browser"/>
+        <package android:name="com.opera.mini.native"/>
+        <package android:name="com.brave.browser"/>
+        <package android:name="com.duckduckgo.mobile.android"/>
+        <package android:name="com.sec.android.app.sbrowser"/>
+        <package android:name="com.vivaldi.browser"/>
+        <package android:name="com.kiwibrowser.browser"/>
+        <package android:name="com.UCMobile.intl"/>
+        <package android:name="org.torproject.torbrowser"/>
         <intent>
             <action android:name="com.android.vending.billing.InAppBillingService.BIND"/>
         </intent>

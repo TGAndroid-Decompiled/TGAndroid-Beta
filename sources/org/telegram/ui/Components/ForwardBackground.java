@@ -14,6 +14,7 @@ import org.telegram.ui.ActionBar.Theme;
 
 public class ForwardBackground {
     public final ButtonBounce bounce;
+    private LoadingDrawable loadingDrawable;
     private Drawable rippleDrawable;
     private int rippleDrawableColor;
     private final View view;
@@ -117,7 +118,7 @@ public class ForwardBackground {
         this.view.invalidate();
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas, boolean z) {
         canvas.save();
         canvas.clipPath(this.path);
         Drawable drawable = this.rippleDrawable;
@@ -125,6 +126,33 @@ public class ForwardBackground {
             drawable.setBounds(this.bounds);
             this.rippleDrawable.draw(canvas);
         }
+        if (z) {
+            LoadingDrawable loadingDrawable = this.loadingDrawable;
+            if (loadingDrawable == null) {
+                LoadingDrawable loadingDrawable2 = new LoadingDrawable();
+                this.loadingDrawable = loadingDrawable2;
+                loadingDrawable2.setAppearByGradient(true);
+            } else if (loadingDrawable.isDisappeared() || this.loadingDrawable.isDisappearing()) {
+                this.loadingDrawable.reset();
+                this.loadingDrawable.resetDisappear();
+            }
+        } else {
+            LoadingDrawable loadingDrawable3 = this.loadingDrawable;
+            if (loadingDrawable3 != null && !loadingDrawable3.isDisappearing() && !this.loadingDrawable.isDisappeared()) {
+                this.loadingDrawable.disappear();
+            }
+        }
         canvas.restore();
+        LoadingDrawable loadingDrawable4 = this.loadingDrawable;
+        if (loadingDrawable4 == null || loadingDrawable4.isDisappeared()) {
+            return;
+        }
+        this.loadingDrawable.usePath(this.path);
+        this.loadingDrawable.setColors(Theme.multAlpha(this.rippleDrawableColor, 0.7f), Theme.multAlpha(this.rippleDrawableColor, 1.3f), Theme.multAlpha(this.rippleDrawableColor, 1.5f), Theme.multAlpha(this.rippleDrawableColor, 2.0f));
+        this.loadingDrawable.setBounds(this.bounds);
+        canvas.save();
+        this.loadingDrawable.draw(canvas);
+        canvas.restore();
+        this.view.invalidate();
     }
 }

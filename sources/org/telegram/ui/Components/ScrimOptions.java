@@ -483,12 +483,12 @@ public class ScrimOptions extends Dialog {
                 width = Math.min(width, makeStaticLayout.getLineLeft(i6));
                 f6 = Math.max(f6, makeStaticLayout.getLineRight(i6));
             }
-            float min = f + Math.min(primaryHorizontal, lineWidth - Math.max(0.0f, f6 - width));
+            float max = f + Math.max(0.0f, Math.min(primaryHorizontal, lineWidth - Math.max(0.0f, f6 - width)));
             f5 = lineTop;
             i = length;
             i3 = 0;
             rectF = rectF2;
-            f4 = min;
+            f4 = max;
             staticLayout = makeStaticLayout;
         } else {
             f4 = f;

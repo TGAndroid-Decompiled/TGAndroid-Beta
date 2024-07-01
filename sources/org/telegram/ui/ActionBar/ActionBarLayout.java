@@ -404,7 +404,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             for (int i5 = 0; i5 < childCount; i5++) {
                 View childAt2 = getChildAt(i5);
                 if (!(childAt2 instanceof ActionBar)) {
-                    if (childAt2.getFitsSystemWindows()) {
+                    if (childAt2.getFitsSystemWindows() || (childAt2 instanceof BaseFragment.AttachedSheetWindow)) {
                         measureChildWithMargins(childAt2, i, 0, i2, bottomTabsHeight);
                     } else {
                         measureChildWithMargins(childAt2, i, 0, i2, i3 + bottomTabsHeight);
@@ -436,7 +436,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 View childAt2 = getChildAt(i7);
                 if (!(childAt2 instanceof ActionBar)) {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt2.getLayoutParams();
-                    if (childAt2.getFitsSystemWindows()) {
+                    if (childAt2.getFitsSystemWindows() || (childAt2 instanceof BaseFragment.AttachedSheetWindow)) {
                         int i8 = layoutParams.leftMargin;
                         childAt2.layout(i8, layoutParams.topMargin, childAt2.getMeasuredWidth() + i8, layoutParams.topMargin + childAt2.getMeasuredHeight());
                     } else {

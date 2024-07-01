@@ -704,7 +704,9 @@ public class StarsController {
     }
 
     public void openPaymentForm(final MessageObject messageObject, final TLRPC$InputInvoice tLRPC$InputInvoice, final TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars, final Runnable runnable, final Utilities.Callback<String> callback) {
+        long j;
         String str;
+        TLRPC$Peer tLRPC$Peer;
         if (tLRPC$TL_payments_paymentFormStars == null || tLRPC$TL_payments_paymentFormStars.invoice == null || this.paymentFormOpened) {
             return;
         }
@@ -727,15 +729,25 @@ public class StarsController {
             return;
         }
         Iterator<TLRPC$TL_labeledPrice> it = tLRPC$TL_payments_paymentFormStars.invoice.prices.iterator();
-        long j = 0;
+        long j2 = 0;
         while (it.hasNext()) {
-            j += it.next().amount;
+            j2 += it.next().amount;
         }
-        long j2 = tLRPC$TL_payments_paymentFormStars.bot_id;
-        if (j2 >= 0) {
-            str = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2)));
+        if (messageObject != null && messageObject.type == 29) {
+            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
+                j = DialogObject.getPeerDialogId(tLRPC$Peer);
+            } else {
+                j = messageObject.getDialogId();
+            }
         } else {
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j2));
+            j = tLRPC$TL_payments_paymentFormStars.bot_id;
+        }
+        long j3 = j;
+        if (j3 >= 0) {
+            str = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)));
+        } else {
+            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
             str = chat == null ? "" : chat.title;
         }
         final String str2 = str;
@@ -744,11 +756,11 @@ public class StarsController {
             runnable.run();
         }
         final boolean[] zArr = {false};
-        final long j3 = j;
-        StarsIntroActivity.openConfirmPurchaseSheet(context2, resourceProvider, this.currentAccount, messageObject, j2, str3, j, tLRPC$TL_payments_paymentFormStars.photo, new Utilities.Callback() {
+        final long j4 = j2;
+        StarsIntroActivity.openConfirmPurchaseSheet(context2, resourceProvider, this.currentAccount, messageObject, j3, str3, j2, tLRPC$TL_payments_paymentFormStars.photo, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarsController.this.lambda$openPaymentForm$28(j3, zArr, callback, context2, resourceProvider, str2, messageObject, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, (Utilities.Callback) obj);
+                StarsController.this.lambda$openPaymentForm$28(j4, zArr, callback, context2, resourceProvider, str2, messageObject, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, (Utilities.Callback) obj);
             }
         }, new Runnable() {
             @Override
@@ -937,6 +949,10 @@ public class StarsController {
                 global.createSimpleBulletin(mutate, LocaleController.getString(R.string.StarsMediaPurchaseCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsMediaPurchaseCompletedInfo", (int) j, str))).show();
             } else {
                 global.createSimpleBulletin(mutate, LocaleController.getString(R.string.StarsPurchaseCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsPurchaseCompletedInfo", (int) j, str2, str))).show();
+            }
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity != null && launchActivity.getFireworksOverlay() != null) {
+                LaunchActivity.instance.getFireworksOverlay().start();
             }
             invalidateTransactions(true);
             if (messageObject != null) {

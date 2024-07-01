@@ -116,25 +116,31 @@ public class BottomSheetTabs extends FrameLayout {
         };
         if (webTabData.needsContext && (!z || ((ChatActivity) lastFragment).getDialogId() != webTabData.props.botId)) {
             final ChatActivity of = ChatActivity.of(webTabData.props.botId);
-            lastFragment.presentFragment(of);
-            AndroidUtilities.runOnUIThread(new Runnable() {
+            of.whenFullyVisible(new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(of);
                 }
-            }, 200L);
+            });
+            lastFragment.presentFragment(of);
             return;
         }
         callback.run(lastFragment);
     }
 
     public void lambda$openTab$1(WebTabData webTabData, boolean z, BaseFragment baseFragment) {
+        if (baseFragment == null) {
+            return;
+        }
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
             if (chatActivity.getChatActivityEnterView() != null) {
                 chatActivity.getChatActivityEnterView().closeKeyboard();
                 chatActivity.getChatActivityEnterView().hidePopup(true, false);
             }
+        }
+        if (baseFragment.getContext() == null) {
+            return;
         }
         if (AndroidUtilities.isTablet()) {
             BotWebViewSheet botWebViewSheet = new BotWebViewSheet(baseFragment.getContext(), baseFragment.getResourceProvider());
@@ -146,6 +152,7 @@ public class BottomSheetTabs extends FrameLayout {
             }
             return;
         }
+        LaunchActivity.instance.getBottomSheetTabsOverlay();
         BotWebViewAttachedSheet createBotViewer = baseFragment.createBotViewer();
         createBotViewer.setParentActivity(baseFragment.getParentActivity());
         if (createBotViewer.restoreState(baseFragment, webTabData)) {
@@ -508,7 +515,7 @@ public class BottomSheetTabs extends FrameLayout {
                     getTabBounds(this.rect, position);
                     tabDrawable.setExpandProgress(0.0f);
                     tabDrawable.setBackgroundColor(i, f > 0.5f);
-                    tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(10.0f), alpha);
+                    tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(10.0f), alpha, 1.0f);
                 }
             }
         }
@@ -627,11 +634,10 @@ public class BottomSheetTabs extends FrameLayout {
             this.expandProgress = f;
         }
 
-        public void draw(Canvas canvas, RectF rectF, float f, float f2) {
+        public void draw(Canvas canvas, RectF rectF, float f, float f2, float f3) {
             this.backgroundPaint.setColor(ColorUtils.blendARGB(this.backgroundColor, this.tabColor, this.expandProgress));
-            float f3 = 255.0f * f2;
-            int i = (int) f3;
-            this.backgroundPaint.setAlpha(i);
+            float f4 = 255.0f * f2;
+            this.backgroundPaint.setAlpha((int) f4);
             this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(1.0f), Theme.multAlpha(268435456, f2));
             float[] fArr = this.radii;
             fArr[3] = f;
@@ -663,19 +669,20 @@ public class BottomSheetTabs extends FrameLayout {
             canvas.restore();
             canvas.save();
             canvas.translate(rectF.left + AndroidUtilities.dp(18.0f), rectF.centerY() - AndroidUtilities.dp(6.0f));
-            this.iconPaint.setAlpha(i);
+            float f5 = f4 * f3;
+            this.iconPaint.setAlpha((int) f5);
             canvas.drawPath(this.closePath, this.iconPaint);
             canvas.restore();
             canvas.save();
             canvas.translate(rectF.right - AndroidUtilities.dp(30.66f), rectF.centerY());
-            this.iconPaint.setAlpha((int) (f3 * (1.0f - this.expandProgress)));
+            this.iconPaint.setAlpha((int) (f5 * (1.0f - this.expandProgress)));
             canvas.drawPath(this.expandPath, this.iconPaint);
             canvas.restore();
             Text text = this.overrideTitle;
             if (text != null) {
-                text.ellipsize((int) (rectF.width() - AndroidUtilities.dp(100.0f))).draw(canvas, AndroidUtilities.dp(60.0f) + rectF.left, rectF.centerY(), blendARGB, (1.0f - this.expandProgress) * f2);
+                text.ellipsize((int) (rectF.width() - AndroidUtilities.dp(100.0f))).draw(canvas, AndroidUtilities.dp(60.0f) + rectF.left, rectF.centerY(), blendARGB, (1.0f - this.expandProgress) * f2 * f3);
             }
-            this.title.ellipsize((int) (rectF.width() - AndroidUtilities.dp(100.0f))).draw(canvas, AndroidUtilities.dp(60.0f) + rectF.left, rectF.centerY(), blendARGB, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2);
+            this.title.ellipsize((int) (rectF.width() - AndroidUtilities.dp(100.0f))).draw(canvas, AndroidUtilities.dp(60.0f) + rectF.left, rectF.centerY(), blendARGB, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2 * f3);
         }
     }
 

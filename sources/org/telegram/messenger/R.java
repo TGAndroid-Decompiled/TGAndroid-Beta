@@ -10355,8 +10355,8 @@ public final class R {
         public static final int StarsBalance = 0x7f0f1c9c;
         public static final int StarsConfirmPurchaseButton_one = 0x7f0f1c9d;
         public static final int StarsConfirmPurchaseButton_other = 0x7f0f1c9e;
-        public static final int StarsConfirmPurchaseMedia1 = 0x7f0f1c9f;
-        public static final int StarsConfirmPurchaseMedia2 = 0x7f0f1ca0;
+        public static final int StarsConfirmPurchaseMediaOne = 0x7f0f1c9f;
+        public static final int StarsConfirmPurchaseMediaTwo = 0x7f0f1ca0;
         public static final int StarsConfirmPurchaseMedia_Photos_one = 0x7f0f1ca1;
         public static final int StarsConfirmPurchaseMedia_Photos_other = 0x7f0f1ca2;
         public static final int StarsConfirmPurchaseMedia_SinglePhoto = 0x7f0f1ca3;

@@ -27,9 +27,9 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.TLRPC$TL_messages_getInlineBotResults;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_BotResults;
-import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 
-public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdapter {
+public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
     public final boolean biz;
     private int currentRequestNum;
     private BaseLocationAdapterDelegate delegate;
@@ -74,7 +74,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
             this.places.clear();
             this.locations.clear();
             this.searchInProgress = false;
-            notifyDataSetChanged();
+            update(true);
             return;
         }
         if (this.searchRunnable != null) {
@@ -247,7 +247,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                         BaseLocationAdapter.this.lambda$searchPlacesWithQuery$7(str, tLObject, tLRPC$TL_error);
                     }
                 });
-                notifyDataSetChanged();
+                update(true);
             }
         }
     }
@@ -267,7 +267,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         }
         this.locations.clear();
         this.locations.addAll(arrayList);
-        notifyDataSetChanged();
+        update(true);
     }
 
     public void lambda$searchPlacesWithQuery$7(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -313,6 +313,10 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         if (baseLocationAdapterDelegate != null) {
             baseLocationAdapterDelegate.didLoadSearchResult(this.places);
         }
+        update(true);
+    }
+
+    protected void update(boolean z) {
         notifyDataSetChanged();
     }
 }

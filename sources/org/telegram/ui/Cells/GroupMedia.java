@@ -392,7 +392,6 @@ public class GroupMedia {
     }
 
     public void drawImages(Canvas canvas, boolean z) {
-        float progress;
         float f = this.animatedHidden.set(this.hidden);
         MessageObject messageObject = this.cell.getMessageObject();
         this.clipPath2.rewind();
@@ -427,21 +426,14 @@ public class GroupMedia {
             mediaHolder.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
             float f7 = f2;
             mediaHolder.radialProgress.setProgressRect(mediaHolder.imageReceiver.getImageX() + ((mediaHolder.imageReceiver.getImageWidth() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageY() + ((mediaHolder.imageReceiver.getImageHeight() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageX() + (mediaHolder.imageReceiver.getImageWidth() / 2.0f) + mediaHolder.radialProgress.getRadius(), mediaHolder.imageReceiver.getImageY() + (mediaHolder.imageReceiver.getImageHeight() / 2.0f) + mediaHolder.radialProgress.getRadius());
-            int i7 = 3;
             if (messageObject.isSending()) {
                 SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(messageObject.currentAccount);
                 long[] fileProgressSizes = ImageLoader.getInstance().getFileProgressSizes(mediaHolder.attachPath);
-                boolean isSendingMessage = sendMessagesHelper.isSendingMessage(messageObject.getId());
-                if (fileProgressSizes == null && isSendingMessage) {
-                    progress = 1.0f;
-                } else {
-                    progress = fileProgressSizes != null ? DownloadController.getProgress(fileProgressSizes) : 0.0f;
+                boolean isSendingPaidMessage = sendMessagesHelper.isSendingPaidMessage(messageObject.getId(), i);
+                if (fileProgressSizes == null && isSendingPaidMessage) {
+                    mediaHolder.radialProgress.setProgress(1.0f, true);
+                    mediaHolder.setIcon(mediaHolder.album ? 6 : mediaHolder.getDefaultIcon());
                 }
-                mediaHolder.radialProgress.setProgress(progress, false);
-                if (!isSendingMessage || progress >= 1.0f) {
-                    i7 = mediaHolder.album ? 6 : mediaHolder.getDefaultIcon();
-                }
-                mediaHolder.setIcon(i7);
             } else if (FileLoader.getInstance(messageObject.currentAccount).isLoadingFile(mediaHolder.filename)) {
                 mediaHolder.setIcon(3);
             } else {
@@ -457,26 +449,26 @@ public class GroupMedia {
             canvas.save();
             canvas.clipPath(this.clipPath2);
             canvas.translate(f4, f5);
-            int i8 = (int) (f2 - f4);
-            int i9 = (int) (f3 - f5);
-            canvas.saveLayerAlpha(0.0f, 0.0f, i8, i9, (int) (255.0f * f), 31);
-            this.spoilerEffect.draw(canvas, this.cell, i8, i9, 1.0f);
+            int i7 = (int) (f2 - f4);
+            int i8 = (int) (f3 - f5);
+            canvas.saveLayerAlpha(0.0f, 0.0f, i7, i8, (int) (255.0f * f), 31);
+            this.spoilerEffect.draw(canvas, this.cell, i7, i8, 1.0f);
             canvas.restore();
             canvas.restore();
             this.cell.invalidate();
         }
-        for (int i10 = 0; i10 < this.holders.size(); i10++) {
-            MediaHolder mediaHolder2 = this.holders.get(i10);
+        for (int i9 = 0; i9 < this.holders.size(); i9++) {
+            MediaHolder mediaHolder2 = this.holders.get(i9);
             if (mediaHolder2.durationText != null) {
                 float dp = AndroidUtilities.dp(11.4f) + mediaHolder2.durationText.getCurrentWidth();
                 float dp2 = AndroidUtilities.dp(17.0f);
                 float dp3 = AndroidUtilities.dp(5.0f);
                 RectF rectF2 = this.clipRect;
-                int i11 = this.x;
-                int i12 = mediaHolder2.l;
-                int i13 = this.y;
-                int i14 = mediaHolder2.t;
-                rectF2.set(i11 + i12 + dp3, i13 + i14 + dp3, i11 + i12 + dp3 + dp, i13 + i14 + dp3 + dp2);
+                int i10 = this.x;
+                int i11 = mediaHolder2.l;
+                int i12 = this.y;
+                int i13 = mediaHolder2.t;
+                rectF2.set(i10 + i11 + dp3, i12 + i13 + dp3, i10 + i11 + dp3 + dp, i12 + i13 + dp3 + dp2);
                 if (this.priceText == null || this.clipRect.right <= ((this.x + this.width) - (AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth())) - dp3 || this.clipRect.top > this.y + dp3) {
                     this.clipPath.rewind();
                     float f8 = dp2 / 2.0f;

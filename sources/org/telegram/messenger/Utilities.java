@@ -538,6 +538,10 @@ public class Utilities {
         return Float.isNaN(f) ? f3 : Float.isInfinite(f) ? f2 : Math.max(Math.min(f, f2), f3);
     }
 
+    public static float clamp01(float f) {
+        return clamp(f, 1.0f, 0.0f);
+    }
+
     public static double clamp(double d, double d2, double d3) {
         return Double.isNaN(d) ? d3 : Double.isInfinite(d) ? d2 : Math.max(Math.min(d, d2), d3);
     }

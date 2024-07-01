@@ -143,6 +143,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private Theme.ResourcesProvider resourcesProvider;
     private int shownDialogsCount;
     private final int tag;
+    private boolean wasOpenedByLinkIntent;
     private MyWebView webView;
     private boolean webViewNotAvailable;
     private TextView webViewNotAvailableText;
@@ -405,31 +406,25 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void onOpenUri(Uri uri) {
-        onOpenUri(uri, false, false);
+        onOpenUri(uri, null, false, false);
     }
 
-    private void onOpenUri(Uri uri, boolean z, boolean z2) {
+    private void onOpenUri(Uri uri, String str, boolean z, boolean z2) {
         if (this.isRequestingPageOpen) {
             return;
         }
         if (System.currentTimeMillis() - this.lastClickMs <= 1000 || !z2) {
             this.lastClickMs = 0L;
             boolean[] zArr = {false};
-            if (Browser.isInternalUri(uri, zArr) && !zArr[0]) {
-                if (this.delegate != null) {
-                    setDescendantFocusability(393216);
-                    setFocusable(false);
-                    this.webView.setFocusable(false);
-                    this.webView.setDescendantFocusability(393216);
-                    this.webView.clearFocus();
-                    ((InputMethodManager) getContext().getSystemService("input_method")).hideSoftInputFromWindow(getWindowToken(), 2);
-                    Browser.openUrl(getContext(), uri, true, z);
-                    return;
-                }
-                Browser.openUrl(getContext(), uri, true, z);
-                return;
+            if (Browser.isInternalUri(uri, zArr) && !zArr[0] && this.delegate != null) {
+                setDescendantFocusability(393216);
+                setFocusable(false);
+                this.webView.setFocusable(false);
+                this.webView.setDescendantFocusability(393216);
+                this.webView.clearFocus();
+                ((InputMethodManager) getContext().getSystemService("input_method")).hideSoftInputFromWindow(getWindowToken(), 2);
             }
-            Browser.openUrl(getContext(), uri, true, z);
+            Browser.openUrl(getContext(), uri, true, z, false, null, str);
         }
     }
 
@@ -1037,6 +1032,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (myWebView != null) {
             myWebView.setContainers(this, webViewScrollListener);
         }
+    }
+
+    public void setWasOpenedByLinkIntent(boolean z) {
+        this.wasOpenedByLinkIntent = z;
     }
 
     public void setDelegate(Delegate delegate) {

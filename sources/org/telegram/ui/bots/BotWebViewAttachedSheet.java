@@ -128,6 +128,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     private BackDrawable backDrawable;
     private long botId;
     private String buttonText;
+    private final Context context;
     private int currentAccount;
     private boolean dismissed;
     private boolean forceExpnaded;
@@ -428,11 +429,12 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     public Context getContext() {
-        return this.fragment.getContext();
+        return this.context;
     }
 
     public BotWebViewAttachedSheet(BaseFragment baseFragment) {
         this.fragment = baseFragment;
+        this.context = baseFragment.getContext();
         this.resourcesProvider = baseFragment.getResourceProvider();
         Context context = getContext();
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
@@ -948,6 +950,13 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
+    public void setWasOpenedByLinkIntent(boolean z) {
+        BotWebViewContainer botWebViewContainer = this.webViewContainer;
+        if (botWebViewContainer != null) {
+            botWebViewContainer.setWasOpenedByLinkIntent(z);
+        }
+    }
+
     public void setNeedsContext(boolean z) {
         this.needsContext = z;
     }
@@ -1443,18 +1452,24 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     public void show(boolean z) {
+        show(z, false);
+    }
+
+    public void show(boolean z, boolean z2) {
         if (AndroidUtilities.isSafeToShow(getContext())) {
             this.windowView.setAlpha(0.0f);
-            this.windowView.addOnLayoutChangeListener(new AnonymousClass10(z));
+            this.windowView.addOnLayoutChangeListener(new AnonymousClass10(z, z2));
             attachInternal();
         }
     }
 
     public class AnonymousClass10 implements View.OnLayoutChangeListener {
+        final boolean val$instant;
         final boolean val$lowBounce;
 
-        AnonymousClass10(boolean z) {
+        AnonymousClass10(boolean z, boolean z2) {
             this.val$lowBounce = z;
+            this.val$instant = z2;
         }
 
         @Override
@@ -1473,7 +1488,15 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             }
             BotWebViewAttachedSheet botWebViewAttachedSheet2 = BotWebViewAttachedSheet.this;
             if (botWebViewAttachedSheet2.showExpanded || botWebViewAttachedSheet2.getFullSize()) {
-                BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$10$$ExternalSyntheticLambda1(animationNotificationsLocker));
+                if (this.val$instant) {
+                    BotWebViewAttachedSheet.this.swipeContainer.setSwipeOffsetY((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY());
+                    animationNotificationsLocker.unlock();
+                } else {
+                    BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$10$$ExternalSyntheticLambda1(animationNotificationsLocker));
+                }
+            } else if (this.val$instant) {
+                BotWebViewAttachedSheet.this.swipeContainer.setSwipeOffsetY(0.0f);
+                animationNotificationsLocker.unlock();
             } else {
                 new SpringAnimation(BotWebViewAttachedSheet.this.swipeContainer, ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.SWIPE_OFFSET_Y, 0.0f).setSpring(new SpringForce(0.0f).setDampingRatio(this.val$lowBounce ? 1.0f : 0.75f).setStiffness(this.val$lowBounce ? 800.0f : 500.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
@@ -1642,7 +1665,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         launchActivity.checkSystemBarColors(true, true, true, false);
     }
 
-    public class WindowView extends SizeNotifierFrameLayout {
+    public class WindowView extends SizeNotifierFrameLayout implements BaseFragment.AttachedSheetWindow {
         private final Path clipPath;
         private boolean drawingFromOverlay;
         private final Paint navbarPaint;
@@ -1789,19 +1812,50 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             }
         }
 
-        public float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2) {
-            this.rect.set(BotWebViewAttachedSheet.this.swipeContainer.getLeft(), BotWebViewAttachedSheet.this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f), BotWebViewAttachedSheet.this.swipeContainer.getRight(), getHeight());
+        public RectF getRect() {
+            this.rect.set(BotWebViewAttachedSheet.this.swipeContainer.getLeft(), AndroidUtilities.lerp(BotWebViewAttachedSheet.this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f), 0.0f, BotWebViewAttachedSheet.this.actionBarTransitionProgress), BotWebViewAttachedSheet.this.swipeContainer.getRight(), getHeight());
+            return this.rect;
+        }
+
+        public float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z) {
+            this.rect.set(BotWebViewAttachedSheet.this.swipeContainer.getLeft(), AndroidUtilities.lerp(BotWebViewAttachedSheet.this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f), 0.0f, BotWebViewAttachedSheet.this.actionBarTransitionProgress), BotWebViewAttachedSheet.this.swipeContainer.getRight(), getHeight());
             AndroidUtilities.lerpCentered(this.rect, rectF, f, rectF2);
             canvas.save();
             this.clipPath.rewind();
             float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(16.0f) * (AndroidUtilities.isTablet() ? 1.0f : 1.0f - BotWebViewAttachedSheet.this.actionBarTransitionProgress), AndroidUtilities.dp(10.0f), f);
-            this.clipPath.addRoundRect(rectF2, lerp, lerp, Path.Direction.CW);
+            this.rect.set(rectF2);
+            if (z) {
+                this.rect.top -= AndroidUtilities.dp(16.0f) * (1.0f - BotWebViewAttachedSheet.this.actionBarTransitionProgress);
+            }
+            this.clipPath.addRoundRect(this.rect, lerp, lerp, Path.Direction.CW);
             canvas.clipPath(this.clipPath);
+            if (!BotWebViewAttachedSheet.this.overrideBackgroundColor) {
+                BotWebViewAttachedSheet.this.backgroundPaint.setColor(BotWebViewAttachedSheet.this.getColor(Theme.key_windowBackgroundWhite));
+            }
+            int alpha = BotWebViewAttachedSheet.this.backgroundPaint.getAlpha();
+            BotWebViewAttachedSheet.this.backgroundPaint.setAlpha((int) (alpha * f2));
             canvas.drawPaint(BotWebViewAttachedSheet.this.backgroundPaint);
+            BotWebViewAttachedSheet.this.backgroundPaint.setAlpha(alpha);
             if (BotWebViewAttachedSheet.this.swipeContainer != null) {
                 canvas.save();
-                canvas.translate(BotWebViewAttachedSheet.this.swipeContainer.getX(), Math.max(BotWebViewAttachedSheet.this.swipeContainer.getY(), rectF2.top) + (f * AndroidUtilities.dp(51.0f)));
+                canvas.translate(BotWebViewAttachedSheet.this.swipeContainer.getX(), Math.max(BotWebViewAttachedSheet.this.swipeContainer.getY(), rectF2.top) + (z ? AndroidUtilities.lerp(AndroidUtilities.dp(16.0f), BotWebViewAttachedSheet.this.actionBar.getHeight(), BotWebViewAttachedSheet.this.actionBarTransitionProgress) * (1.0f - f2) : AndroidUtilities.dp(51.0f) * f));
+                if (z) {
+                    canvas.scale(1.0f, AndroidUtilities.lerp(1.0f, 1.25f, 1.0f - f2));
+                    BotWebViewAttachedSheet.this.swipeContainer.setAlpha(f2);
+                }
                 BotWebViewAttachedSheet.this.swipeContainer.draw(canvas);
+                if (z) {
+                    BotWebViewAttachedSheet.this.swipeContainer.setAlpha(1.0f);
+                }
+                canvas.restore();
+            }
+            if (z && BotWebViewAttachedSheet.this.actionBar != null && BotWebViewAttachedSheet.this.actionBarTransitionProgress > 0.0f) {
+                canvas.saveLayerAlpha(BotWebViewAttachedSheet.this.actionBar.getX(), BotWebViewAttachedSheet.this.actionBar.getY() + rectF2.top, BotWebViewAttachedSheet.this.actionBar.getX() + BotWebViewAttachedSheet.this.actionBar.getWidth(), BotWebViewAttachedSheet.this.actionBar.getY() + rectF2.top + BotWebViewAttachedSheet.this.actionBar.getHeight() + BotWebViewAttachedSheet.this.actionBarShadow.getIntrinsicHeight(), (int) (f2 * 255.0f * BotWebViewAttachedSheet.this.actionBarTransitionProgress), 31);
+                canvas.translate(BotWebViewAttachedSheet.this.actionBar.getX(), BotWebViewAttachedSheet.this.actionBar.getY() + rectF2.top);
+                BotWebViewAttachedSheet.this.actionBar.draw(canvas);
+                BotWebViewAttachedSheet.this.actionBarShadow.setAlpha(255);
+                BotWebViewAttachedSheet.this.actionBarShadow.setBounds(0, BotWebViewAttachedSheet.this.actionBar.getHeight(), BotWebViewAttachedSheet.this.actionBar.getWidth(), BotWebViewAttachedSheet.this.actionBar.getHeight() + BotWebViewAttachedSheet.this.actionBarShadow.getIntrinsicHeight());
+                BotWebViewAttachedSheet.this.actionBarShadow.draw(canvas);
                 canvas.restore();
             }
             canvas.restore();
