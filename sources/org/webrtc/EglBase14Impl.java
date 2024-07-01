@@ -14,7 +14,7 @@ import org.webrtc.EglBase;
 import org.webrtc.EglBase14;
 
 @TargetApi(18)
-public class EglBase14Impl implements EglBase14 {
+class EglBase14Impl implements EglBase14 {
     private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
     private static final int EGLExt_SDK_VERSION = 18;
     private static final String TAG = "EglBase14Impl";

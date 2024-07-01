@@ -4576,7 +4576,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         this.view_forum_as_messages = (readInt322 & 64) != 0;
                         this.restricted_sponsored = (readInt322 & 2048) != 0;
                         this.can_view_revenue = (readInt322 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.can_view_stars_revenue = (this.flags & LiteMode.FLAG_CHAT_SCALE) != 0;
+                        this.can_view_stars_revenue = (readInt322 & LiteMode.FLAG_CHAT_SCALE) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
                         this.about = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {

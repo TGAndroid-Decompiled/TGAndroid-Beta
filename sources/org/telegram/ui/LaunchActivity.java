@@ -788,7 +788,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         checkLayout();
         checkSystemBarColors();
-        handleIntent(getIntent(), false, bundle != null, false, null, false, true);
+        handleIntent(getIntent(), false, bundle != null, false, null, true, true);
         try {
             String str = Build.DISPLAY;
             String str2 = Build.USER;

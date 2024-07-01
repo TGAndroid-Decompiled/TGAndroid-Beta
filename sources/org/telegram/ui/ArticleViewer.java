@@ -3074,7 +3074,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             webpageAdapterArr[i] = webpageAdapter;
             this.listView[i] = new RecyclerListView(activity) {
                 @Override
-                public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                     super.onLayout(z, i2, i3, i4, i5);
                     int childCount = getChildCount();
                     for (int i6 = 0; i6 < childCount; i6++) {
@@ -3123,7 +3123,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public void dispatchDraw(Canvas canvas) {
+                protected void dispatchDraw(Canvas canvas) {
                     ArticleViewer.this.checkVideoPlayer();
                     super.dispatchDraw(canvas);
                 }
