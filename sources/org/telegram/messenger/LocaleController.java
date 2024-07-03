@@ -1843,7 +1843,10 @@ public class LocaleController {
                         str3 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localeValues.get(str + "_other") : null;
                     }
                     if (str3 == null) {
-                        str3 = ApplicationLoader.applicationContext.getString(ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()));
+                        try {
+                            str3 = ApplicationLoader.applicationContext.getString(ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()));
+                        } catch (Exception unused) {
+                        }
                     }
                     if (str3 == null) {
                         str3 = ApplicationLoader.applicationContext.getString(ApplicationLoader.applicationContext.getResources().getIdentifier(str + "_other", "string", ApplicationLoader.applicationContext.getPackageName()));

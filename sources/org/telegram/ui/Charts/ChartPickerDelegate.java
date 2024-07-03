@@ -288,6 +288,12 @@ public class ChartPickerDelegate {
         return true;
     }
 
+    public void set(float f, float f2) {
+        this.pickerStart = f;
+        this.pickerEnd = f2;
+        this.view.onPickerDataChanged();
+    }
+
     public boolean uncapture(MotionEvent motionEvent, int i) {
         final float f;
         final float f2;

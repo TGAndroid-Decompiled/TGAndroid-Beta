@@ -346,10 +346,6 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         if (backDrawable != null) {
             backDrawable.setRotation(this.backButtonShown ? 0.0f : 1.0f, false);
         }
-        ActionBarMenuSubItem actionBarMenuSubItem = this.settingsItem;
-        if (actionBarMenuSubItem != null) {
-            actionBarMenuSubItem.setVisibility(webTabData.settings ? 0 : 8);
-        }
         MainButtonSettings mainButtonSettings = webTabData.main;
         if (mainButtonSettings != null) {
             setMainButton(mainButtonSettings);
@@ -384,6 +380,10 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             webViewRequestProps2.responseTime = 0L;
         }
         requestWebView(baseFragment, webTabData.props);
+        ActionBarMenuSubItem actionBarMenuSubItem = this.settingsItem;
+        if (actionBarMenuSubItem != null) {
+            actionBarMenuSubItem.setVisibility(webTabData.settings ? 0 : 8);
+        }
         return true;
     }
 

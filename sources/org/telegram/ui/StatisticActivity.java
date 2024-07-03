@@ -1917,13 +1917,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     int i4 = 0;
                     int i5 = 0;
                     for (int i6 = 0; i6 < childCount; i6++) {
-                        if (getChildAt(i6).getMeasuredWidth() + i5 > size) {
-                            i4 += getChildAt(i6).getMeasuredHeight();
-                            i5 = 0;
+                        if (getChildAt(i6).getMeasuredWidth() + i4 > size) {
+                            i5 += getChildAt(i6).getMeasuredHeight();
+                            i4 = 0;
                         }
-                        i5 += getChildAt(i6).getMeasuredWidth();
+                        i4 += getChildAt(i6).getMeasuredWidth();
                     }
-                    setMeasuredDimension(getMeasuredWidth(), measuredHeight + i4 + AndroidUtilities.dp(16.0f));
+                    setMeasuredDimension(getMeasuredWidth(), getChildCount() != 0 ? measuredHeight + i5 + AndroidUtilities.dp(16.0f) : 0);
                 }
 
                 @Override
@@ -2305,7 +2305,9 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             if (!z) {
                 this.progressView.setVisibility(8);
             }
-            this.chartView.setData(chartViewData.chartData);
+            if (this.chartView.setData(chartViewData.chartData) && chartViewData.showAll) {
+                this.chartView.pickerDelegate.set(0.0f, 1.0f);
+            }
             this.chartHeaderView.setUseWeekInterval(chartViewData.useWeekFormat);
             this.chartView.legendSignatureView.setUseWeek(chartViewData.useWeekFormat);
             LegendSignatureView legendSignatureView2 = this.chartView.legendSignatureView;
@@ -2513,6 +2515,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         public boolean isError;
         boolean isLanguages;
         boolean loading;
+        public boolean showAll;
         final String title;
         String token;
         boolean useHourFormat;

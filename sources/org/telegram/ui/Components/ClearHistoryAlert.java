@@ -1,20 +1,16 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.core.widget.NestedScrollView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
-import org.telegram.ui.Components.SlideChooseView;
 
 public class ClearHistoryAlert extends BottomSheet {
     private boolean autoDeleteOnly;
@@ -89,91 +85,6 @@ public class ClearHistoryAlert extends BottomSheet {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ClearHistoryAlert.<init>(android.content.Context, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    public class AnonymousClass1 extends NestedScrollView {
-        private boolean ignoreLayout;
-
-        AnonymousClass1(Context context) {
-            super(context);
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            if (motionEvent.getAction() == 0 && ClearHistoryAlert.this.scrollOffsetY != 0 && motionEvent.getY() < ClearHistoryAlert.this.scrollOffsetY) {
-                ClearHistoryAlert.this.dismiss();
-                return true;
-            }
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            return !ClearHistoryAlert.this.isDismissed() && super.onTouchEvent(motionEvent);
-        }
-
-        @Override
-        public void setTranslationY(float f) {
-            super.setTranslationY(f);
-            ClearHistoryAlert.this.updateLayout();
-        }
-
-        @Override
-        public void onMeasure(int i, int i2) {
-            int size = View.MeasureSpec.getSize(i2);
-            measureChildWithMargins(ClearHistoryAlert.this.linearLayout, i, 0, i2, 0);
-            int measuredHeight = ClearHistoryAlert.this.linearLayout.getMeasuredHeight();
-            int i3 = (size / 5) * 3;
-            int i4 = size - i3;
-            if (ClearHistoryAlert.this.autoDeleteOnly || measuredHeight - i4 < AndroidUtilities.dp(90.0f) || measuredHeight < (size / 2) + AndroidUtilities.dp(90.0f) || i4 < (measuredHeight = (measuredHeight / 2) + AndroidUtilities.dp(108.0f))) {
-                i3 = size - measuredHeight;
-            }
-            if (getPaddingTop() != i3) {
-                this.ignoreLayout = true;
-                setPadding(0, i3, 0, 0);
-                this.ignoreLayout = false;
-            }
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        }
-
-        @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            ClearHistoryAlert.this.updateLayout();
-        }
-
-        @Override
-        public void requestLayout() {
-            if (this.ignoreLayout) {
-                return;
-            }
-            super.requestLayout();
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            int scrollY = (int) (((ClearHistoryAlert.this.scrollOffsetY - ((BottomSheet) ClearHistoryAlert.this).backgroundPaddingTop) + getScrollY()) - getTranslationY());
-            ClearHistoryAlert.this.shadowDrawable.setBounds(0, scrollY, getMeasuredWidth(), ClearHistoryAlert.this.linearLayout.getMeasuredHeight() + scrollY + ((BottomSheet) ClearHistoryAlert.this).backgroundPaddingTop + AndroidUtilities.dp(19.0f));
-            ClearHistoryAlert.this.shadowDrawable.draw(canvas);
-        }
-
-        @Override
-        public void onScrollChanged(int i, int i2, int i3, int i4) {
-            super.onScrollChanged(i, i2, i3, i4);
-            ClearHistoryAlert.this.updateLayout();
-        }
-    }
-
-    public class AnonymousClass2 extends LinearLayout {
-        AnonymousClass2(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            ClearHistoryAlert.this.updateLayout();
-        }
-    }
-
     public static void lambda$new$0(boolean[] zArr, View view) {
         zArr[0] = !zArr[0];
         ((CheckBoxCell) view).setChecked(zArr[0], true);
@@ -187,25 +98,6 @@ public class ClearHistoryAlert extends BottomSheet {
         CheckBoxCell checkBoxCell = this.cell;
         clearHistoryAlertDelegate.onClearHistory(checkBoxCell != null && checkBoxCell.isChecked());
         dismiss();
-    }
-
-    public class AnonymousClass3 implements SlideChooseView.Callback {
-        final NestedScrollView val$scrollView;
-
-        AnonymousClass3(NestedScrollView nestedScrollView) {
-            r2 = nestedScrollView;
-        }
-
-        @Override
-        public void onOptionSelected(int i) {
-            ClearHistoryAlert.this.newTimer = i;
-            ClearHistoryAlert.this.updateTimerButton(true);
-        }
-
-        @Override
-        public void onTouchEnd() {
-            r2.smoothScrollTo(0, ClearHistoryAlert.this.linearLayout.getMeasuredHeight());
-        }
     }
 
     public void lambda$new$2(View view) {

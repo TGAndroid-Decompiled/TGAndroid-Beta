@@ -991,7 +991,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         return j;
     }
 
-    public void setData(T t) {
+    public boolean setData(T t) {
+        boolean z = false;
         if (this.chartData != t) {
             invalidate();
             this.lines.clear();
@@ -1023,6 +1024,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                     }
                 }
             }
+            z = true;
         }
         measureSizes();
         if (t != null) {
@@ -1039,23 +1041,24 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             }
             this.invalidatePickerChart = true;
             updateLineSignature();
-            return;
+        } else {
+            ChartPickerDelegate chartPickerDelegate3 = this.pickerDelegate;
+            chartPickerDelegate3.pickerStart = 0.7f;
+            chartPickerDelegate3.pickerEnd = 1.0f;
+            this.pickerMinHeight = 0.0f;
+            this.pickerMaxHeight = 0.0f;
+            this.horizontalLines.clear();
+            Animator animator = this.maxValueAnimator;
+            if (animator != null) {
+                animator.cancel();
+            }
+            ValueAnimator valueAnimator = this.alphaAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.alphaAnimator.cancel();
+            }
         }
-        ChartPickerDelegate chartPickerDelegate3 = this.pickerDelegate;
-        chartPickerDelegate3.pickerStart = 0.7f;
-        chartPickerDelegate3.pickerEnd = 1.0f;
-        this.pickerMinHeight = 0.0f;
-        this.pickerMaxHeight = 0.0f;
-        this.horizontalLines.clear();
-        Animator animator = this.maxValueAnimator;
-        if (animator != null) {
-            animator.cancel();
-        }
-        ValueAnimator valueAnimator = this.alphaAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.alphaAnimator.cancel();
-        }
+        return z;
     }
 
     protected float getMinDistance() {

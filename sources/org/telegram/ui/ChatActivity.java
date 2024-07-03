@@ -109,6 +109,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.IDN;
+import java.net.URLDecoder;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1121,6 +1123,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private int startLoadFromMessageId;
     private int startLoadFromMessageOffset;
     private long startMessageAppearTransitionMs;
+    private int startReplyTo;
     private String startVideoEdit;
     private boolean startedTrackingSlidingView;
     private SuggestEmojiView suggestEmojiPanel;
@@ -28186,6 +28189,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void didLongPressLink(final ChatMessageCell chatMessageCell, final MessageObject messageObject, final CharacterStyle characterStyle, final String str) {
+        String str2;
         TLRPC$WebPage tLRPC$WebPage;
         ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
@@ -28213,7 +28217,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
         scrimOptions.setItemOptions(makeOptions);
         if (characterStyle instanceof URLSpanReplacement) {
-            SpannableString spannableString = new SpannableString(((URLSpanReplacement) characterStyle).getURL());
+            String url = ((URLSpanReplacement) characterStyle).getURL();
+            try {
+                try {
+                    Uri parse = Uri.parse(url);
+                    url = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1));
+                } catch (Exception e) {
+                    FileLog.e((Throwable) e, false);
+                }
+                str2 = URLDecoder.decode(url.replaceAll("\\+", "%2b"), "UTF-8");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                str2 = url;
+            }
+            if (str2.length() > 204) {
+                str2 = str2.substring(0, 204) + "…";
+            }
+            SpannableString spannableString = new SpannableString(str2);
             spannableString.setSpan(characterStyle, 0, spannableString.length(), 33);
             scrimOptions.setScrim(chatMessageCell, characterStyle, spannableString);
         } else {

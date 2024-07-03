@@ -942,7 +942,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             EditTextBoldCursor editTextBoldCursor2 = this.starsBalanceEditText;
             editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
             this.starsBalanceEditTextIgnore = false;
-            this.balanceButton.setEnabled(this.starsBalanceEditTextValue > 0);
+            this.starsBalanceButton.setEnabled(this.starsBalanceEditTextValue > 0);
         }
         this.starsBalanceBlockedUntil = i;
         AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);

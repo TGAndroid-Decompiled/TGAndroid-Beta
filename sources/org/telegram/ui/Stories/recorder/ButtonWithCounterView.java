@@ -430,7 +430,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     @Override
-    public boolean verifyDrawable(Drawable drawable) {
+    protected boolean verifyDrawable(Drawable drawable) {
         return this.flickeringLoadingDrawable == drawable || this.text == drawable || this.subText == drawable || this.countText == drawable || super.verifyDrawable(drawable);
     }
 

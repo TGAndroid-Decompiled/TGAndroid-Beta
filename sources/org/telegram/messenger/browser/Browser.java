@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -234,7 +233,7 @@ public class Browser {
         openUrl(context, uri, z, z2, false, progress, null);
     }
 
-    public static void openUrl(final android.content.Context r20, final android.net.Uri r21, boolean r22, boolean r23, boolean r24, final org.telegram.messenger.browser.Browser.Progress r25, java.lang.String r26) {
+    public static void openUrl(final android.content.Context r19, final android.net.Uri r20, boolean r21, boolean r22, boolean r23, final org.telegram.messenger.browser.Browser.Progress r24, java.lang.String r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String):void");
     }
 
@@ -576,16 +575,6 @@ public class Browser {
             default:
                 return null;
         }
-    }
-
-    public static boolean isBrowserPackageInstalled(Context context, String str, Uri uri) {
-        if (str == null) {
-            return false;
-        }
-        PackageManager packageManager = context.getPackageManager();
-        Intent intent = new Intent("android.intent.action.VIEW", uri);
-        intent.setPackage(str);
-        return packageManager.resolveActivity(intent, 0) != null;
     }
 
     public static String replaceHostname(Uri uri, String str) {
