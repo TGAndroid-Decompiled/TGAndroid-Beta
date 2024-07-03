@@ -1422,7 +1422,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         int i3;
         TLRPC$Message tLRPC$Message;
         String str2;
-        String formatString;
+        String formatPluralString;
+        char c;
+        String formatPluralString2;
+        char c2;
+        String formatPluralString3;
         boolean z;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         TLRPC$Peer tLRPC$Peer;
@@ -1600,29 +1604,40 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 }
             }
             if (i5 == 0) {
-                int i8 = R.string.StarsConfirmPurchaseMediaOne;
-                Object[] objArr = new Object[3];
-                objArr[0] = Integer.valueOf((int) j2);
-                objArr[i3] = i6 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
-                objArr[2] = str2;
-                formatString = LocaleController.formatString(i8, objArr);
+                int i8 = (int) j2;
+                Object[] objArr = new Object[2];
+                if (i6 == i3) {
+                    formatPluralString3 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
+                    c2 = 0;
+                } else {
+                    c2 = 0;
+                    formatPluralString3 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
+                }
+                objArr[c2] = formatPluralString3;
+                objArr[i3] = str2;
+                formatPluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMediaOne2", i8, objArr);
             } else if (i6 == 0) {
-                int i9 = R.string.StarsConfirmPurchaseMediaOne;
-                Object[] objArr2 = new Object[3];
-                objArr2[0] = Integer.valueOf((int) j2);
-                objArr2[i3] = i5 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
-                objArr2[2] = str2;
-                formatString = LocaleController.formatString(i9, objArr2);
+                int i9 = (int) j2;
+                Object[] objArr2 = new Object[2];
+                if (i5 == i3) {
+                    formatPluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
+                    c = 0;
+                } else {
+                    c = 0;
+                    formatPluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
+                }
+                objArr2[c] = formatPluralString2;
+                objArr2[i3] = str2;
+                formatPluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMediaOne2", i9, objArr2);
             } else {
-                int i10 = R.string.StarsConfirmPurchaseMediaTwo;
-                Object[] objArr3 = new Object[4];
-                objArr3[0] = Integer.valueOf((int) j2);
-                objArr3[i3] = i6 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
-                objArr3[2] = i5 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
-                objArr3[3] = str2;
-                formatString = LocaleController.formatString(i10, objArr3);
+                int i10 = (int) j2;
+                Object[] objArr3 = new Object[3];
+                objArr3[0] = i6 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
+                objArr3[i3] = i5 == i3 ? LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo) : LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
+                objArr3[2] = str2;
+                formatPluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMediaTwo2", i10, objArr3);
             }
-            textView2.setText(AndroidUtilities.replaceTags(formatString));
+            textView2.setText(AndroidUtilities.replaceTags(formatPluralString));
         } else {
             Object[] objArr4 = new Object[2];
             objArr4[0] = str;

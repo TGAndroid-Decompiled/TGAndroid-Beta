@@ -2,7 +2,7 @@ package kotlin.text;
 
 import kotlin.ranges.IntRange;
 
-public class CharsKt__CharJVMKt {
+class CharsKt__CharJVMKt {
     public static final boolean isWhitespace(char c) {
         return Character.isWhitespace(c) || Character.isSpaceChar(c);
     }
