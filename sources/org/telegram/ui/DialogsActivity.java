@@ -405,6 +405,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private String searchString;
     private ViewPagerFixed.TabsView searchTabsView;
     private SearchViewPager searchViewPager;
+    private int searchViewPagerIndex;
     float searchViewPagerTranslationY;
     private boolean searchWas;
     private boolean searchWasFullyShowed;
@@ -10204,7 +10205,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public void createSearchViewPager() {
         int i;
-        if (this.searchViewPager != null || this.fragmentView == null || getContext() == null) {
+        SearchViewPager searchViewPager = this.searchViewPager;
+        if ((searchViewPager != null && searchViewPager.getParent() == this.fragmentView) || this.fragmentView == null || getContext() == null) {
             return;
         }
         if (this.searchString != null) {
@@ -10212,7 +10214,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         } else {
             i = !this.onlySelect ? 1 : 0;
         }
-        SearchViewPager searchViewPager = new SearchViewPager(getContext(), this, i, this.initialDialogsType, this.folderId, new SearchViewPager.ChatPreviewDelegate() {
+        SearchViewPager searchViewPager2 = new SearchViewPager(getContext(), this, i, this.initialDialogsType, this.folderId, new SearchViewPager.ChatPreviewDelegate() {
             @Override
             public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) {
                 DialogsActivity.this.showChatPreview(dialogCell);
@@ -10250,8 +10252,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 return rightSlidingDialogContainer == null || !rightSlidingDialogContainer.hasFragment();
             }
         };
-        this.searchViewPager = searchViewPager;
-        ((ContentView) this.fragmentView).addView(searchViewPager);
+        this.searchViewPager = searchViewPager2;
+        ((ContentView) this.fragmentView).addView(searchViewPager2, this.searchViewPagerIndex);
         this.searchViewPager.dialogsSearchAdapter.setDelegate(new AnonymousClass58());
         this.searchViewPager.channelsSearchListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override

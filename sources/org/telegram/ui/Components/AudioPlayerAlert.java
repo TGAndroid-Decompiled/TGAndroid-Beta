@@ -1576,16 +1576,18 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.bigAlbumConver.setImageBitmap(this.coverContainer.getImageReceiver().getBitmap());
             this.blurredAnimationInProgress = true;
             View fragmentView = this.parentActivity.getActionBarLayout().getFragmentStack().get(this.parentActivity.getActionBarLayout().getFragmentStack().size() - 1).getFragmentView();
-            int measuredWidth = (int) (fragmentView.getMeasuredWidth() / 6.0f);
-            int measuredHeight = (int) (fragmentView.getMeasuredHeight() / 6.0f);
-            Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            canvas.scale(0.16666667f, 0.16666667f);
-            fragmentView.draw(canvas);
-            canvas.translate(this.containerView.getLeft() - getLeftInset(), 0.0f);
-            this.containerView.draw(canvas);
-            Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
-            this.blurredView.setBackground(new BitmapDrawable(createBitmap));
+            if (fragmentView != null) {
+                int measuredWidth = (int) (fragmentView.getMeasuredWidth() / 6.0f);
+                int measuredHeight = (int) (fragmentView.getMeasuredHeight() / 6.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.scale(0.16666667f, 0.16666667f);
+                fragmentView.draw(canvas);
+                canvas.translate(this.containerView.getLeft() - getLeftInset(), 0.0f);
+                this.containerView.draw(canvas);
+                Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
+                this.blurredView.setBackground(new BitmapDrawable(createBitmap));
+            }
             this.blurredView.setVisibility(0);
             this.blurredView.animate().alpha(1.0f).setDuration(180L).setListener(new AnimatorListenerAdapter() {
                 @Override
