@@ -30,7 +30,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     private ImageView rightIcon;
     private int selectorColor;
     int selectorRad;
-    private TextView subtextView;
+    public TextView subtextView;
     private int textColor;
     private TextView textView;
     boolean top;

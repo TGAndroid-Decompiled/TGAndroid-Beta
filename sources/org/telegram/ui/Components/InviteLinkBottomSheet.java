@@ -122,7 +122,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

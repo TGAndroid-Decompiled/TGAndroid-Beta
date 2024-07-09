@@ -325,11 +325,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.val$baseFragment = baseFragment;
             this.val$avatarClickable = z;
             this.val$resourcesProvider = resourcesProvider;
-            this.params = new C00241(true);
+            this.params = new C00231(true);
         }
 
-        public class C00241 extends StoriesUtilities.AvatarStoryParams {
-            C00241(boolean z) {
+        public class C00231 extends StoriesUtilities.AvatarStoryParams {
+            C00231(boolean z) {
                 super(z);
             }
 
@@ -339,7 +339,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     @Override
                     public final boolean findView(long j2, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
                         boolean lambda$openStory$0;
-                        lambda$openStory$0 = ChatAvatarContainer.AnonymousClass1.C00241.this.lambda$openStory$0(j2, i, i2, i3, transitionViewHolder);
+                        lambda$openStory$0 = ChatAvatarContainer.AnonymousClass1.C00231.this.lambda$openStory$0(j2, i, i2, i3, transitionViewHolder);
                         return lambda$openStory$0;
                     }
 

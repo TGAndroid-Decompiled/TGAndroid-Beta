@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="49339"
+    android:versionCode="49429"
     android:versionName="10.14.5"
     android:installLocation="auto"
     android:compileSdkVersion="33"
@@ -147,6 +147,7 @@
         android:hardwareAccelerated="@bool/useHardwareAcceleration"
         android:largeHeap="true"
         android:supportsRtl="false"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:allowAudioPlaybackCapture="true"

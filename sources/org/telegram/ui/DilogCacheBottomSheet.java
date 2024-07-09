@@ -46,7 +46,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

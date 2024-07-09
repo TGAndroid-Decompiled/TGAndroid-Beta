@@ -48,6 +48,7 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
@@ -219,7 +220,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View getWindowView();
+        View mo946getWindowView();
 
         boolean isFullyVisible();
 
@@ -234,9 +235,6 @@ public abstract class BaseFragment {
         boolean showDialog(Dialog dialog);
 
         public final class CC {
-            public static void $default$dismiss(AttachedSheet _this, boolean z) {
-                _this.dismiss();
-            }
         }
     }
 
@@ -715,10 +713,6 @@ public abstract class BaseFragment {
         }
     }
 
-    public void whenFullyVisible(Runnable runnable) {
-        this.fullyVisibleListener = runnable;
-    }
-
     public Dialog showDialog(Dialog dialog) {
         return showDialog(dialog, false, null);
     }
@@ -939,7 +933,7 @@ public abstract class BaseFragment {
         }
 
         @Override
-        public void onCreate(Bundle bundle) {
+        protected void onCreate(Bundle bundle) {
             super.onCreate(bundle);
             this.val$actionBarLayout[0].setWindow(this.val$bottomSheet[0].getWindow());
             BottomSheetParams bottomSheetParams = this.val$params;
@@ -1116,8 +1110,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.getWindowView());
-                    layoutContainer.addView(attachedSheet.getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo946getWindowView());
+                    layoutContainer.addView(attachedSheet.mo946getWindowView());
                 }
             }
         }
@@ -1128,7 +1122,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo946getWindowView());
                 }
             }
         }
@@ -1168,6 +1162,17 @@ public abstract class BaseFragment {
         return storyViewer;
     }
 
+    public void addSheet(AttachedSheet attachedSheet) {
+        if (this.sheetsStack == null) {
+            this.sheetsStack = new ArrayList<>();
+        }
+        StoryViewer lastStoryViewer = getLastStoryViewer();
+        if (lastStoryViewer != null) {
+            lastStoryViewer.listenToAttachedSheet(attachedSheet);
+        }
+        this.sheetsStack.add(attachedSheet);
+    }
+
     public StoryViewer createOverlayStoryViewer() {
         if (this.sheetsStack == null) {
             this.sheetsStack = new ArrayList<>();
@@ -1181,16 +1186,21 @@ public abstract class BaseFragment {
         return storyViewer;
     }
 
+    public ArticleViewer createArticleViewer() {
+        if (this.sheetsStack == null) {
+            this.sheetsStack = new ArrayList<>();
+        }
+        ArticleViewer makeSheet = ArticleViewer.makeSheet(this);
+        addSheet(makeSheet.sheet);
+        return makeSheet;
+    }
+
     public BotWebViewAttachedSheet createBotViewer() {
         if (this.sheetsStack == null) {
             this.sheetsStack = new ArrayList<>();
         }
         BotWebViewAttachedSheet botWebViewAttachedSheet = new BotWebViewAttachedSheet(this);
-        StoryViewer lastStoryViewer = getLastStoryViewer();
-        if (lastStoryViewer != null) {
-            lastStoryViewer.listenToAttachedSheet(botWebViewAttachedSheet);
-        }
-        this.sheetsStack.add(botWebViewAttachedSheet);
+        addSheet(botWebViewAttachedSheet);
         return botWebViewAttachedSheet;
     }
 }

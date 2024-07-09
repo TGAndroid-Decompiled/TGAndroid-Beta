@@ -75,7 +75,7 @@ public class PhonebookShareAlert extends BottomSheet {
     private int vcardStartRow;
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

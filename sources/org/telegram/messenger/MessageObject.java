@@ -2982,7 +2982,7 @@ public class MessageObject {
         return tLRPC$Chat == null ? MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j)) : tLRPC$Chat;
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$User> r24, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$Chat> r25, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$User> r26, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r27) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$User> r25, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$Chat> r26, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$User> r27, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 

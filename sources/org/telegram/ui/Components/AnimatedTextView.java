@@ -902,6 +902,15 @@ public class AnimatedTextView extends View {
             this.bounds.set(i, i2, i3, i4);
         }
 
+        public void setBounds(float f, float f2, float f3, float f4) {
+            int i = (int) f;
+            int i2 = (int) f2;
+            int i3 = (int) f3;
+            int i4 = (int) f4;
+            super.setBounds(i, i2, i3, i4);
+            this.bounds.set(i, i2, i3, i4);
+        }
+
         @Override
         public android.graphics.Rect getDirtyBounds() {
             return this.bounds;

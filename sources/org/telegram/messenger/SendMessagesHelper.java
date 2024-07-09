@@ -2860,7 +2860,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         if (context == null) {
                             context = ApplicationLoader.applicationContext;
                         }
-                        StarsIntroActivity.showTransactionSheet(context, false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, null);
+                        StarsIntroActivity.showTransactionSheet(context, false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, (Theme.ResourcesProvider) null);
                         return;
                     }
                     if (tLObject instanceof TLRPC$PaymentReceipt) {

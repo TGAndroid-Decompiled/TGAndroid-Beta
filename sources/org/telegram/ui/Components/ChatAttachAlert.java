@@ -293,7 +293,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -331,6 +331,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         @Override
         public void onSendWebViewData(String str) {
             BotWebViewContainer.Delegate.CC.$default$onSendWebViewData(this, str);
+        }
+
+        @Override
+        public void onWebAppBackgroundChanged(int i) {
+            BotWebViewContainer.Delegate.CC.$default$onWebAppBackgroundChanged(this, i);
         }
 
         @Override
@@ -559,7 +564,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         this.botButtonAnimator.addListener(new AnimatorListenerAdapter() {
                             final boolean val$isVisible;
 
-                            C00221(boolean z4) {
+                            C00211(boolean z4) {
                                 r2 = z4;
                             }
 
@@ -634,10 +639,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             chatAttachAlert.buttonsRecyclerView.setTranslationY(chatAttachAlert.botMainButtonOffsetY);
         }
 
-        class C00221 extends AnimatorListenerAdapter {
+        class C00211 extends AnimatorListenerAdapter {
             final boolean val$isVisible;
 
-            C00221(boolean z4) {
+            C00211(boolean z4) {
                 r2 = z4;
             }
 

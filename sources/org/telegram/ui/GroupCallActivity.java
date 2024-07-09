@@ -390,7 +390,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

@@ -2329,9 +2329,9 @@ public class ActionBarMenuItem extends FrameLayout {
             this.titleView = textView;
             textView.setTextSize(1, 14.0f);
             addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 16, 38.0f, 0.0f, 16.0f, 0.0f));
-            ShapeDrawable shapeDrawable = (ShapeDrawable) Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), -12292204);
-            this.shapeDrawable = shapeDrawable;
-            setBackground(shapeDrawable);
+            ShapeDrawable createRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), -12292204);
+            this.shapeDrawable = createRoundRectDrawable;
+            setBackground(createRoundRectDrawable);
             updateColors();
         }
 

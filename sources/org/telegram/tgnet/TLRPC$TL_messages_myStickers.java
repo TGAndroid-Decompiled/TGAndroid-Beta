@@ -6,18 +6,6 @@ public class TLRPC$TL_messages_myStickers extends TLObject {
     public int count;
     public ArrayList<TLRPC$StickerSetCovered> sets = new ArrayList<>();
 
-    @Override
-    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-83926371);
-        abstractSerializedData.writeInt32(this.count);
-        abstractSerializedData.writeInt32(481674261);
-        int size = this.sets.size();
-        abstractSerializedData.writeInt32(size);
-        for (int i = 0; i < size; i++) {
-            this.sets.get(i).serializeToStream(abstractSerializedData);
-        }
-    }
-
     public static TLRPC$TL_messages_myStickers TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-83926371 != i) {
             if (z) {
@@ -47,6 +35,18 @@ public class TLRPC$TL_messages_myStickers extends TLObject {
                 return;
             }
             this.sets.add(TLdeserialize);
+        }
+    }
+
+    @Override
+    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+        abstractSerializedData.writeInt32(-83926371);
+        abstractSerializedData.writeInt32(this.count);
+        abstractSerializedData.writeInt32(481674261);
+        int size = this.sets.size();
+        abstractSerializedData.writeInt32(size);
+        for (int i = 0; i < size; i++) {
+            this.sets.get(i).serializeToStream(abstractSerializedData);
         }
     }
 }

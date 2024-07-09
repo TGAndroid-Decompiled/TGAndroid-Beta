@@ -15,7 +15,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
@@ -808,7 +807,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             int i = Theme.key_featuredStickers_addButton;
             view.setBackground(Theme.AdaptiveRipple.rect(Theme.getColor(i), 8.0f));
             addView(this.rippleView, LayoutHelper.createFrame(-1, -1.0f));
-            setBackground((ShapeDrawable) Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i)));
+            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i)));
             Paint paint = new Paint(1);
             this.paint = paint;
             int i2 = Theme.key_featuredStickers_buttonText;

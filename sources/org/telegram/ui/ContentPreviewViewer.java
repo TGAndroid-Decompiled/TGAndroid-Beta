@@ -462,11 +462,11 @@ public class ContentPreviewViewer {
             actionBarPopupWindowLayout.getSwipeBack().closeForeground();
         }
 
-        class ViewOnClickListenerC00411 implements View.OnClickListener {
+        class ViewOnClickListenerC00401 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            ViewOnClickListenerC00411(ArrayList arrayList, boolean z) {
+            ViewOnClickListenerC00401(ArrayList arrayList, boolean z) {
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }
