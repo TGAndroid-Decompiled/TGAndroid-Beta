@@ -55,7 +55,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 

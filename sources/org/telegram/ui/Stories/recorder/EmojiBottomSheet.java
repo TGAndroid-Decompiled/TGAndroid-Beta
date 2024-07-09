@@ -19,7 +19,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.text.Editable;
 import android.text.Layout;
@@ -1406,7 +1405,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                     int dp = AndroidUtilities.dp(28.0f);
                     EmojiBottomSheet emojiBottomSheet = EmojiBottomSheet.this;
                     int i3 = Theme.key_chat_emojiPanelIcon;
-                    ShapeDrawable createRoundRectDrawable = Theme.createRoundRectDrawable(dp, Theme.multAlpha(emojiBottomSheet.getThemedColor(i3), 0.12f));
+                    Drawable createRoundRectDrawable = Theme.createRoundRectDrawable(dp, Theme.multAlpha(emojiBottomSheet.getThemedColor(i3), 0.12f));
                     Drawable mutate = Page.this.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
                     mutate.setColorFilter(new PorterDuffColorFilter(EmojiBottomSheet.this.getThemedColor(i3), PorterDuff.Mode.MULTIPLY));
                     CombinedDrawable combinedDrawable = new CombinedDrawable(createRoundRectDrawable, mutate);
@@ -1864,7 +1863,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return this.viewPager.getTranslationY() >= ((float) ((int) this.maxPadding));
     }
 

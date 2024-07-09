@@ -42,6 +42,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.arch.core.util.Function;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -238,7 +239,6 @@ import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewSheet;
-import org.telegram.ui.bots.WebViewRequestProps;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
 
@@ -1203,7 +1203,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         int i = this.currentAccount;
         long j = tLRPC$TL_attachMenuBot.bot_id;
-        WebViewRequestProps of = WebViewRequestProps.of(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, false, str, null, 2, false);
+        BotWebViewAttachedSheet.WebViewRequestProps of = BotWebViewAttachedSheet.WebViewRequestProps.of(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, false, str, null, 2, false);
         if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
             if (AndroidUtilities.isTablet()) {
                 BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, lastFragment.getResourceProvider());
@@ -1584,8 +1584,41 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         checkSystemBarColors(false, z, z2, true);
     }
 
-    public void checkSystemBarColors(boolean r12, boolean r13, boolean r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.checkSystemBarColors(boolean, boolean, boolean, boolean):void");
+    public void checkSystemBarColors(boolean z, boolean z2, boolean z3, boolean z4) {
+        BaseFragment baseFragment;
+        boolean z5;
+        if (mainFragmentsStack.isEmpty()) {
+            baseFragment = null;
+        } else {
+            ArrayList<BaseFragment> arrayList = mainFragmentsStack;
+            baseFragment = arrayList.get(arrayList.size() - 1);
+        }
+        if (baseFragment != null && (baseFragment.isRemovingFromStack() || baseFragment.isInPreviewMode())) {
+            if (mainFragmentsStack.size() > 1) {
+                baseFragment = mainFragmentsStack.get(r0.size() - 2);
+            } else {
+                baseFragment = null;
+            }
+        }
+        boolean z6 = baseFragment != null && baseFragment.hasForceLightStatusBar();
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 23) {
+            if (z2) {
+                if (baseFragment != null) {
+                    z5 = baseFragment.isLightStatusBar();
+                } else {
+                    z5 = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_actionBarDefault, null, true)) > 0.699999988079071d;
+                }
+                AndroidUtilities.setLightStatusBar(getWindow(), z5, z6);
+            }
+            if (i >= 26 && z3 && (!z || baseFragment == null || !baseFragment.isInPreviewMode())) {
+                setNavigationBarColor((baseFragment == null || !z) ? Theme.getColor(Theme.key_windowBackgroundGray, null, true) : baseFragment.getNavigationBarColor(), z4);
+            }
+        }
+        if (i < 21 || !z2) {
+            return;
+        }
+        getWindow().setStatusBarColor(0);
     }
 
     public FrameLayout getMainContainerFrameLayout() {
@@ -3609,7 +3642,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         long j = tLRPC$User.id;
-        WebViewRequestProps of = WebViewRequestProps.of(i, j, j, null, null, 3, 0, false, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User, 0, z);
+        BotWebViewAttachedSheet.WebViewRequestProps of = BotWebViewAttachedSheet.WebViewRequestProps.of(i, j, j, null, null, 3, 0, false, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User, 0, z);
         if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
             if (AndroidUtilities.isTablet()) {
                 BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment.getResourceProvider());

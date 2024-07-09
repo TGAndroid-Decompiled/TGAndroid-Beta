@@ -182,7 +182,7 @@ public class CameraScanActivity extends BaseFragment {
         final int val$type;
 
         @Override
-        public boolean canDismissWithSwipe() {
+        protected boolean canDismissWithSwipe() {
             return false;
         }
 
@@ -193,8 +193,8 @@ public class CameraScanActivity extends BaseFragment {
             this.val$gallery = z2;
             this.val$cameraDelegate = cameraScanActivityDelegate;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
-            C00111 c00111 = new CameraScanActivity(i) {
-                C00111(int i2) {
+            C00121 c00121 = new CameraScanActivity(i) {
+                C00121(int i2) {
                     super(i2);
                 }
 
@@ -209,9 +209,9 @@ public class CameraScanActivity extends BaseFragment {
                     AnonymousClass1.this.dismiss();
                 }
             };
-            this.fragment = c00111;
-            c00111.shownAsBottomSheet = true;
-            ((CameraScanActivity) c00111).needGalleryButton = z2;
+            this.fragment = c00121;
+            c00121.shownAsBottomSheet = true;
+            ((CameraScanActivity) c00121).needGalleryButton = z2;
             iNavigationLayoutArr[0].addFragmentToStack(this.fragment);
             iNavigationLayoutArr[0].showLastFragment();
             ViewGroup view = iNavigationLayoutArr[0].getView();
@@ -232,8 +232,8 @@ public class CameraScanActivity extends BaseFragment {
             });
         }
 
-        public class C00111 extends CameraScanActivity {
-            C00111(int i2) {
+        public class C00121 extends CameraScanActivity {
+            C00121(int i2) {
                 super(i2);
             }
 

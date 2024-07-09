@@ -6,9 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -30,18 +27,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
-import org.telegram.ui.EmptyBaseFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewContainer;
 import org.telegram.ui.bots.BotWebViewSheet;
-import org.telegram.ui.bots.WebViewRequestProps;
 
 public class BottomSheetTabs extends FrameLayout {
     private final ActionBarLayout actionBarLayout;
@@ -101,7 +95,7 @@ public class BottomSheetTabs extends FrameLayout {
     }
 
     public void openTab(final WebTabData webTabData) {
-        final BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null || lastFragment.getParentActivity() == null) {
             return;
         }
@@ -113,35 +107,25 @@ public class BottomSheetTabs extends FrameLayout {
                 chatActivity.getChatActivityEnterView().hidePopup(true, false);
             }
         }
-        ArticleViewer articleViewer = webTabData.articleViewer;
-        if (articleViewer != null) {
-            lastFragment.addSheet(articleViewer.sheet);
-            articleViewer.sheet.reset();
-            articleViewer.setParentActivity(lastFragment.getParentActivity(), lastFragment);
-            articleViewer.sheet.attachInternal(lastFragment);
-            articleViewer.sheet.animateOpen(true, true, null);
-            removeTab(webTabData, false);
-            return;
-        }
         final boolean closeAttachedSheets = closeAttachedSheets();
-        new Utilities.Callback() {
+        final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 BottomSheetTabs.this.lambda$openTab$1(webTabData, closeAttachedSheets, (BaseFragment) obj);
             }
-        }.run(lastFragment);
-        if (webTabData.needsContext) {
-            if (z && ((ChatActivity) lastFragment).getDialogId() == webTabData.props.botId) {
-                return;
-            }
+        };
+        if (webTabData.needsContext && (!z || ((ChatActivity) lastFragment).getDialogId() != webTabData.props.botId)) {
             final ChatActivity of = ChatActivity.of(webTabData.props.botId);
-            AndroidUtilities.runOnUIThread(new Runnable() {
+            of.whenFullyVisible(new Runnable() {
                 @Override
                 public final void run() {
-                    BaseFragment.this.presentFragment(of);
+                    Utilities.Callback.this.run(of);
                 }
-            }, 220L);
+            });
+            lastFragment.presentFragment(of);
+            return;
         }
+        callback.run(lastFragment);
     }
 
     public void lambda$openTab$1(WebTabData webTabData, boolean z, BaseFragment baseFragment) {
@@ -155,10 +139,10 @@ public class BottomSheetTabs extends FrameLayout {
                 chatActivity.getChatActivityEnterView().hidePopup(true, false);
             }
         }
-        if (baseFragment.getContext() == null || baseFragment.getParentActivity() == null) {
+        if (baseFragment.getContext() == null) {
             return;
         }
-        if (AndroidUtilities.isTablet() && !webTabData.isWeb) {
+        if (AndroidUtilities.isTablet()) {
             BotWebViewSheet botWebViewSheet = new BotWebViewSheet(baseFragment.getContext(), baseFragment.getResourceProvider());
             botWebViewSheet.setParentActivity(baseFragment.getParentActivity());
             if (botWebViewSheet.restoreState(baseFragment, webTabData)) {
@@ -168,11 +152,8 @@ public class BottomSheetTabs extends FrameLayout {
             }
             return;
         }
-        EmptyBaseFragment sheetFragment = this.actionBarLayout.getSheetFragment();
-        if (sheetFragment == null) {
-            return;
-        }
-        BotWebViewAttachedSheet createBotViewer = sheetFragment.createBotViewer();
+        LaunchActivity.instance.getBottomSheetTabsOverlay();
+        BotWebViewAttachedSheet createBotViewer = baseFragment.createBotViewer();
         createBotViewer.setParentActivity(baseFragment.getParentActivity());
         if (createBotViewer.restoreState(baseFragment, webTabData)) {
             removeTab(webTabData, false);
@@ -180,7 +161,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public WebTabData tryReopenTab(WebViewRequestProps webViewRequestProps) {
+    public WebTabData tryReopenTab(BotWebViewAttachedSheet.WebViewRequestProps webViewRequestProps) {
         ArrayList<WebTabData> arrayList = this.tabs.get(Integer.valueOf(this.currentAccount));
         if (arrayList == null) {
             HashMap<Integer, ArrayList<WebTabData>> hashMap = this.tabs;
@@ -337,20 +318,20 @@ public class BottomSheetTabs extends FrameLayout {
     }
 
     private void updateMultipleTitle() {
-        String title;
+        String userName;
         ArrayList<WebTabData> tabs = getTabs();
         ArrayList<TabDrawable> tabDrawables = getTabDrawables();
         String str = null;
         for (int i = 0; i < tabDrawables.size(); i++) {
             TabDrawable tabDrawable = tabDrawables.get(i);
             if (tabs.size() > 1 && tabDrawable.position == 0) {
-                title = LocaleController.formatPluralString("BotMoreTabs", tabs.size() - 1, tabDrawable.tab.getTitle());
-                tabDrawable.setOverrideTitle(title);
+                userName = LocaleController.formatPluralString("BotMoreTabs", tabs.size() - 1, UserObject.getUserName(MessagesController.getInstance(tabDrawable.tab.props.currentAccount).getUser(Long.valueOf(tabDrawable.tab.props.botId))));
+                tabDrawable.setOverrideTitle(userName);
             } else {
-                title = tabDrawable.tab.getTitle();
+                userName = UserObject.getUserName(MessagesController.getInstance(tabDrawable.tab.props.currentAccount).getUser(Long.valueOf(tabDrawable.tab.props.botId)));
                 tabDrawable.setOverrideTitle(null);
             }
-            str = title;
+            str = userName;
         }
         if (tabs.isEmpty()) {
             setImportantForAccessibility(2);
@@ -568,36 +549,28 @@ public class BottomSheetTabs extends FrameLayout {
         public final AnimatedFloat animatedPosition;
         private int backgroundColor;
         private boolean backgroundIsDark;
+        private final Paint backgroundPaint = new Paint(1);
         private final Path closePath;
         public final Drawable closeRipple;
         public int closeRippleColor;
         private final Path expandPath;
         private float expandProgress;
-        private Bitmap favicon;
-        private final Paint faviconPaint;
-        private Drawable iconDrawable;
-        private int iconDrawableColor;
         private final Paint iconPaint;
         public int index;
         private Text overrideTitle;
         private int position;
-        private float progress;
         private final float[] radii;
         private final Path rectPath;
         public final WebTabData tab;
         private int tabColor;
         private boolean tabIsDark;
         private Text title;
-        private final Paint backgroundPaint = new Paint(1);
-        private final Paint progressPaint = new Paint(1);
 
         public TabDrawable(View view, WebTabData webTabData) {
             Paint paint = new Paint(1);
             this.iconPaint = paint;
-            this.faviconPaint = new Paint(3);
             Drawable createSelectorDrawable = Theme.createSelectorDrawable(822083583, 1);
             this.closeRipple = createSelectorDrawable;
-            this.iconDrawableColor = -1;
             this.radii = new float[8];
             this.rectPath = new Path();
             Path path = new Path();
@@ -612,15 +585,10 @@ public class BottomSheetTabs extends FrameLayout {
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.animatedPosition = new AnimatedFloat(view, 320L, cubicBezierInterpolator);
             this.animatedAlpha = new AnimatedFloat(view, 320L, cubicBezierInterpolator);
-            this.favicon = webTabData.favicon;
-            this.title = new Text(webTabData.getTitle(), 17.0f, AndroidUtilities.bold());
+            this.title = new Text(UserObject.getUserName(MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.getBotId()))), 17.0f, AndroidUtilities.bold());
             int i = webTabData.actionBarColor;
             this.tabColor = i;
             this.tabIsDark = AndroidUtilities.computePerceivedBrightness(i) < 0.721f;
-            if (webTabData.isArticle()) {
-                this.iconDrawable = view.getContext().getResources().getDrawable(R.drawable.msg_instant).mutate();
-            }
-            this.progress = webTabData.articleProgress;
             path.rewind();
             path.moveTo(0.0f, 0.0f);
             path.lineTo(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
@@ -667,16 +635,14 @@ public class BottomSheetTabs extends FrameLayout {
         }
 
         public void draw(Canvas canvas, RectF rectF, float f, float f2, float f3) {
-            int blendARGB = ColorUtils.blendARGB(this.backgroundColor, this.tabColor, this.expandProgress);
-            this.backgroundPaint.setColor(blendARGB);
-            float f4 = f2 * 255.0f;
+            this.backgroundPaint.setColor(ColorUtils.blendARGB(this.backgroundColor, this.tabColor, this.expandProgress));
+            float f4 = 255.0f * f2;
             this.backgroundPaint.setAlpha((int) f4);
             this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(1.0f), Theme.multAlpha(268435456, f2));
             float[] fArr = this.radii;
             fArr[3] = f;
             fArr[2] = f;
             fArr[1] = f;
-            int i = 0;
             fArr[0] = f;
             float lerp = AndroidUtilities.lerp(f, 0.0f, this.expandProgress);
             fArr[7] = lerp;
@@ -686,108 +652,72 @@ public class BottomSheetTabs extends FrameLayout {
             this.rectPath.rewind();
             this.rectPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
             canvas.drawPath(this.rectPath, this.backgroundPaint);
-            if (this.progress > 0.0f && this.expandProgress > 0.0f && f2 > 0.0f) {
-                canvas.save();
-                canvas.clipPath(this.rectPath);
-                this.progressPaint.setColor(Theme.multAlpha(AndroidUtilities.computePerceivedBrightness(blendARGB) > 0.721f ? -16777216 : -1, 0.07f * f2 * this.expandProgress));
-                float f5 = rectF.left;
-                canvas.drawRect(f5, rectF.top, f5 + (rectF.width() * this.progress), rectF.bottom, this.progressPaint);
-                canvas.restore();
-            }
             float lerp2 = AndroidUtilities.lerp(this.backgroundIsDark ? 1.0f : 0.0f, this.tabIsDark ? 1.0f : 0.0f, this.expandProgress);
-            int blendARGB2 = ColorUtils.blendARGB(-16777216, -1, lerp2);
-            this.iconPaint.setColor(blendARGB2);
+            int blendARGB = ColorUtils.blendARGB(-16777216, -1, lerp2);
+            this.iconPaint.setColor(blendARGB);
             this.iconPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             canvas.save();
             canvas.translate(rectF.left, rectF.centerY());
-            int blendARGB3 = ColorUtils.blendARGB(553648127, 553648127, lerp2);
+            int blendARGB2 = ColorUtils.blendARGB(553648127, 553648127, lerp2);
             this.closeRipple.setBounds(AndroidUtilities.dp(25.0f) + (-AndroidUtilities.dp(25.0f)), -AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f) + AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f));
-            if (this.closeRippleColor != blendARGB3) {
+            if (this.closeRippleColor != blendARGB2) {
                 Drawable drawable = this.closeRipple;
-                this.closeRippleColor = blendARGB3;
-                Theme.setSelectorDrawableColor(drawable, blendARGB3, false);
+                this.closeRippleColor = blendARGB2;
+                Theme.setSelectorDrawableColor(drawable, blendARGB2, false);
             }
             this.closeRipple.draw(canvas);
             canvas.restore();
             canvas.save();
             canvas.translate(rectF.left + AndroidUtilities.dp(18.0f), rectF.centerY() - AndroidUtilities.dp(6.0f));
-            float f6 = f4 * f3;
-            int i2 = (int) f6;
-            this.iconPaint.setAlpha(i2);
+            float f5 = f4 * f3;
+            this.iconPaint.setAlpha((int) f5);
             canvas.drawPath(this.closePath, this.iconPaint);
             canvas.restore();
             canvas.save();
             canvas.translate(rectF.right - AndroidUtilities.dp(30.66f), rectF.centerY());
-            this.iconPaint.setAlpha((int) (f6 * (1.0f - this.expandProgress)));
+            this.iconPaint.setAlpha((int) (f5 * (1.0f - this.expandProgress)));
             canvas.drawPath(this.expandPath, this.iconPaint);
             canvas.restore();
-            if (this.favicon != null) {
-                int dp = AndroidUtilities.dp(24.0f);
-                canvas.save();
-                Rect rect = AndroidUtilities.rectTmp2;
-                float f7 = dp;
-                float f8 = f7 / 2.0f;
-                rect.set((int) (rectF.left + AndroidUtilities.dp(56.0f)), (int) (rectF.centerY() - f8), (int) (rectF.left + AndroidUtilities.dp(56.0f) + f7), (int) (rectF.centerY() + f8));
-                this.faviconPaint.setAlpha(i2);
-                canvas.drawBitmap(this.favicon, (Rect) null, rect, this.faviconPaint);
-                canvas.restore();
-                i = dp + AndroidUtilities.dp(4.0f);
-            } else if (this.iconDrawable != null) {
-                float dp2 = AndroidUtilities.dp(24.0f);
-                int intrinsicHeight = (int) ((dp2 / this.iconDrawable.getIntrinsicHeight()) * this.iconDrawable.getIntrinsicWidth());
-                Rect rect2 = AndroidUtilities.rectTmp2;
-                float f9 = (dp2 / 2.0f) * 0.7f;
-                rect2.set((int) (rectF.left + AndroidUtilities.dp(56.0f)), (int) (rectF.centerY() - f9), (int) (rectF.left + AndroidUtilities.dp(56.0f) + (intrinsicHeight * 0.7f)), (int) (rectF.centerY() + f9));
-                if (blendARGB2 != this.iconDrawableColor) {
-                    Drawable drawable2 = this.iconDrawable;
-                    this.iconDrawableColor = blendARGB2;
-                    drawable2.setColorFilter(new PorterDuffColorFilter(blendARGB2, PorterDuff.Mode.SRC_IN));
-                }
-                this.iconDrawable.setAlpha(i2);
-                this.iconDrawable.setBounds(rect2);
-                this.iconDrawable.draw(canvas);
-                i = intrinsicHeight - AndroidUtilities.dp(2.0f);
-            }
             Text text = this.overrideTitle;
             if (text != null) {
-                float f10 = i;
-                text.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f10)).draw(canvas, f10 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), blendARGB2, (1.0f - this.expandProgress) * f2 * f3);
+                text.ellipsize((int) (rectF.width() - AndroidUtilities.dp(100.0f))).draw(canvas, AndroidUtilities.dp(60.0f) + rectF.left, rectF.centerY(), blendARGB, (1.0f - this.expandProgress) * f2 * f3);
             }
-            float f11 = i;
-            this.title.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f11)).draw(canvas, f11 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), blendARGB2, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2 * f3);
+            this.title.ellipsize((int) (rectF.width() - AndroidUtilities.dp(100.0f))).draw(canvas, AndroidUtilities.dp(60.0f) + rectF.left, rectF.centerY(), blendARGB, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2 * f3);
         }
     }
 
     public static class WebTabData {
         public int actionBarColor;
         public int actionBarColorKey;
-        public float articleProgress;
-        public ArticleViewer articleViewer;
         public boolean backButton;
         public int backgroundColor;
         public boolean confirmDismiss;
         public boolean expanded;
         public float expandedOffset = Float.MAX_VALUE;
-        public Bitmap favicon;
         public boolean fullsize;
-        public boolean isWeb;
         public String lastUrl;
         public BotWebViewAttachedSheet.MainButtonSettings main;
         public boolean needsContext;
         public boolean overrideActionBarColor;
         public Bitmap previewBitmap;
         public Object previewNode;
-        public WebViewRequestProps props;
-        public Object proxy;
+        public BotWebViewAttachedSheet.WebViewRequestProps props;
         public boolean ready;
         public boolean settings;
         public boolean themeIsDark;
-        public String title;
-        public View view2;
-        public int viewHeight;
-        public int viewScroll;
-        public int viewWidth;
         public BotWebViewContainer.MyWebView webView;
+        public int webViewHeight;
+        public BotWebViewContainer.WebViewProxy webViewProxy;
+        public int webViewScroll;
+        public int webViewWidth;
+
+        public long getBotId() {
+            BotWebViewAttachedSheet.WebViewRequestProps webViewRequestProps = this.props;
+            if (webViewRequestProps == null) {
+                return 0L;
+            }
+            return webViewRequestProps.botId;
+        }
 
         public void destroy() {
             try {
@@ -799,20 +729,6 @@ public class BottomSheetTabs extends FrameLayout {
             } catch (Exception e) {
                 FileLog.e(e);
             }
-        }
-
-        public boolean isArticle() {
-            ArticleViewer articleViewer = this.articleViewer;
-            return articleViewer != null && articleViewer.isLastArticle();
-        }
-
-        public String getTitle() {
-            if (this.isWeb || this.articleViewer != null) {
-                String str = this.title;
-                return str == null ? "" : str;
-            }
-            WebViewRequestProps webViewRequestProps = this.props;
-            return webViewRequestProps == null ? "" : UserObject.getUserName(MessagesController.getInstance(webViewRequestProps.currentAccount).getUser(Long.valueOf(this.props.botId)));
         }
     }
 }

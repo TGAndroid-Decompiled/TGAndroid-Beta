@@ -135,7 +135,7 @@ public class ThemeEditorView {
         private int topBeforeSwitch;
 
         @Override
-        public boolean canDismissWithSwipe() {
+        protected boolean canDismissWithSwipe() {
             return false;
         }
 

@@ -229,7 +229,7 @@ public class FilesMigrationService extends Service {
         BaseFragment fragment;
 
         @Override
-        public boolean canDismissWithSwipe() {
+        protected boolean canDismissWithSwipe() {
             return false;
         }
 

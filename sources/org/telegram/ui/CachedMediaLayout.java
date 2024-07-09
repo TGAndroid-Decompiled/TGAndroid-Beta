@@ -232,7 +232,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 final RecyclerListView val$recyclerListView;
 
-                C00091(final RecyclerListView recyclerListView2) {
+                C00101(final RecyclerListView recyclerListView2) {
                     r2 = recyclerListView2;
                 }
 
@@ -283,10 +283,10 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return recyclerListView2;
         }
 
-        class C00091 implements RecyclerListView.OnItemClickListener {
+        class C00101 implements RecyclerListView.OnItemClickListener {
             final RecyclerListView val$recyclerListView;
 
-            C00091(final RecyclerListView recyclerListView2) {
+            C00101(final RecyclerListView recyclerListView2) {
                 r2 = recyclerListView2;
             }
 

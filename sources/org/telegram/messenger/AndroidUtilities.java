@@ -5348,64 +5348,36 @@ public class AndroidUtilities {
 
     public static void applySpring(Animator animator, float f, float f2, float f3) {
         double d = f2;
-        double sqrt = Math.sqrt(f * f3) * 2.0d;
+        double d2 = f * f3;
+        double sqrt = Math.sqrt(d2) * 2.0d;
         Double.isNaN(d);
-        final double d2 = d / sqrt;
-        final double sqrt2 = Math.sqrt(f / f3);
-        animator.setDuration((long) ((Math.log(0.0025d) / ((-d2) * sqrt2)) * 1000.0d));
+        final double d3 = d / sqrt;
+        double d4 = f / f3;
+        final double sqrt2 = Math.sqrt(d4);
+        double sqrt3 = Math.sqrt(d4);
+        double sqrt4 = Math.sqrt(d2) * 2.0d;
+        Double.isNaN(d);
+        animator.setDuration((long) ((Math.log(0.0025d) / ((-(d / sqrt4)) * sqrt3)) * 1000.0d));
         animator.setInterpolator(new Interpolator() {
             @Override
             public float getInterpolation(float f4) {
                 double exp;
-                double d3 = d2;
-                if (d3 < 1.0d) {
-                    double sqrt3 = sqrt2 * Math.sqrt(1.0d - (d3 * d3));
-                    double d4 = (-d2) * sqrt2;
-                    double d5 = f4;
-                    Double.isNaN(d5);
-                    double exp2 = Math.exp(d4 * d5);
-                    Double.isNaN(d5);
-                    double d6 = d5 * sqrt3;
-                    exp = 1.0d - (exp2 * (Math.cos(d6) + (((d2 * sqrt2) / sqrt3) * Math.sin(d6))));
+                double d5 = d3;
+                if (d5 < 1.0d) {
+                    double sqrt5 = sqrt2 * Math.sqrt(1.0d - (d5 * d5));
+                    double d6 = (-d3) * sqrt2;
+                    double d7 = f4;
+                    Double.isNaN(d7);
+                    double exp2 = Math.exp(d6 * d7);
+                    Double.isNaN(d7);
+                    double d8 = d7 * sqrt5;
+                    exp = 1.0d - (exp2 * (Math.cos(d8) + (((d3 * sqrt2) / sqrt5) * Math.sin(d8))));
                 } else {
-                    double d7 = (-d3) * sqrt2;
-                    double d8 = f4;
-                    Double.isNaN(d8);
-                    double d9 = d7 * d8;
-                    exp = 1.0d - ((d9 + 1.0d) * Math.exp(d9));
-                }
-                return (float) exp;
-            }
-        });
-    }
-
-    public static void applySpring(Animator animator, float f, float f2, float f3, long j) {
-        double d = f2;
-        double sqrt = Math.sqrt(f * f3) * 2.0d;
-        Double.isNaN(d);
-        final double d2 = d / sqrt;
-        final double sqrt2 = Math.sqrt(f / f3);
-        animator.setDuration(j);
-        animator.setInterpolator(new Interpolator() {
-            @Override
-            public float getInterpolation(float f4) {
-                double exp;
-                double d3 = d2;
-                if (d3 < 1.0d) {
-                    double sqrt3 = sqrt2 * Math.sqrt(1.0d - (d3 * d3));
-                    double d4 = (-d2) * sqrt2;
-                    double d5 = f4;
-                    Double.isNaN(d5);
-                    double exp2 = Math.exp(d4 * d5);
-                    Double.isNaN(d5);
-                    double d6 = d5 * sqrt3;
-                    exp = 1.0d - (exp2 * (Math.cos(d6) + (((d2 * sqrt2) / sqrt3) * Math.sin(d6))));
-                } else {
-                    double d7 = (-d3) * sqrt2;
-                    double d8 = f4;
-                    Double.isNaN(d8);
-                    double d9 = d7 * d8;
-                    exp = 1.0d - ((d9 + 1.0d) * Math.exp(d9));
+                    double d9 = (-d5) * sqrt2;
+                    double d10 = f4;
+                    Double.isNaN(d10);
+                    double d11 = d9 * d10;
+                    exp = 1.0d - ((d11 + 1.0d) * Math.exp(d11));
                 }
                 return (float) exp;
             }

@@ -35,7 +35,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
     private final ViewPagerFixed viewPager;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 

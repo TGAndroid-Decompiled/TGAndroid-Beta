@@ -21,8 +21,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public String message;
     public int months;
     public TLRPC$UserProfilePhoto newUserPhoto;
-    public byte[] payload;
-    public TLRPC$Peer peer;
     public TLRPC$Photo photo;
     public TLRPC$PhoneCallDiscardReason reason;
     public boolean recurring_init;
@@ -73,7 +71,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1892568281:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public TLRPC$TL_paymentCharge charge;
                     public int flags;
                     public TLRPC$TL_paymentRequestedInfo info;
                     public byte[] payload;
@@ -94,7 +91,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         if ((this.flags & 2) != 0) {
                             this.shipping_option_id = abstractSerializedData2.readString(z2);
                         }
-                        this.charge = TLRPC$TL_paymentCharge.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
 
                     @Override
@@ -114,7 +110,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         if ((this.flags & 2) != 0) {
                             abstractSerializedData2.writeString(this.shipping_option_id);
                         }
-                        this.charge.serializeToStream(abstractSerializedData2);
                     }
                 };
                 break;
@@ -549,9 +544,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         abstractSerializedData2.writeInt64(this.total_amount);
                     }
                 };
-                break;
-            case 1102307842:
-                tLRPC$MessageAction = new TLRPC$TL_messageActionPaymentRefunded();
                 break;
             case 1200788123:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionScreenshotTaken();

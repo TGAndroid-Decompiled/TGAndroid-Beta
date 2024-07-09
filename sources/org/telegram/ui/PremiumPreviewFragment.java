@@ -267,8 +267,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return "business_intro";
             case R.styleable.AppCompatTheme_alertDialogStyle:
                 return "business_links";
-            case R.styleable.AppCompatTheme_alertDialogTheme:
-                return "effects";
             default:
                 return null;
         }
@@ -368,205 +366,198 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
                 c = 65535;
                 break;
-            case -1833928446:
-                if (str.equals("effects")) {
-                    c = '\n';
-                    break;
-                }
-                c = 65535;
-                break;
             case -1777612460:
                 if (str.equals("business_location")) {
-                    c = 11;
+                    c = '\n';
                     break;
                 }
                 c = 65535;
                 break;
             case -1761847571:
                 if (str.equals("peer_colors")) {
-                    c = '\f';
+                    c = 11;
                     break;
                 }
                 c = 65535;
                 break;
             case -1755514268:
                 if (str.equals("voice_to_text")) {
-                    c = '\r';
+                    c = '\f';
                     break;
                 }
                 c = 65535;
                 break;
             case -1529105743:
                 if (str.equals("wallpapers")) {
-                    c = 14;
+                    c = '\r';
                     break;
                 }
                 c = 65535;
                 break;
             case -1516580016:
                 if (str.equals("message_privacy")) {
-                    c = 15;
+                    c = 14;
                     break;
                 }
                 c = 65535;
                 break;
             case -1425144150:
                 if (str.equals("animated_emoji")) {
-                    c = 16;
+                    c = 15;
                     break;
                 }
                 c = 65535;
                 break;
             case -1225497630:
                 if (str.equals("translations")) {
-                    c = 17;
+                    c = 16;
                     break;
                 }
                 c = 65535;
                 break;
             case -1146830912:
                 if (str.equals("business")) {
-                    c = 18;
+                    c = 17;
                     break;
                 }
                 c = 65535;
                 break;
             case -1040323278:
                 if (str.equals("no_ads")) {
-                    c = 19;
+                    c = 18;
                     break;
                 }
                 c = 65535;
                 break;
             case -1023650261:
                 if (str.equals("more_upload")) {
-                    c = 20;
+                    c = 19;
                     break;
                 }
                 c = 65535;
                 break;
             case -969043445:
                 if (str.equals("emoji_status")) {
-                    c = 21;
+                    c = 20;
                     break;
                 }
                 c = 65535;
                 break;
             case -730864243:
                 if (str.equals("profile_badge")) {
-                    c = 22;
+                    c = 21;
                     break;
                 }
                 c = 65535;
                 break;
             case -448825858:
                 if (str.equals("faster_download")) {
-                    c = 23;
+                    c = 22;
                     break;
                 }
                 c = 65535;
                 break;
             case -294265343:
                 if (str.equals("greeting_message")) {
-                    c = 24;
+                    c = 23;
                     break;
                 }
                 c = 65535;
                 break;
             case -165039170:
                 if (str.equals("premium_stickers")) {
-                    c = 25;
+                    c = 24;
                     break;
                 }
                 c = 65535;
                 break;
             case -96210874:
                 if (str.equals("double_limits")) {
-                    c = 26;
+                    c = 25;
                     break;
                 }
                 c = 65535;
                 break;
             case 110781770:
                 if (str.equals("folder_tags")) {
-                    c = 27;
+                    c = 26;
                     break;
                 }
                 c = 65535;
                 break;
             case 234735554:
                 if (str.equals("stories__expiration_durations")) {
-                    c = 28;
+                    c = 27;
                     break;
                 }
                 c = 65535;
                 break;
             case 388416338:
                 if (str.equals("stories__stealth_mode")) {
-                    c = 29;
+                    c = 28;
                     break;
                 }
                 c = 65535;
                 break;
             case 480338102:
                 if (str.equals("quick_replies")) {
-                    c = 30;
+                    c = 29;
                     break;
                 }
                 c = 65535;
                 break;
             case 629542059:
                 if (str.equals("business_bots")) {
-                    c = 31;
+                    c = 30;
                     break;
                 }
                 c = 65535;
                 break;
             case 705083174:
                 if (str.equals("stories__priority_order")) {
-                    c = ' ';
+                    c = 31;
                     break;
                 }
                 c = 65535;
                 break;
             case 1080006662:
                 if (str.equals("stories__links_and_formatting")) {
-                    c = '!';
+                    c = ' ';
                     break;
                 }
                 c = 65535;
                 break;
             case 1219849581:
                 if (str.equals("advanced_chat_management")) {
-                    c = '\"';
+                    c = '!';
                     break;
                 }
                 c = 65535;
                 break;
             case 1438966047:
                 if (str.equals("stories__permanent_views_history")) {
-                    c = '#';
+                    c = '\"';
                     break;
                 }
                 c = 65535;
                 break;
             case 1537309393:
                 if (str.equals("saved_tags")) {
-                    c = '$';
+                    c = '#';
                     break;
                 }
                 c = 65535;
                 break;
             case 1832801148:
                 if (str.equals("app_icons")) {
-                    c = '%';
+                    c = '$';
                     break;
                 }
                 c = 65535;
                 break;
             case 2013274756:
                 if (str.equals("last_seen")) {
-                    c = '&';
+                    c = '%';
                     break;
                 }
                 c = 65535;
@@ -597,62 +588,60 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             case '\t':
                 return 14;
             case '\n':
-                return 38;
-            case 11:
                 return 29;
-            case '\f':
+            case 11:
                 return 23;
-            case '\r':
+            case '\f':
                 return 8;
-            case 14:
+            case '\r':
                 return 22;
-            case 15:
+            case 14:
                 return 27;
-            case 16:
+            case 15:
                 return 11;
-            case 17:
+            case 16:
                 return 13;
-            case 18:
+            case 17:
                 return 28;
-            case 19:
+            case 18:
                 return 3;
-            case 20:
+            case 19:
                 return 1;
-            case 21:
+            case 20:
                 return 12;
-            case 22:
+            case 21:
                 return 6;
-            case 23:
+            case 22:
                 return 2;
-            case 24:
+            case 23:
                 return 32;
-            case 25:
+            case 24:
                 return 5;
-            case 26:
+            case 25:
                 return 0;
-            case 27:
+            case 26:
                 return 35;
-            case 28:
+            case 27:
                 return 17;
-            case 29:
+            case 28:
                 return 15;
-            case R.styleable.AppCompatTheme_actionModeTheme:
+            case 29:
                 return 31;
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case R.styleable.AppCompatTheme_actionModeTheme:
                 return 34;
-            case ' ':
+            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
                 return 20;
-            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+            case ' ':
                 return 19;
-            case R.styleable.AppCompatTheme_activityChooserViewStyle:
+            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
                 return 9;
-            case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+            case R.styleable.AppCompatTheme_activityChooserViewStyle:
                 return 16;
-            case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+            case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
                 return 24;
-            case R.styleable.AppCompatTheme_alertDialogStyle:
+            case R.styleable.AppCompatTheme_alertDialogCenterButtons:
                 return 10;
-            case R.styleable.AppCompatTheme_alertDialogTheme:
+            case R.styleable.AppCompatTheme_alertDialogStyle:
                 return 26;
             default:
                 return -1;
@@ -1207,7 +1196,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         arrayList.add(new PremiumFeatureData(26, R.drawable.menu_premium_seen, LocaleController.getString(R.string.PremiumPreviewLastSeen), LocaleController.getString(R.string.PremiumPreviewLastSeenDescription)));
         arrayList.add(new PremiumFeatureData(27, R.drawable.menu_premium_privacy, LocaleController.getString(R.string.PremiumPreviewMessagePrivacy), LocaleController.getString(R.string.PremiumPreviewMessagePrivacyDescription)));
         arrayList.add(new PremiumFeatureData(28, R.drawable.filled_premium_business, applyNewSpan(LocaleController.getString(R.string.TelegramBusiness)), LocaleController.getString(R.string.PremiumPreviewBusinessDescription)));
-        arrayList.add(new PremiumFeatureData(38, R.drawable.menu_premium_effects, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewEffects)), LocaleController.getString(R.string.PremiumPreviewEffectsDescription)));
         if (messagesController.premiumFeaturesTypesToPosition.size() > 0) {
             while (i2 < arrayList.size()) {
                 if (messagesController.premiumFeaturesTypesToPosition.get(arrayList.get(i2).type, -1) == -1 && !BuildVars.DEBUG_PRIVATE_VERSION) {

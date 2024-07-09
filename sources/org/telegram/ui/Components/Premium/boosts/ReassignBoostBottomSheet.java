@@ -327,7 +327,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 } else if (i == 2) {
                     view = new HeaderCell(context, 22);
                 } else if (i == 3) {
-                    view = new SelectorUserCell(context, true, ((BottomSheet) ReassignBoostBottomSheet.this).resourcesProvider, true);
+                    view = new SelectorUserCell(context, ((BottomSheet) ReassignBoostBottomSheet.this).resourcesProvider, true);
                 } else {
                     view = new View(context);
                 }

@@ -1361,7 +1361,7 @@ public class BottomSheet extends Dialog {
         }
     }
 
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return this.canDismissWithSwipe;
     }
 

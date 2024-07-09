@@ -75,7 +75,7 @@ public class UsersAlertBase extends BottomSheet {
     private TextView titleView;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 

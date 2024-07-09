@@ -130,7 +130,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     private boolean shown;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 

@@ -303,7 +303,7 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return !this.recyclerListView.canScrollVertically(-1);
     }
 }

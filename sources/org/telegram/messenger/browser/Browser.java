@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -17,8 +18,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.support.customtabs.CustomTabsCallback;
 import org.telegram.messenger.support.customtabs.CustomTabsClient;
 import org.telegram.messenger.support.customtabs.CustomTabsServiceConnection;
+import org.telegram.messenger.support.customtabs.CustomTabsSession;
 import org.telegram.messenger.support.customtabsclient.shared.CustomTabsHelper;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnection;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnectionCallback;
@@ -33,6 +36,23 @@ public class Browser {
     private static CustomTabsClient customTabsClient;
     private static String customTabsPackageToBind;
     private static CustomTabsServiceConnection customTabsServiceConnection;
+    private static CustomTabsSession customTabsSession;
+
+    private static void setCurrentSession(CustomTabsSession customTabsSession2) {
+        new WeakReference(customTabsSession2);
+    }
+
+    private static CustomTabsSession getSession() {
+        CustomTabsClient customTabsClient2 = customTabsClient;
+        if (customTabsClient2 == null) {
+            customTabsSession = null;
+        } else if (customTabsSession == null) {
+            CustomTabsSession newSession = customTabsClient2.newSession(new NavigationCallback());
+            customTabsSession = newSession;
+            setCurrentSession(newSession);
+        }
+        return customTabsSession;
+    }
 
     public static void bindCustomTabsService(Activity activity) {
         WeakReference<Activity> weakReference = currentCustomTabsActivity;
@@ -94,6 +114,16 @@ public class Browser {
         } catch (Exception unused) {
         }
         customTabsClient = null;
+        customTabsSession = null;
+    }
+
+    public static class NavigationCallback extends CustomTabsCallback {
+        @Override
+        public void onNavigationEvent(int i, Bundle bundle) {
+        }
+
+        private NavigationCallback() {
+        }
     }
 
     public static void openUrl(Context context, String str) {
@@ -203,7 +233,7 @@ public class Browser {
         openUrl(context, uri, z, z2, false, progress, null);
     }
 
-    public static void openUrl(final android.content.Context r17, final android.net.Uri r18, boolean r19, boolean r20, boolean r21, final org.telegram.messenger.browser.Browser.Progress r22, java.lang.String r23) {
+    public static void openUrl(final android.content.Context r19, final android.net.Uri r20, boolean r21, boolean r22, boolean r23, final org.telegram.messenger.browser.Browser.Progress r24, java.lang.String r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String):void");
     }
 

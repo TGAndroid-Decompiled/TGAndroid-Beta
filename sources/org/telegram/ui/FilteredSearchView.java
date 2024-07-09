@@ -1116,7 +1116,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     TLRPC$WebPage tLRPC$WebPage = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.webpage : null;
                     if (tLRPC$WebPage != null && !(tLRPC$WebPage instanceof TLRPC$TL_webPageEmpty)) {
                         if (tLRPC$WebPage.cached_page != null) {
-                            this.parentFragment.createArticleViewer().open(messageObject);
+                            ArticleViewer.getInstance().setParentActivity(this.parentActivity, this.parentFragment);
+                            ArticleViewer.getInstance().open(messageObject);
                             return;
                         }
                         String str2 = tLRPC$WebPage.embed_url;

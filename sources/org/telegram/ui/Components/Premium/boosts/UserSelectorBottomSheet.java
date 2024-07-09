@@ -69,7 +69,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
@@ -99,33 +98,16 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     private final View sectionCell;
     private final HashSet<Long> selectedIds;
     private SelectorAdapter selectorAdapter;
-    public int type;
     private long userId;
-
-    public static void lambda$new$4() {
-    }
-
-    protected int getType() {
-        throw null;
-    }
 
     public static void open() {
         open(0L, null);
     }
 
     public static void open(long j, BirthdayController.BirthdayState birthdayState) {
-        open(0, j, birthdayState);
-    }
-
-    public static void open(final int i, long j, BirthdayController.BirthdayState birthdayState) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null && instance == null) {
-            UserSelectorBottomSheet userSelectorBottomSheet = new UserSelectorBottomSheet(lastFragment, j, birthdayState, i, true) {
-                @Override
-                protected int getType() {
-                    return i;
-                }
-            };
+            UserSelectorBottomSheet userSelectorBottomSheet = new UserSelectorBottomSheet(lastFragment, j, birthdayState, true);
             lastFragment.showDialog(userSelectorBottomSheet);
             instance = userSelectorBottomSheet;
         }
@@ -173,7 +155,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     private void checkEditTextHint() {
-        if (!this.selectedIds.isEmpty() || this.type == 1) {
+        if (this.selectedIds.size() > 0) {
             if (this.isHintSearchText) {
                 return;
             }
@@ -198,11 +180,11 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$checkEditTextHint$1() {
-        this.searchField.setHintText(LocaleController.getString(R.string.Search), true);
+        this.searchField.setHintText(LocaleController.getString("Search", R.string.Search), true);
     }
 
     public void lambda$checkEditTextHint$2() {
-        this.searchField.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+        this.searchField.setHintText(LocaleController.getString("GiftPremiumUsersSearchHint", R.string.GiftPremiumUsersSearchHint), true);
     }
 
     public void createRecipientsBtnSpaceSpan() {
@@ -218,7 +200,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         };
     }
 
-    public UserSelectorBottomSheet(BaseFragment baseFragment, long j, BirthdayController.BirthdayState birthdayState, final int i, boolean z) {
+    public UserSelectorBottomSheet(BaseFragment baseFragment, long j, BirthdayController.BirthdayState birthdayState, boolean z) {
         super(baseFragment, z, false, false, baseFragment.getResourceProvider());
         this.oldItems = new ArrayList<>();
         this.items = new ArrayList<>();
@@ -241,7 +223,6 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 }
             }
         };
-        this.type = i;
         this.birthdays = birthdayState;
         if (birthdayState != null && !birthdayState.today.isEmpty()) {
             Iterator<TLRPC$User> it = this.birthdays.today.iterator();
@@ -281,8 +262,8 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             private boolean isKeyboardVisible;
 
             @Override
-            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
-                super.onLayout(z2, i2, i3, i4, i5);
+            protected void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+                super.onLayout(z2, i, i2, i3, i4);
                 UserSelectorBottomSheet.this.listPaddingTop = getMeasuredHeight() + AndroidUtilities.dp(64.0f);
                 UserSelectorBottomSheet.this.selectorAdapter.notifyChangedLast();
                 if (this.isKeyboardVisible != UserSelectorBottomSheet.this.isKeyboardVisible()) {
@@ -295,15 +276,15 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         };
         this.searchField = selectorSearchCell;
-        int i2 = Theme.key_dialogBackground;
-        selectorSearchCell.setBackgroundColor(getThemedColor(i2));
+        int i = Theme.key_dialogBackground;
+        selectorSearchCell.setBackgroundColor(getThemedColor(i));
         selectorSearchCell.setOnSearchTextChange(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 UserSelectorBottomSheet.this.onSearch((String) obj);
             }
         });
-        selectorSearchCell.setHintText(LocaleController.getString((!this.selectedIds.isEmpty() || i == 1) ? R.string.Search : R.string.GiftPremiumUsersSearchHint), false);
+        selectorSearchCell.setHintText(LocaleController.getString(!this.selectedIds.isEmpty() ? R.string.Search : R.string.GiftPremiumUsersSearchHint), false);
         View view = new View(getContext()) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -312,20 +293,20 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         };
         this.sectionCell = view;
         ViewGroup viewGroup = this.containerView;
-        int i3 = this.backgroundPaddingLeft;
-        viewGroup.addView(selectorHeaderCell, 0, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i3, 0, i3, 0));
+        int i2 = this.backgroundPaddingLeft;
+        viewGroup.addView(selectorHeaderCell, 0, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i2, 0, i2, 0));
         ViewGroup viewGroup2 = this.containerView;
-        int i4 = this.backgroundPaddingLeft;
-        viewGroup2.addView(selectorSearchCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i4, 0, i4, 0));
+        int i3 = this.backgroundPaddingLeft;
+        viewGroup2.addView(selectorSearchCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i3, 0, i3, 0));
         ViewGroup viewGroup3 = this.containerView;
-        int i5 = this.backgroundPaddingLeft;
-        viewGroup3.addView(view, LayoutHelper.createFrameMarginPx(-1, 1.0f, 55, i5, 0, i5, 0));
+        int i4 = this.backgroundPaddingLeft;
+        viewGroup3.addView(view, LayoutHelper.createFrameMarginPx(-1, 1.0f, 55, i4, 0, i4, 0));
         SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, null);
         this.buttonContainer = selectorBtnCell;
         selectorBtnCell.setClickable(true);
         selectorBtnCell.setOrientation(1);
         selectorBtnCell.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        selectorBtnCell.setBackgroundColor(Theme.getColor(i2, this.resourcesProvider));
+        selectorBtnCell.setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourcesProvider) {
             @Override
             protected float calculateCounterWidth(float f, float f2) {
@@ -346,42 +327,40 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         });
         selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
-        if (i != 1) {
-            ViewGroup viewGroup4 = this.containerView;
-            int i6 = this.backgroundPaddingLeft;
-            viewGroup4.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i6, 0, i6, 0));
-        }
+        ViewGroup viewGroup4 = this.containerView;
+        int i5 = this.backgroundPaddingLeft;
+        viewGroup4.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i5, 0, i5, 0));
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.bulletinContainer = frameLayout;
         ViewGroup viewGroup5 = this.containerView;
-        int i7 = this.backgroundPaddingLeft;
-        viewGroup5.addView(frameLayout, LayoutHelper.createFrameMarginPx(-1, 300.0f, 87, i7, 0, i7, AndroidUtilities.dp(68.0f)));
+        int i6 = this.backgroundPaddingLeft;
+        viewGroup5.addView(frameLayout, LayoutHelper.createFrameMarginPx(-1, 300.0f, 87, i6, 0, i6, AndroidUtilities.dp(68.0f)));
         this.selectorAdapter.setData(this.items, this.recyclerListView);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i8 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i8, 0, i8, AndroidUtilities.dp(i != 1 ? 60.0f : 0.0f));
+        int i7 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i7, 0, i7, AndroidUtilities.dp(60.0f));
         this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i9) {
-                if (i9 == 1) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
+                if (i8 == 1) {
                     AndroidUtilities.hideKeyboard(UserSelectorBottomSheet.this.searchField.getEditText());
                 }
             }
         });
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view2, int i9) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i9);
+            public boolean hasDoubleTap(View view2, int i8) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i8);
             }
 
             @Override
-            public void onDoubleTap(View view2, int i9, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i9, f, f2);
+            public void onDoubleTap(View view2, int i8, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i8, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view2, int i9, float f, float f2) {
-                UserSelectorBottomSheet.this.lambda$new$6(i, view2, i9, f, f2);
+            public final void onItemClick(View view2, int i8, float f, float f2) {
+                UserSelectorBottomSheet.this.lambda$new$5(view2, i8, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -404,7 +383,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         selectorSearchCell.updateSpans(false, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$new$7();
+                UserSelectorBottomSheet.this.lambda$new$6();
             }
         }, null);
         selectorHeaderCell.setText(getTitle());
@@ -416,7 +395,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         BoostRepository.loadGiftOptions(null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UserSelectorBottomSheet.this.lambda$new$8((List) obj);
+                UserSelectorBottomSheet.this.lambda$new$7((List) obj);
             }
         });
     }
@@ -425,22 +404,13 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         next();
     }
 
-    public void lambda$new$6(int i, View view, int i2, float f, float f2) {
+    public void lambda$new$5(View view, int i, float f, float f2) {
         if (view instanceof TextCell) {
             openBirthdaySetup();
             return;
         }
         if (view instanceof SelectorUserCell) {
             TLRPC$User user = ((SelectorUserCell) view).getUser();
-            if (i == 1) {
-                new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new Runnable() {
-                    @Override
-                    public final void run() {
-                        UserSelectorBottomSheet.lambda$new$4();
-                    }
-                }).show();
-                return;
-            }
             long j = user.id;
             if (this.selectedIds.contains(Long.valueOf(j))) {
                 this.selectedIds.remove(Long.valueOf(j));
@@ -456,7 +426,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
                     @Override
                     public final void run() {
-                        UserSelectorBottomSheet.this.lambda$new$5();
+                        UserSelectorBottomSheet.this.lambda$new$4();
                     }
                 }, null);
                 updateList(true, true);
@@ -465,17 +435,17 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public void lambda$new$5() {
+    public void lambda$new$4() {
         checkEditTextHint();
         updateList(true, false);
     }
 
-    public void lambda$new$7() {
+    public void lambda$new$6() {
         checkEditTextHint();
         updateList(true, false);
     }
 
-    public void lambda$new$8(List list) {
+    public void lambda$new$7(List list) {
         this.paymentOptions.clear();
         this.paymentOptions.addAll(list);
     }
@@ -519,9 +489,6 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         }
         AndroidUtilities.hideKeyboard(this.searchField.getEditText());
-        if (this.type == 1) {
-            return;
-        }
         PremiumPreviewGiftToUsersBottomSheet.show(arrayList, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, arrayList.size())));
     }
 
@@ -647,7 +614,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             asTopSection.withRightText(LocaleController.getString(z2 ? R.string.DeselectAll : R.string.SelectAll), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    UserSelectorBottomSheet.this.lambda$addSection$10(z2, arrayList2, view);
+                    UserSelectorBottomSheet.this.lambda$addSection$9(z2, arrayList2, view);
                 }
             });
         }
@@ -656,7 +623,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         return dp;
     }
 
-    public void lambda$addSection$10(boolean z, ArrayList arrayList, View view) {
+    public void lambda$addSection$9(boolean z, ArrayList arrayList, View view) {
         if (z) {
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
@@ -678,14 +645,14 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$addSection$9();
+                UserSelectorBottomSheet.this.lambda$addSection$8();
             }
         }, null);
         updateList(true, true);
         clearSearchAfterSelect();
     }
 
-    public void lambda$addSection$9() {
+    public void lambda$addSection$8() {
         checkEditTextHint();
         updateList(true, false);
     }
@@ -772,7 +739,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 item.withRightText(LocaleController.getString(R.string.DeselectAll), new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        UserSelectorBottomSheet.this.lambda$updateItems$12(arrayList, view);
+                        UserSelectorBottomSheet.this.lambda$updateItems$11(arrayList, view);
                     }
                 });
             }
@@ -793,7 +760,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public void lambda$updateItems$12(ArrayList arrayList, View view) {
+    public void lambda$updateItems$11(ArrayList arrayList, View view) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             long longValue = ((Long) it.next()).longValue();
@@ -804,14 +771,14 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$updateItems$11();
+                UserSelectorBottomSheet.this.lambda$updateItems$10();
             }
         }, null);
         updateList(true, true);
         clearSearchAfterSelect();
     }
 
-    public void lambda$updateItems$11() {
+    public void lambda$updateItems$10() {
         checkEditTextHint();
         updateList(true, false);
     }
@@ -820,26 +787,26 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         return new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UserSelectorBottomSheet.this.lambda$openOptions$15(tLRPC$User, view);
+                UserSelectorBottomSheet.this.lambda$openOptions$14(tLRPC$User, view);
             }
         };
     }
 
-    public void lambda$openOptions$15(final TLRPC$User tLRPC$User, View view) {
+    public void lambda$openOptions$14(final TLRPC$User tLRPC$User, View view) {
         ItemOptions.makeOptions(this.container, this.resourcesProvider, (View) view.getParent()).add(R.drawable.profile_discuss, LocaleController.getString(R.string.SendMessage), new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$openOptions$13(tLRPC$User);
+                UserSelectorBottomSheet.this.lambda$openOptions$12(tLRPC$User);
             }
         }).add(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$openOptions$14(tLRPC$User);
+                UserSelectorBottomSheet.this.lambda$openOptions$13(tLRPC$User);
             }
         }).show();
     }
 
-    public void lambda$openOptions$13(TLRPC$User tLRPC$User) {
+    public void lambda$openOptions$12(TLRPC$User tLRPC$User) {
         BaseFragment baseFragment = getBaseFragment();
         if (tLRPC$User == null || baseFragment == null) {
             return;
@@ -852,7 +819,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         baseFragment.showAsSheet(new ChatActivity(bundle), bottomSheetParams);
     }
 
-    public void lambda$openOptions$14(TLRPC$User tLRPC$User) {
+    public void lambda$openOptions$13(TLRPC$User tLRPC$User) {
         BaseFragment baseFragment = getBaseFragment();
         if (tLRPC$User == null || baseFragment == null) {
             return;
@@ -873,15 +840,12 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
 
     @Override
     protected CharSequence getTitle() {
-        if (getType() == 1) {
-            return LocaleController.getString(R.string.GiftStarsTitle);
-        }
-        return LocaleController.getString(R.string.GiftTelegramPremiumTitle);
+        return LocaleController.getString("GiftTelegramPremiumTitle", R.string.GiftTelegramPremiumTitle);
     }
 
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), getType() != 1, this.resourcesProvider);
+        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), this.resourcesProvider);
         this.selectorAdapter = selectorAdapter;
         selectorAdapter.setGreenSelector(true);
         return this.selectorAdapter;
@@ -903,35 +867,35 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$16();
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$15();
                 }
             });
         } else if (i == NotificationCenter.reloadHints) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$17();
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$16();
                 }
             });
         } else if (i == NotificationCenter.userInfoDidLoad) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$18();
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$17();
                 }
             });
         }
     }
 
-    public void lambda$didReceivedNotification$16() {
+    public void lambda$didReceivedNotification$15() {
         initContacts(true);
     }
 
-    public void lambda$didReceivedNotification$17() {
+    public void lambda$didReceivedNotification$16() {
         initHints(true);
     }
 
-    public void lambda$didReceivedNotification$18() {
+    public void lambda$didReceivedNotification$17() {
         updateItems(true, true);
     }
 
@@ -939,17 +903,17 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$21((TLRPC$TL_birthday) obj);
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$20((TLRPC$TL_birthday) obj);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$22();
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$21();
             }
         }, this.resourcesProvider).show();
     }
 
-    public void lambda$openBirthdaySetup$21(TLRPC$TL_birthday tLRPC$TL_birthday) {
+    public void lambda$openBirthdaySetup$20(TLRPC$TL_birthday tLRPC$TL_birthday) {
         TLRPC$TL_account_updateBirthday tLRPC$TL_account_updateBirthday = new TLRPC$TL_account_updateBirthday();
         tLRPC$TL_account_updateBirthday.flags |= 1;
         tLRPC$TL_account_updateBirthday.birthday = tLRPC$TL_birthday;
@@ -962,7 +926,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updateBirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$20(userFull, tLRPC$TL_birthday2, tLObject, tLRPC$TL_error);
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$19(userFull, tLRPC$TL_birthday2, tLObject, tLRPC$TL_error);
             }
         }, 1024);
         MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "BIRTHDAY_SETUP");
@@ -970,16 +934,16 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         updateItems(true, true);
     }
 
-    public void lambda$openBirthdaySetup$20(final TLRPC$UserFull tLRPC$UserFull, final TLRPC$TL_birthday tLRPC$TL_birthday, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openBirthdaySetup$19(final TLRPC$UserFull tLRPC$UserFull, final TLRPC$TL_birthday tLRPC$TL_birthday, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$19(tLObject, tLRPC$UserFull, tLRPC$TL_birthday, tLRPC$TL_error);
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$18(tLObject, tLRPC$UserFull, tLRPC$TL_birthday, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$openBirthdaySetup$19(TLObject tLObject, TLRPC$UserFull tLRPC$UserFull, TLRPC$TL_birthday tLRPC$TL_birthday, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openBirthdaySetup$18(TLObject tLObject, TLRPC$UserFull tLRPC$UserFull, TLRPC$TL_birthday tLRPC$TL_birthday, TLRPC$TL_error tLRPC$TL_error) {
         String str;
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.PrivacyBirthdaySetDone)).setDuration(5000).show();
@@ -1004,7 +968,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
     }
 
-    public void lambda$openBirthdaySetup$22() {
+    public void lambda$openBirthdaySetup$21() {
         if (getBaseFragment() == null) {
             return;
         }

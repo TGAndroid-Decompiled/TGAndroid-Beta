@@ -734,7 +734,6 @@ public class ThemeColors {
         iArr[Theme.key_code_number] = -13467675;
         iArr[Theme.key_code_comment] = Integer.MIN_VALUE;
         iArr[Theme.key_code_function] = -881607;
-        iArr[Theme.key_iv_ab_background] = -1;
         return iArr;
     }
 
@@ -1481,7 +1480,6 @@ public class ThemeColors {
         sparseArray.put(Theme.key_code_number, "code_number");
         sparseArray.put(Theme.key_code_comment, "code_comment");
         sparseArray.put(Theme.key_code_function, "code_function");
-        sparseArray.put(Theme.key_iv_ab_background, "iv_ab_background");
         return sparseArray;
     }
 
