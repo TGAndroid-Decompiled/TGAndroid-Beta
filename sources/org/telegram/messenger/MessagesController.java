@@ -16189,13 +16189,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     @Override
                     public void onMessagesLoaded(boolean z) {
                         r2.end();
-                        r3.presentFragment(new ChatActivity(r4), true);
+                        r3.presentFragment(new ChatActivity(r4));
                     }
 
                     @Override
                     public void onError() {
                         r2.end();
-                        r3.presentFragment(new ChatActivity(r4), true);
+                        r3.presentFragment(new ChatActivity(r4));
                     }
                 }));
                 return false;
@@ -16257,13 +16257,13 @@ public class MessagesController extends BaseController implements NotificationCe
         @Override
         public void onMessagesLoaded(boolean z) {
             r2.end();
-            r3.presentFragment(new ChatActivity(r4), true);
+            r3.presentFragment(new ChatActivity(r4));
         }
 
         @Override
         public void onError() {
             r2.end();
-            r3.presentFragment(new ChatActivity(r4), true);
+            r3.presentFragment(new ChatActivity(r4));
         }
     }
 

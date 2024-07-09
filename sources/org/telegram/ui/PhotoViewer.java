@@ -10970,7 +10970,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public void lambda$onError$0(DialogInterface dialogInterface, int i) {
             try {
-                AndroidUtilities.openForView(PhotoViewer.this.currentMessageObject, PhotoViewer.this.parentActivity, PhotoViewer.this.resourcesProvider);
+                AndroidUtilities.openForView(PhotoViewer.this.currentMessageObject, PhotoViewer.this.parentActivity, PhotoViewer.this.resourcesProvider, true);
                 PhotoViewer.this.closePhoto(false, false);
             } catch (Exception e) {
                 FileLog.e(e);

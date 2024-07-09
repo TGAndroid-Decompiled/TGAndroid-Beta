@@ -480,7 +480,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, -1, false, this.placeProvider, null);
             } else {
                 File file = fileInfo.file;
-                AndroidUtilities.openForView(file, file.getName(), null, this.parentFragment.getParentActivity(), null);
+                AndroidUtilities.openForView(file, file.getName(), null, this.parentFragment.getParentActivity(), null, false);
             }
         }
         if (cacheCell.type == 3) {

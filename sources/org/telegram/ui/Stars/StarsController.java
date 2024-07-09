@@ -952,7 +952,7 @@ public class StarsController {
             }
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null && launchActivity.getFireworksOverlay() != null) {
-                LaunchActivity.instance.getFireworksOverlay().start();
+                LaunchActivity.instance.getFireworksOverlay().start(true);
             }
             invalidateTransactions(true);
             if (messageObject != null) {

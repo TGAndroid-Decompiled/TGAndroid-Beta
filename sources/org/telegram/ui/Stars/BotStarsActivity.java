@@ -220,8 +220,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
         };
         this.balanceEditText = editTextBoldCursor;
-        editTextBoldCursor.setVisibility(8);
-        this.balanceEditText.setFocusable(false);
+        editTextBoldCursor.setFocusable(false);
         this.balanceEditText.setTextColor(getThemedColor(i3));
         this.balanceEditText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.balanceEditText.setCursorWidth(1.5f);
@@ -289,6 +288,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
         });
         this.balanceLayout.addView(this.balanceEditTextContainer, LayoutHelper.createLinear(-1, -2, 1, 18, 14, 18, 2));
+        this.balanceEditTextContainer.setVisibility(8);
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this, context, getResourceProvider()) {
@@ -523,7 +523,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         }
         this.balanceTitle.setText(spannableStringBuilder);
         this.balanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
-        this.balanceEditText.setVisibility(j2 > 0 ? 0 : 8);
+        this.balanceEditTextContainer.setVisibility(j2 > 0 ? 0 : 8);
         if (this.balanceEditTextAll) {
             this.balanceEditTextIgnore = true;
             EditTextBoldCursor editTextBoldCursor = this.balanceEditText;

@@ -338,7 +338,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         };
         this.starsBalanceEditTextContainer = outlineTextContainerView;
-        outlineTextContainerView.setText(LocaleController.getString(R.string.BotStarsWithdrawPlaceholder));
+        outlineTextContainerView.setVisibility(8);
+        this.starsBalanceEditTextContainer.setText(LocaleController.getString(R.string.BotStarsWithdrawPlaceholder));
         this.starsBalanceEditTextContainer.setLeftPadding(AndroidUtilities.dp(36.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, context) {
             @Override
@@ -934,6 +935,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.starsBalance = j;
         this.starsBalanceTitle.setText(spannableStringBuilder);
         this.starsBalanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
+        this.starsBalanceEditTextContainer.setVisibility(j > 0 ? 0 : 8);
         if (this.starsBalanceEditTextAll) {
             this.starsBalanceEditTextIgnore = true;
             EditTextBoldCursor editTextBoldCursor = this.starsBalanceEditText;

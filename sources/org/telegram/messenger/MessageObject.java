@@ -98,6 +98,7 @@ import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAnimated;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeCustomEmoji;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeHasStickers;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
@@ -5137,9 +5138,15 @@ public class MessageObject {
     }
 
     public static boolean isVideoDocument(TLRPC$Document tLRPC$Document) {
+        int lastIndexOf;
         if (tLRPC$Document == null) {
             return false;
         }
+        String str = tLRPC$Document.mime_type;
+        if (str != null && !str.startsWith("video/")) {
+            return false;
+        }
+        String str2 = null;
         boolean z = false;
         int i = 0;
         int i2 = 0;
@@ -5155,6 +5162,50 @@ public class MessageObject {
                 z2 = true;
             } else if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAnimated) {
                 z = true;
+            } else if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeFilename) {
+                str2 = tLRPC$DocumentAttribute.file_name;
+            }
+        }
+        if (str2 != null && (lastIndexOf = str2.lastIndexOf(".")) >= 0) {
+            switch (str2.substring(lastIndexOf + 1).toLowerCase().hashCode()) {
+                case 3619:
+                case 3643:
+                case 3711:
+                case 52254:
+                case 52316:
+                case 96714:
+                case 96884:
+                case 96980:
+                case 102340:
+                case 106417:
+                case 106473:
+                case 106479:
+                case 108184:
+                case 108262:
+                case 108271:
+                case 108273:
+                case 108308:
+                case 108322:
+                case 108324:
+                case 108339:
+                case 108460:
+                case 108571:
+                case 109393:
+                case 109967:
+                case 109982:
+                case 112680:
+                case 114278:
+                case 116771:
+                case 117856:
+                case 120026:
+                case 3172658:
+                case 3298980:
+                case 3358085:
+                case 3504679:
+                case 3645337:
+                    break;
+                default:
+                    return false;
             }
         }
         if (z && (i > 1280 || i2 > 1280)) {

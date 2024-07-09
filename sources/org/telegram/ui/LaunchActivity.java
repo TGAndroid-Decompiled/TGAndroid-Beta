@@ -365,7 +365,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
+    protected void onCreate(Bundle bundle) {
         boolean z;
         ActionBarLayout actionBarLayout;
         Intent intent;
@@ -4364,7 +4364,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onActivityResult(int i, int i2, Intent intent) {
+    protected void onActivityResult(int i, int i2, Intent intent) {
         VoIPService sharedInstance;
         if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.lastPauseTime != 0) {
             SharedConfig.lastPauseTime = 0;
@@ -4464,7 +4464,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         super.onPause();
         isResumed = false;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf(LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM));
@@ -4516,7 +4516,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
         Browser.bindCustomTabsService(this);
         ApplicationLoader.mainInterfaceStopped = false;
@@ -4528,7 +4528,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onStop() {
+    protected void onStop() {
         super.onStop();
         Browser.unbindCustomTabsService(this);
         ApplicationLoader.mainInterfaceStopped = true;
@@ -4540,7 +4540,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onDestroy() {
+    protected void onDestroy() {
         isActive = false;
         if (PhotoViewer.getPipInstance() != null) {
             PhotoViewer.getPipInstance().destroyPhotoViewer();
@@ -4615,7 +4615,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
