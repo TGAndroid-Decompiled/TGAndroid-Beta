@@ -4,8 +4,70 @@ import org.telegram.messenger.LiteMode;
 
 public class TLRPC$TL_dialogFilter extends TLRPC$DialogFilter {
     @Override
-    public void readParams(org.telegram.tgnet.AbstractSerializedData r9, boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC$TL_dialogFilter.readParams(org.telegram.tgnet.AbstractSerializedData, boolean):void");
+    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+        int readInt32 = abstractSerializedData.readInt32(z);
+        this.flags = readInt32;
+        this.contacts = (readInt32 & 1) != 0;
+        this.non_contacts = (readInt32 & 2) != 0;
+        this.groups = (readInt32 & 4) != 0;
+        this.broadcasts = (readInt32 & 8) != 0;
+        this.bots = (readInt32 & 16) != 0;
+        this.exclude_muted = (readInt32 & 2048) != 0;
+        this.exclude_read = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
+        this.exclude_archived = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+        this.id = abstractSerializedData.readInt32(z);
+        this.title = abstractSerializedData.readString(z);
+        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+            this.emoticon = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 134217728) != 0) {
+            this.color = abstractSerializedData.readInt32(z);
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            }
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$InputPeer TLdeserialize = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.pinned_peers.add(TLdeserialize);
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        if (readInt324 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+            }
+            return;
+        }
+        int readInt325 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt325; i2++) {
+            TLRPC$InputPeer TLdeserialize2 = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize2 == null) {
+                return;
+            }
+            this.include_peers.add(TLdeserialize2);
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        if (readInt326 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+            }
+            return;
+        }
+        int readInt327 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt327; i3++) {
+            TLRPC$InputPeer TLdeserialize3 = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize3 == null) {
+                return;
+            }
+            this.exclude_peers.add(TLdeserialize3);
+        }
     }
 
     @Override
