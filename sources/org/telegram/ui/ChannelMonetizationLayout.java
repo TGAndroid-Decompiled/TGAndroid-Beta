@@ -197,6 +197,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
 
     public ChannelMonetizationLayout(final Context context, final BaseFragment baseFragment, final int i, final long j, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
+        int i2;
+        final int i3;
         this.starRef = new ColoredImageSpan[1];
         this.starsBalanceEditTextIgnore = false;
         this.starsBalanceEditTextAll = true;
@@ -239,10 +241,20 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 ChannelMonetizationLayout.this.lambda$new$1();
             }
         }), true);
-        this.proceedsInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.MonetizationProceedsInfo), -1, 3, new Runnable() {
+        if (z2 && z) {
+            i2 = R.string.MonetizationProceedsStarsTONInfo;
+        } else {
+            i2 = z2 ? R.string.MonetizationProceedsStarsInfo : R.string.MonetizationProceedsTONInfo;
+        }
+        if (z2 && z) {
+            i3 = R.string.MonetizationProceedsStarsTONInfoLink;
+        } else {
+            i3 = z2 ? R.string.MonetizationProceedsStarsInfoLink : R.string.MonetizationProceedsTONInfoLink;
+        }
+        this.proceedsInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i2), -1, 3, new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.this.lambda$new$2();
+                ChannelMonetizationLayout.this.lambda$new$2(i3);
             }
         }, resourcesProvider), true);
         this.starsBalanceInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.MonetizationStarsInfo), new Runnable() {
@@ -260,20 +272,20 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }, resourcesProvider);
         LinearLayout linearLayout = new LinearLayout(this, context) {
             @Override
-            protected void onMeasure(int i2, int i3) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), i3);
+            protected void onMeasure(int i4, int i5) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), i5);
             }
         };
         this.balanceLayout = linearLayout;
         linearLayout.setOrientation(1);
-        int i2 = Theme.key_windowBackgroundWhite;
-        linearLayout.setBackgroundColor(Theme.getColor(i2, resourcesProvider));
+        int i4 = Theme.key_windowBackgroundWhite;
+        linearLayout.setBackgroundColor(Theme.getColor(i4, resourcesProvider));
         linearLayout.setPadding(0, 0, 0, AndroidUtilities.dp(17.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
         this.balanceTitle = animatedTextView;
         animatedTextView.setTypeface(AndroidUtilities.bold());
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        animatedTextView.setTextColor(Theme.getColor(i3, resourcesProvider));
+        int i5 = Theme.key_windowBackgroundWhiteBlackText;
+        animatedTextView.setTextColor(Theme.getColor(i5, resourcesProvider));
         animatedTextView.setTextSize(AndroidUtilities.dp(32.0f));
         animatedTextView.setGravity(17);
         this.balanceTitleSizeSpan = new RelativeSizeSpan(0.6770833f);
@@ -281,8 +293,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
         this.balanceSubtitle = animatedTextView2;
         animatedTextView2.setGravity(17);
-        int i4 = Theme.key_windowBackgroundWhiteGrayText;
-        animatedTextView2.setTextColor(Theme.getColor(i4, resourcesProvider));
+        int i6 = Theme.key_windowBackgroundWhiteGrayText;
+        animatedTextView2.setTextColor(Theme.getColor(i6, resourcesProvider));
         animatedTextView2.setTextSize(AndroidUtilities.dp(14.0f));
         linearLayout.addView(animatedTextView2, LayoutHelper.createFrame(-1, 17.0f, 49, 22.0f, 4.0f, 22.0f, 0.0f));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
@@ -299,18 +311,18 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
         LinearLayout linearLayout2 = new LinearLayout(this, context) {
             @Override
-            protected void onMeasure(int i5, int i6) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5), 1073741824), i6);
+            protected void onMeasure(int i7, int i8) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i8);
             }
         };
         this.starsBalanceLayout = linearLayout2;
         linearLayout2.setOrientation(1);
-        linearLayout2.setBackgroundColor(Theme.getColor(i2, resourcesProvider));
+        linearLayout2.setBackgroundColor(Theme.getColor(i4, resourcesProvider));
         linearLayout2.setPadding(0, 0, 0, AndroidUtilities.dp(17.0f));
         AnimatedTextView animatedTextView3 = new AnimatedTextView(context, false, true, true);
         this.starsBalanceTitle = animatedTextView3;
         animatedTextView3.setTypeface(AndroidUtilities.bold());
-        animatedTextView3.setTextColor(Theme.getColor(i3, resourcesProvider));
+        animatedTextView3.setTextColor(Theme.getColor(i5, resourcesProvider));
         animatedTextView3.setTextSize(AndroidUtilities.dp(32.0f));
         animatedTextView3.setGravity(17);
         new RelativeSizeSpan(0.6770833f);
@@ -318,7 +330,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         AnimatedTextView animatedTextView4 = new AnimatedTextView(context, true, true, true);
         this.starsBalanceSubtitle = animatedTextView4;
         animatedTextView4.setGravity(17);
-        animatedTextView4.setTextColor(Theme.getColor(i4, resourcesProvider));
+        animatedTextView4.setTextColor(Theme.getColor(i6, resourcesProvider));
         animatedTextView4.setTextSize(AndroidUtilities.dp(14.0f));
         linearLayout2.addView(animatedTextView4, LayoutHelper.createFrame(-1, 17.0f, 49, 22.0f, 4.0f, 22.0f, 0.0f));
         OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context) {
@@ -350,7 +362,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         };
         this.starsBalanceEditText = editTextBoldCursor;
         editTextBoldCursor.setFocusable(false);
-        this.starsBalanceEditText.setTextColor(Theme.getColor(i3, resourcesProvider));
+        this.starsBalanceEditText.setTextColor(Theme.getColor(i5, resourcesProvider));
         this.starsBalanceEditText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.starsBalanceEditText.setCursorWidth(1.5f);
         this.starsBalanceEditText.setBackground(null);
@@ -371,11 +383,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         });
         this.starsBalanceEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+            public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+            public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
 
             @Override
@@ -443,9 +455,9 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         linearLayout2.addView(linearLayout4, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
         this.starsBalanceEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
                 boolean lambda$new$18;
-                lambda$new$18 = ChannelMonetizationLayout.this.lambda$new$18(baseFragment, textView, i5, keyEvent);
+                lambda$new$18 = ChannelMonetizationLayout.this.lambda$new$18(baseFragment, textView, i7, keyEvent);
                 return lambda$new$18;
             }
         });
@@ -479,7 +491,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         linearLayout5.setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         this.progress = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor(i2, resourcesProvider));
+        frameLayout.setBackgroundColor(Theme.getColor(i4, resourcesProvider));
         frameLayout.addView(linearLayout5, LayoutHelper.createFrame(-2, -2, 17));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         rLottieImageView.setAutoRepeat(true);
@@ -488,16 +500,16 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        int i5 = Theme.key_player_actionBarTitle;
-        textView.setTextColor(Theme.getColor(i5));
-        textView.setTag(Integer.valueOf(i5));
+        int i7 = Theme.key_player_actionBarTitle;
+        textView.setTextColor(Theme.getColor(i7));
+        textView.setTag(Integer.valueOf(i7));
         textView.setText(LocaleController.getString("LoadingStats", R.string.LoadingStats));
         textView.setGravity(1);
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 15.0f);
-        int i6 = Theme.key_player_actionBarSubtitle;
-        textView2.setTextColor(Theme.getColor(i6));
-        textView2.setTag(Integer.valueOf(i6));
+        int i8 = Theme.key_player_actionBarSubtitle;
+        textView2.setTextColor(Theme.getColor(i8));
+        textView2.setTag(Integer.valueOf(i8));
         textView2.setText(LocaleController.getString("LoadingStatsDescription", R.string.LoadingStatsDescription));
         textView2.setGravity(1);
         linearLayout5.addView(rLottieImageView, LayoutHelper.createLinear(120, 120, 1, 0, 0, 0, 20));
@@ -510,8 +522,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
     }
 
-    public void lambda$new$2() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationProceedsInfoLink));
+    public void lambda$new$2(int i) {
+        Browser.openUrl(getContext(), LocaleController.getString(i));
     }
 
     public void lambda$new$3() {
